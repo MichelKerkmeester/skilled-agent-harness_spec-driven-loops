@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the docs and workflow first, then run the shared extractor or reducer emission path on representative deltas, then exercise the opt-out branch.
 - Desired user-facing outcome: The user is told where `resource-map.md` appears, what it summarizes, and how to skip it.
 - Expected signals: The synthesis workflow contains an emission step, the reducer supports `--emit-resource-map`, the shared extractor renders template categories with finding counts, and config opt-out skips cleanly.
-- Pass/fail posture: PASS if emission and opt-out both work as documented; FAIL if synthesis omits the map, produces malformed categories, or writes a file when opt-out is set.
+- Pass/fail posture: PASS if emission and opt-out both work as documented. FAIL if synthesis omits the map, produces malformed categories, or writes a file when opt-out is set.
 
 ---
 
@@ -63,7 +63,7 @@ Capture the command-doc opt-out mention, the YAML synthesis emission step, the r
 
 ### Pass/Fail
 
-PASS if review synthesis emits the map by default and skips it cleanly when opt-out is set; FAIL if the map is malformed, missing, or still written under opt-out.
+PASS if review synthesis emits the map by default and skips it cleanly when opt-out is set. FAIL if the map is malformed, missing, or still written under opt-out.
 
 ### Failure Triage
 
@@ -84,7 +84,7 @@ Privilege the YAML synthesis step and reducer behavior over secondary docs if th
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint; opt-out and emitted-artifact contract |
+| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint, opt-out and emitted-artifact contract |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Autonomous synthesis emission step |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Confirm-mode synthesis emission step |
 | `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Reducer flag handling and write path |

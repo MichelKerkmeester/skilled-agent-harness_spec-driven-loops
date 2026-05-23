@@ -28,8 +28,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate the deep-review per-iteration write contract for iteration markdown, JSONL severity counts, and strategy updates.`
 - Expected execution process: Inspect the YAML dispatch step for the agent prompt constraints, then the post-dispatch validation step for required outputs, then the quick reference iteration checklist for the documented write contract.
 - Desired user-facing outcome: The user can be told exactly which files are created or updated after each iteration and what data each contains.
-- Expected signals: The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy; the post-dispatch validation checks for all three; the quick reference checklist documents the same three outputs.
-- Pass/fail posture: PASS if all sources agree on the three required outputs and their formats; FAIL if any output is undocumented or the validation step does not check for it.
+- Expected signals: The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy. The post-dispatch validation checks for all three. The quick reference checklist documents the same three outputs.
+- Pass/fail posture: PASS if all sources agree on the three required outputs and their formats. FAIL if any output is undocumented or the validation step does not check for it.
 
 ---
 
@@ -48,11 +48,11 @@ Validate the deep-review per-iteration write contract for iteration markdown, JS
 2. `bash: rg -n 'step_validate_iteration\|iteration_file_written\|jsonl_appended\|strategy_updated\|on_missing_outputs' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 3. `bash: rg -n 'iteration-NNN\|JSONL\|strategy\|Write.*findings\|P0.*P1.*P2' .opencode/skills/deep-review/references/quick_reference.md`
 ### Expected
-The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy; the post-dispatch validation checks for all three; the quick reference checklist documents the same outputs.
+The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy. The post-dispatch validation checks for all three. The quick reference checklist documents the same outputs.
 ### Evidence
 Capture the dispatch constraints, the validation step required outputs, and the quick reference iteration checklist.
 ### Pass/Fail
-PASS if all sources agree on the three required outputs and their formats; FAIL if any output is undocumented or the validation step does not check for it.
+PASS if all sources agree on the three required outputs and their formats. FAIL if any output is undocumented or the validation step does not check for it.
 ### Failure Triage
 Inspect the on_missing_outputs fallback to verify that error handling still appends a JSONL record even when the agent fails to complete its outputs.
 ---
@@ -64,17 +64,17 @@ Inspect the on_missing_outputs fallback to verify that error handling still appe
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Iteration checklist; use `ANCHOR:agent-iteration-checklist` |
-| `.codex/agents/deep-review.toml` | Agent write contract; inspect iteration output requirements |
-| `.claude/agents/deep-review.md` | Agent write contract; inspect iteration output requirements |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dispatch and validation, inspect `step_dispatch_review_agent` and `step_validate_iteration` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dispatch and validation, inspect `step_dispatch_review_agent` and `step_validate_iteration` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
+| `.codex/agents/deep-review.toml` | Agent write contract, inspect iteration output requirements |
+| `.claude/agents/deep-review.md` | Agent write contract, inspect iteration output requirements |
 
 ---
 

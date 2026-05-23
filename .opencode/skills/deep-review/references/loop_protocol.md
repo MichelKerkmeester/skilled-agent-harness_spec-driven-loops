@@ -13,7 +13,7 @@ Complete lifecycle specification for the autonomous deep review loop.
 
 ### Purpose
 
-The deep review loop has 4 phases: initialization, iteration (repeated), synthesis, and save. The YAML workflow manages the lifecycle; the `@deep-review` agent (LEAF-only, no WebFetch) executes individual review iterations with fresh context each time.
+The deep review loop has 4 phases: initialization, iteration (repeated), synthesis, and save. The YAML workflow manages the lifecycle. The `@deep-review` agent (LEAF-only, no WebFetch) executes individual review iterations with fresh context each time.
 
 ### When to Use
 
@@ -53,7 +53,7 @@ Each agent dispatch gets a fresh context window. State continuity comes from fil
 | Review contract | `assets/review_mode_contract.yaml` | Dimensions, verdicts, gates, protocols |
 | Auto workflow | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Unattended review loop |
 | Confirm workflow | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Step-by-step review with approval gates |
-| Agent | `@deep-review` (LEAF) | Single iteration executor; no sub-agents, no WebFetch |
+| Agent | `@deep-review` (LEAF) | Single iteration executor, no sub-agents, no WebFetch |
 | Memory save | `generate-context.js` | Context preservation script |
 
 ---
@@ -134,7 +134,7 @@ Set up all state files for a new review session. Discover the scope, order dimen
    - In **confirm mode**: present the charter (target, dimensions, scope, non-goals) for user review before proceeding
    - In **auto mode**: accept automatically and continue
 
-11. **Resume only if config, JSONL, strategy, and findings registry agree**; otherwise halt for repair instead of guessing.
+11. **Resume only if config, JSONL, strategy, and findings registry agree**. Otherwise halt for repair instead of guessing.
 
 ### Outputs
 
@@ -185,7 +185,7 @@ If convergence math or a hard-stop candidate points to STOP, the workflow must r
 - `gateResults`: per-gate pass/fail payloads using the review gate names above
 - `recoveryStrategy`: one-line hint describing the next review action
 
-The blocked-stop event is append-only evidence that legal-stop blocked the run; the loop then continues with the recovery or next-focus path rather than synthesizing.
+The blocked-stop event is append-only evidence that legal-stop blocked the run. The loop then continues with the recovery or next-focus path rather than synthesizing.
 
 Convergence signals and weights:
 
@@ -270,7 +270,7 @@ Before dispatching, the YAML resolves the executor via `parseExecutorConfig` fro
 - `native` (spec 018): dispatch `@deep-review` agent with model Opus.
 - `cli-codex` (spec 018): pipe rendered prompt via stdin to `codex exec --model X -c model_reasoning_effort=Y -c service_tier=Z -c approval_policy=never --sandbox workspace-write`.
 - `cli-gemini` (spec 019): positional prompt to `gemini "$(cat prompt)" -m X -s none -y -o text`. Model whitelist enforced (`gemini-3.1-pro-preview` only). No reasoning-effort or service-tier flags.
-- `cli-claude-code` (spec 019): `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only); we override to `acceptEdits` so iteration writes succeed.
+- `cli-claude-code` (spec 019): `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only). We override to `acceptEdits` so iteration writes succeed.
 
 All branches share:
 1. Pre-dispatch prompt rendering via `renderPromptPack` (writes to `{artifact_dir}/prompts/iteration-{n}.md`).
@@ -279,14 +279,14 @@ All branches share:
 
 Per-kind flag-compatibility is enforced at config parse time by `EXECUTOR_KIND_FLAG_SUPPORT` in `executor-config.ts`. Setting a flag that the chosen kind does not support throws `ExecutorConfigError` before dispatch.
 
-Cross-CLI delegation (a running executor invoking other CLIs via its shell) is documented design intent. Runtime recursion detection is out of scope; see the SKILL.md Cross-CLI Delegation subsection.
+Cross-CLI delegation (a running executor invoking other CLIs via its shell) is documented design intent. Runtime recursion detection is out of scope. See the SKILL.md Cross-CLI Delegation subsection.
 
 Failure handling remains unchanged from spec 018: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
 
 **Agent constraints**:
 - `@deep-review` is LEAF-only: it cannot dispatch sub-agents
 - No WebFetch: review is code-only and read-only
-- Target 8-11 tool calls per iteration (max 12); breadth over depth per cycle
+- Target 8-11 tool calls per iteration (max 12). Breadth over depth per cycle
 - Tools available: Read, Grep, Glob, Edit (state files only), mcp__cocoindex_code__search
 
 #### Step 3a: Cross-Reference Protocol Execution
@@ -362,7 +362,7 @@ Each new P0/P1 must carry a typed packet with the following required fields (see
 | `finalSeverity` | `"P0"` \| `"P1"` \| `"P2"` | Severity after adjudication |
 | `confidence` | number `[0, 1]` | Orchestrator confidence in `finalSeverity` |
 | `downgradeTrigger` | string | Concrete condition that would cause a future downgrade |
-| `transitions` | object[] | Optional; required when `finalSeverity` differs from the originally asserted severity |
+| `transitions` | object[] | Optional, required when `finalSeverity` differs from the originally asserted severity |
 
 **Protocol**:
 
@@ -372,7 +372,7 @@ Each new P0/P1 must carry a typed packet with the following required fields (see
 4. Confirm or downgrade severity before the finding becomes convergence-visible.
 5. Emit the typed packet inside the iteration file so `step_post_iteration_claim_adjudication` can parse it.
 
-**Failure semantics**: when any new P0/P1 finding is missing a packet or a required field, the workflow records `{"event":"claim_adjudication","passed":false,"missingPackets":[...]}` in `deep-review-state.jsonl`. On the next loop, `step_check_convergence` step 0 (universal pre-check) routes STOP to `BLOCKED` with `blockedBy: ["claimAdjudicationGate"]` until a follow-up iteration rewrites the packet. Downgraded findings have their `finalSeverity` updated; the original severity is preserved in the iteration file for audit trail.
+**Failure semantics**: when any new P0/P1 finding is missing a packet or a required field, the workflow records `{"event":"claim_adjudication","passed":false,"missingPackets":[...]}` in `deep-review-state.jsonl`. On the next loop, `step_check_convergence` step 0 (universal pre-check) routes STOP to `BLOCKED` with `blockedBy: ["claimAdjudicationGate"]` until a follow-up iteration rewrites the packet. Downgraded findings have their `finalSeverity` updated. The original severity is preserved in the iteration file for audit trail.
 
 #### Step 4b: Generate Dashboard
 
@@ -406,7 +406,7 @@ Dashboard behavior:
 
 | Failure Mode | Detection | Recovery Strategy |
 |-------------|-----------|-------------------|
-| Same dimension stuck | Last 2 iterations reviewed the same dimension with ratios `< 0.05` | **Change granularity**: if reviewing at file level, zoom into functions; if reviewing functions, zoom out to module level |
+| Same dimension stuck | Last 2 iterations reviewed the same dimension with ratios `< 0.05` | **Change granularity**: if reviewing at file level, zoom into functions, if reviewing functions, zoom out to module level |
 | Traceability plateau | Required protocols remain partial while ratios stay `< 0.05` | **Protocol-first replay**: re-run the unresolved traceability protocol directly against the conflicting artifacts |
 | Low-value advisory churn | Last 2 iterations found only P2 work | **Escalate severity review**: explicitly search for P0/P1 patterns or downgrade unsupported severity claims |
 
@@ -483,7 +483,7 @@ Generate the 9 core review-report sections (defined in `review_mode_contract.yam
 | 5 | Spec Seed | Minimal spec delta derived from review results |
 | 6 | Plan Seed | Action-ready plan starter for remediation |
 | 7 | Traceability Status | Core vs overlay protocol status and unresolved gaps |
-| 8 | Resource Map Coverage Gate | Present only when `config.resource_map_present == true`; reports touched entries, untouched entries (`expected-by-scope` vs `gap`), and implementation paths absent from the map |
+| 8 | Resource Map Coverage Gate | Present only when `config.resource_map_present == true`, reports touched entries, untouched entries (`expected-by-scope` vs `gap`), and implementation paths absent from the map |
 | 9 | Deferred Items | P2 advisories, blocked checks, and follow-up items |
 | 10 | Audit Appendix | Coverage, replay validation, convergence evidence |
 
@@ -569,7 +569,7 @@ If state files already exist from a prior session:
 
 ### Lifecycle Branches (current release)
 
-The runtime supports three lineage modes today. `fork` and `completed-continue` were described in earlier drafts but have no workflow wiring in this release, so they MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures; until then treat the contract below as canonical.
+The runtime supports three lineage modes today. `fork` and `completed-continue` were described in earlier drafts but have no workflow wiring in this release, so they MUST NOT be exposed to operators. If the long-form lineage feature is picked up later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures. Until then treat the contract below as canonical.
 
 | Mode | Session id | Generation | Archive | JSONL event | When to pick |
 |------|-----------|-----------|---------|-------------|--------------|
@@ -602,7 +602,7 @@ Every field in the contract MUST be present on every persisted lifecycle event. 
 |-----------|---------------|--------|
 | Config + JSONL + strategy all exist and agree | `resume` | Continue from last iteration + 1 |
 | All exist, config says `status: "complete"` | `completed-session` | Report completion, ask user if re-review desired |
-| Partial files or contradictions | `invalid-state` | Halt for repair; do not guess |
+| Partial files or contradictions | `invalid-state` | Halt for repair, do not guess |
 | No files exist | `fresh` | Start new initialization |
 
 ### State Recovery Cascade

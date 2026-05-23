@@ -9,7 +9,7 @@ This document captures the realistic user-testing contract, execution flow, and 
 
 ## 1. OVERVIEW
 
-Exercise the extended review-loop graph vocabulary. Before Phase G, the review coverage-graph allow-list rejected `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` node kinds — agents emitting them saw the events silently dropped. Phase G extended `coverage-graph-db.ts` and the YAML event filter so these node kinds persist alongside the original `DIMENSION | FILE | FINDING | EVIDENCE | REMEDIATION` set.
+Exercise the extended review-loop graph vocabulary. Before Phase G, the review coverage-graph allow-list rejected `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` node kinds, agents emitting them saw the events silently dropped. Phase G extended `coverage-graph-db.ts` and the YAML event filter so these node kinds persist alongside the original `DIMENSION | FILE | FINDING | EVIDENCE | REMEDIATION` set.
 
 ### Why This Matters
 
@@ -20,8 +20,8 @@ Without graph-side persistence, the ledger has nowhere to project its richer sem
 - Objective: Confirm the review-loop coverage-graph accepts and persists upserts for all five new node kinds: `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, `TEST`.
 - Layer partition: graph database allow-list (`coverage-graph-db.ts`) + upsert handler (`upsert.ts`) + YAML event filter.
 - Real user request: `Upsert a BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, and TEST node into the review coverage-graph and confirm all five persist.`
-- Expected signals: each upsert returns success; subsequent graph query (or graph state inspection) shows all five node kinds present in the review-loop namespace; YAML event filter does not drop them.
-- Pass/fail: PASS if all five upserts succeed AND all five nodes are observable after persistence; FAIL if any kind is rejected with `unsupported_kind` OR disappears after upsert.
+- Expected signals: each upsert returns success. Subsequent graph query (or graph state inspection) shows all five node kinds present in the review-loop namespace. YAML event filter does not drop them.
+- Pass/fail: PASS if all five upserts succeed AND all five nodes are observable after persistence. FAIL if any kind is rejected with `unsupported_kind` OR disappears after upsert.
 
 ## 3. TEST EXECUTION
 

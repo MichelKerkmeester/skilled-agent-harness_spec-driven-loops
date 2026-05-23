@@ -11,7 +11,16 @@ One-page cheat sheet for the autonomous deep review loop.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Use this quick reference when you need the command shape, artifact names, convergence rules, and synthesis outputs for the autonomous deep-review loop without loading the full protocol references.
+
+### When to Use
+
+- Looking up the canonical `/deep:start-review-loop` invocation without re-reading the full SKILL.md.
+- Confirming default thresholds, verdicts, or release-readiness states at a glance.
+- Refreshing the artifact-name and packet-file checklist before a manual orchestration pass.
+- Triaging a stuck loop and need the fastest path to convergence semantics.
 
 ### Commands
 
@@ -105,7 +114,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 |---------|-----------|---------|--------------|
 | FAIL | Active P0 findings remain OR any binary gate fails | Does not meet quality standards | `/speckit:plan` for remediation |
 | CONDITIONAL | No P0, but active P1 findings remain | Meets threshold but has required fixes | `/speckit:plan` for fixes |
-| PASS | No active P0/P1 findings | Shippable; set `hasAdvisories=true` when P2 findings remain | `/create:changelog` |
+| PASS | No active P0/P1 findings | Shippable, set `hasAdvisories=true` when P2 findings remain | `/create:changelog` |
 
 ### Release Readiness
 

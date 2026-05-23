@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the public docs first, then the command entrypoint, then the autonomous YAML workflow so the operator explanation stays anchored in the user-facing contract before the internal workflow contract.
 - Desired user-facing outcome: The user is told exactly how to invoke autonomous mode, that it runs without approval gates, and that it produces a `review/` packet plus `review/review-report.md`.
 - Expected signals: The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `review/review-report.md`.
-- Pass/fail posture: PASS if all inspected sources agree on command shape, autonomous behavior, and output artifacts; FAIL if any source materially contradicts the others.
+- Pass/fail posture: PASS if all inspected sources agree on command shape, autonomous behavior, and output artifacts. FAIL if any source materially contradicts the others.
 
 ---
 
@@ -52,7 +52,7 @@ The same autonomous command appears across sources, autonomous mode is approval-
 ### Evidence
 Capture the command examples, the mode-routing block, and the `state_paths` contract together.
 ### Pass/Fail
-PASS if all inspected sources agree on command shape, autonomous behavior, and output artifacts; FAIL if any source materially contradicts the others.
+PASS if all inspected sources agree on command shape, autonomous behavior, and output artifacts. FAIL if any source materially contradicts the others.
 ### Failure Triage
 Start with the README examples, confirm the Markdown command maps `:auto` to the autonomous YAML, then inspect YAML `state_paths` if the artifact contract is unclear.
 ---
@@ -64,16 +64,16 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/README.md` | User-facing examples; use `ANCHOR:quick-start` and `ANCHOR:configuration` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Cheat-sheet command contract; use `ANCHOR:commands` and `ANCHOR:state-files` |
-| `.opencode/commands/deep/start-review-loop.md` | Markdown setup and mode routing; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Autonomous workflow contract; inspect `state_paths`, `phase_init`, and `phase_loop` |
+| `.opencode/skills/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` and `ANCHOR:configuration` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` and `ANCHOR:state-files` |
+| `.opencode/commands/deep/start-review-loop.md` | Markdown setup and mode routing, use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Autonomous workflow contract, inspect `state_paths`, `phase_init`, and `phase_loop` |
 
 ---
 

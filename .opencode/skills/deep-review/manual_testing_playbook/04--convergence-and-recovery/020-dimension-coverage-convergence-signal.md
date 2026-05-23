@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the convergence reference for the dimension coverage signal definition, then the review YAML for enforcement, then the quick reference and strategy template for user-facing documentation.
 - Desired user-facing outcome: The user is told that the review must examine all four dimensions and verify stability before it can consider stopping, and that this check carries the most weight in the convergence decision.
 - Expected signals: Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
-- Pass/fail posture: PASS if the dimension coverage signal requires all 4 dimensions and stabilization before contributing; FAIL if the signal can fire with incomplete dimension coverage or without stabilization.
+- Pass/fail posture: PASS if the dimension coverage signal requires all 4 dimensions and stabilization before contributing. FAIL if the signal can fire with incomplete dimension coverage or without stabilization.
 
 ---
 
@@ -52,7 +52,7 @@ Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contr
 ### Evidence
 Capture the signal definition from convergence.md, the YAML enforcement, the 4-dimension list, and the strategy template tracking coverage.
 ### Pass/Fail
-PASS if the dimension coverage signal requires all 4 dimensions and stabilization before contributing; FAIL if the signal can fire with incomplete dimension coverage or without stabilization.
+PASS if the dimension coverage signal requires all 4 dimensions and stabilization before contributing. FAIL if the signal can fire with incomplete dimension coverage or without stabilization.
 ### Failure Triage
 Privilege the convergence reference for the signal formula and use the strategy template and YAML for enforcement confirmation.
 ---
@@ -64,17 +64,17 @@ Privilege the convergence reference for the signal formula and use the strategy 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math; dimension coverage signal definition and minStabilizationPasses |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm; inspect dimension coverage check in `step_check_convergence` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm; inspect dimension coverage check in `step_check_convergence` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Convergence signal table; use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
-| `.opencode/skills/deep-review/SKILL.md` | Review dimensions and convergence rules; use `ANCHOR:how-it-works` and `ANCHOR:rules` |
+| `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math, dimension coverage signal definition and minStabilizationPasses |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm, inspect dimension coverage check in `step_check_convergence` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm, inspect dimension coverage check in `step_check_convergence` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Convergence signal table, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
+| `.opencode/skills/deep-review/SKILL.md` | Review dimensions and convergence rules, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
 | `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Strategy template showing dimension tracking in "Covered" list |
 
 ---

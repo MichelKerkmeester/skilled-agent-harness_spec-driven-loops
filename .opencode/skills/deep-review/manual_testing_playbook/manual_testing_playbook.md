@@ -5,7 +5,7 @@ description: "Operator-facing reference combining the manual testing directory, 
 
 # deep-review: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
+> **EXECUTION POLICY**: Every scenario MUST be executed for real, not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
 
 This document combines the operator-facing manual testing contract for the `deep-review` skill into a single reference. The root playbook acts as the directory, review protocol, and orchestration guide while the per-feature files carry the scenario-specific execution truth.
@@ -48,7 +48,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 45 deterministic scenarios across 8 categories validating the current `deep-review` skill surface. The first 6 categories cover dimension/lifecycle review (33 scenarios); §15 covers command-flow stress tests (6 scenarios under CP-052..057), and §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 45 deterministic scenarios across 8 categories validating the current `deep-review` skill surface. The first 6 categories cover dimension/lifecycle review (33 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), and §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -183,7 +183,7 @@ Verify that `--max-iterations` (default 7) and `--convergence` (default 0.10) pa
 #### Scenario Contract
 Prompt: `Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and YAML workflows.`
 
-Expected signals: Default values of 7 and 0.10 appear consistently across all sources; the YAML writes these into `deep-review-config.json` during init.
+Expected signals: Default values of 7 and 0.10 appear consistently across all sources. The YAML writes these into `deep-review-config.json` during init.
 
 #### Test Execution
 > **Feature File:** [DRV-003](01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md)
@@ -216,7 +216,7 @@ Verify that resume detects existing review state and continues from the last com
 #### Scenario Contract
 Prompt: `Validate deep-review resume classification from existing review state and report whether it skips directly to phase_loop.`
 
-Expected signals: The classify step checks for config, JSONL, and strategy presence; classifies as "resume" when all three exist and are consistent; and skips to phase_loop.
+Expected signals: The classify step checks for config, JSONL, and strategy presence. Classifies as "resume" when all three exist and are consistent. And skips to phase_loop.
 
 #### Test Execution
 > **Feature File:** [DRV-005](02--initialization-and-state-setup/005-resume-classification-from-valid-prior-review-state.md)
@@ -229,7 +229,7 @@ Verify that invalid state (missing JSONL, corrupted config, contradictory artifa
 #### Scenario Contract
 Prompt: `Validate invalid deep-review state handling and report whether partial or contradictory state halts with a repair message.`
 
-Expected signals: The classify step has an explicit "invalid-state" classification for partial or contradictory combinations; it halts with a descriptive message; the migration step also halts on canonical/legacy conflicts.
+Expected signals: The classify step has an explicit "invalid-state" classification for partial or contradictory combinations. It halts with a descriptive message. The migration step also halts on canonical/legacy conflicts.
 
 #### Test Execution
 > **Feature File:** [DRV-006](02--initialization-and-state-setup/006-invalid-or-contradictory-review-state-halts-for-repair.md)
@@ -242,7 +242,7 @@ Verify that scope discovery resolves target type to a file list and dimensions a
 #### Scenario Contract
 Prompt: `Validate deep-review scope discovery and dimension ordering for target resolution and Correctness > Security > Traceability > Maintainability.`
 
-Expected signals: The scope discovery step has resolution rules for each target type (spec-folder, skill, agent, track, files); the dimension ordering step enforces correctness > security > traceability > maintainability; the quick reference dimension table matches.
+Expected signals: The scope discovery step has resolution rules for each target type (spec-folder, skill, agent, track, files). The dimension ordering step enforces correctness > security > traceability > maintainability. The quick reference dimension table matches.
 
 #### Test Execution
 > **Feature File:** [DRV-007](02--initialization-and-state-setup/007-scope-discovery-and-dimension-ordering.md)
@@ -275,7 +275,7 @@ Verify that each iteration writes iteration-NNN.md with P0/P1/P2 findings, appen
 #### Scenario Contract
 Prompt: `Validate the deep-review per-iteration write contract for iteration markdown, JSONL severity counts, and strategy updates.`
 
-Expected signals: The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy; the post-dispatch validation checks for all three; the quick reference checklist documents the same three outputs.
+Expected signals: The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy. The post-dispatch validation checks for all three. The quick reference checklist documents the same three outputs.
 
 #### Test Execution
 > **Feature File:** [DRV-009](03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md)
@@ -288,7 +288,7 @@ Verify that the strategy rotates through dimensions and respects exhausted appro
 #### Scenario Contract
 Prompt: `Validate deep-review dimension rotation through strategy Next Focus and skipped exhausted dimensions.`
 
-Expected signals: The read-state step extracts the next uncovered dimension; the dispatch step injects it as the focus; the strategy template has a "Next Focus" section; the convergence docs require all dimensions to be covered.
+Expected signals: The read-state step extracts the next uncovered dimension. The dispatch step injects it as the focus. The strategy template has a "Next Focus" section. The convergence docs require all dimensions to be covered.
 
 #### Test Execution
 > **Feature File:** [DRV-010](03--iteration-execution-and-state-discipline/010-strategy-next-focus-and-dimension-rotation.md)
@@ -301,7 +301,7 @@ Verify that cross-reference checks (spec_code, checklist_evidence, skill_agent p
 #### Scenario Contract
 Prompt: `Validate deep-review traceability cross-reference checks and confirm the configured protocols dispatch correctly.`
 
-Expected signals: The config includes crossReference with core and overlay protocols; the dispatch prompt includes traceability constraints; the strategy template tracks cross-reference results; the quality guards require cross-reference checks before convergence.
+Expected signals: The config includes crossReference with core and overlay protocols. The dispatch prompt includes traceability constraints. The strategy template tracks cross-reference results. The quality guards require cross-reference checks before convergence.
 
 #### Test Execution
 > **Feature File:** [DRV-011](03--iteration-execution-and-state-discipline/011-cross-reference-verification-detects-misalignment.md)
@@ -314,7 +314,7 @@ Verify that the Hunter/Skeptic/Referee adversarial self-check runs on P0 candida
 #### Scenario Contract
 Prompt: `Validate that deep-review runs adversarial self-checks on P0 findings before accepting them.`
 
-Expected signals: Rule 10 in SKILL.md mandates adversarial self-check for P0; the iteration checklist includes it as step 5; the YAML has a claim adjudication step that checks for P0/P1 self-check evidence; the agent definitions describe the Hunter/Skeptic/Referee roles.
+Expected signals: Rule 10 in SKILL.md mandates adversarial self-check for P0. The iteration checklist includes it as step 5. The YAML has a claim adjudication step that checks for P0/P1 self-check evidence. The agent definitions describe the Hunter/Skeptic/Referee roles.
 
 #### Test Execution
 > **Feature File:** [DRV-012](03--iteration-execution-and-state-discipline/012-adversarial-self-check-runs-on-p0-findings.md)
@@ -327,7 +327,7 @@ Verify that the dashboard with Findings Summary, Progress Table, Coverage, and T
 #### Scenario Contract
 Prompt: `Validate deep-review dashboard generation after each iteration from JSONL and strategy state.`
 
-Expected signals: The step_generate_dashboard runs after step_validate_iteration; it reads JSONL and strategy; it writes to deep-review-dashboard.md; the output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
+Expected signals: The step_generate_dashboard runs after step_validate_iteration. It reads JSONL and strategy. It writes to deep-review-dashboard.md. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
 
 #### Test Execution
 > **Feature File:** [DRV-013](03--iteration-execution-and-state-discipline/013-review-dashboard-generation-after-iteration.md)
@@ -340,7 +340,7 @@ Verify that findingsSummary and findingsNew fields in JSONL include P0/P1/P2 cou
 #### Scenario Contract
 Prompt: `Validate deep-review JSONL severity classification for findingsSummary, findingsNew, and convergence severity weights.`
 
-Expected signals: Rule 11 mandates the fields; the YAML dispatch prompt constrains them; the convergence algorithm references severity_weights with P0=10.0, P1=5.0, P2=1.0; the P0 override sets newFindingsRatio >= 0.50.
+Expected signals: Rule 11 mandates the fields. The YAML dispatch prompt constrains them. The convergence algorithm references severity_weights with P0=10.0, P1=5.0, P2=1.0. The P0 override sets newFindingsRatio >= 0.50.
 
 #### Test Execution
 > **Feature File:** [DRV-014](03--iteration-execution-and-state-discipline/014-severity-classification-in-jsonl.md)
@@ -353,7 +353,7 @@ verify that a running deep review iteration writes a `graphEvents` array that in
 #### Scenario Contract
 Prompt: `Validate deep-review graphEvents records for dimension, file, and finding nodes in graph-aware review convergence.`
 
-Expected signals: `graphEvents` referenced as iteration-record input for graph-aware review convergence; replay tests include review node-type coverage for `dimension_node`, `file_node`, and `finding_node`.
+Expected signals: `graphEvents` referenced as iteration-record input for graph-aware review convergence. Replay tests include review node-type coverage for `dimension_node`, `file_node`, and `finding_node`.
 
 #### Test Execution
 > **Feature File:** [DRV-015](03--iteration-execution-and-state-discipline/015-graph-events-review.md)
@@ -451,7 +451,7 @@ verify that when review stability signals nominate STOP but graph-backed dimensi
 #### Scenario Contract
 Prompt: `Validate the graph-backed legal-stop gate and report whether blocked-stop state persists when coverage fails.`
 
-Expected signals: review convergence docs describe `blockedStop` when legal-stop gates fail; graph convergence handler enforces review `dimensionCoverage`; fixture evidence shows `blocked_stop` with `blockedBy: ["dimensionCoverage", ...]`.
+Expected signals: review convergence docs describe `blockedStop` when legal-stop gates fail. Graph convergence handler enforces review `dimensionCoverage`. Fixture evidence shows `blocked_stop` with `blockedBy: ["dimensionCoverage", ...]`.
 
 #### Test Execution
 > **Feature File:** [DRV-032](04--convergence-and-recovery/032-graph-convergence-review.md)
@@ -464,7 +464,7 @@ verify that a review packet with at least one `blocked_stop` event preserves the
 #### Scenario Contract
 Prompt: `Validate blocked-stop reducer surfacing in deep-review dashboard and strategy recovery output.`
 
-Expected signals: `blockedStopHistory` is non-empty; review entries preserve `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`; `BLOCKED STOPS` renders the same blocked-stop data; the strategy `next-focus` anchor contains the blocked-stop recovery strategy.
+Expected signals: `blockedStopHistory` is non-empty. Review entries preserve `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`. `BLOCKED STOPS` renders the same blocked-stop data. The strategy `next-focus` anchor contains the blocked-stop recovery strategy.
 
 #### Test Execution
 > **Feature File:** [DRV-033](04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md)
@@ -477,7 +477,7 @@ verify that malformed JSONL blocks the reducer unless `--lenient` is passed, tha
 #### Scenario Contract
 Prompt: `Validate deep-review reducer fail-closed behavior for malformed JSONL and missing machine-owned anchors.`
 
-Expected signals: corrupt JSONL exits `2` without `--lenient`; `corruptionWarnings` is populated in the registry; missing anchors throw `Missing machine-owned anchor ...`; `--lenient` exits `0` while preserving `corruptionWarnings`; `--create-missing-anchors` appends the `next-focus` anchor and allows the reducer to proceed.
+Expected signals: corrupt JSONL exits `2` without `--lenient`. `corruptionWarnings` is populated in the registry. Missing anchors throw `Missing machine-owned anchor ...`. `--lenient` exits `0` while preserving `corruptionWarnings`. `--create-missing-anchors` appends the `next-focus` anchor and allows the reducer to proceed.
 
 #### Test Execution
 > **Feature File:** [DRV-034](04--convergence-and-recovery/034-fail-closed-reducer.md)
@@ -705,7 +705,7 @@ Tests in this category carry the `CP-` (Command Pattern) prefix instead of the s
 - `DRV-NNN` tests validate review-loop behavior on real or synthetic targets, exercising the iteration / convergence / synthesis contracts.
 - `CP-NNN` tests validate the command-flow boundary itself (setup-to-YAML handoff, three-artifact contract, write boundaries, nested-dispatch refusal) using a sandboxed spec folder so the same scenarios run repeatably without touching real packets.
 
-The convention was established by the `z_archive/062-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs` packet and carried forward into the release surface. Keep CP-NNN for command-flow scenarios; new behavioral tests added to dirs 01-06 or 08 use DRV-NNN.
+The convention was established by the `z_archive/062-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs` packet and carried forward into the release surface. Keep CP-NNN for command-flow scenarios. New behavioral tests added to dirs 01-06 or 08 use DRV-NNN.
 
 ### CP-052 | Deep-review setup-to-YAML handoff (sandboxed)
 

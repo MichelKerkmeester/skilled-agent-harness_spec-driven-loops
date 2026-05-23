@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the command and skill save rules first, then the runtime agent LEAF-only boundary, then the SKILL.md rules for read-only and memory save contracts.
 - Desired user-facing outcome: The user is told what final artifacts are produced, how memory is preserved, and what the agent is prevented from doing.
 - Expected signals: Synthesis produces `review/review-report.md`, memory save calls `generate-context.js`, the runtime agent forbids nested delegation (LEAF-only), the agent never modifies files under review (read-only), and memory save uses the spec folder established at setup.
-- Pass/fail posture: PASS if finalization and memory save use the supported contract and LEAF-only plus read-only behavior remain enforced; FAIL if memory is saved via Write tool, the agent dispatches sub-agents, or target files are modified.
+- Pass/fail posture: PASS if finalization and memory save use the supported contract and LEAF-only plus read-only behavior remain enforced. FAIL if memory is saved via Write tool, the agent dispatches sub-agents, or target files are modified.
 
 ---
 
@@ -52,7 +52,7 @@ Synthesis produces `review/review-report.md`, memory save calls `generate-contex
 ### Evidence
 Capture the synthesis/save contract, the LEAF-only prohibition from agent definitions, and the read-only rule from SKILL.md.
 ### Pass/Fail
-PASS if finalization and memory save use the supported contract and LEAF-only plus read-only behavior remain enforced; FAIL if memory is saved via Write tool, the agent dispatches sub-agents, or target files are modified.
+PASS if finalization and memory save use the supported contract and LEAF-only plus read-only behavior remain enforced. FAIL if memory is saved via Write tool, the agent dispatches sub-agents, or target files are modified.
 ### Failure Triage
 Privilege the agent definitions for LEAF-only behavior and the skill rules for read-only and memory save contracts.
 ---
@@ -64,17 +64,17 @@ Privilege the agent definitions for LEAF-only behavior and the skill rules for r
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint; synthesis and memory integration contract |
-| `.opencode/skills/deep-review/SKILL.md` | Memory save rule (Rule 8), read-only rule (Rule 9), LEAF-only rule (NEVER 1); use `ANCHOR:rules` |
+| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint, synthesis and memory integration contract |
+| `.opencode/skills/deep-review/SKILL.md` | Memory save rule (Rule 8), read-only rule (Rule 9), LEAF-only rule (NEVER 1), use `ANCHOR:rules` |
 | `.opencode/skills/deep-review/README.md` | Feature summary for memory save and guardrails |
-| `.claude/agents/deep-review.md` | Claude runtime agent; LEAF-only enforcement and tool permissions |
-| `.codex/agents/deep-review.toml` | Codex runtime agent; LEAF-only enforcement and tool permissions |
+| `.claude/agents/deep-review.md` | Claude runtime agent, LEAF-only enforcement and tool permissions |
+| `.codex/agents/deep-review.toml` | Codex runtime agent, LEAF-only enforcement and tool permissions |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Final synthesis/save steps and workflow events |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Final synthesis/save steps and workflow events |
 

@@ -124,7 +124,7 @@ Emits a convergence-time `resource-map.md` from review delta evidence with a cle
 
 #### Current Reality
 
-The reducer runs an explicit `--emit-resource-map` pass during synthesis that reads converged delta files and writes `{artifact_dir}/resource-map.md`, grouped by category and annotated with per-file P0/P1/P2 counts. Enabled by default via `config.resource_map.emit = true`; operators can disable per run with `--no-resource-map`.
+The reducer runs an explicit `--emit-resource-map` pass during synthesis that reads converged delta files and writes `{artifact_dir}/resource-map.md`, grouped by category and annotated with per-file P0/P1/P2 counts. Enabled by default via `config.resource_map.emit = true`. Operators can disable per run with `--no-resource-map`.
 
 #### Source Files
 

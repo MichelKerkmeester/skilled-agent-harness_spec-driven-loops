@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the public docs first to confirm confirm mode is advertised, then the command entrypoint for mode routing, then the confirm YAML workflow for explicit approval gates.
 - Desired user-facing outcome: The user is told that confirm mode pauses between iterations for approval, that they can inspect findings before continuing, and that the same `review/` artifacts are produced.
 - Expected signals: The confirm YAML has `approvals: multi_gate`, pause/approval steps appear in the loop, and the command entrypoint routes `:confirm` to the confirm YAML.
-- Pass/fail posture: PASS if confirm mode has explicit approval gates at phase transitions; FAIL if any phase transition runs without an approval gate.
+- Pass/fail posture: PASS if confirm mode has explicit approval gates at phase transitions. FAIL if any phase transition runs without an approval gate.
 
 ---
 
@@ -52,7 +52,7 @@ The confirm YAML has `approvals: multi_gate`, approval steps appear in the loop,
 ### Evidence
 Capture the mode-routing block, the confirm YAML operating_mode, and the approval gate steps together.
 ### Pass/Fail
-PASS if confirm mode has explicit approval gates at phase transitions; FAIL if any phase transition runs without an approval gate.
+PASS if confirm mode has explicit approval gates at phase transitions. FAIL if any phase transition runs without an approval gate.
 ### Failure Triage
 Compare the auto and confirm YAMLs side by side to verify the confirm variant adds approval gates that the auto variant omits.
 ---
@@ -64,16 +64,16 @@ Compare the auto and confirm YAMLs side by side to verify the confirm variant ad
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/README.md` | User-facing examples; use `ANCHOR:quick-start` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Cheat-sheet command contract; use `ANCHOR:commands` |
-| `.opencode/commands/deep/start-review-loop.md` | Markdown setup and mode routing; use `## 0. UNIFIED SETUP PHASE` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Confirm workflow contract; inspect `operating_mode`, `approvals`, and approval gate steps |
+| `.opencode/skills/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` |
+| `.opencode/commands/deep/start-review-loop.md` | Markdown setup and mode routing, use `## 0. UNIFIED SETUP PHASE` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Confirm workflow contract, inspect `operating_mode`, `approvals`, and approval gate steps |
 
 ---
 

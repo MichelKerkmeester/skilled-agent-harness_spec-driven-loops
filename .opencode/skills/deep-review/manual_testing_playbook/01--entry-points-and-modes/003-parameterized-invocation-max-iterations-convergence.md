@@ -28,8 +28,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and YAML workflows.`
 - Expected execution process: Inspect the quick reference parameter table first, then the command entrypoint argument-hint, then both YAML user_inputs sections to verify defaults agree.
 - Desired user-facing outcome: The user can be told the exact defaults and how to override them, with confidence that the values propagate into the review config.
-- Expected signals: Default values of 7 and 0.10 appear consistently across all sources; the YAML writes these into `deep-review-config.json` during init.
-- Pass/fail posture: PASS if all sources agree on defaults and the config init step propagates overrides; FAIL if defaults drift or the override path is broken.
+- Expected signals: Default values of 7 and 0.10 appear consistently across all sources. The YAML writes these into `deep-review-config.json` during init.
+- Pass/fail posture: PASS if all sources agree on defaults and the config init step propagates overrides. FAIL if defaults drift or the override path is broken.
 
 ---
 
@@ -48,11 +48,11 @@ Validate deep-review parameter handling for --max-iterations and --convergence a
 2. `bash: rg -n 'max.iterations|convergence|argument-hint' .opencode/commands/deep/start-review-loop.md`
 3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 ### Expected
-Default values of 7 and 0.10 appear consistently across all sources; the YAML writes these into `deep-review-config.json` during init.
+Default values of 7 and 0.10 appear consistently across all sources. The YAML writes these into `deep-review-config.json` during init.
 ### Evidence
 Capture the parameter table from the quick reference, the argument-hint line, and the YAML user_inputs and config-creation steps.
 ### Pass/Fail
-PASS if all sources agree on defaults and the config init step propagates overrides; FAIL if defaults drift or the override path is broken.
+PASS if all sources agree on defaults and the config init step propagates overrides. FAIL if defaults drift or the override path is broken.
 ### Failure Triage
 Cross-reference the quick reference parameter table with the YAML `step_create_config` to verify the values flow through.
 ---
@@ -64,17 +64,17 @@ Cross-reference the quick reference parameter table with the YAML `step_create_c
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/quick_reference.md` | Parameter defaults table; use `ANCHOR:commands` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Parameter defaults table, use `ANCHOR:commands` |
 | `.opencode/commands/deep/start-review-loop.md` | Command argument-hint and setup phase |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Auto workflow user_inputs and config creation; inspect `user_inputs` and `step_create_config` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Confirm workflow user_inputs; inspect `user_inputs` |
-| `.opencode/skills/deep-review/SKILL.md` | Skill-level parameter documentation; use `ANCHOR:how-it-works` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Auto workflow user_inputs and config creation, inspect `user_inputs` and `step_create_config` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Confirm workflow user_inputs, inspect `user_inputs` |
+| `.opencode/skills/deep-review/SKILL.md` | Skill-level parameter documentation, use `ANCHOR:how-it-works` |
 
 ---
 

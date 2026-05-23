@@ -28,8 +28,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate that deep-review runs adversarial self-checks on P0 findings before accepting them.`
 - Expected execution process: Inspect the SKILL.md rules for Rule 10, then the quick reference iteration checklist for the self-check step, then the YAML post-iteration claim adjudication step, then the agent definitions for the self-check protocol.
 - Desired user-facing outcome: The user is told that every P0 finding is re-read and challenged before being confirmed, using a Hunter/Skeptic/Referee three-role protocol.
-- Expected signals: Rule 10 in SKILL.md mandates adversarial self-check for P0; the iteration checklist includes it as step 5; the YAML has a claim adjudication step that checks for P0/P1 self-check evidence; the agent definitions describe the Hunter/Skeptic/Referee roles.
-- Pass/fail posture: PASS if the adversarial self-check is documented, enforced in the iteration checklist, and checked in the YAML; FAIL if P0 findings can be recorded without a self-check.
+- Expected signals: Rule 10 in SKILL.md mandates adversarial self-check for P0. The iteration checklist includes it as step 5. The YAML has a claim adjudication step that checks for P0/P1 self-check evidence. The agent definitions describe the Hunter/Skeptic/Referee roles.
+- Pass/fail posture: PASS if the adversarial self-check is documented, enforced in the iteration checklist, and checked in the YAML. FAIL if P0 findings can be recorded without a self-check.
 
 ---
 
@@ -48,11 +48,11 @@ Validate that deep-review runs adversarial self-checks on P0 findings before acc
 2. `bash: rg -n 'adversarial\|self.check\|P0.*check\|claim_adjudication' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 3. `bash: rg -n 'adversarial\|self.check\|P0\|Hunter\|Skeptic\|Referee' .opencode/skills/deep-review/references/quick_reference.md .codex/agents/deep-review.toml .claude/agents/deep-review.md`
 ### Expected
-Rule 10 in SKILL.md mandates adversarial self-check; iteration checklist includes it as step 5; YAML has claim adjudication; agent definitions describe the protocol.
+Rule 10 in SKILL.md mandates adversarial self-check. Iteration checklist includes it as step 5. YAML has claim adjudication. Agent definitions describe the protocol.
 ### Evidence
 Capture Rule 10, the checklist step, the claim adjudication YAML step, and the agent self-check instructions.
 ### Pass/Fail
-PASS if the adversarial self-check is documented, enforced in the iteration checklist, and checked in the YAML; FAIL if P0 findings can be recorded without a self-check.
+PASS if the adversarial self-check is documented, enforced in the iteration checklist, and checked in the YAML. FAIL if P0 findings can be recorded without a self-check.
 ### Failure Triage
 If the agent definition lacks explicit Hunter/Skeptic/Referee roles, check whether the SKILL.md Rule 10 wording is sufficient to trigger the behavior implicitly.
 ---
@@ -64,17 +64,17 @@ If the agent definition lacks explicit Hunter/Skeptic/Referee roles, check wheth
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/SKILL.md` | Rule 10: adversarial self-check mandate; use `ANCHOR:rules` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Iteration checklist; use `ANCHOR:agent-iteration-checklist` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Post-iteration claim adjudication; inspect `step_post_iteration_claim_adjudication` |
-| `.codex/agents/deep-review.toml` | Codex runtime agent; inspect adversarial self-check protocol |
-| `.claude/agents/deep-review.md` | Claude runtime agent; inspect adversarial self-check protocol |
+| `.opencode/skills/deep-review/SKILL.md` | Rule 10: adversarial self-check mandate, use `ANCHOR:rules` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Post-iteration claim adjudication, inspect `step_post_iteration_claim_adjudication` |
+| `.codex/agents/deep-review.toml` | Codex runtime agent, inspect adversarial self-check protocol |
+| `.claude/agents/deep-review.md` | Claude runtime agent, inspect adversarial self-check protocol |
 
 ---
 

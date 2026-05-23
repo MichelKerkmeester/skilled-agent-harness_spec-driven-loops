@@ -28,7 +28,7 @@ Operators run the exact command sequence and verify only file and text signals.
 - Expected execution process: create sandbox and spec fixture, add `resource-map.md` plus `applied/T-001.md`, run one traceability iteration, then inspect artifacts.
 - Expected signals: `resource_map_present`, `Resource Map Coverage`, `resource-map.md`, `applied/T-001.md`, `traceability`, clean target diff, clean tripwire.
 - Desired outcome: PASS verdict proving resource map coverage is not silently skipped.
-- Pass/fail: PASS if all field counts are `1+`; FAIL if config says resource map absent or coverage language never appears.
+- Pass/fail: PASS if all field counts are `1+`. FAIL if config says resource map absent or coverage language never appears.
 
 ## 3. TEST EXECUTION
 

@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the convergence reference for hard stop rules, then the YAML workflow step that enforces the cap, then the quick reference and SKILL.md for user-facing documentation.
 - Desired user-facing outcome: The user is told that the review loop always terminates at maxIterations and still produces a review report even if not all dimensions were covered.
 - Expected signals: `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
-- Pass/fail posture: PASS if the hard cap is enforced unconditionally and synthesis still runs; FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop.
+- Pass/fail posture: PASS if the hard cap is enforced unconditionally and synthesis still runs. FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop.
 
 ---
 
@@ -52,7 +52,7 @@ Validate the deep-review hard iteration cap and report whether synthesis still r
 ### Evidence
 Capture the hard-stop condition from convergence.md, the YAML enforcement step, and the user-facing documentation of the default.
 ### Pass/Fail
-PASS if the hard cap is enforced unconditionally and synthesis still runs; FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop.
+PASS if the hard cap is enforced unconditionally and synthesis still runs. FAIL if the loop can exceed maxIterations or skips synthesis after a hard stop.
 ### Failure Triage
 Privilege the convergence reference for exact algorithm and use YAML workflow steps as the enforcement authority.
 ---
@@ -64,17 +64,17 @@ Privilege the convergence reference for exact algorithm and use YAML workflow st
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math including hard stop rules |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm; inspect `step_check_convergence` for hard stop enforcement |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm; inspect `step_check_convergence` for hard stop enforcement |
-| `.opencode/skills/deep-review/references/quick_reference.md` | User-facing parameter defaults; use `ANCHOR:commands` and `ANCHOR:convergence` |
-| `.opencode/skills/deep-review/SKILL.md` | Skill rules and convergence documentation; use `ANCHOR:rules` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm, inspect `step_check_convergence` for hard stop enforcement |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm, inspect `step_check_convergence` for hard stop enforcement |
+| `.opencode/skills/deep-review/references/quick_reference.md` | User-facing parameter defaults, use `ANCHOR:commands` and `ANCHOR:convergence` |
+| `.opencode/skills/deep-review/SKILL.md` | Skill rules and convergence documentation, use `ANCHOR:rules` |
 | `.opencode/skills/deep-review/README.md` | Feature summary and configuration defaults |
 
 ---

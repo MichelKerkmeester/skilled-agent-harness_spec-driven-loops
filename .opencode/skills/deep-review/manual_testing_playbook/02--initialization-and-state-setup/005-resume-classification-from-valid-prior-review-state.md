@@ -28,8 +28,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate deep-review resume classification from existing review state and report whether it skips directly to phase_loop.`
 - Expected execution process: Inspect the YAML classify step first for the resume classification logic, then the quick reference for resume behavior documentation, then the SKILL.md for phase detection guidance.
 - Desired user-facing outcome: The user is told that re-running the command on a spec folder with existing review state will resume from the last iteration without re-initializing.
-- Expected signals: The classify step checks for config, JSONL, and strategy presence; classifies as "resume" when all three exist and are consistent; and skips to phase_loop.
-- Pass/fail posture: PASS if the classify step reliably detects valid prior state and routes to phase_loop; FAIL if resume classification is missing or routes to re-initialization.
+- Expected signals: The classify step checks for config, JSONL, and strategy presence. Classifies as "resume" when all three exist and are consistent. And skips to phase_loop.
+- Pass/fail posture: PASS if the classify step reliably detects valid prior state and routes to phase_loop. FAIL if resume classification is missing or routes to re-initialization.
 
 ---
 
@@ -48,11 +48,11 @@ Validate deep-review resume classification from existing review state and report
 2. `bash: rg -n 'step_classify_session|resume|skip_to' .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 3. `bash: rg -n 'resume|prior state|existing state|pick up' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-review/SKILL.md`
 ### Expected
-The classify step checks for config, JSONL, and strategy presence; classifies as "resume" when all three exist and are consistent; and skips to phase_loop.
+The classify step checks for config, JSONL, and strategy presence. Classifies as "resume" when all three exist and are consistent. And skips to phase_loop.
 ### Evidence
 Capture the classify step logic, the resume skip_to target, and the user-facing resume documentation.
 ### Pass/Fail
-PASS if the classify step reliably detects valid prior state and routes to phase_loop; FAIL if resume classification is missing or routes to re-initialization.
+PASS if the classify step reliably detects valid prior state and routes to phase_loop. FAIL if resume classification is missing or routes to re-initialization.
 ### Failure Triage
 Verify the classify step inspects all three state files (config, JSONL, strategy) and that the on_resume action points to phase_loop.
 ---
@@ -64,16 +64,16 @@ Verify the classify step inspects all three state files (config, JSONL, strategy
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Session classification logic; inspect `step_classify_session` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Session classification logic; inspect `step_classify_session` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Resume behavior documentation; use `ANCHOR:troubleshooting` |
-| `.opencode/skills/deep-review/SKILL.md` | Phase detection guidance; use `ANCHOR:smart-routing` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Session classification logic, inspect `step_classify_session` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Session classification logic, inspect `step_classify_session` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Resume behavior documentation, use `ANCHOR:troubleshooting` |
+| `.opencode/skills/deep-review/SKILL.md` | Phase detection guidance, use `ANCHOR:smart-routing` |
 
 ---
 

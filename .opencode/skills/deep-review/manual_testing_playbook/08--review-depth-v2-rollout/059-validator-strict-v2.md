@@ -21,7 +21,7 @@ The strict tier is the contract enforcement that gives the v2 schema operational
 - Layer partition: validator (`post-dispatch-validate.ts`).
 - Real user request: `Run the validator fixture under DEEP_REVIEW_V2_ENFORCEMENT=strict and confirm all five v2 failure codes fire on the corresponding malformed records.`
 - Expected signals: For each malformed input, validator result `ok: false` with `reason` matching one of `v2_missing_ledger | v2_uncited_ledger_row | v2_broken_linked_finding | v2_shallow_finding_details | state_delta_iteration_mismatch`.
-- Pass/fail: PASS if every malformed input trips its expected failure code; FAIL if any code is missing OR `ok: true` is returned for any malformed input.
+- Pass/fail: PASS if every malformed input trips its expected failure code. FAIL if any code is missing OR `ok: true` is returned for any malformed input.
 
 ## 3. TEST EXECUTION
 

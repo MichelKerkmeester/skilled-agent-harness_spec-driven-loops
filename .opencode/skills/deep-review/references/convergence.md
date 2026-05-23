@@ -77,7 +77,7 @@ STOP is not legal until the review report contains a closed-gate replay table th
 
 ### Shared Stop Contract
 
-Every terminal stop and every blocked-stop vote MUST emit the shared stop contract from REQ-001: a named `stopReason` enum plus, when STOP is vetoed, a `blocked_stop` event written to `deep-review-state.jsonl`. There is no nested `legalStop` wrapper on the persisted path; earlier drafts of this document implied one, and that drift was the source of F009 in the 042 closing audit.
+Every terminal stop and every blocked-stop vote MUST emit the shared stop contract from REQ-001: a named `stopReason` enum plus, when STOP is vetoed, a `blocked_stop` event written to `deep-review-state.jsonl`. There is no nested `legalStop` wrapper on the persisted path. Earlier drafts of this document implied one, and that drift was the source of F009 in the 042 closing audit.
 
 #### stopReason Enum
 
@@ -137,7 +137,7 @@ Checks are evaluated in this order (first match wins):
 2. **All dimensions covered + clean** -- all 4 dimensions covered, no active P0/P1, stabilization passed, gates passed.
 3. **Stuck detection** -- 2+ consecutive no-progress iterations.
 4. **Composite convergence** -- 3-signal weighted vote with threshold 0.60.
-5. **Legal-stop gate bundle** -- review-specific stop gates; if a stop vote fails any gate, persist `stopReason=blockedStop` and continue.
+5. **Legal-stop gate bundle** -- review-specific stop gates. If a stop vote fails any gate, persist `stopReason=blockedStop` and continue.
 6. **Default CONTINUE** -- none of the above triggered.
 
 ---
@@ -285,10 +285,10 @@ Measures how stable the cumulative finding set is across iterations. A high stab
 
 | Value | Meaning |
 |-------|---------|
-| 0.9-1.0 | Finding set is highly stable; minimal churn between iterations |
-| 0.6-0.8 | Moderate stability; some findings still evolving |
-| 0.3-0.5 | Active churn; findings being added, merged, or reclassified frequently |
-| 0.0-0.2 | Highly unstable; the review is still in early discovery |
+| 0.9-1.0 | Finding set is highly stable, minimal churn between iterations |
+| 0.6-0.8 | Moderate stability, some findings still evolving |
+| 0.3-0.5 | Active churn, findings being added, merged, or reclassified frequently |
+| 0.0-0.2 | Highly unstable, the review is still in early discovery |
 
 Computation:
 ```
@@ -470,7 +470,7 @@ Use this table when replaying old packets or translating older prose/docs into t
 
 | Legacy label | New `stopReason` | Mapping note |
 |--------------|------------------|--------------|
-| `all_dimensions_clean` | `converged` | Legacy review-specific terminal label; now expressed by the shared enum. |
+| `all_dimensions_clean` | `converged` | Legacy review-specific terminal label, now expressed by the shared enum. |
 | `composite_converged` | `converged` | Legacy convergence-math wording now rolls into shared terminal success. |
 | `all dimensions clean` | `converged` | Old operator-facing prose for the same successful stop. |
 | `max_iterations_reached` | `maxIterationsReached` | Legacy machine label for the hard iteration cap. |

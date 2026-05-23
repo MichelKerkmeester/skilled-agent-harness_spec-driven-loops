@@ -9,7 +9,7 @@ This document captures the realistic user-testing contract, execution flow, and 
 
 ## 1. OVERVIEW
 
-Exercise the `graphlessFallbackGate` added to the legal-stop decision tree. When `searchCoverage.graphCoverageMode` is `graphless_fallback`, the iteration must cite fallback ledger evidence (direct reads, exact searches, semantic-search status, producer/consumer trace, negative-test inspection). If `searchLedger` is empty, STOP must be blocked with the named gate — not silently allowed via empty graph CONTINUE.
+Exercise the `graphlessFallbackGate` added to the legal-stop decision tree. When `searchCoverage.graphCoverageMode` is `graphless_fallback`, the iteration must cite fallback ledger evidence (direct reads, exact searches, semantic-search status, producer/consumer trace, negative-test inspection). If `searchLedger` is empty, STOP must be blocked with the named gate, not silently allowed via empty graph CONTINUE.
 
 ### Why This Matters
 
@@ -19,15 +19,15 @@ Empty graph CONTINUE has historically meant "no graph data, proceed to inline vo
 
 - Objective: Confirm legal-stop decision tree emits `blocked_stop` with `graphlessFallbackGate` in `blocked_gates[]` when `graphCoverageMode: 'graphless_fallback'` is paired with empty `searchLedger` on non-trivial scope.
 - Layer partition: workflow YAML (`deep_start-review-loop_auto.yaml` step `step_check_convergence`) + iteration record `searchCoverage.graphCoverageMode`.
-- Real user request: `Run a standard-scope v2 review iteration with graphCoverageMode set to graphless_fallback and empty searchLedger; confirm STOP is blocked by graphlessFallbackGate.`
-- Expected signals: blocked_stop event with `blocked_gates[]` containing `graphlessFallbackGate`; recovery_strategy mentions adding cited fallback ledger rows (direct_read / exact_grep / semantic_search / producer_consumer_trace / negative_test_inspection methods).
-- Pass/fail: PASS if `blocked_gates[]` contains `graphlessFallbackGate` AND the recovery message names fallback methods; FAIL if STOP succeeds OR the gate is reported as a generic graph error.
+- Real user request: `Run a standard-scope v2 review iteration with graphCoverageMode set to graphless_fallback and empty searchLedger. Confirm STOP is blocked by graphlessFallbackGate.`
+- Expected signals: blocked_stop event with `blocked_gates[]` containing `graphlessFallbackGate`. Recovery_strategy mentions adding cited fallback ledger rows (direct_read / exact_grep / semantic_search / producer_consumer_trace / negative_test_inspection methods).
+- Pass/fail: PASS if `blocked_gates[]` contains `graphlessFallbackGate` AND the recovery message names fallback methods. FAIL if STOP succeeds OR the gate is reported as a generic graph error.
 
 ## 3. TEST EXECUTION
 
 ### Prerequisites
 
-- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/` (note: marked `it.todo` pending workflow-runner integration — manual harness required today).
+- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
 - A standard or complex v2 session can set `graphCoverageMode` to `graphless_fallback`.
 - The session can leave `searchLedger` empty for the gate to trip.
 

@@ -26,13 +26,13 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Title: Review reducer fails closed on corruption and missing anchors.
 - Given: A review packet fixture prepared in two variants: one with a deliberately corrupt JSONL line and one with a strategy file missing the `next-focus` machine-owned anchor.
 - When: The operator runs the reducer without `--lenient`, then with `--lenient`, and separately retries the missing-anchor packet with and without `--create-missing-anchors`.
-- Then: Without `--lenient`, malformed JSONL exits with code `2` and populates `corruptionWarnings`; without `--create-missing-anchors`, the reducer throws `Missing machine-owned anchor ...`; with `--lenient`, the reducer exits `0` while preserving `corruptionWarnings`; with `--create-missing-anchors`, the reducer creates the missing anchor and proceeds.
+- Then: Without `--lenient`, malformed JSONL exits with code `2` and populates `corruptionWarnings`. Without `--create-missing-anchors`, the reducer throws `Missing machine-owned anchor ...`. With `--lenient`, the reducer exits `0` while preserving `corruptionWarnings`. With `--create-missing-anchors`, the reducer creates the missing anchor and proceeds.
 - Real user request: If the review reducer sees corrupt JSONL or a missing machine-owned anchor, does it fail closed by default, and what explicit flags let me recover without losing the warning state?
 - Prompt: `Validate deep-review reducer fail-closed behavior for malformed JSONL and missing machine-owned anchors.`
 - Expected execution process: Run the corruption check first, inspect `corruptionWarnings`, then run the missing-anchor check, and finally rerun each guarded case with its explicit escape hatch so the operator can prove both the default fail-closed behavior and the opt-in recovery path.
 - Desired user-facing outcome: The user can explain the reducer's default safety posture, the exact escape hatches, and where warning state is preserved for later triage.
-- Expected signals: corrupt JSONL exits `2` without `--lenient`; `corruptionWarnings` is populated in the registry; missing anchors throw `Missing machine-owned anchor ...`; `--lenient` exits `0` while preserving `corruptionWarnings`; `--create-missing-anchors` appends the `next-focus` anchor and allows the reducer to proceed.
-- Pass/fail posture: PASS if all four exit behaviors match the documented contract and warning state is preserved; FAIL if any default fail-closed or opt-in recovery behavior is missing, inverted, or silent.
+- Expected signals: corrupt JSONL exits `2` without `--lenient`. `corruptionWarnings` is populated in the registry. Missing anchors throw `Missing machine-owned anchor ...`. `--lenient` exits `0` while preserving `corruptionWarnings`. `--create-missing-anchors` appends the `next-focus` anchor and allows the reducer to proceed.
+- Pass/fail posture: PASS if all four exit behaviors match the documented contract and warning state is preserved. FAIL if any default fail-closed or opt-in recovery behavior is missing, inverted, or silent.
 
 ---
 
@@ -49,22 +49,22 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review reducer fail-closed behavior for malformed JSONL and missing machine-owned anchors.
 
 ### Commands
-1. `bash: node .opencode/skills/deep-review/scripts/reduce-state.cjs {corrupt_fixture}; echo "exit: $?"`
+1. `bash: node .opencode/skills/deep-review/scripts/reduce-state.cjs {corrupt_fixture}. Echo "exit: $?"`
 2. `bash: cat {corrupt_fixture}/review/deep-review-findings-registry.json | jq '.corruptionWarnings'`
-3. `bash: node .opencode/skills/deep-review/scripts/reduce-state.cjs {anchor_fixture}; echo "exit: $?"`
-4. `bash: node .opencode/skills/deep-review/scripts/reduce-state.cjs {corrupt_fixture} --lenient; echo "exit: $?"`
+3. `bash: node .opencode/skills/deep-review/scripts/reduce-state.cjs {anchor_fixture}. Echo "exit: $?"`
+4. `bash: node .opencode/skills/deep-review/scripts/reduce-state.cjs {corrupt_fixture} --lenient. Echo "exit: $?"`
 5. `bash: cat {corrupt_fixture}/review/deep-review-findings-registry.json | jq '.corruptionWarnings'`
-6. `bash: node .opencode/skills/deep-review/scripts/reduce-state.cjs {anchor_fixture} --create-missing-anchors; echo "exit: $?"`
+6. `bash: node .opencode/skills/deep-review/scripts/reduce-state.cjs {anchor_fixture} --create-missing-anchors. Echo "exit: $?"`
 7. `bash: sed -n '/ANCHOR:next-focus/,/\/ANCHOR:next-focus/p' {anchor_fixture}/review/deep-review-strategy.md`
 
 ### Expected
-Without `--lenient`, corrupt JSONL exits `2` and preserves `corruptionWarnings`; without `--create-missing-anchors`, the reducer throws `Missing machine-owned anchor ...`; with `--lenient`, the reducer exits `0` but preserves `corruptionWarnings`; with `--create-missing-anchors`, the missing anchor is created and the reducer proceeds.
+Without `--lenient`, corrupt JSONL exits `2` and preserves `corruptionWarnings`. Without `--create-missing-anchors`, the reducer throws `Missing machine-owned anchor ...`. With `--lenient`, the reducer exits `0` but preserves `corruptionWarnings`. With `--create-missing-anchors`, the missing anchor is created and the reducer proceeds.
 
 ### Evidence
 Capture both exit codes, the missing-anchor stderr, the populated `.corruptionWarnings` field before and after `--lenient`, and the strategy `next-focus` anchor after `--create-missing-anchors`.
 
 ### Pass/Fail
-PASS if all four exit conditions match the documented contract and warning state is still visible after lenient recovery; FAIL if any exit code, error string, warning surface, or anchor bootstrap behavior differs.
+PASS if all four exit conditions match the documented contract and warning state is still visible after lenient recovery. FAIL if any exit code, error string, warning surface, or anchor bootstrap behavior differs.
 
 ### Failure Triage
 Privilege `reduce-state.cjs` for exit semantics and `review-reducer-fail-closed.vitest.ts` for concrete expected behavior. If fixture preparation accidentally combines both failures in one directory, split into two fixture copies before judging the reducer.
@@ -83,8 +83,8 @@ Privilege `reduce-state.cjs` for exit semantics and `review-reducer-fail-closed.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Canonical reducer implementation; emits `corruptionWarnings`, exits non-zero on corruption, and enforces machine-owned anchor presence unless recovery flags are passed |
-| `.opencode/skills/deep-review/references/state_format.md` | Review state contract; documents `corruptionWarnings`, fail-closed semantics, dashboard surfaces, and strategy anchor bootstrap behavior |
+| `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Canonical reducer implementation, emits `corruptionWarnings`, exits non-zero on corruption, and enforces machine-owned anchor presence unless recovery flags are passed |
+| `.opencode/skills/deep-review/references/state_format.md` | Review state contract, documents `corruptionWarnings`, fail-closed semantics, dashboard surfaces, and strategy anchor bootstrap behavior |
 | `.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts` | Concrete regression coverage for corruption, `--lenient`, missing anchors, and `--create-missing-anchors` behavior |
 
 ---

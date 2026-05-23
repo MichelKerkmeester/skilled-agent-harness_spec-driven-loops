@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the quick reference review-report sections table, then the YAML synthesis step, then the SKILL.md and README for report section documentation.
 - Desired user-facing outcome: The user is told exactly what the review report contains and can verify completeness by checking for all 9 section headers.
 - Expected signals: All 9 section headers present, Executive Summary contains verdict and P0/P1/P2 counts, Active Finding Registry has deduplicated findings with evidence, and Audit Appendix includes convergence data.
-- Pass/fail posture: PASS if all 9 sections are documented and enforced by the synthesis step; FAIL if any section is missing from the template or synthesis contract.
+- Pass/fail posture: PASS if all 9 sections are documented and enforced by the synthesis step. FAIL if any section is missing from the template or synthesis contract.
 
 ---
 
@@ -52,7 +52,7 @@ All 9 section headers present, Executive Summary contains verdict and P0/P1/P2 c
 ### Evidence
 Capture the 9-section table from quick reference, the YAML synthesis step, and the report structure documentation from SKILL.md.
 ### Pass/Fail
-PASS if all 9 sections are documented and enforced by the synthesis step; FAIL if any section is missing from the template or synthesis contract.
+PASS if all 9 sections are documented and enforced by the synthesis step. FAIL if any section is missing from the template or synthesis contract.
 ### Failure Triage
 Privilege the quick reference section table as the canonical list and verify the YAML synthesis step produces all 9 sections.
 ---
@@ -64,17 +64,17 @@ Privilege the quick reference section table as the canonical list and verify the
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/quick_reference.md` | Canonical 9-section table; use `ANCHOR:review-report-sections` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Canonical 9-section table, use `ANCHOR:review-report-sections` |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Synthesis step producing review-report.md |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Synthesis step producing review-report.md |
-| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint; output format documentation |
-| `.opencode/skills/deep-review/SKILL.md` | Review report structure and verdict rules; use `ANCHOR:how-it-works` |
+| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint, output format documentation |
+| `.opencode/skills/deep-review/SKILL.md` | Review report structure and verdict rules, use `ANCHOR:how-it-works` |
 | `.opencode/skills/deep-review/README.md` | Feature summary for review report synthesis |
 
 ---

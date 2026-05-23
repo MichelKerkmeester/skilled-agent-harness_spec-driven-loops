@@ -317,7 +317,7 @@ The four primary review dimensions (configured in `assets/review_mode_contract.y
 
 ### Lifecycle + Reducer Contract
 
-Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and `restart`; required lineage fields include `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`. The reducer consumes the latest JSONL delta, the new iteration file, and prior reduced state, then emits finding registry, dashboard metrics, and strategy updates.
+Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and `restart`. Required lineage fields include `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`. The reducer consumes the latest JSONL delta, the new iteration file, and prior reduced state, then emits finding registry, dashboard metrics, and strategy updates.
 
 ### Severity Classification
 
@@ -331,8 +331,8 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 
 | Verdict | Condition |
 |---------|-----------|
-| **PASS** | No P0/P1 findings; P2 findings recorded as advisories (`hasAdvisories: true`) |
-| **CONDITIONAL** | P1 findings present; remediation plan included in report |
+| **PASS** | No P0/P1 findings, P2 findings recorded as advisories (`hasAdvisories: true`) |
+| **CONDITIONAL** | P1 findings present, remediation plan included in report |
 | **FAIL** | Any P0 finding confirmed after adversarial self-check |
 
 ### Iteration Final-Line Contract (MANDATORY)
@@ -351,7 +351,7 @@ Review verdict: CONDITIONAL
 Review verdict: FAIL
 ```
 
-**Mapping rule:** PASS if no P0 or P1 findings in this iteration; CONDITIONAL if any P1 (but no P0) findings; FAIL if any P0 findings. P2-only findings → PASS.
+**Mapping rule:** PASS if no P0 or P1 findings in this iteration. CONDITIONAL if any P1 (but no P0) findings. FAIL if any P0 findings. P2-only findings → PASS.
 
 Downstream automation (including the synthesis phase and CI gate parser) parses this final line via exact string match, do not vary the format.
 
@@ -402,7 +402,7 @@ On this skill surface, the live code-graph readiness contract only reaches four 
 1. Read JSONL and strategy before review action.
 2. Review one dimension per iteration and write findings to `iteration-NNN.md`.
 3. Append JSONL with severity counts, finding detail, and `newInfoRatio`.
-4. Cite every finding with `[SOURCE: file:line]`; reject inference-only findings.
+4. Cite every finding with `[SOURCE: file:line]`. Reject inference-only findings.
 5. Re-read cited code before recording any P0.
 6. Keep target files read-only.
 7. Use `generate-context.js` for continuity saves.
@@ -411,15 +411,15 @@ On this skill surface, the live code-graph readiness contract only reaches four 
 
 ### ❌ NEVER
 
-1. **Dispatch sub-agents**, `@deep-review` is LEAF-only; it cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 14).
-2. **Hold findings in context**, Write everything to iteration files; context is discarded after each dispatch.
-3. **Exceed TCB**, Target 8-11 tool calls per iteration (max 12); breadth over depth per cycle.
-4. **Ask the user**, Autonomous execution; the agent makes best-judgment decisions without pausing.
+1. **Dispatch sub-agents**, `@deep-review` is LEAF-only. It cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 14).
+2. **Hold findings in context**, Write everything to iteration files. Context is discarded after each dispatch.
+3. **Exceed TCB**, Target 8-11 tool calls per iteration (max 12). Breadth over depth per cycle.
+4. **Ask the user**, Autonomous execution. The agent makes best-judgment decisions without pausing.
 5. **Skip convergence checks**, Every iteration must be evaluated against convergence criteria before the next dispatch.
 6. **Modify config after init**, `deep-review-config.json` is read-only after initialization.
-7. **Modify files under review**, The review loop is observation-only; no code changes during audit.
-8. **Use WebFetch**, Review is code-only; no external resource fetching is permitted.
-9. **Implement fixes during review**, Report findings only; implementation is a separate follow-up step.
+7. **Modify files under review**, The review loop is observation-only. No code changes during audit.
+8. **Use WebFetch**, Review is code-only. No external resource fetching is permitted.
+9. **Implement fixes during review**, Report findings only. Implementation is a separate follow-up step.
 
 ### Iteration Status Enum
 
@@ -429,10 +429,10 @@ On this skill surface, the live code-graph readiness contract only reaches four 
 
 ### ⚠️ ESCALATE IF
 
-1. **3+ consecutive timeouts**, Infrastructure issue; pause loop and report to user.
+1. **3+ consecutive timeouts**, Infrastructure issue. Pause loop and report to user.
 2. **State file corruption**, Cannot reconstruct iteration history from JSONL or iteration files.
 3. **All dimensions covered with P0 findings remaining**, Human sign-off required before shipping.
-4. **Security vulnerabilities discovered in production code**, Escalate immediately; do not defer to report synthesis.
+4. **Security vulnerabilities discovered in production code**, Escalate immediately. Do not defer to report synthesis.
 5. **All recovery tiers exhausted**, No automatic recovery path remaining in convergence protocol.
 
 ---
@@ -455,7 +455,7 @@ A review loop is considered complete when every item below holds:
 
 - The loop reached convergence (composite stop score above `compositeStopScore`, with required gates green) OR hit `maxIterations` without false-positive STOP.
 - Every configured review dimension has at least one full iteration of coverage recorded in `deep-review-state.jsonl` and reflected in `deep-review-strategy.md`.
-- Required traceability protocols (`spec_code`, `checklist_evidence`) executed at least once; overlay protocols that apply to the target type ran or were explicitly marked N/A.
+- Required traceability protocols (`spec_code`, `checklist_evidence`) executed at least once. Overlay protocols that apply to the target type ran or were explicitly marked N/A.
 - All canonical state files exist and parse cleanly: `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`, and one `iterations/iteration-NNN.md` per dispatched iteration.
 - `review/resource-map.md` was emitted from converged delta evidence unless `config.resource_map.emit == false` (operator flag `--no-resource-map`).
 - `review/review-report.md` carries all 9 core sections (Executive Summary, Planning Trigger, Active Finding Registry, Remediation Workstreams, Spec Seed, Plan Seed, Traceability Status, Deferred Items, Audit Appendix) plus the conditional `## Resource Map Coverage Gate` section when `resource_map_present == true`.
@@ -467,10 +467,10 @@ Each gate is binary: pass or block. STOP cannot be legal until every gate passes
 
 - **Config validity**: `deep-review-config.json` parses, names every required field, and lineage block matches the current run (`sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`).
 - **Strategy initialization**: `deep-review-strategy.md` carries the Files Under Review table, Cross-Reference Status grouped by core vs overlay, Known Context, and Review Boundaries.
-- **State consistency**: `deep-review-state.jsonl` opens with the config record and appends one iteration record per dispatched iteration; reducer-owned fields in `deep-review-findings-registry.json` reconcile against JSONL totals.
+- **State consistency**: `deep-review-state.jsonl` opens with the config record and appends one iteration record per dispatched iteration. Reducer-owned fields in `deep-review-findings-registry.json` reconcile against JSONL totals.
 - **Iteration completeness**: every dispatched iteration produced both an `iterations/iteration-NNN.md` (non-empty, ending with the canonical `Review verdict: PASS|CONDITIONAL|FAIL` line) AND a JSONL delta record with `findingDetails[]`, `findingsSummary`, `newFindingsRatio`.
 - **Severity coverage**: every reported finding carries `severity` in {P0, P1, P2}, `category`, `file:line` evidence, `finding_class`, and a `content_hash` for synthesis dedup.
-- **Adversarial replay**: every P0 finding survived adversarial self-check; rejected P0s downgraded with rationale recorded in the iteration narrative.
+- **Adversarial replay**: every P0 finding survived adversarial self-check. Rejected P0s downgraded with rationale recorded in the iteration narrative.
 - **Coverage threshold**: `dimensions_covered_count == configured_dimensions_count` AND required traceability protocols covered, stable for at least `minStabilizationPasses` iterations.
 - **Security-sensitive override**: when the run targets security, path handling, env precedence, schema boundaries, persistence, or shared policy, the gates from `references/convergence.md` "Security-Sensitive Fix Overrides" apply (`minStabilizationPasses=2`, closed-finding replay required, fix-completeness gate enforced).
 
@@ -479,7 +479,7 @@ Each gate is binary: pass or block. STOP cannot be legal until every gate passes
 The release-readiness handoff is valid when:
 
 - The final report records stop reason, iteration count, dimension coverage, severity counts (P0/P1/P2), verdict (PASS / CONDITIONAL / FAIL), and release-readiness state (`in-progress`, `converged`, `release-blocking`).
-- Verdict logic matches: PASS = no P0/P1 findings (P2 advisories permitted with `hasAdvisories: true`); CONDITIONAL = P1 findings present with remediation plan; FAIL = any P0 confirmed after adversarial self-check.
+- Verdict logic matches: PASS = no P0/P1 findings (P2 advisories permitted with `hasAdvisories: true`). CONDITIONAL = P1 findings present with remediation plan. FAIL = any P0 confirmed after adversarial self-check.
 - `resource-map.md` Phase-5 Augmentation section (if present) lists novel logic gaps with iteration source links, or explicitly records the empty-result case.
 - `skill_advisor.py "run a deep review loop" --threshold 0.8` still surfaces the skill after any graph-metadata edits.
 - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` exits 0 on the target spec folder.
@@ -494,8 +494,8 @@ This skill operates within the behavioral framework defined in the active runtim
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py` (keywords: deep review, code audit, iterative review)
-- **Gate 3**: File modifications require spec folder question per the root doc Gate 3; the spec folder determines the `{spec_folder}/review/` state packet location
-- **Continuity**: `/speckit:resume` is the operator-facing recovery surface; canonical packet continuity is written via `generate-context.js`
+- **Gate 3**: File modifications require spec folder question per the root doc Gate 3. The spec folder determines the `{spec_folder}/review/` state packet location
+- **Continuity**: `/speckit:resume` is the operator-facing recovery surface. Canonical packet continuity is written via `generate-context.js`
 - **Command**: `/deep:start-review-loop` is the primary invocation point
 
 ### Continuity Integration

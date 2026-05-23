@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the convergence reference for stuck detection and recovery rules, then the review YAML algorithm for stuck handling, then the strategy template and quick reference for user-facing documentation.
 - Desired user-facing outcome: The user is told that the review automatically pivots to underexplored dimensions when it gets stuck, and that this is visible in the strategy file.
 - Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
-- Pass/fail posture: PASS if stuck detection and dimension-widening recovery are enforced and documented; FAIL if stuck iterations do not trigger a focus change or the recovery mechanism is missing.
+- Pass/fail posture: PASS if stuck detection and dimension-widening recovery are enforced and documented. FAIL if stuck iterations do not trigger a focus change or the recovery mechanism is missing.
 
 ---
 
@@ -52,9 +52,9 @@ Validate deep-review stuck recovery and report whether the loop switches to the 
 ### Evidence
 Capture the stuck detection algorithm from convergence.md, the YAML recovery step, and the strategy template showing dimension-focus rotation.
 ### Pass/Fail
-PASS if stuck detection and dimension-widening recovery are enforced and documented; FAIL if stuck iterations do not trigger a focus change or the recovery mechanism is missing.
+PASS if stuck detection and dimension-widening recovery are enforced and documented. FAIL if stuck iterations do not trigger a focus change or the recovery mechanism is missing.
 ### Failure Triage
-Privilege the convergence reference for stuck detection math and the YAML workflow for recovery enforcement; use strategy template as secondary evidence.
+Privilege the convergence reference for stuck detection math and the YAML workflow for recovery enforcement. Use strategy template as secondary evidence.
 ---
 
 ## 4. SOURCE FILES
@@ -64,17 +64,17 @@ Privilege the convergence reference for stuck detection math and the YAML workfl
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math; stuck detection and recovery rules |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm; inspect stuck recovery step |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm; inspect stuck recovery step |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Convergence parameters including stuckThreshold; use `ANCHOR:convergence` |
-| `.opencode/skills/deep-review/SKILL.md` | Rules for dimension focus and exhausted approaches; use `ANCHOR:rules` |
+| `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math, stuck detection and recovery rules |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm, inspect stuck recovery step |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm, inspect stuck recovery step |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Convergence parameters including stuckThreshold, use `ANCHOR:convergence` |
+| `.opencode/skills/deep-review/SKILL.md` | Rules for dimension focus and exhausted approaches, use `ANCHOR:rules` |
 | `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Strategy template showing "Next Focus" and dimension coverage tracking |
 
 ---

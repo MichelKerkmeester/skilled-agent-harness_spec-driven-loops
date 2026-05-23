@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the SKILL.md synthesis and deduplication rules, then the YAML synthesis step, then the quick reference report sections for the Active Finding Registry definition.
 - Desired user-facing outcome: The user is told that duplicate findings are merged with the highest severity preserved, and the final report contains a clean, deduplicated registry.
 - Expected signals: Findings are compared across iterations by location and description, `finalSeverity` is the highest severity encountered, the Active Finding Registry contains unique entries only, P0 findings are never downgraded or discarded, and the registry includes file:line evidence for each finding.
-- Pass/fail posture: PASS if deduplication produces a clean registry with adjudicated severities; FAIL if duplicates appear in the registry or P0 findings are lost during deduplication.
+- Pass/fail posture: PASS if deduplication produces a clean registry with adjudicated severities. FAIL if duplicates appear in the registry or P0 findings are lost during deduplication.
 
 ---
 
@@ -52,7 +52,7 @@ Findings compared across iterations, `finalSeverity` is highest severity encount
 ### Evidence
 Capture the deduplication rules from SKILL.md, the YAML synthesis deduplication logic, and the Active Finding Registry section definition from quick reference.
 ### Pass/Fail
-PASS if deduplication produces a clean registry with adjudicated severities; FAIL if duplicates appear in the registry or P0 findings are lost during deduplication.
+PASS if deduplication produces a clean registry with adjudicated severities. FAIL if duplicates appear in the registry or P0 findings are lost during deduplication.
 ### Failure Triage
 Privilege the SKILL.md rules for deduplication logic and the quick reference for the Active Finding Registry section definition.
 ---
@@ -64,18 +64,18 @@ Privilege the SKILL.md rules for deduplication logic and the quick reference for
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/SKILL.md` | Deduplication rules, severity classification, and synthesis contract; use `ANCHOR:how-it-works` and `ANCHOR:rules` |
+| `.opencode/skills/deep-review/SKILL.md` | Deduplication rules, severity classification, and synthesis contract, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
 | `.opencode/skills/deep-review/README.md` | Feature summary for finding deduplication and registry |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Synthesis step with deduplication logic |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Synthesis step with deduplication logic |
-| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint; output format and synthesis documentation |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Active Finding Registry section definition; use `ANCHOR:review-report-sections` |
+| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint, output format and synthesis documentation |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Active Finding Registry section definition, use `ANCHOR:review-report-sections` |
 | `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Strategy template with findings tracking |
 
 ---

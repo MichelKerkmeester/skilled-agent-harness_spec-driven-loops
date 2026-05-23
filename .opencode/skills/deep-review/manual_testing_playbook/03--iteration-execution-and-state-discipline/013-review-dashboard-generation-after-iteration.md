@@ -28,8 +28,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate deep-review dashboard generation after each iteration from JSONL and strategy state.`
 - Expected execution process: Inspect the YAML step_generate_dashboard for its position in the loop, then its read sources and output format, then the dashboard template in the assets for the expected sections.
 - Desired user-facing outcome: The user is told that a dashboard file is auto-generated after each iteration showing current findings, progress, coverage, and trend at a glance.
-- Expected signals: The step_generate_dashboard runs after step_validate_iteration; it reads JSONL and strategy; it writes to deep-review-dashboard.md; the output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
-- Pass/fail posture: PASS if the dashboard step runs after each iteration and produces all expected sections; FAIL if the step is missing from the loop or the output template is incomplete.
+- Expected signals: The step_generate_dashboard runs after step_validate_iteration. It reads JSONL and strategy. It writes to deep-review-dashboard.md. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
+- Pass/fail posture: PASS if the dashboard step runs after each iteration and produces all expected sections. FAIL if the step is missing from the loop or the output template is incomplete.
 
 ---
 
@@ -48,11 +48,11 @@ Validate deep-review dashboard generation after each iteration from JSONL and st
 2. `bash: sed -n '1,220p' .opencode/skills/deep-review/assets/deep_review_dashboard.md`
 3. `bash: rg -n 'dashboard|deep-review-dashboard' .opencode/skills/deep-review/references/quick_reference.md .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 ### Expected
-The step_generate_dashboard runs after validation; it reads JSONL and strategy; it writes deep-review-dashboard.md; the output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
+The step_generate_dashboard runs after validation. It reads JSONL and strategy. It writes deep-review-dashboard.md. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
 ### Evidence
 Capture the dashboard step position in the loop, the output template format, and the state_paths dashboard entry.
 ### Pass/Fail
-PASS if the dashboard step runs after each iteration and produces all expected sections; FAIL if the step is missing from the loop or the output template is incomplete.
+PASS if the dashboard step runs after each iteration and produces all expected sections. FAIL if the step is missing from the loop or the output template is incomplete.
 ### Failure Triage
 Compare the dashboard template in assets/ with the YAML step_generate_dashboard format block to verify they agree on section structure.
 ---
@@ -64,16 +64,16 @@ Compare the dashboard template in assets/ with the YAML step_generate_dashboard 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dashboard generation step; inspect `step_generate_dashboard` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dashboard generation step; inspect `step_generate_dashboard` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dashboard generation step, inspect `step_generate_dashboard` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dashboard generation step, inspect `step_generate_dashboard` |
 | `.opencode/skills/deep-review/assets/deep_review_dashboard.md` | Dashboard template |
-| `.opencode/skills/deep-review/references/quick_reference.md` | State files table; use `ANCHOR:state-files` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | State files table, use `ANCHOR:state-files` |
 
 ---
 

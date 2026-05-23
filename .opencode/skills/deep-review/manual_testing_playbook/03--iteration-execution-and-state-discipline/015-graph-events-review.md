@@ -26,13 +26,13 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Title: Review iterations emit structured graphEvents.
 - Given: A running deep review iteration.
 - When: The iteration completes with P0/P1/P2 findings.
-- Then: The JSONL record contains a `graphEvents` array; the coverage-graph reducer ingests those events as `loop_type='review'` nodes/edges scoped to the session and iteration.
+- Then: The JSONL record contains a `graphEvents` array. The coverage-graph reducer ingests those events as `loop_type='review'` nodes/edges scoped to the session and iteration.
 - Real user request: When a review iteration finishes, what graph data is written so coverage and convergence can replay the review state?
 - Prompt: `Validate deep-review graphEvents records and confirm the coverage-graph reducer ingests them under loop_type=review.`
 - Expected execution process: Inspect the deep-review convergence reference for the graph-aware iteration-record contract first, then the coverage-graph database source for the active `loop_type` schema, then the live coverage-graph tests for ingestion coverage.
 - Desired user-facing outcome: The user understands that completed review iterations emit replayable graph events and that the coverage-graph reducer keys them by `loop_type='review'`, session, and iteration.
-- Expected signals: `graphEvents` referenced as iteration-record input for graph-aware review convergence; the active `coverage-graph-db.ts` source carries `LoopType = 'research' | 'review'` and persists nodes/edges scoped to `(spec_folder, loop_type, session_id, iteration)`; live convergence tests exercise the review path.
-- Pass/fail posture: PASS if the convergence reference, the active coverage-graph source, and the live convergence tests agree that review iterations carry `graphEvents` and the reducer keys ingestion by `loop_type='review'`; FAIL if the record contract is absent or the active source no longer supports the review loop type.
+- Expected signals: `graphEvents` referenced as iteration-record input for graph-aware review convergence. The active `coverage-graph-db.ts` source carries `LoopType = 'research' | 'review'` and persists nodes/edges scoped to `(spec_folder, loop_type, session_id, iteration)`. Live convergence tests exercise the review path.
+- Pass/fail posture: PASS if the convergence reference, the active coverage-graph source, and the live convergence tests agree that review iterations carry `graphEvents` and the reducer keys ingestion by `loop_type='review'`. FAIL if the record contract is absent or the active source no longer supports the review loop type.
 
 ---
 
@@ -51,11 +51,11 @@ Validate deep-review graphEvents records and confirm the coverage-graph reducer 
 2. `bash: rg -n "LoopType|loop_type.*review|coverage_nodes|coverage_edges" .opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts`
 3. `bash: rg -n 'graphEvents|loop_type|review' .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts`
 ### Expected
-`graphEvents` used as iteration-record input in the convergence reference; `coverage-graph-db.ts` exports `LoopType` with `'review'` branch and persists nodes/edges keyed by `(spec_folder, loop_type, session_id)`; live convergence tests exercise review-loop ingestion.
+`graphEvents` used as iteration-record input in the convergence reference. `coverage-graph-db.ts` exports `LoopType` with `'review'` branch and persists nodes/edges keyed by `(spec_folder, loop_type, session_id)`. Live convergence tests exercise review-loop ingestion.
 ### Evidence
 Capture the convergence reference lines that describe `graphEvents` in review iteration records, the `LoopType` definition and review-loop SQL keys from `coverage-graph-db.ts`, and one convergence-test example that exercises the review path.
 ### Pass/Fail
-PASS if the convergence reference, the active coverage-graph source, and the live convergence tests agree that completed review iterations emit `graphEvents` and the reducer keys ingestion by `loop_type='review'`; FAIL if any of those pieces are missing or contradictory.
+PASS if the convergence reference, the active coverage-graph source, and the live convergence tests agree that completed review iterations emit `graphEvents` and the reducer keys ingestion by `loop_type='review'`. FAIL if any of those pieces are missing or contradictory.
 ### Failure Triage
 Privilege the convergence reference for the contract, the `coverage-graph-db.ts` source for the active schema, and the convergence tests for ingestion evidence.
 ---
@@ -72,8 +72,8 @@ Privilege the convergence reference for the contract, the `coverage-graph-db.ts`
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/convergence.md` | Graph-aware review convergence contract; documents `graphEvents` as iteration-record input |
-| `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts` | Active coverage-graph reducer source; defines `LoopType = 'research' \| 'review'` and persists nodes/edges keyed by `(spec_folder, loop_type, session_id, iteration)` |
+| `.opencode/skills/deep-review/references/convergence.md` | Graph-aware review convergence contract, documents `graphEvents` as iteration-record input |
+| `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts` | Active coverage-graph reducer source, defines `LoopType = 'research' \| 'review'` and persists nodes/edges keyed by `(spec_folder, loop_type, session_id, iteration)` |
 | `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts` | Live convergence tests with JSONL-shaped graph events exercising the review loop_type path |
 
 ---

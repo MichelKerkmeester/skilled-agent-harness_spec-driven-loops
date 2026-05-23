@@ -28,8 +28,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate invalid deep-review state handling and report whether partial or contradictory state halts with a repair message.`
 - Expected execution process: Inspect the YAML classify step for the invalid-state classification rules, then check the halt message, then verify the migration step handles conflicting canonical and legacy state.
 - Desired user-facing outcome: The user is told that the system will not silently proceed on corrupted state but will halt and ask them to repair or archive the invalid review packet.
-- Expected signals: The classify step has an explicit "invalid-state" classification for partial or contradictory combinations; it halts with a descriptive message; the migration step also halts on canonical/legacy conflicts.
-- Pass/fail posture: PASS if invalid state consistently triggers a halt with an actionable repair message; FAIL if any invalid state combination proceeds silently.
+- Expected signals: The classify step has an explicit "invalid-state" classification for partial or contradictory combinations. It halts with a descriptive message. The migration step also halts on canonical/legacy conflicts.
+- Pass/fail posture: PASS if invalid state consistently triggers a halt with an actionable repair message. FAIL if any invalid state combination proceeds silently.
 
 ---
 
@@ -48,11 +48,11 @@ Validate invalid deep-review state handling and report whether partial or contra
 2. `bash: rg -n 'invalid.state|on_invalid|halt|repair' .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 3. `bash: rg -n 'on_conflict|on_canonical_present|contradictory' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 ### Expected
-The classify step has an explicit "invalid-state" classification for partial or contradictory combinations; it halts with a descriptive message; the migration step halts on canonical/legacy conflicts.
+The classify step has an explicit "invalid-state" classification for partial or contradictory combinations. It halts with a descriptive message. The migration step halts on canonical/legacy conflicts.
 ### Evidence
 Capture the classify step invalid-state rule, the halt message text, and the migration conflict handling.
 ### Pass/Fail
-PASS if invalid state consistently triggers a halt with an actionable repair message; FAIL if any invalid state combination proceeds silently.
+PASS if invalid state consistently triggers a halt with an actionable repair message. FAIL if any invalid state combination proceeds silently.
 ### Failure Triage
 Enumerate all possible partial-state combinations (config only, JSONL only, strategy only, pairs without the third) and verify each maps to invalid-state.
 ---
@@ -64,15 +64,15 @@ Enumerate all possible partial-state combinations (config only, JSONL only, stra
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Session classification and migration; inspect `step_classify_session` and `step_migrate_legacy_review_state` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Session classification; inspect `step_classify_session` |
-| `.opencode/skills/deep-review/SKILL.md` | Phase detection guidance; use `ANCHOR:smart-routing` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Session classification and migration, inspect `step_classify_session` and `step_migrate_legacy_review_state` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Session classification, inspect `step_classify_session` |
+| `.opencode/skills/deep-review/SKILL.md` | Phase detection guidance, use `ANCHOR:smart-routing` |
 
 ---
 

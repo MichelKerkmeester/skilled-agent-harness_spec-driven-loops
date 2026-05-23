@@ -31,8 +31,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate the graph-backed legal-stop gate and report whether blocked-stop state persists when coverage fails.`
 - Expected execution process: Inspect the deep-review convergence reference for legal-stop gate behavior first, then the coverage-graph convergence handler for review `dimensionCoverage` thresholds, then fixture evidence for persisted `blocked_stop`.
 - Desired user-facing outcome: The user gets a clear explanation that graph-backed dimension coverage still has veto power after stability signals look ready to stop.
-- Expected signals: review convergence docs describe `blockedStop` when legal-stop gates fail; graph convergence handler enforces review `dimensionCoverage`; fixture evidence shows `blocked_stop` with `blockedBy: ["dimensionCoverage", ...]`.
-- Pass/fail posture: PASS if graph-backed review convergence, legal-stop failure, and blocked-stop persistence line up across the review convergence reference, graph convergence handler, and fixture evidence; FAIL if stable findings can terminate the loop despite dimension-coverage failure.
+- Expected signals: review convergence docs describe `blockedStop` when legal-stop gates fail. Graph convergence handler enforces review `dimensionCoverage`. Fixture evidence shows `blocked_stop` with `blockedBy: ["dimensionCoverage", ...]`.
+- Pass/fail posture: PASS if graph-backed review convergence, legal-stop failure, and blocked-stop persistence line up across the review convergence reference, graph convergence handler, and fixture evidence. FAIL if stable findings can terminate the loop despite dimension-coverage failure.
 
 ---
 
@@ -51,11 +51,11 @@ Validate the graph-backed legal-stop gate and report whether blocked-stop state 
 2. `bash: rg -n 'dimensionCoverage|threshold|STOP_BLOCKED|blocking' .opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts`
 3. `bash: rg -n 'blocked_stop|blockedStop|dimensionCoverage' .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl`
 ### Expected
-Legal-stop docs map failed gate evaluation to `blockedStop`; the graph convergence handler evaluates review `dimensionCoverage`; fixture evidence shows persisted `blocked_stop` blocked by `dimensionCoverage`.
+Legal-stop docs map failed gate evaluation to `blockedStop`. The graph convergence handler evaluates review `dimensionCoverage`. Fixture evidence shows persisted `blocked_stop` blocked by `dimensionCoverage`.
 ### Evidence
 Capture the review convergence legal-stop wording, the handler threshold/check for review `dimensionCoverage`, and the sample blocked-stop JSONL record naming `dimensionCoverage` in `blockedBy`.
 ### Pass/Fail
-PASS if the review docs, graph convergence handler, and blocked-stop fixture all agree that dimension-coverage failure prevents STOP even when other signals are favorable; FAIL if dimension-coverage failure is only advisory or not persisted.
+PASS if the review docs, graph convergence handler, and blocked-stop fixture all agree that dimension-coverage failure prevents STOP even when other signals are favorable. FAIL if dimension-coverage failure is only advisory or not persisted.
 ### Failure Triage
 Privilege `references/convergence.md` for the review stop contract and the fixture for concrete JSONL persistence. If the handler threshold and packet-level wording differ, flag threshold drift for follow-up.
 ---
@@ -73,7 +73,7 @@ Privilege `references/convergence.md` for the review stop contract and the fixtu
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-review/references/convergence.md` | Canonical review legal-stop and graph-aware convergence contract |
-| `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` | Graph convergence handler; review `dimensionCoverage` threshold and blocking behavior |
+| `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` | Graph convergence handler, review `dimensionCoverage` threshold and blocking behavior |
 | `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl` | Concrete blocked-stop fixture showing `dimensionCoverage` in `blockedBy` |
 
 ---

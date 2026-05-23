@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the state format reference for JSONL parsing rules, then the loop protocol or YAML for error handling, then the convergence reference for default values on parse failure.
 - Desired user-facing outcome: The user is told that a corrupted state line will not crash the review, and that the loop applies conservative defaults to avoid false convergence.
 - Expected signals: Malformed lines are skipped (not crash), defaults applied (e.g., `newFindingsRatio = 1.0` to force continuation), iteration count still derived from valid lines, and the skip is observable.
-- Pass/fail posture: PASS if malformed lines are skipped with conservative defaults; FAIL if a bad line crashes the loop or causes false convergence.
+- Pass/fail posture: PASS if malformed lines are skipped with conservative defaults. FAIL if a bad line crashes the loop or causes false convergence.
 
 ---
 
@@ -52,7 +52,7 @@ Malformed lines skipped, defaults applied (`newFindingsRatio = 1.0`), iteration 
 ### Evidence
 Capture the JSONL parsing contract from state format, the error handling rules from YAML or loop protocol, and the default values applied on parse failure.
 ### Pass/Fail
-PASS if malformed lines are skipped with conservative defaults; FAIL if a bad line crashes the loop or causes false convergence.
+PASS if malformed lines are skipped with conservative defaults. FAIL if a bad line crashes the loop or causes false convergence.
 ### Failure Triage
 Privilege the state format reference for JSONL schema rules and the convergence reference for default values on degraded input.
 ---
@@ -64,19 +64,19 @@ Privilege the state format reference for JSONL schema rules and the convergence 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/state_format.md` | JSONL schema and parsing rules; use the state log section |
-| `.opencode/skills/deep-review/references/convergence.md` | Default values on parse failure; graceful degradation rules |
-| `.opencode/skills/deep-review/references/loop_protocol.md` | Error handling in iteration loop; use the iteration loop section |
+| `.opencode/skills/deep-review/references/state_format.md` | JSONL schema and parsing rules, use the state log section |
+| `.opencode/skills/deep-review/references/convergence.md` | Default values on parse failure, graceful degradation rules |
+| `.opencode/skills/deep-review/references/loop_protocol.md` | Error handling in iteration loop, use the iteration loop section |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | JSONL parsing and error handling in state read steps |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | JSONL parsing and error handling in state read steps |
-| `.opencode/commands/deep/start-review-loop.md` | Error handling documentation; use `## 10. ERROR HANDLING` if present |
-| `.opencode/skills/deep-review/SKILL.md` | Rules for state reading; use `ANCHOR:rules` Rule 1 |
+| `.opencode/commands/deep/start-review-loop.md` | Error handling documentation, use `## 10. ERROR HANDLING` if present |
+| `.opencode/skills/deep-review/SKILL.md` | Rules for state reading, use `ANCHOR:rules` Rule 1 |
 
 ---
 

@@ -31,8 +31,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate blocked-stop reducer surfacing in deep-review dashboard and strategy recovery output.`
 - Expected execution process: Run the reducer first, then inspect the reducer-owned registry, dashboard, and strategy anchor so the operator can verify both the canonical JSON state and the rendered markdown surfaces.
 - Desired user-facing outcome: The user can point to the exact review gate that blocked STOP and explain which recovery instruction the reducer surfaced next.
-- Expected signals: `blockedStopHistory` is non-empty; review entries preserve `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`; `BLOCKED STOPS` renders the same blocked-stop data; the strategy `next-focus` anchor contains the blocked-stop recovery strategy.
-- Pass/fail posture: PASS if all three reducer-owned review surfaces show the blocked-stop data and the review-specific gate names remain intact; FAIL if any surface is missing, stale, or drops the review gate bundle.
+- Expected signals: `blockedStopHistory` is non-empty. Review entries preserve `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`. `BLOCKED STOPS` renders the same blocked-stop data. The strategy `next-focus` anchor contains the blocked-stop recovery strategy.
+- Pass/fail posture: PASS if all three reducer-owned review surfaces show the blocked-stop data and the review-specific gate names remain intact. FAIL if any surface is missing, stale, or drops the review gate bundle.
 
 ---
 
@@ -55,13 +55,13 @@ Validate blocked-stop reducer surfacing in deep-review dashboard and strategy re
 4. `bash: sed -n '/ANCHOR:next-focus/,/\/ANCHOR:next-focus/p' {spec_folder}/review/deep-review-strategy.md`
 
 ### Expected
-`blockedStopHistory` contains reducer-promoted blocked-stop entries with the review gate names; `BLOCKED STOPS` renders each blocked-stop event; `ANCHOR:next-focus` includes the recovery strategy from the latest blocked-stop record.
+`blockedStopHistory` contains reducer-promoted blocked-stop entries with the review gate names. `BLOCKED STOPS` renders each blocked-stop event. `ANCHOR:next-focus` includes the recovery strategy from the latest blocked-stop record.
 
 ### Evidence
 Capture the populated `blockedStopHistory` array, the dashboard `BLOCKED STOPS` excerpt, and the strategy `next-focus` anchor showing the recovery guidance.
 
 ### Pass/Fail
-PASS if all three review surfaces show the same blocked-stop data and preserve the review gate names; FAIL if any surface is missing blocked-stop data or the gate bundle is incomplete after the reducer run.
+PASS if all three review surfaces show the same blocked-stop data and preserve the review gate names. FAIL if any surface is missing blocked-stop data or the gate bundle is incomplete after the reducer run.
 
 ### Failure Triage
 Privilege `deep-review-findings-registry.json` as the reducer-owned source of truth. If the registry is correct but the dashboard or strategy anchor is stale, treat that as reducer surfacing drift rather than JSONL input failure.
@@ -80,9 +80,9 @@ Privilege `deep-review-findings-registry.json` as the reducer-owned source of tr
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Canonical reducer implementation; promotes `blocked_stop` into `blockedStopHistory`, renders `BLOCKED STOPS`, and rewrites `ANCHOR:next-focus` |
-| `.opencode/skills/deep-review/references/state_format.md` | Review state contract; defines `blockedStopHistory`, dashboard `BLOCKED STOPS`, strategy next-focus override, and review-specific gate payload shape |
-| `.opencode/skills/deep-review/references/loop_protocol.md` | Review legal-stop workflow contract; defines the review-specific gate names used in `blocked_stop` events |
+| `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Canonical reducer implementation, promotes `blocked_stop` into `blockedStopHistory`, renders `BLOCKED STOPS`, and rewrites `ANCHOR:next-focus` |
+| `.opencode/skills/deep-review/references/state_format.md` | Review state contract, defines `blockedStopHistory`, dashboard `BLOCKED STOPS`, strategy next-focus override, and review-specific gate payload shape |
+| `.opencode/skills/deep-review/references/loop_protocol.md` | Review legal-stop workflow contract, defines the review-specific gate names used in `blocked_stop` events |
 
 ---
 

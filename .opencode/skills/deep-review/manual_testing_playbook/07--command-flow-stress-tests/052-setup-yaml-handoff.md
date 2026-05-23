@@ -26,9 +26,9 @@ Operators run the exact command sequence and judge only grep-checkable signals.
 - Real user request: `Run an autonomous one-iteration deep review of the deep-review agent with explicit setup flags.`
 - Prompt: `Run the setup-to-YAML handoff scenario and prove deep-review binds target, mode, iterations, and convergence before YAML execution.`
 - Expected execution process: build sandbox, snapshot baseline, invoke `/deep:start-review-loop:auto`, then inspect transcript plus review artifacts.
-- Expected signals: transcript names auto YAML or setup handoff; artifacts include `deep-review-config.json`, `deep-review-state.jsonl`, and `deep-review-strategy.md`; config/state name `agent:deep-review`, `auto`, `maxIterations`, and `convergenceThreshold`; canonical agent diff and project tripwire are empty.
+- Expected signals: transcript names auto YAML or setup handoff. Artifacts include `deep-review-config.json`, `deep-review-state.jsonl`, and `deep-review-strategy.md`. Config/state name `agent:deep-review`, `auto`, `maxIterations`, and `convergenceThreshold`. Canonical agent diff and project tripwire are empty.
 - Desired outcome: PASS verdict proving command markdown did setup rather than letting YAML infer missing bindings.
-- Pass/fail: PASS if every field count is `1+`; FAIL if YAML runs without setup state, artifacts are missing, or sandbox/canonical files are mutated.
+- Pass/fail: PASS if every field count is `1+`. FAIL if YAML runs without setup state, artifacts are missing, or sandbox/canonical files are mutated.
 
 ## 3. TEST EXECUTION
 

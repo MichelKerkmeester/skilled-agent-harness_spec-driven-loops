@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the workflow loop steps, then the quick reference iteration checklist, then the runtime agent instructions for the single-iteration sequence.
 - Desired user-facing outcome: The user is told that each iteration starts by reading persisted state instead of relying on memory from prior runs.
 - Expected signals: Loop step order begins with state reads, the quick reference checklist says the same, and the agent definition starts with JSONL plus strategy reads.
-- Pass/fail posture: PASS if all sources agree that state is read before review actions; FAIL if any source allows review before rehydrating state.
+- Pass/fail posture: PASS if all sources agree that state is read before review actions. FAIL if any source allows review before rehydrating state.
 
 ---
 
@@ -52,7 +52,7 @@ Loop step order begins with state reads, the quick reference checklist says the 
 ### Evidence
 Capture the loop step order, the quick-reference checklist, and the runtime agent step sequence.
 ### Pass/Fail
-PASS if all sources agree that state is read before review actions; FAIL if any source allows review before rehydrating state.
+PASS if all sources agree that state is read before review actions. FAIL if any source allows review before rehydrating state.
 ### Failure Triage
 Check the agent sequence under the iteration checklist if the higher-level docs look ambiguous.
 ---
@@ -64,18 +64,18 @@ Check the agent sequence under the iteration checklist if the higher-level docs 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Loop state extraction; inspect `step_read_state` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Loop state extraction; inspect `step_read_state` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Iteration checklist; use `ANCHOR:agent-iteration-checklist` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Loop state extraction, inspect `step_read_state` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Loop state extraction, inspect `step_read_state` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
 | `.opencode/skills/deep-review/SKILL.md` | Skill-level iteration documentation |
-| `.codex/agents/deep-review.toml` | Codex runtime agent sequence; inspect iteration protocol |
-| `.claude/agents/deep-review.md` | Claude runtime agent sequence; inspect iteration protocol |
+| `.codex/agents/deep-review.toml` | Codex runtime agent sequence, inspect iteration protocol |
+| `.claude/agents/deep-review.md` | Claude runtime agent sequence, inspect iteration protocol |
 
 ---
 

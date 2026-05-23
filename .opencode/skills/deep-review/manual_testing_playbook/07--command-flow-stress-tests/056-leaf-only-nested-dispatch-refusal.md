@@ -28,7 +28,7 @@ Operators run the exact command sequence and judge only transcript, artifact, an
 - Expected execution process: prepare a minimal review packet, prepend the agent body to Call B, request nested dispatch, then inspect refusal and absence signals.
 - Expected signals: `LEAF-only`, `NEVER use the Task tool` or equivalent refusal, `Nested execution requested` or `status: "error"`, no `Task(` transcript signal, no target/mirror diff, clean tripwire.
 - Desired outcome: PASS verdict proving the body enforces the command/agent layer split.
-- Pass/fail: PASS if all field counts are `1+`; FAIL if the body dispatches or waits for another agent.
+- Pass/fail: PASS if all field counts are `1+`. FAIL if the body dispatches or waits for another agent.
 
 ## 3. TEST EXECUTION
 
@@ -91,7 +91,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | File | Lines | Role |
 |---|---:|---|
-| `.opencode/commands/deep/start-review-loop.md` | 169-188, 361-365 | Command owns loop dispatch; agent is one iteration |
+| `.opencode/commands/deep/start-review-loop.md` | 169-188, 361-365 | Command owns loop dispatch, agent is one iteration |
 | `.opencode/skills/deep-review/SKILL.md` | 43-61, 90-95 | Command-only loop invocation and LEAF invariant |
 | `.opencode/agents/deep-review.md` | 37-48, 388-404 | Illegal nesting hard block and never rules |
 

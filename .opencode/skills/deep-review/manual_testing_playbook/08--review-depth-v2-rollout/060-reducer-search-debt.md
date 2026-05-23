@@ -1,6 +1,6 @@
 ---
 title: "DRV-060 -- Reducer search-debt registry + dashboard + report persistence"
-description: "Verify reducer registry exposes candidateCoverage / searchDebt / ruledOutCandidates / cleanSearchProof / searchCoverage; dashboard renders ## Search Debt; report renders ## Search Ledger."
+description: "Verify reducer registry exposes candidateCoverage / searchDebt / ruledOutCandidates / cleanSearchProof / searchCoverage. Dashboard renders ## Search Debt. Report renders ## Search Ledger."
 ---
 
 # DRV-060 -- Reducer search-debt registry + dashboard + report persistence
@@ -17,11 +17,11 @@ A v2 record may validate cleanly and still hide deferred or blocked candidate-se
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Confirm reducer registry exposes `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, `searchCoverage`; dashboard surfaces `## Search Debt`; report surfaces `## Search Ledger`.
+- Objective: Confirm reducer registry exposes `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, `searchCoverage`. Dashboard surfaces `## Search Debt`. Report surfaces `## Search Ledger`.
 - Layer partition: reducer (`reduce-state.cjs`) + dashboard + report compiler.
 - Real user request: `Run the synthetic two-iteration v2 reducer fixture with deferred ledger rows and confirm registry exposure + dashboard Search Debt + report Search Ledger.`
-- Expected signals: reducer registry JSON contains all five new fields; dashboard markdown contains `## Search Debt`; report markdown contains `## Search Ledger` before the appendix.
-- Pass/fail: PASS if registry exposure + dashboard section + report section all present; FAIL if any of the three surfaces is missing or empty when the source session has deferred ledger rows.
+- Expected signals: reducer registry JSON contains all five new fields. Dashboard markdown contains `## Search Debt`. Report markdown contains `## Search Ledger` before the appendix.
+- Pass/fail: PASS if registry exposure + dashboard section + report section all present. FAIL if any of the three surfaces is missing or empty when the source session has deferred ledger rows.
 
 ## 3. TEST EXECUTION
 
@@ -43,7 +43,7 @@ A v2 record may validate cleanly and still hide deferred or blocked candidate-se
 
 ### Expected Outcome
 
-The reducer preserves `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`; the dashboard renders `## Search Debt`; the report renders `## Search Ledger`.
+The reducer preserves `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`. The dashboard renders `## Search Debt`. The report renders `## Search Ledger`.
 
 ### Failure Modes
 

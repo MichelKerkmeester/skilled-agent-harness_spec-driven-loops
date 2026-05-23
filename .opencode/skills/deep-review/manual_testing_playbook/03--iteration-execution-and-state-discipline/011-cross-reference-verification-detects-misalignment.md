@@ -28,8 +28,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate deep-review traceability cross-reference checks and confirm the configured protocols dispatch correctly.`
 - Expected execution process: Inspect the YAML config creation step for crossReference protocols, then the dispatch prompt for traceability constraints, then the strategy template for cross-reference tracking, then the quick reference for quality guards.
 - Desired user-facing outcome: The user is told that the review checks spec-vs-code alignment, checklist evidence completeness, and skill-agent protocol consistency as part of the traceability dimension.
-- Expected signals: The config includes crossReference with core and overlay protocols; the dispatch prompt includes traceability constraints; the strategy template tracks cross-reference results; the quality guards require cross-reference checks before convergence.
-- Pass/fail posture: PASS if core and overlay cross-reference protocols are configured and the traceability dimension dispatches them; FAIL if cross-reference checks are undocumented or not enforced.
+- Expected signals: The config includes crossReference with core and overlay protocols. The dispatch prompt includes traceability constraints. The strategy template tracks cross-reference results. The quality guards require cross-reference checks before convergence.
+- Pass/fail posture: PASS if core and overlay cross-reference protocols are configured and the traceability dimension dispatches them. FAIL if cross-reference checks are undocumented or not enforced.
 
 ---
 
@@ -48,11 +48,11 @@ Validate deep-review traceability cross-reference checks and confirm the configu
 2. `bash: rg -n 'traceability|cross.reference|TRACEABILITY PROTOCOLS' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 3. `bash: rg -n 'cross.reference|traceability|spec_code|checklist_evidence' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-review/assets/review_mode_contract.yaml`
 ### Expected
-The config includes crossReference with core and overlay protocols; the dispatch prompt includes traceability constraints; the quality guards require cross-reference checks before convergence.
+The config includes crossReference with core and overlay protocols. The dispatch prompt includes traceability constraints. The quality guards require cross-reference checks before convergence.
 ### Evidence
 Capture the crossReference config block, the traceability protocol list from the dispatch prompt, and the quality guard requirements.
 ### Pass/Fail
-PASS if core and overlay cross-reference protocols are configured and the traceability dimension dispatches them; FAIL if cross-reference checks are undocumented or not enforced.
+PASS if core and overlay cross-reference protocols are configured and the traceability dimension dispatches them. FAIL if cross-reference checks are undocumented or not enforced.
 ### Failure Triage
 Check the review_mode_contract.yaml for the full cross-reference protocol definitions and verify the YAML step_order_dimensions derives the traceability protocol plan.
 ---
@@ -64,15 +64,15 @@ Check the review_mode_contract.yaml for the full cross-reference protocol defini
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Config creation and dispatch; inspect `step_create_config` crossReference block and dispatch traceability constraints |
-| `.opencode/skills/deep-review/assets/review_mode_contract.yaml` | Cross-reference protocol definitions; inspect `cross_reference_protocols` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Quality guards; use `ANCHOR:quality-guards` and `ANCHOR:review-dimensions` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Config creation and dispatch, inspect `step_create_config` crossReference block and dispatch traceability constraints |
+| `.opencode/skills/deep-review/assets/review_mode_contract.yaml` | Cross-reference protocol definitions, inspect `cross_reference_protocols` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Quality guards, use `ANCHOR:quality-guards` and `ANCHOR:review-dimensions` |
 | `.opencode/skills/deep-review/SKILL.md` | Traceability dimension documentation |
 
 ---

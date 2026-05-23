@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the loop protocol for resume behavior, then the review YAML for state re-read on resume, then the quick reference for user-facing resume instructions.
 - Desired user-facing outcome: The user is told that deleting the pause file resumes the review from where it stopped, with all prior findings preserved.
 - Expected signals: Removing the sentinel triggers loop re-entry, JSONL is re-read to determine last iteration, strategy.md provides dimension coverage state, no iterations are re-run, and the resume event is logged.
-- Pass/fail posture: PASS if removing the sentinel resumes correctly from persisted state; FAIL if the loop restarts from iteration 1 or loses prior findings.
+- Pass/fail posture: PASS if removing the sentinel resumes correctly from persisted state. FAIL if the loop restarts from iteration 1 or loses prior findings.
 
 ---
 
@@ -52,9 +52,9 @@ Removing sentinel triggers loop re-entry, JSONL re-read determines last iteratio
 ### Evidence
 Capture the resume flow from loop protocol, the YAML state re-read mechanism, and the user-facing resume instructions.
 ### Pass/Fail
-PASS if removing the sentinel resumes correctly from persisted state; FAIL if the loop restarts from iteration 1 or loses prior findings.
+PASS if removing the sentinel resumes correctly from persisted state. FAIL if the loop restarts from iteration 1 or loses prior findings.
 ### Failure Triage
-Privilege the loop protocol for resume flow and the state format reference for JSONL iteration counting; use YAML as enforcement confirmation.
+Privilege the loop protocol for resume flow and the state format reference for JSONL iteration counting. Use YAML as enforcement confirmation.
 ---
 
 ## 4. SOURCE FILES
@@ -64,19 +64,19 @@ Privilege the loop protocol for resume flow and the state format reference for J
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/loop_protocol.md` | Resume and pause sentinel lifecycle; use the lifecycle branch table |
-| `.opencode/skills/deep-review/references/state_format.md` | JSONL state schema for iteration counting on resume; use the state log section |
+| `.opencode/skills/deep-review/references/loop_protocol.md` | Resume and pause sentinel lifecycle, use the lifecycle branch table |
+| `.opencode/skills/deep-review/references/state_format.md` | JSONL state schema for iteration counting on resume, use the state log section |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | State re-read and resume logic in loop entry |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | State re-read and resume logic in loop entry |
-| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint; resume documentation |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Troubleshooting and state files; use `ANCHOR:state-files` and `ANCHOR:troubleshooting` |
-| `.opencode/skills/deep-review/SKILL.md` | Rules for state reading; use `ANCHOR:rules` Rule 1 |
+| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint, resume documentation |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Troubleshooting and state files, use `ANCHOR:state-files` and `ANCHOR:troubleshooting` |
+| `.opencode/skills/deep-review/SKILL.md` | Rules for state reading, use `ANCHOR:rules` Rule 1 |
 
 ---
 

@@ -9,7 +9,7 @@ This document captures the realistic user-testing contract, execution flow, and 
 
 ## 1. OVERVIEW
 
-Exercise the validator's three-phase rollout in its initial `warn` state. Legacy review records that omit `reviewDepthSchemaVersion` must emit `legacy_unversioned_record` as a typed advisory while remaining readable — they must NOT convert into a hard v2 failure under `DEEP_REVIEW_V2_ENFORCEMENT=warn`. The intent is to prove that operators can roll out the v2 contract without breaking historical packets that lack v2 fields.
+Exercise the validator's three-phase rollout in its initial `warn` state. Legacy review records that omit `reviewDepthSchemaVersion` must emit `legacy_unversioned_record` as a typed advisory while remaining readable, they must NOT convert into a hard v2 failure under `DEEP_REVIEW_V2_ENFORCEMENT=warn`. The intent is to prove that operators can roll out the v2 contract without breaking historical packets that lack v2 fields.
 
 ### Why This Matters
 
@@ -20,8 +20,8 @@ Without the warn surface, an operator cannot stage rollout: they would have to e
 - Objective: Confirm validator emits `legacy_unversioned_record` advisory for a legacy review record under `DEEP_REVIEW_V2_ENFORCEMENT=warn` without hard-failing.
 - Layer partition: validator (`post-dispatch-validate.ts`).
 - Real user request: `Run a deep-review iteration against a legacy unversioned record with DEEP_REVIEW_V2_ENFORCEMENT=warn and confirm the legacy advisory fires without failing the record.`
-- Expected signals: validator result `ok: true` with `warnings[]` containing one entry whose `code` is `legacy_unversioned_record`; no v2 failure reasons; record continues to parse downstream.
-- Pass/fail: PASS if `ok: true` AND `warnings[].code` contains `legacy_unversioned_record`; FAIL if validator hard-fails OR advisory is absent OR `DEEP_REVIEW_V2_ENFORCEMENT` was not honored.
+- Expected signals: validator result `ok: true` with `warnings[]` containing one entry whose `code` is `legacy_unversioned_record`. No v2 failure reasons. Record continues to parse downstream.
+- Pass/fail: PASS if `ok: true` AND `warnings[].code` contains `legacy_unversioned_record`. FAIL if validator hard-fails OR advisory is absent OR `DEEP_REVIEW_V2_ENFORCEMENT` was not honored.
 
 ## 3. TEST EXECUTION
 

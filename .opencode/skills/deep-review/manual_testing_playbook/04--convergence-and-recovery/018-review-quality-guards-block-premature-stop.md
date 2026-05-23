@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the convergence reference for quality guard definitions, then the review YAML workflow for gate enforcement, then the quick reference and SKILL.md for user-facing guard documentation.
 - Desired user-facing outcome: The user is told that even if the convergence score reaches the threshold, the review will not stop until all three quality gates pass, and is given a plain explanation of each gate.
 - Expected signals: Three named binary gates (evidence, scope, coverage), each must return true, enforcement happens after convergence check but before STOP transition, and gates are review-specific.
-- Pass/fail posture: PASS if all three gates are enforced before STOP and documented as review-specific; FAIL if any gate can be bypassed or is missing from the enforcement path.
+- Pass/fail posture: PASS if all three gates are enforced before STOP and documented as review-specific. FAIL if any gate can be bypassed or is missing from the enforcement path.
 
 ---
 
@@ -52,9 +52,9 @@ Three named binary gates (evidence, scope, coverage), each must return true, enf
 ### Evidence
 Capture the gate definitions from convergence.md, the YAML enforcement path, and the user-facing documentation of each gate.
 ### Pass/Fail
-PASS if all three gates are enforced before STOP and documented as review-specific; FAIL if any gate can be bypassed or is missing from the enforcement path.
+PASS if all three gates are enforced before STOP and documented as review-specific. FAIL if any gate can be bypassed or is missing from the enforcement path.
 ### Failure Triage
-Privilege the convergence reference for gate definitions and the YAML workflow for enforcement ordering; use quick reference for user-facing confirmation.
+Privilege the convergence reference for gate definitions and the YAML workflow for enforcement ordering. Use quick reference for user-facing confirmation.
 ---
 
 ## 4. SOURCE FILES
@@ -64,17 +64,17 @@ Privilege the convergence reference for gate definitions and the YAML workflow f
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Canonical quality guard definitions; use Section 10.4 for review-specific gates |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm; inspect quality guard enforcement in convergence step |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm; inspect quality guard enforcement in convergence step |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Quality guard summary; use `ANCHOR:quality-guards` |
-| `.opencode/skills/deep-review/SKILL.md` | Quality guard rules; use `ANCHOR:rules` Rule 12 |
+| `.opencode/skills/deep-research/references/convergence.md` | Canonical quality guard definitions, use Section 10.4 for review-specific gates |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm, inspect quality guard enforcement in convergence step |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm, inspect quality guard enforcement in convergence step |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Quality guard summary, use `ANCHOR:quality-guards` |
+| `.opencode/skills/deep-review/SKILL.md` | Quality guard rules, use `ANCHOR:rules` Rule 12 |
 | `.opencode/skills/deep-review/README.md` | Feature summary for quality guards |
 
 ---

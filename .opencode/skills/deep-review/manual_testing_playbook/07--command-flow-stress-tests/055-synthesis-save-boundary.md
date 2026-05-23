@@ -28,7 +28,7 @@ Operators run the exact command sequence and inspect only grep-able transcript a
 - Expected execution process: sandbox setup, one max-iteration run, artifact aggregation, retired-memory absence check, diff and tripwire checks.
 - Expected signals: `review-report.md`, `deep-review-dashboard.md`, `deep-review-findings-registry.json`, `generate-context.js`, `STATUS=OK` or `STATUS=FAIL`, no `/memory/` directory under the temp spec, clean target diff, clean tripwire.
 - Desired outcome: PASS verdict proving command-flow synthesis is durable and save routing is explicit.
-- Pass/fail: PASS if every field count is `1+`; FAIL if report/dashboard are absent or retired memory files appear.
+- Pass/fail: PASS if every field count is `1+`. FAIL if report/dashboard are absent or retired memory files appear.
 
 ## 3. TEST EXECUTION
 

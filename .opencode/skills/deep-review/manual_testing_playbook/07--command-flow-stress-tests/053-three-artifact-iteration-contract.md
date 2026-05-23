@@ -28,7 +28,7 @@ Operators run the exact command sequence and confirm the expected signals withou
 - Expected execution process: sandbox setup, one `/deep:start-review-loop:auto` invocation, artifact aggregation, diff and tripwire checks.
 - Expected signals: `iterations/iteration-001.md`, `deep-review-state.jsonl`, `deltas/iter-001.jsonl`, `"type":"iteration"`, `newFindingsRatio`, `findingsSummary`, and post-dispatch validation language or absence of schema-mismatch failure.
 - Desired outcome: PASS verdict showing command-flow dispatch externalized state for reducer consumption.
-- Pass/fail: PASS if all field counts are `1+`; FAIL if the run only explains what it would do or writes `iteration_delta` instead of `iteration`.
+- Pass/fail: PASS if all field counts are `1+`. FAIL if the run only explains what it would do or writes `iteration_delta` instead of `iteration`.
 
 ## 3. TEST EXECUTION
 

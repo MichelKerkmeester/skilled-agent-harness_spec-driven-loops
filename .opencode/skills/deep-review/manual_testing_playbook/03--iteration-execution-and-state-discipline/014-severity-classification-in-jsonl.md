@@ -28,8 +28,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate deep-review JSONL severity classification for findingsSummary, findingsNew, and convergence severity weights.`
 - Expected execution process: Inspect the SKILL.md rules for Rule 11, then the YAML dispatch constraints for the required JSONL fields, then the convergence algorithm for severity weight usage, then the state format reference for the JSONL schema.
 - Desired user-facing outcome: The user is told that every iteration writes machine-readable P0/P1/P2 counts (cumulative and per-iteration) and that these drive the convergence decision.
-- Expected signals: Rule 11 mandates the fields; the YAML dispatch prompt constrains them; the convergence algorithm references severity_weights with P0=10.0, P1=5.0, P2=1.0; the P0 override sets newFindingsRatio >= 0.50.
-- Pass/fail posture: PASS if findingsSummary and findingsNew with P0/P1/P2 are mandated, constrained, and consumed by convergence; FAIL if either field is missing from the contract or not used in convergence.
+- Expected signals: Rule 11 mandates the fields. The YAML dispatch prompt constrains them. The convergence algorithm references severity_weights with P0=10.0, P1=5.0, P2=1.0. The P0 override sets newFindingsRatio >= 0.50.
+- Pass/fail posture: PASS if findingsSummary and findingsNew with P0/P1/P2 are mandated, constrained, and consumed by convergence. FAIL if either field is missing from the contract or not used in convergence.
 
 ---
 
@@ -48,11 +48,11 @@ Validate deep-review JSONL severity classification for findingsSummary, findings
 2. `bash: rg -n 'findingsSummary|findingsNew|severity_weights|p0_override|newFindingsRatio' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 3. `bash: rg -n 'findingsSummary|findingsNew|P0.*10|P1.*5|P2.*1|severity.*weight' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-research/references/state_format.md`
 ### Expected
-Rule 11 mandates the fields; the YAML dispatch constrains them; the convergence algorithm references severity_weights with P0=10.0, P1=5.0, P2=1.0; the P0 override sets newFindingsRatio >= 0.50.
+Rule 11 mandates the fields. The YAML dispatch constrains them. The convergence algorithm references severity_weights with P0=10.0, P1=5.0, P2=1.0. The P0 override sets newFindingsRatio >= 0.50.
 ### Evidence
 Capture Rule 11, the dispatch JSONL constraint, the severity_weights block, and the P0 override rule.
 ### Pass/Fail
-PASS if findingsSummary and findingsNew with P0/P1/P2 are mandated, constrained, and consumed by convergence; FAIL if either field is missing from the contract or not used in convergence.
+PASS if findingsSummary and findingsNew with P0/P1/P2 are mandated, constrained, and consumed by convergence. FAIL if either field is missing from the contract or not used in convergence.
 ### Failure Triage
 Check the on_missing_outputs fallback JSONL template to verify it also includes findingsSummary and findingsNew with zeroed P0/P1/P2 counts.
 ---
@@ -64,17 +64,17 @@ Check the on_missing_outputs fallback JSONL template to verify it also includes 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/SKILL.md` | Rule 11: severity counts mandate; use `ANCHOR:rules` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dispatch constraints, severity_weights, and P0 override; inspect `step_dispatch_review_agent`, `severity_weights`, and `on_missing_outputs` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dispatch constraints; inspect `step_dispatch_review_agent` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Convergence signals; use `ANCHOR:convergence` |
-| `.opencode/skills/deep-research/references/state_format.md` | Shared JSONL schema; inspect iteration record fields |
+| `.opencode/skills/deep-review/SKILL.md` | Rule 11: severity counts mandate, use `ANCHOR:rules` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dispatch constraints, severity_weights, and P0 override, inspect `step_dispatch_review_agent`, `severity_weights`, and `on_missing_outputs` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dispatch constraints, inspect `step_dispatch_review_agent` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Convergence signals, use `ANCHOR:convergence` |
+| `.opencode/skills/deep-research/references/state_format.md` | Shared JSONL schema, inspect iteration record fields |
 
 ---
 

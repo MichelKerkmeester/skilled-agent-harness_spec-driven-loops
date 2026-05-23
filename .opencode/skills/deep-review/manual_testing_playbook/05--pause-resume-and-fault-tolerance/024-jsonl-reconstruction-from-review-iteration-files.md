@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the state format reference for JSONL schema and iteration file schema, then the loop protocol for reconstruction guidance, then the SKILL.md and quick reference for user-facing recovery instructions.
 - Desired user-facing outcome: The user is told that iteration files are a safety net and can be used to rebuild the state log if it is lost.
 - Expected signals: Iteration files contain metadata matching JSONL fields, reconstruction path is documented or derivable, reconstructed JSONL allows loop resume, and iteration files are write-once (immutable after creation).
-- Pass/fail posture: PASS if iteration files contain enough data for reconstruction and the path is documented; FAIL if iteration files lack critical metadata or reconstruction is not feasible.
+- Pass/fail posture: PASS if iteration files contain enough data for reconstruction and the path is documented. FAIL if iteration files lack critical metadata or reconstruction is not feasible.
 
 ---
 
@@ -52,9 +52,9 @@ Iteration files contain JSONL-compatible metadata, reconstruction path documente
 ### Evidence
 Capture the iteration file schema, the JSONL field mapping, and any documented reconstruction procedure.
 ### Pass/Fail
-PASS if iteration files contain enough data for reconstruction and the path is documented; FAIL if iteration files lack critical metadata or reconstruction is not feasible.
+PASS if iteration files contain enough data for reconstruction and the path is documented. FAIL if iteration files lack critical metadata or reconstruction is not feasible.
 ### Failure Triage
-Privilege the state format reference for both JSONL and iteration file schemas; compare field overlap to assess reconstruction feasibility.
+Privilege the state format reference for both JSONL and iteration file schemas. Compare field overlap to assess reconstruction feasibility.
 ---
 
 ## 4. SOURCE FILES
@@ -64,18 +64,18 @@ Privilege the state format reference for both JSONL and iteration file schemas; 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/state_format.md` | JSONL schema and iteration file schema; use the state log and findings registry sections |
-| `.opencode/skills/deep-review/references/loop_protocol.md` | Iteration file write-once contract and recovery guidance; use the iteration loop section |
+| `.opencode/skills/deep-review/references/state_format.md` | JSONL schema and iteration file schema, use the state log and findings registry sections |
+| `.opencode/skills/deep-review/references/loop_protocol.md` | Iteration file write-once contract and recovery guidance, use the iteration loop section |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Iteration file creation and state append steps |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Iteration file creation and state append steps |
-| `.opencode/skills/deep-review/references/quick_reference.md` | State file listing showing iterations/ directory; use `ANCHOR:state-files` |
-| `.opencode/skills/deep-review/SKILL.md` | Rules for externalized state; use `ANCHOR:rules` Rule 3 |
+| `.opencode/skills/deep-review/references/quick_reference.md` | State file listing showing iterations/ directory, use `ANCHOR:state-files` |
+| `.opencode/skills/deep-review/SKILL.md` | Rules for externalized state, use `ANCHOR:rules` Rule 3 |
 
 ---
 

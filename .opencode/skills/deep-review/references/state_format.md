@@ -115,7 +115,7 @@ Created during initialization. Not modified after creation.
 | reviewTarget | string | -- | Path or identifier of the review target |
 | reviewTargetType | string | `"spec-folder"` | `spec-folder`, `skill`, `agent`, `track`, `files` |
 | reviewDimensions | string[] | all 4 | Dimensions to evaluate |
-| resource_map_present | boolean | false | True only when `{specFolder}/resource-map.md` existed during init; enables the Resource Map Coverage audit pass and conditional report section |
+| resource_map_present | boolean | false | True only when `{specFolder}/resource-map.md` existed during init, enables the Resource Map Coverage audit pass and conditional report section |
 | sessionId | string | -- | Stable identifier for the current review lineage |
 | parentSessionId | string \| null | `null` | Parent lineage reference for restart flows |
 | lineageMode | string | `"new"` | `new`, `resume`, `restart`. `fork` and `completed-continue` are deferred and not emitted by the current runtime |
@@ -223,7 +223,7 @@ Append-only JSON Lines file. One JSON object per line.
 | lineageMode | string | Lifecycle mode used for this run |
 | findingsSummary | object | Total active findings: `{ P0, P1, P2 }` |
 | findingsNew | object | Net-new findings this iteration: `{ P0, P1, P2 }` |
-| findingDetails | array | Active findings with `id`, `severity`, `title`, `dimension`, `file`, `evidence`, `recommendation`, `disposition`, `findingClass`, `scopeProof`, and `affectedSurfaceHints`; use `[]` when there are no findings |
+| findingDetails | array | Active findings with `id`, `severity`, `title`, `dimension`, `file`, `evidence`, `recommendation`, `disposition`, `findingClass`, `scopeProof`, and `affectedSurfaceHints`, use `[]` when there are no findings |
 | newFindingsRatio | number | Severity-weighted new findings ratio (0.0-1.0) |
 
 ### Convergence Signals
@@ -272,7 +272,7 @@ The optional `graphEvents` array records coverage graph mutations emitted by a r
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | type | `"dimension"` \| `"file"` \| `"finding"` \| `"evidence"` \| `"remediation"` \| `"edge"` | Yes | Review-loop node kind or the literal `"edge"` for relation rows |
-| id | string | Yes | Caller-chosen logical id. Must be unique **within** a single `(specFolder, loopType, sessionId)` namespace; see Namespace Rules below |
+| id | string | Yes | Caller-chosen logical id. Must be unique **within** a single `(specFolder, loopType, sessionId)` namespace, see Namespace Rules below |
 | label | string | Yes | Human-readable name/caption (dimension, path, finding title, evidence anchor, etc.) |
 | relation | `"COVERS"` \| `"EVIDENCE_FOR"` \| `"CONTRADICTS"` \| `"RESOLVES"` \| `"CONFIRMS"` \| `"ESCALATES"` \| `"IN_DIMENSION"` \| `"IN_FILE"` | edges only | Review relation type. Required when `type == "edge"` |
 | source | string | edges only | `id` of the source node inside the current namespace |
@@ -286,7 +286,7 @@ The optional `graphEvents` array records coverage graph mutations emitted by a r
 Concrete obligations for producers:
 
 1. **Session-local uniqueness**: within one session, an `id` must resolve to exactly one node (or edge) for its entire lifetime. Re-emitting the same `id` is an upsert against the existing row in that session only.
-2. **No cross-session global uniqueness requirement**: callers MUST NOT prefix ids with the session id or random salt to "avoid collisions". The DB layer handles namespace isolation; salting ids only makes provenance harder to read.
+2. **No cross-session global uniqueness requirement**: callers MUST NOT prefix ids with the session id or random salt to "avoid collisions". The DB layer handles namespace isolation. Salting ids only makes provenance harder to read.
 3. **Edge source/target locality**: `source` and `target` in an edge event must name nodes already present in the same namespace. Cross-session edges are not a supported shape.
 4. **Persistence gate**: the reducer refuses to roll graph events forward when a record is missing `sessionId` on the surrounding iteration record, because the DB cannot route the write.
 
@@ -454,9 +454,9 @@ When `activeP2 > 0` on PASS, set `hasAdvisories: true`.
 
 - Each line must be valid JSON with a `type` field
 - `mode` must be `"review"` on all iteration and synthesis records
-- `run` values must be sequential; `newFindingsRatio` must be 0.0-1.0
+- `run` values must be sequential. `newFindingsRatio` must be 0.0-1.0
 - `findingsSummary` and `findingsNew` must each contain `P0`, `P1`, `P2` keys
-- `findingDetails` must be an array; each active item must include `findingClass`, `scopeProof`, and `affectedSurfaceHints`
+- `findingDetails` must be an array. Each active item must include `findingClass`, `scopeProof`, and `affectedSurfaceHints`
 
 ## Review Depth Schema (v2)
 
@@ -489,9 +489,9 @@ Trivial-scope exemption: when `reviewDepthApplicability.scopeClass === 'trivial'
 | Field | Type | Required | Semantics |
 |-------|------|----------|-----------|
 | `scopeClass` | `'trivial' \| 'standard' \| 'complex'` | Yes | Classifies how much depth proof the review target warrants. |
-| `enforcement` | `'strict' \| 'warn' \| 'skip'` | Yes | `strict` means v2 validators fail shallow records; `warn` emits advisory rollout feedback; `skip` is valid only for trivial scope with proof. |
+| `enforcement` | `'strict' \| 'warn' \| 'skip'` | Yes | `strict` means v2 validators fail shallow records, `warn` emits advisory rollout feedback, `skip` is valid only for trivial scope with proof. |
 | `reason` | string | Yes | Human-readable justification for the chosen scope/enforcement pair. |
-| `evidenceRefs` | string[] | Yes | File/path refs proving scope classification; required even for skipped trivial ledgers. |
+| `evidenceRefs` | string[] | Yes | File/path refs proving scope classification, required even for skipped trivial ledgers. |
 
 ### Target Selection
 
@@ -500,7 +500,7 @@ Trivial-scope exemption: when `reviewDepthApplicability.scopeClass === 'trivial'
 | `selectedTargets` | string[] | Yes | Files, folders, specs, or surfaces actually searched this iteration. |
 | `selectionReason` | string | Yes | Why these targets were highest-value for the dimension or bug class. |
 | `discoveryMethods` | string[] | Yes | Methods such as direct read, exact search, semantic search, graph query, producer trace, consumer trace, or negative-test search. |
-| `omittedHighRiskTargets` | string[] | Yes | High-risk targets not searched; use `[]` when none were identified. |
+| `omittedHighRiskTargets` | string[] | Yes | High-risk targets not searched, use `[]` when none were identified. |
 | `graphStatus` | `'available' \| 'unavailable' \| 'partial'` | Yes | Code/coverage graph availability for this iteration's target selection. |
 | `semanticSearchStatus` | `'available' \| 'unavailable' \| 'partial'` | Yes | Semantic/code search availability for this iteration. |
 | `evidenceRefs` | string[] | Yes | Evidence for target selection and omitted-target claims. |
@@ -522,7 +522,7 @@ Trivial-scope exemption: when `reviewDepthApplicability.scopeClass === 'trivial'
 |-------|------|----------|-----------|
 | `id` | string | Yes | Stable ledger-row id unique within the iteration record. |
 | `dimension` | string | Yes | Review dimension addressed by this row. |
-| `targetRefs` | string[] | Yes | Targets searched; should overlap `targetSelection.selectedTargets`. |
+| `targetRefs` | string[] | Yes | Targets searched, should overlap `targetSelection.selectedTargets`. |
 | `bugClass` | string | Yes | Candidate bug class or invariant family. |
 | `hypothesis` / `invariant` | string | Conditional | At least one must be present and non-empty. |
 | `searchActions` | array | Yes | Each action has `method`, `queryOrPath`, `result`, and `evidenceRefs`. |
@@ -570,10 +570,10 @@ Representative v2 record:
 | Record Shape | Reader Behavior | Validator Behavior |
 |--------------|-----------------|--------------------|
 | v1 legacy: discriminator absent or not `2` | Parse as today's iteration record. | Phase D may warn, but must not hard-fail only because v2 fields are absent. |
-| v2 trivial+skip | Parse v2 applicability; `searchLedger: []` allowed with cited scope proof. | Validate `reviewDepthApplicability.evidenceRefs`; skip ledger-depth requirements. |
+| v2 trivial+skip | Parse v2 applicability, `searchLedger: []` allowed with cited scope proof. | Validate `reviewDepthApplicability.evidenceRefs`, skip ledger-depth requirements. |
 | v2 standard/complex | Parse v2 fields in addition to v1 required fields. | Enforce v2 shape, ledger linkage, coverage reconciliation, and evidence refs. |
 
-Phase E reducer/dashboard/report work must preserve and expose `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`. Until Phase E ships, these are contract obligations only; `deep-review-findings-registry.json`, `deep-review-dashboard.md`, and `review-report.md` are not expected to persist them.
+Phase E reducer/dashboard/report work must preserve and expose `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`. Until Phase E ships, these are contract obligations only. `deep-review-findings-registry.json`, `deep-review-dashboard.md`, and `review-report.md` are not expected to persist them.
 
 ---
 
@@ -618,7 +618,7 @@ Sections unchanged from research: topic, what-worked, what-failed, exhausted-app
 2. Move completed dimensions from "remaining" to "completed" with `[x]` and verdict
 3. Update running-findings with P0/P1/P2 counts and deltas
 4. Add to what-worked / what-failed with iteration number
-5. Move exhausted approaches; update cross-reference-status and files-under-review
+5. Move exhausted approaches. Update cross-reference-status and files-under-review
 6. Set next-focus based on remaining dimensions and open findings
 
 ---
@@ -668,7 +668,7 @@ This file is machine-owned and must stay synchronized with the latest iteration 
 | `blockedStopHistory` | array | One entry per `blocked_stop` JSONL event: `{run, blockedBy, gateResults, recoveryStrategy, timestamp}`. Rendered in the dashboard `BLOCKED STOPS` section and can drive the strategy `next-focus` anchor when blocked-stop is the most recent loop event. |
 | `persistentSameSeverity` | array | Findings observed in ≥2 iterations with NO severity transitions beyond initial discovery. REQ-018 split of the deprecated `repeatedFindings` bucket. |
 | `severityChanged` | array | Findings that went through at least one severity transition (P0↔P1↔P2) in their `transitions` history. |
-| `repeatedFindings` | array | **Deprecated.** Union of `persistentSameSeverity` and `severityChanged`. Retained for backward compatibility; new code should read the split arrays. |
+| `repeatedFindings` | array | **Deprecated.** Union of `persistentSameSeverity` and `severityChanged`. Retained for backward compatibility, new code should read the split arrays. |
 | `corruptionWarnings` | array | Per-line corruption reports from `parseJsonlDetailed()`: `{line, raw, error}`. Non-empty means the reducer detected malformed JSONL. |
 
 ### Default Values
@@ -681,7 +681,7 @@ When JSONL parses cleanly, `corruptionWarnings: []`.
 
 - **Malformed JSONL**: The reducer CLI exits with code `2` and writes a warning to stderr when `corruptionWarnings.length > 0`. Pass `--lenient` (or `lenient:true` to `reduceReviewState`) to escape-hatch out and preserve the v1.2.0.0 fail-open behavior for legacy packets.
 - **Missing machine-owned anchors**: `replaceAnchorSection()` throws `Error('Missing machine-owned anchor "<id>" in deep-review strategy file.')` when the strategy file is present but lacks one of the required anchors. Pass `--create-missing-anchors` (or `createMissingAnchors:true`) to bootstrap empty strategy files by appending the missing anchor blocks.
-- **Dashboard surfaces**: `CORRUPTION WARNINGS` section lists detected lines; `BLOCKED STOPS` section lists `blockedStopHistory` entries; `GRAPH CONVERGENCE` section reports `graphConvergenceScore` / `graphDecision` / `graphBlockers`.
+- **Dashboard surfaces**: `CORRUPTION WARNINGS` section lists detected lines. `BLOCKED STOPS` section lists `blockedStopHistory` entries. `GRAPH CONVERGENCE` section reports `graphConvergenceScore` / `graphDecision` / `graphBlockers`.
 - **Strategy next-focus override**: When the latest `blocked_stop` event timestamp is newer than the latest iteration timestamp, the reducer rewrites the strategy `next-focus` anchor to surface the blocking gates and recovery hint so operators see the blocker before choosing the next iteration direction.
 
 ---
@@ -753,7 +753,7 @@ The review synthesis output contains 9 core sections plus a conditional `## Reso
 | 5 | Spec Seed | Minimal spec updates implied by findings |
 | 6 | Plan Seed | Initial remediation tasks from findings |
 | 7 | Traceability Status | Core vs overlay protocol outcomes and gaps |
-| 8 | Resource Map Coverage Gate | Present only when `{spec_folder}/resource-map.md` existed at init; contains touched entries, untouched entries (`expected-by-scope` vs `gap`), and implementation paths absent from the map |
+| 8 | Resource Map Coverage Gate | Present only when `{spec_folder}/resource-map.md` existed at init, contains touched entries, untouched entries (`expected-by-scope` vs `gap`), and implementation paths absent from the map |
 | 9 | Deferred Items | Advisory findings, blocked items, follow-up checks |
 | 10 | Audit Appendix | Coverage, convergence replay, audit detail |
 
@@ -838,7 +838,7 @@ Embed the packet inside the iteration file for each new P0/P1 finding. The orche
 | `finalSeverity` | `"P0"` \| `"P1"` \| `"P2"` | Severity after adjudication (may differ from the severity originally asserted) |
 | `confidence` | number `[0, 1]` | Reviewer confidence in `finalSeverity` |
 | `downgradeTrigger` | string | The concrete condition under which this finding should be downgraded in a future iteration |
-| `transitions` | object[] | Optional severity transition log; required when `finalSeverity` differs from the originally asserted severity |
+| `transitions` | object[] | Optional severity transition log, required when `finalSeverity` differs from the originally asserted severity |
 
 ### Validation Rules (enforced by `step_post_iteration_claim_adjudication`)
 
@@ -886,7 +886,7 @@ Each finding is tracked with a unique identifier enabling deduplication, severit
 |-------|------|-------------|
 | findingId | string | Sequential unique ID: `F001`, `F002`, ... |
 | severity | `"P0"` / `"P1"` / `"P2"` | Current severity |
-| category | `"correctness"` / `"security"` / `"traceability"` / `"maintainability"` / `"resource-map-coverage"` | Primary audit category for the finding; `resource-map-coverage` is reserved for implementation-vs-map coverage gaps |
+| category | `"correctness"` / `"security"` / `"traceability"` / `"maintainability"` / `"resource-map-coverage"` | Primary audit category for the finding, `resource-map-coverage` is reserved for implementation-vs-map coverage gaps |
 | status | `"active"` / `"resolved"` / `"deferred"` / `"disproved"` | Current status |
 | dimension | string | Primary dimension: correctness, security, traceability, maintainability |
 | title | string | Short description |

@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the YAML init steps first, then the asset templates that seed the files, then the quick reference state files table.
 - Desired user-facing outcome: The user can be told which review files appear immediately in a fresh session and why each exists.
 - Expected signals: The review/ directory is created, config comes from the shared deep-review config template, the findings registry is created from the reducer contract, strategy comes from the deep-review strategy template, and the JSONL begins with a config record.
-- Pass/fail posture: PASS if protocol, YAML, and asset templates agree on the initial review artifacts and their roles; FAIL if the artifact list or template sources drift.
+- Pass/fail posture: PASS if protocol, YAML, and asset templates agree on the initial review artifacts and their roles. FAIL if the artifact list or template sources drift.
 
 ---
 
@@ -52,7 +52,7 @@ The review/ directory is created, config comes from the shared config template, 
 ### Evidence
 Capture the initialization step names, the live template files, and the state_paths contract in one evidence bundle.
 ### Pass/Fail
-PASS if protocol, YAML, and asset templates agree on the initial review artifacts and their roles; FAIL if the artifact list or template sources drift.
+PASS if protocol, YAML, and asset templates agree on the initial review artifacts and their roles. FAIL if the artifact list or template sources drift.
 ### Failure Triage
 Check both YAML variants, verify the JSONL init step writes a config record, confirm the reducer registry is created, and confirm the assets live under `assets/`.
 ---
@@ -64,17 +64,17 @@ Check both YAML variants, verify the JSONL init step writes a config record, con
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Autonomous init steps; inspect `phase_init` and `state_paths` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Confirm init steps; inspect `phase_init` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Autonomous init steps, inspect `phase_init` and `state_paths` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Confirm init steps, inspect `phase_init` |
 | `.opencode/skills/deep-review/assets/deep_review_config.json` | Config template |
 | `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Strategy template |
-| `.opencode/skills/deep-review/references/quick_reference.md` | State files table; use `ANCHOR:state-files` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | State files table, use `ANCHOR:state-files` |
 
 ---
 

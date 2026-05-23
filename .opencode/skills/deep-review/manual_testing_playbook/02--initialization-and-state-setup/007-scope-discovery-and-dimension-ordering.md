@@ -15,7 +15,7 @@ This scenario validates scope discovery and dimension ordering for `DRV-007`. Th
 
 ### WHY THIS MATTERS
 
-Review effectiveness depends on reviewing the right files in the right order. Incorrect scope means missed files; incorrect dimension ordering means lower-severity issues are checked before critical ones.
+Review effectiveness depends on reviewing the right files in the right order. Incorrect scope means missed files. Incorrect dimension ordering means lower-severity issues are checked before critical ones.
 
 ---
 
@@ -28,8 +28,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate deep-review scope discovery and dimension ordering for target resolution and Correctness > Security > Traceability > Maintainability.`
 - Expected execution process: Inspect the YAML scope discovery step for target type resolution rules, then the dimension ordering step for priority ordering, then the quick reference for the documented dimension table.
 - Desired user-facing outcome: The user can be told which files will be reviewed for their target type and that dimensions are reviewed in risk-priority order.
-- Expected signals: The scope discovery step has resolution rules for each target type (spec-folder, skill, agent, track, files); the dimension ordering step enforces correctness > security > traceability > maintainability; the quick reference dimension table matches.
-- Pass/fail posture: PASS if scope resolution covers all target types and dimension ordering matches the documented priority; FAIL if any target type lacks resolution rules or dimensions are misordered.
+- Expected signals: The scope discovery step has resolution rules for each target type (spec-folder, skill, agent, track, files). The dimension ordering step enforces correctness > security > traceability > maintainability. The quick reference dimension table matches.
+- Pass/fail posture: PASS if scope resolution covers all target types and dimension ordering matches the documented priority. FAIL if any target type lacks resolution rules or dimensions are misordered.
 
 ---
 
@@ -48,11 +48,11 @@ Validate deep-review scope discovery and dimension ordering for target resolutio
 2. `bash: sed -n '/step_scope_discovery/,/step_order_dimensions/p' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 3. `bash: rg -n 'correctness.*security.*traceability.*maintainability|priority.*1|priority.*2|priority.*3|priority.*4|D1|D2|D3|D4' .opencode/skills/deep-review/references/quick_reference.md .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 ### Expected
-The scope discovery step has resolution rules for each target type; the dimension ordering step enforces correctness > security > traceability > maintainability; the quick reference dimension table matches.
+The scope discovery step has resolution rules for each target type. The dimension ordering step enforces correctness > security > traceability > maintainability. The quick reference dimension table matches.
 ### Evidence
 Capture the scope resolution rules for each target type, the dimension ordering step, and the quick reference dimension table.
 ### Pass/Fail
-PASS if scope resolution covers all target types and dimension ordering matches the documented priority; FAIL if any target type lacks resolution rules or dimensions are misordered.
+PASS if scope resolution covers all target types and dimension ordering matches the documented priority. FAIL if any target type lacks resolution rules or dimensions are misordered.
 ### Failure Triage
 Check the YAML step_scope_discovery resolve block for each target type (spec-folder, skill, agent, track, files) and verify step_order_dimensions has the correct priority sequence.
 ---
@@ -64,15 +64,15 @@ Check the YAML step_scope_discovery resolve block for each target type (spec-fol
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Scope discovery and dimension ordering; inspect `step_scope_discovery` and `step_order_dimensions` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Scope discovery and dimension ordering; inspect `step_scope_discovery` and `step_order_dimensions` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Dimension table; use `ANCHOR:review-dimensions` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Scope discovery and dimension ordering, inspect `step_scope_discovery` and `step_order_dimensions` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Scope discovery and dimension ordering, inspect `step_scope_discovery` and `step_order_dimensions` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Dimension table, use `ANCHOR:review-dimensions` |
 | `.opencode/skills/deep-review/assets/review_mode_contract.yaml` | Review mode contract with dimension definitions |
 
 ---

@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the quick reference verdict table, then the YAML synthesis step for routing logic, then the SKILL.md and command entrypoint for verdict documentation.
 - Desired user-facing outcome: The user knows exactly which follow-up command to run based on the review verdict and understands what `hasAdvisories` means.
 - Expected signals: Three distinct verdicts, each with a documented next command, `hasAdvisories` flag on PASS with P2 findings, verdict appears in Executive Summary, and routing rationale appears in Planning Trigger.
-- Pass/fail posture: PASS if all three verdict-to-command routing paths are documented and consistent; FAIL if any verdict routes to the wrong command or `hasAdvisories` is missing.
+- Pass/fail posture: PASS if all three verdict-to-command routing paths are documented and consistent. FAIL if any verdict routes to the wrong command or `hasAdvisories` is missing.
 
 ---
 
@@ -52,7 +52,7 @@ Three distinct verdicts with documented next commands, `hasAdvisories` flag on P
 ### Evidence
 Capture the verdict table from quick reference, the YAML routing logic, and the report section documentation showing where verdict and routing appear.
 ### Pass/Fail
-PASS if all three verdict-to-command routing paths are documented and consistent; FAIL if any verdict routes to the wrong command or `hasAdvisories` is missing.
+PASS if all three verdict-to-command routing paths are documented and consistent. FAIL if any verdict routes to the wrong command or `hasAdvisories` is missing.
 ### Failure Triage
 Privilege the quick reference verdict table as the canonical routing contract and verify YAML synthesis step mirrors it exactly.
 ---
@@ -64,17 +64,17 @@ Privilege the quick reference verdict table as the canonical routing contract an
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/quick_reference.md` | Canonical verdict table; use `ANCHOR:verdicts` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Canonical verdict table, use `ANCHOR:verdicts` |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Synthesis step with verdict routing logic |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Synthesis step with verdict routing logic |
-| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint; verdict and output format documentation |
-| `.opencode/skills/deep-review/SKILL.md` | Verdict definitions and severity classification; use `ANCHOR:how-it-works` |
+| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint, verdict and output format documentation |
+| `.opencode/skills/deep-review/SKILL.md` | Verdict definitions and severity classification, use `ANCHOR:how-it-works` |
 | `.opencode/skills/deep-review/README.md` | Feature summary for verdicts and post-review workflow |
 
 ---

@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the convergence reference for the P0 override rule, then the review YAML algorithm for enforcement, then the quick reference and SKILL.md for user-facing documentation of the override.
 - Desired user-facing outcome: The user is told that a critical finding will always force the review to continue for at least one more iteration, preventing premature stop.
 - Expected signals: P0 finding sets `newFindingsRatio >= 0.50`, this blocks the rolling average signal from contributing to convergence, the composite score cannot reach 0.60, and review continues.
-- Pass/fail posture: PASS if the P0 override is enforced and documented as blocking convergence; FAIL if convergence can trigger despite an active new P0 finding.
+- Pass/fail posture: PASS if the P0 override is enforced and documented as blocking convergence. FAIL if convergence can trigger despite an active new P0 finding.
 
 ---
 
@@ -52,7 +52,7 @@ P0 finding sets `newFindingsRatio >= 0.50`, this blocks the rolling average sign
 ### Evidence
 Capture the P0 override rule from convergence.md, the YAML enforcement, and user-facing documentation of the override behavior.
 ### Pass/Fail
-PASS if the P0 override is enforced and documented as blocking convergence; FAIL if convergence can trigger despite an active new P0 finding.
+PASS if the P0 override is enforced and documented as blocking convergence. FAIL if convergence can trigger despite an active new P0 finding.
 ### Failure Triage
 Privilege the convergence reference for the exact P0 override rule and verify it is mirrored in both YAML workflows and user-facing docs.
 ---
@@ -64,17 +64,17 @@ Privilege the convergence reference for the exact P0 override rule and verify it
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math; P0 override rule in severity-weighted section |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm; inspect P0 override in `step_check_convergence` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm; inspect P0 override in `step_check_convergence` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | P0 override note; use `ANCHOR:convergence` |
-| `.opencode/skills/deep-review/SKILL.md` | Severity classification and P0 blocking rules; use `ANCHOR:how-it-works` and `ANCHOR:rules` |
+| `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math, P0 override rule in severity-weighted section |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm, inspect P0 override in `step_check_convergence` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm, inspect P0 override in `step_check_convergence` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | P0 override note, use `ANCHOR:convergence` |
+| `.opencode/skills/deep-review/SKILL.md` | Severity classification and P0 blocking rules, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
 | `.opencode/skills/deep-review/README.md` | Feature summary for P0 override behavior |
 
 ---

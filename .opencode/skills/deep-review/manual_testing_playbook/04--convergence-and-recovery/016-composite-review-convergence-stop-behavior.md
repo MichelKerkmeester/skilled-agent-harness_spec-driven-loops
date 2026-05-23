@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the convergence reference first, then the review YAML algorithm, then the quick reference and SKILL.md for user-facing summaries.
 - Desired user-facing outcome: The user gets an accurate explanation of the weighted convergence model, the severity weighting unique to review mode, and when convergence applies.
 - Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
-- Pass/fail posture: PASS if the signals, weights, severity weighting, and threshold align across convergence reference, YAML, and user-facing docs; FAIL if any of those elements drift materially.
+- Pass/fail posture: PASS if the signals, weights, severity weighting, and threshold align across convergence reference, YAML, and user-facing docs. FAIL if any of those elements drift materially.
 
 ---
 
@@ -52,7 +52,7 @@ Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRa
 ### Evidence
 Capture the full signal table, YAML algorithm excerpt, severity weighting formula, and the user-facing explanation.
 ### Pass/Fail
-PASS if the signals, weights, severity weighting, and threshold align across convergence reference, YAML, and user-facing docs; FAIL if any of those elements drift materially.
+PASS if the signals, weights, severity weighting, and threshold align across convergence reference, YAML, and user-facing docs. FAIL if any of those elements drift materially.
 ### Failure Triage
 Privilege the convergence reference for exact math and use quick reference and SKILL.md only as secondary confirmation.
 ---
@@ -64,17 +64,17 @@ Privilege the convergence reference for exact math and use quick reference and S
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math; use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm; inspect `step_check_convergence` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm; inspect `step_check_convergence` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Convergence signal summary; use `ANCHOR:convergence` |
-| `.opencode/skills/deep-review/SKILL.md` | Convergence and rules documentation; use `ANCHOR:rules` and `ANCHOR:how-it-works` |
+| `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math, use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm, inspect `step_check_convergence` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm, inspect `step_check_convergence` |
+| `.opencode/skills/deep-review/references/quick_reference.md` | Convergence signal summary, use `ANCHOR:convergence` |
+| `.opencode/skills/deep-review/SKILL.md` | Convergence and rules documentation, use `ANCHOR:rules` and `ANCHOR:how-it-works` |
 | `.opencode/skills/deep-review/README.md` | Feature summary for review convergence |
 
 ---

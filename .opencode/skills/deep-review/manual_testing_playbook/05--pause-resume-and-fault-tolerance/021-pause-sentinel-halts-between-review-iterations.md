@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Expected execution process: Inspect the loop protocol pause section, then the review YAML pause checks, then the quick reference and SKILL.md for user-facing explanation.
 - Desired user-facing outcome: The user is told exactly how to pause a review run safely and what the loop does when the sentinel is present.
 - Expected signals: The sentinel is checked before dispatch, a paused event is logged to JSONL, the loop halts rather than flowing into synthesis, and the sentinel location is `review/.deep-review-pause`.
-- Pass/fail posture: PASS if the sentinel pauses between iterations and does not route to synthesis; FAIL if pause is undocumented or modeled as a hard stop to completion.
+- Pass/fail posture: PASS if the sentinel pauses between iterations and does not route to synthesis. FAIL if pause is undocumented or modeled as a hard stop to completion.
 
 ---
 
@@ -52,7 +52,7 @@ The sentinel is checked before dispatch, a paused event is logged to JSONL, the 
 ### Evidence
 Capture the sentinel location, the paused-event contract, and the halt behavior from both YAML workflows and user-facing docs.
 ### Pass/Fail
-PASS if the pause sentinel halts between iterations and does not route to synthesis; FAIL if pause is undocumented or modeled as a hard stop to completion.
+PASS if the pause sentinel halts between iterations and does not route to synthesis. FAIL if pause is undocumented or modeled as a hard stop to completion.
 ### Failure Triage
 Use the loop protocol pause subsection as the canonical flow and verify both review YAML workflows mirror it.
 ---
@@ -64,18 +64,18 @@ Use the loop protocol pause subsection as the canonical flow and verify both rev
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated review protocol, and scenario summary |
-| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`; use the live docs below as the implementation contract |
+| `feature_catalog/` | No dedicated feature catalog exists yet for `deep-review`, use the live docs below as the implementation contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/loop_protocol.md` | Pause sentinel contract; use the pause-handling subsection |
-| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Pause check step; inspect `step_check_pause_sentinel` |
-| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Pause check step; inspect `step_check_pause_sentinel` |
-| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint; review-specific pause documentation |
-| `.opencode/skills/deep-review/references/quick_reference.md` | State files showing pause sentinel location; use `ANCHOR:state-files` |
-| `.opencode/skills/deep-review/SKILL.md` | Rule-level context; use `ANCHOR:rules` |
+| `.opencode/skills/deep-review/references/loop_protocol.md` | Pause sentinel contract, use the pause-handling subsection |
+| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Pause check step, inspect `step_check_pause_sentinel` |
+| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Pause check step, inspect `step_check_pause_sentinel` |
+| `.opencode/commands/deep/start-review-loop.md` | Command entrypoint, review-specific pause documentation |
+| `.opencode/skills/deep-review/references/quick_reference.md` | State files showing pause sentinel location, use `ANCHOR:state-files` |
+| `.opencode/skills/deep-review/SKILL.md` | Rule-level context, use `ANCHOR:rules` |
 | `.opencode/skills/deep-review/README.md` | User-facing pause FAQ |
 
 ---
