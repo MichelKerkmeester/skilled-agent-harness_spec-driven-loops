@@ -1,35 +1,37 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: 115/001 — direction-flipped preflight rename plan"
+description: "Preflight emitted the skill-only rename contract for sk-ai-council -> deep-ai-council and marks the agent rename phase skipped because all four runtime agent files already use ai-council."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "115 preflight summary"
+  - "direction flipped rename plan"
+  - "rename plan emitted"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan"
-    last_updated_at: "2026-05-21T06:57:08Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-05-23T07:00:29Z"
+    last_updated_by: "main_agent"
+    recent_action: "preflight done — rename plan emitted"
+    next_safe_action: "dispatch 002 skill rename"
     blockers: []
-    key_files: []
+    key_files:
+      - "scratch/rename-plan.json"
+      - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "115-001-preflight-scope-map"
-      parent_session_id: null
-    completion_pct: 0
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000115001"
+      session_id: "115-001-direction-flipped-preflight"
+      parent_session_id: "115-001-spec-init"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Direction is flipped from stale parent docs: sk-ai-council -> deep-ai-council."
+      - "Scope is skill-only; agent rename phase 003 is skipped because all four runtime mirrors already use ai-council."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
 # Implementation Summary
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -38,9 +40,11 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-preflight-scope-map |
-| **Completed** | 2026-05-21 |
-| **Level** | 3 |
+| **Spec Folder** | 001-preflight-and-rename-plan |
+| **Completed** | 2026-05-23 |
+| **Level** | 2 |
+| **Direction** | `sk-ai-council -> deep-ai-council` |
+| **Scope** | Skill-only |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,28 +52,39 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The preflight contract now matches the actual Wave 1 A1 direction: rename the skill from `sk-ai-council` to `deep-ai-council`, leave the already-renamed `ai-council` agents alone, and skip sub-phase 003. The emitted `scratch/rename-plan.json` gives Wave 2 a machine-readable file map with executable phases 002, 004, 005, and 006.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Scan And Classification
 
-### [Feature Name]
+The rg baseline command found 201 files containing `sk-ai-council` after excluding `z_archive`. The plan classified 205 total paths after adding explicit handoff paths that the rg roots cannot see or that have no current hit: `README.md`, `AGENTS.md`, `.github/hooks/scripts/pre-push-council.sh`, and `multi-ai-council-runtime-parity.vitest.ts`.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+Operation counts:
+
+| Operation | Count | Notes |
+|-----------|-------|-------|
+| 002 skill rename | 80 | `.opencode/skills/sk-ai-council/**` only |
+| 004 sibling edges and TypeScript | 6 | Four graph metadata files, current `lib/scorer/lanes/explicit.ts`, and runtime parity vitest |
+| 005 root docs, hooks, index | 4 | `README.md`, `AGENTS.md`, hook script, skills README |
+| Unsorted/manual triage | 115 | Agent no-op files, historical/spec surfaces, generated advisor assets, and related tests not assigned to 002/004/005 |
+
+### Agent Phase Skipped
+
+Sub-phase 003 is skipped because all four runtime mirrors already exist at the target `ai-council` slug:
+
+| Runtime | Existing target file |
+|---------|----------------------|
+| OpenCode | `.opencode/agents/ai-council.md` |
+| Claude | `.claude/agents/ai-council.md` |
+| Codex | `.codex/agents/ai-council.toml` |
+| Gemini | `.gemini/agents/ai-council.md` |
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `scratch/rename-plan.json` | Created | Direction-flipped Wave 2 contract with phase scopes and preservation policy |
+| `spec.md` | Modified | Updated `_memory.continuity` and status for completed preflight |
+| `implementation-summary.md` | Modified | Captured scan counts, skip rationale, verification, and commit handoff |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +92,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+I used the requested rg sweep as the baseline, added only explicitly named handoff paths, and kept all writes inside `001-preflight-and-rename-plan/`. No skill files, agent files, sibling phase folders, root docs, hooks, or generated advisor files were modified.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +100,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Treat parent 115 direction as stale | The user explicitly corrected the direction, and packet 130 research supports `deep-ai-council` as the proposed iterative council identity. |
+| Skip phase 003 | The target agent slug already exists across all four runtime mirrors, so a rename wave would be a no-op with unnecessary risk. |
+| Include explicit operation 005 paths outside rg roots | The requested baseline command does not search root `README.md` or `.github/`, but Wave 2 still needs those paths in the contract. |
+| Use current `lib/scorer/lanes/explicit.ts` path | The requested `lib/scoring/explicit.ts` path does not exist; the current repo path is the scorer lane file. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +113,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `rg -l "sk-ai-council" .opencode .claude .codex .gemini 2>/dev/null \| grep -v "z_archive" \| sort` | PASS, 201 baseline files |
+| Agent target files exist | PASS, all four `ai-council` runtime files present |
+| `python3 -c "import json; json.load(open('.../scratch/rename-plan.json'))"` | PASS, JSON parsed successfully |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan --strict` | PASS, Level 2 with 0 errors and 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +126,22 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Unsorted paths need human triage before broad repo edits.** The plan intentionally flags 115 paths outside the 002/004/005 buckets instead of guessing ownership.
+2. **Historical preservation stays frozen.** `z_archive`, `101-deep-multi-ai-council-skill`, and the `026` research track remain out of scope for rename edits.
 <!-- /ANCHOR:limitations -->
 
 ---
 
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
+## Commit Handoff
 
+Suggested commit: `feat(115/001): preflight — rename-plan.json with FLIPPED direction (sk-ai-council → deep-ai-council)`
+
+Explicit paths for `git add`:
+
+```bash
+git add \
+  .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan/scratch/rename-plan.json \
+  .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan/spec.md \
+  .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan/implementation-summary.md \
+  .opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename/001-preflight-and-rename-plan/checklist.md
+```
