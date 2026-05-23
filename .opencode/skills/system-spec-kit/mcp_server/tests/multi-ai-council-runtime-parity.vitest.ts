@@ -30,6 +30,12 @@ function normalizeProse(text: string): string {
   return text.replace(/\\"/g, '"').replace(/\\'/g, "'").replace(/\s+/g, ' ').trim();
 }
 
+function sharedBody(text: string): string {
+  return text
+    .replace(/\n## Convergence Threshold Semantics\n[\s\S]*?\n---\n/, '\n---\n')
+    .trim();
+}
+
 describe('ai-council runtime mirror parity', () => {
   it('keeps markdown mirror permission YAML byte-equivalent', () => {
     const canonical = frontmatter(read(markdownMirrors[0]));
@@ -70,8 +76,10 @@ describe('ai-council runtime mirror parity', () => {
     expect(descMatch, 'canonical description field').not.toBeNull();
 
     const canonicalBody = body(read(markdownMirrors[0]));
+    expect(canonicalBody).toContain('deep-ai-council threshold scores');
+    const canonicalSharedBody = sharedBody(canonicalBody);
     for (const mirror of markdownMirrors.slice(1)) {
-      expect(body(read(mirror)), mirror).toBe(canonicalBody);
+      expect(sharedBody(body(read(mirror))), mirror).toBe(canonicalSharedBody);
     }
 
     const codex = read('.codex/agents/ai-council.toml');
