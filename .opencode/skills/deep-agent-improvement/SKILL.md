@@ -2,7 +2,7 @@
 name: deep-agent-improvement
 description: "Evaluator-first bounded agent improvement: 5-dim scoring, dynamic profiling, packet-local candidates, guarded promotion."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.2.0
+version: 1.6.0.0
 triggers:
   - deep-agent-improvement
   - agent improvement loop

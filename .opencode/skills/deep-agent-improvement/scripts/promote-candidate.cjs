@@ -46,6 +46,24 @@ function ensureParent(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
 }
 
+function runtimeMirrorPaths(target) {
+  const name = path.basename(target, path.extname(target));
+  return [
+    `.opencode/agents/${name}.md`,
+    `.claude/agents/${name}.md`,
+    `.codex/agents/${name}.toml`,
+    `.gemini/agents/${name}.md`,
+  ];
+}
+
+function checkRuntimeMirrorLanding(target) {
+  const expected = runtimeMirrorPaths(target);
+  return {
+    expected,
+    missing: expected.filter((filePath) => !fs.existsSync(filePath)),
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. VALIDATION CHECKS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -92,6 +110,10 @@ function main() {
   const threshold = Number(config?.scoring?.thresholdDelta || 1);
   const proposalOnly = config?.proposalOnly;
   const promotionEnabled = config?.promotionEnabled;
+  const requireRuntimeMirrors = args['require-runtime-mirrors'] === true
+    || args['require-runtime-mirrors'] === 'true'
+    || process.env.DEEP_AGENT_IMPROVEMENT_REQUIRE_RUNTIME_MIRRORS === '1'
+    || config?.promotion?.requireRuntimeMirrors === true;
 
   if (score.status !== 'scored') {
     process.stderr.write('Cannot promote: score file is not in scored state\n');
@@ -163,6 +185,15 @@ function main() {
     process.exit(1);
   }
 
+  // TODO(packet-127): make runtime mirror landing unconditional once promotion writes all 4 mirrors.
+  if (requireRuntimeMirrors) {
+    const mirrorLanding = checkRuntimeMirrorLanding(target);
+    if (mirrorLanding.missing.length > 0) {
+      process.stderr.write(`Cannot promote: runtime mirror sync incomplete; missing ${mirrorLanding.missing.join(', ')}\n`);
+      process.exit(1);
+    }
+  }
+
   ensureParent(path.join(archiveDir, 'placeholder'));
   const timestamp = new Date().toISOString().replace(/[:]/g, '-');
   const backupPath = path.join(archiveDir, `${path.basename(target)}.${timestamp}.bak`);
@@ -177,6 +208,7 @@ function main() {
     backupPath,
     benchmarkReport: benchmarkReportPath,
     repeatabilityReport: resolvedRepeatabilityReportPath,
+    runtimeMirrors: requireRuntimeMirrors ? checkRuntimeMirrorLanding(target).expected : null,
     delta: score.delta,
     threshold,
     timestamp: new Date().toISOString(),

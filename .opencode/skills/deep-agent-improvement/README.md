@@ -153,9 +153,9 @@ The reducer tracks per-dimension scores across iterations, rendering a Dimension
 
 Both auto and confirm workflows now emit `legal_stop_evaluated` and `blocked_stop` events to the JSONL ledger, matching the deep-research and deep-review runtime-truth contract. A session-boundary gate enforces fresh-session isolation before initialization. If prior improvement state exists, the workflow halts until the operator archives, resumes, or aborts.
 
-### 3.9 PLATEAU STOP REASON
+### 3.9 PLATEAU STOP CONDITION
 
-The stop-reason taxonomy includes a dedicated `plateau` reason so plateau exits are recorded truthfully instead of being falsified as `converged`. The journal validator accepts `plateau` as a first-class stop type.
+Plateau detection is a reducer stop condition, not a journal stop-reason enum. When all tracked dimensions plateau, the orchestrator must reconcile that condition to one of the canonical journal reasons: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, or `stuckRecovery`.
 
 ### 3.10 MIRROR DRIFT AS PACKAGING WORK
 

@@ -17,6 +17,13 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
+const {
+  ERROR_TYPES,
+  EXIT_CODES,
+  makeTypedError,
+  parseTypedError,
+  serializeTypedError,
+} = require('./_lib/typed-errors.cjs');
 
 function parseArgs(argv) {
   const args = {};
@@ -103,15 +110,26 @@ function runScript(scriptName, args) {
   const scriptPath = path.join(__dirname, scriptName);
   try {
     const out = execFileSync('node', [scriptPath, ...args], { encoding: 'utf8', timeout: 15000 });
-    return JSON.parse(out);
-  } catch (_err) {
-    return null;
+    try {
+      return JSON.parse(out);
+    } catch (err) {
+      return serializeTypedError(makeTypedError(ERROR_TYPES.PARSE_ERROR, `Failed to parse ${scriptName} output: ${err.message}`, { scriptName }));
+    }
+  } catch (err) {
+    const childError = parseTypedError(err.stderr);
+    if (childError) {
+      return childError;
+    }
+    const errorType = err.status === EXIT_CODES[ERROR_TYPES.FILE_NOT_FOUND]
+      ? ERROR_TYPES.FILE_NOT_FOUND
+      : ERROR_TYPES.SCRIPT_CRASH;
+    return serializeTypedError(makeTypedError(errorType, `${scriptName} failed: ${err.message}`, { scriptName, status: err.status || null }));
   }
 }
 
 function scoreDimStructural(profile, content) {
   const checks = profile.derivedChecks?.structural || [];
-  if (checks.length === 0) { return { score: 100, details: [], maxPossible: 0 }; }
+  if (checks.length === 0) { return { score: null, details: [], maxPossible: 0, unscored: true }; }
   const maxPossible = checks.reduce((s, c) => s + c.weight, 0);
   let earned = 0;
   const details = [];
@@ -126,7 +144,7 @@ function scoreDimStructural(profile, content) {
 
 function scoreDimRuleCoherence(profile, content) {
   const rules = profile.derivedChecks?.ruleCoherence || [];
-  if (rules.length === 0) { return { score: 100, details: [], maxPossible: 0 }; }
+  if (rules.length === 0) { return { score: null, details: [], maxPossible: 0, unscored: true }; }
   const lower = content.toLowerCase();
   const maxPossible = rules.reduce((s, r) => s + r.weight, 0);
   let earned = 0;
@@ -170,7 +188,7 @@ function scoreDimIntegration(agentName) {
 
 function scoreDimOutputQuality(profile, content) {
   const checks = profile.derivedChecks?.outputChecks || [];
-  if (checks.length === 0) { return { score: 100, details: [], maxPossible: 0 }; }
+  if (checks.length === 0) { return { score: null, details: [], maxPossible: 0, unscored: true }; }
   const lower = content.toLowerCase();
   const maxPossible = checks.reduce((s, c) => s + c.weight, 0);
   let earned = 0;
@@ -247,18 +265,21 @@ function scoreDynamic(candidateContent, agentName, profile, weights) {
   const systemFitness = scoreDimSystemFitness(profile, candidateContent);
 
   const dimensions = [
-    { name: 'structural', score: structural.score, weight: effectiveWeights.structural, details: structural.details },
-    { name: 'ruleCoherence', score: ruleCoherence.score, weight: effectiveWeights.ruleCoherence, details: ruleCoherence.details },
-    { name: 'integration', score: integration.score, weight: effectiveWeights.integration, details: integration.details },
-    { name: 'outputQuality', score: outputQuality.score, weight: effectiveWeights.outputQuality, details: outputQuality.details },
-    { name: 'systemFitness', score: systemFitness.score, weight: effectiveWeights.systemFitness, details: systemFitness.details },
+    { name: 'structural', score: structural.score, weight: effectiveWeights.structural, details: structural.details, maxPossible: structural.maxPossible },
+    { name: 'ruleCoherence', score: ruleCoherence.score, weight: effectiveWeights.ruleCoherence, details: ruleCoherence.details, maxPossible: ruleCoherence.maxPossible },
+    { name: 'integration', score: integration.score, weight: effectiveWeights.integration, details: integration.details, maxPossible: integration.maxPossible },
+    { name: 'outputQuality', score: outputQuality.score, weight: effectiveWeights.outputQuality, details: outputQuality.details, maxPossible: outputQuality.maxPossible },
+    { name: 'systemFitness', score: systemFitness.score, weight: effectiveWeights.systemFitness, details: systemFitness.details, maxPossible: systemFitness.maxPossible },
   ];
 
-  const weightedScore = Math.round(
-    dimensions.reduce((sum, d) => sum + d.score * d.weight, 0),
-  );
+  const unscoredDimensions = dimensions
+    .filter((d) => d.score === null)
+    .map((d) => d.name);
+  const weightedScore = unscoredDimensions.length > 0
+    ? null
+    : Math.round(dimensions.reduce((sum, d) => sum + d.score * d.weight, 0));
 
-  return { weightedScore, dimensions };
+  return { weightedScore, dimensions, unscoredDimensions };
 }
 
 function dimensionDelta(candidateDimensions, baselineDimensions) {
@@ -269,7 +290,7 @@ function dimensionDelta(candidateDimensions, baselineDimensions) {
       name: entry.name,
       score: entry.score,
       baselineScore: baseline ? baseline.score : null,
-      delta: baseline ? entry.score - baseline.score : null,
+      delta: baseline && entry.score !== null && baseline.score !== null ? entry.score - baseline.score : null,
       weight: entry.weight,
     };
   });
@@ -346,8 +367,9 @@ function main() {
       evaluationMode: 'dynamic-5d',
       target: targetPath,
       candidate: candidatePath,
-      error: 'Failed to generate dynamic profile',
-      failureModes: ['profile-generation-failure'],
+      error: profile?.message || 'Failed to generate dynamic profile',
+      errorType: profile?.errorType || 'UNKNOWN',
+      failureModes: [`profile-generation-${(profile?.errorType || 'failure').toLowerCase()}`],
     };
     if (outputPath) {
       writeJson(outputPath, failure);
@@ -408,8 +430,9 @@ function main() {
         target: targetPath,
         candidate: candidatePath,
         baseline: baselinePath,
-        error: 'Failed to generate dynamic profile for baseline',
-        failureModes: ['baseline-profile-generation-failure'],
+        error: baselineProfile?.message || 'Failed to generate dynamic profile for baseline',
+        errorType: baselineProfile?.errorType || 'UNKNOWN',
+        failureModes: [`baseline-profile-generation-${(baselineProfile?.errorType || 'failure').toLowerCase()}`],
       };
       if (outputPath) {
         writeJson(outputPath, failure);
@@ -422,16 +445,21 @@ function main() {
     baselineResult = scoreDynamic(baselineContent, baselineProfile.id, baselineProfile, weightsOverride);
     baselineScore = baselineResult.weightedScore;
     delta = {
-      total: dynamicResult.weightedScore - baselineResult.weightedScore,
+      total: dynamicResult.weightedScore !== null && baselineResult.weightedScore !== null
+        ? dynamicResult.weightedScore - baselineResult.weightedScore
+        : null,
       dimensions: dimensionDelta(dynamicResult.dimensions, baselineResult.dimensions),
     };
   }
 
-  const recommendation = baselineResult
-    ? (delta.total >= thresholdDelta
+  const hasUnscoredDimensions = dynamicResult.unscoredDimensions.length > 0;
+  const recommendation = hasUnscoredDimensions
+    ? 'needs-improvement'
+    : baselineResult
+      ? (delta.total >= thresholdDelta
         ? 'candidate-better'
         : (dynamicResult.weightedScore >= 70 ? 'candidate-acceptable' : 'keep-baseline'))
-    : (dynamicResult.weightedScore >= 70 ? 'candidate-acceptable' : 'needs-improvement');
+      : (dynamicResult.weightedScore >= 70 ? 'candidate-acceptable' : 'needs-improvement');
 
   const result = {
     status: 'scored',
@@ -446,11 +474,15 @@ function main() {
     delta,
     thresholdDelta,
     dimensions: dynamicResult.dimensions,
+    unscoredDimensions: dynamicResult.unscoredDimensions,
     legacyScore: null,
     recommendation,
-    failureModes: dynamicResult.dimensions
-      .filter((d) => d.score < 60)
-      .map((d) => `weak-${d.name}`),
+    failureModes: [
+      ...dynamicResult.unscoredDimensions.map((name) => `unscored-${name}`),
+      ...dynamicResult.dimensions
+        .filter((d) => typeof d.score === 'number' && d.score < 60)
+        .map((d) => `weak-${d.name}`),
+    ],
   };
 
   if (outputPath) {

@@ -27,7 +27,7 @@
     "dashboard": "improvement/agent-improvement-dashboard.md",
     "registry": "improvement/experiment-registry.json",
     "charter": "improvement/agent-improvement-charter.md",
-    "manifest": "improvement/target-manifest.jsonc",
+    "manifest": "improvement/target_manifest.jsonc",
     "candidates": "improvement/candidates",
     "benchmarkRoot": "improvement/benchmark-runs",
     "targetProfiles": ".opencode/skills/deep-agent-improvement/assets/target-profiles",
@@ -116,6 +116,6 @@
     "candidates/*": "write-once",
     "benchmark-runs/*": "write-many-evidence",
     "agent-improvement-charter.md": "immutable",
-    "target-manifest.jsonc": "immutable"
+    "target_manifest.jsonc": "immutable"
   }
 }

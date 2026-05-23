@@ -8,6 +8,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
 const fs = require('node:fs');
 const path = require('node:path');
+const {
+  ERROR_TYPES,
+  classifyExitCode,
+  makeTypedError,
+  serializeTypedError,
+} = require('./_lib/typed-errors.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -36,6 +42,12 @@ function parseArgs(argv) {
 function writeJson(fp, v) {
   fs.mkdirSync(path.dirname(fp), { recursive: true });
   fs.writeFileSync(fp, `${JSON.stringify(v, null, 2)}\n`, 'utf8');
+}
+
+function fail(error) {
+  const payload = serializeTypedError(error);
+  process.stderr.write(`${JSON.stringify(payload)}\n`);
+  process.exit(classifyExitCode(error));
 }
 
 function allMatches(re, text) {
@@ -248,13 +260,17 @@ function main() {
   }
   let content;
   try { content = fs.readFileSync(args.agent, 'utf8'); } catch (err) {
-    process.stderr.write(`Failed to read agent file: ${err.message}\n`);
-    process.exit(1);
+    const type = err && err.code === 'ENOENT' ? ERROR_TYPES.FILE_NOT_FOUND : ERROR_TYPES.SCRIPT_CRASH;
+    fail(makeTypedError(type, `Failed to read agent file: ${err.message}`, { agent: args.agent }));
   }
-  const profile = buildProfile(args.agent, content);
-  const json = `${JSON.stringify(profile, null, 2)}\n`;
-  if (args.output) { writeJson(args.output, profile); }
-  process.stdout.write(json);
+  try {
+    const profile = buildProfile(args.agent, content);
+    const json = `${JSON.stringify(profile, null, 2)}\n`;
+    if (args.output) { writeJson(args.output, profile); }
+    process.stdout.write(json);
+  } catch (err) {
+    fail(makeTypedError(ERROR_TYPES.PARSE_ERROR, `Failed to build profile: ${err.message}`, { agent: args.agent }));
+  }
 }
 
 main();

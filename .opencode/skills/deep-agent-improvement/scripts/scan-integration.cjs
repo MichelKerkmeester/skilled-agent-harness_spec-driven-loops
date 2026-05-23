@@ -13,6 +13,7 @@ const path = require('node:path');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 const MIRROR_TEMPLATES = [
+  '.opencode/agents/{name}.md',
   '.claude/agents/{name}.md',
   '.codex/agents/{name}.toml',
   '.gemini/agents/{name}.md',
@@ -111,7 +112,7 @@ function scanMirrors(repoRoot, agentName, canonicalBody) {
 }
 
 function scanFilesByExt(repoRoot, agentName, ext, patternFn) {
-  const files = collectFiles(path.join(repoRoot, '.opencode/command'));
+  const files = collectFiles(path.join(repoRoot, '.opencode/commands'));
   const pattern = patternFn(agentName);
   const results = [];
   for (const file of files) {
@@ -131,7 +132,7 @@ function scanCommands(repoRoot, agentName) {
 }
 
 function scanYamlWorkflows(repoRoot, agentName) {
-  const yamlFiles = collectFiles(path.join(repoRoot, '.opencode/command'));
+  const yamlFiles = collectFiles(path.join(repoRoot, '.opencode/commands'));
   const pattern = new RegExp(`(?:@${agentName}|\\b${agentName}\\b)`, 'g');
   const results = [];
   for (const file of yamlFiles) {
@@ -147,7 +148,7 @@ function scanYamlWorkflows(repoRoot, agentName) {
 }
 
 function scanSkills(repoRoot, agentName) {
-  const skillDir = path.join(repoRoot, '.opencode/skill');
+  const skillDir = path.join(repoRoot, '.opencode/skills');
   if (!fs.existsSync(skillDir)) return [];
   const pattern = new RegExp(`\\b${agentName}\\b`, 'gi');
   const results = [];
