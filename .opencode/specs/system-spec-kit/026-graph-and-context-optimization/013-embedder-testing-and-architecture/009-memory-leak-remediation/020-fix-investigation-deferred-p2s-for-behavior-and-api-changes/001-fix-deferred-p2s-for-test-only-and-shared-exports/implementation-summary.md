@@ -96,7 +96,7 @@ _memory:
 - Commit is intentionally left to the parent agent.
 - The broad `rg -l` inventory includes sibling `system-skill-advisor` shared-embedder shim references; those are outside this packet and not affected by the `system-spec-kit` barrel cleanup.
 
-## Handoff
+## HANDOFF
 
 Modified source/test files:
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts`

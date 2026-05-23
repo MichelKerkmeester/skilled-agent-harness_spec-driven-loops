@@ -29,7 +29,7 @@ _memory:
 ---
 
 <!-- ANCHOR:protocol -->
-## Verification Protocol
+## VERIFICATION PROTOCOL
 
 | Priority | Handling | Completion Impact |
 |----------|----------|-------------------|
@@ -41,7 +41,7 @@ _memory:
 ---
 
 <!-- ANCHOR:pre-impl -->
-## Pre-Implementation
+## PRE-IMPLEMENTATION
 
 - [x] CHK-001 [P0] Requirements documented in `spec.md`
 - [x] CHK-002 [P0] Technical approach defined in `plan.md`
@@ -51,7 +51,7 @@ _memory:
 ---
 
 <!-- ANCHOR:code-quality -->
-## Code Quality
+## CODE QUALITY
 
 - [x] CHK-010 [P0] F72 directory fsync occurs after every atomic rename; bin vitest `writeLedger -- F13 temp-file security` and `loadOrCreateOwnerToken -- F15 atomic owner token write` assert directory open/fsync after rename
 - [x] CHK-011 [P0] F104 temp files use crypto-random suffixes; bin vitest asserts `.tmp.[0-9a-f]{32}` for ledger and owner-token writes
@@ -68,7 +68,7 @@ _memory:
 ---
 
 <!-- ANCHOR:testing -->
-## Testing
+## TESTING
 
 - [x] CHK-020 [P0] Bin vitest passes via installed local runner: `cd .opencode && node skills/system-spec-kit/scripts/node_modules/vitest/vitest.mjs run bin/lib/ensure-rerank-sidecar.vitest.ts --config vitest.config.bin.ts` => 1 file, 37 passed, 5 skipped, exit 0. Prompt path `cd .opencode/skills/system-spec-kit && node node_modules/vitest/vitest.mjs ...` failed before tests with missing runner.
 - [x] CHK-021 [P0] Embedders vitest passes: `cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/embedders/ --config mcp_server/vitest.config.ts` => 4 files, 43 passed, exit 0
@@ -79,7 +79,7 @@ _memory:
 ---
 
 <!-- ANCHOR:fix-completeness -->
-## Fix Completeness
+## FIX COMPLETENESS
 
 - [x] CHK-FIX-001 [P0] F72 closure row cites directory fsync fixture
 - [x] CHK-FIX-002 [P0] F104 closure row cites temp suffix fixture
@@ -96,7 +96,7 @@ _memory:
 ---
 
 <!-- ANCHOR:security -->
-## Security
+## SECURITY
 
 - [x] CHK-030 [P0] No hardcoded secrets introduced
 - [x] CHK-031 [P0] Log file mode is owner-only for sensitive sidecar logs
@@ -106,7 +106,7 @@ _memory:
 ---
 
 <!-- ANCHOR:docs -->
-## Documentation
+## DOCUMENTATION
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
 - [x] CHK-041 [P1] `decision-record.md` includes at least five ADRs
@@ -116,7 +116,7 @@ _memory:
 ---
 
 <!-- ANCHOR:file-org -->
-## File Organization
+## FILE ORGANIZATION
 
 - [x] CHK-050 [P1] Temp files remain outside the repo or in packet-local scratch only
 - [x] CHK-051 [P1] No git commit or branch mutation performed
@@ -125,7 +125,7 @@ _memory:
 ---
 
 <!-- ANCHOR:summary -->
-## Verification Summary
+## VERIFICATION SUMMARY
 
 | Category | Total | Verified |
 |----------|-------|----------|

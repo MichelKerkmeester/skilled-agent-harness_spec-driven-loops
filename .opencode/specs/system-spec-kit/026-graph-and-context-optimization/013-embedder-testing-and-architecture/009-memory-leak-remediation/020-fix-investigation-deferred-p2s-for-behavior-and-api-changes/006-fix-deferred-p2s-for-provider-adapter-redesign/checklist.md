@@ -31,7 +31,7 @@ _memory:
 ---
 
 <!-- ANCHOR:protocol -->
-## Verification Protocol
+## VERIFICATION PROTOCOL
 
 | Priority | Handling | Completion Impact |
 |----------|----------|-------------------|
@@ -43,7 +43,7 @@ _memory:
 ---
 
 <!-- ANCHOR:pre-impl -->
-## Pre-Implementation
+## PRE-IMPLEMENTATION
 
 - [x] CHK-001 [P0] Requirements documented in spec.md. Evidence: REQ-001 through REQ-009.
 - [x] CHK-002 [P0] Technical approach defined in plan.md. Evidence: architecture table and phase plan.
@@ -54,7 +54,7 @@ _memory:
 ---
 
 <!-- ANCHOR:code-quality -->
-## Code Quality
+## CODE QUALITY
 
 - [x] CHK-010 [P0] Code passes TypeScript typecheck. Evidence: `npm run typecheck --workspace=@spec-kit/mcp-server` exited 0.
 - [x] CHK-011 [P0] Public router signature unchanged. Evidence: `getEmbedderAdapter(provider, model, dimensionsOverride?)` remains at `execution-router.ts:255`.
@@ -65,7 +65,7 @@ _memory:
 ---
 
 <!-- ANCHOR:testing -->
-## Testing
+## TESTING
 
 - [x] CHK-020 [P0] Focused router/worker fixtures pass. Evidence: 2 files, 22 tests passed.
 - [x] CHK-021 [P0] Full embedders suite passes. Evidence: final run passed 4 files, 54 tests.
@@ -77,7 +77,7 @@ _memory:
 ---
 
 <!-- ANCHOR:fix-completeness -->
-## Fix Completeness
+## FIX COMPLETENESS
 
 - [x] CHK-FIX-001 [P0] F23 closed. Evidence: class removed; `createDirectProviderAdapter()` used at `execution-router.ts:240-249` and `execution-router.ts:279`.
 - [x] CHK-FIX-002 [P0] F63 closed. Evidence: class collapse decomposed logic into helper functions at `execution-router.ts:179-249`.
@@ -92,7 +92,7 @@ _memory:
 ---
 
 <!-- ANCHOR:security -->
-## Security
+## SECURITY
 
 - [x] CHK-030 [P0] No hardcoded secrets. Evidence: no credential/env values added to logs or docs.
 - [x] CHK-031 [P0] Input validation tightened. Evidence: worker provider/dimension fail-fast paths.
@@ -102,7 +102,7 @@ _memory:
 ---
 
 <!-- ANCHOR:docs -->
-## Documentation
+## DOCUMENTATION
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: all six findings listed in each packet doc.
 - [x] CHK-041 [P1] Decision record contains at least four ADRs. Evidence: ADR-001 through ADR-004.
@@ -112,7 +112,7 @@ _memory:
 ---
 
 <!-- ANCHOR:file-org -->
-## File Organization
+## FILE ORGANIZATION
 
 - [x] CHK-050 [P1] Scope stayed inside allowed code/test files and packet docs. Evidence: modified implementation files are `execution-router.ts` and `sidecar-worker.ts`; modified tests are sibling embedders vitest files.
 - [x] CHK-051 [P1] No commit or branch mutation performed. Evidence: user forbade commit; no git mutation commands used.
@@ -122,7 +122,7 @@ _memory:
 ---
 
 <!-- ANCHOR:summary -->
-## Verification Summary
+## VERIFICATION SUMMARY
 
 | Category | Total | Verified |
 |----------|-------|----------|

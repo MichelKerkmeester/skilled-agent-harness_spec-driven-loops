@@ -31,7 +31,7 @@ _memory:
 ---
 
 <!-- ANCHOR:notation -->
-## Task Notation
+## TASK NOTATION
 
 | Prefix | Meaning |
 |--------|---------|
@@ -46,7 +46,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Setup
+## PHASE 1: SETUP
 
 - [x] T001 Scaffold Level 2 packet docs (`<this-folder>/`)
 - [x] T002 Read parent 020 spec and halt-on-first-regression rule (`../spec.md`)
@@ -59,7 +59,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation
+## PHASE 2: IMPLEMENTATION
 
 - [x] T007 Add `fsyncDirOf(path)` and wire it after atomic renames (`ensure-rerank-sidecar.cjs`)
 - [x] T008 Standardize temp suffixes on `crypto.randomBytes(16).toString('hex')` (`ensure-rerank-sidecar.cjs`)
@@ -76,7 +76,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Verification
+## PHASE 3: VERIFICATION
 
 - [x] T017 Run requested bin vitest command equivalent through installed local runner
 - [x] T018 Run requested embedders vitest command
@@ -88,7 +88,7 @@ _memory:
 ---
 
 <!-- ANCHOR:completion -->
-## Completion Criteria
+## COMPLETION CRITERIA
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
@@ -99,7 +99,7 @@ _memory:
 ---
 
 <!-- ANCHOR:cross-refs -->
-## Cross-References
+## CROSS-REFERENCES
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`

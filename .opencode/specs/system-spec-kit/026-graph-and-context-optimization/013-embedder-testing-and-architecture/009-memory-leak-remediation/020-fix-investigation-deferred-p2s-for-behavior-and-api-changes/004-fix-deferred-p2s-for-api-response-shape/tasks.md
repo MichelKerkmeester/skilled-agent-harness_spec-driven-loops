@@ -29,7 +29,7 @@ _memory:
 ---
 
 <!-- ANCHOR:notation -->
-## Task Notation
+## TASK NOTATION
 
 | Marker | Meaning |
 |--------|---------|
@@ -42,7 +42,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Setup
+## PHASE 1: SETUP
 
 - [x] T-001 Validate scaffold before source edits.
 - [x] T-002 Read parent spec, F37 precedent, current source/tests, and predecessor diff.
@@ -52,7 +52,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation
+## PHASE 2: IMPLEMENTATION
 
 - [x] T-004 Move `buildSidecarEnv` test consumption to `sidecar-client.testables.ts`.
 - [x] T-005 Remove production export of `buildSidecarEnv` from `sidecar-client.ts`.
@@ -65,7 +65,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Verification
+## PHASE 3: VERIFICATION
 
 - [x] T-010 Run embedders vitest.
 - [x] T-011 Run mcp-server typecheck.
@@ -76,7 +76,7 @@ _memory:
 ---
 
 <!-- ANCHOR:completion -->
-## Completion Criteria
+## COMPLETION CRITERIA
 
 - Five findings are closed or explicitly DEFERRED-AGAIN.
 - Requested verification commands exit 0 unless halt-on-first-regression triggers.
@@ -86,7 +86,7 @@ _memory:
 ---
 
 <!-- ANCHOR:cross-refs -->
-## Cross-References
+## CROSS-REFERENCES
 
 - `../spec.md` for phase parent and halt-on-first-regression rule.
 - `../001-fix-deferred-p2s-for-test-only-and-shared-exports/decision-record.md` for export-surface cleanup pattern.

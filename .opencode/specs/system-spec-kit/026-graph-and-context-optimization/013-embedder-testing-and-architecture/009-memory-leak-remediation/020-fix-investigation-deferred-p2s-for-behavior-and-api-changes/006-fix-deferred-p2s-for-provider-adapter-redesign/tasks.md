@@ -31,7 +31,7 @@ _memory:
 ---
 
 <!-- ANCHOR:notation -->
-## Task Notation
+## TASK NOTATION
 
 - `[x]` Complete
 - `[ ]` Pending
@@ -43,7 +43,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Setup
+## PHASE 1: SETUP
 
 - [x] T001 [P0] Scaffold Level 2 child packet under the pre-approved arc 020 path.
 - [x] T002 [P0] Add decision-record addendum so the packet has the requested eight document files.
@@ -54,7 +54,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation
+## PHASE 2: IMPLEMENTATION
 
 - [x] T010 [P0] Audit `DirectProviderAdapter` instantiation/state. Evidence: single construction path at `execution-router.ts:279`; state was provider promise only.
 - [x] T011 [P0] Collapse `DirectProviderAdapter` to `createDirectProviderAdapter()` and focused helpers. Evidence: `execution-router.ts:179-249`.
@@ -68,7 +68,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Verification
+## PHASE 3: VERIFICATION
 
 - [x] T020 [P0] Add router dimension-validation fixture. Evidence: `execution-router.vitest.ts:190-200`.
 - [x] T021 [P0] Add router Ollama delegation fixture. Evidence: `execution-router.vitest.ts:203-221`.
@@ -84,7 +84,7 @@ _memory:
 ---
 
 <!-- ANCHOR:completion -->
-## Completion Criteria
+## COMPLETION CRITERIA
 
 - [x] All six findings closed with no DEFERRED-AGAIN rows.
 - [x] Public router API signature unchanged.
@@ -96,7 +96,7 @@ _memory:
 ---
 
 <!-- ANCHOR:cross-refs -->
-## Cross-References
+## CROSS-REFERENCES
 
 - Parent spec: `../spec.md`
 - F61 baseline: `../../017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks/decision-record.md`

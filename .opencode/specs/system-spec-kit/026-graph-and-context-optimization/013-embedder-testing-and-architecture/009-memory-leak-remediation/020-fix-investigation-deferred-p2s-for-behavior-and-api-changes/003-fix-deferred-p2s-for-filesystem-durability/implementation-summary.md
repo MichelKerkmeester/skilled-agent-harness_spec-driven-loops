@@ -34,7 +34,7 @@ _memory:
 ---
 
 <!-- ANCHOR:metadata -->
-## Metadata
+## METADATA
 
 | Field | Value |
 |-------|-------|
@@ -48,7 +48,7 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## WHAT WAS BUILT
 
 Implemented changes:
 
@@ -76,7 +76,7 @@ Implemented changes:
 ---
 
 <!-- ANCHOR:how-delivered -->
-## How It Was Delivered
+## HOW IT WAS DELIVERED
 
 Implementation stayed inside the approved launcher/test surface and packet docs. The F15 atomic write baseline remains in place and is extended with containing-directory fsync after rename. The exported `healthPayload()` now returns the normalized F59 shape, while internal health checks still read raw sidecar fields for owner-token and config-hash verification.
 
@@ -86,7 +86,7 @@ The prompt's exact bin Vitest runner path is absent in this checkout, so that co
 ---
 
 <!-- ANCHOR:decisions -->
-## Key Decisions
+## KEY DECISIONS
 
 | Decision | Why |
 |----------|-----|
@@ -99,7 +99,7 @@ The prompt's exact bin Vitest runner path is absent in this checkout, so that co
 ---
 
 <!-- ANCHOR:verification -->
-## Verification
+## VERIFICATION
 
 | Check | Result |
 |-------|--------|
@@ -114,7 +114,7 @@ The prompt's exact bin Vitest runner path is absent in this checkout, so that co
 ---
 
 <!-- ANCHOR:limitations -->
-## Known Limitations
+## KNOWN LIMITATIONS
 
 1. The prompt's exact bin Vitest path is not present in this checkout; equivalent local runner evidence is recorded above.
 <!-- /ANCHOR:limitations -->

@@ -29,7 +29,7 @@ _memory:
 ---
 
 <!-- ANCHOR:protocol -->
-## Verification Protocol
+## VERIFICATION PROTOCOL
 
 | Priority | Handling | Completion Impact |
 |----------|----------|-------------------|
@@ -41,7 +41,7 @@ _memory:
 ---
 
 <!-- ANCHOR:pre-impl -->
-## Pre-Implementation
+## PRE-IMPLEMENTATION
 
 - [x] CHK-001 [P0] Requirements documented in `spec.md`
 - [x] CHK-002 [P0] Technical approach defined in `plan.md`
@@ -51,7 +51,7 @@ _memory:
 ---
 
 <!-- ANCHOR:code-quality -->
-## Code Quality
+## CODE QUALITY
 
 - [ ] CHK-010 [P0] F17 config validation rejects invalid values before hashing
 - [ ] CHK-011 [P0] F17 errors include rejected key and omit rejected value
@@ -64,7 +64,7 @@ _memory:
 ---
 
 <!-- ANCHOR:testing -->
-## Testing
+## TESTING
 
 - [ ] CHK-020 [P0] Embedders vitest passes: `node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/embedders/ --config mcp_server/vitest.config.ts`
 - [ ] CHK-021 [P0] Bin vitest passes: `node node_modules/vitest/vitest.mjs run .opencode/bin/lib/ensure-rerank-sidecar.vitest.ts --config .opencode/vitest.config.bin.ts`
@@ -75,7 +75,7 @@ _memory:
 ---
 
 <!-- ANCHOR:fix-completeness -->
-## Fix Completeness
+## FIX COMPLETENESS
 
 - [ ] CHK-FIX-001 [P0] F17 closure row cites oversized, non-string, unprintable-byte, and valid-hash fixtures
 - [ ] CHK-FIX-002 [P0] F16 closure row cites drop-with-warning fixture
@@ -89,7 +89,7 @@ _memory:
 ---
 
 <!-- ANCHOR:security -->
-## Security
+## SECURITY
 
 - [ ] CHK-030 [P0] No hardcoded secrets introduced
 - [ ] CHK-031 [P0] Rejected values are not logged
@@ -99,7 +99,7 @@ _memory:
 ---
 
 <!-- ANCHOR:docs -->
-## Documentation
+## DOCUMENTATION
 
 - [ ] CHK-040 [P1] Spec/plan/tasks synchronized
 - [ ] CHK-041 [P1] `decision-record.md` includes at least three ADRs
@@ -109,7 +109,7 @@ _memory:
 ---
 
 <!-- ANCHOR:file-org -->
-## File Organization
+## FILE ORGANIZATION
 
 - [ ] CHK-050 [P1] Temp files remain outside the repo or in packet-local scratch only
 - [ ] CHK-051 [P1] No git commit or branch mutation performed
@@ -118,7 +118,7 @@ _memory:
 ---
 
 <!-- ANCHOR:summary -->
-## Verification Summary
+## VERIFICATION SUMMARY
 
 | Category | Total | Verified |
 |----------|-------|----------|

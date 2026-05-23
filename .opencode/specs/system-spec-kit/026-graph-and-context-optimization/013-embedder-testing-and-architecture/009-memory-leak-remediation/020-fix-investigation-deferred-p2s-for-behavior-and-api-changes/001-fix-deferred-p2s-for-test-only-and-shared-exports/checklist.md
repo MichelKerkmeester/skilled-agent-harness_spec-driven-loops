@@ -29,7 +29,7 @@ _memory:
 ---
 
 <!-- ANCHOR:protocol -->
-## Verification Protocol
+## VERIFICATION PROTOCOL
 
 | Priority | Handling | Completion Impact |
 |----------|----------|-------------------|
@@ -41,7 +41,7 @@ _memory:
 ---
 
 <!-- ANCHOR:pre-impl -->
-## Pre-Implementation
+## PRE-IMPLEMENTATION
 
 - [x] CHK-001 [P0] Requirements documented in `spec.md`
 - [x] CHK-002 [P0] Technical approach defined in `plan.md`
@@ -51,7 +51,7 @@ _memory:
 ---
 
 <!-- ANCHOR:code-quality -->
-## Code Quality
+## CODE QUALITY
 
 - [x] CHK-010 [P0] Test imports point to direct source modules before barrel deletion: `embedder-registry.vitest.ts` imports from `@spec-kit/shared/embeddings/registry.js` and `@spec-kit/shared/embeddings/types.js`
 - [x] CHK-011 [P0] Barrel export deletion is limited to F44/F109 symbols: `index.ts` removes `EmbedderManifest` and `listSupportedDimensions`; `registry.ts` stops wildcard export of `listSupportedDimensions`
@@ -62,7 +62,7 @@ _memory:
 ---
 
 <!-- ANCHOR:testing -->
-## Testing
+## TESTING
 
 - [x] CHK-020 [P0] Typecheck passes after test import refactor: `npm run typecheck --workspace=@spec-kit/mcp-server` exit 0
 - [x] CHK-021 [P0] Typecheck passes after barrel deletion: `npm run typecheck --workspace=@spec-kit/mcp-server` exit 0
@@ -73,7 +73,7 @@ _memory:
 ---
 
 <!-- ANCHOR:fix-completeness -->
-## Fix Completeness
+## FIX COMPLETENESS
 
 - [x] CHK-FIX-001 [P0] F44 class is `test-isolation`; no live `system-spec-kit` source consumer depends on the removed barrel export.
 - [x] CHK-FIX-002 [P0] F109 class is `test-isolation`; no live source consumer imports `EmbedderManifest` from the barrel.
@@ -87,7 +87,7 @@ _memory:
 ---
 
 <!-- ANCHOR:security -->
-## Security
+## SECURITY
 
 - [x] CHK-030 [P0] No hardcoded secrets introduced
 - [x] CHK-031 [P0] No auth, env, filesystem, or process-boundary behavior touched
@@ -97,7 +97,7 @@ _memory:
 ---
 
 <!-- ANCHOR:docs -->
-## Documentation
+## DOCUMENTATION
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
 - [x] CHK-041 [P1] `decision-record.md` includes at least one ADR
@@ -107,7 +107,7 @@ _memory:
 ---
 
 <!-- ANCHOR:file-org -->
-## File Organization
+## FILE ORGANIZATION
 
 - [x] CHK-050 [P1] Temp files remain in `scratch/` only
 - [x] CHK-051 [P1] No git commit or branch mutation performed
@@ -116,7 +116,7 @@ _memory:
 ---
 
 <!-- ANCHOR:summary -->
-## Verification Summary
+## VERIFICATION SUMMARY
 
 | Category | Total | Verified |
 |----------|-------|----------|

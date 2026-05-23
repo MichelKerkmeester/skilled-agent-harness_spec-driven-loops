@@ -29,7 +29,7 @@ _memory:
 
 ---
 
-## ADR-001: Move test-only env helper behind testables module
+## ADR-001: MOVE TEST-ONLY ENV HELPER BEHIND TESTABLES MODULE
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -52,7 +52,7 @@ Production consumers should not import `buildSidecarEnv`. Grep found no live sou
 
 ---
 
-## ADR-002: One-release response alias compatibility
+## ADR-002: ONE-RELEASE RESPONSE ALIAS COMPATIBILITY
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -76,7 +76,7 @@ For this release cycle, both legacy and canonical names resolve to the same valu
 
 ---
 
-## ADR-003: Pending-map discriminator narrowing
+## ADR-003: PENDING-MAP DISCRIMINATOR NARROWING
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -99,7 +99,7 @@ Valid pending entries resolve as before. Malformed pending entries reject with `
 
 ---
 
-## Verification Notes
+## VERIFICATION NOTES
 
 - 2026-05-23: Scaffold strict validation passed with errors 0, warnings 0.
 - 2026-05-23: Embedders vitest passed: 4 files, 47 tests, exit 0.

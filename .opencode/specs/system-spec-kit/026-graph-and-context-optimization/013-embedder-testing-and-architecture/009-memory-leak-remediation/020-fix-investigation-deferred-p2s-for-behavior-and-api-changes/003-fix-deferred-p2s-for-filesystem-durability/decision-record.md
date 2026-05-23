@@ -29,7 +29,7 @@ _memory:
 
 ---
 
-## ADR-001: Directory fsync after atomic rename
+## ADR-001: DIRECTORY FSYNC AFTER ATOMIC RENAME
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -55,7 +55,7 @@ Successful writes may now fail if directory fsync fails. That is intentional bec
 
 ---
 
-## ADR-002: Crypto-random temp file suffixes
+## ADR-002: CRYPTO-RANDOM TEMP FILE SUFFIXES
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -81,7 +81,7 @@ Temp file names change but are internal. Existing final state file paths remain 
 
 ---
 
-## ADR-003: State directory validation boundary
+## ADR-003: STATE DIRECTORY VALIDATION BOUNDARY
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -107,7 +107,7 @@ Operators using relative or outside-home `RERANK_SIDECAR_STATE_DIR` must move to
 
 ---
 
-## ADR-004: Owner-only log files and stable fd stdio
+## ADR-004: OWNER-ONLY LOG FILES AND STABLE FD STDIO
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -133,7 +133,7 @@ Other users on the same machine may no longer read sidecar logs without owner me
 
 ---
 
-## ADR-005: Health payload normalization
+## ADR-005: HEALTH PAYLOAD NORMALIZATION
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -159,7 +159,7 @@ Callers using old ad hoc field names must read the normalized names.
 
 ---
 
-## ADR-006: Internal dependency injection with stable public API
+## ADR-006: INTERNAL DEPENDENCY INJECTION WITH STABLE PUBLIC API
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -187,7 +187,7 @@ Public imports and normal call sites remain stable.
 
 ---
 
-## Verification Notes
+## VERIFICATION NOTES
 
 - 2026-05-23: The prompt's bin command failed before executing tests because `.opencode/skills/system-spec-kit/node_modules/vitest/vitest.mjs` is absent in this checkout. Equivalent local runner passed from `.opencode`: `node skills/system-spec-kit/scripts/node_modules/vitest/vitest.mjs run bin/lib/ensure-rerank-sidecar.vitest.ts --config vitest.config.bin.ts` => 1 file, 37 passed, 5 skipped, exit 0.
 - 2026-05-23: Embedders vitest passed with 4 files and 43 tests; no F48 monotonic-ID flake occurred.

@@ -34,7 +34,7 @@ _memory:
 ---
 
 <!-- ANCHOR:metadata -->
-## Metadata
+## METADATA
 
 | Field | Value |
 |-------|-------|
@@ -48,7 +48,7 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## WHAT WAS BUILT
 
 Planned changes:
 
@@ -74,7 +74,7 @@ Planned changes:
 ---
 
 <!-- ANCHOR:how-delivered -->
-## How It Was Delivered
+## HOW IT WAS DELIVERED
 
 Pending implementation. Scaffold copied canonical anchors from 020/001, then rewrote packet content for bucket 1 env/config behavior.
 <!-- /ANCHOR:how-delivered -->
@@ -82,7 +82,7 @@ Pending implementation. Scaffold copied canonical anchors from 020/001, then rew
 ---
 
 <!-- ANCHOR:decisions -->
-## Key Decisions
+## KEY DECISIONS
 
 | Decision | Why |
 |----------|-----|
@@ -95,7 +95,7 @@ Pending implementation. Scaffold copied canonical anchors from 020/001, then rew
 ---
 
 <!-- ANCHOR:verification -->
-## Verification
+## VERIFICATION
 
 | Check | Result |
 |-------|--------|
@@ -109,7 +109,7 @@ Pending implementation. Scaffold copied canonical anchors from 020/001, then rew
 ---
 
 <!-- ANCHOR:limitations -->
-## Known Limitations
+## KNOWN LIMITATIONS
 
 1. No limitations identified at scaffold time.
 <!-- /ANCHOR:limitations -->

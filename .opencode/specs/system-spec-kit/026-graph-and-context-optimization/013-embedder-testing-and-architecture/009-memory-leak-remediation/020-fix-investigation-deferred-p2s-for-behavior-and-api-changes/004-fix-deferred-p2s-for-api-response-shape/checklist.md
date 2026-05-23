@@ -29,7 +29,7 @@ _memory:
 ---
 
 <!-- ANCHOR:protocol -->
-## Verification Protocol
+## VERIFICATION PROTOCOL
 
 | Priority | Handling | Completion Impact |
 |----------|----------|-------------------|
@@ -41,7 +41,7 @@ _memory:
 ---
 
 <!-- ANCHOR:pre-impl -->
-## Pre-Implementation
+## PRE-IMPLEMENTATION
 
 - [x] CHK-001 [P0] Requirements documented in `spec.md`
 - [x] CHK-002 [P0] Technical approach defined in `plan.md`
@@ -53,7 +53,7 @@ _memory:
 ---
 
 <!-- ANCHOR:code-quality -->
-## Code Quality
+## CODE QUALITY
 
 - [x] CHK-010 [P0] F9 `buildSidecarEnv` has no live production consumers; evidence: only local implementation, testables import, hardening tests, and unrelated launcher-local function share the token
 - [x] CHK-011 [P0] F9 test imports use `sidecar-client.testables.ts`; evidence: `sidecar-hardening.vitest.ts` imports from `sidecar-client.testables.js`
@@ -69,7 +69,7 @@ _memory:
 ---
 
 <!-- ANCHOR:testing -->
-## Testing
+## TESTING
 
 - [x] CHK-020 [P0] Embedders vitest passes: `cd .opencode/skills/system-spec-kit && node mcp_server/node_modules/vitest/vitest.mjs run mcp_server/tests/embedders/ --config mcp_server/vitest.config.ts` => 4 files, 47 tests passed, exit 0
 - [x] CHK-021 [P0] Typecheck passes: `cd .opencode/skills/system-spec-kit && npm run typecheck --workspace=@spec-kit/mcp-server` => exit 0
@@ -79,7 +79,7 @@ _memory:
 ---
 
 <!-- ANCHOR:fix-completeness -->
-## Fix Completeness
+## FIX COMPLETENESS
 
 - [x] CHK-FIX-001 [P0] F9 closure row cites consumer grep and fixture
 - [x] CHK-FIX-002 [P0] F32 closure row cites both-name response fixture
@@ -92,7 +92,7 @@ _memory:
 ---
 
 <!-- ANCHOR:security -->
-## Security
+## SECURITY
 
 - [x] CHK-030 [P0] No secrets, env values, vectors, or payload bodies are logged in deprecation warnings
 - [x] CHK-031 [P1] Error messages for malformed pending entries avoid leaking request payload data
@@ -101,7 +101,7 @@ _memory:
 ---
 
 <!-- ANCHOR:docs -->
-## Documentation
+## DOCUMENTATION
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
 - [x] CHK-041 [P1] `decision-record.md` includes at least three ADRs
@@ -111,7 +111,7 @@ _memory:
 ---
 
 <!-- ANCHOR:file-org -->
-## File Organization
+## FILE ORGANIZATION
 
 - [x] CHK-050 [P1] No files outside approved source/test/docs scope are modified by this packet
 - [x] CHK-051 [P1] No git commit or branch mutation performed
@@ -120,7 +120,7 @@ _memory:
 ---
 
 <!-- ANCHOR:summary -->
-## Verification Summary
+## VERIFICATION SUMMARY
 
 | Category | Total | Verified |
 |----------|-------|----------|

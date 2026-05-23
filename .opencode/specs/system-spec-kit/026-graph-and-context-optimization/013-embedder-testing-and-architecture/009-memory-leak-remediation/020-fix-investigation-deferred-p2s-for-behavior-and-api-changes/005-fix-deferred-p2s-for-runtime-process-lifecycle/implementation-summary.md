@@ -32,7 +32,7 @@ _memory:
 ---
 
 <!-- ANCHOR:metadata -->
-## Metadata
+## METADATA
 
 | Field | Value |
 |-------|-------|
@@ -44,7 +44,7 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## WHAT WAS BUILT
 
 Runtime lifecycle behavior is now explicit instead of accidental. Reindex startup fails before constructing work when no stable database directory exists, test-only paused startup moved behind a testables seam, duplicate signal handling became idempotent, and direct provider credential cache entries are cleared when the active adapter rotates.
 
@@ -72,7 +72,7 @@ Runtime lifecycle behavior is now explicit instead of accidental. Reindex startu
 ---
 
 <!-- ANCHOR:how-delivered -->
-## How It Was Delivered
+## HOW IT WAS DELIVERED
 
 The implementation stayed inside the leaf scope and left frozen files untouched. Focused tests passed first, then the full requested embedders slice hit the known F48 random-ID flake once and passed on the allowed rerun. Typecheck passed after the runtime and test seam edits.
 <!-- /ANCHOR:how-delivered -->
@@ -80,7 +80,7 @@ The implementation stayed inside the leaf scope and left frozen files untouched.
 ---
 
 <!-- ANCHOR:decisions -->
-## Key Decisions
+## KEY DECISIONS
 
 | Decision | Why |
 |----------|-----|
@@ -94,7 +94,7 @@ The implementation stayed inside the leaf scope and left frozen files untouched.
 ---
 
 <!-- ANCHOR:verification -->
-## Verification
+## VERIFICATION
 
 | Check | Result |
 |-------|--------|
@@ -108,7 +108,7 @@ The implementation stayed inside the leaf scope and left frozen files untouched.
 ---
 
 <!-- ANCHOR:limitations -->
-## Known Limitations
+## KNOWN LIMITATIONS
 
 1. **Sidecar credential refresh is event-visible but not force-restarted.** Direct provider adapters are cleared on active adapter rotation. Existing sidecar worker processes are not restarted in this packet because `sidecar-worker.ts` and `sidecar-client.ts` are out of scope.
 2. **`cancelJob` remains a production export.** This is intentional for 020/005 because `index.ts` is a frozen live barrel consumer. ADR-002 documents the cancellation lifecycle instead of editing the barrel.

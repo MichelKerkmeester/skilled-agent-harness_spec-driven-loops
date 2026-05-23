@@ -29,7 +29,7 @@ _memory:
 
 ---
 
-## ADR-001: Gate paused reindex startup behind testables
+## ADR-001: GATE PAUSED REINDEX STARTUP BEHIND TESTABLES
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -52,7 +52,7 @@ Production callers get immediate enqueue behavior. Tests that need a queued-but-
 
 ---
 
-## ADR-002: Keep and document cancellation lifecycle
+## ADR-002: KEEP AND DOCUMENT CANCELLATION LIFECYCLE
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -75,7 +75,7 @@ Keep `cancelJob()` exported from `reindex.ts` because `.opencode/skills/system-s
 
 ---
 
-## ADR-003: Fail fast on missing database directory
+## ADR-003: FAIL FAST ON MISSING DATABASE DIRECTORY
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -98,7 +98,7 @@ File-backed SQLite databases continue to work. `:memory:` databases are unsuppor
 
 ---
 
-## ADR-004: Duplicate signals no-op while shutdown is in flight
+## ADR-004: DUPLICATE SIGNALS NO-OP WHILE SHUTDOWN IS IN FLIGHT
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -121,7 +121,7 @@ Hooks register once. The first SIGINT/SIGTERM/SIGHUP starts best-effort cleanup 
 
 ---
 
-## ADR-005: Direct provider credential cache invalidates on adapter rotation
+## ADR-005: DIRECT PROVIDER CREDENTIAL CACHE INVALIDATES ON ADAPTER ROTATION
 
 **Status:** Accepted
 **Date:** 2026-05-23
@@ -145,7 +145,7 @@ Direct provider credential staleness is bounded until the next adapter resolutio
 
 ---
 
-## Verification Notes
+## VERIFICATION NOTES
 
 - 2026-05-23: Scaffold strict validation passed with errors 0, warnings 0.
 - 2026-05-23: Focused touched vitest files passed: 2 files, 14 tests.

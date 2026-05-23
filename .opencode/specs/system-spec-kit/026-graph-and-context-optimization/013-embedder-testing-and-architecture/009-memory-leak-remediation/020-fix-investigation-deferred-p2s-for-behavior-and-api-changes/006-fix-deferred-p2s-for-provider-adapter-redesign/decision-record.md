@@ -32,7 +32,7 @@ _memory:
 ---
 
 <!-- ANCHOR:adr-001 -->
-## ADR-001: Collapse DirectProviderAdapter to factory helpers
+## ADR-001: COLLAPSE DIRECTPROVIDERADAPTER TO FACTORY HELPERS
 
 ### Metadata
 
@@ -131,7 +131,7 @@ F23 flagged `DirectProviderAdapter` as a 68-line class with a single instantiati
 ---
 
 <!-- ANCHOR:adr-002 -->
-## ADR-002: Choose Ollama delegation at adapter creation time
+## ADR-002: CHOOSE OLLAMA DELEGATION AT ADAPTER CREATION TIME
 
 ### Metadata
 
@@ -230,7 +230,7 @@ F64 flagged the chain `executionRouter -> DirectProviderAdapter -> ollamaAdapter
 ---
 
 <!-- ANCHOR:adr-003 -->
-## ADR-003: Worker dimensions fail fast; router remains the live fallback layer
+## ADR-003: WORKER DIMENSIONS FAIL FAST; ROUTER REMAINS THE LIVE FALLBACK LAYER
 
 ### Metadata
 
@@ -330,7 +330,7 @@ F10 flagged the worker's dimension fallback as unreachable under normal router d
 ---
 
 <!-- ANCHOR:adr-004 -->
-## ADR-004: Require worker provider env and consolidate aliases
+## ADR-004: REQUIRE WORKER PROVIDER ENV AND CONSOLIDATE ALIASES
 
 ### Metadata
 

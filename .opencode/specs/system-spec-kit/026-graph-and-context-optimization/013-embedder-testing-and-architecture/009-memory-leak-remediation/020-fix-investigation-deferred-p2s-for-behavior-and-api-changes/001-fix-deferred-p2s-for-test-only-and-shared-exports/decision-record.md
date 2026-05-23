@@ -29,7 +29,7 @@ _memory:
 
 ---
 
-## ADR-001: Collapse Test-Only Barrel Exports to Direct Imports
+## ADR-001: COLLAPSE TEST-ONLY BARREL EXPORTS TO DIRECT IMPORTS
 
 **Status:** Accepted
 **Date:** 2026-05-23

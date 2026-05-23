@@ -31,7 +31,7 @@ _memory:
 ---
 
 <!-- ANCHOR:metadata -->
-## Metadata
+## METADATA
 
 | Field | Value |
 |-------|-------|
@@ -45,7 +45,7 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## WHAT WAS BUILT
 
 - Replaced the single-use `DirectProviderAdapter` class with `createDirectProviderAdapter()` and helper functions in `execution-router.ts`.
 - Kept factory-backed provider promise caching through a closure, preserving retry behavior after provider creation failure.
@@ -59,7 +59,7 @@ _memory:
 ---
 
 <!-- ANCHOR:how-delivered -->
-## How It Was Delivered
+## HOW IT WAS DELIVERED
 
 The router refactor kept the external `getEmbedderAdapter(provider, model, dimensionsOverride?)` entrypoint stable. Internally, the direct path now chooses either a readyless Ollama wrapper or a factory-backed adapter object. The worker refactor treats provider and dimensions as upstream-owned configuration and request data; it validates and fails fast rather than applying local defaults.
 
@@ -69,7 +69,7 @@ The F95 hardening tests were updated because they call the worker `getProvider()
 ---
 
 <!-- ANCHOR:decisions -->
-## Key Decisions
+## KEY DECISIONS
 
 - Collapse the class because it had one construction site and no state that needed identity beyond the returned adapter closure.
 - Treat F63 as closed by the F23 collapse plus helper decomposition rather than preserving a class to split methods.
@@ -81,7 +81,7 @@ The F95 hardening tests were updated because they call the worker `getProvider()
 ---
 
 <!-- ANCHOR:verification -->
-## Verification
+## VERIFICATION
 
 | Command | Result | Notes |
 |---------|--------|-------|
@@ -97,7 +97,7 @@ The F95 hardening tests were updated because they call the worker `getProvider()
 ---
 
 <!-- ANCHOR:limitations -->
-## Known Limitations
+## KNOWN LIMITATIONS
 
 - The arc 020 parent `spec.md` was not edited because this packet is leaf-only and the prompt scoped writable docs to this child packet.
 - The first full embedders run exposed two F95 fixture setup regressions after provider default removal; those were fixed before the final full-suite pass.

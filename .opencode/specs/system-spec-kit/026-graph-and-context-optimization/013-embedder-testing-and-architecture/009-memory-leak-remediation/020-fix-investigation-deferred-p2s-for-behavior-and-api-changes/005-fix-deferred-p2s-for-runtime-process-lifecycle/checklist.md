@@ -31,7 +31,7 @@ _memory:
 ---
 
 <!-- ANCHOR:protocol -->
-## Verification Protocol
+## VERIFICATION PROTOCOL
 
 | Priority | Handling | Completion Impact |
 |----------|----------|-------------------|
@@ -43,7 +43,7 @@ _memory:
 ---
 
 <!-- ANCHOR:pre-impl -->
-## Pre-Implementation
+## PRE-IMPLEMENTATION
 
 - [x] CHK-001 [P0] Requirements documented in spec.md. Evidence: `spec.md` REQ-001 through REQ-008.
 - [x] CHK-002 [P0] Technical approach defined in plan.md. Evidence: `plan.md` architecture and affected surfaces.
@@ -53,7 +53,7 @@ _memory:
 ---
 
 <!-- ANCHOR:code-quality -->
-## Code Quality
+## CODE QUALITY
 
 - [x] CHK-010 [P0] Code passes lint/format checks. Evidence: typecheck exit 0 via `npm run typecheck --workspace=@spec-kit/mcp-server`.
 - [x] CHK-011 [P0] No unexpected console errors or warnings. Evidence: embedders suite warnings are existing sidecar env/drop and F48 rerun behavior; no new unexpected failure remained.
@@ -64,7 +64,7 @@ _memory:
 ---
 
 <!-- ANCHOR:testing -->
-## Testing
+## TESTING
 
 - [x] CHK-020 [P0] All acceptance criteria met. Evidence: F41/F43/F51/F90/F110 fixtures in sibling vitest files.
 - [x] CHK-021 [P0] Manual testing complete. Evidence: direct fixture simulation for duplicate SIGTERM and adapter rotation.
@@ -75,7 +75,7 @@ _memory:
 ---
 
 <!-- ANCHOR:fix-completeness -->
-## Fix Completeness
+## FIX COMPLETENESS
 
 - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class. Evidence: F41 test/API lifecycle, F43 test-isolation, F51 process lifecycle, F90 credential-cache lifecycle, F110 startup validation.
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed. Evidence: `rg` covered `cancelJob`, `autoStart`, `databaseDir`, `registerShutdownHooks`, `SIGTERM`, `providerPromise`.
@@ -89,7 +89,7 @@ _memory:
 ---
 
 <!-- ANCHOR:security -->
-## Security
+## SECURITY
 
 - [x] CHK-030 [P0] No hardcoded secrets. Evidence: no credential values added; invalidation events expose only cache keys.
 - [x] CHK-031 [P0] Input validation implemented. Evidence: file-backed database directory validation before queue/resume.
@@ -99,7 +99,7 @@ _memory:
 ---
 
 <!-- ANCHOR:docs -->
-## Documentation
+## DOCUMENTATION
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: all packet docs updated with F41/F43/F51/F90/F110 scope.
 - [x] CHK-041 [P1] Code comments adequate. Evidence: no broad comments added; behavior captured in ADRs.
@@ -109,7 +109,7 @@ _memory:
 ---
 
 <!-- ANCHOR:file-org -->
-## File Organization
+## FILE ORGANIZATION
 
 - [x] CHK-050 [P1] Temp files in scratch/ only. Evidence: no scratch artifacts created beyond scaffold `.gitkeep`.
 - [x] CHK-051 [P1] scratch/ cleaned before completion. Evidence: only `.gitkeep` remains.
@@ -118,7 +118,7 @@ _memory:
 ---
 
 <!-- ANCHOR:summary -->
-## Verification Summary
+## VERIFICATION SUMMARY
 
 | Category | Total | Verified |
 |----------|-------|----------|

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/003-align-arc-020-spec-docs-with-sk-doc",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/003-align-arc-020-spec-docs-with-sk-doc",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "021 003 sk-doc arc 020 alignment",
+      "arc 020 spec docs sk-doc sweep",
+      "skill surface evergreen packet id check",
+      "021 003 plan",
+      "021 003 tasks",
+      "021 003 checklist",
+      "021 003 ADR",
+      "021 003 implementation summary"
+    ],
+    "key_topics": [
+      "021",
+      "003",
+      "arc-020",
+      "sk-doc",
+      "alignment",
+      "h2",
+      "evergreen",
+      "doctor"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/sk-doc-sweep-tally.csv"
+    ],
+    "entities": [],
+    "causal_summary": "Final arc 021 child packet audited 36 arc 020 child docs, fixed 24 H2-case sk-doc drifts, and found no evergreen or doctor-header drift across the selected skill surfaces.",
+    "created_at": "2026-05-23T14:00:00Z",
+    "last_save_at": "2026-05-23T14:30:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

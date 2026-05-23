@@ -31,7 +31,7 @@ _memory:
 ---
 
 <!-- ANCHOR:notation -->
-## Task Notation
+## TASK NOTATION
 
 | Prefix | Meaning |
 |--------|---------|
@@ -46,7 +46,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Setup
+## PHASE 1: SETUP
 
 - [x] T001 Read packet `spec.md` after scaffolding.
 - [x] T002 Read parent `../spec.md` and halt-on-first-regression rule.
@@ -57,7 +57,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation
+## PHASE 2: IMPLEMENTATION
 
 - [x] T005 Add fail-fast DB-dir validation and `InvalidDatabaseDirError` (`reindex.ts`).
 - [x] T006 Gate paused startup through `reindex.testables.ts` (`reindex.ts`, `reindex.testables.ts`).
@@ -70,7 +70,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Verification
+## PHASE 3: VERIFICATION
 
 - [x] T011 Add F43/F110/F41 fixtures (`embedder-reindex.vitest.ts`).
 - [x] T012 Add F51/F90 fixtures (`execution-router.vitest.ts`).
@@ -83,7 +83,7 @@ _memory:
 ---
 
 <!-- ANCHOR:completion -->
-## Completion Criteria
+## COMPLETION CRITERIA
 
 - [x] All tasks marked `[x]`.
 - [x] No `[B]` blocked tasks remaining.
@@ -93,7 +93,7 @@ _memory:
 ---
 
 <!-- ANCHOR:cross-refs -->
-## Cross-References
+## CROSS-REFERENCES
 
 - **Specification**: See `spec.md`.
 - **Plan**: See `plan.md`.

@@ -31,7 +31,7 @@ _memory:
 ---
 
 <!-- ANCHOR:notation -->
-## Task Notation
+## TASK NOTATION
 
 | Prefix | Meaning |
 |--------|---------|
@@ -46,7 +46,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Setup
+## PHASE 1: SETUP
 
 - [x] T001 Scaffold Level 2 packet docs from 020/001 (`<this-folder>/`)
 - [x] T002 Read parent 020 spec and halt-on-first-regression rule (`../spec.md`)
@@ -59,7 +59,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Implementation
+## PHASE 2: IMPLEMENTATION
 
 - [ ] T007 Add shared sidecar env allowlist helper (`sidecar-env-allowlist.cjs`)
 - [ ] T008 Wire launcher env filtering to shared allowlist (`ensure-rerank-sidecar.cjs`)
@@ -73,7 +73,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Verification
+## PHASE 3: VERIFICATION
 
 - [ ] T014 Run requested embedders vitest command
 - [ ] T015 Run requested bin vitest command
@@ -85,7 +85,7 @@ _memory:
 ---
 
 <!-- ANCHOR:completion -->
-## Completion Criteria
+## COMPLETION CRITERIA
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
@@ -96,7 +96,7 @@ _memory:
 ---
 
 <!-- ANCHOR:cross-refs -->
-## Cross-References
+## CROSS-REFERENCES
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`

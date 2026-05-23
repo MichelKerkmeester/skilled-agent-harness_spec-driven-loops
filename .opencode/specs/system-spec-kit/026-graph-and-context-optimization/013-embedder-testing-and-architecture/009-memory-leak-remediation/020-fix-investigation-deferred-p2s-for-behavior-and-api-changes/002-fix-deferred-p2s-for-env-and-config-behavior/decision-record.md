@@ -29,7 +29,7 @@ _memory:
 
 ---
 
-## ADR-001: Config Hash Input Sanitization Policy
+## ADR-001: CONFIG HASH INPUT SANITIZATION POLICY
 
 **Status:** Proposed
 **Date:** 2026-05-23
@@ -56,7 +56,7 @@ This is a hard rejection for malformed hash inputs. Valid existing string config
 
 ---
 
-## ADR-002: Shared Sidecar Env Allowlist with Drop-Warning Migration
+## ADR-002: SHARED SIDECAR ENV ALLOWLIST WITH DROP-WARNING MIGRATION
 
 **Status:** Proposed
 **Date:** 2026-05-23
@@ -84,7 +84,7 @@ This is a soft behavior change: now-rejected env keys are dropped with a warning
 
 ---
 
-## ADR-003: Config Prefix Overlap Precedence
+## ADR-003: CONFIG PREFIX OVERLAP PRECEDENCE
 
 **Status:** Proposed
 **Date:** 2026-05-23

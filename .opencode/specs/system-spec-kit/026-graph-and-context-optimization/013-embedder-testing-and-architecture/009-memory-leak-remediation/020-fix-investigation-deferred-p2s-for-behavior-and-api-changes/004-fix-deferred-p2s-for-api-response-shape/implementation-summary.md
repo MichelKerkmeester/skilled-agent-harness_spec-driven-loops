@@ -35,7 +35,7 @@ _memory:
 ---
 
 <!-- ANCHOR:metadata -->
-## Metadata
+## METADATA
 
 | Field | Value |
 |-------|-------|
@@ -49,7 +49,7 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## WHAT WAS BUILT
 
 Implemented changes:
 
@@ -74,7 +74,7 @@ Implemented changes:
 ---
 
 <!-- ANCHOR:how-delivered -->
-## How It Was Delivered
+## HOW IT WAS DELIVERED
 
 Implementation stayed inside the approved three source/test files. The response compatibility layer is additive: canonical names are present immediately, and legacy names remain readable through getter aliases that warn once per process. F99 stayed local to `sidecar-client.ts`, so no DEFERRED-AGAIN escalation or sibling consumer changes were needed.
 <!-- /ANCHOR:how-delivered -->
@@ -82,7 +82,7 @@ Implementation stayed inside the approved three source/test files. The response 
 ---
 
 <!-- ANCHOR:decisions -->
-## Key Decisions
+## KEY DECISIONS
 
 | Decision | Why |
 |----------|-----|
@@ -95,7 +95,7 @@ Implementation stayed inside the approved three source/test files. The response 
 ---
 
 <!-- ANCHOR:verification -->
-## Verification
+## VERIFICATION
 
 | Check | Result |
 |-------|--------|
@@ -108,7 +108,7 @@ Implementation stayed inside the approved three source/test files. The response 
 ---
 
 <!-- ANCHOR:limitations -->
-## Known Limitations
+## KNOWN LIMITATIONS
 
 1. Legacy aliases are intentionally temporary and should be removed after the one-release compatibility window.
 <!-- /ANCHOR:limitations -->
