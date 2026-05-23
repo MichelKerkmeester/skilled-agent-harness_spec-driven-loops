@@ -9,6 +9,12 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const {
+  BENCHMARK_AGGREGATE_GATE,
+  PROMOTION_GATES,
+  WEIGHTED_SCORE_GATE,
+  evaluatePromotionGates,
+} = require('./_lib/promotion-gates.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -62,6 +68,13 @@ function checkRuntimeMirrorLanding(target) {
     expected,
     missing: expected.filter((filePath) => !fs.existsSync(filePath)),
   };
+}
+
+function readScoreDelta(score) {
+  if (score && typeof score.delta === 'object' && score.delta !== null) {
+    return score.delta.total;
+  }
+  return score ? score.delta : null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -155,6 +168,11 @@ function main() {
     process.exit(1);
   }
 
+  if (Number(benchmarkReport.aggregateScore || 0) < BENCHMARK_AGGREGATE_GATE) {
+    process.stderr.write(`Cannot promote: benchmark aggregate ${benchmarkReport.aggregateScore} below gate ${BENCHMARK_AGGREGATE_GATE}\n`);
+    process.exit(1);
+  }
+
   if (!repeatabilityReport) {
     process.stderr.write(`Cannot promote: repeatability report not found at ${resolvedRepeatabilityReportPath}\n`);
     process.exit(1);
@@ -180,8 +198,20 @@ function main() {
     process.exit(1);
   }
 
-  if (Number(score.delta || 0) < threshold) {
-    process.stderr.write(`Cannot promote: delta ${score.delta} below threshold ${threshold}\n`);
+  if (Number(score.score || 0) < WEIGHTED_SCORE_GATE) {
+    process.stderr.write(`Cannot promote: score ${score.score} below weighted gate ${WEIGHTED_SCORE_GATE}\n`);
+    process.exit(1);
+  }
+
+  const dimensionGate = evaluatePromotionGates(score.dimensions);
+  if (!dimensionGate.passed) {
+    process.stderr.write(`Cannot promote: dimension gates failed ${dimensionGate.failed.concat(dimensionGate.unscored).join(', ')}; thresholds ${JSON.stringify(PROMOTION_GATES)}\n`);
+    process.exit(1);
+  }
+
+  const scoreDelta = readScoreDelta(score);
+  if (Number(scoreDelta || 0) < threshold) {
+    process.stderr.write(`Cannot promote: delta ${scoreDelta} below threshold ${threshold}\n`);
     process.exit(1);
   }
 
@@ -209,7 +239,7 @@ function main() {
     benchmarkReport: benchmarkReportPath,
     repeatabilityReport: resolvedRepeatabilityReportPath,
     runtimeMirrors: requireRuntimeMirrors ? checkRuntimeMirrorLanding(target).expected : null,
-    delta: score.delta,
+    delta: scoreDelta,
     threshold,
     timestamp: new Date().toISOString(),
   };

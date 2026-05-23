@@ -18,7 +18,8 @@ const lineage = require(path.join(
   '.opencode/skills/deep-agent-improvement/scripts/candidate-lineage.cjs',
 )) as {
   createLineageGraph: () => object;
-  recordCandidate: (lineagePath: string, candidate: object) => void;
+  computeCandidateContentHash: (content: string) => string;
+  recordCandidate: (lineagePath: string, candidate: object) => { recorded: boolean; duplicate: boolean; contentHash: string | null; existingCandidateId?: string };
   getLineage: (lineagePath: string, candidateId: string) => object[];
   getCandidatesByWave: (lineagePath: string, sessionId: string, waveIndex?: number) => object[];
   getRootCandidates: (lineagePath: string) => object[];
@@ -80,6 +81,48 @@ describe('candidate-lineage', () => {
       const graph = JSON.parse(fs.readFileSync(lineagePath, 'utf8'));
       expect(graph.nodes).toHaveLength(2);
       expect(graph.nodes[1].parentCandidateId).toBe('c-001');
+    });
+
+    it('deduplicates candidates by rubric-stripped content hash', () => {
+      const contentA = `---
+candidate_id: c-001
+---
+<!-- DAI_RUBRIC score: ignore -->
+# Agent
+
+## 1. CORE WORKFLOW
+Do the work.
+`;
+      const contentB = `---
+candidate_id: c-002
+---
+# Agent
+
+## 1. CORE WORKFLOW
+Do   the   work.
+`;
+
+      const first = lineage.recordCandidate(lineagePath, {
+        candidateId: 'c-001',
+        sessionId: 's-001',
+        waveIndex: 0,
+        mutationType: 'base',
+        candidateContent: contentA,
+      });
+      const second = lineage.recordCandidate(lineagePath, {
+        candidateId: 'c-002',
+        sessionId: 's-001',
+        waveIndex: 1,
+        mutationType: 'duplicate',
+        candidateContent: contentB,
+      });
+
+      const graph = JSON.parse(fs.readFileSync(lineagePath, 'utf8'));
+      expect(first.recorded).toBe(true);
+      expect(second.duplicate).toBe(true);
+      expect(second.existingCandidateId).toBe('c-001');
+      expect(graph.nodes).toHaveLength(1);
+      expect(graph.duplicates).toHaveLength(1);
     });
   });
 

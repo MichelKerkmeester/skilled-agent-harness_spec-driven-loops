@@ -506,6 +506,13 @@ function createProfileBucket(profileId, family) {
       outputQuality: [],
       systemFitness: [],
     },
+    unscoredDimensions: {
+      structural: 0,
+      ruleCoherence: 0,
+      integration: 0,
+      outputQuality: 0,
+      systemFitness: 0,
+    },
     dimensionTrends: {},
   };
 }
@@ -609,11 +616,24 @@ function buildRegistry(records) {
     bucket.promptRecommendations.push(record.recommendation || 'unknown');
     maybeSetBestPrompt(bucket, record);
 
+    const countedUnscored = new Set();
     if (record.dimensions) {
       for (const dim of record.dimensions) {
         const key = dim.name;
         if (bucket.dimensionScores[key]) {
-          bucket.dimensionScores[key].push(dim.score);
+          if (dim.score === null) {
+            bucket.unscoredDimensions[key] += 1;
+            countedUnscored.add(key);
+          } else if (isFiniteNumber(dim.score)) {
+            bucket.dimensionScores[key].push(dim.score);
+          }
+        }
+      }
+    }
+    if (Array.isArray(record.unscoredDimensions)) {
+      for (const key of record.unscoredDimensions) {
+        if (Object.prototype.hasOwnProperty.call(bucket.unscoredDimensions, key) && !countedUnscored.has(key)) {
+          bucket.unscoredDimensions[key] += 1;
         }
       }
     }
@@ -793,7 +813,12 @@ function formatDashboardValue(value) {
 
 function renderDimensionalProgress(bucket) {
   const rows = [];
+  const unscoredRows = [];
   for (const [key, scores] of Object.entries(bucket.dimensionScores)) {
+    const unscoredCount = bucket.unscoredDimensions[key] || 0;
+    if (unscoredCount > 0) {
+      unscoredRows.push(`| ${formatDimensionName(key)} | unscored | ${unscoredCount} |`);
+    }
     if (scores.length === 0) {
       continue;
     }
@@ -804,13 +829,27 @@ function renderDimensionalProgress(bucket) {
     rows.push(`| ${formatDimensionName(key)} | ${latest} | ${best} | ${trend} |`);
   }
   if (rows.length === 0) {
-    return '';
+    return unscoredRows.length === 0
+      ? ''
+      : `### Unscored Dimensions
+
+| Dimension | Status | Count |
+| --- | --- | --- |
+${unscoredRows.join('\n')}
+`;
   }
   return `### Dimensional Progress
 
 | Dimension | Latest | Best | Trend |
 | --- | --- | --- | --- |
 ${rows.join('\n')}
+${unscoredRows.length > 0 ? `
+### Unscored Dimensions
+
+| Dimension | Status | Count |
+| --- | --- | --- |
+${unscoredRows.join('\n')}
+` : ''}
 `;
 }
 

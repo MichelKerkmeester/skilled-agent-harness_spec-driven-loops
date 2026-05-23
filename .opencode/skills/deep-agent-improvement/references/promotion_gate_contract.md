@@ -32,13 +32,24 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 
 ### Gate 1: Prompt Scoring
 
-**Requirement:** Weighted score >= 70 with `candidate-acceptable` recommendation.
+**Requirement:** Weighted score >= 70, baseline delta above runtime threshold, and every scored dimension meeting its named promotion gate.
+
+**Per-dimension gates:** `scripts/_lib/promotion-gates.cjs` is the source of truth.
+
+| Dimension | Minimum Score |
+| --- | ---: |
+| `structural` | 80 |
+| `ruleCoherence` | 85 |
+| `integration` | 90 |
+| `outputQuality` | 75 |
+| `systemFitness` | 80 |
 
 **Validation:**
 - Run `scripts/score-candidate.cjs` on the candidate
-- Check `weightedScore >= 70`
-- Check `recommendation === "candidate-acceptable"`
+- Check `score >= 70`
+- Check `recommendation === "candidate-better"` when promotion uses a baseline
 - Verify all 5 dimensions have scores (no NaN or missing values)
+- Verify `promotionGates.passed === true` or recompute the same map from score output
 
 **Failure mode:** `score_gate_failed` - candidate does not meet minimum quality threshold.
 
@@ -250,6 +261,7 @@ node .opencode/skills/deep-agent-improvement/scripts/rollback-candidate.cjs \
 | `backup_failed` | Cannot create backup of canonical target | Check file permissions, disk space |
 | `mutation_failed` | Cannot copy candidate over target | Check file permissions, disk space |
 | `rollback_failed` | Cannot restore backup | Verify backup exists, check permissions |
+| `dimension_gate_failed` | One or more per-dimension gates fails or is unscored | Improve the targeted dimension and re-score |
 
 ---
 
@@ -258,6 +270,7 @@ node .opencode/skills/deep-agent-improvement/scripts/rollback-candidate.cjs \
 || Path | Role |
 |---|---|
 | `scripts/promote-candidate.cjs` | Promotion gate validation and mutation |
+| `scripts/_lib/promotion-gates.cjs` | Named weighted, benchmark, and per-dimension gate values |
 | `scripts/rollback-candidate.cjs` | Rollback execution and verification |
 | `scripts/check-mirror-drift.cjs` | Post-promotion mirror sync check |
 | `scripts/score-candidate.cjs` | Prompt scoring gate |

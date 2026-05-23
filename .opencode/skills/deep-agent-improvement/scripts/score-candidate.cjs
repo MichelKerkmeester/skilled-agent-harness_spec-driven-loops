@@ -15,7 +15,9 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const { execFileSync } = require('node:child_process');
 const {
   ERROR_TYPES,
@@ -24,6 +26,11 @@ const {
   parseTypedError,
   serializeTypedError,
 } = require('./_lib/typed-errors.cjs');
+const {
+  WEIGHTED_SCORE_GATE,
+  PROMOTION_GATES,
+  evaluatePromotionGates,
+} = require('./_lib/promotion-gates.cjs');
 
 function parseArgs(argv) {
   const args = {};
@@ -44,6 +51,36 @@ function readUtf8(filePath) {
 function writeJson(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+}
+
+function stableJson(value) {
+  if (Array.isArray(value)) {
+    return `[${value.map((entry) => stableJson(entry)).join(',')}]`;
+  }
+  if (value && typeof value === 'object') {
+    return `{${Object.keys(value)
+      .sort()
+      .map((key) => `${JSON.stringify(key)}:${stableJson(value[key])}`)
+      .join(',')}}`;
+  }
+  return JSON.stringify(value);
+}
+
+function stripVolatileFields(value) {
+  if (Array.isArray(value)) {
+    return value.map((entry) => stripVolatileFields(entry));
+  }
+  if (value && typeof value === 'object') {
+    const result = {};
+    for (const [key, entry] of Object.entries(value)) {
+      if (key === 'timestamp' || key === 'generatedAt') {
+        continue;
+      }
+      result[key] = stripVolatileFields(entry);
+    }
+    return result;
+  }
+  return value;
 }
 
 function safeRead(filePath) {
@@ -106,6 +143,35 @@ const DIMENSION_WEIGHTS = {
   systemFitness: 0.15,
 };
 
+const RUBRIC_VERSION = 'dynamic-5d/p126-reproducibility-v1';
+
+function defaultCacheDir() {
+  return path.join(os.tmpdir(), 'deep-agent-improvement-score-cache');
+}
+
+function computeInputHash(input) {
+  return crypto
+    .createHash('sha256')
+    .update(stableJson(input))
+    .digest('hex');
+}
+
+function cachePathFor(cacheDir, inputHash) {
+  return path.join(cacheDir, `${inputHash}.json`);
+}
+
+function readCachedScore(cacheDir, inputHash) {
+  const cachePath = cachePathFor(cacheDir, inputHash);
+  if (!fs.existsSync(cachePath)) {
+    return null;
+  }
+  return JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+}
+
+function writeCachedScore(cacheDir, inputHash, result) {
+  writeJson(cachePathFor(cacheDir, inputHash), result);
+}
+
 function runScript(scriptName, args) {
   const scriptPath = path.join(__dirname, scriptName);
   try {
@@ -159,10 +225,36 @@ function scoreDimRuleCoherence(profile, content) {
   return { score: maxPossible > 0 ? Math.round(100 * earned / maxPossible) : 100, details, maxPossible };
 }
 
-function scoreDimIntegration(agentName) {
-  const report = runScript('scan-integration.cjs', [`--agent=${agentName}`]);
+function analyzeRuntimeMirrorCoverage(report) {
+  const mirrors = Array.isArray(report?.surfaces?.mirrors) ? report.surfaces.mirrors : [];
+  const expectedCount = 4;
+  const consideredCount = mirrors.length;
+  const passed = consideredCount === expectedCount;
+  return {
+    checkpoint: 'runtime-mirror-coverage-considered',
+    expectedCount,
+    consideredCount,
+    passed,
+    paths: mirrors.map((mirror) => mirror.path).filter(Boolean),
+    warning: passed
+      ? null
+      : `Expected ${expectedCount} runtime mirrors to be considered; saw ${consideredCount}`,
+  };
+}
+
+function scoreDimIntegration(agentName, integrationReport) {
+  const report = integrationReport || runScript('scan-integration.cjs', [`--agent=${agentName}`]);
   if (!report || report.status !== 'complete') {
-    return { score: 0, details: [{ id: 'scanner-failed', pass: false }], maxPossible: 100 };
+    const runtimeMirrorCoverage = analyzeRuntimeMirrorCoverage(report);
+    return {
+      score: 0,
+      details: [
+        { id: 'scanner-failed', pass: false },
+        { id: 'runtime-mirror-coverage-considered', pass: false, ...runtimeMirrorCoverage },
+      ],
+      maxPossible: 100,
+      runtimeMirrorCoverage,
+    };
   }
   const summary = report.summary;
   let mirrorScore = 100;
@@ -180,9 +272,11 @@ function scoreDimIntegration(agentName) {
       { id: 'mirror-parity', pass: mirrorScore === 100, score: mirrorScore },
       { id: 'command-coverage', pass: commandScore > 0, count: summary.commandCount },
       { id: 'skill-coverage', pass: skillScore > 0, count: summary.skillCount },
+      { id: 'runtime-mirror-coverage-considered', pass: analyzeRuntimeMirrorCoverage(report).passed, ...analyzeRuntimeMirrorCoverage(report) },
     ],
     maxPossible: 100,
     raw: { mirrorScore, commandScore, skillScore, mirrorStatus: summary.mirrorSyncStatus },
+    runtimeMirrorCoverage: analyzeRuntimeMirrorCoverage(report),
   };
 }
 
@@ -254,13 +348,13 @@ function scoreDimSystemFitness(profile, content) {
   return { score: maxPossible > 0 ? Math.round(100 * earned / maxPossible) : 100, details, maxPossible };
 }
 
-function scoreDynamic(candidateContent, agentName, profile, weights) {
+function scoreDynamic(candidateContent, agentName, profile, weights, integrationReport) {
   // Accept optional weights override; fall back to hardcoded defaults (ADR-005 backward compat)
   const effectiveWeights = weights || DIMENSION_WEIGHTS;
 
   const structural = scoreDimStructural(profile, candidateContent);
   const ruleCoherence = scoreDimRuleCoherence(profile, candidateContent);
-  const integration = scoreDimIntegration(agentName);
+  const integration = scoreDimIntegration(agentName, integrationReport);
   const outputQuality = scoreDimOutputQuality(profile, candidateContent);
   const systemFitness = scoreDimSystemFitness(profile, candidateContent);
 
@@ -279,7 +373,12 @@ function scoreDynamic(candidateContent, agentName, profile, weights) {
     ? null
     : Math.round(dimensions.reduce((sum, d) => sum + d.score * d.weight, 0));
 
-  return { weightedScore, dimensions, unscoredDimensions };
+  return {
+    weightedScore,
+    dimensions,
+    unscoredDimensions,
+    runtimeMirrorCoverage: integration.runtimeMirrorCoverage,
+  };
 }
 
 function dimensionDelta(candidateDimensions, baselineDimensions) {
@@ -313,6 +412,8 @@ function main() {
   const manifestPath = args.manifest;
   const targetPath = args.target || candidatePath;
   const outputPath = args.output;
+  const cacheDisabled = args['no-cache'] === true || args['no-cache'] === 'true';
+  const cacheDir = path.resolve(args['cache-dir'] || defaultCacheDir());
 
   if (!candidatePath) {
     process.stderr.write('Missing required --candidate argument\n');
@@ -393,15 +494,18 @@ function main() {
       process.stderr.write('Warning: failed to parse --weights JSON, using defaults\n');
     }
   }
-  const dynamicResult = scoreDynamic(candidateContent, agentName, profile, weightsOverride);
+  const candidateIntegrationReport = runScript('scan-integration.cjs', [`--agent=${agentName}`]);
 
   let baselineResult = null;
+  let baselineProfile = null;
+  let baselineContent = null;
+  let baselineIntegrationReport = null;
   let delta = null;
   let baselineScore = null;
   const thresholdDelta = resolveThresholdDelta(args, manifest);
 
   if (baselinePath) {
-    const baselineContent = safeRead(baselinePath);
+    baselineContent = safeRead(baselinePath);
     if (typeof baselineContent !== 'string') {
       const failure = {
         status: 'infra_failure',
@@ -422,7 +526,7 @@ function main() {
       process.exit(1);
     }
 
-    const baselineProfile = runScript('generate-profile.cjs', [`--agent=${baselinePath}`]);
+    baselineProfile = runScript('generate-profile.cjs', [`--agent=${baselinePath}`]);
     if (!baselineProfile || !baselineProfile.id) {
       const failure = {
         status: 'infra_failure',
@@ -442,7 +546,44 @@ function main() {
       process.exit(1);
     }
 
-    baselineResult = scoreDynamic(baselineContent, baselineProfile.id, baselineProfile, weightsOverride);
+    baselineIntegrationReport = runScript('scan-integration.cjs', [`--agent=${baselineProfile.id}`]);
+  }
+
+  const effectiveWeights = weightsOverride || DIMENSION_WEIGHTS;
+  const inputHash = computeInputHash({
+    rubricVersion: RUBRIC_VERSION,
+    candidateContent,
+    baselineContent: typeof baselineContent === 'string' ? baselineContent : null,
+    targetPath,
+    manifest: manifest || null,
+    profile: stripVolatileFields(profile),
+    baselineProfile: stripVolatileFields(baselineProfile),
+    dimensionConfig: {
+      weights: effectiveWeights,
+      promotionGates: PROMOTION_GATES,
+    },
+    integrationReports: {
+      candidate: stripVolatileFields(candidateIntegrationReport),
+      baseline: stripVolatileFields(baselineIntegrationReport),
+    },
+  });
+
+  if (!cacheDisabled) {
+    const cached = readCachedScore(cacheDir, inputHash);
+    if (cached) {
+      if (outputPath) {
+        writeJson(outputPath, cached);
+      } else {
+        process.stdout.write(`${JSON.stringify(cached, null, 2)}\n`);
+      }
+      return;
+    }
+  }
+
+  const dynamicResult = scoreDynamic(candidateContent, agentName, profile, weightsOverride, candidateIntegrationReport);
+
+  if (baselinePath) {
+    baselineResult = scoreDynamic(baselineContent, baselineProfile.id, baselineProfile, weightsOverride, baselineIntegrationReport);
     baselineScore = baselineResult.weightedScore;
     delta = {
       total: dynamicResult.weightedScore !== null && baselineResult.weightedScore !== null
@@ -458,11 +599,18 @@ function main() {
     : baselineResult
       ? (delta.total >= thresholdDelta
         ? 'candidate-better'
-        : (dynamicResult.weightedScore >= 70 ? 'candidate-acceptable' : 'keep-baseline'))
-      : (dynamicResult.weightedScore >= 70 ? 'candidate-acceptable' : 'needs-improvement');
+        : (dynamicResult.weightedScore >= WEIGHTED_SCORE_GATE ? 'candidate-acceptable' : 'keep-baseline'))
+      : (dynamicResult.weightedScore >= WEIGHTED_SCORE_GATE ? 'candidate-acceptable' : 'needs-improvement');
+  const promotionGateResult = evaluatePromotionGates(dynamicResult.dimensions);
+  const warnings = [];
+  if (dynamicResult.runtimeMirrorCoverage && !dynamicResult.runtimeMirrorCoverage.passed) {
+    warnings.push(dynamicResult.runtimeMirrorCoverage.warning);
+  }
 
   const result = {
     status: 'scored',
+    rubricVersion: RUBRIC_VERSION,
+    inputHash,
     profileId: resolvedProfileId,
     family: family || profile.family,
     evaluationMode: 'dynamic-5d',
@@ -475,15 +623,23 @@ function main() {
     thresholdDelta,
     dimensions: dynamicResult.dimensions,
     unscoredDimensions: dynamicResult.unscoredDimensions,
+    runtimeMirrorCoverage: dynamicResult.runtimeMirrorCoverage,
+    promotionGates: promotionGateResult,
     legacyScore: null,
     recommendation,
+    warnings,
     failureModes: [
       ...dynamicResult.unscoredDimensions.map((name) => `unscored-${name}`),
+      ...warnings.map(() => 'runtime-mirror-coverage-warning'),
       ...dynamicResult.dimensions
         .filter((d) => typeof d.score === 'number' && d.score < 60)
         .map((d) => `weak-${d.name}`),
     ],
   };
+
+  if (!cacheDisabled) {
+    writeCachedScore(cacheDir, inputHash, result);
+  }
 
   if (outputPath) {
     writeJson(outputPath, result);

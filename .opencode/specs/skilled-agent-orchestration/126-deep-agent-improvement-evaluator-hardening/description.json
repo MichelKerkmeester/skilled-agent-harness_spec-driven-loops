@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/126-deep-agent-improvement-evaluator-hardening",
+  "description": "Packet 126 hardens deep-agent-improvement evaluator reproducibility, promotion gates, deduplication, mirror coverage warnings, and unscored dimension transparency.",
+  "keywords": [
+    "deep-agent-improvement",
+    "packet",
+    "126",
+    "evaluator",
+    "reproducibility",
+    "promotion",
+    "gates",
+    "dedup",
+    "content-hash",
+    "unscored",
+    "dimensions",
+    "dashboard"
+  ],
+  "lastUpdated": "2026-05-23T00:00:00.000Z",
+  "specId": "126",
+  "folderSlug": "deep-agent-improvement-evaluator-hardening",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

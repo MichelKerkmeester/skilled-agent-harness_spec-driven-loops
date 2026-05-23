@@ -42,6 +42,13 @@ const DEFAULT_STABILITY_DELTA = 2;
  */
 const SKIP_DEDUP = process.env.DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP === '1';
 
+const EMPTY_FIELD_SENTINELS = Object.freeze({
+  dimension: '<missing:dimension>',
+  mutationType: '<missing:mutationType>',
+  targetSection: '<missing:targetSection>',
+  body: '<missing:body>',
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -68,11 +75,19 @@ function writeJson(filePath, data) {
  * @param {object} mutation - Mutation record with { dimension, mutationType, targetSection, body }
  * @returns {string} sha256 hex signature
  */
+function normalizeSignatureField(mutation, fieldName) {
+  const value = mutation[fieldName];
+  if (value === null || value === undefined || String(value).trim() === '') {
+    return EMPTY_FIELD_SENTINELS[fieldName];
+  }
+  return String(value).trim();
+}
+
 function computeMutationSignature(mutation) {
-  const dimension = (mutation.dimension || '').trim();
-  const mutationType = (mutation.mutationType || '').trim();
-  const targetSection = (mutation.targetSection || '').trim();
-  const rawBody = (mutation.body || '').trim();
+  const dimension = normalizeSignatureField(mutation, 'dimension');
+  const mutationType = normalizeSignatureField(mutation, 'mutationType');
+  const targetSection = normalizeSignatureField(mutation, 'targetSection');
+  const rawBody = normalizeSignatureField(mutation, 'body');
   const normalizedBody64 = rawBody.replace(/\s+/g, ' ').toLowerCase().slice(0, 64);
 
   return crypto
@@ -365,6 +380,7 @@ module.exports = {
   MIN_TRAJECTORY_POINTS,
   DEFAULT_STABILITY_DELTA,
   SKIP_DEDUP,
+  EMPTY_FIELD_SENTINELS,
   createCoverageGraph,
   computeMutationSignature,
   recordMutation,

@@ -16,7 +16,9 @@ const coverage = require(path.join(
   LOOP_TYPE: string;
   MIN_TRAJECTORY_POINTS: number;
   DEFAULT_STABILITY_DELTA: number;
+  EMPTY_FIELD_SENTINELS: Readonly<Record<string, string>>;
   createCoverageGraph: () => object;
+  computeMutationSignature: (mutation: Record<string, unknown>) => string;
   recordMutation: (coveragePath: string, mutation: object) => void;
   getExhaustedMutations: (coveragePath: string) => object[];
   markExhausted: (coveragePath: string, dimension: string, mutationType: string) => void;
@@ -50,6 +52,30 @@ describe('mutation-coverage', () => {
 
     it('has default stability delta of 2', () => {
       expect(coverage.DEFAULT_STABILITY_DELTA).toBe(2);
+    });
+
+    it('uses distinct sentinels for empty signature fields', () => {
+      expect(coverage.EMPTY_FIELD_SENTINELS.dimension).not.toBe(coverage.EMPTY_FIELD_SENTINELS.mutationType);
+      expect(coverage.EMPTY_FIELD_SENTINELS.targetSection).not.toBe(coverage.EMPTY_FIELD_SENTINELS.body);
+    });
+  });
+
+  describe('computeMutationSignature', () => {
+    it('does not collide when different fields are empty', () => {
+      const missingDimension = coverage.computeMutationSignature({
+        dimension: '',
+        mutationType: 'same',
+        targetSection: 'same',
+        body: 'same',
+      });
+      const missingMutationType = coverage.computeMutationSignature({
+        dimension: 'same',
+        mutationType: '',
+        targetSection: 'same',
+        body: 'same',
+      });
+
+      expect(missingDimension).not.toBe(missingMutationType);
     });
   });
 

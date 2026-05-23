@@ -26,6 +26,8 @@ Candidate proposals are packet-local agent mutations that live under `{spec_fold
 
 **Mutation tracking:** `mutation-coverage.json` with signature-based dedup (Packet 110, M-3)
 
+**Candidate proposal dedup:** `candidate-lineage.json` stores a SHA-256 `contentHash` computed over normalized candidate content after frontmatter and rubric metadata are stripped. This mirrors packet 122/DR-005's normalized content-hash approach while preserving first-seen candidate lineage.
+
 ---
 
 ## 2. CANDIDATE FILE STRUCTURE
@@ -280,6 +282,16 @@ Where `normalizedBody64` = whitespace-collapsed, lowercased, first 64 characters
 - Before proposing a new mutation, `isSignatureSeen()` scans existing `mutations[]` and `exhausted[]` arrays
 - If the signature matches, the candidate is skipped with `reason: "EXHAUSTED-FROM: iter-NNN"`
 - Bypass: `export DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1`
+
+### Candidate Content Hash Dedup
+
+Candidate proposal storage additionally uses `scripts/candidate-lineage.cjs` to compute:
+
+```javascript
+contentHash = sha256(normalize(stripFrontmatterAndRubricMetadata(candidateContent)))
+```
+
+When a new candidate has the same `contentHash` as a prior node, the lineage graph records it under `duplicates[]` and preserves the first node as the primary proposal.
 
 ---
 

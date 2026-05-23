@@ -8,6 +8,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -27,6 +28,38 @@ function writeJson(filePath, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n', 'utf8');
 }
 
+function normalizeText(value) {
+  return String(value).replace(/\s+/g, ' ').trim().toLowerCase();
+}
+
+function stripRubricMetadata(content) {
+  return String(content)
+    .replace(/^---[\s\S]*?\n---\s*/m, '')
+    .replace(/<!--\s*DAI_RUBRIC[\s\S]*?-->/gi, '')
+    .replace(/<!--\s*scoring-rubric[\s\S]*?-->/gi, '');
+}
+
+function computeCandidateContentHash(content) {
+  return crypto
+    .createHash('sha256')
+    .update(normalizeText(stripRubricMetadata(content)))
+    .digest('hex');
+}
+
+function resolveCandidateContent(candidate) {
+  if (typeof candidate.candidateContent === 'string') {
+    return candidate.candidateContent;
+  }
+  if (typeof candidate.content === 'string') {
+    return candidate.content;
+  }
+  const candidatePath = candidate.candidatePath || candidate.path;
+  if (typeof candidatePath === 'string' && candidatePath.trim() && fs.existsSync(candidatePath)) {
+    return fs.readFileSync(candidatePath, 'utf8');
+  }
+  return null;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. LINEAGE GRAPH
 // ─────────────────────────────────────────────────────────────────────────────
@@ -38,6 +71,7 @@ function writeJson(filePath, data) {
 function createLineageGraph() {
   return {
     nodes: [],
+    duplicates: [],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
@@ -55,15 +89,45 @@ function recordCandidate(lineagePath, candidate) {
   if (!graph) {
     graph = createLineageGraph();
   }
+  if (!Array.isArray(graph.duplicates)) {
+    graph.duplicates = [];
+  }
+
+  const candidateContent = resolveCandidateContent(candidate);
+  const contentHash = candidate.contentHash || (
+    typeof candidateContent === 'string' ? computeCandidateContentHash(candidateContent) : null
+  );
+  const duplicate = contentHash
+    ? (graph.nodes || []).find((node) => node.contentHash === contentHash)
+    : null;
+
+  if (duplicate) {
+    graph.duplicates.push({
+      candidateId: candidate.candidateId,
+      duplicateOf: duplicate.candidateId,
+      contentHash,
+      recordedAt: new Date().toISOString(),
+    });
+    graph.updatedAt = new Date().toISOString();
+    writeJson(lineagePath, graph);
+    return {
+      recorded: false,
+      duplicate: true,
+      contentHash,
+      existingCandidateId: duplicate.candidateId,
+    };
+  }
 
   graph.nodes.push({
     ...candidate,
     parentCandidateId: candidate.parentCandidateId || null,
+    contentHash,
     recordedAt: new Date().toISOString(),
   });
   graph.updatedAt = new Date().toISOString();
 
   writeJson(lineagePath, graph);
+  return { recorded: true, duplicate: false, contentHash };
 }
 
 /**
@@ -172,6 +236,7 @@ function getChildren(lineagePath, parentCandidateId) {
 
 module.exports = {
   createLineageGraph,
+  computeCandidateContentHash,
   recordCandidate,
   getLineage,
   getCandidatesByWave,

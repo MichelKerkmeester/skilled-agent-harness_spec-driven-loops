@@ -24,6 +24,8 @@ The 5-dimension scoring rubric is the core evaluation framework for deep-agent-i
 
 **Weighted score threshold:** >= 70 produces `candidate-acceptable`; below 70 produces `needs-improvement`.
 
+**Reproducibility:** Scorer output includes `rubricVersion` and `inputHash`. The input hash is SHA-256 over rubric version, candidate content, baseline content when present, dynamic profile checks, dimension weights, promotion gate values, manifest input, and integration-scan coverage. Identical inputs return the same cached score unless `--no-cache` is passed.
+
 ---
 
 ## 2. DIMENSIONS
@@ -126,6 +128,7 @@ weightedScore = (
 **Thresholds:**
 - `weightedScore >= 70`: `candidate-acceptable`
 - `weightedScore < 70`: `needs-improvement`
+- Any dimension with zero checks returns `score: null`, appears in `unscoredDimensions`, and blocks promotion recommendations.
 
 ---
 
@@ -157,6 +160,8 @@ weightedScore = (
 ```json
 {
   "status": "success",
+  "rubricVersion": "dynamic-5d/p126-reproducibility-v1",
+  "inputHash": "sha256...",
   "evaluationMode": "dynamic-5d",
   "profileId": "agent-name",
   "weightedScore": 78.5,

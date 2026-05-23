@@ -27,7 +27,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 5 |
+| Code files | 7 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -80,6 +80,8 @@ Run the owning package test command from the nearest package boundary.
 | `candidate-lineage.vitest.ts` | TS source file in this folder. |
 | `improvement-journal.vitest.ts` | TS source file in this folder. |
 | `mutation-coverage.vitest.ts` | TS source file in this folder. |
+| `reduce-state-dashboard.vitest.ts` | TS source file in this folder. |
+| `score-candidate-cache.vitest.ts` | TS source file in this folder. |
 | `trade-off-detector.vitest.ts` | TS source file in this folder. |
 
 <!-- /ANCHOR:structure -->
