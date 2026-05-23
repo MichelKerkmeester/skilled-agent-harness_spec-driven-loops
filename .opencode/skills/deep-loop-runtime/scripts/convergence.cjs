@@ -1,18 +1,34 @@
 #!/usr/bin/env node
-'use strict';
-// MODULE: convergence entry point for deep-loop graph operations
-// Input: CLI args (--spec-folder, --loop-type, --session-id, optional --iteration, --persist-snapshot).
-// Output: JSON to stdout.
-// Exit codes: 0=ok, 1=script error, 2=DB error, 3=input validation error.
 
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Deep-Loop Runtime — Convergence Entrypoint                               ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ Input:  CLI args (--spec-folder, --loop-type, --session-id, optional     ║
+// ║         --iteration, --persist-snapshot).                                ║
+// ║ Output: JSON to stdout.                                                  ║
+// ║ Exit:   0=ok, 1=script error, 2=DB error, 3=input validation error.     ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+
 const {
   classifyExitCode,
   installSignalHandlers,
   maybeThrowTestFault,
   validateNamespaceValue,
 } = require('./lib/cli-guards.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const TSX_LOADER = path.resolve(
   __dirname,
@@ -26,6 +42,10 @@ const TSX_LOADER = path.resolve(
   'loader.mjs',
 );
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. TSX BOOTSTRAP
+// ─────────────────────────────────────────────────────────────────────────────
+
 if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   const child = spawnSync(
     process.execPath,
@@ -33,7 +53,7 @@ if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
     {
       cwd: process.cwd(),
       env: { ...process.env, DEEP_LOOP_TSX_LOADED: '1' },
-      input: process.stdin.isTTY ? undefined : require('node:fs').readFileSync(0),
+      input: process.stdin.isTTY ? undefined : fs.readFileSync(0),
       encoding: 'utf8',
     },
   );
@@ -41,6 +61,10 @@ if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   if (child.stderr) process.stderr.write(child.stderr);
   process.exit(child.status === null ? 1 : child.status);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv = process.argv.slice(2)) {
   const args = {};
@@ -231,6 +255,10 @@ function decisionReason(decision, blockingBlockers, trace) {
   }
   return `Convergence signals not yet met: ${trace.filter((entry) => !entry.passed).map((entry) => entry.signal).join(', ')}. Continue iterating.`;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   const args = parseArgs();

@@ -24,6 +24,9 @@ const { orchestrateSession, sessionStatePath } = require('../orchestrate-session
   }>;
   sessionStatePath: (packetSpecFolder: string) => string;
 };
+const { loadRegistry } = require('../lib/findings-registry.cjs') as {
+  loadRegistry: (packetSpecFolder: string) => Array<Record<string, unknown>>;
+};
 
 function withTempPacket(run: (packetSpecFolder: string) => Promise<void>): Promise<void> {
   const tempDir = mkdtempSync(join(tmpdir(), 'council-orchestrate-session-'));
@@ -80,6 +83,14 @@ describe('deep-ai-council session orchestration', () => {
         'topic-002-convergence-semantics',
         'topic-003-cost-guards',
       ]);
+
+      const registry = loadRegistry(packetSpecFolder);
+      expect(registry.map((finding) => finding.finding_type)).toEqual([
+        'topic-final-verdict',
+        'topic-final-verdict',
+        'topic-final-verdict',
+        'session-synthesis',
+      ]);
     });
   });
 
@@ -115,6 +126,38 @@ describe('deep-ai-council session orchestration', () => {
         topic_id: 'topic-002-convergence-semantics',
         stability_score: 0.1,
       });
+    });
+  });
+
+  it('injects registry priors into topic briefs after the first topic', async () => {
+    await withTempPacket(async (packetSpecFolder) => {
+      const seenBriefs: Array<Record<string, unknown>> = [];
+
+      await orchestrateSession({
+        session_state: sessionState(packetSpecFolder),
+        executor_config: {
+          cost_guards: { max_topics_per_session: 5 },
+          orchestrateTopic: async ({ topic_id, executor_config }: { topic_id: string; executor_config: Record<string, unknown> }) => {
+            seenBriefs.push((executor_config.topic_brief || {}) as Record<string, unknown>);
+            return {
+              topic_id,
+              rounds_completed: 1,
+              final_verdict: { recommended_option: `plan-${topic_id}`, confidence: 0.8 },
+              stability_score: 0.5,
+              stop_reason: 'max_rounds_per_topic',
+            };
+          },
+        },
+      });
+
+      expect(seenBriefs[0].prior_findings).toBeUndefined();
+      expect(seenBriefs[1].prior_fingerprints).toEqual([
+        'council:runtime-boundary:topic-topic-001-runtime-boundary-final-verdict-plan-topic-001-runtime-boundary',
+      ]);
+      expect((seenBriefs[2].prior_findings as Array<Record<string, unknown>>).map((prior) => prior.topic_id).sort()).toEqual([
+        'topic-001-runtime-boundary',
+        'topic-002-convergence-semantics',
+      ]);
     });
   });
 });

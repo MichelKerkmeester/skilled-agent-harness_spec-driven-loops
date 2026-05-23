@@ -1,13 +1,23 @@
 #!/usr/bin/env node
+
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Deep-Loop Runtime — Status Entrypoint                                    ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ Input:  CLI args (--spec-folder, --loop-type, --session-id).             ║
+// ║ Output: JSON to stdout.                                                  ║
+// ║ Exit:   0=ok, 1=script error, 2=DB error, 3=input validation error.     ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
-// MODULE: status entry point for deep-loop graph operations
-// Input: CLI args (--spec-folder, --loop-type, --session-id).
-// Output: JSON to stdout.
-// Exit codes: 0=ok, 1=script error, 2=DB error, 3=input validation error.
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+
 const {
   classifyExitCode,
   installSignalHandlers,
@@ -15,7 +25,15 @@ const {
   validateNamespaceValue,
 } = require('./lib/cli-guards.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const TSX_LOADER = path.resolve(__dirname, '..', '..', 'system-spec-kit', 'scripts', 'node_modules', 'tsx', 'dist', 'loader.mjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. TSX BOOTSTRAP
+// ─────────────────────────────────────────────────────────────────────────────
 
 if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   const child = spawnSync(process.execPath, ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)], {
@@ -28,6 +46,10 @@ if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   if (child.stderr) process.stderr.write(child.stderr);
   process.exit(child.status === null ? 1 : child.status);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function inputError(message) {
   const err = new Error(message);
@@ -59,6 +81,10 @@ function ensureString(args, key) {
 function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   const args = parseArgs();

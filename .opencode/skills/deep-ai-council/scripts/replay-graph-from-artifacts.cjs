@@ -1,8 +1,21 @@
 #!/usr/bin/env node
+
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Council Graph Replay from Artifacts                                      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
 const path = require('node:path');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const USAGE = `Usage:
   node .opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder <path> --session-id <id> [--dry-run]
@@ -13,6 +26,10 @@ council_graph_upsert payload:
 
 The script is read-only. Pipe the emitted JSON to the MCP upsert operator path.
 `;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv) {
   const args = { specFolder: null, sessionId: null, dryRun: false, help: false };
@@ -36,6 +53,13 @@ function findRepoRoot(startDir) {
   return path.resolve(startDir);
 }
 
+/**
+ * Parse a JSONL file into an array of event objects.
+ *
+ * @param {string} filePath - Path to the JSONL file.
+ * @returns {Array<Object>} Parsed event objects.
+ * @throws {Error} If a line is malformed JSON or not an object.
+ */
 function parseJsonl(filePath) {
   const lines = fs.readFileSync(filePath, 'utf8').split(/\r?\n/);
   const events = [];
@@ -183,6 +207,23 @@ function defaultRelationForTarget(item) {
   return 'DERIVES_FROM';
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Derive a council_graph_upsert payload from a sequence of council state
+ * events. Walks every event, creates SESSION/ROUND/SEAT/CLAIM/EVIDENCE/
+ * DISAGREEMENT/DECISION/RECOMMENDATION nodes, and adds relationship edges
+ * declared in the artifact and inferred from item types.
+ *
+ * @param {string} specFolder - Spec folder path for namespace isolation.
+ * @param {string} sessionId - Council session identifier.
+ * @param {Array<Object>} events - Parsed AI council state events from
+ *   ai-council-state.jsonl.
+ * @returns {{ specFolder: string, sessionId: string, nodes: Array<Object>, edges: Array<Object> }}
+ *   Council graph upsert payload.
+ */
 function derivePayload(specFolder, sessionId, events) {
   const nodes = new Map();
   const edges = new Map();
@@ -295,6 +336,13 @@ function derivePayload(specFolder, sessionId, events) {
   };
 }
 
+/**
+ * CLI entry point. Parses arguments, reads the AI council state JSONL file,
+ * derives a council_graph_upsert payload, and writes JSON to stdout.
+ *
+ * @param {string[]} [argv] - CLI arguments (default: process.argv.slice(2)).
+ * @returns {number} Exit code (0 on success, 1 on error).
+ */
 function main(argv = process.argv.slice(2)) {
   try {
     const args = parseArgs(argv);
@@ -328,6 +376,10 @@ function main(argv = process.argv.slice(2)) {
 if (require.main === module) {
   process.exitCode = main();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   derivePayload,

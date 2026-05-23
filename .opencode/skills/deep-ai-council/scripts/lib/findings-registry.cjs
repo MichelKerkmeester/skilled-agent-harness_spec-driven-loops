@@ -1,9 +1,20 @@
-// MODULE: Deep AI Council Findings Registry
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Deep AI Council Findings Registry                                         ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const SCHEMA_VERSION = '1.0';
 const REGISTRY_FILE_NAME = 'deep-ai-council-findings-registry.json';
@@ -11,14 +22,9 @@ const DEFAULT_PRIOR_LIMIT = 5;
 const LOCK_RETRY_MS = 10;
 const LOCK_TIMEOUT_MS = 2_000;
 
-class FindingsRegistryLockError extends Error {
-  constructor(lockPath) {
-    super(`Deep AI Council findings registry lock is already held: ${lockPath}`);
-    this.name = 'FindingsRegistryLockError';
-    this.code = 'FINDINGS_REGISTRY_LOCK_HELD';
-    this.lockPath = lockPath;
-  }
-}
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function isRecord(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -43,13 +49,6 @@ function normalizeClaim(value) {
 
 function sha256(value) {
   return `sha256:${crypto.createHash('sha256').update(value).digest('hex')}`;
-}
-
-function registryPath(packetPath) {
-  if (typeof packetPath !== 'string' || packetPath.trim() === '') {
-    throw new TypeError('packet_path must be a non-empty string');
-  }
-  return path.join(path.resolve(packetPath), 'ai-council', REGISTRY_FILE_NAME);
 }
 
 function lockPathFor(filePath) {
@@ -98,8 +97,6 @@ function fsyncDirectory(dirPath) {
     fd = fs.openSync(dirPath, 'r');
     fs.fsyncSync(fd);
   } catch {
-    // Directory fsync is not available on every filesystem. Rename still gives
-    // same-volume atomic visibility for readers.
   } finally {
     if (typeof fd === 'number') fs.closeSync(fd);
   }
@@ -184,6 +181,60 @@ function normalizeConfidence(value) {
   return Math.max(0, Math.min(1, numeric));
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Custom error thrown when the findings registry lock is already held by
+ * another process.
+ *
+ * @class
+ * @extends Error
+ */
+class FindingsRegistryLockError extends Error {
+  /**
+   * Create a FindingsRegistryLockError.
+   *
+   * @param {string} lockPath - Path to the lock file being contended.
+   */
+  constructor(lockPath) {
+    super(`Deep AI Council findings registry lock is already held: ${lockPath}`);
+    this.name = 'FindingsRegistryLockError';
+    this.code = 'FINDINGS_REGISTRY_LOCK_HELD';
+    this.lockPath = lockPath;
+  }
+}
+
+/**
+ * Resolve the full path to the findings registry JSON file within a
+ * spec-folder packet.
+ *
+ * @param {string} packetPath - Path to the spec-folder packet root.
+ * @returns {string} Full path to the findings registry file.
+ * @throws {TypeError} If packetPath is not a non-empty string.
+ */
+function registryPath(packetPath) {
+  if (typeof packetPath !== 'string' || packetPath.trim() === '') {
+    throw new TypeError('packet_path must be a non-empty string');
+  }
+  return path.join(path.resolve(packetPath), 'ai-council', REGISTRY_FILE_NAME);
+}
+
+/**
+ * Normalize a raw finding input into a canonical finding record.
+ *
+ * Derives topic slugs, content hashes, fingerprints, and folds in
+ * verdict-backed defaults so downstream consumers always see a
+ * well-shaped finding object.
+ *
+ * @param {Object} input - Raw finding payload.
+ * @param {Object} [options] - Normalization options.
+ * @param {string} [options.now] - ISO timestamp to use for introduced_at
+ *   and last_seen_at (default: current time).
+ * @returns {Object} Canonical finding record.
+ * @throws {TypeError} If input is not an object or claim derivation fails.
+ */
 function normalizeFinding(input, options = {}) {
   if (!isRecord(input)) {
     throw new TypeError('finding must be an object');
@@ -226,6 +277,23 @@ function normalizeFinding(input, options = {}) {
   };
 }
 
+/**
+ * Append a finding to the packet's on-disk findings registry with
+ * file-system locking for safe concurrent access.
+ *
+ * Acquires an exclusive lock, reads the current registry, normalizes
+ * the incoming finding, appends it, and atomically writes the updated
+ * registry back to disk.
+ *
+ * @param {string} packetPath - Path to the spec-folder packet.
+ * @param {Object} finding - Raw finding to normalize and append.
+ * @param {Object} [options] - Options forwarded to normalizeFinding and
+ *   acquireLock (timeoutMs).
+ * @param {string} [options.lockPath] - Override lock file path.
+ * @returns {Object} The normalized finding record that was appended.
+ * @throws {FindingsRegistryLockError} If the lock cannot be acquired
+ *   within the timeout.
+ */
 function appendFinding(packetPath, finding, options = {}) {
   const filePath = registryPath(packetPath);
   const lockPath = options.lockPath || lockPathFor(filePath);
@@ -244,10 +312,30 @@ function appendFinding(packetPath, finding, options = {}) {
   }
 }
 
+/**
+ * Load all findings from a packet's on-disk registry.
+ *
+ * @param {string} packetPath - Path to the spec-folder packet.
+ * @returns {Array<Object>} Array of finding records (empty array if none).
+ */
 function loadRegistry(packetPath) {
   return readRegistryDocument(registryPath(packetPath)).findings;
 }
 
+/**
+ * Retrieve cross-topic priors relevant to a council session.
+ *
+ * Returns non-superseded findings from OTHER topics, sorted by
+ * recency and limited to the configured maximum.
+ *
+ * @param {string} packetPath - Path to the spec-folder packet.
+ * @param {Object} [options] - Filter options.
+ * @param {number} [options.limit] - Maximum priors to return (default:
+ *   DEFAULT_PRIOR_LIMIT).
+ * @param {string} [options.topic_id] - Exclude findings belonging to this
+ *   topic.
+ * @returns {Array<Object>} Array of cross-topic prior summaries.
+ */
 function getCrossTopicPriors(packetPath, options = {}) {
   const limit = Number.isInteger(options.limit) && options.limit > 0 ? options.limit : DEFAULT_PRIOR_LIMIT;
   const topicId = options.topic_id || options.topicId || null;
@@ -274,6 +362,10 @@ function getCrossTopicPriors(packetPath, options = {}) {
       last_seen_at: finding.last_seen_at,
     }));
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   FindingsRegistryLockError,

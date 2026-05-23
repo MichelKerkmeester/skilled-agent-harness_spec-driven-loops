@@ -1,13 +1,24 @@
 #!/usr/bin/env node
+
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Deep-Loop Runtime — Upsert Entrypoint                                    ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ Input:  CLI args (--spec-folder, --loop-type, --session-id, --nodes,     ║
+// ║         --edges, or --events).                                           ║
+// ║ Output: JSON to stdout.                                                  ║
+// ║ Exit:   0=ok, 1=script error, 2=DB error, 3=input validation error.     ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
-// MODULE: upsert entry point for deep-loop graph operations
-// Input: CLI args (--spec-folder, --loop-type, --session-id, --nodes, --edges, or --events).
-// Output: JSON to stdout.
-// Exit codes: 0=ok, 1=script error, 2=DB error, 3=input validation error.
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+
 const {
   acquireWriterLock,
   classifyExitCode,
@@ -16,6 +27,10 @@ const {
   sleepSync,
   validateNamespaceValue,
 } = require('./lib/cli-guards.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const TSX_LOADER = path.resolve(__dirname, '..', '..', 'system-spec-kit', 'scripts', 'node_modules', 'tsx', 'dist', 'loader.mjs');
 
@@ -30,6 +45,10 @@ if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   if (child.stderr) process.stderr.write(child.stderr);
   process.exit(child.status === null ? 1 : child.status);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv = process.argv.slice(2)) {
   const args = {};
@@ -77,6 +96,10 @@ function readEvents(arg) {
 function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   const args = parseArgs();
