@@ -1,0 +1,65 @@
+{
+  "iteration": 7,
+  "executor": "cli-devin",
+  "model": "swe-1.6",
+  "prompt_framework": "RCAF",
+  "started_at": "2026-05-23T17:37:30Z",
+  "ended_at": "2026-05-23T17:39:40Z",
+  "wall_clock_seconds": 130,
+  "logic_gaps": [
+    {
+      "gap_id": "LG-0028",
+      "description": "No CP-NNN scenario covers legacy state migration from scratch/ to review/ artifact tree, despite this being a documented contract in start-review-loop.md and the YAML workflow (auto + confirm). CP suite has 6 scenarios but skips the migration boundary that the workflow handles at init.",
+      "evidence": [
+        ".opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/",
+        ".opencode/commands/deep/start-review-loop.md",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0029",
+      "description": "No CP-NNN scenario covers session classification (resume / restart / completed-session) lifecycle modes, despite the YAML workflow having explicit classify-session steps. The CP suite focuses on artifact-shape contracts, not lifecycle-state contracts.",
+      "evidence": [
+        ".opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    },
+    {
+      "gap_id": "LG-0030",
+      "description": "No CP-NNN scenario covers stuck detection and recovery flow, despite the YAML workflow having stuck-recovery branches. CP suite has resource-map gate (CP-054) and write boundary (CP-057) but no scenario exercises the stuck-recovery path.",
+      "evidence": [
+        ".opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      ],
+      "severity": "P2",
+      "in_scope_check": {
+        "already_in_spec": false,
+        "already_in_audit_findings": false
+      }
+    }
+  ],
+  "novel_findings": [
+    "Direction-A (CP scenarios testing missing contracts) is CLEAN: all 6 CP-052..057 scenarios test contracts actually present in command + YAML surfaces. Strong validation that the CP suite is well-aligned.",
+    "Direction-B finding pattern: CP suite covers 6 artifact-shape contracts but skips 3 lifecycle/migration contracts (state migration, session classification, stuck recovery). All P2 because they're test-suite-coverage gaps, not functional bugs.",
+    "Iter 7 surfaced 3 novel gaps + 4 duplicates of LG-0012/0013/0014/0015. Convergence: 7 of 10 iters complete, duplicates increasing as expected. Iters 8-10 likely to plateau further."
+  ],
+  "delta_vs_prev_iter": "new gaps surfaced",
+  "convergence_signals": {
+    "unique_gaps_so_far": 30,
+    "p0_count": 2,
+    "p1_count": 14,
+    "p2_count": 14,
+    "duplicates_with_prior_iters": 4
+  },
+  "notes": "Iter 7 RQ: CP-052..057 command-flow stress tests vs command/YAML drift. Wall-clock 130s. Direction-A clean (no CP scenarios test missing contracts). Direction-B surfaced 3 novel CP-coverage gaps (LG-0028/0029/0030, all P2 test-suite-coverage shortfalls). 4 duplicates of prior LG-#### gaps (extended gates, executor variants, pause sentinel, graph convergence). Saturation deepening as expected."
+}
