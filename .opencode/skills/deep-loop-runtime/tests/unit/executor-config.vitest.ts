@@ -152,7 +152,7 @@ describe('executor-config', () => {
   });
 
   // ─────────────────────────────────────────────────────────────────────────
-  // cli-opencode (added in packet 101, hardened in packet 103)
+  // cli-opencode (executor config)
   // ─────────────────────────────────────────────────────────────────────────
 
   it('accepts a cli-opencode executor with a model and reasoningEffort variant', () => {

@@ -36,7 +36,7 @@ const MIN_TRAJECTORY_POINTS = 3;
 const DEFAULT_STABILITY_DELTA = 2;
 
 /**
- * Env var to bypass mutation signature dedup (Packet 110, M-3).
+ * Env var to bypass mutation signature dedup (M-3).
  * Set to "1" to force re-evaluation of previously seen signatures.
  * @type {boolean}
  */
@@ -68,7 +68,7 @@ function writeJson(filePath, data) {
 }
 
 /**
- * Compute mutation signature for dedup (Packet 110, M-3).
+ * Compute mutation signature for dedup (M-3).
  * Signature: sha256(dimension + "\u001f" + mutationType + "\u001f" + targetSection + "\u001f" + normalizedBody64)
  * where normalizedBody64 = whitespace-collapsed, lowercased, first 64 chars of mutation body.
  *
@@ -198,7 +198,7 @@ function markExhausted(coveragePath, dimension, mutationType, options = {}) {
 
 /**
  * Check if a mutation signature is already present in mutations[]
- * or exhausted[] arrays (Packet 110, M-3 dedup).
+ * or exhausted[] arrays (M-3 dedup).
  *
  * Respects DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1 bypass.
  *

@@ -56,11 +56,11 @@ contextType: "general"
 
 Two skills, `deep-review` and `deep-research`, both run autonomous iteration loops. Both need atomic state-log writes. Both need single-writer locking. Both need a coverage graph that survives session crashes. Both need executor config parsing and Bayesian convergence scoring. Before this skill existed, all of that lived inside `system-spec-kit/mcp_server/` and got reached through four `mcp__mk_spec_memory__deep_loop_graph_*` MCP tools. Two consumer skills depended on the internals of a third, and every workflow YAML call paid the marshalling cost of MCP dispatch plus JSON parse.
 
-Arc 118 (FULL_ISOLATE_NO_MCP, user-directive override of the 117 AI Council SPLIT ruling) consolidated all of that into this peer skill. The four MCP tools are gone. The replacement is direct `.cjs` script invocation through `bash:` blocks in workflow YAMLs. Workflow calls became one step instead of two.
+The FULL_ISOLATE_NO_MCP consolidation (a user-directive override of an earlier AI Council SPLIT ruling) consolidated all of that into this peer skill. The four MCP tools are gone. The replacement is direct `.cjs` script invocation through `bash:` blocks in workflow YAMLs. Workflow calls became one step instead of two.
 
 ### How It Compares
 
-| Before (pre-arc-118) | After (this skill) |
+| Before (pre-consolidation) | After (this skill) |
 |----------------------|--------------------|
 | Runtime lib under `system-spec-kit/mcp_server/lib/` | Runtime lib under `.opencode/skills/deep-loop-runtime/lib/` |
 | Coverage-graph SQLite owned by MCP server | SQLite owned by this skill at `database/deep-loop-graph.sqlite` |
@@ -113,9 +113,9 @@ Arc 118 (FULL_ISOLATE_NO_MCP, user-directive override of the 117 AI Council SPLI
 
 ```bash
 node .opencode/skills/deep-loop-runtime/scripts/status.cjs \
-  --spec-folder ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution" \
+  --spec-folder "<spec-folder>" \
   --loop-type review \
-  --session-id phase-006-smoke
+  --session-id smoke-check
 ```
 
 Stdout is JSON. Exit codes: `0` ok, `1` script error, `2` DB error, `3` input validation error.
@@ -195,7 +195,7 @@ Schema details live in `references/coverage_graph_schema.md`. The deep-research 
 
 ### 3.5 COUNCIL PRIMITIVES
 
-Packet 131/001/008 ADR-001 (Runtime Boundary Decision) extended this skill with council-compatible runtime primitives. Operator-facing semantics live in `deep-ai-council`. This skill owns the durability primitives only.
+The Runtime Boundary Decision (ADR-001) extended this skill with council-compatible runtime primitives. Operator-facing semantics live in `deep-ai-council`. This skill owns the durability primitives only.
 
 | Module | What it does |
 |--------|--------------|
@@ -239,13 +239,13 @@ The database is session-scoped through node and edge tagging, not through per-se
 ├── SKILL.md                              # Operational contract (when to use, smart routing, rules)
 ├── README.md                             # This file
 ├── changelog/
-│   ├── v1.0.0.0.md                       # Initial shipped release (arc 118 consolidation)
+│   ├── v1.0.0.0.md                       # Initial shipped release
 │   └── v1.1.0.0.md                       # Phase-1-3 release-cleanup pass
 ├── lib/
 │   ├── README.md
 │   ├── deep-loop/                        # 10 TS modules (executor, prompt, state, scoring, routing)
 │   ├── coverage-graph/                   # 3 TS modules (DB, query, signals)
-│   └── council/                          # 5 cjs modules (per packet 131/001/008 ADR-001)
+│   └── council/                          # 5 cjs modules (council durability primitives)
 ├── scripts/                              # 4 .cjs entry points + cli-guards lib
 │   ├── convergence.cjs
 │   ├── upsert.cjs
@@ -343,7 +343,7 @@ Atomic-state semantics, loop-lock behavior, permissions-gate checks and Bayesian
 
 ```bash
 node .opencode/skills/deep-loop-runtime/scripts/status.cjs \
-  --spec-folder ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime" \
+  --spec-folder "<spec-folder>" \
   --loop-type review \
   --session-id smoke-check
 ```
@@ -399,7 +399,7 @@ The runtime test runner expects a fresh per-test SQLite database. Confirm the te
 
 **Q: Does this skill expose MCP tools?**
 
-No. Arc 118 ADR-001 explicitly removed the four `mcp__mk_spec_memory__deep_loop_graph_*` tools. Reintroducing MCP surface here defeats the FULL_ISOLATE direction. Operators and workflows call the four `.cjs` scripts directly.
+No. The isolation ADR explicitly removed the four `mcp__mk_spec_memory__deep_loop_graph_*` tools. Reintroducing MCP surface here defeats the FULL_ISOLATE direction. Operators and workflows call the four `.cjs` scripts directly.
 
 **Q: Who owns the SQLite connection?**
 
@@ -407,7 +407,7 @@ Only `lib/coverage-graph/coverage-graph-db.ts` opens and closes the database. Ev
 
 **Q: Can I add a new consumer skill (beyond deep-review and deep-research)?**
 
-Not without a new ownership ADR. The ESCALATE clause in SKILL.md §4 routes a new consumer through a phase-008 ADR so the runtime-to-consumer contract stays explicit.
+Not without a new ownership ADR. The ESCALATE clause in SKILL.md §4 routes a new consumer through a new ownership ADR so the runtime-to-consumer contract stays explicit.
 
 **Q: How do I add a new node kind to the coverage graph?**
 
@@ -415,7 +415,7 @@ Edit `lib/coverage-graph/coverage-graph-db.ts` to extend the allow-list, then wr
 
 **Q: Why are council primitives here rather than in `deep-ai-council`?**
 
-Packet 131/001/008 ADR-001 (Runtime Boundary Decision) decided that durability primitives (multi-seat dispatch, round-state JSONL, adjudicator scoring, cost guards, session-state hierarchy) belong with the other deep-loop durability primitives. Operator-facing and domain semantics stay in `deep-ai-council`. The split keeps `deep-ai-council` free to change its UX without touching durability contracts.
+The Runtime Boundary Decision (ADR-001) decided that durability primitives (multi-seat dispatch, round-state JSONL, adjudicator scoring, cost guards, session-state hierarchy) belong with the other deep-loop durability primitives. Operator-facing and domain semantics stay in `deep-ai-council`. The split keeps `deep-ai-council` free to change its UX without touching durability contracts.
 
 **Q: Where are the deleted MCP tool tests?**
 
@@ -436,7 +436,7 @@ The SKILL.md is the operational contract loaded by AI agents at routing time (sm
 | Document | Purpose |
 |----------|---------|
 | [`SKILL.md`](SKILL.md) | Operational contract: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES (ALWAYS / NEVER / ESCALATE IF) |
-| [`changelog/v1.0.0.0.md`](changelog/v1.0.0.0.md) | Initial shipped release notes (arc 118 consolidation) |
+| [`changelog/v1.0.0.0.md`](changelog/v1.0.0.0.md) | Initial shipped release notes |
 | [`changelog/v1.1.0.0.md`](changelog/v1.1.0.0.md) | Phase-1-3 release-cleanup pass (README rewrite + 4 surgical SKILL.md edits) |
 | [`feature_catalog/feature_catalog.md`](feature_catalog/feature_catalog.md) | Per-feature canonical inventory across 7 domains |
 | [`manual_testing_playbook/manual_testing_playbook.md`](manual_testing_playbook/manual_testing_playbook.md) | Operator-facing manual-test scenarios (17 scenarios + 1 index) |
@@ -453,14 +453,9 @@ The SKILL.md is the operational contract loaded by AI agents at routing time (sm
 | [`deep-research`](../deep-research/SKILL.md) | Mirror script invocations in `deep_start-research-loop_{auto,confirm}.yaml`. Same TS-import pattern. |
 | [`deep-ai-council`](../deep-ai-council/SKILL.md) | Consumes `lib/council/` primitives. Operator-facing semantics live in deep-ai-council. |
 
-### Arc and packet history
+### History
 
-| Document | Purpose |
-|----------|---------|
-| `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md` | 131 phase parent (deep-skill evolution arc) |
-| `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/004-script-shim-db-relocation/decision-record.md` | ADR-001: script interface contract and DB lifecycle ownership transfer |
-| `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal/decision-record.md` | ADR-001: MCP tool surface removal rationale |
-| `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation/decision-record.md` | 117 council ruling (SPLIT, superseded by 118) |
+Release history and the consolidation rationale (including the superseded AI Council SPLIT ruling) live in the [changelog](changelog/).
 
 ### Cross-system anchors
 

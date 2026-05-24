@@ -107,7 +107,7 @@ Pick `:auto` for unattended runs or `:confirm` for approval gates between iterat
 /deep:start-review-loop:auto "skill deep-review"
 
 # Interactive audit with approval at each step
-/deep:start-review-loop:confirm "specs/skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/003-deep-review/"
+/deep:start-review-loop:confirm "<spec-folder>"
 
 # Autonomous audit of every spec folder in a track
 /deep:start-review-loop:auto "track skilled-agent-orchestration"
@@ -355,7 +355,7 @@ Expected output: 6 iterations covering inventory + 4 dimensions + 1 stabilizatio
 User request: Run an interactive audit on this packet so I can review findings before the loop continues.
 Skill routing: deep-review intent → REVIEW_ITERATION (operator approval per iteration)
 Resources loaded: references/loop_protocol.md, references/state_format.md
-Command: /deep:start-review-loop:confirm "specs/skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/003-deep-review/"
+Command: /deep:start-review-loop:confirm "<spec-folder>"
 Expected output: init creates config + strategy. Operator approves each iteration before dispatch. Dashboard updates between iterations. Synthesis runs only after final approval.
 ```
 

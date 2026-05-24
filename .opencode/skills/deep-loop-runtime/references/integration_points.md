@@ -153,9 +153,9 @@ node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs \
 
 ---
 
-## 7.1 ADDITIONAL CONSUMERS (per phase-5 deep-research audit)
+## 7.1 ADDITIONAL CONSUMERS
 
-The following consumers were surfaced by the parent packet's Phase 5 deep-research loop (DR-017..DR-024) and were absent from §2-§7 above:
+The following consumers were surfaced by a deep-research audit and were absent from §2-§7 above:
 
 | # | Consumer | Path | Integration Shape |
 |---|----------|------|-------------------|
@@ -164,10 +164,10 @@ The following consumers were surfaced by the parent packet's Phase 5 deep-resear
 | 3 | `/doctor` route manifest | `.opencode/commands/doctor/_routes.yaml:88-104` | gate3_location + 4 script_invocations + 4 trigger_phrases routing operator commands to deep-loop-runtime scripts |
 | 4 | `/doctor` update command | `.opencode/commands/doctor/update.md:28, :220, :272` | References deep-loop scripts plus the `.pre-doctor-update.*.bak` backup-pattern reads |
 | 5 | `system-code-graph` playbook | `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-*.md` + `010-*.md` | Operator scenarios exercising the coverage-graph scripts end-to-end |
-| 6 | Legacy MCP server READMEs | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the arc-118 move |
+| 6 | Legacy MCP server READMEs | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
 | 7 | Doctor + deep-agent-improvement | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` + `doctor_update.yaml` + `.opencode/skills/deep-agent-improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-agent-improvement script-lib documentation |
 
-### Note: cross-package test discovery (DR-023)
+### Note: cross-package test discovery
 
 `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts:9` imports `'../../../../deep-review/scripts/reduce-state.cjs'` — the test file lives in `mcp_server` but exercises `deep-review` code, and is discovered via deep-loop-runtime's vitest glob in `vitest.config.ts:20`. Effective SC-007 boundary for any deep-loop-runtime change is therefore tighter than the literal directory listing: changes to `deep-review/scripts/reduce-state.cjs` ALSO re-validate through deep-loop-runtime's test surface.
 

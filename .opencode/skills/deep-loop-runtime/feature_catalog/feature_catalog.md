@@ -29,7 +29,7 @@ This document combines the current feature inventory for the `deep-loop-runtime`
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 22 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per packet 131/001/008 ADR-001 Runtime Boundary Decision.
+Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 22 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
@@ -358,7 +358,7 @@ See [`07--script-entry-points/04-status-script.md`](07--script-entry-points/04-s
 
 ## 9. COUNCIL
 
-These entries cover the 5 council durability primitives that downstream `deep-ai-council` consumes, per packet 131/001/008 ADR-001 (Runtime Boundary Decision). The council surface mirrors the deep-loop durability contract in a council-scoped CJS surface.
+These entries cover the 5 council durability primitives that downstream `deep-ai-council` consumes, per the Runtime Boundary Decision (ADR-001). The council surface mirrors the deep-loop durability contract in a council-scoped CJS surface.
 
 ### Multi-seat dispatch
 

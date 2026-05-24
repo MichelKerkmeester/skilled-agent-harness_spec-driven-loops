@@ -56,7 +56,7 @@ With `graphCoverageMode: 'graphless_fallback'` and empty `searchLedger`, the rev
 - Confirm mirror: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`.
 - Schema: `.opencode/skills/deep-review/references/state_format.md` (`graphCoverageMode` enum + fallback-method conventions).
 - Fixture: `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
-- ADR: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates/decision-record.md`.
+- ADR: complexity-candidate-saturation-gates decision record (see this skill's changelog for provenance).
 
 ## 5. SOURCE_METADATA
 
@@ -64,6 +64,6 @@ With `graphCoverageMode: 'graphless_fallback'` and empty `searchLedger`, the rev
 - Playbook ID: DRV-062
 - Layer partition: workflow YAML legal-stop
 - Expected verdict mode: GREEN (blocked_stop emitted) then GREEN after fallback evidence added
-- Sourcing methodology: 131-deep-skill-evolution arc completion (8 phase children shipped 2026-05-22)
-- Preflight: documented in 116 parent spec.md phase-map
+- Sourcing methodology: review-depth v2 rollout
+- Preflight: documented in the review-depth v2 rollout phase-map
 - Wall-time estimate: ~10 min

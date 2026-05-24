@@ -935,7 +935,7 @@ function buildTraceabilityRollup(iterationRecords) {
 }
 
 /**
- * Phase 008 P1-02 closure: defensively normalize each entry in `blockedBy` so
+ * P1-02 closure: defensively normalize each entry in `blockedBy` so
  * the review dashboard cannot render `[object Object]` even if an older YAML
  * workflow accidentally passes structured graph blockers through the contract.
  *
@@ -1398,7 +1398,7 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
     || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
     || '[All dimensions covered]';
 
-  // Part C REQ-014 / Phase 008 P1-03 closure: prefer the latest blocked-stop
+  // Part C REQ-014 / P1-03 closure: prefer the latest blocked-stop
   // recovery only when blocked-stop is genuinely the most recent loop event.
   // The earlier implementation read timestamps from the markdown iteration
   // files, but parseIterationFile() never captures timestamps, so

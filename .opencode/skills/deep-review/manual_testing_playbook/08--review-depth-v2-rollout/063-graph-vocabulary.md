@@ -58,7 +58,7 @@ The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`,
 - YAML event filter: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (event-normalization block).
 - Confirm mirror: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`.
 - Fixture: `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts`.
-- Phase spec: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab/spec.md`.
+- Phase spec: complexity-ledger-led graph-vocab spec (see this skill's changelog for provenance).
 
 ## 5. SOURCE_METADATA
 
@@ -66,6 +66,6 @@ The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`,
 - Playbook ID: DRV-063
 - Layer partition: coverage-graph allow-list
 - Expected verdict mode: GREEN
-- Sourcing methodology: 131-deep-skill-evolution arc completion (8 phase children shipped 2026-05-22)
-- Preflight: documented in 116 parent spec.md phase-map
+- Sourcing methodology: review-depth v2 rollout
+- Preflight: documented in the review-depth v2 rollout phase-map
 - Wall-time estimate: ~5 min

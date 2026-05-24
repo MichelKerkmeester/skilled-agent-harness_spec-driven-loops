@@ -1,6 +1,6 @@
 ---
 title: "DAC-026 -- council_graph_* tools registered separately from deep_loop_graph_*"
-description: "This scenario validates that `council_graph_*` tools are registered as a distinct family in `tools/index.ts`, `tool-schemas.ts`, and `schemas/tool-input-schemas.ts` with no `loop_type:'council'` overload added to `deep_loop_graph_*` for `DAC-026`. Anchors to ADR-001 dedicated-graph decision and Phase 003 checklist CHK-011 and CHK-023."
+description: "This scenario validates that `council_graph_*` tools are registered as a distinct family in `tools/index.ts`, `tool-schemas.ts`, and `schemas/tool-input-schemas.ts` with no `loop_type:'council'` overload added to `deep_loop_graph_*` for `DAC-026`. Anchors to ADR-001 dedicated-graph decision and checklist CHK-011 and CHK-023."
 ---
 
 # DAC-026 -- council_graph_* tools registered separately from deep_loop_graph_*

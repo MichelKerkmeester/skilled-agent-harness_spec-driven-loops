@@ -667,7 +667,7 @@ Reducer-owned JSON document regenerated after every iteration and lifecycle tran
 
 This file is machine-owned and must stay synchronized with the latest iteration delta, dashboard metrics, and synthesized review report.
 
-### Phase 008 Additions
+### Blocked-Stop and Corruption-Tracking Additions
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -822,7 +822,7 @@ Embed the packet inside the iteration file for each new P0/P1 finding. The orche
     ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts:292-302"
   ],
   "counterevidenceSought": "Grepped the module for compound-key upserts, checked migration scripts, and inspected session-isolation.vitest.ts for a collision regression, none found.",
-  "alternativeExplanation": "Could be intentional single-tenant design, but phase 008 REQ-024 explicitly requires session isolation, so this is rejected.",
+  "alternativeExplanation": "Could be intentional single-tenant design, but REQ-024 explicitly requires session isolation, so this is rejected.",
   "finalSeverity": "P1",
   "confidence": 0.86,
   "downgradeTrigger": "If a composite primary key `(spec_folder, loop_type, session_id, id)` lands and a collision regression covers the ID-reuse path, downgrade to P2 tech-debt.",

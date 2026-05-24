@@ -56,7 +56,7 @@ The reducer preserves `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `
 - Reducer: `.opencode/skills/deep-review/scripts/reduce-state.cjs` (registry return shape + dashboard verdict + active-risks rendering).
 - Report compiler: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` (Search Ledger section in report-output step).
 - Fixture: `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts`.
-- ADR: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/005-complexity-search-ledger-persistence/decision-record.md`.
+- ADR: complexity-search-ledger-persistence decision record (see this skill's changelog for provenance).
 
 ## 5. SOURCE_METADATA
 
@@ -64,6 +64,6 @@ The reducer preserves `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `
 - Playbook ID: DRV-060
 - Layer partition: reducer + dashboard + report
 - Expected verdict mode: GREEN
-- Sourcing methodology: 131-deep-skill-evolution arc completion (8 phase children shipped 2026-05-22)
-- Preflight: documented in 116 parent spec.md phase-map
+- Sourcing methodology: review-depth v2 rollout
+- Preflight: documented in the review-depth v2 rollout phase-map
 - Wall-time estimate: ~10 min

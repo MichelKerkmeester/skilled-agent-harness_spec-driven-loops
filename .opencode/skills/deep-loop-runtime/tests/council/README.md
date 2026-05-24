@@ -15,7 +15,7 @@ description: "Unit tests for the lib/council durability primitives consumed by d
 
 ## 1. OVERVIEW
 
-Per-module coverage for the 5 council durability primitives under `lib/council/`, added per packet 131/001/008 ADR-001 (Runtime Boundary Decision). These mirror the deep-loop durability contract in a council-scoped CommonJS surface and are consumed by `deep-ai-council` orchestration scripts.
+Per-module coverage for the 5 council durability primitives under `lib/council/`, added per the Runtime Boundary Decision (ADR-001). These mirror the deep-loop durability contract in a council-scoped CommonJS surface and are consumed by `deep-ai-council` orchestration scripts.
 
 ## 2. CONTENTS
 

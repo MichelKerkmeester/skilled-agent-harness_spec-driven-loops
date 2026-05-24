@@ -13,7 +13,7 @@ Exercise the `candidateCoverageGate` added to the legal-stop decision tree. A st
 
 ### Why This Matters
 
-Without the gate, a review can terminate with PASS verdict even though the agent never searched the required bug classes. The whole 116 arc is gated on this: a no-finding STOP is only legitimate when the search debt is zero (or the iteration is explicitly trivial-scope with cited evidence).
+Without the gate, a review can terminate with PASS verdict even though the agent never searched the required bug classes. The whole review-depth v2 rollout is gated on this: a no-finding STOP is only legitimate when the search debt is zero (or the iteration is explicitly trivial-scope with cited evidence).
 
 ## 2. SCENARIO CONTRACT
 
@@ -56,7 +56,7 @@ The review cannot legally stop. The blocked_stop output names `candidateCoverage
 - Confirm mirror: `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`.
 - Reducer: `.opencode/skills/deep-review/scripts/reduce-state.cjs` (registry exposing `candidateCoverage`, `searchDebt`).
 - Fixture: `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
-- ADR: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/006-complexity-candidate-saturation-gates/decision-record.md`.
+- ADR: complexity-candidate-saturation-gates decision record (see this skill's changelog for provenance).
 
 ## 5. SOURCE_METADATA
 
@@ -64,6 +64,6 @@ The review cannot legally stop. The blocked_stop output names `candidateCoverage
 - Playbook ID: DRV-061
 - Layer partition: workflow YAML legal-stop
 - Expected verdict mode: GREEN (blocked_stop emitted)
-- Sourcing methodology: 131-deep-skill-evolution arc completion (8 phase children shipped 2026-05-22)
-- Preflight: documented in 116 parent spec.md phase-map
+- Sourcing methodology: review-depth v2 rollout
+- Preflight: documented in the review-depth v2 rollout phase-map
 - Wall-time estimate: ~10 min

@@ -382,7 +382,7 @@ Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for
 
 ## 13. COUNCIL
 
-Per packet 131/001/008 ADR-001 (Runtime Boundary Decision), `lib/council/` provides 5 durability primitives consumed by `deep-ai-council`. These scenarios validate the council surface.
+Per the Runtime Boundary Decision (ADR-001), `lib/council/` provides 5 durability primitives consumed by `deep-ai-council`. These scenarios validate the council surface.
 
 ### DLR-018 | Multi-seat dispatch
 

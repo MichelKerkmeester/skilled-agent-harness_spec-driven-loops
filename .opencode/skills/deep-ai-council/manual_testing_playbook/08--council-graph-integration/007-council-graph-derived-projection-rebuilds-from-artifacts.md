@@ -1,6 +1,6 @@
 ---
 title: "DAC-025 -- Derived projection rebuilds from artifacts"
-description: "This scenario validates that deleting `council-graph.sqlite` rows for a session and replaying upserts from `ai-council/**` artifacts restores graph state without touching the artifacts. Anchors to ADR-001 derived-projection contract and Phase 003 checklist CHK-028."
+description: "This scenario validates that deleting `council-graph.sqlite` rows for a session and replaying upserts from `ai-council/**` artifacts restores graph state without touching the artifacts. Anchors to ADR-001 derived-projection contract and checklist CHK-028."
 ---
 
 # DAC-025 -- Derived projection rebuilds from artifacts

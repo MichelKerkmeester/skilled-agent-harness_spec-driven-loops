@@ -7,7 +7,7 @@ description: "Validate that /improve:agent executes the deep-agent-improvement p
 
 This document captures the realistic user-testing contract, execution flow, source anchors and metadata for `CP-040`.
 
-> **SANDBOXED SCENARIO**: All artifacts live under `/tmp/cp-040-sandbox/`. The target is the packet 060 fixture agent.
+> **SANDBOXED SCENARIO**: All artifacts live under `/tmp/cp-040-sandbox/`. The target is the fixture agent.
 
 ## 1. OVERVIEW
 
@@ -15,7 +15,7 @@ This scenario sends the same small agent-improvement task to a generic implement
 
 ### Why This Matters
 
-Packet 060 research found that loading `SKILL.md` does not fire scanner, profiler, scorer, reducer, benchmark or journal helpers. The disciplined path must leave grep-checkable evidence that those surfaces ran or were explicitly required.
+Research found that loading `SKILL.md` does not fire scanner, profiler, scorer, reducer, benchmark or journal helpers. The disciplined path must leave grep-checkable evidence that those surfaces ran or were explicitly required.
 
 ## 2. SCENARIO CONTRACT
 

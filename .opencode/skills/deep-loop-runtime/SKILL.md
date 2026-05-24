@@ -7,7 +7,7 @@ allowed-tools: [Bash, Read, Glob, Grep]
 
 # Deep Loop Runtime
 
-Shared runtime infrastructure for the deep-review and deep-research loop workflows. The 118 FULL_ISOLATE_NO_MCP arc moved the shared runtime libraries, coverage-graph ownership, script entry points, SQLite storage, and runtime tests into this peer skill.
+Shared runtime infrastructure for the deep-review and deep-research loop workflows. The FULL_ISOLATE_NO_MCP consolidation moved the shared runtime libraries, coverage-graph ownership, script entry points, SQLite storage, and runtime tests into this peer skill.
 
 ---
 
@@ -40,7 +40,7 @@ Do not invoke this skill when:
 
 - A user requests an interactive command (use `/deep:start-review-loop` or `/deep:start-research-loop` instead — those orchestrate this runtime)
 - A package outside deep-review / deep-research needs deep-loop semantics (out of supported scope; open a packet to extend ownership)
-- An MCP tool surface is needed (this skill explicitly has none — the 118 ADR-001 removed the deep-loop MCP tools)
+- An MCP tool surface is needed (this skill explicitly has none — the isolation ADR removed the deep-loop MCP tools)
 
 ---
 
@@ -141,7 +141,7 @@ The runtime exposes deep-loop primitives to consumer workflows through two paths
 
 ### Council Primitives
 
-Packet 131/001/008 ADR-001 (Runtime Boundary Decision) extends `deep-loop-runtime/lib/` with council-compatible infrastructure primitives while keeping operator-facing and domain workflow semantics in `deep-ai-council`. These primitives are consumed by downstream 131/001 phases 010-013 (per-topic-multi-round, session-findings-registry, command-and-skill-wiring, parity-cost-docs) for per-topic orchestration, multi-topic session state, command wiring, parity tests and docs.
+The Runtime Boundary Decision (ADR-001) extends `deep-loop-runtime/lib/` with council-compatible infrastructure primitives while keeping operator-facing and domain workflow semantics in `deep-ai-council`. These primitives are consumed by downstream deep-ai-council orchestration (per-topic multi-round, session-findings registry, command and skill wiring, parity and cost docs) for per-topic orchestration, multi-topic session state, command wiring, parity tests and docs.
 
 **`lib/council/` (5 modules):**
 - `multi-seat-dispatch.cjs` — runs seat executors in parallel for one council round, preserves seat result order, and returns fulfilled/rejected per-seat outcomes plus round summary counts.
@@ -154,7 +154,7 @@ The existing `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, a
 
 ### Script Entry Points
 
-Four `.cjs` scripts replace the 4 deleted MCP tools, each honoring the same JSON-in / JSON-out contract documented in phase 003 ADR-001:
+Four `.cjs` scripts replace the 4 deleted MCP tools, each honoring the same JSON-in / JSON-out contract documented in ADR-001 (the script interface contract):
 
 | Script | Replaces | Purpose | Exit codes |
 |--------|----------|---------|------------|
@@ -183,7 +183,7 @@ The system-spec-kit `mcp_server/vitest.config.ts` includes `'../deep-loop-runtim
 
 ### ALWAYS
 
-- **ALWAYS** open the SQLite DB inside a `try` block and close it in a `finally` block (script lifecycle invariant per phase 003 ADR-001)
+- **ALWAYS** open the SQLite DB inside a `try` block and close it in a `finally` block (script lifecycle invariant per ADR-001, the script interface contract)
 - **ALWAYS** emit JSON-only output to stdout from `scripts/*.cjs` (workflow YAML parses stdout for output bindings)
 - **ALWAYS** include `'use strict';` on line 2 of every `.cjs` script (per sk-code OPENCODE JS style)
 - **ALWAYS** include a `MODULE: <name>` header comment in every `lib/**/*.ts` file (per sk-code OPENCODE TS-MODULE-HEADER convention)
@@ -192,16 +192,16 @@ The system-spec-kit `mcp_server/vitest.config.ts` includes `'../deep-loop-runtim
 
 ### NEVER
 
-- **NEVER** register MCP tools from this skill — the 118 ADR-001 explicitly removed the MCP surface; reintroducing tools defeats the FULL_ISOLATE direction
+- **NEVER** register MCP tools from this skill — the isolation ADR explicitly removed the MCP surface; reintroducing tools defeats the FULL_ISOLATE direction
 - **NEVER** open the SQLite DB outside `lib/coverage-graph/coverage-graph-db.ts` — single owner of the connection
-- **NEVER** import from `system-spec-kit/mcp_server/lib/deep-loop/` or `system-spec-kit/mcp_server/lib/coverage-graph/` — those locations are empty since phase 002; import from this skill instead
+- **NEVER** import from `system-spec-kit/mcp_server/lib/deep-loop/` or `system-spec-kit/mcp_server/lib/coverage-graph/` — those locations are empty after the runtime moved here; import from this skill instead
 - **NEVER** write to `database/deep-loop-graph.sqlite` without holding the `loop-lock`
 - **NEVER** swallow exceptions in script entry points — propagate to the exit-code matrix
 
 ### ESCALATE IF
 
 - **ESCALATE** to the user if a runtime call requires a new MCP tool — the architectural direction prohibits MCP additions; the user must decide on policy override
-- **ESCALATE** to phase-008 ADR if a new consumer skill (beyond deep-review and deep-research) needs deep-loop runtime — extension requires a new ownership ADR
+- **ESCALATE** to a new ownership ADR if a new consumer skill (beyond deep-review and deep-research) needs deep-loop runtime — extension requires a new ownership ADR
 - **ESCALATE** if the SQLite schema requires a backward-incompatible change — coordinate with all consumer workflows + add migration to `coverage-graph-db.ts`
 - **ESCALATE** if a script's stdout JSON contract changes — every workflow YAML output binding depends on the existing shape
 
@@ -248,9 +248,9 @@ Shipped layout:
 
 ## 7. INTEGRATION POINTS
 
-- **117 ADR-001**: original AI Council SPLIT ruling. Superseded for the 118 arc by user directive.
-- **118 ADR-001**: FULL_ISOLATE_NO_MCP. Moves deep-loop runtime, coverage-graph schema/query/signals, script entry points, storage, and tests into this peer skill while removing the deep-loop MCP tool surface.
-- **Deep-review and deep-research workflow YAML** call this runtime through script entry points after phase 005's cutover.
+- **ADR-001 (AI Council SPLIT ruling)**: original AI Council SPLIT ruling. Superseded by user directive.
+- **Isolation ADR (FULL_ISOLATE_NO_MCP)**: Moves deep-loop runtime, coverage-graph schema/query/signals, script entry points, storage, and tests into this peer skill while removing the deep-loop MCP tool surface.
+- **Deep-review and deep-research workflow YAML** call this runtime through script entry points after the runtime cutover.
 - **system-spec-kit/mcp_server/vitest.config.ts** includes `'../deep-loop-runtime/tests/**/*.{vitest,test}.ts'` for cross-package test discovery.
 - **deep-review/scripts/reduce-state.cjs** depends on the moved coverage-graph runtime via lib imports.
 
@@ -258,10 +258,8 @@ Shipped layout:
 
 ## 8. REFERENCES
 
-- 118 phase parent: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md`
-- 118 phase 003: script shim and DB relocation (ADR-001 documents the script interface contract)
-- 118 phase 004: MCP tool surface removal (ADR-001 documents the deletion rationale)
-- 118 phase 008: v1.0.0 closeout, changelog, and resource-map updates
-- 117 council deliberation: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation/`
+- ADR-001 (script interface contract): documents the script-shim and DB-relocation contract.
+- Isolation ADR (FULL_ISOLATE_NO_MCP): documents the MCP tool surface removal rationale.
+- Decision rationale lives in this skill's changelog and originating decision records.
 - changelog: `changelog/v1.0.0.0.md` (initial shipped release)
 - changelog: `changelog/v1.1.0.0.md` (Phase-1-3 release-cleanup pass)

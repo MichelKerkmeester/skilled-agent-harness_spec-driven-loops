@@ -82,7 +82,7 @@ function parseJsonl(jsonlContent) {
 }
 
 /**
- * Parse JSONL content and report malformed lines (fail-closed pathway, phase 008
+ * Parse JSONL content and report malformed lines (fail-closed pathway,
  * research reducer parity with deep-review Part C).
  *
  * The reducer exit code is non-zero when corruption warnings are present
@@ -942,7 +942,7 @@ function reduceResearchState(specFolder, options = {}) {
     status,
   });
   // Expose corruptionWarnings as a top-level registry field for parity with
-  // deep-review (phase 008 REQ-015 research-side follow-up).
+  // deep-review (REQ-015 research-side follow-up).
   registry.corruptionWarnings = corruptionWarnings;
   registry.status = status;
   const strategy = updateStrategyContent(strategyContent, registry, iterationFiles, records);
@@ -1041,7 +1041,7 @@ if (require.main === module) {
         2,
       )}\n`,
     );
-    // Fail-closed exit semantics matching deep-review (phase 008 REQ-015 parity).
+    // Fail-closed exit semantics matching deep-review (REQ-015 parity).
     if (result.hasCorruption && !lenient) {
       process.exit(2);
     }

@@ -27,7 +27,7 @@ trigger_phrases:
 | `bayesian-scorer.ts` | Convergence scoring. |
 | `fallback-router.ts` | Executor fallback routing. |
 
-Related arc 009 lifecycle helpers live outside this folder:
+Related lifecycle helpers live outside this folder:
 
 - Code Graph: `system-code-graph/mcp_server/lib/owner-lease.ts`, `canonical-db-dir.ts`, `close-db-assertion.ts`.
 - Spec Kit runtime: `system-spec-kit/mcp_server/lib/memory/bounded-cache.ts`, `audit-rotation.ts`, `lib/runtime/timer-registry.ts`, `shutdown-hooks.ts`, `lib/embedders/sidecar-client.ts`.
