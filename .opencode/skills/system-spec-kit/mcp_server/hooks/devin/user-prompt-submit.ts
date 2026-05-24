@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────
+// MODULE: Devin User Prompt Submit Shim
+// ───────────────────────────────────────────────────────────────
 // Thin process-boundary shim. The advisor implementation lives in
 // system-skill-advisor; this path is referenced from .devin/hooks.v1.json.
 

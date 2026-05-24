@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Unicode Normalization Re-exports
+// ───────────────────────────────────────────────────────────────
+
 export {
   CANONICAL_FOLD_VERSION,
   canonicalFold,

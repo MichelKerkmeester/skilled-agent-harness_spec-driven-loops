@@ -1,6 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Template Structure Utilities
 // ───────────────────────────────────────────────────────────────
+'use strict';
 
 import fs from 'fs';
 import path from 'path';

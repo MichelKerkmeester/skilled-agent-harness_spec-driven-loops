@@ -33,7 +33,7 @@ Operator contract precedence for this skill surface:
 
 **NOT INTERCHANGEABLE with siblings:**
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
-- `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
+- `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
 
 Carrying threshold expectations across siblings will cause unexpected iteration counts. See this skill's changelog and decision records for the cross-sibling threshold research and parity invariants that confirm thresholds do not carry across siblings.
 
@@ -184,6 +184,15 @@ def _guard_in_skill(relative_path: str) -> str:
         raise ValueError(f"Only markdown resources are routable: {relative_path}")
     return resolved.relative_to(SKILL_ROOT).as_posix()
 
+def _guard_resource_map(resource_map: dict[str, list[str]]) -> None:
+    for intent, resources in resource_map.items():
+        for relative_path in resources:
+            guarded = _guard_in_skill(relative_path)
+            if guarded.startswith("references/"):
+                tail = guarded.removeprefix("references/")
+                if "/" not in tail and "-" in Path(tail).stem:
+                    raise ValueError(f"RESOURCE_MAP must target canonical references, not compatibility stubs: {intent} -> {guarded}")
+
 def discover_markdown_resources() -> set[str]:
     docs = []
     for base in RESOURCE_BASES:
@@ -210,6 +219,8 @@ def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_i
     return selected[:max_intents]
 
 def route_deep_research_resources(task):
+    _guard_resource_map(RESOURCE_MAP)
+    _guard_resource_map({"ALWAYS": LOADING_LEVELS["ALWAYS"], "ON_DEMAND": LOADING_LEVELS["ON_DEMAND"]})
     inventory = discover_markdown_resources()
     scores = score_intents(task)
     intents = select_intents(scores)

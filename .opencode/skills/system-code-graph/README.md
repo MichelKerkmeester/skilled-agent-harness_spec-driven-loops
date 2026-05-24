@@ -337,13 +337,14 @@ No. Those files belong to third-party packages. Keep sk-doc template alignment t
 | [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) | Native bootstrap and per-runtime configuration. |
 | [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md) | Current feature inventory. |
 | [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation scenario index. |
-| [references/tool-surface.md](./references/tool-surface.md) | All 11 MCP tools mapped to handler, purpose, preconditions, token budget. |
-| [references/readiness-and-scope-fingerprint.md](./references/readiness-and-scope-fingerprint.md) | Readiness state machine, trust state, and scope-fingerprint contract. |
-| [references/code-graph-readiness-check.md](./references/code-graph-readiness-check.md) | Readiness contract primer. |
-| [references/ccc-bridge-integration.md](./references/ccc-bridge-integration.md) | When to use `ccc_status` / `ccc_reindex` / `ccc_feedback` with CocoIndex. |
-| [references/naming-conventions.md](./references/naming-conventions.md) | Name map across skill folder, MCP server, launcher, plugin bridge, hook location. |
-| [references/ownership-boundary.md](./references/ownership-boundary.md) | Why some graph-related code stayed in `system-spec-kit`. |
-| [references/database-path-policy.md](./references/database-path-policy.md) | Canonical database path and override rules. |
+| [references/runtime/tool_surface.md](./references/runtime/tool_surface.md) | All 11 MCP tools mapped to handler, purpose, preconditions, token budget. |
+| [references/readiness/readiness_and_scope_fingerprint.md](./references/readiness/readiness_and_scope_fingerprint.md) | Readiness state machine, trust state, and scope-fingerprint contract. |
+| [references/readiness/code_graph_readiness_check.md](./references/readiness/code_graph_readiness_check.md) | Readiness contract primer. |
+| [references/integrations/ccc_bridge_integration.md](./references/integrations/ccc_bridge_integration.md) | When to use `ccc_status` / `ccc_reindex` / `ccc_feedback` with CocoIndex. |
+| [references/runtime/naming_conventions.md](./references/runtime/naming_conventions.md) | Name map across skill folder, MCP server, launcher, plugin bridge, hook location. |
+| [references/runtime/ownership_boundary.md](./references/runtime/ownership_boundary.md) | Why some graph-related code stayed in `system-spec-kit`. |
+| [references/config/database_path_policy.md](./references/config/database_path_policy.md) | Canonical database path and override rules. |
+| [references/runtime/launcher_lease.md](./references/runtime/launcher_lease.md) | Launcher PID-file lease and single-writer behavior. |
 | [repo scripts runbook](../../scripts/README.md) | Shared orphan MCP sweeper, Claude cleanup, and LaunchAgent template notes. |
 | [orphan MCP leak prevention packet](../../specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md) | Canonical lifecycle guardrail implementation summary. |
 | [mcp_server/handlers/README.md](./mcp_server/handlers/README.md) | Handler-layer package topology. |

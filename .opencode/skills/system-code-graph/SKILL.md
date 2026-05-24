@@ -56,36 +56,227 @@ Use this skill for:
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-### Primary Detection Signal
+This package is mandatory context for structural code-graph maintenance, readiness checks, impact queries, context retrieval, and CCC bridge coordination. The live tool schemas stay in `mcp_server/tool-schemas.ts`; this router controls which local documentation resources an agent should load.
 
-This skill is **tool-keyed**, not folder-keyed. The router picks a tool, not a `references/<key>/` subfolder. Two signals drive the choice:
-
-1. **Operator-named tool** wins. If the prompt names a `code_graph_*`, `detect_changes`, or `ccc_*` tool, route there directly.
-2. **Classifier-derived intent** otherwise. Call `code_graph_classify_query_intent` to map natural language to one of `{structural, semantic, hybrid}`. Structural → this skill. Semantic → `mcp-coco-index`. Hybrid → use both: CocoIndex seeds → `code_graph_context`.
-
-### Phase Detection
+Routing model:
 
 ```text
-QUERY ARRIVES
-   |
-   +- STEP 0: Operator named a tool? -- YES --> Route to that tool
-   |                                |
-   |                                NO
-   |                                v
-   +- STEP 1: Classify intent (code_graph_classify_query_intent)
-   |          structural / semantic / hybrid
-   |
-   +- STEP 2: Check readiness (code_graph_status)
-   |          fresh? -- NO --> code_graph_scan, then retry
-   |          fresh? -- YES --> proceed
-   |
-   +- STEP 3: Pick tool from Resource Domains table below
-   +- STEP 4: Verify before completion (code_graph_verify on critical paths)
+user prompt
+  |
+  +-- named code_graph_*, detect_changes, or ccc_* tool -> named tool wins
+  |
+  +-- natural-language code-intelligence request
+        |
+        +-- code_graph_classify_query_intent -> structural / semantic / hybrid
+        |
+        +-- structural -> system-code-graph resources and readiness gate
+        |
+        +-- semantic -> mcp-coco-index resources
+        |
+        +-- hybrid -> CocoIndex seeds, then code_graph_context
 ```
 
-### Resource Domains
+Resource domains:
 
-The router selects from these tool intents. The table is the authoritative map; `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` is the source of truth for the schemas themselves.
+- `references/runtime/` documents the tool surface, naming conventions, ownership boundary, and launcher lease.
+- `references/readiness/` documents `ensureCodeGraphReady()`, readiness states, trust state, and scope fingerprints.
+- `references/config/` documents database path and workspace containment policy.
+- `references/integrations/` documents CCC bridge coordination with CocoIndex.
+- `feature_catalog/` documents current tool features and source-of-truth behavior slices.
+- `manual_testing_playbook/` documents deterministic operator scenarios for status, scan, verify, query, context, change detection, CCC, doctor, and launcher flows.
+- `mcp_server/` owns handlers, schemas, tool registration, tests, parser, storage, readiness logic, and the SQLite-backed runtime.
+
+### Resource Loading Levels
+
+| Level | When to Load | Resources |
+|---|---|---|
+| ALWAYS | Every code-graph invocation | `references/runtime/tool_surface.md`, `references/readiness/code_graph_readiness_check.md` |
+| CONDITIONAL | Intent signals match a resource domain | Matching canonical references, feature catalog slices, or playbook scenarios |
+| ON_DEMAND | Explicit request or troubleshooting depth needed | Full reference folders, feature catalog families, and manual playbook categories |
+
+### Smart Router Pseudocode
+
+This pseudocode captures the canonical documentation resource-loading contract. The runtime schema array, not this table, remains authoritative for executable tool registration.
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (
+    SKILL_ROOT / "references",
+    SKILL_ROOT / "feature_catalog",
+    SKILL_ROOT / "manual_testing_playbook",
+    SKILL_ROOT / "assets",
+)
+DEFAULT_RESOURCES = [
+    "references/runtime/tool_surface.md",
+    "references/readiness/code_graph_readiness_check.md",
+]
+
+INTENT_SIGNALS = {
+    "TOOL_SURFACE": {"weight": 4, "keywords": ["tool", "schema", "tool id", "code_graph_", "detect_changes", "ccc_"]},
+    "READINESS": {"weight": 4, "keywords": ["readiness", "fresh", "stale", "blocked", "empty", "absent", "ensurecodegraphready"]},
+    "QUERY": {"weight": 4, "keywords": ["query", "blast radius", "caller", "import", "dependency", "symbol", "context"]},
+    "SCAN_VERIFY": {"weight": 4, "keywords": ["scan", "verify", "gold query", "rescan", "index", "refresh"]},
+    "CHANGE_DETECTION": {"weight": 3, "keywords": ["detect changes", "diff", "affected symbols", "preflight"]},
+    "CONFIG": {"weight": 3, "keywords": ["database", "sqlite", "db path", "storage", "speckit_code_graph_db_dir"]},
+    "CCC": {"weight": 3, "keywords": ["ccc", "cocoindex", "semantic", "hybrid", "feedback", "reindex"]},
+    "NAMING": {"weight": 3, "keywords": ["name", "mk-code-index", "mk_code_index", "namespace", "launcher", "plugin"]},
+    "OWNERSHIP": {"weight": 3, "keywords": ["ownership", "boundary", "spec-kit", "deep-loop", "coverage graph"]},
+    "LAUNCHER": {"weight": 3, "keywords": ["launcher", "lease", "pid", "single writer", "lease_held_by"]},
+    "FEATURES": {"weight": 2, "keywords": ["feature catalog", "capability", "current feature"]},
+    "PLAYBOOK": {"weight": 2, "keywords": ["manual test", "playbook", "scenario", "evidence"]},
+}
+
+RESOURCE_MAP = {
+    "TOOL_SURFACE": [
+        "references/runtime/tool_surface.md",
+        "feature_catalog/06--mcp-tool-surface/01-tool-registrations.md",
+    ],
+    "READINESS": [
+        "references/readiness/code_graph_readiness_check.md",
+        "references/readiness/readiness_and_scope_fingerprint.md",
+        "feature_catalog/01--read-path-freshness/01-ensure-code-graph-ready.md",
+        "feature_catalog/02--manual-scan-verify-status/03-code-graph-status.md",
+    ],
+    "QUERY": [
+        "references/runtime/tool_surface.md",
+        "feature_catalog/01--read-path-freshness/02-query-self-heal.md",
+        "feature_catalog/04--context-retrieval/01-code-graph-context.md",
+    ],
+    "SCAN_VERIFY": [
+        "references/readiness/readiness_and_scope_fingerprint.md",
+        "feature_catalog/02--manual-scan-verify-status/01-code-graph-scan.md",
+        "feature_catalog/02--manual-scan-verify-status/02-code-graph-verify.md",
+    ],
+    "CHANGE_DETECTION": [
+        "references/runtime/tool_surface.md",
+        "feature_catalog/03--detect-changes/01-detect-changes-preflight.md",
+    ],
+    "CONFIG": [
+        "references/config/database_path_policy.md",
+    ],
+    "CCC": [
+        "references/integrations/ccc_bridge_integration.md",
+        "feature_catalog/07--ccc-integration/01-ccc-reindex.md",
+        "feature_catalog/07--ccc-integration/02-ccc-feedback.md",
+        "feature_catalog/07--ccc-integration/03-ccc-status.md",
+    ],
+    "NAMING": [
+        "references/runtime/naming_conventions.md",
+    ],
+    "OWNERSHIP": [
+        "references/runtime/ownership_boundary.md",
+    ],
+    "LAUNCHER": [
+        "references/runtime/launcher_lease.md",
+        "manual_testing_playbook/09--post-rename-infrastructure/017-launcher-startup-prefix.md",
+    ],
+    "FEATURES": [
+        "feature_catalog/feature_catalog.md",
+    ],
+    "PLAYBOOK": [
+        "manual_testing_playbook/manual_testing_playbook.md",
+    ],
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether the request is about tool surface, readiness, query, scan/verify, change detection, config, CCC, naming, ownership, launcher, features or playbooks",
+    "Confirm whether the task changes documentation only or executable code-graph behavior",
+    "Provide the failing tool id, status payload, reference path, diff, or validation command",
+    "Confirm the verification command set before completion",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def _guard_resource_map(resource_map: dict[str, list[str]]) -> None:
+    for intent, resources in resource_map.items():
+        for relative_path in resources:
+            guarded = _guard_in_skill(relative_path)
+            if guarded.startswith("references/"):
+                tail = guarded.removeprefix("references/")
+                if "/" not in tail and "-" in Path(tail).stem:
+                    raise ValueError(f"RESOURCE_MAP must target canonical references, not compatibility stubs: {intent} -> {guarded}")
+
+def _task_text(task) -> str:
+    fields = [
+        getattr(task, "prompt", ""),
+        getattr(task, "intent", ""),
+        getattr(task, "path", ""),
+        getattr(task, "command", ""),
+    ]
+    return " ".join(str(field) for field in fields if field).lower()
+
+loaded = []
+seen = set()
+_guard_resource_map(RESOURCE_MAP)
+_guard_resource_map({"DEFAULT": DEFAULT_RESOURCES})
+inventory = discover_markdown_resources()
+
+def load_if_available(relative_path: str) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(task) -> dict[str, int]:
+    text = _task_text(task)
+    scores = {}
+    for intent, model in INTENT_SIGNALS.items():
+        hits = sum(1 for keyword in model["keywords"] if keyword in text)
+        if hits:
+            scores[intent] = hits * model["weight"]
+    return scores
+
+for resource in DEFAULT_RESOURCES:
+    load_if_available(resource)
+
+scores = score_intents(task)
+if max(scores.values() or [0]) < 3:
+    return {
+        "load_level": "UNKNOWN_FALLBACK",
+        "needs_disambiguation": True,
+        "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+        "resources": loaded,
+    }
+
+ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+top_score = ranked[0][1]
+selected = [intent for intent, score in ranked if top_score - score <= 1][:2]
+
+for intent in selected:
+    resources = RESOURCE_MAP.get(intent, [])
+    if not resources:
+        return {
+            "notice": f"No knowledge base found for code-graph intent '{intent}'",
+            "resources": loaded,
+        }
+    for resource in resources:
+        load_if_available(resource)
+
+return {
+    "intents": selected,
+    "ambiguous": len(selected) > 1,
+    "resources": loaded,
+}
+```
+
+### Tool Dispatch Contract
+
+The router selects from these tool intents. `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` is the source of truth for the schemas themselves.
 
 | Intent | Primary Surface | Reference |
 |--------|-----------------|-----------|
@@ -97,36 +288,29 @@ The router selects from these tool intents. The table is the authoritative map; 
 | Validate graph quality with gold queries | `mcp__mk_code_index__code_graph_verify` | `feature_catalog/02--manual-scan-verify-status/02-code-graph-verify.md` |
 | Inspect changed symbols from a diff | `mcp__mk_code_index__detect_changes` | `feature_catalog/03--detect-changes/01-detect-changes-preflight.md` |
 | Execute verification-gated apply-mode recovery operations | `mcp__mk_code_index__code_graph_apply` | `feature_catalog/08--doctor-code-graph/01-doctor-apply-mode.md` |
-| Bridge CocoIndex status, reindexing and feedback | `mcp__mk_code_index__ccc_status`, `mcp__mk_code_index__ccc_reindex`, `mcp__mk_code_index__ccc_feedback` | `references/ccc-bridge-integration.md` |
+| Bridge CocoIndex status, reindexing and feedback | `mcp__mk_code_index__ccc_status`, `mcp__mk_code_index__ccc_reindex`, `mcp__mk_code_index__ccc_feedback` | `references/integrations/ccc_bridge_integration.md` |
 | Review doctor code-graph apply policy | `/doctor code-graph` | `feature_catalog/08--doctor-code-graph/01-doctor-apply-mode.md` |
 
 The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code_graph_*`, `detect_changes`, and `ccc_*`.
 
-### Resource Loading Levels
+### Fallback Contract
 
-| Level | When to Load | Resources |
-| --- | --- | --- |
-| ALWAYS | Every invocation (after status check) | `references/code-graph-readiness-check.md`, `references/tool-surface.md` |
-| CONDITIONAL | On scope-change, scan-related, or readiness-blocked queries | `references/readiness-and-scope-fingerprint.md`, `references/database-path-policy.md` |
-| ON_DEMAND | Cross-skill questions, naming questions, ownership questions | `references/naming-conventions.md`, `references/ownership-boundary.md`, `references/ccc-bridge-integration.md` |
-
-### Routing key
-
-The routing key is the natural-language intent class returned by `code_graph_classify_query_intent` (structural / semantic / hybrid). Operators may override by naming a tool directly in the prompt.
-
-### Fallback contract
-
+- **Low confidence:** load default runtime/readiness references, emit `UNKNOWN_FALLBACK_CHECKLIST`, and ask for the missing tool/status/path signal.
+- **Ambiguous intent scores:** load the top two resource domains and disclose the ambiguity instead of picking one silently.
+- **Known intent with no resources:** return a "no knowledge base found" notice naming the missing intent.
 - **Unclassifiable intent:** call `code_graph_classify_query_intent` first. If the classifier returns low confidence, ask for one concrete file path, symbol or error message before proceeding.
 - **`mk_code_index` MCP unavailable:** report the state and stop. Structural queries do not fall back to text search because ambiguous text-search results mislead more than they help.
 - **Graph not ready (`status` returns `blocked`, `empty` or `absent`):** call `code_graph_scan` first, then retry. Never return a stale or empty graph result as if it were authoritative.
 
-### Anti-patterns
+### Anti-Patterns
 
+- Static reference inventories that miss newly moved docs.
+- Loading root compatibility stubs when canonical subfolder references exist.
+- Compatibility stubs without `deprecated_at` and `remove_after` frontmatter, or any router target that points at a stub before the removal-window grep passes.
+- Raw `load("references/file.md")` calls without `_guard_in_skill()`, inventory checks or duplicate suppression.
 - Hardcoded tool lists in router code. Consult `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` as the source of truth.
 - Using `code_graph_query` for unclassified queries. Classify intent first so the right tool runs.
 - Treating `detect_changes` as a general query tool. It is diff-driven impact analysis with a fixed schema, not a query surface.
-
-> **Router authority:** tool selection is driven by `mcp_server/tool-schemas.ts` (`CODE_GRAPH_TOOL_SCHEMAS`) and `mcp_server/lib/query-intent-classifier.ts`. The table above is documentation; the schema array is canonical.
 
 <!-- /ANCHOR:smart-routing -->
 
@@ -204,7 +388,7 @@ Cross-subsystem consumers use two intentional paths:
 
 The shared SQLite file at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` remains the coordination boundary. The scan loop is the single writer.
 
-**Naming asymmetries.** Five identifiers refer to this skill across runtime layers — skill folder slug (`system-code-graph`), MCP server name (`mk-code-index`), MCP config key (`mk_code_index`), launcher / plugin file names, and the shared data directory. Each is correct in its own scope. See [`references/naming-conventions.md`](references/naming-conventions.md) for the full map plus the rationale for the hook-location asymmetry (hooks remain under `system-spec-kit/mcp_server/hooks/`).
+**Naming asymmetries.** Five identifiers refer to this skill across runtime layers — skill folder slug (`system-code-graph`), MCP server name (`mk-code-index`), MCP config key (`mk_code_index`), launcher / plugin file names, and the shared data directory. Each is correct in its own scope. See [`references/runtime/naming_conventions.md`](references/runtime/naming_conventions.md) for the full map plus the rationale for the hook-location asymmetry (hooks remain under `system-spec-kit/mcp_server/hooks/`).
 <!-- /ANCHOR:integration-points -->
 
 ---
@@ -214,13 +398,14 @@ The shared SQLite file at `.opencode/.spec-kit/code-graph/database/code-graph.sq
 
 ### Core references (this skill)
 
-- [`references/tool-surface.md`](references/tool-surface.md) — 11 MCP tools mapped to handler files, primary purpose, and preconditions.
-- [`references/readiness-and-scope-fingerprint.md`](references/readiness-and-scope-fingerprint.md) — readiness state machine (`fresh`/`stale`/`blocked`/`empty`/`absent`) and the scan-scope fingerprint contract.
-- [`references/code-graph-readiness-check.md`](references/code-graph-readiness-check.md) — `ensureCodeGraphReady()` gates, preconditions, recovery procedures.
-- [`references/ccc-bridge-integration.md`](references/ccc-bridge-integration.md) — when to use `ccc_status` / `ccc_reindex` / `ccc_feedback` and how they coordinate with CocoIndex.
-- [`references/database-path-policy.md`](references/database-path-policy.md) — canonical database path policy and override rules.
-- [`references/naming-conventions.md`](references/naming-conventions.md) — name map across skill folder, MCP server, launcher, plugin bridge, and hook location.
-- [`references/ownership-boundary.md`](references/ownership-boundary.md) — what stays in `system-spec-kit` vs `system-code-graph` after extraction.
+- [`references/runtime/tool_surface.md`](references/runtime/tool_surface.md) — 11 MCP tools mapped to handler files, primary purpose, and preconditions.
+- [`references/readiness/readiness_and_scope_fingerprint.md`](references/readiness/readiness_and_scope_fingerprint.md) — readiness state machine (`fresh`/`stale`/`blocked`/`empty`/`absent`) and the scan-scope fingerprint contract.
+- [`references/readiness/code_graph_readiness_check.md`](references/readiness/code_graph_readiness_check.md) — `ensureCodeGraphReady()` gates, preconditions, recovery procedures.
+- [`references/integrations/ccc_bridge_integration.md`](references/integrations/ccc_bridge_integration.md) — when to use `ccc_status` / `ccc_reindex` / `ccc_feedback` and how they coordinate with CocoIndex.
+- [`references/config/database_path_policy.md`](references/config/database_path_policy.md) — canonical database path policy and override rules.
+- [`references/runtime/naming_conventions.md`](references/runtime/naming_conventions.md) — name map across skill folder, MCP server, launcher, plugin bridge, and hook location.
+- [`references/runtime/ownership_boundary.md`](references/runtime/ownership_boundary.md) — what stays in `system-spec-kit` vs `system-code-graph` after extraction.
+- [`references/runtime/launcher_lease.md`](references/runtime/launcher_lease.md) — PID-file lease contract for the launcher single-writer path.
 
 ### Cross-skill references
 

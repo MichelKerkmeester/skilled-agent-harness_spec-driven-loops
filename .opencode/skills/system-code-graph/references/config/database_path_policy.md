@@ -9,14 +9,32 @@ trigger_phrases:
 
 # System Code Graph Database Path Policy
 
-<!-- sk-doc-template: skill_reference -->
+Policy for the package-local code-graph SQLite database path and supported override boundaries.
 
 ---
 
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
+### Purpose
+
 This policy fixes the current runtime location for the code graph's package-local SQLite database and its sidecar files. The database is the code graph's structural index state, so the policy ensures clear ownership boundaries after the ADR-002 extraction.
+
+### When to Use
+
+- Configuring `mk-code-index` database paths across runtimes.
+- Reviewing tests or CI that override `SPECKIT_CODE_GRAPH_DB_DIR`.
+- Diagnosing stale state from legacy database locations.
+
+### Core Principle
+
+All runtimes coordinate through one workspace-contained SQLite triplet owned by `system-code-graph`.
+
+### Key Sources
+
+- `INSTALL_GUIDE.md` §7 for operator-facing database configuration.
+- `.opencode/bin/mk-code-index-launcher.cjs` for the standalone-storage guard.
+- `mcp_server/lib/database-paths.ts` for runtime path resolution.
 
 ---
 

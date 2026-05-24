@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests",
+  "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests",
   "description": "Feature Specification: 061 — sk-improve-agent Command-Flow Stress Tests",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "stress",
     "tests"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.959Z",
+  "lastUpdated": "2026-05-24T08:08:00.260Z",
   "specId": "004",
   "folderSlug": "improve-agent-command-flow-stress-tests",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "060-sk-agent-improver-test-report-alignment"
   ],
   "memorySequence": 1,

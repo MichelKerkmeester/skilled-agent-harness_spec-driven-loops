@@ -1,6 +1,8 @@
 ---
 title: "DB Path Policy Reference Moved"
 description: "Compatibility pointer for the moved DB path policy reference."
+deprecated_at: "2026-05-24"
+remove_after: "2026-08-24"
 ---
 
 # DB Path Policy Reference Moved

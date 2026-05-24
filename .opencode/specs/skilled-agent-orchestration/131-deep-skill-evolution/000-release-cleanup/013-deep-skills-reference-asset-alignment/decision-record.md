@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-05-24T12:00:00Z"
     last_updated_by: "codex"
     recent_action: "decisions-recorded"
-    next_safe_action: "validate"
+    next_safe_action: "await-human-approval-for-phase-9"
     blockers:
       - "Phase 9 approval pending."
     key_files: ["decision-record.md"]

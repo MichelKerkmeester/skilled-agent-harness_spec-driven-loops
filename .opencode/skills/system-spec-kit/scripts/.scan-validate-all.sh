@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Run validate.sh --strict across every spec folder and summarize failures.
-set -uo pipefail
+set -euo pipefail
 
 ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs"
 VALIDATE="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh"
@@ -24,10 +24,10 @@ FAILED_FOLDERS=()
 ERROR_FOLDERS=()
 
 for f in "${FOLDERS[@]}"; do
-  out=$(bash "$VALIDATE" "$f" --strict 2>&1)
-  summary=$(echo "$out" | grep -E "^  Summary:" | head -1)
-  errs=$(echo "$summary" | sed -n 's/.*Errors: \([0-9]*\).*/\1/p')
-  warns=$(echo "$summary" | sed -n 's/.*Warnings: \([0-9]*\).*/\1/p')
+  out=$(bash "$VALIDATE" "$f" --strict 2>&1 || true)
+  summary=$(printf '%s\n' "$out" | grep -E "^  Summary:" | head -1 || true)
+  errs=$(printf '%s\n' "$summary" | sed -n 's/.*Errors: \([0-9]*\).*/\1/p' || true)
+  warns=$(printf '%s\n' "$summary" | sed -n 's/.*Warnings: \([0-9]*\).*/\1/p' || true)
   errs=${errs:-0}
   warns=${warns:-0}
   if [ "$errs" -gt 0 ]; then

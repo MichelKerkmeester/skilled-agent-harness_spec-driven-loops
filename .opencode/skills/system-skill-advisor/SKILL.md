@@ -185,6 +185,15 @@ def _guard_in_skill(relative_path: str) -> str:
         raise ValueError(f"Only markdown resources are routable: {relative_path}")
     return resolved.relative_to(SKILL_ROOT).as_posix()
 
+def _guard_resource_map(resource_map: dict[str, list[str]]) -> None:
+    for intent, resources in resource_map.items():
+        for relative_path in resources:
+            guarded = _guard_in_skill(relative_path)
+            if guarded.startswith("references/"):
+                tail = guarded.removeprefix("references/")
+                if "/" not in tail and "-" in Path(tail).stem:
+                    raise ValueError(f"RESOURCE_MAP must target canonical references, not compatibility stubs: {intent} -> {guarded}")
+
 def _task_text(task) -> str:
     fields = [
         getattr(task, "prompt", ""),
@@ -196,6 +205,8 @@ def _task_text(task) -> str:
 
 loaded = []
 seen = set()
+_guard_resource_map(RESOURCE_MAP)
+_guard_resource_map({"DEFAULT": DEFAULT_RESOURCES})
 inventory = discover_markdown_resources()
 
 def load_if_available(relative_path: str) -> None:
@@ -258,6 +269,7 @@ return {
 
 - Static reference inventories that miss newly moved docs.
 - Loading root compatibility stubs when canonical subfolder references exist.
+- Compatibility stubs without `deprecated_at` and `remove_after` frontmatter, or any router target that points at a stub before the removal-window grep passes.
 - Raw `load("references/file.md")` calls without `_guard_in_skill()`, inventory checks or duplicate suppression.
 - Hardcoded tool IDs in caller code. Consult the live registration in `mcp_server/tools/index.ts` and `mcp_server/tools/skill-graph-tools.ts`.
 

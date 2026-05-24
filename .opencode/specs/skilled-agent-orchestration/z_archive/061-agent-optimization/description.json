@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/061-agent-optimization",
+  "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization",
   "description": "Phase Parent Spec: 061 — Agent Fleet Optimization",
   "keywords": [
     "phase",
@@ -10,11 +10,12 @@
     "fleet",
     "optimization"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.967Z",
+  "lastUpdated": "2026-05-24T08:08:00.270Z",
   "specId": "061",
   "folderSlug": "agent-optimization",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

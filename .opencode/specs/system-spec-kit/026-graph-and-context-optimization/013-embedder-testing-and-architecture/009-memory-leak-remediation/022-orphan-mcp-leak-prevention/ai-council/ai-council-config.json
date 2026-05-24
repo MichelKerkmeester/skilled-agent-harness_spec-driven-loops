@@ -1,0 +1,14 @@
+{
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention",
+  "current_round": 1,
+  "max_rounds": 3,
+  "seats_per_round": 3,
+  "convergence_signal": "two-of-three-agree",
+  "created_at": "2026-05-24T23:00:00Z",
+  "updated_at": "2026-05-24T23:00:00Z",
+  "status": "complete",
+  "dispatch_mode": "inline-sequential-thinking",
+  "runtime": "opencode-deepseek-v4-pro",
+  "task_type": "review",
+  "review_target": "orphan MCP leak prevention packet 022"
+}

@@ -290,6 +290,16 @@ def _guard_in_skill(relative_path: str) -> str:
         raise ValueError(f"Only markdown resources are routable: {relative_path}")
     return resolved.relative_to(SKILL_ROOT).as_posix()
 
+def _guard_resource_map(resource_map: dict[str, list[str]]) -> None:
+    """Reject compatibility stubs as router targets while allowing them to preserve old links."""
+    for intent, resources in resource_map.items():
+        for relative_path in resources:
+            guarded = _guard_in_skill(relative_path)
+            if guarded.startswith("references/"):
+                tail = guarded.removeprefix("references/")
+                if "/" not in tail and "-" in Path(tail).stem:
+                    raise ValueError(f"RESOURCE_MAP must target canonical references, not compatibility stubs: {intent} -> {guarded}")
+
 def discover_markdown_resources() -> set[str]:
     """Recursively discover routable markdown docs for this skill only."""
     docs = []
@@ -332,6 +342,11 @@ def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_i
 
 def route_speckit_resources(task):
     """Scoped, recursive, weighted, ambiguity-aware routing."""
+    _guard_resource_map(RESOURCE_MAP)
+    _guard_resource_map({
+        "ALWAYS": LOADING_LEVELS["ALWAYS"],
+        "ON_DEMAND": LOADING_LEVELS["ON_DEMAND"],
+    })
     inventory = discover_markdown_resources()
     scores = score_intents(task)
     intents = select_intents(scores, ambiguity_delta=1.0)

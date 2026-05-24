@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation",
+  "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation",
   "description": "Feature Specification: Stress-Test Implementation for sk-improve-agent",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "implementation",
     "sk-improve-agent"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.951Z",
+  "lastUpdated": "2026-05-24T08:08:00.251Z",
   "specId": "002",
   "folderSlug": "stress-test-implementation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "060-sk-agent-improver-test-report-alignment"
   ],
   "memorySequence": 1,

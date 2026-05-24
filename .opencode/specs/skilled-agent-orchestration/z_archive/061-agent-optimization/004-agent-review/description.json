@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/061-agent-optimization/004-agent-review",
+  "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization/004-agent-review",
   "description": "Spec: @review Agent Optimization",
   "keywords": [
     "spec",
@@ -7,11 +7,12 @@
     "agent",
     "optimization"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.979Z",
+  "lastUpdated": "2026-05-24T08:08:00.283Z",
   "specId": "004",
   "folderSlug": "agent-review",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "061-agent-optimization"
   ],
   "memorySequence": 1,

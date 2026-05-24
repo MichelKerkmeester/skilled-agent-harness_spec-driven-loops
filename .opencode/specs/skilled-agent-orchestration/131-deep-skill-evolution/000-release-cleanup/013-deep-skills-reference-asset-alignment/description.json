@@ -1,17 +1,16 @@
 {
   "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/013-deep-skills-reference-asset-alignment",
-  "description": "Deep Skills Reference And Asset Alignment",
+  "description": "Feature Specification: Deep Skills Reference And Asset Alignment",
   "keywords": [
-    "deep-ai-council",
-    "deep-research",
-    "deep-review",
-    "sk-doc",
-    "sk-prompt",
-    "RCAF",
-    "resource-map",
-    "skill-assets"
+    "feature",
+    "specification",
+    "deep",
+    "skills",
+    "reference",
+    "asset",
+    "alignment"
   ],
-  "lastUpdated": "2026-05-24T12:00:00.000Z",
+  "lastUpdated": "2026-05-24T08:08:00.161Z",
   "specId": "013",
   "folderSlug": "deep-skills-reference-asset-alignment",
   "parentChain": [

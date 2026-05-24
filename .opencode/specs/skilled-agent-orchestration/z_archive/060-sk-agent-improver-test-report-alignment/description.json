@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment",
+  "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment",
   "description": "Phase Parent Spec: 060 — sk-improve-agent Test-Report Alignment",
   "keywords": [
     "phase",
@@ -10,11 +10,12 @@
     "test-report",
     "alignment"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.942Z",
+  "lastUpdated": "2026-05-24T08:08:00.241Z",
   "specId": "060",
   "folderSlug": "sk-agent-improver-test-report-alignment",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/061-agent-optimization/007-agent-improve-prompt",
+  "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization/007-agent-improve-prompt",
   "description": "Spec: @improve-prompt Agent Optimization",
   "keywords": [
     "spec",
@@ -7,11 +7,12 @@
     "agent",
     "optimization"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.991Z",
+  "lastUpdated": "2026-05-24T08:08:00.297Z",
   "specId": "007",
   "folderSlug": "agent-improve-prompt",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "061-agent-optimization"
   ],
   "memorySequence": 1,

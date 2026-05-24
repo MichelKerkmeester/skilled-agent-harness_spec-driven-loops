@@ -10,16 +10,32 @@ trigger_phrases:
 
 # Ownership Boundary: system-spec-kit vs system-code-graph
 
-<!-- sk-doc-template: skill_reference -->
+Boundary map for workflow-state ownership in `system-spec-kit` and structural-index ownership in `system-code-graph`.
 
 ---
 
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
+### Purpose
+
 This reference documents the intentional split between workflow state, which lives in `system-spec-kit`, and structural code data, which lives in `system-code-graph`. The split emerged from a multi-phase extraction. It prevents confusion about why some graph-related code stayed in spec-kit.
 
+### When to Use
+
+- Deciding whether a graph-related change belongs in `system-spec-kit` or `system-code-graph`.
+- Reviewing imports across the sibling-package boundary.
+- Explaining why deep-loop coverage graph code did not move during extraction.
+
+### Core Principle
+
 The split keeps two concerns separate: deep-loop research and review workflows are tightly coupled to spec-folder lifecycle, while the structural indexer is a standalone read service that other skills can consume.
+
+### Key Sources
+
+- `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`
+- `system-code-graph/mcp_server/`
+- Extraction packets under `005-code-graph/013-system-code-graph-extraction/`
 
 ---
 

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// COMPONENT: Is Phase Parent
+// MODULE: Is Phase Parent
 // ───────────────────────────────────────────────────────────────
 // Single-source-of-truth detection rule for phase-parent folders.
 // Contract: a folder is a phase parent when:

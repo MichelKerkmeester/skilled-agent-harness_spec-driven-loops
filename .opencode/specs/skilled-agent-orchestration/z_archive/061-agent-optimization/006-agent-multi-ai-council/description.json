@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/061-agent-optimization/006-agent-multi-ai-council",
+  "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization/006-agent-multi-ai-council",
   "description": "Spec: @ultra-think → @multi-ai-council Agent Optimization",
   "keywords": [
     "spec",
@@ -8,11 +8,12 @@
     "agent",
     "optimization"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.987Z",
+  "lastUpdated": "2026-05-24T08:08:00.292Z",
   "specId": "006",
   "folderSlug": "agent-multi-ai-council",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "061-agent-optimization"
   ],
   "memorySequence": 1,

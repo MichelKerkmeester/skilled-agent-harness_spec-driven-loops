@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/061-agent-optimization/002-agent-debug",
+  "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization/002-agent-debug",
   "description": "Spec: @debug Agent Optimization",
   "keywords": [
     "spec",
@@ -7,11 +7,12 @@
     "agent",
     "optimization"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.975Z",
+  "lastUpdated": "2026-05-24T08:08:00.279Z",
   "specId": "002",
   "folderSlug": "agent-debug",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "061-agent-optimization"
   ],
   "memorySequence": 1,

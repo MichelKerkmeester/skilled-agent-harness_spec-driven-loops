@@ -18,7 +18,21 @@ A primer on the three `ccc_*` tools and how they coordinate with the CocoIndex M
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-### Why a bridge exists at all
+### Purpose
+
+Explain the `ccc_*` bridge tools that let code-graph workflows coordinate CocoIndex lifecycle state.
+
+### When to Use
+
+- Checking CocoIndex availability before hybrid semantic plus structural workflows.
+- Triggering CocoIndex reindexing from a code-graph automation.
+- Sending feedback on semantic search result quality.
+
+### Core Principle
+
+`ccc_*` coordinates semantic-index lifecycle; semantic search itself still belongs to the CocoIndex skill.
+
+### Key Sources
 
 CocoIndex provides semantic (vector embedding) search; this skill provides structural (AST graph) queries. Many real workflows benefit from both — find conceptually related code with CocoIndex, then expand structural neighborhoods around the hits.
 
@@ -48,7 +62,7 @@ The three `ccc_*` tools expose CocoIndex's lifecycle (`status`, `reindex`, `feed
 
 ```python
 ccc_status()
-# {available: true, binaryPath: "/usr/local/bin/ccc", indexExists: true, indexSize: 12345, recommendation: "ready"}
+returns = {available: true, binaryPath: "/usr/local/bin/ccc", indexExists: true, indexSize: 12345, recommendation: "ready"}
 ```
 
 ### `ccc_reindex`
@@ -139,8 +153,8 @@ STEP 5  ccc_feedback             → close the loop on the seed quality
 <!-- ANCHOR:5-related-resources -->
 ## 5. RELATED RESOURCES
 
-- `tool-surface.md` — the three `ccc_*` tools in the broader 11-tool surface.
-- `readiness-and-scope-fingerprint.md` — readiness gate that `code_graph_context` enforces on the hybrid flow.
+- [`../runtime/tool_surface.md`](../runtime/tool_surface.md) — the three `ccc_*` tools in the broader 11-tool surface.
+- [`../readiness/readiness_and_scope_fingerprint.md`](../readiness/readiness_and_scope_fingerprint.md) — readiness gate that `code_graph_context` enforces on the hybrid flow.
 - `mcp-coco-index` skill (`.opencode/skills/mcp-coco-index/`) — owns the `search` surface and CocoIndex installation guidance.
 
 <!-- /ANCHOR:5-related-resources -->

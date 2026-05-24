@@ -18,11 +18,21 @@ A reference for the multiple names that refer to this skill across different run
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-### Why this reference exists
+### Purpose
 
 The `system-code-graph` skill is referenced under five different identifiers depending on which layer of the system is calling it. Each name is correct in its own scope, but the asymmetry surprises operators and led to documentation drift in earlier packets. This reference is the single source of truth.
 
-### Key sources
+### When to Use
+
+- Explaining `system-code-graph` vs `mk-code-index` vs `mk_code_index`.
+- Updating runtime configs, launcher names, plugin bridges, or docs.
+- Avoiding accidental renames that break saved MCP tool IDs.
+
+### Core Principle
+
+Names are stable per layer; do not normalize them across layers unless a packet explicitly migrates every caller.
+
+### Key Sources
 
 - ADR-001 (`005-code-graph/013-system-code-graph-extraction/`): MCP server name stability.
 - ADR-002 (`005-code-graph/014-design-and-decision-record/`): Skill folder slug + database path policy.
@@ -95,7 +105,7 @@ The code-graph SQLite triplet (`code-graph.sqlite`, `.sqlite-wal`, `.sqlite-shm`
 .opencode/.spec-kit/code-graph/database/
 ```
 
-This shared location replaced an earlier skill-local location (`.opencode/skills/system-code-graph/mcp_server/database/`) to support cross-runtime coordination — all six runtimes read and write the same database instead of fragmenting state per-runtime. See `database-path-policy.md` for the full migration record and override rules.
+This shared location replaced an earlier skill-local location (`.opencode/skills/system-code-graph/mcp_server/database/`) to support cross-runtime coordination — all six runtimes read and write the same database instead of fragmenting state per-runtime. See [`../config/database_path_policy.md`](../config/database_path_policy.md) for the full migration record and override rules.
 
 ---
 
@@ -104,9 +114,9 @@ This shared location replaced an earlier skill-local location (`.opencode/skills
 <!-- ANCHOR:6-related-resources -->
 ## 6. RELATED RESOURCES
 
-- `database-path-policy.md` — full policy + override rules for the database path.
-- `ownership-boundary.md` — what stays in `system-spec-kit` vs `system-code-graph` after extraction.
-- `code-graph-readiness-check.md` — readiness contract that the launcher and read-path tools enforce.
-- `INSTALL_GUIDE.md` (skill root) — canonical configuration and verification steps for `mk_code_index` setup.
+- [`../config/database_path_policy.md`](../config/database_path_policy.md) — full policy + override rules for the database path.
+- [`ownership_boundary.md`](ownership_boundary.md) — what stays in `system-spec-kit` vs `system-code-graph` after extraction.
+- [`../readiness/code_graph_readiness_check.md`](../readiness/code_graph_readiness_check.md) — readiness contract that the launcher and read-path tools enforce.
+- [`../../INSTALL_GUIDE.md`](../../INSTALL_GUIDE.md) — canonical configuration and verification steps for `mk_code_index` setup.
 
 <!-- /ANCHOR:6-related-resources -->

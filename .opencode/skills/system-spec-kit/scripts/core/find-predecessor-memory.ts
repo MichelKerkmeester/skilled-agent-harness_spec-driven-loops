@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Find Predecessor Memory
+// ───────────────────────────────────────────────────────────────
+
 import * as path from 'node:path';
 import { open, readdir } from 'node:fs/promises';
 

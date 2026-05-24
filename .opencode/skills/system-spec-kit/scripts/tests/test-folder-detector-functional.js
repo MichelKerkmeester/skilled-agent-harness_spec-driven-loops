@@ -3,6 +3,8 @@
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Validate session selection behavior in detectSpecFolder()       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
+'use strict';
+
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 

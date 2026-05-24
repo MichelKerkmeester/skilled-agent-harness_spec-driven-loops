@@ -1,0 +1,14 @@
+{"event":"round_start","round":1,"timestamp":"2026-05-24T23:00:00Z","seats":["seat-001-analytical","seat-002-critical","seat-003-pragmatic"]}
+{"event":"artifact_written","path":"ai-council/ai-council-config.json","bytes":561,"checksum":"sha256:72ec33233f81fb54e86567cdbae73bb5ed9b3513d50fb9218f949bddf6657638","timestamp":"2026-05-24T23:00:00Z","round_id":"round-001"}
+{"event":"artifact_written","path":"ai-council/ai-council-strategy.md","bytes":2129,"checksum":"sha256:c9296944b8717bd9192fed6c2b5f6deb33ce8747f607a10cbe10db3782179407","timestamp":"2026-05-24T23:00:00Z","round_id":"round-001"}
+{"event":"seat_returned","round":1,"seat":"seat-001-analytical","timestamp":"2026-05-24T23:00:00Z","status":"ok"}
+{"event":"artifact_written","path":"ai-council/seats/round-001/seat-001-analytical.md","bytes":3999,"checksum":"sha256:92345133bfc493607b15297d30a1a3cb3dd15d5a76b5fc15d4ba6c587a4d5e27","timestamp":"2026-05-24T23:00:00Z","seat_id":"seat-001-analytical","round_id":"round-001"}
+{"event":"seat_returned","round":1,"seat":"seat-002-critical","timestamp":"2026-05-24T23:00:00Z","status":"ok"}
+{"event":"artifact_written","path":"ai-council/seats/round-001/seat-002-critical.md","bytes":4759,"checksum":"sha256:c0a0b6af7ac88a12248d25ef7431134ae4a8544b49fbdd9905af3b996d016be6","timestamp":"2026-05-24T23:00:00Z","seat_id":"seat-002-critical","round_id":"round-001"}
+{"event":"seat_returned","round":1,"seat":"seat-003-pragmatic","timestamp":"2026-05-24T23:00:00Z","status":"ok"}
+{"event":"artifact_written","path":"ai-council/seats/round-001/seat-003-pragmatic.md","bytes":4249,"checksum":"sha256:ad7a5ffb04518138c3826de3cb5c4120eaf098d6b4fe6e8cb820d71c4cb0cae6","timestamp":"2026-05-24T23:00:00Z","seat_id":"seat-003-pragmatic","round_id":"round-001"}
+{"event":"deliberation_synthesized","round":1,"timestamp":"2026-05-24T23:00:00Z","convergence_score":0.88}
+{"event":"artifact_written","path":"ai-council/deliberations/round-001.md","bytes":3300,"checksum":"sha256:9b8996b925513dad4a56da95acc14b6f4d5e909f0d0e32698bea3575e8ed8e19","timestamp":"2026-05-24T23:00:00Z","round_id":"round-001"}
+{"event":"round_end","round":1,"timestamp":"2026-05-24T23:00:00Z","new_findings_count":10}
+{"event":"artifact_written","path":"ai-council/council-report.md","bytes":13833,"checksum":"sha256:35c8294c7d6c0e884f53f59ed69f51899c58c9cd8d7b10deaa399ecdd0a607d2","timestamp":"2026-05-24T23:00:00Z","round_id":"round-001"}
+{"event":"council_complete","timestamp":"2026-05-24T23:00:00Z","final_report_path":"ai-council/council-report.md","convergence":true}

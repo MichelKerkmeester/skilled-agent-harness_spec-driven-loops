@@ -56,7 +56,7 @@
   "runtimeCapabilityResolver": ".opencode/skills/deep-research/scripts/runtime-capabilities.cjs",
   "reducerScriptPath": ".opencode/skills/deep-research/scripts/reduce-state.cjs",
   "pauseSentinelPath": "research/.deep-research-pause",
-  "archiveRoot": "research/archive",
+  "archiveRoot": "research_archive",
   "migrationWindowDays": 28,
   "fileProtection": {
     "deep-research-config.json": "immutable",

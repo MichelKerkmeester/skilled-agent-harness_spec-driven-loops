@@ -17,7 +17,21 @@ The 11 MCP tools registered by `mk-code-index` with the handler file, primary pu
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-### Source of truth
+### Purpose
+
+Map the `mk-code-index` MCP tools to their runtime handlers, families, key preconditions, and expected token budget.
+
+### When to Use
+
+- Routing operator prompts that name `code_graph_*`, `detect_changes`, or `ccc_*`.
+- Checking which tools are readiness-gated before dispatch.
+- Updating documentation after `CODE_GRAPH_TOOL_SCHEMAS` changes.
+
+### Core Principle
+
+Tool schemas are runtime authority; this reference is the operator map that keeps routing and docs aligned.
+
+### Key Sources
 
 The authoritative tool list lives in `mcp_server/tool-schemas.ts` as `CODE_GRAPH_TOOL_SCHEMAS` (an exported array). This reference summarizes that surface for operators and routing logic. When the schema array and this reference disagree, the schema array wins — patch this doc.
 
@@ -97,10 +111,10 @@ Direct library consumers in `system-spec-kit` handlers and hooks bypass MCP and 
 <!-- ANCHOR:5-related-resources -->
 ## 5. RELATED RESOURCES
 
-- `readiness-and-scope-fingerprint.md` — read-path readiness contract that gates tools 2, 4, 6, 8.
-- `ccc-bridge-integration.md` — when and how to use `ccc_*` tools alongside CocoIndex MCP.
-- `database-path-policy.md` — canonical database path for all 11 tools.
-- `naming-conventions.md` — name map across skill folder, MCP server, launcher, and config key.
-- `mcp_server/tool-schemas.ts` — schema array; canonical source.
+- [`../readiness/readiness_and_scope_fingerprint.md`](../readiness/readiness_and_scope_fingerprint.md) — read-path readiness contract that gates tools 2, 4, 6, 8.
+- [`../integrations/ccc_bridge_integration.md`](../integrations/ccc_bridge_integration.md) — when and how to use `ccc_*` tools alongside CocoIndex MCP.
+- [`../config/database_path_policy.md`](../config/database_path_policy.md) — canonical database path for all 11 tools.
+- [`naming_conventions.md`](naming_conventions.md) — name map across skill folder, MCP server, launcher, and config key.
+- [`../../mcp_server/tool-schemas.ts`](../../mcp_server/tool-schemas.ts) — schema array; canonical source.
 
 <!-- /ANCHOR:5-related-resources -->

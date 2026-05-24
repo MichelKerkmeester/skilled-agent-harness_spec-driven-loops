@@ -18,9 +18,25 @@ The state machine that gates every read-path tool plus the fingerprint that dete
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-### Core principle
+### Purpose
+
+Describe the readiness state machine, trust state, and scope fingerprint that decide whether structural graph reads can answer.
+
+### When to Use
+
+- A `code_graph_*` read returns `blocked`, `stale`, `empty`, `absent`, or `error`.
+- A scan scope change triggers a fingerprint mismatch.
+- A high-stakes query needs trust-state interpretation before edits.
+
+### Core Principle
 
 The read path refuses to answer on non-fresh graphs. A `blocked` payload with an explicit `requiredAction` is the contract — never a silently-empty result. This false-safe guarantee prevents agents from acting on partial structural state.
+
+### Key Sources
+
+- `mcp_server/lib/readiness-contract.ts`
+- `mcp_server/lib/ensure-ready.ts`
+- `mcp_server/handlers/status.ts`
 
 ### Why two signals (readiness + trust state)
 
@@ -141,8 +157,8 @@ code_graph_verify         → re-establishes trust
 <!-- ANCHOR:6-related-resources -->
 ## 6. RELATED RESOURCES
 
-- `code-graph-readiness-check.md` — `ensureCodeGraphReady()` implementation contract used by handlers.
-- `tool-surface.md` — which of the 11 tools are gated by readiness.
-- `database-path-policy.md` — where the readiness marker and graph DB live.
+- [`code_graph_readiness_check.md`](code_graph_readiness_check.md) — `ensureCodeGraphReady()` implementation contract used by handlers.
+- [`../runtime/tool_surface.md`](../runtime/tool_surface.md) — which of the 11 tools are gated by readiness.
+- [`../config/database_path_policy.md`](../config/database_path_policy.md) — where the readiness marker and graph DB live.
 
 <!-- /ANCHOR:6-related-resources -->

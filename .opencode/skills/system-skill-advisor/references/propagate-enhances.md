@@ -1,6 +1,8 @@
 ---
 title: "Propagate Enhances Reference Moved"
 description: "Compatibility pointer for the moved propagate enhances reference."
+deprecated_at: "2026-05-24"
+remove_after: "2026-08-24"
 ---
 
 # Propagate Enhances Reference Moved

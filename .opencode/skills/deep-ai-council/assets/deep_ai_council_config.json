@@ -1,42 +1,42 @@
 {
-  "schemaVersion": "deep-ai-council.config.v1",
+  "schema_version": "deep-ai-council.config.v1",
   "protocol": "deep-ai-council",
   "topic": "<planning topic>",
-  "specFolder": "<absolute-or-repo-relative-spec-folder>",
-  "artifactDir": "<spec-folder>/ai-council",
+  "spec_folder": "<absolute-or-repo-relative-spec-folder>",
+  "artifact_dir": "<spec-folder>/ai-council",
   "status": "in-progress",
-  "currentRound": 1,
-  "maxRounds": 3,
-  "seatsPerRound": 3,
-  "convergenceSignal": "two-of-three-agree-with-no-surviving-blocker",
-  "executionMode": "in-cli",
+  "current_round": 1,
+  "max_rounds": 3,
+  "seats_per_round": 3,
+  "convergence_signal": "two-of-three-agree",
+  "execution_mode": "in-cli",
   "executor": {
     "kind": "native",
     "cli": null,
-    "modelSet": [],
-    "oneCliPerRound": true
+    "model_set": [],
+    "one_cli_per_round": true
   },
-  "seatLenses": [
+  "seat_lenses": [
     "analytical",
     "critical",
     "pragmatic"
   ],
-  "artifactPolicy": {
-    "sourceOfTruth": "packet-local-ai-council-artifacts",
-    "appendOnlyState": true,
-    "strictOutput": true,
-    "preserveFailedRounds": true
+  "artifact_policy": {
+    "source_of_truth": "packet-local-ai-council-artifacts",
+    "append_only_state": true,
+    "strict_output": true,
+    "preserve_failed_rounds": true
   },
-  "graphProjection": {
+  "graph_projection": {
     "enabled": false,
     "owner": "deep-loop-runtime",
-    "loopType": "council",
-    "rebuildFromArtifacts": true
+    "loop_type": "council",
+    "rebuild_from_artifacts": true
   },
   "boundaries": {
-    "planningOnly": true,
-    "implementationWritesAllowed": false,
-    "authoredSpecWritesAllowed": false
+    "planning_only": true,
+    "implementation_writes_allowed": false,
+    "authored_spec_writes_allowed": false
   },
-  "createdAt": "YYYY-MM-DDTHH:mm:ssZ"
+  "created_at": "YYYY-MM-DDTHH:mm:ssZ"
 }

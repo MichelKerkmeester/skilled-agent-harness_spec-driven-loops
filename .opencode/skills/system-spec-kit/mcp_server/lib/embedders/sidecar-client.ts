@@ -235,6 +235,7 @@ function loadSidecarEnvAllowlistModule(): SidecarEnvAllowlistModule {
   const currentDir = dirname(fileURLToPath(import.meta.url));
   const candidates = [
     join(currentDir, '../../../../../bin/lib/sidecar-env-allowlist.cjs'),
+    join(currentDir, '../../../../../../bin/lib/sidecar-env-allowlist.cjs'),
     join(currentDir, '../../../../../../../../../bin/lib/sidecar-env-allowlist.cjs'),
   ];
   for (const candidate of candidates) {

@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement",
-  "description": "Feature Specification: Deep Agent Improvement uplift + correctness + evaluator + cross-runtime + mixed-executor + command relocation arc",
+  "description": "Feature Specification: Deep Agent Improvement uplift + correctness + evaluator + cross-runtime + mixed-executor arc",
   "keywords": [
     "feature",
     "specification",
@@ -13,11 +13,9 @@
     "evaluator",
     "cross-runtime",
     "mixed-executor",
-    "arc",
-    "command",
-    "relocation"
+    "arc"
   ],
-  "lastUpdated": "2026-05-24T06:47:43Z",
+  "lastUpdated": "2026-05-24T08:08:00.170Z",
   "specId": "005",
   "folderSlug": "deep-agent-improvement",
   "parentChain": [

@@ -1,6 +1,8 @@
 // TEST: SUBFOLDER RESOLUTION
 // Focus: SPEC_FOLDER_PATTERN, SPEC_FOLDER_BASIC_PATTERN,
 //        FindChildFolderSync, findChildFolderAsync, core/index re-exports
+'use strict';
+
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 

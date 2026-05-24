@@ -52,7 +52,7 @@ Use this README for human orientation: command examples, packet layout, lifecycl
 | Primary command | `/deep:start-research-loop` |
 | Runtime modes | `auto`, `confirm` |
 | Live lifecycle branches | `new`, `resume`, `restart` |
-| Focused references | 12 |
+| Focused references | 13 |
 | Scripts | 2 primary helpers |
 
 ### How This Compares
@@ -156,6 +156,7 @@ The artifact directory always lives under the target spec's local `research/` fo
     convergence_signals.md
     loop_protocol.md
     quick_reference.md
+    spec_check_protocol.md
     state_format.md
     state_jsonl.md
     state_outputs.md

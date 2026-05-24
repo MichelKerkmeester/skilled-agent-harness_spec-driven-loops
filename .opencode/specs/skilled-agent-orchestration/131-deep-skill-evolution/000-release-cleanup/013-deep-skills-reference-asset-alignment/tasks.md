@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-05-24T12:00:00Z"
     last_updated_by: "codex"
     recent_action: "tasks-updated-through-phase-8"
-    next_safe_action: "run-or-review-validation-results"
+    next_safe_action: "await-human-approval-for-phase-9"
     blockers:
       - "Phase 9 requires human approval."
     key_files: ["tasks.md"]

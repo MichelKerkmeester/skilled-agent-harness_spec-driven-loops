@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/041-sk-recursive-agent-loop/011-sk-agent-improver-advisor-readme-sync",
+  "specFolder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop/011-sk-agent-improver-advisor-readme-sync",
   "description": "Spec: Skill Advisor Routing + README Sync",
   "keywords": [
     "spec",
@@ -9,11 +9,12 @@
     "readme",
     "sync"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.830Z",
+  "lastUpdated": "2026-05-24T08:08:00.218Z",
   "specId": "011",
   "folderSlug": "sk-agent-improver-advisor-readme-sync",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "041-sk-recursive-agent-loop"
   ],
   "memorySequence": 0,

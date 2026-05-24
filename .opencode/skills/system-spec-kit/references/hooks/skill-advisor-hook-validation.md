@@ -1,6 +1,8 @@
 ---
 title: Skill Advisor Hook Validation Compatibility Stub
 description: Compatibility pointer for the moved skill-advisor hook validation reference.
+deprecated_at: "2026-05-24"
+remove_after: "2026-08-24"
 ---
 
 # Skill Advisor Hook Validation Compatibility Stub

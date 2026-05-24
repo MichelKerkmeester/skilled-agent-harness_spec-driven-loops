@@ -13,6 +13,8 @@
 // - diagram-extractor.js - P1
 // - data-loader.js (145 LOC) - P0
 //
+'use strict';
+
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 

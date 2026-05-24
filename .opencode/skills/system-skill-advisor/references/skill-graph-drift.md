@@ -1,6 +1,8 @@
 ---
 title: "Skill Graph Drift Reference Moved"
 description: "Compatibility pointer for the moved skill graph drift reference."
+deprecated_at: "2026-05-24"
+remove_after: "2026-08-24"
 ---
 
 # Skill Graph Drift Reference Moved

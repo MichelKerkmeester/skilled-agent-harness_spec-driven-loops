@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/041-sk-recursive-agent-loop",
+  "specFolder": "skilled-agent-orchestration/z_archive/041-sk-recursive-agent-loop",
   "description": "Feature Specification: 041 Recursive Agent Loop",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "agent",
     "loop"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.786Z",
+  "lastUpdated": "2026-05-24T08:08:00.189Z",
   "specId": "041",
   "folderSlug": "sk-recursive-agent-loop",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

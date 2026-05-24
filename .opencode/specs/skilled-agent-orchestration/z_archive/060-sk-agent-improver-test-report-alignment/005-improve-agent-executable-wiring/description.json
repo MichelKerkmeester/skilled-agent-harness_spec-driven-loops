@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring",
+  "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring",
   "description": "Feature Specification: 062 — sk-improve-agent Executable Wiring",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "executable",
     "wiring"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.963Z",
+  "lastUpdated": "2026-05-24T08:08:00.265Z",
   "specId": "005",
   "folderSlug": "improve-agent-executable-wiring",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "060-sk-agent-improver-test-report-alignment"
   ],
   "memorySequence": 1,

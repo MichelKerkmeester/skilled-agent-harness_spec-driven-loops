@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename",
+  "specFolder": "skilled-agent-orchestration/z_archive/087-improve-agent-to-deep-agent-improvement-rename",
   "description": "Feature Specification: Rename `@improve-agent` agent to `@deep-agent-improvement`",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "agent",
     "deep-agent-improvement"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.357Z",
+  "lastUpdated": "2026-05-24T08:08:00.357Z",
   "specId": "087",
   "folderSlug": "improve-agent-to-deep-agent-improvement-rename",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 4,
   "memoryNameHistory": [

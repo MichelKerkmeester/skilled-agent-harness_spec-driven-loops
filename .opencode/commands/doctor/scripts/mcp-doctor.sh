@@ -197,26 +197,28 @@ diagnose_mk_spec_memory() {
     _log log_warn "Node version marker not found (run rebuild to create)"
   fi
 
-	  # Check 4: database directory
-	  if [[ -d "$db_dir" ]]; then
-	    # Active embedding profile DB (derived in TS at runtime); shell-side, glob for present profile files.
-	    local db_file
-	    db_file=$(ls -t "$db_dir"/context-index__*.sqlite 2>/dev/null | head -1 || true)
-	    if [[ -z "$db_file" ]]; then
-	      # Fallback when no profile DB exists yet (fresh-install case; first run creates the active profile DB).
-	      db_file="$db_dir/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite"
-	    fi
-	    if [[ -f "$db_file" ]]; then
-	      local db_name db_size
-	      db_name="$(basename "$db_file")"
-	      db_size="$(du -h "$db_file" 2>/dev/null | cut -f1)"
-	      record_pass "$srv" "database" "$db_name exists ($db_size)"
-	      _log log_pass "Database exists: $db_name ($db_size)"
-	    else
-	      record_warn "$srv" "database" "Database directory exists but no provider-keyed profile DB found"
-	      _log log_warn "Database directory exists but no provider-keyed profile DB found"
-	    fi
-	  else
+  # Check 4: database directory
+  if [[ -d "$db_dir" ]]; then
+    local db_file="$db_dir/context-index.sqlite"
+    local vector_count=0
+    vector_count="$(find "$db_dir/vectors" -maxdepth 1 -type f -name 'context-vectors__*.sqlite' 2>/dev/null | wc -l | tr -d ' ')"
+    if [[ -f "$db_file" ]]; then
+      local db_size
+      db_size="$(du -h "$db_file" 2>/dev/null | cut -f1)"
+      record_pass "$srv" "database" "context-index.sqlite exists ($db_size)"
+      _log log_pass "Database exists: context-index.sqlite ($db_size)"
+    else
+      record_warn "$srv" "database" "Database directory exists but context-index.sqlite is not yet built"
+      _log log_warn "Database directory exists but context-index.sqlite is not yet built"
+    fi
+    if [[ "$vector_count" -gt 0 ]]; then
+      record_pass "$srv" "vector_shards" "$vector_count vector shard(s)"
+      _log log_pass "Vector shard count: $vector_count"
+    else
+      record_warn "$srv" "vector_shards" "No context-vectors__*.sqlite shards found"
+      _log log_warn "No vector shards found (created after embedding-backed index/search)"
+    fi
+  else
     record_warn "$srv" "database" "Database directory not found"
     _log log_warn "Database directory not found (created on first MCP use)"
   fi
@@ -244,6 +246,25 @@ diagnose_mk_spec_memory() {
       fi
     fi
   fi
+
+  # Check 6: spec-kit dist has no stale package-root layout or runtime state.
+  local stale_dist_root
+  for stale_dist_root in \
+    "$skill_dir/mcp_server/dist/system-skill-advisor" \
+    "$skill_dir/mcp_server/dist/system-spec-kit" \
+    "$skill_dir/mcp_server/dist/system-code-graph" \
+    "$skill_dir/mcp_server/dist/tests" \
+    "$skill_dir/mcp_server/dist/database"; do
+    local drift_key
+    drift_key="dist_drift_$(basename "$stale_dist_root" | tr '-' '_')"
+    if [[ -e "$stale_dist_root" ]]; then
+      record_fail "$srv" "$drift_key" "Stale dist root present: $stale_dist_root"
+      _log log_fail "Stale dist root present: $stale_dist_root"
+      needs_fix=true
+    else
+      record_pass "$srv" "$drift_key" "Absent: $stale_dist_root"
+    fi
+  done
 
   # Fix mode
   if [[ "$FIX_MODE" == true ]] && [[ "$needs_fix" == true ]]; then

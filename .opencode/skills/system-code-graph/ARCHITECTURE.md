@@ -48,7 +48,7 @@ Identity surfaces:
 - Client namespace: `mcp__mk_code_index__*`
 - Runtime package: `@spec-kit/system-code-graph`
 
-Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state details live in `references/code-graph-readiness-check.md`.
+Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state details live in `references/readiness/code_graph_readiness_check.md`.
 
 ### Architecture diagram
 
@@ -157,7 +157,7 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Storage.** Primary store is SQLite via `better-sqlite3` at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`. Optional `sqlite-vec` extension provides vector similarity when CocoIndex seeds inject embeddings; the runtime gracefully degrades when the extension fails to load. The launcher's standalone-storage guard refuses to point the database outside the workspace.
 
-**Readiness contract.** A hard refuse, not a soft degrade. States are `fresh`, `stale`, `empty`, `error`, `absent`. Read paths gate on the state machine and return blocked payloads with required actions; the contract avoids serving incorrect structural answers. Detail per state lives in `references/code-graph-readiness-check.md`.
+**Readiness contract.** A hard refuse, not a soft degrade. States are `fresh`, `stale`, `empty`, `error`, `absent`. Read paths gate on the state machine and return blocked payloads with required actions; the contract avoids serving incorrect structural answers. Detail per state lives in `references/readiness/code_graph_readiness_check.md`.
 
 **Apply-mode recovery.** Gated recovery operations (rescan, prune-excludes, repair-nodes, recover-sqlite-corruption, rollback-bad-apply) run the gold-query verification battery before AND after each operation. Audit log writes to JSONL. Rollback restores the last known-good baseline.
 
@@ -212,8 +212,8 @@ Verification runs at two layers.
 - [INSTALL_GUIDE.md](./INSTALL_GUIDE.md): Native bootstrap and per-runtime configuration
 - [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md): Current feature inventory and per-tool detail
 - [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md): Operator validation scenarios
-- [references/code-graph-readiness-check.md](./references/code-graph-readiness-check.md): Readiness contract primer with state-machine detail
-- [references/ownership-boundary.md](./references/ownership-boundary.md): Boundary rules for adjacent runtimes
-- [references/database-path-policy.md](./references/database-path-policy.md): Workspace containment policy
+- [references/readiness/code_graph_readiness_check.md](./references/readiness/code_graph_readiness_check.md): Readiness contract primer with state-machine detail
+- [references/runtime/ownership_boundary.md](./references/runtime/ownership_boundary.md): Boundary rules for adjacent runtimes
+- [references/config/database_path_policy.md](./references/config/database_path_policy.md): Workspace containment policy
 
 <!-- /ANCHOR:related -->

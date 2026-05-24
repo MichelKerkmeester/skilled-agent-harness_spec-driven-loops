@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/090-agent-description-trim",
+  "specFolder": "skilled-agent-orchestration/z_archive/090-agent-description-trim",
   "description": "Feature Specification: Agent Description Trim",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "description",
     "trim"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.366Z",
+  "lastUpdated": "2026-05-24T08:08:00.362Z",
   "specId": "090",
   "folderSlug": "agent-description-trim",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

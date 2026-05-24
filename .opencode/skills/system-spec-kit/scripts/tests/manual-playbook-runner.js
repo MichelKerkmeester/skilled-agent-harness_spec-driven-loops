@@ -1,3 +1,5 @@
+'use strict';
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { createManualPlaybookFixture } from './fixtures/manual-playbook-fixture.js';

@@ -1,44 +1,22 @@
 {
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/006-gate-model-reconciliation",
-  "description": "Reconcile the deep-review legal-stop gate model across 6 documentation surfaces to the authoritative 9-gate set emitted by step_emit_blocked_stop in b",
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/006-gate-model-reconciliation",
+  "description": "Feature Specification: deep-review gate-model reconciliation",
   "keywords": [
-    "reconcile",
+    "feature",
+    "specification",
     "deep-review",
-    "legal-stop",
-    "gate",
-    "model",
-    "across",
-    "documentation",
-    "surfaces",
-    "authoritative",
-    "9-gate",
-    "set",
-    "emitted",
-    "review-loop",
-    "yaml",
-    "workflows",
-    "adds",
-    "candidatecoveragegate",
-    "graphlessfallbackgate",
-    "everywhere",
-    "docs-only",
-    "closes",
-    "lg-0013",
-    "0016",
-    "0031",
-    "0032"
+    "gate-model",
+    "reconciliation"
   ],
-  "lastUpdated": "2026-05-23T18:38:22.293Z",
+  "lastUpdated": "2026-05-24T08:08:00.137Z",
   "specId": "006",
   "folderSlug": "gate-model-reconciliation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",
     "000-release-cleanup"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

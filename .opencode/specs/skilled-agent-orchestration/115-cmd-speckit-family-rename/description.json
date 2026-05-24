@@ -1,5 +1,5 @@
 {
-  "specFolder": "115-cmd-speckit-family-rename",
+  "specFolder": "skilled-agent-orchestration/115-cmd-speckit-family-rename",
   "description": "Feature Specification: rename commands/spec_kit/ -> commands/speckit/",
   "keywords": [
     "feature",
@@ -8,13 +8,10 @@
     "commands",
     "speckit"
   ],
-  "lastUpdated": "2026-05-23T14:11:35.542Z",
-  "specId": "132",
+  "lastUpdated": "2026-05-24T08:08:00.117Z",
+  "specId": "115",
   "folderSlug": "cmd-speckit-family-rename",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration"
   ],
   "memorySequence": 3,

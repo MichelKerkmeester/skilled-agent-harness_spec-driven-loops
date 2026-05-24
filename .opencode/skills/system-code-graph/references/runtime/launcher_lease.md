@@ -12,7 +12,21 @@ description: PID-file single-writer lease for the mk-code-index launcher.
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
+### Purpose
+
 The launcher lease is a process-boundary guard. Before bootstrap work begins, the launcher reads `.opencode/.spec-kit/code-graph/database/.mk-code-index-launcher.json` and probes the recorded PID with `process.kill(pid, 0)`.
+
+### When to Use
+
+- Debugging duplicate `mk-code-index` launcher starts.
+- Explaining `LEASE_HELD_BY:<pid>` startup output.
+- Changing single-writer or stale-reclaim behavior.
+
+### Core Principle
+
+One active launcher owns the code-graph SQLite writer path; stale owners can be reclaimed only after a PID liveness check.
+
+### Key Sources
 
 If the recorded process is alive, the new launcher prints `LEASE_HELD_BY:<pid>` to stdout and exits with code `0`. If the recorded process is gone, the launcher logs `staleReclaimed: true`, continues boot, and overwrites the PID file after bootstrap succeeds.
 <!-- /ANCHOR:1-overview -->
@@ -75,9 +89,9 @@ If the OS has reused the recorded PID for another live process, the launcher tre
 ---
 
 <!-- ANCHOR:5-related -->
-## 5. RELATED
+## 5. RELATED RESOURCES
 
 - `.opencode/bin/mk-code-index-launcher.cjs` owns the inline PID-file primitive.
-- `.opencode/skills/system-code-graph/references/database-path-policy.md` documents the code-graph database directory.
+- [`../config/database_path_policy.md`](../config/database_path_policy.md) documents the code-graph database directory.
 - Internal design notes define the propagation contract.
 <!-- /ANCHOR:5-related -->

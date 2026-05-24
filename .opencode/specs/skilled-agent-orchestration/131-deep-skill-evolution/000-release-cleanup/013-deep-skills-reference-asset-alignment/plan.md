@@ -69,7 +69,7 @@ The implementation aligns all three deep skills to one resource pattern: README,
 - [x] Skill references/assets are similar in shape and unique in domain language.
 - [x] README and SKILL files are updated after resource paths settle.
 - [x] Changelogs exist for all touched skills.
-- [ ] Validation commands pass or failures are documented.
+- [x] Validation commands pass or failures are documented.
 - [x] Phase 9 is blocked pending human approval.
 <!-- /ANCHOR:quality-gates -->
 
@@ -336,6 +336,6 @@ flowchart TD
 | M1 | Phase packet, schemas, prompts | Complete |
 | M2 | References/assets aligned | Complete |
 | M3 | README/SKILL/changelogs updated | Complete |
-| M4 | Validation gate | In progress |
+| M4 | Validation gate | Complete |
 | M5 | Phase 9 research and YAML merge | Blocked pending approval |
 <!-- /ANCHOR:milestones -->

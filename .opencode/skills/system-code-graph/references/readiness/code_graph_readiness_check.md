@@ -10,14 +10,28 @@ trigger_phrases:
 
 # Code Graph Readiness Check
 
-<!-- sk-doc-template: skill_reference -->
+Implementation-level reference for `ensureCodeGraphReady()` gates, recovery paths, handler integration, and diagnostics payloads.
 
 ---
 
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
+### Purpose
+
 `ensureCodeGraphReady()` validates the code graph state before tool dispatch and performs the minimum necessary reindexing. The function lives in `mcp_server/lib/ensure-ready.ts:585-743`. It is the pre-dispatch contract that query, context, verify and detect-changes handlers depend on.
+
+### When to Use
+
+- Investigating why read-path tools block instead of answering.
+- Updating handler integration with readiness diagnostics.
+- Changing auto-rescan, scope, verification, or recovery behavior.
+
+### Core Principle
+
+Read handlers must prove graph freshness before answering; recovery may self-heal only inside explicit safety gates.
+
+### Key Sources
 
 A 10-second timeout guard ensures auto-indexing never blocks queries forever (`mcp_server/lib/ensure-ready.ts:74, 582`). Handler coverage spans the query, context, verify and detect-changes handlers (`mcp_server/handlers/query.ts:7, 1103`, `mcp_server/handlers/context.ts:8, 185`, `mcp_server/handlers/verify.ts:17, 205`, `mcp_server/handlers/detect-changes.ts:15, 249`). The status handler uses a read-only snapshot variant.
 

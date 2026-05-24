@@ -48,10 +48,15 @@ code-graph.sqlite
 .opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-wal
 .opencode/skills/system-spec-kit/mcp_server/database/*.sqlite.bak*
 .opencode/skills/system-spec-kit/mcp_server/database/.db-updated
+.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.flock
+.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.last-run.json
+.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json
+.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.lockdir/
 .opencode/skills/system-spec-kit/mcp_server/database/**/*.sqlite*
 .opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite
 .opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-shm
 .opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-wal
+.opencode/skills/system-spec-kit/shared/mcp_server/database/.db-updated
 .opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite
 .opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite-*
 .opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite.bak*
@@ -116,9 +121,25 @@ __pycache__/
 # Runtime artifacts (skill-advisor / system-spec-kit)
 # ───────────────────────────────────────────
 .cocoindex_code/
+.opencode/skills/system-spec-kit/mcp_server/.opencode/
 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/out/*.json
+.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl
+.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl.*
+.opencode/skills/system-spec-kit/mcp_server/.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl
+.opencode/skills/system-spec-kit/mcp_server/.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl.*
+.opencode/skills/system-spec-kit/mcp_server/dist/database/
 .opencode/skills/system-spec-kit/scripts/tests/*.vitest.d.ts.map
 .opencode/skills/system-spec-kit/scripts/tests/*.vitest.js.map
+
+# system-spec-kit source-tree compiler byproducts
+.opencode/skills/system-spec-kit/mcp_server/lib/**/*.js
+.opencode/skills/system-spec-kit/mcp_server/lib/**/*.js.map
+.opencode/skills/system-spec-kit/mcp_server/lib/**/*.d.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/**/*.d.ts.map
+.opencode/skills/system-spec-kit/shared/**/*.js
+.opencode/skills/system-spec-kit/shared/**/*.js.map
+.opencode/skills/system-spec-kit/shared/**/*.d.ts
+.opencode/skills/system-spec-kit/shared/**/*.d.ts.map
 
 # ───────────────────────────────────────────
 # Temporary files

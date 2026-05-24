@@ -1,6 +1,8 @@
 ---
 title: "Standalone MCP Shape Reference Moved"
 description: "Compatibility pointer for the moved standalone MCP shape reference."
+deprecated_at: "2026-05-24"
+remove_after: "2026-08-24"
 ---
 
 # Standalone MCP Shape Reference Moved

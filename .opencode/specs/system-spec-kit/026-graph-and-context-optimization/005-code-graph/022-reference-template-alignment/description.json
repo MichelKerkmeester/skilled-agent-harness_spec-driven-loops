@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-reference-template-alignment",
+  "description": "Align system-code-graph references with sk-doc templates, split canonical references into focused snake_case folders, preserve old-path stubs, and refresh router/navigation docs.",
+  "keywords": [
+    "system-code-graph",
+    "reference-template-alignment",
+    "sk-doc",
+    "smart-router",
+    "documentation"
+  ],
+  "lastUpdated": "2026-05-24T08:04:41Z",
+  "specId": "022",
+  "folderSlug": "reference-template-alignment",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "005-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

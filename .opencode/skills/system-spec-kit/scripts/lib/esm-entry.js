@@ -1,6 +1,8 @@
 // ---------------------------------------------------------------
 // MODULE: ESM Entry Helpers
 // ---------------------------------------------------------------
+'use strict';
+
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 /**

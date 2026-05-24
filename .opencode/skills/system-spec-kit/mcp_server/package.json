@@ -15,6 +15,8 @@
     "spec-kit-cli": "./dist/cli.js"
   },
   "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "prebuild": "npm run clean",
     "build": "tsc --build && node scripts/finalize-dist.mjs",
     "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
     "start": "node dist/context-server.js",

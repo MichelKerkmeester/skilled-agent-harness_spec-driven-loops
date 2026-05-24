@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────
+// MODULE: Codex Prompt Wrapper Shim
+// ───────────────────────────────────────────────────────────────
 // Thin process-boundary shim. The advisor implementation lives in
 // system-skill-advisor; this path stays for existing runtime settings.
 
