@@ -12,6 +12,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { spawnSync } = require('node:child_process');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -20,11 +21,14 @@ const path = require('node:path');
 const USAGE = `Usage:
   node .opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder <path> --session-id <id> [--dry-run]
 
-Reads <repo-root>/<spec-folder>/ai-council/ai-council-state.jsonl and emits a
-council_graph_upsert payload:
+Reads <repo-root>/<spec-folder>/ai-council/ai-council-state.jsonl and replays
+the derived graph through:
+  node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --loop-type council
+
+The derived payload shape is:
   { "specFolder": "...", "sessionId": "...", "nodes": [...], "edges": [...] }
 
-The script is read-only. Pipe the emitted JSON to the MCP upsert operator path.
+Use --dry-run to print the derived payload without mutating runtime graph rows.
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -47,10 +51,18 @@ function parseArgs(argv) {
 function findRepoRoot(startDir) {
   let current = path.resolve(startDir);
   while (current !== path.dirname(current)) {
-    if (fs.existsSync(path.join(current, '.opencode'))) return current;
+    if (
+      fs.existsSync(path.join(current, '.opencode'))
+      && fs.existsSync(path.join(current, '.opencode', 'skills', 'deep-loop-runtime', 'scripts', 'upsert.cjs'))
+    ) return current;
     current = path.dirname(current);
   }
   return path.resolve(startDir);
+}
+
+function runtimeUpsertScript(repoRoot) {
+  return process.env.DEEP_AI_COUNCIL_REPLAY_UPSERT_SCRIPT
+    || path.join(repoRoot, '.opencode', 'skills', 'deep-loop-runtime', 'scripts', 'upsert.cjs');
 }
 
 /**
@@ -212,7 +224,7 @@ function defaultRelationForTarget(item) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Derive a council_graph_upsert payload from a sequence of council state
+ * Derive a council runtime graph payload from a sequence of council state
  * events. Walks every event, creates SESSION/ROUND/SEAT/CLAIM/EVIDENCE/
  * DISAGREEMENT/DECISION/RECOMMENDATION nodes, and adds relationship edges
  * declared in the artifact and inferred from item types.
@@ -336,9 +348,46 @@ function derivePayload(specFolder, sessionId, events) {
   };
 }
 
+function runRuntimeUpsert(payload, repoRoot) {
+  const scriptPath = runtimeUpsertScript(repoRoot);
+  const childEnv = { ...process.env };
+  delete childEnv.DEEP_LOOP_TSX_LOADED;
+  const child = spawnSync(process.execPath, [
+    scriptPath,
+    '--spec-folder',
+    payload.specFolder,
+    '--loop-type',
+    'council',
+    '--session-id',
+    payload.sessionId,
+    '--nodes',
+    JSON.stringify(payload.nodes),
+    '--edges',
+    JSON.stringify(payload.edges),
+  ], {
+    cwd: repoRoot,
+    env: childEnv,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+
+  if (child.stdout) process.stdout.write(child.stdout);
+  if (child.stderr) process.stderr.write(child.stderr);
+
+  const exitCode = child.status === null ? 1 : child.status;
+  if (exitCode !== 0) {
+    const err = new Error(`Runtime council graph upsert failed with exit code ${exitCode}`);
+    err.exitCode = exitCode;
+    throw err;
+  }
+
+  return exitCode;
+}
+
 /**
  * CLI entry point. Parses arguments, reads the AI council state JSONL file,
- * derives a council_graph_upsert payload, and writes JSON to stdout.
+ * derives a council graph payload, and either writes it to the runtime graph
+ * or prints it in dry-run mode.
  *
  * @param {string[]} [argv] - CLI arguments (default: process.argv.slice(2)).
  * @returns {number} Exit code (0 on success, 1 on error).
@@ -347,7 +396,7 @@ function main(argv = process.argv.slice(2)) {
   try {
     const args = parseArgs(argv);
     if (args.help) {
-      console.log(USAGE);
+      process.stdout.write(`${USAGE}\n`);
       return 0;
     }
     if (!args.specFolder || !args.sessionId) {
@@ -365,11 +414,16 @@ function main(argv = process.argv.slice(2)) {
 
     const events = parseJsonl(statePath);
     const payload = derivePayload(args.specFolder, args.sessionId, events);
-    console.log(`${JSON.stringify(payload, null, 2)}\n`);
-    return 0;
+    if (args.dryRun) {
+      process.stdout.write(`${JSON.stringify(payload, null, 2)}\n`);
+      return 0;
+    }
+    return runRuntimeUpsert(payload, repoRoot);
   } catch (error) {
-    console.error(error instanceof Error ? error.message : String(error));
-    return 1;
+    process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+    return error && typeof error === 'object' && Number.isInteger(error.exitCode)
+      ? error.exitCode
+      : 1;
   }
 }
 
@@ -384,5 +438,6 @@ if (require.main === module) {
 module.exports = {
   derivePayload,
   parseJsonl,
+  runRuntimeUpsert,
   main,
 };

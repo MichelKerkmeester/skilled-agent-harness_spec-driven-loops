@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Code Graph Vitest Configuration
+// ───────────────────────────────────────────────────────────────
+
 import { defineConfig } from 'vitest/config';
 import path from 'node:path';
 

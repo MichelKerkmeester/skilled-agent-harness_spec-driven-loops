@@ -21,7 +21,7 @@
   "context_type": "infrastructure-quality",
   "created_at": "2026-05-07T18:30:00Z",
   "last_updated_at": "2026-05-07T18:45:00Z",
-  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/002-sk-deep-token-replace",
+  "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation/002-sk-deep-token-replace",
   "description": "Feature Specification: Phase 002 - sk-deep token replacement",
   "keywords": [
     "feature",
@@ -32,11 +32,12 @@
     "token",
     "replacement"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.445Z",
+  "lastUpdated": "2026-05-23T15:24:59.542Z",
   "specId": "002",
   "folderSlug": "sk-deep-token-replace",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "096-rename-opencode-dirs-to-plural",
     "003-remediation"
   ],

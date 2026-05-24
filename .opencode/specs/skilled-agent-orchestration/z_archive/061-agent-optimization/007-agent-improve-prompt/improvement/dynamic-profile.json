@@ -172,7 +172,7 @@
     "forbiddenBehaviors": [],
     "integrationPoints": {
       "commands": [
-        "/improve:prompt"
+        "/prompt"
       ],
       "skills": [
         "sk-improve-prompt",

@@ -24,8 +24,8 @@ Use this catalog as the canonical inventory for the live `deep-agent-improvement
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
-| Evaluation loop | 6 features | `.opencode/commands/improve/agent.md`, deep-agent-improvement YAML workflows, `scripts/*.cjs` |
-| Integration scanning | 3 features | `scan-integration.cjs`, `/improve:agent`, `.opencode/agents/deep-agent-improvement.md` |
+| Evaluation loop | 6 features | `.opencode/commands/deep/start-agent-improvement-loop.md`, deep-agent-improvement YAML workflows, `scripts/*.cjs` |
+| Integration scanning | 3 features | `scan-integration.cjs`, `/deep:start-agent-improvement-loop`, `.opencode/agents/deep-agent-improvement.md` |
 | Scoring system | 4 features | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs` |
 
 ---
@@ -174,7 +174,7 @@ Owns the command-driven orchestration path that turns the deep-agent-improvement
 
 #### Current Reality
 
-The `/improve:agent` command collects setup inputs, selects `:auto` or `:confirm` execution, and points the operator at the matching YAML workflow. The actual loop dispatch lives in the YAML assets, which rescan integration, dispatch `@deep-agent-improvement`, emit journal events, and call score and reducer helpers, while the command markdown explicitly says not to dispatch agents from the command file itself.
+The `/deep:start-agent-improvement-loop` command collects setup inputs, selects `:auto` or `:confirm` execution, and points the operator at the matching YAML workflow. The actual loop dispatch lives in the YAML assets, which rescan integration, dispatch `@deep-agent-improvement`, emit journal events, and call score and reducer helpers, while the command markdown explicitly says not to dispatch agents from the command file itself.
 
 #### Source Files
 

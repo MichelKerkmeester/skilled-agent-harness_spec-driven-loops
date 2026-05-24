@@ -97,7 +97,7 @@ _memory:
 - [x] CHK-020 [P0] Presence checks pass for the canonical card, four mirror cards, and four runtime agent definitions [Evidence: `ls .opencode/skills/sk-improve-prompt/assets/cli_prompt_quality_card.md .opencode/skills/cli-claude-code/assets/prompt_quality_card.md .opencode/skills/cli-codex/assets/prompt_quality_card.md .opencode/skills/cli-copilot/assets/prompt_quality_card.md .opencode/skills/cli-gemini/assets/prompt_quality_card.md .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md`]
 - [x] CHK-021 [P0] Framework-tag presence checks pass for all four CLI prompt-template assets [Evidence: `grep -c '^Framework:' .opencode/skills/cli-*/assets/prompt_templates.md` -> `25`, `34`, `20`, `24`]
 - [x] CHK-022 [P1] Guard-safety checks confirm no prompt-quality path in CLI skills contains `..` [Evidence: `if grep -H 'prompt_quality_card' .opencode/skills/cli-*/SKILL.md | grep '\\.\\.'; then echo FOUND; else echo NO_DOTDOT_MATCHES; fi` -> `NO_DOTDOT_MATCHES`]
-- [x] CHK-023 [P1] Manual contract review confirms the CLI skills, `@improve-prompt`, and `/improve:prompt` all describe the same structured escalation output [Evidence: `rg -n "FRAMEWORK:|CLEAR_SCORE:|ENHANCED_PROMPT:|ESCALATION_NOTES:" .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md`; `rg -n "dispatch_mode|@improve-prompt|complexity_hint" .opencode/commands/improve/prompt.md`; `rg -n "prompt_quality_card\\.md" .opencode/skills/cli-*/SKILL.md`]
+- [x] CHK-023 [P1] Manual contract review confirms the CLI skills, `@improve-prompt`, and `/prompt` all describe the same structured escalation output [Evidence: `rg -n "FRAMEWORK:|CLEAR_SCORE:|ENHANCED_PROMPT:|ESCALATION_NOTES:" .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md`; `rg -n "dispatch_mode|@improve-prompt|complexity_hint" .opencode/commands/prompt.md`; `rg -n "prompt_quality_card\\.md" .opencode/skills/cli-*/SKILL.md`]
 - [x] CHK-024 [P1] Strict packet validation passes for `.opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/` [Evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting` -> `RESULT: PASSED`]
 <!-- /ANCHOR:testing -->
 
@@ -119,7 +119,7 @@ _memory:
 - [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md`, and `decision-record.md` describe the same two-tier architecture [Evidence: packet root docs all describe mirror-card fast path plus `@improve-prompt` deep path]
 - [x] CHK-041 [P1] The implementation summary is updated from placeholder to delivery summary once implementation completes [Evidence: `.opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/implementation-summary.md`]
 - [x] CHK-042 [P1] The packet explicitly records whether the drift fixture landed or was deferred [Evidence: `spec.md` open-questions closeout note plus `.opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh`]
-- [x] CHK-043 [P1] The command and skill docs both point to the same `@improve-prompt` escalation surface [Evidence: `.opencode/commands/improve/prompt.md:296-297,367-381`; `.opencode/skills/cli-claude-code/assets/prompt_quality_card.md:39-41`; parallel mirror-card wording in the other three CLI skills]
+- [x] CHK-043 [P1] The command and skill docs both point to the same `@improve-prompt` escalation surface [Evidence: `.opencode/commands/prompt.md:296-297,367-381`; `.opencode/skills/cli-claude-code/assets/prompt_quality_card.md:39-41`; parallel mirror-card wording in the other three CLI skills]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -155,7 +155,7 @@ _memory:
 
 - [x] CHK-100 [P0] Architecture decisions are captured in `decision-record.md` [Evidence: `.opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/decision-record.md`]
 - [x] CHK-101 [P1] Mirror-card versus cross-skill-reference tradeoffs are documented with rejection rationale [Evidence: ADR-001 alternatives table in `decision-record.md`]
-- [x] CHK-102 [P1] Fast-path versus deep-path behavior is documented consistently across spec, plan, and command surfaces [Evidence: `spec.md`, `plan.md`, and `.opencode/commands/improve/prompt.md:217,296-297,367-381`]
+- [x] CHK-102 [P1] Fast-path versus deep-path behavior is documented consistently across spec, plan, and command surfaces [Evidence: `spec.md`, `plan.md`, and `.opencode/commands/prompt.md:217,296-297,367-381`]
 - [x] CHK-103 [P2] Drift-management guidance is documented and reviewed [Evidence: mirror `<!-- sync: ... -->` footers plus `.opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh`]
 <!-- /ANCHOR:arch-verify -->
 
@@ -165,7 +165,7 @@ _memory:
 ## L3+: PERFORMANCE VERIFICATION
 
 - [x] CHK-110 [P1] Routine CLI dispatches document the lightweight fast-path token budget goal [Evidence: `spec.md` NFR-P01 and success criteria]
-- [x] CHK-111 [P1] Agent escalation remains reserved for high-complexity or compliance-heavy prompts [Evidence: `.opencode/commands/improve/prompt.md:89-91,296-297`; mirror-card escalation wording at line `39` in each CLI card]
+- [x] CHK-111 [P1] Agent escalation remains reserved for high-complexity or compliance-heavy prompts [Evidence: `.opencode/commands/prompt.md:89-91,296-297`; mirror-card escalation wording at line `39` in each CLI card]
 - [x] CHK-112 [P2] Mirror-card size stays intentionally compact after implementation [Evidence: each mirror card contains only the framework table, task map, CLEAR check, escalation block, and sync footer]
 <!-- /ANCHOR:perf-verify -->
 
@@ -175,8 +175,8 @@ _memory:
 ## L3+: DEPLOYMENT READINESS
 
 - [x] CHK-120 [P0] Runtime agent mirrors are present in all active runtime directories [Evidence: `ls .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md`]
-- [x] CHK-121 [P1] `/improve:prompt` inline mode remains the default for ordinary prompt work [Evidence: `.opencode/commands/improve/prompt.md:91,204,381`]
-- [x] CHK-122 [P1] Agent mode auto-selection is documented for complexity or isolation signals [Evidence: `.opencode/commands/improve/prompt.md:89-90,296-297,367-381`]
+- [x] CHK-121 [P1] `/prompt` inline mode remains the default for ordinary prompt work [Evidence: `.opencode/commands/prompt.md:91,204,381`]
+- [x] CHK-122 [P1] Agent mode auto-selection is documented for complexity or isolation signals [Evidence: `.opencode/commands/prompt.md:89-90,296-297,367-381`]
 - [x] CHK-123 [P2] A rollback note exists for removing the mirror-card system if needed [Evidence: `plan.md` rollback section]
 <!-- /ANCHOR:deploy-ready -->
 

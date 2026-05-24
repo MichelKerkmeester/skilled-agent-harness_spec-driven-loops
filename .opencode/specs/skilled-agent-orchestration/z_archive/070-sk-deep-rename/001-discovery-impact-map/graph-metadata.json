@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Packet 070 will rename `sk-deep-review` to `deep-review` and `sk-deep-research` to `deep-research`. The parent packet estimates hundreds of active references across skill folders, runtime mirrors, MCP server code, scripts, fixtures, specs, root docs, and config files, so the downstream phases need a measured inventory rather than an estimate.",
     "created_at": "2026-05-05T18:30:00Z",
-    "last_save_at": "2026-05-23T11:55:14.568Z",
+    "last_save_at": "2026-05-24T05:40:25.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T19:10:00Z",
     "source_docs": [

@@ -1088,7 +1088,7 @@ HOOK/PATH SURVIVOR SEARCH
 .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:189:      SELECT id, spec_folder, file_path, title, trigger_phrases, importance_tier
 .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:199:      specFolder: r.spec_folder as string,
 .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:409:        spec_folder: t.specFolder,
-.gemini/commands/improve/README.txt:214:When max iterations is reached, all 5 dimensions plateau (3+ identical scores), infra failures exceed threshold, or the reducer signals shouldStop.
+.gemini/commands/deep/start-agent-improvement-loop.toml:214:When max iterations is reached, all 5 dimensions plateau (3+ identical scores), infra failures exceed threshold, or the reducer signals shouldStop.
 .opencode/skills/deep-review/scripts/reduce-state.cjs:14:const { resolveArtifactRoot } = require('../../system-spec-kit/shared/review-research-paths.cjs');
 .opencode/skills/deep-review/scripts/reduce-state.cjs:387:function buildLineageState(config, records, terminalStop = null) {
 .opencode/skills/deep-review/scripts/reduce-state.cjs:400:  const continuedFromRun = terminalStop
@@ -1887,7 +1887,7 @@ CLAUDE SETTINGS LOCAL
     16	      "Bash(mv .claude/agents/agent-improver.md .claude/agents/improve-agent.md)",
     17	      "Bash(mv .codex/agents/agent-improver.toml .codex/agents/improve-agent.toml)",
     18	      "Bash(mv .agents/agents/agent-improver.md .agents/agents/improve-agent.md)",
-    19	      "Bash(mv .agents/commands/improve/agent-improver.toml .agents/commands/improve/improve-agent.toml)",
+    19	      "Bash(mv .agents/commands/deep/agent-improver.toml .agents/commands/deep/improve-agent.toml)",
     20	      "Skill(cli-codex)",
     21	      "Bash(codex exec *)",
     22	      "Bash(git *)",

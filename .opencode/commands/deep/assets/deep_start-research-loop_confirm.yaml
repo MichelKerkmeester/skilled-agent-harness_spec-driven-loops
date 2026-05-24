@@ -1006,7 +1006,7 @@ workflow:
       STATUS=OK PATH={spec_folder}
     next_steps:
       - "/speckit:plan [feature-description]"
-      - "/speckit:deep-research [new-topic] (for related deep research)"
+      - "/deep:start-research-loop [new-topic] (for related deep research)"
       - "/memory:save {spec_folder} (refresh canonical continuity before the next session)"
 
 # ─────────────────────────────────────────────────────────────────

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration",
+  "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration",
+  "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "manual-scaffold",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "council graph CLI migration",
+      "council_graph_ MCP removal",
+      "deep-loop-runtime council loopType"
+    ],
+    "key_topics": [
+      "council",
+      "graph",
+      "cli",
+      "migration",
+      "mcp",
+      "deep-loop-runtime",
+      "deep-ai-council"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "manual"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "manual"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "manual"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "manual"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "manual"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "manual"
+      }
+    ],
+    "causal_summary": "Packet complete: council graph persistence/query/convergence moved behind deep-loop-runtime CLI support, deep-ai-council replay rewired to runtime upsert, council_graph_* MCP handlers/schemas/dispatcher wiring removed, remaining tests migrated to runtime coverage, and tool-count mirrors updated to 35.",
+    "created_at": "2026-05-24T05:40:34Z",
+    "last_save_at": "2026-05-24T07:40:20Z",
+    "save_lineage": "manual_scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

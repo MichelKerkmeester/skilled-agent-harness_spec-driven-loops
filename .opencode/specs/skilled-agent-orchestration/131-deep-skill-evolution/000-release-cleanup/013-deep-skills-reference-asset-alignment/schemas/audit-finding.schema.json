@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "audit-finding.schema.json",
+  "title": "Deep Skill Alignment Audit Finding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "skill",
+    "file",
+    "line",
+    "severity",
+    "template_owner",
+    "issue",
+    "evidence",
+    "recommended_fix",
+    "status",
+    "defer_rationale"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^DSRA-[0-9]{3}$" },
+    "skill": { "type": "string", "enum": ["deep-ai-council", "deep-research", "deep-review"] },
+    "file": { "type": "string", "minLength": 1 },
+    "line": { "type": ["integer", "null"], "minimum": 1 },
+    "severity": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+    "template_owner": { "type": "string", "minLength": 1 },
+    "issue": { "type": "string", "minLength": 1 },
+    "evidence": { "type": "string", "minLength": 1 },
+    "recommended_fix": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["open", "fixed", "deferred", "rejected"] },
+    "defer_rationale": { "type": "string" }
+  }
+}

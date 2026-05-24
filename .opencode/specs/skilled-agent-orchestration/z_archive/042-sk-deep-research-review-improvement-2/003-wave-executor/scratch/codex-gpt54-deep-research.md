@@ -4018,21 +4018,21 @@ exec
 .opencode/commands/create/assets/create_agent_auto.yaml:323:    - Define authority and scope
 .opencode/commands/create/assets/create_agent_auto.yaml:343:    - authority_defined: "scope and decision-making power"
 .opencode/commands/create/assets/create_agent_auto.yaml:620:      promotion_note: "Use memory_update() to promote to 'critical' if this agent becomes widely used"
-.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:188:      step_promote_candidate:
-.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:191:        command: "node .opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --score={score_output_path} --benchmark-report={benchmark_output_path} --repeatability-report={repeatability_output_path} --config={spec_folder}/improvement/agent-improvement-config.json --manifest={spec_folder}/improvement/target-manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
-.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:200:        description: "Recommend continue, promote, or stop based on reducer output"
+.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:188:      step_promote_candidate:
+.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:191:        command: "node .opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --score={score_output_path} --benchmark-report={benchmark_output_path} --repeatability-report={repeatability_output_path} --config={spec_folder}/improvement/agent-improvement-config.json --manifest={spec_folder}/improvement/target-manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
+.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:200:        description: "Recommend continue, promote, or stop based on reducer output"
 .opencode/specs/skilled-agent-orchestration/035-sk-deep-research-path-migration/spec.md:125:| REQ-013 | Keep review indexing semantics stable | Review iteration artifacts remain excluded working artifacts and the review report does not become a newly promoted spec-doc type unless a consumer proves that necessary |
-.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:6:action: Scan integration surfaces, generate dynamic profiles, score candidates across 5 dimensions, reduce evidence, and decide keep/reject/promote
-.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:166:        description: "Recommend continue, promote, or stop based on reducer output"
+.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:6:action: Scan integration surfaces, generate dynamic profiles, score candidates across 5 dimensions, reduce evidence, and decide keep/reject/promote
+.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:166:        description: "Recommend continue, promote, or stop based on reducer output"
 .opencode/commands/create/assets/create_folder_readme_confirm.yaml:704:      promotion_note: "Use memory_update() to promote to 'important' if README becomes a key reference"
 .opencode/commands/create/assets/create_folder_readme_confirm.yaml:1254:      promotion_note: "Use memory_update() to promote to 'critical' if this becomes a frequently referenced guide"
-.opencode/commands/improve/README.txt:116:Synthesis: final dashboard, recommendation (continue / promote / stop)
+.opencode/commands/README.txt:116:Synthesis: final dashboard, recommendation (continue / promote / stop)
 .opencode/skills/cli-gemini/references/agent_delegation.md:297:| Spec folder docs | @speckit | (none) | Exclusive spec authority |
 .opencode/specs/skilled-agent-orchestration/030-sk-deep-research-review-mode/research/iterations/iteration-005.md:145:4. Optional overlay protocols should never block convergence by default; they enrich the final report unless the active target type promotes them to required overlays.
 .opencode/specs/skilled-agent-orchestration/030-sk-deep-research-review-mode/research/iterations/iteration-005.md:146:5. For `agent` targets, `agent_cross_runtime` should be promoted from advisory overlay to convergence gate because runtime inconsistency is a contract contradiction, not a documentation nicety.
 .opencode/specs/skilled-agent-orchestration/030-sk-deep-research-review-mode/scratch/archive-research-v1/iteration-002.md:130:- Findings tend to cluster by dimension (security pass may find 0, correctness pass may find 5)
-.opencode/commands/improve/agent.md:292:- Recommendation: continue, promote (if eligible), or stop
-.opencode/commands/improve/agent.md:400:- Promoted a non-eligible target (only handover with static profile can promote)
+.opencode/commands/deep/start-agent-improvement-loop.md:292:- Recommendation: continue, promote (if eligible), or stop
+.opencode/commands/deep/start-agent-improvement-loop.md:400:- Promoted a non-eligible target (only handover with static profile can promote)
 .opencode/specs/skilled-agent-orchestration/033-skill-command-readme-rewrite/checklist.md:87:- [x] CHK-051 [P1] No temporary artifacts were promoted into packet docs as fake repo files [Reference review]
 .opencode/skills/cli-copilot/assets/prompt_templates.md:252:copilot -p "Generate Terraform modules for an AWS EKS cluster. Requirements: private subnets, OIDC enabled, and managed node groups. Follow security best practices for AWS." \
 .opencode/skills/cli-copilot/assets/prompt_templates.md:304:| `[cloud-resource]` | Cloud infrastructure resource | `"AWS EKS cluster"`, `"GCP Cloud Run"` |

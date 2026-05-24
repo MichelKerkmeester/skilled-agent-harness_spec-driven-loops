@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
+  "specFolder": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook",
   "description": "Feature Specification: sk-code Motion.dev Cross-Stack Category and Playbook Refinement — Phase Parent",
   "keywords": [
     "feature",
@@ -14,11 +14,12 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.116Z",
+  "lastUpdated": "2026-05-23T15:24:59.435Z",
   "specId": "069",
   "folderSlug": "sk-code-motion-dev-and-playbook",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

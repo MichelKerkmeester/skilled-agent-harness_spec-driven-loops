@@ -37,7 +37,7 @@ Validate that `lib/lifecycle/supersession.ts` implements asymmetric routing: a s
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred_decisions.md` §F34 for rationale.
 
 1. Identify the superseded-successor pair from `graph-metadata.json` supersession fields.
 2. Call `advisor_recommend` with a prompt that historically mapped to the superseded skill:

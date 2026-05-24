@@ -68,11 +68,11 @@ _memory:
 
 ### YAML asset filename renames (atomic with agent.md content update)
 
-- [x] T-009 [CRITICAL] `git mv .opencode/commands/improve/assets/improve_improve-agent_auto.yaml .opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`
-- [x] T-010 [CRITICAL] `git mv .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml .opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml`
-- [x] T-011 [P][CRITICAL] `git mv .claude/commands/improve/assets/improve_improve-agent_auto.yaml .claude/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`
-- [x] T-012 [P][CRITICAL] `git mv .claude/commands/improve/assets/improve_improve-agent_confirm.yaml .claude/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml`
-- [x] T-013 [CRITICAL] Update `agent.md` body refs to new YAML filenames in `.opencode/commands/improve/agent.md` (lines ~269-270) and `.claude/commands/improve/agent.md` (similar)
+- [x] T-009 [CRITICAL] `git mv .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`
+- [x] T-010 [CRITICAL] `git mv .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml`
+- [x] T-011 [P][CRITICAL] `git mv .claude/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml .claude/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`
+- [x] T-012 [P][CRITICAL] `git mv .claude/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml .claude/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml`
+- [x] T-013 [CRITICAL] Update `agent.md` body refs to new YAML filenames in `.opencode/commands/deep/start-agent-improvement-loop.md` (lines ~269-270) and `.claude/commands/deep/start-agent-improvement-loop.md` (similar)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -86,9 +86,9 @@ _memory:
 
 - [x] T-014 [CRITICAL] Mass `sed -i ''` across active scope:
   - `find .opencode/skills/deep-agent-improvement -type f \( -name '*.md' -o -name '*.json' -o -name '*.jsonl' \) -not -path '*/node_modules/*'`
-  - `.opencode/commands/improve/{agent.md,README.txt}` and `.opencode/commands/improve/assets/improve_deep-agent-improvement_*.yaml`
-  - `.claude/commands/improve/{agent.md,README.txt}` and `.claude/commands/improve/assets/*.yaml`
-  - `.gemini/commands/improve/{improve-agent.toml,README.txt}`
+  - `.opencode/commands/deep/{agent.md,README.txt}` and `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_*.yaml`
+  - `.claude/commands/deep/{agent.md,README.txt}` and `.claude/commands/deep/assets/*.yaml`
+  - `.gemini/commands/deep/{improve-agent.toml,README.txt}`
   - `.opencode/skills/sk-doc/assets/agent_template.md`
   - Substitution: `@improve-agent` → `@deep-agent-improvement` (literal string)
   - Verify: `rg -F '@improve-agent'` in those targets returns 0

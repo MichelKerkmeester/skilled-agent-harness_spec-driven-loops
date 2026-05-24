@@ -16,14 +16,14 @@ _memory:
     last_updated_at: "2026-05-02T17:30:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Scaffolded 9-phase parent + per-agent sub-phase specs"
-    next_safe_action: "Pick a sub-phase and dispatch /improve:agent against the named target"
+    next_safe_action: "Pick a sub-phase and dispatch /deep:start-agent-improvement-loop against the named target"
     blockers: []
     key_files:
       - .opencode/specs/skilled-agent-orchestration/061-agent-optimization/spec.md
     completion_pct: 0
     open_questions:
       - "Sequencing: improve LEAF agents first (@context, @deep-research, @deep-review) before orchestrators that dispatch them?"
-      - "Should @improve-prompt go through /improve:agent or through /improve:prompt itself (companion command)?"
+      - "Should @improve-prompt go through /deep:start-agent-improvement-loop or through /prompt itself (companion command)?"
     answered_questions: []
 ---
 
@@ -39,7 +39,7 @@ _memory:
 
 The sk-improve-agent triad was empirically validated in packet 060 — final composite **PASS 6 / PARTIAL 0 / FAIL 0** against a substrate built across 5 sub-phases. The methodology, rubric, and tooling are now production-ready.
 
-This packet applies that proven substrate to the **remaining 9 agents** in the fleet. One sub-phase per agent. Each sub-phase is a single application of the `/improve:agent` command-flow against its named target, followed by 4-runtime mirror sync (`.opencode/`, `.claude/`, `.gemini/`, `.codex/`).
+This packet applies that proven substrate to the **remaining 9 agents** in the fleet. One sub-phase per agent. Each sub-phase is a single application of the `/deep:start-agent-improvement-loop` command-flow against its named target, followed by 4-runtime mirror sync (`.opencode/`, `.claude/`, `.gemini/`, `.codex/`).
 
 **Excluded** (already optimized via this lineage):
 - `@code` — packet 059 (5/2/1 → 6/2/0 → 8/0/0)
@@ -76,7 +76,7 @@ Each sub-phase follows the same shape — single linear iteration, no R1/R2/R3 s
 
 1. **Read target** — load the canonical `.opencode/agents/<name>.md` and identify integration surface via `scan-integration.cjs`
 2. **Profile** — run `generate-profile.cjs` to derive the dynamic 5-dimension scoring profile for that target
-3. **Dispatch** — invoke `/improve:agent .opencode/agents/<name>.md :auto` (or `:confirm` for the higher-stakes targets like @orchestrate)
+3. **Dispatch** — invoke `/deep:start-agent-improvement-loop .opencode/agents/<name>.md :auto` (or `:confirm` for the higher-stakes targets like @orchestrate)
 4. **Score** — `score-candidate.cjs` produces 5-dimension scoring against profile
 5. **Benchmark** — `run-benchmark.cjs` against the static fixtures (the fixture contract holds for any agent body)
 6. **Legal-stop** — verify all 5 gate bundles (contractGate, behaviorGate, integrationGate, evidenceGate, improvementGate) pass
@@ -92,7 +92,7 @@ Sub-phase **006** has additional rename steps interleaved between 7 and 8 (renam
 <!-- ANCHOR:reference -->
 ## REFERENCE PACKETS
 
-- `../060-sk-agent-improver-test-report-alignment/` — methodology + substrate source. The `/improve:agent` command-flow that all 9 sub-phases will dispatch was finalized here.
+- `../060-sk-agent-improver-test-report-alignment/` — methodology + substrate source. The `/deep:start-agent-improvement-loop` command-flow that all 9 sub-phases will dispatch was finalized here.
 - `../059-agent-implement-code/` — original stress-test methodology that 060 generalized.
 <!-- /ANCHOR:reference -->
 

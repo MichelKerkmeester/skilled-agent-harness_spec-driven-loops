@@ -192,7 +192,7 @@
     ],
     "causal_summary": "This is phase 012 of the memory-leak remediation arc. Source decision lives in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle/implementation-summary.md` (the 5xx fallback RSS gate + P2-default decision in the Decisions anchor).",
     "created_at": "2026-05-22T18:30:00Z",
-    "last_save_at": "2026-05-23T11:55:15.659Z",
+    "last_save_at": "2026-05-24T05:40:26.146Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

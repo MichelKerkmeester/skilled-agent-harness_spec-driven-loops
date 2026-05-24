@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs",
   "description": "Feature Specification: Phase Parent Documentation",
   "keywords": [
     "feature",
@@ -8,13 +8,14 @@
     "parent",
     "documentation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.121Z",
+  "lastUpdated": "2026-05-23T15:24:59.805Z",
   "specId": "001",
-  "folderSlug": "validator-and-docs",
+  "folderSlug": "phase-parent-validator-docs",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass",
     "009-phase-parent-lean-trio-documentation"
   ],
   "memorySequence": 3,

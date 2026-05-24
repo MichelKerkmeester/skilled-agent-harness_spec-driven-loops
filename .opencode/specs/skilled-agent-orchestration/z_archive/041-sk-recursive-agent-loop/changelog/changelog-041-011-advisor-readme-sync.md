@@ -22,7 +22,7 @@ Updated the skill advisor routing tables and root README to make Phase 008+ capa
 
 ### Skill advisor routing (Barter)
 
-**Problem:** The Barter-specific advisor lacked command bridges for `/improve:prompt` and `/create:*` commands.
+**Problem:** The Barter-specific advisor lacked command bridges for `/prompt` and `/create:*` commands.
 
 **Fix:** Added 7 COMMAND_BRIDGES and 2 PHRASE_INTENT_BOOSTERS for the Barter skill advisor.
 
@@ -46,7 +46,7 @@ Updated the skill advisor routing tables and root README to make Phase 008+ capa
 
 **Problem:** Needed to confirm the new advisor entries actually route correctly.
 
-**Fix:** Verified routing at target confidence: `"5-dimension evaluation"` at 0.92, `"/improve:agent"` at 0.95, `"score agent"` at 0.89, and all `/create:*` commands routed correctly.
+**Fix:** Verified routing at target confidence: `"5-dimension evaluation"` at 0.92, `"/deep:start-agent-improvement-loop"` at 0.95, `"score agent"` at 0.89, and all `/create:*` commands routed correctly.
 
 ---
 

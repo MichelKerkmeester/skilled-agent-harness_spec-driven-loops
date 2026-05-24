@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Hook State Loader Stub
+// ───────────────────────────────────────────────────────────────
+
 export type HookStateScope = {
   specFolder?: string;
   claudeSessionId?: string;

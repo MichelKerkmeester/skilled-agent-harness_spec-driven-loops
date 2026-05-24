@@ -30,7 +30,7 @@ _memory:
 
 ## What Was Built
 
-Transformed the sk-improve-agent evaluation from structural keyword-checking (~15-20% coverage) to a **5-dimension integration-aware scoring framework** that evaluates agents holistically across their full system integration surface. Renamed the skill from `sk-recursive-agent` to `sk-improve-agent` and the command from `/speckit:recursive-agent` to `/improve:agent`.
+Transformed the sk-improve-agent evaluation from structural keyword-checking (~15-20% coverage) to a **5-dimension integration-aware scoring framework** that evaluates agents holistically across their full system integration surface. Renamed the skill from `sk-recursive-agent` to `sk-improve-agent` and the command from `/speckit:recursive-agent` to `/deep:start-agent-improvement-loop`.
 
 ### New Scripts
 
@@ -75,7 +75,7 @@ All 8 `.cjs` scripts aligned with sk-code-opencode JavaScript standard: box comm
 - All 4 runtime mirrors synced (Claude, Codex, .agents, Gemini)
 
 **Command:**
-- `.opencode/commands/improve/agent.md`: Full rewrite to 430+ lines matching `prompt.md` quality — Phase 0 verification, unified setup phase with consolidated prompt, Phase Status Verification, 5-dimension reference, workflow steps, violation self-detection
+- `.opencode/commands/deep/start-agent-improvement-loop.md`: Full rewrite to 430+ lines matching `prompt.md` quality — Phase 0 verification, unified setup phase with consolidated prompt, Phase Status Verification, 5-dimension reference, workflow steps, violation self-detection
 - YAML workflows: Both `improve_agent-improver_auto.yaml` and `_confirm.yaml` rewritten to spec_kit gold standard with user_inputs, field_handling, context_loading, evaluation_philosophy, phase descriptions, approval gates (confirm mode)
 - `README.txt` created for improve/ command group in all 4 runtimes
 
@@ -90,7 +90,7 @@ All 8 `.cjs` scripts aligned with sk-code-opencode JavaScript standard: box comm
 | --- | --- |
 | `sk-recursive-agent` | `sk-improve-agent` |
 | `recursive-agent` | `agent-improver` |
-| `/speckit:recursive-agent` | `/improve:agent` |
+| `/speckit:recursive-agent` | `/deep:start-agent-improvement-loop` |
 | `@recursive-agent` | `@agent-improver` |
 
 187+ files updated, 1129+ occurrences replaced. Zero stale references remaining (verified by fresh sub-agent audit).

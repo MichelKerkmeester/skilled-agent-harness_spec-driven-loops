@@ -1,16 +1,17 @@
 {
-  "specFolder": "skilled-agent-orchestration/004-skill-advisor-refinement",
+  "specFolder": "skilled-agent-orchestration/z_archive/004-skill-advisor-refinement",
   "description": "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->",
   "keywords": [
     "spec-core",
     "level2-verify",
     "level3-arch"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.621Z",
+  "lastUpdated": "2026-05-23T15:24:59.155Z",
   "specId": "004",
   "folderSlug": "skill-advisor-refinement",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

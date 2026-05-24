@@ -5,7 +5,7 @@ Senior deep-reviewer. Read-only. Cite EVIDENCE for every finding (file:lines).
 
 ## Context
 Two rename arcs shipped 2026-05-21:
-- 007 (114/007): sk-small-model → sk-ai-small-model
+- 007 (114/007): sk-small-model → sk-prompt-small-model
 - 115: deep-ai-council → sk-ai-council (skill) + ai-council (agent)
 
 ## Scope: PUBLIC ROOT DOCS
@@ -18,7 +18,7 @@ Two rename arcs shipped 2026-05-21:
 
 ### Checks
 1. Verify NO live mentions of old names `sk-small-model` or `deep-ai-council` in these files (allow only HISTORICAL narrative with corrective tags).
-2. Verify `sk-ai-council` and `sk-ai-small-model` are listed in the skills catalog (root README + skills index README).
+2. Verify `sk-ai-council` and `sk-prompt-small-model` are listed in the skills catalog (root README + skills index README).
 3. Verify `@ai-council` agent appears in Agent Definitions / Quick Reference (AGENTS.md).
 4. Verify all 4 runtime agent README.txt inventories reflect renamed agent.
 5. Verify CLAUDE.md (symlink) reflects AGENTS.md edits correctly.

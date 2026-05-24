@@ -22,7 +22,7 @@ Target: 007 rename packet (post-ship 2026-05-21). Iters 1-3 done (correctness, t
 3. **Scope-creep justification**: The packet shipped 2 incidental fixes (`system-rerank-sidecar` category + `mcp-coco-index` reverse-sibling). Are these justified as on-the-critical-path for REQ-005? Is the justification visible to a future reader?
    - Acceptance: justification cite verdict.
 
-4. **Changelog forward-link adequacy**: `sk-ai-small-model/changelog/v0.3.0.0.md` is the forward-link from the old name. Does it adequately describe the rename + cite the spec packet?
+4. **Changelog forward-link adequacy**: `sk-prompt-small-model/changelog/v0.3.0.0.md` is the forward-link from the old name. Does it adequately describe the rename + cite the spec packet?
    - Acceptance: read v0.3.0.0.md; verdict.
 
 5. **Pattern reproducibility**: Could a future operator perform a similar rename (e.g., 115 deep-ai-council rename) by following 007 as a template? Is the workflow + scope-discipline pattern clearly captured?

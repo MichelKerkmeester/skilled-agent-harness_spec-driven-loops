@@ -33,7 +33,7 @@ Key surfaces to grep:
 - `.opencode/skills/deep-agent-improvement/scripts/` (executors, evaluators)
 - `.opencode/skills/deep-agent-improvement/references/` (protocols)
 - `.opencode/skills/deep-agent-improvement/assets/` (templates, configs)
-- `.opencode/commands/improve/agent.md` (command wrapper if exists)
+- `.opencode/commands/deep/start-agent-improvement-loop.md` (command wrapper if exists)
 - Recent improvement-arc spec folders that exercised the skill
 
 **Step 3: Aggregate priority + effort**

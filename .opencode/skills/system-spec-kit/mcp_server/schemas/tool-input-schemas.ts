@@ -129,38 +129,6 @@ const skillGraphQueryTypeEnum = z.enum([
 
 const skillFamilyEnum = z.enum(['cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'system']);
 
-const councilGraphNodeKindEnum = z.enum([
-  'SESSION',
-  'ROUND',
-  'SEAT',
-  'CLAIM',
-  'EVIDENCE',
-  'DISAGREEMENT',
-  'DECISION',
-  'RECOMMENDATION',
-]);
-
-const councilGraphRelationEnum = z.enum([
-  'PARTICIPATES_IN',
-  'PROPOSES',
-  'SUPPORTS',
-  'CONTRADICTS',
-  'DERIVES_FROM',
-  'AGREES_WITH',
-  'RESOLVES',
-  'ESCALATES',
-  'EVIDENCE_FOR',
-  'RECOMMENDS',
-]);
-
-const councilGraphQueryTypeEnum = z.enum([
-  'unresolved_disagreements',
-  'evidence_chain',
-  'decision_support',
-  'convergence_blockers',
-  'hot_nodes',
-]);
-
 /* ───────────────────────────────────────────────────────────────
    5. SCHEMA DEFINITIONS
 ──────────────────────────────────────────────────────────────── */
@@ -514,54 +482,6 @@ const skillGraphStatusSchema = getSchema({});
 
 const skillGraphValidateSchema = getSchema({});
 
-const councilGraphNodeSchema = z.object({
-  id: z.string().min(1),
-  kind: councilGraphNodeKindEnum,
-  name: z.string().min(1),
-  artifactPath: pathString().optional(),
-  contentHash: z.string().optional(),
-  roundId: z.string().optional(),
-  metadata: z.record(z.string(), z.unknown()).optional(),
-});
-
-const councilGraphEdgeSchema = z.object({
-  id: z.string().min(1),
-  sourceId: z.string().min(1),
-  targetId: z.string().min(1),
-  relation: councilGraphRelationEnum,
-  weight: boundedNumber(0, 2).optional(),
-  artifactPath: pathString().optional(),
-  metadata: z.record(z.string(), z.unknown()).optional(),
-});
-
-const councilGraphUpsertSchema = getSchema({
-  specFolder: pathString(1),
-  sessionId: z.string().min(1),
-  nodes: z.array(councilGraphNodeSchema).optional(),
-  edges: z.array(councilGraphEdgeSchema).optional(),
-});
-
-const councilGraphQuerySchema = getSchema({
-  specFolder: pathString(1),
-  sessionId: z.string().min(1),
-  queryType: councilGraphQueryTypeEnum,
-  nodeId: z.string().optional(),
-  limit: positiveIntMax(200).optional(),
-  maxDepth: positiveIntMax(20).optional(),
-});
-
-const councilGraphStatusSchema = getSchema({
-  specFolder: pathString(1),
-  sessionId: z.string().min(1),
-});
-
-const councilGraphConvergenceSchema = getSchema({
-  specFolder: pathString(1),
-  sessionId: z.string().min(1),
-  roundId: z.string().optional(),
-  persistSnapshot: z.boolean().optional(),
-});
-
 /* ───────────────────────────────────────────────────────────────
    6. EXPORTS
 ──────────────────────────────────────────────────────────────── */
@@ -604,10 +524,6 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   skill_graph_query: skillGraphQuerySchema as unknown as ToolInputSchema,
   skill_graph_status: skillGraphStatusSchema as unknown as ToolInputSchema,
   skill_graph_validate: skillGraphValidateSchema as unknown as ToolInputSchema,
-  council_graph_upsert: councilGraphUpsertSchema as unknown as ToolInputSchema,
-  council_graph_query: councilGraphQuerySchema as unknown as ToolInputSchema,
-  council_graph_status: councilGraphStatusSchema as unknown as ToolInputSchema,
-  council_graph_convergence: councilGraphConvergenceSchema as unknown as ToolInputSchema,
   session_bootstrap: getSchema({
     specFolder: optionalPathString(),
   }) as unknown as ToolInputSchema,
@@ -657,10 +573,6 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   skill_graph_query: ['queryType', 'skillId', 'sourceSkillId', 'targetSkillId', 'family', 'minInbound', 'depth', 'limit'],
   skill_graph_status: [],
   skill_graph_validate: [],
-  council_graph_upsert: ['specFolder', 'sessionId', 'nodes', 'edges'],
-  council_graph_query: ['specFolder', 'sessionId', 'queryType', 'nodeId', 'limit', 'maxDepth'],
-  council_graph_status: ['specFolder', 'sessionId'],
-  council_graph_convergence: ['specFolder', 'sessionId', 'roundId', 'persistSnapshot'],
   session_bootstrap: ['specFolder'],
   session_health: [],
   session_resume: ['specFolder', 'sessionId', 'minimal'],

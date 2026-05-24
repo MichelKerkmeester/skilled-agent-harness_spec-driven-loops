@@ -34,13 +34,13 @@ The sk-improve-agent skill has been validated against handover, debug, orchestra
 
 ## Solution
 
-Execute a real end-to-end `/improve:agent` run targeting `.opencode/agents/agent-improver.md` using the Phase 009 spec folder as the runtime root. Run the full loop (scan, profile, candidate, score, benchmark, reduce, stop-check) for 3 bounded iterations in `:confirm` mode with dynamic scoring. Record all runtime artifacts and document self-referential observations.
+Execute a real end-to-end `/deep:start-agent-improvement-loop` run targeting `.opencode/agents/agent-improver.md` using the Phase 009 spec folder as the runtime root. Run the full loop (scan, profile, candidate, score, benchmark, reduce, stop-check) for 3 bounded iterations in `:confirm` mode with dynamic scoring. Record all runtime artifacts and document self-referential observations.
 
 ## Scope
 
 ### In Scope
 
-- Run the full `/improve:agent` command targeting `.opencode/agents/agent-improver.md`
+- Run the full `/deep:start-agent-improvement-loop` command targeting `.opencode/agents/agent-improver.md`
 - Use dynamic scoring mode (5-dimension)
 - Use the Phase 009 spec folder as the runtime root
 - Use `:confirm` mode (interactive gates for observation)

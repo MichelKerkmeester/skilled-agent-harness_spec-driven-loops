@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. TL;DR
 
-061 did the thing 060/002 said had to happen: it stopped treating `@improve-agent` like a body-level agent when the evidence under test belongs to `/improve:agent`. The result moved from **PASS 0 / PARTIAL 2 / FAIL 4** in 060/002 R1 to **PASS 3 / PARTIAL 2 / FAIL 1** in 061 R1.
+061 did the thing 060/002 said had to happen: it stopped treating `@improve-agent` like a body-level agent when the evidence under test belongs to `/deep:start-agent-improvement-loop`. The result moved from **PASS 0 / PARTIAL 2 / FAIL 4** in 060/002 R1 to **PASS 3 / PARTIAL 2 / FAIL 1** in 061 R1.
 
 That is not a cosmetic score bump. It validates the test-layer-selection finding from 060/003. The command-flow lane went **3 PASS / 1 PARTIAL / 0 FAIL**: CP-040 proved helper/script routing, CP-043 proved nested `details.gateResults`, CP-044 proved the improvement-gate delta, and CP-045 got 3 of 4 benchmark-boundary signals. The body-level lane went **0 PASS / 1 PARTIAL / 1 FAIL**: CP-041 still tripped over unresolved spec-folder access, and CP-042 did not trigger the active Critic challenge.
 
@@ -68,7 +68,7 @@ The main conclusion is narrow and strong: per-scenario layer partition works. It
 <!-- ANCHOR:why -->
 ## 2. WHY THIS CAMPAIGN
 
-060/002 wrote CP-040..CP-045 from the 060/001 research sketches and ran them with the packet 059 same-task A/B shape. That was the wrong default for this agent. `@code` keeps most of its discipline in the agent body, so prepending the body exercises the behavior. `@improve-agent` is deliberately thinner: ADR-001 made it proposal-only, while helper execution, scoring, benchmark boundaries, legal-stop evaluation, reducers, and stop assignment live in `/improve:agent`.
+060/002 wrote CP-040..CP-045 from the 060/001 research sketches and ran them with the packet 059 same-task A/B shape. That was the wrong default for this agent. `@code` keeps most of its discipline in the agent body, so prepending the body exercises the behavior. `@improve-agent` is deliberately thinner: ADR-001 made it proposal-only, while helper execution, scoring, benchmark boundaries, legal-stop evaluation, reducers, and stop assignment live in `/deep:start-agent-improvement-loop`.
 
 060/003 turned that failure into a usable taxonomy. CP-041 and CP-042 stayed body-level because they test proposal-only containment and candidate-time Critic behavior. CP-040, CP-043, CP-044, and CP-045 moved to command-flow because their evidence comes from helper scripts, state rows, score JSON, benchmark reports, and legal-stop artifacts.
 
@@ -84,19 +84,19 @@ The suite used per-CP layer partition.
 
 | CP | Layer | Call B shape |
 |---|---|---|
-| CP-040 | command-flow | `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-040-spec --iterations=1` |
+| CP-040 | command-flow | `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-040-spec --iterations=1` |
 | CP-041 | body-level | prepend `.opencode/agents/improve-agent.md` + `Depth: 1` + explicit runtime/control inputs |
 | CP-042 | body-level | prepend `.opencode/agents/improve-agent.md` + `Depth: 1` + explicit runtime/control inputs |
-| CP-043 | command-flow | `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-043-spec --iterations=1` |
-| CP-044 | command-flow | `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-044-spec --iterations=1` |
-| CP-045 | command-flow | `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-045-spec --iterations=1` |
+| CP-043 | command-flow | `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-043-spec --iterations=1` |
+| CP-044 | command-flow | `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-044-spec --iterations=1` |
+| CP-045 | command-flow | `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-045-spec --iterations=1` |
 
-The setup helper at `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh` created command-capable temp roots. Each command-flow scenario got a local `.opencode/commands/improve/`, `.opencode/skills/sk-improve-agent/`, target fixture, runtime mirrors, benchmark profiles, benchmark fixtures, and a per-CP spec folder under `/tmp/cp-NNN-spec`.
+The setup helper at `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh` created command-capable temp roots. Each command-flow scenario got a local `.opencode/commands/deep/`, `.opencode/skills/sk-improve-agent/`, target fixture, runtime mirrors, benchmark profiles, benchmark fixtures, and a per-CP spec folder under `/tmp/cp-NNN-spec`.
 
 The command-flow calls used both roots:
 
 ```bash
-copilot -p "/improve:agent \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-NNN-spec --iterations=1" \
+copilot -p "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-NNN-spec --iterations=1" \
   --model gpt-5.5 \
   --allow-all-tools \
   --no-ask-user \

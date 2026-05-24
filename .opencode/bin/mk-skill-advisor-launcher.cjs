@@ -92,6 +92,7 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_IPC_SOCKET_DIR',
   'RERANK_SIDECAR_PORT',
   'SPECKIT_LAUNCHER_BRIDGE_DISABLED',
+  'SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN',
   'SPECKIT_MAX_SECONDARY_CLIENTS',
 ]);
 let childProcess = null;
@@ -234,7 +235,7 @@ function checkStrictSingleWriter() {
   }
 
   try {
-    const daemonLeasePath = path.join(mcpDir, 'dist', 'system-skill-advisor', 'mcp_server', 'lib', 'daemon', 'lease.js');
+    const daemonLeasePath = path.join(mcpDir, 'dist', 'mcp_server', 'lib', 'daemon', 'lease.js');
     const leaseModule = require(daemonLeasePath);
     const leaseResult = leaseModule.isLeaseHeld(root);
     const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
@@ -295,7 +296,7 @@ function run(command, args, options = {}) {
 }
 
 function serverEntrypoint() {
-  return path.join(mcpDir, 'dist', 'system-skill-advisor', 'mcp_server', 'advisor-server.js');
+  return path.join(mcpDir, 'dist', 'mcp_server', 'advisor-server.js');
 }
 
 function requiredArtifacts() {

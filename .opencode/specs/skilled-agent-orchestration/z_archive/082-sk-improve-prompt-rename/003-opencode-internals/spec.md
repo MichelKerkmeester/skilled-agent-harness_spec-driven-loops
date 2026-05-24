@@ -65,7 +65,7 @@ Phase 003 updates every `.opencode/` reference outside specs and the renamed ski
 ## 3. SCOPE
 
 ### In Scope
-- Update `.opencode/commands/improve/prompt.md`, `.opencode/commands/improve/README.txt`, and `.opencode/agents/improve-prompt.md` body refs.
+- Update `.opencode/commands/prompt.md`, `.opencode/commands/README.txt`, and `.opencode/agents/improve-prompt.md` body refs.
 - Update advisor scorer lanes `explicit.ts`, `lexical.ts`, `fusion.ts`, `skill_advisor.py`, advisor metadata, sync script, routing fixtures, and regression fixtures.
 - Update five cli-* `assets/prompt_quality_card.md` mirrors and parent `SKILL.md` routing tables.
 - Update listed cli manual playbooks, `deep-agent-improvement/SKILL.md`, and sk-code advisor integration docs.
@@ -73,14 +73,14 @@ Phase 003 updates every `.opencode/` reference outside specs and the renamed ski
 ### Out of Scope
 - Editing `.opencode/skills/sk-prompt/**` skill-local content or `.opencode/specs/**`.
 - Editing `.claude/`, `.codex/`, `.gemini/`, root docs, install guides, active changelogs outside this phase.
-- Renaming `/improve:prompt`, `@improve-prompt`, or their filenames.
+- Renaming `/prompt`, `@improve-prompt`, or their filenames.
 - Running final advisor rebuild and probe battery.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/improve/*`, `.opencode/agents/improve-prompt.md` | Modify | Dispatcher and agent body refs |
+| `.opencode/commands/deep/*`, `.opencode/agents/improve-prompt.md` | Modify | Dispatcher and agent body refs |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/**` | Modify | Scorer and fusion skill ID refs |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modify | TOKEN_BOOSTS, PHRASE_BOOSTS, aliases dict |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/{graph-metadata.json,scripts/**}` | Modify | Metadata, sync script, fixtures, labeled prompts |
@@ -97,7 +97,7 @@ Phase 003 updates every `.opencode/` reference outside specs and the renamed ski
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Rotate Phase 003-owned `.opencode/` references from `sk-improve-prompt` to `sk-prompt`. | Explicit Phase 003 file-list grep returns zero old-name hits. |
-| REQ-002 | Preserve command and agent names. | `/improve:prompt` and `@improve-prompt` filenames/names are unchanged. |
+| REQ-002 | Preserve command and agent names. | `/prompt` and `@improve-prompt` filenames/names are unchanged. |
 | REQ-003 | Preserve code and fixture syntax. | JSON, JSONL, and Python syntax checks pass. |
 
 ### P1 - Required (complete OR user-approved deferral)

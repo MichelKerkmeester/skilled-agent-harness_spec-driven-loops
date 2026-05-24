@@ -1,12 +1,12 @@
 ---
-title: "Skill Advisor Data: Shadow Delta Records"
-description: "Data folder for skill-advisor shadow delta records used by comparison and diagnostics paths."
+title: "Skill Advisor Data: Static Runtime Inputs"
+description: "Data folder for tracked advisor JSON inputs plus ignored runtime shadow delta logs."
 trigger_phrases:
   - "advisor data"
   - "shadow deltas"
 ---
 
-# Skill Advisor Data: Shadow Delta Records
+# Skill Advisor Data: Static Runtime Inputs
 
 <!-- sk-doc-template: skill_readme -->
 
@@ -28,13 +28,13 @@ trigger_phrases:
 <!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
-`skill_advisor/data/` stores data files used by advisor diagnostics and shadow comparison paths. It currently contains JSONL shadow delta records.
+`skill_advisor/data/` stores tracked JSON inputs copied into advisor dist during build. Shadow delta JSONL logs may appear here at runtime, but they are ignored runtime state.
 
 Current state:
 
-- Stores `shadow-deltas.jsonl` for shadow delta observations.
-- Keeps generated or observed data separate from library modules.
-- Supports comparison and diagnostics paths without exporting runtime code.
+- Tracks `prompt-policy.default.json` as the default prompt policy input.
+- Copies tracked `*.json` files into `dist/mcp_server/data` during `npm run build`.
+- Ignores `shadow-deltas.jsonl` because it is observed runtime telemetry.
 
 ---
 
@@ -45,7 +45,8 @@ Current state:
 
 ```text
 data/
-+-- shadow-deltas.jsonl   # Shadow comparison delta records
++-- prompt-policy.default.json  # Tracked prompt policy input copied into dist
++-- shadow-deltas.jsonl         # Ignored runtime telemetry when shadow mode writes
 `-- README.md
 ```
 
@@ -58,7 +59,8 @@ data/
 
 | File | Responsibility |
 |---|---|
-| `shadow-deltas.jsonl` | Stores shadow-mode delta records for advisor comparison or diagnostics. |
+| `prompt-policy.default.json` | Default prompt policy input copied into build output. |
+| `shadow-deltas.jsonl` | Ignored runtime shadow-mode delta records for comparison or diagnostics. |
 
 ---
 
@@ -69,17 +71,17 @@ data/
 
 | Boundary | Rule |
 |---|---|
-| Imports | Data files are read by advisor diagnostics or shadow paths, not imported as modules. |
+| Imports | JSON data files are read by advisor runtime code, not imported as modules. |
 | Exports | This folder exports no runtime code. |
-| Ownership | Put advisor shadow data here. Put shadow sink code in `../lib/shadow/`. |
+| Ownership | Track static JSON inputs here. Put runtime logs here only as ignored local state via `.opencode/.gitignore`. |
 
 Main flow:
 
 ```text
-shadow comparison path
-  -> append or read JSONL delta record
-  -> diagnostic comparison
-  -> report or test assertion
+build or runtime path
+  -> read tracked JSON input
+  -> copy to dist/mcp_server/data during build
+  -> append ignored shadow telemetry only when enabled
 ```
 
 ---
@@ -91,7 +93,8 @@ shadow comparison path
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `shadow-deltas.jsonl` | Data file | Shadow delta record store. |
+| `prompt-policy.default.json` | Data file | Default prompt policy input. |
+| `shadow-deltas.jsonl` | Runtime file | Ignored shadow delta record store. |
 
 ---
 

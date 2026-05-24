@@ -58,7 +58,7 @@ Use these IDs when a recommendation depends on an integration point.
 | --- | --- | --- |
 | `INT-CALLER-GENERAL` | `@general` | Primary caller/orchestrator may dispatch this specialist and then dispatch the returned prompt elsewhere; this agent does not call back or delegate |
 | `INT-CALLER-WRITE` | `@write` | Documentation-focused caller may request prompt packaging context; this agent still returns only the structured prompt package |
-| `INT-CMD-IMPROVE-PROMPT` | `/improve:prompt` via `.opencode/commands/improve/prompt.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
+| `INT-CMD-IMPROVE-PROMPT` | `/prompt` via `.opencode/commands/prompt.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
 | `INT-SKILL-IMPROVE-PROMPT` | `.opencode/skills/sk-improve-prompt/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
 | `INT-SKILL-SK-DOC` | `sk-doc` | Documentation-shape guidance may inform prompt constraints when the caller asks for documentation packaging or template alignment |
 | `INT-TARGET-CLI` | `target_cli` values such as `claude-code`, `codex`, `copilot`, or `gemini` | Downstream executor context for prompt wording only; do not claim the executor was invoked |
@@ -80,7 +80,7 @@ Use these IDs when a recommendation depends on an integration point.
 
 | Command | Integration ID | Purpose | Path |
 | ------- | -------------- | ------- | ---- |
-| `/improve:prompt` | `INT-CMD-IMPROVE-PROMPT` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/improve/prompt.md` |
+| `/prompt` | `INT-CMD-IMPROVE-PROMPT` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/prompt.md` |
 
 ### Skills
 
@@ -153,7 +153,7 @@ Incoming prompt-escalation request
 - Never dispatch sub-agents or recurse with a task/delegation tool.
 - Never edit files, propose that you edited files, or imply code changes were applied.
 - Never execute, test, or claim completion of the enhanced prompt's underlying task.
-- Never invoke, simulate, or claim results from `/improve:prompt`, target CLIs, skills, MCP tools, or caller agents.
+- Never invoke, simulate, or claim results from `/prompt`, target CLIs, skills, MCP tools, or caller agents.
 - Never widen the task beyond `raw_task` and explicit caller constraints.
 - Never fabricate missing repo, policy, stakeholder, integration, MCP, compliance, or runtime details; surface them as assumptions or escalation notes.
 - Never treat an unread required source as if it was verified.
@@ -228,7 +228,7 @@ target_cli: <claude-code|codex|copilot|gemini>         # optional
 complexity_hint: <1-10>                                # optional
 constraints: <policy, output, or audience constraints> # optional
 caller_agent: <@general|@write|other caller>           # optional
-command_surface: </improve:prompt|other command>       # optional
+command_surface: </prompt|other command>       # optional
 skill_context: <skills to preserve or cite>            # optional
 mcp_tools: <caller-supplied MCP tool names>            # optional
 ```
@@ -347,7 +347,7 @@ Fix verification gaps first
 
 | Command | Integration ID | Purpose | Path |
 | ------- | -------------- | ------- | ---- |
-| `/improve:prompt` | `INT-CMD-IMPROVE-PROMPT` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/improve/prompt.md` |
+| `/prompt` | `INT-CMD-IMPROVE-PROMPT` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/prompt.md` |
 
 ### Skills
 
@@ -391,7 +391,7 @@ Fix verification gaps first
 │                                                                         │
 │  INTEGRATIONS                                                           │
 │  ├─► Callers: @general, @write                                          │
-│  ├─► Command: /improve:prompt                                           │
+│  ├─► Command: /prompt                                           │
 │  ├─► Skills: sk-improve-prompt, sk-doc                                  │
 │  └─► Tool constraints: target_cli and caller-supplied mcp_tools         │
 │                                                                         │

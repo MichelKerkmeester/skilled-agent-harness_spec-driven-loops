@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Rows in `memory_index` were stuck with `failure_reason='Embedding generation returned null'` after the old embedding path swallowed provider failures. Packets 038 and 039 fixed the pipeline, but rows with high retry counts and `embedding_status='failed'` or `retry` would not all re-enter processing without a bounded reset.",
     "created_at": "2026-05-14T15:15:00Z",
-    "last_save_at": "2026-05-23T11:55:15.393Z",
+    "last_save_at": "2026-05-24T05:40:25.995Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

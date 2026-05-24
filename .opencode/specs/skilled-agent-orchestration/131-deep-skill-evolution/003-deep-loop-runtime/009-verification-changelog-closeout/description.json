@@ -9,9 +9,9 @@
     "changelog",
     "closeout"
   ],
-  "lastUpdated": "2026-05-22T19:51:25.145Z",
-  "specId": "008",
-  "folderSlug": "009-verification-changelog-closeout",
+  "lastUpdated": "2026-05-23T15:24:59.077Z",
+  "specId": "009",
+  "folderSlug": "verification-changelog-closeout",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

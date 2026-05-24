@@ -9,7 +9,6 @@
       "../../system-spec-kit/mcp_server/node_modules/@types"
     ],
     "paths": {
-      "@spec-kit/shared/*": ["../../system-spec-kit/shared/*"],
       "better-sqlite3": ["../../system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts"],
       "chokidar": ["../../system-spec-kit/mcp_server/node_modules/chokidar/index.d.ts"],
       "vitest/config": ["../../system-spec-kit/mcp_server/node_modules/vitest/config.d.ts"]

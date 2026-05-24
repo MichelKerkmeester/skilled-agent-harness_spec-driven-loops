@@ -13,15 +13,15 @@ This document captures the canonical manual-testing contract for `E2E-020`.
 
 ## 1. OVERVIEW
 
-This scenario validates the complete `/improve:deep-agent-improvement` loop end-to-end using the debug agent as the target.
+This scenario validates the complete `/deep:start-agent-improvement-loop` loop end-to-end using the debug agent as the target.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
 - Objective: Validate Full Pipeline Loop with Debug Target for the full improvement-loop and candidate-tracking scenarios.
-- Real user request: `` Validate that the complete `/improve:deep-agent-improvement` loop end-to-end using the debug agent as the target. ``
-- Prompt: `Validate the full /improve:deep-agent-improvement loop against the debug agent.`
+- Real user request: `` Validate that the complete `/deep:start-agent-improvement-loop` loop end-to-end using the debug agent as the target. ``
+- Prompt: `Validate the full /deep:start-agent-improvement-loop loop against the debug agent.`
 - Expected execution process: Run the documented command sequence exactly as written; capture stdout, stderr, exit code, and any generated files; then execute the verification block against the same run artifacts.
 - Expected signals: Init phase creates `improvement/` directory with config, charter, strategy, and manifest; Integration scan runs and produces `integration-report.json`; Candidate generated under `improvement/candidates/`; Score output produced via dynamic-mode 5-dimension scoring; Dashboard generated at `improvement/agent-improvement-dashboard.md`; Loop completes 1 iteration without errors
 - Desired user-visible outcome: A concise operator-facing PASS/FAIL verdict with the decisive evidence from the command output and verification checks.
@@ -42,7 +42,7 @@ This scenario validates the complete `/improve:deep-agent-improvement` loop end-
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| E2E-020 | Full Pipeline Loop with Debug Target | Validate Full Pipeline Loop with Debug Target | `Validate the full /improve:deep-agent-improvement loop against the debug agent.` | /improve:deep-agent-improvement &quot;.opencode/agents/debug.md&quot; :confirm --spec-folder=<spec-folder> --iterations=1 | Init phase creates `improvement/` directory with config, charter, strategy, and manifest; Integration scan runs and produces `integration-report.json`; Candidate generated under `improvement/candidates/`; Score output produced via dynamic-mode 5-dimension scoring; Dashboard generated at `improvement/agent-improvement-dashboard.md`; Loop completes 1 iteration without errors | `terminal transcript, command output, generated files, and PASS/FAIL verdict` | All runtime artifacts present after 1 iteration (`improvement/` directory with config, charter, strategy, manifest, candidates, integration report, and dashboard), no errors in console output. | If the pipeline stalls at a specific stage: run that stage&#x27;s individual test (from its category folder) to isolate the failure<br>If `improvement/` directory is not created: check the init phase logic and spec folder path resolution<br>If integration scan fails: verify that `debug.md` is resolvable at the given path and the scanner can discover its surfaces<br>If the command is not recognized: verify the skill is registered in `skill_advisor.py` and the command definition exists |
+| E2E-020 | Full Pipeline Loop with Debug Target | Validate Full Pipeline Loop with Debug Target | `Validate the full /deep:start-agent-improvement-loop loop against the debug agent.` | /deep:start-agent-improvement-loop &quot;.opencode/agents/debug.md&quot; :confirm --spec-folder=<spec-folder> --iterations=1 | Init phase creates `improvement/` directory with config, charter, strategy, and manifest; Integration scan runs and produces `integration-report.json`; Candidate generated under `improvement/candidates/`; Score output produced via dynamic-mode 5-dimension scoring; Dashboard generated at `improvement/agent-improvement-dashboard.md`; Loop completes 1 iteration without errors | `terminal transcript, command output, generated files, and PASS/FAIL verdict` | All runtime artifacts present after 1 iteration (`improvement/` directory with config, charter, strategy, manifest, candidates, integration report, and dashboard), no errors in console output. | If the pipeline stalls at a specific stage: run that stage&#x27;s individual test (from its category folder) to isolate the failure<br>If `improvement/` directory is not created: check the init phase logic and spec folder path resolution<br>If integration scan fails: verify that `debug.md` is resolvable at the given path and the scanner can discover its surfaces<br>If the command is not recognized: verify the skill is registered in `skill_advisor.py` and the command definition exists |
 
 ### Optional Supplemental Checks
 

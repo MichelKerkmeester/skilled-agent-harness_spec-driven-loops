@@ -5,7 +5,7 @@ allowed-tools: [Bash, Read, Grep, Glob]
 version: 1.2.0
 ---
 
-<!-- Keywords: cocoindex-code, semantic-search, vector-embeddings, code-search, mcp-server, ccc, codebase-indexing, voyage-code-3, embeddinggemma-300m, hybrid-search, bm25, fts5, rrf-fusion, cross-encoder-reranker, qwen3-reranker, jina-embeddings-v3 -->
+<!-- Keywords: cocoindex-code, semantic-search, vector-embeddings, code-search, mcp-server, ccc, codebase-indexing, voyage-code-3, code-rank-embed, embeddinggemma-300m, hybrid-search, bm25, fts5, rrf-fusion, cross-encoder-reranker, qwen3-reranker, jina-embeddings-v3 -->
 
 # CocoIndex Code - Semantic Code Search via Vector Embeddings
 

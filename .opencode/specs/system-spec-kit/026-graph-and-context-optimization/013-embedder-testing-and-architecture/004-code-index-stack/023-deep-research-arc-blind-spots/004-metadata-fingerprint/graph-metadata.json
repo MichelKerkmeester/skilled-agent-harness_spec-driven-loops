@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The mcp-coco-index fork supported multiple embedders and exposed 023C retrieval fingerprints, but compatibility remained warning-only. Existing indexes could be queried with a different model, vector dimension, query prompt, document prompt, or corpus root. In a multi-project daemon, one loaded embedder could also be reused across project contexts even when the runtime fingerprint changed.",
     "created_at": "2026-05-19T22:45:00Z",
-    "last_save_at": "2026-05-23T11:55:15.537Z",
+    "last_save_at": "2026-05-24T05:40:26.079Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

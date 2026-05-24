@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 006 of arc 008-rerank-sidecar-arc — re-opens the arc to finish what was originally intended: actually de-duplicate Qwen across spec-memory + cocoindex by moving cocoindex onto the shared sidecar.",
     "created_at": "2026-05-23T11:55:15.616Z",
-    "last_save_at": "2026-05-23T11:55:15.616Z",
+    "last_save_at": "2026-05-24T05:40:26.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

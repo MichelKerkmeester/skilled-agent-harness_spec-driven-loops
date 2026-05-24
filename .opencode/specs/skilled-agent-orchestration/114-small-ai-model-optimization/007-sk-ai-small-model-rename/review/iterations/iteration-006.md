@@ -23,7 +23,7 @@
       "status": "PASS",
       "evidence": [
         "description field mentions sk-small-model as OLD name being renamed FROM (explicit rename context, acceptable)",
-        "keywords array contains both sk-small-model and sk-ai-small-model (meets acceptance criteria for dual presence)"
+        "keywords array contains both sk-small-model and sk-prompt-small-model (meets acceptance criteria for dual presence)"
       ],
       "file": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/description.json"
     },
@@ -102,4 +102,4 @@ Phase 007's rename scope (filesystem + frontmatter + sibling enhances edges) did
 
 **Root cause**: Phase 007 scope was "identity-only refactor" targeting the skill's own metadata and direct enhances edges, but sibling graph-metadata.json files contain derived cross-references to the skill path that were not included in the rename scope.
 
-**Recommendation**: Expand Phase 007 scope to include sibling graph-metadata.json cleanup, or treat as separate P2 remediation packet. The fix is mechanical string replacement (`sk-small-model` → `sk-ai-small-model`) across 4 files.
+**Recommendation**: Expand Phase 007 scope to include sibling graph-metadata.json cleanup, or treat as separate P2 remediation packet. The fix is mechanical string replacement (`sk-small-model` → `sk-prompt-small-model`) across 4 files.

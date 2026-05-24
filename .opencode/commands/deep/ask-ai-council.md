@@ -42,6 +42,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
   - `spec_folder`
   - `execution_mode`
 - **PLANNING BOUNDARY**: deep council writes packet-local `ai-council/**` artifacts only. Implementation remains with the caller or follow-on implementation agents.
+- **GRAPH BOUNDARY**: derived council graph replay uses `deep-loop-runtime` CLI scripts with `--loop-type council`; `ai-council/**` artifacts remain authoritative.
 - **ONE CLI PER ROUND**: all seats in a round use one executor boundary. Different CLIs are separate rounds, not mixed seats.
 
 > **Canonical mode syntax:** use attached command suffixes (`/speckit:deep-council:auto`, `/speckit:deep-council:confirm`) and keep AGENTS, skills, command references, and runtime mirrors synchronized to this entrypoint.

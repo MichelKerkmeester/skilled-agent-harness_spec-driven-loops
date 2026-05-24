@@ -1,10 +1,10 @@
 {
-  "name": "sk-ai-small-model",
+  "name": "sk-prompt-small-model",
   "description": "Sentinel for small-model optimization patterns covering SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 across cli-devin and cli-opencode (DeepSeek API + opencode-go provider) dispatch paths. Points at real patterns in cli-devin/references/ and cli-opencode/references/ while giving the skill advisor one discoverable routing anchor for small-model dispatch.",
   "version": "0.2.0",
   "importance_tier": "important",
   "keywords": [
-    "sk-ai-small-model",
+    "sk-prompt-small-model",
     "small-model",
     "small model",
     "small-model dispatch",
@@ -39,5 +39,5 @@
     "check structured permissions before DeepSeek-v4-pro dispatch"
   ],
   "lastUpdated": "2026-05-18T00:00:00Z",
-  "pattern_index": ".opencode/skills/sk-ai-small-model/references/pattern-index.md"
+  "pattern_index": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md"
 }

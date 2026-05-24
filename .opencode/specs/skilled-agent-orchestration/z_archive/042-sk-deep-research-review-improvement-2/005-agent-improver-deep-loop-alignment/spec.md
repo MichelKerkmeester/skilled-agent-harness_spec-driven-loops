@@ -85,7 +85,7 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 ### In Scope
 
 - Document the delivered journal, coverage, trade-off, lineage, and stability runtime surfaces now living under `.opencode/skills/sk-improve-agent/`.
-- Document the delivered command and runtime-agent updates for `.opencode/commands/improve/agent.md` and `.opencode/agents/improve-agent.md`.
+- Document the delivered command and runtime-agent updates for `.opencode/commands/deep/start-agent-improvement-loop.md` and `.opencode/agents/improve-agent.md`.
 - Record the shipped verification surfaces: 5 dedicated Vitest suites, playbook scenarios, changelog evidence, and implementation commit.
 - Bring the phase packet into current Level 3 template alignment with completed-state metadata, evidence-backed tasks, and verification checklist items.
 
@@ -111,7 +111,7 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 | `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md` | Modified | Added convergence, trade-off, and exhaustion guidance. |
 | `.opencode/skills/sk-improve-agent/SKILL.md` | Modified | Published the runtime-truth contract for improve-agent. |
 | `.opencode/agents/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
-| `.opencode/commands/improve/agent.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
 <!-- /ANCHOR:scope -->
 
 ---

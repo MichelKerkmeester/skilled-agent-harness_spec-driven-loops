@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "anobel.com/001-button-text-link-disabled-state",
+  "spec_folder": "anobel.com/001-button-text-link-disabled-state",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "text link button disabled",
+      "data-btn-disabled",
+      "disabled button styling",
+      "btn_text_link",
+      "text link button disabled plan",
+      "btn_text_link plan",
+      "text link button disabled tasks",
+      "data-btn-disabled tasks",
+      "btn_text_link tasks",
+      "text link button disabled summary",
+      "btn_text_link disabled implementation"
+    ],
+    "key_topics": [
+      "text",
+      "link",
+      "button",
+      "disabled",
+      "data-btn-disabled",
+      "styling",
+      "plan",
+      "tasks",
+      "summary",
+      "implementation",
+      "text-link",
+      "buttons"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "a_nobel_en_zn/1_css/button/btn_text_link.css",
+      "a_nobel_en_zn/1_css/button/btn_global.css",
+      "a_nobel_en_zn/1_css/button/btn_download.css",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "btn_text_link.css",
+        "kind": "file",
+        "path": "a_nobel_en_zn/1_css/button/btn_text_link.css",
+        "source": "derived"
+      },
+      {
+        "name": "btn_global.css",
+        "kind": "file",
+        "path": "a_nobel_en_zn/1_css/button/btn_global.css",
+        "source": "derived"
+      },
+      {
+        "name": "btn_download.css",
+        "kind": "file",
+        "path": "a_nobel_en_zn/1_css/button/btn_download.css",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Text Link Button Disabled State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Text",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Append",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scoped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Text-link buttons currently define enabled, hover, focus and active states, but they do not expose a dedicated disabled override. Designers need a simple attribute they can apply to force one of these buttons to look disabled and stop pointer interaction without changing the broader button system.",
+    "created_at": "2026-05-23T17:23:24Z",
+    "last_save_at": "2026-05-24T05:40:25.125Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

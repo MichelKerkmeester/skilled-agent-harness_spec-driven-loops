@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2",
+  "specFolder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2",
   "description": "Feature Specification: Deep Research and Deep Review Runtime Improvement Bundle",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "improvement",
     "bundle"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.834Z",
+  "lastUpdated": "2026-05-23T15:24:59.281Z",
   "specId": "042",
   "folderSlug": "sk-deep-research-review-improvement-2",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 5,
   "memoryNameHistory": [

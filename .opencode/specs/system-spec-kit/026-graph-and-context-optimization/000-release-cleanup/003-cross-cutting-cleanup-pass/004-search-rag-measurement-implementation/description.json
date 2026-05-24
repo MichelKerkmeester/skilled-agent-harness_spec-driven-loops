@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-search-rag-measurement-implementation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation",
   "description": "Feature Specification: 007 Search RAG Measurement-Driven Implementation",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "measurement-driven",
     "implementation"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.092Z",
-  "specId": "007",
-  "folderSlug": "search-rag-measurement-driven-implementation",
+  "lastUpdated": "2026-05-23T15:24:59.769Z",
+  "specId": "004",
+  "folderSlug": "search-rag-measurement-implementation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

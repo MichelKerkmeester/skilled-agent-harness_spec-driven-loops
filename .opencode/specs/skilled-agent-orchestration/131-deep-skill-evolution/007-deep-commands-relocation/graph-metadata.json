@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The 3 deep-* slash-command MD files (`deep:review`, `deep:research`, `deep:ai-council`) already relocated to `.opencode/commands/deep/` and are live skill names in the registry. However, 6 workflow asset YAMLs, 2 Gemini TOML wrappers, and ~25 live operator-facing references still use the old `/speckit:deep-*` slash syntax or `spec_kit/assets/spec_kit_deep-*` asset paths. Additionally, ~5,267 historical spec-doc references need updating.",
     "created_at": "2026-05-23T00:00:00Z",
-    "last_save_at": "2026-05-23T11:55:14.312Z",
+    "last_save_at": "2026-05-24T05:40:25.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -76,7 +76,7 @@ Those phases landed the five helper scripts, five dedicated tests, asset and ski
 
 ### Pattern
 
-Orchestrator-owned runtime truth with additive helper modules. The proposal-generating improve-agent remains non-owning for state mutation, while helper scripts record journal, coverage, lineage, trade-off, and stability outputs around the visible `/improve:agent` workflow.
+Orchestrator-owned runtime truth with additive helper modules. The proposal-generating improve-agent remains non-owning for state mutation, while helper scripts record journal, coverage, lineage, trade-off, and stability outputs around the visible `/deep:start-agent-improvement-loop` workflow.
 
 ### Key Components
 
@@ -86,7 +86,7 @@ Orchestrator-owned runtime truth with additive helper modules. The proposal-gene
 - `candidate-lineage.cjs`: records optional branch lineage when multiple candidate strategies run.
 - `benchmark-stability.cjs`: measures replay stability and provides optimizer-facing evidence.
 - `.opencode/skills/sk-improve-agent/SKILL.md` plus improve-agent assets: explain how the helper outputs shape the loop contract.
-- `.opencode/commands/improve/agent.md` and runtime mirror docs: expose the contract on the visible operator path.
+- `.opencode/commands/deep/start-agent-improvement-loop.md` and runtime mirror docs: expose the contract on the visible operator path.
 
 ### Data Flow
 
@@ -103,7 +103,7 @@ Improve command launches session -> orchestrator records journal events -> candi
 The first delivery pass introduced the journal, stop-state contract publication, and orchestrator-owned runtime truth surfaces.
 
 - [x] Journal helper created and wired into the improve-agent workflow. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
-- [x] Runtime mirror and command docs were updated to publish the new contract. `[EVIDENCE: .opencode/agents/improve-agent.md; .opencode/commands/improve/agent.md; commit 080cf549e]`
+- [x] Runtime mirror and command docs were updated to publish the new contract. `[EVIDENCE: .opencode/agents/improve-agent.md; .opencode/commands/deep/start-agent-improvement-loop.md; commit 080cf549e]`
 - [x] Audit-trail and legal-stop obligations landed in skill assets. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_charter.md; .opencode/skills/sk-improve-agent/SKILL.md]`
 
 ### Phase 2: Improvement Intelligence

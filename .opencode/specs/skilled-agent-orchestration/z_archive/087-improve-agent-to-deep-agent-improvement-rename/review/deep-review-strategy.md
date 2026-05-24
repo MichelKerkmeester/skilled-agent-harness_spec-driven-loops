@@ -23,7 +23,7 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 ## 4. NON-GOALS
 
 - Do not modify target files under review.
-- Do not rename `/improve:agent` or `.gemini/commands/improve/improve-agent.toml` filename; those are explicitly out of scope.
+- Do not rename `/deep:start-agent-improvement-loop` or `.gemini/commands/deep/start-agent-improvement-loop.toml` filename; those are explicitly out of scope.
 - Do not rewrite historical `z_archive` research records.
 - Do not review unrelated deep-agent-improvement behavior beyond rename integrity unless it affects this packet's claims.
 
@@ -62,13 +62,13 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 
 ## 9. WHAT FAILED
 
-- Iteration 1: Gemini command TOML and README still reference `improve_improve-agent_{auto,confirm}.yaml` even though the renamed asset pattern is used elsewhere.
+- Iteration 1: Gemini command TOML and README still reference `deep_start-agent-improvement-loop_{auto,confirm}.yaml` even though the renamed asset pattern is used elsewhere.
 - Iteration 1: Active CP-041/CP-042 playbook command blocks still `cat .opencode/agents/improve-agent.md` after the old active agent file was removed.
 - Iteration 1: `implementation-summary.md` claims COMPLETE while retaining `[POPULATE]` placeholders in required completion-evidence sections.
 - Iteration 2: Existing unquoted workflow placeholders remain security-sensitive for future executor substitution review, but this pass did not find evidence that the rename introduced a new exploit path.
 - Iteration 3: `tasks.md` and `checklist.md` remain unchecked while `implementation-summary.md` claims COMPLETE, so packet completion is not traceable to the required ledgers.
 - Iteration 3: `resource-map.md` marks Gemini command and active playbook surfaces OK even though active files still contain the stale F001/F002 references.
-- Iteration 4: Active deep-agent-improvement feature-catalog docs, SKILL integration points, and default benchmark profile still publish the old `.opencode/agents/improve-agent.md` and `improve_improve-agent_{auto,confirm}.yaml` identity.
+- Iteration 4: Active deep-agent-improvement feature-catalog docs, SKILL integration points, and default benchmark profile still publish the old `.opencode/agents/improve-agent.md` and `deep_start-agent-improvement-loop_{auto,confirm}.yaml` identity.
 
 ## 10. EXHAUSTED APPROACHES (do not retry)
 
@@ -77,7 +77,7 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 ## 11. RULED OUT DIRECTIONS
 
 - Iteration 1: Historical `z_archive` and `.opencode/specs/...` references were not treated as active defects unless an active file relied on them as current evidence.
-- Iteration 1: The slash command `/improve:agent` and Gemini command filename `.gemini/commands/improve/improve-agent.toml` were not flagged because the packet explicitly marks those non-renames as intentional.
+- Iteration 1: The slash command `/deep:start-agent-improvement-loop` and Gemini command filename `.gemini/commands/deep/start-agent-improvement-loop.toml` were not flagged because the packet explicitly marks those non-renames as intentional.
 - Iteration 2: F001 stale Gemini YAML names were ruled out as security findings; they reference absent exact assets rather than unsafe fallback or traversal behavior.
 - Iteration 2: F002 stale manual playbook `cat .opencode/agents/improve-agent.md` commands were ruled out as security findings; they are fixed-path test failures rather than broad reads or sandbox escapes.
 
@@ -201,15 +201,15 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Active exact references to old YAML filenames and the old agent file path were checked outside historical `z_archive`; new active surfaces were found in feature-catalog/SKILL/benchmark defaults.
 
-### Command setup still requires a `.opencode/agents/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/commands/improve/agent.md:79`, `.opencode/commands/improve/agent.md:83`, `.opencode/commands/improve/agent.md:122`, `.opencode/commands/improve/agent.md:136`]. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Command setup still requires a `.opencode/agents/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/commands/improve/agent.md:79`, `.opencode/commands/improve/agent.md:83`, `.opencode/commands/improve/agent.md:122`, `.opencode/commands/improve/agent.md:136`].
+### Command setup still requires a `.opencode/agents/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/commands/deep/start-agent-improvement-loop.md:79`, `.opencode/commands/deep/start-agent-improvement-loop.md:83`, `.opencode/commands/deep/start-agent-improvement-loop.md:122`, `.opencode/commands/deep/start-agent-improvement-loop.md:136`]. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: Command setup still requires a `.opencode/agents/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/commands/deep/start-agent-improvement-loop.md:79`, `.opencode/commands/deep/start-agent-improvement-loop.md:83`, `.opencode/commands/deep/start-agent-improvement-loop.md:122`, `.opencode/commands/deep/start-agent-improvement-loop.md:136`].
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Command setup still requires a `.opencode/agents/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/commands/improve/agent.md:79`, `.opencode/commands/improve/agent.md:83`, `.opencode/commands/improve/agent.md:122`, `.opencode/commands/improve/agent.md:136`].
+- Do NOT retry: Command setup still requires a `.opencode/agents/*.md` target and confirmed spec-folder value before workflow execution [SOURCE: `.opencode/commands/deep/start-agent-improvement-loop.md:79`, `.opencode/commands/deep/start-agent-improvement-loop.md:83`, `.opencode/commands/deep/start-agent-improvement-loop.md:122`, `.opencode/commands/deep/start-agent-improvement-loop.md:136`].
 
-### Did not flag the unchanged slash command `/improve:agent` or unchanged Gemini command filename `.gemini/commands/improve/improve-agent.toml`; the packet explicitly documents those as intentional non-renames. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Did not flag the unchanged slash command `/improve:agent` or unchanged Gemini command filename `.gemini/commands/improve/improve-agent.toml`; the packet explicitly documents those as intentional non-renames.
+### Did not flag the unchanged slash command `/deep:start-agent-improvement-loop` or unchanged Gemini command filename `.gemini/commands/deep/start-agent-improvement-loop.toml`; the packet explicitly documents those as intentional non-renames. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: Did not flag the unchanged slash command `/deep:start-agent-improvement-loop` or unchanged Gemini command filename `.gemini/commands/deep/start-agent-improvement-loop.toml`; the packet explicitly documents those as intentional non-renames.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Did not flag the unchanged slash command `/improve:agent` or unchanged Gemini command filename `.gemini/commands/improve/improve-agent.toml`; the packet explicitly documents those as intentional non-renames.
+- Do NOT retry: Did not flag the unchanged slash command `/deep:start-agent-improvement-loop` or unchanged Gemini command filename `.gemini/commands/deep/start-agent-improvement-loop.toml`; the packet explicitly documents those as intentional non-renames.
 
 ### Did not review unrelated deep-agent-improvement behavior beyond rename/path correctness. -- BLOCKED (iteration 1, 1 attempts)
 - What was tried: Did not review unrelated deep-agent-improvement behavior beyond rename/path correctness.
@@ -281,10 +281,10 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: No repeat of F001/F002 as correctness findings; they were considered only for security impact.
 
-### OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/commands/improve/agent.md:269-270`; `.claude/commands/improve/agent.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/improve/improve-agent.toml:60-61`; `.gemini/commands/improve/README.txt:158-159`]. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/commands/improve/agent.md:269-270`; `.claude/commands/improve/agent.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/improve/improve-agent.toml:60-61`; `.gemini/commands/improve/README.txt:158-159`].
+### OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/commands/deep/start-agent-improvement-loop.md:269-270`; `.claude/commands/deep/start-agent-improvement-loop.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/deep/start-agent-improvement-loop.toml:60-61`; `.gemini/commands/deep/start-agent-improvement-loop.toml:158-159`]. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/commands/deep/start-agent-improvement-loop.md:269-270`; `.claude/commands/deep/start-agent-improvement-loop.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/deep/start-agent-improvement-loop.toml:60-61`; `.gemini/commands/deep/start-agent-improvement-loop.toml:158-159`].
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/commands/improve/agent.md:269-270`; `.claude/commands/improve/agent.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/improve/improve-agent.toml:60-61`; `.gemini/commands/improve/README.txt:158-159`].
+- Do NOT retry: OpenCode and Claude command docs agree on renamed YAML assets [SOURCE: `.opencode/commands/deep/start-agent-improvement-loop.md:269-270`; `.claude/commands/deep/start-agent-improvement-loop.md:269-270`]. Gemini command docs still disagree via F001 [SOURCE: `.gemini/commands/deep/start-agent-improvement-loop.toml:60-61`; `.gemini/commands/deep/start-agent-improvement-loop.toml:158-159`].
 
 ### Proposal-only boundary remains explicit in the renamed agent: it must write only one packet-local candidate and stop before scoring, promotion, or packaging [SOURCE: `.opencode/agents/deep-agent-improvement.md:24`, `.opencode/agents/deep-agent-improvement.md:26`, `.opencode/agents/deep-agent-improvement.md:38`, `.opencode/agents/deep-agent-improvement.md:40`]. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: Proposal-only boundary remains explicit in the renamed agent: it must write only one packet-local candidate and stop before scoring, promotion, or packaging [SOURCE: `.opencode/agents/deep-agent-improvement.md:24`, `.opencode/agents/deep-agent-improvement.md:26`, `.opencode/agents/deep-agent-improvement.md:38`, `.opencode/agents/deep-agent-improvement.md:40`].
@@ -331,10 +331,10 @@ Validate the completed `@improve-agent` to `@deep-agent-improvement` rename pack
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Security baseline loaded from `.opencode/skills/sk-code-review/references/review_core.md:18` through `.opencode/skills/sk-code-review/references/review_core.md:34`; no active P0/P1 security issue was supported by file-line evidence.
 
-### YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agents/*.md` [SOURCE: `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:57`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:60`; auto parity at `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:56`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:59`]. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agents/*.md` [SOURCE: `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:57`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:60`; auto parity at `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:56`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:59`].
+### YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agents/*.md` [SOURCE: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:57`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:60`; auto parity at `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:56`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:59`]. -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agents/*.md` [SOURCE: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:57`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:60`; auto parity at `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:56`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:59`].
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agents/*.md` [SOURCE: `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:57`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml:60`; auto parity at `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:56`, `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml:59`].
+- Do NOT retry: YAML workflow validation requires `target_path` and `spec_folder`, requires the target to exist, and constrains the target to `.opencode/agents/*.md` [SOURCE: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:57`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:60`; auto parity at `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:56`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:59`].
 
 <!-- /ANCHOR:exhausted-approaches -->
 

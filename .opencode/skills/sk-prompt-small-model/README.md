@@ -1,5 +1,5 @@
 ---
-title: "sk-ai-small-model: Small-Model Optimization Sentinel"
+title: "sk-prompt-small-model: Small-Model Optimization Sentinel"
 description: "Discovery anchor that surfaces alongside cli-devin / cli-opencode and points operators at executor-owned small-model patterns."
 trigger_phrases:
   - "small-model dispatch"
@@ -7,7 +7,7 @@ trigger_phrases:
   - "swe-1.6 patterns"
 ---
 
-# sk-ai-small-model
+# sk-prompt-small-model
 
 A thin sentinel skill that gives operators one discoverable entry point for small-model optimization patterns (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, optional Haiku + Gemini Flash).
 
@@ -83,12 +83,12 @@ This README explains how to discover, navigate, and contribute to the small-mode
 
 **Step 1: Invoke the skill.**
 
-Routing is automatic. Mention any small-model name (`SWE-1.6`, `Kimi-k2.6`, `DeepSeek-v4-pro`, `Qwen3.6`, `Claude Haiku`, `Gemini Flash`) or pattern (`context budget`, `output verification`, `permissions matrix`, `quota fallback`, `model profile`, `tool scoring`) in a prompt and the skill-advisor will surface `sk-ai-small-model` alongside the matching CLI skill.
+Routing is automatic. Mention any small-model name (`SWE-1.6`, `Kimi-k2.6`, `DeepSeek-v4-pro`, `Qwen3.6`, `Claude Haiku`, `Gemini Flash`) or pattern (`context budget`, `output verification`, `permissions matrix`, `quota fallback`, `model profile`, `tool scoring`) in a prompt and the skill-advisor will surface `sk-prompt-small-model` alongside the matching CLI skill.
 
 **Step 2: Read the pattern index.**
 
 ```bash
-cat .opencode/skills/sk-ai-small-model/references/pattern-index.md
+cat .opencode/skills/sk-prompt-small-model/references/pattern-index.md
 ```
 
 Expected result: a table mapping each pattern to its owner skill and canonical path.
@@ -103,7 +103,7 @@ Click the link in the index row. Read the executor-owned pattern from there. Do 
 python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "dispatch SWE-1.6 to read file" --threshold 0.8
 ```
 
-Expected result: `sk-ai-small-model` appears in the top-3 with confidence ≥ 0.8.
+Expected result: `sk-prompt-small-model` appears in the top-3 with confidence ≥ 0.8.
 <!-- /ANCHOR:quick-start -->
 
 ---
@@ -124,7 +124,7 @@ The sentinel deliberately ships with zero runtime logic. Everything operators ne
 | Feature | Inputs | Output | Primary Resource |
 |---|---|---|---|
 | Pattern discovery | Pattern name or model name | Path to canonical owner file | [`references/pattern-index.md`](./references/pattern-index.md) |
-| Routing co-surfacing | Operator prompt with small-model signals | `sk-ai-small-model` in advisor top-3 | [`graph-metadata.json`](./graph-metadata.json) |
+| Routing co-surfacing | Operator prompt with small-model signals | `sk-prompt-small-model` in advisor top-3 | [`graph-metadata.json`](./graph-metadata.json) |
 | Provider adoption | New provider name + quota-pool category | Updated registry + index | [`references/pattern-index.md`](./references/pattern-index.md) § 4 |
 | Ownership boundary | Pattern type | Which CLI / shared skill owns it | [`references/pattern-index.md`](./references/pattern-index.md) § 3 |
 <!-- /ANCHOR:features -->
@@ -135,7 +135,7 @@ The sentinel deliberately ships with zero runtime logic. Everything operators ne
 ## 4. STRUCTURE
 
 ```text
-sk-ai-small-model/
+sk-prompt-small-model/
 +-- SKILL.md                          # Runtime instructions + smart router
 +-- README.md                         # This file — human-facing overview
 +-- description.json                  # Memory-system metadata
@@ -162,8 +162,8 @@ This skill has no configurable settings. Routing weights are encoded directly in
 
 | Setting | Default | Purpose |
 |---|---|---|
-| `enhances → cli-devin` | weight 0.5 | Co-surface sk-ai-small-model when cli-devin is already high-confidence |
-| `enhances → cli-opencode` | weight 0.5 | Co-surface sk-ai-small-model when cli-opencode is already high-confidence |
+| `enhances → cli-devin` | weight 0.5 | Co-surface sk-prompt-small-model when cli-devin is already high-confidence |
+| `enhances → cli-opencode` | weight 0.5 | Co-surface sk-prompt-small-model when cli-opencode is already high-confidence |
 | Trigger phrases | 19 entries | Lexical-lane matches in the advisor scorer |
 
 Tuning advice:
@@ -189,7 +189,7 @@ Non-configurable invariants:
 ```text
 User request: "where is the small-model output verification pattern?"
 Skill routing: lexical-lane match on "small-model" + "output verification"
-Resources loaded: sk-ai-small-model/references/pattern-index.md
+Resources loaded: sk-prompt-small-model/references/pattern-index.md
 Expected output: link to cli-devin/references/output-verification.md, marked shipped via Phase 004
 ```
 
@@ -197,8 +197,8 @@ Expected output: link to cli-devin/references/output-verification.md, marked shi
 
 ```text
 User request: "use cli-devin for SWE-1.6 code review with output verification"
-Skill routing: cli-devin scores high → enhances edge surfaces sk-ai-small-model
-Resources loaded: cli-devin/SKILL.md + sk-ai-small-model/SKILL.md + sk-ai-small-model/references/pattern-index.md
+Skill routing: cli-devin scores high → enhances edge surfaces sk-prompt-small-model
+Resources loaded: cli-devin/SKILL.md + sk-prompt-small-model/SKILL.md + sk-prompt-small-model/references/pattern-index.md
 Expected output: operator sees both the executor instructions and the pattern index in one advisor brief
 ```
 
@@ -207,7 +207,7 @@ Expected output: operator sees both the executor instructions and the pattern in
 ```text
 User request: "I'm adding Claude Haiku to the rotation. What do I update?"
 Skill routing: lexical-lane match on "haiku"
-Resources loaded: sk-ai-small-model/references/pattern-index.md § 4 (Adopting a New Provider)
+Resources loaded: sk-prompt-small-model/references/pattern-index.md § 4 (Adopting a New Provider)
 Expected output: 6-step checklist — populate registry stub, optionally set fallback_target on source models, add trigger phrases, mark index rows shipped, re-index advisor, verify routing
 ```
 
@@ -216,7 +216,7 @@ Expected output: 6-step checklist — populate registry stub, optionally set fal
 ```text
 User request: "I refactored cli-devin/references/context-budget.md to a new location. What needs updating?"
 Skill routing: lexical-lane match on "context-budget"
-Resources loaded: sk-ai-small-model/references/pattern-index.md § 5 (Staleness Policy)
+Resources loaded: sk-prompt-small-model/references/pattern-index.md § 5 (Staleness Policy)
 Expected output: update the row's path; if file removed instead, replace path with "(deprecated)" + one-line reason
 ```
 <!-- /ANCHOR:usage-examples -->
@@ -228,7 +228,7 @@ Expected output: update the row's path; if file removed instead, replace path wi
 
 | What You See | Cause | Fix |
 |---|---|---|
-| `sk-ai-small-model` not surfacing on small-model prompts | Trigger phrases stale or advisor not re-indexed | Run `skill_advisor.py --force-refresh`; verify with a sample prompt |
+| `sk-prompt-small-model` not surfacing on small-model prompts | Trigger phrases stale or advisor not re-indexed | Run `skill_advisor.py --force-refresh`; verify with a sample prompt |
 | Surfaces on TypeScript review or non-small-model prompts | Trigger phrases too broad | Tighten phrases in `graph-metadata.json`; re-index |
 | Index points at a missing file | Downstream phase removed or renamed without updating index | Update the row's path or mark `(deprecated)` per § 5 of `pattern-index.md` |
 | Operator can't find a pattern they expect to exist | Phase has not shipped yet | Check the "Shipped In" column in the index; if missing, the phase is still pending |

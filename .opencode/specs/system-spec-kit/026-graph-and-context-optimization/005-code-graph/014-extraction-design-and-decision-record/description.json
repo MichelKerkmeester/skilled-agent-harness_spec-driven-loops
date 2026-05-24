@@ -1,20 +1,23 @@
 {
   "level": "2",
-  "specFolder": "001-extraction-design-and-adr",
-  "description": "10-iteration deep-research investigation via cli-opencode + deepseek-v4-pro of the code-graph extraction surface; produces resource-map.md (every touchpoint to move/rewire/update), research/research.md (narrative synthesis), and decision-record.md (ADR-001 locking 8 architectural decisions: touchpoint inventory, DB shape, MCP topology, tool-id stability, cross-subsystem import direction, plugin-bridge disposition, implementation phase decomposition, risk catalog).",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/014-extraction-design-and-decision-record",
+  "description": "Feature Specification: Design + ADR for code-graph extraction",
   "keywords": [
-    "code-graph-extraction-design",
-    "extraction-resource-map",
-    "architectural-shape-enumeration",
-    "adr-code-graph-extraction",
-    "mcp-server-topology-choice",
-    "deep-research-10-iter",
-    "deepseek-v4-pro"
+    "feature",
+    "specification",
+    "design",
+    "adr",
+    "code-graph",
+    "extraction"
   ],
-  "lastUpdated": "2026-05-14T07:00:38Z",
-  "specId": "001",
-  "folderSlug": "design-and-decision-record",
+  "lastUpdated": "2026-05-23T15:25:00.405Z",
+  "specId": "014",
+  "folderSlug": "extraction-design-and-decision-record",
   "parentChain": [
-    "013-system-code-graph-extraction"
-  ]
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "005-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

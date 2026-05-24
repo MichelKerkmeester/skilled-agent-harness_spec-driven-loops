@@ -17,8 +17,8 @@ _memory:
       - .opencode/skills/sk-improve-agent/assets/benchmark-profiles/default.json
       - .opencode/skills/sk-improve-agent/scripts/materialize-benchmark-fixtures.cjs
       - .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs
-      - .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
-      - .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+      - .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
+      - .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
       - .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs
       - .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
     completion_pct: 100
@@ -47,7 +47,7 @@ _memory:
 - v3.0.0 strict-validate template-shape errors are pre-existing, not blocking
 
 ## 061 Hand-Off (after 062 ships)
-> Start 004-improve-agent-command-flow-stress-tests. Restructure CP-040..045 to invoke `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1` from a command-capable temp project root. The producer/consumer wiring 062 just shipped means GREEN is now achievable instead of "expected RED methodology evidence."
+> Start 004-improve-agent-command-flow-stress-tests. Restructure CP-040..045 to invoke `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1` from a command-capable temp project root. The producer/consumer wiring 062 just shipped means GREEN is now achievable instead of "expected RED methodology evidence."
 
 061-specific notes:
 - CP-043 should grep `details.gateResults` plus all five gate keys, not flat `gateResult`.

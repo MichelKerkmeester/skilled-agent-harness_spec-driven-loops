@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: auto-mode-contract generalization to all commands"
-description: "Lift the three-tier :auto contract from /deep:start-review-loop (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
+description: "Lift the three-tier :auto contract from /deep:start-review-loop (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /deep/ commands to cite it; full live :auto dispatch verification per command."
 trigger_phrases:
   - "auto mode contract generalization"
   - "spec-kit :auto rollout"
@@ -52,7 +52,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
+Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/deep/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
 
 ### Purpose
 Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-review to cite it, migrate 11 remaining commands to the same pattern, and verify each one via a live non-interactive `:auto` dispatch.
@@ -69,13 +69,13 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 - Migrate 11 commands' §0 to cite the shared contract + provide their own per-field default table + PRE-BOUND ANSWERS field list:
   - `/speckit:` — deep-research, complete, implement, plan, resume (5)
   - `/create:` — sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme (6)
-  - `/improve:` — agent (1)
+  - `/deep:` — agent (1)
 - Update each migrated command's frontmatter `argument-hint` to reference the new bypass capability.
 - Preserve each command's `:confirm` consolidated Q-block path untouched (regression-check).
 - Full live `:auto` dispatch verification: one transcript per command captured under `evidence/`.
 
 ### Out of Scope
-- `/improve:prompt` and `agent_router` — no paired YAML / dispatch-only.
+- `/prompt` and `agent_router` — no paired YAML / dispatch-only.
 - YAML asset edits unless a live verification surfaces a hard requirement.
 - Cross-command `:auto` integration tests (chained dispatches).
 - Skill-internal `:auto` flows (sk-doc, sk-code, etc.).
@@ -88,7 +88,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 | `.opencode/commands/deep/start-review-loop.md` | Modify | Refactor §0 to cite shared contract |
 | `.opencode/commands/speckit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
 | `.opencode/commands/create/{sk-skill,agent,changelog,feature-catalog,testing-playbook,folder_readme}.md` | Modify | Same |
-| `.opencode/commands/improve/agent.md` | Modify | Same |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Modify | Same |
 | `002/evidence/` | Create dir + 12 files | Live dispatch transcripts |
 <!-- /ANCHOR:scope -->
 
@@ -102,7 +102,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Shared `auto_mode_contract.md` exists with all required sections | `grep -c "^## §[1-8]" auto_mode_contract.md` returns ≥7 |
-| REQ-002 | All 12 commands (deep-review + 11 migrated) cite the shared contract | `grep -l "auto_mode_contract.md" .opencode/commands/{spec_kit,create,improve}/*.md \| wc -l` returns ≥12 |
+| REQ-002 | All 12 commands (deep-review + 11 migrated) cite the shared contract | `grep -l "auto_mode_contract.md" .opencode/commands/{spec_kit,create,deep}/*.md \| wc -l` returns ≥12 |
 | REQ-003 | 12 live `:auto` dispatch evidence files captured | `find 002/evidence -name "*.txt" \| wc -l` returns ≥12 |
 | REQ-004 | ≥10/12 PASS verdicts on live dispatches | Per-evidence-file footer verdict |
 
@@ -165,7 +165,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 
 ### Data Boundaries
 - Command has no `:auto` mode (e.g., `agent_router`): skip from scope.
-- Command has `:auto` but no paired YAML (e.g., `/improve:prompt`): skip — no setup-phase surface.
+- Command has `:auto` but no paired YAML (e.g., `/prompt`): skip — no setup-phase surface.
 - Command's `:auto` path already implements partial three-tier: codex audits and aligns rather than overwriting.
 
 ### Error Scenarios

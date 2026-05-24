@@ -1,6 +1,6 @@
 ---
 title: "DAC-029 -- Convergence safety under critical disagreement: graph vs no-graph baseline"
-description: "Real-world scenario where the graph PREVENTS premature stop. Two-of-three rule (no-graph baseline) would trigger convergence; graph returns STOP_BLOCKED because one critical disagreement is unresolved. Anchors to `council_graph_convergence`."
+description: "Real-world scenario where the graph PREVENTS premature stop. Two-of-three rule (no-graph baseline) would trigger convergence; graph returns STOP_BLOCKED because one critical disagreement is unresolved. Anchors to `runtime convergence CLI`."
 ---
 
 # DAC-029 -- Convergence safety under critical disagreement: graph vs no-graph baseline
@@ -11,13 +11,13 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates that `council_graph_convergence` provides a safety guarantee the no-graph two-of-three rule cannot: it blocks `STOP` decisions when a critical disagreement remains unresolved, even if 2 of 3 seats otherwise agree.
+This scenario validates that `runtime convergence CLI` provides a safety guarantee the no-graph two-of-three rule cannot: it blocks `STOP` decisions when a critical disagreement remains unresolved, even if 2 of 3 seats otherwise agree.
 
 ### Why This Matters
 
 The two-of-three convergence rule is documented in `references/convergence_signals.md` and is the no-graph baseline for stop decisions. But "2 of 3 agree" can mask unresolved critical issues: seats A and B may both endorse Plan X while seat C's unresolved security concern about Plan X gets lost. Without graph: convergence triggers and the issue ships. With graph: `unresolvedCriticalDisagreements` is a hard `STOP_BLOCKED` signal — graph prevents premature convergence.
 
-> **Automated test anchor:** `mcp_server/tests/council-graph-value-scenarios.vitest.ts` test name `DAC-029 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `mcp_server/tests/council-graph-value-report.json`.
+> **Automated test anchor:** `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-029 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json`.
 
 ---
 
@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `DAC-029` and confirm th
 - Real-world situation: 3-seat council. Seat A endorses Plan X (claim `c1` SUPPORTS `decX`). Seat B endorses Plan X (claim `c2` SUPPORTS `decX`). Seat C raised DISAGREEMENT `d1` against Plan X carrying `metadata: { severity: 'critical' }` — no RESOLVES edge exists. Two-of-three baseline would trigger stop. Graph must return `STOP_BLOCKED`.
 - Real user request: This council looks like it has 2 of 3 agreement on Plan X — can we stop, or is something blocking?
 - Prompt: `As a council-graph integration validator, evaluate convergence on a seeded session where 2 of 3 seats agree on Plan X but seat C raised an unresolved critical disagreement; confirm the graph returns STOP_BLOCKED with the critical disagreement cited, contradicting the naive two-of-three baseline.`
-- Expected execution process: Seed graph as above. Run baseline assessment ("count seat agreement"). Run `council_graph_convergence`. Compare decisions.
+- Expected execution process: Seed graph as above. Run baseline assessment ("count seat agreement"). Run `runtime convergence CLI`. Compare decisions.
 - Expected signals: Baseline conclusion: 2 of 3 → stop allowed. Graph conclusion: `STOP_BLOCKED` with reason trace citing `d1` and `unresolvedCriticalDisagreements ≥ 1`.
 - Desired user-visible outcome: Operator sees the graph protected against shipping an unresolved critical that the baseline would have missed.
 - Pass/fail: PASS if graph returns `STOP_BLOCKED` and baseline would allow stop; FAIL if graph returns `STOP_ALLOWED` or `CONTINUE` despite the unresolved critical.
@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `DAC-029` and confirm th
 
 1. Seed: SESSION + 3 ROUNDs + 3 SEATs + DECISION `decX` + 2 CLAIMs (`c1`, `c2`) with SUPPORTS edges → `decX`; PROPOSES edges from Seat A and Seat B → `decX`. Add DISAGREEMENT `d1` with `metadata: { severity: 'critical' }` and no RESOLVES edge, with CONTRADICTS edge from `d1` → `decX`.
 2. Run **no-graph baseline assessment**: count seat agreement on `decX` (Seat A yes, Seat B yes, Seat C dissent). Conclude per documented two-of-three rule.
-3. Run **with-graph workflow**: `council_graph_convergence` scoped to session.
+3. Run **with-graph workflow**: `runtime convergence CLI` scoped to session.
 4. Compare decisions; assert graph wins on safety.
 
 ### Prompt
@@ -58,8 +58,8 @@ Operators run the exact prompt and command sequence for `DAC-029` and confirm th
 
 **With-graph:**
 
-3. `tool: council_graph_upsert({ specFolder: 'sandbox/dac-029', sessionId: 'dac-029-run-01', nodes: [...3 seats, decX, c1, c2, d1 critical...], edges: [...c1→decX SUPPORTS, c2→decX SUPPORTS, seatA→decX PROPOSES, seatB→decX PROPOSES, d1→decX CONTRADICTS...] })`
-4. `tool: council_graph_convergence({ specFolder: 'sandbox/dac-029', sessionId: 'dac-029-run-01' })`
+3. `tool: runtime upsert CLI({ specFolder: 'sandbox/dac-029', sessionId: 'dac-029-run-01', nodes: [...3 seats, decX, c1, c2, d1 critical...], edges: [...c1→decX SUPPORTS, c2→decX SUPPORTS, seatA→decX PROPOSES, seatB→decX PROPOSES, d1→decX CONTRADICTS...] })`
+4. `tool: runtime convergence CLI({ specFolder: 'sandbox/dac-029', sessionId: 'dac-029-run-01' })`
 
 ### Expected
 
@@ -76,7 +76,7 @@ Capture: baseline transcript + applied two-of-three reasoning, graph convergence
 
 ### Failure Triage
 
-If graph returns `STOP_ALLOWED`, inspect `handlers/council-graph/convergence.ts` for the `unresolvedCriticalDisagreements` short-circuit (P1-002 remediation should make any non-zero critical force `STOP_BLOCKED`). If `CONTINUE` returned, the critical-severity classification on `d1` may not be flowing through `getUnresolvedCriticalDisagreements`.
+If graph returns `STOP_ALLOWED`, inspect `scripts/convergence.cjs` for the `unresolvedCriticalDisagreements` short-circuit (P1-002 remediation should make any non-zero critical force `STOP_BLOCKED`). If `CONTINUE` returned, the critical-severity classification on `d1` may not be flowing through `getUnresolvedCriticalDisagreements`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -98,9 +98,9 @@ If graph returns `STOP_ALLOWED`, inspect `handlers/council-graph/convergence.ts`
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/convergence.ts` | Three-state decision logic |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-query.ts` | `unresolvedCriticalDisagreements` calculator |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts` | "blocks convergence for empty derived graphs instead of returning false-safe success" + STOP_BLOCKED branch test |
+| `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Three-state decision logic |
+| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | `unresolvedCriticalDisagreements` calculator |
+| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | "blocks convergence for empty derived graphs instead of returning false-safe success" + STOP_BLOCKED branch test |
 | `.opencode/skills/deep-ai-council/references/convergence_signals.md` | Documents the baseline two-of-three rule |
 
 ---

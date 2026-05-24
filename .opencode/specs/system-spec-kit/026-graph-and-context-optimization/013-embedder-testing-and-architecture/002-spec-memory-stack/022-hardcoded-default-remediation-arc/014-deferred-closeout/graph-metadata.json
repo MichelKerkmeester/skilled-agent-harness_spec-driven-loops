@@ -4,46 +4,207 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/014-deferred-closeout",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "new-phase-2026-05-23",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      {"packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/010-adr-writing-and-doc-validator", "reason": "010 ships validate-doc-model-refs.js which the new advisory pre-commit hook invokes"},
-      {"packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/011-arc-022-followons", "reason": "011 Step 1 surfaced the build-pipeline JSON-copy gap (MCP -32000 recovery); 011 Step 2 fixed the validator bugs the hook now invokes"},
-      {"packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/013-remove-voyage-cohere-residue", "reason": "013 established the SPECKIT_CROSS_ENCODER + RERANKER_LOCAL dual-opt-in state that the updated Z_SCORE_THRESHOLD comment documents"}
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      {"packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/012-remove-llama-cpp-residue", "reason": "Sibling cleanup pass in the same arc"}
-    ]
+    "related_to": []
   },
   "derived": {
-    "trigger_phrases": ["022/014 deferred closeout", "skill-advisor dist json copy", "advisory pre-commit hook", "validate-doc-model-refs hook"],
-    "key_topics": ["deferred-closeout", "build-pipeline-fix", "advisory-pre-commit-hook", "z-score-comment", "skill-advisor-dist-data"],
+    "trigger_phrases": [
+      "022/014 deferred closeout",
+      "skill-advisor dist json copy",
+      "advisory pre-commit hook",
+      "022/014 plan",
+      "022/014 tasks",
+      "022/014 summary",
+      "deferred closeout complete"
+    ],
+    "key_topics": [
+      "022",
+      "014",
+      "deferred",
+      "closeout",
+      "skill-advisor",
+      "dist",
+      "json",
+      "copy",
+      "advisory",
+      "pre-commit",
+      "hook",
+      "plan"
+    ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/scripts/copy-skill-advisor-dist-data.sh",
-      ".opencode/scripts/git-hooks/pre-commit",
-      ".opencode/scripts/install-git-hooks.sh",
       ".opencode/install_guides/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts",
+      ".opencode/scripts/copy-skill-advisor-dist-data.sh",
+      ".opencode/scripts/install-git-hooks.sh",
+      ".opencode/skills/system-skill-advisor/mcp_server/package.json",
+      ".opencode/.gitignore",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {"name": "copy-skill-advisor-dist-data.sh", "kind": "script", "path": ".opencode/scripts/copy-skill-advisor-dist-data.sh", "source": "derived"},
-      {"name": "pre-commit", "kind": "script", "path": ".opencode/scripts/git-hooks/pre-commit", "source": "derived"},
-      {"name": "install-git-hooks.sh", "kind": "script", "path": ".opencode/scripts/install-git-hooks.sh", "source": "derived"},
-      {"name": "Z_SCORE_THRESHOLD", "kind": "const", "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts", "source": "derived"}
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-gap-detector.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts",
+        "source": "derived"
+      },
+      {
+        "name": "copy-skill-advisor-dist-data.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/copy-skill-advisor-dist-data.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".opencode/.gitignore",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deferred Closeout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "informational",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Small",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "in-flight",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SPECKIT_SKIP_DOC_MODEL_VALIDATE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisory",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Closes 3 deferred items from arc 022. Shipped: (1) tracked copy-skill-advisor-dist-data.sh + install-guide note for the tsc-doesn't-copy-non-TS-assets gap; (2) advisory pre-commit hook + install script for validate-doc-model-refs.js with bypass env var; (3) Z_SCORE_THRESHOLD comment update reflecting post-013 dual-opt-in activation (SPECKIT_CROSS_ENCODER=true + RERANKER_LOCAL=true). Resolved no-op: node-llama-cpp dep prune (no live package.json dep; only lockfile residue). Deferred: raising Z_SCORE_THRESHOLD 1.3→1.5 (needs runtime sidecar-presence probe). 5 files (3 new + 2 modified). All scripts smoke-tested.",
+    "causal_summary": "After 022/013 shipped, 4 deferred items remained on the arc. Three are actionable as a small bundled closeout:",
     "created_at": "2026-05-23T22:00:00.000000Z",
-    "last_save_at": "2026-05-23T22:00:00.000000Z",
-    "save_lineage": "new-phase-scaffolding",
+    "last_save_at": "2026-05-24T05:40:26.047Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

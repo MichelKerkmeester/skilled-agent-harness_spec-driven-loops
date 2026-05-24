@@ -46,7 +46,7 @@
     ],
     "commands": [
       {
-        "path": ".opencode/commands/improve/agent.md",
+        "path": ".opencode/commands/deep/start-agent-improvement-loop.md",
         "references": [
           "@agent-improver"
         ]
@@ -54,14 +54,14 @@
     ],
     "yamlWorkflows": [
       {
-        "path": ".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",
+        "path": ".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",
         "references": [
           "agent-improver",
           "@agent-improver"
         ]
       },
       {
-        "path": ".opencode/commands/improve/assets/improve_agent-improver_confirm.yaml",
+        "path": ".opencode/commands/deep/assets/improve_agent-improver_confirm.yaml",
         "references": [
           "agent-improver",
           "@agent-improver"

@@ -20,10 +20,15 @@ import { writeCodeGraphReadinessMarker } from './lib/readiness-marker.js';
 import { closeDbWithAssertion, refreshOwnerLease } from './lib/index.js';
 import { DATABASE_DIR } from './core/config.js';
 import {
+  getIpcBridgeStats,
   resolveIpcSocketPath,
   startIpcSocketServer,
   type IpcSocketServerHandle,
 } from './lib/ipc/socket-server.js';
+import {
+  createLauncherIdleMonitor,
+  type LauncherIdleMonitor,
+} from './lib/ipc/launcher-idle-timeout.js';
 
 const DEFAULT_OWNER_LEASE_TTL_MS = 60_000;
 const OWNER_LEASE_REFRESH_INTERVAL_MS = DEFAULT_OWNER_LEASE_TTL_MS / 3;
@@ -85,10 +90,15 @@ function createCodeIndexMcpServer(): Server {
 }
 
 let ipcBridge: IpcSocketServerHandle | null = null;
+let launcherIdleMonitor: LauncherIdleMonitor | null = null;
 
 async function shutdownCodeIndex(reason: string): Promise<void> {
   console.error(`[mk-code-index] ${reason}`);
   clearOwnerLeaseRefreshTimer();
+  if (launcherIdleMonitor) {
+    launcherIdleMonitor.stop();
+    launcherIdleMonitor = null;
+  }
   if (ipcBridge) {
     await ipcBridge.close().catch((error: unknown) => {
       const message = error instanceof Error ? error.message : String(error);
@@ -119,10 +129,20 @@ const transport = new StdioServerTransport();
 try {
   await server.connect(transport);
   startOwnerLeaseRefreshTimer();
+  launcherIdleMonitor = createLauncherIdleMonitor({
+    serviceName: 'mk-code-index',
+    getActiveClientCount: () => getIpcBridgeStats().secondary_clients_count,
+    onIdle: async () => {
+      await shutdownCodeIndex('launcher idle timeout');
+      process.exit(0);
+    },
+    log: (message: string) => console.error(message),
+  });
   ipcBridge = await startIpcSocketServer({
     socketPath: resolveIpcSocketPath(DATABASE_DIR),
     createServer: () => createCodeIndexMcpServer(),
     log: (message: string) => console.error(message),
+    onActivity: () => launcherIdleMonitor?.markActivity(),
   });
 } catch (error: unknown) {
   clearOwnerLeaseRefreshTimer();

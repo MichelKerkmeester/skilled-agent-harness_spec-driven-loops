@@ -94,7 +94,7 @@ This packet introduces a two-tier prompt-quality architecture. The fast path kee
 - [ ] CLI prompt templates are framework-tagged.
 - [ ] `sk-improve-prompt` documents the agent-consumption contract and fast-path asset.
 - [ ] `@improve-prompt` exists across all active runtime directories.
-- [ ] `/improve:prompt` documents and supports inline versus agent dispatch.
+- [ ] `/prompt` documents and supports inline versus agent dispatch.
 - [ ] Verification proves guard-safe paths, mirror presence, framework tags, and runtime parity.
 <!-- /ANCHOR:quality-gates -->
 
@@ -115,7 +115,7 @@ Canonical-source plus local mirrors, backed by an isolated escalation agent.
 - **Prompt template metadata**: framework tags inside the CLI prompt-template assets
 - **Full-methodology contract**: `sk-improve-prompt` skill definition
 - **Escalation runtime surface**: `@improve-prompt` across all active runtime directories
-- **Shared command surface**: `.opencode/commands/improve/prompt.md`
+- **Shared command surface**: `.opencode/commands/prompt.md`
 
 ### Data Flow
 
@@ -164,7 +164,7 @@ Caller requests CLI dispatch
 
 ### Phase 4: Command Routing and Verification
 
-- [ ] Update `.opencode/commands/improve/prompt.md` to support inline and agent dispatch modes.
+- [ ] Update `.opencode/commands/prompt.md` to support inline and agent dispatch modes.
 - [ ] Preserve inline mode as the default for ordinary interactive work.
 - [ ] Auto-route to agent mode when complexity or explicit isolation signals demand it.
 - [ ] Run static and semantic checks from the packet verification plan.
@@ -180,7 +180,7 @@ Caller requests CLI dispatch
 | Static presence | Card, mirror, and agent file creation | `find`, `ls`, `grep` |
 | Guard-safety | No `..` routable card paths in CLI skill docs | `grep`, python scratch check |
 | Metadata parity | Framework tags and sync footers exist where expected | `grep` |
-| Command contract | `/improve:prompt` documents inline and agent modes consistently | `grep`, `sed`, manual read |
+| Command contract | `/prompt` documents inline and agent modes consistently | `grep`, `sed`, manual read |
 | Runtime parity | New agent exists in all active runtime directories and matches the documented contract | `find`, `sed`, manual read |
 | Packet validation | Spec docs stay template-compliant | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict <packet>` |
 <!-- /ANCHOR:testing -->
@@ -195,7 +195,7 @@ Caller requests CLI dispatch
 | Framework and CLEAR references inside `sk-improve-prompt/references/` | Internal | Green | Framework table and CLEAR checklist lose their source material |
 | DEPTH methodology reference inside `sk-improve-prompt/references/` | Internal | Green | DEPTH and CLEAR condensation lose their source material |
 | `_guard_in_skill()` self-containment behavior in CLI skills | Internal | Green | Cross-skill card routing becomes invalid |
-| `/improve:prompt` current command contract | Internal | Yellow | Agent mode cannot be claimed until the command doc is updated |
+| `/prompt` current command contract | Internal | Yellow | Agent mode cannot be claimed until the command doc is updated |
 | Active runtime mirror directories | Internal | Green | Agent parity must cover `.gemini/agents/` because it already exists here |
 <!-- /ANCHOR:dependencies -->
 
@@ -209,7 +209,7 @@ Caller requests CLI dispatch
   1. Remove the local prompt-quality-card entries from each CLI skill's `ALWAYS` loading block.
   2. Revert the local mirror cards and framework tags.
   3. Revert the `@improve-prompt` runtime mirrors if the agent contract is the issue.
-  4. Restore `/improve:prompt` to inline-only behavior if command routing is unstable.
+  4. Restore `/prompt` to inline-only behavior if command routing is unstable.
   5. Keep the canonical card and packet docs only if they still help future design work; otherwise revert the packet-linked skill changes as one unit.
 <!-- /ANCHOR:rollback -->
 
@@ -280,7 +280,7 @@ Phase 1 (canonical source + contract)
 | Canonical card | Existing framework/CLEAR references | Shared source of truth | CLI mirrors, agent contract |
 | CLI mirrors | Canonical card | Fast-path guidance per CLI skill | Command/verification closeout |
 | Runtime agent mirrors | Canonical card + skill contract | Shared deep-path escalation surface | Command/verification closeout |
-| `/improve:prompt` update | Runtime agent mirror contract | Shared command path | Packet verification |
+| `/prompt` update | Runtime agent mirror contract | Shared command path | Packet verification |
 | Drift fixture decision | Canonical card + mirrors | Either a landed fixture or a documented deferral | Final packet scope sign-off |
 <!-- /ANCHOR:dependency-graph -->
 
@@ -292,7 +292,7 @@ Phase 1 (canonical source + contract)
 1. **Canonical card + `sk-improve-prompt` contract update** - 0.5 to 1 session - CRITICAL
 2. **CLI mirror cards + skill-definition ALWAYS loading updates** - 1 to 2 sessions - CRITICAL
 3. **Runtime `@improve-prompt` mirrors** - 0.5 to 1 session - CRITICAL
-4. **`/improve:prompt` dispatch-mode update** - 0.5 to 1 session - CRITICAL
+4. **`/prompt` dispatch-mode update** - 0.5 to 1 session - CRITICAL
 5. **Verification and packet closeout** - 0.5 to 1 session - CRITICAL
 
 **Total Critical Path**: 3 to 6 focused sessions, depending on how much parity cleanup is needed after the first pass.

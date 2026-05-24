@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The deep-review and deep-research skills depend on **18 production files** that live inside `.opencode/skills/system-spec-kit/mcp_server/lib/{deep-loop,coverage-graph}/` and `mcp_server/handlers/coverage-graph/`. A dependency survey shows those files are **100% consumed by deep-* skills only** — zero callers in other MCP handler families, zero non-deep callers anywhere in spec-kit. No ADR justifies the current placement; it appears to be accumulated drift from early MCP server scaffolding.",
     "created_at": "2026-05-22T17:50:00Z",
-    "last_save_at": "2026-05-23T11:55:14.268Z",
+    "last_save_at": "2026-05-24T05:40:25.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

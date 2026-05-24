@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Let real provider failures propagate to callers that already know how to record them, while keeping intentional degraded-null behavior at call sites that use null as a fallback signal.",
     "created_at": "2026-05-14T14:31:45Z",
-    "last_save_at": "2026-05-23T11:55:15.390Z",
+    "last_save_at": "2026-05-24T05:40:25.993Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -44,7 +44,7 @@ Phase `006` closed the final naming gap in the agent-improver program by renamin
 - the canonical command markdown is now `.opencode/commands/speckit/agent-improver.md`
 - the workflow assets are now `improve_agent-improver_auto.yaml` and `improve_agent-improver_confirm.yaml`
 - the runtime wrappers are now `.agents/commands/speckit/agent-improver.toml` and `.gemini/commands/speckit/agent-improver.toml`
-- runtime agent tables, skill docs, README examples, and active packet docs now point at `/improve:agent-improver`
+- runtime agent tables, skill docs, README examples, and active packet docs now point at `/deep:start-agent-improvement-loop-improver`
 - parent packet `041` now records this rename explicitly as phase `006`
 <!-- /ANCHOR:what-built -->
 
@@ -63,7 +63,7 @@ The work was delivered in three passes: rename the canonical command files, rena
 
 | Decision | Why |
 |----------|-----|
-| Rename the command entrypoint to `/improve:agent-improver` | The user explicitly asked to fix the remaining command-name mismatch |
+| Rename the command entrypoint to `/deep:start-agent-improvement-loop-improver` | The user explicitly asked to fix the remaining command-name mismatch |
 | Keep the skill name `sk-improve-agent` unchanged | The skill rename was already settled earlier and matched the mutator/runtime family |
 | Record the rename as phase `006` instead of revising phase `005` silently | Makes the follow-up explicit and auditable |
 <!-- /ANCHOR:decisions -->

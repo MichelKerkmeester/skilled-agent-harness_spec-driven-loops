@@ -1,7 +1,7 @@
 {
   "level": "feature",
   "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime/008-test-migration",
-  "description": "Feature Specification: 118/007 \u2014 Test Migration (Split by Responsibility)",
+  "description": "Feature Specification: 118/007 — Test Migration (Split by Responsibility)",
   "keywords": [
     "feature",
     "specification",
@@ -12,9 +12,9 @@
     "split",
     "responsibility"
   ],
-  "lastUpdated": "2026-05-22T19:07:31.338Z",
-  "specId": "007",
-  "folderSlug": "008-test-migration",
+  "lastUpdated": "2026-05-23T15:24:59.072Z",
+  "specId": "008",
+  "folderSlug": "test-migration",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

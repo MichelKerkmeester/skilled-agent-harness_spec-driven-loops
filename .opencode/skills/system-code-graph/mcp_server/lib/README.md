@@ -110,6 +110,8 @@ lib/
 +-- query-intent-classifier.ts  # Query intent routing
 +-- startup-brief.ts            # Startup graph summary payloads
 +-- phase-runner.ts             # Ordered phase execution helper
++-- shared/                     # Local contracts and runtime helper modules
++-- ipc/                        # Launcher socket bridge
 +-- utils/                      # Workspace path helpers
 `-- README.md
 ```
@@ -172,6 +174,8 @@ lib/
 +-- structural-indexer.ts
 +-- tree-sitter-parser.ts
 +-- working-set-tracker.ts
++-- shared/
++-- ipc/
 +-- utils/
 `-- README.md
 ```
@@ -209,6 +213,8 @@ lib/
 | `startup-brief.ts` | Builds compact startup graph summaries for runtime surfaces. |
 | `owner-lease.ts` | Acquires, refreshes, classifies and releases the single Code Graph owner lease. |
 | `utils/workspace-path.ts` | Canonicalizes caller-supplied paths and enforces workspace containment. |
+| `shared/` | Local contracts for payloads, metrics stubs, path helpers and MCP types. |
+| `ipc/` | Socket bridge used by launcher-managed secondary clients. |
 
 <!-- /ANCHOR:key-files -->
 
@@ -295,7 +301,8 @@ Expected result: TypeScript exits `0`, and parser, indexer, context, readiness, 
 | [../../README.md](../../README.md) | Skill-level overview and operator guide. |
 | [../handlers/README.md](../handlers/README.md) | Handler-layer request adapters. |
 | [../tools/README.md](../tools/README.md) | MCP dispatch and exports. |
+| [shared/README.md](./shared/README.md) | Local contracts and shared helper modules. |
+| [ipc/README.md](./ipc/README.md) | Launcher IPC socket bridge. |
 | [utils/README.md](./utils/README.md) | Workspace path helper contract. |
-| [../database/README.md](../database/README.md) | SQLite runtime artifact guide. |
 
 <!-- /ANCHOR:related -->

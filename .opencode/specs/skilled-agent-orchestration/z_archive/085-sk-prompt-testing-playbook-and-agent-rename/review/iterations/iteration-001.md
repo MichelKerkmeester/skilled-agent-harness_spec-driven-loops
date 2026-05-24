@@ -4,7 +4,7 @@
 CONDITIONAL
 
 ## Summary
-Agent rename across all 4 runtimes is mechanically complete: all files renamed, frontmatter `name:` rotated, zero active-scope `@improve-prompt` residuals, command `/improve:prompt` path unchanged, advisor routing intact. However, Phase 001's `implementation-summary.md` is a 100% unfilled template — no delivery story was captured, leaving a documentation gap.
+Agent rename across all 4 runtimes is mechanically complete: all files renamed, frontmatter `name:` rotated, zero active-scope `@improve-prompt` residuals, command `/prompt` path unchanged, advisor routing intact. However, Phase 001's `implementation-summary.md` is a 100% unfilled template — no delivery story was captured, leaving a documentation gap.
 
 ## Findings
 
@@ -84,16 +84,16 @@ rg -l '@improve-prompt|improve-prompt' .opencode/skills/sk-prompt/manual_testing
 
 ### 11. Command path unchanged
 ```bash
-ls .opencode/commands/improve/prompt.md  # → exists
+ls .opencode/commands/prompt.md  # → exists
 ```
 Body references `@prompt-improver` throughout (line 9, 18, 48, 51, 204, 297, 368).
 
 ## Adversarial Self-Check
 
-**Did I miss any `@improve-prompt` residuals?** The grep exclusion list was comprehensive per the strategy doc — all frozen-completed packets, z_archive, z_future, .git, barter, and the command file path `.opencode/commands/improve/prompt.md` itself. The result was empty after correct exclusion of `improve/prompt.md`. No borderline cases.
+**Did I miss any `@improve-prompt` residuals?** The grep exclusion list was comprehensive per the strategy doc — all frozen-completed packets, z_archive, z_future, .git, barter, and the command file path `.opencode/commands/prompt.md` itself. The result was empty after correct exclusion of `prompt.md`. No borderline cases.
 
 **Are my P1s actually blockers?** No. The implementation-summary being template is a documentation gap, not a code defect. It does not block the package from functioning — it only compromises traceability for future maintainers.
 
 **Does the checklist.md absence matter?** The strict validate passed without it, so the validator's phase-child rules apparently accept Level 1 minimums or treat the metadata table as advisory. I classified this as P2 (dimension 4, documentation hygiene) since it doesn't affect function.
 
-**Is the command truly unchanged?** Yes — `ls .opencode/commands/improve/prompt.md` confirms the file path still contains `improve`, and the grep shows `/improve:prompt` is still the command name. Only the internal agent reference was rotated.
+**Is the command truly unchanged?** Yes — `ls .opencode/commands/prompt.md` confirms the file path still contains `improve`, and the grep shows `/prompt` is still the command name. Only the internal agent reference was rotated.

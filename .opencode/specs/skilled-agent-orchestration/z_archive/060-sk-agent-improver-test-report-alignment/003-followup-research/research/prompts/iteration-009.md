@@ -20,7 +20,7 @@ Now: given those R1 results + the meta-finding, **how do we further improve sk-i
 ## RESEARCH QUESTIONS
 
 - **RQ-1** Of the 6 P0/P1 diffs already applied in 060/002, which would meaningfully improve under further iteration vs which are functionally complete as shipped?
-- **RQ-2** What's the EXACT dispatch shape for 063's Call B? (`/improve:agent <target> :auto --spec-folder=...`, or YAML-step-by-step, or something else?)
+- **RQ-2** What's the EXACT dispatch shape for 063's Call B? (`/deep:start-agent-improvement-loop <target> :auto --spec-folder=...`, or YAML-step-by-step, or something else?)
 - **RQ-3** What grep contract should 063's Call B verdict use? List specific journal events + artifact paths + script invocation traces with file:line evidence.
 - **RQ-4** Which OTHER meta-agents in the system share @improve-agent's command-orchestrator pattern (discipline in command, not body)? Read each `.opencode/agents/*.md` and classify body-level vs command-level. Candidates: @write, @prompt-improver, @debug, @deep-research, @deep-review, @context, @orchestrate, @review.
 - **RQ-5** Are there gaps in 060/001's research that R1 surfaced (i.e. things the 854-line synthesis missed that the actual stress run revealed)?
@@ -34,7 +34,7 @@ Now: given those R1 results + the meta-finding, **how do we further improve sk-i
 3. `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/stress-runs/stage4-run-log.txt` — full transcripts (large file; grep don't cat)
 4. `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations/research/research.md` — 854-line synthesis (look for what R1 disagreed with)
 5. `.opencode/skills/cli-copilot/manual_testing_playbook/04--agent-routing/013-skill-load-not-protocol.md` (and 014-018) — the actual CP-040..CP-045 scenario specs
-6. Modified source files (state after 002): `.opencode/agents/improve-agent.md` + 3 mirrors, `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/skills/sk-improve-agent/scripts/{scan-integration,score-candidate}.cjs`, `.opencode/commands/improve/assets/improve_improve-agent_{auto,confirm}.yaml`
+6. Modified source files (state after 002): `.opencode/agents/improve-agent.md` + 3 mirrors, `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/skills/sk-improve-agent/scripts/{scan-integration,score-candidate}.cjs`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_{auto,confirm}.yaml`
 7. For RQ-4: `.opencode/agents/{write,prompt-improver,debug,deep-research,deep-review,context,orchestrate,review,code}.md`
 
 ## PRIOR ITERATION FINDINGS

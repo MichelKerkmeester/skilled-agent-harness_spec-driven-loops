@@ -31,7 +31,7 @@ Packet 124 closes eight confirmed `deep-agent-improvement` findings from packet 
 
 Key decisions are captured in ADR-001: profile failures use a typed `FILE_NOT_FOUND` / `PARSE_ERROR` / `SCRIPT_CRASH` taxonomy; empty dimensions resolve to `score: null`; and packet 124 only adds an opt-in runtime mirror sync abort with packet 127 retaining the full cross-runtime implementation.
 
-Critical dependencies are the `deep-agent-improvement` scripts and `/improve:agent` YAML workflows. Validation requires script syntax checks, available Vitest tests, targeted behavior checks, OpenCode alignment drift verification, and strict Level 3 spec validation.
+Critical dependencies are the `deep-agent-improvement` scripts and `/deep:start-agent-improvement-loop` YAML workflows. Validation requires script syntax checks, available Vitest tests, targeted behavior checks, OpenCode alignment drift verification, and strict Level 3 spec validation.
 
 <!-- /ANCHOR:executive-summary -->
 
@@ -100,8 +100,8 @@ These are correctness issues, not polish. Left open, they can hide infra failure
 | `.opencode/skills/deep-agent-improvement/README.md` | Modify | Replace false plateau stop-reason section. |
 | `.opencode/skills/deep-agent-improvement/changelog/v1.4.0.0.md` | Modify | Replace placeholder no-op changelog. |
 | `.opencode/skills/deep-agent-improvement/assets/improvement_config.json` | Modify | Align manifest filename. |
-| `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml` | Modify | Align manifest filename. |
-| `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml` | Modify | Align manifest filename. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Modify | Align manifest filename. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | Modify | Align manifest filename. |
 | `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/004-correctness-fixes/*` | Create | Level 3 documentation and metadata. |
 
 <!-- /ANCHOR:scope -->
@@ -168,7 +168,7 @@ These are correctness issues, not polish. Left open, they can hide infra failure
 | --- | --- | --- |
 | NFR-001 | Diagnostics | Profile failures must expose machine-readable error type. |
 | NFR-002 | Determinism | Scoring must not fabricate perfect scores for unscored dimensions. |
-| NFR-003 | Scope Control | No edits outside packet 124 docs, deep-agent-improvement files, and its `/improve:agent` workflow assets. |
+| NFR-003 | Scope Control | No edits outside packet 124 docs, deep-agent-improvement files, and its `/deep:start-agent-improvement-loop` workflow assets. |
 | NFR-004 | Compatibility | Preserve existing public function signatures. |
 | NFR-005 | Verifiability | Every completion claim must cite fresh command evidence. |
 

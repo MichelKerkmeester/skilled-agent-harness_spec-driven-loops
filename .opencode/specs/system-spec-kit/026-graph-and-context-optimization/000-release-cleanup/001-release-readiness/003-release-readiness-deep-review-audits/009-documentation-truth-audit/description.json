@@ -18,7 +18,7 @@
     "checklist.md",
     "implementation-summary.md"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-audits/009-documentation-truth-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/009-documentation-truth-audit",
   "description": "Feature Specification: Documentation Truth Deep Review",
   "keywords": [
     "feature",
@@ -28,13 +28,14 @@
     "deep",
     "review"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.370Z",
+  "lastUpdated": "2026-05-23T15:24:59.667Z",
   "specId": "009",
-  "folderSlug": "documentation-truth",
+  "folderSlug": "documentation-truth-audit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "001-release-readiness",
     "003-release-readiness-deep-review-audits"
   ],
   "memorySequence": 0,

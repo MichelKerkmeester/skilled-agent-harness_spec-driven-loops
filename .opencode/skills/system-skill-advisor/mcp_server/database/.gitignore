@@ -1,3 +1,13 @@
+# Runtime skill-graph state. The tracked fallback lives at ../scripts/skill-graph.json.
+*.sqlite
+*.sqlite-*
+*.sqlite.bak*
+*.db
+*.db-*
+skill-graph.json
+.mk-skill-advisor-launcher.json
+.mk-skill-advisor-launcher.lockdir/
+
 # Runtime-quarantined SQLite copies (auto-recovery output). Never commit.
 *.corrupt
 *.corrupt-shm

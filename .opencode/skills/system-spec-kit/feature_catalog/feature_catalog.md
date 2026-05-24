@@ -59,10 +59,10 @@ Code-graph hook docs now point at the extracted `system-code-graph` skill for gr
 | Code graph | CALLS disambiguation + `deadlineMs` + null-summary clearing | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` |
 | Code graph | `graphQualitySummary` on status/startup surfaces | `.opencode/skills/system-code-graph/README.md`, `references/config/hook_system.md` |
 | Code graph | Shared startup payload parity across Claude/Gemini/Copilot/Codex | [`18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md`](18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md), [`22--context-preservation/03-session-start-priming.md`](22--context-preservation/03-session-start-priming.md) (Claude slice), `references/config/hook_system.md` (Shared Startup Payload Parity section) |
-| Skill advisor | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill-advisor-hook.md` |
-| Skill advisor | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill-advisor-hook-validation.md` |
-| Skill advisor | Durable JSONL diagnostics sinks + cross-process readback | `references/hooks/skill-advisor-hook.md`, `references/hooks/skill-advisor-hook-validation.md` (Step 3) |
-| Skill advisor | OpenCode plugin-helper bridge + `0.8 / 0.35` threshold contract | `references/config/hook_system.md` (Advisor Bridge and Threshold Contract section), `references/hooks/skill-advisor-hook.md` |
+| Skill advisor | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill_advisor_hook.md` |
+| Skill advisor | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill_advisor_hook_validation.md` |
+| Skill advisor | Durable JSONL diagnostics sinks + cross-process readback | `references/hooks/skill_advisor_hook.md`, `references/hooks/skill_advisor_hook_validation.md` (Step 3) |
+| Skill advisor | OpenCode plugin-helper bridge + `0.8 / 0.35` threshold contract | `references/config/hook_system.md` (Advisor Bridge and Threshold Contract section), `references/hooks/skill_advisor_hook.md` |
 
 ### Command-Surface Contract
 
@@ -78,7 +78,7 @@ The Spec Kit Memory MCP server exposes **54 tools** overall across the 7-layer M
 
 **Owns** means the command is the primary home for those tools. **Shared** means the command borrows tools whose primary home is another command (typically `/memory:search` or `/memory:manage`).
 
-Current catalog entries include three surfaced features: `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, and the Codex `freshness-smoke-check` helper. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it is included in the 54-tool server count through `TOOL_DEFINITIONS`.
+Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, the Codex `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it is included in the 54-tool server count through `TOOL_DEFINITIONS`.
 
 ---
 
@@ -3970,6 +3970,24 @@ See [`16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md`](16--tooli
 
 ---
 
+### Orphan MCP sweeper and LaunchAgent template
+
+#### Description
+
+The orphan MCP sweeper gives operators a dry-run-first way to inspect and later clean stale MCP helper processes plus stale dispatch artifacts without touching active dev servers, Devin, Ollama, or live Claude Code session trees.
+
+#### Current Reality
+
+`.opencode/scripts/orphan-mcp-sweeper.sh` supports `--dry-run`, `--verbose`, `--log-path`, `ORPHAN_AGE_MIN_SEC`, `ORPHAN_TMP_AGE_HOURS`, log rotation, SIGTERM then SIGKILL in real mode, and `/tmp` cleanup. `.opencode/scripts/claude-session-cleanup.sh` handles the Claude Stop-hook side by walking only the current session descendants. `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` is checked in as a template only; it is not installed or loaded by default.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/47-orphan-mcp-sweeper-and-launchagent-template.md`](16--tooling-and-scripts/47-orphan-mcp-sweeper-and-launchagent-template.md) for full implementation and validation listings.
+
+> **Playbook:** [419](../manual_testing_playbook/16--tooling-and-scripts/419-orphan-mcp-runtime-lifecycle-guardrails.md)
+
+---
+
 ## 18. GOVERNANCE
 
 ### Feature flag governance
@@ -4049,6 +4067,24 @@ See [`17--governance/03-hierarchical-scope-governance-governed-ingest-retention-
 Current mapping: this content is tracked under spec `006-ux-hooks-automation`.
 
 Spec 007 standardized post-mutation automation and safety checks across mutation handlers, then closed the follow-up review gaps that remained after the initial rollout. The finalized state now includes required `confirmName` enforcement, duplicate-save no-op feedback that leaves caches untouched, atomic-save parity for `postMutationHooks` and hint payloads, token metadata recomputation before token-budget enforcement, hooks README/export alignment, and end-to-end success-envelope verification. Current verification evidence: `npx tsc -b` PASS, `npm run lint` PASS, the split UX suite passed with 7 files / 510 tests, the stdio plus embeddings suite passed with 2 files / 15 tests, the combined targeted rerun passed with 9 files / 525 tests, and the MCP SDK stdio smoke test passed with 28 tools listed.
+
+### Launcher idle timeout
+
+#### Description
+
+`SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` controls idle self-exit for the native MCP server processes. It prevents quiet accumulation when a server has no primary stdio or secondary IPC client activity left.
+
+#### Current Reality
+
+The value defaults to `30` minutes. Fractional values are allowed for tests, and `0` disables the monitor. Activity is refreshed from primary stdio input and secondary IPC socket connect/data/write events. The monitor runs in `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` server processes.
+
+#### Source Files
+
+See [`19--feature-flag-reference/12-launcher-idle-timeout.md`](19--feature-flag-reference/12-launcher-idle-timeout.md) for implementation and validation listings.
+
+> **Playbook:** [419](../manual_testing_playbook/16--tooling-and-scripts/419-orphan-mcp-runtime-lifecycle-guardrails.md)
+
+---
 
 ### Shared post-mutation hook wiring
 

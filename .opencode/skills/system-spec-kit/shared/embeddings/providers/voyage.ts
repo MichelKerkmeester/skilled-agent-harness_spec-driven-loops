@@ -2,6 +2,7 @@
 // MODULE: Voyage
 // ---------------------------------------------------------------
 
+import { getCanonicalFallback } from '../registry.js';
 import { EmbeddingProfile } from '../profile.js';
 import { retryWithBackoff } from '../../utils/retry.js';
 import type { IEmbeddingProvider, ModelDimensions, ProviderMetadata, UsageStats } from '../../types.js';
@@ -10,7 +11,7 @@ import type { IEmbeddingProvider, ModelDimensions, ProviderMetadata, UsageStats 
 // 1. CONFIGURATION
 // ---------------------------------------------------------------
 
-const DEFAULT_MODEL: string = 'voyage-code-3';
+const DEFAULT_MODEL: string = getCanonicalFallback('voyage');
 const DEFAULT_DIM: number = 1024;
 const DEFAULT_BASE_URL: string = 'https://api.voyageai.com/v1';
 const REQUEST_TIMEOUT: number = 30000;

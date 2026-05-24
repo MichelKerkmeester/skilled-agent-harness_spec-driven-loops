@@ -43,11 +43,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Phase 005 brought the improve-agent loop into the same runtime-truth family as the deeper research and review loops. The phase landed five helper modules, dedicated tests, supporting playbook scenarios, and command plus skill documentation updates so improve-agent sessions could be audited, reasoned about, and explained with concrete artifacts instead of opaque reducer-only summaries. What it did **not** land yet was the later visible-path workflow wiring that actually invoked those helpers during `/improve:agent` runs; that follow-on arrived in Phase 008 via `v1.2.0.0`.
+Phase 005 brought the improve-agent loop into the same runtime-truth family as the deeper research and review loops. The phase landed five helper modules, dedicated tests, supporting playbook scenarios, and command plus skill documentation updates so improve-agent sessions could be audited, reasoned about, and explained with concrete artifacts instead of opaque reducer-only summaries. What it did **not** land yet was the later visible-path workflow wiring that actually invoked those helpers during `/deep:start-agent-improvement-loop` runs; that follow-on arrived in Phase 008 via `v1.2.0.0`.
 
 ### Stop-Reason Taxonomy and Audit Journal
 
-The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
+The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
 
 ### Mutation Coverage and Trade-Off Detection
 
@@ -74,7 +74,7 @@ The implementation landed in commit `080cf549e`, which records the five helper s
 - the 31/31 manual playbook pass
 - the 10,335-test Vitest result recorded at ship time
 
-Phase 008 later supplied the missing visible-path workflow wiring in `v1.2.0.0`: `/improve:agent` began emitting journal events at runtime boundaries, reducer refresh began consuming replay artifacts, and the helper-only runtime-truth surface moved onto the live operator path.
+Phase 008 later supplied the missing visible-path workflow wiring in `v1.2.0.0`: `/deep:start-agent-improvement-loop` began emitting journal events at runtime boundaries, reducer refresh began consuming replay artifacts, and the helper-only runtime-truth surface moved onto the live operator path.
 
 Later on the packet family corrected one important documentation drift: `v1.2.1.0` explicitly retracted a multi-session lifecycle contract that had been documented but not actually wired. This closeout packet reflects both follow-ons so Phase 005 is recorded as shipped without silently claiming that helper delivery and workflow wiring landed together.
 <!-- /ANCHOR:how-delivered -->

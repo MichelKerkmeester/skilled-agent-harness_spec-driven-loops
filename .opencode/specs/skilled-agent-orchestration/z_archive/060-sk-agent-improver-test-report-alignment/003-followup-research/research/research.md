@@ -28,7 +28,7 @@ _memory:
 
 The main recommendation is to split the next work by proof layer. Packet 004 (was 061) should prove the corrected command-flow harness and classify remaining failures honestly; packet 005 (was 062) should wire the executable producers and consumers needed for a product GREEN. Iterations 6, 8, 9, and 10 converged on that split: 061 owns command-flow methodology and/or active CP contract correction, while 062 owns benchmark materialization, nested legal-stop shape, stop vocabulary, YAML parity, and native runtime-truth reconciliation [iteration-006.md:72-78; iteration-008.md:123-154; iteration-009.md:28-35; iteration-010.md:42-50].
 
-R1 did not show that `sk-improve-agent` is hopeless. It showed that CP-040..CP-045 used the wrong authority source for several claims. The old Call B prepended the `@improve-agent` body and hit the proposal-only mutator, while the expected evidence lived in `/improve:agent`, YAML steps, helper scripts, journals, reducers, and benchmark artifacts [002/test-report.md:75-98; 002/test-report.md:144-185; 002/test-report.md:246-253]. The follow-on test must therefore invoke the command layer when asserting command-owned evidence.
+R1 did not show that `sk-improve-agent` is hopeless. It showed that CP-040..CP-045 used the wrong authority source for several claims. The old Call B prepended the `@improve-agent` body and hit the proposal-only mutator, while the expected evidence lived in `/deep:start-agent-improvement-loop`, YAML steps, helper scripts, journals, reducers, and benchmark artifacts [002/test-report.md:75-98; 002/test-report.md:144-185; 002/test-report.md:246-253]. The follow-on test must therefore invoke the command layer when asserting command-owned evidence.
 
 Do not overcorrect. CP-041 and CP-042 test body-owned disciplines: proposal-only containment and active Critic checks. They can remain leaf/body tests if the five required runtime/control inputs are materialized. CP-040, CP-043, CP-044, and CP-045 need command-flow lanes because their evidence comes from helper execution, scoring, legal-stop state, reducer output, and benchmark reports [iteration-007.md:22-38; iteration-007.md:84-92].
 
@@ -38,9 +38,9 @@ The reusable lesson is sharper than "use the right prompt." Every CP authoring p
 
 This synthesis treats `research/iterations/iteration-001.md` through `iteration-010.md` as the canonical research record. The loop ran 10 cli-copilot iterations on gpt-5.5 with fresh-per-iteration prompts, and each iteration produced a markdown narrative with focused RQ coverage. Iteration 9 effectively reached synthesis-readiness by producing the convergence table and downstream packet split; iteration 10 continued to the cap and added the final source-authority guardrail [iteration-009.md:59-75; iteration-010.md:22-36; iteration-010.md:110-116].
 
-The inputs were the 060/003 spec RQs, the 060/002 R1 test report, the prior 060/001 synthesis, the active CP-040..CP-045 playbook files, the `@improve-agent` body, the `/improve:agent` command/YAML surfaces, helper scripts, reducer consumers, benchmark assets, and the other meta-agent bodies. The spec itself required research-only synthesis and handoff notes, not source edits, CP reruns, 061 playbook-entry design, or constitutional changes [spec.md:93-107; spec.md:127-134; iteration-010.md:38-42].
+The inputs were the 060/003 spec RQs, the 060/002 R1 test report, the prior 060/001 synthesis, the active CP-040..CP-045 playbook files, the `@improve-agent` body, the `/deep:start-agent-improvement-loop` command/YAML surfaces, helper scripts, reducer consumers, benchmark assets, and the other meta-agent bodies. The spec itself required research-only synthesis and handoff notes, not source edits, CP reruns, 061 playbook-entry design, or constitutional changes [spec.md:93-107; spec.md:127-134; iteration-010.md:38-42].
 
-Where iterations disagreed, the later evidence wins only when it explained a narrower layer or governance constraint. Example: iterations 1-4 said Call B should invoke `/improve:agent`; iteration 7 refined that to "command-flow for command-owned evidence, leaf/body for CP-041/042." Iterations 6 and 7 also looked contradictory on CP IDs, but iteration 9 reconciled them: expected-RED methodology evidence should stay spec-local, while active playbook corrections should reuse stable CP-040..CP-045 IDs only when the resulting contracts can be graded under PASS/PARTIAL/FAIL/SKIP [iteration-007.md:47-65; iteration-009.md:22-35].
+Where iterations disagreed, the later evidence wins only when it explained a narrower layer or governance constraint. Example: iterations 1-4 said Call B should invoke `/deep:start-agent-improvement-loop`; iteration 7 refined that to "command-flow for command-owned evidence, leaf/body for CP-041/042." Iterations 6 and 7 also looked contradictory on CP IDs, but iteration 9 reconciled them: expected-RED methodology evidence should stay spec-local, while active playbook corrections should reuse stable CP-040..CP-045 IDs only when the resulting contracts can be graded under PASS/PARTIAL/FAIL/SKIP [iteration-007.md:47-65; iteration-009.md:22-35].
 
 ## 3. PER-RQ FINDINGS
 
@@ -57,10 +57,10 @@ Where iterations disagreed, the later evidence wins only when it explained a nar
 **Answer:** The command-owned Call B is:
 
 ```text
-/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1
+/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1
 ```
 
-It must run from a command-capable temp project root containing `.opencode/commands/improve`, `.opencode/skills/sk-improve-agent`, the fixture target under `.opencode/agents/`, mirrors, and any benchmark/profile assets. YAML-step-by-step prompts are internal evidence only, not the external Call B. A bare fixture cwd and repo-root plus `--add-dir` are both under-specified for the command's relative path assumptions.
+It must run from a command-capable temp project root containing `.opencode/commands/deep`, `.opencode/skills/sk-improve-agent`, the fixture target under `.opencode/agents/`, mirrors, and any benchmark/profile assets. YAML-step-by-step prompts are internal evidence only, not the external Call B. A bare fixture cwd and repo-root plus `--add-dir` are both under-specified for the command's relative path assumptions.
 **Evidence:** Iteration 1 rejected YAML-step-by-step as external Call B and sketched the command form [iteration-001.md:42-54; iteration-001.md:118-136]. Iteration 3 refined the cwd requirement and command-capable sandbox shape [iteration-003.md:22-34; iteration-003.md:97-117]. Iteration 7 narrowed the command-flow lane to CP-040/043/044/045, with CP-041/042 allowed as body-layer tests if inputs exist [iteration-007.md:26-38].
 **Recommended action:** 061 should create a command-capable temp root, invoke the command form above for command-owned CPs, and reserve direct `@improve-agent` leaf dispatch only for CP-041/042-style body-owned checks with the full five-input bundle.
 
@@ -86,7 +86,7 @@ It must run from a command-capable temp project root containing `.opencode/comma
 ### RQ-5: Gaps 060/001 missed that R1 surfaced?
 
 **Status:** ANSWERED
-**Answer:** 060/001 had the correct conceptual direction but missed blocking readiness gates. It sketched `/improve:agent` Call B, warned that artifact presence is smoke-test-level, and noted action placeholders are unproven. It did not force those ideas into implementation gates, so 060/002 drifted into prepended-body Call B, expected benchmark proof from an action-only step, lacked harness-root completeness, missed per-scenario layer partition, and did not account for release-surface or native-oracle implications.
+**Answer:** 060/001 had the correct conceptual direction but missed blocking readiness gates. It sketched `/deep:start-agent-improvement-loop` Call B, warned that artifact presence is smoke-test-level, and noted action placeholders are unproven. It did not force those ideas into implementation gates, so 060/002 drifted into prepended-body Call B, expected benchmark proof from an action-only step, lacked harness-root completeness, missed per-scenario layer partition, and did not account for release-surface or native-oracle implications.
 **Evidence:** Iteration 2 found the synthesis-to-implementation gap: command shape was known but not non-negotiable [iteration-002.md:73-79]. Iteration 3 added fixture/harness-root completeness [iteration-003.md:55-72]. Iteration 6 showed the original expected-output bundle was too dense for one packet [iteration-006.md:64-78]. Iteration 7 added per-scenario layer ownership and required-input completeness [iteration-007.md:39-45]. Iteration 9 added release-surface honesty and native RT alignment scope [iteration-009.md:22-43].
 **Recommended action:** Future research syntheses should distinguish "scenario can be authored" from "scenario can honestly be expected GREEN." Add readiness gates before scenario writing, not only lessons after failure.
 
@@ -107,8 +107,8 @@ It must run from a command-capable temp project root containing `.opencode/comma
 ## 4. PACKET 061 SKETCH (Command-Flow Stress Tests)
 
 - **Packet name suggestion:** `004-improve-agent-command-flow-stress-tests` for the follow-on named in 002. If the packet is methodology-only, use a subtitle such as "spec-local RED/PARTIAL command-flow proof" to avoid implying product GREEN [002/test-report.md:373-383; iteration-009.md:28-35].
-- **Spec scope:** In scope: command-capable temp root, `/improve:agent` Call B, artifact-root checks, layer-specific CP lanes, RED/PARTIAL classification for known executable seams, and handoff to 062. Out of scope unless explicitly expanded: benchmark materializer, YAML auto/confirm parity patches, stop enum reconciliation, native RT repair, and GREEN rerun [iteration-006.md:72-78; iteration-009.md:134-148].
-- **Call B dispatch shape:** `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1`, run from a temp project root containing command files, skill scripts, target agent, mirrors, fixture data, and allowed external spec/log paths [iteration-003.md:22-34; iteration-003.md:97-117].
+- **Spec scope:** In scope: command-capable temp root, `/deep:start-agent-improvement-loop` Call B, artifact-root checks, layer-specific CP lanes, RED/PARTIAL classification for known executable seams, and handoff to 062. Out of scope unless explicitly expanded: benchmark materializer, YAML auto/confirm parity patches, stop enum reconciliation, native RT repair, and GREEN rerun [iteration-006.md:72-78; iteration-009.md:134-148].
+- **Call B dispatch shape:** `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1`, run from a temp project root containing command files, skill scripts, target agent, mirrors, fixture data, and allowed external spec/log paths [iteration-003.md:22-34; iteration-003.md:97-117].
 - **CP IDs:** Reuse CP-040..CP-045 for active playbook corrections. Use CP-046..CP-051 only for a spec-local experimental suite or if CP-040..CP-045 are explicitly archived/deprecated from the active root index [iteration-007.md:47-65; iteration-007.md:100-115; iteration-009.md:22-35].
 - **Verdict grep contract:** Require command entry, `improvement/` roots, `integration-report.json`, `dynamic-profile.json`, candidate path under `improvement/candidates`, `candidate_generated`, `score-candidate.cjs`, `candidate_scored`, score JSON with `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, `legal_stop_evaluated`, `blocked_stop`, reducer output, and for GREEN only `details.gateResults.*`, benchmark report `status:"benchmark-complete"`, `benchmark_run` state row, and ordered `session_end` [iteration-001.md:56-87; iteration-003.md:36-53; iteration-004.md:33-42; iteration-008.md:94-107].
 - **RED/GREEN methodology:** 061 may PASS as a methodology packet if it proves the corrected harness reaches the owning layer and classifies failures against known producer/consumer gaps. It must not count expected RED as product GREEN. GREEN product proof belongs after 062 wiring [iteration-004.md:22-31; iteration-006.md:46-62; iteration-008.md:147-154].
@@ -125,7 +125,7 @@ It must run from a command-capable temp project root containing `.opencode/comma
 - **Stop vocabulary:** Resolve the SKILL/helper/test conflict around `plateau` and `benchmarkPlateau`. Either remove them from helper/tests to match the narrow SKILL enum, or document them as compatibility stop reasons and update docs/verdict greps [iteration-008.md:59-75].
 - **Native oracle repair:** Reconcile RT-028/RT-032 command names, target agent, event vocabulary, and expected signal lists before using them as hard GREEN gates [iteration-008.md:77-92; iteration-009.md:37-43].
 - **Lockstep checklist:** Update YAML, command docs, SKILL docs, journal tests, reducer assertions, native RT scenarios, and cli-copilot CP contracts together so no single surface becomes the stale oracle [iteration-008.md:123-145].
-- **Conflicts to resolve:** Stop-reason helper/test vs SKILL conflict; auto-only vs confirm parity; ~~packet-local vs static benchmark assets~~ **(decided: static skill assets)**; ~~materializer location~~ **(decided: ship alongside `run-benchmark.cjs`)**; RT `/improve:improve-agent` naming drift; whether 062 includes GREEN rerun or leaves it to optional 063 [iteration-008.md:109-119; iteration-009.md:77-87; iteration-010.md:76-78].
+- **Conflicts to resolve:** Stop-reason helper/test vs SKILL conflict; auto-only vs confirm parity; ~~packet-local vs static benchmark assets~~ **(decided: static skill assets)**; ~~materializer location~~ **(decided: ship alongside `run-benchmark.cjs`)**; RT `/deep:start-agent-improvement-loop` naming drift; whether 062 includes GREEN rerun or leaves it to optional 063 [iteration-008.md:109-119; iteration-009.md:77-87; iteration-010.md:76-78].
 
 ## 6. OTHER META-AGENT AUDIT (RQ-4 Detail)
 
@@ -178,7 +178,7 @@ The authoring preflight every CP-XXX scenario author must answer BEFORE writing 
 
 | Signal | Owner Layer | Where Verified |
 |---|---|---|
-| `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=... --iterations=1` | Command entry point | command transcript; command-capable temp cwd [iteration-003.md:22-34] |
+| `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=... --iterations=1` | Command entry point | command transcript; command-capable temp cwd [iteration-003.md:22-34] |
 | `integration-report.json` | Command/YAML via `scan-integration.cjs` | `{spec_folder}/improvement/integration-report.json` [iteration-001.md:58-66] |
 | `dynamic-profile.json` | Command/YAML via `generate-profile.cjs` | `{spec_folder}/improvement/dynamic-profile.json` [iteration-001.md:64-65] |
 | `candidate_generated` event | Command/YAML after mutator dispatch | journal JSONL plus candidate path under `improvement/candidates` [iteration-001.md:66-67] |
@@ -206,9 +206,9 @@ The authoring preflight every CP-XXX scenario author must answer BEFORE writing 
 Recommended starting prompt:
 
 ```text
-Create 004-improve-agent-command-flow-stress-tests. Build a command-capable temp project root containing .opencode/commands/improve, .opencode/skills/sk-improve-agent, and the cp-improve-target fixture. For command-owned scenarios, invoke:
+Create 004-improve-agent-command-flow-stress-tests. Build a command-capable temp project root containing .opencode/commands/deep, .opencode/skills/sk-improve-agent, and the cp-improve-target fixture. For command-owned scenarios, invoke:
 
-/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1
+/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1
 
 Use a layer-owned evidence matrix per CP. Keep expected-RED/PARTIAL methodology evidence spec-local unless active CP-040..CP-045 contracts can honestly pass under the cli-copilot PASS/PARTIAL/FAIL/SKIP release model. Reuse CP-040..CP-045 for active corrections; use successor IDs only for spec-local experiments or explicit archival.
 ```

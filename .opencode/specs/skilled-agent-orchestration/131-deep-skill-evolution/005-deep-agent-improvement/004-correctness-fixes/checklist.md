@@ -138,7 +138,7 @@ _memory:
 ## File Organization
 
 - [x] CHK-060 [P0] Changes stay inside allowed scope.
-  - Evidence: Modified only packet 124 docs, `deep-agent-improvement` files, and its `/improve:agent` workflow assets.
+  - Evidence: Modified only packet 124 docs, `deep-agent-improvement` files, and its `/deep:start-agent-improvement-loop` workflow assets.
 - [x] CHK-061 [P1] No downstream packet folders touched.
   - Evidence: No edits to packets 125-128.
 - [x] CHK-062 [P1] Helper is local to target skill.

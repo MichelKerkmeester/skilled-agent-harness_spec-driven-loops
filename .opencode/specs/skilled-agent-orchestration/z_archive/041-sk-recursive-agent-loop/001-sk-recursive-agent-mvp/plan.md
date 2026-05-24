@@ -69,7 +69,7 @@ The MVP stays intentionally narrow. It targets the handover surface because hand
 A five-surface experiment architecture: command orchestration, mutator execution, evaluator scoring, reducer/state management, and skill-backed protocol documentation.
 
 ### Key Components
-- **Command layer**: `/improve:agent-improver` owns setup, packet initialization, iteration control, and promotion checkpoints.
+- **Command layer**: `/deep:start-agent-improvement-loop-improver` owns setup, packet initialization, iteration control, and promotion checkpoints.
 - **Mutator layer**: `@agent-improver` generates bounded candidates against one canonical target surface.
 - **Evaluator layer**: deterministic scoring scripts and/or fixed validation commands score candidates separately from the mutator.
 - **State layer**: charter, manifest, config, strategy, JSONL ledger, iteration artifacts, and reducer-owned dashboard/accepted-state views.
@@ -111,7 +111,7 @@ Implement the two key execution roles.
 
 ### Phase 5: Command and Workflow Integration
 Expose the loop through the standard command system.
-- Create `/improve:agent-improver`
+- Create `/deep:start-agent-improvement-loop-improver`
 - Add `:auto` and `:confirm` YAML workflows
 - Define setup prompts, approval checkpoints, and output paths
 

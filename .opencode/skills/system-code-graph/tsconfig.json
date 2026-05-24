@@ -1,58 +1,35 @@
 {
-  "extends": "../system-spec-kit/tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "..",
+    "target": "es2022",
     "module": "nodenext",
     "moduleResolution": "nodenext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
     "verbatimModuleSyntax": true,
-    "allowJs": true,
+    "rootDir": "./mcp_server",
+    "outDir": "./mcp_server/dist",
+    "tsBuildInfoFile": "./mcp_server/dist/tsconfig.tsbuildinfo",
     "typeRoots": [
-      "../system-spec-kit/node_modules/@types",
       "node_modules/@types"
-    ],
-    "paths": {
-      "@spec-kit/shared/*": [
-        "../system-spec-kit/shared/dist/*"
-      ],
-      "better-sqlite3": [
-        "../system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts"
-      ],
-      "chokidar": [
-        "../system-spec-kit/mcp_server/node_modules/chokidar/index.d.ts"
-      ],
-      "vitest": [
-        "../system-spec-kit/mcp_server/node_modules/vitest/dist/index.d.ts"
-      ],
-      "vitest/config": [
-        "../system-spec-kit/mcp_server/node_modules/vitest/config.d.ts"
-      ]
-    }
+    ]
   },
   "include": [
-    "mcp_server/**/*.ts",
-    "../system-spec-kit/mcp_server/**/*.ts",
-    "../system-spec-kit/mcp_server/lib/eval/data/*.json",
-    "../system-spec-kit/mcp_server/lib/routing/*.json",
-    "../system-skill-advisor/mcp_server/**/*.ts"
+    "mcp_server/**/*.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
-    "../system-spec-kit/node_modules",
-    "../system-spec-kit/mcp_server/dist",
-    "../system-spec-kit/mcp_server/tests/**/*.ts",
-    "../system-spec-kit/mcp_server/stress_test/**/*.ts",
-    "../system-spec-kit/mcp_server/**/__tests__/**/*.ts",
-    "../system-spec-kit/mcp_server/**/tests/**/*.ts",
-    "../system-skill-advisor/mcp_server/lib/shared/embeddings",
-    "../system-skill-advisor/mcp_server/lib/shared/embeddings/**/*.ts",
-    "../system-skill-advisor/mcp_server/tests/**/*.ts",
-    "../system-skill-advisor/mcp_server/stress_test/**/*.ts",
-    "../system-skill-advisor/mcp_server/**/*.vitest.ts",
-    "../system-skill-advisor/mcp_server/**/*.test.ts",
-    "../system-skill-advisor/mcp_server/**/*.bench.ts",
-    "../system-skill-advisor/mcp_server/vitest.config.ts",
+    "mcp_server/dist",
+    "mcp_server/tests/**/*.ts",
+    "mcp_server/stress_test/**/*.ts",
+    "mcp_server/**/__tests__/**/*.ts",
     "**/*.test.ts",
     "**/*.vitest.ts",
     "**/*.test-d.ts"

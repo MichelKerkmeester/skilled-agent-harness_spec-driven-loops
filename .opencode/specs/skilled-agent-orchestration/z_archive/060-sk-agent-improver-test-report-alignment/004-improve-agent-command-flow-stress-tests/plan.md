@@ -37,14 +37,14 @@ _memory:
 
 ## 2. STAGE 1 — SCAFFOLD + TEMP-ROOT HELPER
 1. Author 8 markdown files at packet root + 2 JSON stubs
-2. Author `/tmp/cp-061-sandbox-setup.sh` that creates `/tmp/cp-061-sandbox/` with: `.opencode/commands/improve/` (recursive copy), `.opencode/skills/sk-improve-agent/` (recursive copy), `.opencode/agents/cp-improve-target.md` (fixture), `.claude/agents/cp-improve-target.md` + `.gemini/agents/cp-improve-target.md` + `.codex/agents/cp-improve-target.toml` (mirrors), profile + fixture assets
+2. Author `/tmp/cp-061-sandbox-setup.sh` that creates `/tmp/cp-061-sandbox/` with: `.opencode/commands/deep/` (recursive copy), `.opencode/skills/sk-improve-agent/` (recursive copy), `.opencode/agents/cp-improve-target.md` (fixture), `.claude/agents/cp-improve-target.md` + `.gemini/agents/cp-improve-target.md` + `.codex/agents/cp-improve-target.toml` (mirrors), profile + fixture assets
 
 ## 3. STAGE 2 — COMMAND-FLOW DISPATCH IN CP-040/043/044/045
 For each of CP-040, CP-043, CP-044, CP-045: replace the `Call B = prepend agent body` block with:
 ```bash
 /tmp/cp-061-sandbox-setup.sh
 cd /tmp/cp-061-sandbox
-copilot -p "/improve:agent \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-061-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-061-sandbox --add-dir /tmp/cp-061-spec 2>&1 | tee /tmp/cp-NNN-B-command.txt
+copilot -p "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-061-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-061-sandbox --add-dir /tmp/cp-061-spec 2>&1 | tee /tmp/cp-NNN-B-command.txt
 ```
 Update expected-signal grep contracts to look for command-flow evidence (already mostly done by 062's stage 6).
 

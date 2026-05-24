@@ -2,7 +2,7 @@
   "level": "2",
   "completionPct": 0,
   "lastOutcome": "Packet scaffolded; cli-opencode + deepseek-v4-pro pre-flight smoke recorded; awaiting iteration loop.",
-  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview",
+  "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/007-track-rereview",
   "description": "Feature Specification: Re-review #2 of skilled-agent-orchestration 093-101 (post-100/101 verdict-flip + cli-opencode executor smoke)",
   "keywords": [
     "feature",
@@ -17,11 +17,12 @@
     "executor",
     "smoke"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.494Z",
+  "lastUpdated": "2026-05-23T15:24:59.559Z",
   "specId": "007",
   "folderSlug": "track-rereview",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "096-rename-opencode-dirs-to-plural"
   ],
   "memorySequence": 2,

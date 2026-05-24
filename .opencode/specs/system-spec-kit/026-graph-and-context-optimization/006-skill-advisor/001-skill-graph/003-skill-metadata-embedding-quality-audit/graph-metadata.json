@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 015/004 seeded sweep proved that the cosine lane cannot flip routing decisions on the current 24-prompt corpus regardless of weight (V0–V6, including V6-cosine-dominant at semantic=0.30). One plausible explanation: the per-skill embeddings (computed from SKILL.md descriptions) are not discriminating enough. If two skills carry generic, overlapping descriptions, their embeddings will be near each other in vector space and cosine similarity will not pick the correct one. Same problem exists for the lexical and derived lanes when `trigger_phrases` and `key_topics` are too generic or duplicative.",
     "created_at": "2026-05-14T00:30:00Z",
-    "last_save_at": "2026-05-23T11:55:15.103Z",
+    "last_save_at": "2026-05-24T05:40:25.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:30:00Z",
     "source_docs": [

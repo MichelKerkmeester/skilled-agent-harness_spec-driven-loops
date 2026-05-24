@@ -40,7 +40,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/doctor.md",
       ".opencode/commands/doctor/_routes.yaml",
       ".opencode/commands/memory/manage.md",
       ".vscode/mcp.json",
@@ -51,12 +50,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "doctor.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor.md",
-        "source": "derived"
-      },
       {
         "name": "_routes.yaml",
         "kind": "config",
@@ -194,11 +187,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 052 rename shipped functionally, but deep review found command-layer namespace regressions and stale packet documentation. Extracted code-graph, CCC, and advisor tools were over-renamed under `mk-spec-memory`, and the packet metadata still described a draft scaffold instead of the shipped state.",
     "created_at": "2026-05-15T05:59:52Z",
-    "last_save_at": "2026-05-23T11:55:15.413Z",
+    "last_save_at": "2026-05-24T05:40:26.009Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

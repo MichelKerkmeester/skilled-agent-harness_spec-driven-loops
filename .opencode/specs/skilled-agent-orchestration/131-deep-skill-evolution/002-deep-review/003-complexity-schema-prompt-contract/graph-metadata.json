@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Phase 003 defines the canonical v2 review-depth contract for `deep-review` iteration records and the rendered prompt pack. The contract adds the discriminator `reviewDepthSchemaVersion: 2`, applicability-driven enforcement through `reviewDepthApplicability`, explicit target proof through `targetSelection`, coverage accounting through `searchCoverage`, and auditable search rows through `searchLedger[]`.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-23T11:55:14.256Z",
+    "last_save_at": "2026-05-24T05:40:25.250Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

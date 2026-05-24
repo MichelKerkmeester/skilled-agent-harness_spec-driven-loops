@@ -30,16 +30,16 @@ R1 itself also argues for a separate packet before any rerun: changing the invoc
 064 = executable wiring + GREEN command-flow proof packet
 ```
 
-This makes 063 successful if it proves the new harness enters `/improve:agent`, reaches the right artifact roots, and classifies failures at known producer/consumer seams instead of calling them model failures.
+This makes 063 successful if it proves the new harness enters `/deep:start-agent-improvement-loop`, reaches the right artifact roots, and classifies failures at known producer/consumer seams instead of calling them model failures.
 
 ### RQ-1/RQ-3: Four readiness gates must precede a GREEN command-flow verdict
 
 Iterations 1-5 identified individual seams; the downstream packet decision needs them as ordered readiness gates. A GREEN 063/064 verdict should not be attempted until all four are true:
 
-1. **Entrypoint/harness root readiness.** Call B uses `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=... --iterations=1`, and the cwd contains command files, skill scripts, target agent, mirrors, and fixture assets. R1 proved the old prepended-body runner reached the thin mutator, not the orchestrated command [SOURCE: `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md:144-172`].
-2. **Benchmark producer readiness.** The YAML names `run-benchmark.cjs` as the benchmark script [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:87-93`], but `step_run_benchmark` is still prose `action` and only later emits `benchmark_completed` assuming a `{benchmark_output_path}` exists [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:171-179`].
+1. **Entrypoint/harness root readiness.** Call B uses `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=... --iterations=1`, and the cwd contains command files, skill scripts, target agent, mirrors, and fixture assets. R1 proved the old prepended-body runner reached the thin mutator, not the orchestrated command [SOURCE: `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md:144-172`].
+2. **Benchmark producer readiness.** The YAML names `run-benchmark.cjs` as the benchmark script [SOURCE: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:87-93`], but `step_run_benchmark` is still prose `action` and only later emits `benchmark_completed` assuming a `{benchmark_output_path}` exists [SOURCE: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:171-179`].
 3. **Benchmark asset readiness.** The runner requires `--profile`, `--outputs-dir`, and `--output` [SOURCE: `.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:202-214`], loads profile fixtures from `profile.benchmark.fixtureDir`, then scores `{outputsDir}/{fixture.id}.md` for each fixture [SOURCE: `.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:217-224`]. Dynamic profiles currently emit `benchmark.fixtureDir:null` [SOURCE: `.opencode/skills/sk-improve-agent/scripts/generate-profile.cjs:223-237`], so a GREEN packet needs packet-local benchmark profiles/fixtures or a static asset set.
-4. **Journal producer/consumer readiness.** YAML emits legal-stop gate fields flat in `details` [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:192-198`], while the reducer renders `latestLegalStop.gateResults` only from `details.gateResults` [SOURCE: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-218`].
+4. **Journal producer/consumer readiness.** YAML emits legal-stop gate fields flat in `details` [SOURCE: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:192-198`], while the reducer renders `latestLegalStop.gateResults` only from `details.gateResults` [SOURCE: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-218`].
 
 This converts the previous "implementation-plus-test unless RED" advice into a checklist: if any readiness gate is intentionally left open, the scenario verdict mode must be expected RED/PARTIAL, not GREEN.
 
@@ -71,7 +71,7 @@ The downstream correction should be:
 
 | Packet | Purpose | Exit criterion |
 |---|---|---|
-| **063** | Command-flow harness and RED methodology proof | CP-040..CP-045 or successor IDs invoke `/improve:agent`; failures are classified against readiness gates and captured with grep/file/JSON assertions. |
+| **063** | Command-flow harness and RED methodology proof | CP-040..CP-045 or successor IDs invoke `/deep:start-agent-improvement-loop`; failures are classified against readiness gates and captured with grep/file/JSON assertions. |
 | **064** | Minimal executable wiring | Patch benchmark command invocation, benchmark assets/output materialization, nested legal-stop producer shape, and stale event vocabulary. |
 | **065** | GREEN rerun/report if 064 is large | Re-run the command-flow scenarios and require structured artifact/journal/reducer proof. |
 
@@ -79,7 +79,7 @@ The downstream correction should be:
 
 ### RQ-3/RQ-6: Event vocabulary drift should be a standalone 064 acceptance item
 
-One remaining under-specified seam is vocabulary consistency. The skill's audit protocol includes `benchmark_completed`, `legal_stop_evaluated`, and `blocked_stop` [SOURCE: `.opencode/skills/sk-improve-agent/SKILL.md:271-292`], but the later boundary table still says iteration boundaries emit `candidate_generated`, `candidate_scored`, and `gate_evaluation` [SOURCE: `.opencode/skills/sk-improve-agent/SKILL.md:343-364`]. The command markdown has the same older Step 6B wording: after candidate generation and scoring, it still names `gate_evaluation` after stop-check or operator-gate evaluation [SOURCE: `.opencode/commands/improve/agent.md:288-303`].
+One remaining under-specified seam is vocabulary consistency. The skill's audit protocol includes `benchmark_completed`, `legal_stop_evaluated`, and `blocked_stop` [SOURCE: `.opencode/skills/sk-improve-agent/SKILL.md:271-292`], but the later boundary table still says iteration boundaries emit `candidate_generated`, `candidate_scored`, and `gate_evaluation` [SOURCE: `.opencode/skills/sk-improve-agent/SKILL.md:343-364`]. The command markdown has the same older Step 6B wording: after candidate generation and scoring, it still names `gate_evaluation` after stop-check or operator-gate evaluation [SOURCE: `.opencode/commands/deep/start-agent-improvement-loop.md:288-303`].
 
 The journal helper accepts both old and new event names, including `gate_evaluation`, `legal_stop_evaluated`, `blocked_stop`, `session_ended`, and `session_end` [SOURCE: `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:44-69`]. That broad acceptance is useful for compatibility, but it makes grep-only test verdicts weaker. 064 should either document the accepted aliases as intentional compatibility or narrow the command/skill narrative so GREEN scenarios require the newer legal-stop-specific events. Until then, 063 should treat vocabulary drift as expected RED/PARTIAL evidence, not a product pass.
 
@@ -91,7 +91,7 @@ The journal helper accepts both old and new event names, including `gate_evaluat
 
 ## Ruled Out
 
-- **Ruled out: making 063 green by only changing Call B syntax.** Correct command entry is necessary but insufficient because benchmark execution is still action-only, dynamic benchmark profiles lack fixture directories, and legal-stop producer/consumer shape is incompatible [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:171-198`, `.opencode/skills/sk-improve-agent/scripts/generate-profile.cjs:223-237`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-218`].
+- **Ruled out: making 063 green by only changing Call B syntax.** Correct command entry is necessary but insufficient because benchmark execution is still action-only, dynamic benchmark profiles lack fixture directories, and legal-stop producer/consumer shape is incompatible [SOURCE: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:171-198`, `.opencode/skills/sk-improve-agent/scripts/generate-profile.cjs:223-237`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-218`].
 - **Ruled out: collapsing 063 and 064 by default.** The 003 spec already separates command-flow stress-test handoff from further code-edit handoff, and R1 says command-owned setup alone is enough surface area for a separate packet [SOURCE: `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research/spec.md:93-105`, `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md:177-185`].
 - **Ruled out: treating journal event acceptance as proof of semantic alignment.** The helper validates broad event enums and session-end fields, but the reducer still consumes legal-stop gates from one specific nested shape [SOURCE: `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:80-107`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-218`].
 
@@ -101,12 +101,12 @@ The journal helper accepts both old and new event names, including `gate_evaluat
 
 ```text
 Goal:
-  Prove the corrected test harness reaches /improve:agent and produces command-flow evidence, while honestly classifying remaining executable seams as RED/PARTIAL.
+  Prove the corrected test harness reaches /deep:start-agent-improvement-loop and produces command-flow evidence, while honestly classifying remaining executable seams as RED/PARTIAL.
 
 Tasks:
-  1. Build command-capable temp project root with .opencode/commands/improve, .opencode/skills/sk-improve-agent, fixture target, and mirrors.
+  1. Build command-capable temp project root with .opencode/commands/deep, .opencode/skills/sk-improve-agent, fixture target, and mirrors.
   2. Convert CP-040..CP-045 or new CP-046..CP-051 to Call B:
-     /improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-063-spec --iterations=1
+     /deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-063-spec --iterations=1
   3. Add Layer-Owned Evidence Matrix + Evaluator Asset Preflight to each scenario.
   4. Run R1 and grade with verdict-mode honesty:
      - PASS for harness truth if command entry/artifact roots are proven.

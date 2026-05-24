@@ -8,7 +8,7 @@ Senior deep-reviewer. Read-only.
 2. `.opencode/skills/sk-prompt/assets/model-profiles.json`
 3. `.opencode/skills/system-spec-kit/SKILL.md` + its `references/cli/`
 4. `.opencode/skills/deep-research/SKILL.md` + `deep-review/SKILL.md` + `deep-agent-improvement/SKILL.md`
-5. Any skill with `enhances`/`related_to`/`siblings` edge pointing at sk-ai-council or sk-ai-small-model
+5. Any skill with `enhances`/`related_to`/`siblings` edge pointing at sk-ai-council or sk-prompt-small-model
 
 ### Checks
 1. Sibling skill metadata correctly references renamed skills.

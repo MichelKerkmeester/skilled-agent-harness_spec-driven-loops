@@ -17,7 +17,7 @@ const { spawn, spawnSync } = require('child_process');
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
 const BLOCKED_CHILD_ENV_RE = /^(NODE_|npm_|NPM_)/;
-const DOTENV_ALLOW_RE = /^(SPECKIT_CODE_GRAPH_|MK_CODE_INDEX_|COCOINDEX_BIN_PATH$)/;
+const DOTENV_ALLOW_RE = /^(SPECKIT_CODE_GRAPH_|SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN$|MK_CODE_INDEX_|COCOINDEX_BIN_PATH$)/;
 
 // Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).
@@ -504,10 +504,8 @@ function ensureLayout(actions) {
 }
 
 function requiredArtifacts() {
-  const skillDirName = path.basename(kitDir);
   return [
     path.join(kitDir, 'mcp_server', 'dist', 'index.js'),
-    path.join(kitDir, 'dist', skillDirName, 'mcp_server', 'index.js'),
   ];
 }
 
@@ -534,19 +532,6 @@ function buildIfNeeded(actions) {
     run('npm', [installCommand, '--no-audit', '--no-fund', '--silent'], { cwd: kitDir });
   }
   run(process.execPath, [localTscEntrypoint(), '-p', 'tsconfig.json'], { cwd: kitDir });
-
-  // Derive the nested dist subdir from kitDir's basename rather than hardcoding
-  // the directory name. tsc emits with rootDir=".." so the skill directory name
-  // appears as a dist subdir; using basename keeps this resilient to future renames
-  // of the skill folder (e.g. if `system-code-graph/` is ever renamed at the
-  // filesystem level, this fallback continues to work without source edits).
-  const skillDirName = path.basename(kitDir);
-  const direct = path.join(kitDir, 'mcp_server', 'dist', 'index.js');
-  const nested = path.join(kitDir, 'dist', skillDirName, 'mcp_server', 'index.js');
-  if (!exists(direct) && exists(nested)) {
-    fs.mkdirSync(path.dirname(direct), { recursive: true });
-    fs.writeFileSync(direct, `import '../../dist/${skillDirName}/mcp_server/index.js';\n`);
-  }
 
   const missing = requiredArtifacts().filter((artifact) => !exists(artifact));
   if (missing.length > 0) {

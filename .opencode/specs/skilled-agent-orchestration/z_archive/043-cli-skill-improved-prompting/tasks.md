@@ -136,9 +136,9 @@ _memory:
 - [x] T025 Create the Gemini runtime mirror after confirming the runtime directory is active `[Evidence: ls .gemini/agents/improve-prompt.md; rg -n "name: improve-prompt|FRAMEWORK:|CLEAR_SCORE:|ENHANCED_PROMPT:|ESCALATION_NOTES:" .gemini/agents/improve-prompt.md]`
 - [x] T026 Verify all four runtime mirrors share the same input contract, guardrails, and structured output shape `[Evidence: rg -n "FRAMEWORK:|CLEAR_SCORE:|ENHANCED_PROMPT:|ESCALATION_NOTES:" .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md]`
 
-- [x] T027 Add dispatch-mode selection to `/improve:prompt` `[Evidence: .opencode/commands/improve/prompt.md:89-91,138,178]`
-- [x] T028 Document auto-routing to agent mode when complexity or isolation signals require it `[Evidence: .opencode/commands/improve/prompt.md:89-91,296-297,367-381]`
-- [x] T029 Keep inline mode as the default for ordinary interactive prompt work `[Evidence: .opencode/commands/improve/prompt.md:91,204,217,381]`
+- [x] T027 Add dispatch-mode selection to `/prompt` `[Evidence: .opencode/commands/prompt.md:89-91,138,178]`
+- [x] T028 Document auto-routing to agent mode when complexity or isolation signals require it `[Evidence: .opencode/commands/prompt.md:89-91,296-297,367-381]`
+- [x] T029 Keep inline mode as the default for ordinary interactive prompt work `[Evidence: .opencode/commands/prompt.md:91,204,217,381]`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -149,7 +149,7 @@ _memory:
 - [x] T030 Run static file-presence checks for the canonical card, mirror cards, runtime agents, and drift-check script `[Evidence: ls .opencode/skills/sk-improve-prompt/assets/cli_prompt_quality_card.md .opencode/skills/cli-claude-code/assets/prompt_quality_card.md .opencode/skills/cli-codex/assets/prompt_quality_card.md .opencode/skills/cli-copilot/assets/prompt_quality_card.md .opencode/skills/cli-gemini/assets/prompt_quality_card.md .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md .opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh -> all present]`
 - [x] T031 Run guard-safety checks that confirm no routable prompt-quality path contains `..` `[Evidence: if grep -H 'prompt_quality_card' .opencode/skills/cli-*/SKILL.md | grep '\\.\\.'; then echo FOUND; else echo NO_DOTDOT_MATCHES; fi -> NO_DOTDOT_MATCHES]`
 - [x] T032 Run framework-tag presence checks against the four CLI prompt-template files `[Evidence: grep -c '^Framework:' .opencode/skills/cli-*/assets/prompt_templates.md -> 25/34/20/24]`
-- [x] T033 Review the escalation contract manually across CLI skills, `@improve-prompt`, and `/improve:prompt` `[Evidence: rg -n "FRAMEWORK:|CLEAR_SCORE:|ENHANCED_PROMPT:|ESCALATION_NOTES:" .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md; rg -n "dispatch_mode|@improve-prompt|complexity_hint" .opencode/commands/improve/prompt.md; rg -n "prompt_quality_card\\.md" .opencode/skills/cli-*/SKILL.md -> contract fields, dispatch-mode routing, and local-card loading all present]`
+- [x] T033 Review the escalation contract manually across CLI skills, `@improve-prompt`, and `/prompt` `[Evidence: rg -n "FRAMEWORK:|CLEAR_SCORE:|ENHANCED_PROMPT:|ESCALATION_NOTES:" .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md; rg -n "dispatch_mode|@improve-prompt|complexity_hint" .opencode/commands/prompt.md; rg -n "prompt_quality_card\\.md" .opencode/skills/cli-*/SKILL.md -> contract fields, dispatch-mode routing, and local-card loading all present]`
 - [x] T034 Run strict packet validation on `.opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/` `[Evidence: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict .opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting -> RESULT: PASSED (Errors: 0, Warnings: 0)]`
 <!-- /ANCHOR:phase-3 -->
 

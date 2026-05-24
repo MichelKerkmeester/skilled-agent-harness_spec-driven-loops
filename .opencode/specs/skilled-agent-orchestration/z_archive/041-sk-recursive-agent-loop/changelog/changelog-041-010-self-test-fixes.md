@@ -16,9 +16,9 @@ Fixed 5 issues discovered during the Phase 009 self-test and promoted 6 candidat
 
 ### Stale command path in agent definition
 
-**Problem:** The agent file referenced `/improve:agent-improver` and `.opencode/commands/speckit/agent-improver.md`, both of which were stale paths from before the Phase 008 rename.
+**Problem:** The agent file referenced `/deep:start-agent-improvement-loop-improver` and `.opencode/commands/speckit/agent-improver.md`, both of which were stale paths from before the Phase 008 rename.
 
-**Fix:** Updated to `/improve:agent` and `.opencode/commands/improve/agent.md`.
+**Fix:** Updated to `/deep:start-agent-improvement-loop` and `.opencode/commands/deep/start-agent-improvement-loop.md`.
 
 ### Reducer family hardcoding
 

@@ -85,7 +85,7 @@
     ],
     "causal_summary": "Remediate the highest-risk findings from arc 010/001 deep research, which produced 110 deduped findings: 3 P0, 39 P1, and 68 P2. This packet focuses the first remediation slice on resource bounds at IPC and HTTP boundaries, sidecar lifecycle and process ownership, and JS/Python rerank sidecar drift.",
     "created_at": "2026-05-23T03:50:22.745Z",
-    "last_save_at": "2026-05-23T11:55:15.670Z",
+    "last_save_at": "2026-05-24T05:40:26.152Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

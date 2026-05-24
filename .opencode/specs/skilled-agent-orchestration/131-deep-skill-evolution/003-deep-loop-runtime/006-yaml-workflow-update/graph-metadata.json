@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The four `spec_kit_deep-{review,research}_{auto,confirm}.yaml` workflow files invoke graph convergence and graph upsert via the `mcp_tool:` block targeting `mcp__mk_spec_memory__deep_loop_graph_convergence` and `mcp__mk_spec_memory__deep_loop_graph_upsert`. Phase 004 removes those MCP handlers and tool schema entries from the spec-kit MCP server, so any remaining YAML reference would dispatch to an unavailable tool name and fail every deep-loop run.",
     "created_at": "2026-05-22T19:55:00Z",
-    "last_save_at": "2026-05-23T11:55:14.281Z",
+    "last_save_at": "2026-05-24T05:40:25.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

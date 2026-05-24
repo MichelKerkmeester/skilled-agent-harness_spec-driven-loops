@@ -23,8 +23,8 @@ trigger_phrases:
 - [1. OVERVIEW](#1--overview)
 - [2. QUICK START](#2--quick-start)
 - [3. FEATURES](#3--features)
-  - [3.1 HOW IT WORKS](#31-how-it-works)
-  - [3.2 FEATURE REFERENCE](#32-feature-reference)
+  - [3.1 HOW IT WORKS](#31--how-it-works)
+  - [3.2 FEATURE REFERENCE](#32--feature-reference)
 - [4. STRUCTURE](#4--structure)
 - [5. CONFIGURATION](#5--configuration)
 - [6. USAGE EXAMPLES](#6--usage-examples)
@@ -56,9 +56,10 @@ A plain single-model plan gives you one lens and no record of what it ruled out.
 
 | Metric | Value |
 |---|---|
-| Version | 2.1.0.0 |
+| Version | 2.2.0.0 |
 | Operating modes | In-CLI (primary), external-CLI (secondary) |
-| References | 11 |
+| References | 15 |
+| Assets | 5 council runtime templates |
 | Features | 32 across 9 categories |
 | Manual test scenarios | 32 across 9 categories |
 | Scripts | 5 CLI helpers + a writer library + tests |
@@ -73,7 +74,8 @@ A plain single-model plan gives you one lens and no record of what it ruled out.
 | Two-of-three convergence | Declares convergence when 2 of 3 seats agree and critique finds no blocker. |
 | Append-only state | Records every council event in `ai-council-state.jsonl`, additive only. |
 | Rollback forensics | Preserves failed rounds under `failed/round-NNN-<timestamp>/`. |
-| Derived council graph | Optional `council_graph_*` projection that ranks unresolved disagreements and rebuilds from artifacts. |
+| Derived council graph | Optional `deep-loop-runtime` CLI projection that ranks unresolved disagreements and rebuilds from artifacts. |
+| Council resource family | Quick reference, loop protocol, config, strategy, dashboard, prompt-pack, and runtime capability assets shaped like the other deep skills but written for council planning. |
 
 <!-- /ANCHOR:overview -->
 
@@ -165,8 +167,9 @@ Full inventory: [`feature_catalog/FEATURE_CATALOG.md`](feature_catalog/FEATURE_C
 .opencode/skills/deep-ai-council/
 ├── SKILL.md                    # Runtime instructions and smart router
 ├── README.md                   # This file
-├── changelog/                  # Per-release notes (v1.0.0.0 through v2.1.0.0)
-├── references/                 # 11 operating-contract references
+├── changelog/                  # Per-release notes (v1.0.0.0 through v2.2.0.0)
+├── references/                 # 15 operating-contract references
+├── assets/                     # Council config, strategy, dashboard, prompt-pack and capability templates
 ├── feature_catalog/            # Root inventory + 32 per-feature files across 9 categories
 ├── manual_testing_playbook/    # Root playbook + 32 scenarios across 9 categories
 └── scripts/                    # CLI helpers, writer library (lib/) and tests
@@ -190,7 +193,11 @@ Runtime packet layout (what a council run writes):
 | Path | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Agent-facing router and operating contract |
+| [`references/quick_reference.md`](./references/quick_reference.md) | Operator cheat sheet for council runs and validation |
+| [`references/loop_protocol.md`](./references/loop_protocol.md) | Full packet-to-handoff council workflow |
 | [`references/output_schema.md`](./references/output_schema.md) | Required report sections parsed by the persistence helper |
+| [`assets/deep_ai_council_strategy.md`](./assets/deep_ai_council_strategy.md) | Round strategy template for seat setup and disagreements |
+| [`assets/deep_ai_council_dashboard.md`](./assets/deep_ai_council_dashboard.md) | Status dashboard template for active and persisted runs |
 | [`scripts/persist-artifacts.cjs`](./scripts/persist-artifacts.cjs) | Caller-owned artifact writer |
 | [`scripts/replay-graph-from-artifacts.cjs`](./scripts/replay-graph-from-artifacts.cjs) | Rebuilds the derived graph from `ai-council-state.jsonl` |
 | [`feature_catalog/FEATURE_CATALOG.md`](./feature_catalog/FEATURE_CATALOG.md) | Full feature inventory |
@@ -223,6 +230,8 @@ The council agent ships across four runtimes under its established `ai-council` 
 | `seats_per_round` | Seat count, usually 2 or 3 |
 | `convergence_signal` | Rule such as `two-of-three-agree` |
 | `status` | `in-progress`, `complete` or `non-converged` |
+
+Template source: [`assets/deep_ai_council_config.json`](./assets/deep_ai_council_config.json). Operators can pair it with [`assets/deep_ai_council_strategy.md`](./assets/deep_ai_council_strategy.md), [`assets/deep_ai_council_dashboard.md`](./assets/deep_ai_council_dashboard.md), [`assets/prompt_pack_round.md.tmpl`](./assets/prompt_pack_round.md.tmpl), and [`assets/runtime_capabilities.json`](./assets/runtime_capabilities.json).
 
 The parser fails closed on missing required report sections. Add `--strict-output` to enforce that during capture:
 
@@ -326,7 +335,7 @@ A: No. It produces planning artifacts and hands implementation to another actor.
 
 **Q: Does the graph replace the council artifacts?**
 
-A: No. The graph is a derived projection exposed through the `council_graph_*` MCP tools. Packet-local `ai-council/**` artifacts and the append-only state stay authoritative, and the graph rebuilds from them.
+A: No. The graph is a derived projection written and queried through `deep-loop-runtime` CLI scripts with `--loop-type council`. Packet-local `ai-council/**` artifacts and the append-only state stay authoritative, and the graph rebuilds from them.
 
 ---
 
@@ -359,13 +368,20 @@ A: Preserve the failed artifacts under `failed/round-NNN-<timestamp>/` and appen
 | [`SKILL.md`](./SKILL.md) | Agent-facing router and operating contract |
 | [`feature_catalog/FEATURE_CATALOG.md`](./feature_catalog/FEATURE_CATALOG.md) | Full feature inventory across 9 categories |
 | [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation package (32 scenarios) |
+| [`references/quick_reference.md`](./references/quick_reference.md) | Operator cheat sheet for commands, artifacts, stops and validation |
+| [`references/loop_protocol.md`](./references/loop_protocol.md) | End-to-end council flow from packet resolution through recovery |
 | [`references/output_schema.md`](./references/output_schema.md) | Required report sections (parser contract) |
 | [`references/scoring_rubric.md`](./references/scoring_rubric.md) | Five-dimension scoring and critique roles |
 | [`references/convergence_signals.md`](./references/convergence_signals.md) | Convergence rules and escape hatches |
-| [`references/graph_support.md`](./references/graph_support.md) | Derived council graph and MCP tool boundary |
+| [`references/graph_support.md`](./references/graph_support.md) | Derived council graph and deep-loop-runtime CLI boundary |
 | [`references/deep_mode.md`](./references/deep_mode.md) | Deep-mode session/topic/round hierarchy, state files and cost guards |
 | [`references/findings_registry.md`](./references/findings_registry.md) | Cross-topic findings registry, fingerprint dedup and filesystem locking |
-| [`changelog/`](./changelog/) | Per-release notes (v1.0.0.0 through v2.1.1.0) |
+| [`assets/deep_ai_council_config.json`](./assets/deep_ai_council_config.json) | Council run-config template |
+| [`assets/deep_ai_council_strategy.md`](./assets/deep_ai_council_strategy.md) | Council round strategy template |
+| [`assets/deep_ai_council_dashboard.md`](./assets/deep_ai_council_dashboard.md) | Council status dashboard template |
+| [`assets/prompt_pack_round.md.tmpl`](./assets/prompt_pack_round.md.tmpl) | Seat prompt-pack template |
+| [`assets/runtime_capabilities.json`](./assets/runtime_capabilities.json) | Runtime capability and validation matrix |
+| [`changelog/`](./changelog/) | Per-release notes (v1.0.0.0 through v2.2.0.0) |
 
 Related skills: [`deep-research`](../deep-research/SKILL.md) for evidence-first investigation vantages and [`system-spec-kit`](../system-spec-kit/SKILL.md) for packet documentation, validation, resume and continuity.
 

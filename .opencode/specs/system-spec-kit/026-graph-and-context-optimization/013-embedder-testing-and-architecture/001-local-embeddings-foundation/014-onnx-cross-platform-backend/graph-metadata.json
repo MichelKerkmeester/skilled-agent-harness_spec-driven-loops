@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Cocoindex currently encodes embeddings via sentence-transformers on PyTorch. On macOS that routes through Metal Performance Shaders, which targets the GPU and cannot reach Apple's Neural Engine. On Windows without CUDA, PyTorch is CPU-only, leaving AMD and Intel GPUs idle. Both gaps can increase fan ramp, indexing time, and query latency relative to the host silicon.",
     "created_at": "2026-05-13T09:55:00Z",
-    "last_save_at": "2026-05-23T11:55:15.347Z",
+    "last_save_at": "2026-05-24T05:40:25.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T11:15:00Z",
     "source_docs": [

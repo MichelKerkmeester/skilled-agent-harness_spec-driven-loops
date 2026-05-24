@@ -8,8 +8,15 @@ trigger_phrases:
 
 # Gemini Hooks
 
-> **DEPRECATED 2026-05-16.** This hook location is being migrated. The advisor-routing UserPromptSubmit hook now lives under `.opencode/skills/system-skill-advisor/hooks/` (compiled artifact at `.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/<runtime>/`). The code-graph SessionStart hook lives under `.opencode/skills/system-code-graph/` (compiled artifact at `.opencode/skills/system-code-graph/dist/system-spec-kit/mcp_server/hooks/<runtime>/`). Update any runtime config (e.g. `.devin/hooks.v1.json`, Claude `settings.local.json` hooks, Codex `config.toml` hooks, Gemini CLI hook config) before 2026-08-16. After that date this location may be removed without further notice. See `.opencode/skills/system-skill-advisor/references/deferred-decisions.md` §3 for migration tracker.
+> **DEPRECATED 2026-05-16.** This hook location is being migrated. The advisor-routing UserPromptSubmit hook now lives under `.opencode/skills/system-skill-advisor/hooks/` (compiled artifact at `.opencode/skills/system-skill-advisor/mcp_server/dist/hooks/<runtime>/`). The code-graph SessionStart hook lives under `.opencode/skills/system-code-graph/` (compiled artifact at `.opencode/skills/system-code-graph/dist/system-spec-kit/mcp_server/hooks/<runtime>/`). Update any runtime config (e.g. `.devin/hooks.v1.json`, Claude `settings.local.json` hooks, Codex `config.toml` hooks, Gemini CLI hook config) before 2026-08-16. After that date this location may be removed without further notice. See `.opencode/skills/system-skill-advisor/references/deferred-decisions.md` §3 for migration tracker.
 
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. HOOK REGISTRATION](#2--hook-registration)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ## 1. OVERVIEW
 
@@ -34,7 +41,7 @@ with its own smoke command. Run smoke checks from the repository root after
 
 Set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to skip the advisor path for the
 current process session. The full contract lives at
-`../../../references/hooks/skill-advisor-hook.md`.
+`../../../references/hooks/skill_advisor_hook.md`.
 
 ### SessionStart Registration
 

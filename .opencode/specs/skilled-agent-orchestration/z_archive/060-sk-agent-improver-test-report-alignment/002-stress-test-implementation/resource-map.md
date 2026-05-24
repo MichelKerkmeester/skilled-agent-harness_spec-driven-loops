@@ -104,8 +104,8 @@ Shipped on commit **`3b5f00ee4`**.
 ### Command YAMLs (auto + confirm lockstep)
 
 ```
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml      (legal_stop_evaluated + benchmark_completed + blocked_stop emissions)
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml   (same)
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml      (legal_stop_evaluated + benchmark_completed + blocked_stop emissions)
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml   (same)
 ```
 
 ### Playbook root index

@@ -88,7 +88,7 @@ Symbolic rename of one agent across 4 runtimes + reference propagation through ~
 - **Agent files** (4): one per runtime mirror. Frontmatter `name:` field is the canonical identity.
 - **YAML asset files** (4): `improve_<TARGET>_<MODE>.yaml` pattern. Filename rename + content sed.
 - **Reference surfaces**: command files, skill docs, root governance, runtime READMEs.
-- **`/improve:agent` slash command** and `.gemini/commands/improve/improve-agent.toml` (Gemini slash-command file): UNCHANGED — these are command-scoped names, not agent-scoped.
+- **`/deep:start-agent-improvement-loop` slash command** and `.gemini/commands/deep/start-agent-improvement-loop.toml` (Gemini slash-command file): UNCHANGED — these are command-scoped names, not agent-scoped.
 
 ### Data Flow
 
@@ -130,13 +130,13 @@ T-024: /memory:save
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | Producer: 4 agent files | Authoritative agent identity | Rename via `git mv` + frontmatter `name:` field rotation | `ls` + `grep '^name:'` |
-| Producer: 4 YAML asset files | Workflow definition for `/improve:agent` | Rename via `git mv` + content sed | `ls` + `grep -F '@improve-agent'` |
+| Producer: 4 YAML asset files | Workflow definition for `/deep:start-agent-improvement-loop` | Rename via `git mv` + content sed | `ls` + `grep -F '@improve-agent'` |
 | Consumer: command files | Reference agent in dispatch matrix + YAML filenames | sed refs + filename refs | `rg -F '@improve-agent'` |
 | Consumer: skill docs | Reference agent in evaluator-first loop docs | sed refs | `rg -F '@improve-agent'` |
 | Consumer: root governance (AGENTS.md, README.md) | Public agent registry | sed line 324 + line 1097 | `grep` |
 | Consumer: runtime READMEs | Agent inventory listings | sed refs | `grep` |
-| Not-a-consumer: slash command `/improve:agent` | Command identifier (independent of agent name) | Unchanged | `grep '/improve:agent'` count parity |
-| Not-a-consumer: `.gemini/commands/improve/improve-agent.toml` filename | Gemini slash-command file (named after slash command, not agent) | Filename stays; only content updates | `ls` |
+| Not-a-consumer: slash command `/deep:start-agent-improvement-loop` | Command identifier (independent of agent name) | Unchanged | `grep '/deep:start-agent-improvement-loop'` count parity |
+| Not-a-consumer: `.gemini/commands/deep/start-agent-improvement-loop.toml` filename | Gemini slash-command file (named after slash command, not agent) | Filename stays; only content updates | `ls` |
 | Not-a-consumer: `cp-improve-target.md` test fixture | Different agent | Unchanged | grep parity |
 | Not-a-consumer: z_archive/specs/ research | Historical record | Unchanged | excluded from residual grep |
 <!-- /ANCHOR:affected-surfaces -->

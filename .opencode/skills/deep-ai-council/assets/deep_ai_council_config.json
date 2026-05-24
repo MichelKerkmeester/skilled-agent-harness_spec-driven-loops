@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "deep-ai-council.config.v1",
+  "protocol": "deep-ai-council",
+  "topic": "<planning topic>",
+  "specFolder": "<absolute-or-repo-relative-spec-folder>",
+  "artifactDir": "<spec-folder>/ai-council",
+  "status": "in-progress",
+  "currentRound": 1,
+  "maxRounds": 3,
+  "seatsPerRound": 3,
+  "convergenceSignal": "two-of-three-agree-with-no-surviving-blocker",
+  "executionMode": "in-cli",
+  "executor": {
+    "kind": "native",
+    "cli": null,
+    "modelSet": [],
+    "oneCliPerRound": true
+  },
+  "seatLenses": [
+    "analytical",
+    "critical",
+    "pragmatic"
+  ],
+  "artifactPolicy": {
+    "sourceOfTruth": "packet-local-ai-council-artifacts",
+    "appendOnlyState": true,
+    "strictOutput": true,
+    "preserveFailedRounds": true
+  },
+  "graphProjection": {
+    "enabled": false,
+    "owner": "deep-loop-runtime",
+    "loopType": "council",
+    "rebuildFromArtifacts": true
+  },
+  "boundaries": {
+    "planningOnly": true,
+    "implementationWritesAllowed": false,
+    "authoredSpecWritesAllowed": false
+  },
+  "createdAt": "YYYY-MM-DDTHH:mm:ssZ"
+}

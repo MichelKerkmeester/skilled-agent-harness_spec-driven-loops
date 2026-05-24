@@ -44,7 +44,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 34 deterministic scenarios across 6 categories validating the current `deep-research` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 41 deterministic scenarios across 7 categories validating the current `deep-research` skill surface (35 DR-* feature scenarios + 6 CP-* command-flow stress tests). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -422,7 +422,7 @@ Expected signals: convergence_check with decision STOP and score >0.60, followed
 #### Test Execution
 > **Feature File:** [DR-023](04--convergence-and-recovery/023-convergence-passes-guard-fails-override.md)
 
-### DR-029 | Insight status prevents false stuck detection
+### DR-034 | Insight status prevents false stuck detection
 
 #### Description
 Verify that an iteration with status "insight" and low newInfoRatio does NOT increment stuck count.
@@ -433,7 +433,7 @@ Prompt summary: As a manual-testing orchestrator, validate the insight-status co
 Expected signals: Iteration with status="insight" and low newInfoRatio, stuck_count NOT incremented.
 
 #### Test Execution
-> **Feature File:** [DR-029](04--convergence-and-recovery/029-insight-status-prevents-false-stuck.md)
+> **Feature File:** [DR-034](04--convergence-and-recovery/034-insight-status-prevents-false-stuck.md)
 
 ### DR-030 | Thought status handling in convergence
 
@@ -551,7 +551,9 @@ Expected signals: The reconstruction algorithm scans iteration files, extracts a
 
 ## 12. SYNTHESIS, SAVE, AND GUARDRAILS
 
-This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract.
+
+
+This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-019 | Final synthesis plus memory save and guardrail behavior
 
@@ -579,15 +581,82 @@ Expected signals: research/research.md has a mandatory "Eliminated Alternatives"
 #### Test Execution
 > **Feature File:** [DR-026](06--synthesis-save-and-guardrails/026-ruled-out-directions-in-synthesis.md)
 
+### DR-035 | Research resource-map emission
+
+#### Description
+Verify synthesis emits `research/resource-map.md` from converged delta evidence and honors the `--no-resource-map` opt-out.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that synthesis emits `research/resource-map.md` from converged delta evidence, that the map preserves the template category structure, and that `--no-resource-map` disables the write cleanly. Return a concise operator-facing verdict.
+
+Expected signals: Default run produces `research/resource-map.md` with category sections matching the template; `--no-resource-map` run leaves the file absent while `research.md` still emits.
+
+#### Test Execution
+> **Feature File:** [DR-035](06--synthesis-save-and-guardrails/035-resource-map-emission.md)
+
 ---
 
-## 13. AUTOMATED TEST CROSS-REFERENCE
+## 13. COMMAND FLOW STRESS TESTS
+
+This category covers 6 sandboxed command-flow scenarios (CP-046 through CP-051) that exercise the `/deep:start-research-loop` workflow end-to-end. Each scenario runs under `/tmp/cp-NNN-sandbox/` plus `/tmp/cp-NNN-spec/` and grades grep-checkable signals rather than LLM judgment. Use `07--command-flow-stress-tests/setup-cp-sandbox.sh` to provision sandboxes before running.
+
+### CP-046 | SETUP_YAML_HANDOFF command binding fidelity
+
+#### Description
+Validate that `/deep:start-research-loop:auto` resolves topic, spec folder, mode, max iterations, convergence, and artifact root before the YAML workflow starts, and that Call B leaves grep-checkable state evidence.
+
+#### Test Execution
+> **Feature File:** [CP-046](07--command-flow-stress-tests/046-setup-yaml-handoff.md)
+
+### CP-047 | SPEC_FENCE_WRITEBACK bounded spec mutation
+
+#### Description
+Validate that `/deep:start-research-loop` uses the lock, `spec_check_protocol` and generated findings fence rather than freeform `spec.md` mutation.
+
+#### Test Execution
+> **Feature File:** [CP-047](07--command-flow-stress-tests/047-spec-fence-writeback.md)
+
+### CP-048 | RESOURCE_MAP_TOGGLE no-resource-map fidelity
+
+#### Description
+Validate that `--no-resource-map` is parsed by the command and honored by config, state, synthesis, and artifact emission.
+
+#### Test Execution
+> **Feature File:** [CP-048](07--command-flow-stress-tests/048-resource-map-toggle.md)
+
+### CP-049 | PAUSE_SENTINEL_HALT command lifecycle stop
+
+#### Description
+Validate that a packet-local `.deep-research-pause` sentinel halts the command between lifecycle turns and records `userPaused` without writing an iteration.
+
+#### Test Execution
+> **Feature File:** [CP-049](07--command-flow-stress-tests/049-pause-sentinel-halt.md)
+
+### CP-050 | ITERATION_CITATION_JSONL leaf output contract
+
+#### Description
+Validate that the command-dispatched `@deep-research` body writes a cited iteration file and exactly one schema-rich JSONL iteration record.
+
+#### Test Execution
+> **Feature File:** [CP-050](07--command-flow-stress-tests/050-iteration-citation-jsonl.md)
+
+### CP-051 | EXHAUSTED_APPROACH_RESPECT resume-state discipline
+
+#### Description
+Validate that command-dispatched `@deep-research` reads existing state and does not retry a BLOCKED exhausted approach.
+
+#### Test Execution
+> **Feature File:** [CP-051](07--command-flow-stress-tests/051-exhausted-approach-respect.md)
+
+---
+
+## 14. AUTOMATED TEST CROSS-REFERENCE
 
 - `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`: runtime mirror alignment, capability matrix coverage, and artifact naming.
 - `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`: reducer idempotency, question resolution, finding counts, convergence score, and dashboard content.
 
 ---
 
-## 14. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 No dedicated `feature_catalog/` package exists under `.opencode/skills/deep-research/`. Use the live source anchors inside each per-feature file as the canonical implementation cross-reference surface.

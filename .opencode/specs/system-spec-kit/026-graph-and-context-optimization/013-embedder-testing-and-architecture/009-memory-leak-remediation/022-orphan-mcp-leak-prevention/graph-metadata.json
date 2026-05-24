@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [
+      "orphan mcp leak prevention",
+      "orphan mcp sweeper",
+      "claude session cleanup",
+      "launcher idle self kill",
+      "mcp helper process leak"
+    ],
+    "key_topics": [
+      "orphan",
+      "mcp",
+      "leak",
+      "prevention",
+      "sweeper",
+      "claude",
+      "launcher",
+      "idle",
+      "codex"
+    ],
+    "importance_tier": "critical",
+    "status": "implemented-dry-run-review",
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md","implementation-summary.md"],
+    "entities": [],
+    "causal_summary": "Orphan MCP Leak Prevention",
+    "created_at": "2026-05-24T06:58:36Z",
+    "last_save_at": "2026-05-24T07:17:45Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md","implementation-summary.md"]
+  }
+}

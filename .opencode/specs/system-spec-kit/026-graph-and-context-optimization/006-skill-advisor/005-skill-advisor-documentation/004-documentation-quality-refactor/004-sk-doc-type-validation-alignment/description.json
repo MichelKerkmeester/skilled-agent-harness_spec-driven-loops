@@ -1,17 +1,14 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment",
-  "description": "Feature Specification: 004-sk-doc-type-validation-alignment (skeleton, pre-synthesis) \u2014 per-file 1:1 sk-doc template alignment",
+  "description": "Feature Specification: 004-sk-doc-type-validation-alignment",
   "keywords": [
-    "skill-advisor",
-    "sk-doc",
-    "alignment",
-    "template",
-    "1:1",
-    "per-file"
+    "feature",
+    "specification",
+    "004-sk-doc-type-validation-alignment"
   ],
-  "lastUpdated": "2026-05-16T00:00:00Z",
+  "lastUpdated": "2026-05-23T15:25:00.753Z",
   "specId": "004",
-  "folderSlug": "sk-doc-1to1-alignment",
+  "folderSlug": "sk-doc-type-validation-alignment",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

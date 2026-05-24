@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The mcp-coco-index daemon (`ccc run-daemon`) has multiple interacting bugs across five surfaces. Five iterations of deep research traced every link in the cascade and produced concrete file:line citations for each.",
     "created_at": "2026-05-07T07:38:00Z",
-    "last_save_at": "2026-05-23T11:55:15.499Z",
+    "last_save_at": "2026-05-24T05:40:26.062Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

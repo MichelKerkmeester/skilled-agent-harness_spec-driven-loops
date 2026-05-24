@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Council estimated 6 thresholds based on the original plan; actual investigation found 3 (the plan referenced \"wait_ms\" / \"retry_count\" / \"hf_timeout\" that don't exist in current auto-select.ts).",
     "created_at": "2026-05-23T17:55:00.000000Z",
-    "last_save_at": "2026-05-23T18:38:13.782Z",
+    "last_save_at": "2026-05-24T05:40:26.041Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -112,7 +112,7 @@ Run before declaring bootstrap complete:
 ```bash
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
-node -e "import('./.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.js')"
+node -e "import('./.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/lib/scorer/lanes/semantic-shadow.js')"
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server run test -- tests/compat/plugin-bridge-smoke.vitest.ts tests/handlers/advisor-recommend.vitest.ts --reporter=default
 ```
 
@@ -153,7 +153,7 @@ The OpenCode bridge must use the stable package entrypoint:
 After build, plugin consumers load:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/compat/index.js
+.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/compat/index.js
 ```
 
 ---
@@ -195,7 +195,7 @@ The OpenCode plugin bridge follows the same pattern: MCP-level `mk_skill_advisor
 If a package-level import is needed inside a subprocess fallback, it must target the standalone advisor package, never the old system-spec-kit advisor path. After build, the standalone server entrypoint is:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js
+.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/advisor-server.js
 ```
 
 ---
@@ -322,7 +322,7 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 <!-- ANCHOR:12-choosing-an-embedder -->
 ## 12. CHOOSING AN EMBEDDER
 
-The skill-advisor `semantic_shadow` lane runs against a pluggable embedder layer. As of phase `003/006` the contract surface (adapter interface, types, manifest registry, Ollama adapter) lives in `@spec-kit/shared/embeddings/` and is shared with `mk-spec-memory`. Skill-advisor's local `mcp_server/lib/embedders/` files are thin re-export shims plus a skill-advisor-specific `schema.ts` integration that targets the package-local SQLite database at `mcp_server/database/skill-graph.sqlite`. This section is the new-user onboarding view; the canonical multi-MCP narrative lives at [embedder-pluggability.md](../system-spec-kit/references/embedder-pluggability.md).
+The skill-advisor `semantic_shadow` lane runs against a pluggable embedder layer. As of phase `003/006` the contract surface (adapter interface, types, manifest registry, Ollama adapter) lives in `@spec-kit/shared/embeddings/` and is shared with `mk-spec-memory`. Skill-advisor's local `mcp_server/lib/embedders/` files are thin re-export shims plus a skill-advisor-specific `schema.ts` integration that targets the package-local SQLite database at `mcp_server/database/skill-graph.sqlite`. This section is the new-user onboarding view; the canonical multi-MCP narrative lives at [embedder_pluggability.md](../system-spec-kit/references/memory/embedder_pluggability.md).
 
 ### 12.1 Current active default
 
@@ -405,11 +405,11 @@ Skill-advisor does not ship an explicit `_resolve_device()` shim. Device selecti
 | `sentence-transformers` (hf-local fallback tier 2) | The Python sidecar uses its own MPS / CUDA / CPU resolution chain. |
 | `api` (OpenAI or Voyage fallback) | Remote inference; device handling is the provider's concern. |
 
-If you need MPS-style auto-detect for a local model, the Ollama backend already provides it on Apple Silicon by default — install Ollama, pull a manifest, the cascade picks it. CocoIndex's separate code-tuned device selection (`_resolve_device` in Python) is documented at [embedder-pluggability.md §3](../system-spec-kit/references/embedder-pluggability.md) and is not mirrored to skill-advisor by design.
+If you need MPS-style auto-detect for a local model, the Ollama backend already provides it on Apple Silicon by default — install Ollama, pull a manifest, the cascade picks it. CocoIndex's separate code-tuned device selection (`_resolve_device` in Python) is documented at [embedder_pluggability.md §3](../system-spec-kit/references/memory/embedder_pluggability.md) and is not mirrored to skill-advisor by design.
 
 ### 12.6 Cross-references
 
-- Canonical multi-MCP narrative: [`embedder-pluggability.md`](../system-spec-kit/references/embedder-pluggability.md) — covers `mk-spec-memory`, `mcp-coco-index`, and shared design rationale.
+- Canonical multi-MCP narrative: [`embedder_pluggability.md`](../system-spec-kit/references/memory/embedder_pluggability.md) — covers `mk-spec-memory`, `mcp-coco-index`, and shared design rationale.
 - Shared contract surface: [`@spec-kit/shared/embeddings/`](../system-spec-kit/shared/embeddings/) — the canonical adapter, types, registry and Ollama adapter.
 - Shared cascade: [`@spec-kit/shared/embeddings/auto-select.ts`](../system-spec-kit/shared/embeddings/auto-select.ts) — file-locked Ollama → hf-local → OpenAI → Voyage probe chain (ADR-014 local-first). Accepts optional `contentType: 'text' \| 'code'` parameter (default `'text'`).
 - Memory-side analog (full MCP tool surface): [`system-spec-kit/mcp_server/INSTALL_GUIDE.md`](../system-spec-kit/mcp_server/INSTALL_GUIDE.md).
@@ -425,8 +425,8 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 | --- | --- |
 | [README.md](./README.md) | Operator overview, quick start, runtime integrations. |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Package-local architecture and public API entrypoints. |
-| [Hook reference](./references/hooks/skill-advisor-hook.md) | Claude, Copilot, Gemini, Codex, Devin and OpenCode plugin hook contract. |
+| [Hook reference](./references/hooks/skill_advisor_hook.md) | Claude, Copilot, Gemini, Codex, Devin and OpenCode plugin hook contract. |
 | [Manual testing playbook](./manual_testing_playbook/manual_testing_playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
-| [Embedder pluggability narrative](../system-spec-kit/references/embedder-pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference. |
+| [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder_pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference. |
 
 <!-- /ANCHOR:13-related-resources -->

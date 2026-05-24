@@ -58,7 +58,7 @@ Do not use this skill as a replacement for the recommended target skill. For exa
 <!-- ANCHOR:2-smart-routing -->
 ## 2. SMART ROUTING
 
-This package is mandatory context for non-trivial Gate 2 routing. The advisor scores the prompt against skill metadata, hook signals, graph-derived relations and manual intent declarations, then returns calibrated recommendations.
+This package is mandatory context for non-trivial Gate 2 routing. The live advisor scores prompts through `mk_skill_advisor`; this smart router controls which local documentation resources an agent should load while maintaining the advisor package.
 
 Routing model:
 
@@ -78,75 +78,188 @@ user prompt
 
 Resource domains:
 
+- `references/scoring/` documents scorer lanes, lane weight tuning, calibration and validation baselines.
+- `references/graph/` documents skill graph queries, drift reconciliation, graph extraction status and `enhances` propagation.
+- `references/runtime/` documents standalone MCP topology, stable tool ids, bridge policy, freshness and daemon lease behavior.
+- `references/config/` documents package-local database path policy.
+- `references/hooks/` documents prompt-time hook behavior across runtimes.
+- `references/decisions/` documents deferred decision records and historical rationale that still affects operators.
 - `feature_catalog/` documents current advisor capabilities and source-of-truth feature references.
 - `manual_testing_playbook/` documents deterministic operator scenarios for advisor tools, hooks, compatibility, daemon behavior and skill graph flows.
-- `references/` contains package policies and architectural summaries used by extraction and maintenance work.
 - `mcp_server/` owns handlers, schemas, tools, scripts, tests, library modules and the package-local SQLite database.
 
-### Routing key
+### Resource loading levels
 
-The routing key is the prompt's intent class, scored by `advisor_recommend` against indexed skill metadata, hook signals plus graph-derived relations. Operators may override the advisor by naming a skill explicitly in the prompt.
+| Level | When to Load | Resources |
+|---|---|---|
+| ALWAYS | Every advisor-maintenance invocation | `references/runtime/tool_ids_reference.md`, `references/runtime/standalone_mcp_shape.md` |
+| CONDITIONAL | Intent signals match a resource domain | Matching canonical references, feature catalog slices, or playbook scenarios |
+| ON_DEMAND | Explicit request or troubleshooting depth needed | Full reference folders, feature catalog families, and manual playbook categories |
 
 ### Smart router pseudocode
 
-This pseudocode captures the canonical advisor routing contract callers must follow. See [`references/advisor-scorer.md`](./references/advisor-scorer.md) for the actual scorer mechanics.
+This pseudocode captures the canonical documentation resource-loading contract. See [`references/scoring/advisor_scorer.md`](./references/scoring/advisor_scorer.md) for the actual runtime scorer mechanics.
 
 ```python
-# Pattern 1: Runtime skill discovery
-# The advisor reads .opencode/skills/*/SKILL.md at every call.
-# Do not cache the inventory in caller code.
-INVENTORY = discover_skills(root=".opencode/skills")  # MCP-side, not caller-side
+from pathlib import Path
 
-# Pattern 2: Existence check before route
-# Always call advisor_status first when freshness matters.
-status = mcp__mk_skill_advisor__advisor_status({})
-if status["trustState"] in ("absent", "unavailable"):
-    return UNAVAILABLE_FALLBACK  # see Pattern 4
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (
+    SKILL_ROOT / "references",
+    SKILL_ROOT / "feature_catalog",
+    SKILL_ROOT / "manual_testing_playbook",
+)
+DEFAULT_RESOURCES = [
+    "references/runtime/tool_ids_reference.md",
+    "references/runtime/standalone_mcp_shape.md",
+]
 
-# Pattern 3: Extensible routing key (the prompt itself)
-# The prompt IS the routing key. Caller passes it through unchanged.
-def get_routing_key(prompt: str) -> str:
-    return prompt.strip()
+INTENT_SIGNALS = {
+    "SCORING": {"weight": 4, "keywords": ["score", "scorer", "lane", "confidence", "calibration", "validate"]},
+    "GRAPH": {"weight": 4, "keywords": ["skill graph", "graph", "drift", "query", "enhances", "propagate"]},
+    "RUNTIME": {"weight": 4, "keywords": ["mcp", "tool id", "bridge", "standalone", "freshness", "daemon", "lease"]},
+    "CONFIG": {"weight": 3, "keywords": ["database", "sqlite", "db path", "skill-graph.sqlite"]},
+    "HOOKS": {"weight": 4, "keywords": ["hook", "prompt submit", "codex", "claude", "gemini", "devin", "opencode"]},
+    "DECISIONS": {"weight": 3, "keywords": ["deferred", "decision", "tier d", "migration rationale"]},
+    "FEATURES": {"weight": 3, "keywords": ["feature catalog", "capability", "current feature"]},
+    "PLAYBOOK": {"weight": 3, "keywords": ["manual test", "playbook", "scenario", "evidence"]},
+}
 
-# Pattern 4: Multi-tier graceful fallback
-recommendations = mcp__mk_skill_advisor__advisor_recommend({
-    "prompt": get_routing_key(user_prompt),
-    "options": {"topK": 5, "includeAttribution": True}
-})
+RESOURCE_MAP = {
+    "SCORING": [
+        "references/scoring/advisor_scorer.md",
+        "references/scoring/lane_weight_tuning.md",
+        "references/scoring/validation_baselines.md",
+        "feature_catalog/04--scorer-fusion/06-weights-config.md",
+    ],
+    "GRAPH": [
+        "references/graph/skill_graph_query_cookbook.md",
+        "references/graph/skill_graph_drift.md",
+        "references/graph/skill_graph_extraction_plan.md",
+        "references/graph/propagate_enhances.md",
+    ],
+    "RUNTIME": [
+        "references/runtime/standalone_mcp_shape.md",
+        "references/runtime/tool_ids_reference.md",
+        "references/runtime/legacy_tool_bridge.md",
+        "references/runtime/freshness_contract.md",
+        "references/runtime/daemon_lease_contract.md",
+    ],
+    "CONFIG": [
+        "references/config/db_path_policy.md",
+    ],
+    "HOOKS": [
+        "references/hooks/skill_advisor_hook.md",
+        "manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md",
+        "manual_testing_playbook/02--cli-hooks-and-plugin/006-devin-user-prompt-submit.md",
+    ],
+    "DECISIONS": [
+        "references/decisions/deferred_decisions.md",
+    ],
+    "FEATURES": [
+        "feature_catalog/feature_catalog.md",
+    ],
+    "PLAYBOOK": [
+        "manual_testing_playbook/manual_testing_playbook.md",
+    ],
+}
 
-# Tier 1: ambiguous top scores (within 0.1 of each other), surface candidates
-if is_ambiguous(recommendations):
-    return SURFACE_CANDIDATES(recommendations[:3])
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether the request is about scoring, graph, runtime, config, hooks, decisions, feature catalog or playbooks",
+    "Confirm whether the task changes documentation only or executable advisor behavior",
+    "Provide the failing tool id, hook runtime, reference path or validation command",
+    "Confirm the verification command set before completion",
+]
 
-# Tier 2: low confidence (top score below threshold), request disambiguation
-if recommendations[0]["score"] < CONFIDENCE_THRESHOLD:
-    return UNKNOWN_FALLBACK_CHECKLIST
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
-# Tier 3: happy path, invoke the recommended skill
-return invoke_skill(recommendations[0]["skill_id"])
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def _task_text(task) -> str:
+    fields = [
+        getattr(task, "prompt", ""),
+        getattr(task, "intent", ""),
+        getattr(task, "path", ""),
+        getattr(task, "command", ""),
+    ]
+    return " ".join(str(field) for field in fields if field).lower()
+
+loaded = []
+seen = set()
+inventory = discover_markdown_resources()
+
+def load_if_available(relative_path: str) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(task) -> dict[str, int]:
+    text = _task_text(task)
+    scores = {}
+    for intent, model in INTENT_SIGNALS.items():
+        hits = sum(1 for keyword in model["keywords"] if keyword in text)
+        if hits:
+            scores[intent] = hits * model["weight"]
+    return scores
+
+for resource in DEFAULT_RESOURCES:
+    load_if_available(resource)
+
+scores = score_intents(task)
+if max(scores.values() or [0]) < 3:
+    return {
+        "load_level": "UNKNOWN_FALLBACK",
+        "needs_disambiguation": True,
+        "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+        "resources": loaded,
+    }
+
+ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+top_score = ranked[0][1]
+selected = [intent for intent, score in ranked if top_score - score <= 1][:2]
+
+for intent in selected:
+    resources = RESOURCE_MAP.get(intent, [])
+    if not resources:
+        return {
+            "notice": f"No knowledge base found for advisor intent '{intent}'",
+            "resources": loaded,
+        }
+    for resource in resources:
+        load_if_available(resource)
+
+return {
+    "intents": selected,
+    "ambiguous": len(selected) > 1,
+    "resources": loaded,
+}
 ```
 
 ### Fallback contract
 
-- **Low confidence (top score below the configured threshold):** surface the top 3 candidates with their scores, request disambiguation, load no skill until the operator picks one.
-- **Ambiguous top scores (within 0.1 of each other):** surface both candidates instead of routing silently.
+- **Low confidence:** load default runtime references, emit `UNKNOWN_FALLBACK_CHECKLIST`, and ask for the missing intent/path/tool signal.
+- **Ambiguous intent scores:** load the top two resource domains and disclose the ambiguity instead of picking one silently.
+- **Known intent with no resources:** return a "no knowledge base found" notice naming the missing intent.
 - **Advisor MCP unavailable:** fall back to Python `skill_advisor.py` shim, then to keyword matching against each skill's frontmatter `trigger_phrases`. Announce the degraded mode in the response.
-- **Empty result:** never route silently. Always emit a "no candidate above threshold" notice with a disambiguation checklist.
-
-```python
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the runtime surface where the request originated",
-    "Confirm the intent (file modification, research, debugging, planning)",
-    "Provide one concrete input, error or expected output",
-    "Confirm the verification command set before completion",
-]
-```
 
 ### Anti-patterns
 
-- Static skill inventories that miss newly-installed skills. The advisor reads `.opencode/skills/*/SKILL.md` at every call so the inventory stays current.
+- Static reference inventories that miss newly moved docs.
+- Loading root compatibility stubs when canonical subfolder references exist.
+- Raw `load("references/file.md")` calls without `_guard_in_skill()`, inventory checks or duplicate suppression.
 - Hardcoded tool IDs in caller code. Consult the live registration in `mcp_server/tools/index.ts` and `mcp_server/tools/skill-graph-tools.ts`.
-- Returning a single recommendation when two top scores are within 0.1 of each other. Surface both candidates instead.
 
 ---
 
@@ -172,7 +285,7 @@ Public (8):
 
 Internal trusted-caller (1):
 
-- `skill_graph_propagate_enhances`, gated behind trusted-caller auth (see `references/tool-ids-reference.md` §4)
+- `skill_graph_propagate_enhances`, gated behind trusted-caller auth (see `references/runtime/tool_ids_reference.md` §4)
 
 The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides and MCP clients. Server-level namespacing supplies the boundary, so callers use the standalone server without learning a new advisor vocabulary.
 
@@ -221,12 +334,21 @@ Primary contract:
 
 Package references:
 
-- `references/db-path-policy.md`
-- `references/standalone-mcp-shape.md`
-- `references/legacy-tool-bridge.md`
-- `references/skill-graph-drift.md` — detect and reconcile SQLite drift from source files.
-- `references/skill-graph-extraction-plan.md` — extraction history and completion record.
-- `references/deferred-decisions.md` — Tier D decision records (F4 Devin hooks, F6 deprecation banners).
+- `references/scoring/advisor_scorer.md` — lane attribution, fusion and confidence calibration.
+- `references/scoring/lane_weight_tuning.md` — measured lane-weight change workflow.
+- `references/scoring/validation_baselines.md` — `advisor_validate` baselines and troubleshooting.
+- `references/graph/skill_graph_query_cookbook.md` — worked `skill_graph_query` examples.
+- `references/graph/skill_graph_drift.md` — detect and reconcile SQLite drift from source files.
+- `references/graph/skill_graph_extraction_plan.md` — extraction history and completion record.
+- `references/graph/propagate_enhances.md` — internal `enhances` propagation contract.
+- `references/runtime/standalone_mcp_shape.md` — standalone MCP topology.
+- `references/runtime/tool_ids_reference.md` — stable public and internal tool ids.
+- `references/runtime/legacy_tool_bridge.md` — compatibility bridge policy.
+- `references/runtime/freshness_contract.md` — trust-state vocabulary and caller obligations.
+- `references/runtime/daemon_lease_contract.md` — single-writer daemon lease behavior.
+- `references/config/db_path_policy.md` — package-local SQLite path policy.
+- `references/hooks/skill_advisor_hook.md` — prompt-time hook behavior.
+- `references/decisions/deferred_decisions.md` — Tier D decision records (F4 Devin hooks, F6 deprecation banners).
 - `ARCHITECTURE.md`
 - `mcp_server/README.md`
 - `mcp_server/tools/README.md`

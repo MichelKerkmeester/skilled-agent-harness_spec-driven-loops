@@ -77,6 +77,7 @@ The operating rule is verification first: no cleanup path may claim memory relie
 | `017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/` | Remaining P1 and P2 Cleanup for Resource Bounds and Dead Code | P1 | Completed |
 | `018-rerank-sidecar-accumulation-investigation-and-reaper-design/` | Rerank-Sidecar Accumulation Investigation and Three-Layer Reaper Design (7 ADRs) | P1 | Completed |
 | `019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/` | Three-Layer Reaper Implementation (Sidecar Self-Check, Launcher Pre-Flight Reap, Idle Backstop) | P1 | Completed |
+| `022-orphan-mcp-leak-prevention/` | Orphan MCP Leak Prevention (dry-run sweeper, Claude Stop cleanup, MCP idle self-exit) | P0 | Implemented, Dry-Run Review |
 
 ### Phase Transition Rules
 
@@ -86,6 +87,7 @@ The operating rule is verification first: no cleanup path may claim memory relie
 - Each child phase validates independently before its successor starts.
 - Phases 011-014 are completed follow-ons folded into this parent after the original 010 runbook closure.
 - Phases 015-019 absorb the sidecar-investigation arc (originally a sibling packet) into the canonical memory-leak remediation parent — keeps all lifecycle hardening (CLI dispatch, deep-loop locks, daemon classifier, CocoIndex, Code Graph launcher, sidecar adapter, spec-memory retention, rerank-sidecar accumulation) under one arc.
+- Phase 022 adds operator-workstation leak prevention for Codex.app and Claude Code orphan MCP stacks; rollout stays dry-run-only until the operator explicitly activates launchd.
 
 ### Phase Handoff Criteria
 

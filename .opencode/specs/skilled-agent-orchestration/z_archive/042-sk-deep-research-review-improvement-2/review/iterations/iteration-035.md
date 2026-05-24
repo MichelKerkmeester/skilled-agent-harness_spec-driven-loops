@@ -135,7 +135,7 @@ I’ve confirmed the phase/spec expectations. Now I’m cross-checking the reduc
 
 ● Search (grep)
   │ "lineageDepth|totalCandidates|currentLeaf|coverageRatio|uncoveredMutations|journalSummary|candid
-  │ ateLineage|mutationCoverage|benchmarkPlateau|plateau" (.opencode/commands/improve/agent.md)
+  │ ateLineage|mutationCoverage|benchmarkPlateau|plateau" (.opencode/commands/deep/start-agent-improvement-loop.md)
   └ 7 lines found
 
 ● Search (grep)
@@ -150,7 +150,7 @@ I’ve confirmed the phase/spec expectations. Now I’m cross-checking the reduc
   └ 6 lines found
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L330:420 (91 lines read)
 
 ● Read SKILL.md
@@ -167,12 +167,12 @@ I found one likely drift already: the helper accepts richer stop reasons than on
 ● Search (grep)
   │ "improvement-journal\.cjs|session_end|session_ended|stopReason|all_dimensions_plateaued|max_iter
   │ ations_reached|blockedStop|benchmarkPlateau|plateau" in **/*.{yaml,yml,md}
-  │ (.opencode/commands/improve/assets)
+  │ (.opencode/commands/deep/assets)
   └ 17 lines found
 
 ● Search (grep)
   │ "scoreOutputPath|candidate_scored|scoredDimensions|dimensions" in **/*.{yaml,yml}
-  │ (.opencode/commands/improve/assets)
+  │ (.opencode/commands/deep/assets)
   └ 16 lines found
 
 ● Search (grep)
@@ -183,18 +183,18 @@ I found one likely drift already: the helper accepts richer stop reasons than on
 
 ● Search (grep)
   │ "stop_reason|stop_status|session_outcome|all_dimensions_plateaued|max_iterations_reached|plateau
-  │ |benchmarkPlateau" (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml)
+  │ |benchmarkPlateau" (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml)
   └ 4 lines found
 
 ● Search (grep)
   │ "stop_reason|stop_status|session_outcome|all_dimensions_plateaued|max_iterations_reached|plateau
-  │ |benchmarkPlateau" (.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
+  │ |benchmarkPlateau" (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml)
   └ 3 lines found
 
 ● Search (grep)
   │ "iteration\":\"\{iteration\}\"|weightedScore\":\"\{weighted_score\}\"|scoreOutputPath\":\"\{scor
-  │ e_output_path\}\"|candidateId\":\"\{candidate_id\}\"" in improve_improve-agent_*.yaml
-  │ (.opencode/commands/improve/assets)
+  │ e_output_path\}\"|candidateId\":\"\{candidate_id\}\"" in deep_start-agent-improvement-loop_*.yaml
+  │ (.opencode/commands/deep/assets)
   └ No matches found
 
 ● Read 034-replay-consumer.md
@@ -228,7 +228,7 @@ I found one likely drift already: the helper accepts richer stop reasons than on
 
 ● Search (grep)
   │ "all_dimensions_plateaued|max_iterations_reached|benchmarkPlateau|plateau|maxIterationsReached|b
-  │ lockedStop" in **/*.{md,cjs,jsonl,json,yaml,yml} (.opencode/commands/improve)
+  │ lockedStop" in **/*.{md,cjs,jsonl,json,yaml,yml} (.opencode/commands/deep)
   └ 14 lines found
 
 ● Read improvement-journal.jsonl
@@ -240,24 +240,24 @@ I found one likely drift already: the helper accepts richer stop reasons than on
   │ .opencode/skills/sk-improve-agent/assets/improvement_charter.md
   └ L80:110 (31 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L130:220 (75 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L180:255 (66 lines read)
 
 ● Search (grep)
-  │ "score_output_path" (.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
+  │ "score_output_path" (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml)
   └ 5 lines found
 
 ● Search (grep)
-  │ "score_output_path" (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml)
+  │ "score_output_path" (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml)
   └ 4 lines found
 
 ● Search (grep)
-  │ "score_output_path" (.opencode/commands/improve/agent.md)
+  │ "score_output_path" (.opencode/commands/deep/start-agent-improvement-loop.md)
   └ No matches found
 
 ● Search (grep)
@@ -284,12 +284,12 @@ I’ve narrowed this to runtime-shape questions now, not style or doc wording. I
 
 ● Search (grep)
   │ "mutationType|mutation_type|candidate-proposal|parentCandidateId|null"
-  │ (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml)
+  │ (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml)
   └ 4 lines found
 
 ● Search (grep)
   │ "mutationType|mutation_type|candidate-proposal|parentCandidateId|null"
-  │ (.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
+  │ (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml)
   └ 4 lines found
 
 ● Search (grep)
@@ -324,40 +324,40 @@ I’ve narrowed this to runtime-shape questions now, not style or doc wording. I
 
 **Found 3 correctness issues in the updated `sk-improve-agent` workflow path.** The `improvement-journal.cjs` plateau/`benchmarkPlateau` helper fix itself looks correct; the remaining problems are emitter/consumer mismatches around the live YAML workflow and reducer-derived summaries.
 
-1. **Finding ID:** F-035-001  
-   **Severity:** P1  
-   **Dimension:** correctness  
-   **File:** `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:269-273`  
-   **Title:** Live `candidate_scored` journal rows lose the real iteration number in trade-off trajectories  
-   **Description:** `getTrajectory()` only trusts `details.iteration` when it is already numeric, otherwise it falls back to top-level `event.iteration`. The live auto/confirm workflows emit `iteration` inside `details` as a string, and the CLI wrapper keeps it there, so replayed trajectory rows come back with `iteration: 0`. `detectTradeOffs()` then falls back to the array index (`i`), which mislabels the iteration in `trade-off-report.json` and any downstream audit/replay that relies on those IDs.  
-   **Evidence:**  
-   - `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:269-273` only accepts numeric `details.iteration` and otherwise falls back to `event.iteration`.  
-   - `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:165-167` and `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:196-198` emit `candidate_scored` with `"iteration":"{iteration}"` inside `details`.  
-   - `.opencode/skills/sk-improve-agent/SKILL.md:332-339` explicitly says the CLI wrapper stores boundary context under `details`, not as top-level JS API fields.  
+1. **Finding ID:** F-035-001
+   **Severity:** P1
+   **Dimension:** correctness
+   **File:** `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:269-273`
+   **Title:** Live `candidate_scored` journal rows lose the real iteration number in trade-off trajectories
+   **Description:** `getTrajectory()` only trusts `details.iteration` when it is already numeric, otherwise it falls back to top-level `event.iteration`. The live auto/confirm workflows emit `iteration` inside `details` as a string, and the CLI wrapper keeps it there, so replayed trajectory rows come back with `iteration: 0`. `detectTradeOffs()` then falls back to the array index (`i`), which mislabels the iteration in `trade-off-report.json` and any downstream audit/replay that relies on those IDs.
+   **Evidence:**
+   - `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:269-273` only accepts numeric `details.iteration` and otherwise falls back to `event.iteration`.
+   - `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:165-167` and `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:196-198` emit `candidate_scored` with `"iteration":"{iteration}"` inside `details`.
+   - `.opencode/skills/sk-improve-agent/SKILL.md:332-339` explicitly says the CLI wrapper stores boundary context under `details`, not as top-level JS API fields.
    **Recommendation:** Coerce numeric strings in `getTrajectory()` (and similar replay consumers), or change the workflow/helper boundary so iteration is emitted as a numeric top-level field the consumer already understands.
 
-2. **Finding ID:** F-035-002  
-   **Severity:** P1  
-   **Dimension:** correctness  
-   **File:** `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:313-376`  
-   **Title:** Derived mutation-coverage metrics collapse the whole workflow to one synthetic key  
-   **Description:** The reducer derives `coverageRatio` and `uncoveredMutations` from unique `dimension::mutationType` pairs, but the live auto/confirm workflows always record the same hard-coded pair: `dimension: 'composite'`, `mutationType: 'candidate-proposal'`. That means the new coverage section cannot represent real explored-vs-unexplored mutation space; it only reports whether that one synthetic bucket was exhausted. The dashboard therefore looks precise while hiding that no dimension- or mutation-family coverage is being tracked.  
-   **Evidence:**  
-   - `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:313-376` builds coverage keys from `dimension` + `mutationType` and derives the summary from those keys.  
-   - `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:168-170` and `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:199-201` always call `recordMutation(... { dimension:'composite', mutationType:'candidate-proposal', ... })`.  
+2. **Finding ID:** F-035-002
+   **Severity:** P1
+   **Dimension:** correctness
+   **File:** `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:313-376`
+   **Title:** Derived mutation-coverage metrics collapse the whole workflow to one synthetic key
+   **Description:** The reducer derives `coverageRatio` and `uncoveredMutations` from unique `dimension::mutationType` pairs, but the live auto/confirm workflows always record the same hard-coded pair: `dimension: 'composite'`, `mutationType: 'candidate-proposal'`. That means the new coverage section cannot represent real explored-vs-unexplored mutation space; it only reports whether that one synthetic bucket was exhausted. The dashboard therefore looks precise while hiding that no dimension- or mutation-family coverage is being tracked.
+   **Evidence:**
+   - `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:313-376` builds coverage keys from `dimension` + `mutationType` and derives the summary from those keys.
+   - `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:168-170` and `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:199-201` always call `recordMutation(... { dimension:'composite', mutationType:'candidate-proposal', ... })`.
    **Recommendation:** Feed real mutation-family metadata into `recordMutation()` and mark exhausted families when the workflow retires them, so reducer-derived coverage reflects actual search breadth instead of a single placeholder bucket.
 
-3. **Finding ID:** F-035-003  
-   **Severity:** P1  
-   **Dimension:** correctness  
-   **File:** `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-226`  
-   **Title:** Journal dashboard sections for legal-stop and blocked-stop can never populate from the live workflow  
-   **Description:** The reducer only fills `latestLegalStop` from `legal_stop_evaluated` events and `latestBlockedStop` from `blocked_stop` events, and the dashboard renders those sections directly. The live auto/confirm workflows do not emit either event type; they only emit generic `gate_evaluation` plus `session_end`. As shipped, the journal summary cannot surface the gate-bundle evidence the runtime contract describes, so blocked-stop/legal-stop audit data is silently absent from the reducer output.  
-   **Evidence:**  
-   - `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-226` only captures `legal_stop_evaluated` and `blocked_stop`.  
-   - `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:894-902` renders dedicated dashboard subsections for those summaries.  
-   - `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:189-204` and `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:226-245` emit `gate_evaluation` and `session_end`, but no `legal_stop_evaluated` / `blocked_stop`.  
-   - `.opencode/skills/sk-improve-agent/assets/improvement_charter.md:84-85,104` still defines legal-stop and blocked-stop as canonical runtime-truth events.  
+3. **Finding ID:** F-035-003
+   **Severity:** P1
+   **Dimension:** correctness
+   **File:** `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-226`
+   **Title:** Journal dashboard sections for legal-stop and blocked-stop can never populate from the live workflow
+   **Description:** The reducer only fills `latestLegalStop` from `legal_stop_evaluated` events and `latestBlockedStop` from `blocked_stop` events, and the dashboard renders those sections directly. The live auto/confirm workflows do not emit either event type; they only emit generic `gate_evaluation` plus `session_end`. As shipped, the journal summary cannot surface the gate-bundle evidence the runtime contract describes, so blocked-stop/legal-stop audit data is silently absent from the reducer output.
+   **Evidence:**
+   - `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-226` only captures `legal_stop_evaluated` and `blocked_stop`.
+   - `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:894-902` renders dedicated dashboard subsections for those summaries.
+   - `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:189-204` and `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:226-245` emit `gate_evaluation` and `session_end`, but no `legal_stop_evaluated` / `blocked_stop`.
+   - `.opencode/skills/sk-improve-agent/assets/improvement_charter.md:84-85,104` still defines legal-stop and blocked-stop as canonical runtime-truth events.
    **Recommendation:** Either emit the canonical `legal_stop_evaluated` / `blocked_stop` events from the workflows, or update the reducer to consume the actual `gate_evaluation` payload shape until producer and consumer are aligned.
 
 **ITERATION SUMMARY:** 3 findings total: **0 P0, 3 P1, 0 P2**. The plateau stop-reason fix in `improvement-journal.cjs` is good; the remaining breakage is in how the live workflow emits data and how the reducer/trade-off replay consumers interpret it.
@@ -366,9 +366,9 @@ I’ve narrowed this to runtime-shape questions now, not style or doc wording. I
 
 **CONFIDENCE:** High. All 3 findings come from direct producer/consumer mismatches in the shipped code paths; F-035-001 was also reproducible with a YAML-shaped synthetic journal row.
 
-**NEXT PRIORITIES:**  
-1. Fix the live journal payload shape first (`iteration` typing and canonical event names).  
-2. Replace the placeholder `composite/candidate-proposal` mutation recording with real mutation metadata.  
+**NEXT PRIORITIES:**
+1. Fix the live journal payload shape first (`iteration` typing and canonical event names).
+2. Replace the placeholder `composite/candidate-proposal` mutation recording with real mutation metadata.
 3. Add regression coverage that uses YAML-emitted journal shapes, not only hand-authored top-level fixture rows.
 
 

@@ -35,7 +35,7 @@ Canonical sources used:
 | F-007 | P1 | DRIFT | `.codex/agents/context.toml`, `.codex/agents/orchestrate.toml`, `.codex/agents/write.toml` | Codex TOML references `.codex/agents/*.md` but files are `.toml` | Fixed (post-049 patch with full perms) |
 | F-008 | P2 | MISSING | `.opencode/agents/orchestrate.md`, `.claude/agents/orchestrate.md`, `.gemini/agents/orchestrate.md` | Orchestrators lacked the runtime agent directory resolution rule | Fixed |
 | F-009 | P2 | MISSING | `.opencode/agents/write.md`, `.claude/agents/write.md`, `.gemini/agents/write.md` | Write agents did not explicitly cite the evergreen-doc rule | Fixed |
-| F-010 | P2 | DRIFT | `.opencode/agents/improve-agent.md`, runtime mirrors, `.opencode/commands/improve/agent.md` | Narrative contained stale phase-number labels | Fixed |
+| F-010 | P2 | DRIFT | `.opencode/agents/improve-agent.md`, runtime mirrors, `.opencode/commands/deep/start-agent-improvement-loop.md` | Narrative contained stale phase-number labels | Fixed |
 | F-011 | P2 | DRIFT | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Deep workflow assets cited packet-history labels in comments | Fixed |
 
 ## Per-File Classification
@@ -59,8 +59,8 @@ Canonical sources used:
 | `.opencode/commands/spec_kit/resume.md` | PASS | None |
 | `.opencode/commands/deep/start-research-loop.md` | PASS | YAML asset fixed under F-011 |
 | `.opencode/commands/spec_kit/plan.md` | PASS | None |
-| `.opencode/commands/improve/agent.md` | DRIFT -> FIXED | F-010 |
-| `.opencode/commands/improve/prompt.md` | PASS | None |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | DRIFT -> FIXED | F-010 |
+| `.opencode/commands/prompt.md` | PASS | None |
 | `.opencode/commands/create/agent.md` | PASS | None |
 | `.opencode/commands/create/changelog.md` | PASS | None |
 | `.opencode/commands/create/sk-skill.md` | PASS | None |

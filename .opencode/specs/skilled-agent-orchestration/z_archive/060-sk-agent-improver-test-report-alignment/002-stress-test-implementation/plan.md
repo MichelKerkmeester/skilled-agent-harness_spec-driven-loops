@@ -95,7 +95,7 @@ Apply diffs in order of dependency (per 001/research §1 ordered evidence chain)
 - `score-candidate.cjs` — actually consume `--baseline`, emit `delta` field
 
 ### Sub-stage 3c: Benchmark/legal-stop emissions (P0)
-- `improve_improve-agent_auto.yaml` + `confirm.yaml` — emit `legal_stop_evaluated` with 5-gate bundle
+- `deep_start-agent-improvement-loop_auto.yaml` + `confirm.yaml` — emit `legal_stop_evaluated` with 5-gate bundle
 - (also add `benchmark_completed` event if 001/research §3 RQ-3 specifies)
 
 ### Sub-stage 3d: Active CRITIC pass (P0)

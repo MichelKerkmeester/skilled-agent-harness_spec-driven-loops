@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/028-sk-deep-research-testing-playbook",
+  "specFolder": "skilled-agent-orchestration/z_archive/028-sk-deep-research-testing-playbook",
   "description": "Feature Specification: sk-deep-research Manual Testing Playbook",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "testing",
     "playbook"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.721Z",
+  "lastUpdated": "2026-05-23T15:24:59.181Z",
   "specId": "028",
   "folderSlug": "sk-deep-research-testing-playbook",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

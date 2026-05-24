@@ -16,9 +16,9 @@
     "skill",
     "wiring"
   ],
-  "lastUpdated": "2026-05-23T09:11:13.079Z",
-  "specId": "005",
-  "folderSlug": "012-iterative-command-and-skill-wiring",
+  "lastUpdated": "2026-05-23T15:24:58.973Z",
+  "specId": "012",
+  "folderSlug": "iterative-command-and-skill-wiring",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

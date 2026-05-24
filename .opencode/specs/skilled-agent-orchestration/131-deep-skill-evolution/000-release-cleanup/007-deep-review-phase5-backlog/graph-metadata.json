@@ -7,39 +7,93 @@
     "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog/001-doc-cluster-remediation",
     "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog/002-reducer-cluster-remediation"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/003-deep-review",
-      "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/006-gate-model-reconciliation"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "deep-review phase5 backlog",
       "007-deep-review-phase5-backlog",
-      "deferred logic gap remediation"
+      "deferred logic gap remediation",
+      "LG-0001 through LG-0033 closure"
     ],
     "key_topics": [
       "deep-review",
       "phase5",
       "backlog",
+      "007-deep-review-phase5-backlog",
+      "deferred",
+      "logic",
+      "gap",
       "remediation",
-      "feature_catalog",
-      "reducer"
+      "lg-0001",
+      "lg-0033",
+      "closure",
+      "003-deep-review"
     ],
     "importance_tier": "important",
-    "status": "complete",
-    "last_active_child_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/007-deep-review-phase5-backlog/002-reducer-cluster-remediation",
+    "status": "planned",
     "key_files": [
-      "spec.md",
-      "001-doc-cluster-remediation/spec.md"
+      ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+      "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase parent closing the 22 deferred logic gaps from 003-deep-review phase-5. Doc child (001) ships feature_catalog dedicated entries plus verified-closed and won't-fix closures; reducer child (002) makes reduce-state.cjs behavioral changes reopening ADR-002.",
+    "entities": [
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Drive",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `003-deep-review` phase-5 deep-research loop (10 iterations, cli-devin SWE-1.6) surfaced 33 cumulative logic gaps. Nine were closed inline, 24 were deferred to follow-on with rationale. The `006-gate-model-reconciliation` packet then closed the 4-gap gate-model cluster (LG-0013/0016/0031/0032). That leaves 22 deferred gaps split into two risk profiles: safe documentation gaps and loop-critical reducer-behavior gaps that ADR-002 fenced off during the 003 packet.",
     "created_at": "2026-05-23T18:50:00.000Z",
-    "last_save_at": "2026-05-23T18:50:00.000Z",
+    "last_save_at": "2026-05-24T05:40:25.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

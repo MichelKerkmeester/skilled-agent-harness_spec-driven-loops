@@ -18,8 +18,8 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/agents/improve-agent.md"
-      - ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml"
-      - ".opencode/commands/improve/assets/improve_improve-agent_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000087"
       session_id: "087-spec-author"
@@ -27,8 +27,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions:
-      - "Does the slash command /improve:agent rename too? (No — `agent` is a generic sub-name like /improve:prompt, not the agent's identifier.)"
-      - "Does .gemini/commands/improve/improve-agent.toml rename? (No — it is a Gemini slash-command file named after `/improve:agent`, not the agent. Filename stays; content updates only.)"
+      - "Does the slash command /deep:start-agent-improvement-loop rename too? (No — `agent` is a generic sub-name like /prompt, not the agent's identifier.)"
+      - "Does .gemini/commands/deep/start-agent-improvement-loop.toml rename? (No — it is a Gemini slash-command file named after `/deep:start-agent-improvement-loop`, not the agent. Filename stays; content updates only.)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -64,7 +64,7 @@ The current asymmetry — skill `deep-agent-improvement` operated by agent `@imp
 
 ### Purpose
 
-Rename the agent across all 4 runtime mirrors plus ~18 active reference files. After this packet, the family is consistent: skill `deep-agent-improvement` ↔ agent `@deep-agent-improvement` ↔ command family `/improve:*` (sub-name `agent` stays generic, parallel to `/improve:prompt`). Pure semantic rename — no behavior change, no dispatcher contract change, no skill change.
+Rename the agent across all 4 runtime mirrors plus ~18 active reference files. After this packet, the family is consistent: skill `deep-agent-improvement` ↔ agent `@deep-agent-improvement` ↔ command family `/deep:*` (sub-name `agent` stays generic, parallel to `/prompt`). Pure semantic rename — no behavior change, no dispatcher contract change, no skill change.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -81,10 +81,10 @@ Rename the agent across all 4 runtime mirrors plus ~18 active reference files. A
 - `.codex/agents/improve-agent.toml` → `.codex/agents/deep-agent-improvement.toml`
 
 **YAML asset filename renames (2 runtimes × 2 files):**
-- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` → `improve_deep-agent-improvement_auto.yaml`
-- `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` → `improve_deep-agent-improvement_confirm.yaml`
-- `.claude/commands/improve/assets/improve_improve-agent_auto.yaml` → `improve_deep-agent-improvement_auto.yaml`
-- `.claude/commands/improve/assets/improve_improve-agent_confirm.yaml` → `improve_deep-agent-improvement_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` → `deep_start-agent-improvement-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` → `deep_start-agent-improvement-loop_confirm.yaml`
+- `.claude/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` → `deep_start-agent-improvement-loop_auto.yaml`
+- `.claude/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` → `deep_start-agent-improvement-loop_confirm.yaml`
 
 **Frontmatter rotation in renamed agent files:**
 - `name: improve-agent` → `name: deep-agent-improvement` (3 .md files)
@@ -92,7 +92,7 @@ Rename the agent across all 4 runtime mirrors plus ~18 active reference files. A
 - Description fields + body self-references that mention the agent name
 
 **Reference rotation across active scope (~31 `@improve-agent` mentions in ~18 files):**
-- Command bodies + YAML asset content: `.opencode/commands/improve/agent.md`, `improve_improve-agent_auto.yaml` content, `improve_improve-agent_confirm.yaml` content, `.opencode/commands/improve/README.txt`, `.claude/commands/improve/{agent.md,README.txt,assets/*.yaml}` mirrors, `.gemini/commands/improve/improve-agent.toml` content (filename stays — slash-command file)
+- Command bodies + YAML asset content: `.opencode/commands/deep/start-agent-improvement-loop.md`, `deep_start-agent-improvement-loop_auto.yaml` content, `deep_start-agent-improvement-loop_confirm.yaml` content, `.opencode/commands/README.txt`, `.claude/commands/deep/{agent.md,README.txt,assets/*.yaml}` mirrors, `.gemini/commands/deep/start-agent-improvement-loop.toml` content (filename stays — slash-command file)
 - Skill `deep-agent-improvement/` docs: SKILL.md, README.md, graph-metadata.json, manual_testing_playbook (incl. 08--agent-discipline-stress-tests/), feature_catalog/, changelog/v1.4.0.0.md
 - Cross-skill: `.opencode/skills/sk-doc/assets/agent_template.md`
 - Root: `README.md`, `AGENTS.md` (and transitively `CLAUDE.md` symlink → AGENTS.md)
@@ -100,8 +100,8 @@ Rename the agent across all 4 runtime mirrors plus ~18 active reference files. A
 
 ### Out of Scope
 
-- **Slash command `/improve:agent` rename.** The sub-name `agent` is generic ("improve an agent surface"), not the agent's identifier; mirrors `/improve:prompt` family pattern. The command and its file (`.opencode/commands/improve/agent.md` → filename stays; only body content updates) keep their names.
-- **`.gemini/commands/improve/improve-agent.toml` filename rename.** This file is the Gemini definition for the slash command `/improve:agent` (Gemini convention names slash-command files using flat hyphenated form). The filename stays; only body content updates.
+- **Slash command `/deep:start-agent-improvement-loop` rename.** The sub-name `agent` is generic ("improve an agent surface"), not the agent's identifier; mirrors `/prompt` family pattern. The command and its file (`.opencode/commands/deep/start-agent-improvement-loop.md` → filename stays; only body content updates) keep their names.
+- **`.gemini/commands/deep/start-agent-improvement-loop.toml` filename rename.** This file is the Gemini definition for the slash command `/deep:start-agent-improvement-loop` (Gemini convention names slash-command files using flat hyphenated form). The filename stays; only body content updates.
 - **Specs/ historical research artifacts.** ~189 references to `@improve-agent` exist in `specs/z_archive/059-*`, `060-*`, `070-*`, `079-*`, `042-*` packets. These are research record and stay verbatim.
 - **`barter/coder/` external repo.** Mirrored copies live in `barter/coder/.opencode/agents/improve-agent.md` and related paths. Barter handles its own propagation.
 - **Skill folder rename or skill_id change.** Already done in packet 079.
@@ -132,8 +132,8 @@ Rename the agent across all 4 runtime mirrors plus ~18 active reference files. A
 |----|-------------|---------------------|
 | REQ-001 | 4 agent files renamed via `git mv` | `ls .opencode/agents/deep-agent-improvement.md`, `.claude/agents/deep-agent-improvement.md`, `.gemini/agents/deep-agent-improvement.md`, `.codex/agents/deep-agent-improvement.toml` all succeed; old paths return ENOENT |
 | REQ-002 | 4 agent frontmatter `name:` fields updated | `grep -n '^name:' .opencode/agents/deep-agent-improvement.md` returns `name: deep-agent-improvement`; ditto for `.claude/`, `.gemini/`; `name = "deep-agent-improvement"` for `.codex/.toml` |
-| REQ-003 | 4 YAML asset files renamed via `git mv` | `improve_deep-agent-improvement_{auto,confirm}.yaml` exist in both `.opencode/commands/improve/assets/` and `.claude/commands/improve/assets/`; old `improve_improve-agent_*.yaml` filenames absent |
-| REQ-004 | YAML asset internal `@improve-agent` content + agent.md filename refs updated atomically with the rename | After rename, `agent.md` references the new YAML filenames; content of YAML files references `@deep-agent-improvement`; `/improve:agent` command can resolve YAML path |
+| REQ-003 | 4 YAML asset files renamed via `git mv` | `deep_start-agent-improvement-loop_{auto,confirm}.yaml` exist in both `.opencode/commands/deep/assets/` and `.claude/commands/deep/assets/`; old `deep_start-agent-improvement-loop_*.yaml` filenames absent |
+| REQ-004 | YAML asset internal `@improve-agent` content + agent.md filename refs updated atomically with the rename | After rename, `agent.md` references the new YAML filenames; content of YAML files references `@deep-agent-improvement`; `/deep:start-agent-improvement-loop` command can resolve YAML path |
 | REQ-005 | All `@improve-agent` references in active code migrated | `rg -F '@improve-agent' .opencode .claude .gemini .codex AGENTS.md README.md \| grep -v '/specs/' \| grep -v '/z_archive/' \| grep -v '/barter/'` returns 0 hits |
 | REQ-006 | All `name: improve-agent` and `name = "improve-agent"` references in active scope cleared | `rg -F 'name: improve-agent'` and `rg -F 'name = "improve-agent"'` in active scope return 0 hits |
 | REQ-007 | Strict spec validation passes | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename --strict` exits 0 |
@@ -165,8 +165,8 @@ Rename the agent across all 4 runtime mirrors plus ~18 active reference files. A
 - **SC-003**: All 4 agent files exist at new paths; old paths absent.
 - **SC-004**: All 4 YAML asset files exist at new filenames; old filenames absent.
 - **SC-005**: Skill advisor `recommend({prompt: "improve agent loop"})` still returns `deep-agent-improvement` top hit (no scoring regression).
-- **SC-006**: `/improve:agent` script-level smoke (`scan-integration.cjs --agent <sandbox>`) exits 0 against the renamed sandbox agent.
-- **SC-007**: Naming-family complete: skill `deep-agent-improvement` ↔ agent `@deep-agent-improvement` ↔ command `/improve:agent`.
+- **SC-006**: `/deep:start-agent-improvement-loop` script-level smoke (`scan-integration.cjs --agent <sandbox>`) exits 0 against the renamed sandbox agent.
+- **SC-007**: Naming-family complete: skill `deep-agent-improvement` ↔ agent `@deep-agent-improvement` ↔ command `/deep:start-agent-improvement-loop`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -176,9 +176,9 @@ Rename the agent across all 4 runtime mirrors plus ~18 active reference files. A
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Bare `improve-agent` matches YAML filename token (e.g., `improve_improve-agent_auto.yaml`) | High | Use `@improve-agent` (with `@` prefix) for in-prose substitution; YAML filenames handled via explicit `git mv` |
+| Risk | Bare `improve-agent` matches YAML filename token (e.g., `deep_start-agent-improvement-loop_auto.yaml`) | High | Use `@improve-agent` (with `@` prefix) for in-prose substitution; YAML filenames handled via explicit `git mv` |
 | Risk | YAML filename rename creates transient broken state if `agent.md` not updated atomically | Medium | Update `agent.md` body filename refs in same commit/wave as `git mv` |
-| Risk | `.gemini/commands/improve/improve-agent.toml` confusion (slash-command file vs agent file) | Low | Filename stays (it's the slash-command file); only content updates |
+| Risk | `.gemini/commands/deep/start-agent-improvement-loop.toml` confusion (slash-command file vs agent file) | Low | Filename stays (it's the slash-command file); only content updates |
 | Risk | Deferred 079 P1 findings still pending (resource-map.md inaccuracies, YAML path-injection, completion-claim) | Low | These are 079 advisories, not 087 blockers; document cross-reference in implementation-summary |
 | Dependency | Packet 079 skill rename complete | Green | Verified — `.opencode/skills/deep-agent-improvement/` exists, advisor returns it as top hit |
 | Dependency | 085/001 prompt-improver rename precedent for shape | Green | Provides direct shape template for this packet |
@@ -209,9 +209,9 @@ Rename the agent across all 4 runtime mirrors plus ~18 active reference files. A
 - `@improve-agent` (with @): unambiguous agent reference. **Always update.**
 - `name: improve-agent` (frontmatter): agent identity field. **Always update.**
 - `improve-agent.md` / `improve-agent.toml`: agent file path. **Rename via git mv.**
-- `improve_improve-agent_auto.yaml`: YAML asset filename pattern `improve_<TARGET>_<MODE>.yaml`. **Rename via git mv.**
-- `/improve:agent`: slash command. **Stays unchanged.**
-- `.gemini/commands/improve/improve-agent.toml`: Gemini slash-command file (named after `/improve:agent`). **Filename stays; content updates.**
+- `deep_start-agent-improvement-loop_auto.yaml`: YAML asset filename pattern `improve_<TARGET>_<MODE>.yaml`. **Rename via git mv.**
+- `/deep:start-agent-improvement-loop`: slash command. **Stays unchanged.**
+- `.gemini/commands/deep/start-agent-improvement-loop.toml`: Gemini slash-command file (named after `/deep:start-agent-improvement-loop`). **Filename stays; content updates.**
 - `cp-improve-target.md` (test fixture): different agent. **Not renamed.**
 - `improve-agent` in z_archive/specs: historical record. **Not renamed.**
 

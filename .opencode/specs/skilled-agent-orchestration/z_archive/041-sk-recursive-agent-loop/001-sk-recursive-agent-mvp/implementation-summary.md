@@ -47,7 +47,7 @@ The following surfaces now exist:
 - The new skill bundle under `.opencode/skills/sk-improve-agent/`
 - The canonical loop mutator at `.opencode/agents/agent-improver.md`
 - Runtime wrappers for Claude, Codex, and Gemini
-- The new `/improve:agent-improver` command plus `:auto` and `:confirm` YAML workflows
+- The new `/deep:start-agent-improvement-loop-improver` command plus `:auto` and `:confirm` YAML workflows
 - Promotion, rollback, and mirror-drift helper scripts
 - Catalog and routing updates in the skill README, `skill_advisor.py`, and `descriptions.json`
 - A dedicated runtime area under this packet at `improvement/` for dry-run evidence

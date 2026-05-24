@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs",
+  "specFolder": "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs",
   "description": "Spec: deep-review Stress Runs (004)",
   "keywords": [
     "spec",
@@ -8,11 +8,12 @@
     "runs",
     "004"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.019Z",
+  "lastUpdated": "2026-05-23T15:24:59.408Z",
   "specId": "004",
   "folderSlug": "deep-review-stress-runs",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "062-deep-loop-command-flow-stress-tests"
   ],
   "memorySequence": 1,

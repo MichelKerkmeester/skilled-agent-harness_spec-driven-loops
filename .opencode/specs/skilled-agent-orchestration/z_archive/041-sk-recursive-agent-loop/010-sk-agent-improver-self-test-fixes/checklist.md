@@ -21,7 +21,7 @@ _memory:
 ## P0 — Hard Blockers
 
 ### Bug Fix
-- [x] Stale command path fixed in canonical agent-improver.md (`/improve:agent` → `improve/agent.md`)
+- [x] Stale command path fixed in canonical agent-improver.md (`/deep:start-agent-improvement-loop` → `deep/start-agent-improvement-loop.md`)
 - [x] All 3 runtime mirrors synced with the fix
 - [x] `score-candidate.cjs --dynamic` on agent-improver: systemFitness=100, resource-refs-valid=4/4
 

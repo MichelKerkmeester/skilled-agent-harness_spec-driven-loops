@@ -29,7 +29,7 @@ Aligned the skill package documentation with sk-doc template structure. SKILL.md
 | --- | --- |
 | `sk-improve-agent/SKILL.md` | Restructured to sk-doc template layout. |
 | `sk-improve-agent/README.md` | Aligned with sk-doc README structure. |
-| `.opencode/commands/improve/agent.md` | Aligned with sk-doc command template. |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Aligned with sk-doc command template. |
 | `.opencode/agents/agent-improver.md` | Aligned with sk-doc agent template. |
 
 </details>

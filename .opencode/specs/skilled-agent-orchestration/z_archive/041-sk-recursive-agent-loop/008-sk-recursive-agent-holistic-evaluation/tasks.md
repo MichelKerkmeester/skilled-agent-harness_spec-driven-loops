@@ -66,7 +66,7 @@ _memory:
 - [x] T028: Sync `.claude/agents/agent-improver.md`
 - [x] T029: Sync `.codex/agents/agent-improver.toml`
 - [x] T030: Sync `.agents/agents/agent-improver.md`
-- [x] T031: Sync `.agents/commands/improve/agent-improver.toml`
+- [x] T031: Sync `.agents/commands/deep/agent-improver.toml`
 - [x] T032: Sync `.gemini/agents/agent-improver.md`
 - [x] T033: Fix stale "Recursive Agent" headings in .agents and .gemini command mirrors
 

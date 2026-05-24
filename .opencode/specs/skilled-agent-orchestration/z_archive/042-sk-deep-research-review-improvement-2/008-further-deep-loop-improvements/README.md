@@ -7,7 +7,7 @@
 
 ## Summary
 
-Phase 008 closed the visible runtime-truth gap across research, review, and improve-agent. The shipped work wired blocked-stop and graph convergence into the live workflows, surfaced that state through reducers and dashboards, added replay consumers and sample-quality handling for improve-agent, and packaged the results through three skill releases plus a focused closing-audit remediation pass.
+Phase 008 closed the visible runtime-truth gap across research, review, and deep-agent-improvement. The shipped work wired blocked-stop and graph convergence into the live workflows, surfaced that state through reducers and dashboards, added replay consumers and sample-quality handling for deep-agent-improvement, and packaged the results through three skill releases plus a focused closing-audit remediation pass.
 
 ## Packet Documents
 
@@ -25,7 +25,7 @@ Phase 008 closed the visible runtime-truth gap across research, review, and impr
 
 - [.opencode/changelog/12--sk-deep-research/v1.6.0.0.md](../../../../changelog/12--sk-deep-research/v1.6.0.0.md)
 - [.opencode/changelog/13--sk-deep-review/v1.3.0.0.md](../../../../changelog/13--sk-deep-review/v1.3.0.0.md)
-- [.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md](../../../../changelog/15--sk-improve-agent/v1.2.0.0.md)
+- [.opencode/changelog/deep-agent-improvement/v1.2.0.0.md](../../../../skills/deep-agent-improvement/changelog/v1.2.0.0.md)
 - [research/research.md](../research/research.md)
 
 ## Final State

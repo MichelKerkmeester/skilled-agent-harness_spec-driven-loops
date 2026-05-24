@@ -51,7 +51,7 @@ This phase closes the last naming mismatch in the agent-improver program by rena
 
 ### Definition of Done
 - [x] Canonical command markdown, YAML assets, and wrapper TOMLs use the agent-improver family
-- [x] Runtime docs and skill docs point at `/improve:agent-improver`
+- [x] Runtime docs and skill docs point at `/deep:start-agent-improvement-loop-improver`
 - [x] Root `041` and phase `006` validate strictly
 <!-- /ANCHOR:quality-gates -->
 

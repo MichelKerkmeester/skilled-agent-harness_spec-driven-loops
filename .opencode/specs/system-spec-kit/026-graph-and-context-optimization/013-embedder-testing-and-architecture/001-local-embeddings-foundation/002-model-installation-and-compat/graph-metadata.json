@@ -195,7 +195,7 @@
     ],
     "causal_summary": "HF cache was empty (48KB) post-reboot. The Setup A live swap (sub-phase 003) would block on first-use model downloads — ~~1.3GB combined — and risk hanging the MCP startup. We also did NOT know whether `@huggingface/transformers` v3.8.1 (the npm pkg HfLocalProvider uses) could actually load `google/embeddinggemma-300m`: Gemma3 architecture support in transformers.js is recent; the sentence-transformers config layer atop Gemma3 was the highest-risk unknown.",
     "created_at": "2026-05-12T16:27:48Z",
-    "last_save_at": "2026-05-23T11:55:15.328Z",
+    "last_save_at": "2026-05-24T05:40:25.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Packet 035 found strong daemon-log evidence that the MCP host times out before the CocoIndex daemon finishes work, then the daemon later logs that the client disconnected before the response could be sent. The remaining gap was observability: no request correlation, no stage timings, no serialized response byte counts, and no gated msgspec payload metadata when decode fails.",
     "created_at": "2026-05-14T15:52:07Z",
-    "last_save_at": "2026-05-23T11:55:15.395Z",
+    "last_save_at": "2026-05-24T05:40:25.996Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

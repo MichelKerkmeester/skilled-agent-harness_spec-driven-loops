@@ -110,10 +110,15 @@ import { clearAllTimers, clearRegisteredTimer, registerTimeout } from './lib/run
 import { runShutdownHooks } from './lib/runtime/shutdown-hooks.js';
 import { disposeLocalReranker } from './lib/search/local-reranker.js';
 import {
+  getIpcBridgeStats,
   resolveIpcSocketPath,
   startIpcSocketServer,
   type IpcSocketServerHandle,
 } from './lib/ipc/socket-server.js';
+import {
+  createLauncherIdleMonitor,
+  type LauncherIdleMonitor,
+} from './lib/ipc/launcher-idle-timeout.js';
 import * as workingMemory from './lib/cognitive/working-memory.js';
 import * as attentionDecay from './lib/cognitive/attention-decay.js';
 import * as coActivation from './lib/cognitive/co-activation.js';
@@ -1407,6 +1412,7 @@ let transport: StdioServerTransport | null = null;
 let transportConnectedAt: string | null = null;
 let fileWatcher: FSWatcher | null = null;
 let ipcBridge: IpcSocketServerHandle | null = null;
+let launcherIdleMonitor: LauncherIdleMonitor | null = null;
 
 /** Maximum time (ms) to wait for async cleanup before force-exiting. */
 const SHUTDOWN_DEADLINE_MS = 5000;
@@ -1430,6 +1436,12 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
   runCleanupStep('scheduledGraphRefresh', () => cancelScheduledRefresh());
   runCleanupStep('accessTracker', () => accessTracker.reset());
   runCleanupStep('toolCache', () => toolCache.shutdown());
+  runCleanupStep('launcherIdleMonitor', () => {
+    if (launcherIdleMonitor) {
+      launcherIdleMonitor.stop();
+      launcherIdleMonitor = null;
+    }
+  });
 
   let deadlineTimer: NodeJS.Timeout | undefined;
   const cleanup = (async () => {
@@ -1971,6 +1983,12 @@ async function main(): Promise<void> {
   transportConnectedAt = new Date().toISOString();
   transport = new StdioServerTransport();
   await server.connect(transport);
+  launcherIdleMonitor = createLauncherIdleMonitor({
+    serviceName: 'context-server',
+    getActiveClientCount: () => getIpcBridgeStats().secondary_clients_count,
+    onIdle: () => fatalShutdown('Launcher idle timeout reached, shutting down...', 0),
+    log: (message) => console.error(message),
+  });
   ipcBridge = await startIpcSocketServer({
     socketPath: resolveIpcSocketPath(DATABASE_DIR),
     createServer: () => {
@@ -1979,6 +1997,7 @@ async function main(): Promise<void> {
       return secondaryServer;
     },
     log: (message) => console.error(message),
+    onActivity: () => launcherIdleMonitor?.markActivity(),
   });
   const rssMb = Math.round(process.memoryUsage().rss / 1024 / 1024);
   console.error(`[health] startup pid=${process.pid} rss=${rssMb}MB uptime=0s`);

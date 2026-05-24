@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Update dispatcher and OpenCode agent body refs. Evidence: `.opencode/agents/improve-prompt.md`, `.opencode/commands/improve/prompt.md`, and `.opencode/commands/improve/README.txt` now use `sk-prompt` for the prompt skill.
+- [x] T004 Update dispatcher and OpenCode agent body refs. Evidence: `.opencode/agents/improve-prompt.md`, `.opencode/commands/prompt.md`, and `.opencode/commands/README.txt` now use `sk-prompt` for the prompt skill.
 - [x] T005 Update advisor scoring code and fixtures. Evidence: `skill_advisor.py`, `explicit.ts`, `lexical.ts`, `fusion.ts`, advisor `graph-metadata.json`, sync script, labeled prompts JSONL, and regression JSONL have zero Phase 003-owned old-name hits.
 - [x] T006 Update cli-* prompt quality mirrors in existing Phase 003 scope. Evidence: cli-claude-code, cli-codex, cli-gemini, and cli-opencode mirror refs now use `sk-prompt`; cli-copilot files are absent/deleted in the working tree, so no content update was possible.
 - [x] T007 Update cross-skill refs. Evidence: `deep-agent-improvement` peer reference and sk-code advisor docs now use `sk-prompt`.

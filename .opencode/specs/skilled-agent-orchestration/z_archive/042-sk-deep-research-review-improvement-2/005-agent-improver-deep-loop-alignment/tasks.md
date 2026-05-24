@@ -61,7 +61,7 @@ _memory:
 - [x] T012 Updated the improve-agent charter with audit-trail and legal-stop obligations. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_charter.md]`
 - [x] T013 Updated the improve-agent strategy asset with convergence, exhaustion, and trade-off guidance. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_strategy.md]`
 - [x] T014 Published the runtime-truth contract in the skill documentation. `[EVIDENCE: .opencode/skills/sk-improve-agent/SKILL.md; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
-- [x] T015 Updated the visible improve command documentation. `[EVIDENCE: .opencode/commands/improve/agent.md; commit 080cf549e summary]`
+- [x] T015 Updated the visible improve command documentation. `[EVIDENCE: .opencode/commands/deep/start-agent-improvement-loop.md; commit 080cf549e summary]`
 - [x] T016 Updated the runtime mirror document at the current path. `[EVIDENCE: .opencode/agents/improve-agent.md]`
 - [x] T017 Added end-to-end playbook scenarios for mutation coverage, trade-off detection, and candidate lineage. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md; 023-trade-off-detection.md; 024-candidate-lineage.md]`
 - [x] T018 Added runtime-truth playbook scenarios for stop reasons, journal emission, legal-stop gates, stability, trajectory, and optional parallel candidates. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md through 031-parallel-candidates-opt-in.md]`

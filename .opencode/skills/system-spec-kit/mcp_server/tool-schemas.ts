@@ -645,99 +645,6 @@ const sessionBootstrap: ToolDefinition = {
   },
 };
 
-// L9: Council Graph - AI Council derived graph projection tools
-const councilGraphUpsert: ToolDefinition = {
-  name: 'council_graph_upsert',
-  description: '[L9:CouncilGraph] Idempotent upsert for dedicated council graph nodes and edges. This graph is a derived projection from packet-local ai-council artifacts, not the source of truth. Rejects self-loops, clamps weights to [0.0, 2.0], and requires specFolder plus sessionId for namespace isolation.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      specFolder: { type: 'string', minLength: 1, description: 'Spec folder for namespace isolation (required)' },
-      sessionId: { type: 'string', minLength: 1, description: 'Council session identifier for namespace isolation (required)' },
-      nodes: {
-        type: 'array',
-        items: {
-          type: 'object',
-          properties: {
-            id: { type: 'string', minLength: 1, description: 'Unique node identifier' },
-            kind: { type: 'string', enum: ['SESSION', 'ROUND', 'SEAT', 'CLAIM', 'EVIDENCE', 'DISAGREEMENT', 'DECISION', 'RECOMMENDATION'], description: 'Council node kind' },
-            name: { type: 'string', minLength: 1, description: 'Human-readable node label' },
-            artifactPath: { type: 'string', description: 'Optional packet-local ai-council artifact path proving provenance' },
-            contentHash: { type: 'string', description: 'Optional content hash for derived artifact provenance' },
-            roundId: { type: 'string', description: 'Optional council round identifier' },
-            metadata: { type: 'object', description: 'Kind-specific prompt-safe metadata' },
-          },
-          required: ['id', 'kind', 'name'],
-        },
-        description: 'Council graph nodes to upsert',
-      },
-      edges: {
-        type: 'array',
-        items: {
-          type: 'object',
-          properties: {
-            id: { type: 'string', minLength: 1, description: 'Unique edge identifier' },
-            sourceId: { type: 'string', minLength: 1, description: 'Source node ID' },
-            targetId: { type: 'string', minLength: 1, description: 'Target node ID (must differ from sourceId)' },
-            relation: { type: 'string', enum: ['PARTICIPATES_IN', 'PROPOSES', 'SUPPORTS', 'CONTRADICTS', 'DERIVES_FROM', 'AGREES_WITH', 'RESOLVES', 'ESCALATES', 'EVIDENCE_FOR', 'RECOMMENDS'], description: 'Council graph relation type' },
-            weight: { type: 'number', minimum: 0.0, maximum: 2.0, default: 1.0, description: 'Edge weight (clamped to [0.0, 2.0])' },
-            artifactPath: { type: 'string', description: 'Optional packet-local ai-council artifact path proving provenance' },
-            metadata: { type: 'object', description: 'Relation-specific prompt-safe metadata' },
-          },
-          required: ['id', 'sourceId', 'targetId', 'relation'],
-        },
-        description: 'Council graph edges to upsert (self-loops are rejected)',
-      },
-    },
-    required: ['specFolder', 'sessionId'],
-  },
-};
-
-const councilGraphQuery: ToolDefinition = {
-  name: 'council_graph_query',
-  description: '[L9:CouncilGraph] Structured analysis of dedicated council graph state. Supports unresolved_disagreements, evidence_chain, decision_support, convergence_blockers, and hot_nodes. Results are bounded and prompt-safe, and graph rows are treated as a derived projection from ai-council artifacts.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      specFolder: { type: 'string', minLength: 1, description: 'Spec folder for namespace isolation (required)' },
-      sessionId: { type: 'string', minLength: 1, description: 'Council session identifier for namespace isolation (required)' },
-      queryType: { type: 'string', enum: ['unresolved_disagreements', 'evidence_chain', 'decision_support', 'convergence_blockers', 'hot_nodes'], description: 'Council graph query type (required)' },
-      nodeId: { type: 'string', description: 'Node ID required for evidence_chain and optional for decision_support' },
-      limit: { type: 'number', minimum: 1, maximum: 200, default: 50, description: 'Max results to return' },
-      maxDepth: { type: 'number', minimum: 1, maximum: 20, default: 10, description: 'Max traversal depth for evidence_chain' },
-    },
-    required: ['specFolder', 'sessionId', 'queryType'],
-  },
-};
-
-const councilGraphStatus: ToolDefinition = {
-  name: 'council_graph_status',
-  description: '[L9:CouncilGraph] Report dedicated council graph health and readiness. Returns node and edge counts, kind and relation breakdowns, schema version, readiness, and current council-specific signals for a session-scoped derived subgraph.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      specFolder: { type: 'string', minLength: 1, description: 'Spec folder for namespace isolation (required)' },
-      sessionId: { type: 'string', minLength: 1, description: 'Council session identifier for namespace isolation (required)' },
-    },
-    required: ['specFolder', 'sessionId'],
-  },
-};
-
-const councilGraphConvergence: ToolDefinition = {
-  name: 'council_graph_convergence',
-  description: '[L9:CouncilGraph] Council-specific convergence assessment for dedicated council graphs. Evaluates agreement ratio, dissent density, evidence depth, unresolved critical disagreements, and decision confidence. Empty graphs return STOP_BLOCKED instead of false-safe success.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      specFolder: { type: 'string', minLength: 1, description: 'Spec folder for namespace isolation (required)' },
-      sessionId: { type: 'string', minLength: 1, description: 'Council session identifier for namespace isolation (required)' },
-      roundId: { type: 'string', description: 'Optional council round identifier for snapshot persistence' },
-      persistSnapshot: { type: 'boolean', default: false, description: 'When true, persist a convergence signal snapshot' },
-    },
-    required: ['specFolder', 'sessionId'],
-  },
-};
-
 // ───────────────────────────────────────────────────────────────
 // 3. AGGREGATED DEFINITIONS
 
@@ -791,9 +698,4 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   // L8: Code Graph schemas live in system-code-graph per ADR-002
   // L8: Skill Graph schemas live in system-skill-advisor per 013/009/008.
   // L8: CocoIndex code-graph bridge schemas live in system-code-graph per ADR-002
-  // L9: Council Graph
-  councilGraphUpsert,
-  councilGraphQuery,
-  councilGraphStatus,
-  councilGraphConvergence,
 ];

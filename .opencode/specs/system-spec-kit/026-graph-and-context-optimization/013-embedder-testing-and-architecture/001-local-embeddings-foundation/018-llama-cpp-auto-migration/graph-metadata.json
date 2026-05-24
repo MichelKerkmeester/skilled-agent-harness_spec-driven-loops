@@ -201,7 +201,7 @@
     ],
     "causal_summary": "After the llama-cpp provider became the local default candidate, startup only warned when a populated `hf-local` sqlite existed while the active profile pointed at the llama-cpp store. That left operators with a manual migration step and a stale source sqlite that could keep being rediscovered.",
     "created_at": "2026-05-13T12:01:28Z",
-    "last_save_at": "2026-05-23T11:55:15.354Z",
+    "last_save_at": "2026-05-24T05:40:25.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T12:01:28Z",
     "source_docs": [

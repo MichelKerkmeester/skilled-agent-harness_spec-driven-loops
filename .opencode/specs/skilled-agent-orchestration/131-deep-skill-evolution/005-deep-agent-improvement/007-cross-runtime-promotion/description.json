@@ -10,9 +10,9 @@
     "promotion",
     "gate"
   ],
-  "lastUpdated": "2026-05-23T09:11:13.046Z",
-  "specId": "127",
-  "folderSlug": "007-cross-runtime-promotion",
+  "lastUpdated": "2026-05-23T15:24:59.126Z",
+  "specId": "007",
+  "folderSlug": "cross-runtime-promotion",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

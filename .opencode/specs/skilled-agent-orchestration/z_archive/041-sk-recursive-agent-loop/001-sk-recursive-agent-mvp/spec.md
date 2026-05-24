@@ -67,7 +67,7 @@ Define a safe, phased plan for `sk-improve-agent` that starts with one canonical
 
 ### In Scope
 - `sk-improve-agent` as a new skill with protocol, references, assets, and operator guidance
-- `/improve:agent-improver` as the command entrypoint with `:auto` and `:confirm` workflows
+- `/deep:start-agent-improvement-loop-improver` as the command entrypoint with `:auto` and `:confirm` workflows
 - `@agent-improver` as a LEAF execution surface for bounded candidate generation
 - A repo-native control bundle: improvement charter, `target-manifest.jsonc`, `improvement-config.json`, and `improvement-state.jsonl`
 - Reducer-managed experiment outputs: iteration artifacts, dashboard/scoreboard, and accepted-candidate state
@@ -141,7 +141,7 @@ Define a safe, phased plan for `sk-improve-agent` that starts with one canonical
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Initializing `/improve:agent-improver` in a spec folder creates the control bundle plus an empty append-only state ledger.
+- **SC-001**: Initializing `/deep:start-agent-improvement-loop-improver` in a spec folder creates the control bundle plus an empty append-only state ledger.
 - **SC-002**: A dry run against the handover target produces at least one candidate artifact, one score record, one reducer-generated dashboard update, and zero canonical file edits.
 - **SC-003**: The target manifest clearly distinguishes canonical, derived, fixed, and forbidden surfaces for the first experiment.
 - **SC-004**: The scorer can reject bad candidates for structural reasons and preserve those failures in the ledger.

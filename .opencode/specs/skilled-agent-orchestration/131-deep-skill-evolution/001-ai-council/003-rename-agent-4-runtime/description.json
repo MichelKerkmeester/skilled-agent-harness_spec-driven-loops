@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/003-rename-agent-4-runtime",
-  "description": "Feature Specification: 115/003 \u2014 agent runtime rename",
+  "description": "Feature Specification: 115/003 — agent runtime rename",
   "keywords": [
     "feature",
     "specification",
@@ -11,9 +11,9 @@
     "runtime",
     "rename"
   ],
-  "lastUpdated": "2026-05-21T10:22:37.621Z",
+  "lastUpdated": "2026-05-23T15:24:58.929Z",
   "specId": "003",
-  "folderSlug": "003-rename-agent-4-runtime",
+  "folderSlug": "rename-agent-4-runtime",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

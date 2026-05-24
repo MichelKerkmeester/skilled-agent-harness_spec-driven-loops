@@ -4,7 +4,7 @@
 Senior deep-reviewer. Read-only. Cite EVIDENCE.
 
 ## Context
-Target: `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/`
+Target: `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/`
 Mode: READ-ONLY. Iter-1 (correctness) returned 0 findings; iter-2 (traceability) running.
 
 ## Scope: SECURITY dimension (iter 3)

@@ -21,15 +21,15 @@ This is the canonical bootstrap guide for the standalone System Code Graph MCP s
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. PREREQUISITES](#2-prerequisites)
-- [3. INSTALLATION](#3-installation)
-- [4. CONFIGURATION](#4-configuration)
-- [5. VERIFICATION](#5-verification)
-- [6. NATIVE PACKAGE CHECKS](#6-native-package-checks)
-- [7. DATABASE AND MAINTAINER MODE](#7-database-and-maintainer-mode)
-- [8. TROUBLESHOOTING](#8-troubleshooting)
-- [9. RELATED RESOURCES](#9-related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. PREREQUISITES](#2--prerequisites)
+- [3. INSTALLATION](#3--installation)
+- [4. CONFIGURATION](#4--configuration)
+- [5. VERIFICATION](#5--verification)
+- [6. NATIVE PACKAGE CHECKS](#6--native-package-checks)
+- [7. DATABASE AND MAINTAINER MODE](#7--database-and-maintainer-mode)
+- [8. TROUBLESHOOTING](#8--troubleshooting)
+- [9. RELATED RESOURCES](#9--related-resources)
 
 <!-- /ANCHOR:table-of-contents -->
 
@@ -40,7 +40,7 @@ This is the canonical bootstrap guide for the standalone System Code Graph MCP s
 
 System Code Graph is a TypeScript MCP server under `.opencode/skills/system-code-graph/mcp_server/` that registers the `mk-code-index` server identity. The runtime package is published privately as `@spec-kit/system-code-graph` and ships a Node launcher at `.opencode/bin/mk-code-index-launcher.cjs`. The launcher boots the compiled entrypoint at `mcp_server/dist/index.js` after loading `.env.local` overrides, applying the optional maintainer-mode flag, and guarding the database path against external locations.
 
-The server is runtime-standalone: it does not depend on `mk-spec-memory` being installed or running first. It does use the repository-local `@spec-kit/shared` package link created by `npm install`. Its database lives at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`, shared across runtimes and auto-migrated from the legacy skill-local location on first launch.
+The server is runtime-standalone: it does not depend on `mk-spec-memory` being installed or running first. Its database lives at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`, shared across runtimes and auto-migrated from the legacy skill-local location on first launch.
 
 Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become underscores in the namespace prefix per MCP convention.
 
@@ -67,7 +67,7 @@ Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become
 - Repository root as the current working directory.
 - Runtime MCP configuration with an entry for `mk_code_index` in the active config (one of: `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.gemini/settings.json`, `.devin/config.json`, `.vscode/mcp.json`).
 
-`mk-spec-memory` is NOT a prerequisite. Code Graph does not need the memory MCP server to be running first, but the package imports shared TypeScript utilities from `.opencode/skills/system-spec-kit/shared` through the local `@spec-kit/shared` file dependency. `npm install` must create `node_modules/@spec-kit/shared` before runtime startup.
+`mk-spec-memory` is NOT a prerequisite. Code Graph does not need the memory MCP server to be running first. The TypeScript build emits only this package's runtime files under `mcp_server/dist/`.
 
 <!-- /ANCHOR:2-prerequisites -->
 
@@ -87,7 +87,6 @@ Verify the compiled entrypoint exists:
 
 ```bash
 test -f .opencode/skills/system-code-graph/mcp_server/dist/index.js && echo "Installed"
-test -e .opencode/skills/system-code-graph/node_modules/@spec-kit/shared && echo "shared dependency linked"
 ```
 
 The launcher is already committed at `.opencode/bin/mk-code-index-launcher.cjs` and does not need a separate install step. Start or refresh the `mk_code_index` MCP server in the active runtime after build.
@@ -186,7 +185,8 @@ Run before declaring bootstrap complete:
 
 ```bash
 .opencode/skills/system-code-graph/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-code-graph/tsconfig.json
-node -e "import('./.opencode/skills/system-code-graph/dist/system-spec-kit/mcp_server/lib/utils/skill-label-sanitizer.js')"
+test ! -e .opencode/skills/system-code-graph/dist
+node -e "import('./.opencode/skills/system-code-graph/mcp_server/dist/tool-schemas.js')"
 .opencode/skills/system-code-graph/node_modules/.bin/vitest --config .opencode/skills/system-code-graph/vitest.config.ts --run code-graph
 ```
 
@@ -198,7 +198,8 @@ Current code-graph baseline:
 | TypeScript build | Exit 0 from `tsc --build` |
 | Vitest focused run | Pass on the `code-graph` suite (runtime-detection + structural-contract + handler suites) |
 | Standalone-storage guard | Launcher rejects DB paths outside the workspace |
-| Cross-skill imports | 46 imports across 23 files (11 production `.ts` + 3 generated `.d.ts` + 5 test + 4 stress-test). Full decoupling is a future arc (packet 040). Tool IDs (`code_graph_*`, `detect_changes`, `ccc_*`) are the stable surface; import-level coupling is internal to system-code-graph. Reverse imports blocked by CI. |
+| Dist boundary | Root-level `dist/` is absent. Build output lives under `mcp_server/dist/`. |
+| Production sibling imports | 0 relative imports from `system-spec-kit` or `system-skill-advisor` production source. Test fixtures may still model integration boundaries. |
 
 <!-- /ANCHOR:6-native-package-checks -->
 
@@ -254,8 +255,8 @@ echo 'SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true' >> .env.local
 | `parserHealth: "quarantined"` | Parser failures were added to the skip-list. | Inspect `parserSkipList.sample` from `code_graph_status`, then repair or accept the quarantine. |
 | Unknown MCP tool error mentions `mk-code-index` | Tool name not registered in `mcp_server/tools/code-graph-tools.ts`. | Add the schema, handler export, and dispatch case in one change. |
 | Config still uses `system_code_graph` namespace | Pre-packet-010 config not updated. | Rename the entry to `mk_code_index`, point at `.opencode/bin/mk-code-index-launcher.cjs`, and use `mcp__mk_code_index__*` for all tool references. |
-| MCP startup logs show `ERR_MODULE_NOT_FOUND` for `@spec-kit/shared` from `skill-label-sanitizer.js` | The code-graph package was built, but its local shared package link is missing from `node_modules`. | Run `npm --prefix .opencode/skills/system-code-graph install` and `npm --prefix .opencode/skills/system-code-graph run build`, then restart `mk_code_index`. |
-| `/doctor:mcp debug --server mk_code_index` fails `shared_dependency` or `shared_import` | Doctor detected the missing local package link or unresolved compiled shared import before runtime startup. | Run `/doctor:mcp debug --server mk_code_index --fix`, or run the commands above manually. |
+| Root-level `.opencode/skills/system-code-graph/dist/` exists | Stale pre-cleanup build output is still present. | Run `npm --prefix .opencode/skills/system-code-graph run clean && npm --prefix .opencode/skills/system-code-graph run build`. |
+| `/doctor:mcp debug --server mk_code_index` fails `root_dist_absent` | Doctor detected stale root-level build output. | Run `/doctor:mcp debug --server mk_code_index --fix`, or run the clean and build commands above manually. |
 | Cross-runtime config audit needed | Want to verify all 6 runtimes are consistent. | `for f in opencode.json .claude/mcp.json .codex/config.toml .gemini/settings.json .devin/config.json .vscode/mcp.json; do printf '%-30s ' "$f"; grep -c 'mk_code_index\|mk-code-index' "$f"; done` should show >= 1 hit per file. |
 | `/doctor:mcp install --server mk_code_index` fails with "Unknown server" | `doctor_mcp_install.yaml` was not updated to include `mk_code_index` in `valid_values`. | Run `/doctor:update` to refresh subsystem coverage, or patch `valid_values` directly. |
 

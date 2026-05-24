@@ -78,7 +78,7 @@ Files to read first when resuming or starting 061:
 5. Original target triad (read-only):
    - `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines)
    - `.opencode/agents/improve-agent.md` (246 lines)
-   - `.opencode/commands/improve/agent.md` (456 lines)
+   - `.opencode/commands/deep/start-agent-improvement-loop.md` (456 lines)
 6. Methodology source: `.opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md` (570 lines, §9 lessons-learned)
 <!-- /ANCHOR:context-quick-load -->
 
@@ -109,7 +109,7 @@ Files to read first when resuming or starting 061:
 - §2 Methodology
 - §3 Gap Analysis (RQ-1 through RQ-7, each with Status / Answer / Evidence / Gap / Recommended Action)
 - §4 Scenario Sketches (CP-040 through CP-050+, each with Overview / Why This Matters / Scenario Contract / Test Execution)
-- §5 Diff Sketches (per target file: SKILL.md, improve-agent.md, /improve:agent.md, score-candidate.cjs, scan-integration.cjs)
+- §5 Diff Sketches (per target file: SKILL.md, improve-agent.md, /deep:start-agent-improvement-loop.md, score-candidate.cjs, scan-integration.cjs)
 - §6 Fixture-Target Recommendation
 - §7 Lessons Learned (mirroring 059 §9 structure)
 - §8 Hand-off Notes for Packet 004 (was 061)

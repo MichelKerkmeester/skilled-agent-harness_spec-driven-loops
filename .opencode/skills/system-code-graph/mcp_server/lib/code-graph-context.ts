@@ -7,7 +7,7 @@
 import { performance } from 'node:perf_hooks';
 import * as graphDb from './code-graph-db.js';
 import { resolveSeeds, type AnySeed, type ArtifactRef } from './seed-resolver.js';
-import { isSpeckitMetricsEnabled, speckitMetrics } from '../../../system-skill-advisor/mcp_server/lib/metrics.js';
+import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
 
 /** Map internal QueryMode → canonical spec_kit metric `mode` label value. */
 function speckitQueryModeLabel(mode: QueryMode): 'outline' | 'blast_radius' | 'relationship' {

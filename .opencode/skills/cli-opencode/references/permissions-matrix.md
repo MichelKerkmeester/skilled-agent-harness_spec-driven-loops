@@ -104,7 +104,7 @@ Core intent:
 | `write`/`edit` on Phase 003 packet docs | allow | Packet docs are the approved continuity scope. |
 | `write`/`edit` on Phase 003 schema, examples, reference doc, gate, and test | allow | These are the explicit implementation files. |
 | `edit` on `cli-opencode/SKILL.md` | allow | Phase 003 updates only ALWAYS #13. |
-| `edit` on `sk-ai-small-model/references/pattern-index.md` | allow | Phase 003 marks the downstream pattern shipped. |
+| `edit` on `sk-prompt-small-model/references/pattern-index.md` | allow | Phase 003 marks the downstream pattern shipped. |
 | `execute` on read-only shell commands | allow | Search and inspection stay usable. |
 | `execute` on destructive commands | deny | RM-8 prevention. |
 | `write`, `edit`, `delete` on `**` | deny | Anything outside explicit Phase 003 paths blocks. |

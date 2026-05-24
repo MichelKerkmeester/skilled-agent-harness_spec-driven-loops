@@ -127,14 +127,14 @@ servers:
     label: "Skill Advisor"
     runtime: node
     skill_dir: ".opencode/skills/system-skill-advisor"
-    entry_point: "mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js"
+    entry_point: "mcp_server/dist/mcp_server/advisor-server.js"
     install_script: null
     health_checks:
-      - { path: "mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js", type: "file_exists" }
+      - { path: "mcp_server/dist/mcp_server/advisor-server.js", type: "file_exists" }
       - { path: ".opencode/bin/mk-skill-advisor-launcher.cjs", type: "file_exists" }
       - { path: "mcp_server/node_modules", type: "dir_exists" }
       - { path: "mcp_server/node_modules/@spec-kit/shared", type: "dir_exists" }
-      - { probe: "node -e \"import('./{skill_dir}/mcp_server/dist/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.js')\"", type: "command_succeeds" }
+      - { probe: "node -e \"import('./{skill_dir}/mcp_server/dist/mcp_server/lib/scorer/lanes/semantic-shadow.js')\"", type: "command_succeeds" }
     install_steps:
       - "cd {skill_dir}/mcp_server && npm install"
       - "cd {skill_dir}/mcp_server && npm run build"
@@ -150,13 +150,11 @@ servers:
       - { path: "mcp_server/dist/index.js", type: "file_exists" }
       - { path: ".opencode/bin/mk-code-index-launcher.cjs", type: "file_exists" }
       - { path: "node_modules", type: "dir_exists" }
-      - { path: "node_modules/@spec-kit/shared", type: "dir_exists" }
-      - { probe: "node -e \"import('./{skill_dir}/dist/system-spec-kit/mcp_server/lib/utils/skill-label-sanitizer.js')\"", type: "command_succeeds" }
-      - { path: "mcp_server/database", type: "dir_exists" }
+      - { path: ".opencode/.spec-kit/code-graph/database", type: "dir_exists" }
     install_steps:
       - "cd {skill_dir} && npm install"
-      - "{skill_dir}/node_modules/.bin/tsc --build {skill_dir}/tsconfig.json"
-    fallback_build: "cd {skill_dir} && npm install && ./node_modules/.bin/tsc --build ./tsconfig.json"
+      - "cd {skill_dir} && npm run clean && npm run build"
+    fallback_build: "cd {skill_dir} && npm install && npm run clean && ./node_modules/.bin/tsc --build ./tsconfig.json"
 
   cocoindex_code:
     label: "CocoIndex Code"

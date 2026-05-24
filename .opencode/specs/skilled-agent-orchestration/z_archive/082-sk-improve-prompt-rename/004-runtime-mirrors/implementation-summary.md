@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 004 Runtime Mirrors"
-description: "Rotated 31 sk-improve-prompt → sk-prompt references across 5 runtime mirror files (.claude, .codex, .gemini agent body refs and Gemini command files). Agent name @improve-prompt and command /improve:prompt unchanged — only loaded skill name changed."
+description: "Rotated 31 sk-improve-prompt → sk-prompt references across 5 runtime mirror files (.claude, .codex, .gemini agent body refs and Gemini command files). Agent name @improve-prompt and command /prompt unchanged — only loaded skill name changed."
 trigger_phrases:
   - "082 phase 004"
   - "runtime mirror rotation"
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Five runtime mirror files now reference the renamed skill `sk-prompt` instead of `sk-improve-prompt`. The agent identity `@improve-prompt` and command identity `/improve:prompt` stay exactly the same — only the body text that loads the skill changed. Cross-runtime users (Claude, Codex, Gemini) all dispatch to a single canonical skill name.
+Five runtime mirror files now reference the renamed skill `sk-prompt` instead of `sk-improve-prompt`. The agent identity `@improve-prompt` and command identity `/prompt` stay exactly the same — only the body text that loads the skill changed. Cross-runtime users (Claude, Codex, Gemini) all dispatch to a single canonical skill name.
 
 ### Runtime mirror updates
 
@@ -62,7 +62,7 @@ The .claude, .codex, and .gemini agent files each carried 9 references to the ol
 | `.claude/agents/improve-prompt.md` | Modified (9 refs) | Agent body refs to renamed skill |
 | `.codex/agents/improve-prompt.toml` | Modified (9 refs) | Codex agent body refs (TOML preserved) |
 | `.gemini/agents/improve-prompt.md` | Modified (9 refs) | Gemini agent body refs |
-| `.gemini/commands/improve/README.txt` | Modified (2 refs) | Gemini command README link refs |
+| `.gemini/commands/deep/start-agent-improvement-loop.toml` | Modified (2 refs) | Gemini command README link refs |
 | `.gemini/commands/create/prompt.toml` | Modified (2 refs) | Gemini create command skill path embed |
 <!-- /ANCHOR:what-built -->
 
@@ -82,7 +82,7 @@ Direct `sed -i '' 's/sk-improve-prompt/sk-prompt/g'` per file under heavy parall
 | Decision | Why |
 |----------|-----|
 | Use direct sed instead of cli-codex dispatch | Memory rule "CLI dispatch unreliability under heavy parallelism" — prefer mechanical Edit/sed when 2+ codex sessions are active. Mechanical replace is deterministic. |
-| Preserve agent file names + command file names | Renaming the skill does NOT rename the agent or command — those keep `@improve-prompt` and `/improve:prompt` identity. Only the loaded skill's name changes. |
+| Preserve agent file names + command file names | Renaming the skill does NOT rename the agent or command — those keep `@improve-prompt` and `/prompt` identity. Only the loaded skill's name changes. |
 <!-- /ANCHOR:decisions -->
 
 ---

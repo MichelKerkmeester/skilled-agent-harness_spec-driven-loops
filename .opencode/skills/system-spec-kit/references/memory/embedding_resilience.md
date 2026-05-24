@@ -7,7 +7,25 @@ description: Provider fallback, bootstrap probes, graceful degradation, and offl
 
 Spec-memory prefers a working semantic provider over a perfect one. Bootstrap auto-selection chooses the active embedder once, persists it in `vec_metadata`, and later search/save calls use that pointer to avoid model drift.
 
-## Bootstrap Probe Sequence
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Define provider fallback, bootstrap probes, degraded search behavior, retry policy, cache boundaries, and operator checks for resilient semantic search.
+
+### When to Use
+
+Load this reference when startup cannot select an embedder, semantic search degrades, cloud providers fail, or cache rows may cross provider/model/dimension boundaries.
+
+### Core Principle
+
+Prefer a visible degraded mode over silent vector drift. Missing or mismatched embedders must fail clearly before they corrupt retrieval quality.
+
+---
+
+## 2. BOOTSTRAP PROBE SEQUENCE
 
 When `vec_metadata` has no active pointer, daemon startup probes providers in this **local-first** order (ADR-014, 2026-05-19):
 
@@ -26,7 +44,7 @@ active_embedder_provider
 
 If no tier is available, startup fails with a tier-by-tier diagnostic. This is intentional: a missing embedder should be visible before the daemon serves stale or mismatched vectors.
 
-## Runtime Fallback
+## 3. RUNTIME FALLBACK
 
 Provider creation still has bounded runtime fallback for transient failures:
 
@@ -39,7 +57,7 @@ Provider creation still has bounded runtime fallback for transient failures:
 
 Runtime fallback is best-effort and may change dimensions. When that happens, logs must warn that existing vector tables may need reindexing.
 
-## Degraded Search
+## 4. DEGRADED SEARCH
 
 If embeddings cannot be generated, retrieval degrades to cached rows and keyword search. Governance boundaries still apply in every degradation mode: fallback providers, cached embeddings, and keyword-only recovery must preserve caller scope.
 
@@ -52,7 +70,7 @@ If embeddings cannot be generated, retrieval degrades to cached rows and keyword
 
 Search responses should include a degradation warning when semantic search is unavailable.
 
-## Retry Policy
+## 5. RETRY POLICY
 
 Transient cloud failures retry with bounded exponential backoff before falling through:
 
@@ -66,7 +84,7 @@ Transient cloud failures retry with bounded exponential backoff before falling t
 
 Permanent authorization failures should not be retried.
 
-## Cache Shape
+## 6. CACHE SHAPE
 
 Profile-keyed caches keep provider/model/dimension separate:
 
@@ -80,7 +98,7 @@ content_hash  TEXT
 
 Never reuse a cache row across provider or dimension boundaries.
 
-## Operator Checks
+## 7. OPERATOR CHECKS
 
 - `embedder_status` should report the active provider and any running reindex job.
 - `vec_metadata.active_embedder_name` should match the provider used for query encoding.

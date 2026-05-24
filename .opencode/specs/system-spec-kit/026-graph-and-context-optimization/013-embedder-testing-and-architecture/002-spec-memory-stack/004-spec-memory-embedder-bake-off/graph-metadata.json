@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Outcome: **mxbai failed early** (context-length limit, jaccard regression). The packet expanded into a **6-candidate bake-off**:",
     "created_at": "2026-05-17T06:35:18.410Z",
-    "last_save_at": "2026-05-23T11:55:15.426Z",
+    "last_save_at": "2026-05-24T05:40:26.015Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

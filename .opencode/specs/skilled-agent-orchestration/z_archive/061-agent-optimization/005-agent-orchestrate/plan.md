@@ -63,7 +63,7 @@ Single linear iteration applying the validated sk-improve-agent v2 substrate (pr
 | Phase | Steps | Output |
 |---|---|---|
 | **P1** Profile | scan-integration.cjs + generate-profile.cjs | `<packet>/profile.json` |
-| **P2** Dispatch | `/improve:agent .opencode/agents/orchestrate.md` | `<packet>/candidate.md` |
+| **P2** Dispatch | `/deep:start-agent-improvement-loop .opencode/agents/orchestrate.md` | `<packet>/candidate.md` |
 | **P3** Score+Bench | score-candidate.cjs + run-benchmark.cjs | score + benchmark JSONs |
 | **P4** Legal-stop | reduce-state.cjs verifies 5 gates | `<packet>/legal_stop_evaluated.json` |
 | **P5** Promote | promote-candidate.cjs --approve | canonical updated |
@@ -85,7 +85,7 @@ Smoke-test via re-running a representative scenario from `.opencode/skills/sk-im
 ## 6. DEPENDENCIES
 
 - sk-improve-agent v2 (060/005 wiring)
-- /improve:agent command flow (060/004 validated)
+- /deep:start-agent-improvement-loop command flow (060/004 validated)
 - 4-runtime mirror discipline (memory rule)
 
 <!-- /ANCHOR:dependencies -->

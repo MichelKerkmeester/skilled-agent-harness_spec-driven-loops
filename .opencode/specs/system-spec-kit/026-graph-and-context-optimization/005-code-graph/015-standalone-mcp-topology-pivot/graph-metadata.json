@@ -38,7 +38,6 @@
       "implementation-summary.md",
       ".opencode/skills/system-code-graph/mcp_server/index.ts",
       ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
-      ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       "spec.md",
       "plan.md",
@@ -68,12 +67,6 @@
         "name": "tool-schemas.ts",
         "kind": "code",
         "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Reality diverged from ADR-001 in two ways. First, the user manually flattened the code-graph source tree so runtime code now lives directly at `.opencode/skills/system-code-graph/mcp_server/{lib,handlers,tools,tests}/` rather than under an intermediate `code_graph/` directory. Second, the user reversed ADR-001 Q3 and now requires a standalone MCP topology.",
     "created_at": "2026-05-14T09:13:21Z",
-    "last_save_at": "2026-05-23T11:55:15.081Z",
+    "last_save_at": "2026-05-24T05:40:25.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T09:24:15Z",
     "source_docs": [

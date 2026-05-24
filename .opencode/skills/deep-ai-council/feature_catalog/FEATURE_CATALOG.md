@@ -127,18 +127,18 @@ Scenario IDs: DAC-013, DAC-015..DAC-017. The writer-library API, the scoring rub
 
 ## 9. COUNCIL GRAPH INTEGRATION
 
-Scenario IDs: DAC-019..DAC-026. The `council_graph_*` MCP tool family and its derived-projection guarantees.
+Scenario IDs: DAC-019..DAC-026. The runtime council graph CLI surface, derived-projection guarantees, and retired MCP registry entries.
 
 | Feature | What it does | File |
 | --- | --- | --- |
-| council_graph_upsert idempotency and self-loop rejection | `council_graph_upsert` is idempotent and rejects self-loop edges. | [08--council-graph-integration/01-council-graph-upsert-idempotency-and-self-loop-rejection.md](08--council-graph-integration/01-council-graph-upsert-idempotency-and-self-loop-rejection.md) |
-| council_graph_upsert empty input no-op success | `council_graph_upsert` returns explicit no-op success on empty input. | [08--council-graph-integration/02-council-graph-upsert-empty-input-no-op-success.md](08--council-graph-integration/02-council-graph-upsert-empty-input-no-op-success.md) |
-| council_graph_query hostile metadata redaction | `council_graph_query` redacts arbitrary metadata keys and bounds string lengths. | [08--council-graph-integration/03-council-graph-query-hostile-metadata-redaction.md](08--council-graph-integration/03-council-graph-query-hostile-metadata-redaction.md) |
-| council_graph_query five modes return prompt-safe context | All 5 documented query modes return prompt-safe bounded context. | [08--council-graph-integration/04-council-graph-query-five-modes-prompt-safe-context.md](08--council-graph-integration/04-council-graph-query-five-modes-prompt-safe-context.md) |
-| council_graph_convergence three-state decision matrix | `council_graph_convergence` returns the correct bucket for each documented signal configuration. | [08--council-graph-integration/05-council-graph-convergence-three-state-decision-matrix.md](08--council-graph-integration/05-council-graph-convergence-three-state-decision-matrix.md) |
-| council_graph_status recovery payload and readiness | `council_graph_status` returns readiness, counts, schema version, signals and a namespace-scoped recovery payload. | [08--council-graph-integration/06-council-graph-status-recovery-payload-and-readiness.md](08--council-graph-integration/06-council-graph-status-recovery-payload-and-readiness.md) |
+| runtime upsert CLI idempotency and self-loop rejection | `runtime upsert CLI` is idempotent and rejects self-loop edges. | [08--council-graph-integration/01-council-graph-upsert-idempotency-and-self-loop-rejection.md](08--council-graph-integration/01-council-graph-upsert-idempotency-and-self-loop-rejection.md) |
+| runtime upsert CLI empty input no-op success | `runtime upsert CLI` returns explicit no-op success on empty input. | [08--council-graph-integration/02-council-graph-upsert-empty-input-no-op-success.md](08--council-graph-integration/02-council-graph-upsert-empty-input-no-op-success.md) |
+| runtime query CLI hostile metadata redaction | `runtime query CLI` redacts arbitrary metadata keys and bounds string lengths. | [08--council-graph-integration/03-council-graph-query-hostile-metadata-redaction.md](08--council-graph-integration/03-council-graph-query-hostile-metadata-redaction.md) |
+| runtime query CLI five modes return prompt-safe context | All 5 documented query modes return prompt-safe bounded context. | [08--council-graph-integration/04-council-graph-query-five-modes-prompt-safe-context.md](08--council-graph-integration/04-council-graph-query-five-modes-prompt-safe-context.md) |
+| runtime convergence CLI three-state decision matrix | `runtime convergence CLI` returns the correct bucket for each documented signal configuration. | [08--council-graph-integration/05-council-graph-convergence-three-state-decision-matrix.md](08--council-graph-integration/05-council-graph-convergence-three-state-decision-matrix.md) |
+| runtime status CLI recovery payload and readiness | `runtime status CLI` returns readiness, counts, schema version, signals and a namespace-scoped recovery payload. | [08--council-graph-integration/06-council-graph-status-recovery-payload-and-readiness.md](08--council-graph-integration/06-council-graph-status-recovery-payload-and-readiness.md) |
 | Derived projection rebuilds from artifacts | Deleting derived graph rows and replaying from artifacts restores graph state without touching artifacts. | [08--council-graph-integration/07-council-graph-derived-projection-rebuilds-from-artifacts.md](08--council-graph-integration/07-council-graph-derived-projection-rebuilds-from-artifacts.md) |
-| council_graph family registered separately from deep-loop | `council_graph_*` tools are a distinct family with no `loop_type:'council'` overload of `deep_loop_graph_*`. | [08--council-graph-integration/08-council-graph-tools-registered-separately-from-deep-loop.md](08--council-graph-integration/08-council-graph-tools-registered-separately-from-deep-loop.md) |
+| Council graph MCP surface retired | Council graph operations are absent from mk-spec-memory and available through `deep-loop-runtime --loop-type council`. | [08--council-graph-integration/08-council-graph-tools-registered-separately-from-deep-loop.md](08--council-graph-integration/08-council-graph-tools-registered-separately-from-deep-loop.md) |
 
 ---
 
@@ -153,7 +153,7 @@ Scenario IDs: DAC-027..DAC-032. Measured graph-vs-baseline comparisons that just
 | Convergence safety under critical disagreement | The graph blocks on unresolved critical disagreement, a guarantee the two-of-three baseline lacks. | [09--council-graph-value-comparison/03-convergence-safety-under-critical-disagreement-graph-vs-baseline.md](09--council-graph-value-comparison/03-convergence-safety-under-critical-disagreement-graph-vs-baseline.md) |
 | Stalled-council blocker ranking | The graph produces a prioritized blocker list where the baseline produces an unranked dump. | [09--council-graph-value-comparison/04-stalled-council-blocker-ranking-graph-vs-baseline.md](09--council-graph-value-comparison/04-stalled-council-blocker-ranking-graph-vs-baseline.md) |
 | Hot-topic discovery | `hot_nodes` mode surfaces high-degree contested topics; the baseline needs manual tallying. | [09--council-graph-value-comparison/05-hot-topic-discovery-graph-vs-baseline.md](09--council-graph-value-comparison/05-hot-topic-discovery-graph-vs-baseline.md) |
-| Mid-run interruption recovery | `council_graph_status` returns structured recovery context where the baseline needs manual JSONL parsing. | [09--council-graph-value-comparison/06-mid-run-interruption-recovery-graph-vs-baseline.md](09--council-graph-value-comparison/06-mid-run-interruption-recovery-graph-vs-baseline.md) |
+| Mid-run interruption recovery | `runtime status CLI` returns structured recovery context where the baseline needs manual JSONL parsing. | [09--council-graph-value-comparison/06-mid-run-interruption-recovery-graph-vs-baseline.md](09--council-graph-value-comparison/06-mid-run-interruption-recovery-graph-vs-baseline.md) |
 
 ---
 

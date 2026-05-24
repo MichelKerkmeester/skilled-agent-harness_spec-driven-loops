@@ -2,6 +2,7 @@
 // MODULE: Openai
 // ---------------------------------------------------------------
 
+import { getCanonicalFallback } from '../registry.js';
 import { EmbeddingProfile } from '../profile.js';
 import { retryWithBackoff } from '../../utils/retry.js';
 import type { IEmbeddingProvider, ModelDimensions, ProviderMetadata, UsageStats } from '../../types.js';
@@ -10,7 +11,7 @@ import type { IEmbeddingProvider, ModelDimensions, ProviderMetadata, UsageStats 
 // 1. CONFIGURATION
 // ---------------------------------------------------------------
 
-const DEFAULT_MODEL: string = 'text-embedding-3-small';
+const DEFAULT_MODEL: string = getCanonicalFallback('openai');
 const DEFAULT_DIM: number = 1536;
 const DEFAULT_BASE_URL: string = 'https://api.openai.com/v1';
 const REQUEST_TIMEOUT: number = 30000;

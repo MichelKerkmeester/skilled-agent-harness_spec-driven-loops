@@ -82,7 +82,7 @@ Rename the agent across all 4 runtime mirrors plus all active reference surfaces
 - Body self-references
 
 **Reference rotation across active scope (~31 files):**
-- Dispatcher command body: `.opencode/commands/improve/prompt.md`, `.opencode/commands/improve/README.txt`
+- Dispatcher command body: `.opencode/commands/prompt.md`, `.opencode/commands/README.txt`
 - 5 cli-* `prompt_quality_card.md` mirrors + their parent SKILL.md routing tables (cli-claude-code, cli-codex, cli-gemini, cli-opencode — and any cli-copilot residuals)
 - Cli-* manual_testing_playbook scenario files referencing the agent
 - `sk-prompt/SKILL.md` Section 7 (agent contract) + `sk-prompt/assets/cli_prompt_quality_card.md` + `sk-prompt/graph-metadata.json`
@@ -97,7 +97,7 @@ Rename the agent across all 4 runtime mirrors plus all active reference surfaces
 
 ### Out of Scope
 
-- Renaming the dispatcher command `/improve:prompt` or its file `.opencode/commands/improve/prompt.md` — only body's agent ref changes
+- Renaming the dispatcher command `/prompt` or its file `.opencode/commands/prompt.md` — only body's agent ref changes
 - Renaming sibling agent `@improve-agent`
 - Frozen continuity scope (z_archive, z_future, completed packets, .git, barter/, .claude/CLAUDE.md global)
 - Behavior changes — pure semantic rename

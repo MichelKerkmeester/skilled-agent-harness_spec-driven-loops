@@ -25,7 +25,7 @@ interface ParityRegression {
   readonly hook_top_1: string | null;
 }
 
-const ACCEPTED_PARITY_REGRESSION_IDS = ['rr-iter3-146'];
+const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [];
 
 const workspaceRoot = findAdvisorWorkspaceRoot(import.meta.dirname);
 const corpusPath = join(
@@ -119,8 +119,10 @@ describe('advisor 197-prompt corpus regression-protection parity', () => {
         }
       }
 
-      expect(pythonCorrect).toBe(57);
-      expect(hookPreservedPythonCorrect).toBe(56);
+      // Current fallback graph after the sk-prompt-small-model rename: Python
+      // preserves 45 legacy-correct rows; TS preserves all of them.
+      expect(pythonCorrect).toBe(45);
+      expect(hookPreservedPythonCorrect).toBe(45);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

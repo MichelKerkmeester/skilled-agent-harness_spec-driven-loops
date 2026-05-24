@@ -1,6 +1,6 @@
-=== Live setup-phase test v2 (corrected fixtures): /improve:agent:auto ===
+=== Live setup-phase test v2 (corrected fixtures): /deep:start-agent-improvement-loop:auto ===
 Started: 2026-05-11T14:56:33+0200
-Command: .opencode/commands/improve/agent.md
+Command: .opencode/commands/deep/start-agent-improvement-loop.md
 Fixture: extracted from command's own §0 PRE-BOUND schema
 
 PRE-BOUND used:
@@ -24,7 +24,7 @@ reasoning summaries: none
 session id: 019e171c-573a-7461-a4c9-b0caebd290f5
 --------
 user
-You are testing the setup-phase contract of the migrated command /improve:agent.
+You are testing the setup-phase contract of the migrated command /deep:start-agent-improvement-loop.
 
 # RUNTIME RULES
 - Inline Codex execution. Do NOT call SpawnAgent / collab / Task / sub-agent.
@@ -34,9 +34,9 @@ You are testing the setup-phase contract of the migrated command /improve:agent.
 
 # YOUR TASK
 
-1. Read .opencode/commands/improve/agent.md section zero (UNIFIED SETUP PHASE).
+1. Read .opencode/commands/deep/start-agent-improvement-loop.md section zero (UNIFIED SETUP PHASE).
 2. Verify it cites .opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md.
-3. SIMULATE a dispatch of /improve:agent:auto with the following PRE-BOUND SETUP ANSWERS block in the prompt body (these field names + example values come VERBATIM from this command's own §0 schema — they are guaranteed to match the command's expected keys):
+3. SIMULATE a dispatch of /deep:start-agent-improvement-loop:auto with the following PRE-BOUND SETUP ANSWERS block in the prompt body (these field names + example values come VERBATIM from this command's own §0 schema — they are guaranteed to match the command's expected keys):
 
 ```
 PRE-BOUND SETUP ANSWERS:
@@ -77,15 +77,15 @@ hook: UserPromptSubmit Completed
 codex
 I’ll keep this read-only and stop at command setup resolution. Gate 3 is already answered as D, so I’m only going to inspect the command markdown and simulate the Tier logic from that text.
 exec
-/bin/zsh -lc 'rg -n "UNIFIED SETUP PHASE|auto_mode_contract|PRE-BOUND SETUP ANSWERS|Tier|target_path|target_profile|spec_folder|execution_mode|scoring_mode|max_iterations" .opencode/commands/improve/agent.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "UNIFIED SETUP PHASE|auto_mode_contract|PRE-BOUND SETUP ANSWERS|Tier|target_path|target_profile|spec_folder|execution_mode|scoring_mode|max_iterations" .opencode/commands/deep/start-agent-improvement-loop.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 3:argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 61:# 🔒 UNIFIED SETUP PHASE
 69:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
 71:Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
-73:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
+73:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 75:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
-77:3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
+77:3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 81:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
 83:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
 86:PRE-BOUND SETUP ANSWERS:
@@ -140,7 +140,7 @@ exec
 452:- **Benchmark assets** (post-060/005): static at `.opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json` + `assets/benchmark-fixtures/*.json`. Materializer at `.opencode/skills/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
 
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/commands/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/commands/deep/start-agent-improvement-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -191,7 +191,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │ invocation and runs general-agent based.            │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /improve:agent [arguments]                               │
+    │   │   /deep:start-agent-improvement-loop [arguments]                               │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"
@@ -214,11 +214,11 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 

@@ -17,9 +17,9 @@
     "findings",
     "registry"
   ],
-  "lastUpdated": "2026-05-23T09:11:13.071Z",
-  "specId": "004",
-  "folderSlug": "011-iterative-session-findings-registry",
+  "lastUpdated": "2026-05-23T15:24:58.968Z",
+  "specId": "011",
+  "folderSlug": "iterative-session-findings-registry",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

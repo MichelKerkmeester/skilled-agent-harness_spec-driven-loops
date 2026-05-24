@@ -510,7 +510,7 @@ Canonical workflow files:
 
 | Command | Purpose |
 | --- | --- |
-| `/create:prompt` | Builds prompt artifacts and may reference skill creation patterns |
+| `/prompt` | Builds prompt artifacts and may reference skill creation patterns |
 | `/memory:save` | Manual context save trigger in active spec folders |
 
 ---

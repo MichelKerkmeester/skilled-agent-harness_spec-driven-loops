@@ -37,14 +37,14 @@ _memory:
 Top recommendations:
 
 - Split downstream work by proof layer. 061 should prove command-flow methodology and/or correct active CP contracts; 062 should wire executable GREEN producers/consumers.
-- Use `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1` from a command-capable temp root for command-owned evidence.
+- Use `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1` from a command-capable temp root for command-owned evidence.
 - Keep expected-RED methodology evidence spec-local unless active CP-040..CP-045 can honestly pass under cli-copilot release rules.
 - Put benchmark materialization (using **static skill assets** at `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/` + `assets/benchmark-fixtures/`, materializer alongside `run-benchmark.cjs`), nested legal-stop `details.gateResults`, stop enum truth, YAML parity, and native RT repair in 062.
 - Carry forward the reusable test-layer-selection template: discipline layer, natural entry point, evidence owner, consumer, producer readiness, harness root, evaluator assets, verdict mode, release surface, and stale-state guard.
 
 ## 061 Hand-Off Prompt
 
-> Create 004-improve-agent-command-flow-stress-tests. Build a command-capable temp project root containing `.opencode/commands/improve`, `.opencode/skills/sk-improve-agent`, and the `cp-improve-target` fixture. For command-owned scenarios, invoke `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1`. Partition CP-040..CP-045 by owning layer: CP-041/042 may remain leaf/body tests with full required inputs; CP-040/043/044/045 need command-flow lanes. Keep expected-RED/PARTIAL methodology evidence packet-local unless active playbook contracts can honestly pass under PASS/PARTIAL/FAIL/SKIP release rules. Reuse CP-040..CP-045 for active corrections; use successor IDs only for spec-local experiments or explicit archival.
+> Create 004-improve-agent-command-flow-stress-tests. Build a command-capable temp project root containing `.opencode/commands/deep`, `.opencode/skills/sk-improve-agent`, and the `cp-improve-target` fixture. For command-owned scenarios, invoke `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1`. Partition CP-040..CP-045 by owning layer: CP-041/042 may remain leaf/body tests with full required inputs; CP-040/043/044/045 need command-flow lanes. Keep expected-RED/PARTIAL methodology evidence packet-local unless active playbook contracts can honestly pass under PASS/PARTIAL/FAIL/SKIP release rules. Reuse CP-040..CP-045 for active corrections; use successor IDs only for spec-local experiments or explicit archival.
 
 ## 062 Hand-Off Prompt
 

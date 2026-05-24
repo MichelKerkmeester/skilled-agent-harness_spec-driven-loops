@@ -159,7 +159,7 @@ describe('Context Server', () => {
   // =================================================================
   // GROUP 2: Tool Definition Completeness
   // =================================================================
-  describe('Group 2: Tool Definitions (39 tools)', () => {
+  describe('Group 2: Tool Definitions (35 tools)', () => {
     const EXPECTED_TOOLS = [
       'memory_context',
       'memory_search',
@@ -196,10 +196,6 @@ describe('Context Server', () => {
       'session_health',
       'session_resume',
       'session_bootstrap',
-      'council_graph_upsert',
-      'council_graph_query',
-      'council_graph_status',
-      'council_graph_convergence',
     ]
 
     // T11: TOOL_DEFINITIONS export exists
@@ -297,8 +293,6 @@ describe('Context Server', () => {
       'memory_drift_why', 'memory_causal_link', 'memory_causal_stats',
       'eval_run_ablation', 'eval_reporting_dashboard',
       'session_health', 'session_resume', 'session_bootstrap',
-      'council_graph_upsert', 'council_graph_query', 'council_graph_status',
-      'council_graph_convergence',
     ]
 
     // T16: CallToolRequestSchema handler exists
@@ -2633,10 +2627,6 @@ describe('Context Server', () => {
       'session_health': '[L3:Discovery]',
       'session_resume': '[L1:Orchestration]',
       'session_bootstrap': '[L1:Orchestration]',
-      'council_graph_upsert': '[L9:CouncilGraph]',
-      'council_graph_query': '[L9:CouncilGraph]',
-      'council_graph_status': '[L9:CouncilGraph]',
-      'council_graph_convergence': '[L9:CouncilGraph]',
     }
 
     // T61: Tool descriptions include layer prefix

@@ -7,7 +7,7 @@ description: Iteration tracker for the 10-iter cli-copilot research run on impro
 
 ## 1. OVERVIEW
 
-Apply the testing methodology that worked on `@code` (packet 059) to the `sk-improve-agent` triad: SKILL.md, improve-agent.md, /improve:agent command. Produce gap analysis, sketched stress-test scenarios, and prioritized diff sketches. Implementation is deferred to packet 061.
+Apply the testing methodology that worked on `@code` (packet 059) to the `sk-improve-agent` triad: SKILL.md, improve-agent.md, /deep:start-agent-improvement-loop command. Produce gap analysis, sketched stress-test scenarios, and prioritized diff sketches. Implementation is deferred to packet 061.
 
 ## 2. TOPIC
 
@@ -85,7 +85,7 @@ The 059 test-report.md (570 lines) at `.opencode/specs/skilled-agent-orchestrati
 
 - `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines)
 - `.opencode/agents/improve-agent.md` (246 lines)
-- `.opencode/commands/improve/agent.md` (456 lines)
+- `.opencode/commands/deep/start-agent-improvement-loop.md` (456 lines)
 - `references/` (12 docs: quick_reference, loop_protocol, evaluator_contract, benchmark_operator_guide, promotion_rules, rollback_runbook, mirror_drift_policy, no_go_conditions, target_onboarding, integration_scanning, README)
 - `scripts/` (14 .cjs: run-benchmark, score-candidate, reduce-state, promote-candidate, rollback-candidate, scan-integration, generate-profile, check-mirror-drift, improvement-journal, mutation-coverage, trade-off-detector, candidate-lineage, benchmark-stability)
 - `assets/` (6 items: improvement_charter, improvement_strategy, improvement_config (json + reference), target_manifest.jsonc)

@@ -13,13 +13,13 @@ Repo root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/`
 - `.opencode/changelog/deep-ai-council` → `../skills/deep-ai-council/changelog` — TARGET MISSING (the renamed dir is `sk-ai-council`); the symlink is dangling.
 - `.opencode/changelog/sk-ai-council` — DOES NOT EXIST yet; needs to be created so the convenience surface works under the new name.
 
-**Reference** (correctly-handled sister case from 007): `.opencode/changelog/sk-ai-small-model` → `../skills/sk-ai-small-model/changelog` — this symlink IS correct. Use it as the template for the sk-ai-council symlink creation.
+**Reference** (correctly-handled sister case from 007): `.opencode/changelog/sk-prompt-small-model` → `../skills/sk-prompt-small-model/changelog` — this symlink IS correct. Use it as the template for the sk-ai-council symlink creation.
 
 ## ACTION (pre-planning — execute in order)
 
 ### Step 1: Inspect current state
-- **Run** `ls -la .opencode/changelog/ | grep -E "(deep-ai-council|sk-ai-council|sk-ai-small-model)"`.
-- **Verify**: `deep-ai-council` symlink exists and points at `../skills/deep-ai-council/changelog`; `sk-ai-small-model` symlink exists and points at `../skills/sk-ai-small-model/changelog`; `sk-ai-council` symlink does NOT exist.
+- **Run** `ls -la .opencode/changelog/ | grep -E "(deep-ai-council|sk-ai-council|sk-prompt-small-model)"`.
+- **Verify**: `deep-ai-council` symlink exists and points at `../skills/deep-ai-council/changelog`; `sk-prompt-small-model` symlink exists and points at `../skills/sk-prompt-small-model/changelog`; `sk-ai-council` symlink does NOT exist.
 - **Acceptance**: state matches the description above OR you halt and report what you actually saw.
 
 ### Step 2: Remove the dangling symlink

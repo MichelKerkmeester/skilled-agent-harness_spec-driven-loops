@@ -192,7 +192,7 @@
     ],
     "causal_summary": "After 022/001 ships the pluggable layer, skill-graph.sqlite still has gemma-encoded vectors in its (legacy) embedding cache. To activate jina-v3 in production, we need to: set `vec_metadata.active_embedder_name = jina-embeddings-v3`, reindex the skill-graph corpus with the new embedder, smoke-test that semantic-shadow lane returns sane top-K matches.",
     "created_at": "2026-05-18T08:07:25.978Z",
-    "last_save_at": "2026-05-23T11:55:15.472Z",
+    "last_save_at": "2026-05-24T05:40:26.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -7,7 +7,7 @@
 | ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context |
 | 🔍 **Code Index + Graph** | Callers, imports, impact paths, and concept-based code discovery |
 | 🤖 **11 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
-| 🎯 **21 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
+| 🎯 **22 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
 
 **Reasons to try it**
 
@@ -64,8 +64,8 @@ The framework adds four layers on top of the base platform:
 |                        |                                                                                                                                                                                                                                                   |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **🤖 11 Agents**        | 11 custom specialists, multi-runtime                                                                                                                                                                                                              |
-| **🎯 21 Skills**        | Code, docs, git, prompts, MCP, research, review, council, improvement, cross-AI, small-model sentinel, and standalone system packages                                                                                                              |
-| **⌨️ 22 Commands**      | 6 spec_kit + 4 memory + 6 create + 2 improve + 3 doctor + 1 agent_router                                                                                                                                                                          |
+| **🎯 22 Skills**        | Code, docs, git, prompts, MCP, research, review, council, improvement, cross-AI, small-model sentinel, and standalone system packages                                                                                                              |
+| **⌨️ 24 Commands**      | 4 speckit + 4 memory + 7 create + 4 deep + 3 doctor + 2 root utilities                                                                                                                                                                            |
 | **🔧 69 MCP Tools**     | mk-spec-memory (39), mk_skill_advisor (9), mk_code_index (11), code mode (7), CocoIndex (2), sequential thinking (1). See canonical count in FAQ                                                                            |
 | **🔍 CocoIndex Code**   | [Forked](.opencode/skills/mcp-coco-index/NOTICE) from [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0) - semantic code search via vector embeddings and natural-language discovery across 28+ languages |
 | **🏗️ Code Graph**       | First-class skill at [`.opencode/skills/system-code-graph/`](.opencode/skills/system-code-graph/) with standalone MCP server identity `mk_code_index` and client namespace `mcp__mk_code_index__*`                                               |
@@ -92,7 +92,7 @@ The framework adds four layers on top of the base platform:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 11 specialized│          │ 21 domain skills │
+         │ 11 specialized│          │ 22 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -165,6 +165,8 @@ bash .opencode/skills/mcp-coco-index/scripts/install.sh
 ```
 
 The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) ship as committed launcher binaries under `.opencode/bin/`. They self-vendor their dependencies on first invocation and the checked-in runtime configs already point at them. There is no separate build step.
+
+Runtime lifecycle guardrails are part of the native MCP stack. The servers share `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` for idle self-exit, and the repo ships a dry-run-first orphan process sweeper plus a LaunchAgent template under `.opencode/scripts/`. The LaunchAgent is not installed or loaded by default; activation is a separate operator-approved rollout. See [Repo Scripts Runbook](.opencode/scripts/README.md) and the [022 orphan MCP leak prevention packet](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md).
 
 ### Set Up Embedding Provider
 
@@ -919,7 +921,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Packet-local artifact persistence via `ai-council/**` output directory
 - Planning-only scope. Agent counterpart listed in the Agent Network section below
 
-**sk-ai-small-model**
+**sk-prompt-small-model**
 - Sentinel skill for small-model optimization patterns. Discovery anchor only — routes operators to executor-owned pattern files instead of hosting logic
 - Active dispatch matrix: SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1 across `cli-devin` + `cli-opencode` (DeepSeek API direct + opencode-go pool). Optional stubs for Claude Haiku and Gemini Flash
 - `references/pattern-index.md` maps each pattern (context budget, output verification, permissions matrix, quota fallback, model profiles, tool scoring) to its canonical executor-owned location
@@ -978,12 +980,13 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Loads `sk-doc` skill on every invocation. Reads the per-command or document-appropriate template before writing
 - Deterministic 3-state output contract: `STATUS=OK PATH=<file>` / `STATUS=FAIL ERROR=<reason>` / `STATUS=CANCELLED`
 - DQI score >=75 minimum reported in completion claim. HVR (Human Voice Rules) compliance enforced
+- Runtime lifecycle docs should stay HVR-concise: link to the scripts runbook and active spec packet instead of duplicating long process-cleanup instructions in every README.
 
 **Prompt-Improver**
 - Prompt-escalation specialist for high-stakes external CLI invocations and other sensitive AI prompt work
 - Selects the best-fit framework from `sk-prompt`, applies DEPTH at the right energy level and validates the result with CLEAR
 - Returns a structured prompt package with `FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT` and `ESCALATION_NOTES`
-- Used by the CLI mirror-card pipeline and `/improve:prompt` agent mode when complexity, compliance or stakeholder spread makes inline prompting too weak
+- Used by the CLI mirror-card pipeline and `/prompt` agent mode when complexity, compliance or stakeholder spread makes inline prompting too weak
 
 **AI Council**
 - Multi-strategy planning architect dispatching diverse AI vantage points and strategy lenses
@@ -1027,14 +1030,14 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 **Agent Improver**
 - Proposal-only mutator for bounded agent improvement experiments
 - Reads the target agent's charter, manifest and integration surface, then writes ONE candidate to a packet-local runtime area
-- Never scores, promotes, benchmarks or edits canonical targets. The `/improve:agent` command loop handles those.
+- Never scores, promotes, benchmarks or edits canonical targets. The `/deep:start-agent-improvement-loop` command loop handles those.
 - Loop orchestration: scan integration surfaces, generate dynamic profile, dispatch this agent, score candidate across 5 dimensions (structural, ruleCoherence, integration, outputQuality, systemFitness), reduce state, check stop conditions
 
 ---
 
 ### ⌨️ Commands
 
-22 command entry points across 6 namespaces. Each command is a Markdown entry point under `.opencode/commands/**/*.md` backed by a behavioral execution spec.
+24 command entry points across 5 command groups plus root utilities. Each command is a Markdown entry point under `.opencode/commands/**/*.md` backed by a behavioral execution spec.
 
 &nbsp;
 #### SPEC KIT
@@ -1061,38 +1064,10 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - 9-step workflow covering task breakdown, implementation, testing and verification
 - Modes: `:auto`, `:confirm`
 
-**Debug**
-- Delegates debugging to the debug agent with structured context handoff (not conversation history)
-- Fresh-perspective approach avoids confirmation bias from failed prior attempts
-- Writes `debug-delegation.md` with root cause analysis
-
 **Resume**
 - Continues a previous session by auto-loading memory from the spec folder
 - Presents session summary, shows progress against tasks.md
 - Works after crashes, compactions or new sessions
-
-**Deep Research**
-- Autonomous research loop dispatching deep-research agents iteratively until convergence
-- Anchors every run to a real `spec.md` under `spec_check_protocol.md`, with advisory lock handling, `folder_state` detection and bounded `BEGIN/END GENERATED` write-back
-- Externalized JSONL state enables pause/resume across sessions
-- Reducer parses terminal `synthesis_complete` events for authoritative stop metadata
-- Graph convergence guards block premature STOP when sourceDiversity or evidenceDepth thresholds fail
-- Lifecycle modes: `new`, `resume`, `restart` with lineage tracking across generations
-- Modes: `:auto`, `:confirm`
-
-**Deep Review**
-- Autonomous code review loop dispatching deep-review agents iteratively until convergence
-- Severity-weighted findings (P0/P1/P2) across 4 dimensions with release readiness verdicts (PASS/CONDITIONAL/FAIL)
-- Claim-adjudication packets with `finalSeverity` override, stale STOP veto auto-clearing
-- Binary quality gates (evidence, scope, coverage) checked after convergence math before allowing stop
-- Adversarial self-check on P0 findings using Hunter/Skeptic/Referee triad
-- Lifecycle modes: `new`, `resume`, `restart` with typed JSONL lineage events
-- Modes: `:auto`, `:confirm`
-
-**Handover**
-- Creates session handover document for continuing work in a new conversation
-- Gathers key decisions, blockers, current phase and next steps from spec folder state
-- Variants: `:quick` (summary) or `:full` (comprehensive)
 
 **Spec-first command chains**
 
@@ -1152,10 +1127,6 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Resolves correct component folder, calculates next version number
 - Generates formatted changelog file matching 370+ existing entries. Modes: `:auto`, `:confirm`
 
-**Prompt (planned)**
-- `/create:prompt` is a reserved surface, but there is no shipped `.opencode/commands/create/prompt.md` entry point in this repo snapshot
-- Use `/improve:prompt` or the `sk-prompt` skill directly when you need prompt work today
-
 **Feature Catalog**
 - Creates or updates feature catalog packages with category routing
 - Generates both technical reference entries and simple-terms companion entries
@@ -1169,9 +1140,33 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 The MCP server also ships explicit stress and matrix execution surfaces. Run `npm run stress` from [mcp_server/](.opencode/skills/system-spec-kit/mcp_server/) for the dedicated [stress_test/](.opencode/skills/system-spec-kit/mcp_server/stress_test/) suite, which covers search-quality, memory, skill-advisor, code-graph, session and matrix subsystems. [matrix_runners/](.opencode/skills/system-spec-kit/mcp_server/matrix_runners/) provides four per-CLI adapters plus a manifest and meta-runner for the F1-F14 feature matrix across `cli-codex`, `cli-gemini`, `cli-claude-code` and `cli-opencode`.
 
 &nbsp;
-#### IMPROVE
+#### DEEP
 
-**Improve Agent**
+**AI Council**
+- Multi-seat planning and strategy workflow for complex decisions
+- Produces packet-local `ai-council/**` artifacts, critique rounds and convergence evidence
+- Planning-only: never modifies implementation files directly
+- Modes: `:auto`, `:confirm`
+
+**Deep Research**
+- Autonomous research loop dispatching deep-research agents iteratively until convergence
+- Anchors every run to a real `spec.md` under `spec_check_protocol.md`, with advisory lock handling, `folder_state` detection and bounded `BEGIN/END GENERATED` write-back
+- Externalized JSONL state enables pause/resume across sessions
+- Reducer parses terminal `synthesis_complete` events for authoritative stop metadata
+- Graph convergence guards block premature STOP when sourceDiversity or evidenceDepth thresholds fail
+- Lifecycle modes: `new`, `resume`, `restart` with lineage tracking across generations
+- Modes: `:auto`, `:confirm`
+
+**Deep Review**
+- Autonomous code review loop dispatching deep-review agents iteratively until convergence
+- Severity-weighted findings (P0/P1/P2) across 4 dimensions with release readiness verdicts (PASS/CONDITIONAL/FAIL)
+- Claim-adjudication packets with `finalSeverity` override, stale STOP veto auto-clearing
+- Binary quality gates (evidence, scope, coverage) checked after convergence math before allowing stop
+- Adversarial self-check on P0 findings using Hunter/Skeptic/Referee triad
+- Lifecycle modes: `new`, `resume`, `restart` with typed JSONL lineage events
+- Modes: `:auto`, `:confirm`
+
+**Agent Improvement**
 - Evaluates and improves any agent across 5 integration-aware dimensions with deterministic scoring
 - Runs a bounded loop: scan integration surfaces, generate dynamic profile, dispatch `@deep-agent-improvement`, score candidate, reduce state, check stop conditions
 - Integration scanner discovers all surfaces an agent touches: canonical definition, runtime mirrors, command dispatch, YAML workflows, skill references
@@ -1183,11 +1178,6 @@ The MCP server also ships explicit stress and matrix execution surfaces. Run `np
 - Emits `legal_stop_evaluated` and `blocked_stop` events to the JSONL ledger matching the deep-loop runtime-truth contract
 - Session-boundary gate enforces fresh-session isolation before initialization
 - Modes: `:auto`, `:confirm`. Supports any agent in `.opencode/agents/` as target
-
-**Improve Prompt**
-- Refines prompts and prompt packages using 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
-- Applies DEPTH thinking methodology with CLEAR quality scoring
-- Used when the target already exists and needs structured improvement rather than new scaffolding
 
 &nbsp;
 #### DOCTOR
@@ -1224,6 +1214,11 @@ The 10 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self
 - The receiving AI operates under its own system prompt - full identity adoption
 - Use for cross-AI delegation where the target AI needs to behave as itself
 
+**Prompt**
+- Refines prompts and prompt packages through `/prompt` using 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
+- Applies DEPTH thinking methodology with CLEAR quality scoring
+- Can return inline improvements or route to `@prompt-improver` for higher-stakes prompt packages
+
 ---
 
 ### 🔌 Code Mode MCP
@@ -1243,6 +1238,8 @@ Canonical native server set:
 | `cocoindex_code`       | 2     | Semantic code search via vector embeddings                             |
 | `sequential_thinking`  | 1     | Structured multi-step reasoning for complex problems                   |
 | **Total**              | **69** |                                                                        |
+
+Lifecycle guardrails: `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` use the shared idle-timeout knob `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`. Orphan cleanup is documented in [.opencode/scripts/README.md](.opencode/scripts/README.md); the checked-in LaunchAgent is only a template until an operator copies and loads it.
 
 &nbsp;
 #### Code Mode Tools (7)
@@ -1356,10 +1353,11 @@ Feature flags control search channels, scoring signals, save-time enforcement an
 - **Search Pipeline** - 5-channel retrieval, fallback routing, reranking, graph-walk rollout, confidence and token-budget policies.
 - **Session/Cache** - Working memory, cache invalidation on DB rebind, session deduplication, recovery helpers.
 - **Memory/Storage** - Save quality gate, reconsolidation, governed scopes, causal graph maintenance, projection cleanup.
+- **Runtime Lifecycle** - MCP idle self-exit through `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`; orphan sweeper rollout remains dry-run-first until explicitly installed.
 - **Embedding/API** - Startup provider resolution, fail-fast dimension checks, structured fallback metadata for effective vs requested provider.
 - **Evaluation/Debug** - Trace mode, eval logging, ablation/reporting guardrails, feedback evaluation and proposal diagnostics that observe candidates without reordering live results.
 
-For the complete flag reference with per-flag defaults, see [MCP Server README Section 5](.opencode/skills/system-spec-kit/mcp_server/README.md#5-configuration).
+For the complete flag reference with per-flag defaults, see [ENV_REFERENCE.md](.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md) and the [MCP Server runtime guardrail notes](.opencode/skills/system-spec-kit/mcp_server/README.md#8--runtime-lifecycle-guardrails).
 
 &nbsp;
 ### Database Schema
@@ -1488,7 +1486,7 @@ A: 69 total across 6 native MCP servers, sourced from registered MCP-dispatched 
 
 **Q: What is the feature catalog?**
 
-A: The feature catalog is a 290-entry reference across 22 categories documenting every capability of the memory system. The technical reference lives at `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`. The code graph runtime adds package-local docs at `.opencode/skills/system-code-graph/feature_catalog/`.
+A: The feature catalog is the current technical reference documenting the memory system's live capabilities. It lives at `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`. The code graph runtime adds package-local docs at `.opencode/skills/system-code-graph/feature_catalog/`.
 
 <!-- /ANCHOR:faq -->
 
@@ -1504,6 +1502,8 @@ A: The feature catalog is a 290-entry reference across 22 categories documenting
 - **[→ AGENTS.md](AGENTS.md)** - Agent routing, gate definitions, behavior rules
 - **[→ Spec Kit README](.opencode/skills/system-spec-kit/README.md)** - Spec folder workflow, Level contract template set, validation rules
 - **[→ MCP Server README](.opencode/skills/system-spec-kit/mcp_server/README.md)** - Memory API reference and runtime support docs
+- **[→ Repo Scripts Runbook](.opencode/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
+- **[→ Orphan MCP Leak Prevention Packet](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)** - Canonical implementation summary and rollout state
 - **[→ System Code Graph Skill](.opencode/skills/system-code-graph/SKILL.md)** - First-class structural graph skill and MCP routing rules
 - **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Standalone `mk_skill_advisor` server, nine advisor/skill-graph tools and routing docs
 - **[→ Install Guide](.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md)** - MCP server setup, embedding providers
@@ -1511,7 +1511,8 @@ A: The feature catalog is a 290-entry reference across 22 categories documenting
 - **[→ Architecture](.opencode/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
 - **[→ sk-doc Skill](.opencode/skills/sk-doc/SKILL.md)** - Documentation standards, DQI scoring
 - **[→ Skills Index](.opencode/skills/README.md)** - Skills library and invocation patterns
-- **[→ Feature Catalog](.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md)** - 290-entry technical reference
+- **[→ Feature Catalog](.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md)** - Current technical reference
+- **[→ Manual Testing Playbook](.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md)** - Operator validation scenarios, including runtime lifecycle checks
 - **[→ Code Graph Runtime Catalog](.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md)** - Package-local code graph runtime inventory
 - **[→ Code Graph Manual Playbook](.opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md)** - Operator scenarios for code graph validation
 - **[→ Latest System Spec-Kit Release Notes](.opencode/skills/system-spec-kit/changelog/v3.4.1.0.md)** - Most recent shipped release notes
@@ -1525,4 +1526,4 @@ A: The feature catalog is a 290-entry reference across 22 categories documenting
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.13 | Last updated: 2026-05-18 | Framework: 11 agents, 22 skills, 22 commands, 69 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 11 mk_code_index + 7 code mode + 2 CocoIndex + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.13 | Last updated: 2026-05-24 | Framework: 11 agents, 22 skills, 24 commands, 69 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 11 mk_code_index + 7 code mode + 2 CocoIndex + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*

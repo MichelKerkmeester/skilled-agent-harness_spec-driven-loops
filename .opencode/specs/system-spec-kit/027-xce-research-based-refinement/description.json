@@ -47,17 +47,23 @@
     "016-coco-memory-context-extras",
     "017-cocoindex-memory-port-research"
   ],
-  "specFolder": "027-xce-research-based-refinement",
-  "description": "Phase parent for the XCE adoption work + non-code spec_kit_memory port stream. Reorganized 2026-05-13: full renumber by execution order. 17 phase children: 001 MCP namespace rename to mk-spec-memory (ship first, HIGH ROI x LOW effort); 002 P0 correctness fixes precondition for downstream reducers; 003-006 new spec_kit_memory port packets from 013 deep research (memoization+DAG foundation, causal-graph lifecycle tombstones, frontmatter causal-edge promoter, statediff reconciliation); 007-010 code_graph chain (HLD/LLD, trace, impact analysis, adoption eval); 011-012 memory feedback chain (semantic triggers, learning reducers); 013-016 cocoindex-code wrapper consumer chain blocked on 013 fork; 017 research archive of converged 013 deep research from pre-renumber numbering. Cancelled phases (000 placeholder + 005 skill-advisor-first-action-mandate per pt-04 MERGE into 103/003) deleted from parent. Memory DB packet_pointer refs migrated alongside.",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement",
+  "description": "Feature Specification: XCE Research-Based Refinement (Phase Parent)",
   "keywords": [
-    "statediff",
-    "reconciliation",
-    "layer"
+    "feature",
+    "specification",
+    "xce",
+    "research-based",
+    "refinement",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-05-13T09:18:48.630Z",
+  "lastUpdated": "2026-05-23T15:25:01.034Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit"
+  ],
   "memorySequence": 4,
   "memoryNameHistory": [
     "08-05-26_16-41__2nd-pass-cross-validation-deep-research-run-via.md",

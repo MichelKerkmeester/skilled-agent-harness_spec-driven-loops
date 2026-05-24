@@ -112,6 +112,7 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'code review': [['sk-code-review', 1]],
   'review the routing': [['sk-code-review', 0.6]],
   'review the taxonomy': [['sk-code-review', 0.6]],
+  'review the routing taxonomy': [['sk-code-review', 1.1], ['sk-doc', -0.4]],
   'review the packet docs': [['sk-code-review', 1.2]],
   'audit packet docs': [['sk-code-review', 1.2]],
   'documented consistently': [['sk-code-review', 1]],
@@ -226,6 +227,10 @@ export function scoreExplicitLane(prompt: string, projection: AdvisorProjection)
     push(scores, 'memory:save', 1.2, 'memory-preservation-session-intent');
     push(scores, 'command-memory-save', 0.8, 'memory-preservation-session-intent');
     push(scores, 'system-spec-kit', 0.3, 'memory-preservation-session-intent');
+  }
+  if (lower.includes('/speckit:resume')) {
+    push(scores, 'system-spec-kit', 0.4, 'speckit-resume-skill-disambiguation');
+    push(scores, 'command-spec-kit', -1.0, 'speckit-resume-skill-disambiguation');
   }
   // F-013-C3-01: Review-plus-write disambiguation. When the prompt contains
   // the word `review` AND any explicit write/edit verb (`update|edit|fix|modify`),

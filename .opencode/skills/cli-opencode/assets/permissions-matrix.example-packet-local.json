@@ -87,7 +87,7 @@
       "rationale": "Phase 003 updates ONLY ALWAYS rule 13."
     },
     {
-      "target_glob": ".opencode/skills/sk-ai-small-model/references/pattern-index.md",
+      "target_glob": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
       "operation_class": "edit",
       "scope": "packet-local",
       "effect": "allow",

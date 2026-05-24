@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/016-runtime-hook-plugin-testing",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing",
   "description": "Spec: Hook Plugin Per Runtime Testing",
   "keywords": [
     "spec",
@@ -9,13 +9,14 @@
     "runtime",
     "testing"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.458Z",
-  "specId": "030",
-  "folderSlug": "hook-plugin-per-runtime-testing",
+  "lastUpdated": "2026-05-23T15:24:59.861Z",
+  "specId": "016",
+  "folderSlug": "runtime-hook-plugin-testing",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

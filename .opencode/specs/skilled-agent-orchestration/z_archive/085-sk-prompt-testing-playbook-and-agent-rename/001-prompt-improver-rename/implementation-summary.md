@@ -56,7 +56,7 @@ Four physical file renames: `.opencode/agents/improve-prompt.md` → `prompt-imp
 
 ### Reference rotations across active scope
 
-35 active-scope files carried `@improve-prompt` or `improve-prompt` references. The dispatcher command body, 5 cli-* prompt_quality_card mirrors, sk-prompt SKILL.md §7 agent contract, root README/AGENTS.md, install guides, active changelogs, advisor scripts, and 4 runtime READMEs all rotated. The dispatcher command name `/improve:prompt` and the command file path itself stay UNCHANGED — only body references to the agent change.
+35 active-scope files carried `@improve-prompt` or `improve-prompt` references. The dispatcher command body, 5 cli-* prompt_quality_card mirrors, sk-prompt SKILL.md §7 agent contract, root README/AGENTS.md, install guides, active changelogs, advisor scripts, and 4 runtime READMEs all rotated. The dispatcher command name `/prompt` and the command file path itself stay UNCHANGED — only body references to the agent change.
 
 ### Files Changed
 
@@ -103,7 +103,7 @@ cli-codex gpt-5.5 medium fast handled 32 of 35 reference files via `sed -i` rota
 | Active-scope `improve-prompt` (case-insensitive, post deep-review fix) | 0 hits |
 | Advisor probe `"improve my prompt"` → top-1 | `sk-prompt` @ 0.9262 |
 | Strict validate phase 001 | PASS — 0 errors, 0 warnings |
-| Dispatcher command `/improve:prompt` unchanged | PASS — file at `.opencode/commands/improve/prompt.md` exists; only body refs rotated |
+| Dispatcher command `/prompt` unchanged | PASS — file at `.opencode/commands/prompt.md` exists; only body refs rotated |
 <!-- /ANCHOR:verification -->
 
 ---

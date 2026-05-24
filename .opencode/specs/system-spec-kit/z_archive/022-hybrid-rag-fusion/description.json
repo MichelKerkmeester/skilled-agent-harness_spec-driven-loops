@@ -1,12 +1,14 @@
 {
   "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
-  "description": "Manual scenario description",
+  "description": "Feature Specification: Hybrid RAG Fusion",
   "keywords": [
-    "manual",
-    "scenario",
-    "description"
+    "feature",
+    "specification",
+    "hybrid",
+    "rag",
+    "fusion"
   ],
-  "lastUpdated": "2026-05-16T20:00:29.369Z",
+  "lastUpdated": "2026-05-23T15:25:01.071Z",
   "specId": "022",
   "folderSlug": "hybrid-rag-fusion",
   "parentChain": [

@@ -64,7 +64,7 @@ Use support names first, then map to the runtime-local surface below when wiring
 3. **SessionStart** — Fires on session start. Routes by source:
    - `compact`: Reads cached PreCompact payload, injects via stdout
    - `startup`: Primes with Spec Kit Memory overview
-   - `resume`: Loads prior session state — respects the phase-parent pointer redirect documented in `references/hooks/skill-advisor-hook.md`. When the resume target is a phase parent and `derived.last_active_child_id` is fresh (<24h), priming surfaces the active child rather than the parent's listing
+   - `resume`: Loads prior session state — respects the phase-parent pointer redirect documented in `references/hooks/skill_advisor_hook.md`. When the resume target is a phase parent and `derived.last_active_child_id` is fresh (<24h), priming surfaces the active child rather than the parent's listing
    - `clear`: Minimal output
    Gemini and Copilot keep runtime-specific transport output, but both can forward the same session and spec-folder startup scope used by Claude when that input is available. Codex only reports live native-hook readiness when `[features].codex_hooks = true` is enabled in `~/.codex/config.toml` or equivalent launch flags and a user/workspace `hooks.json` is wired. Repo `.codex/settings.json` is a template/example, not the live readiness predicate.
 4. **Session cleanup** — `Stop` in Claude, `SessionEnd` in Gemini, and cleanup `event` handlers in OpenCode. Parses transcript JSONL for token usage, calculates cost estimates, and stores snapshots when the runtime supports it.

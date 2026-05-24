@@ -41,7 +41,7 @@ _memory:
     key_files:
       - ".opencode/skills/sk-improve-prompt/assets/cli_prompt_quality_card.md"
       - ".opencode/agents/improve-prompt.md"
-      - ".opencode/commands/improve/prompt.md"
+      - ".opencode/commands/prompt.md"
     session_dedup:
       fingerprint: "sha256:043-cli-skill-improved-prompting"
       session_id: "043-cli-skill-improved-prompting"
@@ -50,7 +50,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Use local mirror cards instead of cross-skill paths because _guard_in_skill rejects ..-prefixed routes"
-      - "Auto-select agent mode in /improve:prompt when complexity_hint >= 7 or isolation is requested"
+      - "Auto-select agent mode in /prompt when complexity_hint >= 7 or isolation is requested"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: CLI Skill Prompt-Quality Integration via Mirror Cards
@@ -66,7 +66,7 @@ The four CLI orchestration skills currently build dispatch prompts ad hoc from t
 
 **Key Decisions**: keep all routable assets inside each calling skill tree, use one canonical card in `sk-improve-prompt` plus four local mirrors, and route complexity-7+ or compliance-heavy prompts through a dedicated agent instead of inline full-skill loading.
 
-**Critical Dependencies**: `sk-improve-prompt` framework/CLEAR source material, the existing `_guard_in_skill()` self-containment rule inside all CLI skills, current `/improve:prompt` command behavior, and parity across `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`.
+**Critical Dependencies**: `sk-improve-prompt` framework/CLEAR source material, the existing `_guard_in_skill()` self-containment rule inside all CLI skills, current `/prompt` command behavior, and parity across `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`.
 
 ---
 
@@ -81,7 +81,7 @@ The four CLI orchestration skills currently build dispatch prompts ad hoc from t
 | **Created** | 2026-04-11 |
 | **Branch** | `system-spec-kit/026-graph-and-context-optimization` |
 | **Spec Folder** | `.opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/` |
-| **Primary Runtime Surface** | `.opencode/skills/cli-*`, `.opencode/skills/sk-improve-prompt/`, `.opencode/commands/improve/prompt.md`, runtime agent mirrors |
+| **Primary Runtime Surface** | `.opencode/skills/cli-*`, `.opencode/skills/sk-improve-prompt/`, `.opencode/commands/prompt.md`, runtime agent mirrors |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -110,7 +110,7 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 - Update the four CLI skill definitions so the local card loads in the `ALWAYS` set and drives prompt-construction rules.
 - Tag existing CLI prompt templates with framework annotations.
 - Add a new `@improve-prompt` runtime agent across all active runtime directories.
-- Update `/improve:prompt` so it can route either through inline skill loading or the isolated agent path.
+- Update `/prompt` so it can route either through inline skill loading or the isolated agent path.
 - Document the new `sk-improve-prompt` agent-consumption contract and fast-path asset.
 - Add a lightweight drift-detection shell check for prompt-quality-card mirror sync verification.
 
@@ -140,7 +140,7 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 | `.claude/agents/` | Create | Claude runtime mirror |
 | `.codex/agents/` | Create | Codex runtime mirror |
 | `.gemini/agents/` | Create | Gemini runtime mirror |
-| `.opencode/commands/improve/prompt.md` | Modify | Add dispatch-mode branch and agent routing documentation |
+| `.opencode/commands/prompt.md` | Modify | Add dispatch-mode branch and agent routing documentation |
 | `.opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh` | Create | Drift-check script that hashes the framework-selection table across the canonical card and four mirrors |
 <!-- /ANCHOR:scope -->
 
@@ -158,7 +158,7 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 | REQ-003 | Load the prompt-quality card in every CLI dispatch path | Each CLI skill adds the local prompt-quality card to the `ALWAYS` loading block and describes pre-dispatch framework selection plus CLEAR checks in its rules section |
 | REQ-004 | Preserve the lightweight fast path | Routine CLI dispatches do not load the full `sk-improve-prompt` skill body; they use only the local mirror card and the existing skill-local prompt templates |
 | REQ-005 | Add an escalation path for hard prompts | Complexity-7+, compliance/security-sensitive, multi-stakeholder, or ambiguous prompts route through a dedicated `@improve-prompt` agent and return a structured enhancement block |
-| REQ-006 | Update `/improve:prompt` to share the same escalation surface | The command documents and supports both inline skill mode and agent-dispatch mode, with agent mode auto-selected when complexity signals require isolation |
+| REQ-006 | Update `/prompt` to share the same escalation surface | The command documents and supports both inline skill mode and agent-dispatch mode, with agent mode auto-selected when complexity signals require isolation |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -180,7 +180,7 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 - **SC-001**: All four CLI skills load a local prompt-quality card by default without violating the `_guard_in_skill()` invariant.
 - **SC-002**: Routine CLI dispatches gain framework selection and CLEAR pre-check guidance with only a small context increase.
 - **SC-003**: High-complexity or compliance-heavy prompts route through one shared `@improve-prompt` agent surface instead of inline full-skill loading.
-- **SC-004**: `/improve:prompt` exposes both inline and agent dispatch modes so the command and CLI skills share one improvement surface.
+- **SC-004**: `/prompt` exposes both inline and agent dispatch modes so the command and CLI skills share one improvement surface.
 - **SC-005**: Runtime mirrors for the new agent are available across every active runtime directory in this repo.
 - **SC-006**: Verification proves local-card loading, no `..` routable paths, framework-tagged prompt templates, and documented escalation behavior.
 
@@ -188,8 +188,8 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 
 1. **Given** a CLI skill dispatches a routine generation or review task, **when** Smart Routing loads resources, **then** the local prompt-quality card is present in the loaded context and the full `sk-improve-prompt` skill is not required.
 2. **Given** a prompt trips complexity or compliance escalation signals, **when** the CLI skill constructs the request, **then** it routes through `@improve-prompt` and receives a structured response containing framework, CLEAR score, rationale, enhanced prompt, and escalation notes.
-3. **Given** `/improve:prompt` runs with ordinary input, **when** no escalation signals are present, **then** it stays in inline skill mode.
-4. **Given** `/improve:prompt` runs with complexity `>= 7` or explicit isolation preference, **when** dispatch mode is resolved, **then** it uses the same `@improve-prompt` agent path documented for the CLI skills.
+3. **Given** `/prompt` runs with ordinary input, **when** no escalation signals are present, **then** it stays in inline skill mode.
+4. **Given** `/prompt` runs with complexity `>= 7` or explicit isolation preference, **when** dispatch mode is resolved, **then** it uses the same `@improve-prompt` agent path documented for the CLI skills.
 5. **Given** maintainers inspect the packet docs later, **when** they compare spec, plan, tasks, checklist, and ADRs, **then** the mirror-card design, runtime-mirror requirement, and out-of-scope boundaries all match.
 6. **Given** a maintainer checks runtime coverage, **when** they inspect the active runtime directories, **then** the packet clearly requires parity across OpenCode, Claude, Codex, and Gemini surfaces.
 <!-- /ANCHOR:success-criteria -->
@@ -203,7 +203,7 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 |------|------|--------|------------|
 | Dependency | The framework and CLEAR reference material under `sk-improve-prompt/references/` remains the source of truth | High | Keep the canonical card derived from those sources and document it as the upstream source for mirrors |
 | Dependency | `_guard_in_skill()` and `discover_markdown_resources()` keep enforcing same-tree markdown routing | High | Keep every routable card under the calling skill's own `assets/` directory |
-| Dependency | `/improve:prompt` currently forbids agent dispatch | High | Update the command contract and setup flow before claiming agent-mode support |
+| Dependency | `/prompt` currently forbids agent dispatch | High | Update the command contract and setup flow before claiming agent-mode support |
 | Risk | Mirror cards drift from the canonical card over time | Medium | Add sync footer hashes plus either a fixture or an explicit maintenance rule |
 | Risk | Runtime mirrors diverge across `.opencode`, `.claude`, `.codex`, and `.gemini` | Medium | Mirror one canonical agent contract and verify all active runtime directories are updated together |
 | Risk | CLI `ALWAYS` loading grows too large and defeats the fast-path goal | Medium | Keep each mirror card compact and avoid moving full framework prose into the mirror files |
@@ -264,7 +264,7 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
 | R-001 | Cross-skill resource loading is attempted despite guard constraints | High | Medium | Keep mirror cards local to each CLI skill |
-| R-002 | `/improve:prompt` remains inline-only while CLI skills expect shared escalation behavior | High | Medium | Update command routing and docs in the same packet |
+| R-002 | `/prompt` remains inline-only while CLI skills expect shared escalation behavior | High | Medium | Update command routing and docs in the same packet |
 | R-003 | Runtime mirrors drift across four agent directories | Medium | Medium | Treat the OpenCode agent definition as canonical and sync the mirrors in one pass |
 | R-004 | Mirror cards expand beyond the intended lightweight footprint | Medium | Medium | Keep cards tabular and condensed; reserve deep explanation for the full skill |
 | R-005 | Optional drift fixture widens scope late in the packet | Low | Medium | Make the fixture a late-phase task with explicit go/no-go review |
@@ -291,10 +291,10 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 
 ### US-003: Keep One Shared Improvement Surface (Priority: P1)
 
-**As a** maintainer of prompt-improvement workflows, **I want** `/improve:prompt` and the CLI skills to share the same escalation agent, **so that** there is one documented high-complexity path instead of competing implementations.
+**As a** maintainer of prompt-improvement workflows, **I want** `/prompt` and the CLI skills to share the same escalation agent, **so that** there is one documented high-complexity path instead of competing implementations.
 
 **Acceptance Criteria**:
-1. Given `/improve:prompt`, when dispatch mode is resolved, then inline mode and agent mode are both documented and selectable.
+1. Given `/prompt`, when dispatch mode is resolved, then inline mode and agent mode are both documented and selectable.
 2. Given a complex prompt through the command, when agent mode is chosen, then it uses the same `@improve-prompt` contract documented for the CLI skills.
 
 ### US-004: Maintain Mirrors Without Guesswork (Priority: P1)
@@ -313,7 +313,7 @@ Define and implement a guard-safe two-tier prompt-quality architecture that impr
 No open questions remain for packet closeout.
 
 - Resolved: the optional drift check landed as `.opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh`, and `bash .opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh` reports `SYNC OK`.
-- Resolved: `/improve:prompt` now auto-selects Agent mode from `complexity_hint >= 7` and from explicit isolation or fresh-context requests, while keeping Inline mode as the default otherwise.
+- Resolved: `/prompt` now auto-selects Agent mode from `complexity_hint >= 7` and from explicit isolation or fresh-context requests, while keeping Inline mode as the default otherwise.
 <!-- /ANCHOR:questions -->
 
 ---

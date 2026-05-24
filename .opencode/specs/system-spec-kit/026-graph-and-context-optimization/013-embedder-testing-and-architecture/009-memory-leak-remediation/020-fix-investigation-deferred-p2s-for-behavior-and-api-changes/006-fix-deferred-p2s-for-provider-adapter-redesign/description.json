@@ -1,30 +1,20 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/006-fix-deferred-p2s-for-provider-adapter-redesign",
-  "description": "Final arc 020 provider adapter redesign bucket closing F10, F23, F63, F64, F71, and F75 in execution-router.ts and sidecar-worker.ts.",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/006-fix-deferred-p2s-for-provider-adapter-redesign",
+  "description": "Feature Specification: Provider Adapter Redesign Deferred P2 Closure",
   "keywords": [
-    "final",
-    "arc",
-    "020",
+    "feature",
+    "specification",
     "provider",
     "adapter",
     "redesign",
-    "bucket",
-    "closing",
-    "f10",
-    "f23",
-    "f63",
-    "f64",
-    "f71",
-    "f75",
-    "execution-router",
-    "sidecar-worker"
+    "deferred",
+    "closure"
   ],
-  "lastUpdated": "2026-05-23T11:11:12.600Z",
+  "lastUpdated": "2026-05-23T15:25:01.003Z",
   "specId": "006",
   "folderSlug": "fix-deferred-p2s-for-provider-adapter-redesign",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "013-embedder-testing-and-architecture",
@@ -32,6 +22,5 @@
     "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

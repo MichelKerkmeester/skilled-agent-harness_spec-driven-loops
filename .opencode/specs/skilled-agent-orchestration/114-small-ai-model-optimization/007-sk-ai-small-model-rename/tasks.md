@@ -1,15 +1,15 @@
 ---
-title: "Tasks: Phase 7 — rename sk-small-model → sk-ai-small-model"
+title: "Tasks: Phase 7 — rename sk-small-model → sk-prompt-small-model"
 description: "Task breakdown for the rename + propagation + advisor-reindex Phase 7 work."
 trigger_phrases:
   - "rename tasks"
-  - "sk-ai-small-model tasks"
+  - "sk-prompt-small-model tasks"
   - "skill rename task breakdown"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename"
+    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename"
     last_updated_at: "2026-05-21T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored tasks.md"
@@ -30,7 +30,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Tasks: Phase 7 — rename sk-small-model → sk-ai-small-model
+# Tasks: Phase 7 — rename sk-small-model → sk-prompt-small-model
 
 ---
 
@@ -75,13 +75,13 @@ Estimated wall-clock per task: 1–10 min unless noted.
 
 ### Phase C — Skill body rename (~5 min)
 
-- [ ] **T020** [D:T016] `git mv .opencode/skills/sk-small-model .opencode/skills/sk-ai-small-model`.
-- [ ] **T021** [D:T020] Edit `sk-ai-small-model/SKILL.md`: frontmatter `name`, H1, in-body refs.
-- [ ] **T022** [D:T020] [P] Edit `sk-ai-small-model/README.md`: title + body refs.
-- [ ] **T023** [D:T020] [P] Edit `sk-ai-small-model/description.json`: skill_id + name + path fields.
-- [ ] **T024** [D:T020] [P] Edit `sk-ai-small-model/graph-metadata.json`: `skill_id`, derived.entities[].name, derived.entities[].path, derived.key_files.
-- [ ] **T025** [D:T020] [P] Edit `sk-ai-small-model/references/pattern-index.md`: header + self-refs only.
-- [ ] **T026** [D:T020] [P] Create `sk-ai-small-model/changelog/v0.3.0.0.md` with rename notice.
+- [ ] **T020** [D:T016] `git mv .opencode/skills/sk-small-model .opencode/skills/sk-prompt-small-model`.
+- [ ] **T021** [D:T020] Edit `sk-prompt-small-model/SKILL.md`: frontmatter `name`, H1, in-body refs.
+- [ ] **T022** [D:T020] [P] Edit `sk-prompt-small-model/README.md`: title + body refs.
+- [ ] **T023** [D:T020] [P] Edit `sk-prompt-small-model/description.json`: skill_id + name + path fields.
+- [ ] **T024** [D:T020] [P] Edit `sk-prompt-small-model/graph-metadata.json`: `skill_id`, derived.entities[].name, derived.entities[].path, derived.key_files.
+- [ ] **T025** [D:T020] [P] Edit `sk-prompt-small-model/references/pattern-index.md`: header + self-refs only.
+- [ ] **T026** [D:T020] [P] Create `sk-prompt-small-model/changelog/v0.3.0.0.md` with rename notice.
 
 ### Phase D — Sibling propagation (~5 min, parallel-safe)
 
@@ -103,7 +103,7 @@ Estimated wall-clock per task: 1–10 min unless noted.
 - [ ] **T042** [P] [D:T020] Edit `README.md` line 912 skill catalog entry.
 - [ ] **T043** [P] [D:T020] Edit `~/.claude/projects/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/memory/MEMORY.md` dispatch-matrix entry description.
 - [ ] **T044** [P] [D:T020] Edit `~/.claude/projects/…/memory/reference_small_model_dispatch_matrix.md` body refs (NOT filename slug).
-- [ ] **T045** [P] [D:T020] Edit `~/.claude/projects/…/memory/feedback_skill_graph_compiler_rebuild.md`: tag refs with "(renamed sk-ai-small-model 2026-05-21)".
+- [ ] **T045** [P] [D:T020] Edit `~/.claude/projects/…/memory/feedback_skill_graph_compiler_rebuild.md`: tag refs with "(renamed sk-prompt-small-model 2026-05-21)".
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -114,10 +114,10 @@ Estimated wall-clock per task: 1–10 min unless noted.
 ### Phase F — advisor reindex (~3 min, sequential)
 
 - [ ] **T050** [D:T021..T045] Run `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py --export-json --pretty` → `007-…/scratch/compiler.log`.
-- [ ] **T051** [D:T050] `jq '.generated_at, (.skills | has("sk-ai-small-model")), (.skills | has("sk-small-model"))' …/skill-graph.json` — expect fresh, true, false.
+- [ ] **T051** [D:T050] `jq '.generated_at, (.skills | has("sk-prompt-small-model")), (.skills | has("sk-small-model"))' …/skill-graph.json` — expect fresh, true, false.
 - [ ] **T052** [D:T051] Run `advisor_rebuild` MCP call.
 - [ ] **T053** [D:T052] Run `advisor_validate` MCP call → `007-…/scratch/advisor-validate.json`; expect no orphans.
-- [ ] **T054** [D:T053] Run `advisor_recommend({input: "dispatch swe-1.6 via cli-devin"})` → `007-…/scratch/advisor-recommend.json`; expect sk-ai-small-model top-3 ≥ 0.7.
+- [ ] **T054** [D:T053] Run `advisor_recommend({input: "dispatch swe-1.6 via cli-devin"})` → `007-…/scratch/advisor-recommend.json`; expect sk-prompt-small-model top-3 ≥ 0.7.
 
 ### Phase G — Validate + parent reconcile (~3 min)
 
@@ -126,7 +126,7 @@ Estimated wall-clock per task: 1–10 min unless noted.
 - [ ] **T062** [D:T060,T061] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <007> --strict` → exit 0.
 - [ ] **T063** [D:T062] Edit `114/spec.md` PHASE DOCUMENTATION MAP: append Phase 7 row only.
 - [ ] **T064** [D:T062] Step 13 work — Refresh `114/graph-metadata.json` via `generate-context.js` (children_ids += 007; derived.last_active_child_id).
-- [ ] **T065** [D:T064] `memory_index_scan({ specFolder: "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename" })`.
+- [ ] **T065** [D:T064] `memory_index_scan({ specFolder: "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename" })`.
 
 ### Step 11.5 + 12 — Postflight + summary + nested changelog
 

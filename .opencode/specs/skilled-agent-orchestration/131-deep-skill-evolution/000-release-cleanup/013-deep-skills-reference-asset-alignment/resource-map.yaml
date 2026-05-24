@@ -1,0 +1,308 @@
+schema_version: "1.0"
+phase: "013-deep-skills-reference-asset-alignment"
+owner: "sk-doc"
+rcaf_required: true
+approval_gate_before_phase_9: true
+resources:
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/SKILL.md
+    artifact_type: skill_md
+    sk_doc_template: skill_md_template
+    current_status: updated
+    target_status: aligned
+    owner_phase: 6
+    change_policy: align_router
+    domain_uniqueness_note: "Council router loads planning, seat, critique, persistence, and council asset resources."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-ai-council/SKILL.md --type skill --blocking-only"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/README.md
+    artifact_type: skill_readme
+    sk_doc_template: skill_readme_template
+    current_status: updated
+    target_status: aligned
+    owner_phase: 6
+    change_policy: align_readme
+    domain_uniqueness_note: "Explains council planning, not research investigation or code review."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-ai-council/README.md --type readme --blocking-only"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/references/quick_reference.md
+    artifact_type: skill_reference
+    sk_doc_template: skill_reference_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 4
+    change_policy: create
+    domain_uniqueness_note: "Council operator cheat sheet centers seats, agreement, persistence, and completion advisory."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-ai-council/references/quick_reference.md --type reference --blocking-only"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/references/loop_protocol.md
+    artifact_type: skill_reference
+    sk_doc_template: skill_reference_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 4
+    change_policy: create
+    domain_uniqueness_note: "Council workflow is packet resolve, seat, critique, converge, persist, recover."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-ai-council/references/loop_protocol.md --type reference --blocking-only"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/references/
+    artifact_type: skill_reference_family
+    sk_doc_template: skill_reference_template
+    current_status: expanded
+    target_status: aligned
+    owner_phase: 4
+    change_policy: preserve_existing_plus_new
+    domain_uniqueness_note: "Existing council references retain planning, output schema, seat diversity, failure, graph projection, deep-mode, and registry topics."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-ai-council --json"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/assets/deep_ai_council_config.json
+    artifact_type: skill_asset
+    sk_doc_template: skill_asset_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 5
+    change_policy: create
+    domain_uniqueness_note: "Council config captures round count, seat count, one-CLI-per-round, persistence, and graph projection boundaries."
+    validation_command: "jq empty .opencode/skills/deep-ai-council/assets/deep_ai_council_config.json"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/assets/deep_ai_council_strategy.md
+    artifact_type: skill_asset
+    sk_doc_template: skill_asset_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 5
+    change_policy: create
+    domain_uniqueness_note: "Council strategy tracks seats, disagreements, convergence status, and handoff risk."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-ai-council/assets/deep_ai_council_strategy.md --type asset --blocking-only"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/assets/deep_ai_council_dashboard.md
+    artifact_type: skill_asset
+    sk_doc_template: skill_asset_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 5
+    change_policy: create
+    domain_uniqueness_note: "Council dashboard reports round, seat, convergence, and artifact health status."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-ai-council/assets/deep_ai_council_dashboard.md --type asset --blocking-only"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/assets/prompt_pack_round.md.tmpl
+    artifact_type: skill_asset
+    sk_doc_template: skill_asset_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 5
+    change_policy: create
+    domain_uniqueness_note: "Council prompt pack frames one seat recommendation, critique, risk, and verdict."
+    validation_command: "rg -n \"Council seat verdict\" .opencode/skills/deep-ai-council/assets/prompt_pack_round.md.tmpl"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/assets/runtime_capabilities.json
+    artifact_type: skill_asset
+    sk_doc_template: skill_asset_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 5
+    change_policy: create
+    domain_uniqueness_note: "Council capability matrix records planning-only and one-CLI-per-round invariants."
+    validation_command: "jq empty .opencode/skills/deep-ai-council/assets/runtime_capabilities.json"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/feature_catalog/FEATURE_CATALOG.md
+    artifact_type: feature_catalog
+    sk_doc_template: feature_catalog_template
+    current_status: unchanged
+    target_status: mapped
+    owner_phase: 2
+    change_policy: observe
+    domain_uniqueness_note: "Council feature catalog remains scenario-based around deliberation, persistence, and graph support."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-ai-council --json"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md
+    artifact_type: manual_testing_playbook
+    sk_doc_template: manual_testing_playbook_template
+    current_status: unchanged
+    target_status: mapped
+    owner_phase: 2
+    change_policy: observe
+    domain_uniqueness_note: "Council playbook tests routing, persistence, convergence, rollback, and graph projection."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-ai-council --json"
+  - skill: deep-ai-council
+    path: .opencode/skills/deep-ai-council/changelog/v2.2.0.0.md
+    artifact_type: changelog
+    sk_doc_template: changelog_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 7
+    change_policy: create
+    domain_uniqueness_note: "Council changelog separates template, reference, asset, router, and README changes."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-ai-council/changelog/v2.2.0.0.md --type reference --blocking-only"
+
+  - skill: deep-research
+    path: .opencode/skills/deep-research/SKILL.md
+    artifact_type: skill_md
+    sk_doc_template: skill_md_template
+    current_status: updated
+    target_status: aligned
+    owner_phase: 6
+    change_policy: version_and_navigation
+    domain_uniqueness_note: "Research router stays focused on novelty, sources, negative knowledge, question coverage, and synthesis."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-research/SKILL.md --type skill --blocking-only"
+  - skill: deep-research
+    path: .opencode/skills/deep-research/README.md
+    artifact_type: skill_readme
+    sk_doc_template: skill_readme_template
+    current_status: updated
+    target_status: aligned
+    owner_phase: 6
+    change_policy: version_and_navigation
+    domain_uniqueness_note: "Research README presents iterative investigation and not release-readiness audit or council planning."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-research/README.md --type readme --blocking-only"
+  - skill: deep-research
+    path: .opencode/skills/deep-research/references/
+    artifact_type: skill_reference_family
+    sk_doc_template: skill_reference_template
+    current_status: already_aligned
+    target_status: aligned
+    owner_phase: 4
+    change_policy: preserve
+    domain_uniqueness_note: "Existing quick, loop, convergence, state, spec anchoring, and capability references remain the research exemplar."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-research --json"
+  - skill: deep-research
+    path: .opencode/skills/deep-research/assets/
+    artifact_type: skill_asset_family
+    sk_doc_template: skill_asset_template
+    current_status: already_aligned
+    target_status: aligned
+    owner_phase: 5
+    change_policy: preserve
+    domain_uniqueness_note: "Research assets already cover config, strategy, dashboard, prompt-pack, and runtime capabilities."
+    validation_command: "jq empty .opencode/skills/deep-research/assets/deep_research_config.json .opencode/skills/deep-research/assets/runtime_capabilities.json"
+  - skill: deep-research
+    path: .opencode/skills/deep-research/feature_catalog/feature_catalog.md
+    artifact_type: feature_catalog
+    sk_doc_template: feature_catalog_template
+    current_status: unchanged
+    target_status: mapped
+    owner_phase: 2
+    change_policy: observe
+    domain_uniqueness_note: "Research catalog remains loop lifecycle, state, convergence, and research-output focused."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-research --json"
+  - skill: deep-research
+    path: .opencode/skills/deep-research/manual_testing_playbook/manual_testing_playbook.md
+    artifact_type: manual_testing_playbook
+    sk_doc_template: manual_testing_playbook_template
+    current_status: unchanged
+    target_status: mapped
+    owner_phase: 2
+    change_policy: observe
+    domain_uniqueness_note: "Research playbook validates research lifecycle, convergence, state, and outputs."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-research --json"
+  - skill: deep-research
+    path: .opencode/skills/deep-research/changelog/v1.13.0.0.md
+    artifact_type: changelog
+    sk_doc_template: changelog_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 7
+    change_policy: create
+    domain_uniqueness_note: "Research changelog records alignment without claiming new runtime resources."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-research/changelog/v1.13.0.0.md --type reference --blocking-only"
+
+  - skill: deep-review
+    path: .opencode/skills/deep-review/SKILL.md
+    artifact_type: skill_md
+    sk_doc_template: skill_md_template
+    current_status: updated
+    target_status: aligned
+    owner_phase: 6
+    change_policy: align_router
+    domain_uniqueness_note: "Review router loads severity, findings, reducer, and release-readiness resources."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-review/SKILL.md --type skill --blocking-only"
+  - skill: deep-review
+    path: .opencode/skills/deep-review/README.md
+    artifact_type: skill_readme
+    sk_doc_template: skill_readme_template
+    current_status: updated
+    target_status: aligned
+    owner_phase: 6
+    change_policy: align_readme
+    domain_uniqueness_note: "Review README keeps code audit, P0/P1/P2 findings, and release verdict language."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-review/README.md --type readme --blocking-only"
+  - skill: deep-review
+    path: .opencode/skills/deep-review/references/convergence_signals.md
+    artifact_type: skill_reference
+    sk_doc_template: skill_reference_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 4
+    change_policy: create
+    domain_uniqueness_note: "Review convergence signals are severity-weighted and gate-based, not novelty or seat-agreement based."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-review/references/convergence_signals.md --type reference --blocking-only"
+  - skill: deep-review
+    path: .opencode/skills/deep-review/references/state_outputs.md
+    artifact_type: skill_reference
+    sk_doc_template: skill_reference_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 4
+    change_policy: create
+    domain_uniqueness_note: "Review outputs center findings registry, dashboard, iteration markdown, report, and resource-map."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-review/references/state_outputs.md --type reference --blocking-only"
+  - skill: deep-review
+    path: .opencode/skills/deep-review/references/state_reducer_registry.md
+    artifact_type: skill_reference
+    sk_doc_template: skill_reference_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 4
+    change_policy: create
+    domain_uniqueness_note: "Review reducer registry owns severity findings and fail-closed reconstruction."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-review/references/state_reducer_registry.md --type reference --blocking-only"
+  - skill: deep-review
+    path: .opencode/skills/deep-review/references/
+    artifact_type: skill_reference_family
+    sk_doc_template: skill_reference_template
+    current_status: expanded
+    target_status: aligned
+    owner_phase: 4
+    change_policy: preserve_existing_plus_new
+    domain_uniqueness_note: "Review references now cover quick, loop, convergence, convergence signals, state format, outputs, and reducer registry."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-review --json"
+  - skill: deep-review
+    path: .opencode/skills/deep-review/assets/
+    artifact_type: skill_asset_family
+    sk_doc_template: skill_asset_template
+    current_status: already_aligned
+    target_status: aligned
+    owner_phase: 5
+    change_policy: preserve
+    domain_uniqueness_note: "Review assets already cover config, strategy, dashboard, prompt-pack, review contract, and runtime capabilities."
+    validation_command: "jq empty .opencode/skills/deep-review/assets/deep_review_config.json .opencode/skills/deep-review/assets/runtime_capabilities.json"
+  - skill: deep-review
+    path: .opencode/skills/deep-review/feature_catalog/feature_catalog.md
+    artifact_type: feature_catalog
+    sk_doc_template: feature_catalog_template
+    current_status: unchanged
+    target_status: mapped
+    owner_phase: 2
+    change_policy: observe
+    domain_uniqueness_note: "Review catalog stays release-readiness and severity-system focused."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-review --json"
+  - skill: deep-review
+    path: .opencode/skills/deep-review/manual_testing_playbook/manual_testing_playbook.md
+    artifact_type: manual_testing_playbook
+    sk_doc_template: manual_testing_playbook_template
+    current_status: unchanged
+    target_status: mapped
+    owner_phase: 2
+    change_policy: observe
+    domain_uniqueness_note: "Review playbook validates loop lifecycle, state, convergence, severity, and artifacts."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-review --json"
+  - skill: deep-review
+    path: .opencode/skills/deep-review/changelog/v1.10.1.0.md
+    artifact_type: changelog
+    sk_doc_template: changelog_template
+    current_status: created
+    target_status: aligned
+    owner_phase: 7
+    change_policy: create
+    domain_uniqueness_note: "Review changelog separates new focused references from unchanged runtime behavior."
+    validation_command: "python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-review/changelog/v1.10.1.0.md --type reference --blocking-only"

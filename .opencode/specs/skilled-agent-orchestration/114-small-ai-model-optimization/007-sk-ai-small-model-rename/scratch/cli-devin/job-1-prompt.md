@@ -5,8 +5,8 @@ You are a senior refactor reviewer. Verify a rename plan for a sentinel skill in
 
 ## Context
 Repo root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/`
-- Spec folder: `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/` (pre-approved Gate 3 — skip Gate 3).
-- Skill being renamed: `.opencode/skills/sk-small-model/` → `.opencode/skills/sk-ai-small-model/`.
+- Spec folder: `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/` (pre-approved Gate 3 — skip Gate 3).
+- Skill being renamed: `.opencode/skills/sk-small-model/` → `.opencode/skills/sk-prompt-small-model/`.
 - Read-only mode — do NOT edit any file. Just verify and report.
 
 ## Scope (files to inspect)
@@ -22,7 +22,7 @@ Repo root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/`
 ## Pre-planning (REQUIRED — fill before producing the bundle)
 1. **Read** each in-scope file and locate every literal `sk-small-model` occurrence with line numbers.
    - Acceptance: line numbers cited; zero made-up paths.
-2. **Classify** each occurrence as `live` (must edit to `sk-ai-small-model`) or `historical` (do not edit — only the two `changelog/v0.1/0.2.md` files are historical here).
+2. **Classify** each occurrence as `live` (must edit to `sk-prompt-small-model`) or `historical` (do not edit — only the two `changelog/v0.1/0.2.md` files are historical here).
    - Acceptance: classification per occurrence; reasoning one-line each.
 3. **Produce** a JSON bundle of edits per `live` occurrence: `{file_path, old_text_excerpt, new_text_excerpt, verification_command}`.
    - Acceptance: every edit's `verification_command` is a shell command that returns success only when the new text is present at the specified location.

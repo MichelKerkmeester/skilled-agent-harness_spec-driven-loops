@@ -210,7 +210,7 @@
     ],
     "causal_summary": "ADR-013 made `nomic-embed-text-v1.5` the within-Ollama default. But the **outer cascade** still prefers cloud APIs (Voyage > OpenAI > Ollama > hf-local), which means:",
     "created_at": "2026-05-19T19:25:52.541Z",
-    "last_save_at": "2026-05-23T11:55:15.448Z",
+    "last_save_at": "2026-05-24T05:40:26.024Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

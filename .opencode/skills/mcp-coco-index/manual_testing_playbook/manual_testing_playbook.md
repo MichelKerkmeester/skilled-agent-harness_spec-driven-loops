@@ -399,12 +399,12 @@ Expected signals: DEFAULT-ON (env unset) response populates `fts5_score` and `rr
 ### CFG-007 | Reranker default-on (with opt-out)
 
 #### Description
-Verify the reranker is on by default (`COCOINDEX_RERANK=true` as of v1.10) and that the default model `BAAI/bge-reranker-v2-m3` populates non-null `pre_rerank_score` and `reranker_score` on every result. Also verify operators can disable the rerank stage via `COCOINDEX_RERANK=false`. First call after a cold cache triggers a one-time ~2.3 GB model download from Hugging Face (`BAAI/bge-reranker-v2-m3`).
+Verify the reranker is on by default (`COCOINDEX_RERANK=true`) and that the default model `Qwen/Qwen3-Reranker-0.6B` (per 023B follow-on) populates non-null `pre_rerank_score` and `reranker_score` on every result. Also verify operators can disable the rerank stage via `COCOINDEX_RERANK=false`. First call after a cold cache triggers a one-time ~1.1 GB model download from Hugging Face (`Qwen/Qwen3-Reranker-0.6B`).
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, run a sample MCP CocoIndex search with `COCOINDEX_RERANK` unset (DEFAULT-ON) and confirm both rerank fields are populated, then export `COCOINDEX_RERANK=false`, restart the daemon, and rerun (RERANK-DISABLED) to confirm both fields go null. Verify the cold-cache first call triggers the ~2.3 GB BGE model download; DEFAULT-ON results populate `pre_rerank_score` and `reranker_score` on every entry; RERANK-DISABLED results leave both fields null. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, run a sample MCP CocoIndex search with `COCOINDEX_RERANK` unset (DEFAULT-ON) and confirm both rerank fields are populated, then export `COCOINDEX_RERANK=false`, restart the daemon, and rerun (RERANK-DISABLED) to confirm both fields go null. Verify the cold-cache first call triggers the ~1.1 GB Qwen3-Reranker-0.6B model download; DEFAULT-ON results populate `pre_rerank_score` and `reranker_score` on every entry; RERANK-DISABLED results leave both fields null. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: DEFAULT-ON (env unset) response populates `pre_rerank_score` and `reranker_score` on every result; RERANK-DISABLED (`COCOINDEX_RERANK=false`) response leaves both fields null on every result; cold-cache first call has noticeably longer wall-clock and daemon.log shows `BAAI/bge-reranker-v2-m3` cross-encoder load activity
+Expected signals: DEFAULT-ON (env unset) response populates `pre_rerank_score` and `reranker_score` on every result; RERANK-DISABLED (`COCOINDEX_RERANK=false`) response leaves both fields null on every result; cold-cache first call has noticeably longer wall-clock; daemon.log contains NO reranker load-failure warning (the daemon does not emit a positive load-trace line on successful CrossEncoder init)
 
 #### Test Execution
 > **Feature File:** [CFG-007](03--configuration/007-reranker-opt-in.md)

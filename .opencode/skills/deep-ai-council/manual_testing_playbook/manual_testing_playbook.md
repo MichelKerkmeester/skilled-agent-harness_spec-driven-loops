@@ -47,7 +47,7 @@ Canonical package artifacts:
 
 This playbook provides 32 deterministic scenarios across 9 categories validating the `deep-ai-council` skill surface. Each feature keeps a `DAC-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-05-11): covers runtime rename, advisor routing, council deliberation, artifact persistence, state format, schema strictness, convergence, rollback, derived graph boundaries, planning-only boundaries, depth dispatch, failure handling, writer library sequence, scoring rubric use, adversarial critique, scoped-write rejection, the dedicated council-graph MCP surface (upsert idempotency + self-loop rejection, empty-input no-op, hostile metadata redaction, five-mode prompt-safe queries, three-state convergence decision, recovery payload + readiness blocking, derived-projection replay, tool-family separation from the deep-loop graph), and real-world value-comparison scenarios proving the graph beats the no-graph baseline for unresolved-disagreement triage, decision provenance audit, convergence safety under critical disagreement, stalled-council blocker ranking, hot-topic discovery, and mid-run interruption recovery.
+Coverage note (2026-05-11): covers runtime rename, advisor routing, council deliberation, artifact persistence, state format, schema strictness, convergence, rollback, derived graph boundaries, planning-only boundaries, depth dispatch, failure handling, writer library sequence, scoring rubric use, adversarial critique, scoped-write rejection, the dedicated council-graph runtime CLI surface (upsert idempotency + self-loop rejection, empty-input no-op, hostile metadata redaction, five-mode prompt-safe queries, three-state convergence decision, recovery payload + readiness blocking, derived-projection replay, and retired MCP registry entries), and real-world value-comparison scenarios proving the graph beats the no-graph baseline for unresolved-disagreement triage, decision provenance audit, convergence safety under critical disagreement, stalled-council blocker ranking, hot-topic discovery, and mid-run interruption recovery.
 
 ### Realistic Test Model
 
@@ -92,7 +92,7 @@ Coverage note (2026-05-11): covers runtime rename, advisor routing, council deli
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 - CLI commands shown as `node .opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>`.
-- MCP tool calls shown as `tool_name({ key: value })`.
+- runtime CLI script calls shown as `tool_name({ key: value })`.
 - Bash commands shown as `bash: <command>`.
 - Agent prompts shown as `agent: <instruction>`.
 - `->` separates sequential steps.
@@ -261,7 +261,7 @@ Feature file: [DAC-010](04--convergence-and-rollback/003-rollback-failed-round-p
 
 ### DAC-011 | Graph support stays derived and scoped
 
-Verify graph references preserve artifact source-of-truth and caller-owned MCP boundaries. Functional graph behavior is verified by DAC-019..DAC-026.
+Verify graph references preserve artifact source-of-truth and caller-owned runtime CLI boundaries. Functional graph behavior is verified by DAC-019..DAC-026.
 
 Feature file: [DAC-011](05--scope-boundaries/001-graph-support-derived-and-scoped.md)
 
@@ -319,39 +319,39 @@ Feature file: [DAC-017](07--writer-library-contract/004-out-of-scope-write-rejec
 
 ## 14. COUNCIL GRAPH INTEGRATION (DAC-019..DAC-026)
 
-### DAC-019 | council_graph_upsert idempotency and self-loop rejection
+### DAC-019 | runtime upsert CLI idempotency and self-loop rejection
 
-Verify `council_graph_upsert` is idempotent across repeated calls and that self-loop edges are rejected by strict input validation.
+Verify `runtime upsert CLI` is idempotent across repeated calls and that self-loop edges are rejected by strict input validation.
 
 Feature file: [DAC-019](08--council-graph-integration/001-council-graph-upsert-idempotency-and-self-loop-rejection.md)
 
-### DAC-020 | council_graph_upsert empty input no-op success
+### DAC-020 | runtime upsert CLI empty input no-op success
 
-Verify `council_graph_upsert` returns explicit no-op success on empty `nodes`/`edges` input rather than erroring.
+Verify `runtime upsert CLI` returns explicit no-op success on empty `nodes`/`edges` input rather than erroring.
 
 Feature file: [DAC-020](08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md)
 
-### DAC-021 | council_graph_query hostile metadata redaction
+### DAC-021 | runtime query CLI hostile metadata redaction
 
-Verify `council_graph_query` redacts arbitrary metadata keys and bounds string lengths before returning prompt-safe output.
+Verify `runtime query CLI` redacts arbitrary metadata keys and bounds string lengths before returning prompt-safe output.
 
 Feature file: [DAC-021](08--council-graph-integration/003-council-graph-query-hostile-metadata-redaction.md)
 
-### DAC-022 | council_graph_query five modes return prompt-safe context
+### DAC-022 | runtime query CLI five modes return prompt-safe context
 
 Verify all five query modes (`unresolved_disagreements`, `evidence_chain`, `decision_support`, `convergence_blockers`, `hot_nodes`) return bounded prompt-safe context.
 
 Feature file: [DAC-022](08--council-graph-integration/004-council-graph-query-five-modes-prompt-safe-context.md)
 
-### DAC-023 | council_graph_convergence three-state decision matrix
+### DAC-023 | runtime convergence CLI three-state decision matrix
 
-Verify `council_graph_convergence` emits `CONTINUE`, `STOP_ALLOWED`, or `STOP_BLOCKED` based on agreement, evidence, confidence, and unresolved-critical-disagreement signals.
+Verify `runtime convergence CLI` emits `CONTINUE`, `STOP_ALLOWED`, or `STOP_BLOCKED` based on agreement, evidence, confidence, and unresolved-critical-disagreement signals.
 
 Feature file: [DAC-023](08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md)
 
-### DAC-024 | council_graph_status recovery payload and readiness
+### DAC-024 | runtime status CLI recovery payload and readiness
 
-Verify `council_graph_status` returns readiness, counts, schema version, signals, and a namespace-scoped `recovery` payload — never false-safe empty success on missing/corrupt state.
+Verify `runtime status CLI` returns readiness, counts, schema version, signals, and a namespace-scoped `recovery` payload — never false-safe empty success on missing/corrupt state.
 
 Feature file: [DAC-024](08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md)
 
@@ -361,9 +361,9 @@ Verify deleting `council-graph.sqlite` rows for a session and replaying upserts 
 
 Feature file: [DAC-025](08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md)
 
-### DAC-026 | council_graph_* tools registered separately from deep_loop_graph_*
+### DAC-026 | Council graph MCP surface retired
 
-Verify `council_graph_*` tools are registered as a distinct family in `tools/index.ts`, `tool-schemas.ts`, and `schemas/tool-input-schemas.ts` with no `loop_type:'council'` overload added to `deep_loop_graph_*`.
+Verify mk-spec-memory has no council graph MCP entries and council graph operations route through `deep-loop-runtime --loop-type council`.
 
 Feature file: [DAC-026](08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md)
 
@@ -375,7 +375,7 @@ Each value-comparison scenario contrasts the no-graph baseline workflow against 
 
 ### DAC-027 | Unresolved disagreement triage: graph vs baseline
 
-Graph returns the unresolved critical set in one MCP call; baseline requires reading 12+ deliberation/critique artifacts.
+Graph returns the unresolved critical set in one runtime CLI call; baseline requires reading 12+ deliberation/critique artifacts.
 
 Feature file: [DAC-027](09--council-graph-value-comparison/001-unresolved-disagreement-triage-graph-vs-baseline.md)
 
@@ -421,8 +421,8 @@ Feature file: [DAC-032](09--council-graph-value-comparison/006-mid-run-interrupt
 | `.opencode/skills/system-spec-kit/mcp_server/tests/ai-council-audit-trail.vitest.ts` | DAC-005, DAC-006, DAC-013 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/ai-council-rollback.vitest.ts` | DAC-010 |
 | `.opencode/skills/system-spec-kit/scripts/tests/ai-council-persist-artifacts.vitest.ts` | DAC-005, DAC-007 |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts` | DAC-019, DAC-020, DAC-021, DAC-022, DAC-023, DAC-024 |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph-value-scenarios.vitest.ts` | DAC-027, DAC-028, DAC-029, DAC-030, DAC-031, DAC-032 |
+| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | DAC-019, DAC-020, DAC-021, DAC-022, DAC-023, DAC-024 |
+| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | DAC-027, DAC-028, DAC-029, DAC-030, DAC-031, DAC-032 |
 | Operator A/B comparison (with-graph vs no-graph baseline) | Operator-runnable contract mirrors the automated DAC-027..DAC-032 fixtures |
 | Documentation reference validation | DAC-014, DAC-015, DAC-016, DAC-018, DAC-025, DAC-026 |
 
@@ -450,14 +450,14 @@ Feature file: [DAC-032](09--council-graph-value-comparison/006-mid-run-interrupt
 | DAC-016 | Hunter Skeptic Referee cross-critique | `07--writer-library-contract/003-hunter-skeptic-referee-cross-critique.md` | `feature_catalog/07--writer-library-contract/03-hunter-skeptic-referee-cross-critique.md` |
 | DAC-017 | OUT_OF_SCOPE_WRITE rejection | `07--writer-library-contract/004-out-of-scope-write-rejection.md` | `feature_catalog/07--writer-library-contract/04-out-of-scope-write-rejection.md` |
 | DAC-018 | Resume after interrupted state | `06--depth-and-failure-handling/002-resume-after-interrupted-state.md` | `feature_catalog/06--depth-and-failure-handling/02-resume-after-interrupted-state.md` |
-| DAC-019 | council_graph_upsert idempotency and self-loop rejection | `08--council-graph-integration/001-council-graph-upsert-idempotency-and-self-loop-rejection.md` | `feature_catalog/08--council-graph-integration/01-council-graph-upsert-idempotency-and-self-loop-rejection.md` |
-| DAC-020 | council_graph_upsert empty input no-op success | `08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md` | `feature_catalog/08--council-graph-integration/02-council-graph-upsert-empty-input-no-op-success.md` |
-| DAC-021 | council_graph_query hostile metadata redaction | `08--council-graph-integration/003-council-graph-query-hostile-metadata-redaction.md` | `feature_catalog/08--council-graph-integration/03-council-graph-query-hostile-metadata-redaction.md` |
-| DAC-022 | council_graph_query five modes return prompt-safe context | `08--council-graph-integration/004-council-graph-query-five-modes-prompt-safe-context.md` | `feature_catalog/08--council-graph-integration/04-council-graph-query-five-modes-prompt-safe-context.md` |
-| DAC-023 | council_graph_convergence three-state decision matrix | `08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md` | `feature_catalog/08--council-graph-integration/05-council-graph-convergence-three-state-decision-matrix.md` |
-| DAC-024 | council_graph_status recovery payload and readiness | `08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md` | `feature_catalog/08--council-graph-integration/06-council-graph-status-recovery-payload-and-readiness.md` |
+| DAC-019 | runtime upsert CLI idempotency and self-loop rejection | `08--council-graph-integration/001-council-graph-upsert-idempotency-and-self-loop-rejection.md` | `feature_catalog/08--council-graph-integration/01-council-graph-upsert-idempotency-and-self-loop-rejection.md` |
+| DAC-020 | runtime upsert CLI empty input no-op success | `08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md` | `feature_catalog/08--council-graph-integration/02-council-graph-upsert-empty-input-no-op-success.md` |
+| DAC-021 | runtime query CLI hostile metadata redaction | `08--council-graph-integration/003-council-graph-query-hostile-metadata-redaction.md` | `feature_catalog/08--council-graph-integration/03-council-graph-query-hostile-metadata-redaction.md` |
+| DAC-022 | runtime query CLI five modes return prompt-safe context | `08--council-graph-integration/004-council-graph-query-five-modes-prompt-safe-context.md` | `feature_catalog/08--council-graph-integration/04-council-graph-query-five-modes-prompt-safe-context.md` |
+| DAC-023 | runtime convergence CLI three-state decision matrix | `08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md` | `feature_catalog/08--council-graph-integration/05-council-graph-convergence-three-state-decision-matrix.md` |
+| DAC-024 | runtime status CLI recovery payload and readiness | `08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md` | `feature_catalog/08--council-graph-integration/06-council-graph-status-recovery-payload-and-readiness.md` |
 | DAC-025 | Derived projection rebuilds from artifacts | `08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md` | `feature_catalog/08--council-graph-integration/07-council-graph-derived-projection-rebuilds-from-artifacts.md` |
-| DAC-026 | council_graph_* tools registered separately from deep_loop_graph_* | `08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md` | `feature_catalog/08--council-graph-integration/08-council-graph-tools-registered-separately-from-deep-loop.md` |
+| DAC-026 | Council graph MCP surface retired | `08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md` | `feature_catalog/08--council-graph-integration/08-council-graph-tools-registered-separately-from-deep-loop.md` |
 | DAC-027 | Unresolved disagreement triage: graph vs baseline | `09--council-graph-value-comparison/001-unresolved-disagreement-triage-graph-vs-baseline.md` | `feature_catalog/09--council-graph-value-comparison/01-unresolved-disagreement-triage-graph-vs-baseline.md` |
 | DAC-028 | Decision provenance audit: graph vs baseline | `09--council-graph-value-comparison/002-decision-provenance-audit-graph-vs-baseline.md` | `feature_catalog/09--council-graph-value-comparison/02-decision-provenance-audit-graph-vs-baseline.md` |
 | DAC-029 | Convergence safety under critical disagreement: graph vs baseline | `09--council-graph-value-comparison/003-convergence-safety-under-critical-disagreement-graph-vs-baseline.md` | `feature_catalog/09--council-graph-value-comparison/03-convergence-safety-under-critical-disagreement-graph-vs-baseline.md` |

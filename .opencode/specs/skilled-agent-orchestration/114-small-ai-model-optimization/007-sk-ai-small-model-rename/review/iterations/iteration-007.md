@@ -4,8 +4,8 @@
   {
     "id": "A1-001",
     "severity": "PASS",
-    "hypothesis": "A1: sk-ai-small-model SKILL.md body internal references",
-    "evidence": "Read complete SKILL.md (227 lines). Frontmatter name 'sk-ai-small-model' matches H1 '# sk-ai-small-model' at line 10. All internal references use new name: lines 10, 38, 42, 88-91, 100, 103, 143-151, 196-210, 221-226. No broken wikilinks, orphaned sections, or inconsistent naming detected.",
+    "hypothesis": "A1: sk-prompt-small-model SKILL.md body internal references",
+    "evidence": "Read complete SKILL.md (227 lines). Frontmatter name 'sk-prompt-small-model' matches H1 '# sk-prompt-small-model' at line 10. All internal references use new name: lines 10, 38, 42, 88-91, 100, 103, 143-151, 196-210, 221-226. No broken wikilinks, orphaned sections, or inconsistent naming detected.",
     "verdict": "PASS - SKILL.md internally consistent, no broken references post-rename"
   },
   {
@@ -43,7 +43,7 @@
 
 Deep-review iter-7 adversarial round 2 tested 5 second-order hypotheses about the 007 rename packet. All hypotheses **PASS** with no findings requiring remediation.
 
-**Hypothesis A1 (SKILL.md internal consistency)**: The renamed skill's SKILL.md is internally consistent. Frontmatter name matches H1, all 15+ internal references use the new name, no broken links or orphaned sections. The Python pseudocode example (line 107) correctly uses `sk_ai_small_model` (underscore variant) in the function name, matching the rename pattern.
+**Hypothesis A1 (SKILL.md internal consistency)**: The renamed skill's SKILL.md is internally consistent. Frontmatter name matches H1, all 15+ internal references use the new name, no broken links or orphaned sections. The Python pseudocode example (line 107) correctly uses `sk_prompt_small_model` (underscore variant) in the function name, matching the rename pattern.
 
 **Hypothesis A2 (changelog consistency)**: The three changelogs are correctly structured. v0.3.0.0 explicitly documents the historical preservation policy (lines 30-33), and v0.1.0.0/v0.2.0.0 retain the old name in their bodies as intended. No accidental alterations detected during the rename. Format is consistent across all versions.
 

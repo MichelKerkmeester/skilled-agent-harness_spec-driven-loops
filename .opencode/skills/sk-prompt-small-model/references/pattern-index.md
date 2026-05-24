@@ -13,12 +13,12 @@ A single lookup table operators use to find each small-model pattern's canonical
 
 ### Purpose
 
-Provide one discoverable index that maps each small-model optimization pattern (context budget, output verification, model profiles, structured permissions, quota fallback, tool scoring, budget propagation, budget awareness) to its executor-owned location. Keeps `sk-ai-small-model` thin and avoids duplicate pattern bodies across skills.
+Provide one discoverable index that maps each small-model optimization pattern (context budget, output verification, model profiles, structured permissions, quota fallback, tool scoring, budget propagation, budget awareness) to its executor-owned location. Keeps `sk-prompt-small-model` thin and avoids duplicate pattern bodies across skills.
 
 ### When to Use
 
 - Operator searches for "where is the small-model X pattern?"
-- Skill-advisor surfaces `sk-ai-small-model` alongside `cli-devin` or `cli-opencode`
+- Skill-advisor surfaces `sk-prompt-small-model` alongside `cli-devin` or `cli-opencode`
 - Onboarding to the 114-small-ai-model-optimization arc
 - Verifying which phase shipped a given pattern
 
@@ -57,7 +57,7 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | `cli-opencode` | DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool | Permissions matrix, budget propagation mirror |
 | `sk-prompt` | Cross-CLI prompt quality + model registry | Model-profiles.json (each entry has `executors` array), cli_prompt_quality_card.md |
 | `system-spec-kit` | Runtime helpers (TypeScript) | bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts |
-| `sk-ai-small-model` (this skill) | Discovery + index only | This file, SKILL.md, graph-metadata.json |
+| `sk-prompt-small-model` (this skill) | Discovery + index only | This file, SKILL.md, graph-metadata.json |
 
 If a pattern needs to span two executors, the rule is: ship the body in the primary executor and add a sentinel-style mirror (≤ 200 LOC, link-only) in the secondary. Phase 006's `cli-opencode/references/context-budget.md` is the canonical example of this pattern.
 
@@ -69,10 +69,10 @@ When adopting Claude Haiku, Gemini Flash, or any future small-model provider, fo
 
 1. **Populate the registry stub** at `sk-prompt/assets/model-profiles.json` — set `quota_pool`, `context_length`, `tool_calling`, `provider`, and any other required fields.
 2. **Optional: set `fallback_target`** on existing models that should fall back to the new provider (only if the new provider's quota pool differs from the source).
-3. **Add trigger phrases** in `sk-ai-small-model/graph-metadata.json` if the new provider has a distinct dispatch keyword (e.g. `haiku dispatch`).
+3. **Add trigger phrases** in `sk-prompt-small-model/graph-metadata.json` if the new provider has a distinct dispatch keyword (e.g. `haiku dispatch`).
 4. **Mark the affected rows** in this index as shipped — no rows need to be added if the existing patterns already cover the new provider's needs.
 5. **Re-index the advisor** — `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-refresh`.
-6. **Verify routing** — simulate a sample prompt naming the new provider and confirm the advisor surfaces `sk-ai-small-model` plus the relevant executor skill.
+6. **Verify routing** — simulate a sample prompt naming the new provider and confirm the advisor surfaces `sk-prompt-small-model` plus the relevant executor skill.
 
 No code changes are required for adoption when the new provider fits an existing quota-pool category.
 

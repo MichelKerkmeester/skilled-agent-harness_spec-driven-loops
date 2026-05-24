@@ -5,13 +5,27 @@ description: Canonical specification for the deep research loop lifecycle with 4
 
 # Loop Protocol Reference
 
-Canonical specification for the deep research loop lifecycle.
+Canonical specification for the deep research loop lifecycle. Use it as the lifecycle map for initialization, iteration, synthesis, save, and recovery.
 
 ---
 
 ## 1. OVERVIEW
 
-The deep research loop has 4 phases: initialization, iteration (repeated), synthesis, and save. The YAML workflow manages the lifecycle; the @deep-research agent executes individual iterations; the reducer synchronizes packet state after each iteration and lifecycle transition.
+### Purpose
+
+Define the lifecycle contract for deep-research initialization, iteration, synthesis, save, reference-only dispatch concepts, and error handling.
+
+### When to Use
+
+Load this reference when running or validating the research loop lifecycle. Use `convergence.md` for STOP decisions and `state_format.md` for packet file schemas.
+
+### Core Principle
+
+The YAML workflow owns lifecycle orchestration, `@deep-research` executes LEAF iterations, and the reducer synchronizes packet state after each iteration and lifecycle transition.
+
+### Phase Model
+
+The deep research loop has 4 phases: initialization, iteration (repeated), synthesis, and save.
 
 Runtime capability matrix references for parity-sensitive loop behavior:
 - Human-readable matrix: `.opencode/skills/deep-research/references/capability_matrix.md`
@@ -211,7 +225,7 @@ CONSTRAINT: LEAF agent -- do NOT dispatch sub-agents
 
 #### Executor Resolution (spec 018 + 019)
 
-Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
+Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
 
 - `native` (spec 018): dispatch `@deep-research` agent with model Opus.
 - `cli-codex` (spec 018): pipe rendered prompt via stdin to `codex exec --model X -c model_reasoning_effort=Y -c service_tier=Z -c approval_policy=never --sandbox workspace-write`.
@@ -314,13 +328,13 @@ The orchestrator checks the ideas backlog at three points:
 #### Format
 
 ```markdown
-# Research Ideas
+Title: Research Ideas
 
-### Deferred (not yet explored)
+Section: Deferred (not yet explored)
 - [Idea description] (noted iteration N: [why deferred])
 - [Idea description] (noted iteration N: [why deferred])
 
-### Promoted (moved to Key Questions)
+Section: Promoted (moved to Key Questions)
 - [Idea] -> promoted to Key Question in iteration N
 ```
 
@@ -368,7 +382,7 @@ When agent dispatch fails after the earlier recovery tiers are exhausted:
 
 ---
 
-## 3.1. WAVE ORCHESTRATION PROTOCOL (REFERENCE-ONLY)
+## 4. WAVE ORCHESTRATION PROTOCOL (REFERENCE-ONLY)
 
 An optional parallel execution concept for research topics with multiple independent questions. Treat this as reference guidance only; the live workflow remains sequential and does **not** emit wave-specific JSONL events or routing today.
 
@@ -427,7 +441,7 @@ Wave-specific fields and events are **not part of the current persisted contract
 
 ---
 
-## 3.2. CONTEXT ISOLATION DISPATCH (EXPERIMENTAL, REFERENCE-ONLY)
+## 5. CONTEXT ISOLATION DISPATCH (EXPERIMENTAL, REFERENCE-ONLY)
 
 An alternative dispatch mechanism that guarantees fresh context per iteration by launching a new OS process. Treat this as reference-only unless the runtime explicitly implements alternate CLI dispatch.
 
@@ -471,7 +485,7 @@ Replace Task tool dispatch with shell-level `claude -p` invocation:
 
 ---
 
-## 4. PHASE: SYNTHESIS
+## 6. PHASE: SYNTHESIS
 
 ### Purpose
 Compile all iteration findings into final research/research.md. The synthesis workflow owns the canonical `research/research.md` output.
@@ -504,7 +518,7 @@ Compile all iteration findings into final research/research.md. The synthesis wo
 
 ---
 
-## 5. PHASE: SAVE
+## 7. PHASE: SAVE
 
 ### Purpose
 Preserve research context to memory system.
@@ -517,7 +531,7 @@ Preserve research context to memory system.
 
 ---
 
-## 6. STATE TRANSITIONS
+## 8. STATE TRANSITIONS
 
 ```text
 [INITIALIZED] --> config + strategy + state created
@@ -546,7 +560,7 @@ Hook-capable and non-hook runtimes must follow the same state machine. Hooks may
 
 ---
 
-## 7. ERROR HANDLING
+## 9. ERROR HANDLING
 
 | Error | Phase | Action |
 |-------|-------|--------|
@@ -574,7 +588,7 @@ Each priority level is attempted in order. If a level fails, fall through to the
 
 ---
 
-## 8. CONFIRM MODE ADDITIONS
+## 10. CONFIRM MODE ADDITIONS
 
 In confirm mode, the YAML workflow adds approval gates:
 
@@ -587,197 +601,8 @@ In confirm mode, the YAML workflow adds approval gates:
 
 ---
 
-## 9. REVIEW MODE LOOP
+## 11. REVIEW MODE ROUTING
 
-When `config.mode == "review"`, the loop protocol adapts from research to code/spec review. The 4-phase structure (init, loop, synthesis, save) is preserved, but review mode uses the simplified four-dimension taxonomy, three binary gates, and machine-verifiable traceability state.
+Deep-review lifecycle, convergence, state schemas, traceability protocols, and report contracts live in the sibling `deep-review` skill.
 
-### 6.1 Review Initialization
-
-#### Purpose
-Set up all state files for a new review session. Discover the scope, order dimensions, and establish the traceability protocol plan.
-
-#### Steps
-
-1. **Classify session state**: Same as research mode (fresh, resume, completed-session, invalid-state)
-2. **Resolve local review artifact owner**: `review_artifact_dir = resolveArtifactRoot(specFolder, 'review').artifactDir`, then `mkdir -p {review_artifact_dir}/iterations`
-3. **Scope discovery**: Resolve the review target into a concrete file list:
-   - `spec-folder`: Read spec.md, plan.md, implementation files listed in tasks.md
-   - `skill`: Read SKILL.md, references/, assets/, scripts/, find agent definitions and command entry points
-   - `agent`: Find agent definitions across all runtimes, compare for consistency
-   - `track`: List all child spec folders under the track, read spec.md + checklist.md for each
-   - `files`: Expand glob patterns, validate existence, discover cross-references
-   - Store resolved file list in strategy.md "Files Under Review"
-4. **Dimension ordering**: Order the 4 review dimensions for iteration:
-   - Priority: correctness and security first (highest-impact dimensions)
-   - Default order: D1 Correctness, D2 Security, D3 Traceability, D4 Maintainability
-5. **Traceability protocol plan**: Partition protocols into:
-   - **Core**: `spec_code`, `checklist_evidence`
-   - **Overlay**: `skill_agent`, `agent_cross_runtime`, `feature_catalog_code`, `playbook_capability`
-   Only schedule overlay protocols that apply to the target type.
-6. **Write config**: `{review_artifact_dir}/deep-review-config.json` with `mode: "review"` and review fields
-7. **Initialize state log**: First JSONL line with config record including `mode: "review"`
-8. **Initialize strategy**: `{review_artifact_dir}/deep-review-strategy.md` from review template with:
-   - Topic (review target description)
-   - Review Dimensions checklist
-   - Files Under Review table
-   - Cross-Reference Status table grouped by core vs overlay
-   - Known Context from `memory_context()` results
-   - Review Boundaries from config
-9. **Validate review charter**:
-   - Verify strategy.md contains Non-Goals and Stop Conditions sections
-   - In **confirm mode**: present the charter (target, dimensions, scope, non-goals) for user review
-   - In **auto mode**: accept automatically and continue
-
-#### Outputs
-- `{review_artifact_dir}/deep-review-config.json` (with review fields)
-- `{review_artifact_dir}/deep-review-state.jsonl` (1 line)
-- `{review_artifact_dir}/deep-review-strategy.md`
-
-### 6.2 Review Loop
-
-The iteration loop follows the same Step 1-5 structure as research mode with these adaptations:
-
-#### Step 1: Read State (adapted)
-- Read JSONL to count iterations and extract `newFindingsRatio`, `findingsSummary`, `findingsNew`, and `traceabilityChecks`
-- Read `{review_artifact_dir}/deep-review-strategy.md` to get next focus dimension/files, remaining dimensions, and protocol gaps
-
-#### Step 2: Check Convergence (adapted)
-Run `shouldContinue_review()` (see convergence.md Section 10.3):
-- Max iterations reached? `STOP`
-- Stuck count `>= 2` using `noProgressThreshold = 0.05`? `STUCK_RECOVERY`
-- Composite convergence votes `STOP` only after:
-  - rolling average uses `rollingStopThreshold = 0.08`
-  - dimension coverage reaches 100% across the 4-dimension model
-  - coverage has aged through `minStabilizationPasses >= 1`
-  - required traceability protocols are covered
-  - evidence, scope, and coverage gates pass
-- Otherwise: `CONTINUE`
-
-#### Step 2b: Generate State Summary (adapted)
-```text
-STATE SUMMARY (auto-generated, review mode):
-Iteration: {N} of {max} | Mode: review
-Target: {config.reviewTarget} ({config.reviewTargetType})
-Dimensions: {reviewed}/{total} complete | Next: {nextDimension}
-Findings: P0:{count} P1:{count} P2:{count} active
-Traceability: core={core_status} overlay={overlay_status}
-Last 2 ratios: {ratio_N-1} -> {ratio_N} | Stuck count: {stuck_count}
-Provisional verdict: {PASS|CONDITIONAL|FAIL|PENDING} | hasAdvisories={hasAdvisories}
-Next focus: {strategy.nextFocus}
-```
-
-#### Step 3: Dispatch Agent (adapted)
-Dispatch `@deep-review` with review-specific context:
-```text
-{state_summary}  // Auto-generated (Step 2b)
-
-Review Target: {config.reviewTarget}
-Review Mode: {config.reviewTargetType}
-Iteration: {N} of {maxIterations}
-Focus Dimension: {strategy.nextFocus.dimension}
-Focus Files: {strategy.nextFocus.files}
-Remaining Dimensions: {strategy.remainingDimensions}
-Traceability Protocols:
-  - Core: {core_protocols}
-  - Overlay: {overlay_protocols}
-Active Findings: {findingsSummary}
-State Files:
-  - Config: {review_artifact_dir}/deep-review-config.json
-  - State: {review_artifact_dir}/deep-review-state.jsonl
-  - Strategy: {review_artifact_dir}/deep-review-strategy.md
-Output: Write findings to {review_artifact_dir}/iterations/iteration-{NNN}.md
-CONSTRAINT: LEAF agent -- do NOT dispatch sub-agents
-CONSTRAINT: Target files are READ-ONLY -- never modify code under review
-```
-
-#### Step 3a: Cross-Reference Protocols
-
-Traceability checks are split into core vs overlay protocols.
-
-| Level | Protocol | Applies To | Gate Class | Purpose |
-|-------|----------|------------|------------|---------|
-| Core | `spec_code` | all targets | hard | Verify normative claims resolve to shipped behavior |
-| Core | `checklist_evidence` | all targets | hard | Verify checked completion claims have evidence |
-| Overlay | `skill_agent` | skill | advisory | Verify SKILL.md and runtime agents agree |
-| Overlay | `agent_cross_runtime` | agent | advisory | Verify runtime agent parity |
-| Overlay | `feature_catalog_code` | skill, spec-folder, track, files | advisory | Verify catalog claims match capability |
-| Overlay | `playbook_capability` | skill, agent, spec-folder | advisory | Verify playbook scenarios match executable reality |
-
-Each protocol produces a structured result in `traceabilityChecks.results[]` with `protocolId`, `status`, `gateClass`, `applicable`, counts, evidence, finding refs, and summary text.
-
-#### Step 4: Evaluate Results (adapted)
-After agent completes:
-1. Verify `{review_artifact_dir}/iterations/iteration-{NNN}.md` was created
-2. Verify JSONL was appended with review iteration fields: `dimensions`, `filesReviewed`, `findingsSummary`, `findingsNew`, and `traceabilityChecks`
-3. Verify the reducer-owned review strategy surfaces were refreshed (dimension progress, findings count, protocol status)
-4. Extract `newFindingsRatio` from JSONL record
-5. Update stuck tracking using `noProgressThreshold = 0.05`
-
-#### Step 4a: Claim Adjudication
-
-Before the next convergence pass, the orchestrator adjudicates every new P0/P1.
-
-Each new P0/P1 must record:
-- `claim`
-- `evidenceRefs`
-- `counterevidenceSought`
-- `alternativeExplanation`
-- `finalSeverity`
-- `confidence`
-- `downgradeTrigger`
-
-Protocol:
-1. Re-read the cited evidence.
-2. Seek counterevidence in adjacent code, docs, or prior iteration history.
-3. Record an alternative explanation even if it is rejected.
-4. Confirm or downgrade severity before the finding becomes convergence-visible.
-
-This adjudication step happens after iteration evaluation and before the next convergence math run.
-
-#### Step 4b: Generate Dashboard (adapted)
-Generate `{review_artifact_dir}/deep-review-dashboard.md` with review-specific sections:
-- Status with provisional verdict and `hasAdvisories`
-- Findings summary (P0/P1/P2 counts with deltas)
-- Progress table with dimension column
-- Coverage (files, dimensions, traceability protocols)
-- Trend (`newFindingsRatio`, severity, traceability stability)
-
-### 6.3 Review Synthesis
-
-#### Purpose
-Compile all iteration findings into the final `{review_artifact_dir}/review-report.md`.
-
-#### Steps
-
-1. **Read all iteration files**: `{review_artifact_dir}/iterations/iteration-*.md`
-2. **Read strategy**: Final state of dimensions, findings, coverage, and protocol status
-3. **Finding registry dedup**: Consolidate findings across iterations:
-   - Group findings by file + line range + root cause
-   - Merge duplicates, keeping the highest severity and all evidence
-   - Assign final findingIds (F001, F002, ...)
-4. **Severity reconciliation**: Use adjudicated `finalSeverity` for any P0/P1 that changed during review
-5. **Replay validation**: Recompute the convergence outcome from JSONL state before finalizing the report
-6. **Compile `{review_artifact_dir}/review-report.md`**: Generate the 9-section contract (see state_format.md Section 8):
-   - Executive Summary
-   - Planning Trigger
-   - Active Finding Registry
-   - Remediation Workstreams
-   - Spec Seed
-   - Plan Seed
-   - Traceability Status
-   - Deferred Items
-   - Audit Appendix
-7. **Verdict contract**:
-   - `FAIL`: active P0 remains or any binary gate fails
-   - `CONDITIONAL`: no active P0, but active P1 remains
-   - `PASS`: no active P0/P1; set `hasAdvisories=true` when active P2 remains
-8. **Update config status**: Set `status: "complete"` in config.json
-9. **Final JSONL entry**: `{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":N,"verdict":"PASS|CONDITIONAL|FAIL","activeP0":N,"activeP1":N,"activeP2":N,"dimensionCoverage":X,"stopReason":"..." }`
-
-### 6.4 Review Save
-
-Same as research mode — context preservation via `generate-context.js`:
-
-1. **Generate context**: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js {spec_folder}`
-2. **Verify**: Confirm memory/*.md file created with proper anchors
-
+This reference keeps only the routing rule: do not document or execute review-mode loop behavior from `deep-research`. Route review requests to `deep-review/SKILL.md` and its references.

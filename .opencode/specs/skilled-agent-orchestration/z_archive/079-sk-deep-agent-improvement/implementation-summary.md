@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The skill `sk-improve-agent` is now `deep-agent-improvement`, joining the `deep-*` family alongside `deep-review` and `deep-research`. The rename is symbolic-only: every active-code reference site was migrated to the new path/identifier, but no behavior changed. The agent `@improve-agent` and slash command `/improve:agent` stayed stable per 070-sk-deep-rename precedent (their names already followed modern convention without the `sk-` prefix).
+The skill `sk-improve-agent` is now `deep-agent-improvement`, joining the `deep-*` family alongside `deep-review` and `deep-research`. The rename is symbolic-only: every active-code reference site was migrated to the new path/identifier, but no behavior changed. The agent `@improve-agent` and slash command `/deep:start-agent-improvement-loop` stayed stable per 070-sk-deep-rename precedent (their names already followed modern convention without the `sk-` prefix).
 
 ### Skill folder rename
 
@@ -63,7 +63,7 @@ Skill folder `.opencode/skills/sk-improve-agent/` renamed to `.opencode/skills/d
 
 ### Advisor scoring tables migrated (CRITICAL)
 
-`skill_advisor.py` had its 156 phrase-routing entries updated so every phrase that previously routed to `sk-improve-agent` now routes to `deep-agent-improvement`. The trigger phrase keys themselves stayed unchanged (e.g., "improve agent", "agent improvement loop", "/improve:agent" remain valid keys). `skill-graph.json` registry, `fusion.ts:270` penalty list, and the two test fixtures (`native-scorer.vitest.ts`, `remediation-008-docs.vitest.ts`) were all updated. The compiled `dist/` mirrors regenerated cleanly via `npm run build`. The SQLite advisor cache was rebuilt via `advisor_rebuild` (skillCount=18).
+`skill_advisor.py` had its 156 phrase-routing entries updated so every phrase that previously routed to `sk-improve-agent` now routes to `deep-agent-improvement`. The trigger phrase keys themselves stayed unchanged (e.g., "improve agent", "agent improvement loop", "/deep:start-agent-improvement-loop" remain valid keys). `skill-graph.json` registry, `fusion.ts:270` penalty list, and the two test fixtures (`native-scorer.vitest.ts`, `remediation-008-docs.vitest.ts`) were all updated. The compiled `dist/` mirrors regenerated cleanly via `npm run build`. The SQLite advisor cache was rebuilt via `advisor_rebuild` (skillCount=18).
 
 ### Files Changed
 
@@ -82,10 +82,10 @@ Skill folder `.opencode/skills/sk-improve-agent/` renamed to `.opencode/skills/d
 | `.opencode/skills/sk-improve-prompt/graph-metadata.json:32` | Modified | Sibling target (T-017) |
 | `.opencode/skills/README.md` | Modified | Skill index + directory tree (T-018) |
 | `.opencode/skills/system-spec-kit/changelog/v3.3.0.0.md`, `v3.4.0.0.md` | Modified | Path strings only; narrative untouched (T-019) |
-| `.opencode/commands/improve/agent.md` + 32-ref auto.yaml + 33-ref confirm.yaml + README.txt | Modified | Canonical .opencode/ command surface (T-020..T-023) |
-| `.claude/commands/improve/` (4 files) | Modified | Runtime mirror (T-024) |
-| `.gemini/commands/improve/improve-agent.toml` + README.txt | Modified | Runtime mirror (T-025); no YAML assets in this dir |
-| `.codex/commands/improve/` | N/A — does not exist | Codex runtime has only `.codex/agents/improve-agent.toml`; no commands dir (T-026 N/A) |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` + 32-ref auto.yaml + 33-ref confirm.yaml + README.txt | Modified | Canonical .opencode/ command surface (T-020..T-023) |
+| `.claude/commands/deep/` (4 files) | Modified | Runtime mirror (T-024) |
+| `.gemini/commands/deep/start-agent-improvement-loop.toml` + README.txt | Modified | Runtime mirror (T-025); no YAML assets in this dir |
+| `.codex/commands/deep/` | N/A — does not exist | Codex runtime has only `.codex/agents/improve-agent.toml`; no commands dir (T-026 N/A) |
 | `.opencode/agents/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, `.codex/agents/improve-agent.toml` | Modified | Skill matrix line per file; agent name `improve-agent` itself unchanged (T-027..T-030) |
 | `README.md` (root) | Modified | Lines 848 + 1220 (T-031) |
 | `AGENTS.md` (root) and `CLAUDE.md` → AGENTS.md (symlink) | Modified | Line 324 (T-032). CLAUDE.md is a symlink to AGENTS.md so updates transitively |
@@ -112,13 +112,13 @@ Total elapsed wall-clock: ~5 hours including spec authoring (90 min), CLI dispat
 
 | Decision | Why |
 |----------|-----|
-| Skill folder renamed; agent name `@improve-agent` and command `/improve:agent` kept stable | Per 070-sk-deep-rename precedent — agent and command names already use modern convention without `sk-` prefix and are independent of skill folder name. Renaming them would have been gratuitous churn. |
+| Skill folder renamed; agent name `@improve-agent` and command `/deep:start-agent-improvement-loop` kept stable | Per 070-sk-deep-rename precedent — agent and command names already use modern convention without `sk-` prefix and are independent of skill folder name. Renaming them would have been gratuitous churn. |
 | Historical changelog narrative kept verbatim (skill v1.0.0..v1.2.2, system-spec-kit v3.3/v3.4) | Past entries document past releases factually. Updating their prose would falsify history. Path strings inside those docs were updated since paths must resolve. |
 | `specs/` research artifacts (~24,127 historical refs) out of scope | Research record stays factually accurate. Only active-code references migrated. |
 | Switched executor from cli-copilot to direct sed mid-flight after CLI silent failures | The CLI dispatches went unreliable mid-session (cli-copilot connection error at Phase 5+6 mid-stream; cli-codex fast-mode bg dispatch produced 0-byte output). Mechanical sed substitution is deterministic and the work was pure string replacement — no judgment needed for path-string vs identifier disambiguation. The work is identical to what the CLIs would have done. |
 | Build script failure on unrelated TS errors not blocking | `npm run build` failed on pre-existing TypeScript errors in `code_graph/lib/index-scope-policy.ts`, `code_graph/tests/code-graph-query-handler.vitest.ts`, and `matrix_runners/run-matrix.ts` — these are from other concurrent packet work (026/007/012/006 cluster A-E and 082) running in parallel worktrees. Per memory: dirty worktree is baseline, not a blocker. The advisor files we touched compiled cleanly (verified via direct dist file check). |
 | `AGENTS_Barter.md` skipped | Symlink to external Barter repo per memory. Barter handles its own propagation. |
-| `.codex/commands/improve/` skipped | Directory does not exist in this repo's Codex runtime config. Codex has agents but no commands here. T-026 N/A documented. |
+| `.codex/commands/deep/` skipped | Directory does not exist in this repo's Codex runtime config. Codex has agents but no commands here. T-026 N/A documented. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -138,7 +138,7 @@ Total elapsed wall-clock: ~5 hours including spec authoring (90 min), CLI dispat
 | Advisor SQLite cache rebuild (`advisor_rebuild`) | PASS — `rebuilt: true, skillCount: 18` |
 | Vitest `native-scorer.vitest.ts` | PASS — 21 tests pass |
 | Vitest `remediation-008-docs.vitest.ts` | FAIL — but unrelated regression: missing research file at `specs/.../004-smart-router-context-efficacy/001-initial-research/research/research-validation.md`. NOT caused by this rename. |
-| Smoke `/improve:agent` dispatch on sandbox agent | PASS — `scan-integration.cjs --agent <sandbox>` exits 0, produces valid JSON output (47 surfaces, 13 skills detected, no broken-path errors). `generate-profile.cjs --help` returns clean usage. Scripts resolve from new `deep-agent-improvement/` path. Full end-to-end /improve:agent dispatch confirmed at the script level. |
+| Smoke `/deep:start-agent-improvement-loop` dispatch on sandbox agent | PASS — `scan-integration.cjs --agent <sandbox>` exits 0, produces valid JSON output (47 surfaces, 13 skills detected, no broken-path errors). `generate-profile.cjs --help` returns clean usage. Scripts resolve from new `deep-agent-improvement/` path. Full end-to-end /deep:start-agent-improvement-loop dispatch confirmed at the script level. |
 | Advisor recommendation smoke (`handleAdvisorRecommend({prompt: "improve agent loop"})`) | PASS — top hit `deep-agent-improvement` with score 0.7, confidence 0.878, uncertainty 0.12. Trust state: live, generation 1218. All 156 phrase entries route to the new skill ID. |
 | Branch hygiene | PASS — `git branch --show-current` returns `main`; no auto-branch surviving |
 
@@ -151,8 +151,8 @@ Total elapsed wall-clock: ~5 hours including spec authoring (90 min), CLI dispat
 | REQ-003 (advisor migrated) | MET | `grep -c 'sk-improve-agent' skill_advisor.py` → 0; `native-scorer.vitest.ts` passes |
 | REQ-004 (SQLite rebuilt) | MET | `advisor_rebuild` returned `rebuilt: true, skillCount: 18` |
 | REQ-005 (dist regenerated) | MET (partial) | dist/skill_advisor outputs correct; full `npm run build` failed on unrelated errors |
-| REQ-006 (4 runtime command surfaces) | MET | `.opencode/`, `.claude/`, `.gemini/` clean; `.codex/commands/improve/` does not exist (documented N/A) |
-| REQ-007 (/improve:agent dispatch) | MET | scan-integration.cjs + generate-profile.cjs smoke pass; advisor recommendation returns deep-agent-improvement (confidence 0.878) |
+| REQ-006 (4 runtime command surfaces) | MET | `.opencode/`, `.claude/`, `.gemini/` clean; `.codex/commands/deep/` does not exist (documented N/A) |
+| REQ-007 (/deep:start-agent-improvement-loop dispatch) | MET | scan-integration.cjs + generate-profile.cjs smoke pass; advisor recommendation returns deep-agent-improvement (confidence 0.878) |
 | REQ-008 (symlink) | MET | `readlink` resolves new path; old absent |
 | REQ-009 (validate.sh strict) | MET | Pre-dispatch strict pass; post-dispatch validation re-runnable |
 | REQ-010 (vitest pass) | MET (partial) | `native-scorer.vitest.ts` passes; `remediation-008-docs` fail is unrelated to rename |
@@ -170,11 +170,11 @@ Total elapsed wall-clock: ~5 hours including spec authoring (90 min), CLI dispat
 ## Known Limitations
 
 1. **`npm run build` failed on unrelated TS errors.** Three pre-existing TypeScript errors live in `code_graph/lib/index-scope-policy.ts`, `code_graph/tests/code-graph-query-handler.vitest.ts`, and `matrix_runners/run-matrix.ts` — these are from concurrent parallel-track work (packet 026/007/012/006 cluster A-E + 082) sharing the same worktree. Our advisor files in `skill_advisor/` compiled cleanly (verified directly via `grep` on `dist/skill_advisor/lib/scorer/fusion.js`). When parallel tracks land, run `npm run build` again to confirm a fully clean build.
-2. ~~Smoke `/improve:agent` dispatch deferred~~ — RESOLVED. Verified at the script level: `scan-integration.cjs` exits 0 against the sandbox agent producing valid JSON (47 surfaces, 13 skills); advisor recommendation returns `deep-agent-improvement` with confidence 0.878 for "improve agent loop" prompt. Full operator-invoked `/improve:agent :auto` workflow remains available but the underlying scripts are confirmed functional.
+2. ~~Smoke `/deep:start-agent-improvement-loop` dispatch deferred~~ — RESOLVED. Verified at the script level: `scan-integration.cjs` exits 0 against the sandbox agent producing valid JSON (47 surfaces, 13 skills); advisor recommendation returns `deep-agent-improvement` with confidence 0.878 for "improve agent loop" prompt. Full operator-invoked `/deep:start-agent-improvement-loop :auto` workflow remains available but the underlying scripts are confirmed functional.
 3. **Historical changelog narrative untouched.** Skill `changelog/v1.0.0.0.md..v1.2.2.0.md` and system-spec-kit `changelog/v3.3.0.0.md`/`v3.4.0.0.md` keep narrative prose verbatim ("v1.0.0.0 created sk-improve-agent…"). Path strings inside those docs were updated for resolution.
 4. **`specs/` research artifacts unchanged.** ~24,127 historical references to `sk-improve-agent` remain in `specs/059-*`, `specs/060-*`, `specs/070-*`, etc. These are research artifacts and stay verbatim per `spec.md` §3 Out of Scope.
 5. **Agent name not modernized.** The agent is still `@improve-agent` rather than `@deep-agent-improvement`. Per 070 precedent, agent naming is independent of skill folder naming. If full naming-family alignment is desired, a follow-on packet can rename the agent.
-6. **YAML asset filenames preserved.** Files `improve_improve-agent_auto.yaml` and `improve_improve-agent_confirm.yaml` keep their filenames because they are command-scoped (named after `/improve:agent` command target, not the skill).
+6. **YAML asset filenames preserved.** Files `deep_start-agent-improvement-loop_auto.yaml` and `deep_start-agent-improvement-loop_confirm.yaml` keep their filenames because they are command-scoped (named after `/deep:start-agent-improvement-loop` command target, not the skill).
 7. **CLI dispatch reliability.** Mid-session, both cli-copilot (transient API connection error) and cli-codex fast-mode bg (silent 0-byte output, likely throttled by 2 other parallel codex runs the user had going) were unreliable. Final phases shipped via direct sed substitution, which was deterministic and faster than retrying the CLIs.
 <!-- /ANCHOR:limitations -->
 

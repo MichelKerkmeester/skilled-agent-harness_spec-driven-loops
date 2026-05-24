@@ -25,7 +25,7 @@ Of 36 patterns surveyed from arcs 117-122, 8 are APPLY (22%), 4 are ADAPT (11%),
 | P-006 | SCRIPT-SHIM | ALREADY-DONE | - | - | scripts/*.cjs | 13 .cjs scripts provide all entry points (score-candidate.cjs, reduce-state.cjs, etc.) |
 | P-007 | RUNTIME-RELOCATION | SKIP | - | - | - | Deep-agent-improvement uses JSONL/JSON files, not SQLite DB |
 | P-008 | MCP-REMOVAL | SKIP | - | - | - | Deep-agent-improvement doesn't use MCP tools (allowed-tools: Read, Write, Edit, Bash, Glob, Grep) |
-| P-009 | WORKFLOW-YAML | SKIP | - | - | - | Deep-agent-improvement uses /improve:agent command workflow, not YAML orchestration |
+| P-009 | WORKFLOW-YAML | SKIP | - | - | - | Deep-agent-improvement uses /deep:start-agent-improvement-loop command workflow, not YAML orchestration |
 | P-010 | COLLATERAL | SKIP | - | - | - | Deep-agent-improvement has no consumer surfaces like /doctor or system-code-graph playbook |
 | P-011 | TEST-MIGRATION | ALREADY-DONE | - | - | scripts/tests/*.vitest.ts | scripts/tests/ contains 7 vitest test files (candidate-lineage.vitest.ts, etc.) |
 | P-012 | DOC-COMPLIANCE | ALREADY-DONE | - | - | SKILL.md, README.md | SKILL.md follows sk-doc patterns with numbered H2s, required sections; DQI not explicitly measured but structure is compliant |

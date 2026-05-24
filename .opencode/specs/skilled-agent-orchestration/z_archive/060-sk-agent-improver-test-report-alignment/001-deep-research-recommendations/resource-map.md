@@ -93,7 +93,7 @@ Research-only packet. **No source-file changes outside the packet folder.** All 
 |---|---|
 | `.opencode/skills/sk-improve-agent/SKILL.md` | Primary research target (463 lines) |
 | `.opencode/agents/improve-agent.md` | Primary research target (246 lines) |
-| `.opencode/commands/improve/agent.md` | Primary research target (456 lines) |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Primary research target (456 lines) |
 | `.opencode/skills/sk-improve-agent/references/` (12 docs) | Secondary surface |
 | `.opencode/skills/sk-improve-agent/scripts/` (13 .cjs scripts) | Secondary surface |
 | `.opencode/skills/sk-improve-agent/assets/` (6 items) | Secondary surface |

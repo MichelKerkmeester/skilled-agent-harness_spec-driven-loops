@@ -89,4 +89,4 @@ Two new foundation scripts:
 - `score-candidate.cjs --profile handover` produces backward-compatible scores
 - `run-benchmark.cjs --profile handover` existing fixtures still pass
 - `package_skill.py --check` returns PASS
-- End-to-end `/improve:agent-improver` loop works with new dimensional scoring
+- End-to-end `/deep:start-agent-improvement-loop-improver` loop works with new dimensional scoring

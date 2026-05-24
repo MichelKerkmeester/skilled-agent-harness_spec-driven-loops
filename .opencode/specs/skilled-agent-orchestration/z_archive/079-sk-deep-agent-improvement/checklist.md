@@ -5,7 +5,7 @@ trigger_phrases:
   - "verification checklist"
   - "rename verification"
   - "advisor smoke test"
-  - "improve:agent dispatch test"
+  - "deep:start-agent-improvement-loop dispatch test"
 importance_tier: "normal"
 contextType: "general"
 _memory:
@@ -94,7 +94,7 @@ Each CHK item is mapped to a `spec.md` REQ and a `tasks.md` T-### where applicab
 - [ ] CHK-031 [P0] Strict spec validation post-implementation (REQ-009 / T-035) — `validate.sh ... --strict` exits 0
 - [ ] CHK-032 [P0] Residual grep clean (T-036) — full command per `tasks.md` T-036; output 0 lines
 - [ ] CHK-033 [P0] Advisor recommendation smoke (REQ-003 / T-037) — top hit `deep-agent-improvement`; confidence ≥ 0.85
-- [ ] CHK-034 [P0] /improve:agent smoke dispatch (REQ-007 / T-038) — sandbox agent dispatch completes 1 auto-mode iteration; zero broken-path errors
+- [ ] CHK-034 [P0] /deep:start-agent-improvement-loop smoke dispatch (REQ-007 / T-038) — sandbox agent dispatch completes 1 auto-mode iteration; zero broken-path errors
 - [ ] CHK-035 [P0] Vitest pass (REQ-010 / T-039) — `npm test` returns exit 0; `native-scorer.vitest.ts` and `remediation-008-docs.vitest.ts` pass
 - [ ] CHK-036 [P1] YAML asset templates parse (T-022/T-023 + mirrors) — `python3 -c 'import yaml; yaml.safe_load(open(p))'` succeeds for both auto + confirm in all 4 runtimes
 - [ ] CHK-037 [P1] JSON metadata files parse — `jq '.' graph-metadata.json` and `jq '.' skill-graph.json` succeed across all updated files
@@ -122,7 +122,7 @@ Each CHK item is mapped to a `spec.md` REQ and a `tasks.md` T-### where applicab
 
 - [ ] CHK-040 [P0] No hardcoded secrets introduced — symbolic rename only; no new env vars
 - [ ] CHK-041 [P0] No new attack surface — no parser/path-resolver/security-boundary changes; symbolic identifier replacement only
-- [ ] CHK-042 [P1] Authorization model unchanged — `@improve-agent` agent dispatch authority and `/improve:agent` command access remain identical
+- [ ] CHK-042 [P1] Authorization model unchanged — `@improve-agent` agent dispatch authority and `/deep:start-agent-improvement-loop` command access remain identical
 <!-- /ANCHOR:security -->
 
 ---

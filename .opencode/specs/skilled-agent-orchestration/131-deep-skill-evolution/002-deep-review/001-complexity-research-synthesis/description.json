@@ -1,7 +1,7 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/002-deep-review/001-complexity-research-synthesis",
-  "description": "Feature Specification: 116/001 \u2014 Deep Review Complexity Research Synthesis",
+  "description": "Feature Specification: 116/001 — Deep Review Complexity Research Synthesis",
   "keywords": [
     "feature",
     "specification",
@@ -13,9 +13,9 @@
     "research",
     "synthesis"
   ],
-  "lastUpdated": "2026-05-22T19:07:31.259Z",
+  "lastUpdated": "2026-05-23T15:24:58.988Z",
   "specId": "001",
-  "folderSlug": "001-complexity-research-synthesis",
+  "folderSlug": "complexity-research-synthesis",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

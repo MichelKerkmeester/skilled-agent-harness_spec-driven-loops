@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The 18-pair code-retrieval fixture at `../002-baseline-fixture/evidence/code-retrieval-fixture.json` was authored without a peer review of \"is the `expected_source_path` for each query actually the BEST answer?\". The May 18 evening instrumented bench surfaced a specific case worth scrutinizing:",
     "created_at": "2026-05-18T19:21:19.321Z",
-    "last_save_at": "2026-05-23T11:55:15.506Z",
+    "last_save_at": "2026-05-24T05:40:26.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

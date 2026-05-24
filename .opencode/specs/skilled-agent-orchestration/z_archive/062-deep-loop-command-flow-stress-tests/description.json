@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests",
+  "specFolder": "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests",
   "description": "Phase Parent Spec: 062 — Deep-Loop Command-Flow Stress Tests",
   "keywords": [
     "phase",
@@ -11,11 +11,12 @@
     "stress",
     "tests"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.003Z",
+  "lastUpdated": "2026-05-23T15:24:59.386Z",
   "specId": "062",
   "folderSlug": "deep-loop-command-flow-stress-tests",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

@@ -94,7 +94,7 @@
     ],
     "causal_summary": "Activate the graph and degree channels for intent-driven and entity-rich short queries. The complex-tier threshold (`>8 terms`) was excluding essentially all natural queries from the graph channel, so 1,328 live causal edges sat unused. This phase parent owns both the initial routing override (001) and the post-deep-review remediation (002).",
     "created_at": "2026-05-11T10:36:32.859Z",
-    "last_save_at": "2026-05-23T11:55:15.300Z",
+    "last_save_at": "2026-05-24T05:40:25.937Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -29,7 +29,7 @@ This iteration focused on Q3, the D3 blocker: whether the internal `.opencode/ag
 | `ultra-think` | `name`, `description`, `mode`, `temperature`, `permission`, `mcpServers` | Partial convention only; `mode: all` plus `permission.task: allow` permits direct depth-0 dispatch behavior, while body detects Depth 1. |
 | `write` | `name`, `description`, `mode`, `temperature`, `permission` | None; write-capable but leaf via `permission.task: deny`. |
 
-- The root routing table assigns dispatch ownership in prose: `@deep-research` is dispatched by `/speckit:deep-research`, `@deep-review` by `/speckit:deep-review`, `@improve-agent` by `/improve:agent`, and `@improve-prompt` by `/improve:prompt`. Evidence: `AGENTS.md:334`, `AGENTS.md:335`, `AGENTS.md:337`, `AGENTS.md:338`.
+- The root routing table assigns dispatch ownership in prose: `@deep-research` is dispatched by `/speckit:deep-research`, `@deep-review` by `/speckit:deep-review`, `@improve-agent` by `/deep:start-agent-improvement-loop`, and `@improve-prompt` by `/prompt`. Evidence: `AGENTS.md:334`, `AGENTS.md:335`, `AGENTS.md:337`, `AGENTS.md:338`.
 
 - Root `AGENTS.md` also has a hard workflow rule that direct Task-tool use of `@deep-research` or `@deep-review` for iteration loops is forbidden; only the command-owned YAML workflow may dispatch them. This is an instruction-level gate, not an observed frontmatter-level validator. Evidence: `AGENTS.md:223`.
 

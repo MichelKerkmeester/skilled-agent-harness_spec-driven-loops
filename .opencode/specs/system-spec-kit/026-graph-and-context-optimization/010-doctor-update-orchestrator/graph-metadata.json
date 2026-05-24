@@ -49,7 +49,6 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      ".opencode/commands/doctor.md",
       "handover.md",
       "resource-map.md",
       ".opencode/commands/doctor/assets/doctor_update.yaml",
@@ -67,19 +66,14 @@
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/014-workspace-scanning-and-indexing-memory-index-scan.md"
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/014-workspace-scanning-and-indexing-memory-index-scan.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/035-startup-runtime-compatibility-guards.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor.md",
         "source": "derived"
       },
       {
@@ -167,6 +161,12 @@
         "source": "derived"
       },
       {
+        "name": "035-startup-runtime-compatibility-guards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/035-startup-runtime-compatibility-guards.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -217,7 +217,7 @@
     ],
     "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than current `v3.4.1.0`) needs a one-shot path to bring every database/index/graph in the spec-kit ecosystem into alignment with their current codebase and skill set. The 026 release shipped doctor commands for code-graph, skill-advisor, skill-budget, and MCP infra, but **four subsystems with on-disk databases have no `/doctor:*` coverage**: memory continuity-index, causal-edges, deep-loop coverage graphs, and CocoIndex. There is also no unified entry point that chains rebuilds in dependency-safe order with snapshot + rollback. Authoring the new commands is one half of the gap; authoring a reproducible Docker sandbox + manual testing playbook so users can verify the commands against canonical preconditions is the other half.",
     "created_at": "2026-05-10T06:24:00.129Z",
-    "last_save_at": "2026-05-23T11:55:15.307Z",
+    "last_save_at": "2026-05-24T05:40:25.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

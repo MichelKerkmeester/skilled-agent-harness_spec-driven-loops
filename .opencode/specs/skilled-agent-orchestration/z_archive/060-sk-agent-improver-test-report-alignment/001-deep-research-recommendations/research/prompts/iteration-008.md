@@ -17,7 +17,7 @@ Apply the testing methodology from packet 059 (`@code` stress-test campaign docu
 
 - `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines)
 - `.opencode/agents/improve-agent.md` (246 lines)
-- `.opencode/commands/improve/agent.md` (456 lines)
+- `.opencode/commands/deep/start-agent-improvement-loop.md` (456 lines)
 
 Plus the secondary surface: `references/` (12 docs), `scripts/` (13 .cjs — note: prior iteration found 13, not 14 as originally stated), `assets/` (6 items) under sk-improve-agent.
 

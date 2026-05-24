@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-prompt/SKILL.md"
-      - ".opencode/commands/improve/agent.md"
+      - ".opencode/commands/deep/start-agent-improvement-loop.md"
       - ".opencode/commands/doctor/code-graph.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -67,7 +67,7 @@ Pull the cluster cleanly under the soft target with ~10-25 chars margin per item
 
 ### In Scope
 - 1 skill: `.opencode/skills/sk-prompt/SKILL.md`
-- 7 commands: `create/changelog`, `create/sk-skill`, `doctor/code-graph`, `improve/agent`, `improve/prompt`, `memory/manage`, `memory/search`
+- 7 commands: `create/changelog`, `create/sk-skill`, `doctor/code-graph`, `deep/start-agent-improvement-loop`, `prompt`, `memory/manage`, `memory/search`
 - Edit `description:` field only; preserve all other frontmatter
 
 ### Out of Scope
@@ -83,8 +83,8 @@ Pull the cluster cleanly under the soft target with ~10-25 chars margin per item
 | `.opencode/commands/create/changelog.md` | 114 | 97 | `Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.` |
 | `.opencode/commands/create/sk-skill.md` | 112 | 96 | `Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.` |
 | `.opencode/commands/doctor/code-graph.md` | 119 | 101 | `Diagnose and fix code-graph index health (stale, missed, bloat). :auto/:confirm/:apply/:apply-confirm.` |
-| `.opencode/commands/improve/agent.md` | 122 | 99 | `Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm.` |
-| `.opencode/commands/improve/prompt.md` | 112 | 97 | `Create or improve AI prompts via sk-prompt: frameworks, DEPTH thinking, CLEAR; optional dispatch.` |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | 122 | 99 | `Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm.` |
+| `.opencode/commands/prompt.md` | 112 | 97 | `Create or improve AI prompts via sk-prompt: frameworks, DEPTH thinking, CLEAR; optional dispatch.` |
 | `.opencode/commands/memory/manage.md` | 116 | 97 | `Manage indexed-continuity DB: stats, scan, cleanup, retention, validate, checkpoint, ingest, CCC.` |
 | `.opencode/commands/memory/search.md` | 112 | 94 | `Unified continuity retrieval: spec-doc search, baselines, causal graph, ablations, dashboards.` |
 

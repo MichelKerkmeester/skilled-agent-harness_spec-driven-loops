@@ -177,7 +177,7 @@
         "source": "derived"
       },
       {
-        "name": "T-003: Dispatch /improve:agent",
+        "name": "T-003: Dispatch /deep:start-agent-improvement-loop",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Improvement focus: **LEAF retrieval discipline; no-dispatch invariant; CocoIndex/grep routing fidelity**. LEAF — must NOT dispatch sub-agents, use Task tool, or write files. Returns results to caller; never holds in nested context.",
     "created_at": "2026-05-18T07:49:27.101Z",
-    "last_save_at": "2026-05-23T11:55:14.510Z",
+    "last_save_at": "2026-05-24T05:40:25.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -11,9 +11,9 @@
     "manifest-driven",
     "phases"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.807Z",
+  "lastUpdated": "2026-05-23T15:25:00.809Z",
   "specId": "003",
-  "folderSlug": "template-greenfield-impl",
+  "folderSlug": "manifest-template-implementation-plan",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

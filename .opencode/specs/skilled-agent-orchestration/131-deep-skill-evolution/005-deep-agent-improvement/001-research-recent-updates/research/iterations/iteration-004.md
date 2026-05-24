@@ -55,7 +55,7 @@ Agent-improvement-specific surfaces:
 - **Evidence**: Line 92: `const threshold = Number(config?.scoring?.thresholdDelta || 1)` - fallback to magic number
 
 ### Evaluator-first timing
-- **Location**: YAML workflow `improve_deep-agent-improvement_auto.yaml` steps 163-168
+- **Location**: YAML workflow `deep_start-agent-improvement-loop_auto.yaml` steps 163-168
 - **Mechanism**: Score candidate before promotion
 - **Issue**: No explicit timing verification that evaluation completed before mutation proposal
 - **Evidence**: Workflow steps are sequential but no timestamp-based ordering verification

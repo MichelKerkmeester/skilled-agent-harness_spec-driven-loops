@@ -211,7 +211,7 @@
     ],
     "causal_summary": "Child 005 moves the remaining prompt-time, plugin, shim, doctor, and documentation consumers of `advisor_*` from the memory MCP boundary to the standalone `system_skill_advisor` MCP server created by child 004. The public tool ids stay unchanged, so callers keep using `advisor_recommend`, `advisor_status`, `advisor_rebuild`, and `advisor_validate`; the server that owns those tools changes.",
     "created_at": "2026-05-14T10:38:05Z",
-    "last_save_at": "2026-05-23T11:55:15.117Z",
+    "last_save_at": "2026-05-24T05:40:25.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

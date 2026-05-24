@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The deep-review/deep-research workflows support 4 executors (`native`, `cli-codex`, `cli-gemini`, `cli-claude-code`) but not `cli-opencode`. Users cannot dispatch deep-loop iterations via OpenCode CLI even though the cli-opencode skill exists for cross-AI handback. Requested explicitly during the post-100 verdict-flip re-run.",
     "created_at": "2026-05-18T07:49:27.249Z",
-    "last_save_at": "2026-05-23T11:55:14.698Z",
+    "last_save_at": "2026-05-24T05:40:25.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -97,7 +97,7 @@ Output: `003-followup-research/research/research.md` (275 lines + 1582 lines acr
 Status: COMPLETE — final composite PASS 6 / PARTIAL 0 / FAIL 0
 Output: `004-improve-agent-command-flow-stress-tests/test-report.md`
 
-Restructured CP-040..045 around per-CP layer partition: CP-040/043/044/045 invoke `/improve:agent` command in a command-capable temp project root; CP-041/042 stay body-level with 5 required runtime/control inputs materialized. R1 = 3/2/1; R2 (direct Bash to inherit copilot keyring auth) = 5/1/0. All FAILs eliminated. CP-042 PARTIAL is a documented body-discipline gap, not scenario mechanics.
+Restructured CP-040..045 around per-CP layer partition: CP-040/043/044/045 invoke `/deep:start-agent-improvement-loop` command in a command-capable temp project root; CP-041/042 stay body-level with 5 required runtime/control inputs materialized. R1 = 3/2/1; R2 (direct Bash to inherit copilot keyring auth) = 5/1/0. All FAILs eliminated. CP-042 PARTIAL is a documented body-discipline gap, not scenario mechanics.
 
 ### 005 — Executable Wiring (was 062)
 

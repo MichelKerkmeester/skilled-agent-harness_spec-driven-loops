@@ -57,7 +57,7 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 | CLI orchestrator skills | 5 | cli-claude-code, cli-codex, cli-devin, cli-gemini, cli-opencode |
 | MCP integration skills | 3 | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode |
 | Code workflow and review skills | 2 | sk-code, sk-code-review |
-| sk-util utility skills | 6 | deep-agent-improvement, deep-ai-council, sk-ai-small-model, sk-doc, sk-git, sk-prompt |
+| sk-util utility skills | 6 | deep-agent-improvement, deep-ai-council, sk-prompt-small-model, sk-doc, sk-git, sk-prompt |
 | Deep-loop skills | 3 | deep-loop-runtime, deep-research, deep-review |
 | System skills | 4 | system-code-graph, system-rerank-sidecar, system-skill-advisor, system-spec-kit |
 | Skills with local scripts/ | 10 | See Section 4 for the current script-bearing folders |
@@ -174,7 +174,7 @@ The skill system covers four distinct workflow domains.
 | `deep-agent-improvement` | 1.0.0.0 | Evaluator-first agent improvement with 5-dimension integration-aware scoring, dynamic profiling, deterministic benchmarks, and guarded promotion |
 | `deep-loop-runtime` | 1.0.0 | Shared runtime infrastructure for deep-review + deep-research loop workflows (post-arc-118) |
 | `deep-ai-council` | 1.2.0.0 | Multi-seat planning council for complex scoped-write decisions and convergence artifacts |
-| `sk-ai-small-model` | 0.3.0.0 | Sentinel for small-model optimization patterns (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1); routing anchor with `enhances` edges to cli-devin + cli-opencode (renamed from sk-small-model in 114/007 on 2026-05-21) |
+| `sk-prompt-small-model` | 0.3.0.0 | Sentinel for small-model optimization patterns (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1); routing anchor with `enhances` edges to cli-devin + cli-opencode (renamed from sk-small-model in 114/007 on 2026-05-21) |
 | `deep-research` | 1.2.0 | Autonomous research loop with iterative investigation, externalized state, and convergence detection |
 | `deep-review` | 1.0.0 | Autonomous iterative code review with severity-weighted findings, dimension coverage, convergence detection, and release readiness verdicts |
 | `sk-doc` | 1.3.0.0 | Markdown quality enforcement, component templates, validation scripts, and DQI scoring |
@@ -209,7 +209,7 @@ The skill system covers four distinct workflow domains.
 ├── deep-agent-improvement/       # Evaluator-first agent improvement loop
 ├── deep-loop-runtime/      # Shared runtime for deep-review and deep-research
 ├── deep-ai-council/        # Multi-seat planning council
-├── sk-ai-small-model/      # Sentinel for small-model optimization patterns (renamed from sk-small-model)
+├── sk-prompt-small-model/      # Sentinel for small-model optimization patterns (renamed from sk-small-model)
 ├── sk-code/                # Multi-stack coding standards, references, assets
 ├── sk-code-review/         # Findings-first code review baseline
 ├── deep-research/       # Autonomous deep research loop

@@ -5,7 +5,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memor
 # Note: Task tool is for the command executor (loop management). The @deep-review agent itself does NOT have Task (LEAF-only).
 # No WebFetch: review is code-only and read-only. No external resource fetching.
 argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
-version: 1.10.0.0
+version: 1.10.1.0
 ---
 
 <!-- Keywords: deep-review, code-audit, iterative-review, review-loop, convergence-detection, externalized-state, fresh-context, review-agent, JSONL-state, severity-findings, P0-P1-P2, release-readiness, spec-alignment -->
@@ -121,17 +121,24 @@ RESOURCE_MAP = {
     "REVIEW_SETUP":       [
         "references/loop_protocol.md",
         "references/state_format.md",
+        "references/state_outputs.md",
+        "references/state_reducer_registry.md",
         "assets/deep_review_strategy.md",
     ],
     "REVIEW_ITERATION":   [
         "references/loop_protocol.md",
         "references/convergence.md",
+        "references/convergence_signals.md",
     ],
     "REVIEW_CONVERGENCE": [
         "references/convergence.md",
+        "references/convergence_signals.md",
+        "references/state_outputs.md",
     ],
     "REVIEW_REPORT":      [
         "references/state_format.md",
+        "references/state_outputs.md",
+        "references/state_reducer_registry.md",
         "assets/deep_review_dashboard.md",
     ],
 }
@@ -143,14 +150,17 @@ LOADING_LEVELS = {
         "references/loop_protocol.md",
         "references/state_format.md",
         "references/convergence.md",
+        "references/convergence_signals.md",
+        "references/state_outputs.md",
+        "references/state_reducer_registry.md",
     ],
 }
 
 PHASE_RESOURCE_MAP = {
-    "init": ["references/loop_protocol.md", "references/state_format.md"],
-    "iteration": ["references/loop_protocol.md", "references/convergence.md"],
-    "stuck": ["references/convergence.md", "references/loop_protocol.md"],
-    "synthesis": ["references/state_format.md", "assets/deep_review_dashboard.md"],
+    "init": ["references/loop_protocol.md", "references/state_format.md", "references/state_outputs.md"],
+    "iteration": ["references/loop_protocol.md", "references/convergence.md", "references/convergence_signals.md"],
+    "stuck": ["references/convergence.md", "references/convergence_signals.md", "references/loop_protocol.md", "references/state_reducer_registry.md"],
+    "synthesis": ["references/state_format.md", "references/state_outputs.md", "references/state_reducer_registry.md", "assets/deep_review_dashboard.md"],
 }
 
 NON_MARKDOWN_REFERENCES = {
@@ -253,10 +263,10 @@ Detect the current review phase from dispatch context to load appropriate resour
 
 | Phase | Signal | Resources to Load |
 |-------|--------|-------------------|
-| Init | No JSONL exists in `review/` | Loop protocol, state format, review contract |
-| Iteration | Dispatch context includes dimension + iteration number | Loop protocol, convergence, review contract |
-| Stuck | Dispatch context includes "RECOVERY" | Convergence, loop protocol |
-| Synthesis | Convergence triggered STOP | Review contract, state format |
+| Init | No JSONL exists in `review/` | Loop protocol, state format, state outputs, review contract |
+| Iteration | Dispatch context includes dimension + iteration number | Loop protocol, convergence, convergence signals, review contract |
+| Stuck | Dispatch context includes "RECOVERY" | Convergence, convergence signals, loop protocol, reducer registry |
+| Synthesis | Convergence triggered STOP | Review contract, state format, state outputs, reducer registry |
 
 ---
 
@@ -439,7 +449,7 @@ On this skill surface, the live code-graph readiness contract only reaches four 
 
 ## 5. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/convergence.md`, `references/loop_protocol.md`, `references/quick_reference.md`, `references/state_format.md`, `assets/deep_review_dashboard.md`, `assets/deep_review_strategy.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/quick_reference.md`, `references/loop_protocol.md`, `references/convergence.md`, `references/convergence_signals.md`, `references/state_format.md`, `references/state_outputs.md`, `references/state_reducer_registry.md`, `assets/deep_review_dashboard.md`, `assets/deep_review_strategy.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
 

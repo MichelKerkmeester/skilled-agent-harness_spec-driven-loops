@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The \"support all embedders out of the box for new users\" promise is now achieved across two MCPs but nowhere documents it cohesively. mk-spec-memory has the 016 EmbedderAdapter + MANIFESTS + MCP-tool swap. CocoIndex has registered_embedders.py + env var + reset/reindex. These are different mechanisms with the same goal.",
     "created_at": "2026-05-18T08:07:26.068Z",
-    "last_save_at": "2026-05-23T11:55:15.558Z",
+    "last_save_at": "2026-05-24T05:40:26.092Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

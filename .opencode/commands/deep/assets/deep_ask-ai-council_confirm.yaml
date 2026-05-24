@@ -42,10 +42,14 @@ skill_reference:
   scripts:
     orchestrate_session: .opencode/skills/deep-ai-council/scripts/orchestrate-session.cjs
     findings_registry: .opencode/skills/deep-ai-council/scripts/lib/findings-registry.cjs
+    replay_graph: .opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs
   runtime_primitives:
     session_state: .opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs
     round_state: .opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs
     cost_guards: .opencode/skills/deep-loop-runtime/lib/council/cost-guards.cjs
+    graph_upsert: .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --loop-type council
+    graph_status: .opencode/skills/deep-loop-runtime/scripts/status.cjs --loop-type council
+    graph_convergence: .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --loop-type council
 
 state_paths:
   packet_dir: "{spec_folder}/ai-council"

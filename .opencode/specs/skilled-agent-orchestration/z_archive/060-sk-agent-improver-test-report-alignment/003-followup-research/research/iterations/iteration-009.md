@@ -29,7 +29,7 @@ Therefore the final synthesis should distinguish two different 063 shapes:
 
 | 063 shape | Where evidence lives | Exit criterion |
 |---|---|---|
-| **Spec-local RED methodology proof** | Packet-local report/artifacts under 063, not active cli-copilot release scenarios | Proves `/improve:agent` command entry, command-capable sandbox, artifact roots, and causally named producer/consumer gaps. |
+| **Spec-local RED methodology proof** | Packet-local report/artifacts under 063, not active cli-copilot release scenarios | Proves `/deep:start-agent-improvement-loop` command entry, command-capable sandbox, artifact roots, and causally named producer/consumer gaps. |
 | **Active CP-040..CP-045 correction** | Edits the canonical cli-copilot playbook files | Uses stable CP IDs but only lands contracts that can be graded under the existing PASS/PARTIAL/FAIL/SKIP release model. |
 
 This reconciles iteration 6's "063 as RED methodology packet" with iteration 7's "reuse CP-040..CP-045 in place" recommendation. Reuse the IDs when correcting the active playbook, but do not leave expected-RED command-flow failures as active release criteria unless the packet explicitly marks the release surface as intentionally not ready.
@@ -38,7 +38,7 @@ This reconciles iteration 6's "063 as RED methodology packet" with iteration 7's
 
 Iteration 8 correctly found that sk-improve-agent's native RT playbook should be cross-checked, but the deeper read shows RT-028 and RT-032 are not clean enough to serve as 063 verdict gates yet. RT-028 expects `legal_stop_evaluated` with `gateResults` containing all five gate bundles, and its feature file verifies `details.gateResults` in the journal [SOURCE: `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:20-29`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:43-45`]. That aligns with the desired structured legal-stop consumer shape.
 
-However, both native RT entries also carry drift that would confuse a 063 command-flow verdict. RT-028's exact command uses `/improve:improve-agent ".opencode/agents/debug.md" :confirm --spec-folder={spec} --iterations=5`, while 063's tested entry point should be the `/improve:agent` command surface with a fixture target and explicit `:auto` mode [SOURCE: `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:43-45`, `.opencode/commands/improve/agent.md:1-17`]. RT-032 likewise describes `/improve:improve-agent` and uses `.opencode/agents/debug.md`, while its expected signals still require `gate_evaluation` inside each iteration [SOURCE: `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:14-28`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:43-45`].
+However, both native RT entries also carry drift that would confuse a 063 command-flow verdict. RT-028's exact command uses `/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder={spec} --iterations=5`, while 063's tested entry point should be the `/deep:start-agent-improvement-loop` command surface with a fixture target and explicit `:auto` mode [SOURCE: `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:43-45`, `.opencode/commands/deep/start-agent-improvement-loop.md:1-17`]. RT-032 likewise describes `/deep:start-agent-improvement-loop` and uses `.opencode/agents/debug.md`, while its expected signals still require `gate_evaluation` inside each iteration [SOURCE: `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:14-28`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:43-45`].
 
 That means 063 should cite native RT as an **oracle mismatch to preserve**, not as a hard verdict input. The 064 implementation handoff should repair or explicitly reconcile RT-028/RT-032 alongside YAML, command docs, SKILL docs, helper tests, and cli-copilot CP contracts. Otherwise 063 would be comparing the new command-flow suite against a native oracle that is itself partly stale.
 
@@ -65,7 +65,7 @@ Recommended table:
 | RQ | Final answer status | First answerable by | Must carry forward |
 |---|---|---|---|
 | RQ-1 | Answerable | Iteration 1/2, refined 5/8 | Body/scorer/mirror diffs mostly complete; benchmark, legal-stop shape, event/stop enums, and docs need 064. |
-| RQ-2 | Answerable | Iteration 1, refined 3 | Call B is command-facing: `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=... --iterations=1`, from a command-capable temp project root. |
+| RQ-2 | Answerable | Iteration 1, refined 3 | Call B is command-facing: `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=... --iterations=1`, from a command-capable temp project root. |
 | RQ-3 | Answerable | Iteration 1, refined 3/5/7/8/9 | Use layer-specific lanes: leaf GREEN for CP-041/042, command RED/PARTIAL for 063, command GREEN only after 064 wiring and structured consumers. |
 | RQ-4 | Answerable | Iteration 1, refined 4 | Command-loop leaves are @improve-agent, @deep-research, @deep-review; @code is a body-level leaf with caller gate; @orchestrate is a primary orchestrator body. |
 | RQ-5 | Answerable | Iteration 2, refined 3/6/7/9 | 001 had correct concepts but missed blocking readiness gates, fixture/root completeness, per-scenario layer partition, and release-surface implications. |
@@ -78,7 +78,7 @@ The synthesis should also make the packet governance explicit. Packet 003 is res
 
 1. Should the final synthesis name a separate 065 GREEN rerun packet, or keep 065 optional and say 064 may include the rerun only if the diff stays small?
 2. If 063 chooses active CP edits, should it add a temporary "expected RED is methodology-only" notation to per-feature files, or should it keep expected-RED evidence entirely outside the active playbook?
-3. Should `/improve:improve-agent` in native RT files be treated as an alias that exists elsewhere, or as stale command naming that must be repaired in 064?
+3. Should `/deep:start-agent-improvement-loop` in native RT files be treated as an alias that exists elsewhere, or as stale command naming that must be repaired in 064?
 
 ## Ruled Out
 
@@ -136,7 +136,7 @@ The synthesis should also make the packet governance explicit. Packet 003 is res
 ```text
 063 SHOULD:
   - Build command-capable sandbox.
-  - Invoke /improve:agent ... :auto --spec-folder=... --iterations=1.
+  - Invoke /deep:start-agent-improvement-loop ... :auto --spec-folder=... --iterations=1.
   - Keep expected-RED methodology artifacts packet-local unless active CPs can pass under current playbook rules.
   - Use RT-028/RT-032 as "oracle alignment to fix", not as hard PASS gates.
 

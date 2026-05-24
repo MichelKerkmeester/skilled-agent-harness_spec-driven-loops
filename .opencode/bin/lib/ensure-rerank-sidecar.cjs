@@ -16,6 +16,8 @@ const { isAllowedSidecarEnvKey } = require('./sidecar-env-allowlist.cjs');
 // ───── SECTION: constants and errors ─────
 
 const SIDECAR_SKILL_PATH = path.resolve(__dirname, '..', '..', 'skills', 'system-rerank-sidecar');
+// 022/008 cross-language sync: this 8765 default mirrors sidecar_defaults.py:DEFAULT_PORT.
+// When changing the default, update sidecar_defaults.py AND scripts/start.sh + scripts/use-model.sh in lockstep.
 const DEFAULT_PORT = 8765;
 const DEFAULT_HEALTH_TIMEOUT_MS = 20000;
 const DEFAULT_REAP_HEALTH_TIMEOUT_MS = 100;
@@ -605,6 +607,7 @@ function canonicalConfigHash(port, env) {
   const config = {
     RERANK_ALLOWED_MODELS: readConfigHashEnvValue(env, 'RERANK_ALLOWED_MODELS', ''),
     RERANK_DEVICE: readConfigHashEnvValue(env, 'RERANK_DEVICE', ''),
+    // 022/008 cross-language sync: defaults mirror sidecar_defaults.py:DEFAULT_MODEL_NAME + DEFAULT_MODEL_REVISION.
     RERANK_MODEL_NAME: readConfigHashEnvValue(env, 'RERANK_MODEL_NAME', 'Qwen/Qwen3-Reranker-0.6B'),
     RERANK_MODEL_REVISION: readConfigHashEnvValue(env, 'RERANK_MODEL_REVISION', 'e61197ed45024b0ed8a2d74b80b4d909f1255473'),
     RERANK_MODEL_REVISIONS: readConfigHashEnvValue(env, 'RERANK_MODEL_REVISIONS', ''),

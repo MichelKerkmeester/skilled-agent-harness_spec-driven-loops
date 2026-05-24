@@ -1,4 +1,4 @@
-# Codex CLI — Global Voice, Tone & Reasoning Visibility
+# Codex — Global Voice, Tone & Reasoning Visibility
 
 > **Scope**: user-level (global) instructions loaded by Codex CLI at every session start. Covers **voice, tone, and reasoning visibility only** — how responses sound, feel, and show their thinking. Nothing else.
 >

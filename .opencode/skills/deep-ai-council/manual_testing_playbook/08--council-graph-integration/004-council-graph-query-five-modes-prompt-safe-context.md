@@ -1,9 +1,9 @@
 ---
-title: "DAC-022 -- council_graph_query five modes return prompt-safe context"
-description: "This scenario validates that all 5 query modes (`unresolved_disagreements`, `evidence_chain`, `decision_support`, `convergence_blockers`, `hot_nodes`) return bounded prompt-safe context for `DAC-022`. Anchors to council-graph.vitest.ts test 'upserts prompt-safe council graph data and queries unresolved disagreements and decision support'."
+title: "DAC-022 -- runtime query CLI five modes return prompt-safe context"
+description: "This scenario validates that all 5 query modes (`unresolved_disagreements`, `evidence_chain`, `decision_support`, `convergence_blockers`, `hot_nodes`) return bounded prompt-safe context for `DAC-022`. Anchors to council-graph-script.vitest.ts test 'upserts prompt-safe council graph data and queries unresolved disagreements and decision support'."
 ---
 
-# DAC-022 -- council_graph_query five modes return prompt-safe context
+# DAC-022 -- runtime query CLI five modes return prompt-safe context
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `DAC-022`.
 
@@ -11,7 +11,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates that `council_graph_query` exposes all five documented query modes (`unresolved_disagreements`, `evidence_chain`, `decision_support`, `convergence_blockers`, `hot_nodes`) and that each returns bounded, prompt-safe context that respects the caller-supplied `limit` parameter.
+This scenario validates that `runtime query CLI` exposes all five documented query modes (`unresolved_disagreements`, `evidence_chain`, `decision_support`, `convergence_blockers`, `hot_nodes`) and that each returns bounded, prompt-safe context that respects the caller-supplied `limit` parameter.
 
 ### Why This Matters
 
@@ -23,9 +23,9 @@ The query surface is the council synthesis caller's primary handle into derived 
 
 Operators run the exact prompt and command sequence for `DAC-022` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify all 5 documented `council_graph_query` modes return prompt-safe bounded context.
+- Objective: Verify all 5 documented `runtime query CLI` modes return prompt-safe bounded context.
 - Real user request: Show me each query view the council graph supports against a fully-populated session.
-- Prompt: `As a council-graph integration validator, seed a fully-populated council session and call council_graph_query with each of the five documented modes; assert each returns bounded prompt-safe context.`
+- Prompt: `As a council-graph integration validator, seed a fully-populated council session and call runtime query CLI with each of the five documented modes; assert each returns bounded prompt-safe context.`
 - Expected execution process: Upsert one SESSION + 2 ROUNDs + 3 SEATs + claims/evidence/disagreements/decisions/recommendations to populate the graph; iterate `mode in ['unresolved_disagreements', 'evidence_chain', 'decision_support', 'convergence_blockers', 'hot_nodes']` with `limit: 5`; assert each response shape and limit compliance.
 - Expected signals: All 5 modes return success; each response respects `limit: 5`; metadata contains only allowlisted scalars.
 - Desired user-visible outcome: The user sees that all 5 query modes are wired and return useful structural context.
@@ -44,16 +44,16 @@ Operators run the exact prompt and command sequence for `DAC-022` and confirm th
 
 ### Prompt
 
-`As a council-graph integration validator, seed a fully-populated council session and call council_graph_query with each of the five documented modes; assert each returns bounded prompt-safe context.`
+`As a council-graph integration validator, seed a fully-populated council session and call runtime query CLI with each of the five documented modes; assert each returns bounded prompt-safe context.`
 
 ### Commands
 
-1. `tool: council_graph_upsert({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', nodes: [...full node set...], edges: [...full edge set...] })`
-2. `tool: council_graph_query({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', mode: 'unresolved_disagreements', limit: 5 })`
-3. `tool: council_graph_query({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', mode: 'evidence_chain', limit: 5 })`
-4. `tool: council_graph_query({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', mode: 'decision_support', limit: 5 })`
-5. `tool: council_graph_query({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', mode: 'convergence_blockers', limit: 5 })`
-6. `tool: council_graph_query({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', mode: 'hot_nodes', limit: 5 })`
+1. `tool: runtime upsert CLI({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', nodes: [...full node set...], edges: [...full edge set...] })`
+2. `tool: runtime query CLI({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', mode: 'unresolved_disagreements', limit: 5 })`
+3. `tool: runtime query CLI({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', mode: 'evidence_chain', limit: 5 })`
+4. `tool: runtime query CLI({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', mode: 'decision_support', limit: 5 })`
+5. `tool: runtime query CLI({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', mode: 'convergence_blockers', limit: 5 })`
+6. `tool: runtime query CLI({ specFolder: 'sandbox/dac-022', sessionId: 'dac-022-run-01', mode: 'hot_nodes', limit: 5 })`
 
 ### Expected
 
@@ -70,11 +70,11 @@ Capture all 5 query responses showing mode name, result count, and metadata fiel
 
 ### Failure Triage
 
-If a mode errors with "unknown mode", inspect `handlers/council-graph/query.ts` mode dispatch + `schemas/tool-input-schemas.ts` mode enum. If a mode ignores `limit`, inspect `lib/council-graph/council-graph-query.ts` per-mode query helper.
+If a mode errors with "unknown mode", inspect `scripts/query.cjs` mode dispatch + `schemas/tool-input-schemas.ts` mode enum. If a mode ignores `limit`, inspect `lib/council/council-graph-query.ts` per-mode query helper.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-022 | Five query modes prompt-safe context | Verify all 5 modes return bounded prompt-safe results | `As a council-graph integration validator, seed a fully-populated council session and call council_graph_query with each of the five documented modes; assert each returns bounded prompt-safe context.` | upsert (full set) -> query x5 (each mode, limit 5) | All 5 modes succeed with bounded prompt-safe metadata | 5 query responses | PASS if all 5 modes wired and bounded | Inspect query handler mode dispatch + per-mode helpers |
+| DAC-022 | Five query modes prompt-safe context | Verify all 5 modes return bounded prompt-safe results | `As a council-graph integration validator, seed a fully-populated council session and call runtime query CLI with each of the five documented modes; assert each returns bounded prompt-safe context.` | upsert (full set) -> query x5 (each mode, limit 5) | All 5 modes succeed with bounded prompt-safe metadata | 5 query responses | PASS if all 5 modes wired and bounded | Inspect query handler mode dispatch + per-mode helpers |
 
 ---
 
@@ -91,10 +91,10 @@ If a mode errors with "unknown mode", inspect `handlers/council-graph/query.ts` 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/query.ts` | MCP handler: per-mode dispatch |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-query.ts` | Per-mode query helpers |
-| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Mode enum: `['unresolved_disagreements','evidence_chain','decision_support','convergence_blockers','hot_nodes']` |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts` | Test: "upserts prompt-safe council graph data and queries unresolved disagreements and decision support" |
+| `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | runtime CLI script: per-mode dispatch |
+| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Per-mode query helpers |
+| `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | Runtime query-type dispatch for `unresolved_disagreements`, `evidence_chain`, `decision_support`, `convergence_blockers`, and `hot_nodes` |
+| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Test: "upserts prompt-safe council graph data and queries unresolved disagreements and decision support" |
 | `.opencode/skills/deep-ai-council/references/graph_support.md` | Documents the five query modes |
 
 ---

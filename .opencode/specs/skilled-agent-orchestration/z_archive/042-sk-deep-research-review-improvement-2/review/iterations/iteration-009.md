@@ -1171,7 +1171,7 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 ### In Scope
 
 - Document the delivered journal, coverage, trade-off, lineage, and stability runtime surfaces now living under `.opencode/skills/sk-improve-agent/`.
-- Document the delivered command and runtime-agent updates for `.opencode/commands/improve/agent.md` and `.opencode/agents/improve-agent.md`.
+- Document the delivered command and runtime-agent updates for `.opencode/commands/deep/start-agent-improvement-loop.md` and `.opencode/agents/improve-agent.md`.
 - Record the shipped verification surfaces: 5 dedicated Vitest suites, playbook scenarios, changelog evidence, and implementation commit.
 - Bring the phase packet into current Level 3 template alignment with completed-state metadata, evidence-backed tasks, and verification checklist items.
 
@@ -1197,7 +1197,7 @@ This closeout packet also avoids reintroducing stale static-profile wording. The
 | `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md` | Modified | Added convergence, trade-off, and exhaustion guidance. |
 | `.opencode/skills/sk-improve-agent/SKILL.md` | Modified | Published the runtime-truth contract for improve-agent. |
 | `.opencode/agents/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
-| `.opencode/commands/improve/agent.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -1455,7 +1455,7 @@ Phase 005 brought the improve-agent loop into the same runtime-truth family as t
 
 ### Stop-Reason Taxonomy and Audit Journal
 
-The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
+The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
 
 ### Mutation Coverage and Trade-Off Detection
 
@@ -1543,42 +1543,42 @@ exec
      2	// ║ Mutation Coverage — Track Explored Mutations & Dimension Trajectories   ║
      3	// ╚══════════════════════════════════════════════════════════════════════════╝
      4	'use strict';
-     5	
+     5
      6	// ─────────────────────────────────────────────────────────────────────────────
      7	// 1. IMPORTS
      8	// ─────────────────────────────────────────────────────────────────────────────
      9	const fs = require('node:fs');
     10	const path = require('node:path');
-    11	
+    11
     12	// ─────────────────────────────────────────────────────────────────────────────
     13	// 2. CONSTANTS
     14	// ─────────────────────────────────────────────────────────────────────────────
-    15	
+    15
     16	/**
     17	 * Namespace for improvement loop coverage graph (ADR-002).
     18	 * Isolates from deep-research/review coverage graphs.
     19	 * @type {string}
     20	 */
     21	const LOOP_TYPE = 'improvement';
-    22	
+    22
     23	/**
     24	 * Minimum data points required before convergence can be claimed (REQ-AI-007).
     25	 * Research finding: at least 3 scored evidence iterations.
     26	 * @type {number}
     27	 */
     28	const MIN_TRAJECTORY_POINTS = 3;
-    29	
+    29
     30	/**
     31	 * Default stability threshold: all dimension deltas within +/- this value.
     32	 * Research finding: "stable" = 3+ scored iterations with deltas within +/-2.
     33	 * @type {number}
     34	 */
     35	const DEFAULT_STABILITY_DELTA = 2;
-    36	
+    36
     37	// ─────────────────────────────────────────────────────────────────────────────
     38	// 3. HELPERS
     39	// ─────────────────────────────────────────────────────────────────────────────
-    40	
+    40
     41	function readJsonSafe(filePath) {
     42	  try {
     43	    const content = fs.readFileSync(filePath, 'utf8');
@@ -1587,12 +1587,12 @@ exec
     46	    return null;
     47	  }
     48	}
-    49	
+    49
     50	function writeJson(filePath, data) {
     51	  fs.mkdirSync(path.dirname(filePath), { recursive: true });
     52	  fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n', 'utf8');
     53	}
-    54	
+    54
     55	/**
     56	 * Create an empty coverage graph.
     57	 * @returns {object} Empty coverage graph structure
@@ -1607,11 +1607,11 @@ exec
     66	    updatedAt: new Date().toISOString(),
     67	  };
     68	}
-    69	
+    69
     70	// ─────────────────────────────────────────────────────────────────────────────
     71	// 4. MUTATION TRACKING
     72	// ─────────────────────────────────────────────────────────────────────────────
-    73	
+    73
     74	/**
     75	 * Record a mutation attempt in the coverage graph (REQ-AI-006).
     76	 *
@@ -1623,16 +1623,16 @@ exec
     82	  if (!graph) {
     83	    graph = createCoverageGraph();
     84	  }
-    85	
+    85
     86	  graph.mutations.push({
     87	    ...mutation,
     88	    timestamp: new Date().toISOString(),
     89	  });
     90	  graph.updatedAt = new Date().toISOString();
-    91	
+    91
     92	  writeJson(coveragePath, graph);
     93	}
-    94	
+    94
     95	/**
     96	 * Get mutations already tried, to prevent redundant exploration (REQ-AI-009).
     97	 *
@@ -1646,7 +1646,7 @@ exec
    105	  }
    106	  return graph.exhausted || [];
    107	}
-   108	
+   108
    109	/**
    110	 * Mark a mutation type as exhausted for a given dimension (REQ-AI-009).
    111	 *
@@ -1659,11 +1659,11 @@ exec
    118	  if (!graph) {
    119	    graph = createCoverageGraph();
    120	  }
-   121	
+   121
    122	  const alreadyExhausted = (graph.exhausted || []).some(
    123	    (e) => e.dimension === dimension && e.mutationType === mutationType
    124	  );
-   125	
+   125
    126	  if (!alreadyExhausted) {
    127	    graph.exhausted.push({
    128	      dimension,
@@ -1671,11 +1671,11 @@ exec
    130	      exhaustedAt: new Date().toISOString(),
    131	    });
    132	  }
-   133	
+   133
    134	  graph.updatedAt = new Date().toISOString();
    135	  writeJson(coveragePath, graph);
    136	}
-   137	
+   137
    138	/**
    139	 * Get coverage statistics per dimension (REQ-AI-006).
    140	 *
@@ -1687,9 +1687,9 @@ exec
    146	  if (!graph) {
    147	    return { dimensions: {} };
    148	  }
-   149	
+   149
    150	  const dimensions = {};
-   151	
+   151
    152	  for (const mutation of graph.mutations || []) {
    153	    const dim = mutation.dimension || 'unknown';
    154	    if (!dimensions[dim]) {
@@ -1697,7 +1697,7 @@ exec
    156	    }
    157	    dimensions[dim].tried.add(mutation.mutationType);
    158	  }
-   159	
+   159
    160	  for (const exhaust of graph.exhausted || []) {
    161	    const dim = exhaust.dimension || 'unknown';
    162	    if (!dimensions[dim]) {
@@ -1705,7 +1705,7 @@ exec
    164	    }
    165	    dimensions[dim].exhausted.add(exhaust.mutationType);
    166	  }
-   167	
+   167
    168	  // Convert Sets to arrays for JSON serialization
    169	  const result = {};
    170	  for (const [dim, data] of Object.entries(dimensions)) {
@@ -1716,14 +1716,14 @@ exec
    175	      exhaustedCount: data.exhausted.size,
    176	    };
    177	  }
-   178	
+   178
    179	  return { dimensions: result };
    180	}
-   181	
+   181
    182	// ─────────────────────────────────────────────────────────────────────────────
    183	// 5. DIMENSION TRAJECTORY
    184	// ─────────────────────────────────────────────────────────────────────────────
-   185	
+   185
    186	/**
    187	 * Record a trajectory data point with per-dimension scores (REQ-AI-007).
    188	 *
@@ -1735,16 +1735,16 @@ exec
    194	  if (!graph) {
    195	    graph = createCoverageGraph();
    196	  }
-   197	
+   197
    198	  graph.trajectory.push({
    199	    ...dataPoint,
    200	    timestamp: new Date().toISOString(),
    201	  });
    202	  graph.updatedAt = new Date().toISOString();
-   203	
+   203
    204	  writeJson(coveragePath, graph);
    205	}
-   206	
+   206
    207	/**
    208	 * Get the full trajectory from the coverage graph.
    209	 *
@@ -1758,7 +1758,7 @@ exec
    217	  }
    218	  return graph.trajectory || [];
    219	}
-   220	
+   220
    221	/**
    222	 * Check if convergence can be claimed based on trajectory data (REQ-AI-007).
    223	 * Research finding: "stable" = 3+ scored iterations with all dimension deltas within +/-2.
@@ -1773,9 +1773,9 @@ exec
    232	    stabilityDelta: DEFAULT_STABILITY_DELTA,
    233	    ...options,
    234	  };
-   235	
+   235
    236	  const trajectory = getTrajectory(coveragePath);
-   237	
+   237
    238	  if (trajectory.length < opts.minDataPoints) {
    239	    return {
    240	      canConverge: false,
@@ -1783,12 +1783,12 @@ exec
    242	      dataPoints: trajectory.length,
    243	    };
    244	  }
-   245	
+   245
    246	  // Check if the last minDataPoints entries are stable
    247	  const recent = trajectory.slice(-opts.minDataPoints);
    248	  const dimensions = ['structural', 'ruleCoherence', 'integration', 'outputQuality', 'systemFitness'];
    249	  const unstableDimensions = [];
-   250	
+   250
    251	  for (const dim of dimensions) {
    252	    const scores = recent.map((p) => (p.scores && p.scores[dim]) || 0);
    253	    const maxScore = Math.max(...scores);
@@ -1797,7 +1797,7 @@ exec
    256	      unstableDimensions.push(dim);
    257	    }
    258	  }
-   259	
+   259
    260	  if (unstableDimensions.length > 0) {
 
  succeeded in 0ms:
@@ -1805,17 +1805,17 @@ exec
      2	// ║ Improvement Journal — Append-Only Audit Journal for Improvement Sessions║
      3	// ╚══════════════════════════════════════════════════════════════════════════╝
      4	'use strict';
-     5	
+     5
      6	// ─────────────────────────────────────────────────────────────────────────────
      7	// 1. IMPORTS
      8	// ─────────────────────────────────────────────────────────────────────────────
      9	const fs = require('node:fs');
     10	const path = require('node:path');
-    11	
+    11
     12	// ─────────────────────────────────────────────────────────────────────────────
     13	// 2. CONSTANTS — Stop-Reason Taxonomy & Session Outcomes
     14	// ─────────────────────────────────────────────────────────────────────────────
-    15	
+    15
     16	/**
     17	 * Stop reasons explain WHY a session terminated.
     18	 * Research finding (P0): do not overload stopReason with outcome semantics.
@@ -1829,7 +1829,7 @@ exec
     26	  error: 'error',
     27	  stuckRecovery: 'stuckRecovery',
     28	});
-    29	
+    29
     30	/**
     31	 * Session outcomes explain WHAT happened to the candidate.
     32	 * Separate from stopReason per research finding (P0).
@@ -1841,7 +1841,7 @@ exec
     38	  rolledBack: 'rolledBack',
     39	  advisoryOnly: 'advisoryOnly',
     40	});
-    41	
+    41
     42	/**
     43	 * Valid event types for the improvement journal.
     44	 * Journal captures lifecycle events and stop decisions (ADR-001: orchestrator only).
@@ -1868,11 +1868,11 @@ exec
     65	  'session_ended',
     66	  'session_end',
     67	]);
-    68	
+    68
     69	// ─────────────────────────────────────────────────────────────────────────────
     70	// 3. HELPERS
     71	// ─────────────────────────────────────────────────────────────────────────────
-    72	
+    72
     73	/**
     74	 * Validate that an event object has the required fields and a valid event type.
     75	 * @param {object} event - Event to validate
@@ -1880,17 +1880,17 @@ exec
     77	 */
     78	function validateEvent(event) {
     79	  const errors = [];
-    80	
+    80
     81	  if (!event || typeof event !== 'object') {
     82	    return { valid: false, errors: ['Event must be a non-null object'] };
     83	  }
-    84	
+    84
     85	  if (!event.eventType || typeof event.eventType !== 'string') {
     86	    errors.push('Event must have a string eventType');
     87	  } else if (!VALID_EVENT_TYPES.includes(event.eventType)) {
     88	    errors.push(`Invalid eventType: "${event.eventType}". Valid types: ${VALID_EVENT_TYPES.join(', ')}`);
     89	  }
-    90	
+    90
     91	  if (event.eventType === 'session_ended' || event.eventType === 'session_end') {
     92	    if (!event.details || !event.details.stopReason) {
     93	      errors.push('session_ended/session_end events MUST include details.stopReason');
@@ -1903,14 +1903,14 @@ exec
    100	      errors.push(`Invalid sessionOutcome: "${event.details.sessionOutcome}". Valid outcomes: ${Object.values(SESSION_OUTCOMES).join(', ')}`);
    101	    }
    102	  }
-   103	
+   103
    104	  return { valid: errors.length === 0, errors };
    105	}
-   106	
+   106
    107	// ─────────────────────────────────────────────────────────────────────────────
    108	// 4. CORE API
    109	// ─────────────────────────────────────────────────────────────────────────────
-   110	
+   110
    111	/**
    112	 * Append an event to the improvement journal (append-only JSONL).
    113	 * ADR-001: Journal emission is orchestrator-only; this function is the single write point.
@@ -1924,23 +1924,23 @@ exec
    121	    timestamp: new Date().toISOString(),
    122	    ...event,
    123	  };
-   124	
+   124
    125	  const validation = validateEvent(enrichedEvent);
    126	  if (!validation.valid) {
    127	    return { success: false, errors: validation.errors };
    128	  }
-   129	
+   129
    130	  // Ensure directory exists
    131	  const dir = path.dirname(journalPath);
    132	  fs.mkdirSync(dir, { recursive: true });
-   133	
+   133
    134	  // Append-only: use 'a' flag (NFR-R01: survives process restart, no in-memory buffering)
    135	  const line = JSON.stringify(enrichedEvent) + '\n';
    136	  fs.appendFileSync(journalPath, line, 'utf8');
-   137	
+   137
    138	  return { success: true };
    139	}
-   140	
+   140
    141	/**
    142	 * Read all events from a journal file.
    143	 * Used for resume/replay semantics (REQ-AI-003).
@@ -1966,7 +1966,7 @@ exec
    163	    return [];
    164	  }
    165	}
-   166	
+   166
    167	/**
    168	 * Get the last completed iteration number from a journal.
    169	 * Used for resume semantics — continuedFromIteration field.
@@ -1984,7 +1984,7 @@ exec
    181	  }
    182	  return maxIteration;
    183	}
-   184	
+   184
    185	/**
    186	 * Get the stop reason from the last session_ended event.
    187	 *
@@ -2005,11 +2005,11 @@ exec
    202	    sessionOutcome: (last.details && last.details.sessionOutcome) || null,
    203	  };
    204	}
-   205	
+   205
    206	// ─────────────────────────────────────────────────────────────────────────────
    207	// 5. EXPORTS
    208	// ─────────────────────────────────────────────────────────────────────────────
-   209	
+   209
    210	module.exports = {
    211	  STOP_REASONS,
    212	  SESSION_OUTCOMES,
@@ -2020,14 +2020,14 @@ exec
    217	  getLastIteration,
    218	  getSessionResult,
    219	};
-   220	
+   220
    221	// ─────────────────────────────────────────────────────────────────────────────
    222	// 6. CLI ENTRYPOINT
    223	// ─────────────────────────────────────────────────────────────────────────────
-   224	
+   224
    225	if (require.main === module) {
    226	  const args = process.argv.slice(2);
-   227	
+   227
    228	  function findArg(name) {
    229	    const prefix = `--${name}=`;
    230	    for (const arg of args) {
@@ -2041,12 +2041,12 @@ exec
    238	    }
    239	    return undefined;
    240	  }
-   241	
+   241
    242	  const readPath = findArg('read');
    243	  const emitType = findArg('emit');
    244	  const journalPath = findArg('journal');
    245	  const detailsRaw = findArg('details');
-   246	
+   246
    247	  if (readPath) {
    248	    // --read <path>: Read and dump journal as JSON array
    249	    const events = readJournal(readPath);
@@ -2073,16 +2073,16 @@ exec
      2	// ║ Trade-Off Detector — Cross-Dimension Regression Detection               ║
      3	// ╚══════════════════════════════════════════════════════════════════════════╝
      4	'use strict';
-     5	
+     5
      6	// ─────────────────────────────────────────────────────────────────────────────
      7	// 1. IMPORTS
      8	// ─────────────────────────────────────────────────────────────────────────────
      9	const fs = require('node:fs');
-    10	
+    10
     11	// ─────────────────────────────────────────────────────────────────────────────
     12	// 2. CONSTANTS
     13	// ─────────────────────────────────────────────────────────────────────────────
-    14	
+    14
     15	/**
     16	 * Hard dimensions: structural integrity matters more, lower regression tolerance.
     17	 * Research finding: use < -3 threshold for hard dimensions (P1).
@@ -2093,7 +2093,7 @@ exec
     22	  'integration',
     23	  'systemFitness',
     24	]);
-    25	
+    25
     26	/**
     27	 * Soft dimensions: more tolerance for regressions.
     28	 * Research finding: use < -5 threshold for soft dimensions (P1).
@@ -2103,19 +2103,19 @@ exec
     32	  'ruleCoherence',
     33	  'outputQuality',
     34	]);
-    35	
+    35
     36	/**
     37	 * Default threshold for improvement detection.
     38	 * @type {number}
     39	 */
     40	const DEFAULT_IMPROVEMENT_THRESHOLD = 3;
-    41	
+    41
     42	/**
     43	 * Default minimum number of trajectory points required before trade-off analysis.
     44	 * @type {number}
     45	 */
     46	const MIN_DATA_POINTS_DEFAULT = 3;
-    47	
+    47
     48	/**
     49	 * Default regression thresholds.
     50	 * Research finding: +3/-3 for hard dims, +3/-5 for soft dims.
@@ -2125,12 +2125,12 @@ exec
     54	  hard: -3,
     55	  soft: -5,
     56	});
-    57	
+    57
     58	function resolveMinDataPoints(options) {
     59	  if (Number.isInteger(options?.minDataPoints) && options.minDataPoints > 0) {
     60	    return options.minDataPoints;
     61	  }
-    62	
+    62
     63	  const envValue = Number.parseInt(
     64	    process.env.SK_IMPROVE_AGENT_TRADE_OFF_MIN_DATA_POINTS || '',
     65	    10
@@ -2138,14 +2138,14 @@ exec
     67	  if (Number.isInteger(envValue) && envValue > 0) {
     68	    return envValue;
     69	  }
-    70	
+    70
     71	  return MIN_DATA_POINTS_DEFAULT;
     72	}
-    73	
+    73
     74	// ─────────────────────────────────────────────────────────────────────────────
     75	// 3. CORE API
     76	// ─────────────────────────────────────────────────────────────────────────────
-    77	
+    77
     78	/**
     79	 * Detect trade-offs between dimensions in trajectory data (REQ-AI-008).
     80	 * A trade-off exists when one dimension improves significantly while another regresses.
@@ -2165,29 +2165,29 @@ exec
     94	      reason: `Trade-off detection requires at least ${minDataPoints} data points before analysis`,
     95	    };
     96	  }
-    97	
+    97
     98	  const opts = {
     99	    improvementThreshold: DEFAULT_IMPROVEMENT_THRESHOLD,
    100	    minDataPoints,
    101	    regressionThresholds: { ...DEFAULT_REGRESSION_THRESHOLDS },
    102	    ...options,
    103	  };
-   104	
+   104
    105	  if (options && options.regressionThresholds) {
    106	    opts.regressionThresholds = {
    107	      ...DEFAULT_REGRESSION_THRESHOLDS,
    108	      ...options.regressionThresholds,
    109	    };
    110	  }
-   111	
+   111
    112	  const tradeOffs = [];
    113	  const allDimensions = [...HARD_DIMENSIONS, ...SOFT_DIMENSIONS];
-   114	
+   114
    115	  // Compare consecutive trajectory points
    116	  for (let i = 1; i < trajectoryData.length; i++) {
    117	    const prev = trajectoryData[i - 1].scores || {};
    118	    const curr = trajectoryData[i].scores || {};
-   119	
+   119
    120	    // Compute deltas
    121	    const deltas = {};
    122	    for (const dim of allDimensions) {
@@ -2195,12 +2195,12 @@ exec
    124	      const currScore = typeof curr[dim] === 'number' ? curr[dim] : 0;
    125	      deltas[dim] = currScore - prevScore;
    126	    }
-   127	
+   127
    128	    // Find improving dimensions
    129	    const improving = allDimensions.filter(
    130	      (dim) => deltas[dim] > opts.improvementThreshold
    131	    );
-   132	
+   132
    133	    // Find regressing dimensions
    134	    const regressing = allDimensions.filter((dim) => {
    135	      const threshold = HARD_DIMENSIONS.includes(dim)
@@ -2208,7 +2208,7 @@ exec
    137	        : opts.regressionThresholds.soft;
    138	      return deltas[dim] < threshold;
    139	    });
-   140	
+   140
    141	    // A trade-off exists when both improving and regressing dimensions are found
    142	    if (improving.length > 0 && regressing.length > 0) {
    143	      for (const impDim of improving) {
@@ -2224,10 +2224,10 @@ exec
    153	      }
    154	    }
    155	  }
-   156	
+   156
    157	  return tradeOffs;
    158	}
-   159	
+   159
    160	/**
    161	 * Extract per-dimension score history from journal events.
    162	 *
@@ -2248,7 +2248,7 @@ exec
    177	          return [];
    178	        }
    179	      });
-   180	
+   180
    181	    // Extract score data from candidate_scored events
    182	    return events
    183	      .filter(
@@ -2271,7 +2271,7 @@ exec
    200	    return [];
    201	  }
    202	}
-   203	
+   203
    204	/**
    205	 * Check if a candidate is Pareto-dominated (REQ-AI-008).
    206	 * A candidate is dominated if another candidate is at least as good in all dimensions
@@ -2285,7 +2285,7 @@ exec
    214	  const allDimensions = [...HARD_DIMENSIONS, ...SOFT_DIMENSIONS];
    215	  const regressions = [];
    216	  const improvements = [];
-   217	
+   217
    218	  for (const dim of allDimensions) {
    219	    const cand = candidateScores[dim] || 0;
    220	    const base = baselineScores[dim] || 0;
@@ -2295,22 +2295,22 @@ exec
    224	      improvements.push(dim);
    225	    }
    226	  }
-   227	
+   227
    228	  // Candidate is dominated by baseline if baseline is better in at least one dim
    229	  // and at least as good in all others
    230	  const dominated = regressions.length > 0 && improvements.length === 0;
-   231	
+   231
    232	  return {
    233	    dominated,
    234	    dominatingDimensions: regressions,
    235	    regressions,
    236	  };
    237	}
-   238	
+   238
    239	// ─────────────────────────────────────────────────────────────────────────────
    240	// 4. EXPORTS
    241	// ─────────────────────────────────────────────────────────────────────────────
-   242	
+   242
    243	module.exports = {
    244	  HARD_DIMENSIONS,
    245	  SOFT_DIMENSIONS,
@@ -2327,17 +2327,17 @@ exec
      2	// ║ Candidate Lineage — Track Candidate Derivation for Parallel Waves       ║
      3	// ╚══════════════════════════════════════════════════════════════════════════╝
      4	'use strict';
-     5	
+     5
      6	// ─────────────────────────────────────────────────────────────────────────────
      7	// 1. IMPORTS
      8	// ─────────────────────────────────────────────────────────────────────────────
      9	const fs = require('node:fs');
     10	const path = require('node:path');
-    11	
+    11
     12	// ─────────────────────────────────────────────────────────────────────────────
     13	// 2. HELPERS
     14	// ─────────────────────────────────────────────────────────────────────────────
-    15	
+    15
     16	function readJsonSafe(filePath) {
     17	  try {
     18	    const content = fs.readFileSync(filePath, 'utf8');
@@ -2346,16 +2346,16 @@ exec
     21	    return null;
     22	  }
     23	}
-    24	
+    24
     25	function writeJson(filePath, data) {
     26	  fs.mkdirSync(path.dirname(filePath), { recursive: true });
     27	  fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n', 'utf8');
     28	}
-    29	
+    29
     30	// ─────────────────────────────────────────────────────────────────────────────
     31	// 3. LINEAGE GRAPH
     32	// ─────────────────────────────────────────────────────────────────────────────
-    33	
+    33
     34	/**
     35	 * Create an empty lineage graph.
     36	 * @returns {object} Empty lineage graph structure
@@ -2367,7 +2367,7 @@ exec
     42	    updatedAt: new Date().toISOString(),
     43	  };
     44	}
-    45	
+    45
     46	/**
     47	 * Record a candidate in the lineage graph (REQ-AI-011).
     48	 * Each node stores session-id, wave-index, spawning mutation type, and parent reference.
@@ -2380,17 +2380,17 @@ exec
     55	  if (!graph) {
     56	    graph = createLineageGraph();
     57	  }
-    58	
+    58
     59	  graph.nodes.push({
     60	    ...candidate,
     61	    parentCandidateId: candidate.parentCandidateId || null,
     62	    recordedAt: new Date().toISOString(),
     63	  });
     64	  graph.updatedAt = new Date().toISOString();
-    65	
+    65
     66	  writeJson(lineagePath, graph);
     67	}
-    68	
+    68
     69	/**
     70	 * Get the full lineage chain for a given candidate (REQ-AI-011).
     71	 * Traces derivation from the candidate back to the root.
@@ -2404,35 +2404,35 @@ exec
     79	  if (!graph || !graph.nodes) {
     80	    return [];
     81	  }
-    82	
+    82
     83	  const nodeMap = new Map();
     84	  for (const node of graph.nodes) {
     85	    nodeMap.set(node.candidateId, node);
     86	  }
-    87	
+    87
     88	  // Trace from target to root
     89	  const chain = [];
     90	  let current = nodeMap.get(candidateId);
-    91	
+    91
     92	  // Guard against circular references
     93	  const visited = new Set();
-    94	
+    94
     95	  while (current) {
     96	    if (visited.has(current.candidateId)) {
     97	      break;
     98	    }
     99	    visited.add(current.candidateId);
    100	    chain.unshift(current);
-   101	
+   101
    102	    if (!current.parentCandidateId) {
    103	      break;
    104	    }
    105	    current = nodeMap.get(current.parentCandidateId);
    106	  }
-   107	
+   107
    108	  return chain;
    109	}
-   110	
+   110
    111	/**
    112	 * Get all candidates for a specific wave in a session.
    113	 *
@@ -2446,7 +2446,7 @@ exec
    121	  if (!graph || !graph.nodes) {
    122	    return [];
    123	  }
-   124	
+   124
    125	  return graph.nodes.filter((node) => {
    126	    if (node.sessionId !== sessionId) {
    127	      return false;
@@ -2457,7 +2457,7 @@ exec
    132	    return true;
    133	  });
    134	}
-   135	
+   135
    136	/**
    137	 * Get all root candidates (candidates with no parent).
    138	 *
@@ -2469,10 +2469,10 @@ exec
    144	  if (!graph || !graph.nodes) {
    145	    return [];
    146	  }
-   147	
+   147
    148	  return graph.nodes.filter((node) => !node.parentCandidateId);
    149	}
-   150	
+   150
    151	/**
    152	 * Get direct children of a candidate.
    153	 *
@@ -2485,16 +2485,16 @@ exec
    160	  if (!graph || !graph.nodes) {
    161	    return [];
    162	  }
-   163	
+   163
    164	  return graph.nodes.filter(
    165	    (node) => node.parentCandidateId === parentCandidateId
    166	  );
    167	}
-   168	
+   168
    169	// ─────────────────────────────────────────────────────────────────────────────
    170	// 4. EXPORTS
    171	// ─────────────────────────────────────────────────────────────────────────────
-   172	
+   172
    173	module.exports = {
    174	  createLineageGraph,
    175	  recordCandidate,
@@ -2509,38 +2509,38 @@ exec
      2	// ║ Benchmark Stability — Score Variance & Weight Optimization Advisory     ║
      3	// ╚══════════════════════════════════════════════════════════════════════════╝
      4	'use strict';
-     5	
+     5
      6	// ─────────────────────────────────────────────────────────────────────────────
      7	// 1. IMPORTS
      8	// ─────────────────────────────────────────────────────────────────────────────
      9	const fs = require('node:fs');
     10	const path = require('node:path');
-    11	
+    11
     12	// ─────────────────────────────────────────────────────────────────────────────
     13	// 2. CONSTANTS
     14	// ─────────────────────────────────────────────────────────────────────────────
-    15	
+    15
     16	/**
     17	 * Default number of replay runs for stability measurement.
     18	 * @type {number}
     19	 */
     20	const MIN_REPLAY_COUNT_DEFAULT = 3;
     21	const DEFAULT_REPLAY_COUNT = MIN_REPLAY_COUNT_DEFAULT;
-    22	
+    22
     23	/**
     24	 * Default stability warning threshold. Below this coefficient, a warning is emitted.
     25	 * Coefficient = 1 - (stddev / mean). Perfect stability = 1.0.
     26	 * @type {number}
     27	 */
     28	const DEFAULT_WARNING_THRESHOLD = 0.95;
-    29	
+    29
     30	/**
     31	 * Default minimum session count before weight optimizer produces recommendations.
     32	 * Research finding (P2): refuse auto-apply until sufficient run history.
     33	 * @type {number}
     34	 */
     35	const DEFAULT_SESSION_COUNT_THRESHOLD = 5;
-    36	
+    36
     37	/**
     38	 * The 5 scoring dimensions.
     39	 * @type {Readonly<string[]>}
@@ -2552,12 +2552,12 @@ exec
     45	  'outputQuality',
     46	  'systemFitness',
     47	]);
-    48	
+    48
     49	function resolveMinReplayCount(config) {
     50	  if (Number.isInteger(config?.minReplayCount) && config.minReplayCount > 0) {
     51	    return config.minReplayCount;
     52	  }
-    53	
+    53
     54	  const envValue = Number.parseInt(
     55	    process.env.SK_IMPROVE_AGENT_BENCHMARK_MIN_REPLAY_COUNT || '',
     56	    10
@@ -2565,14 +2565,14 @@ exec
     58	  if (Number.isInteger(envValue) && envValue > 0) {
     59	    return envValue;
     60	  }
-    61	
+    61
     62	  return MIN_REPLAY_COUNT_DEFAULT;
     63	}
-    64	
+    64
     65	// ─────────────────────────────────────────────────────────────────────────────
     66	// 3. STABILITY MEASUREMENT
     67	// ─────────────────────────────────────────────────────────────────────────────
-    68	
+    68
     69	/**
     70	 * Compute mean of an array of numbers.
     71	 * @param {number[]} values
@@ -2584,7 +2584,7 @@ exec
     77	  }
     78	  return values.reduce((sum, v) => sum + v, 0) / values.length;
     79	}
-    80	
+    80
     81	/**
     82	 * Compute standard deviation of an array of numbers.
     83	 * @param {number[]} values
@@ -2598,7 +2598,7 @@ exec
     91	  const variance = values.reduce((sum, v) => sum + (v - m) ** 2, 0) / (values.length - 1);
     92	  return Math.sqrt(variance);
     93	}
-    94	
+    94
     95	/**
     96	 * Compute stability coefficient: 1 - (stddev / mean).
     97	 * Perfect stability = 1.0, high variance = low coefficient.
@@ -2614,7 +2614,7 @@ exec
    107	  const sd = stddev(values);
    108	  return Math.max(0, 1 - sd / Math.abs(m));
    109	}
-   110	
+   110
    111	/**
    112	 * Run stability measurement on benchmark results (REQ-AI-013).
    113	 * Accepts an array of result sets from identical replays and computes
@@ -2631,7 +2631,7 @@ exec
    124	    minReplayCount: resolveMinReplayCount(config),
    125	    ...config,
    126	  };
-   127	
+   127
    128	  if (replayCount < opts.minReplayCount) {
    129	    return {
    130	      state: 'insufficientSample',
@@ -2640,12 +2640,12 @@ exec
    133	      reason: `Benchmark stability requires at least ${opts.minReplayCount} replays before verdict`,
    134	    };
    135	  }
-   136	
+   136
    137	  const dimensionScores = {};
    138	  for (const dim of DIMENSIONS) {
    139	    dimensionScores[dim] = [];
    140	  }
-   141	
+   141
    142	  // Extract scores from results
    143	  for (const result of results) {
    144	    if (result.dimensions && Array.isArray(result.dimensions)) {
@@ -2662,42 +2662,42 @@ exec
    155	      }
    156	    }
    157	  }
-   158	
+   158
    159	  const dimensionResults = {};
    160	  const warnings = [];
    161	  let allStable = true;
-   162	
+   162
    163	  for (const dim of DIMENSIONS) {
    164	    const scores = dimensionScores[dim];
    165	    if (scores.length === 0) {
    166	      dimensionResults[dim] = { coefficient: 1.0, mean: 0, stddev: 0, samples: 0 };
    167	      continue;
    168	    }
-   169	
+   169
    170	    const coeff = stabilityCoefficient(scores);
    171	    const m = mean(scores);
    172	    const sd = stddev(scores);
-   173	
+   173
    174	    dimensionResults[dim] = {
    175	      coefficient: Math.round(coeff * 10000) / 10000,
    176	      mean: Math.round(m * 100) / 100,
    177	      stddev: Math.round(sd * 100) / 100,
    178	      samples: scores.length,
    179	    };
-   180	
+   180
    181	    if (coeff < opts.warningThreshold) {
    182	      allStable = false;
    183	      warnings.push(`stabilityWarning: ${dim} coefficient ${coeff.toFixed(4)} < threshold ${opts.warningThreshold}`);
    184	    }
    185	  }
-   186	
+   186
    187	  return {
    188	    dimensions: dimensionResults,
    189	    stable: allStable,
    190	    warnings,
    191	  };
    192	}
-   193	
+   193
    194	/**
    195	 * Check if stability results are acceptable.
    196	 *
@@ -2709,9 +2709,9 @@ exec
    202	  if (stabilityResult?.state === 'insufficientSample') {
    203	    return false;
    204	  }
-   205	
+   205
    206	  const threshold = typeof maxVariance === 'number' ? maxVariance : 0.05;
-   207	
+   207
    208	  for (const dim of DIMENSIONS) {
    209	    const dimResult = stabilityResult.dimensions[dim];
    210	    if (dimResult && (1 - dimResult.coefficient) > threshold) {
@@ -2720,11 +2720,11 @@ exec
    213	  }
    214	  return true;
    215	}
-   216	
+   216
    217	// ─────────────────────────────────────────────────────────────────────────────
    218	// 4. WEIGHT OPTIMIZER (Advisory Only — REQ-AI-012)
    219	// ─────────────────────────────────────────────────────────────────────────────
-   220	
+   220
    221	/**
    222	 * Generate weight optimization recommendations based on historical session data.
    223	 * Research finding (P2): advisory-only, never auto-apply.
@@ -2739,7 +2739,7 @@ exec
    232	    sessionCountThreshold: DEFAULT_SESSION_COUNT_THRESHOLD,
    233	    ...config,
    234	  };
-   235	
+   235
    236	  if (!sessionHistory || sessionHistory.length < opts.sessionCountThreshold) {
    237	    return {
    238	      recommendations: null,
@@ -2747,7 +2747,7 @@ exec
    240	      report: `Insufficient session history: ${(sessionHistory || []).length} < ${opts.sessionCountThreshold}. Recommendations require at least ${opts.sessionCountThreshold} sessions.`,
    241	    };
    242	  }
-   243	
+   243
    244	  // Compute per-dimension variance across sessions
    245	  const dimensionVariances = {};
    246	  for (const dim of DIMENSIONS) {
@@ -2768,16 +2768,16 @@ exec
    261	      count: scores.length,
    262	    };
    263	  }
-   264	
+   264
    265	  // Simple heuristic: dimensions with consistently low scores deserve higher weight;
    266	  // dimensions with high variance should be investigated before weight changes.
    267	  const recommended = {};
    268	  let totalWeight = 0;
-   269	
+   269
    270	  for (const dim of DIMENSIONS) {
    271	    const current = currentWeights[dim] || 0.20;
    272	    const dimData = dimensionVariances[dim];
-   273	
+   273
    274	    // If a dimension consistently scores low (mean < 80), suggest increasing weight
    275	    // If it consistently scores high (mean > 95), suggest slightly decreasing weight
    276	    let adjustment = 0;
@@ -2786,16 +2786,16 @@ exec
    279	    } else if (dimData.mean > 95 && dimData.count >= 3) {
    280	      adjustment = -0.01;
    281	    }
-   282	
+   282
    283	    recommended[dim] = Math.max(0.05, Math.min(0.40, current + adjustment));
    284	    totalWeight += recommended[dim];
    285	  }
-   286	
+   286
    287	  // Normalize to sum to 1.0
    288	  for (const dim of DIMENSIONS) {
    289	    recommended[dim] = Math.round((recommended[dim] / totalWeight) * 100) / 100;
    290	  }
-   291	
+   291
    292	  // Build report lines
    293	  const reportLines = [
    294	    'Weight Optimization Report',
@@ -2805,7 +2805,7 @@ exec
    298	    '| Dimension | Current | Recommended | Mean Score | StdDev |',
    299	    '|-----------|---------|-------------|------------|--------|',
    300	  ];
-   301	
+   301
    302	  for (const dim of DIMENSIONS) {
    303	    const current = currentWeights[dim] || 0.20;
    304	    const rec = recommended[dim];
@@ -2814,11 +2814,11 @@ exec
    307	      `| ${dim} | ${current.toFixed(2)} | ${rec.toFixed(2)} | ${data.mean.toFixed(1)} | ${data.stddev.toFixed(1)} |`
    308	    );
    309	  }
-   310	
+   310
    311	  reportLines.push('');
    312	  reportLines.push('NOTE: These recommendations are advisory only. Do NOT auto-apply.');
    313	  reportLines.push('Review the report and apply manually if appropriate.');
-   314	
+   314
    315	  return {
    316	    recommendations: recommended,
    317	    sufficient: true,
@@ -2836,18 +2836,18 @@ exec
    264	      dataPoints: trajectory.length,
    265	    };
    266	  }
-   267	
+   267
    268	  return {
    269	    canConverge: true,
    270	    reason: 'All dimensions stable across last ' + opts.minDataPoints + ' data points',
    271	    dataPoints: trajectory.length,
    272	  };
    273	}
-   274	
+   274
    275	// ─────────────────────────────────────────────────────────────────────────────
    276	// 6. EXPORTS
    277	// ─────────────────────────────────────────────────────────────────────────────
-   278	
+   278
    279	module.exports = {
    280	  LOOP_TYPE,
    281	  MIN_TRAJECTORY_POINTS,
@@ -2866,11 +2866,11 @@ exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs | sed -n '320,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    320	}
-   321	
+   321
    322	// ─────────────────────────────────────────────────────────────────────────────
    323	// 5. EXPORTS
    324	// ─────────────────────────────────────────────────────────────────────────────
-   325	
+   325
    326	module.exports = {
    327	  MIN_REPLAY_COUNT_DEFAULT,
    328	  DEFAULT_REPLAY_COUNT,
@@ -2916,11 +2916,11 @@ exec
      4	import { createRequire } from 'node:module';
      5	import { fileURLToPath } from 'node:url';
      6	import { describe, expect, it, beforeEach, afterEach } from 'vitest';
-     7	
+     7
      8	const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
      9	const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../');
     10	const require = createRequire(import.meta.url);
-    11	
+    11
     12	const journal = require(path.join(
     13	  WORKSPACE_ROOT,
     14	  '.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs',
@@ -2934,19 +2934,19 @@ exec
     22	  getLastIteration: (journalPath: string) => number;
     23	  getSessionResult: (journalPath: string) => { stopReason: string | null; sessionOutcome: string | null };
     24	};
-    25	
+    25
     26	let tmpDir: string;
     27	let journalPath: string;
-    28	
+    28
     29	beforeEach(() => {
     30	  tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'journal-test-'));
     31	  journalPath = path.join(tmpDir, 'improvement-journal.jsonl');
     32	});
-    33	
+    33
     34	afterEach(() => {
     35	  fs.rmSync(tmpDir, { recursive: true, force: true });
     36	});
-    37	
+    37
     38	describe('improvement-journal', () => {
     39	  describe('constants', () => {
     40	    it('exports frozen STOP_REASONS', () => {
@@ -2959,7 +2959,7 @@ exec
     47	      expect(journal.STOP_REASONS.error).toBe('error');
     48	      expect(journal.STOP_REASONS.stuckRecovery).toBe('stuckRecovery');
     49	    });
-    50	
+    50
     51	    it('exports frozen SESSION_OUTCOMES', () => {
     52	      expect(journal.SESSION_OUTCOMES).toBeDefined();
     53	      expect(Object.isFrozen(journal.SESSION_OUTCOMES)).toBe(true);
@@ -2968,7 +2968,7 @@ exec
     56	      expect(journal.SESSION_OUTCOMES.rolledBack).toBe('rolledBack');
     57	      expect(journal.SESSION_OUTCOMES.advisoryOnly).toBe('advisoryOnly');
     58	    });
-    59	
+    59
     60	    it('exports VALID_EVENT_TYPES array', () => {
     61	      expect(Array.isArray(journal.VALID_EVENT_TYPES)).toBe(true);
     62	      expect(journal.VALID_EVENT_TYPES).toContain('session_start');
@@ -2978,33 +2978,33 @@ exec
     66	      expect(journal.VALID_EVENT_TYPES).toContain('trade_off_detected');
     67	    });
     68	  });
-    69	
+    69
     70	  describe('validateEvent', () => {
     71	    it('accepts valid event types', () => {
     72	      const result = journal.validateEvent({ eventType: 'session_start' });
     73	      expect(result.valid).toBe(true);
     74	      expect(result.errors).toHaveLength(0);
     75	    });
-    76	
+    76
     77	    it('rejects invalid event types', () => {
     78	      const result = journal.validateEvent({ eventType: 'invalid_type' });
     79	      expect(result.valid).toBe(false);
     80	      expect(result.errors.length).toBeGreaterThan(0);
     81	      expect(result.errors[0]).toContain('Invalid eventType');
     82	    });
-    83	
+    83
     84	    it('rejects null events', () => {
     85	      const result = journal.validateEvent(null as unknown as object);
     86	      expect(result.valid).toBe(false);
     87	    });
-    88	
+    88
     89	    it('validates stopReason on session_ended events', () => {
     90	      const valid = journal.validateEvent({
     91	        eventType: 'session_ended',
     92	        details: { stopReason: 'converged', sessionOutcome: 'promoted' },
     93	      });
     94	      expect(valid.valid).toBe(true);
-    95	
+    95
     96	      const invalid = journal.validateEvent({
     97	        eventType: 'session_ended',
     98	        details: { stopReason: 'madeUpReason' },
@@ -3012,7 +3012,7 @@ exec
    100	      expect(invalid.valid).toBe(false);
    101	    });
    102	  });
-   103	
+   103
    104	  describe('emitEvent', () => {
    105	    it('creates journal file and appends event', () => {
    106	      const result = journal.emitEvent(journalPath, {
@@ -3022,73 +3022,73 @@ exec
    110	      });
    111	      expect(result.success).toBe(true);
    112	      expect(fs.existsSync(journalPath)).toBe(true);
-   113	
+   113
    114	      const content = fs.readFileSync(journalPath, 'utf8');
    115	      const parsed = JSON.parse(content.trim());
    116	      expect(parsed.eventType).toBe('session_start');
    117	      expect(parsed.timestamp).toBeDefined();
    118	    });
-   119	
+   119
    120	    it('appends to existing journal (append-only)', () => {
    121	      journal.emitEvent(journalPath, { eventType: 'session_start', iteration: 1 });
    122	      journal.emitEvent(journalPath, { eventType: 'candidate_generated', iteration: 1 });
-   123	
+   123
    124	      const lines = fs.readFileSync(journalPath, 'utf8').trim().split('\n');
    125	      expect(lines).toHaveLength(2);
-   126	
+   126
    127	      const first = JSON.parse(lines[0]);
    128	      const second = JSON.parse(lines[1]);
    129	      expect(first.eventType).toBe('session_start');
    130	      expect(second.eventType).toBe('candidate_generated');
    131	    });
-   132	
+   132
    133	    it('rejects invalid event types', () => {
    134	      const result = journal.emitEvent(journalPath, { eventType: 'not_real' });
    135	      expect(result.success).toBe(false);
    136	      expect(result.errors).toBeDefined();
    137	      expect(result.errors!.length).toBeGreaterThan(0);
-   138	
+   138
    139	      // File should not be created for invalid events
    140	      expect(fs.existsSync(journalPath)).toBe(false);
    141	    });
-   142	
+   142
    143	    it('adds timestamp automatically', () => {
    144	      journal.emitEvent(journalPath, { eventType: 'session_start' });
    145	      const events = journal.readJournal(journalPath);
    146	      expect(events[0]).toHaveProperty('timestamp');
    147	    });
    148	  });
-   149	
+   149
    150	  describe('readJournal', () => {
    151	    it('returns empty array for non-existent file', () => {
    152	      const events = journal.readJournal('/nonexistent/path.jsonl');
    153	      expect(events).toEqual([]);
    154	    });
-   155	
+   155
    156	    it('reads all events from journal', () => {
    157	      journal.emitEvent(journalPath, { eventType: 'session_start', iteration: 0 });
    158	      journal.emitEvent(journalPath, { eventType: 'candidate_generated', iteration: 1 });
    159	      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 1 });
-   160	
+   160
    161	      const events = journal.readJournal(journalPath);
    162	      expect(events).toHaveLength(3);
    163	    });
    164	  });
-   165	
+   165
    166	  describe('getLastIteration', () => {
    167	    it('returns 0 for empty journal', () => {
    168	      expect(journal.getLastIteration(journalPath)).toBe(0);
    169	    });
-   170	
+   170
    171	    it('returns highest iteration number', () => {
    172	      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 1 });
    173	      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 3 });
    174	      journal.emitEvent(journalPath, { eventType: 'candidate_scored', iteration: 2 });
-   175	
+   175
    176	      expect(journal.getLastIteration(journalPath)).toBe(3);
    177	    });
    178	  });
-   179	
+   179
    180	  describe('getSessionResult', () => {
    181	    it('returns nulls when no session_ended event', () => {
    182	      journal.emitEvent(journalPath, { eventType: 'session_start' });
@@ -3096,7 +3096,7 @@ exec
    184	      expect(result.stopReason).toBeNull();
    185	      expect(result.sessionOutcome).toBeNull();
    186	    });
-   187	
+   187
    188	    it('returns stop reason and outcome from session_ended', () => {
    189	      journal.emitEvent(journalPath, {
    190	        eventType: 'session_ended',
@@ -3105,7 +3105,7 @@ exec
    193	          sessionOutcome: 'promoted',
    194	        },
    195	      });
-   196	
+   196
    197	      const result = journal.getSessionResult(journalPath);
    198	      expect(result.stopReason).toBe('converged');
    199	      expect(result.sessionOutcome).toBe('promoted');
@@ -3291,8 +3291,8 @@ exec
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:44:const stable = bs.measureStability([
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:49:const unstable = bs.measureStability([
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md:64:- `measureStability()` returns `{ dimensions, stable, warnings }` with per-dimension stats
-.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:9:Validates that the `/improve:agent` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, and `session_end`.
-.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:13:Then: journal events appear in `improvement-journal.jsonl` for every boundary, the CLI example in `.opencode/commands/improve/agent.md` executes as written against a temp target, and the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums match the helper validator.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:9:Validates that the `/deep:start-agent-improvement-loop` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, and `session_end`.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:13:Then: journal events appear in `improvement-journal.jsonl` for every boundary, the CLI example in `.opencode/commands/deep/start-agent-improvement-loop.md` executes as written against a temp target, and the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums match the helper validator.
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:26:TMP_JOURNAL="$TMP_SPEC/improvement/improvement-journal.jsonl"
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:28:grep -n "improvement-journal.cjs\|--emit" "$AUTO_YAML"
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:45:node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal "$TMP_JOURNAL" --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
@@ -3300,9 +3300,9 @@ exec
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:54:grep -A 5 "STOP_REASONS\|SESSION_OUTCOMES" .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:59:script = Path(".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs").read_text()
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:77:print("PASS — command doc taxonomy matches improvement-journal.cjs enums")
-.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:85:- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` contains `improvement-journal.cjs` emission steps for:
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:85:- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` contains `improvement-journal.cjs` emission steps for:
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:90:- `improvement-journal.cjs` exports frozen `STOP_REASONS` and `SESSION_OUTCOMES` enums
-.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:96:The autonomous YAML contains journal emission coverage for all three boundary groups (session start, per-iteration lifecycle checkpoints, session end), the CLI example from `.opencode/commands/improve/agent.md` runs successfully as written against a temp journal path, and the stop-reason / session-outcome enums in the command doc match the frozen values enforced by `improvement-journal.cjs`.
+.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:96:The autonomous YAML contains journal emission coverage for all three boundary groups (session start, per-iteration lifecycle checkpoints, session end), the CLI example from `.opencode/commands/deep/start-agent-improvement-loop.md` runs successfully as written against a temp journal path, and the stop-reason / session-outcome enums in the command doc match the frozen values enforced by `improvement-journal.cjs`.
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:102:- If `session_end` is emitted but validation fails: compare the emitted `details.stopReason` / `details.sessionOutcome` values against the frozen enums in `improvement-journal.cjs`
 .opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md:35:- If journal event is missing: check that `improvement-journal.cjs` emits `trade-off-detected` event type and the orchestrator calls the emitter
 .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/026-audit-journal-emission.md:20:node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --read {spec}/improvement/improvement-journal.jsonl | python3 -c "
@@ -3340,11 +3340,11 @@ exec
      4	import { createRequire } from 'node:module';
      5	import { fileURLToPath } from 'node:url';
      6	import { describe, expect, it, beforeEach, afterEach } from 'vitest';
-     7	
+     7
      8	const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
      9	const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../');
     10	const require = createRequire(import.meta.url);
-    11	
+    11
     12	const coverage = require(path.join(
     13	  WORKSPACE_ROOT,
     14	  '.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs',
@@ -3361,34 +3361,34 @@ exec
     25	  getTrajectory: (coveragePath: string) => object[];
     26	  checkConvergenceEligibility: (coveragePath: string, options?: object) => { canConverge: boolean; reason: string; dataPoints: number };
     27	};
-    28	
+    28
     29	let tmpDir: string;
     30	let coveragePath: string;
-    31	
+    31
     32	beforeEach(() => {
     33	  tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-test-'));
     34	  coveragePath = path.join(tmpDir, 'coverage-graph.json');
     35	});
-    36	
+    36
     37	afterEach(() => {
     38	  fs.rmSync(tmpDir, { recursive: true, force: true });
     39	});
-    40	
+    40
     41	describe('mutation-coverage', () => {
     42	  describe('constants', () => {
     43	    it('uses improvement loop type for namespace isolation', () => {
     44	      expect(coverage.LOOP_TYPE).toBe('improvement');
     45	    });
-    46	
+    46
     47	    it('requires minimum 3 trajectory data points', () => {
     48	      expect(coverage.MIN_TRAJECTORY_POINTS).toBe(3);
     49	    });
-    50	
+    50
     51	    it('has default stability delta of 2', () => {
     52	      expect(coverage.DEFAULT_STABILITY_DELTA).toBe(2);
     53	    });
     54	  });
-    55	
+    55
     56	  describe('createCoverageGraph', () => {
     57	    it('creates an empty graph with improvement loop type', () => {
     58	      const graph = coverage.createCoverageGraph() as { loopType: string; mutations: unknown[]; exhausted: unknown[]; trajectory: unknown[] };
@@ -3398,7 +3398,7 @@ exec
     62	      expect(graph.trajectory).toEqual([]);
     63	    });
     64	  });
-    65	
+    65
     66	  describe('recordMutation', () => {
     67	    it('creates file and records mutation', () => {
     68	      coverage.recordMutation(coveragePath, {
@@ -3407,23 +3407,23 @@ exec
     71	        candidateId: 'c-001',
     72	        iteration: 1,
     73	      });
-    74	
+    74
     75	      expect(fs.existsSync(coveragePath)).toBe(true);
     76	      const graph = JSON.parse(fs.readFileSync(coveragePath, 'utf8'));
     77	      expect(graph.mutations).toHaveLength(1);
     78	      expect(graph.mutations[0].dimension).toBe('structural');
     79	      expect(graph.mutations[0].mutationType).toBe('section-reorder');
     80	    });
-    81	
+    81
     82	    it('appends to existing mutations', () => {
     83	      coverage.recordMutation(coveragePath, { dimension: 'structural', mutationType: 'a', candidateId: '1', iteration: 1 });
     84	      coverage.recordMutation(coveragePath, { dimension: 'ruleCoherence', mutationType: 'b', candidateId: '2', iteration: 2 });
-    85	
+    85
     86	      const graph = JSON.parse(fs.readFileSync(coveragePath, 'utf8'));
     87	      expect(graph.mutations).toHaveLength(2);
     88	    });
     89	  });
-    90	
+    90
     91	  describe('markExhausted and getExhaustedMutations', () => {
     92	    it('marks a mutation type as exhausted', () => {
     93	      coverage.markExhausted(coveragePath, 'structural', 'section-reorder');
@@ -3432,69 +3432,69 @@ exec
     96	      expect((exhausted[0] as { dimension: string }).dimension).toBe('structural');
     97	      expect((exhausted[0] as { mutationType: string }).mutationType).toBe('section-reorder');
     98	    });
-    99	
+    99
    100	    it('prevents duplicate exhaustion entries', () => {
    101	      coverage.markExhausted(coveragePath, 'structural', 'section-reorder');
    102	      coverage.markExhausted(coveragePath, 'structural', 'section-reorder');
    103	      const exhausted = coverage.getExhaustedMutations(coveragePath);
    104	      expect(exhausted).toHaveLength(1);
    105	    });
-   106	
+   106
    107	    it('returns empty for non-existent file', () => {
    108	      const exhausted = coverage.getExhaustedMutations('/nonexistent/path.json');
    109	      expect(exhausted).toEqual([]);
    110	    });
    111	  });
-   112	
+   112
    113	  describe('getMutationCoverage', () => {
    114	    it('returns coverage stats per dimension', () => {
    115	      coverage.recordMutation(coveragePath, { dimension: 'structural', mutationType: 'a', candidateId: '1', iteration: 1 });
    116	      coverage.recordMutation(coveragePath, { dimension: 'structural', mutationType: 'b', candidateId: '2', iteration: 2 });
    117	      coverage.recordMutation(coveragePath, { dimension: 'integration', mutationType: 'c', candidateId: '3', iteration: 3 });
    118	      coverage.markExhausted(coveragePath, 'structural', 'a');
-   119	
+   119
    120	      const stats = coverage.getMutationCoverage(coveragePath);
    121	      expect(stats.dimensions.structural.triedCount).toBe(2);
    122	      expect(stats.dimensions.structural.exhaustedCount).toBe(1);
    123	      expect(stats.dimensions.integration.triedCount).toBe(1);
    124	    });
-   125	
+   125
    126	    it('returns empty dimensions for non-existent file', () => {
    127	      const stats = coverage.getMutationCoverage('/nonexistent/path.json');
    128	      expect(stats.dimensions).toEqual({});
    129	    });
    130	  });
-   131	
+   131
    132	  describe('trajectory', () => {
    133	    it('records and retrieves trajectory data', () => {
    134	      coverage.recordTrajectory(coveragePath, {
    135	        iteration: 1,
    136	        scores: { structural: 90, ruleCoherence: 85, integration: 88, outputQuality: 92, systemFitness: 95 },
    137	      });
-   138	
+   138
    139	      const trajectory = coverage.getTrajectory(coveragePath);
    140	      expect(trajectory).toHaveLength(1);
    141	      expect((trajectory[0] as { iteration: number }).iteration).toBe(1);
    142	    });
-   143	
+   143
    144	    it('returns empty array for non-existent file', () => {
    145	      expect(coverage.getTrajectory('/nonexistent/path.json')).toEqual([]);
    146	    });
    147	  });
-   148	
+   148
    149	  describe('checkConvergenceEligibility', () => {
    150	    it('rejects convergence with insufficient data points', () => {
    151	      coverage.recordTrajectory(coveragePath, {
    152	        iteration: 1,
    153	        scores: { structural: 90, ruleCoherence: 85, integration: 88, outputQuality: 92, systemFitness: 95 },
    154	      });
-   155	
+   155
    156	      const result = coverage.checkConvergenceEligibility(coveragePath);
    157	      expect(result.canConverge).toBe(false);
    158	      expect(result.reason).toContain('Insufficient');
    159	      expect(result.dataPoints).toBe(1);
    160	    });
-   161	
+   161
    162	    it('allows convergence with stable scores across 3+ points', () => {
    163	      for (let i = 1; i <= 3; i++) {
    164	        coverage.recordTrajectory(coveragePath, {
@@ -3502,12 +3502,12 @@ exec
    166	          scores: { structural: 95, ruleCoherence: 90, integration: 92, outputQuality: 88, systemFitness: 93 },
    167	        });
    168	      }
-   169	
+   169
    170	      const result = coverage.checkConvergenceEligibility(coveragePath);
    171	      expect(result.canConverge).toBe(true);
    172	      expect(result.dataPoints).toBe(3);
    173	    });
-   174	
+   174
    175	    it('rejects convergence with unstable dimensions', () => {
    176	      coverage.recordTrajectory(coveragePath, {
    177	        iteration: 1,
@@ -3521,7 +3521,7 @@ exec
    185	        iteration: 3,
    186	        scores: { structural: 90, ruleCoherence: 90, integration: 92, outputQuality: 88, systemFitness: 93 },
    187	      });
-   188	
+   188
    189	      const result = coverage.checkConvergenceEligibility(coveragePath);
    190	      expect(result.canConverge).toBe(false);
    191	      expect(result.reason).toContain('Unstable');
@@ -3541,11 +3541,11 @@ exec
      4	import { createRequire } from 'node:module';
      5	import { fileURLToPath } from 'node:url';
      6	import { describe, expect, it, beforeEach, afterEach } from 'vitest';
-     7	
+     7
      8	const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
      9	const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
     10	const require = createRequire(import.meta.url);
-    11	
+    11
     12	const detector = require(path.join(
     13	  WORKSPACE_ROOT,
     14	  '.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs',
@@ -3562,17 +3562,17 @@ exec
     25	  getTrajectory: (journalPath: string) => object[];
     26	  checkParetoDominance: (candidateScores: Record<string, number>, baselineScores: Record<string, number>) => { dominated: boolean; dominatingDimensions: string[]; regressions: string[] };
     27	};
-    28	
+    28
     29	let tmpDir: string;
-    30	
+    30
     31	beforeEach(() => {
     32	  tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'tradeoff-test-'));
     33	});
-    34	
+    34
     35	afterEach(() => {
     36	  fs.rmSync(tmpDir, { recursive: true, force: true });
     37	});
-    38	
+    38
     39	describe('trade-off-detector', () => {
     40	  describe('constants', () => {
     41	    it('defines hard dimensions', () => {
@@ -3580,26 +3580,26 @@ exec
     43	      expect(detector.HARD_DIMENSIONS).toContain('integration');
     44	      expect(detector.HARD_DIMENSIONS).toContain('systemFitness');
     45	    });
-    46	
+    46
     47	    it('defines soft dimensions', () => {
     48	      expect(detector.SOFT_DIMENSIONS).toContain('ruleCoherence');
     49	      expect(detector.SOFT_DIMENSIONS).toContain('outputQuality');
     50	    });
-    51	
+    51
     52	    it('has default improvement threshold of 3', () => {
     53	      expect(detector.DEFAULT_IMPROVEMENT_THRESHOLD).toBe(3);
     54	    });
-    55	
+    55
     56	    it('has default minimum data points of 3', () => {
     57	      expect(detector.MIN_DATA_POINTS_DEFAULT).toBe(3);
     58	    });
-    59	
+    59
     60	    it('has default regression thresholds', () => {
     61	      expect(detector.DEFAULT_REGRESSION_THRESHOLDS.hard).toBe(-3);
     62	      expect(detector.DEFAULT_REGRESSION_THRESHOLDS.soft).toBe(-5);
     63	    });
     64	  });
-    65	
+    65
     66	  describe('detectTradeOffs', () => {
     67	    it('returns insufficientData for 2-point trajectories', () => {
     68	      expect(detector.detectTradeOffs([
@@ -3612,21 +3612,21 @@ exec
     75	        reason: 'Trade-off detection requires at least 3 data points before analysis',
     76	      });
     77	    });
-    78	
+    78
     79	    it('detects trade-off when 3-point trajectory has a hard regression and another improvement', () => {
     80	      const trajectory = [
     81	        { iteration: 1, scores: { structural: 92, ruleCoherence: 80, integration: 90, outputQuality: 85, systemFitness: 90 } },
     82	        { iteration: 2, scores: { structural: 91, ruleCoherence: 82, integration: 90, outputQuality: 85, systemFitness: 90 } },
     83	        { iteration: 3, scores: { structural: 85, ruleCoherence: 90, integration: 90, outputQuality: 85, systemFitness: 90 } },
     84	      ];
-    85	
+    85
     86	      const tradeOffs = detector.detectTradeOffs(trajectory);
     87	      expect(Array.isArray(tradeOffs)).toBe(true);
     88	      if (!Array.isArray(tradeOffs)) {
     89	        throw new Error('Expected trade-off array for 3-point trajectory');
     90	      }
     91	      expect(tradeOffs.length).toBeGreaterThan(0);
-    92	
+    92
     93	      const found = tradeOffs.find(
     94	        (t) => t.improving === 'ruleCoherence' && t.regressing === 'structural'
     95	      );
@@ -3634,43 +3634,43 @@ exec
     97	      expect(found!.improvementDelta).toBe(8);
     98	      expect(found!.regressionDelta).toBe(-6);
     99	    });
-   100	
+   100
    101	    it('does not flag when both dimensions improve', () => {
    102	      const trajectory = [
    103	        { iteration: 1, scores: { structural: 85, ruleCoherence: 80, integration: 88, outputQuality: 85, systemFitness: 88 } },
    104	        { iteration: 2, scores: { structural: 88, ruleCoherence: 84, integration: 90, outputQuality: 87, systemFitness: 90 } },
    105	        { iteration: 3, scores: { structural: 92, ruleCoherence: 88, integration: 92, outputQuality: 90, systemFitness: 93 } },
    106	      ];
-   107	
+   107
    108	      const tradeOffs = detector.detectTradeOffs(trajectory);
    109	      expect(tradeOffs).toEqual([]);
    110	    });
-   111	
+   111
    112	    it('does not flag when regressions are below threshold', () => {
    113	      const trajectory = [
    114	        { iteration: 1, scores: { structural: 90, ruleCoherence: 85, integration: 90, outputQuality: 85, systemFitness: 90 } },
    115	        { iteration: 2, scores: { structural: 90, ruleCoherence: 86, integration: 90, outputQuality: 85, systemFitness: 90 } },
    116	        { iteration: 3, scores: { structural: 89, ruleCoherence: 90, integration: 90, outputQuality: 85, systemFitness: 90 } },
    117	      ];
-   118	
+   118
    119	      const tradeOffs = detector.detectTradeOffs(trajectory);
    120	      expect(tradeOffs).toEqual([]);
    121	    });
-   122	
+   122
    123	    it('respects custom thresholds', () => {
    124	      const trajectory = [
    125	        { iteration: 1, scores: { structural: 90, ruleCoherence: 80, integration: 90, outputQuality: 85, systemFitness: 90 } },
    126	        { iteration: 2, scores: { structural: 89, ruleCoherence: 82, integration: 90, outputQuality: 85, systemFitness: 90 } },
    127	        { iteration: 3, scores: { structural: 85, ruleCoherence: 90, integration: 90, outputQuality: 85, systemFitness: 90 } },
    128	      ];
-   129	
+   129
    130	      // With very strict thresholds, even -5 should not trigger
    131	      const tradeOffs = detector.detectTradeOffs(trajectory, {
    132	        regressionThresholds: { hard: -10, soft: -10 },
    133	      });
    134	      expect(tradeOffs).toEqual([]);
    135	    });
-   136	
+   136
    137	    it('respects custom minDataPoints override', () => {
    138	      const trajectory = [
    139	        { iteration: 1, scores: { structural: 90, ruleCoherence: 80, integration: 90, outputQuality: 85, systemFitness: 90 } },
@@ -3678,7 +3678,7 @@ exec
    141	        { iteration: 3, scores: { structural: 88, ruleCoherence: 84, integration: 90, outputQuality: 85, systemFitness: 90 } },
    142	        { iteration: 4, scores: { structural: 83, ruleCoherence: 90, integration: 90, outputQuality: 85, systemFitness: 90 } },
    143	      ];
-   144	
+   144
    145	      expect(detector.detectTradeOffs(trajectory, { minDataPoints: 5 })).toEqual({
    146	        state: 'insufficientData',
    147	        dataPoints: 4,
@@ -3686,7 +3686,7 @@ exec
    149	        reason: 'Trade-off detection requires at least 5 data points before analysis',
    150	      });
    151	    });
-   152	
+   152
    153	    it('handles empty trajectory gracefully', () => {
    154	      const tradeOffs = detector.detectTradeOffs(null as unknown as object[]);
    155	      expect(tradeOffs).toEqual({
@@ -3697,12 +3697,12 @@ exec
    160	      });
    161	    });
    162	  });
-   163	
+   163
    164	  describe('getTrajectory', () => {
    165	    it('returns empty for non-existent file', () => {
    166	      expect(detector.getTrajectory('/nonexistent/path.jsonl')).toEqual([]);
    167	    });
-   168	
+   168
    169	    it('extracts scores from candidate_scored journal events', () => {
    170	      const journalPath = path.join(tmpDir, 'journal.jsonl');
    171	      const events = [
@@ -3721,40 +3721,40 @@ exec
    184	          iteration: 0,
    185	        },
    186	      ];
-   187	
+   187
    188	      fs.writeFileSync(
    189	        journalPath,
    190	        events.map((e) => JSON.stringify(e)).join('\n') + '\n',
    191	        'utf8'
    192	      );
-   193	
+   193
    194	      const trajectory = detector.getTrajectory(journalPath) as Array<{ iteration: number; scores: Record<string, number> }>;
    195	      expect(trajectory).toHaveLength(1);
    196	      expect(trajectory[0].scores.structural).toBe(90);
    197	    });
    198	  });
-   199	
+   199
    200	  describe('checkParetoDominance', () => {
    201	    it('detects Pareto-dominated candidate', () => {
    202	      const candidate = { structural: 85, ruleCoherence: 80, integration: 88, outputQuality: 82, systemFitness: 90 };
    203	      const baseline = { structural: 90, ruleCoherence: 85, integration: 92, outputQuality: 88, systemFitness: 95 };
-   204	
+   204
    205	      const result = detector.checkParetoDominance(candidate, baseline);
    206	      expect(result.dominated).toBe(true);
    207	      expect(result.regressions.length).toBeGreaterThan(0);
    208	    });
-   209	
+   209
    210	    it('does not flag when candidate improves at least one dimension', () => {
    211	      const candidate = { structural: 95, ruleCoherence: 80, integration: 88, outputQuality: 82, systemFitness: 90 };
    212	      const baseline = { structural: 90, ruleCoherence: 85, integration: 92, outputQuality: 88, systemFitness: 95 };
-   213	
+   213
    214	      const result = detector.checkParetoDominance(candidate, baseline);
    215	      expect(result.dominated).toBe(false);
    216	    });
-   217	
+   217
    218	    it('detects equal candidates as non-dominated', () => {
    219	      const scores = { structural: 90, ruleCoherence: 85, integration: 92, outputQuality: 88, systemFitness: 95 };
-   220	
+   220
    221	      const result = detector.checkParetoDominance(scores, scores);
    222	      expect(result.dominated).toBe(false);
    223	    });
@@ -3768,11 +3768,11 @@ exec
      4	import { createRequire } from 'node:module';
      5	import { fileURLToPath } from 'node:url';
      6	import { describe, expect, it, beforeEach, afterEach } from 'vitest';
-     7	
+     7
      8	const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
      9	const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../');
     10	const require = createRequire(import.meta.url);
-    11	
+    11
     12	const lineage = require(path.join(
     13	  WORKSPACE_ROOT,
     14	  '.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs',
@@ -3784,19 +3784,19 @@ exec
     20	  getRootCandidates: (lineagePath: string) => object[];
     21	  getChildren: (lineagePath: string, parentCandidateId: string) => object[];
     22	};
-    23	
+    23
     24	let tmpDir: string;
     25	let lineagePath: string;
-    26	
+    26
     27	beforeEach(() => {
     28	  tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'lineage-test-'));
     29	  lineagePath = path.join(tmpDir, 'candidate-lineage.json');
     30	});
-    31	
+    31
     32	afterEach(() => {
     33	  fs.rmSync(tmpDir, { recursive: true, force: true });
     34	});
-    35	
+    35
     36	describe('candidate-lineage', () => {
     37	  describe('createLineageGraph', () => {
     38	    it('creates an empty graph', () => {
@@ -3805,7 +3805,7 @@ exec
     41	      expect(graph).toHaveProperty('createdAt');
     42	    });
     43	  });
-    44	
+    44
     45	  describe('recordCandidate', () => {
     46	    it('creates file and records candidate', () => {
     47	      lineage.recordCandidate(lineagePath, {
@@ -3814,14 +3814,14 @@ exec
     50	        waveIndex: 0,
     51	        mutationType: 'section-reorder',
     52	      });
-    53	
+    53
     54	      expect(fs.existsSync(lineagePath)).toBe(true);
     55	      const graph = JSON.parse(fs.readFileSync(lineagePath, 'utf8'));
     56	      expect(graph.nodes).toHaveLength(1);
     57	      expect(graph.nodes[0].candidateId).toBe('c-001');
     58	      expect(graph.nodes[0].parentCandidateId).toBeNull();
     59	    });
-    60	
+    60
     61	    it('records parent-child relationships', () => {
     62	      lineage.recordCandidate(lineagePath, {
     63	        candidateId: 'c-001',
@@ -3836,18 +3836,18 @@ exec
     72	        mutationType: 'variant-a',
     73	        parentCandidateId: 'c-001',
     74	      });
-    75	
+    75
     76	      const graph = JSON.parse(fs.readFileSync(lineagePath, 'utf8'));
     77	      expect(graph.nodes).toHaveLength(2);
     78	      expect(graph.nodes[1].parentCandidateId).toBe('c-001');
     79	    });
     80	  });
-    81	
+    81
     82	  describe('getLineage', () => {
     83	    it('returns empty for non-existent file', () => {
     84	      expect(lineage.getLineage('/nonexistent/path.json', 'c-001')).toEqual([]);
     85	    });
-    86	
+    86
     87	    it('returns single node for root candidate', () => {
     88	      lineage.recordCandidate(lineagePath, {
     89	        candidateId: 'c-001',
@@ -3855,12 +3855,12 @@ exec
     91	        waveIndex: 0,
     92	        mutationType: 'base',
     93	      });
-    94	
+    94
     95	      const chain = lineage.getLineage(lineagePath, 'c-001');
     96	      expect(chain).toHaveLength(1);
     97	      expect((chain[0] as { candidateId: string }).candidateId).toBe('c-001');
     98	    });
-    99	
+    99
    100	    it('traces full derivation chain from root to leaf', () => {
    101	      lineage.recordCandidate(lineagePath, {
    102	        candidateId: 'c-001',
@@ -3882,14 +3882,14 @@ exec
    118	        mutationType: 'variant-b',
    119	        parentCandidateId: 'c-002',
    120	      });
-   121	
+   121
    122	      const chain = lineage.getLineage(lineagePath, 'c-003') as Array<{ candidateId: string }>;
    123	      expect(chain).toHaveLength(3);
    124	      expect(chain[0].candidateId).toBe('c-001');
    125	      expect(chain[1].candidateId).toBe('c-002');
    126	      expect(chain[2].candidateId).toBe('c-003');
    127	    });
-   128	
+   128
    129	    it('returns empty for unknown candidate', () => {
    130	      lineage.recordCandidate(lineagePath, {
    131	        candidateId: 'c-001',
@@ -3897,50 +3897,50 @@ exec
    133	        waveIndex: 0,
    134	        mutationType: 'base',
    135	      });
-   136	
+   136
    137	      expect(lineage.getLineage(lineagePath, 'c-unknown')).toEqual([]);
    138	    });
    139	  });
-   140	
+   140
    141	  describe('getCandidatesByWave', () => {
    142	    it('filters by session and wave index', () => {
    143	      lineage.recordCandidate(lineagePath, { candidateId: 'c-001', sessionId: 's-001', waveIndex: 0, mutationType: 'a' });
    144	      lineage.recordCandidate(lineagePath, { candidateId: 'c-002', sessionId: 's-001', waveIndex: 1, mutationType: 'b' });
    145	      lineage.recordCandidate(lineagePath, { candidateId: 'c-003', sessionId: 's-002', waveIndex: 0, mutationType: 'c' });
-   146	
+   146
    147	      const wave0 = lineage.getCandidatesByWave(lineagePath, 's-001', 0);
    148	      expect(wave0).toHaveLength(1);
    149	      expect((wave0[0] as { candidateId: string }).candidateId).toBe('c-001');
-   150	
+   150
    151	      const allS1 = lineage.getCandidatesByWave(lineagePath, 's-001');
    152	      expect(allS1).toHaveLength(2);
    153	    });
    154	  });
-   155	
+   155
    156	  describe('getRootCandidates', () => {
    157	    it('returns only candidates with no parent', () => {
    158	      lineage.recordCandidate(lineagePath, { candidateId: 'c-001', sessionId: 's-001', waveIndex: 0, mutationType: 'a' });
    159	      lineage.recordCandidate(lineagePath, { candidateId: 'c-002', sessionId: 's-001', waveIndex: 1, mutationType: 'b', parentCandidateId: 'c-001' });
-   160	
+   160
    161	      const roots = lineage.getRootCandidates(lineagePath);
    162	      expect(roots).toHaveLength(1);
    163	      expect((roots[0] as { candidateId: string }).candidateId).toBe('c-001');
    164	    });
    165	  });
-   166	
+   166
    167	  describe('getChildren', () => {
    168	    it('returns direct children of a candidate', () => {
    169	      lineage.recordCandidate(lineagePath, { candidateId: 'c-001', sessionId: 's-001', waveIndex: 0, mutationType: 'a' });
    170	      lineage.recordCandidate(lineagePath, { candidateId: 'c-002', sessionId: 's-001', waveIndex: 1, mutationType: 'b', parentCandidateId: 'c-001' });
    171	      lineage.recordCandidate(lineagePath, { candidateId: 'c-003', sessionId: 's-001', waveIndex: 1, mutationType: 'c', parentCandidateId: 'c-001' });
-   172	
+   172
    173	      const children = lineage.getChildren(lineagePath, 'c-001');
    174	      expect(children).toHaveLength(2);
    175	    });
-   176	
+   176
    177	    it('returns empty for leaf candidates', () => {
    178	      lineage.recordCandidate(lineagePath, { candidateId: 'c-001', sessionId: 's-001', waveIndex: 0, mutationType: 'a' });
-   179	
+   179
    180	      const children = lineage.getChildren(lineagePath, 'c-001');
    181	      expect(children).toEqual([]);
    182	    });
@@ -3954,11 +3954,11 @@ exec
      2	import { createRequire } from 'node:module';
      3	import { fileURLToPath } from 'node:url';
      4	import { describe, expect, it } from 'vitest';
-     5	
+     5
      6	const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
      7	const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
      8	const require = createRequire(import.meta.url);
-     9	
+     9
     10	const stability = require(path.join(
     11	  WORKSPACE_ROOT,
     12	  '.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs',
@@ -3978,25 +3978,25 @@ exec
     26	  isStable: (stabilityResult: { state?: string; dimensions?: Record<string, { coefficient: number }> }, maxVariance?: number) => boolean;
     27	  generateWeightRecommendations: (sessionHistory: object[], currentWeights: Record<string, number>, config?: object) => { recommendations: Record<string, number> | null; sufficient: boolean; report: string };
     28	};
-    29	
+    29
     30	describe('benchmark-stability', () => {
     31	  describe('constants', () => {
     32	    it('has default minimum replay count of 3', () => {
     33	      expect(stability.MIN_REPLAY_COUNT_DEFAULT).toBe(3);
     34	    });
-    35	
+    35
     36	    it('has default replay count of 3', () => {
     37	      expect(stability.DEFAULT_REPLAY_COUNT).toBe(3);
     38	    });
-    39	
+    39
     40	    it('has default warning threshold of 0.95', () => {
     41	      expect(stability.DEFAULT_WARNING_THRESHOLD).toBe(0.95);
     42	    });
-    43	
+    43
     44	    it('has default session count threshold of 5', () => {
     45	      expect(stability.DEFAULT_SESSION_COUNT_THRESHOLD).toBe(5);
     46	    });
-    47	
+    47
     48	    it('defines all 5 dimensions', () => {
     49	      expect(stability.DIMENSIONS).toHaveLength(5);
     50	      expect(stability.DIMENSIONS).toContain('structural');
@@ -4006,14 +4006,14 @@ exec
     54	      expect(stability.DIMENSIONS).toContain('systemFitness');
     55	    });
     56	  });
-    57	
+    57
     58	  describe('math helpers', () => {
     59	    it('computes mean correctly', () => {
     60	      expect(stability.mean([1, 2, 3, 4, 5])).toBe(3);
     61	      expect(stability.mean([])).toBe(0);
     62	      expect(stability.mean([10])).toBe(10);
     63	    });
-    64	
+    64
     65	    it('computes stddev correctly', () => {
     66	      expect(stability.stddev([])).toBe(0);
     67	      expect(stability.stddev([5])).toBe(0);
@@ -4022,21 +4022,21 @@ exec
     70	      expect(sd).toBeGreaterThan(2);
     71	      expect(sd).toBeLessThan(2.5);
     72	    });
-    73	
+    73
     74	    it('computes stability coefficient — perfect stability = 1.0', () => {
     75	      expect(stability.stabilityCoefficient([90, 90, 90])).toBe(1.0);
     76	    });
-    77	
+    77
     78	    it('computes stability coefficient — high variance = low coefficient', () => {
     79	      const coeff = stability.stabilityCoefficient([50, 90, 10, 80]);
     80	      expect(coeff).toBeLessThan(0.7);
     81	    });
-    82	
+    82
     83	    it('returns 1.0 for zero mean', () => {
     84	      expect(stability.stabilityCoefficient([0, 0, 0])).toBe(1.0);
     85	    });
     86	  });
-    87	
+    87
     88	  describe('measureStability', () => {
     89	    it('returns insufficientSample for 1 replay', () => {
     90	      expect(stability.measureStability([
@@ -4048,7 +4048,7 @@ exec
     96	        reason: 'Benchmark stability requires at least 3 replays before verdict',
     97	      });
     98	    });
-    99	
+    99
    100	    it('returns insufficientSample for 2 replays', () => {
    101	      expect(stability.measureStability([
    102	        { scores: { structural: 95, ruleCoherence: 90, integration: 92, outputQuality: 88, systemFitness: 93 } },
@@ -4060,14 +4060,14 @@ exec
    108	        reason: 'Benchmark stability requires at least 3 replays before verdict',
    109	      });
    110	    });
-   111	
+   111
    112	    it('returns stable for identical replays', () => {
    113	      const results = [
    114	        { scores: { structural: 95, ruleCoherence: 90, integration: 92, outputQuality: 88, systemFitness: 93 } },
    115	        { scores: { structural: 95, ruleCoherence: 90, integration: 92, outputQuality: 88, systemFitness: 93 } },
    116	        { scores: { structural: 95, ruleCoherence: 90, integration: 92, outputQuality: 88, systemFitness: 93 } },
    117	      ];
-   118	
+   118
    119	      const result = stability.measureStability(results);
    120	      if ('state' in result) {
    121	        throw new Error('Expected full stability verdict for 3 replays');
@@ -4076,14 +4076,14 @@ exec
    124	      expect(result.warnings).toHaveLength(0);
    125	      expect(result.dimensions.structural.coefficient).toBe(1.0);
    126	    });
-   127	
+   127
    128	    it('detects instability and emits warnings', () => {
    129	      const results = [
    130	        { scores: { structural: 95, ruleCoherence: 90, integration: 50, outputQuality: 88, systemFitness: 93 } },
    131	        { scores: { structural: 95, ruleCoherence: 90, integration: 90, outputQuality: 88, systemFitness: 93 } },
    132	        { scores: { structural: 95, ruleCoherence: 90, integration: 70, outputQuality: 88, systemFitness: 93 } },
    133	      ];
-   134	
+   134
    135	      const result = stability.measureStability(results);
    136	      if ('state' in result) {
    137	        throw new Error('Expected full stability verdict for 3 replays');
@@ -4093,21 +4093,21 @@ exec
    141	      expect(result.warnings[0]).toContain('stabilityWarning');
    142	      expect(result.warnings[0]).toContain('integration');
    143	    });
-   144	
+   144
    145	    it('handles dimension array format', () => {
    146	      const results = [
    147	        { dimensions: [{ name: 'structural', score: 95 }, { name: 'ruleCoherence', score: 90 }] },
    148	        { dimensions: [{ name: 'structural', score: 95 }, { name: 'ruleCoherence', score: 90 }] },
    149	        { dimensions: [{ name: 'structural', score: 95 }, { name: 'ruleCoherence', score: 90 }] },
    150	      ];
-   151	
+   151
    152	      const result = stability.measureStability(results);
    153	      if ('state' in result) {
    154	        throw new Error('Expected full stability verdict for 3 replays');
    155	      }
    156	      expect(result.dimensions.structural.coefficient).toBe(1.0);
    157	    });
-   158	
+   158
    159	    it('returns insufficientSample for empty results', () => {
    160	      const result = stability.measureStability([]);
    161	      expect(result).toEqual({
@@ -4117,7 +4117,7 @@ exec
    165	        reason: 'Benchmark stability requires at least 3 replays before verdict',
    166	      });
    167	    });
-   168	
+   168
    169	    it('respects custom minReplayCount override', () => {
    170	      const result = stability.measureStability([
    171	        { scores: { structural: 95, ruleCoherence: 90, integration: 92, outputQuality: 88, systemFitness: 93 } },
@@ -4125,7 +4125,7 @@ exec
    173	        { scores: { structural: 95, ruleCoherence: 90, integration: 92, outputQuality: 88, systemFitness: 93 } },
    174	        { scores: { structural: 95, ruleCoherence: 90, integration: 92, outputQuality: 88, systemFitness: 93 } },
    175	      ], { minReplayCount: 5 });
-   176	
+   176
    177	      expect(result).toEqual({
    178	        state: 'insufficientSample',
    179	        replayCount: 4,
@@ -4134,7 +4134,7 @@ exec
    182	      });
    183	    });
    184	  });
-   185	
+   185
    186	  describe('isStable', () => {
    187	    it('accepts results with low variance', () => {
    188	      const result = stability.measureStability([
@@ -4144,7 +4144,7 @@ exec
    192	      ]);
    193	      expect(stability.isStable(result)).toBe(true);
    194	    });
-   195	
+   195
    196	    it('rejects results with high variance', () => {
    197	      const result = stability.measureStability([
    198	        { scores: { structural: 50, ruleCoherence: 90, integration: 92, outputQuality: 88, systemFitness: 93 } },
@@ -4153,7 +4153,7 @@ exec
    201	      ]);
    202	      expect(stability.isStable(result, 0.01)).toBe(false);
    203	    });
-   204	
+   204
    205	    it('treats insufficientSample as not stable', () => {
    206	      const result = stability.measureStability([
    207	        { scores: { structural: 95, ruleCoherence: 90, integration: 92, outputQuality: 88, systemFitness: 93 } },
@@ -4161,7 +4161,7 @@ exec
    209	      expect(stability.isStable(result)).toBe(false);
    210	    });
    211	  });
-   212	
+   212
    213	  describe('generateWeightRecommendations', () => {
    214	    it('returns insufficient when session count is below threshold', () => {
    215	      const result = stability.generateWeightRecommendations(
@@ -4172,7 +4172,7 @@ exec
    220	      expect(result.recommendations).toBeNull();
    221	      expect(result.report).toContain('Insufficient');
    222	    });
-   223	
+   223
    224	    it('generates recommendations when sufficient sessions exist', () => {
    225	      const sessions = Array.from({ length: 6 }, (_, i) => ({
    226	        scores: {
@@ -4183,7 +4183,7 @@ exec
    231	          systemFitness: 93,
    232	        },
    233	      }));
-   234	
+   234
    235	      const currentWeights = {
    236	        structural: 0.20,
    237	        ruleCoherence: 0.25,
@@ -4191,24 +4191,24 @@ exec
    239	        outputQuality: 0.15,
    240	        systemFitness: 0.15,
    241	      };
-   242	
+   242
    243	      const result = stability.generateWeightRecommendations(sessions, currentWeights);
    244	      expect(result.sufficient).toBe(true);
    245	      expect(result.recommendations).toBeDefined();
    246	      expect(result.report).toContain('Weight Optimization Report');
    247	      expect(result.report).toContain('advisory only');
-   248	
+   248
    249	      // All weights should sum to approximately 1.0
    250	      const totalWeight = Object.values(result.recommendations!).reduce((s, w) => s + w, 0);
    251	      expect(totalWeight).toBeGreaterThan(0.98);
    252	      expect(totalWeight).toBeLessThan(1.02);
    253	    });
-   254	
+   254
    255	    it('respects custom session count threshold', () => {
    256	      const sessions = Array.from({ length: 3 }, () => ({
    257	        scores: { structural: 90, ruleCoherence: 85, integration: 92, outputQuality: 88, systemFitness: 93 },
    258	      }));
-   259	
+   259
    260	      const result = stability.generateWeightRecommendations(
    261	        sessions,
    262	        { structural: 0.20, ruleCoherence: 0.25, integration: 0.25, outputQuality: 0.15, systemFitness: 0.15 },
@@ -4223,28 +4223,28 @@ exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/SKILL.md | sed -n '250,390p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    250	| `stuckRecovery` | Session detected stuck state and exhausted recovery options |
-   251	
+   251
    252	**sessionOutcome** (WHAT happened to the candidate):
-   253	
+   253
    254	| Outcome | When Used |
    255	| --- | --- |
    256	| `keptBaseline` | Baseline was retained because candidate did not improve |
    257	| `promoted` | Candidate was promoted to canonical target |
    258	| `rolledBack` | Promoted candidate was rolled back to prior state |
    259	| `advisoryOnly` | Session completed for assessment only; no mutation attempted |
-   260	
+   260
    261	### Audit Journal Protocol
-   262	
+   262
    263	All journal emission is orchestrator-only (ADR-001). The journal (`improvement-journal.jsonl`) is an append-only JSONL file capturing lifecycle events. Separate from the existing `agent-improvement-state.jsonl` which tracks proposal/evaluation data.
-   264	
+   264
    265	**Script**: `scripts/improvement-journal.cjs`
-   266	
+   266
    267	Event types: `session_start`, `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `gate_evaluation`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempt`, `promotion_result`, `rollback`, `rollback_result`, `trade_off_detected`, `mutation_proposed`, `mutation_outcome`, `session_ended`, `session_end`
-   268	
+   268
    269	### Legal-Stop Gate Bundles
-   270	
+   270
    271	A session may NOT claim `converged` unless ALL gate bundles pass:
-   272	
+   272
    273	| Gate Bundle | Conditions |
    274	| --- | --- |
    275	| `contractGate` | structural >= 90 AND systemFitness >= 90 |
@@ -4252,128 +4252,128 @@ exec
    277	| `integrationGate` | integration >= 90 AND no drift ambiguity |
    278	| `evidenceGate` | benchmark pass AND repeatability pass |
    279	| `improvementGate` | weighted delta >= `scoring.thresholdDelta` |
-   280	
+   280
    281	Failed gates persist `blockedStop` with full gate results in the journal.
-   282	
+   282
    283	### Resume/Continuation Semantics (current release)
-   284	
-   285	Sessions support a single lineage mode today: `new`. Every invocation of the `/improve:agent` workflow starts a fresh session with a new session id and generation 1. Multi-generation lineage modes (`resume`, `restart`, `fork`, `completed-continue`) were described in earlier drafts but have no shipped runtime wiring in the improve-agent workflow, reducer, or journal consumer.
-   286	
+   284
+   285	Sessions support a single lineage mode today: `new`. Every invocation of the `/deep:start-agent-improvement-loop` workflow starts a fresh session with a new session id and generation 1. Multi-generation lineage modes (`resume`, `restart`, `fork`, `completed-continue`) were described in earlier drafts but have no shipped runtime wiring in the improve-agent workflow, reducer, or journal consumer.
+   286
    287	Operators who want to continue evaluating an agent after a prior session SHOULD archive the prior session folder (e.g. move `improve/` to `improve_archive/{timestamp}/`) and re-invoke the command, which starts a new `new`-mode session. The reducer treats each session independently and does not carry ancestry across sessions.
-   288	
-   289	If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `improve_improve-agent_{auto,confirm}.yaml`, reducer ancestry handling in `sk-improve-agent/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
-   290	
+   288
+   289	If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `deep_start-agent-improvement-loop_{auto,confirm}.yaml`, reducer ancestry handling in `sk-improve-agent/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
+   290
    291	### Mutation Coverage Graph
-   292	
+   292
    293	**Script**: `scripts/mutation-coverage.cjs`
-   294	
+   294
    295	Tracks explored dimensions, tried mutation types per dimension, and exhausted mutation sets using `loop_type: "improvement"` namespace isolation (ADR-002). The orchestrator skips mutation types already in the exhausted log.
-   296	
+   296
    297	### Dimension Trajectory
-   298	
+   298
    299	Trajectory data records per-iteration dimension scores. Convergence requires minimum 3 data points (ADR-003) with all dimension deltas within +/-2 across the last 3 points.
-   300	
+   300
    301	### Trade-Off Detection
-   302	
+   302
    303	**Script**: `scripts/trade-off-detector.cjs`
-   304	
+   304
    305	Detects Pareto trade-offs: flags when improvement > +3 in one dimension causes regression < -3 in hard dimensions (structural, integration, systemFitness) or < -5 in soft dimensions (ruleCoherence, outputQuality). Blocks promotion for Pareto-dominated candidates.
-   306	
+   306
    307	### Parallel Candidate Waves (Optional)
-   308	
+   308
    309	**Script**: `scripts/candidate-lineage.cjs`
-   310	
+   310
    311	Disabled by default (`parallelWaves.enabled: false` in config, ADR-004). When enabled, spawns 2-3 candidates with different mutation strategies. Activation requires: exploration-breadth score above threshold, 3+ unresolved mutation families, and 2 consecutive tie/plateau iterations.
-   312	
+   312
    313	### Weight Optimizer (Advisory Only)
-   314	
+   314
    315	**Script**: `scripts/benchmark-stability.cjs`
-   316	
+   316
    317	Reads historical session data and emits a weight-recommendation report. Recommendations do NOT auto-apply (ADR-005). Requires minimum session count threshold before producing recommendations.
-   318	
+   318
    319	---
-   320	
+   320
    321	<!-- /ANCHOR:runtime-truth -->
    322	## Journal Wiring Contract
-   323	
+   323
    324	Journal emission is orchestrator-only. The target agent being evaluated never writes journal rows directly; only the visible YAML workflow or an operator-side wrapper invokes `scripts/improvement-journal.cjs`.
-   325	
+   325
    326	The CLI contract is:
-   327	
+   327
    328	```bash
    329	node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
    330	```
-   331	
+   331
    332	The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.
-   333	
+   333
    334	### Boundary Points
-   335	
+   335
    336	| Boundary | When It Fires | Event Types | Required Details |
    337	| --- | --- | --- | --- |
    338	| `session_start` | Once after baseline setup is recorded and before the first loop iteration begins | `session_start` | `sessionId`, `target`, `charter`, `startedAt` |
    339	| `iteration_boundary` | On every iteration after candidate generation, after candidate scoring, and after gate evaluation | `candidate_generated`, `candidate_scored`, `gate_evaluation` | Per-iteration context such as `sessionId`, `iteration`, `candidateId`, `candidatePath`, `scoreOutputPath`, `weightedScore`, and gate decision details |
    340	| `session_end` | Once after synthesis completes or the session reaches a terminal stop | `session_end` | `stopReason`, `sessionOutcome`, `endedAt`, `totalIterations` |
-   341	
+   341
    342	### Frozen Helper Enums
-   343	
+   343
    344	`improvement-journal.cjs` currently exports and validates the following enums:
-   345	
+   345
    346	- `STOP_REASONS`: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`
    347	- `SESSION_OUTCOMES`: `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`
-   348	
+   348
    349	Keep session-end emissions aligned to those helper-owned values until the helper contract itself changes. Labels such as `convergedImprovement`, `benchmarkPlateau`, `rejected`, `deferred`, `blocked`, or `errored` are not accepted by the current CLI validator.
-   350	
+   350
    351	### Orchestrator Ownership
-   352	
+   352
    353	- Auto mode emits `session_start` after `step_record_baseline`, then emits `candidate_generated`, `candidate_scored`, and `gate_evaluation` inside each loop iteration, and finally emits `session_end` after synthesis.
    354	- Confirm mode mirrors the same boundaries, with `gate_evaluation` emitted after the operator-facing approval gate is resolved.
    355	- Operators invoking the helper manually must use the same boundary order so replay and reducer consumers see a consistent journal shape.
-   356	
+   356
    357	### Reducer Consumer Side
-   358	
+   358
    359	The reducer is the consumer for replay artifacts on refresh. Every `scripts/reduce-state.cjs` pass now attempts to read:
-   360	
+   360
    361	- `improvement-journal.jsonl`
    362	- `candidate-lineage.json`
    363	- `mutation-coverage.json`
-   364	
+   364
    365	These inputs remain optional. Missing files do not fail the reducer; the corresponding registry field is set to `null` so dashboard and registry refreshes still complete.
-   366	
+   366
    367	## ADR-002: Journal Replay Consumer
-   368	
+   368
    369	ADR-002 is implemented in the reducer via replay consumers instead of a separate orchestrator-only synthesis step. During each refresh pass, `scripts/reduce-state.cjs` now reads the following artifacts when present:
-   370	
+   370
    371	- `improvement-journal.jsonl` to summarize last session boundaries, total replayed events, per-event counts, and terminal `stopReason` / `sessionOutcome`
    372	- `candidate-lineage.json` to summarize lineage depth, total candidate count, and the latest candidate leaf
    373	- `mutation-coverage.json` to summarize mutation coverage ratio and uncovered mutations
-   374	
+   374
    375	The reducer writes these summaries into new top-level registry fields:
-   376	
+   376
    377	- `journalSummary`
    378	- `candidateLineage`
    379	- `mutationCoverage`
-   380	
+   380
    381	Graceful degradation is required: if any artifact is missing, unreadable, or not yet generated for the current runtime, the reducer preserves the rest of the registry and records `null` for that field instead of throwing.
-   382	
+   382
    383	The dashboard now also includes a dedicated **Sample Quality** section. This separates replay/stability sample sufficiency from benchmark failures so operators can tell the difference between a true regression and an iteration that simply lacked enough data for trade-off or replay-stability trust.
-   384	
+   384
    385	<!-- ANCHOR:rules -->
    386	## 5. RULES
-   387	
+   387
    388	### ✅ ALWAYS
-   389	
+   389
    390	- Read the charter, manifest, and target profile before creating a candidate
 
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs | sed -n '760,980p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-   760	
+   760
    761	function renderDashboard(registry, sampleQuality) {
    762	  const sections = Object.values(registry.profiles)
    763	    .sort((left, right) => left.profileId.localeCompare(right.profileId))
    764	    .map((bucket) => renderProfileSection(bucket))
    765	    .join('\n');
-   766	
+   766
    767	  let recommendation = 'Continue only when the next run has a clearer signal than the current best-known state.';
    768	  if (registry.stopStatus?.shouldStop) {
    769	    recommendation = `Stop automatically: ${registry.stopStatus.reasons.join('; ')}`;
@@ -4382,11 +4382,11 @@ exec
    772	  } else if (registry.globalMetrics.benchmarkFailCount > 0) {
    773	    recommendation = 'Fix repeated benchmark failures before broadening scope or promoting any target.';
    774	  }
-   775	
+   775
    776	  return `# Agent Improvement Dashboard
-   777	
+   777
    778	## Global Summary
-   779	
+   779
    780	| Field | Value |
    781	| --- | --- |
    782	| Total records | ${registry.globalMetrics.totalRecords} |
@@ -4400,39 +4400,39 @@ exec
    790	| Benchmark passes | ${registry.globalMetrics.benchmarkPassCount} |
    791	| Benchmark fails | ${registry.globalMetrics.benchmarkFailCount} |
    792	| Infra failures | ${registry.globalMetrics.infraFailureCount} |
-   793	
+   793
    794	${renderSampleQualitySection(sampleQuality)}
-   795	
+   795
    796	## Guardrails
-   797	
+   797
    798	- All targets evaluated via dynamic mode; promotion requires explicit per-target approval
    799	- Mirror sync stays downstream packaging and is not counted as benchmark truth
-   800	
+   800
    801	## Stop Status
-   802	
+   802
    803	- Should stop: ${registry.stopStatus?.shouldStop ? 'yes' : 'no'}
    804	- Drift ambiguity: ${registry.stopStatus?.driftAmbiguity ? 'yes' : 'no'}
    805	- Reasons: ${registry.stopStatus?.reasons?.length ? registry.stopStatus.reasons.join('; ') : 'none'}
-   806	
+   806
    807	${sections}
-   808	
+   808
    809	## Recommendation
-   810	
+   810
    811	${recommendation}
    812	`;
    813	}
-   814	
+   814
    815	// ─────────────────────────────────────────────────────────────────────────────
    816	// 8. MAIN
    817	// ─────────────────────────────────────────────────────────────────────────────
-   818	
+   818
    819	function main() {
    820	  const runtimeRoot = process.argv[2];
    821	  if (!runtimeRoot) {
    822	    process.stderr.write('Usage: node reduce-state.cjs <improvement-runtime-root>\n');
    823	    process.exit(2);
    824	  }
-   825	
+   825
    826	  const stateLogPath = path.join(runtimeRoot, 'agent-improvement-state.jsonl');
    827	  const registryPath = path.join(runtimeRoot, 'experiment-registry.json');
    828	  const dashboardPath = path.join(runtimeRoot, 'agent-improvement-dashboard.md');
@@ -4441,7 +4441,7 @@ exec
    831	  const journalPath = path.join(runtimeRoot, 'improvement-journal.jsonl');
    832	  const candidateLineagePath = path.join(runtimeRoot, 'candidate-lineage.json');
    833	  const mutationCoveragePath = path.join(runtimeRoot, 'mutation-coverage.json');
-   834	
+   834
    835	  const records = parseJsonl(readUtf8(stateLogPath));
    836	  const registry = buildRegistry(records);
    837	  registry.journalSummary = buildJournalSummary(journalPath);
@@ -4452,11 +4452,11 @@ exec
    842	  registry.stopStatus = evaluateStopStatus(registry, config, mirrorDriftReport);
    843	  const sampleQuality = summarizeSampleQuality(records, registry);
    844	  const dashboard = renderDashboard(registry, sampleQuality);
-   845	
+   845
    846	  writeUtf8(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
    847	  writeUtf8(dashboardPath, dashboard);
    848	}
-   849	
+   849
    850	main();
 
 exec
@@ -4535,27 +4535,27 @@ exec
    130	}
 
 exec
-/bin/zsh -lc "rg -n \"session_end|session_ended|trade_off_detected|trade-off|candidate-lineage|mutation-coverage|benchmark-stability|weight optimization|stopReason|sessionOutcome\" .opencode/commands/improve .opencode/skills/sk-improve-agent -g '"'!**/manual_testing_playbook/**'"' -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"session_end|session_ended|trade_off_detected|trade-off|candidate-lineage|mutation-coverage|benchmark-stability|weight optimization|stopReason|sessionOutcome\" .opencode/commands/deep .opencode/skills/sk-improve-agent -g '"'!**/manual_testing_playbook/**'"' -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .opencode/skills/sk-improve-agent/assets/improvement_config.json:86:    "path": "improvement/mutation-coverage.json"
 .opencode/skills/sk-improve-agent/assets/improvement_config.json:104:    "lineagePath": "improvement/candidate-lineage.json"
 .opencode/skills/sk-improve-agent/assets/improvement_config.json:120:    "mutation-coverage.json": "mutable",
 .opencode/skills/sk-improve-agent/assets/improvement_config.json:121:    "candidate-lineage.json": "mutable",
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:200:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"gate_after_score\",\"gateDecision\":\"{gate_after_score}\",\"stopReason\":\"{stop_reason}\"}'"
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:216:        description: "Emit session_end journal event after synthesis completes"
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:217:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:200:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"gate_after_score\",\"gateDecision\":\"{gate_after_score}\",\"stopReason\":\"{stop_reason}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:216:        description: "Emit session_end journal event after synthesis completes"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:217:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
 .opencode/skills/sk-improve-agent/assets/improvement_charter.md:86:| Trade-off detected | `trade_off_detected` | improving, regressing, deltas |
 .opencode/skills/sk-improve-agent/assets/improvement_charter.md:87:| Session end | `session_ended` | stopReason, sessionOutcome, finalIteration |
 .opencode/skills/sk-improve-agent/assets/improvement_charter.md:91:- **stopReason** (WHY session ended): `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`
 .opencode/skills/sk-improve-agent/assets/improvement_charter.md:92:- **sessionOutcome** (WHAT happened): `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:170:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"stop_check\",\"gateResult\":\"{stop_status}\",\"stopReason\":\"{stop_reason}\"}'"
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:182:        description: "Emit session_end journal event after synthesis completes"
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:183:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:170:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"stop_check\",\"gateResult\":\"{stop_status}\",\"stopReason\":\"{stop_reason}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:182:        description: "Emit session_end journal event after synthesis completes"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:183:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
 .opencode/skills/sk-improve-agent/assets/improvement_strategy.md:114:[Reducer populates from mutation-coverage.json after each iteration]
 .opencode/skills/sk-improve-agent/assets/improvement_strategy.md:131:[Reducer populates when trade-off-detector.cjs flags a Pareto trade-off]
-.opencode/commands/improve/agent.md:309:# node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
-.opencode/commands/improve/agent.md:316:**stopReason** (WHY):
-.opencode/commands/improve/agent.md:324:**sessionOutcome** (WHAT):
+.opencode/commands/deep/start-agent-improvement-loop.md:309:# node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
+.opencode/commands/deep/start-agent-improvement-loop.md:316:**stopReason** (WHY):
+.opencode/commands/deep/start-agent-improvement-loop.md:324:**sessionOutcome** (WHAT):
 .opencode/skills/sk-improve-agent/SKILL.md:239:Every improvement session termination MUST produce both a `stopReason` (why) and a `sessionOutcome` (what happened).
 .opencode/skills/sk-improve-agent/SKILL.md:241:**stopReason** (WHY the session ended):
 .opencode/skills/sk-improve-agent/SKILL.md:252:**sessionOutcome** (WHAT happened to the candidate):
@@ -4624,14 +4624,14 @@ exec
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs | sed -n '150,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/improve/assets/improve_improve-agent_auto.yaml | sed -n '130,210p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml | sed -n '130,210p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    130	        description: "Record baseline candidate state in append-only ledger"
    131	        action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
    132	      step_emit_journal_event:
    133	        description: "Emit session_start journal event before the first loop iteration begins"
    134	        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
-   135	
+   135
    136	  phase_loop:
    137	    description: "Iterative propose -> score -> benchmark -> reduce cycle"
    138	    repeat: true
@@ -4667,7 +4667,7 @@ exec
    168	      step_emit_journal_event_gate_evaluation:
    169	        description: "Emit gate_evaluation journal event after stop-condition evaluation"
    170	        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"stop_check\",\"gateResult\":\"{stop_status}\",\"stopReason\":\"{stop_reason}\"}'"
-   171	
+   171
    172	  phase_synthesis:
    173	    description: "After loop exits, summarize findings and recommend next action"
    174	    steps:
@@ -4685,52 +4685,52 @@ exec
    150	  ) {
    151	    return null;
    152	  }
-   153	
+   153
    154	  return {
    155	    run: inferRun(record, statePayload, fallbackIndex),
    156	    replayCount: statePayload.replayCount,
    157	    minRequired: statePayload.minRequired,
    158	  };
    159	}
-   160	
+   160
    161	function inferProfileId(record) {
    162	  if (record.profileId) {
    163	    return record.profileId;
    164	  }
    165	  return 'dynamic';
    166	}
-   167	
+   167
    168	function inferFamily(record, profileId) {
    169	  if (record.family) return record.family;
    170	  return profileId;
    171	}
-   172	
+   172
    173	function buildJournalSummary(filePath) {
    174	  const content = readOptionalUtf8(filePath);
    175	  if (content === null) {
    176	    return null;
    177	  }
-   178	
+   178
    179	  const events = parseJsonl(content).filter((event) => isPlainObject(event));
    180	  const eventTypeCounts = {};
    181	  let lastSessionStart = null;
    182	  let lastSessionEnd = null;
    183	  let stopReason = null;
    184	  let sessionOutcome = null;
-   185	
+   185
    186	  for (const event of events) {
    187	    const eventType = typeof event.eventType === 'string' ? event.eventType : null;
    188	    const timestamp = typeof event.timestamp === 'string' ? event.timestamp : null;
    189	    const details = isPlainObject(event.details) ? event.details : {};
-   190	
+   190
    191	    if (eventType) {
    192	      eventTypeCounts[eventType] = (eventTypeCounts[eventType] || 0) + 1;
    193	    }
-   194	
+   194
    195	    if (eventType === 'session_start' && timestamp) {
    196	      lastSessionStart = timestamp;
    197	    }
-   198	
+   198
    199	    if ((eventType === 'session_end' || eventType === 'session_ended') && timestamp) {
    200	      lastSessionEnd = timestamp;
    201	      stopReason =
@@ -4743,7 +4743,7 @@ exec
    208	          : sessionOutcome;
    209	    }
    210	  }
-   211	
+   211
    212	  return {
    213	    lastSessionStart,
    214	    lastSessionEnd,
@@ -4753,17 +4753,17 @@ exec
    218	    sessionOutcome,
    219	  };
    220	}
-   221	
+   221
    222	function buildCandidateLineageSummary(filePath) {
    223	  const data = readOptionalJson(filePath);
    224	  if (!isPlainObject(data) || !Array.isArray(data.nodes)) {
    225	    return null;
    226	  }
-   227	
+   227
    228	  const nodes = data.nodes.filter((node) => isPlainObject(node) && typeof node.id === 'string');
    229	  const nodeById = new Map(nodes.map((node) => [node.id, node]));
    230	  const memo = new Map();
-   231	
+   231
    232	  function getDepth(nodeId, trail = new Set()) {
    233	    if (!nodeById.has(nodeId)) {
    234	      return 0;
@@ -4774,7 +4774,7 @@ exec
    239	    if (trail.has(nodeId)) {
    240	      return 0;
    241	    }
-   242	
+   242
    243	    trail.add(nodeId);
    244	    const node = nodeById.get(nodeId);
    245	    const parentId = typeof node.parentId === 'string' ? node.parentId : null;
@@ -4783,21 +4783,21 @@ exec
    248	    memo.set(nodeId, depth);
    249	    return depth;
    250	  }
-   251	
+   251
    252	  let lineageDepth = 0;
    253	  for (const node of nodes) {
    254	    lineageDepth = Math.max(lineageDepth, getDepth(node.id));
    255	  }
-   256	
+   256
    257	  return {
    258	    lineageDepth,
    259	    totalCandidates: nodes.length,
    260	    currentLeaf: nodes.length > 0 ? nodes[nodes.length - 1].id : null,
 
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml | sed -n '160,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml | sed -n '160,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/improve/agent.md | sed -n '280,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/deep/start-agent-improvement-loop.md | sed -n '280,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    160	      gate_before_candidate:
    161	        type: approval_gate
@@ -4844,7 +4844,7 @@ exec
    202	        description: "Promote the accepted candidate to canonical target (guarded, requires score evidence)"
    203	        condition: "gate_after_score == 'B' AND score_recommendation == 'candidate-better'"
    204	        command: "node .opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --score={score_output_path} --benchmark-report={benchmark_output_path} --repeatability-report={repeatability_output_path} --config={spec_folder}/improvement/agent-improvement-config.json --manifest={spec_folder}/improvement/target-manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
-   205	
+   205
    206	  phase_synthesis:
    207	    description: "After loop exits, summarize findings and recommend next action"
    208	    steps:
@@ -4865,36 +4865,36 @@ exec
    283	5. Append results to JSONL ledger
    284	6. Reduce state, refresh dashboard
    285	7. Check stop conditions (plateau, max iterations, infra failure)
-   286	
+   286
    287	### Step 6: Review Results
-   288	
+   288
    289	After loop exits, present:
    290	- `{spec_folder}/improvement/agent-improvement-dashboard.md` — dimensional progress + stop status
    291	- `{spec_folder}/improvement/experiment-registry.json` — per-profile metrics + best-known state
    292	- Recommendation: continue, promote (if eligible), or stop
-   293	
+   293
    294	### Step 6B: Journal Emission (Phase 005)
-   295	
+   295
    296	At each journal boundary, the orchestrator MUST emit events via `improvement-journal.cjs`. The CLI entrypoint accepts `--emit`, `--journal`, and `--details`:
-   297	
+   297
    298	```bash
    299	# At session start:
    300	node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
-   301	
+   301
    302	# At iteration boundaries:
    303	# candidate_generated after the candidate is written
    304	# candidate_scored after scoring completes
    305	# gate_evaluation after stop-check or operator-gate evaluation
    306	# The CLI form carries boundary metadata inside details because the helper's CLI does not expose top-level iteration/candidate fields.
-   307	
+   307
    308	# At session end:
    309	# node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
    310	```
-   311	
+   311
    312	### Step 6C: Stop-Reason Reporting (Phase 005)
-   313	
+   313
    314	After loop exits, classify the termination:
-   315	
+   315
    316	**stopReason** (WHY):
    317	- `converged` — All legal-stop gate bundles passed
    318	- `maxIterationsReached` — Hit `max_iterations` limit
@@ -4902,24 +4902,24 @@ exec
    320	- `manualStop` — User cancelled
    321	- `error` — Script or infra failure
    322	- `stuckRecovery` — Stuck detection triggered and recovery exhausted
-   323	
+   323
    324	**sessionOutcome** (WHAT):
    325	- `keptBaseline` — Baseline retained
    326	- `promoted` — Candidate promoted to canonical target
    327	- `rolledBack` — Promotion reversed
    328	- `advisoryOnly` — Assessment only, no mutation
-   329	
+   329
    330	### Step 6D: Resume Semantics (Phase 005)
-   331	
+   331
    332	When `--session-id=<prior-id>` is provided:
-   333	
+   333
    334	1. Read the prior journal from `{spec_folder}/improvement/improvement-journal.jsonl`
    335	2. Replay journal state to determine `continuedFromIteration`
    336	3. Resume the iteration counter from that point
    337	4. Do NOT repeat already-completed iterations
-   338	
+   338
    339	Supported lineage modes: `new`. sk-improve-agent is one-session-only in the current release — every invocation starts a fresh session with generation 1. `resume`, `restart`, `fork`, and `completed-continue` were described in earlier drafts but have no runtime wiring; see `.opencode/skills/sk-improve-agent/SKILL.md §Resume/Continuation Semantics (current release)` for the full retraction.
-   340	
+   340
 
 codex
 A concrete contract mismatch has already shown up in the reducer path: the lineage helper writes one shape, while the replay consumer appears to summarize a different shape. I’m checking the other replay-consumer expectations now, because this kind of bug tends to repeat across journal, coverage, and stability ingestion.
@@ -4927,17 +4927,17 @@ exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs | sed -n '220,340p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    220	}
-   221	
+   221
    222	function buildCandidateLineageSummary(filePath) {
    223	  const data = readOptionalJson(filePath);
    224	  if (!isPlainObject(data) || !Array.isArray(data.nodes)) {
    225	    return null;
    226	  }
-   227	
+   227
    228	  const nodes = data.nodes.filter((node) => isPlainObject(node) && typeof node.id === 'string');
    229	  const nodeById = new Map(nodes.map((node) => [node.id, node]));
    230	  const memo = new Map();
-   231	
+   231
    232	  function getDepth(nodeId, trail = new Set()) {
    233	    if (!nodeById.has(nodeId)) {
    234	      return 0;
@@ -4948,7 +4948,7 @@ exec
    239	    if (trail.has(nodeId)) {
    240	      return 0;
    241	    }
-   242	
+   242
    243	    trail.add(nodeId);
    244	    const node = nodeById.get(nodeId);
    245	    const parentId = typeof node.parentId === 'string' ? node.parentId : null;
@@ -4957,25 +4957,25 @@ exec
    248	    memo.set(nodeId, depth);
    249	    return depth;
    250	  }
-   251	
+   251
    252	  let lineageDepth = 0;
    253	  for (const node of nodes) {
    254	    lineageDepth = Math.max(lineageDepth, getDepth(node.id));
    255	  }
-   256	
+   256
    257	  return {
    258	    lineageDepth,
    259	    totalCandidates: nodes.length,
    260	    currentLeaf: nodes.length > 0 ? nodes[nodes.length - 1].id : null,
    261	  };
    262	}
-   263	
+   263
    264	function buildMutationCoverageSummary(filePath) {
    265	  const data = readOptionalJson(filePath);
    266	  if (!isPlainObject(data)) {
    267	    return null;
    268	  }
-   269	
+   269
    270	  const metrics = isPlainObject(data.metrics) ? data.metrics : {};
    271	  return {
    272	    coverageRatio: isFiniteNumber(metrics.coverageRatio) ? metrics.coverageRatio : null,
@@ -4983,39 +4983,39 @@ exec
    274	      metrics.uncoveredMutations === undefined ? null : metrics.uncoveredMutations,
    275	  };
    276	}
-   277	
+   277
    278	function deriveReplayCountFromDimensions(dimensions) {
    279	  if (!isPlainObject(dimensions)) {
    280	    return null;
    281	  }
-   282	
+   282
    283	  const samples = Object.values(dimensions)
    284	    .map((entry) => (isPlainObject(entry) && isFiniteNumber(entry.samples) ? entry.samples : null))
    285	    .filter((value) => value !== null);
-   286	
+   286
    287	  if (samples.length === 0) {
    288	    return null;
    289	  }
-   290	
+   290
    291	  return Math.max(...samples);
    292	}
-   293	
+   293
    294	function deriveStabilityCoefficientFromDimensions(dimensions) {
    295	  if (!isPlainObject(dimensions)) {
    296	    return null;
    297	  }
-   298	
+   298
    299	  const coefficients = Object.values(dimensions)
    300	    .map((entry) => (isPlainObject(entry) && isFiniteNumber(entry.coefficient) ? entry.coefficient : null))
    301	    .filter((value) => value !== null);
-   302	
+   302
    303	  if (coefficients.length === 0) {
    304	    return null;
    305	  }
-   306	
+   306
    307	  return Math.min(...coefficients);
    308	}
-   309	
+   309
    310	function collectSampleQualityMatches(value, seen = new Set(), matches = []) {
    311	  if (!value || typeof value !== 'object') {
    312	    return matches;
@@ -5024,14 +5024,14 @@ exec
    315	    return matches;
    316	  }
    317	  seen.add(value);
-   318	
+   318
    319	  if (Array.isArray(value)) {
    320	    for (const entry of value) {
    321	      collectSampleQualityMatches(entry, seen, matches);
    322	    }
    323	    return matches;
    324	  }
-   325	
+   325
    326	  const replayCount = isFiniteNumber(value.replayCount)
    327	    ? value.replayCount
    328	    : deriveReplayCountFromDimensions(value.dimensions);
@@ -5039,14 +5039,14 @@ exec
    330	    ? value.stabilityCoefficient
    331	    : deriveStabilityCoefficientFromDimensions(value.dimensions);
    332	  const isInsufficientSample = value.state === 'insufficientSample' && replayCount !== null;
-   333	
+   333
    334	  if (isInsufficientSample || stabilityCoefficient !== null) {
    335	    matches.push({
    336	      replayCount: replayCount === null ? null : replayCount,
    337	      stabilityCoefficient: stabilityCoefficient === null ? null : stabilityCoefficient,
    338	    });
    339	  }
-   340	
+   340
 
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -5063,16 +5063,16 @@ exec
     85	| Blocked stop | `blocked_stop` | failedGates[], reason |
     86	| Trade-off detected | `trade_off_detected` | improving, regressing, deltas |
     87	| Session end | `session_ended` | stopReason, sessionOutcome, finalIteration |
-    88	
+    88
     89	### Stop-Reason Contract
-    90	
+    90
     91	- **stopReason** (WHY session ended): `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`
     92	- **sessionOutcome** (WHAT happened): `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`
-    93	
+    93
     94	### Legal-Stop Gate Bundles
-    95	
+    95
     96	A session may NOT claim `converged` unless ALL gate bundles pass:
-    97	
+    97
     98	- **contractGate**: structural >= 90 AND systemFitness >= 90
     99	- **behaviorGate**: ruleCoherence >= 85 AND outputQuality >= 85
    100	- **integrationGate**: integration >= 90 AND no drift ambiguity
@@ -5083,32 +5083,32 @@ exec
      3	feature_id: "RT-034"
      4	category: "Runtime Truth"
      5	---
-     6	
+     6
      7	# Replay Consumer Artifact Verification
-     8	
+     8
      9	Validates ADR-002 Option A replay-consumer behavior: `reduce-state.cjs` reads `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json`, writes their summaries into the registry, and degrades gracefully when any one artifact is missing.
-    10	
+    10
     11	Given: an improvement runtime where `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` are all present.
     12	When: the operator runs `reduce-state.cjs` and then repeats the run with one artifact removed at a time from a disposable runtime copy.
     13	Then: the registry contains `journalSummary`, `candidateLineage`, and `mutationCoverage`; the dashboard renders each as a distinct replay-consumer section; and any missing artifact resolves to `null` without throwing.
-    14	
+    14
     15	## Prompt / Command
-    16	
+    16
     17	```text
     18	node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs {spec}/improvement
     19	```
-    20	
+    20
     21	### Verification (copy-paste)
-    22	
+    22
     23	```bash
     24	RUNTIME_COPY="$(mktemp -d /tmp/improve-agent-replay-XXXXXX)"
     25	cp -R "{spec}/improvement/." "$RUNTIME_COPY/"
-    26	
+    26
     27	node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs "$RUNTIME_COPY"
-    28	
+    28
     29	cat "$RUNTIME_COPY/experiment-registry.json" | jq '.journalSummary, .candidateLineage, .mutationCoverage'
     30	grep -n "Journal Summary\|Candidate Lineage\|Mutation Coverage" "$RUNTIME_COPY/agent-improvement-dashboard.md"
-    31	
+    31
     32	python3 - <<'PY' "$RUNTIME_COPY/experiment-registry.json"
     33	import json, sys
     34	registry = json.load(open(sys.argv[1], 'r', encoding='utf-8'))
@@ -5129,7 +5129,7 @@ exec
     49	    assert key in mc, f'mutationCoverage missing {key}'
     50	print('PASS — reducer populated all three replay consumer summaries')
     51	PY
-    52	
+    52
     53	for artifact in improvement-journal.jsonl candidate-lineage.json mutation-coverage.json; do
     54	  TMP_CASE="$(mktemp -d /tmp/improve-agent-replay-case-XXXXXX)"
     55	  cp -R "$RUNTIME_COPY/." "$TMP_CASE/"
@@ -5151,12 +5151,12 @@ exec
     71	  esac
     72	  rm -rf "$TMP_CASE"
     73	done
-    74	
+    74
     75	rm -rf "$RUNTIME_COPY"
     76	```
-    77	
+    77
     78	## Expected Signals
-    79	
+    79
     80	- `experiment-registry.json` contains:
     81	  - `journalSummary` with `lastSessionStart`, `lastSessionEnd`, `totalEvents`, `eventTypeCounts`, `stopReason`, `sessionOutcome`
     82	  - `candidateLineage` with `lineageDepth`, `totalCandidates`, `currentLeaf`
@@ -5165,20 +5165,20 @@ exec
     85	- Re-running the reducer with any one of the 3 artifacts removed does not throw
     86	- The corresponding registry field resolves to `null` when its source artifact is missing
     87	- The remaining consumer paths still populate normally when only one artifact is absent
-    88	
+    88
     89	## Pass Criteria
-    90	
+    90
     91	With all three replay artifacts present, `reduce-state.cjs` populates `journalSummary`, `candidateLineage`, and `mutationCoverage` in the registry and the dashboard exposes each consumer as a separate section. When any one artifact is missing, the reducer completes successfully and sets only the corresponding field to `null` while preserving the others.
-    92	
+    92
     93	## Failure Triage
-    94	
+    94
     95	- If any registry summary is missing with artifacts present: inspect `buildJournalSummary()`, `buildCandidateLineageSummary()`, or `buildMutationCoverageSummary()` in `reduce-state.cjs`
     96	- If the reducer throws when one artifact is removed: verify `readOptionalUtf8()` / `readOptionalJson()` are still used for graceful degradation
     97	- If a missing artifact silently drops multiple fields: confirm each summary builder is wired independently from its own path
     98	- If the dashboard does not render the replay consumer summaries: add explicit dashboard sections for journal summary, candidate lineage, and mutation coverage instead of leaving them registry-only
-    99	
+    99
    100	## Evidence Template
-   101	
+   101
    102	```text
    103	Verdict: [PASS/FAIL]
    104	Date: [YYYY-MM-DD]
@@ -5211,38 +5211,38 @@ I’m down to the deeper contract checks now. Two replay-consumer mismatches are
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "rg -n \"weightOptimizer|benchmarkStability|reportPath|autoApply|sessionCountThreshold|generateWeightRecommendations|measureStability|insufficientSample|insufficientDataIterations|insufficientSampleIterations|tradeOff\" .opencode/skills/sk-improve-agent/scripts .opencode/commands/improve/assets -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"weightOptimizer|benchmarkStability|reportPath|autoApply|sessionCountThreshold|generateWeightRecommendations|measureStability|insufficientSample|insufficientDataIterations|insufficientSampleIterations|tradeOff\" .opencode/skills/sk-improve-agent/scripts .opencode/commands/deep/assets -g '"'!**/tests/**'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	---
      2	title: "Insufficient Sample Propagation"
      3	feature_id: "RT-033"
      4	category: "Runtime Truth"
      5	---
-     6	
+     6
      7	# Insufficient Sample Propagation
-     8	
+     8
      9	Validates that low-sample guards propagate `insufficientData` and `insufficientSample` states from the helpers into the reducer registry and the dashboard's Sample Quality reporting.
-    10	
+    10
     11	Given: a session fixture with only 2 trade-off trajectory points and 1 benchmark replay at `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/` once T050 lands.
     12	When: the operator runs `trade-off-detector.cjs`, `benchmark-stability.cjs`, and `reduce-state.cjs` against that low-sample runtime.
     13	Then: the helper states remain distinct, the reducer records `insufficientDataIterations` and `insufficientSampleIterations`, and the dashboard surfaces low-sample messaging instead of collapsing both cases into a generic failure.
-    14	
+    14
     15	## Prompt / Command
-    16	
+    16
     17	```text
     18	Run the low-sample fixture through trade-off detection, benchmark stability, and the reducer once T050 lands.
     19	```
-    20	
+    20
     21	### Verification (copy-paste)
-    22	
+    22
     23	```bash
     24	FIXTURE=.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark
     25	TRAJECTORY_JSON="$(rg --files "$FIXTURE" | rg 'trajectory' | head -n 1)"
     26	REPLAYS_JSON="$(rg --files "$FIXTURE" | rg 'replay|benchmark' | head -n 1)"
-    27	
+    27
     28	test -n "$TRAJECTORY_JSON"
     29	test -n "$REPLAYS_JSON"
-    30	
+    30
     31	TRAJECTORY_JSON="$TRAJECTORY_JSON" node -e "
     32	const fs = require('node:fs');
     33	const td = require('./.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs');
@@ -5253,7 +5253,7 @@ exec
     38	console.assert(result.minRequired === 3, 'Expected minRequired=3');
     39	console.log('PASS — trade-off-detector insufficientData:', JSON.stringify(result));
     40	"
-    41	
+    41
     42	REPLAYS_JSON="$REPLAYS_JSON" node -e "
     43	const fs = require('node:fs');
     44	const bs = require('./.opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs');
@@ -5264,38 +5264,38 @@ exec
     49	console.assert(result.minRequired === 3, 'Expected minRequired=3');
     50	console.log('PASS — benchmark-stability insufficientSample:', JSON.stringify(result));
     51	"
-    52	
+    52
     53	node .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs "$FIXTURE"
-    54	
+    54
     55	grep -n "insufficientDataIterations\|insufficientSampleIterations" "$FIXTURE/experiment-registry.json"
     56	grep -n "## Sample Quality\|insufficientSampleIterations\|insufficientDataIterations\|insufficient" "$FIXTURE/agent-improvement-dashboard.md"
-    57	
+    57
     58	cat "$FIXTURE/experiment-registry.json" | jq '.insufficientDataIterations, .insufficientSampleIterations'
     59	```
-    60	
+    60
     61	## Expected Signals
-    62	
+    62
     63	- `trade-off-detector.cjs` returns `{ state: "insufficientData", dataPoints: 2, minRequired: 3 }` for the low-sample trajectory
     64	- `benchmark-stability.cjs` returns `{ state: "insufficientSample", replayCount: 1, minRequired: 3 }` for the low-sample benchmark replays
     65	- `reduce-state.cjs` preserves both states distinctly instead of folding them into one generic low-confidence outcome
     66	- `experiment-registry.json` contains both `insufficientDataIterations` and `insufficientSampleIterations`
     67	- `agent-improvement-dashboard.md` contains a `## Sample Quality` section that renders low-data / low-replay messaging distinctly enough for an operator to diagnose which gate failed
     68	- No helper throws; the low-sample state is treated as advisory runtime truth rather than an exception path
-    69	
+    69
     70	## Pass Criteria
-    71	
+    71
     72	The low-sample fixture produces `insufficientData` from `trade-off-detector.cjs`, `insufficientSample` from `benchmark-stability.cjs`, the reducer registry records both `insufficientDataIterations` and `insufficientSampleIterations`, and the dashboard's Sample Quality section exposes those states clearly enough that the operator can distinguish low trajectory coverage from low replay coverage.
-    73	
+    73
     74	## Failure Triage
-    75	
+    75
     76	- If the fixture path is missing: confirm T050 landed and the low-sample runtime exists under `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/`
     77	- If `trade-off-detector.cjs` returns an array instead of `insufficientData`: check `MIN_DATA_POINTS_DEFAULT` / `minDataPoints` wiring and verify the fixture only has 2 trajectory entries
     78	- If `benchmark-stability.cjs` returns a generic instability result: verify `minReplayCount` is set to `3` and the fixture exposes only 1 replay
     79	- If reducer fields are absent: inspect `reduce-state.cjs` for `extractInsufficientDataIteration()` and `extractInsufficientSampleIteration()` wiring
     80	- If the dashboard hides which gate failed: update Sample Quality rendering so insufficient data points and insufficient replay count surface as separate operator-facing signals
-    81	
+    81
     82	## Evidence Template
-    83	
+    83
     84	```text
     85	Verdict: [PASS/FAIL]
     86	Date: [YYYY-MM-DD]
@@ -5341,24 +5341,24 @@ exec
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs | sed -n '340,470p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-   340	
+   340
    341	  for (const entry of Object.values(value)) {
    342	    collectSampleQualityMatches(entry, seen, matches);
    343	  }
-   344	
+   344
    345	  return matches;
    346	}
-   347	
+   347
    348	function summarizeSampleQuality(records, registry) {
    349	  let latestSummary = null;
-   350	
+   350
    351	  for (const record of records) {
    352	    const matches = collectSampleQualityMatches(record);
    353	    if (matches.length > 0) {
    354	      latestSummary = matches[matches.length - 1];
    355	    }
    356	  }
-   357	
+   357
    358	  return {
    359	    replayCount: latestSummary?.replayCount ?? null,
    360	    stabilityCoefficient: latestSummary?.stabilityCoefficient ?? null,
@@ -5366,11 +5366,11 @@ exec
    362	    insufficientDataIterations: registry.insufficientDataIterations.length,
    363	  };
    364	}
-   365	
+   365
    366	// ─────────────────────────────────────────────────────────────────────────────
    367	// 3. PROFILE BUCKET
    368	// ─────────────────────────────────────────────────────────────────────────────
-   369	
+   369
    370	function createProfileBucket(profileId, family) {
    371	  return {
    372	    profileId,
@@ -5407,13 +5407,13 @@ exec
    403	    dimensionTrends: {},
    404	  };
    405	}
-   406	
+   406
    407	function incrementFailureModes(bucket, record) {
    408	  for (const mode of record.failureModes || []) {
    409	    bucket.failureModes[mode] = (bucket.failureModes[mode] || 0) + 1;
    410	  }
    411	}
-   412	
+   412
    413	function maybeSetBestPrompt(bucket, record) {
    414	  if (record.type === 'benchmark_run') {
    415	    return;
@@ -5424,7 +5424,7 @@ exec
    420	    bucket.bestPromptRecord = record;
    421	  }
    422	}
-   423	
+   423
    424	function maybeSetBestBenchmark(bucket, record) {
    425	  if (record.type !== 'benchmark_run') {
    426	    return;
@@ -5434,11 +5434,11 @@ exec
    430	    bucket.bestBenchmarkRecord = record;
    431	  }
    432	}
-   433	
+   433
    434	// ─────────────────────────────────────────────────────────────────────────────
    435	// 4. REGISTRY BUILDER
    436	// ─────────────────────────────────────────────────────────────────────────────
-   437	
+   437
    438	function buildRegistry(records) {
    439	  const profiles = {};
    440	  const insufficientDataIterations = [];
@@ -5456,19 +5456,19 @@ exec
    452	    benchmarkPassCount: 0,
    453	    benchmarkFailCount: 0,
    454	  };
-   455	
+   455
    456	  for (const [index, record] of records.entries()) {
    457	    const profileId = inferProfileId(record);
    458	    const family = inferFamily(record, profileId);
    459	    if (!profiles[profileId]) {
    460	      profiles[profileId] = createProfileBucket(profileId, family);
    461	    }
-   462	
+   462
    463	    const insufficientDataIteration = extractInsufficientDataIteration(record, index);
    464	    if (insufficientDataIteration) {
    465	      insufficientDataIterations.push(insufficientDataIteration);
    466	    }
-   467	
+   467
    468	    const insufficientSampleIteration = extractInsufficientSampleIteration(record, index);
    469	    if (insufficientSampleIteration) {
    470	      insufficientSampleIterations.push(insufficientSampleIteration);
@@ -5479,39 +5479,39 @@ exec
      3	feature_id: "E2E-023"
      4	category: "End-to-End Loop"
      5	---
-     6	
+     6
      7	# Trade-Off Detection Across Dimensions
-     8	
+     8
      9	Validates that the improvement loop detects when a mutation improves one dimension at the cost of another, reports the trade-off explicitly, and does not auto-promote candidates with unresolved trade-offs.
-    10	
+    10
     11	## Prompt / Command
-    12	
+    12
     13	```text
-    14	/improve:agent ".opencode/agents/debug.md" :confirm --spec-folder=specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment --iterations=3
+    14	/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder=specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment --iterations=3
     15	```
-    16	
+    16
     17	## Expected Signals
-    18	
+    18
     19	- Dimension trajectory tracked per iteration (at least 3 data points before convergence claim)
     20	- Trade-off detected when one dimension delta is positive and another is negative beyond threshold
     21	- Trade-off report includes: affected dimensions, magnitude of change, Pareto assessment
     22	- Journal emits `trade-off-detected` event with structured data
     23	- Candidate with unresolved trade-off is flagged for human review, not auto-promoted
     24	- Dashboard shows dimension trajectories with trade-off annotations
-    25	
+    25
     26	## Pass Criteria
-    27	
+    27
     28	When a candidate improves ruleCoherence but regresses integration, the trade-off detector fires a `trade-off-detected` journal event identifying both dimensions and the direction of change -- the candidate is not auto-promoted and the operator sees a clear trade-off warning.
-    29	
+    29
     30	## Failure Triage
-    31	
+    31
     32	- If no trade-off is detected when expected: check threshold configuration in `tradeOff.thresholds` and verify the dimension deltas are computed correctly
     33	- If trade-off is detected but candidate is auto-promoted: check the promotion gate for the trade-off block condition
     34	- If trajectory has insufficient data points: verify minimum 3 data points enforcement before trade-off computation
     35	- If journal event is missing: check that `improvement-journal.cjs` emits `trade-off-detected` event type and the orchestrator calls the emitter
-    36	
+    36
     37	## Evidence Template
-    38	
+    38
     39	```text
     40	Verdict: [PASS/FAIL]
     41	Date: [YYYY-MM-DD]
@@ -5616,14 +5616,14 @@ exec
      2	// ║ Candidate Scorer — 5-Dimension Evaluation Framework                     ║
      3	// ╚══════════════════════════════════════════════════════════════════════════╝
      4	'use strict';
-     5	
+     5
      6	// ─────────────────────────────────────────────────────────────────────────────
      7	// 1. IMPORTS
      8	// ─────────────────────────────────────────────────────────────────────────────
      9	const fs = require('node:fs');
     10	const path = require('node:path');
     11	const { execFileSync } = require('node:child_process');
-    12	
+    12
     13	function parseArgs(argv) {
     14	  const args = {};
     15	  for (const entry of argv) {
@@ -5635,16 +5635,16 @@ exec
     21	  }
     22	  return args;
     23	}
-    24	
+    24
     25	function readUtf8(filePath) {
     26	  return fs.readFileSync(filePath, 'utf8');
     27	}
-    28	
+    28
     29	function writeJson(filePath, value) {
     30	  fs.mkdirSync(path.dirname(filePath), { recursive: true });
     31	  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
     32	}
-    33	
+    33
     34	function safeRead(filePath) {
     35	  try {
     36	    return readUtf8(filePath);
@@ -5652,13 +5652,13 @@ exec
     38	    return { error: error.message };
     39	  }
     40	}
-    41	
+    41
     42	function stripJsonComments(content) {
     43	  return content
     44	    .replace(/^\s*\/\/.*$/gm, '')
     45	    .replace(/\/\*[\s\S]*?\*\//g, '');
     46	}
-    47	
+    47
     48	function loadManifest(manifestPath) {
     49	  if (!manifestPath) {
     50	    return null;
@@ -5673,7 +5673,7 @@ exec
     59	    return { error: `Manifest parse failed: ${error.message}` };
     60	  }
     61	}
-    62	
+    62
     63	function inferProfileId(targetPath, explicitProfile, manifest) {
     64	  if (explicitProfile) {
     65	    return explicitProfile;
@@ -5684,7 +5684,7 @@ exec
     70	  }
     71	  return 'dynamic';
     72	}
-    73	
+    73
     74	function inferFamily(profileId, manifest, targetPath) {
     75	  const manifestTarget = manifest?.targets?.find((entry) => entry.path === targetPath);
     76	  if (manifestTarget?.family) {
@@ -5692,11 +5692,11 @@ exec
     78	  }
     79	  return profileId;
     80	}
-    81	
+    81
     82	// ─────────────────────────────────────────────────────────────────────────────
     83	// 5. DYNAMIC 5-DIMENSION SCORING
     84	// ─────────────────────────────────────────────────────────────────────────────
-    85	
+    85
     86	const DIMENSION_WEIGHTS = {
     87	  structural: 0.20,
     88	  ruleCoherence: 0.25,
@@ -5704,7 +5704,7 @@ exec
     90	  outputQuality: 0.15,
     91	  systemFitness: 0.15,
     92	};
-    93	
+    93
     94	function runScript(scriptName, args) {
     95	  const scriptPath = path.join(__dirname, scriptName);
     96	  try {
@@ -5714,7 +5714,7 @@ exec
    100	    return null;
    101	  }
    102	}
-   103	
+   103
    104	function scoreDimStructural(profile, content) {
    105	  const checks = profile.derivedChecks?.structural || [];
    106	  if (checks.length === 0) { return { score: 100, details: [], maxPossible: 0 }; }
@@ -5729,7 +5729,7 @@ exec
    115	  }
    116	  return { score: maxPossible > 0 ? Math.round(100 * earned / maxPossible) : 100, details, maxPossible };
    117	}
-   118	
+   118
    119	function scoreDimRuleCoherence(profile, content) {
    120	  const rules = profile.derivedChecks?.ruleCoherence || [];
    121	  if (rules.length === 0) { return { score: 100, details: [], maxPossible: 0 }; }
@@ -5746,7 +5746,7 @@ exec
    132	  }
    133	  return { score: maxPossible > 0 ? Math.round(100 * earned / maxPossible) : 100, details, maxPossible };
    134	}
-   135	
+   135
    136	function scoreDimIntegration(agentName) {
    137	  const report = runScript('scan-integration.cjs', [`--agent=${agentName}`]);
    138	  if (!report || report.status !== 'complete') {
@@ -5773,7 +5773,7 @@ exec
    159	    raw: { mirrorScore, commandScore, skillScore, mirrorStatus: summary.mirrorSyncStatus },
    160	  };
    161	}
-   162	
+   162
    163	function scoreDimOutputQuality(profile, content) {
    164	  const checks = profile.derivedChecks?.outputChecks || [];
    165	  if (checks.length === 0) { return { score: 100, details: [], maxPossible: 0 }; }
@@ -5793,12 +5793,12 @@ exec
    179	  const raw = maxPossible > 0 ? Math.round(100 * earned / maxPossible) : 100;
    180	  return { score: Math.max(0, raw - placeholderPenalty), details, maxPossible, placeholders };
    181	}
-   182	
+   182
    183	function scoreDimSystemFitness(profile, content) {
    184	  const details = [];
    185	  let earned = 0;
    186	  let maxPossible = 0;
-   187	
+   187
    188	  // Check permission-capability alignment
    189	  const mismatches = profile.derivedChecks?.capabilityMismatches || [];
    190	  maxPossible += 40;
@@ -5808,7 +5808,7 @@ exec
    194	  } else {
    195	    details.push({ id: 'perm-capability-align', pass: false, mismatches });
    196	  }
-   197	
+   197
    198	  // Check for orphaned resource references
    199	  const integration = profile.derivedChecks?.integrationPoints || {};
    200	  const commands = integration.commands || [];
@@ -5828,7 +5828,7 @@ exec
    214	  const refScore = refsTotal > 0 ? Math.round(30 * refsValid / refsTotal) : 30;
    215	  earned += refScore;
    216	  details.push({ id: 'resource-refs-valid', pass: refsValid === refsTotal, valid: refsValid, total: refsTotal });
-   217	
+   217
    218	  // Check frontmatter completeness
    219	  maxPossible += 30;
    220	  const hasFrontmatter = /^---\n[\s\S]*?\n---/.test(content);
@@ -5838,20 +5838,20 @@ exec
    224	  const fmScore = [hasFrontmatter, hasName, hasMode, hasPermission].filter(Boolean).length * 7.5;
    225	  earned += fmScore;
    226	  details.push({ id: 'frontmatter-complete', pass: fmScore >= 30, score: fmScore });
-   227	
+   227
    228	  return { score: maxPossible > 0 ? Math.round(100 * earned / maxPossible) : 100, details, maxPossible };
    229	}
-   230	
+   230
    231	function scoreDynamic(candidateContent, agentName, profile, weights) {
    232	  // Accept optional weights override; fall back to hardcoded defaults (ADR-005 backward compat)
    233	  const effectiveWeights = weights || DIMENSION_WEIGHTS;
-   234	
+   234
    235	  const structural = scoreDimStructural(profile, candidateContent);
    236	  const ruleCoherence = scoreDimRuleCoherence(profile, candidateContent);
    237	  const integration = scoreDimIntegration(agentName);
    238	  const outputQuality = scoreDimOutputQuality(profile, candidateContent);
    239	  const systemFitness = scoreDimSystemFitness(profile, candidateContent);
-   240	
+   240
    241	  const dimensions = [
    242	    { name: 'structural', score: structural.score, weight: effectiveWeights.structural, details: structural.details },
    243	    { name: 'ruleCoherence', score: ruleCoherence.score, weight: effectiveWeights.ruleCoherence, details: ruleCoherence.details },
@@ -5859,18 +5859,18 @@ exec
    245	    { name: 'outputQuality', score: outputQuality.score, weight: effectiveWeights.outputQuality, details: outputQuality.details },
    246	    { name: 'systemFitness', score: systemFitness.score, weight: effectiveWeights.systemFitness, details: systemFitness.details },
    247	  ];
-   248	
+   248
    249	  const weightedScore = Math.round(
    250	    dimensions.reduce((sum, d) => sum + d.score * d.weight, 0),
    251	  );
-   252	
+   252
    253	  return { weightedScore, dimensions };
    254	}
-   255	
+   255
    256	// ─────────────────────────────────────────────────────────────────────────────
    257	// 6. MAIN
    258	// ─────────────────────────────────────────────────────────────────────────────
-   259	
+   259
    260	function main() {
 
  succeeded in 0ms:
@@ -5992,18 +5992,18 @@ exec
 .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/agent-improvement-state.jsonl:3:{"type":"candidate_iteration","sessionId":"imp-low-sample-fixture","target":"deep-research","iteration":2,"candidateId":"candidate-2","score":7.1,"recommendation":"keep-baseline","dimensions":[{"name":"correctness","score":0.8},{"name":"efficiency","score":0.62}],"analysis":{"tradeOff":{"state":"insufficientData","dataPoints":2,"minRequired":3,"reason":"Trade-off detection requires at least 3 data points before analysis"},"benchmark":{"state":"insufficientSample","replayCount":1,"minRequired":3,"reason":"Benchmark stability requires at least 3 replays before verdict","stabilityCoefficient":null}}}
 
 exec
-/bin/zsh -lc 'rg -n "improvement-journal.cjs --emit|trade_off_detected|benchmark_completed|legal_stop_evaluated|blocked_stop" .opencode/commands/improve/assets/improve_improve-agent_auto.yaml .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "improvement-journal.cjs --emit|trade_off_detected|benchmark_completed|legal_stop_evaluated|blocked_stop" .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:150:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:173:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:179:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:200:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"gate_after_score\",\"gateDecision\":\"{gate_after_score}\",\"stopReason\":\"{stop_reason}\"}'"
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:217:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:134:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:149:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:155:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:170:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"stop_check\",\"gateResult\":\"{stop_status}\",\"stopReason\":\"{stop_reason}\"}'"
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:183:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:150:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:173:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:179:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:200:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"gate_after_score\",\"gateDecision\":\"{gate_after_score}\",\"stopReason\":\"{stop_reason}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:217:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:134:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:149:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:155:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:170:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit gate_evaluation --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"gateName\":\"stop_check\",\"gateResult\":\"{stop_status}\",\"stopReason\":\"{stop_reason}\"}'"
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:183:        command: "node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
 
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl | sed -n '1,20p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -6119,62 +6119,62 @@ exec
   ✓ Inspect the five focus modules and their immediate callers/tests for contract mismatches or edge-case bugs
   → Synthesize severity-ranked findings with exact file and line references
 codex
-1. Finding ID: `F-009-001`  
-Severity: `P1`  
-Dimension: `correctness`  
-File: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml`  
-Line: `141-183`  
-Title: `Phase 005 helper runtime is still mostly dead code in live improve-agent runs`  
-Description: The auto workflow never invokes the Phase 005 producers or analyzers beyond journal emission. After scoring, it goes straight to benchmark, ledger append, reducer, stop check, and final `session_end`; there is no step that calls `mutation-coverage.cjs`, `candidate-lineage.cjs`, `trade-off-detector.cjs`, or `benchmark-stability.cjs`. The confirm workflow has the same gap. That means the advertised coverage graph, lineage graph, trade-off analysis, and advisory optimizer contract are not actually produced during live `/improve:agent` sessions.  
-Evidence: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:141-183`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:168-217`; repository search only finds definitions for `recordMutation()`/`recordTrajectory()`/`recordCandidate()`/`detectTradeOffs()`/`measureStability()`/`generateWeightRecommendations()` in their own modules.  
+1. Finding ID: `F-009-001`
+Severity: `P1`
+Dimension: `correctness`
+File: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`
+Line: `141-183`
+Title: `Phase 005 helper runtime is still mostly dead code in live improve-agent runs`
+Description: The auto workflow never invokes the Phase 005 producers or analyzers beyond journal emission. After scoring, it goes straight to benchmark, ledger append, reducer, stop check, and final `session_end`; there is no step that calls `mutation-coverage.cjs`, `candidate-lineage.cjs`, `trade-off-detector.cjs`, or `benchmark-stability.cjs`. The confirm workflow has the same gap. That means the advertised coverage graph, lineage graph, trade-off analysis, and advisory optimizer contract are not actually produced during live `/deep:start-agent-improvement-loop` sessions.
+Evidence: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:141-183`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:168-217`; repository search only finds definitions for `recordMutation()`/`recordTrajectory()`/`recordCandidate()`/`detectTradeOffs()`/`measureStability()`/`generateWeightRecommendations()` in their own modules.
 Recommendation: Add explicit loop steps that persist lineage and coverage after candidate creation/scoring, run trade-off detection after trajectory update, run benchmark-stability after replay data is available, and write the advisory weight report to the configured path.
 
-2. Finding ID: `F-009-002`  
-Severity: `P1`  
-Dimension: `correctness`  
-File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-Line: `222-260`  
-Title: `Reducer cannot summarize the lineage files written by candidate-lineage.cjs`  
-Description: The reducer only accepts lineage nodes with `id` and `parentId`, but `candidate-lineage.cjs` writes nodes with `candidateId` and `parentCandidateId`. With real producer output, `buildCandidateLineageSummary()` filters out every node, so `totalCandidates`, `lineageDepth`, and `currentLeaf` collapse to empty values even when lineage was recorded successfully.  
-Evidence: `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.  
+2. Finding ID: `F-009-002`
+Severity: `P1`
+Dimension: `correctness`
+File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+Line: `222-260`
+Title: `Reducer cannot summarize the lineage files written by candidate-lineage.cjs`
+Description: The reducer only accepts lineage nodes with `id` and `parentId`, but `candidate-lineage.cjs` writes nodes with `candidateId` and `parentCandidateId`. With real producer output, `buildCandidateLineageSummary()` filters out every node, so `totalCandidates`, `lineageDepth`, and `currentLeaf` collapse to empty values even when lineage was recorded successfully.
+Evidence: `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.
 Recommendation: Standardize the lineage schema on one shape and update either the producer or the reducer so the replay consumer reads the actual emitted artifact.
 
-3. Finding ID: `F-009-003`  
-Severity: `P1`  
-Dimension: `correctness`  
-File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-Line: `264-275`  
-Title: `Reducer expects mutation-coverage metrics that the producer never writes`  
-Description: `buildMutationCoverageSummary()` only reads `data.metrics.coverageRatio` and `data.metrics.uncoveredMutations`, but `mutation-coverage.cjs` persists raw `mutations`, `exhausted`, and `trajectory` arrays and never materializes a `metrics` block. As a result, replay summaries will return null coverage metrics for real producer output, so the dashboard cannot reflect actual mutation coverage progress.  
-Evidence: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:270-275`.  
+3. Finding ID: `F-009-003`
+Severity: `P1`
+Dimension: `correctness`
+File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+Line: `264-275`
+Title: `Reducer expects mutation-coverage metrics that the producer never writes`
+Description: `buildMutationCoverageSummary()` only reads `data.metrics.coverageRatio` and `data.metrics.uncoveredMutations`, but `mutation-coverage.cjs` persists raw `mutations`, `exhausted`, and `trajectory` arrays and never materializes a `metrics` block. As a result, replay summaries will return null coverage metrics for real producer output, so the dashboard cannot reflect actual mutation coverage progress.
+Evidence: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:270-275`.
 Recommendation: Either persist computed `metrics` in `mutation-coverage.cjs` on every write, or teach the reducer to derive coverage ratio and uncovered counts from the raw arrays it already receives.
 
-4. Finding ID: `F-009-004`  
-Severity: `P1`  
-Dimension: `correctness`  
-File: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`  
-Line: `181-197`  
-Title: `Journal-based trajectory extraction is incompatible with the emitted candidate_scored payloads`  
-Description: `getTrajectory()` reconstructs per-dimension history from `candidate_scored.details.dimensions`, but the auto/confirm workflows emit `candidate_scored` rows with only `scoreOutputPath` and `weightedScore` in `details`. On live runs, this helper therefore extracts no dimension trajectory from the journal, so journal-driven trade-off analysis cannot work even if the detector is called later.  
-Evidence: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:181-197`; `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:153-155`; `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:177-179`.  
+4. Finding ID: `F-009-004`
+Severity: `P1`
+Dimension: `correctness`
+File: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`
+Line: `181-197`
+Title: `Journal-based trajectory extraction is incompatible with the emitted candidate_scored payloads`
+Description: `getTrajectory()` reconstructs per-dimension history from `candidate_scored.details.dimensions`, but the auto/confirm workflows emit `candidate_scored` rows with only `scoreOutputPath` and `weightedScore` in `details`. On live runs, this helper therefore extracts no dimension trajectory from the journal, so journal-driven trade-off analysis cannot work even if the detector is called later.
+Evidence: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:181-197`; `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:153-155`; `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:177-179`.
 Recommendation: Emit the scored dimension array into the journal row, or change `getTrajectory()` to load the referenced score artifact from `scoreOutputPath` instead of assuming inline dimensions.
 
-5. Finding ID: `F-009-005`  
-Severity: `P2`  
-Dimension: `correctness`  
-File: `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`  
-Line: `21-28`  
-Title: `Stop-reason taxonomy cannot represent configured plateau exits without falsifying them as converged`  
-Description: The config enables plateau-based stopping, but the frozen `STOP_REASONS` enum has no plateau-specific value. The shipped low-sample fixture already documents that a plateau stop had to be logged as `converged` because the validator would reject the true reason. That collapses “no clearer signal” into “all legal-stop gates passed,” which weakens the audit trail and any downstream stop-reason analytics.  
-Evidence: `.opencode/skills/sk-improve-agent/assets/improvement_config.json:64-70`; `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:21-28`; `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:8`.  
+5. Finding ID: `F-009-005`
+Severity: `P2`
+Dimension: `correctness`
+File: `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`
+Line: `21-28`
+Title: `Stop-reason taxonomy cannot represent configured plateau exits without falsifying them as converged`
+Description: The config enables plateau-based stopping, but the frozen `STOP_REASONS` enum has no plateau-specific value. The shipped low-sample fixture already documents that a plateau stop had to be logged as `converged` because the validator would reject the true reason. That collapses “no clearer signal” into “all legal-stop gates passed,” which weakens the audit trail and any downstream stop-reason analytics.
+Evidence: `.opencode/skills/sk-improve-agent/assets/improvement_config.json:64-70`; `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:21-28`; `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:8`.
 Recommendation: Add a plateau-specific stop reason to the validated taxonomy and update the command/skill docs so plateau exits are recorded truthfully instead of being coerced to `converged`.
 
 ITERATION SUMMARY: `5 findings total (0 P0 / 4 P1 / 1 P2)`
 
-COVERAGE ASSESSMENT: `~90% of the requested focus area reviewed`  
+COVERAGE ASSESSMENT: `~90% of the requested focus area reviewed`
 Coverage included all 5 named modules, their dedicated tests/fixtures, the Phase 005 packet contract, the reducer replay consumers, and the auto/confirm workflow wiring.
 
-CONFIDENCE: `high`  
+CONFIDENCE: `high`
 This is a static review with line-by-line inspection of the target modules and their runtime consumers; I did not execute the workflows in this read-only session.
 
 NEXT PRIORITIES:
@@ -6185,62 +6185,62 @@ hook: Stop
 hook: Stop Completed
 tokens used
 151,290
-1. Finding ID: `F-009-001`  
-Severity: `P1`  
-Dimension: `correctness`  
-File: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml`  
-Line: `141-183`  
-Title: `Phase 005 helper runtime is still mostly dead code in live improve-agent runs`  
-Description: The auto workflow never invokes the Phase 005 producers or analyzers beyond journal emission. After scoring, it goes straight to benchmark, ledger append, reducer, stop check, and final `session_end`; there is no step that calls `mutation-coverage.cjs`, `candidate-lineage.cjs`, `trade-off-detector.cjs`, or `benchmark-stability.cjs`. The confirm workflow has the same gap. That means the advertised coverage graph, lineage graph, trade-off analysis, and advisory optimizer contract are not actually produced during live `/improve:agent` sessions.  
-Evidence: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:141-183`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:168-217`; repository search only finds definitions for `recordMutation()`/`recordTrajectory()`/`recordCandidate()`/`detectTradeOffs()`/`measureStability()`/`generateWeightRecommendations()` in their own modules.  
+1. Finding ID: `F-009-001`
+Severity: `P1`
+Dimension: `correctness`
+File: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`
+Line: `141-183`
+Title: `Phase 005 helper runtime is still mostly dead code in live improve-agent runs`
+Description: The auto workflow never invokes the Phase 005 producers or analyzers beyond journal emission. After scoring, it goes straight to benchmark, ledger append, reducer, stop check, and final `session_end`; there is no step that calls `mutation-coverage.cjs`, `candidate-lineage.cjs`, `trade-off-detector.cjs`, or `benchmark-stability.cjs`. The confirm workflow has the same gap. That means the advertised coverage graph, lineage graph, trade-off analysis, and advisory optimizer contract are not actually produced during live `/deep:start-agent-improvement-loop` sessions.
+Evidence: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:141-183`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:168-217`; repository search only finds definitions for `recordMutation()`/`recordTrajectory()`/`recordCandidate()`/`detectTradeOffs()`/`measureStability()`/`generateWeightRecommendations()` in their own modules.
 Recommendation: Add explicit loop steps that persist lineage and coverage after candidate creation/scoring, run trade-off detection after trajectory update, run benchmark-stability after replay data is available, and write the advisory weight report to the configured path.
 
-2. Finding ID: `F-009-002`  
-Severity: `P1`  
-Dimension: `correctness`  
-File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-Line: `222-260`  
-Title: `Reducer cannot summarize the lineage files written by candidate-lineage.cjs`  
-Description: The reducer only accepts lineage nodes with `id` and `parentId`, but `candidate-lineage.cjs` writes nodes with `candidateId` and `parentCandidateId`. With real producer output, `buildCandidateLineageSummary()` filters out every node, so `totalCandidates`, `lineageDepth`, and `currentLeaf` collapse to empty values even when lineage was recorded successfully.  
-Evidence: `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.  
+2. Finding ID: `F-009-002`
+Severity: `P1`
+Dimension: `correctness`
+File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+Line: `222-260`
+Title: `Reducer cannot summarize the lineage files written by candidate-lineage.cjs`
+Description: The reducer only accepts lineage nodes with `id` and `parentId`, but `candidate-lineage.cjs` writes nodes with `candidateId` and `parentCandidateId`. With real producer output, `buildCandidateLineageSummary()` filters out every node, so `totalCandidates`, `lineageDepth`, and `currentLeaf` collapse to empty values even when lineage was recorded successfully.
+Evidence: `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.
 Recommendation: Standardize the lineage schema on one shape and update either the producer or the reducer so the replay consumer reads the actual emitted artifact.
 
-3. Finding ID: `F-009-003`  
-Severity: `P1`  
-Dimension: `correctness`  
-File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-Line: `264-275`  
-Title: `Reducer expects mutation-coverage metrics that the producer never writes`  
-Description: `buildMutationCoverageSummary()` only reads `data.metrics.coverageRatio` and `data.metrics.uncoveredMutations`, but `mutation-coverage.cjs` persists raw `mutations`, `exhausted`, and `trajectory` arrays and never materializes a `metrics` block. As a result, replay summaries will return null coverage metrics for real producer output, so the dashboard cannot reflect actual mutation coverage progress.  
-Evidence: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:270-275`.  
+3. Finding ID: `F-009-003`
+Severity: `P1`
+Dimension: `correctness`
+File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+Line: `264-275`
+Title: `Reducer expects mutation-coverage metrics that the producer never writes`
+Description: `buildMutationCoverageSummary()` only reads `data.metrics.coverageRatio` and `data.metrics.uncoveredMutations`, but `mutation-coverage.cjs` persists raw `mutations`, `exhausted`, and `trajectory` arrays and never materializes a `metrics` block. As a result, replay summaries will return null coverage metrics for real producer output, so the dashboard cannot reflect actual mutation coverage progress.
+Evidence: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:270-275`.
 Recommendation: Either persist computed `metrics` in `mutation-coverage.cjs` on every write, or teach the reducer to derive coverage ratio and uncovered counts from the raw arrays it already receives.
 
-4. Finding ID: `F-009-004`  
-Severity: `P1`  
-Dimension: `correctness`  
-File: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`  
-Line: `181-197`  
-Title: `Journal-based trajectory extraction is incompatible with the emitted candidate_scored payloads`  
-Description: `getTrajectory()` reconstructs per-dimension history from `candidate_scored.details.dimensions`, but the auto/confirm workflows emit `candidate_scored` rows with only `scoreOutputPath` and `weightedScore` in `details`. On live runs, this helper therefore extracts no dimension trajectory from the journal, so journal-driven trade-off analysis cannot work even if the detector is called later.  
-Evidence: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:181-197`; `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:153-155`; `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:177-179`.  
+4. Finding ID: `F-009-004`
+Severity: `P1`
+Dimension: `correctness`
+File: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs`
+Line: `181-197`
+Title: `Journal-based trajectory extraction is incompatible with the emitted candidate_scored payloads`
+Description: `getTrajectory()` reconstructs per-dimension history from `candidate_scored.details.dimensions`, but the auto/confirm workflows emit `candidate_scored` rows with only `scoreOutputPath` and `weightedScore` in `details`. On live runs, this helper therefore extracts no dimension trajectory from the journal, so journal-driven trade-off analysis cannot work even if the detector is called later.
+Evidence: `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:181-197`; `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:153-155`; `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:177-179`.
 Recommendation: Emit the scored dimension array into the journal row, or change `getTrajectory()` to load the referenced score artifact from `scoreOutputPath` instead of assuming inline dimensions.
 
-5. Finding ID: `F-009-005`  
-Severity: `P2`  
-Dimension: `correctness`  
-File: `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`  
-Line: `21-28`  
-Title: `Stop-reason taxonomy cannot represent configured plateau exits without falsifying them as converged`  
-Description: The config enables plateau-based stopping, but the frozen `STOP_REASONS` enum has no plateau-specific value. The shipped low-sample fixture already documents that a plateau stop had to be logged as `converged` because the validator would reject the true reason. That collapses “no clearer signal” into “all legal-stop gates passed,” which weakens the audit trail and any downstream stop-reason analytics.  
-Evidence: `.opencode/skills/sk-improve-agent/assets/improvement_config.json:64-70`; `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:21-28`; `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:8`.  
+5. Finding ID: `F-009-005`
+Severity: `P2`
+Dimension: `correctness`
+File: `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`
+Line: `21-28`
+Title: `Stop-reason taxonomy cannot represent configured plateau exits without falsifying them as converged`
+Description: The config enables plateau-based stopping, but the frozen `STOP_REASONS` enum has no plateau-specific value. The shipped low-sample fixture already documents that a plateau stop had to be logged as `converged` because the validator would reject the true reason. That collapses “no clearer signal” into “all legal-stop gates passed,” which weakens the audit trail and any downstream stop-reason analytics.
+Evidence: `.opencode/skills/sk-improve-agent/assets/improvement_config.json:64-70`; `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:21-28`; `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/improvement-journal.jsonl:8`.
 Recommendation: Add a plateau-specific stop reason to the validated taxonomy and update the command/skill docs so plateau exits are recorded truthfully instead of being coerced to `converged`.
 
 ITERATION SUMMARY: `5 findings total (0 P0 / 4 P1 / 1 P2)`
 
-COVERAGE ASSESSMENT: `~90% of the requested focus area reviewed`  
+COVERAGE ASSESSMENT: `~90% of the requested focus area reviewed`
 Coverage included all 5 named modules, their dedicated tests/fixtures, the Phase 005 packet contract, the reducer replay consumers, and the auto/confirm workflow wiring.
 
-CONFIDENCE: `high`  
+CONFIDENCE: `high`
 This is a static review with line-by-line inspection of the target modules and their runtime consumers; I did not execute the workflows in this read-only session.
 
 NEXT PRIORITIES:

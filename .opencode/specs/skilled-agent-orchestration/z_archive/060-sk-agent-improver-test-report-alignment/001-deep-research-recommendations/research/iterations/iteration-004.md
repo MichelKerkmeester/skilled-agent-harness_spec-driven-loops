@@ -31,9 +31,9 @@ The helper itself explains why the current tests pass despite the stronger polic
 
 Iterations 1-3 already answered that skill load does not fire scripts. This pass adds a boundary-specific variant: even within the command-owned YAML, some advertised journal and benchmark boundaries are actions or weaker events rather than helper invocations.
 
-The agent contract says the orchestrator emits `benchmark_completed` after benchmark, then emits `legal_stop_evaluated` or `blocked_stop` after legal-stop evaluation (`.opencode/agents/improve-agent.md:153-163`). The auto YAML does score and candidate journal events, but benchmark execution is an `action` placeholder, not a `run-benchmark.cjs` command, and repeatability is measured from a single score JSON via an inline `benchmark-stability.cjs` call (`.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:171-176`). The same pattern appears in confirm mode (`.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:202-207`).
+The agent contract says the orchestrator emits `benchmark_completed` after benchmark, then emits `legal_stop_evaluated` or `blocked_stop` after legal-stop evaluation (`.opencode/agents/improve-agent.md:153-163`). The auto YAML does score and candidate journal events, but benchmark execution is an `action` placeholder, not a `run-benchmark.cjs` command, and repeatability is measured from a single score JSON via an inline `benchmark-stability.cjs` call (`.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:171-176`). The same pattern appears in confirm mode (`.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:202-207`).
 
-The benchmark runner itself can append a `benchmark_run` record to a state log if `--state-log` is provided (`.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:257-269`), but that is not the improvement journal's `benchmark_completed` event. The journal helper recognizes `benchmark_completed` as a valid event type (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:49-58`), yet the inspected YAML sections do not emit it before the stop gate (`improve_improve-agent_auto.yaml:171-191`, `improve_improve-agent_confirm.yaml:202-228`). This makes a grep-only stress test possible: require `benchmark_completed` in `improvement-journal.jsonl`, not just `benchmark-runs/.../repeatability.json`.
+The benchmark runner itself can append a `benchmark_run` record to a state log if `--state-log` is provided (`.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:257-269`), but that is not the improvement journal's `benchmark_completed` event. The journal helper recognizes `benchmark_completed` as a valid event type (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:49-58`), yet the inspected YAML sections do not emit it before the stop gate (`deep_start-agent-improvement-loop_auto.yaml:171-191`, `deep_start-agent-improvement-loop_confirm.yaml:202-228`). This makes a grep-only stress test possible: require `benchmark_completed` in `improvement-journal.jsonl`, not just `benchmark-runs/.../repeatability.json`.
 
 ### RQ-1: Does sk-improve-agent have an analog of "stress-test the failure paths"?
 
@@ -53,7 +53,7 @@ The improvement recommendation is not merely "add stress tests"; it is "promote 
 
 - I ruled out "RT-028 is LLM-judge-based": its verification reads `improvement-journal.jsonl` and checks event fields directly (`.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:43-45`).
 - I ruled out "the journal helper already validates the five legal-stop gates": `validateEvent()` only special-cases `session_ended/session_end`, not `legal_stop_evaluated` or `blocked_stop` (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:80-107`).
-- I ruled out "benchmark boundary evidence is already a journal event": `run-benchmark.cjs` appends `type: "benchmark_run"` to an optional state log (`.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:257-269`), while the command YAML uses an action placeholder and a repeatability file rather than a `benchmark_completed` journal emission (`.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:171-176`).
+- I ruled out "benchmark boundary evidence is already a journal event": `run-benchmark.cjs` appends `type: "benchmark_run"` to an optional state log (`.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:257-269`), while the command YAML uses an action placeholder and a repeatability file rather than a `benchmark_completed` journal emission (`.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:171-176`).
 
 ## Sketched Diff (if any)
 
@@ -97,7 +97,7 @@ Proposed addition immediately after that block:
   }
 ```
 
-For `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` at `step_run_benchmark`, current text:
+For `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` at `step_run_benchmark`, current text:
 
 ```yaml
 step_run_benchmark:
@@ -152,7 +152,7 @@ it('rejects incomplete legal-stop events', () => {
 | Sandbox | `/tmp/cp-063-sandbox` plus `/tmp/cp-063-sandbox-baseline`, reset between Call A and Call B. |
 | Fixture | A target candidate that scores structurally high but fails `evidenceGate` due to insufficient benchmark sample or unstable repeatability. |
 | Call A | Generic improvement task allowed to summarize success narratively. |
-| Call B | Disciplined `/improve:agent` path for one or more iterations, with the same candidate and spec folder. |
+| Call B | Disciplined `/deep:start-agent-improvement-loop` path for one or more iterations, with the same candidate and spec folder. |
 | PASS signals | `grep '"eventType":"legal_stop_evaluated"' improvement-journal.jsonl`; greps for `contractGate`, `behaviorGate`, `integrationGate`, `evidenceGate`, `improvementGate`; `grep '"eventType":"blocked_stop"' improvement-journal.jsonl`; `grep '"failedGates".*"evidenceGate"' improvement-journal.jsonl`; no `session_end` with `stopReason:"converged"` while failed gates are present. |
 | FAIL signals | RT-032-style generic `gate_evaluation` appears but no `legal_stop_evaluated`; `blocked_stop` has no `failedGates`; benchmark repeatability file shows insufficient sample but journal still converges. |
 

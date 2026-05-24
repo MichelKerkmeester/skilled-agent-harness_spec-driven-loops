@@ -20,7 +20,7 @@ _memory:
     key_files:
       - .opencode/skills/sk-improve-agent/SKILL.md
       - .opencode/agents/improve-agent.md
-      - .opencode/commands/improve/agent.md
+      - .opencode/commands/deep/start-agent-improvement-loop.md
       - .opencode/specs/skilled-agent-orchestration/059-agent-implement-code/test-report.md
     completion_pct: 5
     open_questions:
@@ -46,7 +46,7 @@ _memory:
 
 Packet 059 produced a stress-test methodology that surfaced two real design gaps in `@code` after a single round of failure-path scenarios — gaps that the pre-merge structural smoke test (CP-026) had missed entirely. The methodology is reusable: same-task A/B dispatch, sandboxed isolation, grep-only verdict signals, multi-round iterative edits with measurable score progression, and a smart-router audit asking "does the skill *actually fire its routing logic*, or does the agent just read SKILL.md and stop?"
 
-This packet (060) takes that methodology and points it at a meta-target: the **`sk-improve-agent` triad** — `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines), `.opencode/agents/improve-agent.md` (246 lines), and `.opencode/commands/improve/agent.md` (456 lines). The triad exists *to improve other agents*. The premise is reflexive: if the 059 lens revealed gaps in `@code`, it should reveal analogous gaps in the agent-improver itself.
+This packet (060) takes that methodology and points it at a meta-target: the **`sk-improve-agent` triad** — `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines), `.opencode/agents/improve-agent.md` (246 lines), and `.opencode/commands/deep/start-agent-improvement-loop.md` (456 lines). The triad exists *to improve other agents*. The premise is reflexive: if the 059 lens revealed gaps in `@code`, it should reveal analogous gaps in the agent-improver itself.
 
 **This packet is research-only.** Its deliverable is `research/research.md` synthesizing 10 deep-research iterations into: (a) gap analysis mapped to 059's transferable lessons, (b) 6-10 sketched stress-test scenarios in CP-XXX format, (c) prioritized diff sketches for the 3 target files, (d) a recommended fixture-target design. *Implementation* of those recommendations is explicitly deferred to a follow-on packet (061) that will reuse the 059 stress-test pattern against the improved triad.
 
@@ -103,7 +103,7 @@ The reflexive nature is deliberate. If `sk-improve-agent` is supposed to improve
 
 ### In Scope
 
-- **Investigate** the current state of all three target files (SKILL.md, improve-agent.md, improve/agent.md) plus 14 scripts, 12 references, 6 assets
+- **Investigate** the current state of all three target files (SKILL.md, improve-agent.md, deep/start-agent-improvement-loop.md) plus 14 scripts, 12 references, 6 assets
 - **Map** each behavioral claim in the triad to a 059-style stress-test scenario
 - **Sketch** 6-10 CP-XXX scenario specs in the same format used by 059 (CP-027 through CP-034)
 - **Draft** prioritized diff sketches for each of the three target files
@@ -113,7 +113,7 @@ The reflexive nature is deliberate. If `sk-improve-agent` is supposed to improve
 
 ### Out of Scope
 
-- **Any implementation of recommendations.** Diffs may be sketched in research/research.md but MUST NOT be applied to SKILL.md, improve-agent.md, or improve/agent.md in this packet. (Deferred to packet 061.)
+- **Any implementation of recommendations.** Diffs may be sketched in research/research.md but MUST NOT be applied to SKILL.md, improve-agent.md, or deep/start-agent-improvement-loop.md in this packet. (Deferred to packet 061.)
 - **Authoring of CP-XXX scenarios as real playbook files.** Specs are sketched in research; promotion to `manual_testing_playbook/` happens in 061.
 - **Stress-test execution against sk-improve-agent.** No actual A/B dispatches in this packet. (Deferred to 061.)
 - **Changes to sk-improve-agent's 14 scripts.** Those are read-only references during research.
@@ -141,7 +141,7 @@ The reflexive nature is deliberate. If `sk-improve-agent` is supposed to improve
 |-----------|------|
 | `.opencode/skills/sk-improve-agent/SKILL.md` | Primary research target (463 lines) |
 | `.opencode/agents/improve-agent.md` | Primary research target (246 lines) |
-| `.opencode/commands/improve/agent.md` | Primary research target (456 lines) |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Primary research target (456 lines) |
 | `.opencode/skills/sk-improve-agent/references/` | Secondary surface (12 docs) |
 | `.opencode/skills/sk-improve-agent/scripts/` | Secondary surface (14 .cjs scripts) |
 | `.opencode/skills/sk-improve-agent/assets/` | Secondary surface (6 items) |
@@ -167,7 +167,7 @@ The reflexive nature is deliberate. If `sk-improve-agent` is supposed to improve
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-101 | Diff sketches cite specific section anchors | Every diff sketch names the SKILL.md / improve-agent.md / improve/agent.md section it modifies |
+| REQ-101 | Diff sketches cite specific section anchors | Every diff sketch names the SKILL.md / improve-agent.md / deep/start-agent-improvement-loop.md section it modifies |
 | REQ-102 | Fixture-target design is concrete | research.md proposes a specific small target agent (path or sketch) for use as the controlled case in 061 |
 | REQ-103 | implementation-summary.md updated post-research | completion_pct=100; recent_action reflects synthesis output |
 
@@ -246,7 +246,7 @@ A successful 060 produces:
 - **Target triad:**
   - `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines)
   - `.opencode/agents/improve-agent.md` (246 lines)
-  - `.opencode/commands/improve/agent.md` (456 lines)
+  - `.opencode/commands/deep/start-agent-improvement-loop.md` (456 lines)
 - **Deep-research wiring:** `.opencode/skills/sk-deep-research/changelog/v1.9.0.0.md` (cli-copilot integration); `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts:32-38` (flag-support map)
 - **Memory rules** consulted:
   - `feedback_implementation_summary_placeholders.md` — placeholders OK during planning

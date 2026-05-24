@@ -140,7 +140,7 @@ The first real signal-to-action loop for `/doctor:skill-budget` worked end-to-en
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **8 over-soft commands remain** (avg 115 chars; mild over-soft, not failure-class): `memory/manage` 116, `memory/search` 112, `improve/prompt` 112, `create/sk-skill` 112, `improve/agent` 122, `doctor/code-graph` 119, `create/changelog` 114, plus `sk-prompt` 132 from packet 083. Optional packet 091 could trim these to land deeper under the ceiling. Current +54 headroom is acceptable.
+1. **8 over-soft commands remain** (avg 115 chars; mild over-soft, not failure-class): `memory/manage` 116, `memory/search` 112, `prompt` 112, `create/sk-skill` 112, `deep/start-agent-improvement-loop` 122, `doctor/code-graph` 119, `create/changelog` 114, plus `sk-prompt` 132 from packet 083. Optional packet 091 could trim these to land deeper under the ceiling. Current +54 headroom is acceptable.
 2. **Trim text is canonical at write time but not enforced post-write.** A later edit to any of the 24 files could drift back over the soft target. Recommend running `/doctor:skill-budget :auto` after any agent-description edit (already documented as a workflow step in `/create:agent`).
 3. **No cross-runtime drift checker yet.** Today the trim script produces identical text everywhere, but nothing prevents a manual edit to one mirror without the others. A "agent-description sync" check is a candidate for a follow-on packet (audit script could compare descriptions across mirrors and flag mismatches).
 4. **Codex's 1,024-char cap (per the warning observed in packet 086 close)** is well above all current trims, so this packet doesn't need a separate Codex-specific check. Documented for future reference.

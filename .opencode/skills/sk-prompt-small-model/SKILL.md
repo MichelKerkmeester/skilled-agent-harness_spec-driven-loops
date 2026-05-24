@@ -1,5 +1,5 @@
 ---
-name: sk-ai-small-model
+name: sk-prompt-small-model
 description: Sentinel for small-model optimization patterns covering SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 across cli-devin and cli-opencode (DeepSeek API + opencode-go provider) dispatch paths. Routing anchor only; real patterns live in cli-devin/references/ and cli-opencode/references/.
 allowed-tools: []
 version: 0.1.0
@@ -61,7 +61,7 @@ Operator prompt mentions small-model name or pattern
     |
     +-- Advisor matches trigger phrases (lexical lane)
     +-- cli-devin or cli-opencode already high-confidence
-    +-- enhances edge pulls sk-ai-small-model into top-3
+    +-- enhances edge pulls sk-prompt-small-model into top-3
 ```
 
 ### Phase Detection
@@ -70,7 +70,7 @@ Operator prompt mentions small-model name or pattern
 TASK CONTEXT
     |
     +- STEP 0: Identify whether a small-model executor is involved
-    +- STEP 1: Surface sk-ai-small-model alongside the executor skill
+    +- STEP 1: Surface sk-prompt-small-model alongside the executor skill
     +- Phase 1: Read references/pattern-index.md
     +- Phase 2: Navigate to the executor-owned pattern file
     +- Phase 3: Apply the pattern from its canonical location
@@ -104,13 +104,13 @@ The sentinel has no runtime routing of its own. Routing is performed by the skil
 
 ```python
 # Conceptual — the actual scorer lives in system-skill-advisor
-def surface_sk_ai_small_model(prompt, advisor):
+def surface_sk_prompt_small_model(prompt, advisor):
     if matches_trigger(prompt, SMALL_MODEL_TRIGGERS):
         # Lexical lane match
-        return ("sk-ai-small-model", advisor.lexical_score(prompt))
+        return ("sk-prompt-small-model", advisor.lexical_score(prompt))
     if "cli-devin" in advisor.top_k(prompt, k=3) or "cli-opencode" in advisor.top_k(prompt, k=3):
         # Graph_causal lane via enhances edge (weight 0.5)
-        return ("sk-ai-small-model", 0.5 * advisor.enhances_weight)
+        return ("sk-prompt-small-model", 0.5 * advisor.enhances_weight)
     return None
 ```
 
@@ -122,7 +122,7 @@ Operators do not invoke a router from inside this skill. They follow `references
 
 ### Sentinel Workflow
 
-1. **Discovery** — Operator mentions a small-model name or pattern; the advisor surfaces `sk-ai-small-model` alongside the relevant CLI skill.
+1. **Discovery** — Operator mentions a small-model name or pattern; the advisor surfaces `sk-prompt-small-model` alongside the relevant CLI skill.
 2. **Index lookup** — Operator reads `references/pattern-index.md` to find the pattern's canonical location and ship status.
 3. **Navigate to owner** — Operator opens the linked executor file (e.g. `cli-devin/references/context-budget.md`) for the actual pattern body.
 4. **Apply pattern** — Pattern is applied within the executor's prompt-pack or recipe, not from this sentinel.
@@ -218,7 +218,7 @@ No code edits are required to adopt a new small-model provider when its quota po
 ### Skill Boundary Map
 
 ```text
-sk-ai-small-model (this skill)         ← discovery + index only
+sk-prompt-small-model (this skill)         ← discovery + index only
     |
     +-- cli-devin                   ← owns SWE-1.6 budget + verification + fallback patterns
     +-- cli-opencode                ← owns DeepSeek/Kimi/Qwen propagation + permissions

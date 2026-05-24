@@ -58,15 +58,15 @@ Changes:
 "evaluate agent quality": [("sk-improve-agent", 2.8)],
 "score agent dimensions": [("sk-improve-agent", 2.8)],
 "agent integration surface": [("sk-improve-agent", 2.6)],
-"/improve:agent": [("sk-improve-agent", 3.2)],
-"/improve:prompt": [("sk-improve-prompt", 3.2)],
+"/deep:start-agent-improvement-loop": [("sk-improve-agent", 3.2)],
+"/prompt": [("sk-improve-prompt", 3.2)],
 "improve agent": [("sk-improve-agent", 2.8)],
 ```
 
 ### Add COMMAND_BRIDGES
 ```python
-"/improve:agent": "sk-improve-agent",
-"/improve:prompt": "sk-improve-prompt",
+"/deep:start-agent-improvement-loop": "sk-improve-agent",
+"/prompt": "sk-improve-prompt",
 "/create:agent": "sk-doc",
 "/create:changelog": "sk-doc",
 "/create:sk-skill": "sk-doc",
@@ -80,10 +80,10 @@ Changes:
 **File**: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Barter/coder/.opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
 Add same COMMAND_BRIDGES as D2 EXCEPT:
-- `/improve:agent` → skip (sk-improve-agent not in Barter)
+- `/deep:start-agent-improvement-loop` → skip (sk-improve-agent not in Barter)
 - All others apply (sk-improve-prompt and sk-doc exist in Barter)
 
-Also add PHRASE_INTENT_BOOSTERS for `/improve:prompt` and `/create:*` commands.
+Also add PHRASE_INTENT_BOOSTERS for `/prompt` and `/create:*` commands.
 
 ## Verification
 
@@ -91,8 +91,8 @@ Also add PHRASE_INTENT_BOOSTERS for `/improve:prompt` and `/create:*` commands.
 # Test Phase 008+ routing
 python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "evaluate agent with 5 dimensions" --threshold 0.8
 python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "integration scanning" --threshold 0.8
-python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/improve:agent" --threshold 0.8
-python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/improve:prompt" --threshold 0.8
+python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/deep:start-agent-improvement-loop" --threshold 0.8
+python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/prompt" --threshold 0.8
 python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/create:agent" --threshold 0.8
 
 # Verify README

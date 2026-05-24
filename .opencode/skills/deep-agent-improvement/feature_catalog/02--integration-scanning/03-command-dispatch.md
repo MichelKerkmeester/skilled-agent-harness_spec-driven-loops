@@ -15,7 +15,7 @@ This feature covers the operator-facing command surface and the workflow assets 
 
 ## 2. CURRENT REALITY
 
-`.opencode/commands/improve/agent.md` is the command entrypoint. It resolves the target agent, spec folder, and execution mode, then tells the caller to load either the autonomous or interactive YAML workflow. The command markdown explicitly says not to dispatch agents from the command file itself.
+`.opencode/commands/deep/start-agent-improvement-loop.md` is the command entrypoint. It resolves the target agent, spec folder, and execution mode, then tells the caller to load either the autonomous or interactive YAML workflow. The command markdown explicitly says not to dispatch agents from the command file itself.
 
 The real dispatch authority lives in the YAML assets. Both workflow files rescan integration, dispatch `@deep-agent-improvement` to write candidates, emit journal events with `improvement-journal.cjs`, and call the scoring, coverage, trade-off, and reducer helpers. Confirm mode adds approval gates around candidate generation and post-score review, while auto mode runs the same stages without those gates.
 
@@ -27,9 +27,9 @@ The real dispatch authority lives in the YAML assets. Both workflow files rescan
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/commands/improve/agent.md` | Command | Entry surface that gathers inputs and routes execution into the matching YAML workflow. |
-| `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml` | Workflow | Runs the full loop autonomously and emits session-end journal events after synthesis. |
-| `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml` | Workflow | Runs the same loop with approval gates before candidate generation and after scoring. |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Command | Entry surface that gathers inputs and routes execution into the matching YAML workflow. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Workflow | Runs the full loop autonomously and emits session-end journal events after synthesis. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | Workflow | Runs the same loop with approval gates before candidate generation and after scoring. |
 | `.opencode/agents/deep-agent-improvement.md` | Proposal agent | Leaf agent that the workflows dispatch for bounded candidate generation. |
 
 ### Validation And Tests

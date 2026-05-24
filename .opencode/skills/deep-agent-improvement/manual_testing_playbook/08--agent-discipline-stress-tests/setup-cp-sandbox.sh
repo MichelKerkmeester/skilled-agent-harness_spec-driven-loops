@@ -59,7 +59,7 @@ copy_file() {
   cp "$source" "$target"
 }
 
-require_path "${REPO_ROOT}/.opencode/commands/improve"
+require_path "${REPO_ROOT}/.opencode/commands/deep"
 require_path "${REPO_ROOT}/.opencode/skills/deep-agent-improvement"
 require_path "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.claude/agents/cp-improve-target.md"
@@ -69,7 +69,7 @@ require_path "${FIXTURE_ROOT}/.codex/agents/cp-improve-target.toml"
 rm -rf "$SANDBOX_DIR"
 mkdir -p "$SANDBOX_DIR"
 
-copy_dir "${REPO_ROOT}/.opencode/commands/improve" "${SANDBOX_DIR}/.opencode/commands/improve"
+copy_dir "${REPO_ROOT}/.opencode/commands/deep" "${SANDBOX_DIR}/.opencode/commands/deep"
 copy_dir "${REPO_ROOT}/.opencode/skills/deep-agent-improvement" "${SANDBOX_DIR}/.opencode/skills/deep-agent-improvement"
 
 copy_file "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.md" "${SANDBOX_DIR}/.opencode/agents/cp-improve-target.md"

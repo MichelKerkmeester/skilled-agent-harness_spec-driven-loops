@@ -34,7 +34,7 @@ The workflow copies `improvement_*` assets into the runtime, but the packet-loca
 
 ```text
 # Dynamic mode (the only evaluation path; works for any agent)
-/improve:agent ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
+/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
 ```
 
 ### Standalone Scripts

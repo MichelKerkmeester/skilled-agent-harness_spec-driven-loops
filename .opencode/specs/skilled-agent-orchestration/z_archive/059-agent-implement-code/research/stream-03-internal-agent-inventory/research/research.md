@@ -277,8 +277,8 @@ Plugins / commands:
 - `.opencode/plugins/spec-kit-skill-advisor.js:567,579,638,673`
 - `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:81,86,356,357,359,360,523,527,536,563`
 - `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:144,145,214,354,355`
-- `.opencode/commands/improve/agent.md:188,195,197`
-- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:150,153,154,158,164`
+- `.opencode/commands/deep/start-agent-improvement-loop.md:188,195,197`
+- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:150,153,154,158,164`
 
 Governance:
 - `AGENTS.md:24,36,77,174,195,196,197,199,223,329,333,334,335,337,338,340,342,367,371,380,382`

@@ -11,7 +11,7 @@ convergence_signal: no
 
 ## Focus
 
-This iteration focused on the remaining downstream authoring question from iteration 6: whether 063 should rewrite CP-040..CP-045 in place or add successor CP IDs. The new value is a sharper split: do not overcorrect by forcing all six scenarios through command-flow; only the command-owned evidence scenarios require `/improve:agent`, while proposal-only and active-Critic checks can remain leaf/body tests if the five required inputs are supplied.
+This iteration focused on the remaining downstream authoring question from iteration 6: whether 063 should rewrite CP-040..CP-045 in place or add successor CP IDs. The new value is a sharper split: do not overcorrect by forcing all six scenarios through command-flow; only the command-owned evidence scenarios require `/deep:start-agent-improvement-loop`, while proposal-only and active-Critic checks can remain leaf/body tests if the five required inputs are supplied.
 
 ## Method
 
@@ -21,7 +21,7 @@ I treated iterations 1-6 as baseline and did not re-prove the command-vs-body me
 
 ### RQ-7/RQ-1: Avoid the opposite layer-selection error in 063
 
-The earlier conclusion "Call B must invoke `/improve:agent`" is correct for command-owned evidence, but it should not be applied blindly to all six CPs. `@improve-agent` itself owns two important body-level disciplines: proposal-only candidate generation and active Critic self-validation. Its body says it writes one packet-local candidate, stops before scoring/promotion/packaging, never scores/promotes/benchmarks/edits canonical targets or mirrors, and returns structured metadata [SOURCE: `.opencode/agents/improve-agent.md:22-42`]. It also owns the Critic pass checks for scorer overfit, helper bypass, mirror drift concealment, fixture narrowness, and promotion leakage [SOURCE: `.opencode/agents/improve-agent.md:131-150`].
+The earlier conclusion "Call B must invoke `/deep:start-agent-improvement-loop`" is correct for command-owned evidence, but it should not be applied blindly to all six CPs. `@improve-agent` itself owns two important body-level disciplines: proposal-only candidate generation and active Critic self-validation. Its body says it writes one packet-local candidate, stops before scoring/promotion/packaging, never scores/promotes/benchmarks/edits canonical targets or mirrors, and returns structured metadata [SOURCE: `.opencode/agents/improve-agent.md:22-42`]. It also owns the Critic pass checks for scorer overfit, helper bypass, mirror drift concealment, fixture narrowness, and promotion leakage [SOURCE: `.opencode/agents/improve-agent.md:131-150`].
 
 That maps the six scenarios into two groups:
 
@@ -86,7 +86,7 @@ This gate would have caught both failure modes: CP-040/043/044/045 used a leaf-b
 The contract should now have three lanes:
 
 1. **Leaf/body GREEN lane** for CP-041 and CP-042: assert the five required inputs are materialized, the candidate path is packet-local, canonical/mirrors remain unchanged, and `CRITIC PASS` labels appear when relevant. Do not require `score-candidate.cjs`, `legal_stop_evaluated`, `benchmark_completed`, or reducer output from the leaf run.
-2. **Command-flow RED/PARTIAL lane** for CP-040/043/044/045 in a methodology packet: assert `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=... --iterations=1`, command-capable sandbox root, artifact roots, and known missing producer/consumer seams.
+2. **Command-flow RED/PARTIAL lane** for CP-040/043/044/045 in a methodology packet: assert `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=... --iterations=1`, command-capable sandbox root, artifact roots, and known missing producer/consumer seams.
 3. **Command-flow GREEN lane** after 064 wiring: require structured helper outputs, nested legal-stop gates, benchmark report/state rows, reducer-visible summaries, and session stop ordering.
 
 This is the cleanest way to honor R1's lesson that agent-body invocation and command-flow invocation are both valid, but only for the discipline that actually lives at that layer [SOURCE: `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md:246-253`].
@@ -94,7 +94,7 @@ This is the cleanest way to honor R1's lesson that agent-body invocation and com
 ## New Open Questions
 
 1. Should 063 modify the active cli-copilot playbook in place, or should it first create a spec-local command-flow harness report and leave active playbook edits to 064/065?
-2. For CP-041 and CP-042, should the corrected direct leaf-body Call B use a rendered control bundle under `/tmp/cp-04N-spec/improvement/`, or should it invoke `/improve:agent` and assert leaf behavior only through command-produced candidate artifacts?
+2. For CP-041 and CP-042, should the corrected direct leaf-body Call B use a rendered control bundle under `/tmp/cp-04N-spec/improvement/`, or should it invoke `/deep:start-agent-improvement-loop` and assert leaf behavior only through command-produced candidate artifacts?
 3. If successor IDs are used for a spec-local RED methodology run, what naming convention avoids confusing them with permanent cli-copilot release scenarios?
 
 ## Ruled Out
@@ -118,12 +118,12 @@ This is the cleanest way to honor R1's lesson that agent-body invocation and com
 
 | CP | Owning layer | Call B shape | GREEN/RED mode |
 |---|---|---|---|
-| CP-040 | command workflow | /improve:agent ... :auto --spec-folder=... --iterations=1 | RED/PARTIAL until helper/journal wiring is executable |
+| CP-040 | command workflow | /deep:start-agent-improvement-loop ... :auto --spec-folder=... --iterations=1 | RED/PARTIAL until helper/journal wiring is executable |
 | CP-041 | leaf body or command containment | direct @improve-agent with full five-input bundle OR command flow with containment-only assertions | GREEN if candidate-local/no canonical mutation proves out |
 | CP-042 | leaf body | direct @improve-agent with full five-input bundle | GREEN if CRITIC PASS labels and candidate-local output prove out |
-| CP-043 | command workflow/reducer | /improve:agent ... :auto --spec-folder=... --iterations=1 | RED/PARTIAL until legal-stop producer/consumer shape is fixed |
-| CP-044 | command workflow/scorer/legal-stop | /improve:agent ... :auto --spec-folder=... --iterations=1 | PARTIAL/GREEN depending scorer output plus legal-stop shape |
-| CP-045 | command workflow/benchmark | /improve:agent ... :auto --spec-folder=... --iterations=1 | RED/PARTIAL until benchmark producer/assets are wired |
+| CP-043 | command workflow/reducer | /deep:start-agent-improvement-loop ... :auto --spec-folder=... --iterations=1 | RED/PARTIAL until legal-stop producer/consumer shape is fixed |
+| CP-044 | command workflow/scorer/legal-stop | /deep:start-agent-improvement-loop ... :auto --spec-folder=... --iterations=1 | PARTIAL/GREEN depending scorer output plus legal-stop shape |
+| CP-045 | command workflow/benchmark | /deep:start-agent-improvement-loop ... :auto --spec-folder=... --iterations=1 | RED/PARTIAL until benchmark producer/assets are wired |
 ```
 
 ### Leaf/body required-input bundle sketch for CP-041/CP-042

@@ -363,6 +363,17 @@ function setMetadata(key: string, value: string): void {
   `).run(key, value, now);
 }
 
+function checkpointWal(database: Database.Database): void {
+  try {
+    database.pragma('wal_checkpoint(FULL)');
+  } catch (error: unknown) {
+    const code = (error as { code?: string }).code ?? '';
+    if (!isWalFallbackError(error) && code !== 'SQLITE_BUSY') {
+      throw error;
+    }
+  }
+}
+
 export function getLastScanTimestamp(): string | null {
   return getMetadata('last_scan_timestamp');
 }
@@ -664,6 +675,7 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
     setMetadata('last_scan_timestamp', new Date().toISOString());
     setMetadata('last_scan_skill_dir', skillDir);
     setMetadata('last_scan_summary', JSON.stringify(summary));
+    checkpointWal(database);
 
     return summary;
   }
@@ -785,6 +797,7 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
   setMetadata('last_scan_timestamp', new Date().toISOString());
   setMetadata('last_scan_skill_dir', skillDir);
   setMetadata('last_scan_summary', JSON.stringify(summary));
+  checkpointWal(database);
 
   return summary;
 }

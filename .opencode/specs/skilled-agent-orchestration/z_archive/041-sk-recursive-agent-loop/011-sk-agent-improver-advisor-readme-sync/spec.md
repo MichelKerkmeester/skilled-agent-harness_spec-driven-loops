@@ -33,8 +33,8 @@ _memory:
 After Phase 008-010, the skill advisor and skill README are outdated:
 
 1. **Skill README** (`skill/README.md`): Lists sk-improve-agent at version 0.1.0.0 with old description. Should be 1.0.0.0 with 5D scoring, integration scanning, dynamic profiling.
-2. **Skill advisor** (`skill/skill-advisor/scripts/skill_advisor.py`): Missing routing for Phase 008+ capabilities — no entries for "5-dimension", "integration scan", "dynamic profile", "/improve:agent", "evaluate agent", "score agent". Also missing COMMAND_BRIDGES for `/improve:agent`, `/improve:prompt`, and all `/create:*` commands.
-3. **Barter sync**: The Barter version at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Barter/coder/.opencode/skills/skill-advisor/scripts/skill_advisor.py` needs the same COMMAND_BRIDGES additions (for `/improve:prompt` and `/create:*` commands) even though it doesn't have sk-improve-agent.
+2. **Skill advisor** (`skill/skill-advisor/scripts/skill_advisor.py`): Missing routing for Phase 008+ capabilities — no entries for "5-dimension", "integration scan", "dynamic profile", "/deep:start-agent-improvement-loop", "evaluate agent", "score agent". Also missing COMMAND_BRIDGES for `/deep:start-agent-improvement-loop`, `/prompt`, and all `/create:*` commands.
+3. **Barter sync**: The Barter version at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Barter/coder/.opencode/skills/skill-advisor/scripts/skill_advisor.py` needs the same COMMAND_BRIDGES additions (for `/prompt` and `/create:*` commands) even though it doesn't have sk-improve-agent.
 
 ## Solution
 
@@ -62,12 +62,12 @@ After Phase 008-010, the skill advisor and skill README are outdated:
 | --- | --- | --- |
 | REQ-001 | Skill README shows correct version | sk-improve-agent listed at 1.0.0.0 with Phase 008 description |
 | REQ-002 | Advisor routes 5D/scanning/profiling queries | `skill_advisor.py "5-dimension agent evaluation"` returns sk-improve-agent >= 0.8 |
-| REQ-003 | Advisor routes /improve:agent command | `skill_advisor.py "/improve:agent"` returns sk-improve-agent >= 0.8 |
-| REQ-004 | COMMAND_BRIDGES includes /improve: and /create: commands | All slash commands have bridge entries |
-| REQ-005 | Barter advisor has same COMMAND_BRIDGES | Barter version has /improve:prompt and /create:* bridges |
+| REQ-003 | Advisor routes /deep:start-agent-improvement-loop command | `skill_advisor.py "/deep:start-agent-improvement-loop"` returns sk-improve-agent >= 0.8 |
+| REQ-004 | COMMAND_BRIDGES includes /deep: and /create: commands | All slash commands have bridge entries |
+| REQ-005 | Barter advisor has same COMMAND_BRIDGES | Barter version has /prompt and /create:* bridges |
 
 ## Success Criteria
 
 - `python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "evaluate agent with 5 dimensions" --threshold 0.8` returns sk-improve-agent
-- `python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/improve:agent" --threshold 0.8` returns sk-improve-agent
+- `python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/deep:start-agent-improvement-loop" --threshold 0.8` returns sk-improve-agent
 - skill/README.md shows `sk-improve-agent | 1.0.0.0`

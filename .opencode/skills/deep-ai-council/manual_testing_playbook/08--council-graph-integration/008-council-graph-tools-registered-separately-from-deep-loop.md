@@ -1,9 +1,9 @@
 ---
-title: "DAC-026 -- council_graph_* tools registered separately from deep_loop_graph_*"
-description: "This scenario validates that `council_graph_*` tools are registered as a distinct family in `tools/index.ts`, `tool-schemas.ts`, and `schemas/tool-input-schemas.ts` with no `loop_type:'council'` overload added to `deep_loop_graph_*` for `DAC-026`. Anchors to ADR-001 dedicated-graph decision and checklist CHK-011 and CHK-023."
+title: "DAC-026 -- Council graph MCP surface retired"
+description: "This scenario validates that the council graph MCP tools are absent from the live mk-spec-memory registry and that council graph operations route through deep-loop-runtime --loop-type council."
 ---
 
-# DAC-026 -- council_graph_* tools registered separately from deep_loop_graph_*
+# DAC-026 -- Council graph MCP surface retired
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `DAC-026`.
 
@@ -11,11 +11,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates that the four `council_graph_*` tools (`council_graph_upsert`, `council_graph_query`, `council_graph_status`, `council_graph_convergence`) are registered as a distinct family in the MCP server, with their own dispatchers and input schemas, and that no `loop_type:'council'` overload was hidden inside `deep_loop_graph_*`.
+This scenario validates the post-migration boundary: mk-spec-memory no longer exposes a dedicated council graph MCP family, and council graph writes/queries/status/convergence run through `deep-loop-runtime` CLI scripts with `--loop-type council`.
 
 ### Why This Matters
 
-ADR-001 explicitly rejected reusing the deep-loop research/review graph for council semantics. A regression that smuggles council behavior into `deep_loop_graph_*` (e.g., adding `loop_type:'council'` to the deep-loop schema) would silently couple council to research/review semantics and destroy the boundary the ADR protects. This scenario is a structural invariant check — fast, mechanical, and run on every change to MCP server tool wiring.
+ADR-001 still rejects reusing the research/review graph semantics for council state. The migration keeps that semantic boundary but moves ownership out of mk-spec-memory: council state is now a runtime-owned derived SQLite projection, rebuilt from `ai-council/**` artifacts by the replay helper or direct runtime CLI calls.
 
 ---
 
@@ -23,13 +23,13 @@ ADR-001 explicitly rejected reusing the deep-loop research/review graph for coun
 
 Operators run the exact prompt and command sequence for `DAC-026` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify `council_graph_*` tools are registered as a distinct family with no `loop_type:'council'` overload of `deep_loop_graph_*`.
-- Real user request: Confirm the council graph tools do not share dispatch with the research/review graph tools.
-- Prompt: `As a council-graph integration validator, grep tools/index.ts, tool-schemas.ts, and schemas/tool-input-schemas.ts for council_graph_* registrations and assert each has its own dispatcher + schema; then assert no loop_type:'council' overload was added to deep_loop_graph_*.`
-- Expected execution process: Grep the three MCP server files for the four council_graph tool names; grep deep_loop_graph_* schemas for any `'council'` value in `loop_type` enum.
-- Expected signals: Each of the 4 council_graph tools has its own registration row in `tools/index.ts`, its own descriptor in `tool-schemas.ts`, and its own input schema in `schemas/tool-input-schemas.ts`; the `deep_loop_graph_*` schemas contain only `'research'` and `'review'` in `loop_type` (no `'council'`).
-- Desired user-visible outcome: The user sees that council and deep-loop graph families are structurally independent.
-- Pass/fail: PASS if the four council_graph tools are registered separately and `deep_loop_graph_*` carries no `'council'` loop_type; FAIL if any tool shares dispatch with deep-loop or `loop_type:'council'` appears anywhere in deep-loop schemas.
+- Objective: Verify the council graph MCP surface is retired and runtime CLI council support is present.
+- Real user request: Confirm council graph operations no longer consume MCP tool slots.
+- Prompt: `As a council-graph integration validator, assert that mk-spec-memory exposes 35 tools with no council graph MCP entries, then run or inspect the deep-loop-runtime council CLI scripts for upsert, query, status, and convergence support.`
+- Expected execution process: Import `TOOL_DEFINITIONS` or inspect the source registry, grep live MCP source files for the escaped council graph tool-name pattern, then run runtime council script coverage.
+- Expected signals: `TOOL_DEFINITIONS.length === 35`; no live MCP registry/schema/dispatcher entries match `council[_]graph_(upsert|query|status|convergence)`; runtime council integration tests pass.
+- Desired user-visible outcome: The user sees that council graph behavior remains available while the MCP surface is smaller.
+- Pass/fail: PASS if the MCP tools are absent and runtime CLI coverage passes; FAIL if a live MCP entry remains or runtime council CLI support regresses.
 
 ---
 
@@ -37,42 +37,40 @@ Operators run the exact prompt and command sequence for `DAC-026` and confirm th
 
 ### Recommended Orchestration Process
 
-1. Grep `tools/index.ts` for the four council_graph tool registrations.
-2. Grep `tool-schemas.ts` for the four council_graph tool descriptors.
-3. Grep `schemas/tool-input-schemas.ts` for the four council_graph input schemas.
-4. Grep all deep-loop graph schemas for `'council'` as a `loop_type` value.
+1. Import `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` and assert count 35 with no council graph entries.
+2. Grep live registry, schema, and dispatcher files for `council[_]graph_(upsert|query|status|convergence)`.
+3. Run runtime council integration tests.
 
 ### Prompt
 
-`As a council-graph integration validator, grep tools/index.ts, tool-schemas.ts, and schemas/tool-input-schemas.ts for council_graph_* registrations and assert each has its own dispatcher + schema; then assert no loop_type:'council' overload was added to deep_loop_graph_*.`
+`As a council-graph integration validator, assert that mk-spec-memory exposes 35 tools with no council graph MCP entries, then run or inspect the deep-loop-runtime council CLI scripts for upsert, query, status, and convergence support.`
 
 ### Commands
 
-1. `bash: rg -n 'council_graph_(upsert|query|status|convergence)' .opencode/skills/system-spec-kit/mcp_server/tools/index.ts`
-2. `bash: rg -n 'council_graph_(upsert|query|status|convergence)' .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
-3. `bash: rg -n 'council_graph_(upsert|query|status|convergence)' .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
-4. `bash: rg -n "loop_type.*'council'|'council'.*loop_type" .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
+1. `bash: node --import .opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs -e "import('./.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts').then(({TOOL_DEFINITIONS}) => console.log(JSON.stringify({count: TOOL_DEFINITIONS.length, council: TOOL_DEFINITIONS.filter((tool) => /council[_]graph/.test(tool.name)).map((tool) => tool.name)})))"`
+2. `bash: rg -n 'council[_]graph_(upsert|query|status|convergence)' .opencode/skills/system-spec-kit/mcp_server/tools/index.ts .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
+3. `bash: cd .opencode/skills/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run --no-coverage ../../deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`
 
 ### Expected
 
-Steps 1-3 each return ≥4 hits (one per council_graph tool). Step 4 returns no hits.
+Step 1 prints `{"count":35,"council":[]}`. Step 2 returns no hits. Step 3 exits 0.
 
 ### Evidence
 
-Capture all four grep outputs verbatim with line numbers.
+Capture tool-definition import output, grep output, and runtime council integration test result.
 
 ### Pass / Fail
 
-- **Pass**: 4 council_graph tools registered separately in all three files; no `'council'` `loop_type` overload in deep-loop schemas.
-- **Fail**: Any council_graph tool missing its registration; any `'council'` value found in deep-loop `loop_type` enum.
+- **Pass**: 35 live tools, no council graph MCP entries, runtime council script tests pass.
+- **Fail**: Any council graph MCP entry remains, tool count is not 35, or runtime council CLI coverage fails.
 
 ### Failure Triage
 
-If a council_graph tool is missing, inspect ADR-001 vs current `tools/index.ts` for missed dispatcher wiring. If `loop_type:'council'` appears in deep-loop schemas, that is an explicit ADR-001 violation — the council semantics must be moved out of the deep-loop family before the next `validate.sh --strict` run.
+If a council graph MCP entry remains, inspect `tools/index.ts`, `tool-schemas.ts`, and `schemas/tool-input-schemas.ts` for stale registry/schema rows. If runtime CLI coverage fails, inspect `deep-loop-runtime/scripts/{upsert,query,status,convergence}.cjs` and `lib/council/**`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-026 | council_graph_* registered separately from deep_loop_graph_* | Verify dedicated tool family + no loop_type:'council' overload | `As a council-graph integration validator, grep tools/index.ts, tool-schemas.ts, and schemas/tool-input-schemas.ts for council_graph_* registrations and assert each has its own dispatcher + schema; then assert no loop_type:'council' overload was added to deep_loop_graph_*.` | grep council_graph_* x3 -> grep loop_type 'council' x1 | 4 council_graph hits per file; 0 council loop_type hits | 4 grep outputs | PASS if 4 dedicated registrations + no overload | Inspect ADR-001 vs tool-wiring drift |
+| DAC-026 | Council graph MCP surface retired | Verify MCP removal plus runtime CLI replacement | `As a council-graph integration validator, assert that mk-spec-memory exposes 35 tools with no council graph MCP entries, then run or inspect the deep-loop-runtime council CLI scripts for upsert, query, status, and convergence support.` | import tool definitions -> grep live MCP files -> run runtime council integration test | 35 tools, no council graph MCP entries, runtime council tests pass | Import output + grep output + Vitest result | PASS if retired from MCP and covered in runtime CLI | Inspect MCP registry/schema files or runtime scripts |
 
 ---
 
@@ -83,17 +81,15 @@ If a council_graph tool is missing, inspect ADR-001 vs current `tools/index.ts` 
 | File | Role |
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
-| `feature_catalog/` | No feature catalog exists yet |
+| `feature_catalog/` | Feature catalog mirror |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | Tool dispatcher registration |
-| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Tool descriptor registry |
-| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Strict input schemas |
-| Internal design notes | ADR-001: dedicated graph decision |
-| Internal design notes | CHK-011 (deep-loop boundary) + CHK-023 (tool registration) |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Live MCP tool inventory |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | Live MCP dispatcher registry |
+| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Runtime council CLI coverage |
 
 ---
 

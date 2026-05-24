@@ -37,7 +37,7 @@ _memory:
 
 ## ADR-3: Command-capable temp project root (not just --add-dir)
 
-**Decision:** Build `/tmp/cp-061-sandbox/` with a real `.opencode/` skeleton that lets `/improve:agent` resolve all relative paths.
+**Decision:** Build `/tmp/cp-061-sandbox/` with a real `.opencode/` skeleton that lets `/deep:start-agent-improvement-loop` resolve all relative paths.
 
 **Why:** Per 060/003 research §5 062 sketch — `--add-dir /tmp/...` against an empty sandbox under-specifies the command's path assumptions. Real project skeleton required.
 

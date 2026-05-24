@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "changelog-entry.schema.json",
+  "title": "Deep Skill Alignment Changelog Entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "skill",
+    "version",
+    "date",
+    "template_alignment",
+    "reference_changes",
+    "asset_changes",
+    "router_readme_updates",
+    "runtime_behavior_changed"
+  ],
+  "properties": {
+    "skill": { "type": "string", "enum": ["deep-ai-council", "deep-research", "deep-review"] },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "date": { "type": "string", "format": "date" },
+    "template_alignment": { "type": "array", "items": { "type": "string" } },
+    "reference_changes": { "type": "array", "items": { "type": "string" } },
+    "asset_changes": { "type": "array", "items": { "type": "string" } },
+    "router_readme_updates": { "type": "array", "items": { "type": "string" } },
+    "runtime_behavior_changed": { "type": "boolean" }
+  }
+}

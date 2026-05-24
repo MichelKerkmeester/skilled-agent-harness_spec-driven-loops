@@ -203,7 +203,7 @@
     ],
     "causal_summary": "This is **Phase 8** of the 006-skill-advisor track, addressing P1 findings from the 3-reviewer parallel audit of packets 006 and 007. The shipped code works on the happy path (typecheck + 9 vitest tests + manual probes all PASS), but reviewers surfaced 9 latent correctness gaps. This packet closes them.",
     "created_at": "2026-05-18T06:19:31Z",
-    "last_save_at": "2026-05-23T11:55:15.572Z",
+    "last_save_at": "2026-05-24T05:40:26.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

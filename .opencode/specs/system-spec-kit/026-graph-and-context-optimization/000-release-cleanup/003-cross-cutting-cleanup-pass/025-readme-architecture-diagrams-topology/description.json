@@ -1,6 +1,22 @@
 {
-  "specFolder": "026-graph-and-context-optimization/000-release-cleanup/025-readme-architecture-diagrams-topology",
-  "description": "Add ASCII box-art architecture diagrams and directory topology trees to all code-folder READMEs and ARCHITECTURE.md",
-  "keywords": ["architecture", "diagram", "topology", "readme", "box-art", "visualization"],
-  "lastUpdated": "2026-05-02T00:00:00.000Z"
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
+  "description": "Implementation Specification: Architecture Diagrams & Topology",
+  "keywords": [
+    "implementation",
+    "specification",
+    "architecture",
+    "diagrams",
+    "topology"
+  ],
+  "lastUpdated": "2026-05-23T15:24:59.901Z",
+  "specId": "025",
+  "folderSlug": "readme-architecture-diagrams-topology",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

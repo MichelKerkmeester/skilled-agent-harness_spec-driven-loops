@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Two post-010 MCP startup failures observed on macOS, plus the workaround applied and the one outstanding robustness gap that should follow.",
     "created_at": "2026-05-23T11:55:15.585Z",
-    "last_save_at": "2026-05-23T11:55:15.585Z",
+    "last_save_at": "2026-05-24T05:40:26.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

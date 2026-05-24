@@ -210,7 +210,7 @@
     ],
     "causal_summary": "ADR-001 (`015/009/001/decision-record.md`) locked the \"Standalone Advisor MCP With Legacy Tool Bridge\" shape and committed to a 5-phase migration sequence. Child 002's job is the envelope-only step: stand up the `.opencode/skills/system-skill-advisor/` skill package with first-class docs and a working mcp_server skeleton, without moving any runtime code yet. Child 003 moves source/DB/tests; child 004 wires the standalone launcher; etc.",
     "created_at": "2026-05-14T03:30:00Z",
-    "last_save_at": "2026-05-23T11:55:15.111Z",
+    "last_save_at": "2026-05-24T05:40:25.844Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T03:30:00Z",
     "source_docs": [

@@ -93,7 +93,7 @@ Capture the completed remediation as a clean Level 3 child packet that shows wha
 - `.opencode/skills/sk-deep-review/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
 - `.opencode/skills/sk-improve-agent/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
 - `.opencode/skills/system-spec-kit/` shared coverage-graph helpers, handlers, and tests touched by graph convergence and session isolation work.
-- `.opencode/commands/speckit/` and `.opencode/commands/improve/` workflow docs and YAMLs touched by visible-path wiring.
+- `.opencode/commands/speckit/` and `.opencode/commands/deep/` workflow docs and YAMLs touched by visible-path wiring.
 - Phase-local closeout artifacts in `scratch/closing-review.md` and the phase packet documentation itself.
 
 ### Out of Scope

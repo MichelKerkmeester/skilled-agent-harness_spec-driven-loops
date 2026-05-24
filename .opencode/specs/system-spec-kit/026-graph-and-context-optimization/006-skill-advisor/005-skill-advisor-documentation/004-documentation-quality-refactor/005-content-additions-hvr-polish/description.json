@@ -1,19 +1,14 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/005-content-additions-hvr-polish",
-  "description": "Feature Specification: 005-content-additions-hvr-polish (skeleton, pre-synthesis) \u2014 5 new reference docs + canonical hook-reference copy + HVR sweep",
+  "description": "Feature Specification: 005-content-additions-hvr-polish",
   "keywords": [
-    "skill-advisor",
-    "content-additions",
-    "lane-weight-tuning",
-    "query-cookbook",
-    "validation-baselines",
-    "daemon-lease",
-    "skill-graph-drift",
-    "hvr"
+    "feature",
+    "specification",
+    "005-content-additions-hvr-polish"
   ],
-  "lastUpdated": "2026-05-16T00:00:00Z",
+  "lastUpdated": "2026-05-23T15:25:00.759Z",
   "specId": "005",
-  "folderSlug": "content-additions-and-hvr",
+  "folderSlug": "content-additions-hvr-polish",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The live context-server RSS dropped sharply after the embedder cleanup packets, but `memory_health` still cannot attribute RSS to V8 heap, external memory, ArrayBuffers, or retained caches. Without byte-aware telemetry, future memory packets can mistake SQLite/native/external residency for JavaScript heap retention.",
     "created_at": "2026-05-18T21:07:21.497Z",
-    "last_save_at": "2026-05-23T11:55:15.434Z",
+    "last_save_at": "2026-05-24T05:40:26.019Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

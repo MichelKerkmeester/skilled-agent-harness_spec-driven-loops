@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/050-agent-debug-integration",
+  "specFolder": "skilled-agent-orchestration/z_archive/050-agent-debug-integration",
   "description": "Feature Specification: Debug Agent Integration — Truth-Up & Discoverability",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "truth-up",
     "discoverability"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.902Z",
+  "lastUpdated": "2026-05-23T15:24:59.338Z",
   "specId": "050",
   "folderSlug": "agent-debug-integration",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

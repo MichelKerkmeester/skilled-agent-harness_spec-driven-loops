@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The real-world usefulness research found two end-user-facing P0 code graph bugs. A full scan that returns zero nodes can prune and promote over a populated graph, and parser runtime errors can overwrite a file's last successful structural graph with empty error state.",
     "created_at": "2026-05-06T06:02:52Z",
-    "last_save_at": "2026-05-23T11:55:15.066Z",
+    "last_save_at": "2026-05-24T05:40:25.816Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

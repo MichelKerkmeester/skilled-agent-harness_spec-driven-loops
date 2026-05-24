@@ -70,12 +70,12 @@ The next pass is the actual trust boundary check: I’m reading the six workflow
   │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L1:400 (312 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L1:400 (244 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L1:400 (204 lines read)
 
 ● Search (grep)
@@ -125,7 +125,7 @@ I found one likely trust-boundary weakness unrelated to the specific lane-fix wo
   │ "spec_folder_is_within|target_path_must_be_agent|spec_folder_required|mkdir -p
   │ \{spec_folder\}|--output=\{spec_folder\}|--journal
   │ \{spec_folder\}|\{target_path\}|\{target_profile\}" in **/*.yaml
-  │ (.opencode/commands/improve/assets)
+  │ (.opencode/commands/deep/assets)
   └ 35 lines found
 
 ● Search (grep)
@@ -185,12 +185,12 @@ I’ve got one concrete candidate finding. I’m doing a quick independent cross
 
 I’ve converged on two actual security findings. I’m pulling the exact line ranges I need for a clean findings-first report, and the rest of the targeted fixes look intact.
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L52:140 (89 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L52:150 (99 lines read)
 
 ● Read scan-integration.cjs
@@ -217,22 +217,22 @@ I’ve converged on two actual security findings. I’m pulling the exact line r
   │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L163:166 (4 lines read)
 
-**F-036-001**  
-**Severity:** P1  
-**Dimension:** security  
-**File:** `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:55-59,124-147`; `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:56-60,118-134`  
-**Title:** Session-boundary gate does not protect shell-executed path inputs  
-**Description:** The new improve-agent session-boundary gate only checks lineage semantics. It does not constrain `spec_folder` to an approved root or neutralize shell metacharacters before the workflow interpolates `spec_folder` and `target_path` into shell command strings. That leaves the init path vulnerable to command injection and out-of-scope filesystem writes if a crafted path reaches the workflow.  
-**Evidence:** Both YAMLs validate only presence plus `target_path_must_be_agent` and then immediately execute unquoted commands such as `mkdir -p {spec_folder}/...`, `node ... --output={spec_folder}/...`, and `node ... --agent={target_path}`. The downstream scripts also accept those argv values verbatim and write to resolved output paths without a containment check (`.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs:186-189,234-236`; `.opencode/skills/sk-improve-agent/scripts/generate-profile.cjs:244-257`).  
+**F-036-001**
+**Severity:** P1
+**Dimension:** security
+**File:** `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:55-59,124-147`; `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:56-60,118-134`
+**Title:** Session-boundary gate does not protect shell-executed path inputs
+**Description:** The new improve-agent session-boundary gate only checks lineage semantics. It does not constrain `spec_folder` to an approved root or neutralize shell metacharacters before the workflow interpolates `spec_folder` and `target_path` into shell command strings. That leaves the init path vulnerable to command injection and out-of-scope filesystem writes if a crafted path reaches the workflow.
+**Evidence:** Both YAMLs validate only presence plus `target_path_must_be_agent` and then immediately execute unquoted commands such as `mkdir -p {spec_folder}/...`, `node ... --output={spec_folder}/...`, and `node ... --agent={target_path}`. The downstream scripts also accept those argv values verbatim and write to resolved output paths without a containment check (`.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs:186-189,234-236`; `.opencode/skills/sk-improve-agent/scripts/generate-profile.cjs:244-257`).
 **Recommendation:** Add a preflight contract equivalent to `spec_folder_is_within` plus strict slug validation, reject shell metacharacters, and stop interpolating user-controlled values into shell strings. Pass paths as structured argv/env values and remove inline shell/`node -e` dependence where possible.
 
-**F-036-002**  
-**Severity:** P2  
-**Dimension:** security  
-**File:** `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs:129-179`  
-**Title:** Integration scanner builds regexes from unescaped agent names  
-**Description:** `scan-integration.cjs` constructs multiple `RegExp` objects directly from `agentName`. A crafted agent filename containing regex metacharacters can change match semantics or throw at runtime, causing the improvement workflow to mis-scan or fail before scoring/promotion.  
-**Evidence:** `scanCommands`, `scanYamlWorkflows`, `scanSkills`, `scanGlobalDocs`, and `scanSkillAdvisor` all call `new RegExp(...)` with raw `agentName` (`:130`, `:135`, `:152`, `:166`, `:179`). The workflow derives `agent_name` from the basename of `target_path` without any metacharacter restriction (`improve_improve-agent_confirm.yaml:49-59`, `improve_improve-agent_auto.yaml:47-60`).  
+**F-036-002**
+**Severity:** P2
+**Dimension:** security
+**File:** `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs:129-179`
+**Title:** Integration scanner builds regexes from unescaped agent names
+**Description:** `scan-integration.cjs` constructs multiple `RegExp` objects directly from `agentName`. A crafted agent filename containing regex metacharacters can change match semantics or throw at runtime, causing the improvement workflow to mis-scan or fail before scoring/promotion.
+**Evidence:** `scanCommands`, `scanYamlWorkflows`, `scanSkills`, `scanGlobalDocs`, and `scanSkillAdvisor` all call `new RegExp(...)` with raw `agentName` (`:130`, `:135`, `:152`, `:166`, `:179`). The workflow derives `agent_name` from the basename of `target_path` without any metacharacter restriction (`deep_start-agent-improvement-loop_confirm.yaml:49-59`, `deep_start-agent-improvement-loop_auto.yaml:47-60`).
 **Recommendation:** Escape regex metacharacters before constructing patterns, or replace regex matching with literal substring/path comparisons.
 
 **ITERATION SUMMARY:** 2 findings total: **0 P0, 1 P1, 1 P2**. The named round-3 YAML fixes themselves look correct: deep-review now normalizes `reviewDimensions` once and preserves `graphBlockerDetail` in `blocked_stop`; deep-research no longer routes completed sessions directly to synthesis and now halts instead.
@@ -241,9 +241,9 @@ I’ve converged on two actual security findings. I’m pulling the exact line r
 
 **CONFIDENCE:** High.
 
-**NEXT PRIORITIES:**  
-1. Harden improve-agent auto+confirm with root/slug validation and argv-safe command execution.  
-2. Escape `agentName` in `scan-integration.cjs` before any regex construction.  
+**NEXT PRIORITIES:**
+1. Harden improve-agent auto+confirm with root/slug validation and argv-safe command execution.
+2. Escape `agentName` in `scan-integration.cjs` before any regex construction.
 3. Re-run a narrow security pass on the improve-agent workflow after those two fixes land.
 
 

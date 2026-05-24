@@ -32,7 +32,7 @@ This reference documents the runtime hook entrypoints under `.opencode/skills/sy
 | Source | Path | Purpose |
 |---|---|---|
 | Dead-code audit | Internal design notes | Canonical evidence: 15 hook entrypoints classified `dynamic-only-reference`, all KEEP |
-| Skill Advisor hook reference | `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Per-runtime advisor hook contract, smoke tests, control flags |
+| Skill Advisor hook reference | `.opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md` | Per-runtime advisor hook contract, smoke tests, control flags |
 | Hook system reference | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Runtime-specific hook system deep-dive |
 | Copilot hook README | `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` | Canonical contract for managed custom-instructions writer |
 
@@ -106,7 +106,7 @@ The nested shape (`hooks.<Event>[].hooks[]`) is required. A flat shape with top-
 | `session-start.ts` | `SessionStart` | `.codex/settings.json:8` |
 | `user-prompt-submit.ts` | `UserPromptSubmit` | `.codex/settings.json:19` |
 | `pre-tool-use.ts` | `PreToolUse` | `.codex/settings.json:30` |
-| `prompt-wrapper.ts` | (fallback) | Documented in `references/hooks/skill-advisor-hook.md:60`; runs only when Codex hook policy reports hooks unavailable |
+| `prompt-wrapper.ts` | (fallback) | Documented in `references/hooks/skill_advisor_hook.md:60`; runs only when Codex hook policy reports hooks unavailable |
 
 `setup.ts` is a configuration helper for the Codex hook system (not a runtime entrypoint).
 
@@ -207,7 +207,7 @@ See `mcp_server/hooks/copilot/README.md` for the full contract; do NOT duplicate
 ```
 □ Read the source file before editing
 □ Verify the dist/ path in settings.json still resolves after `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`
-□ Run the per-runtime smoke test from `references/hooks/skill-advisor-hook.md §4`
+□ Run the per-runtime smoke test from `references/hooks/skill_advisor_hook.md §4`
 □ Confirm fail-open behavior: errors must return `{}` or empty `additionalContext`, never throw to the runtime
 ```
 
@@ -252,8 +252,8 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 
 ### Runtime-Specific Deep-Dives (do not duplicate)
 
-- Skill Advisor hook contract + smoke tests: `system-spec-kit/references/hooks/skill-advisor-hook.md`
-- Skill Advisor hook validation procedures: `system-spec-kit/references/hooks/skill-advisor-hook-validation.md`
+- Skill Advisor hook contract + smoke tests: `system-spec-kit/references/hooks/skill_advisor_hook.md`
+- Skill Advisor hook validation procedures: `system-spec-kit/references/hooks/skill_advisor_hook_validation.md`
 - Runtime hook system internals: `system-spec-kit/references/config/hook_system.md`
 
 ### Settings Files (wiring source-of-truth)

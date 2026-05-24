@@ -35,7 +35,7 @@
     "stress-test",
     "remediation"
   ],
-  "lastUpdated": "2026-05-21T10:22:37.820Z",
+  "lastUpdated": "2026-05-23T15:25:00.028Z",
   "specId": "003",
   "folderSlug": "fix-mcp-runtime-stress-findings",
   "parentChain": [

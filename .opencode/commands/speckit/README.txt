@@ -143,13 +143,13 @@ The `complete` command combines research, plan, and implement into a single invo
 
 | Command | Delegates To |
 |---------|-------------|
-| plan | Main agent owns planning and may reuse the shared intake contract (`../../skill/system-spec-kit/references/intake-contract.md`); /deep:start-research-loop optional |
+| plan | Main agent owns planning and may reuse the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake_contract.md`); /deep:start-research-loop optional |
 | implement | @general (code changes), distributed governance for packet docs |
 | deep-research | /deep:start-research-loop (iterative investigation) |
 | deep-review | /deep:start-review-loop (iterative code audit) |
 | resume | Loads memory context, continues from last state |
 | phase | Main agent creates packet folders, @general runs scripts as needed |
-| complete | /deep:start-research-loop and @general as needed, with the shared intake contract (`../../skill/system-spec-kit/references/intake-contract.md`) when packet state requires repair |
+| complete | /deep:start-research-loop and @general as needed, with the shared intake contract (`../../skills/system-spec-kit/references/workflows/intake_contract.md`) when packet state requires repair |
 
 <!-- /ANCHOR:workflow-progression -->
 

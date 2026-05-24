@@ -118,7 +118,7 @@ The repo ships these agents under `.opencode/agents/`. The cli-opencode skill ca
 | `deep-research` | Iterative research loop executor | Single research-cycle dispatches. State externalized to JSONL + strategy.md. Dispatched only by `/deep:start-research-loop` command |
 | `deep-review` | Iterative code review loop executor | Single review-cycle dispatches. P0/P1/P2 findings, severity-weighted convergence. Dispatched only by `/deep:start-review-loop` command |
 | `ai-council` | Multi-strategy planning architect | Complex planning that benefits from comparing multiple solution strategies. PLANNING-ONLY |
-| `deep-agent-improvement` | Proposal-only mutator for bounded agent improvement | Agent evaluation via `/improve:agent` command loop |
+| `deep-agent-improvement` | Proposal-only mutator for bounded agent improvement | Agent evaluation via `/deep:start-agent-improvement-loop` command loop |
 
 ---
 
@@ -210,7 +210,7 @@ Pick the agent that matches the task type. Default to `general` when no speciali
 | Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:start-research-loop` (or `/deep:start-research-loop:auto`). Direct `opencode run --agent deep-research` is forbidden; the parent command owns iteration state, JSONL, and convergence. <!-- F-007-B2-02 --> |
 | Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:start-review-loop` (or `/deep:start-review-loop:auto`). Direct `opencode run --agent deep-review` is forbidden; the parent command owns iteration state and severity-weighted convergence. <!-- F-007-B2-02 --> |
 | Multi-strategy planning | `ai-council` | `opencode run --agent ai-council --variant high --format json --dir /repo "Plan the authentication redesign — compare three strategies."` |
-| Agent improvement | `deep-agent-improvement` | **Command-only.** Dispatch via `/improve:agent`. Direct `opencode run --agent deep-agent-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. <!-- F-007-B2-02 --> |
+| Agent improvement | `deep-agent-improvement` | **Command-only.** Dispatch via `/deep:start-agent-improvement-loop`. Direct `opencode run --agent deep-agent-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. <!-- F-007-B2-02 --> |
 | Default / unspecified | `general` | `opencode run --agent general --variant high --format json --dir /repo "<prompt>"` |
 
 ## 5. THE `As @<agent>` PROMPT-TIME PATTERN

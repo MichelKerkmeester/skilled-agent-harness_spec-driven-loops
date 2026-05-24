@@ -8,7 +8,7 @@ Apply the testing methodology from packet 059 (`@code` stress-test campaign docu
 
 - `.opencode/skills/sk-improve-agent/SKILL.md` (463 lines)
 - `.opencode/agents/improve-agent.md` (246 lines)
-- `.opencode/commands/improve/agent.md` (456 lines)
+- `.opencode/commands/deep/start-agent-improvement-loop.md` (456 lines)
 
 Plus the secondary surface: `references/` (12 docs), `scripts/` (14 .cjs), `assets/` (6 items) under sk-improve-agent.
 
@@ -126,7 +126,7 @@ convergence_signal: [yes/no — yes if you found nothing genuinely new beyond pr
 
 ## CONSTRAINTS
 
-- Read-only on the triad (no edits to SKILL.md, improve-agent.md, /improve:agent.md, scripts, references, or assets)
+- Read-only on the triad (no edits to SKILL.md, improve-agent.md, /deep:start-agent-improvement-loop.md, scripts, references, or assets)
 - Write only to `research/iterations/iteration-002.md`
 - Stay within ~10 minutes of compute and ~12 tool calls per the deep-research budget
 - Cite file:line ranges, don't assert without evidence

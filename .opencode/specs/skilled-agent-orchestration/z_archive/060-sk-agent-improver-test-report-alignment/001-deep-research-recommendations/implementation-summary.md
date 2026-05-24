@@ -19,7 +19,7 @@ _memory:
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/research/research.md
       - .opencode/skills/sk-improve-agent/SKILL.md
       - .opencode/agents/improve-agent.md
-      - .opencode/commands/improve/agent.md
+      - .opencode/commands/deep/start-agent-improvement-loop.md
     completion_pct: 100
     open_questions: []
     answered_questions:
@@ -89,7 +89,7 @@ From research.md §5:
 
 1. **`.opencode/agents/improve-agent.md`** — add §6.5 CRITIC PASS bullets (P0)
 2. **`.opencode/skills/sk-improve-agent/SKILL.md`** — clarify "skill load is not protocol execution" (P0)
-3. **`.opencode/commands/improve/assets/improve_improve-agent_auto.yaml`** — emit `legal_stop_evaluated` with 5-gate bundle (P0)
+3. **`.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`** — emit `legal_stop_evaluated` with 5-gate bundle (P0)
 4. **`.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs`** — actually use `--baseline` and emit `delta` (P0)
 5. **`.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs`** — fix `.gemini/agents` mirror path constant (P1)
 
@@ -120,7 +120,7 @@ A small controlled "agent-under-improvement" with intentional flaws. Specific ca
 | Convergence iteration | null (every iteration self-reported `convergence_signal: no` — meaning each added genuine new value through iteration 10) |
 | Wall-time | ~26 min total (3 min × 10 iterations + 3.5 min synthesis) |
 | RQs answered | 7 / 7 |
-| Diff sketches produced | 5+ across SKILL.md, improve-agent.md, /improve:agent.md, score-candidate.cjs, scan-integration.cjs |
+| Diff sketches produced | 5+ across SKILL.md, improve-agent.md, /deep:start-agent-improvement-loop.md, score-candidate.cjs, scan-integration.cjs |
 | Scenario sketches produced | 11 unique CP-XXX IDs |
 | Research lines on disk | ~1614 (iterations) + 854 (synthesis) = 2468 |
 | Executor | cli-copilot --model=gpt-5.5 (high reasoning via ~/.copilot/settings.json:effortLevel) |

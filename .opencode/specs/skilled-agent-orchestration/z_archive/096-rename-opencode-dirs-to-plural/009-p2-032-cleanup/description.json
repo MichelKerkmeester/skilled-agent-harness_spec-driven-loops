@@ -23,7 +23,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup",
+  "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/009-p2-032-cleanup",
   "description": "Feature Specification: P2-032 strategy-doc cleanup",
   "keywords": [
     "feature",
@@ -32,11 +32,12 @@
     "strategy-doc",
     "cleanup"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.503Z",
+  "lastUpdated": "2026-05-23T15:24:59.571Z",
   "specId": "009",
   "folderSlug": "p2-032-cleanup",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "096-rename-opencode-dirs-to-plural"
   ],
   "memorySequence": 0,

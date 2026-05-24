@@ -117,11 +117,11 @@ exec
 ./.opencode/skills/cli-claude-code/references/claude_tools.md
 ./.opencode/skills/cli-claude-code/references/agent_delegation.md
 ./.opencode/skills/cli-claude-code/references/cli_reference.md
-./.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
-./.opencode/commands/improve/assets/improve_improve-agent_auto.yaml
-./.opencode/commands/improve/README.txt
-./.opencode/commands/improve/prompt.md
-./.opencode/commands/improve/agent.md
+./.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
+./.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
+./.opencode/commands/README.txt
+./.opencode/commands/prompt.md
+./.opencode/commands/deep/start-agent-improvement-loop.md
 ./.opencode/specs/descriptions.json
 ./.opencode/skills/mcp-chrome-devtools/scripts/install.sh
 ./.opencode/skills/cli-gemini/manual_testing_playbook/manual_testing_playbook.md

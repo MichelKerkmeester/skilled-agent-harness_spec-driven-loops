@@ -58,7 +58,7 @@ In scope: route metadata, command/skill trigger phrases, and regression coverage
 |---|---|
 | REQ-001 | CP-105 surfaces `create:testing-playbook` in top-3 with confidence >= 0.6 |
 | REQ-002 | Generic documentation prompts still route to `sk-doc` |
-| REQ-003 | `improve:agent` and deep-review routes do not overclaim CP-105 |
+| REQ-003 | `deep:start-agent-improvement-loop` and deep-review routes do not overclaim CP-105 |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

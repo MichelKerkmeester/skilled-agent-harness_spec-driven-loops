@@ -190,8 +190,8 @@ describe('mk-skill-advisor launcher lease', () => {
     mkdirSync(dirname(launcherPath), { recursive: true });
     copyFileSync(join(repoRoot, launcherRelativePath), launcherPath);
 
-    const advisorServer = join(root, '.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js');
-    const leaseModule = join(root, '.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/lib/daemon/lease.js');
+    const advisorServer = join(root, '.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/advisor-server.js');
+    const leaseModule = join(root, '.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/lib/daemon/lease.js');
     mkdirSync(dirname(advisorServer), { recursive: true });
     mkdirSync(dirname(leaseModule), { recursive: true });
     writeFileSync(advisorServer, advisorServerSource({ ignoreSigterm: options.ignoreChildSigterm }), 'utf8');

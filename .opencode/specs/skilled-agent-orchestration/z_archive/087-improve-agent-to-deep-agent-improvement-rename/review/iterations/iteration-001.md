@@ -15,14 +15,14 @@
 - `specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/review/deep-review-strategy.md`
 - `specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/implementation-summary.md`
 - `specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename/resource-map.md`
-- `.opencode/commands/improve/agent.md`
-- `.claude/commands/improve/agent.md`
-- `.gemini/commands/improve/improve-agent.toml`
-- `.opencode/commands/improve/README.txt`
-- `.claude/commands/improve/README.txt`
-- `.gemini/commands/improve/README.txt`
-- `.opencode/commands/improve/assets/`
-- `.claude/commands/improve/assets/`
+- `.opencode/commands/deep/start-agent-improvement-loop.md`
+- `.claude/commands/deep/start-agent-improvement-loop.md`
+- `.gemini/commands/deep/start-agent-improvement-loop.toml`
+- `.opencode/commands/README.txt`
+- `.claude/commands/README.txt`
+- `.gemini/commands/deep/start-agent-improvement-loop.toml`
+- `.opencode/commands/deep/assets/`
+- `.claude/commands/deep/assets/`
 - `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md`
 - `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/015-active-critic-overfit.md`
 - `.opencode/skills/sk-code-review/references/review_core.md`
@@ -35,12 +35,12 @@
 
 ### P1 Findings
 
-- **F001**: Gemini improve command still points at obsolete YAML asset names -- `.gemini/commands/improve/improve-agent.toml:60` -- The active Gemini command says auto mode loads `assets/improve_improve-agent_auto.yaml` and confirm mode loads `assets/improve_improve-agent_confirm.yaml`, while the active renamed assets exist only as `improve_deep-agent-improvement_{auto,confirm}.yaml` under the command asset directories and the implementation summary claims the YAML filenames were renamed. This leaves the Gemini command instructions referencing stale, absent workflow filenames.
+- **F001**: Gemini improve command still points at obsolete YAML asset names -- `.gemini/commands/deep/start-agent-improvement-loop.toml:60` -- The active Gemini command says auto mode loads `assets/deep_start-agent-improvement-loop_auto.yaml` and confirm mode loads `assets/deep_start-agent-improvement-loop_confirm.yaml`, while the active renamed assets exist only as `deep_start-agent-improvement-loop_{auto,confirm}.yaml` under the command asset directories and the implementation summary claims the YAML filenames were renamed. This leaves the Gemini command instructions referencing stale, absent workflow filenames.
    - Finding class: cross-consumer
-   - Scope proof: `.opencode/commands/improve/agent.md:269` and `.claude/commands/improve/agent.md:269` both reference `assets/improve_deep-agent-improvement_auto.yaml`, but `.gemini/commands/improve/improve-agent.toml:60` still references `assets/improve_improve-agent_auto.yaml`; `.gemini/commands/improve/README.txt:158` repeats the stale auto filename.
+   - Scope proof: `.opencode/commands/deep/start-agent-improvement-loop.md:269` and `.claude/commands/deep/start-agent-improvement-loop.md:269` both reference `assets/deep_start-agent-improvement-loop_auto.yaml`, but `.gemini/commands/deep/start-agent-improvement-loop.toml:60` still references `assets/deep_start-agent-improvement-loop_auto.yaml`; `.gemini/commands/deep/start-agent-improvement-loop.toml:158` repeats the stale auto filename.
    - Affected surface hints: [`Gemini command mirror`, `improve command workflow asset routing`, `runtime command docs`]
-   - Recommendation: Update the Gemini command TOML and README to the renamed `improve_deep-agent-improvement_{auto,confirm}.yaml` asset names, or explicitly document why Gemini does not load YAML assets if that is the intended runtime convention.
-   - Claim adjudication: `{"type":"gate-relevant-p1","claim":"Gemini active command docs reference obsolete improve_improve-agent YAML filenames after the rename.","evidenceRefs":[".gemini/commands/improve/improve-agent.toml:60",".gemini/commands/improve/improve-agent.toml:61",".gemini/commands/improve/README.txt:158",".gemini/commands/improve/README.txt:159",".opencode/commands/improve/agent.md:269",".claude/commands/improve/agent.md:269"],"counterevidenceSought":"Checked OpenCode and Claude command docs/assets for the renamed filename pattern; both use improve_deep-agent-improvement_{auto,confirm}.yaml. Checked the Gemini improve command directory and found only improve-agent.toml plus README.txt, not replacement old-name assets.","alternativeExplanation":"Gemini may intentionally be a TOML-only mirror, but its active prompt still instructs loading assets/old-name YAML files, so the stale reference remains a correctness issue unless the command is rewritten to avoid YAML loading.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade to P2 only if Gemini runtime is formally documented as never loading these YAML asset references and the TOML text is non-executable prose."}`
+   - Recommendation: Update the Gemini command TOML and README to the renamed `deep_start-agent-improvement-loop_{auto,confirm}.yaml` asset names, or explicitly document why Gemini does not load YAML assets if that is the intended runtime convention.
+   - Claim adjudication: `{"type":"gate-relevant-p1","claim":"Gemini active command docs reference obsolete deep_start-agent-improvement-loop YAML filenames after the rename.","evidenceRefs":[".gemini/commands/deep/start-agent-improvement-loop.toml:60",".gemini/commands/deep/start-agent-improvement-loop.toml:61",".gemini/commands/deep/start-agent-improvement-loop.toml:158",".gemini/commands/deep/start-agent-improvement-loop.toml:159",".opencode/commands/deep/start-agent-improvement-loop.md:269",".claude/commands/deep/start-agent-improvement-loop.md:269"],"counterevidenceSought":"Checked OpenCode and Claude command docs/assets for the renamed filename pattern; both use deep_start-agent-improvement-loop_{auto,confirm}.yaml. Checked the Gemini improve command directory and found only improve-agent.toml plus README.txt, not replacement old-name assets.","alternativeExplanation":"Gemini may intentionally be a TOML-only mirror, but its active prompt still instructs loading assets/old-name YAML files, so the stale reference remains a correctness issue unless the command is rewritten to avoid YAML loading.","finalSeverity":"P1","confidence":"high","downgradeTrigger":"Downgrade to P2 only if Gemini runtime is formally documented as never loading these YAML asset references and the TOML text is non-executable prose."}`
 
 - **F002**: Active manual-testing playbook commands still load the removed agent path -- `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77` -- The CP-041 playbook builds its `@deep-agent-improvement` prompt by running `cat .opencode/agents/improve-agent.md`, but the active agent file was renamed to `.opencode/agents/deep-agent-improvement.md` and old active paths are absent. The same stale path appears in CP-042, so these active verification commands fail before exercising the renamed agent.
    - Finding class: cross-consumer
@@ -69,26 +69,26 @@
 
 ## Integration Evidence
 
-- `.opencode/commands/improve/agent.md:269` and `.claude/commands/improve/agent.md:269` point to `assets/improve_deep-agent-improvement_auto.yaml`; `.gemini/commands/improve/improve-agent.toml:60` still points to `assets/improve_improve-agent_auto.yaml`.
-- `.opencode/commands/improve/assets/` and `.claude/commands/improve/assets/` contain only the renamed `improve_deep-agent-improvement_{auto,confirm}.yaml` files.
+- `.opencode/commands/deep/start-agent-improvement-loop.md:269` and `.claude/commands/deep/start-agent-improvement-loop.md:269` point to `assets/deep_start-agent-improvement-loop_auto.yaml`; `.gemini/commands/deep/start-agent-improvement-loop.toml:60` still points to `assets/deep_start-agent-improvement-loop_auto.yaml`.
+- `.opencode/commands/deep/assets/` and `.claude/commands/deep/assets/` contain only the renamed `deep_start-agent-improvement-loop_{auto,confirm}.yaml` files.
 - Direct runtime agent inventory found the renamed 4-agent set: `.opencode/agents/deep-agent-improvement.md`, `.claude/agents/deep-agent-improvement.md`, `.gemini/agents/deep-agent-improvement.md`, `.codex/agents/deep-agent-improvement.toml`.
 
 ## Edge Cases
 
 - The dispatch requested a delta file in addition to the agent contract's canonical writable set. Because the dispatch explicitly resolved it under the review packet root, this iteration writes `review/deltas/iter-001.jsonl` as packet-local loop state.
 - Historical `z_archive` and `.opencode/specs/...` references were treated as out of scope unless an active file used them as current evidence. Active skill playbook files are not historical z_archive/spec records and were therefore in scope for correctness evidence.
-- `.gemini/commands/improve/` has no local `assets/` directory in the checked directory listing, so the stale TOML references may be command-text drift rather than a missing-file-only issue; either way, current active instructions point at obsolete YAML names.
+- `.gemini/commands/deep/` has no local `assets/` directory in the checked directory listing, so the stale TOML references may be command-text drift rather than a missing-file-only issue; either way, current active instructions point at obsolete YAML names.
 
 ## Confirmed-Clean Surfaces
 
 - 4 renamed agent files exist in the checked runtime agent locations, and old active `improve-agent` agent paths were absent from the runtime-agent glob.
 - OpenCode and Claude improve command markdown reference the renamed YAML asset filenames.
-- OpenCode and Claude improve asset directories contain the renamed `improve_deep-agent-improvement_auto.yaml` and `improve_deep-agent-improvement_confirm.yaml` files.
+- OpenCode and Claude improve asset directories contain the renamed `deep_start-agent-improvement-loop_auto.yaml` and `deep_start-agent-improvement-loop_confirm.yaml` files.
 
 ## Ruled Out
 
 - Did not treat historical `z_archive` references as active defects.
-- Did not flag the unchanged slash command `/improve:agent` or unchanged Gemini command filename `.gemini/commands/improve/improve-agent.toml`; the packet explicitly documents those as intentional non-renames.
+- Did not flag the unchanged slash command `/deep:start-agent-improvement-loop` or unchanged Gemini command filename `.gemini/commands/deep/start-agent-improvement-loop.toml`; the packet explicitly documents those as intentional non-renames.
 - Did not review unrelated deep-agent-improvement behavior beyond rename/path correctness.
 
 ## Next Focus

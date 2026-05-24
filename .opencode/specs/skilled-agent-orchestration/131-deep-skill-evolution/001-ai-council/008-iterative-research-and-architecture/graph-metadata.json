@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 001 is complete. It researched the current `deep-ai-council` single-round surface, compared it with deep-review/deep-research runtime patterns, selected a hybrid runtime boundary, and produced ADR-001 through ADR-005 for phases 002-006.",
     "created_at": "2026-05-23T09:30:00Z",
-    "last_save_at": "2026-05-23T11:55:14.240Z",
+    "last_save_at": "2026-05-24T05:40:25.241Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

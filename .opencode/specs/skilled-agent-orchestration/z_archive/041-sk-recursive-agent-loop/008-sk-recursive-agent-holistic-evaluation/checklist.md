@@ -78,7 +78,7 @@ _memory:
 ### Rename
 - [x] Skill renamed: sk-recursive-agent -> sk-improve-agent (0 old refs)
 - [x] Agent renamed: recursive-agent -> agent-improver (all 5 runtimes)
-- [x] Command renamed: /speckit:recursive-agent -> /improve:agent
+- [x] Command renamed: /speckit:recursive-agent -> /deep:start-agent-improvement-loop
 - [x] YAMLs renamed: spec_kit_recursive-agent -> improve_agent-improver
 - [x] Fresh sub-agent audit: 25/25 checks pass, 0 failures
 

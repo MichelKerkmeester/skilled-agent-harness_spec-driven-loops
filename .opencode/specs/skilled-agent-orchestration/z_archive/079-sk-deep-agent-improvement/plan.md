@@ -45,7 +45,7 @@ _memory:
 | **Language/Stack** | TypeScript (mcp_server), Python 3.x (skill_advisor.py), Node.js CommonJS (skill scripts), Markdown + YAML (docs/configs), Shell (validators) |
 | **Framework** | OpenCode skill+command runtime; Vitest for tests; SQLite for advisor cache |
 | **Storage** | Filesystem-only (no DB schema changes). SQLite advisor cache is rebuilt from JSON, not migrated |
-| **Testing** | Vitest in `mcp_server/`; smoke dispatch via `/improve:agent` on sandbox agent |
+| **Testing** | Vitest in `mcp_server/`; smoke dispatch via `/deep:start-agent-improvement-loop` on sandbox agent |
 | **Implementation executor** | `cli-copilot` with `gpt-5.5` reasoning level **high** |
 | **Concurrency** | Max **3** parallel cli-copilot dispatches per Copilot API throttle (per memory) |
 
@@ -74,7 +74,7 @@ Symbolic rename of one skill folder propagated through ~96 active-code files (~7
 - [ ] `validate.sh ... --strict` exits 0
 - [ ] Residual `grep -rn 'sk-improve-agent'` scoped to active code returns 0 hits (excluding historical record + `specs/`)
 - [ ] Vitest pass in `.opencode/skills/system-spec-kit/mcp_server/`
-- [ ] Smoke `/improve:agent` dispatch on sandbox agent completes one iteration
+- [ ] Smoke `/deep:start-agent-improvement-loop` dispatch on sandbox agent completes one iteration
 - [ ] `implementation-summary.md` authored with verification evidence
 - [ ] `/memory:save` executed; continuity canonical at packet root
 - [ ] Branch hygiene: working tree on `main`, no surviving auto-branch
@@ -93,7 +93,7 @@ Symbolic rename of one skill folder propagated through ~96 active-code files (~7
 
 - **Skill folder** (`.opencode/skills/sk-improve-agent/` → `.opencode/skills/deep-agent-improvement/`): the renamed directory containing SKILL.md, README.md, graph-metadata.json, scripts/, assets/, references/, changelog/, feature_catalog/, manual_testing_playbook/, test-fixtures/.
 - **Skill advisor** (`system-spec-kit/mcp_server/skill_advisor/`): the load-bearing scoring system. `skill_advisor.py` carries 156 phrase entries; `skill-graph.json` is the registry; `fusion.ts` carries a penalty list; SQLite cache is rebuilt from JSON via `advisor_rebuild`.
-- **Command surface** (`commands/improve/`): `/improve:agent` definition + YAML asset templates that reference the skill path. Mirrored across 4 runtime directories (`.opencode/`, `.claude/`, `.gemini/`, `.codex/`).
+- **Command surface** (`commands/deep/`): `/deep:start-agent-improvement-loop` definition + YAML asset templates that reference the skill path. Mirrored across 4 runtime directories (`.opencode/`, `.claude/`, `.gemini/`, `.codex/`).
 - **Agent surface** (`agents/improve-agent.{md,toml}`): the `@improve-agent` definition referencing the skill in its skill-matrix. Mirrored across 4 runtimes. Agent name itself is **not** renamed.
 - **Symlink** (`.opencode/changelog/sk-improve-agent`): convenience pointer to the skill's changelog directory; renamed and retargeted.
 
@@ -129,7 +129,7 @@ T-027..T-030: AGENT DEFINITIONS (4 runtimes × improve-agent.{md,toml})
 T-031..T-034: ROOT DOCS + INSTALL GUIDES
    │
    ▼
-T-035..T-041: VERIFICATION (validate.sh, residual grep, advisor recommend, smoke /improve:agent, vitest, summary, /memory:save)
+T-035..T-041: VERIFICATION (validate.sh, residual grep, advisor recommend, smoke /deep:start-agent-improvement-loop, vitest, summary, /memory:save)
 ```
 <!-- /ANCHOR:architecture -->
 
@@ -138,7 +138,7 @@ T-035..T-041: VERIFICATION (validate.sh, residual grep, advisor recommend, smoke
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-This is a symbolic refactor, not a fix; the addendum is included because the rename touches advisor scoring tables, schema-shaped JSON metadata, and public response paths in the `/improve:agent` workflow.
+This is a symbolic refactor, not a fix; the addendum is included because the rename touches advisor scoring tables, schema-shaped JSON metadata, and public response paths in the `/deep:start-agent-improvement-loop` workflow.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
@@ -149,14 +149,14 @@ This is a symbolic refactor, not a fix; the addendum is included because the ren
 | Helper: fusion.ts:270 | Penalty list (penalizes deep-review and sk-improve-agent in fusion ranker) | Update string in penalty list | Type check + vitest |
 | Helper: native-scorer.vitest.ts | Test fixture asserting skill IDs | Update fixture skill ID | `npm test` |
 | Helper: remediation-008-docs.vitest.ts | Test asserting feature_catalog path string | Update path | `npm test` |
-| Consumer: improve_improve-agent_*.yaml | Command workflow templates calling `node .opencode/skills/sk-improve-agent/scripts/*.cjs` | Update `skill:` field + 32-33 path templates per file × 2 files × 4 runtimes | Smoke dispatch /improve:agent |
+| Consumer: deep_start-agent-improvement-loop_*.yaml | Command workflow templates calling `node .opencode/skills/sk-improve-agent/scripts/*.cjs` | Update `skill:` field + 32-33 path templates per file × 2 files × 4 runtimes | Smoke dispatch /deep:start-agent-improvement-loop |
 | Consumer: improve-agent.{md,toml} | Agent definition skill-matrix line | Update skill name reference (1 ref per file × 4 runtimes) | grep + visual review |
 | Consumer: README.md (root), AGENTS.md, CLAUDE.md | Public skill index + agent registry | Update 4 refs | grep returns 0 in those files |
 | Consumer: install_guides/* | New-machine setup docs | Update 3 refs | grep |
 | Consumer: skill_advisor SQLite cache | Compiled scoring index | Rebuild via advisor_rebuild MCP call | `advisor_status` reports current build |
 | Not-a-consumer: agent name `@improve-agent` | Agent identifier (independent of skill folder name) | **Unchanged** (per 070 precedent) | grep `@improve-agent` returns same hits as before |
-| Not-a-consumer: command `/improve:agent` | Command identifier | **Unchanged** | grep `/improve:agent` returns same hits |
-| Not-a-consumer: YAML asset filenames | Command-scoped (named after command target) | **Unchanged** | `ls commands/improve/assets/` shows same filenames |
+| Not-a-consumer: command `/deep:start-agent-improvement-loop` | Command identifier | **Unchanged** | grep `/deep:start-agent-improvement-loop` returns same hits |
+| Not-a-consumer: YAML asset filenames | Command-scoped (named after command target) | **Unchanged** | `ls commands/deep/assets/` shows same filenames |
 | Not-a-consumer: specs/ research artifacts | Historical record | **Unchanged** | excluded from residual-grep filter |
 
 **Required inventories**:
@@ -213,13 +213,13 @@ This is a symbolic refactor, not a fix; the addendum is included because the ren
 
 ### Phase 6: Command surfaces (4 runtimes)
 
-- [ ] T-020: .opencode/commands/improve/agent.md (10+ refs)
-- [ ] T-021: .opencode/commands/improve/README.txt (2 refs)
-- [ ] T-022: .opencode/commands/improve/assets/improve_improve-agent_auto.yaml (32 refs)
-- [ ] T-023: .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml (33 refs)
-- [ ] T-024: Mirror T-020..T-023 to .claude/commands/improve/
-- [ ] T-025: Mirror to .gemini/commands/improve/ (note: uses improve-agent.toml)
-- [ ] T-026: Mirror to .codex/commands/improve/ (verify presence + shape)
+- [ ] T-020: .opencode/commands/deep/start-agent-improvement-loop.md (10+ refs)
+- [ ] T-021: .opencode/commands/README.txt (2 refs)
+- [ ] T-022: .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml (32 refs)
+- [ ] T-023: .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml (33 refs)
+- [ ] T-024: Mirror T-020..T-023 to .claude/commands/deep/
+- [ ] T-025: Mirror to .gemini/commands/deep/ (note: uses improve-agent.toml)
+- [ ] T-026: Mirror to .codex/commands/deep/ (verify presence + shape)
 
 ### Phase 7: Agent definitions (4 runtimes)
 
@@ -240,7 +240,7 @@ This is a symbolic refactor, not a fix; the addendum is included because the ren
 - [ ] T-035: `validate.sh ... --strict` → exit 0
 - [ ] T-036: Residual `grep -rn 'sk-improve-agent'` scoped to active code → 0 hits
 - [ ] T-037: `advisor_rebuild` + `advisor_recommend({prompt: "improve agent loop"})` → top hit deep-agent-improvement
-- [ ] T-038: Smoke `/improve:agent` dispatch on sandbox agent (cp-improve-target)
+- [ ] T-038: Smoke `/deep:start-agent-improvement-loop` dispatch on sandbox agent (cp-improve-target)
 - [ ] T-039: `cd .opencode/skills/system-spec-kit/mcp_server && npm test` passes
 - [ ] T-040: Author `implementation-summary.md` with verification evidence
 - [ ] T-041: `/memory:save` → continuity canonical
@@ -257,7 +257,7 @@ This is a symbolic refactor, not a fix; the addendum is included because the ren
 | Static check | residual `sk-improve-agent` references | `grep -rn` with category filters |
 | Unit (vitest) | `native-scorer.vitest.ts`, `remediation-008-docs.vitest.ts`, `improvement-journal.vitest.ts`, etc. | Vitest in mcp_server/ |
 | Integration | Skill advisor recommendation | `advisor_recommend` MCP call |
-| Smoke | `/improve:agent` dispatch end-to-end | Sandbox agent dispatch (cp-improve-target.md) |
+| Smoke | `/deep:start-agent-improvement-loop` dispatch end-to-end | Sandbox agent dispatch (cp-improve-target.md) |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -280,14 +280,14 @@ This is a symbolic refactor, not a fix; the addendum is included because the ren
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: Smoke `/improve:agent` dispatch fails after rename, or `npm test` regresses, or advisor_recommend returns wrong skill, or any P0 acceptance criterion cannot be met.
+- **Trigger**: Smoke `/deep:start-agent-improvement-loop` dispatch fails after rename, or `npm test` regresses, or advisor_recommend returns wrong skill, or any P0 acceptance criterion cannot be met.
 - **Procedure**:
   1. `git log --oneline | head -20` — identify rename commit(s) authored by cli-copilot dispatch
   2. `git revert <commit-hash>` for each rename commit in reverse order (preserves history; preferred over `reset --hard` per branch hygiene)
   3. `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` — regenerate compiled dist/ from now-reverted sources
   4. `mcp__spec_kit_memory__advisor_rebuild` — rebuild SQLite cache against now-reverted JSON
   5. Verify: `grep -rn 'deep-agent-improvement' .opencode/ .claude/ .gemini/ .codex/` returns 0 hits in active code
-  6. Verify: `/improve:agent` smoke dispatch on the same sandbox agent completes successfully
+  6. Verify: `/deep:start-agent-improvement-loop` smoke dispatch on the same sandbox agent completes successfully
   7. Document rollback in `implementation-summary.md` (rollback section + reason)
 <!-- /ANCHOR:rollback -->
 
@@ -373,7 +373,7 @@ Concurrency note: Copilot 3-cap means Phase 6 (command surfaces, 4 runtimes) run
 2. `git revert <commits>` in reverse chronological order (one revert commit per original)
 3. `cd .opencode/skills/system-spec-kit/mcp_server && npm run build` — regenerate dist/
 4. Invoke `advisor_rebuild` to refresh SQLite cache from now-reverted JSON
-5. Smoke test `/improve:agent` on sandbox agent — must succeed against the restored old name
+5. Smoke test `/deep:start-agent-improvement-loop` on sandbox agent — must succeed against the restored old name
 6. `bash validate.sh specs/skilled-agent-orchestration/079-sk-deep-agent-improvement --strict` — should still pass on rolled-back state (spec docs remain authored, just not implemented)
 7. Annotate `implementation-summary.md` with `## Rollback` section, reason, and timestamp
 

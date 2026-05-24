@@ -9,9 +9,9 @@
     "greenfield",
     "redesign"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.785Z",
+  "lastUpdated": "2026-05-23T15:25:00.803Z",
   "specId": "002",
-  "folderSlug": "template-greenfield-redesign",
+  "folderSlug": "manifest-driven-template-design",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

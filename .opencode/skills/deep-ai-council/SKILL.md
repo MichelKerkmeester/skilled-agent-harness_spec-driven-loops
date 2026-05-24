@@ -2,7 +2,7 @@
 name: deep-ai-council
 description: "AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 2.1.1.0
+version: 2.2.0.0
 ---
 
 <!-- Keywords: deep-ai-council, ai council, council deliberation, multi-seat planning, ai-council artifacts, council convergence, planning council, council artifact persistence -->
@@ -111,23 +111,25 @@ TASK CONTEXT
 
 ### Resource Domains
 
-The router discovers markdown resources recursively from `references/` and `manual_testing_playbook/`, then applies intent scoring from `INTENT_MODEL`.
+The router discovers markdown resources recursively from `references/`, `assets/`, and `manual_testing_playbook/`, then applies intent scoring from `INTENT_MODEL`.
 
 ```text
 references/*.md
+assets/*.md
 manual_testing_playbook/**/*.md
 ```
 
-- `references/` contains council state, folder layout, seat diversity, output schema, convergence signals, and caller wiring.
+- `references/` contains the quick reference, loop protocol, council state, folder layout, seat diversity, output schema, convergence signals, and caller wiring.
+- `assets/` contains council config, round strategy, dashboard, prompt-pack, and runtime capability templates. Markdown assets are routable; JSON/TMPL assets are operator/runtime inputs.
 - `manual_testing_playbook/` contains operator validation scenarios for routing, deliberation, persistence, convergence, rollback, scope boundaries, council-graph integration, and council-graph value comparison (32 scenarios across 9 categories).
 - `feature_catalog/` mirrors the playbook 1:1 with one user-facing feature entry per scenario (32 entries) — start here for "what does DAC-NNN actually do" lookups.
-- `scripts/` contains deterministic helpers; scripts are invoked explicitly and are not markdown-routed. Notable entries: `persist-artifacts.cjs` (artifact writer CLI), `replay-graph-from-artifacts.cjs` (DAC-025 derived-projection rebuild — reads `ai-council-state.jsonl` and emits a `council_graph_upsert` payload).
+- `scripts/` contains deterministic helpers; scripts are invoked explicitly and are not markdown-routed. Notable entries: `persist-artifacts.cjs` (artifact writer CLI), `replay-graph-from-artifacts.cjs` (DAC-025 derived-projection rebuild — reads `ai-council-state.jsonl` and writes through `deep-loop-runtime/scripts/upsert.cjs --loop-type council`, with `--dry-run` for payload inspection).
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Every skill invocation | `references/output_schema.md` |
+| ALWAYS | Every skill invocation | `references/quick_reference.md` |
 | CONDITIONAL | Intent signals match | Intent-mapped references from `RESOURCE_MAP` |
 | ON_DEMAND | Explicit validation or operator testing | `manual_testing_playbook/manual_testing_playbook.md` and scenario files |
 
@@ -137,11 +139,12 @@ manual_testing_playbook/**/*.md
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "manual_testing_playbook")
-DEFAULT_RESOURCE = "references/output_schema.md"
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets", SKILL_ROOT / "manual_testing_playbook")
+DEFAULT_RESOURCE = "references/quick_reference.md"
 
 INTENT_MODEL = {
     "COUNCIL_RUN": {"keywords": [("deep ai council", 5), ("council deliberation", 5), ("planning council", 4), ("strategy comparison", 3)]},
+    "COUNCIL_SETUP": {"keywords": [("quick reference", 3), ("loop protocol", 4), ("council setup", 4), ("round strategy", 4), ("council dashboard", 3)]},
     "ARTIFACT_PERSISTENCE": {"keywords": [("persist council", 5), ("ai-council artifact", 5), ("council report parser", 4), ("state jsonl", 3)]},
     "RECOVERY_OR_AUDIT": {"keywords": [("rollback", 4), ("audit", 3), ("missing council_complete", 5), ("completion advisory", 4)]},
     "CONVERGENCE_CHECK": {"keywords": [("convergence", 4), ("two-of-three", 5), ("max rounds", 3), ("non-converged", 4)]},
@@ -153,10 +156,11 @@ INTENT_MODEL = {
 }
 
 RESOURCE_MAP = {
-    "COUNCIL_RUN": ["references/seat_diversity_patterns.md", "references/convergence_signals.md", "references/output_schema.md"],
-    "ARTIFACT_PERSISTENCE": ["references/folder_layout.md", "references/output_schema.md", "references/state_format.md", "references/command_wiring.md", "references/findings_registry.md"],
-    "RECOVERY_OR_AUDIT": ["references/state_format.md", "references/folder_layout.md", "references/command_wiring.md"],
-    "CONVERGENCE_CHECK": ["references/convergence_signals.md", "references/seat_diversity_patterns.md", "references/state_format.md"],
+    "COUNCIL_RUN": ["references/loop_protocol.md", "references/seat_diversity_patterns.md", "references/convergence_signals.md", "references/output_schema.md", "assets/deep_ai_council_strategy.md"],
+    "COUNCIL_SETUP": ["references/quick_reference.md", "references/loop_protocol.md", "assets/deep_ai_council_strategy.md", "assets/deep_ai_council_dashboard.md"],
+    "ARTIFACT_PERSISTENCE": ["references/folder_layout.md", "references/output_schema.md", "references/state_format.md", "references/command_wiring.md", "references/findings_registry.md", "assets/deep_ai_council_dashboard.md"],
+    "RECOVERY_OR_AUDIT": ["references/state_format.md", "references/folder_layout.md", "references/command_wiring.md", "references/loop_protocol.md"],
+    "CONVERGENCE_CHECK": ["references/convergence_signals.md", "references/seat_diversity_patterns.md", "references/state_format.md", "references/loop_protocol.md"],
     "SCORING": ["references/scoring_rubric.md"],
     "DEPTH_DISPATCH": ["references/depth_dispatch.md", "references/deep_mode.md", "references/findings_registry.md"],
     "FAILURE_HANDLING": ["references/failure_handling.md"],
@@ -166,6 +170,7 @@ RESOURCE_MAP = {
 
 LOAD_LEVELS = {
     "COUNCIL_RUN": "CONDITIONAL",
+    "COUNCIL_SETUP": "CONDITIONAL",
     "ARTIFACT_PERSISTENCE": "CONDITIONAL",
     "RECOVERY_OR_AUDIT": "CONDITIONAL",
     "CONVERGENCE_CHECK": "CONDITIONAL",
@@ -177,7 +182,7 @@ LOAD_LEVELS = {
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether the request is council planning, persistence, recovery, or convergence checking",
+    "Confirm whether the request is council setup, planning, persistence, recovery, or convergence checking",
     "Confirm the packet/spec folder for any artifact persistence",
     "Confirm whether external AI vantages actually ran or must be labeled simulated",
     "Confirm the planning-only handoff target before implementation starts",
@@ -255,7 +260,7 @@ def route_sk_ai_council_resources(user_request, task=None):
         for relative_path in RESOURCE_MAP.get(intent, []):
             load_if_available(relative_path)
 
-    keyed_prefixes = [f"references/{routing_key.lower()}/", f"manual_testing_playbook/{routing_key.lower()}/"]
+    keyed_prefixes = [f"references/{routing_key.lower()}/", f"assets/{routing_key.lower()}/", f"manual_testing_playbook/{routing_key.lower()}/"]
     keyed_docs = sorted(path for path in inventory if any(path.startswith(prefix) for prefix in keyed_prefixes))
     for relative_path in keyed_docs:
         load_if_available(relative_path)
@@ -323,7 +328,7 @@ node .opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs <packet> --i
 node .opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs <packet>
 ```
 
-**References**: load `output_schema.md` first, then intent-specific references through Section 3.
+**References**: load `quick_reference.md` first, then intent-specific references through Section 3. Load `output_schema.md` before persistence or report validation.
 
 **Manual testing**: load `manual_testing_playbook/manual_testing_playbook.md` only for operator validation and release checks.
 
@@ -382,7 +387,7 @@ node .opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs <pac
    - Compatibility requires explicit user direction.
 
 4. **ESCALATE IF a caller asks the council agent itself to mutate graph storage**
-   - Graph updates belong to caller-owned `council_graph_*` MCP tooling or reducers, not council-seat deliberation.
+   - Graph updates belong to caller-owned `deep-loop-runtime` CLI reducers, not council-seat deliberation.
 
 ---
 
@@ -390,7 +395,9 @@ node .opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs <pac
 
 Ordered by load priority — most-loaded intent first.
 
-- `references/output_schema.md` - markdown report contract parsed by the persistence helper (ALWAYS-loaded default).
+- `references/quick_reference.md` - first-touch operator cheat sheet and validation commands (ALWAYS-loaded default).
+- `references/loop_protocol.md` - end-to-end council workflow from packet resolution to persistence and recovery.
+- `references/output_schema.md` - markdown report contract parsed by the persistence helper.
 - `references/scoring_rubric.md` - five-dimension scoring, adversarial critique, conflict resolution, and attribution rules.
 - `references/depth_dispatch.md` - Depth 0 parallel dispatch and Depth 1 sequential inline dispatch rules.
 - `references/failure_handling.md` - timeout, all-seat failure, contradiction, insufficient vantage, and rollback-state guidance.
@@ -403,6 +410,11 @@ Ordered by load priority — most-loaded intent first.
 - `references/graph_support.md` - derived council graph boundaries, tool surface, and recovery behavior.
 - `references/deep_mode.md` - deep-mode session/topic/round hierarchy, state files, cost guards and the deep-loop-runtime dependency.
 - `references/findings_registry.md` - cross-topic findings registry, fingerprint dedup and filesystem locking.
+- `assets/deep_ai_council_strategy.md` - operator-maintained round strategy template.
+- `assets/deep_ai_council_dashboard.md` - council status dashboard template.
+- `assets/deep_ai_council_config.json` - run-config template for council sessions.
+- `assets/prompt_pack_round.md.tmpl` - council-seat prompt-pack template.
+- `assets/runtime_capabilities.json` - runtime parity and validation matrix.
 - `manual_testing_playbook/manual_testing_playbook.md` - operator validation scenarios.
 - `README.md` - human-facing overview.
 
@@ -468,7 +480,7 @@ The council is a planning LEAF. It hands recommendations, risk analysis, and pac
 - `references/depth_dispatch.md` - adaptive dispatch guidance.
 - `references/failure_handling.md` - failure and rollback treatment.
 - `references/anti_patterns.md` - quality anti-pattern detection and recovery.
-- `references/graph_support.md` - derived graph support and MCP tool boundary.
+- `references/graph_support.md` - derived graph support and deep-loop-runtime CLI boundary.
 - `references/folder_layout.md` - artifact shape and rollback layout.
 - `references/seat_diversity_patterns.md` - lens selection.
 - `references/state_format.md` - state event semantics.

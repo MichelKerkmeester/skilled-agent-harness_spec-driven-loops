@@ -16,9 +16,9 @@
     "multi-round",
     "orchestration"
   ],
-  "lastUpdated": "2026-05-23T09:11:13.066Z",
-  "specId": "003",
-  "folderSlug": "010-iterative-per-topic-multi-round",
+  "lastUpdated": "2026-05-23T15:24:58.964Z",
+  "specId": "010",
+  "folderSlug": "iterative-per-topic-multi-round",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

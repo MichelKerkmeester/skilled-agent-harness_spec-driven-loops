@@ -23,7 +23,7 @@ The packet 082 sk-improve-prompt → sk-prompt rename is **operationally complet
 | 1. Completeness | 1 | ✅ PASS | Final scoped grep returns 0 hits in active scope |
 | 2. Consistency | 1 | ✅ PASS | Path embeds + string refs both rotated |
 | 3. Skill graph integrity | 2 | ✅ PASS | 5/5 skill-graph.json key locations rotated; advisor top-1 = sk-prompt @ 0.9262 |
-| 4. Identity preservation | 2 | ✅ PASS | @improve-prompt agent + /improve:prompt command intact across 4 runtimes |
+| 4. Identity preservation | 2 | ✅ PASS | @improve-prompt agent + /prompt command intact across 4 runtimes |
 | 5. Documentation hygiene | 3 | ✅ PASS (after fix) | All 7 spec docs validate strict; 070 precedent shape preserved |
 | 6. Frozen continuity respect | 4 | ✅ PASS | No leaks into z_archive, z_future, completed packets, .git |
 
@@ -120,8 +120,8 @@ All 11 edge cases from `001-discovery-impact-map/edge-cases.md` re-tested and cl
 |----------|------|--------|
 | Agent name | `@improve-prompt` | ✅ unchanged |
 | Agent file | `.opencode/agents/improve-prompt.md` (+ 3 runtime mirrors) | ✅ unchanged |
-| Command | `/improve:prompt` | ✅ unchanged |
-| Command file | `.opencode/commands/improve/prompt.md` | ✅ unchanged |
+| Command | `/prompt` | ✅ unchanged |
+| Command file | `.opencode/commands/prompt.md` | ✅ unchanged |
 | **Skill name** | `sk-improve-prompt` → `sk-prompt` | ✅ rotated (only this) |
 
 ### Frozen continuity

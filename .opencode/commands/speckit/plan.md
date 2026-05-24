@@ -37,7 +37,7 @@ This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
 
 **FIRST MESSAGE PROTOCOL**: For `:confirm` or no suffix, the consolidated setup prompt MUST be your FIRST response. No analysis, no tool calls — ask ALL questions immediately, then wait.
 
-Read-only discovery to classify folder state is allowed when `spec_path` is explicit or can be inferred from the setup answers. Healthy folders keep the existing prompt shape; non-healthy folders run the intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md`) inline inside the same consolidated prompt and MUST NOT open a second visible command flow. When `--intake-only` is present, execution halts after the Emit phase without proceeding to planning Steps 2–8.
+Read-only discovery to classify folder state is allowed when `spec_path` is explicit or can be inferred from the setup answers. Healthy folders keep the existing prompt shape; non-healthy folders run the intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md`) inline inside the same consolidated prompt and MUST NOT open a second visible command flow. When `--intake-only` is present, execution halts after the Emit phase without proceeding to planning Steps 2–8.
 
 For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
 
@@ -126,7 +126,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ├─ present → intake_only = TRUE; workflow halts after Emit phase, does not proceed to planning Steps 2–8
    └─ absent → intake_only = FALSE
 
-1a-c. PARSE intake contract flags (see .opencode/skills/system-spec-kit/references/intake-contract.md §1):
+1a-c. PARSE intake contract flags (see .opencode/skills/system-spec-kit/references/workflows/intake_contract.md §1):
    ├─ --spec-folder=PATH → spec_path = PATH (bypass auto-discovery)
    ├─ --level=N → selected_level = N
    ├─ --start-state=STATE → requested_start_state = STATE
@@ -159,7 +159,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 5. Prior-work loading question needed ONLY if user selects A or C for spec folder AND prior continuity records exist for this spec.
 
 5a. CHECK intake contract requirement when `spec_path` is explicit or can be derived from Q1 / `--phase-folder`:
-   ├─ Inspect `{spec_path}` for `spec.md`, `description.json`, `graph-metadata.json`, and tracked placeholder markers per intake-contract.md §3 Folder State Classification
+   ├─ Inspect `{spec_path}` for `spec.md`, `description.json`, `graph-metadata.json`, and tracked placeholder markers per intake_contract.md §3 Folder State Classification
    ├─ Normalize `folder_state` to one of: `empty-folder` | `partial-folder` | `repair-mode` | `placeholder-upgrade` | `populated-folder`
    ├─ `folder_state == populated-folder` AND `intake_only == FALSE` → `intake_required = FALSE` and preserve the current prompt unchanged
    ├─ `folder_state == populated-folder` AND `intake_only == TRUE` → no-op exit with informational message
@@ -201,7 +201,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    **Intake contract block** (ONLY if `intake_required = TRUE`; keep this inside the SAME prompt, not a second command flow):
 
-   Execute the Q0–Q4+ consolidated intake interview per `.opencode/skills/system-spec-kit/references/intake-contract.md §5`. Questions cover: feature description, target folder state, documentation level, relationship capture, and relationship entries (grouped `depends_on` / `related_to` / `supersedes` by `packet_id`).
+   Execute the Q0–Q4+ consolidated intake interview per `.opencode/skills/system-spec-kit/references/workflows/intake_contract.md §5`. Questions cover: feature description, target folder state, documentation level, relationship capture, and relationship entries (grouped `depends_on` / `related_to` / `supersedes` by `packet_id`).
 
    Reply format: "B, A, A, C, A" or "Add auth, B, A, C, A"
 
@@ -215,7 +215,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - dispatch_mode = [single/multi_small/multi_large from Q3]
    - memory_choice = [A/B/C from Q4, or N/A]
    - research_intent = [add_feature/fix_bug/refactor/understand from Q5]
-   - IF `intake_required = TRUE`: bind `selected_level`, `start_state`, `repair_mode`, and `manual_relationships` from the inline intake-contract block (see intake-contract.md §6 for trio-publication semantics)
+   - IF `intake_required = TRUE`: bind `selected_level`, `start_state`, `repair_mode`, and `manual_relationships` from the inline intake-contract block (see intake_contract.md §6 for trio-publication semantics)
    - IF intake contract adjusts the target: update `feature_description` and `spec_path` from the returned contract before Step 1
    - IF `intake_only = TRUE`: halt here with STATUS=OK after intake Emit phase completes; do not proceed to Step 1
 

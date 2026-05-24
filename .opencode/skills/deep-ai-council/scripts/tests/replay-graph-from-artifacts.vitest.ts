@@ -1,9 +1,10 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
 const {
@@ -16,17 +17,67 @@ const {
   main: (argv?: string[]) => number;
 };
 
+const testDir = dirname(fileURLToPath(import.meta.url));
+const repoRoot = resolve(testDir, '..', '..', '..', '..', '..');
+const cleanupNamespaces: Array<{ specFolder: string; sessionId: string }> = [];
+
 /**
  * Creates a temporary directory and runs the callback within it, cleaning up afterwards.
  */
-async function withTempPacket(run: (packetSpecFolder: string) => void | Promise<void>): Promise<void> {
-  const tempDir = mkdtempSync(join(tmpdir(), 'council-replay-graph-'));
+async function withTempPacket(
+  run: (packetSpecFolder: string) => void | Promise<void>,
+  options: { insideRepo?: boolean } = {},
+): Promise<void> {
+  const tempParent = options.insideRepo ? repoRoot : tmpdir();
+  const tempDir = mkdtempSync(join(tempParent, 'council-replay-graph-'));
   try {
     await run(tempDir);
   } finally {
     rmSync(tempDir, { recursive: true, force: true });
-  });
+  }
 }
+
+function writeCouncilState(packetSpecFolder: string, events: Array<Record<string, unknown>>): void {
+  const councilRoot = join(packetSpecFolder, 'ai-council');
+  mkdirSync(councilRoot, { recursive: true });
+  writeFileSync(
+    join(councilRoot, 'ai-council-state.jsonl'),
+    events.map((event) => JSON.stringify(event)).join('\n') + '\n',
+  );
+}
+
+function captureOutput(run: () => number): { exitCode: number; stdout: string; stderr: string } {
+  const originalStdoutWrite = process.stdout.write;
+  const originalStderrWrite = process.stderr.write;
+  let stdout = '';
+  let stderr = '';
+  process.stdout.write = ((chunk: unknown) => {
+    stdout += String(chunk);
+    return true;
+  }) as typeof process.stdout.write;
+  process.stderr.write = ((chunk: unknown) => {
+    stderr += String(chunk);
+    return true;
+  }) as typeof process.stderr.write;
+  try {
+    return { exitCode: run(), stdout, stderr };
+  } finally {
+    process.stdout.write = originalStdoutWrite;
+    process.stderr.write = originalStderrWrite;
+  }
+}
+
+afterEach(async () => {
+  const db = await import('../../../deep-loop-runtime/lib/council/council-graph-db.js');
+  while (cleanupNamespaces.length > 0) {
+    const namespace = cleanupNamespaces.pop();
+    if (namespace) {
+      db.cleanupNamespace(namespace);
+    }
+  }
+  db.closeDb();
+  delete process.env.DEEP_AI_COUNCIL_REPLAY_UPSERT_SCRIPT;
+});
 
 describe('deep-ai-council replay-graph-from-artifacts', () => {
   it('parseJsonl parses JSONL file into event array', async () => {
@@ -65,7 +116,7 @@ describe('deep-ai-council replay-graph-from-artifacts', () => {
     });
   });
 
-  it('derivePayload creates council_graph_upsert payload from events', () => {
+  it('derivePayload creates council runtime graph payload from events', () => {
     const events = [
       { event: 'round_start', round: 1, seats: ['seat-001', 'seat-002'] },
       { event: 'seat_returned', round: 1, seat: 'seat-001', status: 'ok' },
@@ -185,25 +236,50 @@ describe('deep-ai-council replay-graph-from-artifacts', () => {
     });
   });
 
-  it('main derives payload and writes JSON to stdout for valid input', async () => {
+  it('main supports --dry-run and writes the derived payload JSON to stdout', async () => {
     await withTempPacket(async (packetSpecFolder) => {
-      const councilRoot = join(packetSpecFolder, 'ai-council');
-      const statePath = join(councilRoot, 'ai-council-state.jsonl');
-      writeFileSync(statePath, JSON.stringify({ event: 'round_start', round: 1, seats: ['seat-001'] }) + '\n');
+      writeCouncilState(packetSpecFolder, [{ event: 'round_start', round: 1, seats: ['seat-001'] }]);
 
-      const exitCode = main(['--spec-folder', packetSpecFolder, '--session-id', 'session-001']);
-      expect(exitCode).toBe(0);
+      const { exitCode, stdout, stderr } = captureOutput(() => main(['--spec-folder', packetSpecFolder, '--session-id', 'session-001', '--dry-run']));
+      expect(exitCode, stderr || stdout).toBe(0);
+      const payload = JSON.parse(stdout) as { specFolder: string; sessionId: string; nodes: Array<Record<string, unknown>>; edges: Array<Record<string, unknown>> };
+      expect(payload).toMatchObject({
+        specFolder: packetSpecFolder,
+        sessionId: 'session-001',
+      });
+      expect(payload.nodes.some((node) => node.kind === 'SESSION')).toBe(true);
+      expect(payload.edges.some((edge) => edge.relation === 'DERIVES_FROM')).toBe(true);
     });
   });
 
-  it('main supports --dry-run flag', async () => {
+  it('main writes derived graph rows through the runtime council CLI by default', async () => {
     await withTempPacket(async (packetSpecFolder) => {
-      const councilRoot = join(packetSpecFolder, 'ai-council');
-      const statePath = join(councilRoot, 'ai-council-state.jsonl');
-      writeFileSync(statePath, JSON.stringify({ event: 'round_start', round: 1, seats: ['seat-001'] }) + '\n');
+      const sessionId = `session-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      cleanupNamespaces.push({ specFolder: packetSpecFolder, sessionId });
+      writeCouncilState(packetSpecFolder, [{ event: 'round_start', round: 1, seats: ['seat-001'] }]);
 
-      const exitCode = main(['--spec-folder', packetSpecFolder, '--session-id', 'session-001', '--dry-run']);
-      expect(exitCode).toBe(0);
-    });
+      const { exitCode, stdout, stderr } = captureOutput(() => main(['--spec-folder', packetSpecFolder, '--session-id', sessionId]));
+      expect(exitCode, stderr || stdout).toBe(0);
+      expect(stderr).toBe('');
+      const upsertResult = JSON.parse(stdout.trim()) as { status: string; data: { insertedNodes: number; insertedEdges: number } };
+      expect(upsertResult).toMatchObject({ status: 'ok' });
+      expect(upsertResult.data.insertedNodes).toBeGreaterThan(0);
+
+      const db = await import('../../../deep-loop-runtime/lib/council/council-graph-db.js');
+      const stats = db.getStats(packetSpecFolder, sessionId);
+      expect(stats.totalNodes).toBeGreaterThan(0);
+      expect(stats.totalEdges).toBeGreaterThan(0);
+    }, { insideRepo: true });
+  });
+
+  it('main propagates runtime CLI child failures', async () => {
+    await withTempPacket(async (packetSpecFolder) => {
+      writeCouncilState(packetSpecFolder, [{ event: 'round_start', round: 1, seats: ['seat-001'] }]);
+      process.env.DEEP_AI_COUNCIL_REPLAY_UPSERT_SCRIPT = join(packetSpecFolder, 'missing-upsert.cjs');
+
+      const { exitCode, stderr } = captureOutput(() => main(['--spec-folder', packetSpecFolder, '--session-id', 'session-001']));
+      expect(exitCode).toBe(1);
+      expect(stderr).toContain('Runtime council graph upsert failed with exit code 1');
+    }, { insideRepo: true });
   });
 });

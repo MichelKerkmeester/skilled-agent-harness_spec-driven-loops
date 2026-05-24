@@ -17,7 +17,7 @@ Operators use this feature when the real request is: Wipe the council graph for 
 
 ## 2. CURRENT REALITY
 
-The shipped surface is anchored by `council_graph_upsert`, `council_graph_status`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-025.
+The shipped surface is anchored by `runtime upsert CLI`, `runtime status CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-025.
 
 Current behavior is grounded in internal design notes for adr-001 derived-projection contract. Validation is anchored by `manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md`, covering manual scenario contract.
 
@@ -33,7 +33,7 @@ The user-visible contract is concrete: Verify deleting derived graph rows for on
 |------|-------|------|
 | Internal design notes | Spec | ADR-001 derived-projection contract |
 | `.opencode/skills/deep-ai-council/references/graph_support.md 5` | Reference | Recovery and rollback contract |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-db.ts` | Library | Namespace-scoped delete + upsert |
+| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Library | Namespace-scoped delete + upsert |
 
 ### Validation And Tests
 

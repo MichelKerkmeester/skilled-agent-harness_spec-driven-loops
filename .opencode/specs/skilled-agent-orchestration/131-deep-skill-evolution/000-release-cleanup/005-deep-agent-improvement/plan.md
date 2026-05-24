@@ -137,7 +137,7 @@ Required inventories:
 - Path references: `rg -F` every file path mentioned in any artifact under `.opencode/skills/deep-agent-improvement/` to confirm targets exist.
 - MCP tool names: `rg "mcp__" .opencode/skills/deep-agent-improvement/` — every name must resolve to a registered tool in `opencode.json`.
 - HVR rule applicability: scan every prose paragraph against banned-words / banned-phrase lists from `hvr_rules.md`.
-- Cross-system targets named in README rewrite: `/improve:agent`, `@deep-agent-improvement` (4 runtime mirrors), `deep-loop-runtime`, `deep-research`, `deep-review`, `system-spec-kit`, `sk-doc`, `sk-prompt`, `cli-devin`, `cli-codex`, `system-skill-advisor` (advisor routing).
+- Cross-system targets named in README rewrite: `/deep:start-agent-improvement-loop`, `@deep-agent-improvement` (4 runtime mirrors), `deep-loop-runtime`, `deep-research`, `deep-review`, `system-spec-kit`, `sk-doc`, `sk-prompt`, `cli-devin`, `cli-codex`, `system-skill-advisor` (advisor routing).
 - README structure currency: confirm §5 STRUCTURE + §6 SCRIPTS list all 15 references and all 14 scripts (current README undercounts both).
 <!-- /ANCHOR:affected-surfaces -->
 

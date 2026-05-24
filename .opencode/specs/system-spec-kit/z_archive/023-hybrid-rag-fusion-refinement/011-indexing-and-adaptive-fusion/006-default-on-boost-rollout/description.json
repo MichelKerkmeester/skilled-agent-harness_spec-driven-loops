@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
+  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
   "description": "Feature Specification: Default-ON Boost Rollout — Session, Causal & Deep Expansion",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "deep",
     "expansion"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.753Z",
+  "lastUpdated": "2026-05-23T15:25:01.179Z",
   "specId": "006",
   "folderSlug": "default-on-boost-rollout",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "023-hybrid-rag-fusion-refinement",
     "011-indexing-and-adaptive-fusion"
   ],

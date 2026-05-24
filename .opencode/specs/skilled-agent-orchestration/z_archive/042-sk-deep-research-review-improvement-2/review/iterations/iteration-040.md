@@ -71,12 +71,12 @@ I’ve got the workflow set; now I’m pulling the spec references and runtime f
   │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L1:260 (260 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L1:260 (204 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L1:260 (244 lines read)
 
 ● Search (grep)
@@ -151,7 +151,7 @@ I’ve confirmed the YAML contracts. Now I’m tracing where those contracts lan
 
 ● Search (grep)
   │ "sessionId|parentSessionId|lineageMode|generation|continuedFromRun|archivedPath|blocked_stop|cla
-  │ im_adjudication" in improve_improve-agent_*.yaml (.opencode/commands/improve/assets)
+  │ im_adjudication" in deep_start-agent-improvement-loop_*.yaml (.opencode/commands/deep/assets)
   └ 16 lines found
 
 ● Read reduce-state.cjs
@@ -183,12 +183,12 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
   │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L140:250 (111 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L115:210 (90 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L120:235 (116 lines read)
 
 ● Read score-candidate.cjs
@@ -220,7 +220,7 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
 
 ● Search (grep)
   │ "session boundary|lineage_mode_must_equal_new|sessionId|parentSessionId|lineageMode|generation"
-  │ (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml)
+  │ (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml)
   └ 9 lines found
 
 ● Search (grep)
@@ -245,7 +245,7 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
 
 ● Search (grep)
   │ "session boundary|lineage_mode_must_equal_new|sessionId|parentSessionId|lineageMode|generation"
-  │ (.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
+  │ (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml)
   └ 12 lines found
 
 ● Read spec_kit_deep-research_auto.yaml
@@ -275,12 +275,12 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
 
 ● skill(sk-code-opencode)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L36:60 (24 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L36:60 (25 lines read)
 
 ● Read scan-integration.cjs
@@ -309,7 +309,7 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
 - **Severity**: P1
 - **Dimension**: security
 - **File**: multiple
-- **Line**: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:127,130,134,143,158,161,164,170,176,179,191,204`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:140,143,147,166,189,192,195,201,207,210,228,232`
+- **Line**: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:127,130,134,143,158,161,164,170,176,179,191,204`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:140,143,147,166,189,192,195,201,207,210,228,232`
 - **Title**: improve-agent workflows inject runtime values into shell arguments and inline `node -e` source
 - **Description**: The improve-agent auto/confirm workflows pass `{spec_folder}`, `{target_path}`, `{candidate_path}`, `{candidate_id}`, `{session_id}`, and related fields straight into shell command strings and inline JavaScript source. This is a direct command/JS injection surface: a crafted value can break quoting, append flags, alter JSON payloads, or execute arbitrary JS inside the `node -e` steps.
 - **Evidence**: Representative sinks include raw command construction at `...auto.yaml:127,130,134,164,185,204` and `...confirm.yaml:140,143,147,195,216,232`, plus inline JS execution at `...auto.yaml:161,170,176,179` and `...confirm.yaml:192,201,207,210`. The journaling calls also embed raw JSON inside shell-quoted `--details` strings at `...auto.yaml:143,158,167,191,204` and `...confirm.yaml:166,189,198,228,245`.
@@ -319,10 +319,10 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
 - **Severity**: P2
 - **Dimension**: security
 - **File**: multiple
-- **Line**: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:37-59`, `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml:38-60`, `.opencode/skills/sk-improve-agent/scripts/generate-profile.cjs:243-257`, `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs:129-179,186-204`
+- **Line**: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:37-59`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml:38-60`, `.opencode/skills/sk-improve-agent/scripts/generate-profile.cjs:243-257`, `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs:129-179,186-204`
 - **Title**: improve-agent helper scripts do not re-enforce the workflow’s path and name safety contract
 - **Description**: The workflow declares `target_path` must be an existing `.opencode/agents/*.md` file and derives `agent_name` from that path, but the executable helpers trust those values verbatim. `generate-profile.cjs` reads `args.agent` directly from disk with no containment check, and `scan-integration.cjs` builds regexes from `agentName` without escaping metacharacters. That leaves the actual execution boundary weaker than the workflow contract and lets a non-UI caller or injected value broaden scans or read unintended files.
-- **Evidence**: The contract is declared at `...improve_improve-agent_auto.yaml:37-59` and `...confirm.yaml:38-60`. `generate-profile.cjs` accepts `--agent` and immediately `readFileSync`s it at `generate-profile.cjs:243-257`. `scan-integration.cjs` constructs `new RegExp(...)` from `agentName` at `scan-integration.cjs:129-179` and accepts the raw CLI value in `scan-integration.cjs:186-204`.
+- **Evidence**: The contract is declared at `...deep_start-agent-improvement-loop_auto.yaml:37-59` and `...confirm.yaml:38-60`. `generate-profile.cjs` accepts `--agent` and immediately `readFileSync`s it at `generate-profile.cjs:243-257`. `scan-integration.cjs` constructs `new RegExp(...)` from `agentName` at `scan-integration.cjs:129-179` and accepts the raw CLI value in `scan-integration.cjs:186-204`.
 - **Recommendation**: Enforce canonical containment under `.opencode/agents/` in the scripts themselves, reject unsafe path forms (`..`, absolute paths, unexpected extensions), and escape `agentName` before every regex construction.
 
 ## ITERATION SUMMARY
@@ -333,7 +333,7 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
 
 ## COVERAGE ASSESSMENT
 
-Reviewed all 6 workflow YAMLs plus the relevant runtime code. The four deep-research/deep-review workflows consistently persist lineage and blocked-stop state with `sessionId`/`generation` (`spec_kit_deep-research_auto.yaml:143-152,266-274,338-341`; `...confirm.yaml:149-157,295-303,367-370`; `spec_kit_deep-review_auto.yaml:167-176,375-376,489-492,611-626`; `...confirm.yaml:173-181,408-409,522-525,665-680`). The graph convergence handler also enforces session-scoped reads (`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:151-165`). Improve-agent intentionally uses a new-session-only model (`improve_improve-agent_auto.yaml:119-123`; `...confirm.yaml:126-131`), and that surface is where the executable hardening still lags.
+Reviewed all 6 workflow YAMLs plus the relevant runtime code. The four deep-research/deep-review workflows consistently persist lineage and blocked-stop state with `sessionId`/`generation` (`spec_kit_deep-research_auto.yaml:143-152,266-274,338-341`; `...confirm.yaml:149-157,295-303,367-370`; `spec_kit_deep-review_auto.yaml:167-176,375-376,489-492,611-626`; `...confirm.yaml:173-181,408-409,522-525,665-680`). The graph convergence handler also enforces session-scoped reads (`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:151-165`). Improve-agent intentionally uses a new-session-only model (`deep_start-agent-improvement-loop_auto.yaml:119-123`; `...confirm.yaml:126-131`), and that surface is where the executable hardening still lags.
 
 ## CONFIDENCE
 

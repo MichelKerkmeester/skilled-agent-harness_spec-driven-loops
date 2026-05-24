@@ -1,22 +1,27 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-routing-confidence-calibration",
-  "description": "Damp explicit/lexical lane contributions when their evidence is weak; sweep damping configurations against the 24-prompt + 22-harder corpora using the 015/003 harness; recommend a damping config that lifts harder-corpus intent-described accuracy without regressing the today-correct baseline.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine/008-routing-confidence-calibration",
+  "description": "Feature Specification: Damp explicit/lexical lane contributions when their evidence is weak",
   "keywords": [
-    "advisor-routing-calibration",
-    "lane-evidence-damping",
-    "explicit-lexical-over-fire",
-    "damping-sweep",
-    "advisor-recall-lift",
-    "fusion-calibration"
+    "feature",
+    "specification",
+    "damp",
+    "explicit",
+    "lexical",
+    "lane",
+    "contributions",
+    "evidence",
+    "weak"
   ],
-  "lastUpdated": "2026-05-14T02:15:00Z",
-  "specId": "010",
-  "folderSlug": "advisor-routing-calibration",
+  "lastUpdated": "2026-05-23T15:25:00.647Z",
+  "specId": "008",
+  "folderSlug": "routing-confidence-calibration",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "006-skill-advisor",
-    "002-semantic-routing-lane"
-  ]
+    "002-skill-advisor-scoring-engine"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

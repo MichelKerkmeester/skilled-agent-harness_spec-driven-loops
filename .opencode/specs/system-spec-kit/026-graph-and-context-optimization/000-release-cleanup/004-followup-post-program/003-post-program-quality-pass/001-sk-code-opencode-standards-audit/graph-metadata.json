@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Packets 033, 034, and 036 added retention-sweep, half-auto advisor, hook freshness, and matrix-runner code. The new and modified code needed a standards pass against sk-code-opencode before the larger 037 quality phase could continue.",
     "created_at": "2026-04-29T15:28:00.000Z",
-    "last_save_at": "2026-05-23T11:55:14.827Z",
+    "last_save_at": "2026-05-24T05:40:25.659Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

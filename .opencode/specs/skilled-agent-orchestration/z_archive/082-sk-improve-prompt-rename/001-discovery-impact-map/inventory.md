@@ -17,8 +17,8 @@ Measured with `rg -c 'sk-improve-prompt' <path>` after excluding frozen historic
 ## Phase 003
 
 - `.opencode/agents/improve-prompt.md` (9 refs) - agent filename unchanged body refs only
-- `.opencode/commands/improve/README.txt` (2 refs) - dispatcher README table and link refs
-- `.opencode/commands/improve/prompt.md` (10 refs) - dispatcher command body refs
+- `.opencode/commands/README.txt` (2 refs) - dispatcher README table and link refs
+- `.opencode/commands/prompt.md` (10 refs) - dispatcher command body refs
 - `.opencode/skills/cli-claude-code/SKILL.md` (1 refs) - parent skill routing table ref
 - `.opencode/skills/cli-claude-code/assets/prompt_quality_card.md` (1 refs) - mirrored prompt quality card ref
 - `.opencode/skills/cli-claude-code/manual_testing_playbook/07--prompt-templates/002-clear-quality-card-5-check.md` (1 refs) - manual playbook ref
@@ -48,7 +48,7 @@ Measured with `rg -c 'sk-improve-prompt' <path>` after excluding frozen historic
 - `.codex/agents/improve-prompt.toml` (9 refs) - hidden runtime mirror body refs
 - `.gemini/agents/improve-prompt.md` (9 refs) - hidden runtime mirror body refs
 - `.gemini/commands/create/prompt.toml` (2 refs) - hidden Gemini create command embeds skill path in TOML prompt
-- `.gemini/commands/improve/README.txt` (2 refs) - hidden Gemini command README link refs
+- `.gemini/commands/deep/start-agent-improvement-loop.toml` (2 refs) - hidden Gemini command README link refs
 
 ## Phase 005
 
@@ -76,5 +76,5 @@ Measured with `rg -c 'sk-improve-prompt' <path>` after excluding frozen historic
 
 - Canonical inventory rows: 58.
 - Exact final sanity command rows: 52.
-- Difference: `.claude/agents/improve-prompt.md`, `.codex/agents/improve-prompt.toml`, `.gemini/agents/improve-prompt.md`, `.gemini/commands/create/prompt.toml`, `.gemini/commands/improve/README.txt`, and `AGENTS.md`.
+- Difference: `.claude/agents/improve-prompt.md`, `.codex/agents/improve-prompt.toml`, `.gemini/agents/improve-prompt.md`, `.gemini/commands/create/prompt.toml`, `.gemini/commands/deep/start-agent-improvement-loop.toml`, and `AGENTS.md`.
 - `CLAUDE.md` is a symlink to `AGENTS.md`, so it is tracked as an edge case rather than a separate inventory row.

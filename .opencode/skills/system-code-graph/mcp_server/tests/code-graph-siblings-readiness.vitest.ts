@@ -74,7 +74,7 @@ vi.mock('node:fs', () => ({
   appendFileSync: mocks.appendFileSync,
   existsSync: mocks.existsSync,
   mkdirSync: mocks.mkdirSync,
-  realpathSync: mocks.realpathSync,
+  realpathSync: Object.assign(mocks.realpathSync, { native: mocks.realpathSync }),
   statSync: mocks.statSync,
 }));
 

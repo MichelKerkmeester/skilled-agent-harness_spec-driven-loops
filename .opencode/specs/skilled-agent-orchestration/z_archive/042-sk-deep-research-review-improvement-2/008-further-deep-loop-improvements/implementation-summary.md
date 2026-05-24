@@ -53,7 +53,7 @@ The reducers now surface blocked-stop and graph-convergence state instead of lea
 
 ### Improve-Agent Journal Wiring and Replay Consumers
 
-Improve-agent now emits journal events from the visible `/improve:agent` workflow, enforces minimum sample thresholds before trade-off or stability verdicts, and consumes replay artifacts during reducer refresh. The sample-quality surface is operator-visible rather than remaining helper-only.
+Improve-agent now emits journal events from the visible `/deep:start-agent-improvement-loop` workflow, enforces minimum sample thresholds before trade-off or stability verdicts, and consumes replay artifacts during reducer refresh. The sample-quality surface is operator-visible rather than remaining helper-only.
 
 ### Fixtures, Regression, and Release Packaging
 

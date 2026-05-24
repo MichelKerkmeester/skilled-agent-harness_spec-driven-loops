@@ -41,7 +41,7 @@
       ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
       ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
       ".opencode/skills/cli-gemini/assets/prompt_quality_card.md",
-      ".opencode/commands/improve/prompt.md",
+      ".opencode/commands/prompt.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -59,7 +59,7 @@
       {
         "name": "prompt.md",
         "kind": "doc",
-        "path": ".opencode/commands/improve/prompt.md",
+        "path": ".opencode/commands/prompt.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The four CLI orchestration skills currently build dispatch prompts ad hoc from their local prompt-template assets. That keeps dispatches lightweight, but it leaves framework choice, prompt-quality checks, and escalation behavior implicit. This packet adds a two-tier prompt-quality layer: a tiny guard-safe mirror card that every CLI skill can load by default, and a fresh-context `@improve-prompt` agent that handles only the hard cases.",
     "created_at": "2026-04-12T09:02:50.198Z",
-    "last_save_at": "2026-05-23T11:55:14.462Z",
+    "last_save_at": "2026-05-24T05:40:25.373Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

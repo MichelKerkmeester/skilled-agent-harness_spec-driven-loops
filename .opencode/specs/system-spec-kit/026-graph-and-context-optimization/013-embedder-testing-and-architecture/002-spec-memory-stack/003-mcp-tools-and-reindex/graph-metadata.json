@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Make the swap mechanism (built in 002) usable via MCP. Three tools + one background orchestrator:",
     "created_at": "2026-05-17T06:35:17.961Z",
-    "last_save_at": "2026-05-23T11:55:15.424Z",
+    "last_save_at": "2026-05-24T05:40:26.014Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

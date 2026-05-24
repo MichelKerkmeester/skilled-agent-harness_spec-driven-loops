@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The v1.0.3 stress test (Phase H) failed to capture full live-handler envelopes because the direct `handleMemorySearch` probe hit `Embedding model not ready after 30s timeout` at `memory-search.ts:930`. The probe runs the handler in-process without the full `context-server.ts` bootstrap path.",
     "created_at": "2026-04-29T08:30:00.000Z",
-    "last_save_at": "2026-05-23T11:55:14.767Z",
+    "last_save_at": "2026-05-24T05:40:25.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

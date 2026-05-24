@@ -956,8 +956,8 @@ stem-spec-kit/manual_testing_playbook/14--pipeline-architecture/146-dynamic-serv
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1136:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:1528:2. `v1.1.0.0` documented broader lifecycle semantics than the runtime actually shipped; `v1.2.1.0` later narrowed that wording to current reality.
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1137:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:1847:    44	 * Journal captures lifecycle events and stop decisions (ADR-001: orchestrator only).
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1138:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:3127:.opencode/skills/sk-improve-agent/SKILL.md:263:All journal emission is orchestrator-only (ADR-001). The journal (`improvement-journal.jsonl`) is an append-only JSONL file capturing lifecycle events. Separate from the existing `agent-improvement-state.jsonl` which tracks proposal/evaluation data.
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1139:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:3294:.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:9:Validates that the `/improve:agent` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, and `session_end`.
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1140:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:3305:.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:96:The autonomous YAML contains journal emission coverage for all three boundary groups (session start, per-iteration lifecycle checkpoints, session end), the CLI example from `.opencode/commands/improve/agent.md` runs successfully as written against a temp journal path, and the stop-reason / session-outcome enums in the command doc match the frozen values enforced by `improvement-journal.cjs`.
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1139:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:3294:.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:9:Validates that the `/deep:start-agent-improvement-loop` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, and `session_end`.
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1140:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:3305:.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:96:The autonomous YAML contains journal emission coverage for all three boundary groups (session start, per-iteration lifecycle checkpoints, session end), the CLI example from `.opencode/commands/deep/start-agent-improvement-loop.md` runs successfully as written against a temp journal path, and the stop-reason / session-outcome enums in the command doc match the frozen values enforced by `improvement-journal.cjs`.
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1141:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:4238:   263	All journal emission is orchestrator-only (ADR-001). The journal (`improvement-journal.jsonl`) is an append-only JSONL file capturing lifecycle events. Separate from the existing `agent-improvement-state.jsonl` which tracks proposal/evaluation data.
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1142:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:4481:    76	    "emitLifecycleEvents": true
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1143:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:4636:   137	    description: "Iterative propose -> score -> benchmark -> reduce cycle"
@@ -1143,33 +1143,33 @@ stem-spec-kit/manual_testing_playbook/14--pipeline-architecture/146-dynamic-serv
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1323:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5497:.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:132:      const momentum = signalsModule.computeMomentum(graph, 'stale', 300000);
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1324:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5498:.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:140:      const momentum = signalsModule.computeMomentum(graph, 'target', 600000);
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1325:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5555:/bin/zsh -lc "rg -n \"computeDepth\\(|computeAllDepths\\(\" .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1326:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5570:Dimension: `maintainability`  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1327:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5571:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:89)  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1328:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5592:Dimension: `maintainability`  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1329:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5593:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253)  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1330:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5596:Description: The CJS helper exports `computeMomentum(graph, nodeId, windowSize, sessionId)` as a recent-edge counter, while the canonical runtime implementation exports `computeMomentum(specFolder, loopType)` as a snapshot-to-snapshot delta calculator in [.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555). Same name, different meaning. That is a long-term drift trap for maintainers, especially because the requested test suite only validates the CJS behavior in [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:117).  
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1326:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5570:Dimension: `maintainability`
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1327:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5571:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:89)
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1328:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5592:Dimension: `maintainability`
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1329:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5593:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253)
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1330:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5596:Description: The CJS helper exports `computeMomentum(graph, nodeId, windowSize, sessionId)` as a recent-edge counter, while the canonical runtime implementation exports `computeMomentum(specFolder, loopType)` as a snapshot-to-snapshot delta calculator in [.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555). Same name, different meaning. That is a long-term drift trap for maintainers, especially because the requested test suite only validates the CJS behavior in [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:117).
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1331:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5611:  momentum[key] = latest[key] - previous[key];
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1332:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5618:Dimension: `maintainability`  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1333:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5619:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:143)  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1334:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5622:Description: The depth routine claims cycles are handled by “capping at the number of nodes,” but the implementation actually assigns `0` to nodes that never reach zero in-degree. That is not a harmless comment mismatch: it makes cyclic nodes indistinguishable from roots and hides complexity from downstream consumers. The requested unit tests only cover DAGs and empty graphs, so this divergence is currently unguarded.  
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1332:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5618:Dimension: `maintainability`
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1333:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5619:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:143)
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1334:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5622:Description: The depth routine claims cycles are handled by “capping at the number of nodes,” but the implementation actually assigns `0` to nodes that never reach zero in-degree. That is not a harmless comment mismatch: it makes cyclic nodes indistinguishable from roots and hides complexity from downstream consumers. The requested unit tests only cover DAGs and empty graphs, so this divergence is currently unguarded.
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1335:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5625: * Handles cycles by capping at the number of nodes (graceful degradation).
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1336:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5627:// For nodes in cycles that never reached in-degree 0, assign 0
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1337:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5630:Recommendation: Either implement the documented fallback for cyclic components or update the contract and add explicit cycle tests for `computeDepth()` and `computeAllDepths()`.
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1338:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5634:Dimension: `maintainability`  
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1338:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5634:Dimension: `maintainability`
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1339:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5668:Inspect the runtime TS coverage-graph handlers and DB/query layer for the same contract seams, especially session scoping, momentum naming/semantics, and cycle behavior. The next pass should also verify whether any non-test consumers depend on these CJS exports, because that changes the remediation priority significantly.
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1340:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5677:Dimension: `maintainability`  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1341:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5678:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:89)  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1342:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5699:Dimension: `maintainability`  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1343:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5700:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253)  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1344:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5703:Description: The CJS helper exports `computeMomentum(graph, nodeId, windowSize, sessionId)` as a recent-edge counter, while the canonical runtime implementation exports `computeMomentum(specFolder, loopType)` as a snapshot-to-snapshot delta calculator in [.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555). Same name, different meaning. That is a long-term drift trap for maintainers, especially because the requested test suite only validates the CJS behavior in [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:117).  
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1340:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5677:Dimension: `maintainability`
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1341:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5678:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs:89)
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1342:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5699:Dimension: `maintainability`
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1343:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5700:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:253)
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1344:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5703:Description: The CJS helper exports `computeMomentum(graph, nodeId, windowSize, sessionId)` as a recent-edge counter, while the canonical runtime implementation exports `computeMomentum(specFolder, loopType)` as a snapshot-to-snapshot delta calculator in [.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:555). Same name, different meaning. That is a long-term drift trap for maintainers, especially because the requested test suite only validates the CJS behavior in [.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts:117).
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1345:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5718:  momentum[key] = latest[key] - previous[key];
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1346:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5725:Dimension: `maintainability`  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1347:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5726:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:143)  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1348:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5729:Description: The depth routine claims cycles are handled by “capping at the number of nodes,” but the implementation actually assigns `0` to nodes that never reach zero in-degree. That is not a harmless comment mismatch: it makes cyclic nodes indistinguishable from roots and hides complexity from downstream consumers. The requested unit tests only cover DAGs and empty graphs, so this divergence is currently unguarded.  
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1346:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5725:Dimension: `maintainability`
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1347:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5726:File: [.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs:143)
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1348:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5729:Description: The depth routine claims cycles are handled by “capping at the number of nodes,” but the implementation actually assigns `0` to nodes that never reach zero in-degree. That is not a harmless comment mismatch: it makes cyclic nodes indistinguishable from roots and hides complexity from downstream consumers. The requested unit tests only cover DAGs and empty graphs, so this divergence is currently unguarded.
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1349:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5732: * Handles cycles by capping at the number of nodes (graceful degradation).
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1350:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5734:// For nodes in cycles that never reached in-degree 0, assign 0
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1351:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5737:Recommendation: Either implement the documented fallback for cyclic components or update the contract and add explicit cycle tests for `computeDepth()` and `computeAllDepths()`.
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1352:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5741:Dimension: `maintainability`  
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1352:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5741:Dimension: `maintainability`
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1353:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:5775:Inspect the runtime TS coverage-graph handlers and DB/query layer for the same contract seams, especially session scoping, momentum naming/semantics, and cycle behavior. The next pass should also verify whether any non-test consumers depend on these CJS exports, because that changes the remediation priority significantly.
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1354:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:57:Be thorough and precise. Cite exact file paths and line numbers. Do not report findings that require subjective style preferences — focus on functional correctness, security, traceability, and maintainability risks.
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1355:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:298:    │  (YAML workflow + loop config)    │  Manages loop lifecycle
@@ -1228,10 +1228,10 @@ stem-spec-kit/manual_testing_playbook/14--pipeline-architecture/146-dynamic-serv
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1408:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:4606:/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1409:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:4613:     6	// Follows graph-signals.ts patterns for degree, depth, and momentum.
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1410:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:4830:/bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts | sed -n '340,455p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1411:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:5229:File: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1412:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:5252:Description: `The new collision tests prove that low-level DB writes and direct getters now respect `(spec_folder, loop_type, session_id, id)`, but they stop there. The only convergence test in this file uses disjoint IDs (`q-a`, `q-b`, etc.), so it would not expose the bare-ID subqueries and joins still present in `coverage-graph-signals.ts` and `coverage-graph-query.ts`. The shared-ID section then exercises only `upsertNode`, `upsertEdge`, `getNode`, `getNodes`, `getEdge`, and `getEdgesFrom`. As written, this suite can pass while session-scoped convergence/query handlers still bleed across sessions.`  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1413:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:5281:File: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1414:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:5304:Description: `The new collision tests prove that low-level DB writes and direct getters now respect `(spec_folder, loop_type, session_id, id)`, but they stop there. The only convergence test in this file uses disjoint IDs (`q-a`, `q-b`, etc.), so it would not expose the bare-ID subqueries and joins still present in `coverage-graph-signals.ts` and `coverage-graph-query.ts`. The shared-ID section then exercises only `upsertNode`, `upsertEdge`, `getNode`, `getNodes`, `getEdge`, and `getEdgesFrom`. As written, this suite can pass while session-scoped convergence/query handlers still bleed across sessions.`  
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1411:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:5229:File: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1412:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:5252:Description: `The new collision tests prove that low-level DB writes and direct getters now respect `(spec_folder, loop_type, session_id, id)`, but they stop there. The only convergence test in this file uses disjoint IDs (`q-a`, `q-b`, etc.), so it would not expose the bare-ID subqueries and joins still present in `coverage-graph-signals.ts` and `coverage-graph-query.ts`. The shared-ID section then exercises only `upsertNode`, `upsertEdge`, `getNode`, `getNodes`, `getEdge`, and `getEdgesFrom`. As written, this suite can pass while session-scoped convergence/query handlers still bleed across sessions.`
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1413:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:5281:File: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1414:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-014.md:5304:Description: `The new collision tests prove that low-level DB writes and direct getters now respect `(spec_folder, loop_type, session_id, id)`, but they stop there. The only convergence test in this file uses disjoint IDs (`q-a`, `q-b`, etc.), so it would not expose the bare-ID subqueries and joins still present in `coverage-graph-signals.ts` and `coverage-graph-query.ts`. The shared-ID section then exercises only `upsertNode`, `upsertEdge`, `getNode`, `getNodes`, `getEdge`, and `getEdgesFrom`. As written, this suite can pass while session-scoped convergence/query handlers still bleed across sessions.`
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1415:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:57:Be thorough and precise. Cite exact file paths and line numbers. Do not report findings that require subjective style preferences — focus on functional correctness, security, traceability, and maintainability risks.
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1416:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:203:- **Verify with checks** (simplicity, performance, maintainability, scope) before making changes
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1417:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:249:| **Shared memory**         | `/memory:manage shared` → Shared-memory lifecycle: create spaces, manage memberships, inspect rollout                                    |
@@ -1305,12 +1305,12 @@ stem-spec-kit/manual_testing_playbook/14--pipeline-architecture/146-dynamic-serv
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1485:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:1992:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4432:    10	{"type":"iteration","mode":"review","run":9,"status":"complete","focus":"release-readiness traceability on bundle summaries and reducer risk surfaces","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-006.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-008.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/changelog/13--sk-deep-review/v1.3.0.0.md",".opencode/changelog/15--sk-improve-agent/v1.2.0.0.md"],"findingsCount":15,"findingsSummary":{"P0":0,"P1":9,"P2":6},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.13,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:28:03Z","durationMs":240000}
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1486:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:1993:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4433:    11	{"type":"iteration","mode":"review","run":10,"status":"complete","focus":"root completion surface trustworthiness","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/checklist.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/tasks.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/implementation-summary.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md"],"findingsCount":16,"findingsSummary":{"P0":0,"P1":10,"P2":6},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.06,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:30:57Z","durationMs":180000}
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1487:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2002:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4465:   186	          note: "fork and completed-continue branches are deferred. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are runtime-supported in this release. See sk-deep-review/references/loop_protocol.md `Session Lifecycle` for the canonical one-session model."
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1488:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2015:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4649:Evidence: `buildRegistry()` only lifts `blocked_stop` into `blockedStopHistory` and `buildGraphConvergenceRollup()` only looks at `graph_convergence` (`reduce-state.cjs:396-405`). `renderDashboard()` prints `config.status`, session, parent session, lifecycle mode, and generation, but no terminal reason (`reduce-state.cjs:563-570`). The real packet still records `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:22), while the generated dashboard status at [deep-research-dashboard.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:17) still shows `INITIALIZED`.  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1489:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2017:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4669:Evidence: `buildBlockedStopHistory()` handles `blocked_stop`, and `buildRegistry()` stores only blocked-stop / graph-convergence-derived fields (`reduce-state.cjs:464-540`). `renderDashboard()` status also prints only config-derived lifecycle fields and verdict/counts (`reduce-state.cjs:734-744`). The archived 042 review session still persists `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-review-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:12). The shared optimizer corpus also shows a terminal review event with a nested `legalStop` bundle, but no reducer path reads it: [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6).  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1490:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2019:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4679:Evidence: Auto mode appends lifecycle events at `.yaml:167` and `.yaml:176`, but its config creation still writes `parentSessionId:null`, `lineageMode:"new"`, `generation:1`, `continuedFromRun:null` at `.yaml:241-244`. Confirm mode mirrors the same bug at `.yaml:173`, `.yaml:181`, and `.yaml:249-252`. The reducer only preserves `sessionId`, `generation`, and `lineageMode` from config in the registry (`reduce-state.cjs:521-524`) and only prints those same config fields in the dashboard (`reduce-state.cjs:742-744`).  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1491:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2021:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4707:Evidence: `buildRegistry()` only lifts `blocked_stop` into `blockedStopHistory` and `buildGraphConvergenceRollup()` only looks at `graph_convergence` (`reduce-state.cjs:396-405`). `renderDashboard()` prints `config.status`, session, parent session, lifecycle mode, and generation, but no terminal reason (`reduce-state.cjs:563-570`). The real packet still records `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:22), while the generated dashboard status at [deep-research-dashboard.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:17) still shows `INITIALIZED`.  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1492:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2023:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4727:Evidence: `buildBlockedStopHistory()` handles `blocked_stop`, and `buildRegistry()` stores only blocked-stop / graph-convergence-derived fields (`reduce-state.cjs:464-540`). `renderDashboard()` status also prints only config-derived lifecycle fields and verdict/counts (`reduce-state.cjs:734-744`). The archived 042 review session still persists `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-review-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:12). The shared optimizer corpus also shows a terminal review event with a nested `legalStop` bundle, but no reducer path reads it: [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6).  
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1493:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2025:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4737:Evidence: Auto mode appends lifecycle events at `.yaml:167` and `.yaml:176`, but its config creation still writes `parentSessionId:null`, `lineageMode:"new"`, `generation:1`, `continuedFromRun:null` at `.yaml:241-244`. Confirm mode mirrors the same bug at `.yaml:173`, `.yaml:181`, and `.yaml:249-252`. The reducer only preserves `sessionId`, `generation`, and `lineageMode` from config in the registry (`reduce-state.cjs:521-524`) and only prints those same config fields in the dashboard (`reduce-state.cjs:742-744`).  
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1488:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2015:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4649:Evidence: `buildRegistry()` only lifts `blocked_stop` into `blockedStopHistory` and `buildGraphConvergenceRollup()` only looks at `graph_convergence` (`reduce-state.cjs:396-405`). `renderDashboard()` prints `config.status`, session, parent session, lifecycle mode, and generation, but no terminal reason (`reduce-state.cjs:563-570`). The real packet still records `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:22), while the generated dashboard status at [deep-research-dashboard.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:17) still shows `INITIALIZED`.
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1489:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2017:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4669:Evidence: `buildBlockedStopHistory()` handles `blocked_stop`, and `buildRegistry()` stores only blocked-stop / graph-convergence-derived fields (`reduce-state.cjs:464-540`). `renderDashboard()` status also prints only config-derived lifecycle fields and verdict/counts (`reduce-state.cjs:734-744`). The archived 042 review session still persists `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-review-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:12). The shared optimizer corpus also shows a terminal review event with a nested `legalStop` bundle, but no reducer path reads it: [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6).
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1490:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2019:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4679:Evidence: Auto mode appends lifecycle events at `.yaml:167` and `.yaml:176`, but its config creation still writes `parentSessionId:null`, `lineageMode:"new"`, `generation:1`, `continuedFromRun:null` at `.yaml:241-244`. Confirm mode mirrors the same bug at `.yaml:173`, `.yaml:181`, and `.yaml:249-252`. The reducer only preserves `sessionId`, `generation`, and `lineageMode` from config in the registry (`reduce-state.cjs:521-524`) and only prints those same config fields in the dashboard (`reduce-state.cjs:742-744`).
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1491:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2021:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4707:Evidence: `buildRegistry()` only lifts `blocked_stop` into `blockedStopHistory` and `buildGraphConvergenceRollup()` only looks at `graph_convergence` (`reduce-state.cjs:396-405`). `renderDashboard()` prints `config.status`, session, parent session, lifecycle mode, and generation, but no terminal reason (`reduce-state.cjs:563-570`). The real packet still records `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:22), while the generated dashboard status at [deep-research-dashboard.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:17) still shows `INITIALIZED`.
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1492:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2023:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4727:Evidence: `buildBlockedStopHistory()` handles `blocked_stop`, and `buildRegistry()` stores only blocked-stop / graph-convergence-derived fields (`reduce-state.cjs:464-540`). `renderDashboard()` status also prints only config-derived lifecycle fields and verdict/counts (`reduce-state.cjs:734-744`). The archived 042 review session still persists `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-review-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:12). The shared optimizer corpus also shows a terminal review event with a nested `legalStop` bundle, but no reducer path reads it: [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6).
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1493:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2025:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:4737:Evidence: Auto mode appends lifecycle events at `.yaml:167` and `.yaml:176`, but its config creation still writes `parentSessionId:null`, `lineageMode:"new"`, `generation:1`, `continuedFromRun:null` at `.yaml:241-244`. Confirm mode mirrors the same bug at `.yaml:173`, `.yaml:181`, and `.yaml:249-252`. The reducer only preserves `sessionId`, `generation`, and `lineageMode` from config in the registry (`reduce-state.cjs:521-524`) and only prints those same config fields in the dashboard (`reduce-state.cjs:742-744`).
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1494:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2029:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/checklist.md:66:- [x] CHK-031 [P0] Self-loops and invalid weights are rejected or clamped before persistence. [EVIDENCE: spec.md Files to Change entries for `coverage-graph-core.cjs` and `upsert.ts`; implementation-summary.md "MCP Tools"] [TESTS: coverage-graph-core.vitest.ts; coverage-graph-tools.vitest.ts]
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1495:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2033:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/checklist.md:122:- [x] CHK-112 [P2] Performance-sensitive graph metrics are covered by dedicated signal tests. [EVIDENCE: tasks.md T021-T022] [TESTS: coverage-graph-signals.vitest.ts]
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1496:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2048:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-004.md:45:Rotate into the remaining lifecycle/session metadata and completed-continue/reopen mirrors across review and research docs, especially places where resume/restart/fork examples may still lag the persisted JSONL and config contracts.
@@ -1340,7 +1340,7 @@ stem-spec-kit/manual_testing_playbook/14--pipeline-architecture/146-dynamic-serv
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1520:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2525:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/scratch/codex-gpt54-deep-research.md:914:.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:265:        content: '{"sessionId":"{ISO_8601_NOW}","generation":1,"lineageMode":"new","openFindings":[],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false},"findingsBySeverity":{"P0":0,"P1":0,"P2":0},"openFindingsCount":0,"resolvedFindingsCount":0,"convergenceScore":0.0}'
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1521:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2590:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:5:{"type":"iteration","mode":"review","run":4,"status":"complete","focus":"confirm/reference contract drift on claim adjudication and convergence docs","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-review/references/convergence.md"],"findingsCount":9,"findingsSummary":{"P0":0,"P1":6,"P2":3},"findingsNew":{"P0":0,"P1":2,"P2":1},"newFindingsRatio":0.33,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:09:16Z","durationMs":240000}
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1522:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2591:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:6:{"type":"iteration","mode":"review","run":5,"status":"complete","focus":"lifecycle branch persistence across resume/restart/fork mirrors","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-research/references/state_format.md",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-research/references/quick_reference.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs"],"findingsCount":11,"findingsSummary":{"P0":0,"P1":7,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.18,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:13:53Z","durationMs":300000}
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1523:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2592:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/commands/improve/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1523:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2592:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/commands/deep/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1524:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2593:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:8:{"type":"iteration","mode":"review","run":7,"status":"complete","focus":"traceability closure on lifecycle persistence and claim-adjudication gating","dimensions":["traceability","correctness"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:20:53Z","durationMs":510000}
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1525:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2594:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:9:{"type":"iteration","mode":"review","run":8,"status":"complete","focus":"session-isolation closure claims and graph namespace coverage","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml"],"findingsCount":13,"findingsSummary":{"P0":0,"P1":8,"P2":5},"findingsNew":{"P0":0,"P1":0,"P2":1},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:23:58Z","durationMs":240000}
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1526:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2595:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:10:{"type":"iteration","mode":"review","run":9,"status":"complete","focus":"release-readiness traceability on bundle summaries and reducer risk surfaces","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-006.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-008.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/changelog/13--sk-deep-review/v1.3.0.0.md",".opencode/changelog/15--sk-improve-agent/v1.2.0.0.md"],"findingsCount":15,"findingsSummary":{"P0":0,"P1":9,"P2":6},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.13,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:28:03Z","durationMs":240000}
@@ -1482,7 +1482,7 @@ stem-spec-kit/manual_testing_playbook/14--pipeline-architecture/146-dynamic-serv
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1662:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3751:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:9:{"type":"iteration","mode":"research","run":8,"status":"complete","focus":"D2 partial-failure reducer audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-007.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/convergence.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"],"answeredQuestions":[],"timestamp":"2026-04-11T08:33:26Z","durationMs":290000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-jsonl-malformed-lines-skipped","label":"Malformed JSONL lines are silently skipped by the review reducer"},{"type":"node","id":"finding-markdown-authoritative-lifecycle","label":"Finding lifecycle state is derived from parseable iteration markdown rather than iteration summaries"},{"type":"node","id":"finding-dashboard-registry-divergence","label":"Partial iteration markdown can leave dashboard progress ahead of registry lifecycle state"},{"type":"node","id":"finding-blocked-stop-evidence-stranded","label":"Blocked-stop gate evidence remains stranded in JSONL instead of reducer-owned surfaces"},{"type":"node","id":"finding-idempotent-but-lossy","label":"Reducer idempotency is deterministic but omission-based under partial failures"},{"type":"edge","relation":"supports","source":"finding-jsonl-malformed-lines-skipped","target":"finding-idempotent-but-lossy"},{"type":"edge","relation":"supports","source":"finding-markdown-authoritative-lifecycle","target":"finding-dashboard-registry-divergence"},{"type":"edge","relation":"extends","source":"finding-blocked-stop-evidence-stranded","target":"finding-dashboard-registry-divergence"},{"type":"edge","relation":"supports","source":"finding-dashboard-registry-divergence","target":"finding-idempotent-but-lossy"}]}
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1663:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3752:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:10:{"type":"iteration","mode":"research","run":9,"status":"complete","focus":"D2 scale reducer stress audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-008.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/convergence.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"],"answeredQuestions":["D2: Does the new `scripts/reduce-state.cjs` correctly handle partial-failure iterations, severity transitions, and finding deduplication at scale (50+ findings)?"],"timestamp":"2026-04-11T08:38:09Z","durationMs":360000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-review-dedup-stable-at-scale","label":"Map-by-findingId dedup stays stable across a 60-bullet synthetic packet"},{"type":"node","id":"finding-review-transitions-ordered-at-scale","label":"Severity transition histories remain ordered and complete under heavy churn"},{"type":"node","id":"finding-review-repeated-signal-coarse","label":"Repeated finding detection stays deterministic but collapses persistence and severity churn into one bucket"},{"type":"node","id":"finding-review-blockedstop-omission-scales","label":"Blocked-stop gate summaries remain absent from reducer-owned surfaces even when every cycle carries legalStop payloads"},{"type":"node","id":"finding-review-scale-risk-is-observability","label":"The scaled reducer risk is recovery-summary omission rather than merge instability"},{"type":"edge","relation":"supports","source":"finding-review-dedup-stable-at-scale","target":"finding-review-transitions-ordered-at-scale"},{"type":"edge","relation":"extends","source":"finding-review-transitions-ordered-at-scale","target":"finding-review-repeated-signal-coarse"},{"type":"edge","relation":"supports","source":"finding-review-blockedstop-omission-scales","target":"finding-review-scale-risk-is-observability"},{"type":"edge","relation":"extends","source":"finding-review-dedup-stable-at-scale","target":"finding-review-scale-risk-is-observability"}]}
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1664:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3757:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:15:{"type":"iteration","mode":"research","run":14,"status":"complete","focus":"D5 convergence weight vs live callers","findingsCount":6,"newInfoRatio":0.8,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-013.md",".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/references/convergence.md",".opencode/skills/sk-deep-review/references/convergence.md",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"],"answeredQuestions":["D5: Does the coverage graph's contribution to the 3-signal convergence math exceed its weight, or is it merely nominal?"],"timestamp":"2026-04-11T08:54:01Z","durationMs":175000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d5-graph-weight-capped","label":"Graph helper caps graph influence at 40 percent of blendedScore"},{"type":"node","id":"d5-separate-graph-blockers","label":"Graph blocker gates remain separate from the weighted blend"},{"type":"node","id":"d5-research-composite-passthrough","label":"Research reducer reads compositeStop or newInfoRatio instead of graph outputs"},{"type":"node","id":"d5-review-composite-passthrough","label":"Review reducer reads compositeStop or newFindingsRatio instead of graph outputs"},{"type":"node","id":"d5-doc-runtime-gap","label":"Graph-aware reducer docs overstate what the shipped reducers currently execute"},{"type":"node","id":"d5-split-graph-regimes","label":"CJS and MCP graph convergence implementations use different sourceDiversity scales and thresholds"},{"type":"edge","relation":"supports","source":"d5-graph-weight-capped","target":"d5-research-composite-passthrough"},{"type":"edge","relation":"supports","source":"d5-separate-graph-blockers","target":"d5-review-composite-passthrough"},{"type":"edge","relation":"extends","source":"d5-doc-runtime-gap","target":"d5-research-composite-passthrough"},{"type":"edge","relation":"supports","source":"d5-split-graph-regimes","target":"d5-doc-runtime-gap"}]}
-./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1665:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3759:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:17:{"type":"iteration","mode":"research","run":16,"status":"complete","focus":"D3 improvement namespace vs shared graph boundary","findingsCount":6,"newInfoRatio":0.83,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-015.md",".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts"],"answeredQuestions":["D3: Is the mutation coverage graph namespace (`loop_type: \"improvement\"`) properly isolated from the deep-research/deep-review namespaces in the shared SQLite store?"],"timestamp":"2026-04-11T09:01:12Z","durationMs":185000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d3-improvement-local-json-only","label":"Mutation coverage helper persists a local JSON graph rather than shared SQLite rows"},{"type":"node","id":"d3-improvement-no-visible-upsert","label":"Visible improve-agent workflow never calls deep_loop_graph_upsert"},{"type":"node","id":"d3-shared-db-rejects-improvement","label":"Shared coverage graph schema and handlers accept only research and review loop types"},{"type":"node","id":"d3-strategy-drift-shared-store","label":"Strategy and skill text overstate improvement namespace presence in the shared store"},{"type":"node","id":"d3-convergence-cross-session-reads","label":"Coverage graph convergence aggregates by specFolder and loopType without sessionId"},{"type":"node","id":"d3-query-cross-session-reads","label":"Coverage graph query helpers ignore sessionId for multiple read surfaces"},{"type":"edge","relation":"supports","source":"d3-improvement-local-json-only","target":"d3-shared-db-rejects-improvement"},{"type":"edge","relation":"supports","source":"d3-improvement-no-visible-upsert","target":"d3-shared-db-rejects-improvement"},{"type":"edge","relation":"extends","source":"d3-strategy-drift-shared-store","target":"d3-shared-db-rejects-improvement"},{"type":"edge","relation":"supports","source":"d3-convergence-cross-session-reads","target":"d3-query-cross-session-reads"}]}
+./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1665:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3759:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:17:{"type":"iteration","mode":"research","run":16,"status":"complete","focus":"D3 improvement namespace vs shared graph boundary","findingsCount":6,"newInfoRatio":0.83,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-015.md",".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts"],"answeredQuestions":["D3: Is the mutation coverage graph namespace (`loop_type: \"improvement\"`) properly isolated from the deep-research/deep-review namespaces in the shared SQLite store?"],"timestamp":"2026-04-11T09:01:12Z","durationMs":185000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d3-improvement-local-json-only","label":"Mutation coverage helper persists a local JSON graph rather than shared SQLite rows"},{"type":"node","id":"d3-improvement-no-visible-upsert","label":"Visible improve-agent workflow never calls deep_loop_graph_upsert"},{"type":"node","id":"d3-shared-db-rejects-improvement","label":"Shared coverage graph schema and handlers accept only research and review loop types"},{"type":"node","id":"d3-strategy-drift-shared-store","label":"Strategy and skill text overstate improvement namespace presence in the shared store"},{"type":"node","id":"d3-convergence-cross-session-reads","label":"Coverage graph convergence aggregates by specFolder and loopType without sessionId"},{"type":"node","id":"d3-query-cross-session-reads","label":"Coverage graph query helpers ignore sessionId for multiple read surfaces"},{"type":"edge","relation":"supports","source":"d3-improvement-local-json-only","target":"d3-shared-db-rejects-improvement"},{"type":"edge","relation":"supports","source":"d3-improvement-no-visible-upsert","target":"d3-shared-db-rejects-improvement"},{"type":"edge","relation":"extends","source":"d3-strategy-drift-shared-store","target":"d3-shared-db-rejects-improvement"},{"type":"edge","relation":"supports","source":"d3-convergence-cross-session-reads","target":"d3-query-cross-session-reads"}]}
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1666:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3780:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/implementation-summary.md:55:The JSONL merge contract uses explicit key ordering by `sessionId`, `generation`, `segment`, `wave`, and `findingId` rather than append order. Segment provenance, dedupe, and conflict metadata survive repeated merges. Segment JSONL lineage is deterministic and auditable.
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1667:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3798:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:141:- This is not primarily a shared-infrastructure deficit: the graph/MCP layer already computes and evaluates the richer research signals, including blocker semantics for `sourceDiversity`, `evidenceDepth`, contradictions, and unverified claims (.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:163-228; .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:175-275). (iteration 7)
 ./.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md:1668:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3815:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-016.md:11:- A different namespace-isolation weakness does exist on the shared read side for research/review sessions: the convergence handler never accepts `sessionId`, constructs its namespace from only `{ specFolder, loopType }`, and then calls `getStats()` plus `computeSignals()` / `computeMomentum()` without session scoping, so convergence decisions aggregate all sessions sharing the same spec folder and loop type (`.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:47-52`, `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:92-111`, `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:511-545`, `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts:163-220`).
@@ -2686,7 +2686,7 @@ exec
       "title": "Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface",
       "file": ".opencode/skills/sk-improve-agent/SKILL.md",
       "line": 292,
-      "description": "The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/improve/agent.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.",
+      "description": "The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/deep/start-agent-improvement-loop.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.",
       "dimension": "correctness",
       "firstSeen": 6,
       "lastSeen": 6,
@@ -2840,7 +2840,7 @@ CONDITIONAL routes to `/speckit:plan` for remediation before the 042 bundle can 
 | F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skills/sk-deep-review/references/convergence.md:44`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:896` | 4 | 4 | active |
 | F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:167`; `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
 | F011 | P2 | traceability | Resume-event examples remain skeletal even where the visible state contract expects lineage metadata | `I005` (`iteration-005.md:22`) | `.opencode/skills/sk-deep-research/references/loop_protocol.md:83`; `.opencode/skills/sk-deep-review/references/state_format.md:240-243` | 5 | 5 | active |
-| F012 | P1 | correctness | Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface | `I006` (`iteration-006.md:19`) | `.opencode/skills/sk-improve-agent/SKILL.md:292`; `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42` | 6 | 6 | active |
+| F012 | P1 | correctness | Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface | `I006` (`iteration-006.md:19`) | `.opencode/skills/sk-improve-agent/SKILL.md:292`; `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:36-42` | 6 | 6 | active |
 | F013 | P2 | traceability | Phase 008 implementation summary overclaims REQ-024 closure | `I008` (`iteration-008.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59`; `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91` | 8 | 8 | active |
 | F014 | P1 | traceability | Phase 008 closeout claims full requirement closure while open review P1s remain | `I009` (`iteration-009.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:157`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:35` | 9 | 9 | active |
 | F015 | P2 | traceability | Reducer-owned `ACTIVE RISKS` summary hides non-P0 release-readiness debt | `I009` (`iteration-009.md:22`) | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:832`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:100` | 9 | 9 | active |
@@ -3003,59 +3003,59 @@ Phase closeout summaries, packet-root completion artifacts, and reducer-owned da
 
 ## 6. Plan Seed
 
-1. **T001 [correctness] Wire claim-adjudication into the deep-review legal-stop tree**  
-Target files: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`  
-Findings: F002  
+1. **T001 [correctness] Wire claim-adjudication into the deep-review legal-stop tree**
+Target files: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
+Findings: F002
 REQ: REQ-026
 
-2. **T002 [traceability] Replace prose claim-adjudication examples with the typed packet contract**  
-Target files: `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`  
-Findings: F007  
+2. **T002 [traceability] Replace prose claim-adjudication examples with the typed packet contract**
+Target files: `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`
+Findings: F007
 REQ: REQ-027
 
-3. **T003 [security] Change coverage-graph upsert identity to a session-safe namespace**  
-Target files: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, related query helpers if needed  
-Findings: F004  
+3. **T003 [security] Change coverage-graph upsert identity to a session-safe namespace**
+Target files: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, related query helpers if needed
+Findings: F004
 REQ: REQ-028
 
-4. **T004 [security] Add a collision-path regression for shared node and edge IDs across sessions**  
-Target files: `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`  
-Findings: F005  
+4. **T004 [security] Add a collision-path regression for shared node and edge IDs across sessions**
+Target files: `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`
+Findings: F005
 REQ: REQ-029
 
-5. **T005 [traceability] Document graphEvents payload schema and namespace expectations on review and research references**  
-Target files: `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-review/references/state_format.md`  
-Findings: F006  
+5. **T005 [traceability] Document graphEvents payload schema and namespace expectations on review and research references**
+Target files: `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-review/references/state_format.md`
+Findings: F006
 REQ: REQ-029
 
-6. **T006 [correctness] Implement or retract lifecycle branches on deep-review and deep-research workflows**  
-Target files: `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`, any paired auto assets touched by the chosen solution  
-Findings: F010  
+6. **T006 [correctness] Implement or retract lifecycle branches on deep-review and deep-research workflows**
+Target files: `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`, any paired auto assets touched by the chosen solution
+Findings: F010
 REQ: REQ-030
 
-7. **T007 [traceability] Normalize lifecycle event examples and state-format rows after the runtime decision lands**  
-Target files: `sk-deep-review` and `sk-deep-research` `state_format.md`, `loop_protocol.md`, `quick_reference.md`  
-Findings: F011  
+7. **T007 [traceability] Normalize lifecycle event examples and state-format rows after the runtime decision lands**
+Target files: `sk-deep-review` and `sk-deep-research` `state_format.md`, `loop_protocol.md`, `quick_reference.md`
+Findings: F011
 REQ: REQ-031
 
-8. **T008 [correctness] Decide whether improve-agent ships lineage modes or narrows its promise surface**  
-Target files: `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-Findings: F012  
+8. **T008 [correctness] Decide whether improve-agent ships lineage modes or narrows its promise surface**
+Target files: `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+Findings: F012
 REQ: REQ-030
 
-9. **T009 [correctness] Align the canonical deep-review agent schema with reducer parsing and fix config-array serialization**  
-Target files: `.opencode/agents/deep-review.md`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`  
-Findings: F001, F003  
+9. **T009 [correctness] Align the canonical deep-review agent schema with reducer parsing and fix config-array serialization**
+Target files: `.opencode/agents/deep-review.md`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
+Findings: F001, F003
 REQ: REQ-032
 
-10. **T010 [traceability] Reconcile quick-reference and convergence docs with the live stop schema**  
-Target files: `.opencode/skills/sk-deep-review/references/quick_reference.md`, `.opencode/skills/sk-deep-review/references/convergence.md`, `.opencode/skills/sk-deep-review/references/state_format.md`  
-Findings: F008, F009  
+10. **T010 [traceability] Reconcile quick-reference and convergence docs with the live stop schema**
+Target files: `.opencode/skills/sk-deep-review/references/quick_reference.md`, `.opencode/skills/sk-deep-review/references/convergence.md`, `.opencode/skills/sk-deep-review/references/state_format.md`
+Findings: F008, F009
 REQ: REQ-033
 
-11. **T011 [traceability] Rewrite phase 008 closeout claims against the post-remediation evidence set**  
-Target files: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md`  
-Findings: F013, F014  
+11. **T011 [traceability] Rewrite phase 008 closeout claims against the post-remediation evidence set**
+Target files: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md`
+Findings: F013, F014
 REQ: REQ-034
 
 exec
@@ -4077,7 +4077,7 @@ exec
 
 ● Search (grep)
   │ "benchmarkPlateau|plateau|legal_stop_evaluated|blocked_stop|session_ended|stopReason|candidate_s
-  │ cored" (.opencode/commands/improve)
+  │ cored" (.opencode/commands/deep)
   └ 25 lines found
 
 ● Search (grep)
@@ -4381,7 +4381,7 @@ exec
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs | sed -n '80,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-   120	
+   120
    121	/**
    122	 * Compute depths for all nodes in the graph.
    123	 *
@@ -4393,11 +4393,11 @@ exec
    129	  const { adjacency, inDegree } = buildAdjacencyList(graph, sessionId);
    130	  return computeComponentDepths(adjacency, Array.from(inDegree.keys())).depthByNode;
    131	}
-   132	
+   132
    133	/* ---------------------------------------------------------------
    134	   3. RECENT EDGE ACTIVITY
    135	----------------------------------------------------------------*/
-   136	
+   136
    137	/**
    138	 * Compute recent edge activity for a node within a recent window.
    139	 * Counts edges created within the last `windowSize` milliseconds.
@@ -4415,28 +4415,28 @@ exec
    151	  if (typeof windowSize !== 'number' || !Number.isFinite(windowSize) || windowSize < 0) {
    152	    windowSize = 300000;
    153	  }
-   154	
+   154
    155	  const cutoff = Date.now() - windowSize;
    156	  let count = 0;
-   157	
+   157
    158	  for (const edge of getFilteredEdges(graph, sessionId)) {
    159	    if (edge.source !== nodeId && edge.target !== nodeId) continue;
-   160	
+   160
    161	    const edgeTime = edge.createdAt ? new Date(edge.createdAt).getTime() : 0;
    162	    if (edgeTime >= cutoff) {
    163	      count++;
    164	    }
    165	  }
-   166	
+   166
    167	  return count;
    168	}
-   169	
+   169
    170	const computeMomentum = computeRecentEdgeActivity;
-   171	
+   171
    172	/* ---------------------------------------------------------------
    173	   4. CLUSTER METRICS
    174	----------------------------------------------------------------*/
-   175	
+   175
    176	/**
    177	 * Compute connected component counts and sizes using BFS.
    178	 * Treats the graph as undirected for connectivity analysis.
@@ -4461,9 +4461,9 @@ exec
     84	  if (options.loopType !== 'review' && options.loopType !== 'research') {
     85	    return null;
     86	  }
-    87	
+    87
     88	  const now = new Date().toISOString();
-    89	
+    89
     90	  return {
     91	    schema: 'wave-board-v1',
     92	    sessionId: options.sessionId,
@@ -4492,11 +4492,11 @@ exec
    115	    },
    116	  };
    117	}
-   118	
+   118
    119	/* ---------------------------------------------------------------
    120	   3. BOARD UPDATE
    121	----------------------------------------------------------------*/
-   122	
+   122
    123	/**
    124	 * Merge segment results into the coordination board.
    125	 * Updates segment status, findings, conflicts, and deduplication log.
@@ -4512,15 +4512,15 @@ exec
    135	  if (!Array.isArray(segmentResults)) {
    136	    return board;
    137	  }
-   138	
+   138
    139	  const now = new Date().toISOString();
    140	  board.updatedAt = now;
-   141	
+   141
    142	  for (const result of segmentResults) {
    143	    if (!result) continue;
-   144	
+   144
    145	    const segmentId = result.segmentId || `seg-unknown-${Date.now()}`;
-   146	
+   146
    147	    // Update segment record
    148	    const existingSegment = board.segments.find(s => s.segmentId === segmentId);
    149	    if (existingSegment) {
@@ -4537,7 +4537,7 @@ exec
    160	        waveId: result.waveId || null,
    161	      });
    162	    }
-   163	
+   163
    164	    // Process findings with explicit keys
    165	    if (Array.isArray(result.findings)) {
    166	      for (const finding of result.findings) {
@@ -4546,17 +4546,17 @@ exec
    169	      }
    170	    }
    171	  }
-   172	
+   172
    173	  // Update stats
    174	  recalculateStats(board);
-   175	
+   175
    176	  return board;
    177	}
-   178	
+   178
    179	/* ---------------------------------------------------------------
    180	   4. FINDING RECORDS AND MERGE
    181	----------------------------------------------------------------*/
-   182	
+   182
    183	/**
    184	 * Build a board finding record with explicit key fields.
    185	 * Keys: sessionId, generation, segment, wave, findingId.
@@ -4572,7 +4572,7 @@ exec
    195	  }
    196	  // Fall back to the segment result's waveId if the finding itself has no wave info
    197	  const resolvedWave = finding.wave || finding.waveId || (segmentResult && segmentResult.waveId) || null;
-   198	
+   198
    199	  return {
    200	    // Explicit merge keys (never rely on append order)
    201	    sessionId: board.sessionId,
@@ -4597,7 +4597,7 @@ exec
    220	    },
    221	  };
    222	}
-   223	
+   223
    224	/**
    225	 * Merge a finding record into the board.
    226	 * Uses the full 5-key composite for exact-merge dedupe.
@@ -4618,10 +4618,10 @@ exec
    241	    if (buildFindingCompositeKey(existingRecord) === mergeKey) return false;
    242	    return buildFindingGroupKey(existingRecord) === buildFindingGroupKey(findingRecord);
    243	  });
-   244	
+   244
    245	  if (existingIndex >= 0) {
    246	    const existing = board.findings[existingIndex];
-   247	
+   247
    248	    if (hasFindingConflict(existing, findingRecord)) {
    249	      board.conflicts.push({
    250	        findingId: findingRecord.findingId,
@@ -4633,7 +4633,7 @@ exec
    256	        resolution: 'pending',
    257	        detectedAt: new Date().toISOString(),
    258	      });
-   259	
+   259
    260	      if (compareSeverity(findingRecord.severity, existing.severity) >= 0) {
    261	        findingRecord.mergeState = compareSeverity(findingRecord.severity, existing.severity) > 0
    262	          ? 'promoted'
@@ -4654,7 +4654,7 @@ exec
    277	    }
    278	  } else if (siblingIndex >= 0) {
    279	    const sibling = board.findings[siblingIndex];
-   280	
+   280
 
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs | sed -n '160,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -4666,11 +4666,11 @@ exec
    222	    deferredSegments: Math.max(0, segments.length - maxParallel),
    223	  };
    224	}
-   225	
+   225
    226	/* ---------------------------------------------------------------
    227	   5. JOIN
    228	----------------------------------------------------------------*/
-   229	
+   229
    230	/**
    231	 * Merge strategy definitions for joining wave results.
    232	 * @type {Readonly<Record<string, string>>}
@@ -4680,7 +4680,7 @@ exec
    236	  DEDUPE: 'dedupe',
    237	  PRIORITY: 'priority',
    238	});
-   239	
+   239
    240	/**
    241	 * Join results from parallel workers back into a single result set.
    242	 * Applies the specified merge strategy to handle duplicates and conflicts.
@@ -4693,20 +4693,20 @@ exec
    249	  if (!Array.isArray(results)) {
    250	    return { merged: [], conflicts: [], stats: { totalResults: 0, mergedFindings: 0, conflicts: 0 } };
    251	  }
-   252	
+   252
    253	  const strategy = mergeStrategy || MERGE_STRATEGIES.DEDUPE;
    254	  const conflicts = [];
    255	  const findingMap = new Map();
-   256	
+   256
    257	  for (const result of results) {
    258	    if (!result || !result.findings) continue;
-   259	
+   259
    260	    for (const finding of result.findings) {
    261	      const key = buildFindingKey(finding);
-   262	
+   262
    263	      if (findingMap.has(key)) {
    264	        const existing = findingMap.get(key);
-   265	
+   265
    266	        if (strategy === MERGE_STRATEGIES.CONCAT) {
    267	          // Keep both under different composite keys
    268	          const altKey = `${key}::${result.segmentId || 'unknown'}`;
@@ -4740,17 +4740,17 @@ exec
    163	    segment: record.segment || segmentState.segmentId,
    164	    wave: record.wave || segmentState.waveId || null,
    165	  };
-   166	
+   166
    167	  segmentState.jsonlRecords.push(enriched);
    168	  segmentState.updatedAt = new Date().toISOString();
-   169	
+   169
    170	  return enriched;
    171	}
-   172	
+   172
    173	/* ---------------------------------------------------------------
    174	   4. STATE MERGE
    175	----------------------------------------------------------------*/
-   176	
+   176
    177	/**
    178	 * Merge multiple segment states into a combined result.
    179	 * Uses explicit keys for deduplication and conflict detection.
@@ -4763,23 +4763,23 @@ exec
    186	  if (!Array.isArray(states) || states.length === 0) {
    187	    return { merged: null, conflicts: [], dedupeLog: [] };
    188	  }
-   189	
+   189
    190	  const strategy = mergeStrategy || 'dedupe';
    191	  const findingMap = new Map();
    192	  const conflicts = [];
    193	  const dedupeLog = [];
    194	  const allRecords = [];
-   195	
+   195
    196	  for (const state of states) {
    197	    if (!state) continue;
-   198	
+   198
    199	    // Merge findings
    200	    for (const finding of (state.findings || [])) {
    201	      const key = finding.findingId || buildMergeKey(finding);
-   202	
+   202
    203	      if (findingMap.has(key)) {
    204	        const existing = findingMap.get(key);
-   205	
+   205
    206	        if (strategy === 'dedupe') {
    207	          // Check for conflicts
    208	          if (existing.severity !== finding.severity) {
@@ -4791,7 +4791,7 @@ exec
    214	              newSeverity: finding.severity,
    215	              resolution: 'keep-higher',
    216	            });
-   217	
+   217
    218	            // Keep higher severity
    219	            if (compareSeverity(finding.severity, existing.severity) > 0) {
    220	              findingMap.set(key, {
@@ -4799,37 +4799,37 @@ exec
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts | sed -n '340,460p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-   340	
+   340
    341	    // The same logical edge id in session Y must not overwrite session X.
    342	    upsertEdge(collisionEdge(SESSION_Y, 'answers-shared', 'f-shared', 'q-shared'));
-   343	
+   343
    344	    const edgeX = getEdge(nsX, 'answers-shared');
    345	    const edgeY = getEdge(nsY, 'answers-shared');
    346	    expect(edgeX).toBeTruthy();
    347	    expect(edgeY).toBeTruthy();
    348	    expect(edgeX?.sessionId).toBe(SESSION_X);
    349	    expect(edgeY?.sessionId).toBe(SESSION_Y);
-   350	
+   350
    351	    const aggregate = getEdges({ specFolder: SHARED_SPEC, loopType: SHARED_LOOP_TYPE });
    352	    // Two independent edge rows.
    353	    expect(aggregate.length).toBe(2);
-   354	
+   354
    355	    // Namespace-scoped traversal reflects the same isolation.
    356	    expect(getEdgesFrom(nsX, 'f-shared').map((e) => e.id)).toEqual(['answers-shared']);
    357	    expect(getEdgesFrom(nsY, 'f-shared').map((e) => e.id)).toEqual(['answers-shared']);
    358	  });
-   359	
+   359
    360	  it('updating a collided node in one session leaves the other session untouched', () => {
    361	    upsertNode(collisionNode(SESSION_X, 'q-shared', 'Question X v1'));
    362	    upsertNode(collisionNode(SESSION_Y, 'q-shared', 'Question Y v1'));
-   363	
+   363
    364	    // Upsert-update in session X.
    365	    upsertNode(collisionNode(SESSION_X, 'q-shared', 'Question X v2'));
-   366	
+   366
    367	    expect(getNode(nsX, 'q-shared')?.name).toBe('Question X v2');
    368	    expect(getNode(nsY, 'q-shared')?.name).toBe('Question Y v1');
    369	  });
-   370	
+   370
    371	  it('keeps higher-level handler reads session-scoped when logical IDs collide', async () => {
    372	    const sharedQuestionId = 'q-shared';
    373	    const sharedFindingOneId = 'f-shared-1';
@@ -4838,7 +4838,7 @@ exec
    376	    const sharedSourceTwoId = 's-shared-2';
    377	    const sharedClaimSourceId = 'claim-shared-a';
    378	    const sharedClaimTargetId = 'claim-shared-b';
-   379	
+   379
    380	    const sessionXNodes: CoverageNode[] = [
    381	      collisionNode(SESSION_X, sharedQuestionId, 'Question X'),
    382	      collisionTypedNode(SESSION_X, sharedFindingOneId, 'FINDING', 'Finding X1'),
@@ -4854,7 +4854,7 @@ exec
    392	      collisionTypedNode(SESSION_Y, sharedClaimSourceId, 'CLAIM', 'Claim Y A'),
    393	      collisionTypedNode(SESSION_Y, sharedClaimTargetId, 'CLAIM', 'Claim Y B'),
    394	    ];
-   395	
+   395
    396	    const sessionXEdges: CoverageEdge[] = [
    397	      collisionEdge(SESSION_X, 'answers-shared-1', sharedFindingOneId, sharedQuestionId),
    398	      collisionEdge(SESSION_X, 'answers-shared-2', sharedFindingTwoId, sharedQuestionId),
@@ -4865,14 +4865,14 @@ exec
    403	    const sessionYEdges: CoverageEdge[] = [
    404	      collisionEdge(SESSION_Y, 'answers-shared-1', sharedFindingOneId, sharedQuestionId),
    405	    ];
-   406	
+   406
    407	    for (const node of [...sessionXNodes, ...sessionYNodes]) {
    408	      upsertNode(node);
    409	    }
    410	    for (const edge of [...sessionXEdges, ...sessionYEdges]) {
    411	      upsertEdge(edge);
    412	    }
-   413	
+   413
    414	    const queryX = parseHandlerData(await handleCoverageGraphQuery({
    415	      specFolder: SHARED_SPEC,
    416	      loopType: SHARED_LOOP_TYPE,
@@ -4905,7 +4905,7 @@ exec
    443	      loopType: SHARED_LOOP_TYPE,
    444	      sessionId: SESSION_Y,
    445	    }));
-   446	
+   446
    447	    expect(queryX.totalContradictions).toBe(1);
    448	    expect(queryX.contradictions).toEqual([
    449	      expect.objectContaining({
@@ -4918,7 +4918,7 @@ exec
    456	    ]);
    457	    expect(queryY.totalContradictions).toBe(0);
    458	    expect(queryY.contradictions).toEqual([]);
-   459	
+   459
    460	    expect(statusX.totalNodes).toBe(sessionXNodes.length);
 
 exec
@@ -4936,14 +4936,14 @@ exec
     10	 * self-loop prevention, namespace isolation, and convergence signals are
     11	 * consistent across the CJS and TS layers.
     12	 */
-    13	
+    13
     14	import fs from 'node:fs';
     15	import os from 'node:os';
     16	import path from 'node:path';
     17	import { createRequire } from 'node:module';
     18	import { fileURLToPath } from 'node:url';
     19	import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-    20	
+    20
     21	import {
     22	  VALID_RELATIONS,
     23	  RESEARCH_WEIGHTS,
@@ -4956,13 +4956,13 @@ exec
     30	  type CoverageEdge,
     31	  type CoverageNode,
     32	} from '../../mcp_server/lib/coverage-graph/coverage-graph-db.js';
-    33	
+    33
     34	const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
     35	const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
     36	const require = createRequire(import.meta.url);
-    37	
+    37
     38	// ── CJS layer imports ────────────────────────────────────────────
-    39	
+    39
     40	const coreModule = require(path.join(
     41	  WORKSPACE_ROOT,
     42	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
@@ -4975,7 +4975,7 @@ exec
     49	  clampWeight: (weight: number) => number | null;
     50	  resetEdgeIdCounter: () => void;
     51	};
-    52	
+    52
     53	const signalsModule = require(path.join(
     54	  WORKSPACE_ROOT,
     55	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
@@ -4984,7 +4984,7 @@ exec
     58	  computeAllDepths: (graph: any) => Map<string, number>;
     59	  computeClusterMetrics: (graph: any) => { componentCount: number; sizes: number[]; largestSize: number; isolatedNodes: number };
     60	};
-    61	
+    61
     62	const convergenceModule = require(path.join(
     63	  WORKSPACE_ROOT,
     64	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
@@ -4996,7 +4996,7 @@ exec
     70	  SOURCE_DIVERSITY_THRESHOLD: number;
     71	  EVIDENCE_DEPTH_THRESHOLD: number;
     72	};
-    73	
+    73
     74	const contradictionsModule = require(path.join(
     75	  WORKSPACE_ROOT,
     76	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
@@ -5004,13 +5004,13 @@ exec
     78	  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
     79	  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
     80	};
-    81	
+    81
     82	const DB_NAMESPACE = {
     83	  specFolder: 'specs/coverage-graph-integration',
     84	  loopType: 'research' as const,
     85	  sessionId: 'integration-session',
     86	};
-    87	
+    87
     88	function makeNode(id: string, kind: CoverageNode['kind'], name: string): CoverageNode {
     89	  return {
     90	    id,
@@ -5021,7 +5021,7 @@ exec
     95	    name,
     96	  };
     97	}
-    98	
+    98
     99	function makeEdge(id: string, sourceId: string, targetId: string, relation: CoverageEdge['relation'], weight: number): CoverageEdge {
    100	  return {
    101	    id,
@@ -5034,14 +5034,14 @@ exec
    108	    weight,
    109	  };
    110	}
-   111	
+   111
    112	// ═════════════════════════════════════════════════════════════════
    113	// TEST SUITES
    114	// ═════════════════════════════════════════════════════════════════
-   115	
+   115
    116	describe('coverage-graph-integration: CJS ↔ TS contract alignment', () => {
    117	  let tempDir = '';
-   118	
+   118
    119	  beforeEach(() => {
    120	    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'coverage-graph-integration-'));
 
@@ -5057,18 +5057,18 @@ exec
      7	 *   - Provenance traversal in deep chains
      8	 *   - Cluster metrics with complex topologies
      9	 */
-    10	
+    10
     11	import path from 'node:path';
     12	import { createRequire } from 'node:module';
     13	import { fileURLToPath } from 'node:url';
     14	import { describe, expect, it, beforeEach } from 'vitest';
-    15	
+    15
     16	const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
     17	const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
     18	const require = createRequire(import.meta.url);
-    19	
+    19
     20	// ── CJS layer imports ────────────────────────────────────────────
-    21	
+    21
     22	const coreModule = require(path.join(
     23	  WORKSPACE_ROOT,
     24	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs',
@@ -5079,7 +5079,7 @@ exec
     29	  traverseProvenance: (graph: any, nodeId: string, maxDepth?: number) => Array<{ id: string; depth: number; relation: string; weight: number; path: string[] }>;
     30	  resetEdgeIdCounter: () => void;
     31	};
-    32	
+    32
     33	const signalsModule = require(path.join(
     34	  WORKSPACE_ROOT,
     35	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs',
@@ -5088,7 +5088,7 @@ exec
     38	  computeAllDepths: (graph: any) => Map<string, number>;
     39	  computeClusterMetrics: (graph: any) => { componentCount: number; sizes: number[]; largestSize: number; isolatedNodes: number };
     40	};
-    41	
+    41
     42	const convergenceModule = require(path.join(
     43	  WORKSPACE_ROOT,
     44	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs',
@@ -5098,7 +5098,7 @@ exec
     48	  computeQuestionCoverage: (graph: any) => number;
     49	  computeGraphConvergence: (graph: any, signals?: object) => { graphScore: number; blendedScore: number; components: object };
     50	};
-    51	
+    51
     52	const contradictionsModule = require(path.join(
     53	  WORKSPACE_ROOT,
     54	  '.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs',
@@ -5106,23 +5106,23 @@ exec
     56	  scanContradictions: (graph: any) => Array<{ edgeId: string; source: string; target: string; weight: number; metadata: object }>;
     57	  reportContradictions: (graph: any) => { total: number; pairs: Array<object>; byNode: Map<string, object[]> };
     58	};
-    59	
+    59
     60	// ── Helpers ──────────────────────────────────────────────────────
-    61	
+    61
     62	const RELATIONS = ['ANSWERS', 'SUPPORTS', 'CONTRADICTS', 'CITES', 'COVERS', 'DERIVED_FROM', 'SUPERSEDES'];
     63	const NON_CONTRADICTION_RELATIONS = RELATIONS.filter((relation) => relation !== 'CONTRADICTS');
     64	const ENABLE_BENCHMARK_GUARDS = process.env.SPEC_KIT_ENABLE_COVERAGE_GRAPH_BENCHMARKS === '1';
-    65	
+    65
     66	function pickRelation(i: number, relations: readonly string[] = RELATIONS): string {
     67	  return relations[i % relations.length];
     68	}
-    69	
+    69
     70	function expectWithinBenchmarkBudget(elapsedMs: number, budgetMs: number): void {
     71	  if (ENABLE_BENCHMARK_GUARDS) {
     72	    expect(elapsedMs).toBeLessThan(budgetMs);
     73	  }
     74	}
-    75	
+    75
     76	/**
     77	 * Build a large graph with N nodes and approximately N edges.
     78	 * Creates a mix of chains and cross-links to produce realistic topology.
@@ -5132,7 +5132,7 @@ exec
     82	  relations: readonly string[] = RELATIONS,
     83	): ReturnType<typeof coreModule.createGraph> {
     84	  const graph = coreModule.createGraph();
-    85	
+    85
     86	  // Create a backbone chain: node-0 → node-1 → ... → node-(N-1)
     87	  for (let i = 0; i < nodeCount - 1; i++) {
     88	    coreModule.insertEdge(
@@ -5142,7 +5142,7 @@ exec
     92	      pickRelation(i, relations),
     93	    );
     94	  }
-    95	
+    95
     96	  // Add cross-links: every 10th node links to a node 5 positions ahead
     97	  for (let i = 0; i < nodeCount - 5; i += 10) {
     98	    coreModule.insertEdge(
@@ -5152,43 +5152,43 @@ exec
    102	      'SUPPORTS',
    103	    );
    104	  }
-   105	
+   105
    106	  return graph;
    107	}
-   108	
+   108
    109	// ═════════════════════════════════════════════════════════════════
    110	// TEST SUITES
    111	// ═════════════════════════════════════════════════════════════════
-   112	
+   112
    113	describe('coverage-graph-stress', () => {
    114	  beforeEach(() => {
    115	    coreModule.resetEdgeIdCounter();
    116	  });
-   117	
+   117
    118	  // ── REQ-GT-007: 1000+ node graph ─────────────────────────────
-   119	
+   119
    120	  describe('REQ-GT-007: 1000+ node graph construction and query', () => {
    121	    it('inserts 1000 nodes with edges correctly', () => {
    122	      const graph = buildLargeGraph(1000);
-   123	
+   123
    124	      expect(graph.nodes.size).toBe(1000);
    125	      // 999 backbone edges + ~100 cross-links
    126	      expect(graph.edges.size).toBeGreaterThanOrEqual(999);
    127	      expect(graph.edges.size).toBeLessThan(1200);
    128	    });
-   129	
+   129
    130	    it('inserts 2000 nodes within acceptable time (<2s)', () => {
    131	      const start = performance.now();
    132	      const graph = buildLargeGraph(2000);
    133	      const elapsed = performance.now() - start;
-   134	
+   134
    135	      expect(graph.nodes.size).toBe(2000);
    136	      expectWithinBenchmarkBudget(elapsed, 2000);
    137	    });
-   138	
+   138
    139	    it('degree computation scales to 1000+ nodes', () => {
    140	      const graph = buildLargeGraph(1000);
-   141	
+   141
    142	      const start = performance.now();
    143	      // Query degree for 100 random nodes
    144	      for (let i = 0; i < 1000; i += 10) {
@@ -5196,73 +5196,73 @@ exec
    146	        expect(degree.total).toBeGreaterThanOrEqual(1);
    147	      }
    148	      const elapsed = performance.now() - start;
-   149	
+   149
    150	      expectWithinBenchmarkBudget(elapsed, 5000);
    151	    });
-   152	
+   152
    153	    it('computeAllDepths scales to 1000+ nodes', () => {
    154	      const graph = buildLargeGraph(1000);
-   155	
+   155
    156	      const start = performance.now();
    157	      const depths = signalsModule.computeAllDepths(graph);
    158	      const elapsed = performance.now() - start;
-   159	
+   159
    160	      expect(depths.size).toBe(1000);
    161	      expectWithinBenchmarkBudget(elapsed, 5000);
    162	    });
-   163	
+   163
    164	    it('cluster metrics scale to 1000+ nodes', () => {
    165	      const graph = buildLargeGraph(1000);
-   166	
+   166
    167	      const start = performance.now();
    168	      const metrics = signalsModule.computeClusterMetrics(graph);
    169	      const elapsed = performance.now() - start;
-   170	
+   170
    171	      // Single connected component (backbone chain connects everything)
    172	      expect(metrics.componentCount).toBe(1);
    173	      expect(metrics.largestSize).toBe(1000);
    174	      expect(metrics.isolatedNodes).toBe(0);
    175	      expectWithinBenchmarkBudget(elapsed, 5000);
    176	    });
-   177	
+   177
    178	    it('source diversity scales to 1000+ nodes', () => {
    179	      // ADR-001 canonical semantics: the signal is question-centric, so a
    180	      // buildLargeGraph() output with no QUESTION-kind nodes returns 0. That
    181	      // is semantically correct and cheap; the stress bound we care about
    182	      // here is runtime, not the numeric output.
    183	      const graph = buildLargeGraph(1000);
-   184	
+   184
    185	      const start = performance.now();
    186	      const diversity = convergenceModule.computeSourceDiversity(graph);
    187	      const elapsed = performance.now() - start;
-   188	
+   188
    189	      expect(diversity).toBeGreaterThanOrEqual(0);
    190	      expect(diversity).toBeLessThanOrEqual(100); // absurd upper bound, just a sanity check
    191	      expectWithinBenchmarkBudget(elapsed, 2000);
    192	    });
-   193	
+   193
    194	    it('evidence depth scales to 1000+ nodes', () => {
    195	      // Same as diversity: canonical returns 0 for graphs with no QUESTION
    196	      // nodes. The stress bound is runtime.
    197	      const graph = buildLargeGraph(1000);
-   198	
+   198
    199	      const start = performance.now();
    200	      const depth = convergenceModule.computeEvidenceDepth(graph);
    201	      const elapsed = performance.now() - start;
-   202	
+   202
    203	      expect(depth).toBeGreaterThanOrEqual(0);
    204	      expectWithinBenchmarkBudget(elapsed, 5000);
    205	    });
-   206	
+   206
    207	    it('full graph convergence computation scales to 1000+ nodes', () => {
    208	      const graph = buildLargeGraph(1000);
-   209	
+   209
    210	      const start = performance.now();
    211	      const convergence = convergenceModule.computeGraphConvergence(graph, {
    212	        compositeStop: 0.5,
    213	      });
    214	      const elapsed = performance.now() - start;
-   215	
+   215
    216	      expect(convergence.graphScore).toBeGreaterThanOrEqual(0);
    217	      expect(convergence.graphScore).toBeLessThanOrEqual(1);
    218	      expectWithinBenchmarkBudget(elapsed, 10000);
@@ -5276,13 +5276,13 @@ exec
      2	import path from 'node:path';
      3	import { createRequire } from 'node:module';
      4	import { fileURLToPath } from 'node:url';
-     5	
+     5
      6	import { describe, expect, it } from 'vitest';
-     7	
+     7
      8	const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
      9	const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
     10	const require = createRequire(import.meta.url);
-    11	
+    11
     12	const replayRunner = require(path.join(
     13	  WORKSPACE_ROOT,
     14	  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-runner.cjs',
@@ -5319,16 +5319,16 @@ exec
     45	    candidate: Record<string, any>,
     46	  ) => { improved: boolean; regressions: string[]; improvements: string[]; delta: Record<string, number> };
     47	};
-    48	
+    48
     49	const replayCorpus = require(path.join(
     50	  WORKSPACE_ROOT,
     51	  '.opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs',
     52	)) as {
     53	  buildCorpus: (family: string, options: { jsonlContent?: string }) => { corpus: any[] };
     54	};
-    55	
+    55
     56	const FIXTURES_DIR = path.join(TEST_DIR, 'fixtures/deep-loop-optimizer');
-    57	
+    57
     58	function loadSampleCorpusEntry(): Record<string, any> {
     59	  const content = fs.readFileSync(
     60	    path.join(FIXTURES_DIR, 'sample-040-corpus.jsonl'),
@@ -5337,7 +5337,7 @@ exec
     63	  const result = replayCorpus.buildCorpus('040', { jsonlContent: content });
     64	  return result.corpus[0] as Record<string, any>;
     65	}
-    66	
+    66
     67	describe('Deterministic Replay Runner (T003)', () => {
     68	  describe('evaluateConvergence', () => {
     69	    it('should detect convergence when newInfoRatio is below threshold', () => {
@@ -5348,7 +5348,7 @@ exec
     74	      );
     75	      expect(result.converged).toBe(true);
     76	    });
-    77	
+    77
     78	    it('should not converge when newInfoRatio is above threshold', () => {
     79	      const result = replayRunner.evaluateConvergence(
     80	        { newInfoRatio: 0.50 },
@@ -5357,7 +5357,7 @@ exec
     83	      );
     84	      expect(result.converged).toBe(false);
     85	    });
-    86	
+    86
     87	    it('should detect stuck state after consecutive low-progress iterations', () => {
     88	      const result = replayRunner.evaluateConvergence(
     89	        { newInfoRatio: 0.01 },
@@ -5367,7 +5367,7 @@ exec
     93	      expect(result.stuck).toBe(true);
     94	      expect(result.signals.consecutiveLowProgress).toBe(2);
     95	    });
-    96	
+    96
     97	    it('should reset consecutiveLowProgress when progress resumes', () => {
     98	      const result = replayRunner.evaluateConvergence(
     99	        { newInfoRatio: 0.50 },
@@ -5378,17 +5378,17 @@ exec
    104	      expect(result.signals.consecutiveLowProgress).toBe(0);
    105	    });
    106	  });
-   107	
+   107
    108	  describe('replayRun', () => {
    109	    it('should replay a corpus entry deterministically', () => {
    110	      const entry = loadSampleCorpusEntry();
    111	      const baselineConfig = JSON.parse(
    112	        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
    113	      );
-   114	
+   114
    115	      const result1 = replayRunner.replayRun(entry, baselineConfig);
    116	      const result2 = replayRunner.replayRun(entry, baselineConfig);
-   117	
+   117
    118	      // Deterministic: same inputs produce same outputs
    119	      expect(result1.iterationsUsed).toBe(result2.iterationsUsed);
    120	      expect(result1.converged).toBe(result2.converged);
@@ -5397,46 +5397,46 @@ exec
    123	      expect(result1.totalFindings).toBe(result2.totalFindings);
    124	      expect(result1.relevantFindings).toBe(result2.relevantFindings);
    125	    });
-   126	
+   126
    127	    it('should produce per-iteration signals', () => {
    128	      const entry = loadSampleCorpusEntry();
    129	      const config = JSON.parse(
    130	        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
    131	      );
-   132	
+   132
    133	      const result = replayRunner.replayRun(entry, config);
    134	      expect(result.perIterationSignals.length).toBeGreaterThan(0);
    135	      expect(result.finalSignals).not.toBeNull();
    136	    });
-   137	
+   137
    138	    it('should respect maxIterations from config', () => {
    139	      const entry = loadSampleCorpusEntry();
    140	      const config = { maxIterations: 1 };
-   141	
+   141
    142	      const result = replayRunner.replayRun(entry, config);
    143	      expect(result.iterationsUsed).toBeLessThanOrEqual(1);
    144	    });
-   145	
+   145
    146	    it('should track findings across iterations', () => {
    147	      const entry = loadSampleCorpusEntry();
    148	      const config = JSON.parse(
    149	        fs.readFileSync(path.join(FIXTURES_DIR, 'sample-config-baseline.json'), 'utf8'),
    150	      );
-   151	
+   151
    152	      const result = replayRunner.replayRun(entry, config);
    153	      expect(result.totalFindings).toBeGreaterThan(0);
    154	    });
-   155	
+   155
    156	    it('uses normalized corpus metrics for graph bonus decisions', () => {
    157	      const entry = loadSampleCorpusEntry();
    158	      const metrics = replayRunner.extractReplayMetrics(entry);
    159	      expect(metrics.graphMetrics).toBeNull();
    160	      expect(metrics.waveMetrics).toEqual({ convergenceScore: 0.62 });
-   161	
+   161
    162	      const result = replayRunner.replayRun(entry, { maxIterations: 7 });
    163	      expect(result.graphBonus).toBe(1.1);
    164	    });
-   165	
+   165
    166	    it('should handle empty iterations', () => {
    167	      const entry = {
    168	        id: 'empty-test',
@@ -5447,13 +5447,13 @@ exec
    173	        stopOutcome: { stopReason: 'unknown' },
    174	      };
    175	      const config = { maxIterations: 7 };
-   176	
+   176
    177	      const result = replayRunner.replayRun(entry, config);
    178	      expect(result.iterationsUsed).toBe(0);
    179	      expect(result.converged).toBe(false);
    180	      expect(result.stopReason).toBe('maxIterationsReached');
    181	    });
-   182	
+   182
    183	    it('should distinguish configs when fixtures straddle convergence thresholds', () => {
    184	      const entry = {
    185	        id: 'threshold-straddle',
@@ -5466,7 +5466,7 @@ exec
    192	        ],
    193	        stopOutcome: { stopReason: 'converged' },
    194	      };
-   195	
+   195
    196	      const looseThresholdResult = replayRunner.replayRun(entry, {
    197	        convergenceThreshold: 0.10,
    198	        maxIterations: 7,
@@ -5475,14 +5475,14 @@ exec
    201	        convergenceThreshold: 0.08,
    202	        maxIterations: 7,
    203	      });
-   204	
+   204
    205	      expect(looseThresholdResult.converged).toBe(true);
    206	      expect(looseThresholdResult.iterationsUsed).toBe(1);
    207	      expect(looseThresholdResult.perIterationSignals[0]).toMatchObject({
    208	        belowThreshold: true,
    209	        newInfoRatio: 0.09,
    210	      });
-   211	
+   211
    212	      expect(strictThresholdResult.converged).toBe(true);
    213	      expect(strictThresholdResult.iterationsUsed).toBe(2);
    214	      expect(strictThresholdResult.perIterationSignals[0]).toMatchObject({
@@ -5491,7 +5491,7 @@ exec
    217	      });
    218	    });
    219	  });
-   220	
+   220
 
 exec
 /bin/zsh -lc "sed -n '6130,6210p' .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-028.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -5507,14 +5507,14 @@ codex
 **Findings**
 - `F-014-003` is `PARTIAL` — [session-isolation.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:371) now adds colliding-ID higher-level fixtures, but they only cover `contradictions`, `status`, and `convergence`. The same collided-ID setup still does not exercise `coverage_gaps` or `unverified_claims`, so two higher-level read paths remain unpinned against the regression this test family was meant to catch.
 
-Finding ID: `F-014-003`  
-Severity: `P2`  
-Dimension: `maintainability`  
-File: [session-isolation.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:371)  
-Line: `371-471`  
-Title: Colliding-ID regression coverage still omits two higher-level read paths  
-Description: The new fixture is materially better, but it does not yet cover all of the higher-level query surfaces that were vulnerable to composite-namespace drift.  
-Evidence: The collided-ID block calls `handleCoverageGraphQuery(... queryType: 'contradictions')`, `handleCoverageGraphStatus()`, and `handleCoverageGraphConvergence()` at lines `414-445`, but there is no equivalent collided-ID assertion for `coverage_gaps` or `unverified_claims`.  
+Finding ID: `F-014-003`
+Severity: `P2`
+Dimension: `maintainability`
+File: [session-isolation.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:371)
+Line: `371-471`
+Title: Colliding-ID regression coverage still omits two higher-level read paths
+Description: The new fixture is materially better, but it does not yet cover all of the higher-level query surfaces that were vulnerable to composite-namespace drift.
+Evidence: The collided-ID block calls `handleCoverageGraphQuery(... queryType: 'contradictions')`, `handleCoverageGraphStatus()`, and `handleCoverageGraphConvergence()` at lines `414-445`, but there is no equivalent collided-ID assertion for `coverage_gaps` or `unverified_claims`.
 Recommendation: Extend the same shared-ID fixture family with `coverage_gaps` and `unverified_claims` assertions so all higher-level read modes are pinned against cross-session leakage.
 
 **Original Findings Status**
@@ -5546,14 +5546,14 @@ tokens used
 **Findings**
 - `F-014-003` is `PARTIAL` — [session-isolation.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:371) now adds colliding-ID higher-level fixtures, but they only cover `contradictions`, `status`, and `convergence`. The same collided-ID setup still does not exercise `coverage_gaps` or `unverified_claims`, so two higher-level read paths remain unpinned against the regression this test family was meant to catch.
 
-Finding ID: `F-014-003`  
-Severity: `P2`  
-Dimension: `maintainability`  
-File: [session-isolation.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:371)  
-Line: `371-471`  
-Title: Colliding-ID regression coverage still omits two higher-level read paths  
-Description: The new fixture is materially better, but it does not yet cover all of the higher-level query surfaces that were vulnerable to composite-namespace drift.  
-Evidence: The collided-ID block calls `handleCoverageGraphQuery(... queryType: 'contradictions')`, `handleCoverageGraphStatus()`, and `handleCoverageGraphConvergence()` at lines `414-445`, but there is no equivalent collided-ID assertion for `coverage_gaps` or `unverified_claims`.  
+Finding ID: `F-014-003`
+Severity: `P2`
+Dimension: `maintainability`
+File: [session-isolation.vitest.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:371)
+Line: `371-471`
+Title: Colliding-ID regression coverage still omits two higher-level read paths
+Description: The new fixture is materially better, but it does not yet cover all of the higher-level query surfaces that were vulnerable to composite-namespace drift.
+Evidence: The collided-ID block calls `handleCoverageGraphQuery(... queryType: 'contradictions')`, `handleCoverageGraphStatus()`, and `handleCoverageGraphConvergence()` at lines `414-445`, but there is no equivalent collided-ID assertion for `coverage_gaps` or `unverified_claims`.
 Recommendation: Extend the same shared-ID fixture family with `coverage_gaps` and `unverified_claims` assertions so all higher-level read modes are pinned against cross-session leakage.
 
 **Original Findings Status**
@@ -5582,7 +5582,7 @@ exec
 /bin/zsh -lc "sed -n '10630,10770p' .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    127	  });
-   128	
+   128
 
 context compacted
 codex
@@ -5721,18 +5721,18 @@ exec
 /bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-session.cjs | sed -n '1,100p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	'use strict';
-     2	
+     2
      3	// ---------------------------------------------------------------
      4	// MODULE: Coverage Graph Session Helpers
      5	// ---------------------------------------------------------------
      6	// Shared session normalization and filtering helpers for the
      7	// in-memory coverage-graph CJS libraries.
      8	// ---------------------------------------------------------------
-     9	
+     9
     10	/* ---------------------------------------------------------------
     11	   1. NORMALIZATION
     12	----------------------------------------------------------------*/
-    13	
+    13
     14	/**
     15	 * Normalize a session identifier into a comparable string.
     16	 * @param {unknown} sessionId
@@ -5743,7 +5743,7 @@ exec
     21	  const normalized = sessionId.trim();
     22	  return normalized.length > 0 ? normalized : null;
     23	}
-    24	
+    24
     25	/**
     26	 * Read a normalized session identifier from a node record.
     27	 * @param {unknown} node
@@ -5757,7 +5757,7 @@ exec
     35	  }
     36	  return null;
     37	}
-    38	
+    38
     39	/**
     40	 * Read a normalized session identifier from an edge or its endpoint nodes.
     41	 * @param {{ nodes?: Map<string, object> }} graph
@@ -5771,20 +5771,20 @@ exec
     49	    const metadataSessionId = normalizeSessionId(edge.metadata.sessionId);
     50	    if (metadataSessionId) return metadataSessionId;
     51	  }
-    52	
+    52
     53	  const nodes = graph && graph.nodes instanceof Map ? graph.nodes : null;
     54	  if (!nodes) return null;
-    55	
+    55
     56	  const sourceSessionId = getNodeSessionId(nodes.get(edge.source));
     57	  const targetSessionId = getNodeSessionId(nodes.get(edge.target));
     58	  if (sourceSessionId && (!targetSessionId || targetSessionId === sourceSessionId)) return sourceSessionId;
     59	  return targetSessionId;
     60	}
-    61	
+    61
     62	/* ---------------------------------------------------------------
     63	   2. FILTERING
     64	----------------------------------------------------------------*/
-    65	
+    65
     66	/**
     67	 * Check whether a node or edge belongs to the requested session.
     68	 * @param {{ nodes?: Map<string, object> }} graph
@@ -5796,14 +5796,14 @@ exec
     74	function matchesSession(graph, record, sessionId, recordType) {
     75	  const requestedSessionId = normalizeSessionId(sessionId);
     76	  if (!requestedSessionId) return true;
-    77	
+    77
     78	  const actualSessionId = recordType === 'edge'
     79	    ? getEdgeSessionId(graph, record)
     80	    : getNodeSessionId(record);
-    81	
+    81
     82	  return actualSessionId === requestedSessionId;
     83	}
-    84	
+    84
     85	/**
     86	 * Filter node identifiers by normalized session id.
     87	 * @param {{ nodes?: Map<string, object> }} graph
@@ -5818,7 +5818,7 @@ exec
     96	  }
     97	  return results;
     98	}
-    99	
+    99
    100	/**
 
 exec
@@ -5827,7 +5827,7 @@ exec
 /bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs | sed -n '232,272p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    540	----------------------------------------------------------------*/
-   541	
+   541
    542	/**
    543	 * Extract the directory portion of a file path.
    544	 * @param {string} filePath
@@ -5838,7 +5838,7 @@ exec
    549	  const lastSlash = filePath.lastIndexOf('/');
    550	  return lastSlash > 0 ? filePath.slice(0, lastSlash) : '.';
    551	}
-   552	
+   552
    553	/**
    554	 * Compute hotspot spread: fraction of directories that contain files
    555	 * with above-median composite hotspot score.
@@ -5847,15 +5847,15 @@ exec
    558	 */
    559	function computeHotspotSpread(files) {
    560	  if (!Array.isArray(files) || files.length === 0) return 0;
-   561	
+   561
    562	  const allDirs = new Set();
    563	  const hotDirs = new Set();
-   564	
+   564
    565	  const hotspotScores = files
    566	    .map((file) => computeFileHotspotScore(file))
    567	    .sort((a, b) => a - b);
    568	  const median = hotspotScores[Math.floor(hotspotScores.length / 2)] || 0;
-   569	
+   569
    570	  for (const f of files) {
    571	    const dir = extractDirectory(f.path || '');
    572	    allDirs.add(dir);
@@ -5864,10 +5864,10 @@ exec
    575	      hotDirs.add(dir);
    576	    }
    577	  }
-   578	
+   578
    579	  return allDirs.size > 0 ? hotDirs.size / allDirs.size : 0;
    580	}
-   581	
+   581
    582	/**
    583	 * Compute cluster diversity: fraction of unique clusters across domains.
    584	 * @param {Array<object>} domains
@@ -5875,15 +5875,15 @@ exec
    586	 */
    587	function computeClusterDiversity(domains) {
    588	  if (!Array.isArray(domains) || domains.length === 0) return 0;
-   589	
+   589
    590	  const clusters = new Set();
    591	  for (const d of domains) {
    592	    clusters.add(d.cluster || assignCluster(d));
    593	  }
-   594	
+   594
    595	  return clusters.size / domains.length;
    596	}
-   597	
+   597
    598	/**
    599	 * Assign a default cluster to a domain based on its name.
    600	 * Groups subdomains by registrable domain rather than raw TLD.
@@ -5895,7 +5895,7 @@ exec
    606	  if (!domain) return 'unclustered';
    607	  return computeRegistrableDomain(domain) || domain || 'unclustered';
    608	}
-   609	
+   609
    610	/**
    611	 * Compute the composite hotspot score used for file ranking and spread.
    612	 * @param {object} file
@@ -5907,7 +5907,7 @@ exec
    618	  const issueCount = typeof file.issueCount === 'number' ? file.issueCount : 0;
    619	  return (complexity * 0.4) + (churnRate * 0.35) + (issueCount * 0.25);
    620	}
-   621	
+   621
    622	/**
    623	 * Normalize a domain-like value from either source.domain or source.url.
    624	 * @param {object} source
@@ -5917,7 +5917,7 @@ exec
    628	  if (!source || typeof source !== 'object') return null;
    629	  const domain = normalizeDomainValue(source.domain);
    630	  if (domain) return domain;
-   631	
+   631
    632	  if (typeof source.url === 'string' && source.url.trim()) {
    633	    try {
    634	      return normalizeDomainValue(new URL(source.url).hostname);
@@ -5925,20 +5925,20 @@ exec
    636	      return null;
    637	    }
    638	  }
-   639	
+   639
    640	  return null;
 
  succeeded in 0ms:
    232	      }
    233	    }
-   234	
+   234
    235	    sizes.push(size);
    236	    if (size === 1) isolatedNodes++;
    237	  }
-   238	
+   238
    239	  // Sort sizes descending for convenience
    240	  sizes.sort((a, b) => b - a);
-   241	
+   241
    242	  return {
    243	    componentCount: sizes.length,
    244	    sizes,
@@ -5946,7 +5946,7 @@ exec
    246	    isolatedNodes,
    247	  };
    248	}
-   249	
+   249
    250	/**
    251	 * Collapse cycles into strongly connected components so longest-path
    252	 * depth remains stable in cyclic graphs.
@@ -5963,12 +5963,12 @@ exec
    263	  const stack = [];
    264	  const inStack = new Set();
    265	  let nextIndex = 0;
-   266	
+   266
    267	  function strongConnect(nodeId) {
    268	    indices.set(nodeId, nextIndex);
    269	    lowLinks.set(nodeId, nextIndex);
    270	    nextIndex++;
-   271	
+   271
    272	    stack.push(nodeId);
 
 exec
@@ -5979,14 +5979,14 @@ exec
      3	// ───────────────────────────────────────────────────────────────
      4	// ───────────────────────────────────────────────────────────────
      5	// 1. VITEST
-     6	
+     6
      7	// ───────────────────────────────────────────────────────────────
      8	import { defineConfig } from 'vitest/config';
      9	import path from 'path';
-    10	
+    10
     11	const TEST_TIMEOUT_MS = 30_000; // 30s default, increase for CI if needed
     12	const TEARDOWN_TIMEOUT_MS = 1_000;
-    13	
+    13
     14	export default defineConfig({
     15	  root: path.resolve(import.meta.dirname, '..'),
     16	  test: {
@@ -6022,7 +6022,7 @@ exec
    320	    timestamp: new Date().toISOString(),
    321	  });
    322	}
-   323	
+   323
    324	/**
    325	 * Transition the authoritative board status using the allowed-transition matrix.
    326	 *
@@ -6034,7 +6034,7 @@ exec
    332	  if (!board || typeof board !== 'object') {
    333	    return { success: false, previousStatus: 'unknown', currentStatus: 'unknown', error: 'Invalid board' };
    334	  }
-   335	
+   335
    336	  if (!BOARD_STATUSES.includes(targetStatus)) {
    337	    return {
    338	      success: false,
@@ -6043,7 +6043,7 @@ exec
    341	      error: `Invalid target status: ${targetStatus}`,
    342	    };
    343	  }
-   344	
+   344
    345	  const allowedStatuses = BOARD_STATUS_TRANSITIONS[board.status];
    346	  if (!Array.isArray(allowedStatuses)) {
    347	    return {
@@ -6053,7 +6053,7 @@ exec
    351	      error: `Invalid current status: ${board.status}`,
    352	    };
    353	  }
-   354	
+   354
    355	  if (!allowedStatuses.includes(targetStatus)) {
    356	    return {
    357	      success: false,
@@ -6062,7 +6062,7 @@ exec
    360	      error: `Cannot transition board from "${board.status}" to "${targetStatus}" (allowed next status(es): ${allowedStatuses.length > 0 ? allowedStatuses.join(', ') : 'none'})`,
    361	    };
    362	  }
-   363	
+   363
    364	  const previousStatus = board.status;
    365	  board.status = targetStatus;
    366	  board.updatedAt = new Date().toISOString();
@@ -6072,11 +6072,11 @@ exec
    370	    currentStatus: targetStatus,
    371	  };
    372	}
-   373	
+   373
    374	/* ---------------------------------------------------------------
    375	   5. DASHBOARD RENDERING
    376	----------------------------------------------------------------*/
-   377	
+   377
    378	/**
    379	 * Generate dashboard.md content from board.json.
    380	 * This is a derived render, never manually edited.
@@ -6089,7 +6089,7 @@ exec
    504	  const order = { P0: 3, P1: 2, P2: 1 };
    505	  return (order[a] || 0) - (order[b] || 0);
    506	}
-   507	
+   507
    508	/**
    509	 * Build the canonical 5-key merge-dedup key for a finding record.
    510	 * @param {object} findingRecord
@@ -6104,7 +6104,7 @@ exec
    519	    normalizeMergeKeyPart(findingRecord && findingRecord.findingId),
    520	  ].join('::');
    521	}
-   522	
+   522
    523	/**
    524	 * Build the logical finding-group key used for cross-segment comparisons.
    525	 * @param {object} findingRecord
@@ -6117,7 +6117,7 @@ exec
    532	    normalizeMergeKeyPart(findingRecord && findingRecord.findingId),
    533	  ].join('::');
    534	}
-   535	
+   535
    536	/**
    537	 * Normalize a merge-key component into a stable string.
    538	 * @param {unknown} value
@@ -6128,15 +6128,15 @@ exec
 /bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs | sed -n '400,430p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    400	  if (!Array.isArray(dispatches) || dispatches.length === 0) return true;
-   401	
+   401
    402	  const terminalStatuses = new Set(['completed', 'converged', 'pruned', 'failed']);
    403	  return dispatches.every(d => terminalStatuses.has(d.status));
    404	}
-   405	
+   405
    406	/* ---------------------------------------------------------------
    407	   7. HELPERS
    408	----------------------------------------------------------------*/
-   409	
+   409
    410	/**
    411	 * Build a deterministic finding key from its identifying fields.
    412	 * Keys by findingId if present, otherwise by file:line + title.
@@ -6147,13 +6147,13 @@ exec
    417	function buildFindingKey(finding) {
    418	  if (!finding) return 'unknown';
    419	  if (finding.findingId) return finding.findingId;
-   420	
+   420
    421	  const file = finding.file || finding.filePath || '';
    422	  const line = finding.line || finding.lineNumber || 0;
    423	  const title = finding.title || finding.summary || '';
    424	  return `${file}:${line}::${title}`.toLowerCase().replace(/\s+/g, '_');
    425	}
-   426	
+   426
    427	/**
    428	 * Compare two severity values. Returns >0 if a is higher severity.
    429	 * P0 > P1 > P2.
@@ -6164,11 +6164,11 @@ exec
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs | sed -n '388,408p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-   360	
+   360
    361	/* ---------------------------------------------------------------
    362	   6. HELPERS
    363	----------------------------------------------------------------*/
-   364	
+   364
    365	/**
    366	 * Build a merge key from finding fields when findingId is absent.
    367	 * @param {object} finding
@@ -6180,7 +6180,7 @@ exec
    373	  const title = finding.title || finding.summary || '';
    374	  return `${file}:${line}::${title}`.toLowerCase().replace(/\s+/g, '_');
    375	}
-   376	
+   376
    377	/**
    378	 * Compare severity levels. Returns >0 if a is higher.
    379	 * @param {string} a
@@ -6191,20 +6191,20 @@ exec
    384	  const order = { P0: 3, P1: 2, P2: 1 };
    385	  return (order[a] || 0) - (order[b] || 0);
    386	}
-   387	
+   387
    388	/* ---------------------------------------------------------------
    389	   7. EXPORTS
    390	----------------------------------------------------------------*/
 
  succeeded in 0ms:
-   388	
+   388
    389	  return { depthByNode, maxDepth };
    390	}
-   391	
+   391
    392	/* ---------------------------------------------------------------
    393	   5. EXPORTS
    394	----------------------------------------------------------------*/
-   395	
+   395
    396	module.exports = {
    397	  computeDegree,
    398	  computeDepth,
@@ -6212,7 +6212,7 @@ exec
    400	  computeRecentEdgeActivity,
    401	  computeMomentum,
    402	  computeClusterMetrics,
-   403	
+   403
    404	  // Internal helpers exposed for testing
    405	  __testables: {
    406	    buildAdjacencyList,
@@ -6236,7 +6236,7 @@ exec
    186	    expect(scopedData.signals.questionCoverage).toBe(1);
    187	    expect(scopedData.signals.sourceDiversity).toBe(2);
    188	  });
-   189	
+   189
    190	  it('requires sessionId for public coverage graph read handlers', async () => {
    191	    const queryError = parseHandlerError(await handleCoverageGraphQuery({
    192	      specFolder: SPEC_FOLDER,
@@ -6251,13 +6251,13 @@ exec
    201	      specFolder: SPEC_FOLDER,
    202	      loopType: LOOP_TYPE,
    203	    } as any));
-   204	
+   204
    205	    expect(queryError).toContain('sessionId is required');
    206	    expect(statusError).toContain('sessionId is required');
    207	    expect(convergenceError).toContain('sessionId is required');
    208	  });
    209	});
-   210	
+   210
    211	// ───────────────────────────────────────────────────────────────
    212	// REQ-028 (F004, F005 in the 042 closing audit): shared-ID
    213	// collision regression. Two sessions intentionally reuse the same
@@ -6287,34 +6287,34 @@ exec
      1	=== Post-Fix Validation Review ===
      2	Start: 2026-04-12T12:42:09Z
      3	Validating fixes from 6 copilot batches against 80 original findings
-     4	
+     4
      5	--- Iteration 21/30 | correctness | Sun Apr 12 14:42:09 CEST 2026 ---
      6	  New findings: 9 | Written: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-021.md
-     7	
+     7
      8	--- Iteration 22/30 | security | Sun Apr 12 14:47:04 CEST 2026 ---
      9	  New findings: 1 | Written: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-022.md
-    10	
+    10
     11	--- Iteration 23/30 | traceability | Sun Apr 12 14:50:13 CEST 2026 ---
     12	  New findings: 11 | Written: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-023.md
-    13	
+    13
     14	--- Iteration 24/30 | maintainability | Sun Apr 12 14:54:09 CEST 2026 ---
     15	  New findings: 9 | Written: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-024.md
-    16	
+    16
     17	--- Iteration 25/30 | correctness | Sun Apr 12 15:01:55 CEST 2026 ---
     18	  New findings: 5 | Written: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-025.md
-    19	
+    19
     20	--- Iteration 26/30 | security | Sun Apr 12 15:06:03 CEST 2026 ---
     21	  New findings: 3 | Written: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-026.md
-    22	
+    22
     23	--- Iteration 27/30 | traceability | Sun Apr 12 15:08:59 CEST 2026 ---
     24	  New findings: 7 | Written: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-027.md
-    25	
+    25
     26	--- Iteration 28/30 | maintainability | Sun Apr 12 15:13:42 CEST 2026 ---
     27	  New findings: 1 | Written: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-028.md
-    28	
+    28
     29	--- Iteration 29/30 | correctness | Sun Apr 12 15:17:26 CEST 2026 ---
     30	  New findings: 9 | Written: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-029.md
-    31	
+    31
     32	--- Iteration 30/30 | maintainability | Sun Apr 12 15:27:55 CEST 2026 ---
 
  succeeded in 0ms:
@@ -6365,22 +6365,22 @@ exec
 /bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '194,206p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    132	  });
-   133	
+   133
    134	  // ── REQ-GT-001: Research relation name alignment ──────────────
-   135	
+   135
    136	  describe('REQ-GT-001: research relation name alignment', () => {
    137	    it('CJS RESEARCH_RELATION_WEIGHTS keys match TS VALID_RELATIONS.research', () => {
    138	      const cjsRelations = Object.keys(coreModule.RESEARCH_RELATION_WEIGHTS).sort();
    139	      const tsRelations = [...VALID_RELATIONS.research].sort();
    140	      expect(cjsRelations).toEqual(tsRelations);
    141	    });
-   142	
+   142
    143	    it('CJS research weight values match TS RESEARCH_WEIGHTS', () => {
    144	      for (const [relation, cjsWeight] of Object.entries(coreModule.RESEARCH_RELATION_WEIGHTS)) {
    145	        expect(RESEARCH_WEIGHTS[relation as keyof typeof RESEARCH_WEIGHTS]).toBe(cjsWeight);
    146	      }
    147	    });
-   148	
+   148
    149	    it('all research relations are non-empty strings', () => {
    150	      for (const relation of Object.keys(coreModule.RESEARCH_RELATION_WEIGHTS)) {
 
@@ -6390,13 +6390,13 @@ exec
    196	        }
    197	      }
    198	    });
-   199	
+   199
    200	    it('TS review relations expose EVIDENCE_FOR directly', () => {
    201	      expect(coreModule.REVIEW_RELATION_WEIGHTS).toHaveProperty('EVIDENCE_FOR');
    202	      expect(VALID_RELATIONS.review).toContain('EVIDENCE_FOR');
    203	    });
    204	  });
-   205	
+   205
    206	  // ── REQ-GT-003: Weight clamping consistency ───────────────────
 
 exec
@@ -6404,36 +6404,36 @@ exec
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts | sed -n '292,308p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-   276	
+   276
    277	      expect(report.total).toBe(100);
    278	      expect(report.pairs.length).toBe(100);
    279	      expectWithinBenchmarkBudget(elapsed, 1000);
    280	    });
-   281	
+   281
    282	    it('contradiction scan returns empty array for graph with no contradictions', () => {
    283	      const graph = buildLargeGraph(500, NON_CONTRADICTION_RELATIONS);
    284	      const contradictions = contradictionsModule.scanContradictions(graph);
    285	      expect(contradictions).toEqual([]);
    286	    });
    287	  });
-   288	
+   288
 
  succeeded in 0ms:
    292	      expect(edgeId).not.toBeNull();
    293	      expect(graph.edges.size).toBe(1);
    294	    });
-   295	
+   295
    296	    it('TS edge upsert rejects self-loops before they reach the database', () => {
    297	      upsertNode(makeNode('loop-node', 'QUESTION', 'Loop node'));
-   298	
+   298
    299	      const edgeId = upsertEdge(
    300	        makeEdge('edge-self-loop', 'loop-node', 'loop-node', 'ANSWERS', 1.0),
    301	      );
-   302	
+   302
    303	      expect(edgeId).toBeNull();
    304	      expect(getEdges(DB_NAMESPACE)).toEqual([]);
    305	    });
-   306	
+   306
    307	    it('self-loop prevention works with empty string node IDs', () => {
    308	      const graph = coreModule.createGraph();
 
@@ -6465,9 +6465,9 @@ exec
    128	  if (clamped === null) {
    129	    return null;
    130	  }
-   131	
+   131
    132	  const edgeId = `e-${nextEdgeId++}`;
-   133	
+   133
    134	  // Ensure source and target nodes exist
    135	  if (!graph.nodes.has(source)) {
    136	    graph.nodes.set(source, {
@@ -6495,7 +6495,7 @@ exec
    192	        ],
    193	        stopOutcome: { stopReason: 'converged' },
    194	      };
-   195	
+   195
    196	      const looseThresholdResult = replayRunner.replayRun(entry, {
    197	        convergenceThreshold: 0.10,
    198	        maxIterations: 7,
@@ -6504,14 +6504,14 @@ exec
    201	        convergenceThreshold: 0.08,
    202	        maxIterations: 7,
    203	      });
-   204	
+   204
    205	      expect(looseThresholdResult.converged).toBe(true);
    206	      expect(looseThresholdResult.iterationsUsed).toBe(1);
    207	      expect(looseThresholdResult.perIterationSignals[0]).toMatchObject({
    208	        belowThreshold: true,
    209	        newInfoRatio: 0.09,
    210	      });
-   211	
+   211
    212	      expect(strictThresholdResult.converged).toBe(true);
    213	      expect(strictThresholdResult.iterationsUsed).toBe(2);
    214	      expect(strictThresholdResult.perIterationSignals[0]).toMatchObject({
@@ -6521,17 +6521,17 @@ exec
    218	    });
 
  succeeded in 0ms:
-   100	
+   100
    101	      expect(signalsModule.computeDepth(graph, 'd')).toBe(2);
    102	    });
-   103	
+   103
    104	    it('collapses rooted cycles into a bounded depth layer', () => {
    105	      const graph = coreModule.createGraph();
    106	      coreModule.insertEdge(graph, 'root', 'a', 'ANSWERS');
    107	      coreModule.insertEdge(graph, 'a', 'b', 'CITES');
    108	      coreModule.insertEdge(graph, 'b', 'a', 'DERIVED_FROM');
    109	      coreModule.insertEdge(graph, 'b', 'tail', 'COVERS');
-   110	
+   110
 
 codex
 **Findings**

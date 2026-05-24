@@ -1,29 +1,29 @@
 ---
-title: "021 unicode-normalization fix from packet 009"
-description: "Verify the unicode-normalization.js module exists in the shared dist after the packet-009 tsconfig fix."
+title: "021 root dist cleanup verification"
+description: "Verify the code-graph build no longer emits sibling skill artifacts into root-level dist."
 trigger_phrases:
   - "021"
-  - "unicode normalization fix"
+  - "root dist cleanup"
   - "system-code-graph manual testing"
 importance_tier: "normal"
 ---
-# 021 unicode-normalization fix from packet 009
+# 021 root dist cleanup verification
 
 ## 1. OVERVIEW
 
-Verify the unicode-normalization.js module exists in the shared dist after the packet-009 tsconfig fix.
+Verify the code-graph build emits only direct runtime files under `mcp_server/dist/` and does not recreate root-level sibling skill artifacts.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Verify that `dist/system-spec-kit/shared/unicode-normalization.js` exists in the code-graph skill's dist directory, confirming the packet-009 tsconfig fix produces the shared module.
-- Real user request: `Confirm unicode-normalization.js exists in the code-graph dist after the tsconfig path mapping fix.`
-- Operator prompt: `Check the shared module path. Show file existence, then return PASS/FAIL.`
-- Expected execution process: Check `.opencode/skills/system-code-graph/dist/system-spec-kit/shared/unicode-normalization.js` exists.
-- Expected signals: The file exists and is non-empty. The `.js.map` and `.d.ts` siblings also exist.
-- Desired user-visible outcome: A concise verdict confirming the 009 fix is in place.
-- Pass/fail: PASS if unicode-normalization.js exists in dist. FAIL if it is missing.
+- Objective: Verify that root-level `dist/` is absent after a clean code-graph build.
+- Real user request: `Confirm the code-graph build does not recreate sibling dist folders.`
+- Operator prompt: `Run the clean build check. Show direct entrypoint existence and root dist absence, then return PASS/FAIL.`
+- Expected execution process: Run `npm --prefix .opencode/skills/system-code-graph run clean && npm --prefix .opencode/skills/system-code-graph run build`, then check `.opencode/skills/system-code-graph/mcp_server/dist/index.js` exists and `.opencode/skills/system-code-graph/dist/` is absent.
+- Expected signals: Direct entrypoint exists. Root-level dist does not exist.
+- Desired user-visible outcome: A concise verdict confirming stale sibling dist output is gone.
+- Pass/fail: PASS if direct entrypoint exists and root-level dist is absent. FAIL if root-level dist exists.
 
 ---
 
@@ -31,12 +31,13 @@ Verify the unicode-normalization.js module exists in the shared dist after the p
 
 ### Commands
 
-1. Check `.opencode/skills/system-code-graph/dist/system-spec-kit/shared/unicode-normalization.js` exists.
-2. Verify sibling files (`.d.ts`, `.js.map`, `.d.ts.map`) also exist.
+1. Run `npm --prefix .opencode/skills/system-code-graph run clean && npm --prefix .opencode/skills/system-code-graph run build`.
+2. Check `.opencode/skills/system-code-graph/mcp_server/dist/index.js` exists.
+3. Check `.opencode/skills/system-code-graph/dist/` is absent.
 
 ### Expected Output / Verification
 
-unicode-normalization.js and its sibling type/source map files exist.
+Direct entrypoint exists. Root-level dist is absent.
 
 ### Cleanup
 
@@ -44,7 +45,7 @@ None.
 
 ### Variant Scenarios
 
-Import the module in Node to verify it loads without error.
+Import `mcp_server/dist/tool-schemas.js` in Node to verify the direct build output loads.
 
 ---
 

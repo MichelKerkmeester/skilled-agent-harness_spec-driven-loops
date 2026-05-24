@@ -50,6 +50,8 @@ Current state:
 ```text
 tests/
 +-- assets/code-graph-gold-queries.json        # Static verification battery
++-- __fixtures__/index-scope.ts                # Reusable test-only policy fixture
++-- lib/*.vitest.ts                            # Focused library and hardening coverage
 +-- code-graph-*.vitest.ts                     # Indexer, DB, query, context, readiness and apply coverage
 +-- parser-skip-list.vitest.ts                 # Parser skip-list and quarantine resilience coverage
 +-- detect-changes.test.ts                     # Diff parser and affected-symbol safety coverage
@@ -132,6 +134,9 @@ Expected result: the selected Vitest suite exits `0`.
 | [../../README.md](../../README.md) | Skill-level overview and operator guide. |
 | [../lib/README.md](../lib/README.md) | Core graph library modules covered by tests. |
 | [../handlers/README.md](../handlers/README.md) | Handler modules covered by tests. |
+| [lib/README.md](./lib/README.md) | Focused library and hardening tests. |
+| [assets/README.md](./assets/README.md) | Static JSON verification fixtures. |
+| [__fixtures__/README.md](./__fixtures__/README.md) | Reusable TypeScript test fixtures. |
 | [../stress_test/code-graph/README.md](../stress_test/code-graph/README.md) | Stress and degraded-mode coverage map. |
 | [assets/code-graph-gold-queries.json](./assets/code-graph-gold-queries.json) | Gold-query battery fixture. |
 

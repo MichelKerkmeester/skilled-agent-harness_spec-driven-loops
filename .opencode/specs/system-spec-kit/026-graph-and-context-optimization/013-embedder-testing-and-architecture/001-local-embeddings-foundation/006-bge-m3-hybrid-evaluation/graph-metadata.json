@@ -191,7 +191,7 @@
     ],
     "causal_summary": "We chose EmbeddingGemma-300m for cocoindex in 002 on theoretical grounds (strong code-retrieval scores in published benchmarks). We've never measured retrieval quality against this codebase. bge-m3 advertises hybrid retrieval — combining dense vectors, sparse lexical scores, and multi-vector colbert reranking — and on text-heavy benchmarks it often wins by 3-7pp MRR@10. We don't know if it helps on code, and we don't know if the sqlite-vec schema change is worth it.",
     "created_at": "2026-05-12T16:27:50Z",
-    "last_save_at": "2026-05-23T11:55:15.334Z",
+    "last_save_at": "2026-05-24T05:40:25.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

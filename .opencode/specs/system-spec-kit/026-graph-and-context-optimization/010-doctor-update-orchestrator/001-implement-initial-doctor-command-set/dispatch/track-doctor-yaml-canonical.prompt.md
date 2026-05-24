@@ -10,7 +10,7 @@ Branch: stay on `main`. Do not branch.
 
 ## CANONICAL TEMPLATE (read first, treat as locked)
 
-`.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`
+`.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`
 `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml`
 
 Both use the canonical banner + section pattern:

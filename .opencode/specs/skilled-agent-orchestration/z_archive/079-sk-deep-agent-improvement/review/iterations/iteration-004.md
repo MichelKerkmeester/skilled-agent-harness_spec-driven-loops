@@ -66,13 +66,13 @@ description: Maintainability review of naming consistency, documentation clarity
 
 - Root README uses `deep-agent-improvement` in the skill description and codebase-agnostic skill table [SOURCE: `README.md:845`, `README.md:1217`].
 - Root AGENTS uses `@improve-agent` as the stable agent name and `deep-agent-improvement` as the backing skill, matching the packet's naming decision [SOURCE: `AGENTS.md:324`].
-- `.opencode/skills/deep-agent-improvement/SKILL.md` frontmatter and current-release semantics use the new skill name and clearly distinguish `/improve:agent` / `@improve-agent` from the skill folder name [SOURCE: `.opencode/skills/deep-agent-improvement/SKILL.md:2`, `.opencode/skills/deep-agent-improvement/SKILL.md:308`, `.opencode/skills/deep-agent-improvement/SKILL.md:443`, `.opencode/skills/deep-agent-improvement/SKILL.md:444`].
+- `.opencode/skills/deep-agent-improvement/SKILL.md` frontmatter and current-release semantics use the new skill name and clearly distinguish `/deep:start-agent-improvement-loop` / `@improve-agent` from the skill folder name [SOURCE: `.opencode/skills/deep-agent-improvement/SKILL.md:2`, `.opencode/skills/deep-agent-improvement/SKILL.md:308`, `.opencode/skills/deep-agent-improvement/SKILL.md:443`, `.opencode/skills/deep-agent-improvement/SKILL.md:444`].
 - Packet docs preserve the historical-record boundary consistently rather than rewriting factual old release narrative [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md:92`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/implementation-summary.md:174`].
 
 ## Ruled Out
 
 - No new P1 for `deep-agent-improvement` root/install-guide references: exact matches in `README.md`, `AGENTS.md`, and `.opencode/install_guides/README.md` use the new skill name.
-- No finding for retained `@improve-agent` or `/improve:agent`: the packet explicitly keeps those stable [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md:88`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md:89`].
+- No finding for retained `@improve-agent` or `/deep:start-agent-improvement-loop`: the packet explicitly keeps those stable [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md:88`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md:89`].
 - No duplicate P1 for checklist/task/implementation-summary completion mismatch; P1-003 already covers that traceability gate.
 
 ## Next Focus

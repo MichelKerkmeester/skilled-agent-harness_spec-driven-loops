@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/023-sk-deep-research-creation",
+  "specFolder": "skilled-agent-orchestration/z_archive/023-sk-deep-research-creation",
   "description": "Feature Specification: Autonomous Deep Research Loop",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "research",
     "loop"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.705Z",
+  "lastUpdated": "2026-05-23T15:24:59.169Z",
   "specId": "023",
   "folderSlug": "sk-deep-research-creation",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/089-multi-ai-council-persistence",
+  "specFolder": "skilled-agent-orchestration/z_archive/089-multi-ai-council-persistence",
   "description": "Feature Specification: Multi-AI Council Persistence",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "council",
     "persistence"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.362Z",
+  "lastUpdated": "2026-05-23T15:24:59.505Z",
   "specId": "089",
   "folderSlug": "multi-ai-council-persistence",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

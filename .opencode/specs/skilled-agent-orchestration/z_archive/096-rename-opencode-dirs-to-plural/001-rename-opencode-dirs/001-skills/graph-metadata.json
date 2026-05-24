@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Rename `.opencode/skills/` → `.opencode/skills/` and update all 7,464 reference-bearing files in the repo. Patch 3 critical configs/scripts (opencode.json MCP commands, .claude/settings.local.json hooks, skill_advisor.py path lookups) that hard-code the singular path.",
     "created_at": "2026-05-18T07:49:27.232Z",
-    "last_save_at": "2026-05-23T11:55:14.677Z",
+    "last_save_at": "2026-05-24T05:40:25.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/033-skill-command-readme-rewrite",
+  "specFolder": "skilled-agent-orchestration/z_archive/033-skill-command-readme-rewrite",
   "description": "Feature Specification: Skill and Command README Rewrite",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "readme",
     "rewrite"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.746Z",
+  "lastUpdated": "2026-05-23T15:24:59.199Z",
   "specId": "033",
   "folderSlug": "skill-command-readme-rewrite",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 3,
   "memoryNameHistory": [

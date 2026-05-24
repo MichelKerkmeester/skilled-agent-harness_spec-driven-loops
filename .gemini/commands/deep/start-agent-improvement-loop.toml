@@ -1,0 +1,10 @@
+description = "Deep agent improvement loop - evaluator-first command with proposal candidates, 5D scoring, and guarded promotion"
+prompt = """---
+description: Deep agent improvement loop - evaluator-first command with proposal candidates, 5D scoring, and guarded promotion
+argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N]"
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
+---
+
+Read the command spec and execute: .opencode/commands/deep/start-agent-improvement-loop.md
+
+User request: {{args}}"""

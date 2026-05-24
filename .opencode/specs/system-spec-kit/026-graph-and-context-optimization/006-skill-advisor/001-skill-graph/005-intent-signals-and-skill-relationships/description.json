@@ -1,21 +1,25 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-intent-signals-and-skill-relationships",
-  "description": "Populate derived.intent_signals + manual.depends_on + manual.related_to in graph-metadata.json across all 17 active skills so the lexical, derived, and graph_causal advisor lanes have skill-side structured signal.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/005-intent-signals-and-skill-relationships",
+  "description": "Feature Specification: Populate intent_signals + manual.depends_on / related_to across active skills",
   "keywords": [
-    "intent-signals-populate",
-    "manual-depends-on",
-    "manual-related-to",
-    "graph-causal-lane-feed",
-    "skill-side-relationships"
+    "feature",
+    "specification",
+    "populate",
+    "manual",
+    "across",
+    "active",
+    "skills"
   ],
-  "lastUpdated": "2026-05-14T01:30:00Z",
-  "specId": "008",
-  "folderSlug": "populate-intent-signals-and-relationships",
+  "lastUpdated": "2026-05-23T15:25:00.447Z",
+  "specId": "005",
+  "folderSlug": "intent-signals-and-skill-relationships",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "006-skill-advisor",
-    "002-semantic-routing-lane"
-  ]
+    "001-skill-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

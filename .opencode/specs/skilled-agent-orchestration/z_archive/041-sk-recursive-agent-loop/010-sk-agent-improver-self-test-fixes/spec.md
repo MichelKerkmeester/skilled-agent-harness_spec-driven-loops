@@ -33,7 +33,7 @@ _memory:
 
 Phase 009 (self-test) found 5 issues:
 
-1. **Real bug**: The canonical `agent-improver.md` has a stale command path (`/improve:agent-improver` pointing to `.opencode/commands/speckit/agent-improver.md`). The correct slug is `/improve:agent` pointing to `.opencode/commands/improve/agent.md`. This also affects all 3 runtime mirrors.
+1. **Real bug**: The canonical `agent-improver.md` has a stale command path (`/deep:start-agent-improvement-loop-improver` pointing to `.opencode/commands/speckit/agent-improver.md`). The correct slug is `/deep:start-agent-improvement-loop` pointing to `.opencode/commands/deep/start-agent-improvement-loop.md`. This also affects all 3 runtime mirrors.
 
 2. **Reducer family hardcoding**: `inferFamily()` at line 66 of `reduce-state.cjs` defaults every profile except `context-prime` to `session-handover`. The agent-improver profile shows up as `family: "session-handover"` in the dashboard, which is wrong.
 

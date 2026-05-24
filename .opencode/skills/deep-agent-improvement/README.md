@@ -96,7 +96,7 @@ Choose any agent under `.opencode/agents/` and the phase spec folder where the r
 **Step 2: Run the loop.**
 
 ```text
-/improve:agent ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
+/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
 ```
 
 Expected result: an integration scan, a packet-local candidate under `candidates/`, a five-dimension score, a benchmark report, and a refreshed dashboard.
@@ -138,9 +138,9 @@ The loop runs from fresh setup through proposal, scoring, and the stop decision.
 
 An agent is more than its `.md` file. Three features map the full surface.
 
-- **Surface discovery.** `scan-integration.cjs` inventories the canonical agent file, three runtime mirrors, the `/improve:agent` command markdown, YAML workflow assets, skill references, global docs, and the `system-skill-advisor` routing path. The score reflects the whole integration, not the prompt in isolation.
+- **Surface discovery.** `scan-integration.cjs` inventories the canonical agent file, three runtime mirrors, the `/deep:start-agent-improvement-loop` command markdown, YAML workflow assets, skill references, global docs, and the `system-skill-advisor` routing path. The score reflects the whole integration, not the prompt in isolation.
 - **Runtime mirrors.** Checks whether the runtime-specific mirrors still reflect the canonical body. Parity is signal-based: the scanner extracts emphasized strings from the canonical agent and marks a mirror aligned when enough of them appear, so a drifted mirror shows up before it causes a runtime surprise.
-- **Command dispatch.** Owns the path that turns the skill into a runnable loop. `/improve:agent` collects setup inputs, picks `:auto` or `:confirm`, and points the operator at the matching YAML workflow, which is where the real agent dispatch and journal emission happen.
+- **Command dispatch.** Owns the path that turns the skill into a runnable loop. `/deep:start-agent-improvement-loop` collects setup inputs, picks `:auto` or `:confirm`, and points the operator at the matching YAML workflow, which is where the real agent dispatch and journal emission happen.
 
 ### 3.3 FIVE-DIMENSION SCORING
 
@@ -268,11 +268,11 @@ Field-level documentation lives in `assets/improvement_config_reference.md`. Tar
 
 ### Runtime Parity
 
-The `/improve:agent` command and the `@deep-agent-improvement` agent are mirrored across runtimes. The integration scanner checks mirror parity on every run.
+The `/deep:start-agent-improvement-loop` command and the `@deep-agent-improvement` agent are mirrored across runtimes. The integration scanner checks mirror parity on every run.
 
 | Runtime | Agent Path | Command Path |
 |---|---|---|
-| OpenCode / Copilot | `.opencode/agents/` | `.opencode/commands/improve/` |
+| OpenCode / Copilot | `.opencode/agents/` | `.opencode/commands/deep/` |
 | Claude | `.claude/agents/` | uses agent mirror |
 | Codex | `.codex/agents/` | uses agent mirror |
 | Gemini | `.gemini/agents/` | uses agent mirror |
@@ -288,7 +288,7 @@ The `/improve:agent` command and the `@deep-agent-improvement` agent are mirrore
 
 ```text
 User request: improve the debug agent
-Skill routing: /improve:agent ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
+Skill routing: /deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
 Resources loaded: charter, manifest, target profile (generated on the fly)
 Expected output: five-dimension score plus a packet-local candidate, no canonical change
 ```
@@ -374,7 +374,7 @@ A: When all five dimensions repeat their scores across the plateau window, the r
 
 | Target | Relationship |
 |---|---|
-| `/improve:agent` (`.opencode/commands/improve/agent.md`) | Initializes and runs the bounded workflow |
+| `/deep:start-agent-improvement-loop` (`.opencode/commands/deep/start-agent-improvement-loop.md`) | Initializes and runs the bounded workflow |
 | `@deep-agent-improvement` (`.opencode/agents/deep-agent-improvement.md`) | The mutator surface that writes one candidate |
 | [`sk-doc`](../sk-doc/SKILL.md) | Validates package shape, README, and markdown consistency |
 | [`system-spec-kit`](../system-spec-kit/SKILL.md) | Packet validation and continuity for the improvement run |

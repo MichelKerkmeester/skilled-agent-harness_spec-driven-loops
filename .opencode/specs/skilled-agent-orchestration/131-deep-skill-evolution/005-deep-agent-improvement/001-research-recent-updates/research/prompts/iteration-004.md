@@ -50,7 +50,7 @@ Possible agent-improvement-specific gaps:
 
 **Step 3: Sample-check past agent improvement runs**
 
-Look for recent spec packets that used `/improve:agent` OR dispatched `@deep-agent-improvement`. Sample 1-2 runs. Verify:
+Look for recent spec packets that used `/deep:start-agent-improvement-loop` OR dispatched `@deep-agent-improvement`. Sample 1-2 runs. Verify:
 - Did the 5-dim scoring produce coherent results?
 - Was the proposal coherent + scoped?
 - Did the promotion gate work as designed?

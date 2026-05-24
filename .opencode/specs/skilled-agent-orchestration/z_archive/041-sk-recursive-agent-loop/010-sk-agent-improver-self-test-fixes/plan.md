@@ -32,12 +32,12 @@ _memory:
 
 **What**: The canonical `agent-improver.md` line 156 has:
 ```
-| `/improve:agent-improver` | ... | `.opencode/commands/speckit/agent-improver.md` |
+| `/deep:start-agent-improvement-loop-improver` | ... | `.opencode/commands/speckit/agent-improver.md` |
 ```
 
 **Fix to**:
 ```
-| `/improve:agent` | ... | `.opencode/commands/improve/agent.md` |
+| `/deep:start-agent-improvement-loop` | ... | `.opencode/commands/deep/start-agent-improvement-loop.md` |
 ```
 
 **Files**:

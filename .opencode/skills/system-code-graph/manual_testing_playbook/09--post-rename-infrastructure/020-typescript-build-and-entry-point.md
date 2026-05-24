@@ -20,10 +20,10 @@ Verify the compiled dist files exist and the code-graph MCP server can load its 
 - Objective: Verify that TypeScript compilation produces dist files and the schema module loads without error.
 - Real user request: `Confirm that the code-graph server dist is built, the entry point exists, and tool-schemas module loads.`
 - Operator prompt: `Run the build check. Show entry point existence and module loading result, then return PASS/FAIL.`
-- Expected execution process: Check `.opencode/skills/system-code-graph/dist/system-code-graph/mcp_server/index.js` exists, check `.opencode/skills/system-code-graph/mcp_server/dist/index.js` re-export exists, verify tool-schemas.js loads.
-- Expected signals: Both entry points exist. The tool-schemas.js module loads without error. The launcher can start and respond to tools/list with 10 tools.
+- Expected execution process: Check `.opencode/skills/system-code-graph/mcp_server/dist/index.js` exists, check root-level `.opencode/skills/system-code-graph/dist/` is absent, verify tool-schemas.js loads.
+- Expected signals: Direct entry point exists. Root-level dist is absent. The tool-schemas.js module loads without error. The launcher can start and respond to tools/list with 11 tools.
 - Desired user-visible outcome: A concise verdict confirming the compiled artifacts are present and loadable.
-- Pass/fail: PASS if both entry points exist and schema module loads. FAIL if any entry point is missing or module load throws.
+- Pass/fail: PASS if direct entry point exists, root-level dist is absent and schema module loads. FAIL if entry point is missing, root-level dist exists or module load throws.
 
 ---
 
@@ -31,14 +31,14 @@ Verify the compiled dist files exist and the code-graph MCP server can load its 
 
 ### Commands
 
-1. Check `.opencode/skills/system-code-graph/dist/system-code-graph/mcp_server/index.js` exists.
-2. Check `.opencode/skills/system-code-graph/mcp_server/dist/index.js` re-export exists.
-3. Run `node -e "require('./dist/system-code-graph/mcp_server/tool-schemas.js')"` from the skill root and verify no error.
-4. Verify launcher responds to tools/list with 10 tools.
+1. Check `.opencode/skills/system-code-graph/mcp_server/dist/index.js` exists.
+2. Check `.opencode/skills/system-code-graph/dist/` is absent.
+3. Run `node -e "import('./mcp_server/dist/tool-schemas.js')"` from the skill root and verify no error.
+4. Verify launcher responds to tools/list with 11 tools.
 
 ### Expected Output / Verification
 
-Both entry points exist. Schema module loads without error. Launcher tools/list returns 10 tools.
+Direct entry point exists. Root-level dist is absent. Schema module loads without error. Launcher tools/list returns 11 tools.
 
 ### Cleanup
 

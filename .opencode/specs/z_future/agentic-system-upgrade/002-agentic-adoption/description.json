@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_future/agentic-system-upgrade/002-agentic-adoption",
+  "specFolder": "z_future/agentic-system-upgrade/002-agentic-adoption",
   "description": "Feature Specification: 002 Agentic Adoption",
   "keywords": [
     "feature",
@@ -8,11 +8,10 @@
     "agentic",
     "adoption"
   ],
-  "lastUpdated": "2026-04-27T13:33:11Z",
+  "lastUpdated": "2026-05-23T15:25:01.236Z",
   "specId": "002",
   "folderSlug": "agentic-adoption",
   "parentChain": [
-    "system-spec-kit",
     "z_future",
     "agentic-system-upgrade"
   ],

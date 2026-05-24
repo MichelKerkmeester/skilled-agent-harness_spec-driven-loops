@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Author a `manual_testing_playbook/` package for sk-code-review that covers ~17 realistic scenarios across 6 categories, with RCAF-pattern operator prompts mirroring how humans actually invoke code review with an AI assistant - executable both natively (Claude Code / OpenCode) and via external CLIs (cli-codex, cli-opencode, cli-gemini, cli-copilot).",
     "created_at": "2026-05-18T07:49:27.225Z",
-    "last_save_at": "2026-05-23T11:55:14.669Z",
+    "last_save_at": "2026-05-24T05:40:25.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

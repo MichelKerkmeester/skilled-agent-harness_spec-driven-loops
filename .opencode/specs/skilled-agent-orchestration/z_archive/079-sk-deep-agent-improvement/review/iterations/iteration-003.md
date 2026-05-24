@@ -24,7 +24,7 @@ description: Traceability cross-check of 079 sk-deep-agent-improvement spec requ
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/checklist.md`
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/implementation-summary.md`
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md`
-- `.gemini/commands/improve/` disk inventory via exact glob
+- `.gemini/commands/deep/` disk inventory via exact glob
 
 ## Findings - New
 
@@ -61,14 +61,14 @@ None.
 
 - `spec_code`: partial. Focused on requirement-to-evidence consistency for REQ-014/REQ-015 and runtime-resource inventory evidence.
 - `checklist_evidence`: failed for completion status. `checklist.md` remains fully unchecked in the verification summary [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/checklist.md:155`] while `implementation-summary.md` claims all P0/P1 requirements met [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/implementation-summary.md:36`].
-- `resource_map_coverage`: prior P1-001 remains active. `resource-map.md` claims missing on disk is 0 and marks Codex/Gemini command rows OK [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md:41`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md:107`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md:108`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md:109`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md:115`]; exact glob evidence for `.gemini/commands/improve/**` returned only `README.txt` and `improve-agent.toml`.
+- `resource_map_coverage`: prior P1-001 remains active. `resource-map.md` claims missing on disk is 0 and marks Codex/Gemini command rows OK [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md:41`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md:107`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md:108`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md:109`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md:115`]; exact glob evidence for `.gemini/commands/deep/**` returned only `README.txt` and `improve-agent.toml`.
 - `REQ-015`: inconsistent. The spec requires `/memory:save` as P1 [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md:140`], but the implementation summary marks it pending [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/implementation-summary.md:163`] and the task/checklist ledgers leave T-041/CHK-055 unchecked [SOURCE: `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/tasks.md:151`, `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/checklist.md:138`].
 
 ## Integration Evidence
 
-- Named surfaces checked: `.gemini/commands/improve/` runtime command mirror inventory; packet docs `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, and `resource-map.md`.
+- Named surfaces checked: `.gemini/commands/deep/` runtime command mirror inventory; packet docs `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, and `resource-map.md`.
 - Stale code graph was not used.
-- Exact glob evidence confirmed `.gemini/commands/improve/**` currently exposes `README.txt` and `improve-agent.toml` only, matching implementation-summary's N/A explanation and contradicting resource-map OK rows for nonexistent Gemini YAML assets.
+- Exact glob evidence confirmed `.gemini/commands/deep/**` currently exposes `README.txt` and `improve-agent.toml` only, matching implementation-summary's N/A explanation and contradicting resource-map OK rows for nonexistent Gemini YAML assets.
 
 ## Edge Cases
 
@@ -80,7 +80,7 @@ None.
 
 - `spec.md` correctly classifies REQ-015 as P1 rather than optional.
 - `implementation-summary.md` correctly records REQ-015 as pending in its requirements rollup; the defect is the conflicting blanket completion wording and continuity percentage.
-- `implementation-summary.md` correctly documents `.gemini/commands/improve/` as TOML + README only and `.codex/commands/improve/` as nonexistent/N/A.
+- `implementation-summary.md` correctly documents `.gemini/commands/deep/` as TOML + README only and `.codex/commands/deep/` as nonexistent/N/A.
 
 ## Ruled Out
 

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "CocoIndex docs cite `google/embeddinggemma-300m` as the \"default embedding\" in 3 `_NOTE_2` lines of `config_templates.md`, even though `DEFAULT_EMBEDDER_NAME = \"sbert/nomic-ai/CodeRankEmbed\"` shipped on 2026-05-19 (per the 018 follow-on). Per packet 021 finding f-iter006-001, this is **P0 doc-drift**: an operator copy-pasting the template would believe embeddinggemma is the default and misconfigure or under-resource accordingly.",
     "created_at": "2026-05-23T16:15:00.000000Z",
-    "last_save_at": "2026-05-23T18:38:13.774Z",
+    "last_save_at": "2026-05-24T05:40:26.036Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

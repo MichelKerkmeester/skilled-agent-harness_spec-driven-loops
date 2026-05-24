@@ -13,7 +13,23 @@ trigger_phrases:
 
 Spec-memory keeps query encoding and document indexing symmetric by persisting the active embedder in `vec_metadata` and resolving providers from that pointer.
 
-## Overview
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Define how spec-memory selects, stores, swaps, and diagnoses active embedders across shared factory providers, registry adapters, vector shards, and cache boundaries.
+
+### When to Use
+
+Load this reference when debugging query/index embedding drift, changing active embedders, validating vector dimensions, or diagnosing spec-memory RSS and sidecar behavior.
+
+### Core Principle
+
+Query encoding and document indexing must use the same provider, model, and vector dimension.
+
+### Architecture Summary
 
 Query encoding and document indexing MUST use the same embedder. If indexing writes Jina vectors but search encodes queries with a different model, the system can look healthy while returning low-quality or incompatible vectors.
 
@@ -26,7 +42,7 @@ The runtime has two embedder paths:
 
 Both paths must agree on the active model and vector dimension.
 
-## Bootstrap Auto-Selection
+## 2. BOOTSTRAP AUTO-SELECTION
 
 On first memory-runtime use, `context-server.ts` opens the vector database and calls `ensureActiveEmbedder()`. If `vec_metadata` already has a valid active pointer, startup reuses it. If the pointer is empty, `autoSelectActiveEmbedder()` probes this **local-first** precedence chain (ADR-014, 2026-05-19) and persists the first available choice:
 
@@ -51,7 +67,7 @@ The selected pointer is persisted in:
 
 A filesystem lock beside the active database serializes concurrent daemon starts, so two bootstraps do not both write the pointer.
 
-## Dim-Tagged Tables
+## 3. DIM-TAGGED TABLES
 
 Dim-tagged vector tables keep incompatible vectors separated:
 
@@ -64,7 +80,7 @@ Dim-tagged vector tables keep incompatible vectors separated:
 
 Search queries must be encoded to the same dimension as the active vector source. A 768-dim query against `vec_1024` is invalid.
 
-## Storage Layout
+## 4. STORAGE LAYOUT
 
 The memory store is split into one stable canonical metadata database plus one attached vector shard for the active embedding profile:
 
@@ -79,7 +95,7 @@ Legacy profile databases named `context-index__<slug>.sqlite` migrate during gua
 
 No environment variable controls this layout. `MEMORY_DB_PATH` still points at the canonical DB when explicitly set; the active shard path is derived from the canonical directory and the active embedding profile.
 
-## Supported Manifests
+## 5. SUPPORTED MANIFESTS
 
 The MCP registry currently exposes these Ollama-backed re-index manifests:
 
@@ -95,7 +111,7 @@ The MCP registry currently exposes these Ollama-backed re-index manifests:
 
 Cloud and hf-local providers are selected during bootstrap, not by `embedder_set`.
 
-## Swap Runbook
+## 6. SWAP RUNBOOK
 
 1. Pull the Ollama model:
 
@@ -121,7 +137,7 @@ curl http://127.0.0.1:11434/api/tags
 
 The re-index job writes the target dim table and flips the active pointer only after completion. Existing tables remain on disk for rollback.
 
-## RSS Expectations
+## 7. RSS EXPECTATIONS
 
 | Provider | Expected memory shape |
 |----------|-----------------------|
@@ -131,7 +147,7 @@ The re-index job writes the target dim table and flips the active pointer only a
 
 For active `jina-embeddings-v3`, the expected operator result after daemon restart is that `context-server.js` uses Ollama for query encoding and does not load an extra in-process embedding model.
 
-## Memory Diagnostics
+## 8. MEMORY DIAGNOSTICS
 
 `memory_health` accepts `includeFullReport:true` for byte-aware runtime diagnostics. The extended report includes RSS, V8 heap totals, external memory, ArrayBuffer memory, V8 malloc counters, cache byte estimates for tool cache, trigger matcher regex retention, and the in-process embedding LRU.
 
@@ -193,7 +209,7 @@ Heap snapshots remain opt-in because they can contain indexed text, prompts, fil
 
 `SPECKIT_CONTEXT_SERVER_MAX_OLD_SPACE_MB` can pass `--max-old-space-size=<mb>` to the spawned `context-server.js` child for profiling or leak-canary sessions. Leave it unset for normal operation until packed BM25 and byte-bounded cache packets have reduced retained heap enough to pick a safe cap.
 
-## References
+## 9. REFERENCES
 
 - Packet 016/002/001: adapter interface
 - Packet 016/002/002: Ollama backend and multi-dim schema

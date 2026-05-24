@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/059-agent-implement-code",
+  "specFolder": "skilled-agent-orchestration/z_archive/059-agent-implement-code",
   "description": "Feature Specification: @code Sub-Agent for Stack-Agnostic Code Implementation",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "stack-agnostic",
     "implementation"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.938Z",
+  "lastUpdated": "2026-05-23T15:24:59.356Z",
   "specId": "059",
   "folderSlug": "agent-implement-code",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

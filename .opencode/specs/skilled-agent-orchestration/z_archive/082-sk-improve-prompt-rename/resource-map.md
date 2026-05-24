@@ -22,7 +22,7 @@ _memory:
 
 This packet renames the skill `sk-improve-prompt` to `sk-prompt`. The `sk-` family prefix is retained; only the redundant `-improve-` segment is removed.
 
-The agent name `@improve-prompt` and dispatcher command `/improve:prompt` stay unchanged. Only their body references to the renamed skill move from `sk-improve-prompt` to `sk-prompt`.
+The agent name `@improve-prompt` and dispatcher command `/prompt` stay unchanged. Only their body references to the renamed skill move from `sk-improve-prompt` to `sk-prompt`.
 
 All paths below were verified from the repo root with `rg -l 'sk-improve-prompt' <path>` and counted with `rg -c 'sk-improve-prompt' <path>` unless the note says the path has a path-only rename impact.
 
@@ -90,8 +90,8 @@ All paths below were verified from the repo root with `rg -l 'sk-improve-prompt'
 | Advisor sync script | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/check-prompt-quality-card-sync.sh` | 1 | MUST RENAME |
 | Routing accuracy fixtures | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/routing-accuracy/labeled-prompts.jsonl` | 10 | MUST RENAME |
 | Regression fixtures | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | 2 | MUST RENAME |
-| Dispatcher command body | `.opencode/commands/improve/prompt.md` | 10 | MUST RENAME body refs only; command path/name unchanged |
-| Dispatcher README | `.opencode/commands/improve/README.txt` | 2 | MUST RENAME body refs only |
+| Dispatcher command body | `.opencode/commands/prompt.md` | 10 | MUST RENAME body refs only; command path/name unchanged |
+| Dispatcher README | `.opencode/commands/README.txt` | 2 | MUST RENAME body refs only |
 | OpenCode agent body | `.opencode/agents/improve-prompt.md` | 9 | MUST RENAME body refs only; agent path/name unchanged |
 | CLI Claude mirror | `.opencode/skills/cli-claude-code/assets/prompt_quality_card.md`, `.opencode/skills/cli-claude-code/SKILL.md` | 1 each | MUST RENAME |
 | CLI Claude manual playbook | `.opencode/skills/cli-claude-code/manual_testing_playbook/07--prompt-templates/002-clear-quality-card-5-check.md` | 1 | MUST RENAME |
@@ -112,7 +112,7 @@ All paths below were verified from the repo root with `rg -l 'sk-improve-prompt'
 | Claude agent mirror | `.claude/agents/improve-prompt.md` | 9 | MUST RENAME body refs only; agent file/name unchanged |
 | Codex agent mirror | `.codex/agents/improve-prompt.toml` | 9 | MUST RENAME body refs only; agent file/name unchanged |
 | Gemini agent mirror | `.gemini/agents/improve-prompt.md` | 9 | MUST RENAME body refs only; agent file/name unchanged |
-| Gemini command README | `.gemini/commands/improve/README.txt` | 2 | MUST RENAME body refs only |
+| Gemini command README | `.gemini/commands/deep/start-agent-improvement-loop.toml` | 2 | MUST RENAME body refs only |
 | Gemini create prompt command | `.gemini/commands/create/prompt.toml` | 2 | MUST RENAME verified body refs |
 
 ### Phase 005 — Root + active config
@@ -135,7 +135,7 @@ All paths below were verified from the repo root with `rg -l 'sk-improve-prompt'
 | Skill graph rebuild | `mcp__spec_kit_memory__advisor_rebuild` | Advisor graph reflects `sk-prompt`; stale cache cleared |
 | Advisor probe 1 | `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "improve this prompt with COSTAR" --threshold 0.0` | top skill is `sk-prompt` |
 | Advisor probe 2 | `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "enhance my prompt using CRISPE and CRAFT" --threshold 0.0` | top skill is `sk-prompt` |
-| Advisor probe 3 | `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "/improve:prompt make this clearer" --threshold 0.0` | command bridge still routes to prompt skill |
+| Advisor probe 3 | `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "/prompt make this clearer" --threshold 0.0` | command bridge still routes to prompt skill |
 | Advisor probe 4 | `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "create a sharper prompt for the routing evaluator" --threshold 0.0` | top skill is `sk-prompt` |
 | Advisor probe 5 | `python3 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "clear scoring for this prompt package" --threshold 0.0` | top skill is `sk-prompt` |
 | Parent validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename --strict` | exit 0 |
@@ -180,8 +180,8 @@ All paths below were verified from the repo root with `rg -l 'sk-improve-prompt'
 |-------|-------------|------|----------------|
 | 001 — Discovery impact map | N/A: inventory phase only | Frozen historical scopes listed below | Current packet docs, active research/spec continuity refs, `.opencode/specs/descriptions.json` |
 | 002 — Skill folder + skill internals | `.opencode/skills/sk-improve-prompt/`, `.opencode/changelog/sk-improve-prompt`, skill `SKILL.md`, `README.md`, `graph-metadata.json`, changelogs, `depth_framework.md`, `cli_prompt_quality_card.md`, `format_guide_*.md`, `patterns_evaluation.md`, `skill-graph.json` | N/A | Whether `.opencode/changelog/sk-improve-prompt` is renamed as a symlink or regenerated by changelog tooling |
-| 003 — `.opencode/` internals | `skill_advisor.py`, `explicit.ts`, `lexical.ts`, `fusion.ts`, advisor metadata, sync script, routing fixtures, `.opencode/commands/improve/*`, `.opencode/agents/improve-prompt.md`, cli-* mirrors, deep-agent-improvement refs, sk-code advisor docs | N/A | `.opencode/skills/cli-gemini/manual_testing_playbook/07--prompt-templates/002-clear-quality-card-application.md` has 0 refs; no content edit unless nearby mirror policy requires it |
-| 004 — Runtime mirrors | `.claude/agents/improve-prompt.md`, `.codex/agents/improve-prompt.toml`, `.gemini/agents/improve-prompt.md`, `.gemini/commands/improve/README.txt`, `.gemini/commands/create/prompt.toml` | Agent and command filenames remain unchanged | N/A |
+| 003 — `.opencode/` internals | `skill_advisor.py`, `explicit.ts`, `lexical.ts`, `fusion.ts`, advisor metadata, sync script, routing fixtures, `.opencode/commands/deep/*`, `.opencode/agents/improve-prompt.md`, cli-* mirrors, deep-agent-improvement refs, sk-code advisor docs | N/A | `.opencode/skills/cli-gemini/manual_testing_playbook/07--prompt-templates/002-clear-quality-card-application.md` has 0 refs; no content edit unless nearby mirror policy requires it |
+| 004 — Runtime mirrors | `.claude/agents/improve-prompt.md`, `.codex/agents/improve-prompt.toml`, `.gemini/agents/improve-prompt.md`, `.gemini/commands/deep/start-agent-improvement-loop.toml`, `.gemini/commands/create/prompt.toml` | Agent and command filenames remain unchanged | N/A |
 | 005 — Root + active config | `README.md`, `.opencode/install_guides/SET-UP - AGENTS.md`, `.opencode/install_guides/README.md`, `.opencode/skills/README.md`, `.opencode/skills/system-spec-kit/changelog/v3.4.0.0.md`, `.opencode/changelog/agent-orchestration/v2.4.0.0.md` | N/A | Smart-router observability JSONL/report: update only if considered forward-facing or regenerated |
 | 006 — Advisor + validate | No source mods; rebuild graph, run probes, run strict validation, run final grep | N/A | Allowed final grep hits, if any, must be explicitly documented |
 

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The advisor source tree and this spec packet were moved outside git tracking before this run. The physical source move was already complete, but references still pointed at the old packet lineage and parts of the bridge still imported advisor modules from the deleted source location. The standalone advisor package also needed local TypeScript/Vitest/package metadata and its DB resolver still defaulted to the old Spec Kit database directory.",
     "created_at": "2026-05-14T10:45:00Z",
-    "last_save_at": "2026-05-23T11:55:15.113Z",
+    "last_save_at": "2026-05-24T05:40:25.846Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T10:45:00Z",
     "source_docs": [

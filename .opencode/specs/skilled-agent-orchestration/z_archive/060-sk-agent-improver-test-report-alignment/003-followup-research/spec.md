@@ -114,7 +114,7 @@ Run 10 deep-research iterations on these questions, producing `research/research
 | # | Question |
 |---|---|
 | **RQ-1** | Of the 6 P0/P1 diffs already applied in 060/002, which would meaningfully improve under further iteration vs which are functionally complete as shipped? |
-| **RQ-2** | What's the exact dispatch shape for 061's Call B? `/improve:agent <target> :auto --spec-folder=...` or YAML-step-by-step or something else? |
+| **RQ-2** | What's the exact dispatch shape for 061's Call B? `/deep:start-agent-improvement-loop <target> :auto --spec-folder=...` or YAML-step-by-step or something else? |
 | **RQ-3** | What grep contract should 061's Call B verdict use? List specific journal events + artifact paths + script invocation traces with file:line evidence. |
 | **RQ-4** | Which OTHER meta-agents in the system share @improve-agent's command-orchestrator pattern (discipline in command, not body)? Read each .opencode/agents/*.md and classify body-level vs command-level. |
 | **RQ-5** | Are there gaps in 060/001's research that R1 surfaced (i.e. things the 854-line synthesis missed that the actual stress run revealed)? |
@@ -145,6 +145,6 @@ A successful 003 produces:
   - `../002-stress-test-implementation/stress-runs/stage4-run-log.txt` — full transcripts
 - **Source-of-recommendations:** `../001-deep-research-recommendations/research/research.md` (854 lines)
 - **Methodology template:** `../../059-agent-implement-code/test-report.md`
-- **Modified source files (state after 002):** `.opencode/agents/improve-agent.md` (4 mirrors), `.opencode/skills/sk-improve-agent/{SKILL.md,scripts/scan-integration.cjs,scripts/score-candidate.cjs}`, `.opencode/commands/improve/assets/improve_improve-agent_{auto,confirm}.yaml`
+- **Modified source files (state after 002):** `.opencode/agents/improve-agent.md` (4 mirrors), `.opencode/skills/sk-improve-agent/{SKILL.md,scripts/scan-integration.cjs,scripts/score-candidate.cjs}`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_{auto,confirm}.yaml`
 - **Other meta-agents to classify (RQ-4):** `.opencode/agents/{write,improve-agent,prompt-improver,debug,deep-research,deep-review,context,orchestrate,review,code}.md`
 <!-- /ANCHOR:references -->

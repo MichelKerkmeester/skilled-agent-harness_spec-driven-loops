@@ -38,7 +38,7 @@ _memory:
 - **Total references** (active code, ex-historical record): ~735 across ~96 files
 - **Total references** (including historical record + specs/ research artifacts): ~24,793 across ~602 files
 - **By category**: Skills=60 files / ~393 refs · Commands=14 files / ~150 refs · Agents=4 files / 4 refs · Documents/Meta=8 files / 11 refs · Scripts=2 files / 2 refs (in renamed skill) · Tests=4 files / ~6 refs (advisor + remediation tests) · Config=8 files / ~150 refs (YAML asset templates + JSON metadata) · Specs=571 files / ~24,127 refs (HISTORICAL — out of scope)
-- **Missing on disk**: 0 (all enumerated paths exist; T-026 verifies `.codex/commands/improve/` shape)
+- **Missing on disk**: 0 (all enumerated paths exist; T-026 verifies `.codex/commands/deep/` shape)
 - **Scope**: Active-code reference sites for the rename. Historical record (`specs/` research artifacts, past changelog narrative entries) excluded per `spec.md` §3 Out of Scope.
 - **Generated**: 2026-05-06T08:40:00Z (compiled from two parallel exploration agent reports + 070-sk-deep-rename precedent)
 
@@ -57,10 +57,10 @@ _memory:
 | `.opencode/skills/sk-improve-agent/README.md` | Renamed (folder move) + Updated | OK | New path: `.opencode/skills/deep-agent-improvement/README.md`. 11 refs: frontmatter title (line 2), category tag (line 5), main heading (line 13), description (line 36), comparison table header (line 50), script path examples (lines 101, 104, 107), path refs (lines 209, 306, 314). T-004 |
 | `.opencode/skills/README.md` | Updated | OK | 3 refs: line 60 (skill list), line 173 (full skill entry with version), line 210 (directory tree). T-018 |
 | `.opencode/install_guides/README.md` | Updated | OK | 2 refs: codebase-agnostic skill list paragraph + 17-skill roster table. T-033 |
-| `.opencode/commands/improve/README.txt` | Updated | OK | 2 refs: lines 1, 3 (skill matrix + link). T-021 |
-| `.claude/commands/improve/README.txt` | Updated | OK | Mirror of `.opencode/`. T-024 |
-| `.gemini/commands/improve/README.txt` | Updated | OK | Mirror; verify presence. T-025 |
-| `.codex/commands/improve/README.txt` | Updated/Verified | OK | Verify presence first; mirror if exists. T-026 |
+| `.opencode/commands/README.txt` | Updated | OK | 2 refs: lines 1, 3 (skill matrix + link). T-021 |
+| `.claude/commands/README.txt` | Updated | OK | Mirror of `.opencode/`. T-024 |
+| `.gemini/commands/deep/start-agent-improvement-loop.toml` | Updated | OK | Mirror; verify presence. T-025 |
+| `.codex/commands/README.txt` | Updated/Verified | OK | Verify presence first; mirror if exists. T-026 |
 | `.opencode/skills/sk-improve-agent/scripts/tests/fixtures/low-sample-benchmark/README.md` | Renamed (folder move) + Analyzed | OK | Inside renamed skill; check for path refs in T-009 |
 | `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/README.md` | Renamed (folder move) + Updated | OK | Inside renamed skill; CP test fixture; path refs cleaned in T-009 |
 <!-- /ANCHOR:readmes -->
@@ -88,31 +88,31 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/commands/improve/agent.md` | Updated | OK | 10+ refs: line 238 (Skill matrix), line 246, line 293 (inline node template), plus 7+ body refs. T-020 |
-| `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` | Updated | OK | **CRITICAL — 32 refs**: `skill: sk-improve-agent` field (line 4 area); all asset paths under `.opencode/skills/sk-improve-agent/scripts/` and `.opencode/skills/sk-improve-agent/assets/`; benchmark profile paths; ~20 inline `node` command templates calling skill scripts (improvement-journal, reducer, lineage, mutation-coverage, trade-off-detector). T-022 |
-| `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` | Updated | OK | **CRITICAL — 33 refs**: same shape as auto.yaml plus approval-gate-specific addition. T-023 |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Updated | OK | 10+ refs: line 238 (Skill matrix), line 246, line 293 (inline node template), plus 7+ body refs. T-020 |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Updated | OK | **CRITICAL — 32 refs**: `skill: sk-improve-agent` field (line 4 area); all asset paths under `.opencode/skills/sk-improve-agent/scripts/` and `.opencode/skills/sk-improve-agent/assets/`; benchmark profile paths; ~20 inline `node` command templates calling skill scripts (improvement-journal, reducer, lineage, mutation-coverage, trade-off-detector). T-022 |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | Updated | OK | **CRITICAL — 33 refs**: same shape as auto.yaml plus approval-gate-specific addition. T-023 |
 
 ### `.claude/` runtime mirror
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.claude/commands/improve/agent.md` | Updated | OK | 6 refs (mirror with possibly fewer template invocations). T-024 |
-| `.claude/commands/improve/assets/improve_improve-agent_auto.yaml` | Updated | OK | **CRITICAL — 32 refs**. T-024 |
-| `.claude/commands/improve/assets/improve_improve-agent_confirm.yaml` | Updated | OK | **CRITICAL — 33 refs**. T-024 |
+| `.claude/commands/deep/start-agent-improvement-loop.md` | Updated | OK | 6 refs (mirror with possibly fewer template invocations). T-024 |
+| `.claude/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Updated | OK | **CRITICAL — 32 refs**. T-024 |
+| `.claude/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | Updated | OK | **CRITICAL — 33 refs**. T-024 |
 
 ### `.gemini/` runtime mirror
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.gemini/commands/improve/improve-agent.toml` | Updated | OK | 1 ref: line 3 `Primary skill: .opencode/skills/sk-improve-agent/SKILL.md`. T-025 |
-| `.gemini/commands/improve/assets/improve_improve-agent_auto.yaml` | Updated/Verified | OK | Verify presence; update if exists. T-025 |
-| `.gemini/commands/improve/assets/improve_improve-agent_confirm.yaml` | Updated/Verified | OK | Same. T-025 |
+| `.gemini/commands/deep/start-agent-improvement-loop.toml` | Updated | OK | 1 ref: line 3 `Primary skill: .opencode/skills/sk-improve-agent/SKILL.md`. T-025 |
+| `.gemini/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Updated/Verified | OK | Verify presence; update if exists. T-025 |
+| `.gemini/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | Updated/Verified | OK | Same. T-025 |
 
 ### `.codex/` runtime mirror
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.codex/commands/improve/*` | Updated/Verified | OK | Verify file shape (Codex uses .toml); update found refs. T-026 |
+| `.codex/commands/deep/*` | Updated/Verified | OK | Verify file shape (Codex uses .toml); update found refs. T-026 |
 <!-- /ANCHOR:commands -->
 
 ---
@@ -264,7 +264,7 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/dist/skill_advisor/lib/scorer/fusion.js` | Regenerated (build artifact) | OK | Compiled mirror of fusion.ts; auto-regenerated by T-015 `npm run build`. Manual edit forbidden — must be rebuilt |
 | `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite` | Rebuilt | OK | Binary advisor cache; rebuilt by `advisor_rebuild` MCP call (T-016) |
 
-(Note: YAML asset templates in `.opencode/commands/improve/assets/` listed under §Commands per category-precedence — they are command surfaces, not freestanding config.)
+(Note: YAML asset templates in `.opencode/commands/deep/assets/` listed under §Commands per category-precedence — they are command surfaces, not freestanding config.)
 <!-- /ANCHOR:config -->
 
 ---
@@ -310,7 +310,7 @@ These are documented for transparency but explicitly NOT updated per `spec.md` �
 For monitoring during cli-copilot dispatch:
 
 1. **`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`** — 156 phrase entries (T-010). Highest blast radius: any miss silently degrades skill routing.
-2. **`.opencode/commands/improve/assets/improve_improve-agent_{auto,confirm}.yaml` × 4 runtimes** — 32-33 path templates each × 8 files = ~520 substitutions (T-022/T-023/T-024/T-025/T-026). YAML breakage at runtime is high-impact.
+2. **`.opencode/commands/deep/assets/deep_start-agent-improvement-loop_{auto,confirm}.yaml` × 4 runtimes** — 32-33 path templates each × 8 files = ~520 substitutions (T-022/T-023/T-024/T-025/T-026). YAML breakage at runtime is high-impact.
 3. **`.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json`** — registry key rename + dependency edges (T-011). Affects every advisor query.
 4. **`.opencode/skills/sk-improve-agent/graph-metadata.json`** — `skill_id` + 21 path refs (T-005). Advisor consumes this.
 5. **`.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:258`** — hardcoded `profilesDir` (T-006). Silent failure at runtime if missed.

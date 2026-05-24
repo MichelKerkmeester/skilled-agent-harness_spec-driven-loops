@@ -20,7 +20,7 @@
 #
 # Total wall-clock: ~3-4 hours unattended.
 
-set -uo pipefail
+set -euo pipefail
 
 REPO_ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
 ARC="${REPO_ROOT}/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc"

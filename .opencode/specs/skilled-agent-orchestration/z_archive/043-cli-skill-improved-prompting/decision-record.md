@@ -37,7 +37,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/specs/skilled-agent-orchestration/043-cli-skill-improved-prompting/decision-record.md"
-      - ".opencode/commands/improve/prompt.md"
+      - ".opencode/commands/prompt.md"
     session_dedup:
       fingerprint: "sha256:043-cli-skill-improved-prompting"
       session_id: "043-cli-skill-improved-prompting"
@@ -78,7 +78,7 @@ We need better prompt quality in the four CLI orchestration skills without loadi
 
 - Cross-skill prompt-quality assets are not routable through the current CLI skill Smart Routing model.
 - Routine dispatches need a much smaller context footprint than the full `sk-improve-prompt` methodology.
-- `/improve:prompt` is the existing prompt-improvement command surface and should not fork into a second competing command.
+- `/prompt` is the existing prompt-improvement command surface and should not fork into a second competing command.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -86,9 +86,9 @@ We need better prompt quality in the four CLI orchestration skills without loadi
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: a canonical-source plus local-mirror fast path, backed by one shared `@improve-prompt` escalation agent and a unified `/improve:prompt` command split.
+**We chose**: a canonical-source plus local-mirror fast path, backed by one shared `@improve-prompt` escalation agent and a unified `/prompt` command split.
 
-**How it works**: The canonical prompt-quality card lives under the `sk-improve-prompt` asset surface. Each CLI skill gets a short local mirror that can be loaded through its existing `ALWAYS` resource path. Complex or compliance-heavy prompts escalate to a fresh-context `@improve-prompt` agent, and `/improve:prompt` uses the same deep-path surface instead of creating a second command.
+**How it works**: The canonical prompt-quality card lives under the `sk-improve-prompt` asset surface. Each CLI skill gets a short local mirror that can be loaded through its existing `ALWAYS` resource path. Complex or compliance-heavy prompts escalate to a fresh-context `@improve-prompt` agent, and `/prompt` uses the same deep-path surface instead of creating a second command.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -115,7 +115,7 @@ We need better prompt quality in the four CLI orchestration skills without loadi
 **What improves**:
 - Routine CLI dispatches gain a small, always-loaded framework and CLEAR pre-check layer.
 - High-complexity prompts get the full methodology in a fresh context instead of bloating the caller session.
-- The repo keeps one deep-prompt surface for both CLI skills and `/improve:prompt`.
+- The repo keeps one deep-prompt surface for both CLI skills and `/prompt`.
 
 **What it costs**:
 - Mirror maintenance becomes part of the feature. Mitigation: add sync metadata and make the drift-fixture decision explicit.
@@ -158,7 +158,7 @@ We need better prompt quality in the four CLI orchestration skills without loadi
 | D-002 | Use one canonical prompt-quality card plus four local mirrors | `sk-improve-prompt` owns the domain, while CLI skills need local routable assets |
 | D-003 | Split behavior into fast path and deep path | Routine prompts and high-complexity prompts have different context-cost needs |
 | D-004 | Ship `@improve-prompt` across all active runtime directories | The repo already uses a runtime parity fleet for shared agents |
-| D-005 | Extend `/improve:prompt` instead of creating a second command | One unified prompt-improvement surface is easier to maintain |
+| D-005 | Extend `/prompt` instead of creating a second command | One unified prompt-improvement surface is easier to maintain |
 | D-006 | Leave `skill_advisor.py` unchanged | Existing routing already points to the right skill families |
 
 **How to roll back**: Revert the mirror-card assets, CLI skill routing changes, runtime agent mirrors, and command-routing updates as one bounded packet if the architecture proves unstable.

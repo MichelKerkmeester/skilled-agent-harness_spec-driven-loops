@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "iteration-output.schema.json",
+  "title": "Phase 9 Deep Research Iteration Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "iteration",
+    "executor",
+    "rcaf_prompt_file",
+    "clear_score",
+    "findings",
+    "novelty",
+    "accepted_resource_map_updates",
+    "rejected_updates"
+  ],
+  "properties": {
+    "iteration": { "type": "integer", "minimum": 1, "maximum": 10 },
+    "executor": { "type": "string", "minLength": 1 },
+    "rcaf_prompt_file": { "type": "string", "minLength": 1 },
+    "clear_score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["correctness", "logic", "expression", "arrangement", "reusability", "total", "passed"],
+      "properties": {
+        "correctness": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "logic": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "expression": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "arrangement": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "reusability": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "total": { "type": "integer", "minimum": 0, "maximum": 50 },
+        "passed": { "type": "boolean" }
+      }
+    },
+    "findings": { "type": "array", "items": { "type": "string" } },
+    "novelty": { "type": "string", "enum": ["none", "low", "medium", "high"] },
+    "accepted_resource_map_updates": { "type": "array", "items": { "type": "object" } },
+    "rejected_updates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["proposal", "reason"],
+        "properties": {
+          "proposal": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

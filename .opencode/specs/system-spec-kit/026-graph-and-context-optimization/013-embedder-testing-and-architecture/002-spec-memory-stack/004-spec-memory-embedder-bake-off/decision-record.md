@@ -1210,4 +1210,16 @@ Raw per-run hit counts from `023-deep-research-arc-blind-spots/007-fixture-calib
 - `benchmark-2026-05-20-expanded/` directory + new benchmark report under it.
 
 **Rule honored**: ADR-B-003 requires "data-unambiguous + operator-confirmed" for default flips. Both satisfied.
+
+---
+
+## AMENDMENT (2026-05-23, per 022/010 ADR-B): Verification Clause for ADR-013 + ADR-014
+
+**Scope:** Adds verification clause to ADR-013 (nomic-embed-text-v1.5 promotion) and ADR-014 (local-first cascade reorder + hf-local alignment). Original ADR text unchanged; this section is a contract addition.
+
+**Verification Clause:** No inline string-literal model-name default in any TypeScript or Python file under `.opencode/skills/system-spec-kit/` or `.opencode/skills/mcp-coco-index/` shall contradict the canonical entries in `shared/embeddings/registry.ts` (`MANIFESTS`, `CLOUD_CANONICAL`, `RERANKER_CANONICAL`) and `cocoindex_code/embedders/registered_embedders.py` (`DEFAULT_EMBEDDER_NAME`, `DEFAULT_RERANKER_NAME`). Future model-change audits MUST grep for BOTH `DEFAULT_*` constants AND inline `|| 'literal'` fallback patterns. An invariant test (e.g., `profile.test.ts`) MUST assert each resolution-chain entry point derives from registry. New model defaults require explicit ADR mention of every site impacted.
+
+**Rationale:** Packet 020's grep missed `profile.ts:195` because it scanned only for `DEFAULT_*` constants, not inline `||` fallbacks. Packet 021 audit caught the gap (f-iter001-001 CONFIRMED ACTIVE). Packet 022/001 shipped the fix; this amendment formalizes the audit-pattern contract going forward.
+
+**Cross-ref:** Full ADR-B text in `.../022-hardcoded-default-remediation-arc/010-adr-writing-and-doc-validator/decision-record.md`.
 <!-- /ANCHOR:adr-027 -->

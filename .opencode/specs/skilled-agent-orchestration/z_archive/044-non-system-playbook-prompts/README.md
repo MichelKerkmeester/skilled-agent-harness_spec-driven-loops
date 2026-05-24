@@ -27,7 +27,7 @@ This packet plans a documentation-only rewrite of prompt and scenario-contract w
 This packet covers prompt modernization only for:
 
 - `.opencode/skills/mcp-coco-index/manual_testing_playbook/`
-- `.opencode/skills/sk-improve-agent/manual_testing_playbook/`
+- `.opencode/skills/deep-agent-improvement/manual_testing_playbook/`
 - `.opencode/skills/sk-deep-research/manual_testing_playbook/`
 - `.opencode/skills/sk-deep-review/manual_testing_playbook/`
 - `.opencode/skills/sk-doc/assets/documentation/testing_playbook/`

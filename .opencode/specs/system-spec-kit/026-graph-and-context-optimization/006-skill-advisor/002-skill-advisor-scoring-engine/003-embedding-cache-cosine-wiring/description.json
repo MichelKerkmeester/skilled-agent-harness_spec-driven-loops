@@ -1,22 +1,26 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-embedding-cache-cosine-wiring",
-  "description": "Add per-skill embedding cache to skill-graph.sqlite, embed prompts at recommend-time, surface cosine score as a shadow-only lane (no live behavior change).",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring",
+  "description": "Feature Specification: Skill embedding cache and cosine-similarity lane wiring",
   "keywords": [
-    "skill-embedding-cache",
+    "feature",
+    "specification",
+    "skill",
+    "embedding",
+    "cache",
     "cosine-similarity",
-    "shadow-lane",
-    "skill-graph-schema",
-    "embeddinggemma",
-    "advisor-recommend-flow"
+    "lane",
+    "wiring"
   ],
-  "lastUpdated": "2026-05-13T19:30:00Z",
-  "specId": "001",
-  "folderSlug": "embed-cache-and-cosine-wiring",
+  "lastUpdated": "2026-05-23T15:25:00.620Z",
+  "specId": "003",
+  "folderSlug": "embedding-cache-cosine-wiring",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "006-skill-advisor",
-    "002-semantic-routing-lane"
-  ]
+    "002-skill-advisor-scoring-engine"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

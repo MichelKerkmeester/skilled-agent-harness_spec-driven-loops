@@ -235,7 +235,7 @@ describe('Codex UserPromptSubmit advisor hook', () => {
     const workspaceRoot = resolve(import.meta.dirname, '../../../../../..');
     const hookPath = join(
       workspaceRoot,
-      '.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/codex/user-prompt-submit.js',
+      '.opencode/skills/system-skill-advisor/mcp_server/dist/hooks/codex/user-prompt-submit.js',
     );
     const result = spawnSync(process.execPath, [hookPath], {
       cwd: workspaceRoot,
@@ -254,7 +254,13 @@ describe('Codex UserPromptSubmit advisor hook', () => {
 
     expect(result.status).toBe(0);
     const parsed = JSON.parse(result.stdout) as Record<string, unknown>;
-    const diagnostic = JSON.parse(result.stderr.trim()) as {
+    const diagnosticLine = result.stderr
+      .trim()
+      .split('\n')
+      .filter((line) => line.trim().startsWith('{'))
+      .at(-1);
+    expect(diagnosticLine).toBeDefined();
+    const diagnostic = JSON.parse(diagnosticLine ?? '{}') as {
       status?: string;
       freshness?: string;
     };

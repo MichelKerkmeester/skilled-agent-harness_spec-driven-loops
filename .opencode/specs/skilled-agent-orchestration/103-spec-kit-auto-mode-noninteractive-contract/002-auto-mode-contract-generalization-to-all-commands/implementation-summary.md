@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-Lifted the three-tier `:auto` setup-resolution contract from `/deep:start-review-loop` (Phase 1) into a shared reference doc and migrated 11 remaining commands across `/spec_kit/`, `/create/`, and `/improve/` to cite it. Full live setup-phase verification across all 13 commands (deep-review + 12 migrated): **13/13 PASS** with corrected per-command PRE-BOUND fixtures. The contract eliminates the legacy consolidated-Q-block stdin hang under `:auto` non-interactive dispatches and provides a uniform pattern for future commands.
+Lifted the three-tier `:auto` setup-resolution contract from `/deep:start-review-loop` (Phase 1) into a shared reference doc and migrated 11 remaining commands across `/spec_kit/`, `/create/`, and `/deep/` to cite it. Full live setup-phase verification across all 13 commands (deep-review + 12 migrated): **13/13 PASS** with corrected per-command PRE-BOUND fixtures. The contract eliminates the legacy consolidated-Q-block stdin hang under `:auto` non-interactive dispatches and provides a uniform pattern for future commands.
 
 ---
 
@@ -106,7 +106,7 @@ Per-command edits:
 | 10 | `/create:feature-catalog:auto` | codex `gpt-5.5/medium/fast` | v2: 23s | **PASS** | `live-create-feature-catalog-v2.txt` |
 | 11 | `/create:testing-playbook:auto` | codex `gpt-5.5/medium/fast` | v2: 19s | **PASS** | `live-create-testing-playbook-v2.txt` |
 | 12 | `/create:folder_readme:auto` | codex `gpt-5.5/medium/fast` | v2: 38s | **PASS** | `live-create-folder_readme-v2.txt` |
-| 13 | `/improve:agent:auto` | codex `gpt-5.5/medium/fast` | v2: 14s | **PASS** | `live-improve-agent-v2.txt` |
+| 13 | `/deep:start-agent-improvement-loop:auto` | codex `gpt-5.5/medium/fast` | v2: 14s | **PASS** | `live-improve-agent-v2.txt` |
 
 **Pass rate: 13/13 (100%)** — exceeds the ≥10/13 success target.
 
@@ -136,7 +136,7 @@ Per-command edits:
 
 6. **Dry-run verification depth, not full YAML loop dispatches.** Each live verification ran codex's setup-phase simulation halting before YAML load. Reasoning: the migration's blast radius is §0 markdown content only; YAML workflows are unchanged. Running the full YAML loop per command would add ~hours of wall-clock without changing what's verified. Codex's setup-phase walk-through is faithful to the migration's actual scope.
 
-7. **`/improve:prompt` + `agent_router` excluded.** No paired YAML / dispatch-only commands have no setup-phase surface where the contract applies.
+7. **`/prompt` + `agent_router` excluded.** No paired YAML / dispatch-only commands have no setup-phase surface where the contract applies.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -153,7 +153,7 @@ Per-command edits:
 | B | `auto_mode_contract.md` exists with all required sections | 8 sections (§1-8) present |
 | B | deep-review.md §0 cites shared contract | 1 citation; 0 inline Tier sections |
 | B | strict-validate 001 post-refactor | PASSED |
-| C | 11 commands cite shared contract | `grep -l "auto_mode_contract.md" .opencode/commands/{spec_kit,create,improve}/*.md \| wc -l` returns 12 (incl. deep-review) |
+| C | 11 commands cite shared contract | `grep -l "auto_mode_contract.md" .opencode/commands/{spec_kit,create,deep}/*.md \| wc -l` returns 12 (incl. deep-review) |
 | C | Per-command Default Resolution Table + PRE-BOUND Schema added | 12/12 confirmed |
 | C | `:confirm` Q-block paths untouched | per-command read-back confirmed |
 | C | 002/tasks.md T010-T012 marked complete | yes |
@@ -197,7 +197,7 @@ v1's 9 FAILs and 3 PARTIALs surfaced an interesting (but out-of-scope) finding: 
 Every command's existing `:confirm` consolidated-Q-block path remains intact. Users dispatching `:confirm` see the same interactive setup they always have. Only `:auto` mode benefits from the new contract.
 
 ### Out of scope (intentional)
-- `/improve:prompt` and `agent_router` — no paired YAML / dispatch-only; no setup-phase surface
+- `/prompt` and `agent_router` — no paired YAML / dispatch-only; no setup-phase surface
 - Skill-internal `:auto` flows (sk-doc, sk-code, etc.) — those are SKILL.md surfaces, not user-invokable `/command:*` surfaces
 - Cross-command `:auto` integration (e.g. `/speckit:plan:auto` chained into `/speckit:implement:auto`) — separate concern
 - YAML workflow internal interaction gates (mid-loop approval gates) — handled by each YAML's own non-interactivity rules

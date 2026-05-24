@@ -44,7 +44,7 @@ _memory:
 ### Integration Scanner Observations
 - [x] Scanner discovers canonical `.opencode/agents/agent-improver.md`
 - [x] Scanner discovers mirrors in `.claude/agents/`, `.agents/agents/`, `.codex/agents/`
-- [x] Scanner discovers command references in `improve/agent.md`
+- [x] Scanner discovers command references in `deep/start-agent-improvement-loop.md`
 - [x] Scanner discovers skill references in `sk-improve-agent/SKILL.md`
 - [x] Scanner discovers YAML workflow references
 

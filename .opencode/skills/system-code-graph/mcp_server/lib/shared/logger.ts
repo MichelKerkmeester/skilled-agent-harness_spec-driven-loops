@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Code Graph Logger Helper
+// ───────────────────────────────────────────────────────────────
+
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
 const LEVEL_VALUES: Record<LogLevel, number> = {

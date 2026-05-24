@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Runtime MCP configs still carried the legacy `system_code_graph` server key in three active client mirrors after the code-graph server was renamed to `mk-code-index`. This packet aligns those mirrors, confirms `.claude/mcp.json` was already correct, and closes the bounded P1/P2 findings from the two cited deep-review reports.",
     "created_at": "2026-05-14T19:23:26Z",
-    "last_save_at": "2026-05-23T11:55:15.409Z",
+    "last_save_at": "2026-05-24T05:40:26.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -11,9 +11,9 @@
     "runtime",
     "deliberation"
   ],
-  "lastUpdated": "2026-05-23T09:11:13.024Z",
-  "specId": "124",
-  "folderSlug": "007-shared-runtime-deliberation",
+  "lastUpdated": "2026-05-23T15:24:58.949Z",
+  "specId": "007",
+  "folderSlug": "shared-runtime-deliberation",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

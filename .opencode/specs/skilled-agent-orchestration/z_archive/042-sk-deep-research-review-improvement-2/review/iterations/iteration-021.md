@@ -3300,7 +3300,7 @@ exec
 .opencode/skills/sk-improve-agent/assets/improvement_strategy.md:114:[Reducer populates from mutation-coverage.json after each iteration]
 .opencode/skills/sk-improve-agent/SKILL.md:197:7. Run `scripts/reduce-state.cjs` to refresh the dashboard and experiment registry.
 .opencode/skills/sk-improve-agent/SKILL.md:267:Event types: `session_start`, `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `gate_evaluation`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempt`, `promotion_result`, `rollback`, `rollback_result`, `trade_off_detected`, `mutation_proposed`, `mutation_outcome`, `session_ended`, `session_end`
-.opencode/skills/sk-improve-agent/SKILL.md:289:If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `improve_improve-agent_{auto,confirm}.yaml`, reducer ancestry handling in `sk-improve-agent/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
+.opencode/skills/sk-improve-agent/SKILL.md:289:If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `deep_start-agent-improvement-loop_{auto,confirm}.yaml`, reducer ancestry handling in `sk-improve-agent/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
 .opencode/skills/sk-improve-agent/SKILL.md:293:**Script**: `scripts/mutation-coverage.cjs`
 .opencode/skills/sk-improve-agent/SKILL.md:309:**Script**: `scripts/candidate-lineage.cjs`
 .opencode/skills/sk-improve-agent/SKILL.md:359:The reducer is the consumer for replay artifacts on refresh. Every `scripts/reduce-state.cjs` pass now attempts to read:
@@ -3339,7 +3339,7 @@ exec
 .opencode/skills/sk-deep-research/references/convergence.md:308:2. Append a first-class `blocked_stop` event with `stopReason: "blockedStop"`, `legalStop.blockedBy`, the full `legalStop.gateResults`, and a concrete `recoveryStrategy`.
 .opencode/skills/sk-deep-research/references/convergence.md:426:The stop-decision event (`stop_decision` and `blocked_stop` JSONL records) includes which semantic signals supported or prevented STOP:
 .opencode/skills/sk-deep-research/references/convergence.md:468:4.6. **Blocked-stop persistence** (if any legal-stop gate fails, persist `blocked_stop` with recovery strategy and continue)
-.opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:114:| 07-004 | Legal-stop gates | `/improve:improve-agent ... --iterations=5` | `legal_stop_evaluated` with 5 gate bundles, `blocked_stop` on failure | `blockedStop` recorded when gates fail |
+.opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:114:| 07-004 | Legal-stop gates | `/deep:start-agent-improvement-loop ... --iterations=5` | `legal_stop_evaluated` with 5 gate bundles, `blocked_stop` on failure | `blockedStop` recorded when gates fail |
 .opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:116:| 07-006 | Dimension trajectory | `node mutation-coverage.cjs` (unit) | Trajectory recorded, convergence requires 3+ stable points | Convergence rejected <3 points, accepted when stable |
 .opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:119:| 07-009 | Insufficient sample propagation | `low-sample fixture -> trade-off-detector.cjs -> benchmark-stability.cjs -> reduce-state.cjs` | `insufficientData` and `insufficientSample` stay distinct in the registry and dashboard | Low-sample runtime truth stays diagnosable |
 .opencode/skills/sk-improve-agent/manual_testing_playbook/manual_testing_playbook.md:120:| 07-010 | Replay consumer artifact verification | `node reduce-state.cjs {spec}/improvement` plus one-artifact-missing reruns | Replay summaries populate when artifacts exist and resolve to `null` individually when one is missing | Replay-consumer degradation stays graceful |
@@ -3968,11 +3968,11 @@ exec
    282	
    283	### Resume/Continuation Semantics (current release)
    284	
-   285	Sessions support a single lineage mode today: `new`. Every invocation of the `/improve:agent` workflow starts a fresh session with a new session id and generation 1. Multi-generation lineage modes (`resume`, `restart`, `fork`, `completed-continue`) were described in earlier drafts but have no shipped runtime wiring in the improve-agent workflow, reducer, or journal consumer.
+   285	Sessions support a single lineage mode today: `new`. Every invocation of the `/deep:start-agent-improvement-loop` workflow starts a fresh session with a new session id and generation 1. Multi-generation lineage modes (`resume`, `restart`, `fork`, `completed-continue`) were described in earlier drafts but have no shipped runtime wiring in the improve-agent workflow, reducer, or journal consumer.
    286	
    287	Operators who want to continue evaluating an agent after a prior session SHOULD archive the prior session folder (e.g. move `improve/` to `improve_archive/{timestamp}/`) and re-invoke the command, which starts a new `new`-mode session. The reducer treats each session independently and does not carry ancestry across sessions.
    288	
-   289	If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `improve_improve-agent_{auto,confirm}.yaml`, reducer ancestry handling in `sk-improve-agent/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
+   289	If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `deep_start-agent-improvement-loop_{auto,confirm}.yaml`, reducer ancestry handling in `sk-improve-agent/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
    290	
    291	### Mutation Coverage Graph
    292	

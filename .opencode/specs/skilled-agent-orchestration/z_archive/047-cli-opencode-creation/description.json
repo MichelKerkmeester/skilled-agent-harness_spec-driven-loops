@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/047-cli-opencode-creation",
+  "specFolder": "skilled-agent-orchestration/z_archive/047-cli-opencode-creation",
   "description": "Feature Specification: cli-opencode Skill Creation",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "skill",
     "creation"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.890Z",
+  "lastUpdated": "2026-05-23T15:24:59.332Z",
   "specId": "047",
   "folderSlug": "cli-opencode-creation",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

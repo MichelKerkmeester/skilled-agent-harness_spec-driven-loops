@@ -25,8 +25,8 @@ The skill must not imply council seats write graph storage directly or that grap
 - Real user request: Does the council write to graph storage yet?
 - Prompt: `As a planning-only validator, verify graph support remains a derived projection and not council-agent-owned state. Return the allowed interpretation.`
 - Expected execution process: Grep SKILL.md and `references/graph_support.md` for graph references and confirm source-of-truth boundaries.
-- Expected signals: Graph references state that `ai-council/**` artifacts remain authoritative and graph updates use caller-owned `council_graph_*` tooling.
-- Desired user-visible outcome: The user is told graph support is available only as derived MCP projection.
+- Expected signals: Graph references state that `ai-council/**` artifacts remain authoritative and graph updates use caller-owned `deep-loop-runtime` CLI tooling.
+- Desired user-visible outcome: The user is told graph support is available only as a derived runtime CLI projection.
 - Pass/fail: PASS if graph is derived/scoped; FAIL if council seats directly mutate graph storage or graph rows replace artifacts.
 
 ---
@@ -49,7 +49,7 @@ The skill must not imply council seats write graph storage directly or that grap
 
 ### Expected
 
-Graph hits describe derived projection boundaries, caller-owned MCP tools, and artifact source-of-truth rules.
+Graph hits describe derived projection boundaries, caller-owned runtime CLI tools, and artifact source-of-truth rules.
 
 ### Evidence
 
@@ -60,7 +60,7 @@ Capture grep output and classification notes.
 - **Pass**: Graph support is derived, scoped, and artifact-authoritative.
 - **Fail**: SKILL.md describes council-seat-owned graph mutation or graph rows as authoritative state.
 
-> **Functional graph coverage:** This scenario is a textual boundary check only. Functional behavior of the `council_graph_*` MCP tools (idempotent upsert, self-loop rejection, empty no-op, hostile metadata redaction, five query modes, three convergence buckets, recovery payload, derived-projection replay, tool-family separation) is exercised by DAC-019..DAC-026 in `08--council-graph-integration/`.
+> **Functional graph coverage:** This scenario is a textual boundary check only. Functional behavior of the `deep-loop-runtime --loop-type council` CLI (idempotent upsert, self-loop rejection, empty no-op, hostile metadata redaction, five query modes, three convergence buckets, recovery payload, replay, and MCP-surface removal) is exercised by DAC-019..DAC-026 in `08--council-graph-integration/`.
 
 ### Failure Triage
 

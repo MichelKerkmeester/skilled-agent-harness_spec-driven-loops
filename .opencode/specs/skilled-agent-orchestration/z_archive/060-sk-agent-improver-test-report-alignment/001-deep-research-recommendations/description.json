@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations",
+  "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations",
   "description": "Feature Specification: Apply 059 Stress-Test Methodology to sk-improve-agent Triad",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "sk-improve-agent",
     "triad"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.946Z",
+  "lastUpdated": "2026-05-23T15:24:59.365Z",
   "specId": "001",
   "folderSlug": "deep-research-recommendations",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "060-sk-agent-improver-test-report-alignment"
   ],
   "memorySequence": 1,

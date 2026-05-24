@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Display-only trust badges (confidence, extraction_age, last_access_age, orphan, weight_history) on MemoryResultEnvelope. NO schema change. NO new relations. NO storage of code/process/tool facts.",
     "created_at": "2026-04-25T10:48:09.300Z",
-    "last_save_at": "2026-05-23T11:55:15.024Z",
+    "last_save_at": "2026-05-24T05:40:25.786Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

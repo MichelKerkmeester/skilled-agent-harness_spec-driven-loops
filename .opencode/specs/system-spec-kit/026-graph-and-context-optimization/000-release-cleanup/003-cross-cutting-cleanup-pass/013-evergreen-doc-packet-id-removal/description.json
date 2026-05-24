@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/013-evergreen-doc-packet-id-removal",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/013-evergreen-doc-packet-id-removal",
   "description": "Feature Specification: Evergreen Doc Packet ID Removal",
   "keywords": [
     "feature",
@@ -9,13 +9,14 @@
     "packet",
     "removal"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.323Z",
-  "specId": "027",
+  "lastUpdated": "2026-05-23T15:24:59.845Z",
+  "specId": "013",
   "folderSlug": "evergreen-doc-packet-id-removal",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

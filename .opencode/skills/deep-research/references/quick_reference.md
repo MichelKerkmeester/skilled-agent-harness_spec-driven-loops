@@ -5,15 +5,18 @@ description: One-page cheat sheet for the autonomous deep research loop.
 
 # Deep Research Quick Reference
 
-One-page operator cheat sheet covering the autonomous deep research loop: when to invoke it, what each phase produces, how convergence is computed, and where live state lives on disk. Use it as a lookup surface during runs; defer to the full protocol and convergence references for deep reasoning.
+One-page operator cheat sheet for the autonomous deep research loop.
+
+---
 
 ## 1. OVERVIEW
 
-One-page cheat sheet for the autonomous deep research loop.
+Lookup surface during runs covering when to invoke the loop, what each phase produces, how convergence is computed, and where live state lives on disk. Defer to the full protocol and convergence references for deep reasoning.
 
 Operator contract source of truth for this page:
-- command syntax → `.opencode/commands/deep/start-research-loop.md`
-- convergence math → `references/convergence.md` and the deep-research YAML workflow
+- command syntax: `.opencode/commands/deep/start-research-loop.md`
+- convergence stop contract: `references/convergence.md`, `references/convergence_signals.md`, and the deep-research YAML workflow
+- state packet contract: `references/state_format.md`, `references/state_jsonl.md`, `references/state_outputs.md`, and `references/state_reducer_registry.md`
 
 ---
 
@@ -79,7 +82,7 @@ Operator contract source of truth for this page:
 
 > **Live lifecycle branches:** `resume`, `restart`. (`fork` and `completed-continue` are deferred and not runtime-wired.) `progressiveSynthesis` defaults to `true`, so `research/research.md` is updated during the loop and finalized at synthesis.
 
-> **Path contract:** root-spec runs write directly to `{spec_folder}/research/`; child-phase and sub-phase runs write to a local packet directory under `{spec_folder}/research/{packet}/`
+> **Path contract:** root-spec runs write directly to `{spec_folder}/research/`; child-phase and sub-phase first runs use the local `{spec_folder}/research/` directory directly, with `{ownerSlug}-pt-NN` allocated only when prior non-matching content already exists.
 
 > **Canonical pause sentinel:** `research/.deep-research-pause`
 
@@ -188,7 +191,7 @@ After each iteration, the orchestrator can display a text-based convergence summ
 ```text
 ITERATION 5 PROGRESS
 ─────────────────────
-newInfoRatio: 0.9 → 0.7 → 0.5 → 0.3 → 0.1  ↓ trending down
+newInfoRatio: 0.9 -> 0.7 -> 0.5 -> 0.3 -> 0.1  trending down
 Questions:   [========>..] 8/10 answered (80%)
 Composite:   [######--] 0.48 / 0.60 threshold
 Noise floor: 0.08 (ratio 0.10 ABOVE floor)
@@ -212,10 +215,11 @@ Signals: RollingAvg=STOP MAD=CONTINUE Entropy=CONTINUE
 | `@orchestrate` | Multi-agent coordination |
 | `memory_context()` | Prior work retrieval |
 | `generate-context.js` | Supported memory save script |
+| `references/convergence_signals.md` | Convergence signal details |
+| `references/state_jsonl.md` | JSONL state record details |
 
 ---
 
 ## 13. REVIEW MODE
 
 Review mode has been split into a separate skill. See `deep-review/references/quick_reference.md`.
-

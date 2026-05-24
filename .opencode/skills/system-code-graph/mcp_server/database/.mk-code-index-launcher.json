@@ -1,8 +1,0 @@
-{
-  "command": "mk-code-index-launcher",
-  "start": "2026-05-15T17:57:46.405Z",
-  "end": "2026-05-15T17:57:46.406Z",
-  "status": "ready",
-  "actions": [],
-  "server": ".opencode/skills/system-code-graph/mcp_server/dist/index.js"
-}

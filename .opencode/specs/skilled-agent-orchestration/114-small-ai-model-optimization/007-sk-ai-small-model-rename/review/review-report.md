@@ -1,15 +1,15 @@
 ---
-title: "Deep-Review Report — 007 rename sk-small-model → sk-ai-small-model"
+title: "Deep-Review Report — 007 rename sk-small-model → sk-prompt-small-model"
 description: "Verdict: PASS with hasAdvisories=true. Converged at iter-9 (well below 109 cap). 0 P0, 0 P1, 1 in-scope P2 advisory + 4 out-of-scope P2 advisories accepted per spec.md §3 historical-preservation contract. cli-devin SWE-1.6 executor across 9 iterations × 4+ dimensions."
 trigger_phrases:
   - "007 deep review report"
-  - "sk-ai-small-model rename review"
+  - "sk-prompt-small-model rename review"
   - "deep-review verdict 007"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename"
+    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename"
     last_updated_at: "2026-05-21T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored deep-review review-report.md"
@@ -36,7 +36,7 @@ _memory:
       - "Total findings: 0 P0, 0 P1, 5 P2 (1 in-scope + 4 out-of-scope-accepted)"
 ---
 
-# Deep-Review Report — 007 rename sk-small-model → sk-ai-small-model
+# Deep-Review Report — 007 rename sk-small-model → sk-prompt-small-model
 
 **Verdict**: **PASS** with `hasAdvisories=true`
 **Iterations**: 9 (cap was 109; converged early per `newFindingsRatio < 0.15 × 3 consecutive iters` rule)
@@ -47,7 +47,7 @@ _memory:
 
 ## 1. EXECUTIVE SUMMARY
 
-The 007 rename packet (sk-small-model → sk-ai-small-model + advisor reindex, shipped 2026-05-21) was reviewed across 9 cli-devin SWE-1.6 iterations covering 4 standard dimensions (correctness, traceability, security, maintainability) plus 2 adversarial rounds plus 1 H5 re-verification plus 1 final synthesis. The review found **zero blocking findings** (no P0/P1) and **5 advisory P2 findings**: 1 in-scope (M-001 enhancement opportunity) and 4 out-of-scope-accepted (sibling historical phase children's derived metadata drift, explicitly preserved per spec.md §3 Out of Scope contract).
+The 007 rename packet (sk-small-model → sk-prompt-small-model + advisor reindex, shipped 2026-05-21) was reviewed across 9 cli-devin SWE-1.6 iterations covering 4 standard dimensions (correctness, traceability, security, maintainability) plus 2 adversarial rounds plus 1 H5 re-verification plus 1 final synthesis. The review found **zero blocking findings** (no P0/P1) and **5 advisory P2 findings**: 1 in-scope (M-001 enhancement opportunity) and 4 out-of-scope-accepted (sibling historical phase children's derived metadata drift, explicitly preserved per spec.md §3 Out of Scope contract).
 
 The packet demonstrates strong correctness, traceability, security, and maintainability practices. The advisor surfaces the renamed skill at confidence **0.95** on canonical small-model prompts. Historical surfaces under 114/001-006 + 114/review + 026/.../iteration-009 + changelog/v0.1+v0.2 were preserved unchanged. Two P2 advisory findings (H5-001 stale 114/spec.md frontmatter, H5-002 sk-small-model leakage in 114/description.json) emerged in iter-5 and were fixed in foreground before iter-6 re-verification, which confirmed PASS.
 
@@ -112,7 +112,7 @@ The packet demonstrates strong correctness, traceability, security, and maintain
 
 ## 6. EVIDENCE TRAIL
 
-Per-iter evidence files at `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/review/iterations/iteration-{001..009}.md`. State JSONL at `review/deep-review-state.jsonl`. Prompts at `review/prompts/iteration-{1..9}.md`. Strategy at `review/deep-review-strategy.md`. Config at `review/deep-review-config.json`.
+Per-iter evidence files at `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/review/iterations/iteration-{001..009}.md`. State JSONL at `review/deep-review-state.jsonl`. Prompts at `review/prompts/iteration-{1..9}.md`. Strategy at `review/deep-review-strategy.md`. Config at `review/deep-review-config.json`.
 
 ---
 
@@ -137,6 +137,6 @@ Optional follow-ons:
 ## 9. NEXT STEPS
 
 Per the deep-review skill chain:
-- **PASS → `/create:changelog`** — generate changelog entry for the 007 rename (already partially done via `changelog/changelog-114-007-rename-sk-ai-small-model.md`).
+- **PASS → `/create:changelog`** — generate changelog entry for the 007 rename (already partially done via `changelog/changelog-114-007-rename-sk-prompt-small-model.md`).
 - **Optional M-001 follow-up** — fold the pattern-template enhancement into the 115 deep-ai-council rename arc (which is currently in-flight) since 115 reuses 007's pattern.
 - **Optional metadata-refresh packet** — if desired, queue a future "114 sibling metadata refresh" packet to update H5-003..006 derived fields. Low priority.

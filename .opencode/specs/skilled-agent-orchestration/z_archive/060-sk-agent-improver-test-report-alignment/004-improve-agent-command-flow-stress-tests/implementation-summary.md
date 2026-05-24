@@ -71,7 +71,7 @@ Diff stat for those files: 169 insertions, 76 deletions.
 <!-- ANCHOR:how-delivered -->
 ## HOW IT WAS DELIVERED
 
-The scenario runner used per-CP layer partition. CP-040, CP-043, CP-044, and CP-045 invoked `/improve:agent` from command-capable temp roots. CP-041 and CP-042 stayed body-level with the improve-agent body prepended and required runtime/control inputs named explicitly.
+The scenario runner used per-CP layer partition. CP-040, CP-043, CP-044, and CP-045 invoked `/deep:start-agent-improvement-loop` from command-capable temp roots. CP-041 and CP-042 stayed body-level with the improve-agent body prepended and required runtime/control inputs named explicitly.
 
 The setup helper created `/tmp/cp-NNN-sandbox` and `/tmp/cp-NNN-spec` roots for each scenario. Command-flow calls included both roots with `--add-dir`. R2 updated CP-041 and CP-042 body-level Call B to include the spec root too, and recreated the candidate directory immediately before dispatch.
 <!-- /ANCHOR:how-delivered -->

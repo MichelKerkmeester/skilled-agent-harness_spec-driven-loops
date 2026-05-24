@@ -1,22 +1,23 @@
 {
+  "level": "2",
   "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/003-deep-loop-runtime",
-  "description": "Phase parent for 9 deep-loop runtime isolation sub-phases: core-isolation deliberation (001), then full isolation in 8 phases (002-009) covering scaff",
+  "description": "Feature Specification: Deep Loop runtime isolation arc",
   "keywords": [
-    "deep-loop",
+    "feature",
+    "specification",
+    "deep",
+    "loop",
     "runtime",
     "isolation",
-    "skill-scaffold",
-    "mcp-tool-surface",
-    "test-migration"
+    "arc"
   ],
-  "lastUpdated": "2026-05-23T09:52:56.265976Z",
+  "lastUpdated": "2026-05-23T15:24:59.031Z",
   "specId": "003",
-  "folderSlug": "003-deep-loop-runtime",
+  "folderSlug": "deep-loop-runtime",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

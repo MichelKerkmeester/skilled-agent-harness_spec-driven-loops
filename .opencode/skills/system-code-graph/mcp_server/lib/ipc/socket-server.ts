@@ -25,6 +25,7 @@ interface IpcSocketServerOptions {
   readonly createServer: () => Server;
   readonly maxClients?: number;
   readonly log?: (message: string) => void;
+  readonly onActivity?: () => void;
 }
 
 interface IpcSocketServerHandle {
@@ -122,6 +123,7 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
     : path.resolve(options.socketPath);
   const log = options.log ?? ((message: string) => console.error(message));
   const maxClients = options.maxClients ?? parseMaxClients();
+  const onActivity = options.onActivity ?? (() => undefined);
   if (!socketPath.startsWith('tcp://')) {
     fs.mkdirSync(path.dirname(socketPath), { recursive: true, mode: 0o700 });
   }
@@ -135,15 +137,18 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
     }
 
     activeSockets.add(socket);
+    onActivity();
     log('[ipc-bridge] secondary connected pid=?');
 
     const originalWrite = socket.write.bind(socket);
     socket.write = ((chunk: unknown, ...args: unknown[]) => {
+      onActivity();
       totalSecondaryMessagesOut += countJsonRpcFrames(chunk);
       return originalWrite(chunk as string | Uint8Array, ...(args as [BufferEncoding?, (() => void)?]));
     }) as typeof socket.write;
 
     socket.on('data', (chunk) => {
+      onActivity();
       totalSecondaryMessagesIn += countJsonRpcFrames(chunk);
     });
 

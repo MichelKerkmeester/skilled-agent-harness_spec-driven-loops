@@ -11,7 +11,7 @@
     "resolution",
     "bugs"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.229Z",
+  "lastUpdated": "2026-05-23T15:25:00.496Z",
   "specId": "009",
   "folderSlug": "fix-script-filesystem-scope",
   "parentChain": [

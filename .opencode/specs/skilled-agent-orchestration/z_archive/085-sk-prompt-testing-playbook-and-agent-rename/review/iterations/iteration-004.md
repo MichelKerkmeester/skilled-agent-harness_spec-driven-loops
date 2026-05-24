@@ -46,7 +46,7 @@ $ rg -l '@improve-prompt|improve-prompt' .opencode .claude .codex .gemini \
   -g '!**/085-sk-prompt-testing-playbook-and-agent-rename/**' \
   -g '!**/086-*/**' -g '!**/087-*/**' \
   -g '!**/026-graph-and-context-optimization/**' \
-  -g '!**/.git/**' -g '!**/barter/**' -g '!**/improve/prompt.md'
+  -g '!**/.git/**' -g '!**/barter/**' -g '!**/prompt.md'
 Result: (empty — zero hits)
 ```
 No rotation leaked into frozen-continuity scope. Confirmed zero active-scope residuals.
@@ -125,6 +125,6 @@ Both rows still say "Pending" despite actual completion.
 
 **Did the validator miss things it should have caught?** The validator correctly handles phase children with lean-trio rules. It checks file existence, ANCHOR format, frontmatter, and placeholder detection. The unfilled template passed because the placeholders are in prose sections (not frontmatter fields), and the ANCHORs are syntactically valid. This is a known validator limitation — it validates structure, not content quality.
 
-**Is the frozen-continuity check truly clean?** The grep exclusion list covered every category from the strategy doc: z_archive, z_future, all completed packets (054/055/059/061/063/067/070/079/081/082/026), .git, barter, improve/prompt.md (command file), and 085/086/087 themselves. Zero hits returned. No borderline exclusions needed.
+**Is the frozen-continuity check truly clean?** The grep exclusion list covered every category from the strategy doc: z_archive, z_future, all completed packets (054/055/059/061/063/067/070/079/081/082/026), .git, barter, prompt.md (command file), and 085/086/087 themselves. Zero hits returned. No borderline exclusions needed.
 
 **Did I miss any documentation issues?** The parent spec phase table (lines 137-138) still says "Pending" for both shipped phases — this is a stale inline table that contradicts the frontmatter continuity. I noted it as P2 since it's a cosmetic stale reference in a phase-parent spec that already declares `completion_pct: 100` in its frontmatter.

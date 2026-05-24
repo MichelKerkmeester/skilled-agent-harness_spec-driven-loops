@@ -265,17 +265,30 @@ async function main() {
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);
-  if (loopType !== 'research' && loopType !== 'review') {
-    throw inputError('loopType must be "research" or "review"');
+  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council') {
+    throw inputError('loopType must be "research", "review", or "council"');
   }
 
   const ns = { specFolder, loopType, sessionId };
   let db = null;
 
   try {
-    db = await import('../lib/coverage-graph/coverage-graph-db.ts');
+    const isCouncil = loopType === 'council';
+    db = isCouncil
+      ? await import('../lib/council/council-graph-db.ts')
+      : await import('../lib/coverage-graph/coverage-graph-db.ts');
     installSignalHandlers(() => db?.closeDb());
     maybeThrowTestFault();
+    if (isCouncil) {
+      const councilConvergence = require('../lib/council/convergence.cjs');
+      const data = await councilConvergence.evaluateCouncilConvergence(ns, {
+        roundId: args.roundId,
+        persistSnapshot: asBoolean(args.persistSnapshot),
+      });
+      jsonOut(councilConvergence.bridgePayload(data));
+      return;
+    }
+
     const signalsLib = await import('../lib/coverage-graph/coverage-graph-signals.ts');
     const queryLib = await import('../lib/coverage-graph/coverage-graph-query.ts');
     const nodes = db.getNodes(ns);

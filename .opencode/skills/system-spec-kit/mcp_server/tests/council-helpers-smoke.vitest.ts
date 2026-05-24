@@ -11,7 +11,7 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 
 const REPLAY_HELPER = join(
   WORKSPACE_ROOT,
-  '.opencode/skills/sk-ai-council/scripts/replay-graph-from-artifacts.cjs',
+  '.opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs',
 );
 const TEST_COUNCIL_MATRIX = join(
   WORKSPACE_ROOT,
@@ -58,7 +58,7 @@ describe('council helper script smoke coverage', () => {
 
     const result = spawnSync(
       'node',
-      [REPLAY_HELPER, '--spec-folder', specFolder, '--session-id', 'replay-run-01'],
+      [REPLAY_HELPER, '--spec-folder', specFolder, '--session-id', 'replay-run-01', '--dry-run'],
       { cwd: repoRoot, encoding: 'utf8' },
     );
 

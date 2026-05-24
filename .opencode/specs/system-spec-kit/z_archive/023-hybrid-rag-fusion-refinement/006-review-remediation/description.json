@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/023-hybrid-rag-fusion-refinement/006-review-remediation",
+  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/006-review-remediation",
   "description": "Feature Specification: Deep Review Remediation",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "review",
     "remediation"
   ],
-  "lastUpdated": "2026-04-24T15:56:55.700Z",
+  "lastUpdated": "2026-05-23T15:25:01.114Z",
   "specId": "006",
   "folderSlug": "review-remediation",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "023-hybrid-rag-fusion-refinement"
   ],
   "memorySequence": 1,

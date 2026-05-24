@@ -285,7 +285,7 @@ I’ve narrowed it to a handful of exact branches. I’m now checking the real e
 
 ● Search (grep)
   │ "benchmarkPlateau|plateau|legal_stop_evaluated|blocked_stop|session_ended|stopReason|candidate_s
-  │ cored" (.opencode/commands/improve)
+  │ cored" (.opencode/commands/deep)
   └ 25 lines found
 
 ● Search (grep)
@@ -1667,12 +1667,12 @@ I’m pulling the current command, agent, and reference surfaces together first 
 
 ● skill(system-spec-kit)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ 183 lines read
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ 217 lines read
 
 ● Read deep-review.md
@@ -1790,13 +1790,13 @@ I’ve narrowed it to a few contract mismatches: lifecycle modes, blocked-stop p
 ● Search (grep)
   │ "session-boundary|scan-integration|mutation-coverage|candidate-lineage|trade-off-detector|benchm
   │ ark-stability|phase_init|phase_loop|gate_init"
-  │ (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml)
+  │ (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml)
   └ 7 lines found
 
 ● Search (grep)
   │ "session-boundary|scan-integration|mutation-coverage|candidate-lineage|trade-off-detector|benchm
   │ ark-stability|phase_init|phase_loop|gate_init"
-  │ (.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
+  │ (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml)
   └ 8 lines found
 
 ● Search (grep)
@@ -1863,12 +1863,12 @@ I’ve narrowed it to a few contract mismatches: lifecycle modes, blocked-stop p
   │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
   └ L404:424 (21 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L110:170 (61 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L118:205 (87 lines read)
 
 ● Read scan-integration.cjs
@@ -2117,12 +2117,12 @@ I’ve got the runtime truth now: improve-agent is single-lineage only, the revi
 ● Search (grep)
   │ "repeatability_report|repeatability_output_path|benchmark_output_path|score_output_path|integrat
   │ ion_report_summary|candidate_id"
-  │ (.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
+  │ (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml)
   └ 5 lines found
 
 ● Search (grep)
   │ "repeatability_report|repeatability_output_path|benchmark_output_path|score_output_path|candidat
-  │ e_id" (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml)
+  │ e_id" (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml)
   └ 3 lines found
 
 ● Read run-benchmark.cjs
@@ -2141,8 +2141,8 @@ I’ve got the exact deltas and I’m applying them as a narrow contract patch: 
   │ Edit .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   │ Edit .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   │ Edit .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
-  │ Edit .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
-  │ Edit .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+  │ Edit .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
+  │ Edit .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   │ Edit .opencode/agents/deep-review.md
   │ Edit .opencode/agents/deep-research.md
   │ Edit .opencode/skills/sk-deep-research/assets/deep_research_config.json
@@ -2162,12 +2162,12 @@ The patch hit a context mismatch in the review YAMLs, so I’m re-reading the ex
   │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L290:322 (32 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L44:66 (23 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L46:68 (23 lines read)
 
 ● Read spec_kit_deep-review_auto.yaml
@@ -2183,8 +2183,8 @@ The patch hit a context mismatch in the review YAMLs, so I’m re-reading the ex
   │ Edit .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   │ Edit .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   │ Edit .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
-  │ Edit .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
-  │ Edit .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+  │ Edit .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
+  │ Edit .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   │ Edit .opencode/agents/deep-review.md
   │ Edit .opencode/agents/deep-research.md
   │ Edit .opencode/skills/sk-deep-research/assets/deep_research_config.json
@@ -2196,12 +2196,12 @@ The patch hit a context mismatch in the review YAMLs, so I’m re-reading the ex
 
 The contract edits are in. I’m doing a quick pass over the changed snippets now for structural issues — especially the new improve-agent gate and inline node commands — before I run the scoped verifier.
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L118:214 (97 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L112:200 (89 lines read)
 
 ● Read deep-review.md
@@ -2268,7 +2268,7 @@ The broad `.opencode` verifier tripped on existing repo-wide findings, not just 
 
 ● Search (grep)
   │ "deep-review_auto|deep-review_confirm|deep-research_auto|deep-research_confirm|improve_improve-a
-  │ gent_auto|improve_improve-agent_confirm|\.opencode/agents/deep-review\.md|\.opencode/agents/deep-r
+  │ gent_auto|deep_start-agent-improvement-loop_confirm|\.opencode/agents/deep-review\.md|\.opencode/agents/deep-r
   │ esearch\.md|deep_research_config\.json|review_mode_contract\.yaml|improvement_config\.json|refer
   │ ences/convergence\.md|references/loop_protocol\.md"
   │ (/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/copilot-tool-output-1775996175114-lk3itv.txt)
@@ -2277,7 +2277,7 @@ The broad `.opencode` verifier tripped on existing repo-wide findings, not just 
 ● Run narrower alignment checks (shell)
   │ python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root
   │ .opencode/agent && python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
-  │ --root .opencode/commands/improve/assets && python3
+  │ --root .opencode/commands/deep/assets && python3
   │ .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root
   │ .opencode/commands/speckit/assets && python3 …
   └ 59 lines...
@@ -2344,7 +2344,7 @@ Everything parses cleanly now. I’m doing one quick diffstat/status pass so the
   │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   │ .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml
   │ .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml …
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml …
   └ 52 lines...
 
 Done. I applied the requested targeted updates across the 14 `.opencode` workflow, agent, config, and reference files, including:

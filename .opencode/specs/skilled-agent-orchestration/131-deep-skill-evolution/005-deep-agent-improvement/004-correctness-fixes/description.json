@@ -9,9 +9,9 @@
     "correctness",
     "fixes"
   ],
-  "lastUpdated": "2026-05-23T09:11:13.020Z",
-  "specId": "124",
-  "folderSlug": "004-correctness-fixes",
+  "lastUpdated": "2026-05-23T15:24:59.109Z",
+  "specId": "004",
+  "folderSlug": "correctness-fixes",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

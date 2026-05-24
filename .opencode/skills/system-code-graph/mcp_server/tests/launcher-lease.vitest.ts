@@ -30,9 +30,7 @@ function createWorkspace(options: { ignoreChildSigterm?: boolean } = {}): { root
   copyFileSync(join(repoRoot, launcherRelativePath), launcherPath);
 
   const directServer = join(root, '.opencode/skills/system-code-graph/mcp_server/dist/index.js');
-  const nestedServer = join(root, '.opencode/skills/system-code-graph/dist/system-code-graph/mcp_server/index.js');
   mkdirSync(dirname(directServer), { recursive: true });
-  mkdirSync(dirname(nestedServer), { recursive: true });
   writeFileSync(
     directServer,
     options.ignoreChildSigterm
@@ -40,7 +38,6 @@ function createWorkspace(options: { ignoreChildSigterm?: boolean } = {}): { root
       : "process.on('SIGTERM', () => process.exit(0)); process.on('SIGINT', () => process.exit(0)); setInterval(() => {}, 1000);\n",
     'utf8',
   );
-  writeFileSync(nestedServer, 'export {};\n', 'utf8');
 
   return { root, launcherPath, pidFilePath: join(root, pidFileRelativePath) };
 }

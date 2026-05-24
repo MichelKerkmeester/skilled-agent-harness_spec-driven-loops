@@ -19,7 +19,7 @@ I’ve got the deep-research contract loaded. I’m narrowing this first pass to
 
 ● Search (grep)
   │ "CP-04[0-5]|PASS|PARTIAL|FAIL|test-layer|prepend-agent-body|Call
-  │ B|journal|artifact|script|improve:agent|improve_improve-agent"
+  │ B|journal|artifact|script|deep:start-agent-improvement-loop|deep_start-agent-improvement-loop"
   │ (.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-repo
   │ rt-alignment/002-stress-test-implementation/stress-runs/stage4-run-log.txt,
   │ .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-repor
@@ -38,9 +38,9 @@ I’ve got the deep-research contract loaded. I’m narrowing this first pass to
   └ 10 lines found
 
 ● Search (grep)
-  │ "(/improve:agent|journal|events|candidate|scan-integration|score-candidate|i
+  │ "(/deep:start-agent-improvement-loop|journal|events|candidate|scan-integration|score-candidate|i
   │ mprove_improve-agent|artifact|logs|prompt|auto|confirm)"
-  │ (.opencode/commands/improve, .opencode/skills/sk-improve-agent,
+  │ (.opencode/commands/deep, .opencode/skills/sk-improve-agent,
   │ .opencode/agents/improve-agent.md)
   └ 11 lines found
 
@@ -56,23 +56,23 @@ The R1 report confirms the central mismatch: Call B reached the thin mutator, wh
   └ L1:260 (260 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L1:220 (220 lines read)
 
 ● Read improve-agent.md
   │ .opencode/agents/improve-agent.md
   └ L1:180 (180 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L1:260 (211 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L1:260 (237 lines read)
 
 ● Search (grep)
-  │ "(@improve-agent|improve-agent|/improve:agent|prepend|agent
+  │ "(@improve-agent|improve-agent|/deep:start-agent-improvement-loop|prepend|agent
   │ body|command|orchestrator|YAML|proposal-only|ADR-001|Call
   │ B|CP-040|CP-045|stress|059|5-dimension|rubric|scenario)"
   │ (.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-repo
@@ -106,7 +106,7 @@ The R1 report confirms the central mismatch: Call B reached the thin mutator, wh
   │ .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs,
   │ .opencode/skills/sk-improve-agent/scripts/generate-profile.cjs,
   │ .opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml)
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml)
   └ 10 lines found
 
 ● Read deep-research.md
@@ -199,7 +199,7 @@ The R1 report confirms the central mismatch: Call B reached the thin mutator, wh
   └ L257:380 (123 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L220:360 (141 lines read)
 
 ● Read test-report.md
@@ -310,7 +310,7 @@ Wrote iteration 1 findings to:
 
 `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research/research/iterations/iteration-001.md`
 
-Key added finding: 063 should invoke `/improve:agent ... :auto --spec-folder=...` for Call B, and its verdict should test command artifacts plus producer/consumer journal compatibility—not just event-name greps.
+Key added finding: 063 should invoke `/deep:start-agent-improvement-loop ... :auto --spec-folder=...` for Call B, and its verdict should test command artifacts plus producer/consumer journal compatibility—not just event-name greps.
 
 
 Changes   +204 -0
@@ -349,7 +349,7 @@ I’m narrowing the investigation around the prior iteration and R1 artifacts fi
 
 ● Search (grep)
   │ "CP-04[0-5]|journal|artifact|trace|script|scan-integration|score-candidate|i
-  │ mprove:agent|/improve:agent"
+  │ mprove:agent|/deep:start-agent-improvement-loop"
   │ (.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-repo
   │ rt-alignment/002-stress-test-implementation/stress-runs/stage4-run-log.txt)
   └ 7 lines found
@@ -404,8 +404,8 @@ The first iteration already answered Call B shape, grep contracts, and agent cla
   │ .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
   └ L160:230 (71 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L120:215 (92 lines read)
 
 ● Search (glob)
@@ -487,7 +487,7 @@ The evidence points to a useful new split: the 059 rubric grades implementation 
   └ L260:300 (40 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L260:310 (51 lines read)
 
 ● Read 018-benchmark-completed-boundary.md
@@ -551,16 +551,16 @@ I’ve got the deep-research skill context loaded. I’m going to compare prior 
   └ 7 lines found
 
 ● Search (grep)
-  │ "CP-04[0-5]|PASS|PARTIAL|FAIL|journal|artifact|script|invocation|/improve:ag
-  │ ent|improve_improve-agent|grep|stage4|verdict"
+  │ "CP-04[0-5]|PASS|PARTIAL|FAIL|journal|artifact|script|invocation|/deep:ag
+  │ ent|deep_start-agent-improvement-loop|grep|stage4|verdict"
   │ (.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-repo
   │ rt-alignment/002-stress-test-implementation/stress-runs/stage4-run-log.txt)
   └ 6 lines found
 
 The first two iterations already answered most RQs broadly. I’m pivoting to the suggested weak seam: whether 063 should be test-only or implementation-plus-test, and what exact command-runner/artifact compatibility constraints make that decision.
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L1:230 (211 lines read)
 
 ● Read reduce-state.cjs
@@ -568,7 +568,7 @@ The first two iterations already answered most RQs broadly. I’m pivoting to th
   └ L160:235 (76 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L1:130 (130 lines read)
 
 ● Read improvement-journal.cjs
@@ -581,14 +581,14 @@ The first two iterations already answered most RQs broadly. I’m pivoting to th
   └ L55:105 (50 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L250:320 (71 lines read)
 
 ● Search (glob)
   │ "**/*" in .opencode/skills/sk-improve-agent/test-fixtures/060-stress-test
   └ 6 files found
 
-The key new clue is that the 060 fixture contains only target-agent mirrors and a benchmark sentinel, not the `/improve:agent` command or `sk-improve-agent` scripts. I’m checking whether the follow-on runner must copy command/skill surfaces into the sandbox or run from repo root with absolute target/spec paths.
+The key new clue is that the 060 fixture contains only target-agent mirrors and a benchmark sentinel, not the `/deep:start-agent-improvement-loop` command or `sk-improve-agent` scripts. I’m checking whether the follow-on runner must copy command/skill surfaces into the sandbox or run from repo root with absolute target/spec paths.
 
 ● Read research.md
   │ .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-repor
@@ -613,18 +613,18 @@ The key new clue is that the 060 fixture contains only target-agent mirrors and 
   └ L1:160 (40 lines read)
 
 ● Search (grep)
-  │ "/improve:agent|improve_improve-agent_auto|--add-dir|slash command|command
+  │ "/deep:start-agent-improvement-loop|deep_start-agent-improvement-loop_auto|--add-dir|slash command|command
   │ resolution|\.opencode/command"
   │ (.opencode/skills/cli-copilot/manual_testing_playbook)
   └ 6 lines found
 
 ● Search (grep)
-  │ "/improve:agent|improve_improve-agent_auto|target_path_must_be_agent|gateRes
+  │ "/deep:start-agent-improvement-loop|deep_start-agent-improvement-loop_auto|target_path_must_be_agent|gateRes
   │ ults|benchmark_completed|run-benchmark|060|063"
   │ (.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-repo
   │ rt-alignment/001-deep-research-recommendations/research/research.md,
   │ .opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/commands/improve/agent.md)
+  │ .opencode/commands/deep/start-agent-improvement-loop.md)
   └ 7 lines found
 
 There is a real `run-benchmark.cjs` script, so CP-045’s gap is more precise than “script missing”: the YAML references the script in its catalog but never invokes it in `step_run_benchmark`. I’m reading that script’s CLI shape to make the 063 contract concrete.
@@ -808,12 +808,12 @@ The agent classification was already broad in iteration 1; the more valuable del
   │ nchmark-completed-boundary.md
   └ L55:85 (30 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L80:220 (132 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L1:115 (115 lines read)
 
 ● Read research.md
@@ -870,7 +870,7 @@ I’m narrowing this pass to the weakest remaining areas instead of re-summarizi
 
 ● Search (grep)
   │ "CP-04[0-5]|PASS|PARTIAL|FAIL|journal|artifact|scan-integration|score-candid
-  │ ate|improve_improve-agent|/improve:agent|Skill|script|call"
+  │ ate|deep_start-agent-improvement-loop|/deep:start-agent-improvement-loop|Skill|script|call"
   │ (.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-repo
   │ rt-alignment/002-stress-test-implementation/stress-runs/stage4-run-log.txt)
   └ 7 lines found
@@ -892,7 +892,7 @@ I’m narrowing this pass to the weakest remaining areas instead of re-summarizi
   └ 7 lines found
 
 ● Search (grep)
-  │ "Call B|/improve:agent|grep contract|journal|artifact|script
+  │ "Call B|/deep:start-agent-improvement-loop|grep contract|journal|artifact|script
   │ invocation|stage|060/003|063|test-layer|layer
   │ selection|command-orchestrator|proposal-only|ADR-001|coder
   │ acceptance|rubric|CP-04[0-5]|CP-XXX"
@@ -938,8 +938,8 @@ The first search confirms prior iterations already covered several broad answers
 
 Prior iterations point to one remaining concrete ambiguity: the benchmark command’s actual input/output contract and whether legal-stop should be fixed at the producer or consumer. I’m reading those seams now.
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L1:240 (211 lines read)
 
 ● Read run-benchmark.cjs
@@ -982,7 +982,7 @@ The benchmark runner doesn’t execute the old sentinel directly; it scores mark
   │ rk|outputs-dir|candidate_outputs|candidate_output|score_output_path|benchmar
   │ k_output_path" (.opencode/skills/sk-improve-agent/assets/target-profiles,
   │ .opencode/skills/sk-improve-agent/scripts,
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml,
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml,
   │ .opencode/skills/sk-improve-agent/SKILL.md)
   └ rg: .opencode/skills/sk-improve-agent/assets/target-profiles: No such file or
     directory (os error 2)
@@ -996,7 +996,7 @@ The runner’s default `assets/target-profiles` path appears absent, which chang
 ● Search (grep)
   │ "score_output_path|candidate_path|candidate_id|benchmark_output_path|candida
   │ te-output|outputs-dir|benchmark-runs" (.opencode/skills/sk-improve-agent,
-  │ .opencode/commands/improve)
+  │ .opencode/commands/deep)
   └ 39 lines found
 
 ● Search (glob)
@@ -1117,8 +1117,8 @@ The first five iterations have largely answered the broad RQs; I’m focusing th
   │ t-alignment/001-deep-research-recommendations/research/research.md
   └ L760:805 (45 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L50:215 (162 lines read)
 
 ● Search (glob)
@@ -1165,7 +1165,7 @@ I found no existing `063*` spec folder, so the useful output is a handoff decisi
   └ L170:222 (53 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L266:305 (39 lines read)
 
 The key new decision is emerging: 063 should not combine methodology proof, command wiring, benchmark assets, and green verdicts unless it is deliberately scoped as a large implementation-plus-test packet. I’ll write that as the iteration’s contribution with concrete RED/GREEN exit criteria.
@@ -1375,7 +1375,7 @@ Wrote iteration 7 findings to:
 
 `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research/research/iterations/iteration-007.md`
 
-Key new finding: 063 should avoid overcorrecting all six CPs into command-flow tests; CP-041/CP-042 are valid leaf/body-discipline tests if supplied with the five required inputs, while CP-040/043/044/045 require `/improve:agent` command-flow evidence.
+Key new finding: 063 should avoid overcorrecting all six CPs into command-flow tests; CP-041/CP-042 are valid leaf/body-discipline tests if supplied with the five required inputs, while CP-040/043/044/045 require `/deep:start-agent-improvement-loop` command-flow evidence.
 
 
 Changes   +154 -0
@@ -1447,8 +1447,8 @@ The shell read was blocked by the runtime, so I’m switching to the built-in fi
 
 The prior iterations already cover the broad RQs; the remaining useful gap is packaging the handoff into a minimal implementation checklist, especially which files must change together to make a GREEN command-flow run honest.
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L80:220 (132 lines read)
 
 ● Read generate-profile.cjs
@@ -1468,15 +1468,15 @@ The prior iterations already cover the broad RQs; the remaining useful gap is pa
   └ L170:225 (56 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L260:310 (51 lines read)
 
 ● Read improvement-journal.cjs
   │ .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs
   └ L40:110 (71 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L80:230 (151 lines read)
 
 ✗ Read iteration-008.md
@@ -1488,8 +1488,8 @@ The prior iterations already cover the broad RQs; the remaining useful gap is pa
   │ .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs
   └ L60:80 (21 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L229:260 (24 lines read)
 
 ● Read spec.md
@@ -1498,7 +1498,7 @@ The prior iterations already cover the broad RQs; the remaining useful gap is pa
   └ L90:110 (20 lines read)
 
 ● Search (grep)
-  │ "improve_improve-agent_auto|reduce-state|score-candidate|run-benchmark" in
+  │ "deep_start-agent-improvement-loop_auto|reduce-state|score-candidate|run-benchmark" in
   │ **/*test* (.opencode/skills/sk-improve-agent)
   └ 4 lines found
 
@@ -1708,11 +1708,11 @@ The prior iterations already cover the core layer-selection and grep contracts w
   └ L271:292 (21 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L1:20 (19 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L280:305 (25 lines read)
 
 ● Search (glob)
@@ -1764,7 +1764,7 @@ I’ve loaded the deep-research protocol and will keep this to one LEAF iteratio
   └ No matches found
 
 ● Search (glob)
-  │ ".opencode/commands/improve/**/*"
+  │ ".opencode/commands/deep/**/*"
   └ 5 files found
 
 ● Search (glob)
@@ -1777,10 +1777,10 @@ The shell path was blocked by the runtime, so I’m switching to the built-in se
 ● Search (grep)
   │ "(journal|append|event|candidate|scan-integration|score-candidate|artifact|p
   │ roposal|rollback|promotion|integration|selected|PASS|FAIL|partial|rubric|sco
-  │ re|improve:agent|spec-folder|auto|confirm)"
-  │ (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml,
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml,
-  │ .opencode/commands/improve/prompt.md, .opencode/commands/improve/agent.md,
+  │ re|deep:start-agent-improvement-loop|spec-folder|auto|confirm)"
+  │ (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml,
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml,
+  │ .opencode/commands/prompt.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/SKILL.md,
   │ .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs,
   │ .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs)
@@ -1902,7 +1902,7 @@ The prior iterations already answer all seven RQs; I’m doing one final packet-
   └ L1:170 (150 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L1:120 (120 lines read)
 
 ● Read deep-research-state.jsonl
@@ -1921,7 +1921,7 @@ The prior iterations already answer all seven RQs; I’m doing one final packet-
   └ L1:120 (36 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L250:315 (66 lines read)
 
 ● Read improve-agent.md
@@ -1932,8 +1932,8 @@ The prior iterations already answer all seven RQs; I’m doing one final packet-
   │ .opencode/agents/improve-agent.md
   └ L130:180 (51 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L80:215 (132 lines read)
 
 ● Read reduce-state.cjs

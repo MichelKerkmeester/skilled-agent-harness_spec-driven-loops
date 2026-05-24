@@ -1,7 +1,7 @@
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 ---
 title: "Feature Specification: 061 — sk-improve-agent Command-Flow Stress Tests"
-description: "Restructure CP-040..045 stress tests to invoke /improve:agent command flow (with 062's wiring in place) instead of just prepending the @improve-agent body. Use per-CP layer partition: CP-041/042 stay body-level; CP-040/043/044/045 use command-flow dispatch in a command-capable temp root."
+description: "Restructure CP-040..045 stress tests to invoke /deep:start-agent-improvement-loop command flow (with 062's wiring in place) instead of just prepending the @improve-agent body. Use per-CP layer partition: CP-041/042 stay body-level; CP-040/043/044/045 use command-flow dispatch in a command-capable temp root."
 trigger_phrases:
   - "061 command-flow stress tests"
   - "sk-improve-agent command-flow CP"
@@ -39,13 +39,13 @@ _memory:
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-Packet 060/002 ran R1 stress tests with the prepend-agent-body dispatch and scored 0/2/4 PASS/PARTIAL/FAIL. 060/003 research diagnosed the failure as test-layer-selection: @improve-agent's discipline lives in the `/improve:agent` command orchestrator, not in the agent body. Packet 005 (was 062) just shipped the executable wiring (static benchmark assets, materializer, nested `legal_stop_evaluated.details.gateResults`, stop-reason enum reconciliation, both YAMLs in lockstep).
+Packet 060/002 ran R1 stress tests with the prepend-agent-body dispatch and scored 0/2/4 PASS/PARTIAL/FAIL. 060/003 research diagnosed the failure as test-layer-selection: @improve-agent's discipline lives in the `/deep:start-agent-improvement-loop` command orchestrator, not in the agent body. Packet 005 (was 062) just shipped the executable wiring (static benchmark assets, materializer, nested `legal_stop_evaluated.details.gateResults`, stop-reason enum reconciliation, both YAMLs in lockstep).
 
 061 closes the loop: restructure CP-040..045 stress tests to invoke the command flow with a command-capable temp project root, run R1 against 062's wiring, and document honest GREEN/PARTIAL/FAIL results.
 
 **Per-CP layer partition** (per 060/003 research §4):
 - **CP-041, CP-042** stay as **body-level tests** (proposal-only boundary + active Critic check) — discipline lives in the agent body. Ensure the 5 required runtime/control inputs are materialized so Call B has what it needs.
-- **CP-040, CP-043, CP-044, CP-045** need **command-flow dispatch**: Call B invokes `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1` from a command-capable temp project root containing `.opencode/commands/improve/`, `.opencode/skills/sk-improve-agent/`, the fixture target, and benchmark assets.
+- **CP-040, CP-043, CP-044, CP-045** need **command-flow dispatch**: Call B invokes `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1` from a command-capable temp project root containing `.opencode/commands/deep/`, `.opencode/skills/sk-improve-agent/`, the fixture target, and benchmark assets.
 
 **Critical Dependencies:** 062 (just shipped, commit `6374d5806`) — its wiring is what 061 tests against; without it, expected GREEN scenarios would still RED for producer/consumer mismatch reasons.
 <!-- /ANCHOR:executive-summary -->
@@ -88,9 +88,9 @@ Switch the dispatch shape, run R1 against 062's wiring, document honest results,
 
 ### In Scope
 
-- **Build a command-capable temp project root setup helper** (e.g., `/tmp/cp-061-sandbox-setup.sh`) that creates `/tmp/cp-061-sandbox/` containing `.opencode/commands/improve/`, `.opencode/skills/sk-improve-agent/`, `.opencode/agents/cp-improve-target.md` (fixture), mirrors, and benchmark assets — enough that `/improve:agent` resolves all its relative paths
+- **Build a command-capable temp project root setup helper** (e.g., `/tmp/cp-061-sandbox-setup.sh`) that creates `/tmp/cp-061-sandbox/` containing `.opencode/commands/deep/`, `.opencode/skills/sk-improve-agent/`, `.opencode/agents/cp-improve-target.md` (fixture), mirrors, and benchmark assets — enough that `/deep:start-agent-improvement-loop` resolves all its relative paths
 - **Modify CP-040, CP-043, CP-044, CP-045** in-place at `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013/016/017/018*.md`:
-  - Replace the Call B prepend-agent-body shape with `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1`
+  - Replace the Call B prepend-agent-body shape with `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1`
   - Update sandbox setup to include the command-capable temp-root copy
   - Adjust expected-signal grep contracts to match 062's emissions (most already done by 062's stage 6, but verify)
 - **Modify CP-041, CP-042** in-place at `014/015*.md`:
@@ -117,8 +117,8 @@ Switch the dispatch shape, run R1 against 062's wiring, document honest results,
 
 | ID | Requirement | Acceptance |
 |----|-------------|------------|
-| REQ-001 | Command-capable temp root setup helper exists + creates a directory structure that lets `/improve:agent` resolve | Manual test: dispatch `/improve:agent` against the temp root → no missing-file errors |
-| REQ-002 | CP-040, CP-043, CP-044, CP-045 use command-flow Call B dispatch | grep playbook files for `/improve:agent ".opencode/agents/cp-improve-target.md"` |
+| REQ-001 | Command-capable temp root setup helper exists + creates a directory structure that lets `/deep:start-agent-improvement-loop` resolve | Manual test: dispatch `/deep:start-agent-improvement-loop` against the temp root → no missing-file errors |
+| REQ-002 | CP-040, CP-043, CP-044, CP-045 use command-flow Call B dispatch | grep playbook files for `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md"` |
 | REQ-003 | CP-041, CP-042 keep body-level dispatch with 5 required inputs materialized | grep + scenario read |
 | REQ-004 | R1 stress run completes all 6 scenarios | 6 verdict files + transcripts |
 | REQ-005 | Per-CP verdicts documented honestly (PASS/PARTIAL/FAIL with evidence) | test-report §5 |

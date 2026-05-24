@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Packet 127 closes three P1 items for `deep-agent-improvement`: a hard promotion gate for four-runtime agent mirror sync, explicit partial-runtime-success recovery semantics, and a reusable mirror verification helper. The promotion helper now rejects agent-definition promotion unless `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/` all contain the target agent and match the proposed body.",
     "created_at": "2026-05-23T00:00:00.000Z",
-    "last_save_at": "2026-05-23T11:55:14.303Z",
+    "last_save_at": "2026-05-24T05:40:25.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

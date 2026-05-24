@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-advisor-standards-alignment",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment",
   "description": "Feature Specification: Skill-Advisor Standards Alignment",
   "keywords": [
     "feature",
@@ -8,13 +8,14 @@
     "standards",
     "alignment"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.739Z",
-  "specId": "010",
-  "folderSlug": "skill-advisor-standards-alignment",
+  "lastUpdated": "2026-05-23T15:25:00.699Z",
+  "specId": "003",
+  "folderSlug": "advisor-standards-alignment",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "006-skill-advisor"
+    "006-skill-advisor",
+    "004-skill-advisor-production-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

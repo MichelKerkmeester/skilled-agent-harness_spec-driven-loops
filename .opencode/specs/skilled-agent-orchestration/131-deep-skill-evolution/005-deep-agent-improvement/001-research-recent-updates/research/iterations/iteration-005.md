@@ -195,7 +195,7 @@ The stop-reason taxonomy includes a dedicated `plateau` reason so plateau exits 
 
 ### DAI-014: YAML workflow uses incorrect manifest path (P1)
 
-**File:** `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`
+**File:** `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`
 **Lines:** 106, 165
 
 **Defect:** The YAML workflows reference `target-manifest.jsonc` but the actual file in the skill assets is named `target_manifest.jsonc` (underscore vs hyphen).

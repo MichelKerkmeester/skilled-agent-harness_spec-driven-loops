@@ -50,8 +50,8 @@
       ".opencode/skills/deep-agent-improvement/README.md",
       ".opencode/skills/deep-agent-improvement/changelog/v1.4.0.0.md",
       ".opencode/skills/deep-agent-improvement/assets/improvement_config.json",
-      ".opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml",
-      ".opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml",
+      ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
       "decision-record.md",
       ".opencode/agents/deep-agent-improvement.md",
       "implementation-summary.md",
@@ -118,15 +118,15 @@
         "source": "derived"
       },
       {
-        "name": "improve_deep-agent-improvement_auto.yaml",
+        "name": "deep_start-agent-improvement-loop_auto.yaml",
         "kind": "config",
-        "path": ".opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml",
+        "path": ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
         "source": "derived"
       },
       {
-        "name": "improve_deep-agent-improvement_confirm.yaml",
+        "name": "deep_start-agent-improvement-loop_confirm.yaml",
         "kind": "config",
-        "path": ".opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml",
+        "path": ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Packet 124 closes eight confirmed `deep-agent-improvement` findings from packet 123: five P0 operator-trust defects and three P1 path/scoring defects. The work repairs typed profile-generation failures, makes unscored scoring dimensions explicit instead of silently perfect, aligns stop-reason documentation to the shipped journal enum, updates version/changelog truth, corrects command/manifest paths, and adds a guarded runtime-mirror sync flag for the promotion path.",
     "created_at": "2026-05-23T05:48:51.754Z",
-    "last_save_at": "2026-05-23T11:55:14.297Z",
+    "last_save_at": "2026-05-24T05:40:25.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

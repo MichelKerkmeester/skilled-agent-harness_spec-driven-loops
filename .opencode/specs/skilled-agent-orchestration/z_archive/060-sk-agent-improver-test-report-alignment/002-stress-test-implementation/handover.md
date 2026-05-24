@@ -51,7 +51,7 @@ _memory:
 
 If resuming from a fresh session:
 
-> 060/002 is complete. Read `test-report.md`, `implementation-summary.md`, and `stress-runs/stage4-summary.md`. Do not rerun R2 with the same prepended-agent-body shape. If continuing validation, create `004-improve-agent-command-flow-stress-tests` and restructure CP-040..CP-045 so Call B invokes `/improve:agent` through the command/YAML workflow.
+> 060/002 is complete. Read `test-report.md`, `implementation-summary.md`, and `stress-runs/stage4-summary.md`. Do not rerun R2 with the same prepended-agent-body shape. If continuing validation, create `004-improve-agent-command-flow-stress-tests` and restructure CP-040..CP-045 so Call B invokes `/deep:start-agent-improvement-loop` through the command/YAML workflow.
 <!-- /ANCHOR:resume-prompt -->
 
 ---
@@ -79,7 +79,7 @@ Files to read first:
 - Stay on `main`; do not auto-create feature branches.
 - `copilot` relative paths are fragile. Use absolute-from-repo-root paths in prompts when telling it where to write files.
 - Sandbox `--add-dir` is non-optional.
-- The key 060 lesson is layer selection: prepend-agent-body tests the mutator body; `/improve:agent` tests orchestration.
+- The key 060 lesson is layer selection: prepend-agent-body tests the mutator body; `/deep:start-agent-improvement-loop` tests orchestration.
 <!-- /ANCHOR:gotchas -->
 
 ---
@@ -91,7 +91,7 @@ Final score: **PASS 0 / PARTIAL 2 / FAIL 4** out of 6 scenarios.
 
 R1 summary: CP-040 was PARTIAL, CP-041 was PARTIAL_TRIPWIRE_DIRTY, CP-042 and CP-043 were FAIL, and CP-044/CP-045 were FAIL_TRIPWIRE_DIRTY. Tripwire-dirty signals are false positives from parallel indexing chatter and do not indicate scenario-induced source mutation.
 
-Lessons-learned highlight: the 059 same-task A/B pattern only works when Call B enters the layer that owns the discipline. `@code` owns its discipline in the agent body; `@improve-agent` intentionally does not. The sk-improve-agent discipline lives in `/improve:agent` command orchestration, helper scripts, journal events, and legal-stop gates.
+Lessons-learned highlight: the 059 same-task A/B pattern only works when Call B enters the layer that owns the discipline. `@code` owns its discipline in the agent body; `@improve-agent` intentionally does not. The sk-improve-agent discipline lives in `/deep:start-agent-improvement-loop` command orchestration, helper scripts, journal events, and legal-stop gates.
 
-Follow-on hand-off: create `004-improve-agent-command-flow-stress-tests`. Reuse CP-040..CP-045 claims, but invoke `/improve:agent` in Call B and verify command artifacts: generated candidates, score JSON, benchmark output, `improvement-journal.jsonl`, `legal_stop_evaluated`, `blocked_stop`, and stop-reason taxonomy.
+Follow-on hand-off: create `004-improve-agent-command-flow-stress-tests`. Reuse CP-040..CP-045 claims, but invoke `/deep:start-agent-improvement-loop` in Call B and verify command artifacts: generated candidates, score JSON, benchmark output, `improvement-journal.jsonl`, `legal_stop_evaluated`, `blocked_stop`, and stop-reason taxonomy.
 <!-- /ANCHOR:close-out -->

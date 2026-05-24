@@ -41,7 +41,7 @@ _memory:
 
 ## ADR-3: Auto + confirm YAML patched in lockstep
 
-**Decision:** Every emission/wiring change applies to both `improve_improve-agent_auto.yaml` and `improve_improve-agent_confirm.yaml` in the same diff. No "auto-only first, confirm later."
+**Decision:** Every emission/wiring change applies to both `deep_start-agent-improvement-loop_auto.yaml` and `deep_start-agent-improvement-loop_confirm.yaml` in the same diff. No "auto-only first, confirm later."
 
 **Why:** Producer/consumer compatibility — reducer/dashboard/tests can't fork by execution mode. One source-of-truth shape across both modes.
 

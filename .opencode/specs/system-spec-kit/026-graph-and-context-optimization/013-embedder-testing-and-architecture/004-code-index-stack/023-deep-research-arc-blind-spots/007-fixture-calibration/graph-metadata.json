@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The corrected fixture proved regression behavior, but it did not measure production retrieval coverage. It also had only one run, binary top-5 scoring, no residual miss taxonomy, and insufficient evidence for RRF, boost, top-K, and fusion choices.",
     "created_at": "2026-05-19T00:00:00Z",
-    "last_save_at": "2026-05-23T11:55:15.544Z",
+    "last_save_at": "2026-05-24T05:40:26.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

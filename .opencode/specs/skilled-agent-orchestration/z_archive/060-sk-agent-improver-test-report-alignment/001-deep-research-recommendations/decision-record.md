@@ -104,7 +104,7 @@ The user's request scoped this packet to spec creation + research dispatch. Impl
 
 ### Decision
 
-Packet 060 produces only `research/research.md` synthesis with sketched diffs and scenarios. No edits to `sk-improve-agent/SKILL.md`, `improve-agent.md`, or `improve/agent.md` happen in this packet. No CP-XXX playbook entries are written. No stress tests are executed.
+Packet 060 produces only `research/research.md` synthesis with sketched diffs and scenarios. No edits to `sk-improve-agent/SKILL.md`, `improve-agent.md`, or `deep/start-agent-improvement-loop.md` happen in this packet. No CP-XXX playbook entries are written. No stress tests are executed.
 
 ### Why
 
@@ -135,7 +135,7 @@ One could research "how does the 059 methodology apply to *any* agent-improver?"
 
 ### Decision
 
-Research the real triad (`.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/agents/improve-agent.md`, `.opencode/commands/improve/agent.md`).
+Research the real triad (`.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/agents/improve-agent.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`).
 
 ### Why
 

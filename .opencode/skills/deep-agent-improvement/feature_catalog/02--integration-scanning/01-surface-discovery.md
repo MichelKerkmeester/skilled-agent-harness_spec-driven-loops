@@ -29,7 +29,7 @@ The discovery map includes the consolidated advisor script at `.opencode/skills/
 |---|---|---|
 | `.opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs` | Scanner | Walks the repo and collects canonical, mirror, command, YAML, skill, global-doc, and skill-advisor surfaces. |
 | `.opencode/skills/deep-agent-improvement/references/integration_scanning.md` | Reference | Documents the intended scan taxonomy and output summary fields. |
-| `.opencode/commands/improve/agent.md` | Command | Uses the integration report as part of loop setup and review. |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Command | Uses the integration report as part of loop setup and review. |
 | `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs` | Scoring consumer | Converts the scan results into the integration dimension score. |
 
 ### Validation And Tests

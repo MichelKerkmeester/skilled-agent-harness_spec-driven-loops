@@ -1,7 +1,7 @@
 {
   "completionPct": 0,
   "lastOutcome": "Spec docs authored; awaiting Phase 002 completion + cli-codex dispatch.",
-  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/003-commands",
+  "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/003-commands",
   "description": "Feature Specification: 096/003 - rename .opencode/command/ to .opencode/commands/",
   "keywords": [
     "feature",
@@ -13,11 +13,12 @@
     "command",
     "commands"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.423Z",
+  "lastUpdated": "2026-05-23T15:24:59.529Z",
   "specId": "003",
   "folderSlug": "commands",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "096-rename-opencode-dirs-to-plural",
     "001-rename-opencode-dirs"
   ],

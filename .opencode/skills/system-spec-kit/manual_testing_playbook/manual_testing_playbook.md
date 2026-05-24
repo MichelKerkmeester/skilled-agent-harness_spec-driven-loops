@@ -155,7 +155,7 @@ Release is `READY` only when:
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 300 scenario files while the feature catalog contains 286 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 380 scenario files while the feature catalog contains 318 feature files.
 5. No unresolved blocking triage item remains.
 6. Orphan scenario count is zero (every scenario file is linked in Section 12).
 
@@ -181,14 +181,14 @@ count += sum(
 print(count)
 PY
 )
-if [ "$TOTAL_FEATURES" -ne 300 ]; then
-  echo "Expected 300 scenario files, found $TOTAL_FEATURES" >&2
+if [ "$TOTAL_FEATURES" -ne 380 ]; then
+  echo "Expected 380 scenario files, found $TOTAL_FEATURES" >&2
   exit 1
 fi
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
-As of 2026-04-17, the root index links all 300 scenario files, including the new additions (0 orphan scenario files).
+As of 2026-05-24, the deterministic file count is 380. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Broader legacy index reconciliation remains governed by the release-readiness rule above.
 
 ### Destructive Scenario Rules
 
@@ -3936,3 +3936,4 @@ This split playbook keeps automated coverage references in three places:
 | 416 | Memory Quality And Indexing | vec_memories KNN dual-write and factory shard fallback | [416](13--memory-quality-and-indexing/416-vec-memories-knn-and-factory-shard-fallback.md) | [13--memory-quality-and-indexing/29-vec-memories-knn-and-factory-shard-fallback.md](../feature_catalog/13--memory-quality-and-indexing/29-vec-memories-knn-and-factory-shard-fallback.md) |
 | 417 | Memory Quality And Indexing | Constitutional sufficiency-gate exemption | [417](13--memory-quality-and-indexing/417-constitutional-sufficiency-gate-exemption.md) | [13--memory-quality-and-indexing/30-constitutional-sufficiency-gate-exemption.md](../feature_catalog/13--memory-quality-and-indexing/30-constitutional-sufficiency-gate-exemption.md) |
 | 418 | Memory Quality And Indexing | Graph-metadata and lineage repair runner | [418](13--memory-quality-and-indexing/418-graph-metadata-and-lineage-repair-runner.md) | [13--memory-quality-and-indexing/31-graph-metadata-and-lineage-repair-runner.md](../feature_catalog/13--memory-quality-and-indexing/31-graph-metadata-and-lineage-repair-runner.md) |
+| 419 | Features | Orphan MCP runtime lifecycle guardrails | [419](16--tooling-and-scripts/419-orphan-mcp-runtime-lifecycle-guardrails.md) | [16--tooling-and-scripts/47-orphan-mcp-sweeper-and-launchagent-template.md](../feature_catalog/16--tooling-and-scripts/47-orphan-mcp-sweeper-and-launchagent-template.md), [19--feature-flag-reference/12-launcher-idle-timeout.md](../feature_catalog/19--feature-flag-reference/12-launcher-idle-timeout.md) |

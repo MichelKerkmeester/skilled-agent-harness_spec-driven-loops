@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The registry's P1 `drift|python|cjs|parity` selection contains nine findings where TypeScript, CJS, and Python sidecar contracts disagree or their canonical source is unclear.",
     "created_at": "2026-05-23T03:50:22.752Z",
-    "last_save_at": "2026-05-23T11:55:15.675Z",
+    "last_save_at": "2026-05-24T05:40:26.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

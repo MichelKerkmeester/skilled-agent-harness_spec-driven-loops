@@ -14,7 +14,7 @@ This iteration audited contract self-compliance for `sk-improve-agent` by compar
 - This is not universal contract drift. README's `mirror drift as packaging work` guidance survives in the dashboard guardrails, and the dimensional-progress/plateau path is also visibly implemented. (`.opencode/skills/sk-improve-agent/README.md:167-169`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:458-463`)
 
 ## Dead Ends
-- I did not inspect `scripts/improvement-journal.cjs` or the `/improve:agent` YAML emitters in this pass, so I cannot yet tell whether exact stop reasons and session outcomes are produced upstream and then dropped by the reducer, or whether the visible workflow path never emits them at all.
+- I did not inspect `scripts/improvement-journal.cjs` or the `/deep:start-agent-improvement-loop` YAML emitters in this pass, so I cannot yet tell whether exact stop reasons and session outcomes are produced upstream and then dropped by the reducer, or whether the visible workflow path never emits them at all.
 
 ## Sources Consulted
 - `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:36-53`
@@ -28,7 +28,7 @@ This iteration audited contract self-compliance for `sk-improve-agent` by compar
 ## Reflection
 - What worked and why: Comparing the contract documents directly against the reducer write targets made it easy to separate promises that survive in the shipped dashboard from promises that stop at documentation.
 - What did not work and why: The visible reducer path does not show whether richer stop/outcome fields exist upstream in the journal or YAML emitters, so the drift boundary is still scoped to the published reducer/dashboard surface.
-- What I would do differently: I would inspect the journal emitter and `/improve:agent` auto workflow next so the next pass can locate the exact stage where enum-rich stop and outcome fields are lost.
+- What I would do differently: I would inspect the journal emitter and `/deep:start-agent-improvement-loop` auto workflow next so the next pass can locate the exact stage where enum-rich stop and outcome fields are lost.
 
 ## Recommended Next Focus
-Stay on D4 for one more pass, but move upstream from the dashboard to `scripts/improvement-journal.cjs`, `.opencode/commands/improve/agent.md`, and the visible improve-agent YAML workflow. The most productive next step is to determine whether exact stop reasons, session outcomes, and gate-result payloads are emitted correctly and then discarded by `reduce-state.cjs`, or whether the workflow never emits the richer contract in the first place. That would close the self-compliance story end-to-end before rotating back to D5 coverage-graph usage in the improvement loop.
+Stay on D4 for one more pass, but move upstream from the dashboard to `scripts/improvement-journal.cjs`, `.opencode/commands/deep/start-agent-improvement-loop.md`, and the visible improve-agent YAML workflow. The most productive next step is to determine whether exact stop reasons, session outcomes, and gate-result payloads are emitted correctly and then discarded by `reduce-state.cjs`, or whether the workflow never emits the richer contract in the first place. That would close the self-compliance story end-to-end before rotating back to D5 coverage-graph usage in the improvement loop.

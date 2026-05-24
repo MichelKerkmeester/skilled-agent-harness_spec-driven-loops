@@ -94,7 +94,7 @@
     ],
     "causal_summary": "Produce two `manual_testing_playbook/` packages — one per skill — following the canonical sk-doc contract, with RCAF-pattern operator prompts that mirror real human-AI conversation, executable both natively and via external CLIs.",
     "created_at": "2026-05-18T07:49:27.224Z",
-    "last_save_at": "2026-05-23T11:55:14.668Z",
+    "last_save_at": "2026-05-24T05:40:25.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

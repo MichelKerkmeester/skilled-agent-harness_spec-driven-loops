@@ -14,8 +14,8 @@ I compared the specialist skill contracts and their dedicated command wrappers a
 ## Evidence
 - [SOURCE: .opencode/skills/sk-improve-prompt/SKILL.md:19-47] `sk-improve-prompt` has a narrow, legitimate domain: structured prompt enhancement using explicit frameworks and scoring.
 - [SOURCE: .opencode/skills/sk-improve-agent/SKILL.md:24-56] `sk-improve-agent` also has a narrow but real use case: bounded agent improvement with evidence gates and rollback discipline.
-- [SOURCE: .opencode/commands/improve/prompt.md:61-149] The prompt improver already sits behind a dedicated command surface with its own setup flow.
-- [SOURCE: .opencode/commands/improve/agent.md:61-151] The agent improver likewise lives behind a dedicated command and narrow setup contract.
+- [SOURCE: .opencode/commands/prompt.md:61-149] The prompt improver already sits behind a dedicated command surface with its own setup flow.
+- [SOURCE: .opencode/commands/deep/start-agent-improvement-loop.md:61-151] The agent improver likewise lives behind a dedicated command and narrow setup contract.
 - [SOURCE: .opencode/skills/README.md:42-46] The broader skills system presents all skills as discoverable on-demand capabilities.
 - [SOURCE: .opencode/skills/scripts/skill_advisor.py:7-16] Gate 2 routes non-trivial requests through a confidence-thresholded advisor.
 - [SOURCE: .opencode/skills/scripts/skill_advisor.py:211-217] The advisor has a generalized confidence model intended to apply broadly.

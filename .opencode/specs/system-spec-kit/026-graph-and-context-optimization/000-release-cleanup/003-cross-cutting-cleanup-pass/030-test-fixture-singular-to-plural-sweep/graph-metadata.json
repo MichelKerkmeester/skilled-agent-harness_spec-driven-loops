@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Phase 56 of the 026/000 release-cleanup track. Closes the test-fixture residue from packet 096 (path-residue rename). Packet 054's diagnosis identified 37 advisor-suite failures whose root cause is fixture paths still using the singular `.opencode/skill/` form even though production code (per packet 096) uses plural `.opencode/skills/`. The fix is purely mechanical.",
     "created_at": "2026-05-08T11:03:42Z",
-    "last_save_at": "2026-05-23T11:55:14.819Z",
+    "last_save_at": "2026-05-24T05:40:25.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

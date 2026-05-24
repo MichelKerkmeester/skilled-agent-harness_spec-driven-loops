@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 015/004 + 015/006 proved that the existing 24-prompt corpus is lexical-saturated: even with audit-improved metadata + real Gemma vectors flowing through the cosine lane at any weight from 0 to 0.30, no candidate vector flipped a single routing decision. The 8 wrong intent-described prompts are wrong for reasons no semantic-similarity weighting can fix on this corpus shape.",
     "created_at": "2026-05-14T01:30:00Z",
-    "last_save_at": "2026-05-23T11:55:15.174Z",
+    "last_save_at": "2026-05-24T05:40:25.881Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T01:30:00Z",
     "source_docs": [

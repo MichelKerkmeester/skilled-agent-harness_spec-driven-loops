@@ -76,7 +76,7 @@ The adjudication is skeptical: a gap survives only if the cited evidence genuine
 
 **Current file:line evidence:**
 - integration_scanning.md line 39: ".agents mirror | `.agents/agents/{name}.md` | Exists, sync status vs canonical" <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-agent-improvement/references/integration_scanning.md" lines="32-45" />
-- README.md line 278: ".agents | `.agents/agents/` | `.agents/commands/improve/`" <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-agent-improvement/README.md" lines="269-279" />
+- README.md line 278: ".agents | `.agents/agents/` | `.agents/commands/deep/`" <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-agent-improvement/README.md" lines="269-279" />
 - scan-integration.cjs lines 15-20: `const MIRROR_TEMPLATES = ['.opencode/agents/{name}.md', '.claude/agents/{name}.md', '.codex/agents/{name}.toml', '.gemini/agents/{name}.md']` <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs" lines="15-20" />
 
 **Reason for P1 severity:** Documentation (integration_scanning.md and README.md) claims the scanner checks `.agents/agents/` but the actual implementation checks `.gemini/agents/`. This is a real documentation-to-implementation mismatch that will confuse operators expecting mirror parity checks on `.agents/agents/`.

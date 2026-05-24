@@ -12,22 +12,22 @@
   "derived": {
     "trigger_phrases": [
       "rename sk-small-model",
-      "sk-ai-small-model",
+      "sk-prompt-small-model",
       "small-model sentinel rename",
       "skill rename propagation",
       "skill-advisor reindex after rename",
-      "sk-ai-small-model implementation",
+      "sk-prompt-small-model implementation",
       "skill rename plan",
       "skill-advisor reindex",
       "rename tasks",
-      "sk-ai-small-model tasks",
+      "sk-prompt-small-model tasks",
       "skill rename task breakdown",
       "rename verification"
     ],
     "key_topics": [
       "rename",
       "sk-small-model",
-      "sk-ai-small-model",
+      "sk-prompt-small-model",
       "small-model",
       "sentinel",
       "skill",
@@ -41,7 +41,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-ai-small-model/changelog/v0.3.0.0.md",
+      ".opencode/skills/sk-prompt-small-model/changelog/v0.3.0.0.md",
       ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md",
       ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
       ".opencode/skills/system-rerank-sidecar/graph-metadata.json",
@@ -54,11 +54,11 @@
       ".opencode/skills/cli-opencode/assets/permissions-matrix.example-packet-local.json",
       ".opencode/skills/cli-devin/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-ai-small-model/SKILL.md",
-      ".opencode/skills/sk-ai-small-model/README.md",
-      ".opencode/skills/sk-ai-small-model/description.json",
-      ".opencode/skills/sk-ai-small-model/graph-metadata.json",
-      ".opencode/skills/sk-ai-small-model/references/pattern-index.md",
+      ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      ".opencode/skills/sk-prompt-small-model/README.md",
+      ".opencode/skills/sk-prompt-small-model/description.json",
+      ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
       ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
       "implementation-summary.md"
     ],
@@ -66,7 +66,7 @@
       {
         "name": "v0.3.0.0.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-ai-small-model/changelog/v0.3.0.0.md",
+        "path": ".opencode/skills/sk-prompt-small-model/changelog/v0.3.0.0.md",
         "source": "derived"
       },
       {
@@ -114,25 +114,25 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-ai-small-model/SKILL.md",
+        "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-ai-small-model/README.md",
+        "path": ".opencode/skills/sk-prompt-small-model/README.md",
         "source": "derived"
       },
       {
         "name": "description.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-ai-small-model/description.json",
+        "path": ".opencode/skills/sk-prompt-small-model/description.json",
         "source": "derived"
       },
       {
         "name": "pattern-index.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-ai-small-model/references/pattern-index.md",
+        "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "This is **Phase 7** of the 114-small-ai-model-optimization arc. Phases 001-006 shipped on 2026-05-18 and **created** the sentinel skill `sk-small-model` along with every cross-skill `enhances` edge, dispatch-matrix doc, and runtime helper. This phase performs a pure rename of that skill and propagates the new identity across every live reference surface.",
     "created_at": "2026-05-21T06:22:25Z",
-    "last_save_at": "2026-05-23T11:55:14.221Z",
+    "last_save_at": "2026-05-24T05:40:25.190Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

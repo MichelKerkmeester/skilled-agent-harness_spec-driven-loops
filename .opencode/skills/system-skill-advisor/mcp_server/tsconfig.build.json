@@ -6,18 +6,18 @@
     "declarationMap": false,
     "incremental": false,
     "noEmit": false,
-    "rootDir": "../..",
+    "rootDir": "..",
     "outDir": "./dist",
     "tsBuildInfoFile": "./dist/tsconfig.build.tsbuildinfo"
   },
   "include": [
     "../hooks/**/*.ts",
     "advisor-server.ts",
+    "compat/**/*.ts",
     "handlers/**/*.ts",
     "lib/**/*.ts",
     "schemas/**/*.ts",
-    "tools/**/*.ts",
-    "bench/**/*.ts"
+    "tools/**/*.ts"
   ],
   "exclude": [
     "node_modules",

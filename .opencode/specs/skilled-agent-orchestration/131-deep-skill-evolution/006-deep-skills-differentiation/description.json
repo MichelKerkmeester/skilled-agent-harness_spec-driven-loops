@@ -1,20 +1,22 @@
 {
+  "level": "2",
   "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation",
-  "description": "Phase parent for the differentiation audit packet: 10-iter deep-research dispatch comparing deep-review vs deep-research vs deep-ai-council to sharpen",
+  "description": "Feature Specification: Deep-Skills unique-value differentiation audit",
   "keywords": [
+    "feature",
+    "specification",
     "deep-skills",
-    "differentiation",
     "unique-value",
-    "boundary-audit"
+    "differentiation",
+    "audit"
   ],
-  "lastUpdated": "2026-05-23T09:52:56.265976Z",
+  "lastUpdated": "2026-05-23T15:24:59.139Z",
   "specId": "006",
-  "folderSlug": "006-deep-skills-differentiation",
+  "folderSlug": "deep-skills-differentiation",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

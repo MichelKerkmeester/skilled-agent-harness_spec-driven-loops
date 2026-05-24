@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The 008/002-skill-graph-daemon-native-advisor-tools deep review surfaced three release-blocker correctness/security/traceability gaps and 15 P2 advisories. The three P1s (all confirmed by Hunter→Skeptic→Referee adversarial self-check):",
     "created_at": "2026-04-28T15:15:00.000Z",
-    "last_save_at": "2026-05-23T11:55:14.716Z",
+    "last_save_at": "2026-05-24T05:40:25.558Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

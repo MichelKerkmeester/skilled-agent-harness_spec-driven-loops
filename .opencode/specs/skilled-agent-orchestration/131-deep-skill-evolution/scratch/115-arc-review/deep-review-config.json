@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewTarget": ".opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename + public-repo-wide sweep on both renames (007 sk-ai-small-model + 115 sk-ai-council/ai-council)",
+  "reviewTarget": ".opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename + public-repo-wide sweep on both renames (007 sk-prompt-small-model + 115 sk-ai-council/ai-council)",
   "reviewTargetType": "spec-folder + repo-wide",
   "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
   "specFolder": ".opencode/specs/skilled-agent-orchestration/115-deep-ai-council-rename",
@@ -23,5 +23,5 @@
   },
   "createdAt": "2026-05-21T12:00:00Z",
   "createdBy": "main_agent",
-  "notes": "10-iter cap; cli-opencode + DeepSeek API direct + deepseek-v4-pro with --pure mandatory per feedback_opencode_pure_flag_required_for_deepseek; covers (a) 115 packet review (b) public-repo-wide sweep (c) READMEs (d) skill-advisor content (e) changelogs sk-ai-council v1.2.0.0 + sk-ai-small-model v0.3.0.0."
+  "notes": "10-iter cap; cli-opencode + DeepSeek API direct + deepseek-v4-pro with --pure mandatory per feedback_opencode_pure_flag_required_for_deepseek; covers (a) 115 packet review (b) public-repo-wide sweep (c) READMEs (d) skill-advisor content (e) changelogs sk-ai-council v1.2.0.0 + sk-prompt-small-model v0.3.0.0."
 }

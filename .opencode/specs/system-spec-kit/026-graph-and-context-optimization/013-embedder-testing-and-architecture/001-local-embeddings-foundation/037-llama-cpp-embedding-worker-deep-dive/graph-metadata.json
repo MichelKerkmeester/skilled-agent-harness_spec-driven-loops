@@ -211,7 +211,7 @@
     ],
     "causal_summary": "Code inspection points to a hardcoded mismatch:",
     "created_at": "2026-05-14T14:09:05Z",
-    "last_save_at": "2026-05-23T11:55:15.388Z",
+    "last_save_at": "2026-05-24T05:40:25.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

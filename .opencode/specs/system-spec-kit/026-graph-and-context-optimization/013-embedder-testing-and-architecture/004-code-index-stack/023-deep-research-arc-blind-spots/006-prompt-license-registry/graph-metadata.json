@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Make the model registry the single source for embedder prompts and embedder/reranker licenses, then expose stable accessors for CLI, daemon, config, fingerprint, and tests.",
     "created_at": "2026-05-19T22:55:00Z",
-    "last_save_at": "2026-05-23T11:55:15.541Z",
+    "last_save_at": "2026-05-24T05:40:26.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

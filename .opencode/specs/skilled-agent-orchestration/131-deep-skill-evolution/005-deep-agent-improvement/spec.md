@@ -1,17 +1,18 @@
 ---
 title: "Feature Specification: Deep Agent Improvement uplift + correctness + evaluator + cross-runtime + mixed-executor arc"
-description: "Phase parent for 8 deep-agent-improvement sub-phases: uplift investigation in 3 phases (001-003 research / applicability / recommendations) plus 5 leaf packets (correctness fixes, doc-version reconciliation, evaluator hardening, cross-runtime promotion, mixed-executor adjudication)."
+description: "Phase parent for 9 deep-agent-improvement sub-phases: uplift investigation in 3 phases (001-003 research / applicability / recommendations), 5 leaf packets (correctness fixes, doc-version reconciliation, evaluator hardening, cross-runtime promotion, mixed-executor adjudication), and command surface relocation."
 trigger_phrases:
   - "deep-agent-improvement uplift"
   - "deep-agent-improvement correctness"
   - "deep-agent-improvement evaluator"
   - "deep-agent-improvement cross-runtime"
+  - "deep-agent-improvement command relocation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement"
-    last_updated_at: "2026-05-23T09:52:56.265976Z"
+    last_updated_at: "2026-05-24T06:47:43Z"
     last_updated_by: "main_agent"
     recent_action: "nested-from-flat-131-restructure"
     next_safe_action: "resume-via-cluster-children"
@@ -22,6 +23,7 @@ _memory:
       - "003-recommendations/spec.md"
       - "004-correctness-fixes/spec.md"
       - "005-doc-version-reconciliation/spec.md"
+      - "009-command-surface-relocation/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000005"
       session_id: "005-thematic-cluster"
@@ -63,13 +65,13 @@ _memory:
 
 ### Problem Statement
 
-This cluster groups 8 sub-phases that share a single thematic focus. Before restructuring, these existed as flat siblings at the root of `131-deep-skill-evolution/`. Nesting them under this thematic phase parent reduces root-level fan-out and makes the cluster's internal arc easier to follow.
+This cluster groups 9 sub-phases that share a single thematic focus. Before restructuring, most existed as flat siblings at the root of `131-deep-skill-evolution/`; the command relocation phase was added here because it specifically owns the deep-agent-improvement command surface. Nesting them under this thematic phase parent reduces root-level fan-out and makes the cluster's internal arc easier to follow.
 
 ### Purpose
 
-Co-evolve deep-agent-improvement with deep-review/deep-research arcs: uplift research + 5 dimensional improvements (correctness / doc-version / evaluator / cross-runtime / mixed-executor).
+Co-evolve deep-agent-improvement with deep-review/deep-research arcs: uplift research + 5 dimensional improvements (correctness / doc-version / evaluator / cross-runtime / mixed-executor) plus command-surface relocation.
 
-> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, decisions, and implementation summaries live in the 8 child phase folders.
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, decisions, and implementation summaries live in the 9 child phase folders.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -79,7 +81,7 @@ Co-evolve deep-agent-improvement with deep-review/deep-research arcs: uplift res
 
 ### In Scope
 
-- 8 child phase folder(s) listed in the Phase Documentation Map below
+- 9 child phase folder(s) listed in the Phase Documentation Map below
 - Per-child specifics live in each child's own `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md` where applicable
 
 ### Out of Scope
@@ -111,6 +113,7 @@ Co-evolve deep-agent-improvement with deep-review/deep-research arcs: uplift res
 | 006 | `006-evaluator-hardening/` | Packet 126: deep-agent-improvement evaluator hardening |
 | 007 | `007-cross-runtime-promotion/` | Packet 127: deep-agent-improvement cross-runtime promotion gate |
 | 008 | `008-mixed-executor-adjudication/` | Feature Specification: 128 — Deep-Agent-Improvement Mixed-Executor + Adjudication Methodology |
+| 009 | `009-command-surface-relocation/` | Move `the legacy agent-improvement command` to `/deep:start-agent-improvement-loop`, make `/prompt` canonical, and remove improve command groups |
 
 ### Phase Transition Rules
 
@@ -133,5 +136,5 @@ Co-evolve deep-agent-improvement with deep-review/deep-research arcs: uplift res
 ## RELATED DOCUMENTS
 
 - **Parent arc**: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md`
-- **Phase children**: 8 folders enumerated in PHASE DOCUMENTATION MAP above
+- **Phase children**: 9 folders enumerated in PHASE DOCUMENTATION MAP above
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

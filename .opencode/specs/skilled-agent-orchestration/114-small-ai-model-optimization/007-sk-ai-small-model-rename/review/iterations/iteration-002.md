@@ -3,14 +3,14 @@
 ```json
 {
   "dimension": "TRACEABILITY",
-  "packet": "007-rename-sk-ai-small-model",
+  "packet": "007-rename-sk-prompt-small-model",
   "findings": [
     {
       "id": "TRACE-001",
       "severity": "PASS",
       "category": "Frontmatter continuity",
       "description": "All _memory.continuity blocks in spec.md/plan.md/tasks.md/checklist.md/implementation-summary.md have consistent metadata",
-      "evidence": "packet_pointer: 'skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename' in all 5 files; last_updated_at: '2026-05-21T00:00:00Z' in all 5 files; last_updated_by: 'main_agent' in all 5 files; session_dedup chain consistent (all parent_session_id point to '114-007-spec-init'); next_safe_action compact in all files",
+      "evidence": "packet_pointer: 'skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename' in all 5 files; last_updated_at: '2026-05-21T00:00:00Z' in all 5 files; last_updated_by: 'main_agent' in all 5 files; session_dedup chain consistent (all parent_session_id point to '114-007-spec-init'); next_safe_action compact in all files",
       "location": "spec.md:12-32, plan.md:12-33, tasks.md:12-28, checklist.md:12-28, implementation-summary.md:11-29"
     },
     {
@@ -18,7 +18,7 @@
       "severity": "PASS",
       "category": "Parent linkage",
       "description": "Parent 114/graph-metadata.json correctly registers 007 as child and sets last_active_child_id",
-      "evidence": "jq '.children_ids' 114/graph-metadata.json includes 'skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename' (line 13); jq '.derived.last_active_child_id' points to same path (line 113)",
+      "evidence": "jq '.children_ids' 114/graph-metadata.json includes 'skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename' (line 13); jq '.derived.last_active_child_id' points to same path (line 113)",
       "location": "114/graph-metadata.json:13, 113"
     },
     {
@@ -42,7 +42,7 @@
       "severity": "PASS",
       "category": "CHK evidence quality",
       "description": "All checklist.md [x] items have concrete evidence (file:lines, commit-sha, or command output)",
-      "evidence": "Sample verification: CHK-010 cites 'ls .opencode/skills/sk-small-model → no such file; ls .opencode/skills/sk-ai-small-model/SKILL.md → exists'; CHK-011 cites 'rg \"^name: sk-ai-small-model\" sk-ai-small-model/SKILL.md → match line 2'; CHK-022 cites 'generated_at = 2026-05-21T06:45:06; sk-util family includes sk-ai-small-model'; CHK-023 cites 'native advisor_recommend returns sk-ai-small-model at rank 1, confidence 0.95, score 0.845731'; CHK-FIX-007 explicitly deferred to commit time with 'current evidence cites file:lines'. 0 evidence-quality fails across 33 CHK items.",
+      "evidence": "Sample verification: CHK-010 cites 'ls .opencode/skills/sk-small-model → no such file; ls .opencode/skills/sk-prompt-small-model/SKILL.md → exists'; CHK-011 cites 'rg \"^name: sk-prompt-small-model\" sk-prompt-small-model/SKILL.md → match line 2'; CHK-022 cites 'generated_at = 2026-05-21T06:45:06; sk-util family includes sk-prompt-small-model'; CHK-023 cites 'native advisor_recommend returns sk-prompt-small-model at rank 1, confidence 0.95, score 0.845731'; CHK-FIX-007 explicitly deferred to commit time with 'current evidence cites file:lines'. 0 evidence-quality fails across 33 CHK items.",
       "location": "checklist.md:52-99"
     },
     {

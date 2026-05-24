@@ -2844,7 +2844,7 @@ exec
 .opencode/skills/system-spec-kit/scripts/test-fixtures/README.md:106:bash .opencode/skills/system-spec-kit/scripts/tests/test-validation.sh
 .opencode/skills/system-spec-kit/scripts/test-fixtures/README.md:122:bash .opencode/skills/system-spec-kit/scripts/tests/test-validation.sh
 .opencode/skills/system-spec-kit/scripts/test-fixtures/README.md:123:bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-.opencode/skills/system-spec-kit/changelog/v3.3.0.0.md:154:| `.opencode/skills/scripts/skill_advisor.py` | 28 routing entries for 5D scoring and /improve:/create: commands |
+.opencode/skills/system-spec-kit/changelog/v3.3.0.0.md:154:| `.opencode/skills/scripts/skill_advisor.py` | 28 routing entries for 5D scoring and /deep:/create: commands |
 .opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts:288:    const result1 = deduped.find(r => r.id === 1);
 .opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts:289:    const result3 = deduped.find(r => r.id === 3);
 .opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts:378:    const archResult = refined.find(r => r.id === 1);

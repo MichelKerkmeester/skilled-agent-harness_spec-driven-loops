@@ -42,25 +42,25 @@
     "status": "in_progress",
     "key_files": [
       "resource-map.md",
-      ".opencode/skills/deep-review/ds.yaml",
       ".opencode/skills/deep-review/README.md",
+      "schemas/changelog-entry.schema.json",
+      "schemas/validation-report.schema.json",
+      "research/deep-research-state.jsonl",
+      ".opencode/skills/deep-review/ds.yaml",
       ".opencode/skills/deep-review/SKILL.md",
+      ".opencode/skills/deep-review/changelog/v1.9.0.0.md",
       "schemas/audit-finding.schema.json",
       "decision-record.md",
       ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       "feature_catalog/feature_catalog.md",
       "plan.md",
+      "research/convergence-summary.md",
       "scripts/spec/validate.sh",
       "tasks.md",
       "checklist.md",
-      "schemas/changelog-entry.schema.json",
-      "schemas/validation-report.schema.json",
       "schemas/iteration-output.schema.json",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      "spec.md",
-      ".opencode/skills/cli-devin/SKILL.md",
-      ".opencode/skills/deep-review/graph-metadata.json"
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
       {
@@ -70,21 +70,45 @@
         "source": "derived"
       },
       {
-        "name": "ds.yaml",
-        "kind": "config",
-        "path": ".opencode/skills/deep-review/ds.yaml",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-review/README.md",
         "source": "derived"
       },
       {
+        "name": "changelog-entry.schema.json",
+        "kind": "config",
+        "path": "schemas/changelog-entry.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.schema.json",
+        "kind": "config",
+        "path": "schemas/validation-report.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "ds.yaml",
+        "kind": "config",
+        "path": ".opencode/skills/deep-review/ds.yaml",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.9.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-review/changelog/v1.9.0.0.md",
         "source": "derived"
       },
       {
@@ -118,6 +142,12 @@
         "source": "derived"
       },
       {
+        "name": "convergence-summary.md",
+        "kind": "doc",
+        "path": "research/convergence-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "validate.sh",
         "kind": "script",
         "path": "scripts/spec/validate.sh",
@@ -136,18 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "changelog-entry.schema.json",
-        "kind": "config",
-        "path": "schemas/changelog-entry.schema.json",
-        "source": "derived"
-      },
-      {
-        "name": "validation-report.schema.json",
-        "kind": "config",
-        "path": "schemas/validation-report.schema.json",
-        "source": "derived"
-      },
-      {
         "name": "iteration-output.schema.json",
         "kind": "config",
         "path": "schemas/iteration-output.schema.json",
@@ -157,18 +175,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-review/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Last Updated",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `deep-review` skill (v1.8.0.0) is mature but pre-dates the most recent sk-doc template revisions and has never been audited end-to-end against the current creation standards. Before the broader `131-deep-skill-evolution` arc begins, this sub-phase brings the skill's documentation surface to 100% sk-doc conformance, fixes latent bugs, rewrites the README in current marketing-leaning HVR voice, and seeds a deep-research loop on top of a validated baseline.",
     "created_at": "2026-05-23T15:16:23.363Z",
-    "last_save_at": "2026-05-23T15:16:23.363Z",
+    "last_save_at": "2026-05-24T05:40:25.207Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

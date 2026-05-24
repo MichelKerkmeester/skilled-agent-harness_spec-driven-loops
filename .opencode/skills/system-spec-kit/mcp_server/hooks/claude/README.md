@@ -1,11 +1,29 @@
 # Claude Code Hook Scripts
 
-> **DEPRECATED 2026-05-16.** This hook location is being migrated. The advisor-routing UserPromptSubmit hook now lives under `.opencode/skills/system-skill-advisor/hooks/` (compiled artifact at `.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/<runtime>/`). The code-graph SessionStart hook lives under `.opencode/skills/system-code-graph/` (compiled artifact at `.opencode/skills/system-code-graph/dist/system-spec-kit/mcp_server/hooks/<runtime>/`). Update any runtime config (e.g. `.devin/hooks.v1.json`, Claude `settings.local.json` hooks, Codex `config.toml` hooks, Gemini CLI hook config) before 2026-08-16. After that date this location may be removed without further notice. See `.opencode/skills/system-skill-advisor/references/deferred-decisions.md` §3 for migration tracker.
+> **DEPRECATED 2026-05-16.** This hook location is being migrated. The advisor-routing UserPromptSubmit hook now lives under `.opencode/skills/system-skill-advisor/hooks/` (compiled artifact at `.opencode/skills/system-skill-advisor/mcp_server/dist/hooks/<runtime>/`). The code-graph SessionStart hook lives under `.opencode/skills/system-code-graph/` (compiled artifact at `.opencode/skills/system-code-graph/dist/system-spec-kit/mcp_server/hooks/<runtime>/`). Update any runtime config (e.g. `.devin/hooks.v1.json`, Claude `settings.local.json` hooks, Codex `config.toml` hooks, Gemini CLI hook config) before 2026-08-16. After that date this location may be removed without further notice. See `.opencode/skills/system-skill-advisor/references/deferred-decisions.md` §3 for migration tracker.
 
+<!-- ANCHOR:table-of-contents -->
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1--overview)
+- [2. SCRIPTS](#2--scripts)
+- [3. LIFECYCLE FLOW](#3--lifecycle-flow)
+- [4. REGISTRATION](#4--registration)
+- [5. DESIGN PRINCIPLE](#5--design-principle)
+
+<!-- /ANCHOR:table-of-contents -->
+
+---
+
+<!-- ANCHOR:1-overview -->
+## 1. OVERVIEW
 
 Hook scripts for Claude Code lifecycle events. These run as external Node.js processes triggered by Claude Code, not as MCP server modules.
 
-## Scripts
+<!-- /ANCHOR:1-overview -->
+
+<!-- ANCHOR:2-scripts -->
+## 2. SCRIPTS
 
 | File | Hook Event | Behavior |
 |------|-----------|----------|
@@ -17,7 +35,10 @@ Hook scripts for Claude Code lifecycle events. These run as external Node.js pro
 | `shared.ts` | (library) | Common utilities: stdin parsing, output formatting, timeout, logging |
 | `hook-state.ts` | (library) | Per-session state management at temp directory |
 
-## Lifecycle Flow
+<!-- /ANCHOR:2-scripts -->
+
+<!-- ANCHOR:3-lifecycle-flow -->
+## 3. LIFECYCLE FLOW
 
 ```
 PreCompact → cache context → SessionStart(compact) → inject cached context
@@ -26,7 +47,10 @@ SessionStart(resume) → load prior session state
 Stop → parse transcript, save token snapshot
 ```
 
-## Registration
+<!-- /ANCHOR:3-lifecycle-flow -->
+
+<!-- ANCHOR:4-registration -->
+## 4. REGISTRATION
 
 Hooks registered in `.claude/settings.local.json`. Compiled JS at `dist/hooks/claude/`.
 
@@ -52,9 +76,14 @@ Advisor registration snippet:
 
 Set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to skip the advisor path for the current process session.
 
-## Design Principle
+<!-- /ANCHOR:4-registration -->
+
+<!-- ANCHOR:5-design-principle -->
+## 5. DESIGN PRINCIPLE
 
 Hooks are transport reliability, not separate business logic. They call the same retrieval primitives (`memory_match_triggers`, `memory_context`) that other runtimes call explicitly.
 For packet work, the operator-facing recovery surface remains `/spec_kit:resume`, with continuity rebuilt from `handover.md -> _memory.continuity -> spec docs`.
 
-The prompt-time advisor contract lives at `../../../references/hooks/skill-advisor-hook.md`.
+The prompt-time advisor contract lives at `../../../references/hooks/skill_advisor_hook.md`.
+
+<!-- /ANCHOR:5-design-principle -->

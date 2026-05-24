@@ -223,8 +223,11 @@ system-code-graph/
 | `SPECKIT_CODE_GRAPH_DB_DIR` | `.opencode/.spec-kit/code-graph/database/` | Override database directory. Must stay inside the workspace for the launcher's standalone-storage guard to permit it. |
 | `SPECKIT_CODE_GRAPH_MAINTAINER_MODE` | unset | Set to `true` in `.env.local` (gitignored) to force all 5 `INDEX_*` flags to `true` at launcher startup. |
 | `SPECKIT_PARSER_SKIP_LIST_ENABLED` | enabled by runtime policy | Lets parser failures be quarantined and surfaced through status metadata. |
+| `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` | `30` | Shared MCP server idle self-exit timeout. Fractional values are allowed for tests; `0` disables the monitor. |
 
 The 5 `INDEX_*` flags ship as `false` so end users get a quiet, low-disk index by default. Maintainer mode flips them all at once. Per-call `code_graph_scan` arguments override matching environment settings. Use environment variables for process-wide defaults and per-call options for one scan.
+
+`mk_code_index` participates in the shared native MCP lifecycle guardrails. The server refreshes idle activity from primary stdio and secondary IPC socket connect/data/write events. Orphan cleanup and LaunchAgent rollout are documented centrally in the [repo scripts runbook](../../scripts/README.md); the LaunchAgent remains a template until explicitly installed by an operator.
 
 <!-- /ANCHOR:configuration -->
 
@@ -313,7 +316,7 @@ In `system-spec-kit`. This skill scopes itself to the structural index and its t
 
 **Q: Can I run the MCP server without `mk-spec-memory` installed?**
 
-Yes. The standalone MCP server boots independently. Three-way isolation was finalized in v1.0.3.0 and verified via a delete-`system-spec-kit` smoke test. Cross-skill in-process imports exist for shared helpers, but the runtime starts without `system-spec-kit` running.
+Yes. The standalone MCP server boots independently. Code-graph production source keeps local contracts under `mcp_server/lib/shared/`, and the TypeScript build emits only this package's runtime under `mcp_server/dist/`.
 
 **Q: Should dependency READMEs under `node_modules/` follow this template?**
 
@@ -341,6 +344,8 @@ No. Those files belong to third-party packages. Keep sk-doc template alignment t
 | [references/naming-conventions.md](./references/naming-conventions.md) | Name map across skill folder, MCP server, launcher, plugin bridge, hook location. |
 | [references/ownership-boundary.md](./references/ownership-boundary.md) | Why some graph-related code stayed in `system-spec-kit`. |
 | [references/database-path-policy.md](./references/database-path-policy.md) | Canonical database path and override rules. |
+| [repo scripts runbook](../../scripts/README.md) | Shared orphan MCP sweeper, Claude cleanup, and LaunchAgent template notes. |
+| [orphan MCP leak prevention packet](../../specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md) | Canonical lifecycle guardrail implementation summary. |
 | [mcp_server/handlers/README.md](./mcp_server/handlers/README.md) | Handler-layer package topology. |
 | [mcp_server/lib/README.md](./mcp_server/lib/README.md) | Core graph implementation topology. |
 | [mcp_server/tools/README.md](./mcp_server/tools/README.md) | MCP dispatch surface. |

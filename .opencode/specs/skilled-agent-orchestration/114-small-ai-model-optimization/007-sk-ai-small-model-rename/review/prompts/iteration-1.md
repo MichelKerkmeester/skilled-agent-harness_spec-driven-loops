@@ -5,23 +5,23 @@ You are a senior deep-reviewer. Read-only audit. Cite EVIDENCE for every finding
 
 ## Context
 Repo root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/`
-Target packet (just-shipped 2026-05-21): `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/`
+Target packet (just-shipped 2026-05-21): `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/`
 Mode: **READ-ONLY** — do NOT edit any file. Emit findings only.
 
 Spec folder is pre-approved (Gate 3 satisfied — write only to `<target>/review/iterations/iteration-1.md` + `<target>/review/deltas/iter-001.jsonl` if you can, otherwise emit to stdout for the orchestrator to write).
 
 ## Scope: CORRECTNESS dimension (iter 1)
-The 007 packet performed a sentinel-skill rename: `sk-small-model` → `sk-ai-small-model`. 22 live surfaces edited via `sed -i ''` + 5 `git mv` operations + compiled skill-graph.json regenerated + 2 incidental compiler-blocker fixes (`system-rerank-sidecar` category + `mcp-coco-index` reverse-sibling).
+The 007 packet performed a sentinel-skill rename: `sk-small-model` → `sk-prompt-small-model`. 22 live surfaces edited via `sed -i ''` + 5 `git mv` operations + compiled skill-graph.json regenerated + 2 incidental compiler-blocker fixes (`system-rerank-sidecar` category + `mcp-coco-index` reverse-sibling).
 
 ### Pre-planning (REQUIRED — fill before producing findings)
 
-1. **Read** the 007 spec docs: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `changelog-114-007-rename-sk-ai-small-model.md` (parent's changelog).
+1. **Read** the 007 spec docs: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `changelog-114-007-rename-sk-prompt-small-model.md` (parent's changelog).
    - Acceptance: cite the file:lines for the spec scope §3 In Scope + Out of Scope lists; understand the live-vs-historical classifier.
 
 2. **Verify** live-vs-historical classification correctness across 5 sample surfaces:
-   - sk-ai-small-model/SKILL.md (live, must be renamed)
-   - cli-devin/graph-metadata.json edges.enhances[].target (live, must point at sk-ai-small-model)
-   - sk-ai-small-model/changelog/v0.1.0.0.md + v0.2.0.0.md (historical, must NOT be edited)
+   - sk-prompt-small-model/SKILL.md (live, must be renamed)
+   - cli-devin/graph-metadata.json edges.enhances[].target (live, must point at sk-prompt-small-model)
+   - sk-prompt-small-model/changelog/v0.1.0.0.md + v0.2.0.0.md (historical, must NOT be edited)
    - 114/001-research-smallcode/spec.md (historical, must NOT be edited)
    - feedback_skill_graph_compiler_rebuild.md (memory, tagged-narrative pattern)
    - For each: run `rg "sk-small-model"` on the file; confirm the count matches the expected post-edit state per the classification.

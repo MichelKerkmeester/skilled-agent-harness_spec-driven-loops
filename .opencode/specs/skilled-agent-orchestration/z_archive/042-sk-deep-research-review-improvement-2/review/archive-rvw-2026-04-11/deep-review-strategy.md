@@ -284,7 +284,7 @@ Phase folders (all complete):
 **YAML workflows** (Part A emission + Part B graph wiring + closing audit blockedBy normalization):
 - `.opencode/commands/speckit/assets/speckit_deep-research_{auto,confirm}.yaml`
 - `.opencode/commands/speckit/assets/speckit_deep-review_{auto,confirm}.yaml`
-- `.opencode/commands/improve/assets/improve_agent-improver_{auto,confirm}.yaml`
+- `.opencode/commands/deep/assets/improve_agent-improver_{auto,confirm}.yaml`
 
 **Graph infrastructure** (ADR-001 canonical, session scoping, composite score):
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/{convergence,query,status,upsert}.ts`

@@ -106,7 +106,7 @@ async function main() {
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);
-  if (loopType !== 'research' && loopType !== 'review') throw inputError('loopType must be "research" or "review"');
+  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council') throw inputError('loopType must be "research", "review", or "council"');
 
   let db = null;
   let releaseWriterLock = null;
@@ -116,7 +116,10 @@ async function main() {
     db?.closeDb();
   };
   try {
-    db = await import('../lib/coverage-graph/coverage-graph-db.ts');
+    const isCouncil = loopType === 'council';
+    db = isCouncil
+      ? await import('../lib/council/council-graph-db.ts')
+      : await import('../lib/coverage-graph/coverage-graph-db.ts');
     installSignalHandlers(cleanup);
     maybeThrowTestFault();
     const events = readEvents(args.events);
@@ -127,7 +130,28 @@ async function main() {
       ? events.filter((event) => event && (event.type === 'edge' || event.source || event.sourceId || event.target || event.targetId))
       : parseJsonValue(args.edges, [], 'edges');
     if (!Array.isArray(rawNodes) || !Array.isArray(rawEdges)) throw inputError('nodes and edges must be JSON arrays');
-    if (rawNodes.length === 0 && rawEdges.length === 0) throw inputError('At least one node or edge must be provided');
+    if (rawNodes.length === 0 && rawEdges.length === 0) {
+      if (isCouncil) {
+        const namespace = { specFolder, loopType, sessionId };
+        jsonOut({
+          status: 'ok',
+          data: {
+            insertedNodes: 0,
+            insertedEdges: 0,
+            rejectedEdges: 0,
+            rejectedSelfLoops: [],
+            noOp: true,
+            namespace,
+            sourceOfTruth: 'derived_from_ai_council_artifacts',
+          },
+          graph_nodes_json: [],
+          graph_edges_json: [],
+          graph_upsert_event_count: 0,
+        });
+        return;
+      }
+      throw inputError('At least one node or edge must be provided');
+    }
 
     const validationErrors = [];
     const rejectedSelfLoops = [];
@@ -140,22 +164,33 @@ async function main() {
         validationErrors.push('Node missing required id');
         continue;
       }
-      if (!db.VALID_KINDS[loopType].includes(kind)) {
-        validationErrors.push(`Invalid node kind "${kind}" for loop type "${loopType}". Valid: ${db.VALID_KINDS[loopType].join(', ')}`);
+      const validKinds = isCouncil ? db.VALID_KINDS : db.VALID_KINDS[loopType];
+      if (!validKinds.includes(kind)) {
+        validationErrors.push(`Invalid node kind "${kind}" for loop type "${loopType}". Valid: ${validKinds.join(', ')}`);
         continue;
       }
       const name = n.name || n.label || n.id;
-      nodes.push({
+      const baseNode = {
         id: n.id,
         specFolder,
-        loopType,
         sessionId,
         kind,
         name,
-        contentHash: n.contentHash,
-        iteration: n.iteration,
         metadata: n.metadata,
-      });
+      };
+      nodes.push(isCouncil
+        ? {
+            ...baseNode,
+            artifactPath: n.artifactPath,
+            contentHash: n.contentHash,
+            roundId: n.roundId,
+          }
+        : {
+            ...baseNode,
+            loopType,
+            contentHash: n.contentHash,
+            iteration: n.iteration,
+          });
     }
 
     for (const e of rawEdges) {
@@ -174,33 +209,45 @@ async function main() {
         rejectedSelfLoops.push(e.id);
         continue;
       }
-      if (!db.VALID_RELATIONS[loopType].includes(relation)) {
-        validationErrors.push(`Invalid relation "${relation}" for loop type "${loopType}". Valid: ${db.VALID_RELATIONS[loopType].join(', ')}`);
+      const validRelations = isCouncil ? db.VALID_RELATIONS : db.VALID_RELATIONS[loopType];
+      if (!validRelations.includes(relation)) {
+        validationErrors.push(`Invalid relation "${relation}" for loop type "${loopType}". Valid: ${validRelations.join(', ')}`);
         continue;
       }
-      edges.push({
+      const baseEdge = {
         id: e.id,
         specFolder,
-        loopType,
         sessionId,
         sourceId,
         targetId,
         relation,
         weight: db.clampWeight(e.weight ?? 1.0),
         metadata: e.metadata,
-      });
+      };
+      edges.push(isCouncil
+        ? {
+            ...baseEdge,
+            artifactPath: e.artifactPath,
+          }
+        : {
+            ...baseEdge,
+            loopType,
+          });
     }
 
-    releaseWriterLock = acquireWriterLock(path.join(db.COVERAGE_GRAPH_DATABASE_DIR, '.deep-loop-graph-writer.lock'));
+    const storageDir = isCouncil ? db.COUNCIL_GRAPH_STORAGE_DIR : db.COVERAGE_GRAPH_DATABASE_DIR;
+    releaseWriterLock = acquireWriterLock(path.join(storageDir, isCouncil ? '.council-graph-writer.lock' : '.deep-loop-graph-writer.lock'));
     sleepSync(Number(process.env.DEEP_LOOP_SCRIPT_LOCK_HOLD_MS || 0));
     const result = db.batchUpsert(nodes, edges);
+    const namespace = { specFolder, loopType, sessionId };
     const data = {
       insertedNodes: result.insertedNodes,
       insertedEdges: result.insertedEdges,
       rejectedEdges: result.rejectedEdges,
       rejectedSelfLoops,
       validationErrors: validationErrors.length > 0 ? validationErrors : undefined,
-      namespace: { specFolder, loopType, sessionId },
+      namespace,
+      ...(isCouncil ? { sourceOfTruth: 'derived_from_ai_council_artifacts' } : {}),
     };
     jsonOut({
       status: 'ok',

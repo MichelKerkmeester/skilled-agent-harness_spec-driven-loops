@@ -32,7 +32,7 @@ Technical context:
 | Surface | OPENCODE |
 | Languages | CommonJS, YAML, JSON, Markdown |
 | Primary Skill | `.opencode/skills/deep-agent-improvement/` |
-| Command Workflow | `.opencode/commands/improve/assets/improve_deep-agent-improvement_*.yaml` |
+| Command Workflow | `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_*.yaml` |
 | Tests | Vitest files under `scripts/tests/`, `node --check`, strict spec validation |
 
 The implementation repairs eight high-priority findings with surgical changes. Error typing is centralized in a small helper; scoring null-handling stays inside `score-candidate.cjs`; path fixes are constrained to the scanner and workflow/config references; documentation changes align to source behavior rather than inventing new runtime semantics.

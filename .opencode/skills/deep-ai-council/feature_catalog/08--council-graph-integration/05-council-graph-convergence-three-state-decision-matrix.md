@@ -1,13 +1,13 @@
 ---
-title: "council_graph_convergence three-state decision matrix"
-description: "Verify council_graph_convergence returns the correct bucket for each of three documented signal configurations."
+title: "runtime convergence CLI three-state decision matrix"
+description: "Verify runtime convergence CLI returns the correct bucket for each of three documented signal configurations."
 ---
 
-# council_graph_convergence three-state decision matrix
+# runtime convergence CLI three-state decision matrix
 
 ## 1. OVERVIEW
 
-Verify council_graph_convergence returns the correct bucket for each of three documented signal configurations.
+Verify runtime convergence CLI returns the correct bucket for each of three documented signal configurations.
 
 The three-state output is the council orchestrator's primary stop/continue/escalate signal.
 
@@ -17,11 +17,11 @@ Operators use this feature when the real request is: Decide whether the council 
 
 ## 2. CURRENT REALITY
 
-The shipped surface is anchored by `council_graph_upsert`, `council_graph_convergence`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-023.
+The shipped surface is anchored by `runtime upsert CLI`, `runtime convergence CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-023.
 
-Current behavior is grounded in `.opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/convergence.ts`, which the scenario identifies as mcp handler: three-state decision logic. Validation is anchored by `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts`, covering tests: "allows convergence when ... thresholds are met", "continues convergence when non-blocking thresholds are not met", "blocks convergence for empty derived graphs...".
+Current behavior is grounded in `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, which the scenario identifies as runtime CLI script: three-state decision logic. Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`, covering tests: "allows convergence when ... thresholds are met", "continues convergence when non-blocking thresholds are not met", "blocks convergence for empty derived graphs...".
 
-The user-visible contract is concrete: Verify council_graph_convergence returns the correct bucket for each of three documented signal configurations. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
+The user-visible contract is concrete: Verify runtime convergence CLI returns the correct bucket for each of three documented signal configurations. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
 ---
 
@@ -31,8 +31,8 @@ The user-visible contract is concrete: Verify council_graph_convergence returns 
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/convergence.ts` | Handler | MCP handler: three-state decision logic |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-query.ts` | Library | Per-signal helpers (`agreementRatio`, `dissentDensity`, etc.) |
+| `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Handler | runtime CLI script: three-state decision logic |
+| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Library | Per-signal helpers (`agreementRatio`, `dissentDensity`, etc.) |
 | `.opencode/skills/deep-ai-council/references/graph_support.md 4` | Reference | Documents the convergence signals |
 
 ### Validation And Tests
@@ -40,7 +40,7 @@ The user-visible contract is concrete: Verify council_graph_convergence returns 
 | File | Focus |
 |------|-------|
 | `manual_testing_playbook/08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md` | Manual scenario contract |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts` | Tests: "allows convergence when ... thresholds are met", "continues convergence when non-blocking thresholds are not met", "blocks convergence for empty derived graphs..." |
+| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Tests: "allows convergence when ... thresholds are met", "continues convergence when non-blocking thresholds are not met", "blocks convergence for empty derived graphs..." |
 
 ---
 

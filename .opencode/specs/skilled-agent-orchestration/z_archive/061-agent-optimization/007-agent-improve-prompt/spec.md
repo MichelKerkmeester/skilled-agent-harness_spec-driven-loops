@@ -53,7 +53,7 @@ _memory:
 `@improve-prompt` (271 LOC) has not been through the sk-improve-agent v2 lens. After 060's empirical validation (PASS 6/0/0), the substrate is ready to apply across the fleet.
 
 ### Purpose
-Improvement focus: **Prompt engineering; framework selection; CLEAR validation**. Companion to /improve:prompt command. Smallest agent in fleet.
+Improvement focus: **Prompt engineering; framework selection; CLEAR validation**. Companion to /prompt command. Smallest agent in fleet.
 
 <!-- /ANCHOR:problem -->
 
@@ -71,7 +71,7 @@ Improvement focus: **Prompt engineering; framework selection; CLEAR validation**
 
 ### Out of Scope
 - Skill changes (sk-improve-agent locked at 060/005 wiring)
-- Command changes (`/improve:agent` locked)
+- Command changes (`/deep:start-agent-improvement-loop` locked)
 - Other agents (each gets its own sub-phase)
 - Infrastructure (benchmark fixtures, materializer, scripts) — 060/005 territory
 

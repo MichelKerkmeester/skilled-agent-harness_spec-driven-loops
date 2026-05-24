@@ -1,17 +1,14 @@
 {
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution",
-  "description": "Feature Specification: 008-tier-d-documentation-execution \u2014 F4 .devin/hooks.v1.json migration, F6 OLD hook location deprecation banners, F37 catalog/playbook cross-reference table",
+  "description": "Feature Specification: 008-tier-d-documentation-execution",
   "keywords": [
-    "tier-d-execution",
-    "devin-hooks-migration",
-    "f4",
-    "f6",
-    "f37",
-    "hook-deprecation"
+    "feature",
+    "specification",
+    "008-tier-d-documentation-execution"
   ],
-  "lastUpdated": "2026-05-16T00:00:00Z",
+  "lastUpdated": "2026-05-23T15:25:00.778Z",
   "specId": "008",
-  "folderSlug": "tier-d-execution",
+  "folderSlug": "tier-d-documentation-execution",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

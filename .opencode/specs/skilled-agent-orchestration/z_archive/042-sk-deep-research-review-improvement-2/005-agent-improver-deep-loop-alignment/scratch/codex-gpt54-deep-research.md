@@ -24,7 +24,7 @@ Read these files for context:
 - .opencode/skills/sk-improve-agent/assets/ (config, strategy, charter)
 - .opencode/skills/sk-improve-agent/scripts/ (existing scripts)
 - .opencode/agents/agent-improver.md (the LEAF agent)
-- .opencode/commands/improve/agent.md (the orchestrator command)
+- .opencode/commands/deep/start-agent-improvement-loop.md (the orchestrator command)
 
 For each of 10 iterations, investigate a different aspect:
 1. Stop-reason taxonomy: what stop reasons does agent-improver currently use implicitly? What should the formal enum be?
@@ -478,7 +478,7 @@ Apply the same runtime truth contracts to agent-improver so that every improveme
 | `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md` | Modify | Add mutation exhaustion guidance, trajectory-based convergence criteria, trade-off resolution guidance |
 | `.opencode/skills/sk-improve-agent/assets/improvement_charter.md` | Modify | Add audit trail requirements, legal-stop gate obligations |
 | `.opencode/agents/agent-improver.md` | Modify | Add journal emission protocol, legal-stop gate checks, coverage graph update calls |
-| `.opencode/commands/improve/agent.md` | Modify | Add resume semantics, session-id propagation, weight optimizer invocation |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Modify | Add resume semantics, session-id propagation, weight optimizer invocation |
 | `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Create | Append-only JSONL event emitter for improvement session events |
 | `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs` | Create | Coverage graph reader/writer for explored dimensions and tried mutations |
 | `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs` | Create | Cross-dimension regression detector using trajectory data |
@@ -909,7 +909,7 @@ contextType: "planning"
 - [ ] T002 Read 042 Phase 1 journal schema from `../001-runtime-truth-foundation/` to confirm event type contract before writing journal script
 - [ ] T003 Add stop-reason taxonomy section to SKILL.md: define `converged`, `promoted`, `rolledBack`, `maxIterationsReached`, `regressionDetected`, `manualStop`, `error` with trigger conditions (`.opencode/skills/sk-improve-agent/SKILL.md`) (REQ-AI-001)
 - [ ] T004 Add legal-stop gate protocol to agent-improver.md orchestrator section: gate conditions for `converged` and `promoted` using 5-dimension stability + no regression + promotion criteria (`.opencode/agents/agent-improver.md`) (REQ-AI-002)
-- [ ] T005 Add resume/continuation semantics to agent.md command: session-id parameter, journal replay on resume, iteration counter carry-over (`.opencode/commands/improve/agent.md`) (REQ-AI-003)
+- [ ] T005 Add resume/continuation semantics to agent.md command: session-id parameter, journal replay on resume, iteration counter carry-over (`.opencode/commands/deep/start-agent-improvement-loop.md`) (REQ-AI-003)
 - [ ] T006 Create `improvement-journal.cjs`: append-only JSONL emitter with event schema validation for `iteration-started`, `candidate-proposed`, `candidate-evaluated`, `promotion-gate-checked`, `trade-off-detected`, `session-ended` event types (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-004)
 - [ ] T007 Add hypothesis verification ledger schema to `improvement-journal.cjs`: `mutation-proposed` and `mutation-outcome` event types capturing proposed mutation, accepted/rejected status, rejection reason, and scored dimensions (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-005)
 - [ ] T008 Update improvement_charter.md: add audit trail obligations section specifying that the orchestrator must emit journal events at each iteration boundary (`.opencode/skills/sk-improve-agent/assets/improvement_charter.md`)
@@ -1120,7 +1120,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch
 
 exec
-/bin/zsh -lc "printf '\\n--- agent-improver.md ---\\n'; sed -n '1,260p' .opencode/agents/agent-improver.md; printf '\\n--- command improve/agent.md ---\\n'; sed -n '1,260p' .opencode/commands/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "printf '\\n--- agent-improver.md ---\\n'; sed -n '1,260p' .opencode/agents/agent-improver.md; printf '\\n--- command deep/start-agent-improvement-loop.md ---\\n'; sed -n '1,260p' .opencode/commands/deep/start-agent-improvement-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
 --- agent-improver.md ---
@@ -1296,7 +1296,7 @@ Fix the proposal boundary first
 
 | Command | Purpose | Path |
 | ------- | ------- | ---- |
-| `/improve:agent` | Initializes and runs the bounded agent-improver workflow | `.opencode/commands/improve/agent.md` |
+| `/deep:start-agent-improvement-loop` | Initializes and runs the bounded agent-improver workflow | `.opencode/commands/deep/start-agent-improvement-loop.md` |
 
 ### Skills
 
@@ -1340,7 +1340,7 @@ Fix the proposal boundary first
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
---- command improve/agent.md ---
+--- command deep/start-agent-improvement-loop.md ---
 ---
 description: "Evaluate and improve any agent across 5 integration-aware dimensions with proposal-first candidates, deterministic scoring, and guarded promotion — supports :auto and :confirm modes"
 argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N]"
@@ -1390,7 +1390,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │ invocation and does not require @write routing.            │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /improve:agent [arguments]                               │
+    │   │   /deep:start-agent-improvement-loop [arguments]                               │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"
@@ -2305,22 +2305,22 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8753:    74	        '"{spec_folder}/review/deep-review-state.jsonl"',
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:8912:- The `040` ledger already carries some learnable metadata: `focusTrack`, answered questions, ruled-out directions, sources, and durations [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L2), [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L96), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L171).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md:9018:- The `040` ledger already carries some learnable metadata: `focusTrack`, answered questions, ruled-out directions, sources, and durations [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L2), [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/research/deep-research-state.jsonl#L96), [deep-research agent](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/deep-research.md#L171).
-.opencode/commands/improve/agent.md:201:6. Reduces evidence into a dimensional dashboard with plateau detection
-.opencode/commands/improve/agent.md:202:7. Stops when improvement plateaus, max iterations reached, or operator decides
-.opencode/commands/improve/agent.md:285:7. Check stop conditions (plateau, max iterations, infra failure)
-.opencode/commands/improve/agent.md:299:- Plateau: `STATUS=OK REASON="all_dimensions_plateaued"`
-.opencode/commands/improve/agent.md:352:Stop Reason: All dimensions plateaued after 3 iterations
-.opencode/commands/improve/agent.md:359:STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="all_dimensions_plateaued"
-.opencode/commands/improve/agent.md:369:- **Stop rules**: Loop stops on dimension plateau (3+ identical scores), max iterations, or infra failure threshold.
+.opencode/commands/deep/start-agent-improvement-loop.md:201:6. Reduces evidence into a dimensional dashboard with plateau detection
+.opencode/commands/deep/start-agent-improvement-loop.md:202:7. Stops when improvement plateaus, max iterations reached, or operator decides
+.opencode/commands/deep/start-agent-improvement-loop.md:285:7. Check stop conditions (plateau, max iterations, infra failure)
+.opencode/commands/deep/start-agent-improvement-loop.md:299:- Plateau: `STATUS=OK REASON="all_dimensions_plateaued"`
+.opencode/commands/deep/start-agent-improvement-loop.md:352:Stop Reason: All dimensions plateaued after 3 iterations
+.opencode/commands/deep/start-agent-improvement-loop.md:359:STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="all_dimensions_plateaued"
+.opencode/commands/deep/start-agent-improvement-loop.md:369:- **Stop rules**: Loop stops on dimension plateau (3+ identical scores), max iterations, or infra failure threshold.
 .opencode/commands/speckit/plan.md:337:| 2 | Beyond Local Max?  | >=2 alternatives with trade-offs           |
-.opencode/commands/improve/README.txt:216:When max iterations is reached, all 5 dimensions plateau (3+ identical scores), infra failures exceed threshold, or the reducer signals shouldStop.
-.opencode/commands/improve/README.txt:234:| All dimensions plateaued | Loop exhausted current hypothesis | Update `improvement_strategy.md` and restart |
-.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:16:  tracking: append_only_jsonl_ledger
-.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:24:    all dimensions plateau (3+ identical scores), infra failures exceed threshold, or reducer signals shouldStop.
-.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:105:  state_log: "{spec_folder}/improvement/agent-improvement-state.jsonl"
-.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:146:        action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
-.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:175:        action: "Append prompt-score and benchmark records into agent-improvement-state.jsonl"
-.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:197:        description: "Present final dashboard with per-dimension trends and stop reason"
+.opencode/commands/README.txt:216:When max iterations is reached, all 5 dimensions plateau (3+ identical scores), infra failures exceed threshold, or the reducer signals shouldStop.
+.opencode/commands/README.txt:234:| All dimensions plateaued | Loop exhausted current hypothesis | Update `improvement_strategy.md` and restart |
+.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:16:  tracking: append_only_jsonl_ledger
+.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:24:    all dimensions plateau (3+ identical scores), infra failures exceed threshold, or reducer signals shouldStop.
+.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:105:  state_log: "{spec_folder}/improvement/agent-improvement-state.jsonl"
+.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:146:        action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
+.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:175:        action: "Append prompt-score and benchmark records into agent-improvement-state.jsonl"
+.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:197:        description: "Present final dashboard with per-dimension trends and stop reason"
 .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:81:  state_log: "{spec_folder}/research/deep-research-state.jsonl"
 .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:120:          - "{spec_folder}/research/state.jsonl"
 .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:126:          append_jsonl: '{"type":"event","event":"migration","legacyPath":"{legacy_path}","canonicalPath":"{canonical_path}","timestamp":"{ISO_8601_NOW}"}'
@@ -2338,13 +2338,13 @@ exec
 .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:484:        - State files: config.json, state.jsonl, strategy.md, findings-registry.json, dashboard.md
 .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:518:    - overwrite_jsonl_state_log
 .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:528:      - "git add {spec_folder}/research/iterations/iteration-{NNN}.md {spec_folder}/research/deep-research-state.jsonl {spec_folder}/research/deep-research-strategy.md {spec_folder}/research/research.md"
-.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:16:  tracking: append_only_jsonl_ledger
-.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:22:    Stops when: max iterations reached, all dimensions plateau (3+ identical scores),
-.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:99:  state_log: "{spec_folder}/improvement/agent-improvement-state.jsonl"
-.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:130:        action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
-.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:151:        action: "Append prompt-score and benchmark records into agent-improvement-state.jsonl"
-.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:156:        description: "Evaluate stop conditions: dimension plateau, infra failure, weak benchmarks, max iterations"
-.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:163:        description: "Present final dashboard with per-dimension trends and stop reason"
+.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:16:  tracking: append_only_jsonl_ledger
+.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:22:    Stops when: max iterations reached, all dimensions plateau (3+ identical scores),
+.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:99:  state_log: "{spec_folder}/improvement/agent-improvement-state.jsonl"
+.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:130:        action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
+.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:151:        action: "Append prompt-score and benchmark records into agent-improvement-state.jsonl"
+.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:156:        description: "Evaluate stop conditions: dimension plateau, infra failure, weak benchmarks, max iterations"
+.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:163:        description: "Present final dashboard with per-dimension trends and stop reason"
 .opencode/commands/speckit/complete.md:442:| 2 | Beyond Local Max? | Explored alternatives? | >=2 alternatives with trade-offs |
 .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:81:  state_log: "{spec_folder}/research/deep-research-state.jsonl"
 .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:120:          - "{spec_folder}/research/state.jsonl"
@@ -2431,7 +2431,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:94:| `.opencode/skills/sk-improve-agent/assets/improvement_config.json` | Modify | Add config fields for journal path, coverage graph path, wave activation gate, weight optimizer settings (all optional with defaults) |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:95:| `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md` | Modify | Add mutation exhaustion guidance, trajectory-based convergence criteria, trade-off resolution guidance |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:97:| `.opencode/agents/agent-improver.md` | Modify | Add journal emission protocol, legal-stop gate checks, coverage graph update calls |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:98:| `.opencode/commands/improve/agent.md` | Modify | Add resume semantics, session-id propagation, weight optimizer invocation |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:98:| `.opencode/commands/deep/start-agent-improvement-loop.md` | Modify | Add resume semantics, session-id propagation, weight optimizer invocation |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:99:| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Create | Append-only JSONL event emitter for improvement session events |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:101:| `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs` | Create | Cross-dimension regression detector using trajectory data |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:104:| `.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts` | Create | Tests for journal emit, append-only enforcement, event schema |
@@ -2563,7 +2563,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:39:*Delivers: stop-reason taxonomy, legal-stop gates, resume semantics, audit journal, hypothesis verification ledger.*
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:42:- [ ] T002 Read 042 Phase 1 journal schema from `../001-runtime-truth-foundation/` to confirm event type contract before writing journal script
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:43:- [ ] T003 Add stop-reason taxonomy section to SKILL.md: define `converged`, `promoted`, `rolledBack`, `maxIterationsReached`, `regressionDetected`, `manualStop`, `error` with trigger conditions (`.opencode/skills/sk-improve-agent/SKILL.md`) (REQ-AI-001)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:45:- [ ] T005 Add resume/continuation semantics to agent.md command: session-id parameter, journal replay on resume, iteration counter carry-over (`.opencode/commands/improve/agent.md`) (REQ-AI-003)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:45:- [ ] T005 Add resume/continuation semantics to agent.md command: session-id parameter, journal replay on resume, iteration counter carry-over (`.opencode/commands/deep/start-agent-improvement-loop.md`) (REQ-AI-003)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:46:- [ ] T006 Create `improvement-journal.cjs`: append-only JSONL emitter with event schema validation for `iteration-started`, `candidate-proposed`, `candidate-evaluated`, `promotion-gate-checked`, `trade-off-detected`, `session-ended` event types (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-004)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:47:- [ ] T007 Add hypothesis verification ledger schema to `improvement-journal.cjs`: `mutation-proposed` and `mutation-outcome` event types capturing proposed mutation, accepted/rejected status, rejection reason, and scored dimensions (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-005)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:48:- [ ] T008 Update improvement_charter.md: add audit trail obligations section specifying that the orchestrator must emit journal events at each iteration boundary (`.opencode/skills/sk-improve-agent/assets/improvement_charter.md`)
@@ -3924,7 +3924,7 @@ exec
 
 
 exec
-/bin/zsh -lc "sed -n '260,520p' .opencode/commands/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '260,520p' .opencode/commands/deep/start-agent-improvement-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 
 **Static mode (scoring_mode = static):**
@@ -3975,25 +3975,25 @@ After loop exits, present:
 ### Evaluate Handover Agent (Static Profile, Interactive)
 
 ```
-/improve:agent ".opencode/agents/handover.md" :confirm --spec-folder=specs/041/008
+/deep:start-agent-improvement-loop ".opencode/agents/handover.md" :confirm --spec-folder=specs/041/008
 ```
 
 ### Evaluate Any Agent (Dynamic Profile, Autonomous)
 
 ```
-/improve:agent ".opencode/agents/debug.md" :auto --iterations=3
+/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :auto --iterations=3
 ```
 
 ### Quick Integration Health Check
 
 ```
-/improve:agent ".opencode/agents/review.md" :auto --iterations=1
+/deep:start-agent-improvement-loop ".opencode/agents/review.md" :auto --iterations=1
 ```
 
 ### Prompt for Target Selection
 
 ```
-/improve:agent :confirm
+/deep:start-agent-improvement-loop :confirm
 ```
 Setup phase lists available agents and asks for selection.
 
@@ -4046,7 +4046,7 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="all_dimensions_plateaued"
 | --- | --- |
 | `/speckit:complete` | Full spec-driven development workflow |
 | `/speckit:handover` | Create session handover for continuing work |
-| `/improve:prompt` | Improve AI prompts with DEPTH + CLEAR scoring |
+| `/prompt` | Improve AI prompts with DEPTH + CLEAR scoring |
 | `/speckit:deep-review` | Iterative code review with convergence detection |
 
 ---
@@ -6974,10 +6974,10 @@ Evaluator-first workflow for improving agents across their full integration surf
 
 ```text
 # Evaluate handover agent (static profile)
-/improve:agent-improver ".opencode/agents/handover.md" :confirm --spec-folder={spec_folder}
+/deep:start-agent-improvement-loop-improver ".opencode/agents/handover.md" :confirm --spec-folder={spec_folder}
 
 # Evaluate any agent (dynamic profile)
-/improve:agent-improver ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
+/deep:start-agent-improvement-loop-improver ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
 ```
 
 ### Standalone Script Usage
@@ -7221,8 +7221,8 @@ Run each scenario command from the repo root. Compare output against expected si
 
 | ID | Scenario | Command | Expected Signals | Pass Criteria |
 | --- | --- | --- | --- | --- |
-| 06-001 | Full pipeline handover | `/improve:agent-improver ".opencode/agents/handover.md" :confirm --spec-folder={spec}` | Init creates runtime, scan runs, candidate generated, scored with dimensions | All phases complete without error |
-| 06-002 | Any-agent pipeline | `/improve:agent-improver ".opencode/agents/debug.md" :confirm --spec-folder={spec}` | Dynamic profile generated, 5-dimension scores produced | Non-hardcoded agent evaluates successfully |
+| 06-001 | Full pipeline handover | `/deep:start-agent-improvement-loop-improver ".opencode/agents/handover.md" :confirm --spec-folder={spec}` | Init creates runtime, scan runs, candidate generated, scored with dimensions | All phases complete without error |
+| 06-002 | Any-agent pipeline | `/deep:start-agent-improvement-loop-improver ".opencode/agents/debug.md" :confirm --spec-folder={spec}` | Dynamic profile generated, 5-dimension scores produced | Non-hardcoded agent evaluates successfully |
 
 ---
 
@@ -8642,7 +8642,7 @@ Research pass is complete. I read the Phase 005 packet, current sk-improve-agent
 codex
 **Priority**
 
-P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md).
+P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md).
 
 P1: make the loop explainable and replayable. Add mutation coverage, full dimension trajectories, trade-off detection, and integration-scan constraints via [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs), and the new scripts Phase 005 already names.
 
@@ -8650,11 +8650,11 @@ P2: keep advanced exploration advisory and gated. Parallel candidates and weight
 
 **10 Iterations**
 
-1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
+1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
 
 2. Legal-stop gates. Do not map one gate per score; map dimensions into gate bundles. Recommended promote gate: `contractGate` (`structural >= 90 && systemFitness >= 90`), `behaviorGate` (`ruleCoherence >= 85 && outputQuality >= 85`), `integrationGate` (`integration >= 90 && no drift ambiguity`), `evidenceGate` (`benchmark-pass && repeatability-pass`), and `improvementGate` (`weighted delta >= 2` from [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json)); any failed gate should persist `blockedStop`, not invent a new stop label.
 
-3. Resume semantics. The lineage block already exists in [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), but the command still behaves like a fresh-start workflow in [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md). Port Phase 001’s classifier directly: `new | resume | restart | fork | completed-continue`, add `continuedFromRun` or `continuedFromIteration`, archive old runtime on restart, and replay journal + mutation ledger + coverage graph + registry before dispatch.
+3. Resume semantics. The lineage block already exists in [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), but the command still behaves like a fresh-start workflow in [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md). Port Phase 001’s classifier directly: `new | resume | restart | fork | completed-continue`, add `continuedFromRun` or `continuedFromIteration`, archive old runtime on restart, and replay journal + mutation ledger + coverage graph + registry before dispatch.
 
 4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
 
@@ -8679,7 +8679,7 @@ tokens used
 167,721
 **Priority**
 
-P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md).
+P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md).
 
 P1: make the loop explainable and replayable. Add mutation coverage, full dimension trajectories, trade-off detection, and integration-scan constraints via [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs), and the new scripts Phase 005 already names.
 
@@ -8687,11 +8687,11 @@ P2: keep advanced exploration advisory and gated. Parallel candidates and weight
 
 **10 Iterations**
 
-1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
+1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
 
 2. Legal-stop gates. Do not map one gate per score; map dimensions into gate bundles. Recommended promote gate: `contractGate` (`structural >= 90 && systemFitness >= 90`), `behaviorGate` (`ruleCoherence >= 85 && outputQuality >= 85`), `integrationGate` (`integration >= 90 && no drift ambiguity`), `evidenceGate` (`benchmark-pass && repeatability-pass`), and `improvementGate` (`weighted delta >= 2` from [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json)); any failed gate should persist `blockedStop`, not invent a new stop label.
 
-3. Resume semantics. The lineage block already exists in [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), but the command still behaves like a fresh-start workflow in [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md). Port Phase 001’s classifier directly: `new | resume | restart | fork | completed-continue`, add `continuedFromRun` or `continuedFromIteration`, archive old runtime on restart, and replay journal + mutation ledger + coverage graph + registry before dispatch.
+3. Resume semantics. The lineage block already exists in [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), but the command still behaves like a fresh-start workflow in [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md). Port Phase 001’s classifier directly: `new | resume | restart | fork | completed-continue`, add `continuedFromRun` or `continuedFromIteration`, archive old runtime on restart, and replay journal + mutation ledger + coverage graph + registry before dispatch.
 
 4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
 

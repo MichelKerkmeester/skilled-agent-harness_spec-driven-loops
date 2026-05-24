@@ -36,7 +36,7 @@ describe('mk-skill-advisor launcher bootstrap', () => {
     const mcpDir = join(root, 'mcp_server');
     const dbDir = join(mcpDir, 'database');
     const lockDir = join(dbDir, '.mk-skill-advisor-launcher.lockdir');
-    mkdirSync(join(mcpDir, 'dist/system-skill-advisor/mcp_server'), { recursive: true });
+    mkdirSync(join(mcpDir, 'dist/mcp_server'), { recursive: true });
     launcher.configureLauncherPathsForTesting({
       mcpDir,
       dbDir,
@@ -57,7 +57,7 @@ describe('mk-skill-advisor launcher bootstrap', () => {
 
   it('marks artifacts stale when source files are newer than dist output', () => {
     const { mcpDir } = configureTempLauncher();
-    const serverPath = join(mcpDir, 'dist/system-skill-advisor/mcp_server/advisor-server.js');
+    const serverPath = join(mcpDir, 'dist/mcp_server/advisor-server.js');
     const sourcePath = join(mcpDir, 'advisor-server.ts');
     writeFileSync(serverPath, '// old dist\n', 'utf8');
     writeFileSync(sourcePath, '// new source\n', 'utf8');

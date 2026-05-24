@@ -6,7 +6,7 @@
 
 ## 041-sk-recursive-agent-loop — 2026-04-04
 
-This packet delivered the sk-improve-agent skill across 11 phases, starting from a proposal-only evaluator-first MVP and ending with a holistic 5-dimension integration-aware scoring framework, a self-referential test pass, fixes promoted from that test, and full skill advisor routing. The skill can now evaluate any agent across structural integrity, rule coherence, integration consistency, output quality, and system fitness without LLM-as-judge scoring. The work also included a repo-wide rename from `sk-recursive-agent` to `sk-improve-agent` and from `/speckit:recursive-agent` to `/improve:agent`, touching 187+ files and 1129+ occurrences.
+This packet delivered the sk-improve-agent skill across 11 phases, starting from a proposal-only evaluator-first MVP and ending with a holistic 5-dimension integration-aware scoring framework, a self-referential test pass, fixes promoted from that test, and full skill advisor routing. The skill can now evaluate any agent across structural integrity, rule coherence, integration consistency, output quality, and system fitness without LLM-as-judge scoring. The work also included a repo-wide rename from `sk-recursive-agent` to `sk-improve-agent` and from `/speckit:recursive-agent` to `/deep:start-agent-improvement-loop`, touching 187+ files and 1129+ occurrences.
 
 > Spec folder: `.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/` (Level 3)
 
@@ -56,7 +56,7 @@ The single largest phase in the program, transforming evaluation coverage from r
 
 **Problem:** The original name `sk-recursive-agent` described the mechanism, not the purpose. The command lived under `spec_kit` instead of its own namespace.
 
-**Fix:** Phase 008 renamed the skill to `sk-improve-agent`, the agent to `agent-improver`, the command to `/improve:agent`, and the dispatch to `@agent-improver` across 187+ files. A fresh audit confirmed zero stale references.
+**Fix:** Phase 008 renamed the skill to `sk-improve-agent`, the agent to `agent-improver`, the command to `/deep:start-agent-improvement-loop`, and the dispatch to `@agent-improver` across 187+ files. A fresh audit confirmed zero stale references.
 
 ### Documentation and testing rewrite
 
@@ -74,7 +74,7 @@ The skill evaluated itself and then fixed the issues it found.
 
 **Problem:** The skill had never been tested against its own agent file, leaving a gap in confidence about edge cases and self-referential correctness.
 
-**Fix:** Phase 009 ran `/improve:agent` targeting `agent-improver.md` in `:confirm` mode for 3 iterations. The baseline scored 99 (systemFitness=93 due to an invalid resource reference). Iteration 2 fixed the reference and reached 100 across all 5 dimensions. The self-test also surfaced 5 actionable issues and confirmed the proposal-only boundary works correctly when the mutator reads its own definition.
+**Fix:** Phase 009 ran `/deep:start-agent-improvement-loop` targeting `agent-improver.md` in `:confirm` mode for 3 iterations. The baseline scored 99 (systemFitness=93 due to an invalid resource reference). Iteration 2 fixed the reference and reached 100 across all 5 dimensions. The self-test also surfaced 5 actionable issues and confirmed the proposal-only boundary works correctly when the mutator reads its own definition.
 
 ### Promoted fixes from self-test findings
 
@@ -139,8 +139,8 @@ These phases handled template fidelity, command path changes, and wording consis
 | File | Changes |
 | ---- | ------- |
 | `.opencode/agents/agent-improver.md` | Canonical mutator agent, later 5D workflow and integration-aware steps |
-| `.opencode/commands/improve/agent.md` | Command entrypoint, later full rewrite to 430+ lines |
-| `.opencode/commands/improve/assets/*.yaml` | Auto and confirm YAML workflows |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Command entrypoint, later full rewrite to 430+ lines |
+| `.opencode/commands/deep/assets/*.yaml` | Auto and confirm YAML workflows |
 
 ### Skill Package
 

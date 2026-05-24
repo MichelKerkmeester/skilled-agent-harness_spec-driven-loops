@@ -8,7 +8,7 @@
   ],
   "contextType": "implementation",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/020-cocoindex-feature-catalog",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog",
   "description": "Feature Specification: 051 CocoIndex Feature Catalog",
   "keywords": [
     "feature",
@@ -17,13 +17,14 @@
     "cocoindex",
     "catalog"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.406Z",
-  "specId": "038",
-  "folderSlug": "coco-index-feature-catalog",
+  "lastUpdated": "2026-05-23T15:24:59.883Z",
+  "specId": "020",
+  "folderSlug": "cocoindex-feature-catalog",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

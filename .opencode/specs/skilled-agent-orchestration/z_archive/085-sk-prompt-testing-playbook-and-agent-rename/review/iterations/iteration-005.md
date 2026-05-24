@@ -53,7 +53,7 @@ Two files flagged — verified as true residual hits (not false positives). Agen
 ```
 49: | INT-CMD-IMPROVE-PROMPT | ...  (should be INT-CMD-PROMPT-IMPROVER)
 50: | INT-SKILL-IMPROVE-PROMPT | ...  (should be INT-SKILL-PROMPT-IMPROVER)
-70: | /improve:prompt | INT-CMD-IMPROVE-PROMPT | ...  (should be INT-CMD-PROMPT-IMPROVER)
+70: | /prompt | INT-CMD-IMPROVE-PROMPT | ...  (should be INT-CMD-PROMPT-IMPROVER)
 76: | sk-prompt | INT-SKILL-IMPROVE-PROMPT | ...  (should be INT-SKILL-PROMPT-IMPROVER)
 335: THE IMPROVE-PROMPT AGENT: PROMPT ESCALATION SPECIALIST  (should be THE PROMPT-IMPROVER AGENT)
 ```

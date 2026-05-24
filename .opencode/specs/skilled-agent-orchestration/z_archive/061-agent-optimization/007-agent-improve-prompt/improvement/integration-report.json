@@ -46,7 +46,7 @@
     ],
     "commands": [
       {
-        "path": ".opencode/commands/improve/prompt.md",
+        "path": ".opencode/commands/prompt.md",
         "references": [
           "@improve-prompt"
         ]

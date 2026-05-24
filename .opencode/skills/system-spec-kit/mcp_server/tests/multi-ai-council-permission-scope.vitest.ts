@@ -11,7 +11,7 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const require = createRequire(import.meta.url);
 const writers = require(join(
   WORKSPACE_ROOT,
-  '.opencode/skills/sk-ai-council/scripts/lib/persist-artifacts.js',
+  '.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.cjs',
 )) as {
   writeSeat: (packet: string, relativePath: string, content: string) => string;
 };

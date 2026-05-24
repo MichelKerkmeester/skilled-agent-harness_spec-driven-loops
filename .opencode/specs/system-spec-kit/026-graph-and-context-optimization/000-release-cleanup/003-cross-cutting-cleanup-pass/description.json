@@ -1,20 +1,16 @@
 {
   "level": "3",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass",
-  "description": "Phase parent for general cleanup and technical debt remediation across documentation, templates, test infrastructure, code graph, and resource management. 31 children address orphan files, template debt, README alignment, test fixture management, and daemon concurrency fixes.",
+  "description": "Phase Parent: 000-release-cleanup/003-cross-cutting-cleanup-pass",
   "keywords": [
-    "cleanup-omnibus",
-    "003-cross-cutting-cleanup-pass",
-    "documentation",
-    "template-debt",
-    "test-infrastructure",
-    "code-graph",
-    "resource-maps",
-    "remediation"
+    "phase",
+    "parent",
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
   ],
-  "lastUpdated": "2026-05-16T09:00:00Z",
+  "lastUpdated": "2026-05-23T15:24:59.747Z",
   "specId": "003",
-  "folderSlug": "cleanup-omnibus",
+  "folderSlug": "cross-cutting-cleanup-pass",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",

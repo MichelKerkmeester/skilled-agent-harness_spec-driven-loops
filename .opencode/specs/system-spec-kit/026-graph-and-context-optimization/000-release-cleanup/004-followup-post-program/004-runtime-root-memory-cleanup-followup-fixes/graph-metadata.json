@@ -203,7 +203,7 @@
     ],
     "causal_summary": "This is **Phase 54** of `000-release-cleanup`. It captures three operational follow-ons surfaced during post-restart verification of packet 096's singular→plural path rename.",
     "created_at": "2026-05-08T08:36:13Z",
-    "last_save_at": "2026-05-23T11:55:14.840Z",
+    "last_save_at": "2026-05-24T05:40:25.669Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

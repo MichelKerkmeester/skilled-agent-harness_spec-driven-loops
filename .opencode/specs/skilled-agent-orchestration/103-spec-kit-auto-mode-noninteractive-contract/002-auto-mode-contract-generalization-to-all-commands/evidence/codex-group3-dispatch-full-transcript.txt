@@ -1,6 +1,6 @@
 === Group 3 dispatch (2026-05-11T14:18:59+02:00) ===
 Model: gpt-5.5 / high / fast
-Scope: improve/agent (1 command)
+Scope: deep/start-agent-improvement-loop (1 command)
 
 Reading additional input from stdin...
 OpenAI Codex v0.130.0
@@ -15,7 +15,7 @@ reasoning summaries: none
 session id: 019e16f9-f24c-7f32-985a-dad3b193ee19
 --------
 user
-You are migrating the `/improve:*` command Group 3 (1 command) to cite the shared `auto_mode_contract.md` reference and adopt the three-tier `:auto` setup contract.
+You are migrating the `/deep:*` command Group 3 (1 command) to cite the shared `auto_mode_contract.md` reference and adopt the three-tier `:auto` setup contract.
 
 # RUNTIME RULES (read first)
 
@@ -33,7 +33,7 @@ All paths below relative to this root.
 # SCOPE LIST — THE ONLY FILES YOU MAY EDIT
 
 ```
-.opencode/commands/improve/agent.md
+.opencode/commands/deep/start-agent-improvement-loop.md
 .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
 .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt
 ```
@@ -86,7 +86,7 @@ Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `<FIELD-A>`, `<FIELD-B>`. **Ordering rule**: <COMMAND-SPECIFIC-ORDERING-OR-"none-needed">. Missing required fields (absence, not ambiguity) → go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:<COMMAND-NAME>:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:<COMMAND-NAME>:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 ```
@@ -400,7 +400,7 @@ description: Canonical three-tier `:auto` setup-resolution contract shared by ev
 
 # Auto Mode Contract Reference
 
-This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/speckit:*`, `/create:*`, `/improve:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
+This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/speckit:*`, `/create:*`, `/deep:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
 
 Origin: shipped in `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/` (deep-review prototype) and generalized in `.../002-auto-mode-contract-generalization-to-all-commands/` (12-command rollout).
 
@@ -572,19 +572,19 @@ Commands that have adopted this contract:
 
 ## §8. Out of Scope
 
-- Commands without paired YAML workflows (`/improve:prompt`, `agent_router`, etc.) — they have no setup-phase surface where the contract applies.
+- Commands without paired YAML workflows (`/prompt`, `agent_router`, etc.) — they have no setup-phase surface where the contract applies.
 - Skill-internal `:auto` flows (sk-doc, sk-code routing, etc.) — those are skill SKILL.md surfaces, not `/command:*` surfaces.
 - YAML workflow internal interaction gates (e.g. mid-loop approval gates) — handled by each YAML's own non-interactivity rules, not this contract.
 - Cross-command `:auto` integration (e.g. `/speckit:plan:auto` chained into `/speckit:implement:auto`) — separate contract concern.
 
 codex
-The shared contract confirms the shape: cite once, publish the command-local schema/table, keep `:confirm` byte-stable in behavior. I’m pulling the canonical example and phase scope next, then I’ll inspect `/improve:agent`’s current setup fields.
+The shared contract confirms the shape: cite once, publish the command-local schema/table, keep `:confirm` byte-stable in behavior. I’m pulling the canonical example and phase scope next, then I’ll inspect `/deep:start-agent-improvement-loop`’s current setup fields.
 exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/spec.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 title: "Feature Specification: auto-mode-contract generalization to all commands"
-description: "Lift the three-tier :auto contract from /deep:start-review-loop (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /improve/ commands to cite it; full live :auto dispatch verification per command."
+description: "Lift the three-tier :auto contract from /deep:start-review-loop (Phase 1) into a shared reference and migrate 11 remaining /spec_kit/, /create/, /deep/ commands to cite it; full live :auto dispatch verification per command."
 trigger_phrases:
   - "auto mode contract generalization"
   - "spec-kit :auto rollout"
@@ -636,7 +636,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/improve/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
+Phase 1 introduced the three-tier `:auto` contract for `/deep:start-review-loop`. The same architecture and same stdin-hang gap affect 11 other commands across `/spec_kit/`, `/create/`, and `/deep/`. Inlining the three-tier flow into every command duplicates ~300 LOC and risks drift; lifting it into a shared reference doc preserves a single source of truth and keeps each command lean.
 
 ### Purpose
 Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-review to cite it, migrate 11 remaining commands to the same pattern, and verify each one via a live non-interactive `:auto` dispatch.
@@ -653,13 +653,13 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 - Migrate 11 commands' §0 to cite the shared contract + provide their own per-field default table + PRE-BOUND ANSWERS field list:
   - `/speckit:` — deep-research, complete, implement, plan, resume (5)
   - `/create:` — sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme (6)
-  - `/improve:` — agent (1)
+  - `/deep:` — agent (1)
 - Update each migrated command's frontmatter `argument-hint` to reference the new bypass capability.
 - Preserve each command's `:confirm` consolidated Q-block path untouched (regression-check).
 - Full live `:auto` dispatch verification: one transcript per command captured under `evidence/`.
 
 ### Out of Scope
-- `/improve:prompt` and `agent_router` — no paired YAML / dispatch-only.
+- `/prompt` and `agent_router` — no paired YAML / dispatch-only.
 - YAML asset edits unless a live verification surfaces a hard requirement.
 - Cross-command `:auto` integration tests (chained dispatches).
 - Skill-internal `:auto` flows (sk-doc, sk-code, etc.).
@@ -672,7 +672,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 | `.opencode/commands/deep/start-review-loop.md` | Modify | Refactor §0 to cite shared contract |
 | `.opencode/commands/speckit/{deep-research,complete,implement,plan,resume}.md` | Modify | Migrate §0 to shared contract pattern |
 | `.opencode/commands/create/{sk-skill,agent,changelog,feature-catalog,testing-playbook,folder_readme}.md` | Modify | Same |
-| `.opencode/commands/improve/agent.md` | Modify | Same |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Modify | Same |
 | `002/evidence/` | Create dir + 12 files | Live dispatch transcripts |
 <!-- /ANCHOR:scope -->
 
@@ -686,7 +686,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Shared `auto_mode_contract.md` exists with all required sections | `grep -c "^## §[1-8]" auto_mode_contract.md` returns ≥7 |
-| REQ-002 | All 12 commands (deep-review + 11 migrated) cite the shared contract | `grep -l "auto_mode_contract.md" .opencode/commands/{spec_kit,create,improve}/*.md \| wc -l` returns ≥12 |
+| REQ-002 | All 12 commands (deep-review + 11 migrated) cite the shared contract | `grep -l "auto_mode_contract.md" .opencode/commands/{spec_kit,create,deep}/*.md \| wc -l` returns ≥12 |
 | REQ-003 | 12 live `:auto` dispatch evidence files captured | `find 002/evidence -name "*.txt" \| wc -l` returns ≥12 |
 | REQ-004 | ≥10/12 PASS verdicts on live dispatches | Per-evidence-file footer verdict |
 
@@ -749,7 +749,7 @@ Author the shared `auto_mode_contract.md` reference, refactor Phase-1's deep-rev
 
 ### Data Boundaries
 - Command has no `:auto` mode (e.g., `agent_router`): skip from scope.
-- Command has `:auto` but no paired YAML (e.g., `/improve:prompt`): skip — no setup-phase surface.
+- Command has `:auto` but no paired YAML (e.g., `/prompt`): skip — no setup-phase surface.
 - Command's `:auto` path already implements partial three-tier: codex audits and aligns rather than overwriting.
 
 ### Error Scenarios
@@ -895,7 +895,7 @@ exec
    150	   - `--reasoning-effort` -> `config.executor.reasoningEffort`
 
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/commands/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,260p' .opencode/commands/deep/start-agent-improvement-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
 description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -946,7 +946,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │ invocation and runs general-agent based.            │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /improve:agent [arguments]                               │
+    │   │   /deep:start-agent-improvement-loop [arguments]                               │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"
@@ -1243,7 +1243,7 @@ _memory:
 - [ ] T029 Live `:auto` dispatch — `/create:feature-catalog`.
 - [ ] T030 Live `:auto` dispatch — `/create:testing-playbook`.
 - [ ] T031 Live `:auto` dispatch — `/create:folder_readme`.
-- [ ] T032 Live `:auto` dispatch — `/improve:agent`.
+- [ ] T032 Live `:auto` dispatch — `/deep:start-agent-improvement-loop`.
 - [ ] T033 Populate `implementation-summary.md` with 12-row results matrix + per-PARTIAL/FAIL finding.
 - [ ] T034 strict-validate 103 phase parent + 001 + 002 — all exit 0.
 - [ ] T035 Update `_memory.continuity` blocks to `completion_pct: 100`.
@@ -1291,15 +1291,15 @@ speckit_resume_auto.yaml
 speckit_resume_confirm.yaml
 
 codex
-`/improve:agent` is still on the legacy single Q-block setup. The setup fields are small: target path, spec folder, execution mode, scoring mode, and iterations, with target profile derived from the target.
+`/deep:start-agent-improvement-loop` is still on the legacy single Q-block setup. The setup fields are small: target path, spec folder, execution mode, scoring mode, and iterations, with target profile derived from the target.
 exec
 /bin/zsh -lc "rg --files .opencode/commands | rg 'agent.*(auto|confirm)\\.yaml|improve.*agent|agent\\.yaml'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .opencode/commands/create/assets/create_agent_confirm.yaml
 .opencode/commands/create/assets/create_agent_auto.yaml
-.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml
-.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml
-.opencode/commands/improve/agent.md
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
+.opencode/commands/deep/start-agent-improvement-loop.md
 
 exec
 /bin/zsh -lc "find .opencode/commands -path '*assets*' -type f | sort" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -1326,8 +1326,8 @@ exec
 .opencode/commands/doctor/assets/doctor_skill-advisor.yaml
 .opencode/commands/doctor/assets/doctor_skill-budget.yaml
 .opencode/commands/doctor/assets/doctor_update.yaml
-.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml
-.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
 .opencode/commands/speckit/assets/speckit_complete_auto.yaml
 .opencode/commands/speckit/assets/speckit_complete_confirm.yaml
 .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml
@@ -1342,99 +1342,99 @@ exec
 .opencode/commands/speckit/assets/speckit_resume_confirm.yaml
 
 exec
-/bin/zsh -lc "rg -n \"improve:agent|spec_kit_.*agent|agent_auto|agent_confirm|improve_agent\" .opencode/commands .opencode/skills -g '*.md' -g '*.yaml'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "rg -n \"deep:start-agent-improvement-loop|spec_kit_.*agent|agent_auto|agent_confirm|improve_agent\" .opencode/commands .opencode/skills -g '*.md' -g '*.yaml'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .opencode/commands/create/agent.md:16:>    - Auto mode → `create_agent_auto.yaml`
 .opencode/commands/create/agent.md:17:>    - Confirm mode → `create_agent_confirm.yaml`
 .opencode/commands/create/agent.md:86:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/create-agent-config.json` when a spec is linked, otherwise `/tmp/create-agent-config.json` (shape: `agentName`, `agentPath`, `specChoice`, `specPath`, `executionMode: "auto"`, `memoryChoice`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/create/assets/create_agent_auto.yaml`. End §0.
 .opencode/commands/create/agent.md:239:- **AUTONOMOUS (`:auto`)**: `.opencode/commands/create/assets/create_agent_auto.yaml`
 .opencode/commands/create/agent.md:240:- **INTERACTIVE (`:confirm`)**: `.opencode/commands/create/assets/create_agent_confirm.yaml`
-.opencode/commands/improve/agent.md:50:    │   │   /improve:agent [arguments]                               │
-.opencode/commands/improve/agent.md:326:`/improve:agent` is one-session-only in the current release. Every invocation starts a fresh `new`-mode session with generation 1, writes a new journal, and evaluates candidates from iteration 1 for that session.
-.opencode/commands/improve/agent.md:345:/improve:agent ".opencode/agents/debug.md" :confirm --spec-folder=specs/041/008
-.opencode/commands/improve/agent.md:351:/improve:agent ".opencode/agents/debug.md" :auto --iterations=3
-.opencode/commands/improve/agent.md:357:/improve:agent ".opencode/agents/review.md" :auto --iterations=1
-.opencode/commands/improve/agent.md:363:/improve:agent :confirm
-.opencode/skills/deep-agent-improvement/SKILL.md:218:3. Call B: the disciplined `/improve:agent` path against the identical prompt and files.
-.opencode/skills/deep-agent-improvement/SKILL.md:308:Sessions support a single lineage mode today: `new`. Every invocation of the `/improve:agent` workflow starts a fresh session with a new session id and generation 1. Multi-generation lineage modes (`resume`, `restart`, `fork`, `completed-continue`) were described in earlier drafts but have no shipped runtime wiring in the deep-agent-improvement workflow, reducer, or journal consumer.
-.opencode/skills/deep-agent-improvement/SKILL.md:443:- `/improve:agent` initializes and runs the bounded workflow
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md:489:the current release uses standalone `new`-mode sessions, so continuation happens by archiving the previous run and starting a fresh `/improve:agent` session.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md:554:the `/improve:agent` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, nested `legal_stop_evaluated.details.gateResults`, benchmark completion, and `session_end`.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md:557:Prompt summary: As a manual-testing orchestrator, validate that the /improve:agent autonomous workflow wires improvement-journal.cjs at every required boundary: session_start, per-iteration lifecycle checkpoints, nested legal_stop_evaluated.details.gateResults, benchmark_completed, and session_end against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml` contains `improvement-journal.cjs` emission steps for:. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md:597:This section originated as the 060 phase-parent's stress-test campaign for `@deep-agent-improvement`. The 6 scenarios test the agent + command discipline using `/improve:agent` (CP-040/043/044/045) and `@deep-agent-improvement` body (CP-041/042). Final composite score: **PASS 6 / PARTIAL 0 / FAIL 0** (after R3 CRITIC PASS verbatim emission requirement). See `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-deep-agent-improvement-command-flow-stress-tests/test-report.md` for the full campaign narrative.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md:603:Confirm `/improve:agent` proves helper execution instead of merely reading `SKILL.md` and improvising.
-.opencode/skills/deep-agent-improvement/references/quick_reference.md:37:/improve:agent ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:3:description: "Rename the agent across all 4 runtime mirrors plus YAML asset filenames and ~30 active reference files. Completes naming-family alignment with the skill folder rename from packet 079. The skill, agent, and command family now share one identity: deep-agent-improvement skill ↔ @deep-agent-improvement agent ↔ /improve:agent command."
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:29:- **Slash command**: `/improve:agent` (UNCHANGED — `agent` is a generic sub-name, parallel to `/improve:prompt`)
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:50:- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` → `improve_deep-agent-improvement_auto.yaml`
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:51:- `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` → `improve_deep-agent-improvement_confirm.yaml`
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:52:- `.claude/commands/improve/assets/improve_improve-agent_auto.yaml` → `improve_deep-agent-improvement_auto.yaml`
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:53:- `.claude/commands/improve/assets/improve_improve-agent_confirm.yaml` → `improve_deep-agent-improvement_confirm.yaml`
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:65:- **Slash command `/improve:agent`** — `agent` is a generic sub-name like `/improve:prompt`. The dispatcher contract is independent of the agent's identity.
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:66:- **`.gemini/commands/improve/improve-agent.toml` filename** — Gemini convention names slash-command files using flat hyphenated form (`/improve:agent` → `improve-agent.toml`). This file is the slash-command definition, not the agent.
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:84:Old: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml`
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:87:### For `/improve:agent` invocations
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:89:UNCHANGED. The slash command stays `/improve:agent`. No migration needed.
-.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:107:- **Family completion**: skill `deep-agent-improvement` ↔ agent `@deep-agent-improvement` (this entry) ↔ command `/improve:agent` (unchanged)
-.opencode/skills/deep-agent-improvement/test-fixtures/060-stress-test/README.md:9:`cp-improve-target` agent and verify whether `/improve:agent` proves the
-.opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md:9:- The `/improve:agent` command continues to drive the loop; no operator-facing command changed.
-.opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md:83:| `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml`                                                      | Modified | Wired journal emission and legal-stop evaluation in auto mode                                 |
-.opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md:84:| `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml`                                                   | Modified | Mirrored the same runtime truth contract in confirm mode                                      |
-.opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md:91:Existing improvement sessions without the new runtime-truth fields continue to run unchanged (backward compatible). Operators invoking `/improve:agent` now get a reviewable audit journal, mutation coverage graph, trade-off detection, and stability-aware promotion gates - all enforced orchestrator-side so the proposal-only agent constraint is preserved. Legacy `sk-agent-improver` paths are fully removed; update any external references to `deep-agent-improvement`.
-.opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md:97:> This release documented four lifecycle modes for re-entering an `/improve:agent` session: `resume`, `restart`, `fork`, and `completed-continue`. None of the four were ever wired up. The command has no input for lineage mode, the reducer does not carry ancestry across sessions, and the journal helper has no multi-session boundary event. Every invocation is a fresh `new` session.
-.opencode/skills/deep-agent-improvement/changelog/v1.4.0.0.md:18:- Command surfaces in 4 runtimes: OpenCode/Copilot, Claude, Codex, and Gemini command surfaces keep `/improve:agent` while routing references move to the new skill path.
-.opencode/skills/deep-agent-improvement/changelog/v1.4.0.0.md:25:The old path `.opencode/skills/deep-agent-improvement/` no longer resolves. Use `.opencode/skills/deep-agent-improvement/` for skill files, references, assets, scripts, feature catalog entries, and manual testing playbooks. The agent name `@deep-agent-improvement` and command `/improve:agent` are unchanged.
-.opencode/skills/deep-agent-improvement/changelog/v1.0.0.0.md:73:The `@agent-improver` agent and `/improve:agent` command are mirrored across all 5 runtimes (OpenCode, Claude, Codex, .agents, Gemini). The integration scanner checks mirror parity automatically.
-.opencode/skills/deep-agent-improvement/changelog/v1.0.0.0.md:85:Renamed from `sk-recursive-agent` to `deep-agent-improvement` across 187+ files and 1129+ occurrences. Command moved from `/speckit:recursive-agent` to `/improve:agent`. Agent renamed from `@recursive-agent` to `@agent-improver`. Zero stale references remaining (verified by fresh sub-agent audit).
-.opencode/skills/deep-agent-improvement/changelog/v1.0.0.0.md:101:| `.opencode/commands/improve/assets/improve_agent-improver_*.yaml` | Created | Auto + confirm YAML workflows |
-.opencode/skills/deep-agent-improvement/changelog/v1.2.1.0.md:13:- **Resume/continuation expected behavior retracted to match reality** -- The skill's runtime-truth section and the `/improve:agent` command definition both listed `resume`, `restart`, `fork`, and `completed-continue` as supported lifecycle modes for evaluating an agent across multiple sessions. The shipped workflow has no inputs for any of them, the reducer does not produce ancestry output, and the journal helper has no boundary event for a multi-session run history. The only thing the runtime actually supports is `new` - every `/improve:agent` invocation starts a fresh session with generation 1. The documentation now says so explicitly. Operators who want to continue an evaluation should archive the prior `improve/` folder under a timestamped path and re-invoke the command. A future release that ships real multi-session run history will arrive with first-class event emission, reducer ancestry output, and replay coverage; until then, treat every invocation as a standalone evaluation.
-.opencode/skills/deep-agent-improvement/changelog/v1.2.0.0.md:1:This release lands Phase 008 of the 042 Deep Research & Review Runtime Improvement Bundle for `deep-agent-improvement`. The skill now (a) actually calls `improvement-journal.cjs` from the visible `/improve:agent` YAML workflow at every iteration boundary, (b) enforces minimum sample sizes before trade-off and stability verdicts, and (c) implements ADR-002 Option A by reading `improvement-journal.jsonl`, `candidate-run history.json`, and `mutation-coverage.json` during reducer refresh. The visible operator path now emits the richer runtime-truth state the v1.1.0.0 expected behavior promised. The goal is to make the workflow easier to follow and easier to trust.
+.opencode/commands/deep/start-agent-improvement-loop.md:50:    │   │   /deep:start-agent-improvement-loop [arguments]                               │
+.opencode/commands/deep/start-agent-improvement-loop.md:326:`/deep:start-agent-improvement-loop` is one-session-only in the current release. Every invocation starts a fresh `new`-mode session with generation 1, writes a new journal, and evaluates candidates from iteration 1 for that session.
+.opencode/commands/deep/start-agent-improvement-loop.md:345:/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder=specs/041/008
+.opencode/commands/deep/start-agent-improvement-loop.md:351:/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :auto --iterations=3
+.opencode/commands/deep/start-agent-improvement-loop.md:357:/deep:start-agent-improvement-loop ".opencode/agents/review.md" :auto --iterations=1
+.opencode/commands/deep/start-agent-improvement-loop.md:363:/deep:start-agent-improvement-loop :confirm
+.opencode/skills/deep-agent-improvement/SKILL.md:218:3. Call B: the disciplined `/deep:start-agent-improvement-loop` path against the identical prompt and files.
+.opencode/skills/deep-agent-improvement/SKILL.md:308:Sessions support a single lineage mode today: `new`. Every invocation of the `/deep:start-agent-improvement-loop` workflow starts a fresh session with a new session id and generation 1. Multi-generation lineage modes (`resume`, `restart`, `fork`, `completed-continue`) were described in earlier drafts but have no shipped runtime wiring in the deep-agent-improvement workflow, reducer, or journal consumer.
+.opencode/skills/deep-agent-improvement/SKILL.md:443:- `/deep:start-agent-improvement-loop` initializes and runs the bounded workflow
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md:489:the current release uses standalone `new`-mode sessions, so continuation happens by archiving the previous run and starting a fresh `/deep:start-agent-improvement-loop` session.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md:554:the `/deep:start-agent-improvement-loop` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, nested `legal_stop_evaluated.details.gateResults`, benchmark completion, and `session_end`.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md:557:Prompt summary: As a manual-testing orchestrator, validate that the /deep:start-agent-improvement-loop autonomous workflow wires improvement-journal.cjs at every required boundary: session_start, per-iteration lifecycle checkpoints, nested legal_stop_evaluated.details.gateResults, benchmark_completed, and session_end against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` contains `improvement-journal.cjs` emission steps for:. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md:597:This section originated as the 060 phase-parent's stress-test campaign for `@deep-agent-improvement`. The 6 scenarios test the agent + command discipline using `/deep:start-agent-improvement-loop` (CP-040/043/044/045) and `@deep-agent-improvement` body (CP-041/042). Final composite score: **PASS 6 / PARTIAL 0 / FAIL 0** (after R3 CRITIC PASS verbatim emission requirement). See `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-deep-agent-improvement-command-flow-stress-tests/test-report.md` for the full campaign narrative.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md:603:Confirm `/deep:start-agent-improvement-loop` proves helper execution instead of merely reading `SKILL.md` and improvising.
+.opencode/skills/deep-agent-improvement/references/quick_reference.md:37:/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:3:description: "Rename the agent across all 4 runtime mirrors plus YAML asset filenames and ~30 active reference files. Completes naming-family alignment with the skill folder rename from packet 079. The skill, agent, and command family now share one identity: deep-agent-improvement skill ↔ @deep-agent-improvement agent ↔ /deep:start-agent-improvement-loop command."
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:29:- **Slash command**: `/deep:start-agent-improvement-loop` (UNCHANGED — `agent` is a generic sub-name, parallel to `/prompt`)
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:50:- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` → `deep_start-agent-improvement-loop_auto.yaml`
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:51:- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` → `deep_start-agent-improvement-loop_confirm.yaml`
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:52:- `.claude/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` → `deep_start-agent-improvement-loop_auto.yaml`
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:53:- `.claude/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` → `deep_start-agent-improvement-loop_confirm.yaml`
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:65:- **Slash command `/deep:start-agent-improvement-loop`** — `agent` is a generic sub-name like `/prompt`. The dispatcher contract is independent of the agent's identity.
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:66:- **`.gemini/commands/deep/start-agent-improvement-loop.toml` filename** — Gemini convention names slash-command files using flat hyphenated form (`/deep:start-agent-improvement-loop` → `improve-agent.toml`). This file is the slash-command definition, not the agent.
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:84:Old: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:87:### For `/deep:start-agent-improvement-loop` invocations
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:89:UNCHANGED. The slash command stays `/deep:start-agent-improvement-loop`. No migration needed.
+.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md:107:- **Family completion**: skill `deep-agent-improvement` ↔ agent `@deep-agent-improvement` (this entry) ↔ command `/deep:start-agent-improvement-loop` (unchanged)
+.opencode/skills/deep-agent-improvement/test-fixtures/060-stress-test/README.md:9:`cp-improve-target` agent and verify whether `/deep:start-agent-improvement-loop` proves the
+.opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md:9:- The `/deep:start-agent-improvement-loop` command continues to drive the loop; no operator-facing command changed.
+.opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md:83:| `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml`                                                      | Modified | Wired journal emission and legal-stop evaluation in auto mode                                 |
+.opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md:84:| `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml`                                                   | Modified | Mirrored the same runtime truth contract in confirm mode                                      |
+.opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md:91:Existing improvement sessions without the new runtime-truth fields continue to run unchanged (backward compatible). Operators invoking `/deep:start-agent-improvement-loop` now get a reviewable audit journal, mutation coverage graph, trade-off detection, and stability-aware promotion gates - all enforced orchestrator-side so the proposal-only agent constraint is preserved. Legacy `sk-agent-improver` paths are fully removed; update any external references to `deep-agent-improvement`.
+.opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md:97:> This release documented four lifecycle modes for re-entering an `/deep:start-agent-improvement-loop` session: `resume`, `restart`, `fork`, and `completed-continue`. None of the four were ever wired up. The command has no input for lineage mode, the reducer does not carry ancestry across sessions, and the journal helper has no multi-session boundary event. Every invocation is a fresh `new` session.
+.opencode/skills/deep-agent-improvement/changelog/v1.4.0.0.md:18:- Command surfaces in 4 runtimes: OpenCode/Copilot, Claude, Codex, and Gemini command surfaces keep `/deep:start-agent-improvement-loop` while routing references move to the new skill path.
+.opencode/skills/deep-agent-improvement/changelog/v1.4.0.0.md:25:The old path `.opencode/skills/deep-agent-improvement/` no longer resolves. Use `.opencode/skills/deep-agent-improvement/` for skill files, references, assets, scripts, feature catalog entries, and manual testing playbooks. The agent name `@deep-agent-improvement` and command `/deep:start-agent-improvement-loop` are unchanged.
+.opencode/skills/deep-agent-improvement/changelog/v1.0.0.0.md:73:The `@agent-improver` agent and `/deep:start-agent-improvement-loop` command are mirrored across all 5 runtimes (OpenCode, Claude, Codex, .agents, Gemini). The integration scanner checks mirror parity automatically.
+.opencode/skills/deep-agent-improvement/changelog/v1.0.0.0.md:85:Renamed from `sk-recursive-agent` to `deep-agent-improvement` across 187+ files and 1129+ occurrences. Command moved from `/speckit:recursive-agent` to `/deep:start-agent-improvement-loop`. Agent renamed from `@recursive-agent` to `@agent-improver`. Zero stale references remaining (verified by fresh sub-agent audit).
+.opencode/skills/deep-agent-improvement/changelog/v1.0.0.0.md:101:| `.opencode/commands/deep/assets/improve_agent-improver_*.yaml` | Created | Auto + confirm YAML workflows |
+.opencode/skills/deep-agent-improvement/changelog/v1.2.1.0.md:13:- **Resume/continuation expected behavior retracted to match reality** -- The skill's runtime-truth section and the `/deep:start-agent-improvement-loop` command definition both listed `resume`, `restart`, `fork`, and `completed-continue` as supported lifecycle modes for evaluating an agent across multiple sessions. The shipped workflow has no inputs for any of them, the reducer does not produce ancestry output, and the journal helper has no boundary event for a multi-session run history. The only thing the runtime actually supports is `new` - every `/deep:start-agent-improvement-loop` invocation starts a fresh session with generation 1. The documentation now says so explicitly. Operators who want to continue an evaluation should archive the prior `improve/` folder under a timestamped path and re-invoke the command. A future release that ships real multi-session run history will arrive with first-class event emission, reducer ancestry output, and replay coverage; until then, treat every invocation as a standalone evaluation.
+.opencode/skills/deep-agent-improvement/changelog/v1.2.0.0.md:1:This release lands Phase 008 of the 042 Deep Research & Review Runtime Improvement Bundle for `deep-agent-improvement`. The skill now (a) actually calls `improvement-journal.cjs` from the visible `/deep:start-agent-improvement-loop` YAML workflow at every iteration boundary, (b) enforces minimum sample sizes before trade-off and stability verdicts, and (c) implements ADR-002 Option A by reading `improvement-journal.jsonl`, `candidate-run history.json`, and `mutation-coverage.json` during reducer refresh. The visible operator path now emits the richer runtime-truth state the v1.1.0.0 expected behavior promised. The goal is to make the workflow easier to follow and easier to trust.
 .opencode/skills/deep-agent-improvement/changelog/v1.2.0.0.md:7:- `improve_agent-improver_{auto,confirm}.yaml` now invoke `improvement-journal.cjs` at three boundary points: session start, every iteration boundary (candidate generated to scored to gate evaluation), and session end. The orchestrator-only constraint is preserved - the proposal-only agent still never writes journal rows itself.
-.opencode/skills/deep-agent-improvement/changelog/v1.2.0.0.md:73:| `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml` | Modified | Wired step_emit_journal_event at session_start + iteration + session_end |
-.opencode/skills/deep-agent-improvement/changelog/v1.2.0.0.md:74:| `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml` | Modified | Mirrored the same journal wiring in confirm mode |
-.opencode/skills/deep-agent-improvement/changelog/v1.2.0.0.md:83:Operators invoking `/improve:agent` now see a richer dashboard with the Sample Quality section and the full journal/lineage/coverage summary. The visible workflow emits the journal events the v1.1.0.0 contract already promised - the contract break that Phase 008 Part A surfaced is now closed.
-.opencode/skills/deep-agent-improvement/changelog/v1.0.1.0.md:11:- **Self-test completed** (Phase 009): Ran `/improve:agent` targeting `agent-improver.md` itself. 3 iterations, baseline 99→100, all 5 dimensions converged at 100. First real end-to-end validation of the skill on its own agent.
-.opencode/skills/deep-agent-improvement/changelog/v1.0.1.0.md:12:- **Stale command path fixed** (Phase 010): Canonical agent-improver.md had `/improve:agent-improver` pointing to a nonexistent file. Fixed to `/improve:agent` → `.opencode/commands/improve/agent.md`. Synced to all 4 mirrors.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:45:| RT-028 | Legal-Stop Gate Blocking | Validate Legal-Stop Gate Blocking | `Validate that failed legal-stop gates record blockedStop instead of converged.` | /improve:agent &quot;.opencode/agents/debug.md&quot; :confirm --spec-folder={spec} --iterations=5<br><br><br>Verification:<br><br><br>node .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs --read {spec}/improvement/improvement-journal.jsonl &#124; python3 -c &quot;<br>import sys, json<br>events = json.load(sys.stdin)<br># Check for legal_stop_evaluated events<br>lse = [e for e in events if e[&#x27;eventType&#x27;] == &#x27;legal_stop_evaluated&#x27;]<br>blocked = [e for e in events if e[&#x27;eventType&#x27;] == &#x27;blocked_stop&#x27;]<br>GATES = [&#x27;contractGate&#x27;, &#x27;behaviorGate&#x27;, &#x27;integrationGate&#x27;, &#x27;evidenceGate&#x27;, &#x27;improvementGate&#x27;]<br>if lse:<br>    gates = lse[-1].get(&#x27;details&#x27;, {}).get(&#x27;gateResults&#x27;, {})<br>    present = [g for g in GATES if g in gates]<br>    print(f&#x27;legal_stop_evaluated found — gates present: {present}&#x27;)<br>if blocked:<br>    failed = blocked[-1].get(&#x27;details&#x27;, {}).get(&#x27;failedGates&#x27;, [])<br>    print(f&#x27;blocked_stop found — failed gates: {failed}&#x27;)<br>    print(&#x27;PASS — blockedStop recorded with failed gate details&#x27;)<br>else:<br>    ends = [e for e in events if e[&#x27;eventType&#x27;] in (&#x27;session_ended&#x27;, &#x27;session_end&#x27;)]<br>    if ends and ends[-1].get(&#x27;details&#x27;, {}).get(&#x27;stopReason&#x27;) == &#x27;converged&#x27;:<br>        print(&#x27;INFO — session converged (all gates passed), no blockedStop expected&#x27;)<br>    else:<br>        print(&#x27;INFO — no blocked_stop event found; may need scenario with intentional gate failure&#x27;)<br>&quot; | `legal_stop_evaluated` event emitted with nested `details.gateResults` containing all 5 gate bundles; `contractGate`: structural >= 90 AND systemFitness >= 90; `behaviorGate`: ruleCoherence >= 85 AND outputQuality >= 85; `integrationGate`: integration >= 90 AND no drift ambiguity; `evidenceGate`: benchmark pass AND repeatability pass; `improvementGate`: weighted delta >= configured threshold; When any gate fails: `blocked_stop` event emitted with `failedGates[]` and `reason`; Session `stopReason` is `blockedStop` (not `converged`) when gates fail; The session continues iterating (does not prematurely terminate) when gates block convergence; If all 5 gates pass: `converged` stopReason is used instead | `terminal transcript, command output, generated files, and PASS/FAIL verdict` | When convergence math would trigger stop but at least one gate bundle fails, the journal contains a `blocked_stop` event with the failing gate names, and the session's `stopReason` is `blockedStop` -- the session does NOT claim `converged`. | If `legal_stop_evaluated` is missing: verify the orchestrator calls the legal-stop evaluation after convergence math triggers<br>If `blocked_stop` is missing when a gate fails: check the conditional that routes to `blocked_stop` vs `converged` based on gate results<br>If `stopReason` is `converged` despite failing gates: the gate-check-before-converge guard is bypassed; check the orchestrator&#x27;s stop-reason assignment logic<br>If gate results are empty: verify each gate bundle function is implemented and returns a pass/fail result |
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:16:This scenario validates that the `/improve:agent` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, nested `legal_stop_evaluated.details.gateResults`, and `session_end`. Given: a fresh `/improve:agent` `:auto` session. When: the operator runs the session end-to-end or inspects `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. Then: journal events appear in `improvement-journal.jsonl` for every boundary, the CLI example in `.opencode/commands/improve/agent.md` executes as written against a temp target, and the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums match the helper validator.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:23:- Real user request: `` Validate that the `/improve:agent` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, nested `legal_stop_evaluated.details.gateResults`, and `session_end`. Given: a fresh `/improve:agent` `:auto` session. When: the operator runs the session end-to-end or inspects `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. Then: journal events appear in `improvement-journal.jsonl` for every boundary, the CLI example in `.opencode/commands/improve/agent.md` executes as written against a temp target, and the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums match the helper validator. ``
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:24:- Prompt: `Validate that /improve:agent wires improvement-journal.cjs at every required workflow boundary.`
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:45:| RT-032 | Journal Wiring Boundary Coverage | Validate Journal Wiring Boundary Coverage | `Validate that /improve:agent wires improvement-journal.cjs at every required workflow boundary.` | /improve:agent &quot;.opencode/agents/debug.md&quot; :auto --spec-folder={spec} --iterations=2<br><br><br>Verification:<br><br><br>AUTO_YAML=.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml<br>TMP_SPEC=&quot;$(mktemp -d /tmp/deep-agent-improvement-journal-XXXXXX)&quot;<br>TMP_JOURNAL=&quot;$TMP_SPEC/improvement/improvement-journal.jsonl&quot;<br><br><br>grep -n &quot;improvement-journal.cjs\&#124;--emit&quot; &quot;$AUTO_YAML&quot;<br><br><br>python3 - &lt;&lt;&#x27;PY&#x27;<br>from pathlib import Path<br>yaml_text = Path(&quot;.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml&quot;).read_text()<br>required = [<br>    &quot;session_start&quot;,<br>    &quot;candidate_generated&quot;,<br>    &quot;candidate_scored&quot;,<br>    &quot;benchmark_completed&quot;,<br>    &quot;legal_stop_evaluated&quot;,<br>    &quot;gateResults&quot;,<br>    &quot;session_end&quot;,<br>]<br>missing = [token for token in required if token not in yaml_text]<br>assert not missing, f&quot;Missing journal boundaries in auto YAML: {missing}&quot;<br>print(&quot;PASS — auto YAML covers start, iteration, nested legal-stop, benchmark, and end boundaries&quot;)<br>PY<br><br><br>node .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs --emit session_start --journal &quot;$TMP_JOURNAL&quot; --details &#x27;{&quot;sessionId&quot;:&quot;imp-2026-04-11T12-00-00Z&quot;,&quot;target&quot;:&quot;deep-research&quot;,&quot;charter&quot;:&quot;...&quot;,&quot;startedAt&quot;:&quot;2026-04-11T12:00:00Z&quot;}&#x27;<br><br><br>node .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs --read &quot;$TMP_JOURNAL&quot; &#124; python3 -c &quot;<br>import sys, json<br>events = json.load(sys.stdin)<br>assert len(events) == 1 and events[0][&#x27;eventType&#x27;] == &#x27;session_start&#x27;, &#x27;CLI example did not emit session_start&#x27;<br>print(&#x27;PASS — command doc CLI example executed successfully&#x27;)<br>&quot;<br><br><br>grep -A 7 &quot;STOP_REASONS\&#124;SESSION_OUTCOMES\&#124;LEGAL_STOP_GATES&quot; .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs<br><br><br>python3 - &lt;&lt;&#x27;PY&#x27;<br>from pathlib import Path<br>doc = Path(&quot;.opencode/commands/improve/agent.md&quot;).read_text()<br>script = Path(&quot;.opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs&quot;).read_text()<br>required_stop = [<br>    &quot;converged&quot;,<br>    &quot;maxIterationsReached&quot;,<br>    &quot;blockedStop&quot;,<br>    &quot;manualStop&quot;,<br>    &quot;error&quot;,<br>    &quot;stuckRecovery&quot;,<br>]<br>required_outcomes = [<br>    &quot;keptBaseline&quot;,<br>    &quot;promoted&quot;,<br>    &quot;rolledBack&quot;,<br>    &quot;advisoryOnly&quot;,<br>]<br>required_gates = [&quot;contractGate&quot;, &quot;behaviorGate&quot;, &quot;integrationGate&quot;, &quot;evidenceGate&quot;, &quot;improvementGate&quot;]<br>for token in required_stop + required_outcomes:<br>    assert token in doc, f&quot;Missing enum token in command doc: {token}&quot;<br>    assert token in script, f&quot;Missing enum token in helper: {token}&quot;<br>for token in required_gates:<br>    assert token in script, f&quot;Missing legal-stop gate token in helper: {token}&quot;<br>print(&quot;PASS — command doc taxonomy and legal-stop gates match improvement-journal.cjs enums&quot;)<br>PY<br><br><br>rm -rf &quot;$TMP_SPEC&quot; | `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml` contains `improvement-journal.cjs` emission steps for:; `session_start` before the first loop iteration; `candidate_generated`, `candidate_scored`, `benchmark_completed`, nested `legal_stop_evaluated.details.gateResults`, and `gate_evaluation`/stop checks inside each iteration; `session_end` after synthesis completes; The CLI example from `.opencode/commands/improve/agent.md` executes successfully against a temp journal target with exit code `0`; `improvement-journal.cjs` exports frozen `STOP_REASONS`, `SESSION_OUTCOMES`, and legal-stop gate names; `validateEvent()` accepts only those enum members for `session_end` / `session_ended`; The command doc taxonomy in `agent.md` matches the helper's internal validator and does not drift | `terminal transcript, command output, generated files, and PASS/FAIL verdict` | The autonomous YAML contains journal emission coverage for session start, per-iteration lifecycle checkpoints, nested legal-stop, benchmark completion, and session end; the CLI example from `.opencode/commands/improve/agent.md` runs successfully as written against a temp journal path; and the stop-reason / session-outcome enums in the command doc match the frozen values enforced by `improvement-journal.cjs`. | If any boundary is missing from the YAML: add or restore the missing `step_emit_journal_event*` command in `improve_deep-agent-improvement_auto.yaml`<br>If the CLI example exits non-zero: copy the exact example from `.opencode/commands/improve/agent.md` and reconcile the helper CLI contract (`--emit`, `--journal`, `--details`)<br>If `legal_stop_evaluated` validation fails: confirm `details.gateResults` includes all five gate keys<br>If `session_end` is emitted but validation fails: compare the emitted `details.stopReason` / `details.sessionOutcome` values against the frozen enums in `improvement-journal.cjs`<br>If the doc taxonomy drifts from the helper: update the command doc and helper together so the runtime contract stays frozen |
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:3:description: "Validate that /improve:agent executes the deep-agent-improvement protocol instead of merely reading SKILL.md and improvising."
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:26:- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox ``
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:37:- Expected execution process: run the CP-061 setup helper to create a command-capable `/tmp/cp-040-sandbox/`, copy `/tmp/cp-040-sandbox-baseline`, capture project tripwire from the repo root, run Call A with `As @Task:`, reset sandbox, run Call B from `/tmp/cp-040-sandbox/` via `/improve:agent`, then return to the repo root for transcript, artifact, diff, and tripwire checks.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:40:  - **Call B (`/improve:agent` command flow)**: Transcript or artifacts contain `scan-integration.cjs`, `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `candidate_generated`, and `candidate_scored`. Candidate path is under `/tmp/cp-040-spec/improvement/candidates/`. Canonical target diff is empty. Project tripwire is empty.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:52:5. Run Call B as `/improve:agent ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-040-spec --iterations=1` from inside `/tmp/cp-040-sandbox/`.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:74:copilot -p "/improve:agent \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-040-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-040-sandbox --add-dir /tmp/cp-040-spec 2>&1 | tee /tmp/cp-040-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-040-B-exit.txt
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:87:| CP-040 | SKILL_LOAD_NOT_PROTOCOL | Confirm helper execution is proven, not only skill loading | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox `` | Run the §3 exact command block | B field counts for helper and journal labels all >= 1; `POST_B_CANONICAL_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-040-B-command.txt`, `/tmp/cp-040-B-combined.txt`, `/tmp/cp-040-B-field-counts.txt`, `/tmp/cp-040-B-canonical.diff`, `/tmp/cp-040-tripwire.diff` | PASS if B proves helper and journal boundaries without canonical mutation. FAIL if B treats skill load as enough or writes canonical target | 1. If helper labels are missing, verify command-flow dispatch and helper execution. 2. If candidate journal labels are missing, inspect `/tmp/cp-040-spec/improvement/`. 3. If canonical diff is non-empty, repair proposal-only boundary. 4. If only skill-load text appears, distinguish loading from execution. 5. If tripwire diff is non-empty, inspect project mutation before rerun. |
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:26:- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox ``
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:37:- Expected execution process: run the CP-061 setup helper to create a command-capable `/tmp/cp-044-sandbox/`, run A, reset, run B from `/tmp/cp-044-sandbox/` via `/improve:agent`, then grep score JSON, transcript, and legal-stop output.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:40:  - **Call B (`/improve:agent` command flow)**: Contains `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, nested `details.gateResults.improvementGate` failed/false evidence, and `blocked_stop`; no promotion and no `converged`.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:49:2. Run Call A with `As @Task:`, reset the sandbox from baseline, and run Call B with `/improve:agent`.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:72:copilot -p "/improve:agent \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-044-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-044-sandbox --add-dir /tmp/cp-044-spec 2>&1 | tee /tmp/cp-044-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-044-B-exit.txt
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:84:| CP-044 | IMPROVEMENT_GATE_DELTA | Confirm acceptable absolute score does not pass improvementGate | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox `` | Run the §3 exact command block | B comparison labels include `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, and `improvementGate`; promotion/converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-044-B-command.txt`, `/tmp/cp-044-B-combined.txt`, `/tmp/cp-044-B-field-counts.txt`, `/tmp/cp-044-B-promotion-or-converged-count.txt`, `/tmp/cp-044-tripwire.diff` | PASS if delta evidence blocks promotion. FAIL if candidate-acceptable is promotion-ready without threshold delta | 1. If `delta` is missing, verify `score-candidate.cjs --baseline` executed. 2. If promotion appears, split acceptable from better. 3. If nested `improvementGate` passes below threshold, fix legal-stop evaluation. |
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:26:- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox ``
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:37:- Expected execution process: run the CP-061 setup helper to create a command-capable `/tmp/cp-043-sandbox/`, run A, reset, run B from `/tmp/cp-043-sandbox/` via `/improve:agent`, then grep transcript and journal output for complete legal-stop evidence.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:40:  - **Call B (`/improve:agent` command flow)**: Contains `legal_stop_evaluated`, nested `details.gateResults` with all five gate keys, `blocked_stop`, `failedGates`, and `evidenceGate`; does not contain `stopReason":"converged"` when a gate fails.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:49:2. Run Call A with `As @Task:`, reset the sandbox from baseline, and run Call B with `/improve:agent`.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:72:copilot -p "/improve:agent \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-043-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-043-sandbox --add-dir /tmp/cp-043-spec 2>&1 | tee /tmp/cp-043-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-043-B-exit.txt
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:85:| CP-043 | LEGAL_STOP_GATE_BUNDLE | Confirm all five legal-stop gates block convergence | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox `` | Run the §3 exact command block | B field counts for `details.gateResults` and all five gate keys are >= 1; `blocked_stop` appears when any gate fails; converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-043-B-command.txt`, `/tmp/cp-043-B-combined.txt`, `/tmp/cp-043-B-field-counts.txt`, `/tmp/cp-043-B-converged-count.txt`, `/tmp/cp-043-tripwire.diff` | PASS if complete `details.gateResults` bundle and blocked stop appear. FAIL if generic gate evaluation substitutes for legal-stop evidence | 1. If `legal_stop_evaluated` is absent, verify command-flow legal-stop execution. 2. If `details.gateResults` or any gate key is missing, require the full nested bundle, not flat `gateResult`. 3. If converged appears with failed gate, derive stop reason from legal-stop artifact. |
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:26:- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox ``
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:37:- Expected execution process: run the CP-061 setup helper to create a command-capable `/tmp/cp-045-sandbox/`, run A, reset, run B from `/tmp/cp-045-sandbox/` via `/improve:agent`, then grep B transcript, benchmark report, state log, and journal artifacts.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:40:  - **Call B (`/improve:agent` command flow)**: Contains `benchmark-outputs/report.json`, `status:"benchmark-complete"`, a `benchmark_run` state row, and report-gated `benchmark_completed`; `benchmark_completed` is not accepted unless `report.json` exists first.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:49:2. Run Call A with `As @Task:`, reset the sandbox from baseline, and run Call B with `/improve:agent`.
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:72:copilot -p "/improve:agent \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-045-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-045-sandbox --add-dir /tmp/cp-045-spec 2>&1 | tee /tmp/cp-045-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-045-B-exit.txt
-.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:94:| CP-045 | BENCHMARK_COMPLETED_BOUNDARY | Confirm benchmark completion is evented and file-backed | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox `` | Run the §3 exact command block | B field counts for `benchmark-outputs/report.json`, `status:"benchmark-complete"`, `benchmark_run`, and `benchmark_completed` are >= 1; `BENCHMARK_REPORT_EXISTS=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-045-B-command.txt`, `/tmp/cp-045-B-combined.txt`, `/tmp/cp-045-B-field-counts.txt`, `/tmp/cp-045-report-exit.txt`, `/tmp/cp-045-tripwire.diff` | PASS if report, status, benchmark_run, and report-gated benchmark_completed evidence exist. FAIL if action prose alone is accepted | 1. If report is absent, benchmark runner did not execute or wrote to the wrong path. 2. If event is absent, add report-gated journal emission. 3. If `benchmark_run` is absent, check state-log append. 4. If `benchmark_completed` appears without `report.json`, restore report-gated event ordering. |
-.opencode/skills/deep-agent-improvement/README.md:92:/improve:agent ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
-.opencode/skills/deep-agent-improvement/README.md:298:/improve:agent ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
-.opencode/skills/deep-agent-improvement/README.md:339:The `@deep-agent-improvement` agent and `/improve:agent` command are mirrored across all runtimes. The integration scanner checks mirror parity automatically.
-.opencode/skills/deep-agent-improvement/feature_catalog/feature_catalog.md:28:| Integration scanning | 3 features | `scan-integration.cjs`, `/improve:agent`, `.opencode/agents/deep-agent-improvement.md` |
-.opencode/skills/deep-agent-improvement/feature_catalog/feature_catalog.md:177:The `/improve:agent` command collects setup inputs, selects `:auto` or `:confirm` execution, and points the operator at the matching YAML workflow. The actual loop dispatch lives in the YAML assets, which rescan integration, dispatch `@deep-agent-improvement`, emit journal events, and call score and reducer helpers, while the command markdown explicitly says not to dispatch agents from the command file itself.
+.opencode/skills/deep-agent-improvement/changelog/v1.2.0.0.md:73:| `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml` | Modified | Wired step_emit_journal_event at session_start + iteration + session_end |
+.opencode/skills/deep-agent-improvement/changelog/v1.2.0.0.md:74:| `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml` | Modified | Mirrored the same journal wiring in confirm mode |
+.opencode/skills/deep-agent-improvement/changelog/v1.2.0.0.md:83:Operators invoking `/deep:start-agent-improvement-loop` now see a richer dashboard with the Sample Quality section and the full journal/lineage/coverage summary. The visible workflow emits the journal events the v1.1.0.0 contract already promised - the contract break that Phase 008 Part A surfaced is now closed.
+.opencode/skills/deep-agent-improvement/changelog/v1.0.1.0.md:11:- **Self-test completed** (Phase 009): Ran `/deep:start-agent-improvement-loop` targeting `agent-improver.md` itself. 3 iterations, baseline 99→100, all 5 dimensions converged at 100. First real end-to-end validation of the skill on its own agent.
+.opencode/skills/deep-agent-improvement/changelog/v1.0.1.0.md:12:- **Stale command path fixed** (Phase 010): Canonical agent-improver.md had `/deep:start-agent-improvement-loop-improver` pointing to a nonexistent file. Fixed to `/deep:start-agent-improvement-loop` → `.opencode/commands/deep/start-agent-improvement-loop.md`. Synced to all 4 mirrors.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/028-legal-stop-gates.md:45:| RT-028 | Legal-Stop Gate Blocking | Validate Legal-Stop Gate Blocking | `Validate that failed legal-stop gates record blockedStop instead of converged.` | /deep:start-agent-improvement-loop &quot;.opencode/agents/debug.md&quot; :confirm --spec-folder={spec} --iterations=5<br><br><br>Verification:<br><br><br>node .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs --read {spec}/improvement/improvement-journal.jsonl &#124; python3 -c &quot;<br>import sys, json<br>events = json.load(sys.stdin)<br># Check for legal_stop_evaluated events<br>lse = [e for e in events if e[&#x27;eventType&#x27;] == &#x27;legal_stop_evaluated&#x27;]<br>blocked = [e for e in events if e[&#x27;eventType&#x27;] == &#x27;blocked_stop&#x27;]<br>GATES = [&#x27;contractGate&#x27;, &#x27;behaviorGate&#x27;, &#x27;integrationGate&#x27;, &#x27;evidenceGate&#x27;, &#x27;improvementGate&#x27;]<br>if lse:<br>    gates = lse[-1].get(&#x27;details&#x27;, {}).get(&#x27;gateResults&#x27;, {})<br>    present = [g for g in GATES if g in gates]<br>    print(f&#x27;legal_stop_evaluated found — gates present: {present}&#x27;)<br>if blocked:<br>    failed = blocked[-1].get(&#x27;details&#x27;, {}).get(&#x27;failedGates&#x27;, [])<br>    print(f&#x27;blocked_stop found — failed gates: {failed}&#x27;)<br>    print(&#x27;PASS — blockedStop recorded with failed gate details&#x27;)<br>else:<br>    ends = [e for e in events if e[&#x27;eventType&#x27;] in (&#x27;session_ended&#x27;, &#x27;session_end&#x27;)]<br>    if ends and ends[-1].get(&#x27;details&#x27;, {}).get(&#x27;stopReason&#x27;) == &#x27;converged&#x27;:<br>        print(&#x27;INFO — session converged (all gates passed), no blockedStop expected&#x27;)<br>    else:<br>        print(&#x27;INFO — no blocked_stop event found; may need scenario with intentional gate failure&#x27;)<br>&quot; | `legal_stop_evaluated` event emitted with nested `details.gateResults` containing all 5 gate bundles; `contractGate`: structural >= 90 AND systemFitness >= 90; `behaviorGate`: ruleCoherence >= 85 AND outputQuality >= 85; `integrationGate`: integration >= 90 AND no drift ambiguity; `evidenceGate`: benchmark pass AND repeatability pass; `improvementGate`: weighted delta >= configured threshold; When any gate fails: `blocked_stop` event emitted with `failedGates[]` and `reason`; Session `stopReason` is `blockedStop` (not `converged`) when gates fail; The session continues iterating (does not prematurely terminate) when gates block convergence; If all 5 gates pass: `converged` stopReason is used instead | `terminal transcript, command output, generated files, and PASS/FAIL verdict` | When convergence math would trigger stop but at least one gate bundle fails, the journal contains a `blocked_stop` event with the failing gate names, and the session's `stopReason` is `blockedStop` -- the session does NOT claim `converged`. | If `legal_stop_evaluated` is missing: verify the orchestrator calls the legal-stop evaluation after convergence math triggers<br>If `blocked_stop` is missing when a gate fails: check the conditional that routes to `blocked_stop` vs `converged` based on gate results<br>If `stopReason` is `converged` despite failing gates: the gate-check-before-converge guard is bypassed; check the orchestrator&#x27;s stop-reason assignment logic<br>If gate results are empty: verify each gate bundle function is implemented and returns a pass/fail result |
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:16:This scenario validates that the `/deep:start-agent-improvement-loop` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, nested `legal_stop_evaluated.details.gateResults`, and `session_end`. Given: a fresh `/deep:start-agent-improvement-loop` `:auto` session. When: the operator runs the session end-to-end or inspects `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. Then: journal events appear in `improvement-journal.jsonl` for every boundary, the CLI example in `.opencode/commands/deep/start-agent-improvement-loop.md` executes as written against a temp target, and the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums match the helper validator.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:23:- Real user request: `` Validate that the `/deep:start-agent-improvement-loop` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, nested `legal_stop_evaluated.details.gateResults`, and `session_end`. Given: a fresh `/deep:start-agent-improvement-loop` `:auto` session. When: the operator runs the session end-to-end or inspects `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. Then: journal events appear in `improvement-journal.jsonl` for every boundary, the CLI example in `.opencode/commands/deep/start-agent-improvement-loop.md` executes as written against a temp target, and the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums match the helper validator. ``
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:24:- Prompt: `Validate that /deep:start-agent-improvement-loop wires improvement-journal.cjs at every required workflow boundary.`
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md:45:| RT-032 | Journal Wiring Boundary Coverage | Validate Journal Wiring Boundary Coverage | `Validate that /deep:start-agent-improvement-loop wires improvement-journal.cjs at every required workflow boundary.` | /deep:start-agent-improvement-loop &quot;.opencode/agents/debug.md&quot; :auto --spec-folder={spec} --iterations=2<br><br><br>Verification:<br><br><br>AUTO_YAML=.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml<br>TMP_SPEC=&quot;$(mktemp -d /tmp/deep-agent-improvement-journal-XXXXXX)&quot;<br>TMP_JOURNAL=&quot;$TMP_SPEC/improvement/improvement-journal.jsonl&quot;<br><br><br>grep -n &quot;improvement-journal.cjs\&#124;--emit&quot; &quot;$AUTO_YAML&quot;<br><br><br>python3 - &lt;&lt;&#x27;PY&#x27;<br>from pathlib import Path<br>yaml_text = Path(&quot;.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml&quot;).read_text()<br>required = [<br>    &quot;session_start&quot;,<br>    &quot;candidate_generated&quot;,<br>    &quot;candidate_scored&quot;,<br>    &quot;benchmark_completed&quot;,<br>    &quot;legal_stop_evaluated&quot;,<br>    &quot;gateResults&quot;,<br>    &quot;session_end&quot;,<br>]<br>missing = [token for token in required if token not in yaml_text]<br>assert not missing, f&quot;Missing journal boundaries in auto YAML: {missing}&quot;<br>print(&quot;PASS — auto YAML covers start, iteration, nested legal-stop, benchmark, and end boundaries&quot;)<br>PY<br><br><br>node .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs --emit session_start --journal &quot;$TMP_JOURNAL&quot; --details &#x27;{&quot;sessionId&quot;:&quot;imp-2026-04-11T12-00-00Z&quot;,&quot;target&quot;:&quot;deep-research&quot;,&quot;charter&quot;:&quot;...&quot;,&quot;startedAt&quot;:&quot;2026-04-11T12:00:00Z&quot;}&#x27;<br><br><br>node .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs --read &quot;$TMP_JOURNAL&quot; &#124; python3 -c &quot;<br>import sys, json<br>events = json.load(sys.stdin)<br>assert len(events) == 1 and events[0][&#x27;eventType&#x27;] == &#x27;session_start&#x27;, &#x27;CLI example did not emit session_start&#x27;<br>print(&#x27;PASS — command doc CLI example executed successfully&#x27;)<br>&quot;<br><br><br>grep -A 7 &quot;STOP_REASONS\&#124;SESSION_OUTCOMES\&#124;LEGAL_STOP_GATES&quot; .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs<br><br><br>python3 - &lt;&lt;&#x27;PY&#x27;<br>from pathlib import Path<br>doc = Path(&quot;.opencode/commands/deep/start-agent-improvement-loop.md&quot;).read_text()<br>script = Path(&quot;.opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs&quot;).read_text()<br>required_stop = [<br>    &quot;converged&quot;,<br>    &quot;maxIterationsReached&quot;,<br>    &quot;blockedStop&quot;,<br>    &quot;manualStop&quot;,<br>    &quot;error&quot;,<br>    &quot;stuckRecovery&quot;,<br>]<br>required_outcomes = [<br>    &quot;keptBaseline&quot;,<br>    &quot;promoted&quot;,<br>    &quot;rolledBack&quot;,<br>    &quot;advisoryOnly&quot;,<br>]<br>required_gates = [&quot;contractGate&quot;, &quot;behaviorGate&quot;, &quot;integrationGate&quot;, &quot;evidenceGate&quot;, &quot;improvementGate&quot;]<br>for token in required_stop + required_outcomes:<br>    assert token in doc, f&quot;Missing enum token in command doc: {token}&quot;<br>    assert token in script, f&quot;Missing enum token in helper: {token}&quot;<br>for token in required_gates:<br>    assert token in script, f&quot;Missing legal-stop gate token in helper: {token}&quot;<br>print(&quot;PASS — command doc taxonomy and legal-stop gates match improvement-journal.cjs enums&quot;)<br>PY<br><br><br>rm -rf &quot;$TMP_SPEC&quot; | `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` contains `improvement-journal.cjs` emission steps for:; `session_start` before the first loop iteration; `candidate_generated`, `candidate_scored`, `benchmark_completed`, nested `legal_stop_evaluated.details.gateResults`, and `gate_evaluation`/stop checks inside each iteration; `session_end` after synthesis completes; The CLI example from `.opencode/commands/deep/start-agent-improvement-loop.md` executes successfully against a temp journal target with exit code `0`; `improvement-journal.cjs` exports frozen `STOP_REASONS`, `SESSION_OUTCOMES`, and legal-stop gate names; `validateEvent()` accepts only those enum members for `session_end` / `session_ended`; The command doc taxonomy in `agent.md` matches the helper's internal validator and does not drift | `terminal transcript, command output, generated files, and PASS/FAIL verdict` | The autonomous YAML contains journal emission coverage for session start, per-iteration lifecycle checkpoints, nested legal-stop, benchmark completion, and session end; the CLI example from `.opencode/commands/deep/start-agent-improvement-loop.md` runs successfully as written against a temp journal path; and the stop-reason / session-outcome enums in the command doc match the frozen values enforced by `improvement-journal.cjs`. | If any boundary is missing from the YAML: add or restore the missing `step_emit_journal_event*` command in `deep_start-agent-improvement-loop_auto.yaml`<br>If the CLI example exits non-zero: copy the exact example from `.opencode/commands/deep/start-agent-improvement-loop.md` and reconcile the helper CLI contract (`--emit`, `--journal`, `--details`)<br>If `legal_stop_evaluated` validation fails: confirm `details.gateResults` includes all five gate keys<br>If `session_end` is emitted but validation fails: compare the emitted `details.stopReason` / `details.sessionOutcome` values against the frozen enums in `improvement-journal.cjs`<br>If the doc taxonomy drifts from the helper: update the command doc and helper together so the runtime contract stays frozen |
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:3:description: "Validate that /deep:start-agent-improvement-loop executes the deep-agent-improvement protocol instead of merely reading SKILL.md and improvising."
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:26:- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:start-agent-improvement-loop` from the command-capable sandbox ``
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:37:- Expected execution process: run the CP-061 setup helper to create a command-capable `/tmp/cp-040-sandbox/`, copy `/tmp/cp-040-sandbox-baseline`, capture project tripwire from the repo root, run Call A with `As @Task:`, reset sandbox, run Call B from `/tmp/cp-040-sandbox/` via `/deep:start-agent-improvement-loop`, then return to the repo root for transcript, artifact, diff, and tripwire checks.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:40:  - **Call B (`/deep:start-agent-improvement-loop` command flow)**: Transcript or artifacts contain `scan-integration.cjs`, `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `candidate_generated`, and `candidate_scored`. Candidate path is under `/tmp/cp-040-spec/improvement/candidates/`. Canonical target diff is empty. Project tripwire is empty.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:52:5. Run Call B as `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-040-spec --iterations=1` from inside `/tmp/cp-040-sandbox/`.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:74:copilot -p "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-040-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-040-sandbox --add-dir /tmp/cp-040-spec 2>&1 | tee /tmp/cp-040-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-040-B-exit.txt
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md:87:| CP-040 | SKILL_LOAD_NOT_PROTOCOL | Confirm helper execution is proven, not only skill loading | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:start-agent-improvement-loop` from the command-capable sandbox `` | Run the §3 exact command block | B field counts for helper and journal labels all >= 1; `POST_B_CANONICAL_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-040-B-command.txt`, `/tmp/cp-040-B-combined.txt`, `/tmp/cp-040-B-field-counts.txt`, `/tmp/cp-040-B-canonical.diff`, `/tmp/cp-040-tripwire.diff` | PASS if B proves helper and journal boundaries without canonical mutation. FAIL if B treats skill load as enough or writes canonical target | 1. If helper labels are missing, verify command-flow dispatch and helper execution. 2. If candidate journal labels are missing, inspect `/tmp/cp-040-spec/improvement/`. 3. If canonical diff is non-empty, repair proposal-only boundary. 4. If only skill-load text appears, distinguish loading from execution. 5. If tripwire diff is non-empty, inspect project mutation before rerun. |
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:26:- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:start-agent-improvement-loop` from the command-capable sandbox ``
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:37:- Expected execution process: run the CP-061 setup helper to create a command-capable `/tmp/cp-044-sandbox/`, run A, reset, run B from `/tmp/cp-044-sandbox/` via `/deep:start-agent-improvement-loop`, then grep score JSON, transcript, and legal-stop output.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:40:  - **Call B (`/deep:start-agent-improvement-loop` command flow)**: Contains `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, nested `details.gateResults.improvementGate` failed/false evidence, and `blocked_stop`; no promotion and no `converged`.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:49:2. Run Call A with `As @Task:`, reset the sandbox from baseline, and run Call B with `/deep:start-agent-improvement-loop`.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:72:copilot -p "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-044-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-044-sandbox --add-dir /tmp/cp-044-spec 2>&1 | tee /tmp/cp-044-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-044-B-exit.txt
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/017-improvement-gate-delta.md:84:| CP-044 | IMPROVEMENT_GATE_DELTA | Confirm acceptable absolute score does not pass improvementGate | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:start-agent-improvement-loop` from the command-capable sandbox `` | Run the §3 exact command block | B comparison labels include `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, and `improvementGate`; promotion/converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-044-B-command.txt`, `/tmp/cp-044-B-combined.txt`, `/tmp/cp-044-B-field-counts.txt`, `/tmp/cp-044-B-promotion-or-converged-count.txt`, `/tmp/cp-044-tripwire.diff` | PASS if delta evidence blocks promotion. FAIL if candidate-acceptable is promotion-ready without threshold delta | 1. If `delta` is missing, verify `score-candidate.cjs --baseline` executed. 2. If promotion appears, split acceptable from better. 3. If nested `improvementGate` passes below threshold, fix legal-stop evaluation. |
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:26:- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:start-agent-improvement-loop` from the command-capable sandbox ``
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:37:- Expected execution process: run the CP-061 setup helper to create a command-capable `/tmp/cp-043-sandbox/`, run A, reset, run B from `/tmp/cp-043-sandbox/` via `/deep:start-agent-improvement-loop`, then grep transcript and journal output for complete legal-stop evidence.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:40:  - **Call B (`/deep:start-agent-improvement-loop` command flow)**: Contains `legal_stop_evaluated`, nested `details.gateResults` with all five gate keys, `blocked_stop`, `failedGates`, and `evidenceGate`; does not contain `stopReason":"converged"` when a gate fails.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:49:2. Run Call A with `As @Task:`, reset the sandbox from baseline, and run Call B with `/deep:start-agent-improvement-loop`.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:72:copilot -p "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-043-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-043-sandbox --add-dir /tmp/cp-043-spec 2>&1 | tee /tmp/cp-043-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-043-B-exit.txt
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/016-legal-stop-gate-bundle.md:85:| CP-043 | LEGAL_STOP_GATE_BUNDLE | Confirm all five legal-stop gates block convergence | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:start-agent-improvement-loop` from the command-capable sandbox `` | Run the §3 exact command block | B field counts for `details.gateResults` and all five gate keys are >= 1; `blocked_stop` appears when any gate fails; converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-043-B-command.txt`, `/tmp/cp-043-B-combined.txt`, `/tmp/cp-043-B-field-counts.txt`, `/tmp/cp-043-B-converged-count.txt`, `/tmp/cp-043-tripwire.diff` | PASS if complete `details.gateResults` bundle and blocked stop appear. FAIL if generic gate evaluation substitutes for legal-stop evidence | 1. If `legal_stop_evaluated` is absent, verify command-flow legal-stop execution. 2. If `details.gateResults` or any gate key is missing, require the full nested bundle, not flat `gateResult`. 3. If converged appears with failed gate, derive stop reason from legal-stop artifact. |
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:26:- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:start-agent-improvement-loop` from the command-capable sandbox ``
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:37:- Expected execution process: run the CP-061 setup helper to create a command-capable `/tmp/cp-045-sandbox/`, run A, reset, run B from `/tmp/cp-045-sandbox/` via `/deep:start-agent-improvement-loop`, then grep B transcript, benchmark report, state log, and journal artifacts.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:40:  - **Call B (`/deep:start-agent-improvement-loop` command flow)**: Contains `benchmark-outputs/report.json`, `status:"benchmark-complete"`, a `benchmark_run` state row, and report-gated `benchmark_completed`; `benchmark_completed` is not accepted unless `report.json` exists first.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:49:2. Run Call A with `As @Task:`, reset the sandbox from baseline, and run Call B with `/deep:start-agent-improvement-loop`.
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:72:copilot -p "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-045-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-045-sandbox --add-dir /tmp/cp-045-spec 2>&1 | tee /tmp/cp-045-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-045-B-exit.txt
+.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md:94:| CP-045 | BENCHMARK_COMPLETED_BOUNDARY | Confirm benchmark completion is evented and file-backed | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:start-agent-improvement-loop` from the command-capable sandbox `` | Run the §3 exact command block | B field counts for `benchmark-outputs/report.json`, `status:"benchmark-complete"`, `benchmark_run`, and `benchmark_completed` are >= 1; `BENCHMARK_REPORT_EXISTS=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-045-B-command.txt`, `/tmp/cp-045-B-combined.txt`, `/tmp/cp-045-B-field-counts.txt`, `/tmp/cp-045-report-exit.txt`, `/tmp/cp-045-tripwire.diff` | PASS if report, status, benchmark_run, and report-gated benchmark_completed evidence exist. FAIL if action prose alone is accepted | 1. If report is absent, benchmark runner did not execute or wrote to the wrong path. 2. If event is absent, add report-gated journal emission. 3. If `benchmark_run` is absent, check state-log append. 4. If `benchmark_completed` appears without `report.json`, restore report-gated event ordering. |
+.opencode/skills/deep-agent-improvement/README.md:92:/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
+.opencode/skills/deep-agent-improvement/README.md:298:/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
+.opencode/skills/deep-agent-improvement/README.md:339:The `@deep-agent-improvement` agent and `/deep:start-agent-improvement-loop` command are mirrored across all runtimes. The integration scanner checks mirror parity automatically.
+.opencode/skills/deep-agent-improvement/feature_catalog/feature_catalog.md:28:| Integration scanning | 3 features | `scan-integration.cjs`, `/deep:start-agent-improvement-loop`, `.opencode/agents/deep-agent-improvement.md` |
+.opencode/skills/deep-agent-improvement/feature_catalog/feature_catalog.md:177:The `/deep:start-agent-improvement-loop` command collects setup inputs, selects `:auto` or `:confirm` execution, and points the operator at the matching YAML workflow. The actual loop dispatch lives in the YAML assets, which rescan integration, dispatch `@deep-agent-improvement`, emit journal events, and call score and reducer helpers, while the command markdown explicitly says not to dispatch agents from the command file itself.
 .opencode/commands/memory/search.md:868:> **Note:** The dedicated `spec_kit_memory_memory_context()` tool provides unified intent-aware retrieval server-side. It accepts `input`, `mode`, `intent`, `specFolder`, governed retrieval params (`tenantId`, `userId`, `agentId`), `limit`, `sessionId`, `enableDedup`, `includeContent`, `includeTrace`, `tokenUsage`, and `anchors`. `spec_kit_memory_memory_quick_search()` also supports governed retrieval via `tenantId`, `userId`, and `agentId`. This is the recommended unified approach. The manual orchestration below is for advanced use cases requiring fine-grained control.
-.opencode/skills/deep-agent-improvement/feature_catalog/01--evaluation-loop/01-initialization.md:18:Initialization is driven from the `/improve:agent` command plus the `improve_deep-agent-improvement_{auto,confirm}.yaml` workflow assets. Both workflows gate the run to a fresh `new` session boundary, create `{spec_folder}/improvement/` plus `candidates/` and `benchmark-runs/`, scan the target integration surface, optionally generate a dynamic profile, copy the config, charter, strategy, and manifest templates, and append baseline state before the first loop iteration.
-.opencode/skills/cli-opencode/SKILL.md:257:2. **Command-owned loop executors** (`deep-research`, `deep-review`, `deep-agent-improvement`, `prompt-improver`) — dispatched ONLY by their parent commands (`/deep:start-research-loop`, `/deep:start-review-loop`, `/improve:agent`, `/improve:prompt`). Never dispatch these directly via `--agent <slug>` and never route them through `orchestrate`. The parent command owns iteration state, convergence detection, and continuity.
-.opencode/skills/cli-opencode/references/agent_delegation.md:121:| `deep-agent-improvement` | Proposal-only mutator for bounded agent improvement | Agent evaluation via `/improve:agent` command loop |
-.opencode/skills/cli-opencode/references/agent_delegation.md:213:| Agent improvement | `deep-agent-improvement` | **Command-only.** Dispatch via `/improve:agent`. Direct `opencode run --agent deep-agent-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. <!-- F-007-B2-02 --> |
+.opencode/skills/deep-agent-improvement/feature_catalog/01--evaluation-loop/01-initialization.md:18:Initialization is driven from the `/deep:start-agent-improvement-loop` command plus the `deep_start-agent-improvement-loop_{auto,confirm}.yaml` workflow assets. Both workflows gate the run to a fresh `new` session boundary, create `{spec_folder}/improvement/` plus `candidates/` and `benchmark-runs/`, scan the target integration surface, optionally generate a dynamic profile, copy the config, charter, strategy, and manifest templates, and append baseline state before the first loop iteration.
+.opencode/skills/cli-opencode/SKILL.md:257:2. **Command-owned loop executors** (`deep-research`, `deep-review`, `deep-agent-improvement`, `prompt-improver`) — dispatched ONLY by their parent commands (`/deep:start-research-loop`, `/deep:start-review-loop`, `/deep:start-agent-improvement-loop`, `/prompt`). Never dispatch these directly via `--agent <slug>` and never route them through `orchestrate`. The parent command owns iteration state, convergence detection, and continuity.
+.opencode/skills/cli-opencode/references/agent_delegation.md:121:| `deep-agent-improvement` | Proposal-only mutator for bounded agent improvement | Agent evaluation via `/deep:start-agent-improvement-loop` command loop |
+.opencode/skills/cli-opencode/references/agent_delegation.md:213:| Agent improvement | `deep-agent-improvement` | **Command-only.** Dispatch via `/deep:start-agent-improvement-loop`. Direct `opencode run --agent deep-agent-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. <!-- F-007-B2-02 --> |
 .opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-strategy-next-focus-and-dimension-rotation.md:73:| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Loop dimension extraction and dispatch; inspect `step_read_state` and `step_dispatch_review_agent` |
 .opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md:73:| `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
 .opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md:74:| `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dispatch and validation; inspect `step_dispatch_review_agent` and `step_validate_iteration` |
@@ -1446,14 +1446,14 @@ exec
 .opencode/skills/sk-doc/references/agent_creation.md:22:- `.opencode/commands/create/assets/create_agent_confirm.yaml`
 .opencode/skills/sk-doc/changelog/v1.1.3.0.md:33:| `.opencode/commands/create/assets/create_agent_auto.yaml` | Modified | Mentioned in the original changelog. |
 .opencode/skills/sk-doc/changelog/v1.1.3.0.md:34:| `.opencode/commands/create/assets/create_agent_confirm.yaml` | Modified | Mentioned in the original changelog. |
-.opencode/skills/system-spec-kit/changelog/v3.4.1.0.md:318:- `@improve-agent` → **`@deep-agent-improvement`**, completes the family alignment with the underlying `deep-agent-improvement` skill and the `/improve:agent` command. 8 file renames + 54 active references.
-.opencode/skills/system-spec-kit/changelog/v3.3.0.0.md:93:Editing main agent files directly during evaluation is dangerous -- a bad change could break the agent. The `@agent-improver` subagent writes candidates to a packet-local runtime area, never touching main targets. The `/improve:agent` command orchestrates the full loop: scan, profile, candidate, score, benchmark, reduce, stop-check. Promotion requires passing all evidence gates plus explicit operator approval.
+.opencode/skills/system-spec-kit/changelog/v3.4.1.0.md:318:- `@improve-agent` → **`@deep-agent-improvement`**, completes the family alignment with the underlying `deep-agent-improvement` skill and the `/deep:start-agent-improvement-loop` command. 8 file renames + 54 active references.
+.opencode/skills/system-spec-kit/changelog/v3.3.0.0.md:93:Editing main agent files directly during evaluation is dangerous -- a bad change could break the agent. The `@agent-improver` subagent writes candidates to a packet-local runtime area, never touching main targets. The `/deep:start-agent-improvement-loop` command orchestrates the full loop: scan, profile, candidate, score, benchmark, reduce, stop-check. Promotion requires passing all evidence gates plus explicit operator approval.
 .opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/02-iteration-dispatch.md:31:| `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow | Dispatches the LEAF agent, checks the pause sentinel, and runs the reducer after each iteration. |
 
 exec
-/bin/zsh -lc "sed -n '1,120p' .opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,120p' .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '260,430p' .opencode/commands/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '260,430p' .opencode/commands/deep/start-agent-improvement-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 Create the improvement directory structure and copy templates:
 ```bash
@@ -1464,8 +1464,8 @@ Copy config, strategy, charter, and manifest from skill assets into runtime root
 ### Step 5: Execute Loop
 
 Load the matching YAML workflow based on execution mode:
-- **AUTONOMOUS** -> `assets/improve_deep-agent-improvement_auto.yaml`
-- **INTERACTIVE** -> `assets/improve_deep-agent-improvement_confirm.yaml`
+- **AUTONOMOUS** -> `assets/deep_start-agent-improvement-loop_auto.yaml`
+- **INTERACTIVE** -> `assets/deep_start-agent-improvement-loop_confirm.yaml`
 
 Execute the YAML workflow step by step. Each iteration:
 1. Scan integration surfaces (refresh)
@@ -1521,7 +1521,7 @@ After loop exits, classify the termination:
 
 ### Step 6D: Session Boundary (current release)
 
-`/improve:agent` is one-session-only in the current release. Every invocation starts a fresh `new`-mode session with generation 1, writes a new journal, and evaluates candidates from iteration 1 for that session.
+`/deep:start-agent-improvement-loop` is one-session-only in the current release. Every invocation starts a fresh `new`-mode session with generation 1, writes a new journal, and evaluates candidates from iteration 1 for that session.
 
 Do **not** document or attempt journal replay, iteration carry-forward, or `resume`/`restart`/`fork`/`completed-continue` behavior here. Those lineage modes were described in earlier drafts but have no shipped runtime wiring; see `.opencode/skills/deep-agent-improvement/SKILL.md §Resume/Continuation Semantics (current release)` for the canonical retraction.
 
@@ -1540,25 +1540,25 @@ Do **not** document or attempt journal replay, iteration carry-forward, or `resu
 ### Evaluate Handover Agent (Interactive)
 
 ```
-/improve:agent ".opencode/agents/debug.md" :confirm --spec-folder=specs/041/008
+/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :confirm --spec-folder=specs/041/008
 ```
 
 ### Evaluate Any Agent (Dynamic Profile, Autonomous)
 
 ```
-/improve:agent ".opencode/agents/debug.md" :auto --iterations=3
+/deep:start-agent-improvement-loop ".opencode/agents/debug.md" :auto --iterations=3
 ```
 
 ### Quick Integration Health Check
 
 ```
-/improve:agent ".opencode/agents/review.md" :auto --iterations=1
+/deep:start-agent-improvement-loop ".opencode/agents/review.md" :auto --iterations=1
 ```
 
 ### Prompt for Target Selection
 
 ```
-/improve:agent :confirm
+/deep:start-agent-improvement-loop :confirm
 ```
 Setup phase lists available agents and asks for selection.
 
@@ -1614,7 +1614,7 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="converged"
 | Command | Purpose |
 | --- | --- |
 | `/speckit:complete` | Full spec-driven development workflow |
-| `/improve:prompt` | Improve AI prompts with DEPTH + CLEAR scoring |
+| `/prompt` | Improve AI prompts with DEPTH + CLEAR scoring |
 | `/deep:start-review-loop` | Iterative code review with convergence detection |
 
 ---
@@ -1750,7 +1750,7 @@ workflow:
         description: "Gate the run to a fresh standalone session boundary before init writes"
 
 exec
-/bin/zsh -lc "sed -n '1,120p' .opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,120p' .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 # ─────────────────────────────────────────────────────────────────
 # AGENT IMPROVER: EVALUATION LOOP (INTERACTIVE MODE)
@@ -1877,11 +1877,11 @@ codex
 I’m about to make the scoped edits: frontmatter hint plus a new `:auto` setup contract section before the legacy blocked prompt, then T012/evidence updates. The legacy consolidated prompt body stays in place; I’m not touching the YAML assets.
 apply patch
 patch: completed
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -1904,11 +1904,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -1943,10 +1943,10 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
  
  **🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION**
 
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -1969,11 +1969,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -2020,10 +2020,10 @@ codex-group2-dispatch-full-transcript.txt
 codex-group2-dispatch.txt
 codex-group3-dispatch-full-transcript.txt
 
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -2046,11 +2046,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -2088,10 +2088,10 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 apply patch
 patch: completed
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -2114,11 +2114,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -2177,10 +2177,10 @@ index 5f7df6766aed7eb41b4e40081ff7c885a3683451..7ecf545cf0732b4ad7cc64de45cdf011
  <!-- /ANCHOR:phase-2 -->
  
 
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -2203,11 +2203,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -2269,10 +2269,10 @@ index 5f7df6766aed7eb41b4e40081ff7c885a3683451..7ecf545cf0732b4ad7cc64de45cdf011
 apply patch
 patch: completed
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -2295,11 +2295,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -2341,9 +2341,9 @@ index 0000000000000000000000000000000000000000..1113588ced2ad7d9f657d78aac13ca99
 @@ -0,0 +1,14 @@
 +# Group 3 Dispatch - /improve
 +
-+## /improve:agent
++## /deep:start-agent-improvement-loop
 +
-+- Command file: `.opencode/commands/improve/agent.md`
++- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 +- Fields migrated count: 6
 +- Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 +- Tier-2 candidates identified: `spec_folder`
@@ -2378,10 +2378,10 @@ index 5f7df6766aed7eb41b4e40081ff7c885a3683451..7ecf545cf0732b4ad7cc64de45cdf011
  <!-- /ANCHOR:phase-2 -->
  
 
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -2404,11 +2404,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -2450,9 +2450,9 @@ index 0000000000000000000000000000000000000000..1113588ced2ad7d9f657d78aac13ca99
 @@ -0,0 +1,14 @@
 +# Group 3 Dispatch - /improve
 +
-+## /improve:agent
++## /deep:start-agent-improvement-loop
 +
-+- Command file: `.opencode/commands/improve/agent.md`
++- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 +- Fields migrated count: 6
 +- Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 +- Tier-2 candidates identified: `spec_folder`
@@ -2490,7 +2490,7 @@ index 5f7df6766aed7eb41b4e40081ff7c885a3683451..7ecf545cf0732b4ad7cc64de45cdf011
 codex
 Edits are in place. I’m doing a read-back now: scoped diff, whitespace check, and a targeted look at the legacy `STATUS: BLOCKED` prompt to make sure the old confirm path wasn’t rewritten.
 exec
-/bin/zsh -lc "sed -n '40,160p' .opencode/commands/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '40,160p' .opencode/commands/deep/start-agent-improvement-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
     ├─ ⛔ HARD BLOCK - DO NOT PROCEED
     │
@@ -2502,7 +2502,7 @@ exec
     │   │ invocation and runs general-agent based.            │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /improve:agent [arguments]                               │
+    │   │   /deep:start-agent-improvement-loop [arguments]                               │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"
@@ -2525,11 +2525,11 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
 
@@ -2615,12 +2615,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │ **Q3. Scoring Mode**:                                          │
 
 exec
-/bin/zsh -lc 'git diff -- .opencode/commands/improve/agent.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git diff -- .opencode/commands/deep/start-agent-improvement-loop.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5..899b05445f 100644
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -2643,11 +2643,11 @@ index f97b991ba5..899b05445f 100644
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -2711,12 +2711,12 @@ index b3c4d71f11..7ecf545cf0 100644
  
 
 exec
-/bin/zsh -lc 'git diff --check -- .opencode/commands/improve/agent.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git diff --check -- .opencode/commands/deep/start-agent-improvement-loop.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -2739,11 +2739,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -2785,9 +2785,9 @@ index 0000000000000000000000000000000000000000..1113588ced2ad7d9f657d78aac13ca99
 @@ -0,0 +1,14 @@
 +# Group 3 Dispatch - /improve
 +
-+## /improve:agent
++## /deep:start-agent-improvement-loop
 +
-+- Command file: `.opencode/commands/improve/agent.md`
++- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 +- Fields migrated count: 6
 +- Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 +- Tier-2 candidates identified: `spec_folder`
@@ -2827,9 +2827,9 @@ exec
  succeeded in 0ms:
 # Group 3 Dispatch - /improve
 
-## /improve:agent
+## /deep:start-agent-improvement-loop
 
-- Command file: `.opencode/commands/improve/agent.md`
+- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 - Fields migrated count: 6
 - Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 - Tier-2 candidates identified: `spec_folder`
@@ -2916,19 +2916,19 @@ _memory:
 - [ ] T024 Live `:auto` dispatch — `/speckit:complete`.
 
 exec
-/bin/zsh -lc 'git status --short -- .opencode/commands/improve/agent.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt .opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml .opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git status --short -- .opencode/commands/deep/start-agent-improvement-loop.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
- M .opencode/commands/improve/agent.md
+ M .opencode/commands/deep/start-agent-improvement-loop.md
  M .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
 ?? .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt
 
 exec
-/bin/zsh -lc 'git diff -- .opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml .opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git diff -- .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -2951,11 +2951,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -2997,9 +2997,9 @@ index 0000000000000000000000000000000000000000..1113588ced2ad7d9f657d78aac13ca99
 @@ -0,0 +1,14 @@
 +# Group 3 Dispatch - /improve
 +
-+## /improve:agent
++## /deep:start-agent-improvement-loop
 +
-+- Command file: `.opencode/commands/improve/agent.md`
++- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 +- Fields migrated count: 6
 +- Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 +- Tier-2 candidates identified: `spec_folder`
@@ -3035,7 +3035,7 @@ index 5f7df6766aed7eb41b4e40081ff7c885a3683451..7ecf545cf0732b4ad7cc64de45cdf011
  
 
 exec
-/bin/zsh -lc 'rg -n "auto_mode_contract.md|PRE-BOUND SETUP ANSWERS|Default Resolution Table|improve_deep-agent-improvement_auto.yaml|argument-hint" .opencode/commands/improve/agent.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "auto_mode_contract.md|PRE-BOUND SETUP ANSWERS|Default Resolution Table|deep_start-agent-improvement-loop_auto.yaml|argument-hint" .opencode/commands/deep/start-agent-improvement-loop.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc 'rg -n "T012|recent_action|next_safe_action" .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -3046,14 +3046,14 @@ exec
  succeeded in 0ms:
 3:argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 69:Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`.
-73:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
+73:1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 75:2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 81:### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
 83:The dispatched prompt body may contain one structured marker block. Parse it before applying defaults. Grammar: see `auto_mode_contract.md` §2.
 86:PRE-BOUND SETUP ANSWERS:
 95:Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default; marker fields take precedence over $ARGUMENTS flags; unknown fields warn; malformed lines parse-error).
 97:### Default Resolution Table
-314:- **AUTONOMOUS** -> `assets/improve_deep-agent-improvement_auto.yaml`
+314:- **AUTONOMOUS** -> `assets/deep_start-agent-improvement-loop_auto.yaml`
 
 exec
 /bin/zsh -lc 'rg -n "EXIT_STATUS|Fields migrated count|Tier-2 candidates|Paired YAML" .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -3063,10 +3063,10 @@ exec
 11:- Paired YAML assets touched: no
 14:EXIT_STATUS: complete
 
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -3089,11 +3089,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -3135,9 +3135,9 @@ index 0000000000000000000000000000000000000000..1113588ced2ad7d9f657d78aac13ca99
 @@ -0,0 +1,14 @@
 +# Group 3 Dispatch - /improve
 +
-+## /improve:agent
++## /deep:start-agent-improvement-loop
 +
-+- Command file: `.opencode/commands/improve/agent.md`
++- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 +- Fields migrated count: 6
 +- Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 +- Tier-2 candidates identified: `spec_folder`
@@ -3175,10 +3175,10 @@ index 5f7df6766aed7eb41b4e40081ff7c885a3683451..7ecf545cf0732b4ad7cc64de45cdf011
 apply patch
 patch: completed
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -3201,11 +3201,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -3245,9 +3245,9 @@ index 0000000000000000000000000000000000000000..7e6ef3e8a96bfba57b2f7ecdc0006903
 --- /dev/null
 +++ b/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt
 @@ -0,0 +1,12 @@
-+# /improve:agent
++# /deep:start-agent-improvement-loop
 +
-+- Command file: `.opencode/commands/improve/agent.md`
++- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 +- Fields migrated count: 6
 +- Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 +- Tier-2 candidates identified: `spec_folder`
@@ -3282,10 +3282,10 @@ index 5f7df6766aed7eb41b4e40081ff7c885a3683451..7ecf545cf0732b4ad7cc64de45cdf011
  <!-- /ANCHOR:phase-2 -->
  
 
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -3308,11 +3308,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -3352,9 +3352,9 @@ index 0000000000000000000000000000000000000000..7e6ef3e8a96bfba57b2f7ecdc0006903
 --- /dev/null
 +++ b/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt
 @@ -0,0 +1,12 @@
-+# /improve:agent
++# /deep:start-agent-improvement-loop
 +
-+- Command file: `.opencode/commands/improve/agent.md`
++- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 +- Fields migrated count: 6
 +- Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 +- Tier-2 candidates identified: `spec_folder`
@@ -3392,9 +3392,9 @@ index 5f7df6766aed7eb41b4e40081ff7c885a3683451..7ecf545cf0732b4ad7cc64de45cdf011
 exec
 /bin/zsh -lc "sed -n '1,40p' .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-# /improve:agent
+# /deep:start-agent-improvement-loop
 
-- Command file: `.opencode/commands/improve/agent.md`
+- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 - Fields migrated count: 6
 - Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 - Tier-2 candidates identified: `spec_folder`
@@ -3406,19 +3406,19 @@ exec
 EXIT_STATUS: complete
 
 exec
-/bin/zsh -lc 'git diff --check -- .opencode/commands/improve/agent.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git diff --check -- .opencode/commands/deep/start-agent-improvement-loop.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 exec
-/bin/zsh -lc 'git status --short -- .opencode/commands/improve/agent.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt .opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml .opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git status --short -- .opencode/commands/deep/start-agent-improvement-loop.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
- M .opencode/commands/improve/agent.md
+ M .opencode/commands/deep/start-agent-improvement-loop.md
  M .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md
 ?? .opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt
 
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -3441,11 +3441,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -3485,9 +3485,9 @@ index 0000000000000000000000000000000000000000..7e6ef3e8a96bfba57b2f7ecdc0006903
 --- /dev/null
 +++ b/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt
 @@ -0,0 +1,12 @@
-+# /improve:agent
++# /deep:start-agent-improvement-loop
 +
-+- Command file: `.opencode/commands/improve/agent.md`
++- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 +- Fields migrated count: 6
 +- Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 +- Tier-2 candidates identified: `spec_folder`
@@ -3524,15 +3524,15 @@ index 5f7df6766aed7eb41b4e40081ff7c885a3683451..7ecf545cf0732b4ad7cc64de45cdf011
 
 codex
 **Files Modified**
-- `.opencode/commands/improve/agent.md`
+- `.opencode/commands/deep/start-agent-improvement-loop.md`
 - `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md`
 - `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt`
 
 **Per-Command Status**
-- `/improve:agent`: 6 fields migrated | Tier-2 candidates: `spec_folder` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/deep:start-agent-improvement-loop`: 6 fields migrated | Tier-2 candidates: `spec_folder` | `:confirm` preserved: yes | argument-hint updated: yes
 
 **Decisions**
-- Used the actual paired YAML path: `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`.
+- Used the actual paired YAML path: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`.
 - Counted migrated fields as `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`.
 - Classified `spec_folder` as the only Tier-2 candidate; `target_path` absence remains Tier 3 because the command forbids inference.
 - Wrote T012 evidence as “1 command migrated” rather than the prompt’s parenthetical “5 commands,” because Group 3 scope is explicitly improve/1.
@@ -3540,10 +3540,10 @@ codex
 **Concerns**
 - No YAML assets were touched.
 - No live `:auto` dispatch was run, per instruction. `git diff --check` passed.
-diff --git a/.opencode/commands/improve/agent.md b/.opencode/commands/improve/agent.md
+diff --git a/.opencode/commands/deep/start-agent-improvement-loop.md b/.opencode/commands/deep/start-agent-improvement-loop.md
 index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe4648266d
---- a/.opencode/commands/improve/agent.md
-+++ b/.opencode/commands/improve/agent.md
+--- a/.opencode/commands/deep/start-agent-improvement-loop.md
++++ b/.opencode/commands/deep/start-agent-improvement-loop.md
 @@ -1,6 +1,6 @@
  ---
  description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
@@ -3566,11 +3566,11 @@ index f97b991ba5c0accdfc04eafd99e17db1351d8a8a..899b05445f45f65f64dc11de23380fbe
 +
 +Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 +
-+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`. End §0.
++1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_folder}/improvement/agent-improvement-config.json` (shape: `targetPath`, `targetProfile`, `specFolder`, `executionMode: "auto"`, `scoringMode`, `maxIterations`, `agentName`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`. End §0.
 +
 +2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed; `target_path` absence is missing input, not ambiguity, and goes to Tier 3.
 +
-+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/improve:agent:auto` as the command name. Exit non-zero. Do not load YAML.
++3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-agent-improvement-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 +
 +`:confirm` path stays unchanged — see the consolidated setup prompt section below.
 +
@@ -3610,9 +3610,9 @@ index 0000000000000000000000000000000000000000..7e6ef3e8a96bfba57b2f7ecdc0006903
 --- /dev/null
 +++ b/.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt
 @@ -0,0 +1,12 @@
-+# /improve:agent
++# /deep:start-agent-improvement-loop
 +
-+- Command file: `.opencode/commands/improve/agent.md`
++- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 +- Fields migrated count: 6
 +- Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 +- Tier-2 candidates identified: `spec_folder`
@@ -3652,15 +3652,15 @@ hook: Stop Completed
 tokens used
 91,980
 **Files Modified**
-- `.opencode/commands/improve/agent.md`
+- `.opencode/commands/deep/start-agent-improvement-loop.md`
 - `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/tasks.md`
 - `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/002-auto-mode-contract-generalization-to-all-commands/evidence/codex-group3-dispatch.txt`
 
 **Per-Command Status**
-- `/improve:agent`: 6 fields migrated | Tier-2 candidates: `spec_folder` | `:confirm` preserved: yes | argument-hint updated: yes
+- `/deep:start-agent-improvement-loop`: 6 fields migrated | Tier-2 candidates: `spec_folder` | `:confirm` preserved: yes | argument-hint updated: yes
 
 **Decisions**
-- Used the actual paired YAML path: `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`.
+- Used the actual paired YAML path: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`.
 - Counted migrated fields as `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`.
 - Classified `spec_folder` as the only Tier-2 candidate; `target_path` absence remains Tier 3 because the command forbids inference.
 - Wrote T012 evidence as “1 command migrated” rather than the prompt’s parenthetical “5 commands,” because Group 3 scope is explicitly improve/1.

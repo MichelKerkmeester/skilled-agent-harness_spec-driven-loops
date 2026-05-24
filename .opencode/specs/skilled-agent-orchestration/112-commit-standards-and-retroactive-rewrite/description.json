@@ -1,26 +1,20 @@
 {
-  "specFolder": "112-commit-standards-and-retroactive-rewrite",
-  "description": "Define canonical commit standards, update sk-git, and retroactively rewrite all HEAD commits via cli-devin SWE-1.6",
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite",
+  "description": "112 — Commit Standards & Retroactive Rewrite",
   "keywords": [
-    "define",
-    "canonical",
+    "112",
     "commit",
     "standards",
-    "update",
-    "sk-git",
-    "retroactively",
-    "rewrite",
-    "head",
-    "commits",
-    "via",
-    "cli-devin",
-    "swe-1"
+    "retroactive",
+    "rewrite"
   ],
-  "lastUpdated": "2026-05-16T09:42:33.057Z",
+  "lastUpdated": "2026-05-23T15:24:58.865Z",
   "specId": "112",
   "folderSlug": "commit-standards-and-retroactive-rewrite",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

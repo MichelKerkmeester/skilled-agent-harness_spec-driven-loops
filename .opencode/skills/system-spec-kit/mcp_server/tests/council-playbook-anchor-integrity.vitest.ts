@@ -7,8 +7,9 @@ import { describe, expect, it } from 'vitest';
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const MCP_SERVER_ROOT = resolve(TEST_DIR, '..');
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
-const PLAYBOOK_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/sk-ai-council/manual_testing_playbook');
+const PLAYBOOK_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/deep-ai-council/manual_testing_playbook');
 const SKILL_ADVISOR_TEST_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/system-skill-advisor/mcp_server/tests');
+const DEEP_LOOP_RUNTIME_TEST_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/deep-loop-runtime/tests');
 
 const RENAMED_TEST_REFERENCES: Record<string, string> = {
   '.opencode/skills/system-spec-kit/mcp_server/tests/ai-council-runtime-parity.vitest.ts':
@@ -24,9 +25,9 @@ const RENAMED_TEST_REFERENCES: Record<string, string> = {
 };
 
 const TEST_FILE_REF =
-  /(?:(?:\.opencode\/skills\/system-spec-kit\/)?(?:mcp_server\/tests|scripts\/tests)|\.\.\/scripts\/tests)\/[A-Za-z0-9._/-]+?\.vitest\.ts/g;
+  /(?:(?:\.opencode\/skills\/system-spec-kit\/)?(?:mcp_server\/tests|scripts\/tests)|\.opencode\/skills\/deep-loop-runtime\/tests|\.\.\/scripts\/tests)\/[A-Za-z0-9._/-]+?\.vitest\.ts/g;
 const TEST_NAME_ANCHOR =
-  /`((?:(?:\.opencode\/skills\/system-spec-kit\/)?(?:mcp_server\/tests|scripts\/tests)|\.\.\/scripts\/tests)\/[^`]+?\.vitest\.ts)`\s+test name\s+`([^`]+)`/g;
+  /`((?:(?:\.opencode\/skills\/system-spec-kit\/)?(?:mcp_server\/tests|scripts\/tests)|\.opencode\/skills\/deep-loop-runtime\/tests|\.\.\/scripts\/tests)\/[^`]+?\.vitest\.ts)`\s+test name\s+`([^`]+)`/g;
 const TEST_CALL = /\b(?:it|test)\s*\(\s*(?:'([^']+)'|"([^"]+)"|`([^`]+)`)/g;
 
 function walkMarkdown(dir: string): string[] {
@@ -60,6 +61,9 @@ function resolveTestReference(reference: string): string {
   if (withoutSkillPrefix.startsWith('../scripts/tests/')) {
     return resolve(MCP_SERVER_ROOT, withoutSkillPrefix);
   }
+  if (normalizedReference.startsWith('.opencode/skills/deep-loop-runtime/tests/')) {
+    return join(WORKSPACE_ROOT, normalizedReference);
+  }
   return join(WORKSPACE_ROOT, reference);
 }
 
@@ -83,6 +87,7 @@ describe('council playbook anchor integrity', () => {
       ...walkVitest(join(MCP_SERVER_ROOT, 'tests')),
       ...walkVitest(resolve(MCP_SERVER_ROOT, '../scripts/tests')),
       ...walkVitest(SKILL_ADVISOR_TEST_ROOT),
+      ...walkVitest(DEEP_LOOP_RUNTIME_TEST_ROOT),
     ]);
 
     const missingFiles: string[] = [];

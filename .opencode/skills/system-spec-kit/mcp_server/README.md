@@ -24,8 +24,9 @@ importance_tier: "important"
 - [5. KEY FILES](#5--key-files)
 - [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
 - [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
+- [8. RUNTIME LIFECYCLE GUARDRAILS](#8--runtime-lifecycle-guardrails)
+- [9. VALIDATION](#9--validation)
+- [10. RELATED](#10--related)
 
 <!-- /ANCHOR:table-of-contents -->
 
@@ -212,7 +213,7 @@ mcp_server/
 | Domain logic | `lib/` should not import top-level handlers. |
 | Storage | SQLite access stays behind package modules that own schema and migration rules. |
 | Build output | `dist/` is generated output and should not be a source dependency. |
-| Docs | This README documents current code layout only, not release packet history. |
+| Docs | This README documents current code layout and links to packet history when operators need rollout context. |
 
 Main tool flow:
 
@@ -268,8 +269,30 @@ Main tool flow:
 
 ---
 
+<!-- ANCHOR:runtime-lifecycle-guardrails -->
+## 8. RUNTIME LIFECYCLE GUARDRAILS
+
+The Spec Kit Memory MCP process participates in the shared native MCP lifecycle guardrails introduced by the orphan MCP leak prevention packet.
+
+| Guardrail | Current behavior |
+|---|---|
+| Server idle self-exit | `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the monitor. Primary stdio input and secondary IPC connect/data/write events refresh activity. |
+| Orphan process sweeper | `.opencode/scripts/orphan-mcp-sweeper.sh` scans stale MCP helper classes and stale `/tmp` artifacts. Run `--dry-run --verbose` before any real sweep. |
+| Claude Stop cleanup | `.opencode/scripts/claude-session-cleanup.sh` kills only MCP helper descendants of the current Claude Code session and is chained through the repo-local Claude Stop hook. |
+| LaunchAgent rollout | `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` is a versioned template only. It is not installed or loaded by default. |
+
+Canonical operator references:
+
+- [Repo scripts runbook](../../../scripts/README.md)
+- [Environment reference](./ENV_REFERENCE.md)
+- [Orphan MCP leak prevention implementation summary](../../../specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
+
+<!-- /ANCHOR:runtime-lifecycle-guardrails -->
+
+---
+
 <!-- ANCHOR:validation -->
-## 8. VALIDATION
+## 9. VALIDATION
 
 Run from `mcp_server/` unless noted.
 
@@ -292,10 +315,11 @@ Expected result: build and tests exit 0, README validation reports no blocking i
 ---
 
 <!-- ANCHOR:related -->
-## 9. RELATED
+## 10. RELATED
 
 - [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md)
 - [`ENV_REFERENCE.md`](./ENV_REFERENCE.md)
+- [`../../../scripts/README.md`](../../../scripts/README.md)
 - [`configs/README.md`](./configs/README.md)
 - [`hooks/README.md`](./hooks/README.md)
 - [`lib/search/README.md`](./lib/search/README.md)

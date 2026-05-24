@@ -20,7 +20,7 @@ import {
   rememberParseResultCaptures,
   type RawCapture,
 } from './structural-indexer.js';
-import { isSpeckitMetricsEnabled, speckitMetrics } from '../../../system-skill-advisor/mcp_server/lib/metrics.js';
+import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
 import { addToSkipList, lookupSkipList, type SkipListEntry } from './parser-skip-list.js';
 
 // ── Types ──────────────────────────────────────────────────────

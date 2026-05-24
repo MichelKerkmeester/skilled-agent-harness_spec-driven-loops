@@ -46,13 +46,13 @@ Transformed the sk-improve-agent evaluation from structural keyword-checking (~1
 
 **Problem:** The name `sk-recursive-agent` described the mechanism, not the purpose.
 
-**Fix:** Renamed to `sk-improve-agent` across 187+ files and 1129+ occurrences. Agent renamed to `agent-improver`, command moved to `/improve:agent`, dispatch changed to `@agent-improver`. Zero stale references verified by fresh audit.
+**Fix:** Renamed to `sk-improve-agent` across 187+ files and 1129+ occurrences. Agent renamed to `agent-improver`, command moved to `/deep:start-agent-improvement-loop`, dispatch changed to `@agent-improver`. Zero stale references verified by fresh audit.
 
 ### Command rewrite
 
 **Problem:** The command markdown was minimal and lacked the quality level of other spec_kit commands.
 
-**Fix:** Rewrote `.opencode/commands/improve/agent.md` to 430+ lines with Phase 0 verification, unified setup prompt, 5-dimension reference, workflow steps, and violation self-detection.
+**Fix:** Rewrote `.opencode/commands/deep/start-agent-improvement-loop.md` to 430+ lines with Phase 0 verification, unified setup prompt, 5-dimension reference, workflow steps, and violation self-detection.
 
 ### YAML workflow rewrite
 
@@ -107,8 +107,8 @@ Transformed the sk-improve-agent evaluation from structural keyword-checking (~1
 | `sk-improve-agent/scripts/reduce-state.cjs` | Per-dimension tracking, dimensional dashboard, plateau stop. |
 | `sk-improve-agent/scripts/run-benchmark.cjs` | `--integration-report` flag for integration consistency scoring. |
 | `.opencode/agents/agent-improver.md` | Title, callouts, dividers, ASCII summary box, integration-aware workflow. |
-| `.opencode/commands/improve/agent.md` | Full rewrite to 430+ lines. |
-| `.opencode/commands/improve/assets/*.yaml` | Both workflows rewritten to spec_kit gold standard. |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Full rewrite to 430+ lines. |
+| `.opencode/commands/deep/assets/*.yaml` | Both workflows rewritten to spec_kit gold standard. |
 | `sk-improve-agent/SKILL.md` | 5D framework, emoji rule markers, integration scanning. |
 | `sk-improve-agent/README.md` | Expanded from 231 to 416 lines. |
 | `sk-improve-agent/references/*.md` | All 11 references enriched. |

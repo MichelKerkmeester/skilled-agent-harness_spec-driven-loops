@@ -3,11 +3,11 @@ phase	category	path	ref_count	notes
 004	runtime-codex	.codex/agents/improve-prompt.toml	9	hidden runtime mirror body refs
 004	runtime-gemini	.gemini/agents/improve-prompt.md	9	hidden runtime mirror body refs
 004	runtime-gemini	.gemini/commands/create/prompt.toml	2	hidden Gemini create command embeds skill path in TOML prompt
-004	runtime-gemini	.gemini/commands/improve/README.txt	2	hidden Gemini command README link refs
+004	runtime-gemini	.gemini/commands/deep/start-agent-improvement-loop.toml	2	hidden Gemini command README link refs
 003	agent-body	.opencode/agents/improve-prompt.md	9	agent filename unchanged body refs only
 005	changelog	.opencode/changelog/agent-orchestration/v2.4.0.0.md	4	active changelog refs
-003	dispatcher-cmd	.opencode/commands/improve/README.txt	2	dispatcher README table and link refs
-003	dispatcher-cmd	.opencode/commands/improve/prompt.md	10	dispatcher command body refs
+003	dispatcher-cmd	.opencode/commands/README.txt	2	dispatcher README table and link refs
+003	dispatcher-cmd	.opencode/commands/prompt.md	10	dispatcher command body refs
 005	install-guide	.opencode/install_guides/README.md	3	install guide catalog refs
 005	install-guide	.opencode/install_guides/SET-UP - AGENTS.md	2	install guide skill table refs
 005	skill-readme	.opencode/skills/README.md	4	skill catalog README refs

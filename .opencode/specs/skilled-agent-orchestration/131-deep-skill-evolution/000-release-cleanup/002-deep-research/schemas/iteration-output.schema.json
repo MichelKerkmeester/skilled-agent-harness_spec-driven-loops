@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://internal/spec/131/000/002/iteration-output.schema.json",
+  "title": "Deep-Research Iteration Output",
+  "description": "Shape of one phase-5 iteration output file (research/iterations/iter-{NN}-{executor}.json). Drives convergence calculation in step 5a and merge logic in step 5b.",
+  "type": "object",
+  "required": [
+    "iteration",
+    "executor",
+    "model",
+    "started_at",
+    "ended_at",
+    "logic_gaps",
+    "novel_findings",
+    "delta_vs_prev_iter",
+    "convergence_signals"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "iteration": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Iteration number (1..10)"
+    },
+    "executor": {
+      "type": "string",
+      "enum": ["cli-devin", "cli-opencode"],
+      "description": "CLI binary that ran this iteration"
+    },
+    "model": {
+      "type": "string",
+      "description": "Model identifier passed via --model or --provider (e.g. swe-1.6, deepseek/deepseek-v4-pro)"
+    },
+    "prompt_framework": {
+      "type": "string",
+      "enum": ["RCAF", "STAR", "BUILD", "free-form"],
+      "description": "Framework used to compose the dispatch prompt (RCAF default for SWE-1.6 per cli-devin/SKILL.md:192)"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "wall_clock_seconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "logic_gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["gap_id", "description", "evidence", "severity"],
+        "additionalProperties": false,
+        "properties": {
+          "gap_id": {
+            "type": "string",
+            "pattern": "^LG-[0-9]{4}$",
+            "description": "Sequential logic-gap identifier (LG-0001, LG-0002, ...)"
+          },
+          "description": {"type": "string", "minLength": 10},
+          "evidence": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "File paths, line refs, or external citations supporting the gap"
+          },
+          "severity": {"type": "string", "enum": ["P0", "P1", "P2"]},
+          "in_scope_check": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "already_in_spec": {"type": "boolean"},
+              "already_in_audit_findings": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "novel_findings": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Free-form notes on insights that are not full logic gaps but worth recording"
+    },
+    "delta_vs_prev_iter": {
+      "type": "string",
+      "enum": [
+        "first_iteration",
+        "no new gaps",
+        "new gaps surfaced",
+        "regression"
+      ],
+      "description": "Convergence signal for step 5a stop criterion. Two consecutive 'no new gaps' + zero new P0/P1 = converged."
+    },
+    "convergence_signals": {
+      "type": "object",
+      "required": ["unique_gaps_so_far", "p0_count", "p1_count", "p2_count"],
+      "additionalProperties": false,
+      "properties": {
+        "unique_gaps_so_far": {"type": "integer", "minimum": 0},
+        "p0_count": {"type": "integer", "minimum": 0},
+        "p1_count": {"type": "integer", "minimum": 0},
+        "p2_count": {"type": "integer", "minimum": 0},
+        "duplicates_with_prior_iters": {"type": "integer", "minimum": 0}
+      }
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Free-form per-iteration notes (dispatch issues, timeouts, retries)"
+    }
+  },
+  "examples": [
+    {
+      "iteration": 1,
+      "executor": "cli-devin",
+      "model": "swe-1.6",
+      "prompt_framework": "RCAF",
+      "started_at": "2026-05-27T09:00:00Z",
+      "ended_at": "2026-05-27T09:14:00Z",
+      "wall_clock_seconds": 840,
+      "logic_gaps": [
+        {
+          "gap_id": "LG-0001",
+          "description": "loop_protocol.md does not document the rerank-sidecar fallback path when CocoIndex is unavailable",
+          "evidence": [".opencode/skills/deep-research/references/loop_protocol.md:120-160"],
+          "severity": "P1",
+          "in_scope_check": {
+            "already_in_spec": false,
+            "already_in_audit_findings": false
+          }
+        }
+      ],
+      "novel_findings": [
+        "convergence.md uses graph_only save lineage in one example but state_format.md does not document graph_only as a valid lineage value"
+      ],
+      "delta_vs_prev_iter": "first_iteration",
+      "convergence_signals": {
+        "unique_gaps_so_far": 1,
+        "p0_count": 0,
+        "p1_count": 1,
+        "p2_count": 0,
+        "duplicates_with_prior_iters": 0
+      },
+      "notes": null
+    },
+    {
+      "iteration": 6,
+      "executor": "cli-opencode",
+      "model": "deepseek/deepseek-v4-pro",
+      "prompt_framework": "free-form",
+      "started_at": "2026-05-27T13:00:00Z",
+      "ended_at": "2026-05-27T13:22:00Z",
+      "wall_clock_seconds": 1320,
+      "logic_gaps": [],
+      "novel_findings": [
+        "All gaps from iters 1-5 reproduce under deepseek-v4-pro; no novel structural gaps surface"
+      ],
+      "delta_vs_prev_iter": "no new gaps",
+      "convergence_signals": {
+        "unique_gaps_so_far": 4,
+        "p0_count": 0,
+        "p1_count": 2,
+        "p2_count": 2,
+        "duplicates_with_prior_iters": 4
+      },
+      "notes": "Cross-model confirmation pass"
+    }
+  ]
+}

@@ -225,7 +225,7 @@ I’ve confirmed one real runtime asymmetry already: `sk-improve-agent` still pa
   └ 5 lines found
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L280:360 (81 lines read)
 
 ● Read improvement-journal.cjs
@@ -237,7 +237,7 @@ I’ve confirmed one real runtime asymmetry already: `sk-improve-agent` still pa
   └ No matches found
 
 ● Search (grep)
-  │ "synthesis_complete" in **/*.{md,yml,yaml,json,cjs,js} (.opencode/commands/improve)
+  │ "synthesis_complete" in **/*.{md,yml,yaml,json,cjs,js} (.opencode/commands/deep)
   └ No matches found
 
 ● Search (grep)
@@ -309,7 +309,7 @@ I’ve narrowed this to the improve-agent path: fail-closed handling is definite
   └ L280:355 (76 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L324:336 (13 lines read)
 
 ● Read improvement_config.json
@@ -349,12 +349,12 @@ Reviewed:
 - `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md`
 - `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md`
 - `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md`
-- `.opencode/commands/improve/agent.md`
+- `.opencode/commands/deep/start-agent-improvement-loop.md`
 - `.opencode/skills/sk-improve-agent/assets/improvement_config.json`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts`
 
 Cross-cutting verdict:
-- **`synthesis_complete` parsing:** correct in review/research; no current-runtime bug filed for improve-agent because its shipped workflow uses `session_end` journal boundaries and explicitly retracts resume/restart flows (`.opencode/commands/improve/agent.md:330-334`, `.opencode/skills/sk-improve-agent/assets/improvement_config.json:14-22`).
+- **`synthesis_complete` parsing:** correct in review/research; no current-runtime bug filed for improve-agent because its shipped workflow uses `session_end` journal boundaries and explicitly retracts resume/restart flows (`.opencode/commands/deep/start-agent-improvement-loop.md:330-334`, `.opencode/skills/sk-improve-agent/assets/improvement_config.json:14-22`).
 - **Corruption handling:** **asymmetric and broken** in improve-agent.
 - **Lifecycle lineage persistence:** review/research are correct for their shipped contracts; improve-agent’s lack of resume/restart handling appears intentional for the current one-session-only release, so I did not count that as a defect.
 

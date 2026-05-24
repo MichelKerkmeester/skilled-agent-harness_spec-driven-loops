@@ -89,6 +89,7 @@ Expected result: all legacy advisor regression tests pass.
 ## 5. RELATED
 
 - [`../compat/README.md`](../compat/README.md)
+- [`advisor-fixtures/README.md`](advisor-fixtures/README.md)
 - [`../handlers/README.md`](../handlers/README.md)
 - [`../../README.md`](../../README.md)
 

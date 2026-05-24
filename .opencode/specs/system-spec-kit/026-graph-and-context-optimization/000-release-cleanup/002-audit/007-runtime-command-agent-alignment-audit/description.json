@@ -8,7 +8,7 @@
   ],
   "contextType": "implementation",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/007-runtime-command-agent-alignment-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/007-runtime-command-agent-alignment-audit",
   "description": "Feature Specification: 049 Runtime Command Agent Alignment Review",
   "keywords": [
     "feature",
@@ -20,13 +20,14 @@
     "alignment",
     "review"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.398Z",
-  "specId": "036",
-  "folderSlug": "runtime-command-agent-alignment-review",
+  "lastUpdated": "2026-05-23T15:24:59.737Z",
+  "specId": "007",
+  "folderSlug": "runtime-command-agent-alignment-audit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "002-audit"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

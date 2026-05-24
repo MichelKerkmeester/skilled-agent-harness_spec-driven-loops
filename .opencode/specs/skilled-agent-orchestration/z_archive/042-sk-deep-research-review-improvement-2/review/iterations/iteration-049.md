@@ -80,7 +80,7 @@ I’ve got the core skill docs loaded. Next I’m cross-checking the exact READM
   └ L1:260 (260 lines read)
 
 ● Search (glob)
-  │ "**/improve/agent*.md" in .opencode/command
+  │ "**/deep/start-agent-improvement-loop*.md" in .opencode/command
   └ 1 file found
 
 ● Search (glob)
@@ -92,7 +92,7 @@ I’ve got the core skill docs loaded. Next I’m cross-checking the exact READM
   └ L1:220 (220 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L1:260 (259 lines read)
 
 I’ve found one likely stale area already: the README’s top-level count blurbs disagree with each other. I’m verifying those counts against the actual repo layout so the report stays grounded.
@@ -175,7 +175,7 @@ I’m validating the “fancy” capability bullets now—the ones most likely t
 
 ● Search (grep)
   │ "plateau|session-boundary|legal_stop_evaluated|blocked_stop|dynamic|static"
-  │ (.opencode/commands/improve/agent.md)
+  │ (.opencode/commands/deep/start-agent-improvement-loop.md)
   └ 20 lines found
 
 ● Search (grep)
@@ -280,11 +280,11 @@ I’ve narrowed it down to documentation drift rather than capability drift in t
   └ L30:55 (26 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L229:235 (6 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L405:412 (8 lines read)
 
 ● Read README.md
@@ -337,21 +337,21 @@ I’ve narrowed it down to documentation drift rather than capability drift in t
 ## Findings
 
 ### P1
-- **F-049-001 — README still advertises a `Prompt` create command that is not shipped.**  
-  `README.md:743-746` documents a `**Prompt**` entry under **CREATE**, but the shipped create entrypoints are only the six files under `.opencode/commands/create/` (`agent.md`, `changelog.md`, `feature-catalog.md`, `folder_readme.md`, `sk-skill.md`, `testing-playbook.md`). This means a reader following the README to `/create:prompt` will hit a dead end.  
-  **Risk:** release-facing docs direct users to a nonexistent command.  
+- **F-049-001 — README still advertises a `Prompt` create command that is not shipped.**
+  `README.md:743-746` documents a `**Prompt**` entry under **CREATE**, but the shipped create entrypoints are only the six files under `.opencode/commands/create/` (`agent.md`, `changelog.md`, `feature-catalog.md`, `folder_readme.md`, `sk-skill.md`, `testing-playbook.md`). This means a reader following the README to `/create:prompt` will hit a dead end.
+  **Risk:** release-facing docs direct users to a nonexistent command.
   **Recommended fix:** either restore a real `.opencode/commands/create/prompt.md` entrypoint or remove/rename the README entry.
 
 ### P2
-- **F-049-002 — Root README count badges and summary lines are internally inconsistent.**  
-  The same file says **12 agents** at `README.md:7` and `README.md:52`, but **11 agents** at `README.md:11` and `README.md:61`. It also says **21 command entry points / 21 commands** at `README.md:7`, `README.md:63`, and `README.md:1165`, while later claiming **23 command entry points** at `README.md:648`.  
-  **Risk:** the root README is no longer a trustworthy source for high-level inventory counts.  
+- **F-049-002 — Root README count badges and summary lines are internally inconsistent.**
+  The same file says **12 agents** at `README.md:7` and `README.md:52`, but **11 agents** at `README.md:11` and `README.md:61`. It also says **21 command entry points / 21 commands** at `README.md:7`, `README.md:63`, and `README.md:1165`, while later claiming **23 command entry points** at `README.md:648`.
+  **Risk:** the root README is no longer a trustworthy source for high-level inventory counts.
   **Recommended fix:** normalize the hero blurb, “At a Glance” table, and footer to one audited set of counts.
 
-- **F-049-003 — Improve Agent traceability is split-brain between the README and the command entrypoint.**  
-  The root README describes Improve Agent as a dynamic, any-agent workflow with “no hardcoded profiles needed” (`README.md:760-771`). That matches the current skill/reference truth: dynamic mode is the only supported scoring path in `sk-improve-agent/references/evaluator_contract.md:36-38` and `sk-improve-agent/assets/improvement_config_reference.md:35,50`. But the user-facing `/improve:agent` command still documents a legacy **Static** mode and “only handover target with static profile is promotion-eligible” in `.opencode/commands/improve/agent.md:229-235` and `.opencode/commands/improve/agent.md:408-410`.  
-  **Risk:** operators get contradictory instructions depending on whether they start from the README or the command doc.  
-  **Recommended fix:** remove the stale static-mode/handover-only promotion language from `/improve:agent`, or explicitly downgrade the README if static mode is still intentionally live.
+- **F-049-003 — Improve Agent traceability is split-brain between the README and the command entrypoint.**
+  The root README describes Improve Agent as a dynamic, any-agent workflow with “no hardcoded profiles needed” (`README.md:760-771`). That matches the current skill/reference truth: dynamic mode is the only supported scoring path in `sk-improve-agent/references/evaluator_contract.md:36-38` and `sk-improve-agent/assets/improvement_config_reference.md:35,50`. But the user-facing `/deep:start-agent-improvement-loop` command still documents a legacy **Static** mode and “only handover target with static profile is promotion-eligible” in `.opencode/commands/deep/start-agent-improvement-loop.md:229-235` and `.opencode/commands/deep/start-agent-improvement-loop.md:408-410`.
+  **Risk:** operators get contradictory instructions depending on whether they start from the README or the command doc.
+  **Recommended fix:** remove the stale static-mode/handover-only promotion language from `/deep:start-agent-improvement-loop`, or explicitly downgrade the README if static mode is still intentionally live.
 
 ## Iteration Summary
 

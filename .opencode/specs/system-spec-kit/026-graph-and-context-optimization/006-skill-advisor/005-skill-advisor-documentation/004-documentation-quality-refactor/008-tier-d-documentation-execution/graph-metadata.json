@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Execute F4 (Devin hooks migration), F6 (OLD location deprecation banners), F37 (catalog/playbook cross-reference table). Leave F35 and F36 as status-quo per their recommendations.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-05-23T11:55:15.228Z",
+    "last_save_at": "2026-05-24T05:40:25.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

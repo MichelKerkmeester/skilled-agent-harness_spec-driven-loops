@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "skilled-agent-orchestration/071-sk-doc-router-stress-test",
+  "specFolder": "skilled-agent-orchestration/z_archive/071-sk-doc-router-stress-test",
   "description": "Feature Specification: sk-doc smart router stress test (15 scenarios x 3 CLIs = 45 cell matrix)",
   "keywords": [
     "feature",
@@ -15,11 +15,12 @@
     "cell",
     "matrix"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.195Z",
+  "lastUpdated": "2026-05-23T15:24:59.459Z",
   "specId": "071",
   "folderSlug": "sk-doc-router-stress-test",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

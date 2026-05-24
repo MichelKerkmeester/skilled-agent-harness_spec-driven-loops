@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase A research converged on a scoped Phase C implementation for the advisor packet. The advisor will gain an explicit Devin `UserPromptSubmit` hook variant under the skill-owned hook tree while retaining Devin's `read_config_from.claude=true` inheritance as a safety net, because Devin's documented Claude compatibility does not explicitly prove `hookSpecificOutput.additionalContext` injection for this event (F001/Q1, `research/iterations/iteration-01.md`).",
     "created_at": "2026-05-15T13:05:18.133Z",
-    "last_save_at": "2026-05-23T11:55:15.194Z",
+    "last_save_at": "2026-05-24T05:40:25.894Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

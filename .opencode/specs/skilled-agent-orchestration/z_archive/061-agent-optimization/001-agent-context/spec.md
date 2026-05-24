@@ -71,7 +71,7 @@ Improvement focus: **LEAF retrieval discipline; no-dispatch invariant; CocoIndex
 
 ### Out of Scope
 - Skill changes (sk-improve-agent locked at 060/005 wiring)
-- Command changes (`/improve:agent` locked)
+- Command changes (`/deep:start-agent-improvement-loop` locked)
 - Other agents (each gets its own sub-phase)
 - Infrastructure (benchmark fixtures, materializer, scripts) — 060/005 territory
 

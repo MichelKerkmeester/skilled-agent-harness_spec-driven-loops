@@ -108,7 +108,7 @@ The router missed the context-preservation intent when neither `save` nor `conte
 |---|---|
 | Prompt | `create a test playbook for stressing this skill` |
 | Expected | `create:testing-playbook` top1/top3 with confidence >= 0.6 |
-| Pass criteria | create:testing-playbook in top-3; improve:agent and spec_kit:deep-review stay < 0.5 |
+| Pass criteria | create:testing-playbook in top-3; deep:start-agent-improvement-loop and spec_kit:deep-review stay < 0.5 |
 
 | Executor | Top1 | Top3 Contains Create Testing Playbook | Verdict |
 |---|---|---|---|

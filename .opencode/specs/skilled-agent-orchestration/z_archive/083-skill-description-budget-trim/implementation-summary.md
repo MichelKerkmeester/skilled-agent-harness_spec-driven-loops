@@ -84,8 +84,8 @@ Trimmed YAML-frontmatter `description:` fields across 36 of 39 project skill/com
 | `.opencode/commands/speckit/resume.md` | Modified | 106 → 90 chars |
 | `.opencode/commands/speckit/deep-research.md` | Modified | 117 → 105 chars |
 | `.opencode/commands/speckit/plan.md` | Modified | 121 → 89 chars |
-| `.opencode/commands/improve/agent.md` | Modified | 183 → 122 chars |
-| `.opencode/commands/improve/prompt.md` | Modified | 163 → 112 chars |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Modified | 183 → 122 chars |
+| `.opencode/commands/prompt.md` | Modified | 163 → 112 chars |
 | `.opencode/commands/create/agent.md` | Modified | 127 → 104 chars |
 | `.opencode/commands/create/changelog.md` | Modified | 241 → 114 chars |
 | `.opencode/commands/create/sk-skill.md` | Modified | 128 → 112 chars |
@@ -120,7 +120,7 @@ No regex, no AST manipulation — pure string replace, deterministic and easy to
 | 1 | Audit baseline (`awk` over frontmatters) | 7,646 chars combined; 16 skills + 23 commands |
 | 2 | Define per-file trim pairs | Skills target ≤130, commands target ≤110 |
 | 3 | Apply 16 skill rewrites | All ≤132 chars (sk-prompt at 132, intentional) |
-| 4 | Apply 20 command rewrites | All ≤122 chars (improve/agent at 122) |
+| 4 | Apply 20 command rewrites | All ≤122 chars (deep/start-agent-improvement-loop at 122) |
 | 5 | Re-audit | 4,423 chars combined → 1,177 headroom under 5,600 target |
 | 6 | Revert env var override | `~/.claude/settings.json` no longer pins `SLASH_COMMAND_TOOL_CHAR_BUDGET` |
 | 7 | Live harness reminder check | All 49 skills visible with new descriptions |

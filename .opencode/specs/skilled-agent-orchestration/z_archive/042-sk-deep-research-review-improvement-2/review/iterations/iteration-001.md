@@ -191,7 +191,7 @@ exec
   - Structural queries (callers, imports, deps) → `code_graph_query` (Code Graph)
   - Exact text/regex → `Grep`
 
-**GIT WORKFLOW:** 
+**GIT WORKFLOW:**
 Full details: `.opencode/skills/sk-git/`
 - Worktree setup, conventional commits, PR creation, branch management
 - Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
@@ -233,7 +233,7 @@ These recovery steps are universal across Claude Code, OpenCode, Codex CLI, Copi
 4. Re-read the active runtime-specific instructions if they exist (`CODEX.md`, `GEMINI.md`, `.claude/CLAUDE.md`, runtime agent docs)
 5. Present a concise recovered summary and WAIT for confirmation before proceeding
 
-### Coding Analysis Lenses 
+### Coding Analysis Lenses
 
 | Lens               | Focus            | Detection Questions                                                                |
 | ------------------ | ---------------- | ---------------------------------------------------------------------------------- |
@@ -1153,65 +1153,65 @@ exec
     11	contextType: "planning"
     12	---
     13	# Decision Record: Deep Research and Deep Review Runtime Improvement Bundle
-    14	
+    14
     15	<!-- SPECKIT_LEVEL: 3 -->
     16	<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-    17	
+    17
     18	---
-    19	
+    19
     20	<!-- ANCHOR:adr-001 -->
     21	## ADR-001: Shared Stop-Reason Taxonomy and Legal Done Gate
-    22	
+    22
     23	### Metadata
-    24	
+    24
     25	| Field | Value |
     26	|-------|-------|
     27	| **Status** | Accepted |
     28	| **Date** | 2026-04-10 |
     29	| **Deciders** | Packet 042 planning author |
-    30	
+    30
     31	### Context
-    32	
+    32
     33	We need a runtime answer to "why did this loop stop?" that works across both deep research and deep review. Right now stop behavior is partly implied by convergence math, partly spread across workflow steps, and not strong enough for recovery, dashboards, or user trust.
-    34	
+    34
     35	### Constraints
-    36	
+    36
     37	- The taxonomy must work for both research and review without turning them into the same product.
     38	- STOP must remain auditable from packet-local artifacts.
-    39	
+    39
     40	### Decision
-    41	
+    41
     42	**We chose**: a shared named stop-reason taxonomy plus a separate legal done gate.
-    43	
+    43
     44	**How it works**: Each loop records `stopReason` from the same small taxonomy, while the legal done gate decides whether STOP is actually allowed. This keeps reason reporting simple and keeps the enforcement logic explicit.
-    45	
+    45
     46	### Alternatives Considered
-    47	
+    47
     48	| Option | Pros | Cons | Score |
     49	|--------|------|------|-------|
     50	| **Shared taxonomy + legal done gate** | One reporting language, explicit enforcement, easy dashboarding | Requires coordinated updates across many assets | 9/10 |
     51	| Free-text stop reasons per loop | Fast to write | Not machine-friendly, drifts quickly, poor parity | 4/10 |
     52	| Separate taxonomies for research and review | Preserves product differences | Harder parity and resume behavior, more operator confusion | 5/10 |
-    53	
+    53
     54	**Why this one**: It gives us a compact, auditable vocabulary without pretending research and review are the same workflow.
-    55	
+    55
     56	### Consequences
-    57	
+    57
     58	**What improves**:
     59	- Dashboards, synthesis, and journals can report a single reason vocabulary.
     60	- Blocked-stop cases become explicit instead of hidden in convergence math.
-    61	
+    61
     62	**What it costs**:
     63	- We need synchronized changes across commands, assets, agents, and tests. Mitigation: make parity tests part of the same wave.
-    64	
+    64
     65	**Risks**:
-    66	
+    66
     67	| Risk | Impact | Mitigation |
     68	|------|--------|------------|
     69	| Taxonomy becomes too broad or too vague | Medium | Keep the enum small and use detail fields for nuance. |
-    70	
+    70
     71	### Five Checks Evaluation
-    72	
+    72
     73	| # | Check | Result | Evidence |
     74	|---|-------|--------|----------|
     75	| 1 | **Necessary?** | PASS | Stop behavior is a direct trust gap from `CF-010`. |
@@ -1219,72 +1219,72 @@ exec
     77	| 3 | **Sufficient?** | PASS | Small enum plus done gate covers reporting and enforcement. |
     78	| 4 | **Fits Goal?** | PASS | Runtime truth is a primary packet goal. |
     79	| 5 | **Open Horizons?** | PASS | Supports future dashboards and continuation tooling without forcing a DSL rewrite. |
-    80	
+    80
     81	**Checks Summary**: 5/5 PASS
-    82	
+    82
     83	### Implementation
-    84	
+    84
     85	**What changes**:
     86	- Skill references, workflow assets, dashboards, agents, and parity tests adopt the shared taxonomy.
     87	- Reducer/test surfaces learn blocked-stop reporting and resume-safe stop metadata.
-    88	
+    88
     89	**How to roll back**: Revert the new enum/done-gate fields together and restore the prior stop reporting language in skills, commands, agents, and parity tests.
     90	<!-- /ANCHOR:adr-001 -->
-    91	
+    91
     92	---
-    93	
+    93
     94	### ADR-002: Claim-Verification Ledger Uses JSONL Canonical Storage With Rendered Summaries
-    95	
+    95
     96	#### Metadata
-    97	
+    97
     98	| Field | Value |
     99	|-------|-------|
    100	| **Status** | Accepted |
    101	| **Date** | 2026-04-10 |
    102	| **Deciders** | Packet 042 planning author |
-   103	
+   103
    104	#### Context
-   105	
+   105
    106	Research packets need a durable way to show whether major claims were verified, contradicted, or left unresolved. A ledger must be machine-friendly enough for reducers and synthesis, but still readable in packet outputs.
-   107	
+   107
    108	#### Constraints
-   109	
+   109
    110	- The ledger must be append-friendly and packet-local.
    111	- It should not require hand-maintained duplication between machine and human views.
-   112	
+   112
    113	#### Decision
-   114	
+   114
    115	**We chose**: JSONL as the canonical ledger format, with rendered markdown summaries in synthesis/dashboard outputs when needed.
-   116	
+   116
    117	**How it works**: The runtime writes structured ledger entries as JSONL so reducers and tests can reason over them. Research synthesis can then summarize those entries in human-readable tables or narrative sections without making markdown the source of truth.
-   118	
+   118
    119	#### Alternatives Considered
-   120	
+   120
    121	| Option | Pros | Cons | Score |
    122	|--------|------|------|-------|
    123	| **Canonical JSONL + rendered markdown** | Append-only, machine-friendly, easy reducer use, still human-readable through renderers | Requires one extra render path | 9/10 |
    124	| Markdown table only | Easy for humans to skim | Brittle for automated checks and append-only workflows | 5/10 |
    125	| JSON only, no rendered summary | Very machine-friendly | Poor packet readability and synthesis ergonomics | 6/10 |
-   126	
+   126
    127	**Why this one**: It keeps the runtime truthful and testable without making humans read raw JSONL for every synthesis.
-   128	
+   128
    129	#### Consequences
-   130	
+   130
    131	**What improves**:
    132	- Claim status becomes reducer- and test-friendly.
    133	- Research summaries can cite the ledger without becoming hand-maintained ledgers themselves.
-   134	
+   134
    135	**What it costs**:
    136	- Reducers or synthesis paths need a render step. Mitigation: keep markdown summaries derived, not editable.
-   137	
+   137
    138	**Risks**:
-   139	
+   139
    140	| Risk | Impact | Mitigation |
    141	|------|--------|------------|
    142	| Ledger becomes noisy and underused | Medium | Restrict canonical use to major claims and promotion checkpoints. |
-   143	
+   143
    144	#### Five Checks Evaluation
-   145	
+   145
    146	| # | Check | Result | Evidence |
    147	|---|-------|--------|----------|
    148	| 1 | **Necessary?** | PASS | `CF-014` asks for explicit verification status tied to evidence. |
@@ -1292,71 +1292,71 @@ exec
    150	| 3 | **Sufficient?** | PASS | JSONL plus rendered summaries keeps one canonical truth. |
    151	| 4 | **Fits Goal?** | PASS | Trustworthy research output is a core packet objective. |
    152	| 5 | **Open Horizons?** | PASS | Supports future dashboard, search, and promotion-checkpoint tooling. |
-   153	
+   153
    154	**Checks Summary**: 5/5 PASS
-   155	
+   155
    156	#### Implementation
-   157	
+   157
    158	**What changes**:
    159	- Research state docs, reducer logic, and synthesis contracts define the ledger path and entry schema.
    160	- Behavior tests add verified/contradicted/unresolved coverage.
-   161	
+   161
    162	**How to roll back**: Remove the JSONL ledger artifact and revert synthesis/dashboard references to the prior citation-only model.
-   163	
+   163
    164	---
-   165	
+   165
    166	### ADR-003: Dashboards Stay Generated Markdown, Backed by Structured Metrics
-   167	
+   167
    168	#### Metadata
-   169	
+   169
    170	| Field | Value |
    171	|-------|-------|
    172	| **Status** | Accepted |
    173	| **Date** | 2026-04-10 |
    174	| **Deciders** | Packet 042 planning author |
-   175	
+   175
    176	#### Context
-   177	
+   177
    178	The dashboards need richer runtime truth, but the repo already uses markdown dashboards as the packet-local observability surface. We need to decide whether to keep generated markdown, move to JSON-only, or introduce a richer HTML/UI artifact.
-   179	
+   179
    180	#### Constraints
-   181	
+   181
    182	- The result must stay easy to review in git and packet folders.
    183	- It must remain reducer-friendly and runtime-agnostic.
-   184	
+   184
    185	#### Decision
-   186	
+   186
    187	**We chose**: keep dashboards as generated markdown, backed by structured reducer metrics and canonical state artifacts.
-   188	
+   188
    189	**How it works**: Reducers compute metrics from JSONL, journals, ledgers, and strategy/config files. Generated markdown remains the human-facing dashboard, while machine-readable sources stay authoritative underneath.
-   190	
+   190
    191	#### Alternatives Considered
-   192	
+   192
    193	| Option | Pros | Cons | Score |
    194	|--------|------|------|-------|
    195	| **Generated markdown backed by structured metrics** | Git-friendly, packet-local, easy recovery surface, no extra UI stack | Needs careful renderer upkeep | 9/10 |
    196	| JSON-only dashboards | Easy to compute | Poor operator ergonomics | 5/10 |
    197	| HTML or app-based dashboards | Rich visuals | Too much infrastructure for packet-local runtime truth | 4/10 |
-   198	
+   198
    199	**Why this one**: It preserves the existing packet-local operator workflow while allowing richer structured metrics underneath.
-   200	
+   200
    201	#### Consequences
-   202	
+   202
    203	**What improves**:
    204	- Operators keep a git-visible dashboard surface.
    205	- Reducers can expand metrics without turning dashboards into manually curated docs.
-   206	
+   206
    207	**What it costs**:
    208	- Markdown renderers need to stay synchronized with state schemas. Mitigation: reducer and parity tests become mandatory.
-   209	
+   209
    210	**Risks**:
-   211	
+   211
    212	| Risk | Impact | Mitigation |
    213	|------|--------|------------|
    214	| Dashboard sections drift from state schema | Medium | Test section presence and metric mapping in reducer/parity suites. |
-   215	
+   215
    216	#### Five Checks Evaluation
-   217	
+   217
    218	| # | Check | Result | Evidence |
    219	|---|-------|--------|----------|
    220	| 1 | **Necessary?** | PASS | `CF-010` explicitly calls for richer runtime health signals and summaries. |
@@ -1364,42 +1364,42 @@ exec
    222	| 3 | **Sufficient?** | PASS | Generated markdown already fits packet-local workflows. |
    223	| 4 | **Fits Goal?** | PASS | The goal is better runtime truth, not a new UI product. |
    224	| 5 | **Open Horizons?** | PASS | Structured metrics could power future renderers without changing packet truth. |
-   225	
+   225
    226	**Checks Summary**: 5/5 PASS
-   227	
+   227
    228	#### Implementation
-   229	
+   229
    230	**What changes**:
    231	- Dashboard assets expand in both skills.
    232	- Reducer/test surfaces learn the new metrics and section rendering.
-   233	
+   233
    234	**How to roll back**: Revert the new dashboard metrics/sections while keeping the current generated-markdown pattern intact.
-   235	
+   235
    236	---
-   237	
+   237
    238	### ADR-004: Council Synthesis Is Opt-In and Lives Inside Deep Research
-   239	
+   239
    240	#### Metadata
-   241	
+   241
    242	| Field | Value |
    243	|-------|-------|
    244	| **Status** | Accepted |
    245	| **Date** | 2026-04-10 |
    246	| **Deciders** | Packet 042 planning author |
-   247	
+   247
    248	#### Context
-   249	
+   249
    250	The research corpus suggests council-style synthesis for ambiguous cases, but it also warns that the mode is expensive and failure-prone if treated as default behavior.
-   251	
+   251
    252	#### Constraints
-   253	
+   253
    254	- We need optional perspective isolation without creating a separate parallel product.
    255	- Default deep-research behavior must remain lean.
-   256	
+   256
    257	#### Decision
-   258	
+   258
    259	**We chose**: implement council synthesis as an opt-in profile inside deep research rather than as a default mode or a separate command family.
-   260	
+   260
 
  succeeded in 0ms:
      1	---
@@ -1416,27 +1416,27 @@ exec
     12	contextType: "planning"
     13	---
     14	# Feature Specification: Deep Research and Deep Review Runtime Improvement Bundle
-    15	
+    15
     16	<!-- SPECKIT_LEVEL: 3 -->
     17	<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-    18	
+    18
     19	---
-    20	
+    20
     21	## EXECUTIVE SUMMARY
-    22	
+    22
     23	This packet converts the consolidated agentic-systems research into one implementation plan for the two autonomous deep-loop products: `sk-deep-research` and `sk-deep-review`. The work is centered on runtime truth, not feature sprawl: real stop reasons, legal completion gates, resume-from-run semantics, auditability, claim verification, behavior-first tests, and richer dashboards that make loop state easier to trust and resume.
-    24	
+    24
     25	**Key Decisions**: keep research and review as explicit products instead of collapsing them into a generic workflow DSL; make council synthesis and coordination-board support opt-in instead of default; treat journals, ledgers, and behavior tests as first-class runtime artifacts.
-    26	
+    26
     27	**Critical Dependencies**: consolidated research findings `CF-004`, `CF-010`, `CF-014`, `CF-021`, `CF-027`, and `CF-030`; existing deep-loop reducer and parity tests; packet-local, append-only state discipline.
-    28	
+    28
     29	This revision also incorporates five newly identified packet gaps from `scratch/codex-gpt54-deep-research.md`: reducer snapshot/compaction, packet-local observability, large-target decomposition, semantic convergence signals, and deep-review reducer ownership for machine-managed sections, plus an upfront agent-instruction cleanup gate so field names and reducer ownership rules are normalized before broader runtime changes begin.
-    30	
+    30
     31	---
-    32	
+    32
     33	<!-- ANCHOR:metadata -->
     34	## 1. METADATA
-    35	
+    35
     36	| Field | Value |
     37	|-------|-------|
     38	| **Level** | 3 |
@@ -1448,31 +1448,31 @@ exec
     44	| **Dependencies** | `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md`; current deep-loop assets, YAML workflows, reducer/tests |
     45	| **Predecessor** | Related background packets: `028-auto-deep-research-review-improvement`, `040-sk-auto-deep-research-review-improvement` |
     46	| **Successor** | `../002-semantic-coverage-graph/spec.md` (Phase 002 — semantic coverage graph); downstream Phase 003 (wave executor), Phase 004 (offline loop optimizer) |
-    47	
+    47
     48	---
     49	<!-- /ANCHOR:metadata -->
-    50	
+    50
     51	<!-- ANCHOR:problem -->
     52	## 2. PROBLEM & PURPOSE
-    53	
+    53
     54	### Problem Statement
-    55	
+    55
     56	The current deep-loop stack is functional, but it still treats "converged" as a mostly inferred state instead of a strongly explained runtime truth. Deep research and deep review already have JSONL state, dashboards, and reducer/parity coverage, yet the consolidated research shows clear gaps around stop-reason taxonomy, legal done gates, resume/start-from behavior, research claim verification, audit trails, richer dashboards, behavior-first test coverage, and large-run coordination.
-    57	
+    57
     58	Those gaps matter because the two deep-loop products are long-running, artifact-heavy workflows. When they stop, resume, or synthesize, operators need to know exactly why the system behaved that way and which evidence backs the outcome. Without that, the runtime remains auditable only for people willing to reverse-engineer JSONL logs and reducer behavior by hand.
-    59	
+    59
     60	### Purpose
-    61	
+    61
     62	Define an implementation-ready plan that upgrades deep research and deep review into better-audited, better-tested, and easier-to-resume loop products while keeping their explicit LEAF-worker architecture and packet-local artifact model intact.
-    63	
+    63
     64	<!-- /ANCHOR:problem -->
     65	---
-    66	
+    66
     67	<!-- ANCHOR:scope -->
     68	## 3. SCOPE
-    69	
+    69
     70	### In Scope
-    71	
+    71
     72	- Real completion-gate planning for both deep-loop products, including named stop reasons, binary done checks, and resume-from-run semantics.
     73	- Research-quality runtime artifacts: claim-verification ledger, publication critique, runtime-surface inventory, and promotion checkpoints.
     74	- Dashboard upgrades for both loops: liveness, convergence trends, timing/token visibility, coverage depth, and severity trends.
@@ -1484,19 +1484,19 @@ exec
     80	- Behavior-first automated verification planning for reducers, workflows, and loop outputs.
     81	- Optional, explicit advanced modes: council-style synthesis and packet-level coordination boards for large multi-phase research.
     82	- Shared loop-runtime surfaces under `scripts/` and current contract/parity tests that must move with these runtime changes.
-    83	
+    83
     84	### Out of Scope
-    85	
+    85
     86	- Direct implementation of any skill, command, agent, reducer, or test changes.
     87	- Changes outside the deep-research/deep-review skill families, their commands, their agents, and shared loop runtime/test infrastructure.
     88	- Replacing research/review with a generic hidden workflow DSL. The consolidated report explicitly rejects that direction.
     89	- Broader operator-shell compression, guided bootstrap, or memory-platform redesign work from other research bundles unless it is directly required by the scoped runtime improvements in this packet.
     90	- A new `mcp_server/` implementation. No current `mcp_server/` surface was identified for these deep-loop products during packet discovery.
-    91	
+    91
     92	### Files to Change
-    93	
+    93
     94	#### Skills and Shared Runtime
-    95	
+    95
     96	| File Path | Change Type | Description |
     97	|-----------|-------------|-------------|
     98	| `.opencode/skills/sk-deep-research/SKILL.md` | Modify | Add the new completion-gate contract, ledger/journal behavior, optional council mode, and updated testing/runtime expectations. |
@@ -1517,9 +1517,9 @@ exec
    113	| `.opencode/skills/sk-deep-review/assets/deep_review_config.json` | Modify | Add schema version, lifecycle, journal, snapshot/compaction, observability, decomposition, and resume cursor fields. |
    114	| `.opencode/skills/sk-deep-review/assets/deep_review_strategy.md` | Modify | Add reducer-owned machine sections, hotspot-ranking, stratified coverage, semantic convergence, and journal-aware planning sections. |
    115	| `.opencode/skills/sk-deep-review/assets/deep_review_dashboard.md` | Modify | Expand dashboard sections for liveness, rolling severity trends, timing/tool/token histograms, state diffs, anomaly flags, stop-decision drill-down, and coverage depth. |
-   116	
+   116
    117	#### Commands and Workflow Assets
-   118	
+   118
    119	| File Path | Change Type | Description |
    120	|-----------|-------------|-------------|
    121	| `.opencode/commands/speckit/deep-research.md` | Modify | Update command contract, outputs, and mode descriptions to match the new runtime truths. |
@@ -1528,9 +1528,9 @@ exec
    124	| `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
    125	| `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml` | Modify | Add typed stop-decision events, snapshot-aware replay steps, observability capture, inventory/hotspot workflow steps, and resume-from-run handling. |
    126	| `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml` | Modify | Keep confirm-mode workflow aligned with the same runtime artifacts, replay surfaces, and optional advanced modes. |
-   127	
+   127
    128	#### Agents and Runtime Mirrors
-   129	
+   129
    130	| File Path | Change Type | Description |
    131	|-----------|-------------|-------------|
    132	| `.opencode/agents/deep-research.md` | Modify | Update iteration instructions to emit the new journal, ledger, critique, clustering, semantic-convergence, inventory, and promotion-checkpoint data. |
@@ -1542,9 +1542,9 @@ exec
    138	| `.claude/agents/deep-review.md` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
    139	| `.gemini/agents/deep-review.md` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
    140	| `.codex/agents/deep-review.toml` | Modify | Runtime mirror parity if hand-authored mirrors remain the implementation mechanism. |
-   141	
+   141
    142	#### Tests
-   143	
+   143
    144	| File Path | Change Type | Description |
    145	|-----------|-------------|-------------|
    146	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Modify | Extend reducer coverage for journal, ledger, stop-reason, delta replay, snapshot/compaction, semantic convergence, and dashboard observability metrics. |
@@ -1554,15 +1554,15 @@ exec
    150	| `.opencode/skills/system-spec-kit/scripts/tests/deep-research-behavioral.vitest.ts` | Create | Add behavior-first tests for falsifiable focus, citations, conclusion confidence, convergence stop, stop-reason persistence, domain clustering, and replay recovery. |
    151	| `.opencode/skills/system-spec-kit/scripts/tests/deep-review-behavioral.vitest.ts` | Create | Add behavior-first tests for dimension rotation, citations, claim-adjudication gates, convergence stop, stop-reason persistence, hotspot ranking, and replay recovery. |
    152	| `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-replay/` | Create | Seed replay corpus from packet families `028`, `040`, and `042` for invalid-state, resume, completed-continue, and compaction-equivalence fixtures. |
-   153	
+   153
    154	<!-- /ANCHOR:scope -->
    155	---
-   156	
+   156
    157	<!-- ANCHOR:requirements -->
    158	## 4. REQUIREMENTS
-   159	
+   159
    160	### P0 - Blockers (MUST complete)
-   161	
+   161
    162	| ID | Requirement | Acceptance Criteria | Research Basis |
    163	|----|-------------|---------------------|----------------|
    164	| REQ-001 | Both deep-loop products MUST use a shared stop contract with two parts: a named `stopReason` enum plus a typed `legalStop` record, and the contract MUST include a mapping table from legacy stop labels. | Deep research and deep review state docs, YAML workflows, dashboards, and synthesis outputs all expose `stopReason` from the shared taxonomy and a typed `legalStop` record with `blockedBy`, `gateResults`, and `replayInputs`; convergence docs include a mapping table from legacy stop labels into the new contract instead of silently dropping older reasons. | `CF-010` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:168-177`] |
@@ -1572,9 +1572,9 @@ exec
    168	| REQ-004 | Both loops MUST produce append-only audit journals as separate packet-local artifacts rather than cramming journal data into the iteration JSONL stream. | Runtime artifacts include a canonical journal file per session, it is append-only, reducer/dashboard flows can summarize it, the iteration JSONL remains focused on iteration events, and stop/recovery analysis can be reproduced from packet artifacts without hidden state. | `CF-010` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:168-177`] |
    169	| REQ-005 | Deep research MUST create a claim-verification ledger for major claims with quoted claim text, evidence references, verification status, and verification method/actor. | Research packets define a canonical ledger artifact, synthesis references it, and claims can be marked `verified`, `contradicted`, or `unresolved` with file/line evidence or explicit unresolved status. | `CF-014` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:212-221`] |
    170	| REQ-006 | The implementation plan MUST shift loop confidence from structure-only checks to behavior-first tests that exercise narrow questions, evidence citations, conclusion confidence, convergence, and stop-reason persistence. | The planned test stack includes dedicated behavioral suites for deep research and deep review plus extensions to reducer/parity tests; passing behavior tests becomes part of the done gate for these runtime changes. | `CF-004` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:102-111`], `Theme T-005` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:404-406`] |
-   171	
+   171
    172	### P1 - Required (complete OR user-approved deferral)
-   173	
+   173
    174	| ID | Requirement | Acceptance Criteria | Research Basis |
    175	|----|-------------|---------------------|----------------|
    176	| REQ-007 | Both loop dashboards MUST expose richer runtime truth: liveness, rolling convergence visualization, wall-clock and token cost per iteration, coverage depth, severity trends, and final stop reason. | Research and review dashboard assets, reducers, and workflow outputs define these sections explicitly; dashboard content is generated, not manually maintained; trend and liveness rules are consistent with state schema. | `CF-010` [SOURCE: `.opencode/specs/system-spec-kit/999-agentic-system-upgrade/001-research-agentic-systems/consolidated-research-report.md:168-177`] |
@@ -1591,13 +1591,13 @@ exec
    187	| REQ-018 | Convergence detection MUST incorporate semantic novelty, contradiction density, and citation-graph overlap alongside the existing statistical and coverage signals. | Convergence docs and workflow/state contracts define a typed stop-decision trace that records novelty, contradiction, and citation-overlap inputs; blocked-stop events explain which semantic signals prevented or supported legal STOP. | Iteration 2 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:58-67`], Recommendation 5 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:215-218`] |
    188	| REQ-019 | Deep-review machine-owned strategy sections MUST be reducer-owned, matching deep-research behavior. | Deep-review agent instructions stop editing machine-owned strategy/dashboard sections directly; reducer-owned sections are clearly labeled in review contracts, and parity/behavior coverage proves the boundary remains intact across runtimes. | Iteration 4 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:92-99`], Recommendation 3 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:213-216`] |
    189	| REQ-020 | Agent instruction cleanup MUST happen before broader runtime work begins: both deep-research and deep-review agent `.md` files must normalize field names, clarify reducer ownership boundaries, and fix strategy-edit expectations. | Canonical deep-research and deep-review agent docs use the same field names as the reducer/state contracts, spell out reducer-owned versus agent-owned sections, and deep-review no longer instructs agents to directly edit machine-owned strategy sections before later runtime phases begin. | Iteration 4 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:92-99`], Recommendation 3 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:213-216`] |
-   190	
+   190
    191	<!-- /ANCHOR:requirements -->
    192	---
-   193	
+   193
    194	<!-- ANCHOR:success-criteria -->
    195	## 5. SUCCESS CRITERIA
-   196	
+   196
    197	- **SC-001**: The packet defines a single shared stop contract for both deep research and deep review with a `stopReason` enum, a typed `legalStop` record, and a legacy-reason mapping table.
    198	- **SC-002**: The packet separates foundational runtime work from optional advanced modes, with council synthesis and coordination boards explicitly marked opt-in.
    199	- **SC-003**: The packet lists all core implementation files, shared runtime surfaces, and verification files required to ship the scoped runtime improvements.
@@ -1614,22 +1614,22 @@ exec
    210	- **SC-014**: The packet upgrades convergence from statistical-only signaling to a typed decision trace with semantic novelty, contradiction density, and citation overlap.
    211	- **SC-015**: The packet moves deep-review machine-owned sections under reducer ownership and reflects that boundary in tasks, tests, and ADRs.
    212	- **SC-016**: The packet requires agent-instruction cleanup before broader runtime work begins so field names, reducer ownership boundaries, and strategy-edit expectations are normalized early.
-   213	
+   213
    214	### Acceptance Scenarios
-   215	
+   215
    216	1. **Given** either loop finishes, **When** an operator opens the dashboard or synthesis output, **Then** the packet shows a named `stopReason` plus the typed `legalStop` detail that made STOP legal.
    217	2. **Given** convergence math votes STOP but a quality gate fails, **When** the workflow evaluates completion, **Then** it persists a first-class blocked-stop event with gate results and recovery path and does not terminate as complete.
    218	3. **Given** a valid prior packet state, **When** either active resume or completed-continue is selected, **Then** the workflow preserves the same `continuedFromRun` semantics and continues from a named run boundary instead of starting from run 1.
    219	4. **Given** a major research claim, **When** the packet is synthesized, **Then** the claim appears with `verified`, `contradicted`, or `unresolved` status plus evidence refs.
    220	5. **Given** a recommendation derived from mixed source quality, **When** the packet records it, **Then** publication critique, runtime inventory, and promotion-checkpoint context remain visible.
    221	6. **Given** a normal loop run, **When** council synthesis or a coordination board is not explicitly requested, **Then** no advanced-mode artifacts are created.
-   222	
+   222
    223	<!-- /ANCHOR:success-criteria -->
    224	---
-   225	
+   225
    226	<!-- ANCHOR:risks -->
    227	## 6. RISKS & DEPENDENCIES
-   228	
+   228
    229	| Type | Item | Impact | Mitigation |
    230	|------|------|--------|------------|
    231	| Dependency | Consolidated report remains the source of truth for the scoped runtime improvements | Mis-scoped implementation if packet drifts from research | Every requirement cites the consolidated report directly. |
@@ -1641,7 +1641,7 @@ exec
    237	| Risk | The reducer cannot safely replay at least one older large packet | High | Seed replay fixtures from older large packets early and block compaction or stop-contract rollout until replay equivalence passes. |
    238	| Risk | Review contract maturity is uneven across skill, workflow, and agent surfaces | Medium | Front-load agent instruction cleanup and parity checks before broader runtime changes land. |
    239	| Risk | Token/time tracking is inconsistently available across runtimes | Low | Plan for exact metrics when available and documented approximations otherwise. |
-   240	
+   240
 
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -1651,27 +1651,27 @@ exec
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Deep Research Runtime Capabilities Resolver                              ║
      3	// ╚══════════════════════════════════════════════════════════════════════════╝
-     4	
+     4
      5	'use strict';
-     6	
+     6
      7	// ─────────────────────────────────────────────────────────────────────────────
      8	// 1. IMPORTS
      9	// ─────────────────────────────────────────────────────────────────────────────
-    10	
+    10
     11	const fs = require('node:fs');
     12	const path = require('node:path');
-    13	
+    13
     14	// ─────────────────────────────────────────────────────────────────────────────
     15	// 2. CONSTANTS
     16	// ─────────────────────────────────────────────────────────────────────────────
-    17	
+    17
     18	/** @type {string} Default path to the machine-readable runtime capability matrix. */
     19	const DEFAULT_CAPABILITY_PATH = path.join(__dirname, '..', 'assets', 'runtime_capabilities.json');
-    20	
+    20
     21	// ─────────────────────────────────────────────────────────────────────────────
     22	// 3. CORE LOGIC
     23	// ─────────────────────────────────────────────────────────────────────────────
-    24	
+    24
     25	/**
     26	 * Load and validate the runtime capability matrix from disk.
     27	 *
@@ -1682,17 +1682,17 @@ exec
     32	function loadRuntimeCapabilities(capabilityPath = DEFAULT_CAPABILITY_PATH) {
     33	  const resolvedPath = path.resolve(capabilityPath);
     34	  const parsed = JSON.parse(fs.readFileSync(resolvedPath, 'utf8'));
-    35	
+    35
     36	  if (!Array.isArray(parsed.runtimes)) {
     37	    throw new Error(`Invalid runtime capability matrix at ${resolvedPath}: missing runtimes array`);
     38	  }
-    39	
+    39
     40	  return {
     41	    capabilityPath: resolvedPath,
     42	    matrix: parsed,
     43	  };
     44	}
-    45	
+    45
     46	/**
     47	 * List all known runtime IDs from the capability matrix.
     48	 *
@@ -1703,7 +1703,7 @@ exec
     53	  const { matrix } = loadRuntimeCapabilities(capabilityPath);
     54	  return matrix.runtimes.map((runtime) => runtime.id);
     55	}
-    56	
+    56
     57	/**
     58	 * Resolve a single runtime's capability record by ID.
     59	 *
@@ -1715,26 +1715,26 @@ exec
     65	function resolveRuntimeCapability(runtimeId, capabilityPath = DEFAULT_CAPABILITY_PATH) {
     66	  const { capabilityPath: resolvedPath, matrix } = loadRuntimeCapabilities(capabilityPath);
     67	  const runtime = matrix.runtimes.find((entry) => entry.id === runtimeId);
-    68	
+    68
     69	  if (!runtime) {
     70	    throw new Error(
     71	      `Unknown deep-research runtime "${runtimeId}". Known runtimes: ${matrix.runtimes.map((entry) => entry.id).join(', ')}. Matrix: ${resolvedPath}`,
     72	    );
     73	  }
-    74	
+    74
     75	  return {
     76	    capabilityPath: resolvedPath,
     77	    runtime,
     78	  };
     79	}
-    80	
+    80
     81	// ─────────────────────────────────────────────────────────────────────────────
     82	// 4. CLI ENTRY POINT
     83	// ─────────────────────────────────────────────────────────────────────────────
-    84	
+    84
     85	if (require.main === module) {
     86	  const runtimeId = process.argv[2];
-    87	
+    87
     88	  if (!runtimeId) {
     89	    process.stdout.write(
     90	      `${JSON.stringify(
@@ -1748,14 +1748,14 @@ exec
     98	    );
     99	    process.exit(0);
    100	  }
-   101	
+   101
    102	  process.stdout.write(`${JSON.stringify(resolveRuntimeCapability(runtimeId), null, 2)}\n`);
    103	}
-   104	
+   104
    105	// ─────────────────────────────────────────────────────────────────────────────
    106	// 5. EXPORTS
    107	// ─────────────────────────────────────────────────────────────────────────────
-   108	
+   108
    109	module.exports = {
    110	  DEFAULT_CAPABILITY_PATH,
    111	  listRuntimeCapabilityIds,
@@ -1767,27 +1767,27 @@ exec
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Deep Review Runtime Capabilities Resolver                                ║
      3	// ╚══════════════════════════════════════════════════════════════════════════╝
-     4	
+     4
      5	'use strict';
-     6	
+     6
      7	// ─────────────────────────────────────────────────────────────────────────────
      8	// 1. IMPORTS
      9	// ─────────────────────────────────────────────────────────────────────────────
-    10	
+    10
     11	const fs = require('node:fs');
     12	const path = require('node:path');
-    13	
+    13
     14	// ─────────────────────────────────────────────────────────────────────────────
     15	// 2. CONSTANTS
     16	// ─────────────────────────────────────────────────────────────────────────────
-    17	
+    17
     18	/** @type {string} Default path to the machine-readable runtime capability matrix. */
     19	const DEFAULT_CAPABILITY_PATH = path.join(__dirname, '..', 'assets', 'runtime_capabilities.json');
-    20	
+    20
     21	// ─────────────────────────────────────────────────────────────────────────────
     22	// 3. CORE LOGIC
     23	// ─────────────────────────────────────────────────────────────────────────────
-    24	
+    24
     25	/**
     26	 * Load and validate the runtime capability matrix from disk.
     27	 *
@@ -1798,17 +1798,17 @@ exec
     32	function loadRuntimeCapabilities(capabilityPath = DEFAULT_CAPABILITY_PATH) {
     33	  const resolvedPath = path.resolve(capabilityPath);
     34	  const parsed = JSON.parse(fs.readFileSync(resolvedPath, 'utf8'));
-    35	
+    35
     36	  if (!Array.isArray(parsed.runtimes)) {
     37	    throw new Error(`Invalid runtime capability matrix at ${resolvedPath}: missing runtimes array`);
     38	  }
-    39	
+    39
     40	  return {
     41	    capabilityPath: resolvedPath,
     42	    matrix: parsed,
     43	  };
     44	}
-    45	
+    45
     46	/**
     47	 * List all known runtime IDs from the capability matrix.
     48	 *
@@ -1819,7 +1819,7 @@ exec
     53	  const { matrix } = loadRuntimeCapabilities(capabilityPath);
     54	  return matrix.runtimes.map((runtime) => runtime.id);
     55	}
-    56	
+    56
     57	/**
     58	 * Resolve a single runtime's capability record by ID.
     59	 *
@@ -1831,26 +1831,26 @@ exec
     65	function resolveRuntimeCapability(runtimeId, capabilityPath = DEFAULT_CAPABILITY_PATH) {
     66	  const { capabilityPath: resolvedPath, matrix } = loadRuntimeCapabilities(capabilityPath);
     67	  const runtime = matrix.runtimes.find((entry) => entry.id === runtimeId);
-    68	
+    68
     69	  if (!runtime) {
     70	    throw new Error(
     71	      `Unknown deep-review runtime "${runtimeId}". Known runtimes: ${matrix.runtimes.map((entry) => entry.id).join(', ')}. Matrix: ${resolvedPath}`,
     72	    );
     73	  }
-    74	
+    74
     75	  return {
     76	    capabilityPath: resolvedPath,
     77	    runtime,
     78	  };
     79	}
-    80	
+    80
     81	// ─────────────────────────────────────────────────────────────────────────────
     82	// 4. CLI ENTRY POINT
     83	// ─────────────────────────────────────────────────────────────────────────────
-    84	
+    84
     85	if (require.main === module) {
     86	  const runtimeId = process.argv[2];
-    87	
+    87
     88	  if (!runtimeId) {
     89	    process.stdout.write(
     90	      `${JSON.stringify(
@@ -1864,14 +1864,14 @@ exec
     98	    );
     99	    process.exit(0);
    100	  }
-   101	
+   101
    102	  process.stdout.write(`${JSON.stringify(resolveRuntimeCapability(runtimeId), null, 2)}\n`);
    103	}
-   104	
+   104
    105	// ─────────────────────────────────────────────────────────────────────────────
    106	// 5. EXPORTS
    107	// ─────────────────────────────────────────────────────────────────────────────
-   108	
+   108
    109	module.exports = {
    110	  DEFAULT_CAPABILITY_PATH,
    111	  listRuntimeCapabilityIds,
@@ -1912,22 +1912,22 @@ I’ve located the exact packet and the relevant reducer hotspots. I’m now rea
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/scripts/reduce-state.cjs | sed -n '250,700p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-   250	
+   250
    251	  if (value && typeof value === 'object') {
    252	    return Object.keys(value)
    253	      .sort()
    254	      .map((key) => `${key}=${formatSummaryValue(value[key])}`)
    255	      .join(', ');
    256	  }
-   257	
+   257
    258	  return String(value);
    259	}
-   260	
+   260
    261	function summarizeGateResults(gateResults) {
    262	  if (!gateResults || typeof gateResults !== 'object' || !Object.keys(gateResults).length) {
    263	    return 'none recorded';
    264	  }
-   265	
+   265
    266	  return Object.keys(gateResults)
    267	    .sort()
    268	    .map((gateName) => {
@@ -1935,7 +1935,7 @@ exec
    270	      if (!result || typeof result !== 'object') {
    271	        return `${gateName}=${formatSummaryValue(result)}`;
    272	      }
-   273	
+   273
    274	      const status = typeof result.pass === 'boolean'
    275	        ? (result.pass ? 'pass' : 'fail')
    276	        : 'unknown';
@@ -1943,50 +1943,50 @@ exec
    278	        .filter((key) => key !== 'pass' && result[key] !== undefined && result[key] !== null && result[key] !== '')
    279	        .sort()
    280	        .map((key) => `${key}=${formatSummaryValue(result[key])}`);
-   281	
+   281
    282	      return details.length
    283	        ? `${gateName}=${status} (${details.join(', ')})`
    284	        : `${gateName}=${status}`;
    285	    })
    286	    .join('; ');
    287	}
-   288	
+   288
    289	function formatGraphBlocker(blocker) {
    290	  if (!blocker || typeof blocker !== 'object') {
    291	    return formatSummaryValue(blocker);
    292	  }
-   293	
+   293
    294	  const name = typeof blocker.name === 'string' && blocker.name ? blocker.name : 'unnamed-blocker';
    295	  const severity = typeof blocker.severity === 'string' && blocker.severity ? ` (${blocker.severity})` : '';
    296	  const detail = typeof blocker.detail === 'string' && blocker.detail ? blocker.detail : null;
-   297	
+   297
    298	  if (detail) {
    299	    return `${name}${severity}: ${detail}`;
    300	  }
-   301	
+   301
    302	  const extras = Object.keys(blocker)
    303	    .filter((key) => !['name', 'severity', 'detail'].includes(key))
    304	    .sort()
    305	    .map((key) => `${key}=${formatSummaryValue(blocker[key])}`);
-   306	
+   306
    307	  return extras.length ? `${name}${severity}: ${extras.join(', ')}` : `${name}${severity}`;
    308	}
-   309	
+   309
    310	function getTimestampValue(timestamp) {
    311	  const value = Date.parse(timestamp);
    312	  return Number.isFinite(value) ? value : Number.NEGATIVE_INFINITY;
    313	}
-   314	
+   314
    315	function resolveNextFocus(registry, iterationFiles, iterationRecords) {
    316	  const latestBlockedStop = Array.isArray(registry.blockedStopHistory)
    317	    ? registry.blockedStopHistory.at(-1)
    318	    : null;
    319	  const latestIteration = Array.isArray(iterationRecords) ? iterationRecords.at(-1) : null;
-   320	
+   320
    321	  if (latestBlockedStop) {
    322	    const latestBlockedTimestamp = getTimestampValue(latestBlockedStop.timestamp);
    323	    const latestIterationTimestamp = getTimestampValue(latestIteration?.timestamp);
-   324	
+   324
    325	    if (latestBlockedTimestamp > latestIterationTimestamp) {
    326	      return [
    327	        `BLOCKED on: ${formatBlockedByList(latestBlockedStop.blockedBy)}`,
@@ -1995,21 +1995,21 @@ exec
    330	      ].join('\n');
    331	    }
    332	  }
-   333	
+   333
    334	  return iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
    335	    || registry.openQuestions[0]?.text
    336	    || '[All tracked questions are resolved]';
    337	}
-   338	
+   338
    339	// ─────────────────────────────────────────────────────────────────────────────
    340	// 4. CORE LOGIC
    341	// ─────────────────────────────────────────────────────────────────────────────
-   342	
+   342
    343	function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, eventRecords) {
    344	  const answeredSet = new Set(
    345	    iterationRecords.flatMap((record) => (Array.isArray(record.answeredQuestions) ? record.answeredQuestions : [])).map(normalizeText),
    346	  );
-   347	
+   347
    348	  const keyedQuestions = strategyQuestions.map((question, index) => {
    349	    const normalized = normalizeText(question.text);
    350	    const resolved = question.checked || answeredSet.has(normalized);
@@ -2026,7 +2026,7 @@ exec
    361	      resolved,
    362	    };
    363	  });
-   364	
+   364
    365	  const keyFindings = uniqueById(
    366	    iterationFiles
    367	      .flatMap((iteration) =>
@@ -2039,7 +2039,7 @@ exec
    374	      )
    375	      .sort((left, right) => left.addedAtIteration - right.addedAtIteration || left.text.localeCompare(right.text)),
    376	  );
-   377	
+   377
    378	  const ruledOutDirections = uniqueById(
    379	    iterationFiles
    380	      .flatMap((iteration) =>
@@ -2051,7 +2051,7 @@ exec
    386	      )
    387	      .sort((left, right) => left.addedAtIteration - right.addedAtIteration || left.text.localeCompare(right.text)),
    388	  );
-   389	
+   389
    390	  const coverageBySources = buildCoverageBySources(iterationFiles, iterationRecords);
    391	  const latestIteration = iterationRecords.filter((record) => record.type === 'iteration').at(-1);
    392	  const convergenceScore =
@@ -2068,7 +2068,7 @@ exec
    403	      timestamp: typeof record.timestamp === 'string' ? record.timestamp : '',
    404	    }));
    405	  const graphConvergence = buildGraphConvergenceRollup(eventRecords);
-   406	
+   406
    407	  return {
    408	    openQuestions: keyedQuestions.filter((question) => !question.resolved).map((question) => ({
    409	      id: question.id,
@@ -2098,18 +2098,18 @@ exec
    433	    },
    434	  };
    435	}
-   436	
+   436
    437	function blockFromBulletList(items) {
    438	  if (!items.length) {
    439	    return '[None yet]';
    440	  }
-   441	
+   441
    442	  return items.map((item) => `- ${item}`).join('\n');
    443	}
-   444	
+   444
    445	function buildExhaustedApproaches(iterationFiles) {
    446	  const grouped = new Map();
-   447	
+   447
    448	  for (const iteration of iterationFiles) {
    449	    for (const entry of iteration.deadEnds.concat(iteration.ruledOut)) {
    450	      const key = entry;
@@ -2118,11 +2118,11 @@ exec
    453	      grouped.set(key, bucket);
    454	    }
    455	  }
-   456	
+   456
    457	  if (!grouped.size) {
    458	    return '[No exhausted approach categories yet]';
    459	  }
-   460	
+   460
    461	  const blocked = Array.from(grouped.entries())
    462	    .sort(([left], [right]) => left.localeCompare(right))
    463	    .map(([entry, runs]) => {
@@ -2135,10 +2135,10 @@ exec
    470	        `- Do NOT retry: ${entry}`,
    471	      ].join('\n');
    472	    });
-   473	
+   473
    474	  return blocked.join('\n\n');
    475	}
-   476	
+   476
    477	function replaceAnchorSection(content, anchorId, heading, body) {
    478	  const pattern = new RegExp(`<!-- ANCHOR:${anchorId} -->[\\s\\S]*?<!-- \\/ANCHOR:${anchorId} -->`, 'm');
    479	  const replacement = [
@@ -2148,14 +2148,14 @@ exec
    483	    '',
    484	    `<!-- /ANCHOR:${anchorId} -->`,
    485	  ].join('\n');
-   486	
+   486
    487	  if (!pattern.test(content)) {
    488	    throw new Error(`Missing anchor section ${anchorId} in strategy file`);
    489	  }
-   490	
+   490
    491	  return content.replace(pattern, replacement);
    492	}
-   493	
+   493
    494	function updateStrategyContent(strategyContent, registry, iterationFiles, iterationRecords) {
    495	  const answeredTexts = registry.resolvedQuestions.map((question) => question.text);
    496	  const questionEntries = parseStrategyQuestions(strategyContent);
@@ -2164,7 +2164,7 @@ exec
    499	    const checked = answeredSet.has(normalizeText(question.text));
    500	    return `- [${checked ? 'x' : ' '}] ${question.text}`;
    501	  });
-   502	
+   502
    503	  const whatWorked = iterationFiles
    504	    .filter((iteration) => iteration.reflectionWorked)
    505	    .map((iteration) => `${iteration.reflectionWorked} (iteration ${iteration.run})`);
@@ -2172,7 +2172,7 @@ exec
    507	    .filter((iteration) => iteration.reflectionFailed)
    508	    .map((iteration) => `${iteration.reflectionFailed} (iteration ${iteration.run})`);
    509	  const nextFocus = resolveNextFocus(registry, iterationFiles, iterationRecords);
-   510	
+   510
    511	  let updated = strategyContent;
    512	  updated = replaceAnchorSection(updated, 'key-questions', '3. KEY QUESTIONS (remaining)', rewrittenQuestionLines.join('\n'));
    513	  updated = replaceAnchorSection(updated, 'answered-questions', '6. ANSWERED QUESTIONS', blockFromBulletList(answeredTexts));
@@ -2188,7 +2188,7 @@ exec
    523	  updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus);
    524	  return updated;
    525	}
-   526	
+   526
    527	function renderDashboard(config, registry, iterationRecords, iterationFiles) {
    528	  const latestIteration = iterationRecords.at(-1);
    529	  // Exclude "thought" iterations from rolling average — they are analytical-only
@@ -2206,7 +2206,7 @@ exec
    541	      return `| ${record.run} | ${record.focus || 'unknown'} | ${track} | ${ratio} | ${record.findingsCount || 0} | ${record.status || 'complete'} |`;
    542	    })
    543	    .join('\n') || '| 0 | none yet | - | 0.00 | 0 | initialized |';
-   544	
+   544
    545	  return [
    546	    '---',
    547	    'title: Deep Research Dashboard',
@@ -2307,7 +2307,7 @@ exec
    642	    '',
    643	  ].join('\n');
    644	}
-   645	
+   645
    646	/**
    647	 * Reduce JSONL state, iteration files, and strategy into synchronized registry,
    648	 * strategy, and dashboard outputs. Idempotent: repeated calls produce identical results.
@@ -2328,7 +2328,7 @@ exec
    663	  const registryPath = path.join(researchDir, 'findings-registry.json');
    664	  const dashboardPath = path.join(researchDir, 'deep-research-dashboard.md');
    665	  const iterationDir = path.join(researchDir, 'iterations');
-   666	
+   666
    667	  const config = readJson(configPath);
    668	  const { records: parsedRecords, corruptionWarnings } = parseJsonlDetailed(readUtf8(stateLogPath));
    669	  const records = parsedRecords.filter((record) => record.type === 'iteration');
@@ -2341,20 +2341,20 @@ exec
    676	        .sort()
    677	        .map((fileName) => parseIterationFile(path.join(iterationDir, fileName)))
    678	    : [];
-   679	
+   679
    680	  const registry = buildRegistry(strategyQuestions, iterationFiles, records, events);
    681	  // Expose corruptionWarnings as a top-level registry field for parity with
    682	  // sk-deep-review (phase 008 REQ-015 research-side follow-up).
    683	  registry.corruptionWarnings = corruptionWarnings;
    684	  const strategy = updateStrategyContent(strategyContent, registry, iterationFiles, records);
    685	  const dashboard = renderDashboard(config, registry, records, iterationFiles);
-   686	
+   686
    687	  if (write) {
    688	    writeUtf8(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
    689	    writeUtf8(strategyPath, strategy.endsWith('\n') ? strategy : `${strategy}\n`);
    690	    writeUtf8(dashboardPath, dashboard);
    691	  }
-   692	
+   692
    693	  // Fail-closed on corruption unless --lenient.
    694	  if (corruptionWarnings.length > 0 && !lenient) {
    695	    const preview = corruptionWarnings
@@ -2372,7 +2372,7 @@ exec
    432	    blockers: Array.isArray(latest.blockers) ? latest.blockers : [],
    433	  };
    434	}
-   435	
+   435
    436	/**
    437	 * Phase 008 P1-02 closure: defensively normalize each entry in `blockedBy` so
    438	 * the review dashboard cannot render `[object Object]` even if an older YAML
@@ -2389,7 +2389,7 @@ exec
    449	    : Array.isArray(legacyLegalStop?.blockedBy)
    450	      ? legacyLegalStop.blockedBy
    451	      : [];
-   452	
+   452
    453	  return rawList.map((entry) => {
    454	    if (typeof entry === 'string') return entry;
    455	    if (entry && typeof entry === 'object') {
@@ -2400,7 +2400,7 @@ exec
    460	    return String(entry);
    461	  });
    462	}
-   463	
+   463
    464	function buildBlockedStopHistory(records) {
    465	  return records
    466	    .filter((record) => record?.type === 'event' && record?.event === 'blocked_stop')
@@ -2414,7 +2414,7 @@ exec
    474	        : Array.isArray(record.blockedBy) && record.blockedBy.some((e) => e && typeof e === 'object')
    475	          ? record.blockedBy
    476	          : [];
-   477	
+   477
    478	      return {
    479	        run: typeof record.run === 'number' ? record.run : 0,
    480	        blockedBy,
@@ -2429,7 +2429,7 @@ exec
    489	      };
    490	    });
    491	}
-   492	
+   492
    493	function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, config, corruptionWarnings = []) {
    494	  const { openFindings, resolvedFindings } = buildFindingRegistry(iterationFiles, iterationRecords);
    495	  const dimensionCoverage = buildDimensionCoverage(iterationRecords, strategyDimensions);
@@ -2437,7 +2437,7 @@ exec
    497	  const convergenceScore = computeConvergenceScore(iterationRecords);
    498	  const graphConvergence = buildGraphConvergenceRollup(iterationRecords);
    499	  const blockedStopHistory = buildBlockedStopHistory(iterationRecords);
-   500	
+   500
    501	  // Part C REQ-018: split repeatedFindings into two semantically distinct buckets
    502	  // so persistent-same-severity findings and severity-churn findings don't collapse.
    503	  const persistentSameSeverity = openFindings.filter((finding) => {
@@ -2447,17 +2447,17 @@ exec
    507	    const nontrivialTransitions = transitions.filter((t) => t.from !== null);
    508	    return nontrivialTransitions.length === 0;
    509	  });
-   510	
+   510
    511	  const severityChanged = openFindings.filter((finding) => {
    512	    const transitions = Array.isArray(finding.transitions) ? finding.transitions : [];
    513	    const nontrivialTransitions = transitions.filter((t) => t.from !== null);
    514	    return nontrivialTransitions.length > 0;
    515	  });
-   516	
+   516
    517	  // Deprecated: keep repeatedFindings for backward compatibility with older consumers.
    518	  // New code should read persistentSameSeverity + severityChanged directly.
    519	  const repeatedFindings = openFindings.filter((finding) => finding.lastSeen - finding.firstSeen >= 1);
-   520	
+   520
    521	  return {
    522	    sessionId: config.sessionId || '',
    523	    generation: config.generation ?? 1,
@@ -2479,17 +2479,17 @@ exec
    539	    corruptionWarnings,
    540	  };
    541	}
-   542	
+   542
    543	function blockFromBulletList(items) {
    544	  if (!items.length) {
    545	    return '[None yet]';
    546	  }
    547	  return items.map((item) => `- ${item}`).join('\n');
    548	}
-   549	
+   549
    550	function buildExhaustedApproaches(iterationFiles) {
    551	  const grouped = new Map();
-   552	
+   552
    553	  for (const iteration of iterationFiles) {
    554	    for (const entry of iteration.deadEnds.concat(iteration.ruledOut)) {
    555	      const bucket = grouped.get(entry) || [];
@@ -2497,11 +2497,11 @@ exec
    557	      grouped.set(entry, bucket);
    558	    }
    559	  }
-   560	
+   560
    561	  if (!grouped.size) {
    562	    return '[No exhausted approach categories yet]';
    563	  }
-   564	
+   564
    565	  return Array.from(grouped.entries())
    566	    .sort(([left], [right]) => left.localeCompare(right))
    567	    .map(([entry, runs]) => {
@@ -2516,7 +2516,7 @@ exec
    576	    })
    577	    .join('\n\n');
    578	}
-   579	
+   579
    580	function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
    581	  const pattern = new RegExp(`<!-- ANCHOR:${anchorId} -->[\\s\\S]*?<!-- \\/ANCHOR:${anchorId} -->`, 'm');
    582	  const replacement = [
@@ -2526,7 +2526,7 @@ exec
    586	    '',
    587	    `<!-- /ANCHOR:${anchorId} -->`,
    588	  ].join('\n');
-   589	
+   589
    590	  if (!pattern.test(content)) {
    591	    if (options.createMissing) {
    592	      const suffix = content.endsWith('\n') ? '' : '\n';
@@ -2539,7 +2539,7 @@ exec
    599	  }
    600	  return content.replace(pattern, replacement);
    601	}
-   602	
+   602
    603	function updateStrategyContent(strategyContent, registry, iterationFiles, options = {}, iterationRecords = []) {
    604	  // Early return when there is no strategy file to update. Empty content
    605	  // cannot contain the machine-owned anchors and replaceAnchorSection would
@@ -2548,7 +2548,7 @@ exec
    608	  if (!strategyContent) {
    609	    return strategyContent;
    610	  }
-   611	
+   611
    612	  const anchorOptions = { createMissing: Boolean(options.createMissingAnchors) };
    613	  const severity = registry.findingsBySeverity;
    614	  const runningFindings = [
@@ -2557,22 +2557,22 @@ exec
    617	    `- P2 (Suggestions): ${severity.P2}`,
    618	    `- Resolved: ${registry.resolvedFindingsCount}`,
    619	  ].join('\n');
-   620	
+   620
    621	  const completedDimensions = REQUIRED_DIMENSIONS
    622	    .filter((dimension) => registry.dimensionCoverage[dimension])
    623	    .map((dimension) => `- [x] ${dimension}`)
    624	    .join('\n') || '[None yet]';
-   625	
+   625
    626	  const remainingDimensions = REQUIRED_DIMENSIONS
    627	    .filter((dimension) => !registry.dimensionCoverage[dimension])
    628	    .map((dimension) => `- [ ] ${dimension}`)
    629	    .join('\n') || '[All dimensions complete]';
-   630	
+   630
    631	  // Default next-focus comes from latest iteration → first uncovered dimension → fallback.
    632	  let nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
    633	    || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
    634	    || '[All dimensions covered]';
-   635	
+   635
    636	  // Part C REQ-014 / Phase 008 P1-03 closure: prefer the latest blocked-stop
    637	  // recovery only when blocked-stop is genuinely the most recent loop event.
    638	  // The earlier implementation read timestamps from the markdown iteration
@@ -2600,7 +2600,7 @@ exec
    660	      ].join('\n');
    661	    }
    662	  }
-   663	
+   663
    664	  let updated = strategyContent;
    665	  updated = replaceAnchorSection(updated, 'review-dimensions', '3. REVIEW DIMENSIONS (remaining)', remainingDimensions, anchorOptions);
    666	  updated = replaceAnchorSection(updated, 'completed-dimensions', '4. COMPLETED DIMENSIONS', completedDimensions, anchorOptions);
@@ -2615,7 +2615,7 @@ exec
    675	  updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus, anchorOptions);
    676	  return updated;
    677	}
-   678	
+   678
    679	function renderDashboard(config, registry, iterationRecords, iterationFiles) {
    680	  const latestIteration = iterationRecords.filter((record) => record.type === 'iteration').at(-1);
    681	  const ratios = iterationRecords
@@ -2626,7 +2626,7 @@ exec
    686	  const nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
    687	    || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
    688	    || '[All dimensions covered]';
-   689	
+   689
    690	  const severity = registry.findingsBySeverity;
    691	  const verdict = severity.P0 > 0
    692	    ? 'FAIL'
@@ -2634,7 +2634,7 @@ exec
    694	      ? 'CONDITIONAL'
    695	      : 'PASS';
    696	  const hasAdvisories = verdict === 'PASS' && severity.P2 > 0;
-   697	
+   697
    698	  const progressRows = iterationRecords
    699	    .filter((record) => record.type === 'iteration')
    700	    .map((record) => {
@@ -2645,7 +2645,7 @@ exec
    705	      return `| ${record.run} | ${record.focus || 'unknown'} | ${dimensions} | ${ratio} | ${findings} | ${record.status || 'complete'} |`;
    706	    })
    707	    .join('\n') || '| 0 | none yet | - | 0.00 | 0/0/0 | initialized |';
-   708	
+   708
    709	  const dimensionRows = REQUIRED_DIMENSIONS
    710	    .map((dimension) => {
    711	      const covered = registry.dimensionCoverage[dimension];
@@ -2654,7 +2654,7 @@ exec
    714	      return `| ${dimension} | ${status} | ${openInDimension} |`;
    715	    })
    716	    .join('\n');
-   717	
+   717
    718	  return [
    719	    '---',
    720	    'title: Deep Review Dashboard',
@@ -2813,7 +2813,7 @@ exec
    873	    '',
    874	  ].join('\n');
    875	}
-   876	
+   876
    877	/**
    878	 * Reduce JSONL state, iteration files, and strategy into synchronized registry,
    879	 * strategy, and dashboard outputs. Idempotent: repeated calls produce identical results.
@@ -2835,7 +2835,7 @@ exec
    895	  const registryPath = path.join(reviewDir, 'deep-review-findings-registry.json');
    896	  const dashboardPath = path.join(reviewDir, 'deep-review-dashboard.md');
    897	  const iterationDir = path.join(reviewDir, 'iterations');
-   898	
+   898
    899	  const config = readJson(configPath);
    900	  const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(stateLogPath));
    901	  const strategyContent = fs.existsSync(strategyPath) ? readUtf8(strategyPath) : '';
@@ -2846,11 +2846,11 @@ exec
    906	        .sort()
    907	        .map((fileName) => parseIterationFile(path.join(iterationDir, fileName)))
    908	    : [];
-   909	
+   909
    910	  const registry = buildRegistry(strategyDimensions, iterationFiles, records, config, corruptionWarnings);
    911	  const strategy = updateStrategyContent(strategyContent, registry, iterationFiles, { createMissingAnchors }, records);
    912	  const dashboard = renderDashboard(config, registry, records, iterationFiles);
-   913	
+   913
    914	  if (write) {
    915	    writeUtf8(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
    916	    if (strategyContent) {
@@ -2867,7 +2867,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-009.md:29:| changelog_scope | pass | soft | `.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:23` | The improve-agent changelog stays scoped to replay-consumer and journal-wiring delivery; it did not add a separate new promise that resume/fork execution is solved. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-009.md:41:- Looking for a second independent changelog-level closure claim on resume/restart/fork semantics: the audited changelogs mostly stayed scoped to journal wiring, replay consumers, blocked-stop surfacing, and fail-closed behavior, so they did not yield a separate non-duplicative defect.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:4:This pass targeted the remaining lifecycle mirror on the improvement side, with emphasis on whether `sk-improve-agent` actually ships the same resume/restart/fork/completed-continue contract already exposed in its docs. I also re-checked the review/research synthesis snapshot claims to see whether they introduced any new defect beyond the already-active lifecycle-lineage finding.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:19:- **F012**: Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface — `.opencode/skills/sk-improve-agent/SKILL.md:292` — The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/improve/agent.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:19:- **F012**: Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface — `.opencode/skills/sk-improve-agent/SKILL.md:292` — The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/deep/start-agent-improvement-loop.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:36:- Improvement replay consumers missing entirely: Ruled out because the reducer does read the journal, candidate-lineage, and mutation-coverage artifacts on every refresh — `.opencode/skills/sk-improve-agent/SKILL.md:364-378`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:841-845`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:40:- Candidate-lineage depth as proof of session lifecycle support: `candidate-lineage.json` only summarizes candidate ancestry within a run, so it cannot substantiate resume/restart/fork/completed-continue session semantics — `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:227-267`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-005.md:4:This pass targeted lifecycle/session metadata across the research and review runtime mirrors, with emphasis on the user-visible `resume` / `restart` / `fork` / `completed-continue` branches and the JSONL lineage records they are supposed to persist. I compared the active YAML entrypoints against the state-format, loop-protocol, and quick-reference docs to check whether restart/reopen behavior is actually encoded or only described.
@@ -2890,8 +2890,8 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:141:- **Required decision**: either implement `resume` / `restart` / `fork` / `completed-continue` as real runtime branches with event emission and ancestry metadata or narrow every user-facing promise to match the current one-session model.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:191:Review, research, and improve-agent may not advertise `resume`, `restart`, `fork`, or `completed-continue` unless those branches write auditable ancestry metadata.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:194:If lifecycle branches remain supported, all resume/restart/fork/completed-continue examples must carry the same metadata fields the JSONL/state-format contract requires.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:243:Target files: `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:263:Target files: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/tasks.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/checklist.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/implementation-summary.md`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`  
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:243:Target files: `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:263:Target files: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/tasks.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/checklist.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/implementation-summary.md`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:282:3. **F009 (P2)** — resolve after the team decides whether `legalStop` should return to persisted JSONL or remain an in-memory/convergence-only concept.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:299:| 5 | lifecycle branch persistence across resume/restart/fork mirrors | correctness, traceability, maintainability | 0 | 1 | 1 | 0.18 | complete |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:347:| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | X | X |  | X | X |  | X |  | X |  |
@@ -3516,7 +3516,7 @@ exec
    168	          message: "Existing deep-research state is incomplete or contradictory. Repair or archive the invalid research packet before continuing."
    169	        on_fresh:
    170	          action: "Proceed with a new session"
-   171	
+   171
    172	      step_create_config:
    173	        action: "Create deep-research-config.json from template"
    174	        template: .opencode/skills/sk-deep-research/assets/deep_research_config.json
@@ -3543,7 +3543,7 @@ exec
    371	          set:
    372	            decision: "CONTINUE"
    648	        append_to_jsonl: '{"type":"event","event":"synthesis_complete","totalIterations":{iteration_count},"answeredCount":{answered_count},"totalQuestions":{total_questions},"stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
-   649	
+   649
    650	      step_update_config_status:
 
  succeeded in 0ms:
@@ -3574,7 +3574,7 @@ exec
    160	          message: "Existing deep-research state is incomplete or contradictory. Repair or archive the invalid research packet before continuing."
    161	        on_fresh:
    162	          action: "Proceed with a new session"
-   163	
+   163
    164	      step_create_config:
    165	        action: "Create deep-research-config.json from template"
    166	        template: .opencode/skills/sk-deep-research/assets/deep_research_config.json
@@ -3598,7 +3598,7 @@ exec
    333	          - gate_evidence_density_sources: "Source-diversity count or equivalent evidence-depth proxy"
    334	          - gate_hotspot_saturation_pass: "Research placeholder gate; true unless an explicit blocker sets otherwise"
    335	          - recovery_strategy: "One-line hint describing the next research action when decision == BLOCKED or STUCK_RECOVERY"
-   336	
+   336
    337	      step_emit_blocked_stop:
    338	        action: "Persist a first-class blocked_stop event when the legal-stop decision tree returns blocked"
    339	        if_blocked:
@@ -3608,12 +3608,12 @@ exec
    343	            decision: "CONTINUE"
    344	            reason: "blockedStop"
    345	            stop_blocked: false
-   346	
+   346
    540	          - Last 3 iteration summaries: {last_3_summaries}
    541	          - Convergence threshold: {convergence_threshold}
    542	          - Segment transitions, wave scores, and checkpoint metrics are experimental and omitted from the live report.
    543	        append_to_jsonl: '{"type":"event","event":"synthesis_complete","totalIterations":{iteration_count},"answeredCount":{answered_count},"totalQuestions":{total_questions},"stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
-   544	
+   544
    545	      step_update_config_status:
    546	        action: "Mark config as complete"
 
@@ -3644,7 +3644,7 @@ exec
    487	          log: "Blocked STOP persisted for review loop. Failed gates: {blocked_by_csv}. Recovery strategy: {recovery_strategy}"
    836	        append_to_jsonl: '{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":{iteration_count},"activeP0":{active_p0},"activeP1":{active_p1},"activeP2":{active_p2},"dimensionCoverage":{dimension_coverage},"verdict":"{verdict}","releaseReadinessState":"{release_readiness_state}","stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
    837	        note: "Emit as numeric ratio (e.g., 0.75), not quoted string. Compute: dimensions_covered / total_dimensions."
-   838	
+   838
 
 exec
 /bin/zsh -lc 'rg -n "continuedFromRun|parentSessionId|lineageMode|generation" .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml .opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml .opencode/commands/speckit/assets/speckit_deep-review_auto.yaml .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -3733,11 +3733,11 @@ exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/scripts/reduce-state.cjs | sed -n '200,250p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    200	}
-   201	
+   201
    202	function uniqueById(items) {
    203	  const seen = new Set();
    204	  const result = [];
-   205	
+   205
    206	  for (const item of items) {
    207	    if (seen.has(item.id)) {
    208	      continue;
@@ -3745,10 +3745,10 @@ exec
    210	    seen.add(item.id);
    211	    result.push(item);
    212	  }
-   213	
+   213
    214	  return result;
    215	}
-   216	
+   216
    217	function buildGraphConvergenceRollup(eventRecords) {
    218	  const latestGraphConvergence = eventRecords.filter((record) => record.event === 'graph_convergence').at(-1);
    219	  const signals = latestGraphConvergence?.signals && typeof latestGraphConvergence.signals === 'object'
@@ -3762,7 +3762,7 @@ exec
    227	    : Number.isFinite(signals.score)
    228	      ? signals.score
    229	      : 0;
-   230	
+   230
    231	  return {
    232	    graphConvergenceScore: blendedScore,
    233	    graphDecision: typeof latestGraphConvergence?.decision === 'string'
@@ -3771,18 +3771,18 @@ exec
    236	    graphBlockers: blockers,
    237	  };
    238	}
-   239	
+   239
    240	function formatBlockedByList(blockedBy) {
    241	  return Array.isArray(blockedBy) && blockedBy.length
    242	    ? blockedBy.join(', ')
    243	    : 'unspecified gates';
    244	}
-   245	
+   245
    246	function formatSummaryValue(value) {
    247	  if (Array.isArray(value)) {
    248	    return value.map((entry) => formatSummaryValue(entry)).join(', ');
    249	  }
-   250	
+   250
 
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/scripts/reduce-state.cjs | sed -n '80,140p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -3794,14 +3794,14 @@ exec
     84	  const records = [];
     85	  const corruptionWarnings = [];
     86	  let lineNumber = 0;
-    87	
+    87
     88	  for (const rawLine of jsonlContent.split('\n')) {
     89	    lineNumber += 1;
     90	    const line = rawLine.trim();
     91	    if (!line) {
     92	      continue;
     93	    }
-    94	
+    94
     95	    try {
     96	      records.push(JSON.parse(line));
     97	    } catch (error) {
@@ -3812,22 +3812,22 @@ exec
    102	      });
    103	    }
    104	  }
-   105	
+   105
    106	  return { records, corruptionWarnings };
    107	}
-   108	
+   108
    109	function extractSection(markdown, heading) {
    110	  const pattern = new RegExp(`(?:^|\\n)##\\s+${escapeRegExp(heading)}\\s*\\n([\\s\\S]*?)(?=\\n##\\s|$)`, 'i');
    111	  const match = markdown.match(pattern);
    112	  return match ? match[1].trim() : '';
    113	}
-   114	
+   114
    115	function extractSubsection(sectionText, subheading) {
    116	  const pattern = new RegExp(`(?:^|\\n)###\\s+${escapeRegExp(subheading)}[^\\n]*\\n([\\s\\S]*?)(?=\\n###\\s|\\n##\\s|$)`, 'i');
    117	  const match = sectionText.match(pattern);
    118	  return match ? match[1].trim() : '';
    119	}
-   120	
+   120
    121	function extractListItems(sectionText) {
    122	  return sectionText
    123	    .split('\n')
@@ -3836,7 +3836,7 @@ exec
    126	    .map((line) => normalizeText(line.replace(/^([-*]|\d+\.)\s+/, '')))
    127	    .filter(Boolean);
    128	}
-   129	
+   129
    130	/**
    131	 * Parse a finding line of the form: `- **F001**: Title — file:line — Description`
    132	 *
@@ -3897,29 +3897,29 @@ exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-deep-research/references/convergence.md | sed -n '214,320p;420,438p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    214	After composite convergence or full-question coverage nominates STOP, the loop MUST evaluate the full legal-stop bundle before STOP becomes final. STOP is never legal on novelty math alone. The replayable `legalStop.gateResults` bundle for deep research is:
-   215	
+   215
    216	| Gate | Rule | Fail Action |
    217	|------|------|-------------|
    218	| Convergence Gate | The novelty score stays below `convergenceThreshold` for N consecutive evidence iterations | Block STOP, persist `blocked_stop`, continue |
    219	| Coverage Gate | Every key question has at least one evidence-backed answer | Block STOP, persist `blocked_stop`, continue |
    220	| Quality Gate | Source diversity, focus alignment, and no single weak-source dominance all pass | Block STOP, persist `blocked_stop`, continue |
-   221	
+   221
    222	`N` comes from the reducer-or-workflow legal-stop policy (default 2 consecutive evidence iterations unless a packet config raises it). The bundle is evaluated together; no single gate can authorize STOP by itself.
-   223	
+   223
    224	```
    225	function evaluateLegalStop(state, strategy, config, stopCandidate):
    226	  requiredConsecutive = config.requiredConsecutiveLowNovelty ?? 2
    227	  evidenceIterations = [i for i in state.iterations if i.status != "thought"]
    228	  recentEvidence = evidenceIterations[-requiredConsecutive:]
    229	  missingQuestions = getQuestionsWithoutEvidence(strategy)
-   230	
+   230
    231	  convergenceGate = {
    232	    pass: len(recentEvidence) == requiredConsecutive &&
    233	      all(i.newInfoRatio < config.convergenceThreshold for i in recentEvidence),
    234	    detail: f"{countPassing(recentEvidence)}/{requiredConsecutive} recent evidence iterations remained below threshold",
    235	    recoveryHint: "Run another evidence iteration if novelty has not stayed low long enough"
    236	  }
-   237	
+   237
    238	  coverageGate = {
    239	    pass: len(missingQuestions) == 0,
    240	    detail: len(missingQuestions) == 0 ?
@@ -3927,11 +3927,11 @@ exec
    242	      f"Missing evidence-backed answers for: {join(missingQuestions, ', ')}",
    243	    recoveryHint: "Target unanswered or weakly answered key questions next"
    244	  }
-   245	
+   245
    246	  sourceDiversity = checkSourceDiversity(state, strategy)
    247	  focusAlignment = checkFocusAlignment(strategy)
    248	  singleWeakSourceDominance = checkWeakSourceDominance(state, strategy)
-   249	
+   249
    250	  qualityGate = {
    251	    pass: sourceDiversity.pass && focusAlignment.pass && singleWeakSourceDominance.pass,
    252	    detail: sourceDiversity.pass && focusAlignment.pass && singleWeakSourceDominance.pass ?
@@ -3944,7 +3944,7 @@ exec
    259	    },
    260	    recoveryHint: chooseQualityRecovery(sourceDiversity, focusAlignment, singleWeakSourceDominance)
    261	  }
-   262	
+   262
    263	  blockedBy = []
    264	  for gateName, gateResult in {
    265	    convergenceGate,
@@ -3953,13 +3953,13 @@ exec
    268	  }.items():
    269	    if not gateResult.pass:
    270	      blockedBy.push(gateName)
-   271	
+   271
    272	  legalStop = {
    273	    blockedBy,
    274	    gateResults: { convergenceGate, coverageGate, qualityGate },
    275	    replayInputs: buildReplayInputs(state, stopCandidate)
    276	  }
-   277	
+   277
    278	  if len(blockedBy) == 0:
    279	    return {
    280	      decision: "STOP",
@@ -3967,7 +3967,7 @@ exec
    282	      candidateStopReason: stopCandidate.stopReason,
    283	      legalStop
    284	    }
-   285	
+   285
    286	  return {
    287	    decision: "CONTINUE",
    288	    stopReason: "blockedStop",
@@ -3976,41 +3976,41 @@ exec
    291	    recoveryStrategy: chooseBlockedStopRecovery(legalStop, strategy)
    292	  }
    293	```
-   294	
+   294
    295	**Checks:**
-   296	
+   296
    297	- **Convergence Gate**: Re-read the most recent N evidence iterations only. Every one of them must remain below the configured novelty threshold.
    298	- **Coverage Gate**: Every initialized key question must have at least one answer backed by evidence from the iteration artifacts.
    299	- **Source Diversity**: For each answered question, count distinct independent sources. Require the configured minimum (default 2).
    300	- **Focus Alignment**: Compare current key questions against `config.originalKeyQuestions` (the snapshot of initial key questions populated at session init). Flag any answer outside the declared scope, or any significant drift where the current question set no longer resembles the original set. When `originalKeyQuestions` is absent (legacy packets), fall back to comparing against strategy.md's initialized question list.
    301	- **No Single-Weak-Source**: No answered question may depend entirely on a single tentative or otherwise weak source. The guard checks the `sourceStrength` field on iteration records (values: `"strong"`, `"moderate"`, `"weak"`) rather than performing implicit JSONL analysis.
-   302	
+   302
    303	`qualityGate.checks` is the replayable quality bundle. Reducers and dashboards must be able to explain a quality pass or failure from packet-local artifacts only.
-   304	
+   304
    305	When any gate fails:
-   306	
+   306
    307	1. Append a `stop_decision` snapshot with the attempted stop bundle.
    308	2. Append a first-class `blocked_stop` event with `stopReason: "blockedStop"`, `legalStop.blockedBy`, the full `legalStop.gateResults`, and a concrete `recoveryStrategy`.
    309	3. Continue the loop using that `recoveryStrategy` as the next focus directive.
    310	4. Replay reducers and dashboards from packet-local artifacts only; no hidden runtime memory is required.
-   311	
+   311
    312	Recommended blocked-stop recovery mapping:
-   313	
+   313
    314	| Failed Gate | Preferred Recovery |
    315	|-------------|--------------------|
    316	| `convergenceGate` | `widenFocus` to gather another evidence iteration before retrying STOP |
    317	| `coverageGate` | `answerMissingQuestions` for unanswered or tentative-only questions |
    318	| `qualityGate` with weak-source failure | `seekMoreSources` to replace weak or single-source evidence |
    319	| `qualityGate` with focus drift | `repairAlignment` to bring answers back inside initialized scope |
-   320	
+   320
    420	   - `sourceExhaustion`: `citationOverlap >= 0.85` for 2+ consecutive iterations OR `citationOverlap < 0.30` does not block
-   421	
+   421
    422	The quality gate passes only when ALL sub-checks pass (existing + semantic). When a semantic sub-check fails, the `legalStop.gateResults.qualityGate.checks` map includes the failing semantic sub-check with its detail and recovery hint.
-   423	
+   423
    424	#### Stop-Decision Trace
-   425	
+   425
    426	The stop-decision event (`stop_decision` and `blocked_stop` JSONL records) includes which semantic signals supported or prevented STOP:
-   427	
+   427
    428	```json
    429	{
    430	  "type": "event",
@@ -4027,11 +4027,11 @@ exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/references/state_format.md | sed -n '286,320p;533,552p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    286	**Required:** `type`, `event`, `mode`, `totalIterations`, `verdict`, `activeP0`, `activeP1`, `activeP2`, `dimensionCoverage`, `stopReason`, `timestamp`
-   287	
+   287
    288	### Blocked-Stop Event
-   289	
+   289
    290	When the review legal-stop decision tree returns `blocked`, append a first-class `blocked_stop` event instead of silently overriding STOP to CONTINUE.
-   291	
+   291
    292	```json
    293	{
    294	  "type": "event",
@@ -4056,30 +4056,30 @@ exec
    313	  "generation": 1
    314	}
    315	```
-   316	
+   316
    317	**Required:** `type`, `event`, `mode`, `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, `timestamp`, `sessionId`, `generation`
-   318	
+   318
    319	### Graph Convergence Event
-   320	
+   320
    533	| `blockedStopHistory` | array | One entry per `blocked_stop` JSONL event: `{run, blockedBy, gateResults, recoveryStrategy, timestamp}`. Rendered in the dashboard `BLOCKED STOPS` section and can drive the strategy `next-focus` anchor when blocked-stop is the most recent loop event. |
    534	| `persistentSameSeverity` | array | Findings observed in ≥2 iterations with NO severity transitions beyond initial discovery. REQ-018 split of the deprecated `repeatedFindings` bucket. |
    535	| `severityChanged` | array | Findings that went through at least one severity transition (P0↔P1↔P2) in their `transitions` history. |
    536	| `repeatedFindings` | array | **Deprecated.** Union of `persistentSameSeverity` and `severityChanged`. Retained for backward compatibility; new code should read the split arrays. |
    537	| `corruptionWarnings` | array | Per-line corruption reports from `parseJsonlDetailed()`: `{line, raw, error}`. Non-empty means the reducer detected malformed JSONL. |
-   538	
+   538
    539	### Default Values
-   540	
+   540
    541	When no `graph_convergence` event has been recorded yet, defaults are `graphConvergenceScore: 0`, `graphDecision: null`, and `graphBlockers: []`.
    542	When no `blocked_stop` event has been recorded yet, `blockedStopHistory: []`.
    543	When JSONL parses cleanly, `corruptionWarnings: []`.
-   544	
+   544
    545	### Fail-Closed Semantics (REQ-015, REQ-016)
-   546	
+   546
    547	- **Malformed JSONL**: The reducer CLI exits with code `2` and writes a warning to stderr when `corruptionWarnings.length > 0`. Pass `--lenient` (or `lenient:true` to `reduceReviewState`) to escape-hatch out and preserve the v1.2.0.0 fail-open behavior for legacy packets.
    548	- **Missing machine-owned anchors**: `replaceAnchorSection()` throws `Error('Missing machine-owned anchor "<id>" in deep-review strategy file.')` when the strategy file is present but lacks one of the required anchors. Pass `--create-missing-anchors` (or `createMissingAnchors:true`) to bootstrap empty strategy files by appending the missing anchor blocks.
    549	- **Dashboard surfaces**: `CORRUPTION WARNINGS` section lists detected lines; `BLOCKED STOPS` section lists `blockedStopHistory` entries; `GRAPH CONVERGENCE` section reports `graphConvergenceScore` / `graphDecision` / `graphBlockers`.
    550	- **Strategy next-focus override**: When the latest `blocked_stop` event timestamp is newer than the latest iteration timestamp, the reducer rewrites the strategy `next-focus` anchor to surface the blocking gates and recovery hint so operators see the blocker before choosing the next iteration direction.
-   551	
+   551
    552	---
 
 exec
@@ -4228,11 +4228,11 @@ exec
     23	- Parent Session: none
     24	- Lifecycle Mode: new
     25	- Generation: 1
-    26	
+    26
     27	<!-- /ANCHOR:status -->
     28	<!-- ANCHOR:progress -->
     29	## 3. PROGRESS
-    30	
+    30
     31	| # | Focus | Track | Ratio | Findings | Status |
     32	|---|-------|-------|-------|----------|--------|
     33	| 1 | D1 reducer rollup and resume drift | - | 1.00 | 5 | complete |
@@ -4434,8 +4434,8 @@ exec
     12	{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":10,"verdict":"CONDITIONAL","activeP0":0,"activeP1":10,"activeP2":6,"dimensionCoverage":1.0,"stopReason":"maxIterationsReached","hasAdvisories":false,"timestamp":"2026-04-11T14:36:11Z"}
 
  succeeded in 0ms:
-    20	{"type":"iteration","mode":"research","run":19,"status":"complete","focus":"D4 upstream improve-agent journal emission path","findingsCount":6,"newInfoRatio":0.83,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/commands/improve/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:10:50Z","durationMs":480000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d4-upstream-no-visible-journal-emission","label":"Visible improve-agent YAML path never calls improvement-journal.cjs despite the published journal contract"},{"type":"node","id":"d4-upstream-cli-doc-mismatch","label":"Published session-start command uses an unsupported --event flag instead of passing the event type through --emit"},{"type":"node","id":"d4-upstream-gateresults-not-enforced","label":"Journal validation does not require gateResults for legal-stop or blocked-stop events"},{"type":"node","id":"d4-upstream-reducer-never-reads-journal","label":"Reducer reads only state ledger/config/mirror drift and never opens improvement-journal.jsonl"},{"type":"node","id":"d4-upstream-resume-contract-unexercised","label":"Visible auto and confirm workflows do not replay journals or propagate session lineage inputs"},{"type":"node","id":"d4-upstream-stop-surface-collapsed","label":"Operator-facing stop flow consumes reducer stopStatus booleans and free-text reasons rather than journal enums"},{"type":"edge","relation":"supports","source":"d4-upstream-no-visible-journal-emission","target":"d4-upstream-reducer-never-reads-journal"},{"type":"edge","relation":"supports","source":"d4-upstream-cli-doc-mismatch","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"supports","source":"d4-upstream-gateresults-not-enforced","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"extends","source":"d4-upstream-reducer-never-reads-journal","target":"d4-upstream-stop-surface-collapsed"},{"type":"edge","relation":"supports","source":"d4-upstream-resume-contract-unexercised","target":"d4-upstream-stop-surface-collapsed"}]}
-    21	{"type":"iteration","mode":"research","run":20,"status":"complete","focus":"D5 improve-agent coverage-graph operator-loop audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/assets/improvement_config.json",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:13:24Z","durationMs":180000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d5-improve-no-visible-focus-selection","label":"Visible improve-agent loop does not invoke coverage state before candidate generation, so graph data does not steer mutation focus"},{"type":"node","id":"d5-improve-configured-but-not-consumed","label":"Coverage graph is enabled in config and reserved in strategy placeholders but never read by the reducer"},{"type":"node","id":"d5-improve-helper-only-logic","label":"Mutation coverage helper records mutations and convergence eligibility but remains outside the visible command and reducer control path"},{"type":"node","id":"d5-improve-stop-gating-bypasses-graph","label":"Visible stop decisions use ledger and reducer heuristics rather than coverage-graph convergence eligibility"},{"type":"node","id":"d5-improve-no-visible-contradiction-gate","label":"No contradiction-oriented graph gate appears in the published improve-agent operator path"},{"type":"edge","relation":"supports","source":"d5-improve-no-visible-focus-selection","target":"d5-improve-helper-only-logic"},{"type":"edge","relation":"supports","source":"d5-improve-configured-but-not-consumed","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"extends","source":"d5-improve-helper-only-logic","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"supports","source":"d5-improve-stop-gating-bypasses-graph","target":"d5-improve-no-visible-contradiction-gate"}]}
+    20	{"type":"iteration","mode":"research","run":19,"status":"complete","focus":"D4 upstream improve-agent journal emission path","findingsCount":6,"newInfoRatio":0.83,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/commands/deep/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:10:50Z","durationMs":480000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d4-upstream-no-visible-journal-emission","label":"Visible improve-agent YAML path never calls improvement-journal.cjs despite the published journal contract"},{"type":"node","id":"d4-upstream-cli-doc-mismatch","label":"Published session-start command uses an unsupported --event flag instead of passing the event type through --emit"},{"type":"node","id":"d4-upstream-gateresults-not-enforced","label":"Journal validation does not require gateResults for legal-stop or blocked-stop events"},{"type":"node","id":"d4-upstream-reducer-never-reads-journal","label":"Reducer reads only state ledger/config/mirror drift and never opens improvement-journal.jsonl"},{"type":"node","id":"d4-upstream-resume-contract-unexercised","label":"Visible auto and confirm workflows do not replay journals or propagate session lineage inputs"},{"type":"node","id":"d4-upstream-stop-surface-collapsed","label":"Operator-facing stop flow consumes reducer stopStatus booleans and free-text reasons rather than journal enums"},{"type":"edge","relation":"supports","source":"d4-upstream-no-visible-journal-emission","target":"d4-upstream-reducer-never-reads-journal"},{"type":"edge","relation":"supports","source":"d4-upstream-cli-doc-mismatch","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"supports","source":"d4-upstream-gateresults-not-enforced","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"extends","source":"d4-upstream-reducer-never-reads-journal","target":"d4-upstream-stop-surface-collapsed"},{"type":"edge","relation":"supports","source":"d4-upstream-resume-contract-unexercised","target":"d4-upstream-stop-surface-collapsed"}]}
+    21	{"type":"iteration","mode":"research","run":20,"status":"complete","focus":"D5 improve-agent coverage-graph operator-loop audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/assets/improvement_config.json",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:13:24Z","durationMs":180000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d5-improve-no-visible-focus-selection","label":"Visible improve-agent loop does not invoke coverage state before candidate generation, so graph data does not steer mutation focus"},{"type":"node","id":"d5-improve-configured-but-not-consumed","label":"Coverage graph is enabled in config and reserved in strategy placeholders but never read by the reducer"},{"type":"node","id":"d5-improve-helper-only-logic","label":"Mutation coverage helper records mutations and convergence eligibility but remains outside the visible command and reducer control path"},{"type":"node","id":"d5-improve-stop-gating-bypasses-graph","label":"Visible stop decisions use ledger and reducer heuristics rather than coverage-graph convergence eligibility"},{"type":"node","id":"d5-improve-no-visible-contradiction-gate","label":"No contradiction-oriented graph gate appears in the published improve-agent operator path"},{"type":"edge","relation":"supports","source":"d5-improve-no-visible-focus-selection","target":"d5-improve-helper-only-logic"},{"type":"edge","relation":"supports","source":"d5-improve-configured-but-not-consumed","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"extends","source":"d5-improve-helper-only-logic","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"supports","source":"d5-improve-stop-gating-bypasses-graph","target":"d5-improve-no-visible-contradiction-gate"}]}
     22	{"type":"event","event":"synthesis_complete","mode":"research","totalIterations":20,"answeredCount":16,"totalQuestions":17,"stopReason":"maxIterationsReached","timestamp":"2026-04-11T09:27:03Z"}
 
 exec
@@ -4583,13 +4583,13 @@ exec
    328	2. The existing inline 3-signal convergence vote still computes the inline STOP candidate.
    329	3. The loop may STOP for `composite_converged` only when the inline vote says STOP and the latest graph decision is `STOP_ALLOWED` or absent.
    330	4. If the inline vote says STOP but the latest graph decision is `STOP_BLOCKED`, the workflow must emit `blocked_stop` and continue with the recovery strategy instead of stopping.
-   331	
+   331
    332	#### Canonical blocked-stop event
-   333	
+   333
    334	```json
    335	{"type":"event","event":"blocked_stop","mode":"research","run":7,"blockedBy":["keyQuestionCoverage","evidenceDensity"],"gateResults":{"convergence":{"pass":true,"score":0.72},"keyQuestionCoverage":{"pass":false,"answered":5,"total":7},"evidenceDensity":{"pass":false,"sources":2},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"Collect evidence for the remaining uncovered question cluster.","timestamp":"2026-04-11T12:00:00Z","sessionId":"dr-2026-04-11T12-00-00Z","generation":2}
    336	```
-   337	
+   337
    338	| Field | Type | Required | Description |
    339	|-------|------|----------|-------------|
    340	| type | string | Yes | Always `event` |
@@ -4602,86 +4602,86 @@ exec
    347	| timestamp | ISO 8601 | Yes | Event creation time |
    348	| sessionId | string | Yes | Active lineage session identifier |
    349	| generation | number | Yes | Active lineage generation |
-   350	
+   350
 
 exec
 /bin/zsh -lc "nl -ba /Users/michelkerkmeester/.codex/memories/MEMORY.md | sed -n '900,916p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    900	- rollout_summaries/2026-04-03T06-52-50-dog7-deep_research_90_iter_external_wave.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/03/rollout-2026-04-03T08-52-50-019d521d-afbc-7da0-817d-675090a19d1f.jsonl, updated_at=2026-04-03T08:23:39+00:00, thread_id=019d521d-afbc-7da0-817d-675090a19d1f)
-   901	
+   901
    902	### keywords
-   903	
+   903
    904	- 90 iterations, recommendations-sk-deep-research.md, recommendations-sk-deep-review.md, deep-research-state.jsonl, synthesis_complete, external wave
-   905	
+   905
    906	## Task 2: Complete phase `001-sk-deep-research-improvements` contract hardening and packet-local changelog, outcome success
-   907	
+   907
    908	### rollout_summary_files
-   909	
+   909
    910	- rollout_summaries/2026-04-03T08-52-11-1f0W-deep_research_phase1_100pct.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/03/rollout-2026-04-03T10-52-11-019d528a-f2bc-7053-9269-e85eded82c3e.jsonl, updated_at=2026-04-03T09:49:06+00:00, thread_id=019d528a-f2bc-7053-9269-e85eded82c3e)
-   911	
+   911
    912	### keywords
-   913	
+   913
    914	- runtime-capabilities.cjs, reduce-state.cjs, runtime_capabilities.json, deep-research-reducer.vitest.ts, changelog-028-001-sk-deep-research-improvements.md
-   915	
+   915
    916	## Task 3: Complete phase `002-sk-deep-review-improvements` contract hardening and manual packet-local changelog fallback, outcome success
 
 exec
 /bin/zsh -lc "nl -ba /Users/michelkerkmeester/.codex/memories/MEMORY.md | sed -n '916,922p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    916	## Task 3: Complete phase `002-sk-deep-review-improvements` contract hardening and manual packet-local changelog fallback, outcome success
-   917	
+   917
    918	### rollout_summary_files
-   919	
+   919
    920	- rollout_summaries/2026-04-03T08-53-06-X4xo-deep_review_contract_closeout.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/03/rollout-2026-04-03T10-53-06-019d528b-cc68-77b3-9b4d-8b5dc37b791e.jsonl, updated_at=2026-04-03T09:42:20+00:00, thread_id=019d528b-cc68-77b3-9b4d-8b5dc37b791e)
-   921	
+   921
    922	### keywords
 
 codex
 **Findings**
 
 `F-001-001`
-Severity: P1  
-Dimension: correctness  
-File: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`  
-Line: `396-405`, `527-643`, `667-685`  
-Title: Research reducer drops terminal stop metadata and reports stale session state  
-Description: The research reducer only reconstructs `blocked_stop` and `graph_convergence` events, then renders status from `config.status`. It never reads the terminal `synthesis_complete` event that carries the canonical `stopReason`. In the live 042 packet, the state log ends with `stopReason:"maxIterationsReached"`, but the generated dashboard still shows `Status: INITIALIZED` and no stop reason at all. That means Phase 001’s runtime-truth contract is not actually preserved in the reducer-owned output.  
-Evidence: `buildRegistry()` only lifts `blocked_stop` into `blockedStopHistory` and `buildGraphConvergenceRollup()` only looks at `graph_convergence` (`reduce-state.cjs:396-405`). `renderDashboard()` prints `config.status`, session, parent session, lifecycle mode, and generation, but no terminal reason (`reduce-state.cjs:563-570`). The real packet still records `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:22), while the generated dashboard status at [deep-research-dashboard.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:17) still shows `INITIALIZED`.  
+Severity: P1
+Dimension: correctness
+File: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+Line: `396-405`, `527-643`, `667-685`
+Title: Research reducer drops terminal stop metadata and reports stale session state
+Description: The research reducer only reconstructs `blocked_stop` and `graph_convergence` events, then renders status from `config.status`. It never reads the terminal `synthesis_complete` event that carries the canonical `stopReason`. In the live 042 packet, the state log ends with `stopReason:"maxIterationsReached"`, but the generated dashboard still shows `Status: INITIALIZED` and no stop reason at all. That means Phase 001’s runtime-truth contract is not actually preserved in the reducer-owned output.
+Evidence: `buildRegistry()` only lifts `blocked_stop` into `blockedStopHistory` and `buildGraphConvergenceRollup()` only looks at `graph_convergence` (`reduce-state.cjs:396-405`). `renderDashboard()` prints `config.status`, session, parent session, lifecycle mode, and generation, but no terminal reason (`reduce-state.cjs:563-570`). The real packet still records `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:22), while the generated dashboard status at [deep-research-dashboard.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:17) still shows `INITIALIZED`.
 Recommendation: Teach the reducer to consume the latest terminal lifecycle/stop event (`synthesis_complete`, and any paused/recovery terminal states), promote its `stopReason` into reducer state, and derive dashboard status from the latest authoritative event rather than stale config alone.
 
 `F-001-002`
-Severity: P1  
-Dimension: correctness  
-File: `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`; `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`  
-Line: `141-154`, `177-181`; `141-162`, `185-189`; `563-570`  
-Title: Research resume/restart lineage is emitted as JSONL events but never persisted to the reducer-visible config  
-Description: The workflow now appends `resumed` and `restarted` events, but the reducer still reads lineage only from `config.lineage.*`. On resume, the workflow skips directly back into the loop after appending the event, so config never changes from `lineageMode:"new"`. On restart, it sets temporary variables, then recreates config with hardcoded `lineageMode:"new"`, `generation:1`, and `continuedFromRun:null`. The result is that resumed or restarted sessions will still be rendered as fresh runs, defeating the Phase 001 resume-boundary contract.  
-Evidence: Research auto mode appends `resumed` / `restarted` events at `.yaml:143` and `.yaml:152`, but the config template population still hardcodes `lineage.lineageMode: "new"`, `generation: 1`, `continuedFromRun: null` at `.yaml:177-181`. Confirm mode mirrors the same pattern at `.yaml:149`, `.yaml:157`, and `.yaml:185-189`. The reducer then renders lifecycle exclusively from `config.lineage.*` at `reduce-state.cjs:567-570`.  
+Severity: P1
+Dimension: correctness
+File: `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`; `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+Line: `141-154`, `177-181`; `141-162`, `185-189`; `563-570`
+Title: Research resume/restart lineage is emitted as JSONL events but never persisted to the reducer-visible config
+Description: The workflow now appends `resumed` and `restarted` events, but the reducer still reads lineage only from `config.lineage.*`. On resume, the workflow skips directly back into the loop after appending the event, so config never changes from `lineageMode:"new"`. On restart, it sets temporary variables, then recreates config with hardcoded `lineageMode:"new"`, `generation:1`, and `continuedFromRun:null`. The result is that resumed or restarted sessions will still be rendered as fresh runs, defeating the Phase 001 resume-boundary contract.
+Evidence: Research auto mode appends `resumed` / `restarted` events at `.yaml:143` and `.yaml:152`, but the config template population still hardcodes `lineage.lineageMode: "new"`, `generation: 1`, `continuedFromRun: null` at `.yaml:177-181`. Confirm mode mirrors the same pattern at `.yaml:149`, `.yaml:157`, and `.yaml:185-189`. The reducer then renders lifecycle exclusively from `config.lineage.*` at `reduce-state.cjs:567-570`.
 Recommendation: Either persist the updated lineage fields into config before re-entering the loop, or have the reducer derive authoritative lineage from the latest lifecycle event; in either case, surface `continuedFromRun` in the dashboard/registry so the resumed boundary is auditable.
 
 `F-001-003`
-Severity: P1  
-Dimension: correctness  
-File: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`  
-Line: `464-491`, `493-540`, `679-875`  
-Title: Review reducer also ignores terminal stop reason and legal-stop outcome  
-Description: The review reducer reconstructs blocked-stop and graph-convergence history, but it never consumes `synthesis_complete`. That means the reducer-owned dashboard cannot show why the review stopped, and it cannot surface any typed legal-stop payload even when one exists in older shared fixtures. In practice, review termination remains inferred from stale config plus open-finding counts rather than the actual terminal event.  
-Evidence: `buildBlockedStopHistory()` handles `blocked_stop`, and `buildRegistry()` stores only blocked-stop / graph-convergence-derived fields (`reduce-state.cjs:464-540`). `renderDashboard()` status also prints only config-derived lifecycle fields and verdict/counts (`reduce-state.cjs:734-744`). The archived 042 review session still persists `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-review-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:12). The shared optimizer corpus also shows a terminal review event with a nested `legalStop` bundle, but no reducer path reads it: [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6).  
+Severity: P1
+Dimension: correctness
+File: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
+Line: `464-491`, `493-540`, `679-875`
+Title: Review reducer also ignores terminal stop reason and legal-stop outcome
+Description: The review reducer reconstructs blocked-stop and graph-convergence history, but it never consumes `synthesis_complete`. That means the reducer-owned dashboard cannot show why the review stopped, and it cannot surface any typed legal-stop payload even when one exists in older shared fixtures. In practice, review termination remains inferred from stale config plus open-finding counts rather than the actual terminal event.
+Evidence: `buildBlockedStopHistory()` handles `blocked_stop`, and `buildRegistry()` stores only blocked-stop / graph-convergence-derived fields (`reduce-state.cjs:464-540`). `renderDashboard()` status also prints only config-derived lifecycle fields and verdict/counts (`reduce-state.cjs:734-744`). The archived 042 review session still persists `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-review-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:12). The shared optimizer corpus also shows a terminal review event with a nested `legalStop` bundle, but no reducer path reads it: [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6).
 Recommendation: Parse the latest `synthesis_complete` record into reducer state, expose `stopReason` and any terminal legal-stop bundle in both registry and dashboard, and stop treating config-only status as the canonical end-state.
 
 `F-001-004`
-Severity: P1  
-Dimension: correctness  
-File: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`; `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`  
-Line: `165-176`, `241-244`; `165-186`, `249-252`; `521-524`, `742-744`  
-Title: Review resume/restart lineage has the same config-vs-event split and will be misreported as `new`  
-Description: Review mode has the same structural bug as research mode. The workflows append `resumed` and `restarted` JSONL events, but the reducer keeps reading lineage from config fields that remain hardcoded to fresh-session defaults. That means a resumed or restarted review can still be summarized as `lineageMode:"new"`, `generation:1`, `continuedFromRun:null`, even though the JSONL event log says otherwise.  
-Evidence: Auto mode appends lifecycle events at `.yaml:167` and `.yaml:176`, but its config creation still writes `parentSessionId:null`, `lineageMode:"new"`, `generation:1`, `continuedFromRun:null` at `.yaml:241-244`. Confirm mode mirrors the same bug at `.yaml:173`, `.yaml:181`, and `.yaml:249-252`. The reducer only preserves `sessionId`, `generation`, and `lineageMode` from config in the registry (`reduce-state.cjs:521-524`) and only prints those same config fields in the dashboard (`reduce-state.cjs:742-744`).  
+Severity: P1
+Dimension: correctness
+File: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`; `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
+Line: `165-176`, `241-244`; `165-186`, `249-252`; `521-524`, `742-744`
+Title: Review resume/restart lineage has the same config-vs-event split and will be misreported as `new`
+Description: Review mode has the same structural bug as research mode. The workflows append `resumed` and `restarted` JSONL events, but the reducer keeps reading lineage from config fields that remain hardcoded to fresh-session defaults. That means a resumed or restarted review can still be summarized as `lineageMode:"new"`, `generation:1`, `continuedFromRun:null`, even though the JSONL event log says otherwise.
+Evidence: Auto mode appends lifecycle events at `.yaml:167` and `.yaml:176`, but its config creation still writes `parentSessionId:null`, `lineageMode:"new"`, `generation:1`, `continuedFromRun:null` at `.yaml:241-244`. Confirm mode mirrors the same bug at `.yaml:173`, `.yaml:181`, and `.yaml:249-252`. The reducer only preserves `sessionId`, `generation`, and `lineageMode` from config in the registry (`reduce-state.cjs:521-524`) and only prints those same config fields in the dashboard (`reduce-state.cjs:742-744`).
 Recommendation: Persist lineage updates into `deep-review-config.json` on resume/restart, or move reducer truth to the latest lifecycle event; also carry `parentSessionId` and `continuedFromRun` through the registry/dashboard so restart and resume boundaries stay replayable.
 
 **Iteration Summary**
 
-Total findings: 4  
+Total findings: 4
 Breakdown: 0 P0, 4 P1, 0 P2
 
 Coverage assessment: 100% of the named focus files (`sk-deep-research` / `sk-deep-review` `reduce-state.cjs` and both `runtime-capabilities.cjs`) plus the related workflow emitters that define stop/lifecycle event shapes. I did not find correctness issues in the two `runtime-capabilities.cjs` resolvers in this slice.
@@ -4698,48 +4698,48 @@ tokens used
 **Findings**
 
 `F-001-001`
-Severity: P1  
-Dimension: correctness  
-File: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`  
-Line: `396-405`, `527-643`, `667-685`  
-Title: Research reducer drops terminal stop metadata and reports stale session state  
-Description: The research reducer only reconstructs `blocked_stop` and `graph_convergence` events, then renders status from `config.status`. It never reads the terminal `synthesis_complete` event that carries the canonical `stopReason`. In the live 042 packet, the state log ends with `stopReason:"maxIterationsReached"`, but the generated dashboard still shows `Status: INITIALIZED` and no stop reason at all. That means Phase 001’s runtime-truth contract is not actually preserved in the reducer-owned output.  
-Evidence: `buildRegistry()` only lifts `blocked_stop` into `blockedStopHistory` and `buildGraphConvergenceRollup()` only looks at `graph_convergence` (`reduce-state.cjs:396-405`). `renderDashboard()` prints `config.status`, session, parent session, lifecycle mode, and generation, but no terminal reason (`reduce-state.cjs:563-570`). The real packet still records `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:22), while the generated dashboard status at [deep-research-dashboard.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:17) still shows `INITIALIZED`.  
+Severity: P1
+Dimension: correctness
+File: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+Line: `396-405`, `527-643`, `667-685`
+Title: Research reducer drops terminal stop metadata and reports stale session state
+Description: The research reducer only reconstructs `blocked_stop` and `graph_convergence` events, then renders status from `config.status`. It never reads the terminal `synthesis_complete` event that carries the canonical `stopReason`. In the live 042 packet, the state log ends with `stopReason:"maxIterationsReached"`, but the generated dashboard still shows `Status: INITIALIZED` and no stop reason at all. That means Phase 001’s runtime-truth contract is not actually preserved in the reducer-owned output.
+Evidence: `buildRegistry()` only lifts `blocked_stop` into `blockedStopHistory` and `buildGraphConvergenceRollup()` only looks at `graph_convergence` (`reduce-state.cjs:396-405`). `renderDashboard()` prints `config.status`, session, parent session, lifecycle mode, and generation, but no terminal reason (`reduce-state.cjs:563-570`). The real packet still records `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-research-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:22), while the generated dashboard status at [deep-research-dashboard.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:17) still shows `INITIALIZED`.
 Recommendation: Teach the reducer to consume the latest terminal lifecycle/stop event (`synthesis_complete`, and any paused/recovery terminal states), promote its `stopReason` into reducer state, and derive dashboard status from the latest authoritative event rather than stale config alone.
 
 `F-001-002`
-Severity: P1  
-Dimension: correctness  
-File: `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`; `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`  
-Line: `141-154`, `177-181`; `141-162`, `185-189`; `563-570`  
-Title: Research resume/restart lineage is emitted as JSONL events but never persisted to the reducer-visible config  
-Description: The workflow now appends `resumed` and `restarted` events, but the reducer still reads lineage only from `config.lineage.*`. On resume, the workflow skips directly back into the loop after appending the event, so config never changes from `lineageMode:"new"`. On restart, it sets temporary variables, then recreates config with hardcoded `lineageMode:"new"`, `generation:1`, and `continuedFromRun:null`. The result is that resumed or restarted sessions will still be rendered as fresh runs, defeating the Phase 001 resume-boundary contract.  
-Evidence: Research auto mode appends `resumed` / `restarted` events at `.yaml:143` and `.yaml:152`, but the config template population still hardcodes `lineage.lineageMode: "new"`, `generation: 1`, `continuedFromRun: null` at `.yaml:177-181`. Confirm mode mirrors the same pattern at `.yaml:149`, `.yaml:157`, and `.yaml:185-189`. The reducer then renders lifecycle exclusively from `config.lineage.*` at `reduce-state.cjs:567-570`.  
+Severity: P1
+Dimension: correctness
+File: `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`; `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+Line: `141-154`, `177-181`; `141-162`, `185-189`; `563-570`
+Title: Research resume/restart lineage is emitted as JSONL events but never persisted to the reducer-visible config
+Description: The workflow now appends `resumed` and `restarted` events, but the reducer still reads lineage only from `config.lineage.*`. On resume, the workflow skips directly back into the loop after appending the event, so config never changes from `lineageMode:"new"`. On restart, it sets temporary variables, then recreates config with hardcoded `lineageMode:"new"`, `generation:1`, and `continuedFromRun:null`. The result is that resumed or restarted sessions will still be rendered as fresh runs, defeating the Phase 001 resume-boundary contract.
+Evidence: Research auto mode appends `resumed` / `restarted` events at `.yaml:143` and `.yaml:152`, but the config template population still hardcodes `lineage.lineageMode: "new"`, `generation: 1`, `continuedFromRun: null` at `.yaml:177-181`. Confirm mode mirrors the same pattern at `.yaml:149`, `.yaml:157`, and `.yaml:185-189`. The reducer then renders lifecycle exclusively from `config.lineage.*` at `reduce-state.cjs:567-570`.
 Recommendation: Either persist the updated lineage fields into config before re-entering the loop, or have the reducer derive authoritative lineage from the latest lifecycle event; in either case, surface `continuedFromRun` in the dashboard/registry so the resumed boundary is auditable.
 
 `F-001-003`
-Severity: P1  
-Dimension: correctness  
-File: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`  
-Line: `464-491`, `493-540`, `679-875`  
-Title: Review reducer also ignores terminal stop reason and legal-stop outcome  
-Description: The review reducer reconstructs blocked-stop and graph-convergence history, but it never consumes `synthesis_complete`. That means the reducer-owned dashboard cannot show why the review stopped, and it cannot surface any typed legal-stop payload even when one exists in older shared fixtures. In practice, review termination remains inferred from stale config plus open-finding counts rather than the actual terminal event.  
-Evidence: `buildBlockedStopHistory()` handles `blocked_stop`, and `buildRegistry()` stores only blocked-stop / graph-convergence-derived fields (`reduce-state.cjs:464-540`). `renderDashboard()` status also prints only config-derived lifecycle fields and verdict/counts (`reduce-state.cjs:734-744`). The archived 042 review session still persists `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-review-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:12). The shared optimizer corpus also shows a terminal review event with a nested `legalStop` bundle, but no reducer path reads it: [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6).  
+Severity: P1
+Dimension: correctness
+File: `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
+Line: `464-491`, `493-540`, `679-875`
+Title: Review reducer also ignores terminal stop reason and legal-stop outcome
+Description: The review reducer reconstructs blocked-stop and graph-convergence history, but it never consumes `synthesis_complete`. That means the reducer-owned dashboard cannot show why the review stopped, and it cannot surface any typed legal-stop payload even when one exists in older shared fixtures. In practice, review termination remains inferred from stale config plus open-finding counts rather than the actual terminal event.
+Evidence: `buildBlockedStopHistory()` handles `blocked_stop`, and `buildRegistry()` stores only blocked-stop / graph-convergence-derived fields (`reduce-state.cjs:464-540`). `renderDashboard()` status also prints only config-derived lifecycle fields and verdict/counts (`reduce-state.cjs:734-744`). The archived 042 review session still persists `{"event":"synthesis_complete","stopReason":"maxIterationsReached"}` at [deep-review-state.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:12). The shared optimizer corpus also shows a terminal review event with a nested `legalStop` bundle, but no reducer path reads it: [sample-040-corpus.jsonl](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl:6).
 Recommendation: Parse the latest `synthesis_complete` record into reducer state, expose `stopReason` and any terminal legal-stop bundle in both registry and dashboard, and stop treating config-only status as the canonical end-state.
 
 `F-001-004`
-Severity: P1  
-Dimension: correctness  
-File: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`; `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`  
-Line: `165-176`, `241-244`; `165-186`, `249-252`; `521-524`, `742-744`  
-Title: Review resume/restart lineage has the same config-vs-event split and will be misreported as `new`  
-Description: Review mode has the same structural bug as research mode. The workflows append `resumed` and `restarted` JSONL events, but the reducer keeps reading lineage from config fields that remain hardcoded to fresh-session defaults. That means a resumed or restarted review can still be summarized as `lineageMode:"new"`, `generation:1`, `continuedFromRun:null`, even though the JSONL event log says otherwise.  
-Evidence: Auto mode appends lifecycle events at `.yaml:167` and `.yaml:176`, but its config creation still writes `parentSessionId:null`, `lineageMode:"new"`, `generation:1`, `continuedFromRun:null` at `.yaml:241-244`. Confirm mode mirrors the same bug at `.yaml:173`, `.yaml:181`, and `.yaml:249-252`. The reducer only preserves `sessionId`, `generation`, and `lineageMode` from config in the registry (`reduce-state.cjs:521-524`) and only prints those same config fields in the dashboard (`reduce-state.cjs:742-744`).  
+Severity: P1
+Dimension: correctness
+File: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`; `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
+Line: `165-176`, `241-244`; `165-186`, `249-252`; `521-524`, `742-744`
+Title: Review resume/restart lineage has the same config-vs-event split and will be misreported as `new`
+Description: Review mode has the same structural bug as research mode. The workflows append `resumed` and `restarted` JSONL events, but the reducer keeps reading lineage from config fields that remain hardcoded to fresh-session defaults. That means a resumed or restarted review can still be summarized as `lineageMode:"new"`, `generation:1`, `continuedFromRun:null`, even though the JSONL event log says otherwise.
+Evidence: Auto mode appends lifecycle events at `.yaml:167` and `.yaml:176`, but its config creation still writes `parentSessionId:null`, `lineageMode:"new"`, `generation:1`, `continuedFromRun:null` at `.yaml:241-244`. Confirm mode mirrors the same bug at `.yaml:173`, `.yaml:181`, and `.yaml:249-252`. The reducer only preserves `sessionId`, `generation`, and `lineageMode` from config in the registry (`reduce-state.cjs:521-524`) and only prints those same config fields in the dashboard (`reduce-state.cjs:742-744`).
 Recommendation: Persist lineage updates into `deep-review-config.json` on resume/restart, or move reducer truth to the latest lifecycle event; also carry `parentSessionId` and `continuedFromRun` through the registry/dashboard so restart and resume boundaries stay replayable.
 
 **Iteration Summary**
 
-Total findings: 4  
+Total findings: 4
 Breakdown: 0 P0, 4 P1, 0 P2
 
 Coverage assessment: 100% of the named focus files (`sk-deep-research` / `sk-deep-review` `reduce-state.cjs` and both `runtime-capabilities.cjs`) plus the related workflow emitters that define stop/lifecycle event shapes. I did not find correctness issues in the two `runtime-capabilities.cjs` resolvers in this slice.

@@ -43,10 +43,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/spec_kit/resume.md",
-      ".opencode/commands/spec_kit/plan.md",
       ".opencode/install_guides/SET-UP - Skill Advisor.md",
-      ".opencode/commands/spec_kit/README.txt",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/spec.md",
       ".opencode/commands/deep/start-review-loop.md",
       "tasks.md",
@@ -60,21 +57,9 @@
     ],
     "entities": [
       {
-        "name": "resume.md",
-        "kind": "doc",
-        "path": ".opencode/commands/spec_kit/resume.md",
-        "source": "derived"
-      },
-      {
         "name": "SET-UP - Skill Advisor.md",
         "kind": "doc",
         "path": ".opencode/install_guides/SET-UP - Skill Advisor.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/commands/spec_kit/README.txt",
         "source": "derived"
       },
       {
@@ -202,11 +187,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor scoring system (explicit lane TOKEN_BOOSTS, PHRASE_BOOSTS, lexical CATEGORY_HINTS, graph-metadata.json derived triggers/keywords) is manually maintained with no guided setup workflow. Users have no command to analyze their repo's skills, detect coverage gaps, and apply optimized keywords, weights, and triggers. The existing plan for a \"SET-UP - Skill Advisor.md\" install guide exists only as a reference path but has no command backing it.",
     "created_at": "2026-04-25T14:30:00Z",
-    "last_save_at": "2026-05-23T11:55:15.186Z",
+    "last_save_at": "2026-05-24T05:40:25.889Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -42,8 +42,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/deep-agent-improvement/graph-metadata.json",
-      ".opencode/commands/improve/prompt.md",
-      ".opencode/commands/improve/README.txt",
+      ".opencode/commands/prompt.md",
+      ".opencode/commands/README.txt",
       ".opencode/skills/deep-agent-improvement/SKILL.md",
       "spec.md",
       "implementation-summary.md",
@@ -61,13 +61,13 @@
       {
         "name": "prompt.md",
         "kind": "doc",
-        "path": ".opencode/commands/improve/prompt.md",
+        "path": ".opencode/commands/prompt.md",
         "source": "derived"
       },
       {
         "name": "README.txt",
         "kind": "file",
-        "path": ".opencode/commands/improve/README.txt",
+        "path": ".opencode/commands/README.txt",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After the skill folder is renamed, active `.opencode/` consumers still load, score, document, or test the old skill ID. These references include high-risk advisor code and fixtures, plus mirrored prompt quality cards that must stay synchronized.",
     "created_at": "2026-05-06T10:22:40Z",
-    "last_save_at": "2026-05-23T11:55:14.633Z",
+    "last_save_at": "2026-05-24T05:40:25.506Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

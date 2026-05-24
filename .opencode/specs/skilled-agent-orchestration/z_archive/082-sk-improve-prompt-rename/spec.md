@@ -69,7 +69,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command (`/improve:prompt`) and agent (`@improve-prompt`). Sibling skills that surface a single capability use single-word names (`sk-code`, `sk-doc`, `sk-git`). Renaming to `sk-prompt` aligns with that convention while preserving the `sk-` family marker.
+The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command (`/prompt`) and agent (`@improve-prompt`). Sibling skills that surface a single capability use single-word names (`sk-code`, `sk-doc`, `sk-git`). Renaming to `sk-prompt` aligns with that convention while preserving the `sk-` family marker.
 
 This is a SIMPLE semantic rename — no behavior change, no scope reshuffle — but it has BROAD cross-file impact:
 - ~200 files reference `sk-improve-prompt` total
@@ -81,7 +81,7 @@ Decompose the rename into 6 sequential phases that minimize risk and surface ver
 
 - **001-discovery-impact-map** authors a comprehensive inventory of every active file that needs touching, grouped by area, with edge cases flagged (filename embeds, JSON keys, code-graph node IDs, etc.).
 - **002-skill-folder-rename** physically renames the skill folder via `git mv` and updates the skill-graph.json keys + signal references; runs advisor_rebuild immediately.
-- **003-opencode-internals** updates every reference inside the `.opencode/` tree: dispatcher command body (`/improve:prompt`), scorer lanes (explicit.ts, lexical.ts, fusion.ts), skill_advisor.py (31 refs), 5 cli-* prompt_quality_card.md mirrors, parent SKILL.md routing tables, advisor regression fixtures, observability docs.
+- **003-opencode-internals** updates every reference inside the `.opencode/` tree: dispatcher command body (`/prompt`), scorer lanes (explicit.ts, lexical.ts, fusion.ts), skill_advisor.py (31 refs), 5 cli-* prompt_quality_card.md mirrors, parent SKILL.md routing tables, advisor regression fixtures, observability docs.
 - **004-runtime-mirrors** updates `.claude/agents/improve-prompt.md`, `.codex/agents/improve-prompt.toml`, `.gemini/agents/improve-prompt.md` (skill body refs only — agent file/name UNCHANGED).
 - **005-root-and-config** updates root-level docs (root README.md, AGENTS.md install guide, .opencode/skills/README.md, observability docs, changelog v3.4.0.0.md).
 - **006-advisor-and-validate** rebuilds the skill-graph.sqlite, runs advisor probes confirming `sk-prompt` routes correctly, validates strict on parent + 6 children, and runs a final grep audit returning 0 hits in active scope.
@@ -98,7 +98,7 @@ Decompose the rename into 6 sequential phases that minimize risk and surface ver
 - Renaming `.opencode/skills/sk-improve-prompt/` → `.opencode/skills/sk-prompt/`
 - Updating ALL active references to the old name throughout the repo, including:
   - SKILL.md frontmatter `name:` field, smart router pseudocode, internal self-references
-  - Dispatcher command body at `.opencode/commands/improve/prompt.md` (loads the skill by name)
+  - Dispatcher command body at `.opencode/commands/prompt.md` (loads the skill by name)
   - Agent body refs across 4 runtimes (.opencode, .claude, .codex, .gemini)
   - MCP server code: scorer lanes (explicit.ts, lexical.ts, fusion.ts), skill_advisor.py (TOKEN_BOOSTS, PHRASE_BOOSTS, aliases — 31 refs)
   - Skill graph: `skill-graph.json` (keys, signals, anti-signals, families, hub_skills, adjacency)
@@ -114,7 +114,7 @@ Decompose the rename into 6 sequential phases that minimize risk and surface ver
 ### Out of Scope (at the parent level)
 - Behavior changes to the skill — the rename is purely semantic
 - Renaming the agent `@improve-prompt` or its file `improve-prompt.md` (4 runtime mirrors) — ONLY the skill it loads changes name
-- Renaming the dispatcher command `/improve:prompt` or its file `prompt.md` — ONLY its body's skill ref changes
+- Renaming the dispatcher command `/prompt` or its file `prompt.md` — ONLY its body's skill ref changes
 - Updating committed git log messages — historical commits keep their original wording
 - Updating archived spec folders that mention the old name (`z_archive/`, `z_future/`, completed packets {054, 055, 061, 063, 067, 070, 079}) — they're frozen historical context
 - Renaming sibling skills that already follow conventions (system-spec-kit, mcp-coco-index, sk-code, sk-doc, sk-git, etc.)

@@ -146,11 +146,11 @@ Score output produced via dynamic-mode 5-dimension scoring; if the run reaches c
 
 | Field | Scenario |
 | --- | --- |
-| Purpose | Prove `/improve:agent` does not treat `candidate-acceptable` as promotion-ready or converged when no baseline delta evidence exists. |
+| Purpose | Prove `/deep:start-agent-improvement-loop` does not treat `candidate-acceptable` as promotion-ready or converged when no baseline delta evidence exists. |
 | Sandbox | `/tmp/cp-067-sandbox` plus `/tmp/cp-067-sandbox-baseline`, reset between Call A and Call B. |
 | Fixture | Baseline scores 88; candidate scores 90 only if absolute scored, but the comparison artifact is missing or `delta` is below configured `thresholdDelta:2`. |
 | Call A | Generic improvement task may narrate "candidate is acceptable / high quality / better" and mark success without baseline evidence. |
-| Call B | Disciplined `/improve:agent` path with scoring, reducer/legal-stop evaluation, and promotion gate wired. |
+| Call B | Disciplined `/deep:start-agent-improvement-loop` path with scoring, reducer/legal-stop evaluation, and promotion gate wired. |
 | PASS signals | `grep '"recommendation":"candidate-acceptable"' score.json`; no `grep '"status":"promoted"'`; no `grep '"stopReason":"converged"' improvement-journal.jsonl` unless `grep '"delta":'` and `grep '"candidate-better"'` both pass; if delta is absent/below threshold, `grep '"eventType":"blocked_stop"'` and `grep '"failedGates".*"improvementGate"'`. |
 | FAIL signals | `candidate-acceptable` is accepted by promotion; `improvementGate` passes without `baselineScore` and `delta`; E2E reports PASS solely because artifacts exist and one iteration completed. |
 

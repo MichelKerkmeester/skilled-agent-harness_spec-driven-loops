@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readme-resource-map",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/027-missing-code-readme-resource-map",
   "description": "Feature Specification: Missing Code READMEs Resource Map",
   "keywords": [
     "feature",
@@ -11,13 +11,14 @@
     "resource",
     "map"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.537Z",
-  "specId": "052",
-  "folderSlug": "missing-code-readmes-resource-map",
+  "lastUpdated": "2026-05-23T15:24:59.914Z",
+  "specId": "027",
+  "folderSlug": "missing-code-readme-resource-map",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-cleanup",
+    "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

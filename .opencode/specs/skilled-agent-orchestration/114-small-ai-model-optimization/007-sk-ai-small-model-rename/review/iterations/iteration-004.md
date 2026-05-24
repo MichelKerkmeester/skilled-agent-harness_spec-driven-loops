@@ -55,9 +55,9 @@ Now let me perform the analysis for each of the 5 pre-planning items:
   - `114/002-foundation-routing/` … `114/006-cross-skill-propagation/`
   - `114/review/`
   - `.opencode/specs/system-spec-kit/026/.../iteration-009.md`
-  - `sk-ai-small-model/changelog/v0.1.0.0.md` + `v0.2.0.0.md`
+  - `sk-prompt-small-model/changelog/v0.1.0.0.md` + `v0.2.0.0.md`
 - implementation-summary.md "Files preserved" lists:
-  - `sk-ai-small-model/changelog/v0.1.0.0.md` + `v0.2.0.0.md`
+  - `sk-prompt-small-model/changelog/v0.1.0.0.md` + `v0.2.0.0.md`
   - `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/{001-006}/**`
   - `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/review/**`
   - `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/roadmap/follow-on-phases.md`
@@ -80,11 +80,11 @@ Now let me perform the analysis for each of the 5 pre-planning items:
 ### 4. Changelog Forward-Link Adequacy
 
 **v0.3.0.0.md analysis**:
-- Title: "sk-ai-small-model v0.3.0.0 — rename from sk-small-model"
+- Title: "sk-prompt-small-model v0.3.0.0 — rename from sk-small-model"
 - Summary: clearly describes rename + rationale (family naming convention + phase-parent slug alignment)
 - Changes: comprehensive enumeration of renames, body edits, regenerated files, preserved files
 - Verification: post-rename verification table with commands
-- Tested in: cites spec packet `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/`
+- Tested in: cites spec packet `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/`
 
 **Verdict**: ✓ (adequately describes rename; cites spec packet; provides verification evidence; serves as effective forward-link)
 
@@ -109,7 +109,7 @@ Now let me perform the analysis for each of the 5 pre-planning items:
 {
   "dimension": "MAINTAINABILITY",
   "iteration": 4,
-  "packet_id": "007-rename-sk-ai-small-model",
+  "packet_id": "007-rename-sk-prompt-small-model",
   "findings": [
     {
       "id": "M-001",
@@ -156,11 +156,11 @@ The 2 incidental fixes are well-justified:
 
 ### Changelog Forward-Link Adequacy (PASS)
 
-`sk-ai-small-model/changelog/v0.3.0.0.md` serves as an effective forward-link:
+`sk-prompt-small-model/changelog/v0.3.0.0.md` serves as an effective forward-link:
 - Clearly describes the rename and rationale (family naming convention + phase-parent slug alignment)
 - Comprehensively enumerates changes (renames, body edits, regenerated files, preserved files)
 - Provides verification evidence with commands
-- Explicitly cites the spec packet: "Tested in: .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/"
+- Explicitly cites the spec packet: "Tested in: .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/"
 
 ### Pattern Reproducibility (PASS_WITH_CAVEAT)
 

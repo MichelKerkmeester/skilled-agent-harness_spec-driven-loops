@@ -43,7 +43,7 @@
     "key_files": [
       "implementation-summary.md",
       "handover.md",
-      ".opencode/commands/improve/agent.md",
+      ".opencode/commands/deep/start-agent-improvement-loop.md",
       "stress-runs/stage4-summary.md",
       "spec.md",
       "plan.md",
@@ -68,7 +68,7 @@
       {
         "name": "agent.md",
         "kind": "doc",
-        "path": ".opencode/commands/improve/agent.md",
+        "path": ".opencode/commands/deep/start-agent-improvement-loop.md",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Phase 001 produced 854 lines of research synthesizing 10 cli-copilot iterations into prioritized improvement recommendations for the sk-improve-agent triad. Phase 002 turns those recommendations into shipped behavior:",
     "created_at": "2026-05-02T09:47:05.342Z",
-    "last_save_at": "2026-05-23T11:55:14.503Z",
+    "last_save_at": "2026-05-24T05:40:25.406Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

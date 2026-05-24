@@ -24,6 +24,8 @@ Give operators a predictable daemon lifecycle: graceful boot, graceful SIGTERM s
 
 `lib/daemon/lifecycle.ts` orchestrates daemon boot by acquiring the workspace lease, starting the watcher, warming freshness state and exposing `trustState` to readers. Shutdown responds to SIGTERM, flushes any pending reindex, releases the lease and drains the watcher. `advisor_status` returns `generation`, `skillCount`, `lastScanAt`, `trustState` and `laneWeights` regardless of whether the daemon has a live writer.
 
+The `mk_skill_advisor` MCP server also participates in the shared launcher idle-timeout guardrail. `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the monitor. Stdio and IPC socket connect/data/write activity refresh the idle timer so active secondary clients keep the server alive.
+
 <!-- /ANCHOR:current-reality -->
 
 <!-- ANCHOR:source-files -->
@@ -34,6 +36,7 @@ Give operators a predictable daemon lifecycle: graceful boot, graceful SIGTERM s
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lifecycle.ts` | Daemon | Source reference |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/ipc/launcher-idle-timeout.ts` | IPC lifecycle | Shared idle-timeout monitor |
 | `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts` | Handler | Source reference |
 
 ### Validation And Tests
@@ -42,6 +45,7 @@ Give operators a predictable daemon lifecycle: graceful boot, graceful SIGTERM s
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-status.vitest.ts` | Automated test | status envelope assertions |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | boot and shutdown sequence |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/launcher-idle-timeout.vitest.ts` | Automated test | idle timeout parsing and shutdown behavior |
 | `Playbook scenario [AU-003](../../manual_testing_playbook/05--auto-update-daemon/003-daemon-lifecycle-shutdown.md).` | Manual playbook | Source reference |
 <!-- /ANCHOR:source-files -->
 

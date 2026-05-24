@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: MCP Response Types And Argument Parser
+// ───────────────────────────────────────────────────────────────
+
 export type MCPResponse = {
   content: Array<{ type: 'text'; text: string }>;
 };

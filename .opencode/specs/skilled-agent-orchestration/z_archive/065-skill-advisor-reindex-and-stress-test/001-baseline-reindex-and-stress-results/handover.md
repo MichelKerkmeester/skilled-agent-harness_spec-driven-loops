@@ -470,7 +470,7 @@ Use these 6 scenarios verbatim (copy each block):
 ##### CP-105 — Adversarial confusable (Category F)
 - **Prompt:** `create a test playbook for stressing this skill`
 - **Expected:** `create:testing-playbook` top1
-- **Pass:** `create:testing-playbook` confidence ≥ 0.6 AND top-3 AND `improve:agent` confidence < 0.5 AND `spec_kit:deep-review` confidence < 0.5
+- **Pass:** `create:testing-playbook` confidence ≥ 0.6 AND top-3 AND `deep:start-agent-improvement-loop` confidence < 0.5 AND `spec_kit:deep-review` confidence < 0.5
 - **Why:** confusable triggers — "test", "playbook", "stress", "skill" each could mis-route to other skills
 
 #### T-008..T-010: Dispatch matrix (6 scenarios × 3 executors = 18 executions)

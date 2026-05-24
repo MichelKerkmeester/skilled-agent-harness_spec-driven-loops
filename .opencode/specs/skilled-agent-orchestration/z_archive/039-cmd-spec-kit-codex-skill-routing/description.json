@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/039-cmd-spec-kit-codex-skill-routing",
+  "specFolder": "skilled-agent-orchestration/z_archive/039-cmd-spec-kit-codex-skill-routing",
   "description": "Feature Specification: Codex command discoverability routing update",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "routing",
     "update"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.770Z",
+  "lastUpdated": "2026-05-23T15:24:59.228Z",
   "specId": "039",
   "folderSlug": "cmd-spec-kit-codex-skill-routing",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

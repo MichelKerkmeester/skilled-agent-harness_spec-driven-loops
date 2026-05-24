@@ -1,12 +1,29 @@
 {
+  "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/014-deferred-closeout",
   "description": "Phase 014: deferred closeout. 3 actionable items shipped (tracked copy-skill-advisor-dist-data.sh script, advisory pre-commit hook + install script for validate-doc-model-refs.js, Z_SCORE_THRESHOLD comment freshness in evidence-gap-detector.ts). 1 resolved no-op (node-llama-cpp dep prune; no live package.json declares it). 1 intentionally deferred (raising Z_SCORE_THRESHOLD 1.3 → 1.5; needs per-operator sidecar-presence probe). 5 files (3 new + 2 modified), ~115 net LOC.",
-  "keywords": ["phase", "014", "deferred-closeout", "build-pipeline", "advisory-pre-commit-hook", "z-score-comment", "skill-advisor-dist", "validate-doc-model-refs"],
-  "lastUpdated": "2026-05-23T22:00:00.000Z",
+  "keywords": [
+    "phase",
+    "014",
+    "deferred-closeout",
+    "build-pipeline",
+    "advisory-pre-commit-hook",
+    "z-score-comment",
+    "skill-advisor-dist",
+    "validate-doc-model-refs"
+  ],
+  "lastUpdated": "2026-05-23T19:42:02.214Z",
   "specId": "014",
   "folderSlug": "deferred-closeout",
-  "parentChain": ["system-spec-kit", "026-graph-and-context-optimization", "013-embedder-testing-and-architecture", "002-spec-memory-stack", "022-hardcoded-default-remediation-arc"],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "002-spec-memory-stack",
+    "022-hardcoded-default-remediation-arc"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "23-05-26_20-42__post-014-closeout-closed-the-2-remaining-test.md"
+  ]
 }

@@ -14,7 +14,7 @@ I’ve loaded the deep-research protocol and will keep this bounded to one itera
   │ "stress|failure path|script|\.cjs|Run|invoke|score|journal|contractGate|beha
   │ viorGate|integrationGate|evidenceGate|improvementGate|critic|Critic"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md)
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md)
   └ 105 lines found
 
 ● Search (grep)
@@ -68,15 +68,15 @@ The first pass shows the relevant 059 lessons and that the sk-improve-agent scri
   └ L155:184 (30 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L188:303 (116 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L400:406 (7 lines read)
 
 ● Search (glob)
-  │ ".opencode/commands/improve/assets/*"
+  │ ".opencode/commands/deep/assets/*"
   └ 2 files found
 
 ● Search (glob)
@@ -85,31 +85,31 @@ The first pass shows the relevant 059 lessons and that the sk-improve-agent scri
 
 The target command has explicit workflow steps and YAML asset references; the skill file itself only describes the scripts. I’m checking the actual auto workflow now to distinguish “documented helper” from “wired execution.”
 
-● Read improve_improve-agent_auto.yaml
-  └ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  └ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L1:220 (204 lines read)
 
 ● Search (grep)
   │ "scan-integration|generate-profile|score-candidate|run-benchmark|reduce-stat
   │ e|improvement-journal|check-mirror-drift|mutation-coverage|trade-off-detecto
   │ r|candidate-lineage|benchmark-stability|promote-candidate|rollback-candidate
-  │ " (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml,
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
+  │ " (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml,
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml)
   └ 43 lines found
 
 ● Search (grep)
   │ "contractGate|behaviorGate|integrationGate|evidenceGate|improvementGate|bloc
   │ kedStop|legal_stop|legal-stop|gate_evaluation"
-  │ (.opencode/skills/sk-improve-agent/scripts, .opencode/commands/improve/assets)
+  │ (.opencode/skills/sk-improve-agent/scripts, .opencode/commands/deep/assets)
   └ 15 lines found
 
 ✗ Search (grep)
   │ "score-candidate|multi-model|model|gpt|opus|sonnet|attribution|benchmark"
-  │ (.opencode/skills/sk-improve-agent,  .opencode/commands/improve/agent.md)
-  └ rg:  .opencode/commands/improve/agent.md: No such file or directory (os error
+  │ (.opencode/skills/sk-improve-agent,  .opencode/commands/deep/start-agent-improvement-loop.md)
+  └ rg:  .opencode/commands/deep/start-agent-improvement-loop.md: No such file or directory (os error
     2)
 
 ● Read improvement-journal.cjs
@@ -173,7 +173,7 @@ I’m narrowing this to grep-checkable protocol gaps across the improve skill, a
   │ ts/|model|baseline|Call A|Call B|mirror|runtime|contractGate|behaviorGate|in
   │ tegrationGate|evidenceGate|improvementGate|journal|grep|transcript"
   │ (.opencode/skills/sk-improve-agent, .opencode/agents/improve-agent.md,
-  │ .opencode/commands/improve/agent.md)
+  │ .opencode/commands/deep/start-agent-improvement-loop.md)
   └ 10 lines found
 
 ● Search (glob)
@@ -201,21 +201,21 @@ The first pass confirmed the support surface is broad and the initial grep was t
 ● Search (grep)
   │ "Critic|challenge|anti-pattern|red team|red-team|adversarial"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references)
   └ No matches found
 
 ● Search (grep)
   │ "mirror|drift|runtime|\.claude|\.gemini|\.codex|\.opencode"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references)
   └ 9 lines found
 
 ● Search (grep)
   │ "baseline|Call A|Call B|multi-model|model|attribution|benchmark|score
   │ progression|grep" (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/scripts)
   └ 12 lines found
@@ -223,7 +223,7 @@ The first pass confirmed the support surface is broad and the initial grep was t
 ● Search (grep)
   │ "contractGate|behaviorGate|integrationGate|evidenceGate|improvementGate|LEGA
   │ L_STOP|legal-stop|legal stop|journal" (.opencode/skills/sk-improve-agent,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md)
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md)
   └ 11 lines found
 
 ● Search (glob)
@@ -243,20 +243,20 @@ The first pass confirmed the support surface is broad and the initial grep was t
 
 ● Search (grep)
   │ "^##|^###" (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md)
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md)
   └ 90 lines found
 
 ● Search (grep)
   │ "contractGate|behaviorGate|integrationGate|evidenceGate|improvementGate"
   │ (.opencode/skills/sk-improve-agent, .opencode/agents/improve-agent.md,
-  │ .opencode/commands/improve/agent.md)
+  │ .opencode/commands/deep/start-agent-improvement-loop.md)
   └ 18 lines found
 
 ● Search (grep)
   │ "^\s*node .*scripts/|scripts/[a-zA-Z0-9_.-]+\.cjs|check-mirror-drift|scan-in
   │ tegration|score-candidate|run-benchmark|improvement-journal|reduce-state"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/commands/improve/agent.md, .opencode/agents/improve-agent.md)
+  │ .opencode/commands/deep/start-agent-improvement-loop.md, .opencode/agents/improve-agent.md)
   └ 44 lines found
 
 ● Read test-report.md
@@ -275,7 +275,7 @@ The first pass confirmed the support surface is broad and the initial grep was t
   └ L79:121 (42 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L1:155 (154 lines read)
 
 ● Read SKILL.md
@@ -295,7 +295,7 @@ The first pass confirmed the support surface is broad and the initial grep was t
   └ L234:278 (45 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L238:306 (69 lines read)
 
 ● Read test-report.md
@@ -304,11 +304,11 @@ The first pass confirmed the support surface is broad and the initial grep was t
   └ L445:487 (42 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L154:176 (22 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L420:456 (36 lines read)
 
 ● Read benchmark_operator_guide.md
@@ -324,7 +324,7 @@ The first pass confirmed the support surface is broad and the initial grep was t
   └ L1:220 (135 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L306:337 (31 lines read)
 
 ● Read mirror_drift_policy.md
@@ -349,7 +349,7 @@ The first pass confirmed the support surface is broad and the initial grep was t
 ● Search (grep)
   │ "Call A|Call B|baseline|disciplined|same-task|A/B|grep"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/manual_testing_playbook)
   └ 19 lines found
@@ -357,7 +357,7 @@ The first pass confirmed the support surface is broad and the initial grep was t
 ● Search (grep)
   │ "model|gpt|sonnet|opus|multi-model|attribution"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/scripts,
   │ .opencode/skills/sk-improve-agent/manual_testing_playbook)
@@ -366,7 +366,7 @@ The first pass confirmed the support surface is broad and the initial grep was t
 ● Search (grep)
   │ "Critic|SELF-CHECK|challenge|anti-pattern|failure path|stress|scenario"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/manual_testing_playbook)
   └ 8 lines found
@@ -386,7 +386,7 @@ The first pass confirmed the support surface is broad and the initial grep was t
 ● Search (grep)
   │ "gpt|sonnet|opus|multi-model|attribution|--model"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/scripts)
   └ No matches found
@@ -395,13 +395,13 @@ The first pass confirmed the support surface is broad and the initial grep was t
   │ "failure path|stress-test|stress test|stress|CP-|scenario battery|same-task
   │ A/B|Call A|Call B|grep-only|LLM-as-judge"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/manual_testing_playbook)
   └ 1 line found
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L400:406 (7 lines read)
 
 ● Read manual_testing_playbook.md
@@ -424,39 +424,39 @@ The first pass confirmed the support surface is broad and the initial grep was t
   │ "scan-integration|generate-profile|score-candidate|run-benchmark|reduce-stat
   │ e|promote-candidate|rollback-candidate|check-mirror-drift|improvement-journa
   │ l|mutation-coverage|trade-off-detector|candidate-lineage|benchmark-stability
-  │ " (.opencode/commands/improve/assets)
+  │ " (.opencode/commands/deep/assets)
   └ 43 lines found
 
 ● Search (grep)
   │ "step_record_baseline|step_generate_candidate|Task|@improve-agent|score-cand
   │ idate|run-benchmark|reduce-state|legal_stop|gateResults|blocked_stop|improve
   │ ment-journal"
-  │ (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml,
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
+  │ (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml,
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml)
   └ 123 lines found
 
 ● Search (glob)
-  │ ".opencode/commands/improve/assets/*improve-agent*.yaml"
+  │ ".opencode/commands/deep/assets/*improve-agent*.yaml"
   └ 2 files found
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L126:185 (60 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L186:205 (19 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L193:245 (53 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L84:94 (10 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L90:100 (10 lines read)
 
 ● Read manual_testing_playbook.md
@@ -513,7 +513,7 @@ I’m narrowing this to the seven RQs with emphasis on executable evidence: stre
   │ ic|Critic|stress|failure|Call A|Call B|baseline|multi-model|model|mirror|run
   │ time|\.claude|\.gemini|\.codex|script|scripts|journal|grep|judge"
   │ (.opencode/skills/sk-improve-agent, .opencode/agents/improve-agent.md,
-  │ .opencode/commands/improve/agent.md)
+  │ .opencode/commands/deep/start-agent-improvement-loop.md)
   └ 9 lines found
 
 ● Search (glob)
@@ -531,34 +531,34 @@ The broad grep confirmed there is enough signal but was too noisy, so I’m swit
 ● Search (grep)
   │ "contractGate|behaviorGate|integrationGate|evidenceGate|improvementGate"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md)
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md)
   └ 23 lines found
 
 ● Search (grep)
   │ "Critic|critic|anti-pattern|challenge|challenge prompt|red-team|red team"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references)
   └ No matches found
 
 ● Search (grep)
   │ "script|scripts/|node .*\.cjs|\.cjs|npm|Bash|MUST run|Run "
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md)
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md)
   └ 8 lines found
 
 ● Search (grep)
   │ "model|multi-model|baseline|attribution|A/B|Call A|Call
   │ B|differential|grep|journal|transcript"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references)
   └ 7 lines found
 
 ● Search (grep)
   │ "mirror|runtime|\.opencode|\.claude|\.gemini|\.codex|cross-runtime|adapter"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references)
   └ 7 lines found
 
@@ -590,11 +590,11 @@ The broad grep confirmed there is enough signal but was too noisy, so I’m swit
   └ L140:210 (71 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L250:340 (91 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L1:105 (105 lines read)
 
 ● Read test-report.md
@@ -640,7 +640,7 @@ The broad grep confirmed there is enough signal but was too noisy, so I’m swit
 ● Search (grep)
   │ "model|models|gpt|sonnet|opus|multi-model|attribution|baseline|A/B|Call
   │ A|Call B" (.opencode/skills/sk-improve-agent,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md)
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md)
   └ 7 lines found
 
 ● Search (glob)
@@ -652,7 +652,7 @@ The broad grep confirmed there is enough signal but was too noisy, so I’m swit
   └ 5 files found
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L210:249 (39 lines read)
 
 ● Read score-candidate.cjs
@@ -717,44 +717,44 @@ A key discrepancy surfaced: the docs describe `.gemini` as a mirror surface, but
   │ "Critic|critic|challenge|red-team|red team|Call A|Call
   │ B|A/B|multi-model|stress-test|stress test|failure path|CP-0"
   │ (.opencode/skills/sk-improve-agent/SKILL.md,
-  │ .opencode/agents/improve-agent.md, .opencode/commands/improve/agent.md,
+  │ .opencode/agents/improve-agent.md, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/assets)
   └ No matches found
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L390:456 (66 lines read)
 
 ● Read SKILL.md
   │ .opencode/skills/sk-improve-agent/SKILL.md
   └ L386:443 (58 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L84:205 (121 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L217:245 (29 lines read)
 
 ✗ Search (grep)
   │ "gateResults|contractGate|behaviorGate|integrationGate|evidenceGate|improvem
   │ entGate|legal_stop_evaluated|blocked_stop"
   │ (.opencode/skills/sk-improve-agent/scripts/*.cjs,
-  │ .opencode/commands/improve/assets/*.yaml)
+  │ .opencode/commands/deep/assets/*.yaml)
   └ rg: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.openc
     ode/skill/sk-improve-agent/scripts/*.cjs: No such file or directory (os
     error 2)
     rg: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.openc
-    ode/command/improve/assets/*.yaml: No such file or directory (os error 2)
+    ode/command/deep/assets/*.yaml: No such file or directory (os error 2)
 
 ● Search (grep)
   │ "model|gpt|sonnet|opus|claude|codex|gemini|executor"
   │ (.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs,
   │ .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs,
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml,
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml)
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml,
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml)
   └ No matches found
 
 I’ve got enough evidence for a non-duplicative iteration: the strongest new value is in the executable layer—deterministic scorer/benchmark shape, missing model dimension, mirror-template mismatch, and legal-stop event schema gaps. I’m writing the required iteration file now.
@@ -804,7 +804,7 @@ The prior notes already answer every RQ at prose level, so I’m narrowing this 
 
 ● Search (grep)
   │ "legal_stop_evaluated|blocked_stop|gateResults|failedGates|run-benchmark\.cj
-  │ s|candidate_scored|model|executor" (.opencode/commands/improve,
+  │ s|candidate_scored|model|executor" (.opencode/commands/deep,
   │ .opencode/agents/improve-agent.md)
   └ 11 lines found
 
@@ -878,12 +878,12 @@ The prior notes already answer every RQ at prose level, so I’m narrowing this 
   │ .opencode/agents/improve-agent.md
   └ L150:166 (16 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L150:205 (55 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L185:245 (61 lines read)
 
 ● Read manual_testing_playbook.md
@@ -956,9 +956,9 @@ The earlier passes have all RQs broadly answerable, so I’m narrowing iteration
   │ viorGate|integrationGate|evidenceGate|improvementGate|stop_status|stopReason
   │ |shouldStop" (.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs,
   │ .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs,
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml,
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml,
-  │ .opencode/commands/improve/agent.md,
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml,
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml,
+  │ .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/references/evaluator_contract.md)
   └ 46 lines found
 
@@ -980,16 +980,16 @@ The earlier passes have all RQs broadly answerable, so I’m narrowing iteration
   │ .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
   └ L650:740 (91 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L180:206 (25 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L400:455 (56 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L296:330 (35 lines read)
 
 ● Read improvement-journal.cjs
@@ -1037,7 +1037,7 @@ The earlier passes have all RQs broadly answerable, so I’m narrowing iteration
   │ completed|gateResults|contractGate|behaviorGate|evidenceGate|improvementGate
   │ " (.opencode/skills/sk-improve-agent/scripts,
   │ .opencode/skills/sk-improve-agent/references,
-  │ .opencode/skills/sk-improve-agent/assets, .opencode/commands/improve/assets)
+  │ .opencode/skills/sk-improve-agent/assets, .opencode/commands/deep/assets)
   └ 8 lines found
 
 ● Read improvement_config.json
@@ -1138,7 +1138,7 @@ The prior reports have all RQs broadly answerable; the remaining useful gap is t
   │ "thresholdDelta|weightedDelta|baseline|delta|improvementGate|bestPromptRecor
   │ d|candidateId|candidate_id" (.opencode/skills/sk-improve-agent/scripts,
   │ .opencode/skills/sk-improve-agent/references,
-  │ .opencode/skills/sk-improve-agent/assets, .opencode/commands/improve)
+  │ .opencode/skills/sk-improve-agent/assets, .opencode/commands/deep)
   └ 8 lines found
 
 The delta path is narrower than expected: config requires a baseline and threshold, but the reducer tracks “best” records rather than explicit baseline-vs-current semantics. I’m checking the YAML initialization and scoring outputs to confirm whether baseline recording is real or only operator prose.
@@ -1147,12 +1147,12 @@ The delta path is narrower than expected: config requires a baseline and thresho
   │ .opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs
   └ 331 lines read
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L110:210 (95 lines read)
 
-● Read improve_improve-agent_confirm.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+● Read deep_start-agent-improvement-loop_confirm.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   └ L110:240 (131 lines read)
 
 ● Read score-candidate.cjs
@@ -1162,7 +1162,7 @@ The delta path is narrower than expected: config requires a baseline and thresho
 ● Search (grep)
   │ "baselineRequired|Record baseline|recording
   │ baseline|baseline|thresholdDelta|candidate-better|keep-baseline|tie"
-  │ (.opencode/commands/improve/assets, .opencode/commands/improve/agent.md,
+  │ (.opencode/commands/deep/assets, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/scripts,
   │ .opencode/skills/sk-improve-agent/references)
   └ 55 lines found
@@ -1219,7 +1219,7 @@ The delta path is narrower than expected: config requires a baseline and thresho
   └ L30:110 (81 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L300:320 (21 lines read)
 
 ● Read improvement-journal.cjs
@@ -1476,7 +1476,7 @@ The main unanswered seam is now documentation/fixture drift around promotion lan
   │ Score|delta" (.opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/manual_testing_playbook,
   │ .opencode/skills/sk-improve-agent/scripts/tests,
-  │ .opencode/commands/improve/agent.md,
+  │ .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/SKILL.md, .opencode/agents/improve-agent.md)
   └ 8 lines found
 
@@ -1505,7 +1505,7 @@ I found the likely new value: promotion guidance and E2E playbook checks appear 
   └ No matches found
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L300:318 (19 lines read)
 
 ● Read 028-legal-stop-gates.md
@@ -1516,7 +1516,7 @@ I found the likely new value: promotion guidance and E2E playbook checks appear 
 ● Search (grep)
   │ "thresholdDelta|delta" (.opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/manual_testing_playbook,
-  │ .opencode/commands/improve/agent.md,
+  │ .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/SKILL.md)
   └ 23 lines found
 
@@ -1524,7 +1524,7 @@ I found the likely new value: promotion guidance and E2E playbook checks appear 
   │ "candidate-better" (.opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/manual_testing_playbook,
   │ .opencode/skills/sk-improve-agent/scripts/tests,
-  │ .opencode/commands/improve/agent.md,
+  │ .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/SKILL.md, .opencode/agents/improve-agent.md)
   └ 3 lines found
 
@@ -1532,7 +1532,7 @@ I found the likely new value: promotion guidance and E2E playbook checks appear 
   │ "candidate-acceptable" (.opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/manual_testing_playbook,
   │ .opencode/skills/sk-improve-agent/scripts/tests,
-  │ .opencode/commands/improve/agent.md,
+  │ .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/skills/sk-improve-agent/SKILL.md, .opencode/agents/improve-agent.md)
   └ 2 lines found
 
@@ -1654,7 +1654,7 @@ The prior notes have all RQs broadly answered; the freshest gap is the runtime m
 
 ● Search (grep)
   │ "\.gemini|\.agents|MIRROR_TEMPLATES|runtime parity|mirror drift|mirror"
-  │ (.opencode/skills/sk-improve-agent, .opencode/commands/improve/agent.md,
+  │ (.opencode/skills/sk-improve-agent, .opencode/commands/deep/start-agent-improvement-loop.md,
   │ .opencode/agents/improve-agent.md)
   └ 8 lines found
 
@@ -1682,7 +1682,7 @@ I found the repository really does have `.gemini/agents/*` mirrors, while the br
   └ L1:110 (75 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L390:410 (21 lines read)
 
 ● Search (glob)
@@ -1831,15 +1831,15 @@ The prior iterations already answer every RQ, so I’m using the last pass to ad
   └ L260:281 (21 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L286:318 (33 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L386:408 (23 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L120:205 (85 lines read)
 
 ● Read improve-agent.md
@@ -1853,7 +1853,7 @@ The prior iterations already answer every RQ, so I’m using the last pass to ad
 ● Search (grep)
   │ "action:|command:|legal_stop_evaluated|blocked_stop|benchmark_completed|cand
   │ idate-better|candidate-acceptable|\.agents/agents|\.gemini/agents"
-  │ (.opencode/commands/improve/assets/improve_improve-agent_auto.yaml,
+  │ (.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml,
   │ .opencode/skills/sk-improve-agent/references,
   │ .opencode/skills/sk-improve-agent/manual_testing_playbook,
   │ .opencode/skills/sk-improve-agent/scripts)

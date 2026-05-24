@@ -93,7 +93,7 @@ None (the pre-existing FRONTMATTER_MEMORY_BLOCK P1 from Iteration 1 persists but
 | `skill_advisor.py` (.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py) | Skill tool | Probe "improve my prompt" returns top-1 `sk-prompt` — routing confirmed |
 | `generate-context.js` (.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js) | Script | Referenced for auto-regeneration of `description.json` and `graph-metadata.json` |
 | `@improve-prompt` agent (.opencode/agents/improve-prompt.md) | Agent | Identity preserved; only loaded skill name changed |
-| `/improve:prompt` command (.opencode/commands/improve/prompt.md) | Command | Identity preserved; only body refs changed |
+| `/prompt` command (.opencode/commands/prompt.md) | Command | Identity preserved; only body refs changed |
 
 ## Edge Cases
 

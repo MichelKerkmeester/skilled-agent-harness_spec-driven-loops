@@ -1,7 +1,7 @@
 {
   "name": "@spec-kit/mcp-server",
   "version": "1.8.0",
-  "description": "Semantic Memory MCP Server - provides 42 tools for semantic search, memory management, validation, embedder control, checkpoints, causal graphs, session learning, and auto-indexing",
+  "description": "Semantic Memory MCP Server - provides 35 tools for semantic search, memory management, validation, embedder control, checkpoints, causal graphs, session learning, and auto-indexing",
   "type": "module",
   "main": "dist/api/index.js",
   "exports": {
@@ -24,7 +24,7 @@
     "test": "node scripts/run-tests.mjs",
     "test:core": "vitest run --exclude tests/file-watcher.vitest.ts",
     "test:file-watcher": "vitest run tests/file-watcher.vitest.ts",
-    "test:council": "vitest run tests/multi-ai-council-runtime-parity.vitest.ts tests/multi-ai-council-permission-scope.vitest.ts tests/multi-ai-council-audit-trail.vitest.ts tests/multi-ai-council-rollback.vitest.ts tests/council-graph.vitest.ts tests/council-graph-value-scenarios.vitest.ts tests/council-playbook-anchor-integrity.vitest.ts tests/council-helpers-smoke.vitest.ts ../scripts/tests/multi-ai-council-persist-artifacts.vitest.ts skill_advisor/tests/scorer/native-scorer.vitest.ts",
+    "test:council": "vitest run tests/multi-ai-council-runtime-parity.vitest.ts tests/multi-ai-council-permission-scope.vitest.ts tests/multi-ai-council-audit-trail.vitest.ts tests/multi-ai-council-rollback.vitest.ts ../../deep-loop-runtime/tests/integration/council-graph-script.vitest.ts ../../deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts tests/council-playbook-anchor-integrity.vitest.ts tests/council-helpers-smoke.vitest.ts ../scripts/tests/multi-ai-council-persist-artifacts.vitest.ts skill_advisor/tests/scorer/native-scorer.vitest.ts",
     "test:council:full": "bash ../scripts/test-council-matrix.sh",
     "hook-tests": "node --import ../scripts/node_modules/tsx/dist/loader.mjs ../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts",
     "stress": "vitest run --config vitest.stress.config.ts",

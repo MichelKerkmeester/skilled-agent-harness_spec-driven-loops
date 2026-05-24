@@ -40,6 +40,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/specs/descriptions.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -47,6 +48,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After phase `004`, the agent-improver workflow was functionally strong, but the package still had a stricter alignment gap against the `sk-doc` templates. The source package docs were valid but not template-faithful enough, the mutator agent still used the old `agent-improvement-loop` name across runtimes, the command body and wrappers still reflected an older command shape, and the `.agents/skills/sk-improve-agent` mirror had not been resynchronized to the corrected source package.",
     "created_at": "2026-04-12T09:02:50.187Z",
-    "last_save_at": "2026-05-23T11:55:14.430Z",
+    "last_save_at": "2026-05-24T05:40:25.348Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

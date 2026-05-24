@@ -20,7 +20,7 @@
   "context_type": "infrastructure-quality",
   "created_at": "2026-05-07T21:00:00Z",
   "last_updated_at": "2026-05-07T21:00:00Z",
-  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor",
+  "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/006-cli-opencode-executor",
   "description": "Feature Specification: 101 - cli-opencode executor support",
   "keywords": [
     "feature",
@@ -30,11 +30,12 @@
     "executor",
     "support"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.489Z",
+  "lastUpdated": "2026-05-23T15:24:59.553Z",
   "specId": "006",
   "folderSlug": "cli-opencode-executor",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "096-rename-opencode-dirs-to-plural"
   ],
   "memorySequence": 0,

@@ -828,6 +828,3 @@ Runtime paths:
 - Claude: `.claude/agents/deep-review.md`
 - Codex: `.codex/agents/deep-review.toml`
 - Gemini: `.gemini/agents/deep-review.md`
-
----
-

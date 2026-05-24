@@ -1,20 +1,23 @@
 {
   "level": "3",
-  "specFolder": "015-mcp-server-mk-skill-advisor-rename",
-  "description": "Rename the Skill Advisor MCP server id and launcher from system_skill_advisor to mk_skill_advisor while preserving folder and tool ids.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename",
+  "description": "Feature Specification: Rename system_skill_advisor MCP server to mk_skill_advisor",
   "keywords": [
-    "mk_skill_advisor",
-    "mcp-server-rename",
-    "skill-advisor",
-    "launcher-rename",
-    "runtime-configs"
+    "feature",
+    "specification",
+    "rename",
+    "mcp",
+    "server"
   ],
-  "lastUpdated": "2026-05-14T20:38:49.472Z",
+  "lastUpdated": "2026-05-23T15:25:00.527Z",
   "specId": "015",
-  "folderSlug": "mcp-server-rename-mk-skill-advisor",
+  "folderSlug": "mcp-server-mk-skill-advisor-rename",
   "parentChain": [
-    "002-semantic-routing-lane",
-    "009-system-skill-advisor-extraction"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "006-skill-advisor",
+    "001-skill-graph",
+    "006-system-skill-advisor-package-extraction"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

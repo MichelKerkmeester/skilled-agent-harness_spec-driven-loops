@@ -6,7 +6,7 @@
 {"iter":2,"pattern_id":"P-006","verdict":"ALREADY-DONE","priority":null,"effort":null,"target":"scripts/*.cjs","evidence":"13 .cjs scripts provide all entry points (score-candidate.cjs, reduce-state.cjs, etc.)"}
 {"iter":2,"pattern_id":"P-007","verdict":"SKIP","priority":null,"effort":null,"target":null,"evidence":"Deep-agent-improvement uses JSONL/JSON files, not SQLite DB"}
 {"iter":2,"pattern_id":"P-008","verdict":"SKIP","priority":null,"effort":null,"target":null,"evidence":"Deep-agent-improvement doesn't use MCP tools (allowed-tools: Read, Write, Edit, Bash, Glob, Grep)"}
-{"iter":2,"pattern_id":"P-009","verdict":"SKIP","priority":null,"effort":null,"target":null,"evidence":"Deep-agent-improvement uses /improve:agent command workflow, not YAML orchestration"}
+{"iter":2,"pattern_id":"P-009","verdict":"SKIP","priority":null,"effort":null,"target":null,"evidence":"Deep-agent-improvement uses /deep:start-agent-improvement-loop command workflow, not YAML orchestration"}
 {"iter":2,"pattern_id":"P-010","verdict":"SKIP","priority":null,"effort":null,"target":null,"evidence":"Deep-agent-improvement has no consumer surfaces like /doctor or system-code-graph playbook"}
 {"iter":2,"pattern_id":"P-011","verdict":"ALREADY-DONE","priority":null,"effort":null,"target":"scripts/tests/*.vitest.ts","evidence":"scripts/tests/ contains 7 vitest test files (candidate-lineage.vitest.ts, etc.)"}
 {"iter":2,"pattern_id":"P-012","verdict":"ALREADY-DONE","priority":null,"effort":null,"target":"SKILL.md, README.md","evidence":"SKILL.md follows sk-doc patterns with numbered H2s, required sections; DQI not explicitly measured but structure is compliant"}

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 004 gives the Phase 003 review-depth v2 contract a migration-safe validator surface. The post-dispatch validator now returns typed advisory warnings, recognizes legacy unversioned records, and validates explicit `reviewDepthSchemaVersion: 2` records for applicability, target selection, search coverage, search ledger evidence, finding links, active-finding depth, and state-log/delta identity.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-23T11:55:14.258Z",
+    "last_save_at": "2026-05-24T05:40:25.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

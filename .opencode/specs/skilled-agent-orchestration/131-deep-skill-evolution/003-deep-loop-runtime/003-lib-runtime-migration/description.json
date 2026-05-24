@@ -8,9 +8,9 @@
     "runtime",
     "migration"
   ],
-  "lastUpdated": "2026-05-22T19:07:31.312Z",
-  "specId": "002",
-  "folderSlug": "003-lib-runtime-migration",
+  "lastUpdated": "2026-05-23T15:24:59.047Z",
+  "specId": "003",
+  "folderSlug": "lib-runtime-migration",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

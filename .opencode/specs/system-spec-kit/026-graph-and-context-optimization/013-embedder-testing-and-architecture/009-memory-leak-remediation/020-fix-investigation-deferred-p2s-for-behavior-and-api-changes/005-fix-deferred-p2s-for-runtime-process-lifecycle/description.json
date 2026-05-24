@@ -1,26 +1,23 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/005-fix-deferred-p2s-for-runtime-process-lifecycle",
-  "description": "Runtime/process lifecycle packet closing F41/F43/F51/F90/F110 in reindex.ts and execution-router.ts.",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/005-fix-deferred-p2s-for-runtime-process-lifecycle",
+  "description": "Spec: Runtime Process Lifecycle Closure for F41 F43 F51 F90 F110",
   "keywords": [
+    "spec",
     "runtime",
     "process",
     "lifecycle",
-    "packet",
-    "closing",
+    "closure",
     "f41",
     "f43",
     "f51",
     "f90",
-    "f110",
-    "reindex",
-    "execution-router"
+    "f110"
   ],
-  "lastUpdated": "2026-05-23T10:54:51.234Z",
+  "lastUpdated": "2026-05-23T15:25:00.999Z",
   "specId": "005",
   "folderSlug": "fix-deferred-p2s-for-runtime-process-lifecycle",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "013-embedder-testing-and-architecture",
@@ -28,6 +25,5 @@
     "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

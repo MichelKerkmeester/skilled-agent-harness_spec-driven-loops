@@ -175,7 +175,7 @@ function computeMutationSignature(mutation) {
 **DAI-014: YAML workflow uses incorrect manifest path — CONFIRMED P1**
 
 **Files read:**
-- `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml` lines 106, 165
+- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` lines 106, 165
 - Verified actual file: `.opencode/skills/deep-agent-improvement/assets/target_manifest.jsonc` (underscore)
 
 **Evidence:**

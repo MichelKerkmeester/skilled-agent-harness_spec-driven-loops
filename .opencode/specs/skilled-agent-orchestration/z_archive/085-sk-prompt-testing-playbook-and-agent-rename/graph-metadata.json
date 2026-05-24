@@ -39,8 +39,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/improve/prompt.md",
+      ".opencode/commands/prompt.md",
       ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+      ".opencode/specs/descriptions.json",
       ".codex/config.toml",
       "manual_testing_playbook/manual_testing_playbook.md",
       ".claude/CLAUDE.md",
@@ -50,13 +51,19 @@
       {
         "name": "prompt.md",
         "kind": "doc",
-        "path": ".opencode/commands/improve/prompt.md",
+        "path": ".opencode/commands/prompt.md",
         "source": "derived"
       },
       {
         "name": "v2.4.0.0.md",
         "kind": "doc",
         "path": ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -122,7 +129,7 @@
     ],
     "causal_summary": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` → `sk-prompt`:",
     "created_at": "2026-05-06T15:30:00Z",
-    "last_save_at": "2026-05-23T11:55:14.654Z",
+    "last_save_at": "2026-05-24T05:40:25.512Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

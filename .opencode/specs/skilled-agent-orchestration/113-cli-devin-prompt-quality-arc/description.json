@@ -1,20 +1,15 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc",
-  "description": "Phase parent for the seven-phase cli-devin prompt-quality arc: 001 council design / 002 eval rig / 003 eval loop / 004 skill uplift / 005 extraction rerun + v3 mutation confirmation / 006 cross-CLI RCAF propagation / 007 cross-model validation on deepseek-v4-pro + kimi-k2.6. Result: cli-devin v1.0.5.0 → v1.0.6.1 with RCAF + medium + standard + standard validated on three measured models; sk-prompt master + 4 sibling cards propagated with bundle-gate + anti-hallucination composition guidance.",
+  "description": "Feature Specification: cli-devin prompt-quality arc",
   "keywords": [
-    "cli-devin-prompt-quality",
-    "swe-1.6-optimization",
-    "rcaf-default",
-    "medium-pre-planning",
-    "bundle-gate-standard",
-    "anti-hallucination-secondary",
-    "cross-model-validation",
-    "cross-cli-propagation",
-    "deepseek-v4-pro",
-    "kimi-k2.6"
+    "feature",
+    "specification",
+    "cli-devin",
+    "prompt-quality",
+    "arc"
   ],
-  "lastUpdated": "2026-05-17T20:00:00Z",
+  "lastUpdated": "2026-05-23T15:24:58.871Z",
   "specId": "113",
   "folderSlug": "cli-devin-prompt-quality-arc",
   "parentChain": [

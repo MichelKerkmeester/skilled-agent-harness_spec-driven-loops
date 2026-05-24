@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Packet 010's v1.0.2 stress run produced a NEUTRAL verdict for packet 005 (code-graph fast-fail) because the Q1 cells did not exercise `fallbackDecision` end-to-end — pre-flight recovery left the live graph healthy before each cell ran. The handler at `mcp_server/code_graph/handlers/query.ts:791-828` and the readiness states at `mcp_server/code_graph/lib/ensure-ready.ts:151-217` already work correctly per their mocked unit tests, but no integration test closes the loop against a real degraded graph.",
     "created_at": "2026-04-27T19:58:00Z",
-    "last_save_at": "2026-05-23T11:55:14.871Z",
+    "last_save_at": "2026-05-24T05:40:25.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

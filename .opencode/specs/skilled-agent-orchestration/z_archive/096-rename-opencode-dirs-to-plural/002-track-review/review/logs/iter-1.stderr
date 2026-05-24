@@ -998,8 +998,8 @@ subject refactor(opencode): rename .opencode/{skill,agent,command}/ to plural pe
 .gemini/commands/create/testing-playbook.toml
 .gemini/commands/doctor/mcp_debug.toml
 .gemini/commands/doctor/mcp_install.toml
-.gemini/commands/improve/README.txt
-.gemini/commands/improve/improve-agent.toml
+.gemini/commands/deep/start-agent-improvement-loop.toml
+.gemini/commands/deep/start-agent-improvement-loop.toml
 .gemini/commands/memory/learn.toml
 .gemini/commands/memory/manage.toml
 .gemini/commands/memory/save.toml

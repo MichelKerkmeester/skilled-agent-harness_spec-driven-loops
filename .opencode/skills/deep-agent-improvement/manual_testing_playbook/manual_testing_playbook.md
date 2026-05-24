@@ -391,7 +391,7 @@ This category covers 5 scenario summaries while the linked feature files remain 
 Full Pipeline Loop with Debug Target.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the complete /improve:deep-agent-improvement loop end-to-end using the debug agent as the target against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify Init phase creates `improvement/` directory with config, charter, strategy, and manifest. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+Prompt summary: As a manual-testing orchestrator, validate the complete /deep:start-agent-improvement-loop loop end-to-end using the debug agent as the target against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify Init phase creates `improvement/` directory with config, charter, strategy, and manifest. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
 
 Expected signals: Init phase creates `improvement/` directory with config, charter, strategy, and manifest; Integration scan runs and produces `integration-report.json`; Candidate generated under `improvement/candidates/`; Score output produced via dynamic-mode 5-dimension scoring; Dashboard generated at `improvement/agent-improvement-dashboard.md`; Loop completes 1 iteration without errors
 
@@ -404,7 +404,7 @@ Expected signals: Init phase creates `improvement/` directory with config, chart
 Full Pipeline Loop with Non-Standard Agent (Debug).
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the complete /improve:deep-agent-improvement loop targeting a non-standard agent (debug.md) to confirm the pipeline is not hardcoded to specific agents against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify Dynamic profile generated on-the-fly (debug.md has no static profile). Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+Prompt summary: As a manual-testing orchestrator, validate the complete /deep:start-agent-improvement-loop loop targeting a non-standard agent (debug.md) to confirm the pipeline is not hardcoded to specific agents against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify Dynamic profile generated on-the-fly (debug.md has no static profile). Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
 
 Expected signals: Dynamic profile generated on-the-fly (debug.md has no static profile); Integration scan discovers debug agent surfaces; 5-dimension scoring produces scores for all dimensions: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; No errors about missing profile or unsupported target; Dashboard reflects debug-specific scoring, not recycled data from a different agent
 
@@ -486,7 +486,7 @@ Expected signals: `improvement-journal.jsonl` file created at the configured jou
 ### RT-027 | Fresh-Session Continuation After Archive
 
 #### Description
-the current release uses standalone `new`-mode sessions, so continuation happens by archiving the previous run and starting a fresh `/improve:agent` session.
+the current release uses standalone `new`-mode sessions, so continuation happens by archiving the previous run and starting a fresh `/deep:start-agent-improvement-loop` session.
 
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, validate current-release continuation guidance against the deep-agent-improvement session model and journal behavior. Verify archived evidence stays intact, each new invocation starts in `new` mode with a fresh session id, and iteration numbering restarts at 1. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.`improvement/` directory is preserved under `improvement_archive/` before the next run begins. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.`new` mode with a fresh session id, and iteration numbering restarts at 1. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.`new` mode with a fresh session id, and iteration numbering restarts at 1. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.`new` mode with a fresh session id, and iteration numbering restarts at 1. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
@@ -551,12 +551,12 @@ Expected signals: `improvement_config.json` has `parallelWaves.enabled: false` b
 ### RT-032 | Journal Wiring Boundary Coverage
 
 #### Description
-the `/improve:agent` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, nested `legal_stop_evaluated.details.gateResults`, benchmark completion, and `session_end`.
+the `/deep:start-agent-improvement-loop` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, nested `legal_stop_evaluated.details.gateResults`, benchmark completion, and `session_end`.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate that the /improve:agent autonomous workflow wires improvement-journal.cjs at every required boundary: session_start, per-iteration lifecycle checkpoints, nested legal_stop_evaluated.details.gateResults, benchmark_completed, and session_end against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml` contains `improvement-journal.cjs` emission steps for:. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+Prompt summary: As a manual-testing orchestrator, validate that the /deep:start-agent-improvement-loop autonomous workflow wires improvement-journal.cjs at every required boundary: session_start, per-iteration lifecycle checkpoints, nested legal_stop_evaluated.details.gateResults, benchmark_completed, and session_end against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` contains `improvement-journal.cjs` emission steps for:. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
 
-Expected signals: `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml` contains `improvement-journal.cjs` emission steps for session_start, candidate_generated, candidate_scored, benchmark_completed, nested legal_stop_evaluated.details.gateResults, and session_end:
+Expected signals: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` contains `improvement-journal.cjs` emission steps for session_start, candidate_generated, candidate_scored, benchmark_completed, nested legal_stop_evaluated.details.gateResults, and session_end:
 
 #### Test Execution
 > **Feature File:** [RT-032](07--runtime-truth/032-journal-wiring.md)
@@ -594,13 +594,13 @@ Expected signals: `experiment-registry.json` contains:
 
 ## 14. AGENT DISCIPLINE STRESS TESTS (CP-040..CP-045)
 
-This section is the stress-test campaign for `@deep-agent-improvement`. The 6 scenarios test the agent + command discipline using `/improve:agent` (CP-040/043/044/045) and `@deep-agent-improvement` body (CP-041/042). Final composite score: **PASS 6 / PARTIAL 0 / FAIL 0** (after R3 CRITIC PASS verbatim emission requirement). See the local stress-test campaign notes for the full narrative.
+This section is the stress-test campaign for `@deep-agent-improvement`. The 6 scenarios test the agent + command discipline using `/deep:start-agent-improvement-loop` (CP-040/043/044/045) and `@deep-agent-improvement` body (CP-041/042). Final composite score: **PASS 6 / PARTIAL 0 / FAIL 0** (after R3 CRITIC PASS verbatim emission requirement). See the local stress-test campaign notes for the full narrative.
 
 ### CP-040 | SKILL_LOAD_NOT_PROTOCOL script-routing fidelity **(SANDBOXED)**
 
 #### Description
 
-Confirm `/improve:agent` proves helper execution instead of merely reading `SKILL.md` and improvising.
+Confirm `/deep:start-agent-improvement-loop` proves helper execution instead of merely reading `SKILL.md` and improvising.
 
 #### Scenario Contract
 

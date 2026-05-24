@@ -76,7 +76,7 @@ The closeout work followed the live repo first and the old packet second. I veri
 
 | Decision | Why |
 |----------|-----|
-| Keep `sk-improve-agent` and `sk-improve-prompt` as the canonical skill names | They match the shipped `/improve:*` command surface and the current repo layout. |
+| Keep `sk-improve-agent` and `sk-improve-prompt` as the canonical skill names | They match the shipped `/deep:*` command surface and the current repo layout. |
 | Point the phase docs at `improve-agent` runtime files | Those are the live runtime-agent files; `agent-improver` paths no longer exist. |
 | Preserve historical packet slugs unchanged | Historical spec-folder names are archival identity, not live runtime truth. |
 | Add a dedicated decision record | The rename rationale is part of the completed state and should not live only in scattered task text. |

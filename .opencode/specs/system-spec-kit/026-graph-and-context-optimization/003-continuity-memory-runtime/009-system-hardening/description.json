@@ -16,7 +16,7 @@
       "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/009-system-hardening",
   "description": "Feature Specification: System Hardening (Post-Consolidation Research + Remediation Train)",
   "keywords": [
     "feature",
@@ -28,13 +28,13 @@
     "remediation",
     "train"
   ],
-  "lastUpdated": "2026-04-26T07:03:47.504Z",
-  "specId": "003",
+  "lastUpdated": "2026-05-23T15:25:00.370Z",
+  "specId": "009",
   "folderSlug": "system-hardening",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "004-runtime-executor-hardening"
+    "003-continuity-memory-runtime"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

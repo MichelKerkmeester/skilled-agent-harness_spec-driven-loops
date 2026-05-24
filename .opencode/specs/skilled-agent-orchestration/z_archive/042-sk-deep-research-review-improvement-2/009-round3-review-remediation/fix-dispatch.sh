@@ -42,7 +42,7 @@ run_fix "1-correctness" "Fix 8 correctness bugs in the deep-loop reducers and he
 
 6. .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs: Replace hard-coded composite/candidate-proposal key in recordMutation() with real dimension/mutation-family metadata from the caller.
 
-7. .opencode/commands/improve/assets/improve_improve-agent_auto.yaml + _confirm.yaml: Emit canonical legal_stop_evaluated and blocked_stop events with gate bundle, or update the reducer to consume the actual gate_evaluation payload shape.
+7. .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml + _confirm.yaml: Emit canonical legal_stop_evaluated and blocked_stop events with gate bundle, or update the reducer to consume the actual gate_evaluation payload shape.
 
 8. .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs: Port the fail-closed JSONL parser pattern from sk-deep-review/reduce-state.cjs — throw STATE_CORRUPTION on corrupt lines instead of silently discarding them.
 
@@ -115,7 +115,7 @@ run_fix "4-traceability-mirrors" "Fix 14 traceability issues in agent mirrors an
 
 11. README.md: Fix count badges — audit agent count and command count, make hero blurb, At a Glance table, and footer consistent.
 
-12. .opencode/commands/improve/agent.md: Remove stale static-mode/handover-only promotion language.
+12. .opencode/commands/deep/start-agent-improvement-loop.md: Remove stale static-mode/handover-only promotion language.
 
 13. .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md: Update schema section to shipped v2 DDL with composite primary keys.
 

@@ -109,16 +109,16 @@ _memory:
 
 #### Sub-wave .opencode/ (canonical, sequential within sub-wave)
 
-- [ ] T-020 Update `.opencode/commands/improve/agent.md` — line 238 (Skill matrix), line 293 (inline node template), 7+ body refs → `grep -c 'sk-improve-agent' agent.md` returns 0
-- [ ] T-021 Update `.opencode/commands/improve/README.txt` (2 refs lines 1, 3) → 0 hits
-- [ ] T-022 [CRITICAL] Update `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` — 32 refs: `skill:` field, all asset paths, all inline `node` templates → 0 hits; YAML parses
-- [ ] T-023 [CRITICAL] Update `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` — 33 refs → 0 hits
+- [ ] T-020 Update `.opencode/commands/deep/start-agent-improvement-loop.md` — line 238 (Skill matrix), line 293 (inline node template), 7+ body refs → `grep -c 'sk-improve-agent' agent.md` returns 0
+- [ ] T-021 Update `.opencode/commands/README.txt` (2 refs lines 1, 3) → 0 hits
+- [ ] T-022 [CRITICAL] Update `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` — 32 refs: `skill:` field, all asset paths, all inline `node` templates → 0 hits; YAML parses
+- [ ] T-023 [CRITICAL] Update `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` — 33 refs → 0 hits
 
 #### Sub-wave runtime mirrors (parallel ≤3)
 
-- [ ] T-024 [P] Mirror T-020..T-023 to `.claude/commands/improve/`
-- [ ] T-025 [P] Mirror to `.gemini/commands/improve/` (note: uses `improve-agent.toml` instead of `agent.md`)
-- [ ] T-026 [P] Mirror to `.codex/commands/improve/` (verify file shape; Codex Path Convention may use TOML)
+- [ ] T-024 [P] Mirror T-020..T-023 to `.claude/commands/deep/`
+- [ ] T-025 [P] Mirror to `.gemini/commands/deep/` (note: uses `improve-agent.toml` instead of `agent.md`)
+- [ ] T-026 [P] Mirror to `.codex/commands/deep/` (verify file shape; Codex Path Convention may use TOML)
 
 ### Wave 2E: Agent definitions in 4 runtimes (parallel ≤3)
 
@@ -130,7 +130,7 @@ _memory:
 ### Wave 2F: Root docs + install guides (sequential — shared files)
 
 - [ ] T-031 Update `README.md:848` (section header) and `README.md:1220` (feature matrix) → grep clean
-- [ ] T-032 Update `AGENTS.md:324` and `CLAUDE.md:324` — skill ref to `deep-agent-improvement`; agent name `@improve-agent` and command `/improve:agent` unchanged → grep clean
+- [ ] T-032 Update `AGENTS.md:324` and `CLAUDE.md:324` — skill ref to `deep-agent-improvement`; agent name `@improve-agent` and command `/deep:start-agent-improvement-loop` unchanged → grep clean
 - [ ] T-033 Update `.opencode/install_guides/README.md` (2 refs) and `SET-UP - AGENTS.md` (1 ref) → grep clean
 - [ ] T-034 Verify `AGENTS_Barter.md` — symlink to separate Barter repo; if external, skip and document; otherwise update local refs
 <!-- /ANCHOR:phase-2 -->
@@ -145,7 +145,7 @@ _memory:
 - [ ] T-035 [CRITICAL] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/079-sk-deep-agent-improvement --strict` → exit 0
 - [ ] T-036 [CRITICAL] Residual grep — `grep -rn 'sk-improve-agent' --include='*.md' --include='*.json' --include='*.toml' --include='*.ts' --include='*.js' --include='*.py' --include='*.yaml' --include='*.yml' --include='*.sh' .opencode/ .claude/ .gemini/ .codex/ README.md AGENTS.md CLAUDE.md | grep -v 'specs/' | grep -v 'changelog/v1\.[0-2]\.' | grep -v 'system-spec-kit/changelog/v3\.[34]\.'` → 0 lines
 - [ ] T-037 [CRITICAL] Skill advisor smoke — `mcp__spec_kit_memory__advisor_recommend({prompt: "improve agent loop"})` returns `deep-agent-improvement` as top hit; confidence ≥ 0.85
-- [ ] T-038 [CRITICAL] Smoke `/improve:agent` dispatch on sandbox agent at `.opencode/skills/deep-agent-improvement/test-fixtures/060-stress-test/.opencode/agents/cp-improve-target.md` → one auto-mode iteration completes (integration scan + profile + scoring + journal write); zero broken-path errors
+- [ ] T-038 [CRITICAL] Smoke `/deep:start-agent-improvement-loop` dispatch on sandbox agent at `.opencode/skills/deep-agent-improvement/test-fixtures/060-stress-test/.opencode/agents/cp-improve-target.md` → one auto-mode iteration completes (integration scan + profile + scoring + journal write); zero broken-path errors
 - [ ] T-039 [CRITICAL] `cd .opencode/skills/system-spec-kit/mcp_server && npm test` → all tests pass; particularly `native-scorer.vitest.ts` and `remediation-008-docs.vitest.ts`
 - [ ] T-040 Author `implementation-summary.md` with: rollup of REQ-001..REQ-016 (with evidence outputs), changed-files count, residual-grep proof, advisor smoke output, vitest summary, dispatch smoke output, link to new `v1.3.0.0.md` changelog entry
 - [ ] T-041 `/memory:save` — invoke memory save flow; `_memory.continuity.completion_pct` = 100; description.json + graph-metadata.json regenerated

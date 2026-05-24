@@ -18,7 +18,7 @@
       "hypothesis": "H5: parent metadata drift",
       "severity": "P2",
       "location": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/description.json",
-      "evidence": "The description.json still contains `sk-small-model` in both the `description` field (line 3: \"Rename sk-small-model skill to sk-ai-small-model...\") and `keywords` array (line 6: \"sk-small-model\"). The implementation summary noted this as a low-severity limitation expecting it to be refreshed by `generate-context.js` at Step 13, but the refresh did not occur.",
+      "evidence": "The description.json still contains `sk-small-model` in both the `description` field (line 3: \"Rename sk-small-model skill to sk-prompt-small-model...\") and `keywords` array (line 6: \"sk-small-model\"). The implementation summary noted this as a low-severity limitation expecting it to be refreshed by `generate-context.js` at Step 13, but the refresh did not occur.",
       "classification": "missed_live_surface",
       "impact": "Minor metadata inconsistency. The description.json is auto-generated content that doesn't block any functional workflows, but it represents incomplete metadata propagation from the rename operation.",
       "recommendation": "Update description.json to reflect the new name, or re-run `generate-context.js` with proper description.json update logic. This is cosmetic but should be fixed for metadata consistency."

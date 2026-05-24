@@ -73,7 +73,7 @@ spec_kit_skill_advisor_status({})
 - Bridge returns JSON with `status: "ok"` or prompt-safe fail-open status.
 - Native success has `metadata.route: "native"` and an `Advisor:` brief.
 - Success metadata reports the 014 threshold pair: `confidenceThreshold: 0.8`, `uncertaintyThreshold: 0.35`, `confidenceOnly: false`.
-- Bridge imports `.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/compat/index.js`, not private handler paths.
+- Bridge imports `.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/compat/index.js`, not private handler paths.
 - Disable flag returns a disabled brief or skipped state without invoking the native path.
 
 ### Failure Modes

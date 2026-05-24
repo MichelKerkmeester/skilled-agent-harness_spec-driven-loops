@@ -1,31 +1,25 @@
 {
+  "level": "2",
   "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/006-hygiene-fix-pack",
-  "description": "Packet 122 bundles deep-research negative knowledge dedup, workflow YAML script-path verification, and allowed-tools pruning audit.",
+  "description": "Feature Specification: Deep Research Hygiene and Negative Knowledge Dedup",
   "keywords": [
-    "packet",
-    "122",
-    "bundles",
-    "deep-research",
+    "feature",
+    "specification",
+    "deep",
+    "research",
+    "hygiene",
     "negative",
     "knowledge",
-    "dedup",
-    "workflow",
-    "yaml",
-    "script-path",
-    "verification",
-    "allowed-tools",
-    "pruning",
-    "audit"
+    "dedup"
   ],
-  "lastUpdated": "2026-05-23T03:56:41.979Z",
-  "specId": "122",
-  "folderSlug": "006-hygiene-fix-pack",
+  "lastUpdated": "2026-05-23T15:24:59.099Z",
+  "specId": "006",
+  "folderSlug": "hygiene-fix-pack",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",
     "004-deep-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

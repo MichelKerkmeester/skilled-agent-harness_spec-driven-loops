@@ -4,7 +4,7 @@ I've completed the final synthesis analysis for deep-review iter-9 on packet 007
 
 ### Executive Summary
 
-The deep-review of packet 007 (rename sk-small-model → sk-ai-small-model) completed 7 iterations covering correctness, traceability, security, maintainability, and two adversarial passes. The review identified **1 in-scope P2 advisory** (M-001: missing pattern template guidance) and **4 out-of-scope P2 advisories** (H5-003 through H5-006: historical sibling phase children's derived metadata drift). No P0 or P1 findings were identified.
+The deep-review of packet 007 (rename sk-small-model → sk-prompt-small-model) completed 7 iterations covering correctness, traceability, security, maintainability, and two adversarial passes. The review identified **1 in-scope P2 advisory** (M-001: missing pattern template guidance) and **4 out-of-scope P2 advisories** (H5-003 through H5-006: historical sibling phase children's derived metadata drift). No P0 or P1 findings were identified.
 
 ### Complete Findings Registry
 

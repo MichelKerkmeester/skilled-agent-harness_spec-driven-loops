@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 4-phase MCP launcher concurrency arc shipped with a CONDITIONAL deep-review verdict: no P0s, but 13 P1s remained across documentation drift, missing test evidence, and real correctness gaps. The highest-risk issue was lease ownership following workspace paths instead of the resolved SQLite database directory, allowing two workspaces that share one DB override to bypass the single-writer boundary.",
     "created_at": "2026-05-18T12:28:18.618Z",
-    "last_save_at": "2026-05-23T11:55:15.576Z",
+    "last_save_at": "2026-05-24T05:40:26.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

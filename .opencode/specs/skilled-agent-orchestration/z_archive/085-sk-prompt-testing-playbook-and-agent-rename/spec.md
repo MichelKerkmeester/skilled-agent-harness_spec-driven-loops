@@ -94,7 +94,7 @@ Phase 001 (rename) executes BEFORE Phase 002 (playbook) so playbook scenarios re
   - Rename 4 runtime agent files: `.opencode/agents/improve-prompt.md` → `prompt-improver.md`; `.claude/agents/improve-prompt.md` → `prompt-improver.md`; `.codex/agents/improve-prompt.toml` → `prompt-improver.toml`; `.gemini/agents/improve-prompt.md` → `prompt-improver.md`
   - Update frontmatter `name:` and `description:` fields in all 4 runtime files
   - Update body self-references inside each agent file
-  - Rotate `@improve-prompt` → `@prompt-improver` mentions in: dispatcher command body `.opencode/commands/improve/prompt.md`, 5 cli-* `prompt_quality_card.md` mirrors + parent SKILL.md routing tables, `sk-prompt/SKILL.md` §7, `sk-prompt/assets/cli_prompt_quality_card.md`, `sk-prompt/graph-metadata.json`, `sk-doc/assets/agent_template.md`, sk-code advisor probe playbook
+  - Rotate `@improve-prompt` → `@prompt-improver` mentions in: dispatcher command body `.opencode/commands/prompt.md`, 5 cli-* `prompt_quality_card.md` mirrors + parent SKILL.md routing tables, `sk-prompt/SKILL.md` §7, `sk-prompt/assets/cli_prompt_quality_card.md`, `sk-prompt/graph-metadata.json`, `sk-doc/assets/agent_template.md`, sk-code advisor probe playbook
   - Update `skill_advisor.py` if it hardcodes the agent name
   - Update root `README.md`, `AGENTS.md`, `.opencode/install_guides/`, active changelogs (`.opencode/changelog/agent-orchestration/v2.4.0.0.md`, `system-spec-kit/changelog/v3.4.0.0.md`)
   - Update agent runtime READMEs (.claude/.codex/.gemini/.opencode/agents/README.txt)
@@ -109,7 +109,7 @@ Phase 001 (rename) executes BEFORE Phase 002 (playbook) so playbook scenarios re
 
 ### Out of Scope (at the parent level)
 - Behavior changes to the agent or skill — both renames + playbook are read-only on logic
-- Renaming the dispatcher command `/improve:prompt` or its file (only body's agent ref changes)
+- Renaming the dispatcher command `/prompt` or its file (only body's agent ref changes)
 - Renaming the skill `sk-prompt` (already done in 082)
 - Updating committed git log messages (historical record)
 - Updating frozen-continuity scope (z_archive, z_future, completed packets {054, 055, 061, 063, 067, 070, 079, 081, 082, 026-graph}, .git)

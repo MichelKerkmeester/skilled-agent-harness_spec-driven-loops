@@ -8,7 +8,7 @@
     "storage-boundary",
     "remediation"
   ],
-  "lastUpdated": "2026-05-21T10:22:37.721Z",
+  "lastUpdated": "2026-05-23T15:24:59.753Z",
   "specId": "001",
   "folderSlug": "fix-memory-indexer-storage-boundary",
   "parentChain": [

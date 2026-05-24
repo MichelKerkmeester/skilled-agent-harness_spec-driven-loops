@@ -48,7 +48,7 @@ _memory:
 After phase `005`, the runtime mutator, skill package, and wrapper content all aligned on `agent-improver`, but the command entrypoint itself still carried the older `agent-improvement-loop` name. That left the repo with one last naming mismatch across the command markdown file, command asset filenames, wrapper filenames, README examples, runtime agent tables, and packet-history references.
 
 ### Purpose
-Rename the command entrypoint itself to `/improve:agent-improver`, rename the command markdown and workflow assets to the agent-improver family, rename the wrapper TOMLs, and sync the active packet history to the new command surface.
+Rename the command entrypoint itself to `/deep:start-agent-improvement-loop-improver`, rename the command markdown and workflow assets to the agent-improver family, rename the wrapper TOMLs, and sync the active packet history to the new command surface.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -88,10 +88,10 @@ Rename the command entrypoint itself to `/improve:agent-improver`, rename the co
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Command entrypoint is renamed | The canonical command markdown file is `.opencode/commands/speckit/agent-improver.md` and examples invoke `/improve:agent-improver` |
+| REQ-001 | Command entrypoint is renamed | The canonical command markdown file is `.opencode/commands/speckit/agent-improver.md` and examples invoke `/deep:start-agent-improvement-loop-improver` |
 | REQ-002 | Command workflow assets are renamed | The canonical YAML files use the `improve_agent-improver_*.yaml` naming family |
 | REQ-003 | Runtime wrappers are renamed | `.agents` and `.gemini` command wrapper files use `agent-improver.toml` |
-| REQ-004 | Active runtime docs use the renamed command path | Runtime agent tables and skill docs point at `.opencode/commands/speckit/agent-improver.md` and `/improve:agent-improver` |
+| REQ-004 | Active runtime docs use the renamed command path | Runtime agent tables and skill docs point at `.opencode/commands/speckit/agent-improver.md` and `/deep:start-agent-improvement-loop-improver` |
 | REQ-005 | Parent packet records phase `006` | Root `041` docs list phase `006` and report `6 of 6 complete` |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -108,7 +108,7 @@ Rename the command entrypoint itself to `/improve:agent-improver`, rename the co
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The command entrypoint is now `/improve:agent-improver` and the canonical file path is `.opencode/commands/speckit/agent-improver.md`.
+- **SC-001**: The command entrypoint is now `/deep:start-agent-improvement-loop-improver` and the canonical file path is `.opencode/commands/speckit/agent-improver.md`.
 - **SC-002**: YAML assets and wrapper TOMLs use the agent-improver naming family.
 - **SC-003**: Runtime docs, skill docs, and active packet docs all reference the new command name and path.
 - **SC-004**: Root packet `041` clearly shows six completed phases and pushes future work to `007-*`.
@@ -116,7 +116,7 @@ Rename the command entrypoint itself to `/improve:agent-improver`, rename the co
 ### Acceptance Scenarios
 1. **Given** a maintainer browses the command directory, **when** they inspect the agent-improver surface, **then** they find `.opencode/commands/speckit/agent-improver.md` instead of the removed command filename.
 2. **Given** a maintainer inspects runtime wrappers and YAML assets, **when** they compare naming, **then** all command files use the agent-improver family consistently.
-3. **Given** a maintainer reads runtime agent tables and README examples, **when** they look for the command entrypoint, **then** they see `/improve:agent-improver`.
+3. **Given** a maintainer reads runtime agent tables and README examples, **when** they look for the command entrypoint, **then** they see `/deep:start-agent-improvement-loop-improver`.
 4. **Given** strict validation is re-run, **when** the packet docs and command references are synchronized, **then** root `041` and phase `006` both pass.
 <!-- /ANCHOR:success-criteria -->
 

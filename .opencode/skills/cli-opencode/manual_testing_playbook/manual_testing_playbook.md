@@ -656,25 +656,25 @@ Expected signals: Exit 0. Mtime unchanged. Zero Edit/Write tool.calls. Severity 
 
 > **Feature File:** [CO-025](07--prompt-templates/003-template-applied-to-real-dispatch.md)
 
-### CO-035 | DeepSeek-v4-pro via opencode-go through sk-ai-small-model + sk-prompt (triple-skill flow)
+### CO-035 | DeepSeek-v4-pro via opencode-go through sk-prompt-small-model + sk-prompt (triple-skill flow)
 
 #### Description
 
-Verify the small-model dispatch matrix surfaces both `sk-ai-small-model` and `cli-opencode` for a DeepSeek-v4-pro prompt, that `sk-prompt` composes the request with the right framework + `--variant high` recommendation, and that `cli-opencode` dispatches via the opencode-go provider path. This is the production happy-path for opencode-go-pool DeepSeek work.
+Verify the small-model dispatch matrix surfaces both `sk-prompt-small-model` and `cli-opencode` for a DeepSeek-v4-pro prompt, that `sk-prompt` composes the request with the right framework + `--variant high` recommendation, and that `cli-opencode` dispatches via the opencode-go provider path. This is the production happy-path for opencode-go-pool DeepSeek work.
 
 #### Scenario Contract
 
-Prompt: `Consult sk-ai-small-model for the DeepSeek-v4-pro dispatch matrix and pick the cli-opencode opencode-go path (vs cli-devin Cognition Pro or cli-opencode DeepSeek API direct). Compose the prompt through sk-prompt with the right framework and --variant high recommendation. Dispatch with --model opencode-go/deepseek-v4-pro --variant high and capture the output.`
+Prompt: `Consult sk-prompt-small-model for the DeepSeek-v4-pro dispatch matrix and pick the cli-opencode opencode-go path (vs cli-devin Cognition Pro or cli-opencode DeepSeek API direct). Compose the prompt through sk-prompt with the right framework and --variant high recommendation. Dispatch with --model opencode-go/deepseek-v4-pro --variant high and capture the output.`
 
-Expected signals: Advisor returns `sk-ai-small-model` (conf ≥ 0.85) AND `cli-opencode` (conf ≥ 0.80). Composed prompt declares `--variant high` choice. `opencode run --model opencode-go/deepseek-v4-pro --variant high --dir <repo-root>` exits 0. Output addresses the pre-plan acceptance criteria.
+Expected signals: Advisor returns `sk-prompt-small-model` (conf ≥ 0.85) AND `cli-opencode` (conf ≥ 0.80). Composed prompt declares `--variant high` choice. `opencode run --model opencode-go/deepseek-v4-pro --variant high --dir <repo-root>` exits 0. Output addresses the pre-plan acceptance criteria.
 
 Desired user-visible outcome: A working implementation plus the dispatch-matrix consultation evidence showing the opencode-go path was picked over the other two DeepSeek-v4-pro paths.
 
 #### Test Execution
 
-> **Feature File:** [CO-035](07--prompt-templates/004-deepseek-v4-via-opencode-go-with-sk-ai-small-model.md)
+> **Feature File:** [CO-035](07--prompt-templates/004-deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md)
 
-### CO-036 | Kimi-k2.6 via opencode-go through sk-ai-small-model + sk-prompt
+### CO-036 | Kimi-k2.6 via opencode-go through sk-prompt-small-model + sk-prompt
 
 #### Description
 
@@ -682,15 +682,15 @@ Verify the dispatch matrix for Kimi-k2.6 (two paths: cli-devin Cognition Pro + c
 
 #### Scenario Contract
 
-Prompt: `Consult sk-ai-small-model for the Kimi-k2.6 dispatch matrix and pick the cli-opencode opencode-go path. Compose through sk-prompt with a large-context framework (RCAF with extended Context section) and dispatch with --model opencode-go/kimi-k2.6 --variant high.`
+Prompt: `Consult sk-prompt-small-model for the Kimi-k2.6 dispatch matrix and pick the cli-opencode opencode-go path. Compose through sk-prompt with a large-context framework (RCAF with extended Context section) and dispatch with --model opencode-go/kimi-k2.6 --variant high.`
 
-Expected signals: Advisor returns `sk-ai-small-model` + `cli-opencode` above threshold. model-profiles.json kimi-k2.6 entry shows 2 executors, primary_quota_pool=cognition-pro (operator overrides to opencode-go). `opencode run --model opencode-go/kimi-k2.6 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
+Expected signals: Advisor returns `sk-prompt-small-model` + `cli-opencode` above threshold. model-profiles.json kimi-k2.6 entry shows 2 executors, primary_quota_pool=cognition-pro (operator overrides to opencode-go). `opencode run --model opencode-go/kimi-k2.6 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
 
 Desired user-visible outcome: A consolidated multi-file analysis demonstrating Kimi-k2.6's large-context advantage, dispatched via the opencode-go pool with the matrix-consultation evidence trail.
 
 #### Test Execution
 
-> **Feature File:** [CO-036](07--prompt-templates/005-kimi-k2-6-via-opencode-go-with-sk-ai-small-model.md)
+> **Feature File:** [CO-036](07--prompt-templates/005-kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md)
 
 ---
 

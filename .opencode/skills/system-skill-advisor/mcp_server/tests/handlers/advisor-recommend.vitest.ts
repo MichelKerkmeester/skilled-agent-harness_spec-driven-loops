@@ -2,7 +2,9 @@
 // MODULE: Advisor Recommend Tests
 // ───────────────────────────────────────────────────────────────
 
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { join } from 'node:path';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 
@@ -24,6 +26,8 @@ import { AdvisorRecommendInputSchema } from '../../schemas/advisor-tool-schemas.
 import { handleAdvisorRecommend } from '../../handlers/advisor-recommend.js';
 import { buildErrorResponse, ErrorCodes, MemoryError } from '../__fixtures__/errors.js';
 import { dispatchTool } from '../../tools/index.js';
+
+const tempDirs: string[] = [];
 
 function status(freshness: 'live' | 'stale' | 'absent' | 'unavailable' = 'live') {
   return {
@@ -93,12 +97,23 @@ function expectedWorkspaceRoot(start = process.cwd()): string {
   return findAdvisorWorkspaceRoot(start, { maxDepth: 12 });
 }
 
+beforeEach(() => {
+  const shadowDir = mkdtempSync(join(process.cwd(), '.vitest-shadow-'));
+  tempDirs.push(shadowDir);
+  process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH = join(shadowDir, 'shadow-deltas.jsonl');
+});
+
 afterEach(() => {
   advisorPromptCache.clear();
   vi.restoreAllMocks();
   delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
+  delete process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH;
   mockReadAdvisorStatus.mockReset();
   mockScoreAdvisorPrompt.mockReset();
+  while (tempDirs.length > 0) {
+    const dir = tempDirs.pop();
+    if (dir) rmSync(dir, { recursive: true, force: true });
+  }
 });
 
 describe('advisor_recommend handler', () => {

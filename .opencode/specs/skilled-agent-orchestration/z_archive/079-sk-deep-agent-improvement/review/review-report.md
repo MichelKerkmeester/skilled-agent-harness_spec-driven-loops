@@ -36,7 +36,7 @@ description: Final deep-review synthesis for the sk-improve-agent to deep-agent-
       "severity": "P1",
       "title": "Unquoted workflow placeholders allow shell/path injection before script validation",
       "source": ".opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/review/iterations/iteration-002.md",
-      "affectedSurfaces": ["improve_improve-agent_auto.yaml", "improve_improve-agent_confirm.yaml", "spec_folder", "target_path", "candidate_path"]
+      "affectedSurfaces": ["deep_start-agent-improvement-loop_auto.yaml", "deep_start-agent-improvement-loop_confirm.yaml", "spec_folder", "target_path", "candidate_path"]
     },
     {
       "id": "P1-003",
@@ -72,13 +72,13 @@ description: Final deep-review synthesis for the sk-improve-agent to deep-agent-
 | ID | Severity | Title | Dimension | Evidence | Disposition |
 |----|----------|-------|-----------|----------|-------------|
 | P1-001 | P1 | Resource map marks nonexistent runtime command mirrors as OK | correctness / traceability | `resource-map.md:41`, `resource-map.md:63`, `resource-map.md:108-115`; `implementation-summary.md:87-88` | active |
-| P1-002 | P1 | Unquoted workflow placeholders allow shell/path injection before script validation | security | `improve_improve-agent_auto.yaml:37-40`, `:56-59`, `:128-135`; `improve_improve-agent_confirm.yaml:141-148` | active |
+| P1-002 | P1 | Unquoted workflow placeholders allow shell/path injection before script validation | security | `deep_start-agent-improvement-loop_auto.yaml:37-40`, `:56-59`, `:128-135`; `deep_start-agent-improvement-loop_confirm.yaml:141-148` | active |
 | P1-003 | P1 | Completion status is claimed while mandatory memory-save and checklist/task evidence remain pending | traceability | `implementation-summary.md:17`, `:26`, `:36`, `:163`; `spec.md:140`; `tasks.md:151`; `checklist.md:138`, `:155` | active |
 | P2-001 | P2 | Install-guide skill inventory still advertises retired `sk-deep-*` skill IDs | maintainability | `.opencode/install_guides/SET-UP - AGENTS.md:514-515`; `.opencode/install_guides/README.md:1200`, `:1482`; `README.md:1216` | active advisory |
 
 ### P1-001 Details
 
-- **Impact**: Release evidence can mislead follow-on operators by saying all enumerated command mirror paths exist when `.codex/commands/improve/` is absent and Gemini has no YAML command assets.
+- **Impact**: Release evidence can mislead follow-on operators by saying all enumerated command mirror paths exist when `.codex/commands/deep/` is absent and Gemini has no YAML command assets.
 - **Fix recommendation**: Update `resource-map.md` to mark absent Codex command surfaces and Gemini YAML assets as N/A/absent, and revise the `Missing on disk` summary.
 - **Scope proof**: Iteration 1 confirmed implementation-summary already documents Gemini/Codex runtime shapes correctly, so the defect is stale resource-map evidence, not missing implementation.
 
@@ -102,7 +102,7 @@ description: Final deep-review synthesis for the sk-improve-agent to deep-agent-
 
 ## Remediation Workstreams
 
-1. **Security hardening**: Fix unquoted command placeholders in `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` and `improve_improve-agent_confirm.yaml`; mirror if equivalent downstream runtime command assets exist.
+1. **Security hardening**: Fix unquoted command placeholders in `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` and `deep_start-agent-improvement-loop_confirm.yaml`; mirror if equivalent downstream runtime command assets exist.
 2. **Release evidence reconciliation**: Correct `resource-map.md` runtime mirror rows and summary.
 3. **Continuity completion**: Execute `/memory:save`, then update `implementation-summary.md`, `tasks.md`, and `checklist.md` so REQ-015/T-041/CHK-055 agree.
 4. **Documentation cleanup**: Replace retired `sk-deep-research` / `sk-deep-review` entries in `.opencode/install_guides/SET-UP - AGENTS.md`.
@@ -185,8 +185,8 @@ description: Final deep-review synthesis for the sk-improve-agent to deep-agent-
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/checklist.md`
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/implementation-summary.md`
 - `.opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md`
-- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml`
-- `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml`
+- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml`
+- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml`
 - `.opencode/install_guides/SET-UP - AGENTS.md`
 - `.opencode/install_guides/README.md`
 - `README.md`

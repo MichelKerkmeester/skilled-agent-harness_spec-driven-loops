@@ -80,7 +80,7 @@ Trim each agent description to ≤110 chars while preserving the agent name toke
 - Other frontmatter fields (`mode`, `temperature`, `permission`, `mcpServers`, etc.) — untouched
 - Already-short agents (`@context`, `@create`, `@review`, `@improve-agent`, etc.) — already under 130 chars
 - Skill or command descriptions — those were 083's domain
-- The 8 over-soft commands (`memory/manage`, `improve/agent`, `create/changelog`, etc.) — defer to packet 091 if needed
+- The 8 over-soft commands (`memory/manage`, `deep/start-agent-improvement-loop`, `create/changelog`, etc.) — defer to packet 091 if needed
 
 ### Files to Change
 

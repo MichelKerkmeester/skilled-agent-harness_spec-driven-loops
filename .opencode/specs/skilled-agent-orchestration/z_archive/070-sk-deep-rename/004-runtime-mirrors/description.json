@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/004-runtime-mirrors",
+  "specFolder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/004-runtime-mirrors",
   "description": "Feature Specification: Phase 004 Runtime Mirrors",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "runtime",
     "mirrors"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.167Z",
+  "lastUpdated": "2026-05-23T15:24:59.452Z",
   "specId": "004",
   "folderSlug": "runtime-mirrors",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "070-sk-deep-rename"
   ],
   "memorySequence": 0,

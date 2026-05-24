@@ -125,7 +125,7 @@ field_handling:
   intake_contract:
     trigger_states: [no-spec, partial-folder, repair-mode, placeholder-upgrade]
     returned_fields: [feature_description, spec_path, selected_level, start_state, repair_mode, manual_relationships]
-    no_regression_rule: "When folder_state == populated-folder, skip shared intake-contract execution (`.opencode/skills/system-spec-kit/references/intake-contract.md` §2-§5) and preserve the current Step 1 behavior."
+    no_regression_rule: "When folder_state == populated-folder, skip shared intake-contract execution (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md` §2-§5) and preserve the current Step 1 behavior."
 
 packet_graph_metadata:
   completion_contract:
@@ -458,7 +458,7 @@ context_loading:
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_0.5_intake_branch:
-    purpose: Detect non-healthy target folders before Step 1 so `/complete` can inline absorb the shared intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md` §5) without a visible chained handoff
+    purpose: Detect non-healthy target folders before Step 1 so `/complete` can inline absorb the shared intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md` §5) without a visible chained handoff
     action: "Run folder-state discovery using ls plus canonical file checks on the target spec path after any phase-predecessor validation"
     inspect:
       command: "ls -la {spec_folder} 2>/dev/null || true"
@@ -494,7 +494,7 @@ workflow:
         execution_mode: "{execution_mode}"
         prompt_mode: "single_consolidated_prompt"
         questions:
-          - "Questions from `.opencode/skills/system-spec-kit/references/intake-contract.md` §5 (Q0-Q4+) are absorbed inline into the parent setup prompt"
+          - "Questions from `.opencode/skills/system-spec-kit/references/workflows/intake_contract.md` §5 (Q0-Q4+) are absorbed inline into the parent setup prompt"
         bind_fields:
           - feature_description
           - spec_path
@@ -513,7 +513,7 @@ workflow:
         op: "=="
         value: populated-folder
       when_legacy_literal: "folder_state == populated-folder"
-      note: "Healthy folder detected. Skip shared intake-contract execution (`.opencode/skills/system-spec-kit/references/intake-contract.md` §2-§5) and keep the existing `/complete` setup behavior unchanged."
+      note: "Healthy folder detected. Skip shared intake-contract execution (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md` §2-§5) and keep the existing `/complete` setup behavior unchanged."
 
   step_1_request_analysis:
     purpose: Analyze inputs and define development scope

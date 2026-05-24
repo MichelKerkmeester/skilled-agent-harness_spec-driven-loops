@@ -1,6 +1,6 @@
 ---
 title: "Impleme [skilled-agent-orchestration/041-sk-recursive-agent-loop/009-sk-agent-improver-self-test/implementation-summary]"
-description: "Ran the first self-referential test of the sk-improve-agent skill: the /improve:agent loop targeting .opencode/agents/agent-improver.md itself. This is the agent that describes t..."
+description: "Ran the first self-referential test of the sk-improve-agent skill: the /deep:start-agent-improvement-loop loop targeting .opencode/agents/agent-improver.md itself. This is the agent that describes t..."
 trigger_phrases:
   - "impleme"
   - "implementation summary"
@@ -28,7 +28,7 @@ _memory:
 
 ## What Was Done
 
-Ran the first self-referential test of the sk-improve-agent skill: the `/improve:agent` loop targeting `.opencode/agents/agent-improver.md` itself. This is the agent that describes the improvement workflow evaluating its own quality across 5 dimensions.
+Ran the first self-referential test of the sk-improve-agent skill: the `/deep:start-agent-improvement-loop` loop targeting `.opencode/agents/agent-improver.md` itself. This is the agent that describes the improvement workflow evaluating its own quality across 5 dimensions.
 
 ### Pre-Flight Verification
 
@@ -44,9 +44,9 @@ The scanner discovered **9 surfaces** for `agent-improver`:
 | Mirror (Claude) | `.claude/agents/agent-improver.md` | Aligned |
 | Mirror (Codex) | `.codex/agents/agent-improver.toml` | Aligned |
 | Mirror (.agents) | `.agents/agents/agent-improver.md` | Aligned |
-| Command | `.opencode/commands/improve/agent.md` | 1 reference |
-| YAML (auto) | `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml` | 2 references |
-| YAML (confirm) | `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml` | 2 references |
+| Command | `.opencode/commands/deep/start-agent-improvement-loop.md` | 1 reference |
+| YAML (auto) | `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml` | 2 references |
+| YAML (confirm) | `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml` | 2 references |
 | Skill | `.opencode/skills/sk-improve-agent/SKILL.md` | 6 references |
 | Skill Advisor | `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Matched |
 
@@ -68,7 +68,7 @@ Profile extracted from `agent-improver.md`:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Baseline | 99 | 100 | 100 | 100 | 100 | 93 | N/A |
 | 1 | 99 | 100 | 100 | 100 | 100 | 93 | Added halt condition for missing inputs, merged checklist blocks, corrected command path |
-| 2 | 100 | 100 | 100 | 100 | 100 | 100 | Fixed invalid resource ref: `/improve:agent-improver` → `/improve:agent` |
+| 2 | 100 | 100 | 100 | 100 | 100 | 100 | Fixed invalid resource ref: `/deep:start-agent-improvement-loop-improver` → `/deep:start-agent-improvement-loop` |
 | 3 | 100 | 100 | 100 | 100 | 100 | 100 | Precision fixes: scan report provenance note, summary box label consistency |
 
 ### Stop Condition
@@ -83,7 +83,7 @@ Loop exited via **max-iterations (3)**, not dimension plateau. The plateau detec
 
 3. **No static fixtures**: The benchmark runner has no fixture directory for `agent-improver`. Dynamic-only mode correctly skips benchmarking without error. Benchmark runs = 0 in the dashboard.
 
-4. **Real bug discovered**: The agent's RELATED RESOURCES section listed `/improve:agent-improver` as the command slug, but the actual file is `.opencode/commands/improve/agent.md` (slug: `/improve:agent`). The scorer's `resource-refs-valid` check correctly flagged this as invalid (3/4 valid). The subagent identified and fixed it in iteration 2.
+4. **Real bug discovered**: The agent's RELATED RESOURCES section listed `/deep:start-agent-improvement-loop-improver` as the command slug, but the actual file is `.opencode/commands/deep/start-agent-improvement-loop.md` (slug: `/deep:start-agent-improvement-loop`). The scorer's `resource-refs-valid` check correctly flagged this as invalid (3/4 valid). The subagent identified and fixed it in iteration 2.
 
 5. **Mutator reads itself**: The `@agent-improver` subagent reads its own definition as the target. The proposal-only boundary works correctly — it writes candidates to `improvement/candidates/`, never editing the canonical target. No circular issues.
 

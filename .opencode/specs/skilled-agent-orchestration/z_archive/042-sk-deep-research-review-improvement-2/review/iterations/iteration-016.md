@@ -199,7 +199,7 @@ exec
   - Structural queries (callers, imports, deps) → `code_graph_query` (Code Graph)
   - Exact text/regex → `Grep`
 
-**GIT WORKFLOW:** 
+**GIT WORKFLOW:**
 Full details: `.opencode/skills/sk-git/`
 - Worktree setup, conventional commits, PR creation, branch management
 - Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
@@ -241,7 +241,7 @@ These recovery steps are universal across Claude Code, OpenCode, Codex CLI, Copi
 4. Re-read the active runtime-specific instructions if they exist (`CODEX.md`, `GEMINI.md`, `.claude/CLAUDE.md`, runtime agent docs)
 5. Present a concise recovered summary and WAIT for confirmation before proceeding
 
-### Coding Analysis Lenses 
+### Coding Analysis Lenses
 
 | Lens               | Focus            | Detection Questions                                                                |
 | ------------------ | ---------------- | ---------------------------------------------------------------------------------- |
@@ -1099,21 +1099,21 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3931:   184	| REQ-015 | Both loops MUST support delta replay plus periodic snapshots/compaction so reducer performance does not degrade on 100+ iteration packets. | Canonical state keeps authoritative append-only events while reducers consume latest deltas plus periodic snapshots; compaction policy is explicit, replay validation proves equivalent outputs before and after compaction, and packet durability remains packet-local. | Iteration 1 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:41-50`], Recommendation 1 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:211-214`] |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3932:   185	| REQ-016 | Both loops MUST expose packet-local observability surfaces with timing/tool/token histograms, state diffs, anomaly flags, and stop-decision drill-down. | Dashboards and reducers emit packet-local observability views sourced from runtime data such as `durationMs`, `toolsUsed`, and `sourcesQueried` or an explicit unknown fallback; stop-decision traces remain replayable and reducer-generated. | Iteration 7 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:143-152`], Recommendation 7 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:217-220`] |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3933:   186	| REQ-017 | Large-target decomposition MUST be planned explicitly: review for 1000+ file repos and research for 50+ source domains. | Deep review defines inventory pass, hotspot ranking, stratified coverage, and segment/wave governance for very large repos; deep research defines domain clustering, authority-aware sampling, and cluster-aware convergence for large source sets; smaller packets keep the default lightweight path. | Iteration 6 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:126-135`], Recommendation 8 [SOURCE: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md:219-221`] |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3943:Evidence: `spec.md:167-168,218`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:93-99`; `.opencode/skills/sk-deep-review/references/loop_protocol.md:530-536`; `.opencode/skills/sk-deep-research/references/state_format.md:79-81`; `.opencode/skills/sk-deep-review/references/state_format.md:114-116`; reducers read existing config only at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-685` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3951:Evidence: `.opencode/skills/sk-deep-review/references/loop_protocol.md:154-155`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:226-227`; full replay in `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-680` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`; Phase 001 requirement at `spec.md:76,184-185`.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3959:Evidence: `spec.md:74-77,176-185,197`; deep-research dashboard renderer `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`; deep-review dashboard renderer `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:718-874`; research docs still describe a duration-bearing iteration table at `.opencode/skills/sk-deep-research/references/state_format.md:681-686`, but the actual table headers at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:576-579` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:761-764` omit duration/token fields entirely.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3963:File: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3966:Description: The spec makes claim-verification, journaling, and packet-local auditability core runtime-truth artifacts, and it explicitly says `reduce-state.cjs` should emit ledger and journal rollups. The actual reducer only builds question/finding/ruled-out/blocked-stop/graph-convergence state and dashboard sections; there is no ledger ingestion, no journal summary, and no way to trace REQ-004/REQ-005 from reducer output.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3967:Evidence: `spec.md:73-75,106,168-169`; reducer registry fields at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:407-433`; dashboard output at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3975:Evidence: `.opencode/skills/sk-deep-review/references/convergence.md:44-45,89,420,608-625`; reducer compatibility logic at `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:446-489`.  
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3943:Evidence: `spec.md:167-168,218`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:93-99`; `.opencode/skills/sk-deep-review/references/loop_protocol.md:530-536`; `.opencode/skills/sk-deep-research/references/state_format.md:79-81`; `.opencode/skills/sk-deep-review/references/state_format.md:114-116`; reducers read existing config only at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-685` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3951:Evidence: `.opencode/skills/sk-deep-review/references/loop_protocol.md:154-155`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:226-227`; full replay in `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-680` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`; Phase 001 requirement at `spec.md:76,184-185`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3959:Evidence: `spec.md:74-77,176-185,197`; deep-research dashboard renderer `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`; deep-review dashboard renderer `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:718-874`; research docs still describe a duration-bearing iteration table at `.opencode/skills/sk-deep-research/references/state_format.md:681-686`, but the actual table headers at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:576-579` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:761-764` omit duration/token fields entirely.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3963:File: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3966:Description: The spec makes claim-verification, journaling, and packet-local auditability core runtime-truth artifacts, and it explicitly says `reduce-state.cjs` should emit ledger and journal rollups. The actual reducer only builds question/finding/ruled-out/blocked-stop/graph-convergence state and dashboard sections; there is no ledger ingestion, no journal summary, and no way to trace REQ-004/REQ-005 from reducer output.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3967:Evidence: `spec.md:73-75,106,168-169`; reducer registry fields at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:407-433`; dashboard output at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3975:Evidence: `.opencode/skills/sk-deep-review/references/convergence.md:44-45,89,420,608-625`; reducer compatibility logic at `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:446-489`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:3983:Coverage assessment: `90%` of the requested focus area reviewed. I read the Phase 001 spec, both `reduce-state.cjs` files, both `runtime-capabilities.cjs` files, and the relevant `state_format.md`, `loop_protocol.md`, and `convergence.md` sections for `sk-deep-research` and `sk-deep-review`.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4004:Evidence: `spec.md:167-168,218`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:93-99`; `.opencode/skills/sk-deep-review/references/loop_protocol.md:530-536`; `.opencode/skills/sk-deep-research/references/state_format.md:79-81`; `.opencode/skills/sk-deep-review/references/state_format.md:114-116`; reducers read existing config only at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-685` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4012:Evidence: `.opencode/skills/sk-deep-review/references/loop_protocol.md:154-155`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:226-227`; full replay in `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-680` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`; Phase 001 requirement at `spec.md:76,184-185`.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4020:Evidence: `spec.md:74-77,176-185,197`; deep-research dashboard renderer `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`; deep-review dashboard renderer `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:718-874`; research docs still describe a duration-bearing iteration table at `.opencode/skills/sk-deep-research/references/state_format.md:681-686`, but the actual table headers at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:576-579` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:761-764` omit duration/token fields entirely.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4024:File: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4027:Description: The spec makes claim-verification, journaling, and packet-local auditability core runtime-truth artifacts, and it explicitly says `reduce-state.cjs` should emit ledger and journal rollups. The actual reducer only builds question/finding/ruled-out/blocked-stop/graph-convergence state and dashboard sections; there is no ledger ingestion, no journal summary, and no way to trace REQ-004/REQ-005 from reducer output.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4028:Evidence: `spec.md:73-75,106,168-169`; reducer registry fields at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:407-433`; dashboard output at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4036:Evidence: `.opencode/skills/sk-deep-review/references/convergence.md:44-45,89,420,608-625`; reducer compatibility logic at `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:446-489`.  
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4004:Evidence: `spec.md:167-168,218`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:93-99`; `.opencode/skills/sk-deep-review/references/loop_protocol.md:530-536`; `.opencode/skills/sk-deep-research/references/state_format.md:79-81`; `.opencode/skills/sk-deep-review/references/state_format.md:114-116`; reducers read existing config only at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-685` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4012:Evidence: `.opencode/skills/sk-deep-review/references/loop_protocol.md:154-155`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:226-227`; full replay in `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:667-680` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:899-912`; Phase 001 requirement at `spec.md:76,184-185`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4020:Evidence: `spec.md:74-77,176-185,197`; deep-research dashboard renderer `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`; deep-review dashboard renderer `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:718-874`; research docs still describe a duration-bearing iteration table at `.opencode/skills/sk-deep-research/references/state_format.md:681-686`, but the actual table headers at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:576-579` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:761-764` omit duration/token fields entirely.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4024:File: `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4027:Description: The spec makes claim-verification, journaling, and packet-local auditability core runtime-truth artifacts, and it explicitly says `reduce-state.cjs` should emit ledger and journal rollups. The actual reducer only builds question/finding/ruled-out/blocked-stop/graph-convergence state and dashboard sections; there is no ledger ingestion, no journal summary, and no way to trace REQ-004/REQ-005 from reducer output.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4028:Evidence: `spec.md:73-75,106,168-169`; reducer registry fields at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:407-433`; dashboard output at `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:545-643`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4036:Evidence: `.opencode/skills/sk-deep-review/references/convergence.md:44-45,89,420,608-625`; reducer compatibility logic at `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:446-489`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md:4044:Coverage assessment: `90%` of the requested focus area reviewed. I read the Phase 001 spec, both `reduce-state.cjs` files, both `runtime-capabilities.cjs` files, and the relevant `state_format.md`, `loop_protocol.md`, and `convergence.md` sections for `sk-deep-research` and `sk-deep-review`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-012.md:8:- The shipped reducer is not that missing reconstruction layer. `reduce-state.cjs` builds its registry solely from `agent-improvement-state.jsonl`, then derives stop status from recommendation tallies, benchmark fail counts, plateau detection, and mirror-drift text; its `main()` reads only the state log, config, and optional drift report before writing the dashboard and registry. That leaves journal-only events such as `blocked_stop`, `trade_off_detected`, or `benchmark_completed` details outside reducer-owned recovery surfaces (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:145-235`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-012.md:9:- Candidate lineage is persisted but not rebuilt or consumed by any shipped recovery/reporting path I inspected. `candidate-lineage.cjs` is a standalone JSON helper that records nodes and can answer lineage queries, but the reducer never reads `candidate-lineage.json`, and the runtime-truth playbook frames lineage creation as something the orchestrator must invoke after each evaluation rather than something a downstream consumer can reconstruct from existing state (`.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:47-109`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md:28-34`).
@@ -1163,7 +1163,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:11:- Stop-reason and session-outcome wording drift before reaching the operator-facing dashboard. The changelog says sessions should report exact `STOP_REASONS` and `SESSION_OUTCOMES`, and SKILL publishes the outcome labels plus `blockedStop` gate-bundle language, but the reducer collapses stop status to booleans and free-text reasons while only counting `Keep-baseline results` in the global summary. The visible dashboard never renders enum-style stop reasons or session outcomes such as `promoted`, `rolledBack`, or `advisoryOnly`. (`.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:15-18`, `.opencode/skills/sk-improve-agent/SKILL.md:261-289`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:440-468`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:14:- This is not universal contract drift. README's `mirror drift as packaging work` guidance survives in the dashboard guardrails, and the dimensional-progress/plateau path is also visibly implemented. (`.opencode/skills/sk-improve-agent/README.md:167-169`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:458-463`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:25:- `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-503`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:34:Stay on D4 for one more pass, but move upstream from the dashboard to `scripts/improvement-journal.cjs`, `.opencode/commands/improve/agent.md`, and the visible improve-agent YAML workflow. The most productive next step is to determine whether exact stop reasons, session outcomes, and gate-result payloads are emitted correctly and then discarded by `reduce-state.cjs`, or whether the workflow never emits the richer contract in the first place. That would close the self-compliance story end-to-end before rotating back to D5 coverage-graph usage in the improvement loop.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:34:Stay on D4 for one more pass, but move upstream from the dashboard to `scripts/improvement-journal.cjs`, `.opencode/commands/deep/start-agent-improvement-loop.md`, and the visible improve-agent YAML workflow. The most productive next step is to determine whether exact stop reasons, session outcomes, and gate-result payloads are emitted correctly and then discarded by `reduce-state.cjs`, or whether the workflow never emits the richer contract in the first place. That would close the self-compliance story end-to-end before rotating back to D5 coverage-graph usage in the improvement loop.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-009.md:7:- A disposable 4-iteration harness with 60 finding bullets and 34 unique finding IDs still collapsed cleanly to 33 open findings plus 1 resolved finding, which matches the reducer's `Map`-based merge design and shows that repeated IDs do not explode the registry at this scale (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:236-295`).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-009.md:8:- Transition ordering remained stable under the scaled packet because the reducer walks sorted iteration files once and appends severity changes in encounter order. In the harness, upgrade/downgrade chains for `F001`, `F010`, and `F020` were preserved as ordered histories rather than being reordered or duplicated (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:239-267`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:629-634`).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-009.md:9:- The `repeatedFindings` surface is stable but coarse at scale: it classifies any open finding with `lastSeen - firstSeen >= 1` as repeated, so long-lived same-severity findings and upgrade/downgrade churn both collapse into the same bucket. That keeps counts deterministic, but it weakens triage value once a packet contains many transition-heavy findings (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:377-390`).
@@ -1258,16 +1258,16 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:3782:.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:618:    `- Resolved: ${registry.resolvedFindingsCount}`,
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:3783:.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:755:    `| Resolved | ${registry.resolvedFindingsCount} |`,
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:3784:.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:975:          resolvedFindingsCount: result.registry.resolvedFindingsCount,
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4062:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:260)  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4072:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:848)  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4082:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:900)  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4116:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:260)  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4126:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:848)  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4136:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:900)  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:7:- `.opencode/commands/improve/agent.md` says the orchestrator MUST emit `candidate_scored`, `legal_stop_evaluated`, and `session_ended` journal events with `gateResults`, `stopReason`, and `sessionOutcome`, but the visible auto and confirm YAML workflows never call `improvement-journal.cjs`. Their loop records only baseline/prompt-score/benchmark ledger data into `agent-improvement-state.jsonl`, runs `reduce-state.cjs`, and makes decisions from registry/dashboard outputs, so the richer journal contract is not emitted on the shipped workflow path. (`.opencode/commands/improve/agent.md:294-309`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:128-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:144-201`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4062:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:260)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4072:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:848)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4082:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:900)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4116:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:260)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4126:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:848)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-013.md:4136:File: [.opencode/skills/sk-deep-review/scripts/reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:900)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:7:- `.opencode/commands/deep/start-agent-improvement-loop.md` says the orchestrator MUST emit `candidate_scored`, `legal_stop_evaluated`, and `session_ended` journal events with `gateResults`, `stopReason`, and `sessionOutcome`, but the visible auto and confirm YAML workflows never call `improvement-journal.cjs`. Their loop records only baseline/prompt-score/benchmark ledger data into `agent-improvement-state.jsonl`, runs `reduce-state.cjs`, and makes decisions from registry/dashboard outputs, so the richer journal contract is not emitted on the shipped workflow path. (`.opencode/commands/deep/start-agent-improvement-loop.md:294-309`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:128-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:144-201`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:10:- `reduce-state.cjs` is not the first place where the rich stop/outcome contract disappears, because it never opens `improvement-journal.jsonl` at all. Its main path reads only `agent-improvement-state.jsonl`, config, and mirror-drift report, then writes `experiment-registry.json` and `agent-improvement-dashboard.md`; any exact stop/session journal events would remain out-of-band from the reducer-owned operator surfaces. (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:42-54`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:12:- The visible stop/synthesis path collapses termination to reducer-generated stop-status booleans and free-text reasons rather than exact journal enums. Auto mode stops when `experiment-registry.json` reports `stopStatus.shouldStop`, confirm mode presents dashboard-driven approval choices, and the reducer renders only `Should stop`, `Drift ambiguity`, and concatenated reasons; there is no operator-facing consumption of `sessionOutcome` or enum-valued `stopReason` on the shipped path. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:152-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:176-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-475`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:15:- This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:12:- The visible stop/synthesis path collapses termination to reducer-generated stop-status booleans and free-text reasons rather than exact journal enums. Auto mode stops when `experiment-registry.json` reports `stopStatus.shouldStop`, confirm mode presents dashboard-driven approval choices, and the reducer renders only `Should stop`, `Drift ambiguity`, and concatenated reasons; there is no operator-facing consumption of `sessionOutcome` or enum-valued `stopReason` on the shipped path. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:152-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:176-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-475`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:15:- This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:28:- `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:42-54`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:29:- `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-503`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:3356:| `.opencode/commands/speckit/deep-research.md` | Modify | Document offline optimization as a governed maintenance surface and future prompt-pack consumer, not a live runtime mode. |
@@ -1285,7 +1285,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:3939:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:3:{"type":"iteration","mode":"review","run":2,"status":"complete","focus":"security session scoping on coverage graph runtime","dimensions":["security","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts",".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/loop_protocol.md"],"findingsCount":5,"findingsSummary":{"P0":0,"P1":3,"P2":2},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.4,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:00:52Z","durationMs":520000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:3941:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:5:{"type":"iteration","mode":"review","run":4,"status":"complete","focus":"confirm/reference contract drift on claim adjudication and convergence docs","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-review/references/convergence.md"],"findingsCount":9,"findingsSummary":{"P0":0,"P1":6,"P2":3},"findingsNew":{"P0":0,"P1":2,"P2":1},"newFindingsRatio":0.33,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:09:16Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:3942:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:6:{"type":"iteration","mode":"review","run":5,"status":"complete","focus":"lifecycle branch persistence across resume/restart/fork mirrors","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-research/references/state_format.md",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-research/references/quick_reference.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs"],"findingsCount":11,"findingsSummary":{"P0":0,"P1":7,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.18,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:13:53Z","durationMs":300000}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:3943:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/commands/improve/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:3943:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/commands/deep/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:3944:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:8:{"type":"iteration","mode":"review","run":7,"status":"complete","focus":"traceability closure on lifecycle persistence and claim-adjudication gating","dimensions":["traceability","correctness"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:20:53Z","durationMs":510000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:3946:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:10:{"type":"iteration","mode":"review","run":9,"status":"complete","focus":"release-readiness traceability on bundle summaries and reducer risk surfaces","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-006.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-008.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/changelog/13--sk-deep-review/v1.3.0.0.md",".opencode/changelog/15--sk-improve-agent/v1.2.0.0.md"],"findingsCount":15,"findingsSummary":{"P0":0,"P1":9,"P2":6},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.13,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:28:03Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:3966:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md:2885:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:47:| F015 | P2 | traceability | Reducer-owned `ACTIVE RISKS` summary hides non-P0 release-readiness debt | `I009` (`iteration-009.md:22`) | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:832`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:100` | 9 | 9 | active |
@@ -1297,7 +1297,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4044:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:3:{"type":"iteration","mode":"review","run":2,"status":"complete","focus":"security session scoping on coverage graph runtime","dimensions":["security","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts",".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/loop_protocol.md"],"findingsCount":5,"findingsSummary":{"P0":0,"P1":3,"P2":2},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.4,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:00:52Z","durationMs":520000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4046:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:5:{"type":"iteration","mode":"review","run":4,"status":"complete","focus":"confirm/reference contract drift on claim adjudication and convergence docs","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-review/references/convergence.md"],"findingsCount":9,"findingsSummary":{"P0":0,"P1":6,"P2":3},"findingsNew":{"P0":0,"P1":2,"P2":1},"newFindingsRatio":0.33,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:09:16Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4047:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:6:{"type":"iteration","mode":"review","run":5,"status":"complete","focus":"lifecycle branch persistence across resume/restart/fork mirrors","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-research/references/state_format.md",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-research/references/quick_reference.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs"],"findingsCount":11,"findingsSummary":{"P0":0,"P1":7,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.18,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:13:53Z","durationMs":300000}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4048:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/commands/improve/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4048:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/commands/deep/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4049:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:8:{"type":"iteration","mode":"review","run":7,"status":"complete","focus":"traceability closure on lifecycle persistence and claim-adjudication gating","dimensions":["traceability","correctness"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:20:53Z","durationMs":510000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4051:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:10:{"type":"iteration","mode":"review","run":9,"status":"complete","focus":"release-readiness traceability on bundle summaries and reducer risk surfaces","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-006.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-008.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/changelog/13--sk-deep-review/v1.3.0.0.md",".opencode/changelog/15--sk-improve-agent/v1.2.0.0.md"],"findingsCount":15,"findingsSummary":{"P0":0,"P1":9,"P2":6},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.13,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:28:03Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4084:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:47:| F015 | P2 | traceability | Reducer-owned `ACTIVE RISKS` summary hides non-P0 release-readiness debt | `I009` (`iteration-009.md:22`) | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:832`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:100` | 9 | 9 | active |
@@ -1526,7 +1526,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4676:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2525:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/scratch/codex-gpt54-deep-research.md:914:.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml:265:        content: '{"sessionId":"{ISO_8601_NOW}","generation":1,"lineageMode":"new","openFindings":[],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false},"findingsBySeverity":{"P0":0,"P1":0,"P2":0},"openFindingsCount":0,"resolvedFindingsCount":0,"convergenceScore":0.0}'
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4677:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2590:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:5:{"type":"iteration","mode":"review","run":4,"status":"complete","focus":"confirm/reference contract drift on claim adjudication and convergence docs","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-review/references/convergence.md"],"findingsCount":9,"findingsSummary":{"P0":0,"P1":6,"P2":3},"findingsNew":{"P0":0,"P1":2,"P2":1},"newFindingsRatio":0.33,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:09:16Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4678:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2591:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:6:{"type":"iteration","mode":"review","run":5,"status":"complete","focus":"lifecycle branch persistence across resume/restart/fork mirrors","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-research/references/state_format.md",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-research/references/quick_reference.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs"],"findingsCount":11,"findingsSummary":{"P0":0,"P1":7,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.18,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:13:53Z","durationMs":300000}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4679:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2592:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/commands/improve/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4679:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2592:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/commands/deep/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4680:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2593:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:8:{"type":"iteration","mode":"review","run":7,"status":"complete","focus":"traceability closure on lifecycle persistence and claim-adjudication gating","dimensions":["traceability","correctness"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:20:53Z","durationMs":510000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4682:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2595:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:10:{"type":"iteration","mode":"review","run":9,"status":"complete","focus":"release-readiness traceability on bundle summaries and reducer risk surfaces","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-006.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-008.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/changelog/13--sk-deep-review/v1.3.0.0.md",".opencode/changelog/15--sk-improve-agent/v1.2.0.0.md"],"findingsCount":15,"findingsSummary":{"P0":0,"P1":9,"P2":6},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.13,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:28:03Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-007.md:4684:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2614:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:11:session id: 019d7748-7b0e-7312-8214-ecb545362f71
@@ -1695,7 +1695,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:143:- This is not a blanket "any truncation breaks lifecycle" failure. If a truncated iteration file still includes a parseable finding bullet, `parseFindingLine()` and `buildFindingRegistry()` can still record the severity transition and mark the finding as repeated (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:116-143`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:239-267`). (iteration 8)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:154:- This is not merely reducer documentation drift. The reducer’s own file inputs and registry builder omit the journal, lineage graph, and mutation-coverage artifacts entirely, so the current recovery gap is structural, not just under-explained (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:145-235`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`). (iteration 12)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:169:- This is not universal contract drift. README's `mirror drift as packaging work` guidance survives in the dashboard guardrails, and the dimensional-progress/plateau path is also visibly implemented. (`.opencode/skills/sk-improve-agent/README.md:167-169`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:458-463`) (iteration 18)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:171:- This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`) (iteration 19)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:171:- This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`) (iteration 19)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:776:7. Run `scripts/reduce-state.cjs` to refresh the dashboard and experiment registry.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:812:636:- deep-research extension runbook: align `maxIterations` in config/state/strategy first, keep lineage/execution mode unchanged, run reducer after each iteration (`node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs {spec_folder}`), then refresh synthesis/registry/dashboard artifacts [Task 2]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:3153:.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:831:  const journalPath = path.join(runtimeRoot, 'improvement-journal.jsonl');
@@ -1703,7 +1703,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:3155:.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:833:  const mutationCoveragePath = path.join(runtimeRoot, 'mutation-coverage.json');
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:3315:.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md:9:Validates ADR-002 Option A replay-consumer behavior: `reduce-state.cjs` reads `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json`, writes their summaries into the registry, and degrades gracefully when any one artifact is missing.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:3321:.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md:12:When: the operator runs `trade-off-detector.cjs`, `benchmark-stability.cjs`, and `reduce-state.cjs` against that low-sample runtime.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:4264:   289	If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `improve_improve-agent_{auto,confirm}.yaml`, reducer ancestry handling in `sk-improve-agent/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:4264:   289	If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `deep_start-agent-improvement-loop_{auto,confirm}.yaml`, reducer ancestry handling in `sk-improve-agent/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:4334:   359	The reducer is the consumer for replay artifacts on refresh. Every `scripts/reduce-state.cjs` pass now attempts to read:
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:4344:   369	ADR-002 is implemented in the reducer via replay consumers instead of a separate orchestrator-only synthesis step. During each refresh pass, `scripts/reduce-state.cjs` now reads the following artifacts when present:
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:4368:/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs | sed -n '760,980p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -1756,15 +1756,15 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:5322:.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:756:| insufficientSampleIterations | ${sampleQuality.insufficientSampleIterations} |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:5323:.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:757:| insufficientDataIterations | ${sampleQuality.insufficientDataIterations} |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:5342:/bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs | sed -n '340,470p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6135:File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6139:Evidence: `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6145:File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6149:Evidence: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:270-275`.  
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6135:File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6139:Evidence: `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6145:File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6149:Evidence: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:270-275`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6181:1. Inspect the remaining Phase 005 runtime path around `reduce-state.cjs`, `score-candidate.cjs`, and `promote-candidate.cjs` to verify whether trade-off and stability verdicts ever block promotion.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6201:File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6205:Evidence: `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6211:File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6215:Evidence: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:270-275`.  
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6201:File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6205:Evidence: `.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:59-63` writes `candidateId` / `parentCandidateId`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:228-260` reads `id` / `parentId`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6211:File: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6215:Evidence: `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:60-67`, `86-92`, `127-135`, `198-204`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:270-275`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-009.md:6247:1. Inspect the remaining Phase 005 runtime path around `reduce-state.cjs`, `score-candidate.cjs`, and `promote-candidate.cjs` to verify whether trade-off and stability verdicts ever block promotion.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:24:      "text": "D2: Does the new `scripts/reduce-state.cjs` correctly handle partial-failure iterations, severity transitions, and finding deduplication at scale (50+ findings)?",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:104:      "text": "Dashboard stuck reporting does not match the loop contract: the protocol says stuck count increments whenever `newInfoRatio < config.convergenceThreshold`, but the dashboard only counts `status == \"stuck\"` or `newInfoRatio === 0`, so low-but-nonzero no-progress passes are invisible in the synchronized packet view (.opencode/skills/sk-deep-research/references/loop_protocol.md:190-198; .opencode/skills/sk-deep-research/scripts/reduce-state.cjs:438-444).",
@@ -2071,7 +2071,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1699:        "`.opencode/agents/deep-review.md:567-572`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1700:        "`.opencode/commands/speckit/deep-research.md:201-203`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1701:        "`.opencode/commands/speckit/deep-review.md:237-239`",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1779:      "text": "The published `sk-improve-agent` contract and visible auto workflow keep that mutation coverage graph local to the improvement runtime rather than bridging it into the shared coverage-graph MCP. The skill describes `scripts/mutation-coverage.cjs` as the reader/writer for the coverage graph and says it uses `loop_type: \"improvement\"` isolation, while the auto workflow only appends the state ledger and runs `scripts/reduce-state.cjs`; I found no visible `deep_loop_graph_upsert` step on this path (`.opencode/skills/sk-improve-agent/SKILL.md:298-300`, `.opencode/skills/sk-improve-agent/SKILL.md:389-390`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-155`).",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1779:      "text": "The published `sk-improve-agent` contract and visible auto workflow keep that mutation coverage graph local to the improvement runtime rather than bridging it into the shared coverage-graph MCP. The skill describes `scripts/mutation-coverage.cjs` as the reader/writer for the coverage graph and says it uses `loop_type: \"improvement\"` isolation, while the auto workflow only appends the state ledger and runs `scripts/reduce-state.cjs`; I found no visible `deep_loop_graph_upsert` step on this path (`.opencode/skills/sk-improve-agent/SKILL.md:298-300`, `.opencode/skills/sk-improve-agent/SKILL.md:389-390`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-155`).",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1853:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:173-186`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1854:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-289`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1855:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:371-438`",
@@ -2099,7 +2099,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2005:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-503`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2011:      "text": "Trade-off annotations do not survive the visible dashboard path. `improvement_strategy.md` reserves a `Trade-Off Detection` table plus hard/soft resolution guidance, but `renderProfileSection()` only outputs repeated failure modes plus dimensional progress and `renderDashboard()` adds only summary, guardrails, stop status, and recommendation. No trade-off table or action annotation is rendered in the shipped dashboard output. (`.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:125-136`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:394-475`)",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2019:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-503`",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2025:      "text": "`.opencode/commands/improve/agent.md` says the orchestrator MUST emit `candidate_scored`, `legal_stop_evaluated`, and `session_ended` journal events with `gateResults`, `stopReason`, and `sessionOutcome`, but the visible auto and confirm YAML workflows never call `improvement-journal.cjs`. Their loop records only baseline/prompt-score/benchmark ledger data into `agent-improvement-state.jsonl`, runs `reduce-state.cjs`, and makes decisions from registry/dashboard outputs, so the richer journal contract is not emitted on the shipped workflow path. (`.opencode/commands/improve/agent.md:294-309`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:128-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:144-201`)",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2025:      "text": "`.opencode/commands/deep/start-agent-improvement-loop.md` says the orchestrator MUST emit `candidate_scored`, `legal_stop_evaluated`, and `session_ended` journal events with `gateResults`, `stopReason`, and `sessionOutcome`, but the visible auto and confirm YAML workflows never call `improvement-journal.cjs`. Their loop records only baseline/prompt-score/benchmark ledger data into `agent-improvement-state.jsonl`, runs `reduce-state.cjs`, and makes decisions from registry/dashboard outputs, so the richer journal contract is not emitted on the shipped workflow path. (`.opencode/commands/deep/start-agent-improvement-loop.md:294-309`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:128-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:144-201`)",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2035:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:42-54`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2036:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-503`"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2041:      "text": "`reduce-state.cjs` is not the first place where the rich stop/outcome contract disappears, because it never opens `improvement-journal.jsonl` at all. Its main path reads only `agent-improvement-state.jsonl`, config, and mirror-drift report, then writes `experiment-registry.json` and `agent-improvement-dashboard.md`; any exact stop/session journal events would remain out-of-band from the reducer-owned operator surfaces. (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:42-54`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)",
@@ -2111,12 +2111,12 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2084:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-503`"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2099:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:42-54`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2100:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-503`"
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2105:      "text": "The visible stop/synthesis path collapses termination to reducer-generated stop-status booleans and free-text reasons rather than exact journal enums. Auto mode stops when `experiment-registry.json` reports `stopStatus.shouldStop`, confirm mode presents dashboard-driven approval choices, and the reducer renders only `Should stop`, `Drift ambiguity`, and concatenated reasons; there is no operator-facing consumption of `sessionOutcome` or enum-valued `stopReason` on the shipped path. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:152-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:176-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-475`)",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2105:      "text": "The visible stop/synthesis path collapses termination to reducer-generated stop-status booleans and free-text reasons rather than exact journal enums. Auto mode stops when `experiment-registry.json` reports `stopStatus.shouldStop`, confirm mode presents dashboard-driven approval choices, and the reducer renders only `Should stop`, `Drift ambiguity`, and concatenated reasons; there is no operator-facing consumption of `sessionOutcome` or enum-valued `stopReason` on the shipped path. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:152-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:176-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-475`)",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2115:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:42-54`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2116:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-503`"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2134:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2135:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`"
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2140:      "text": "I found no visible contradiction-oriented graph gate in the operator path. The published improve-agent workflow enumerates scan, propose, score, benchmark, append, reduce, and stop steps, and the reducer’s stop evaluator uses no contradiction input or graph query surface, so contradiction handling remains absent from the visible coverage-graph loop rather than participating in stop blocking. (`.opencode/commands/improve/agent.md:272-286`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:137-158`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-325`)",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2140:      "text": "I found no visible contradiction-oriented graph gate in the operator path. The published improve-agent workflow enumerates scan, propose, score, benchmark, append, reduce, and stop steps, and the reducer’s stop evaluator uses no contradiction input or graph query surface, so contradiction handling remains absent from the visible coverage-graph loop rather than participating in stop blocking. (`.opencode/commands/deep/start-agent-improvement-loop.md:272-286`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:137-158`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-325`)",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2153:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2154:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2172:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`",
@@ -2124,7 +2124,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2178:      "text": "The runtime config enables a coverage-graph file and the strategy template reserves reducer-populated `Mutation Coverage` and `Convergence Eligibility` sections, but `reduce-state.cjs` never opens `mutation-coverage.json`. Its main path reads only `agent-improvement-state.jsonl`, config, and mirror-drift report before writing `experiment-registry.json` and `agent-improvement-dashboard.md`, so graph data does not enter the operator-visible dashboard or recommendation surfaces. (`.opencode/skills/sk-improve-agent/assets/improvement_config.json:92-99`, `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:114-123`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2191:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2192:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`"
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2197:      "text": "Visible stop gating is reducer-driven rather than graph-driven. `checkConvergenceEligibility()` would reject convergence for insufficient or unstable trajectory data, and the strategy template expects a verdict derived from trajectory plus exhaustion, but the actual stop path uses only trailing ties, infra failures, weak benchmark runs, drift ambiguity, and dimension plateau from the JSONL ledger. Coverage-graph convergence eligibility never feeds `step_stop_check`. (`.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:229-272`, `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:116-123`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:152-158`)",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2197:      "text": "Visible stop gating is reducer-driven rather than graph-driven. `checkConvergenceEligibility()` would reject convergence for insufficient or unstable trajectory data, and the strategy template expects a verdict derived from trajectory plus exhaustion, but the actual stop path uses only trailing ties, infra failures, weak benchmark runs, drift ambiguity, and dimension plateau from the JSONL ledger. Coverage-graph convergence eligibility never feeds `step_stop_check`. (`.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:229-272`, `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:116-123`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:152-158`)",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2210:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2211:        "`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2218:      "text": ".opencode/agents/deep-research.md:159-166",
@@ -2138,7 +2138,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2473:      "text": "This is not a blanket \"any truncation breaks lifecycle\" failure. If a truncated iteration file still includes a parseable finding bullet, `parseFindingLine()` and `buildFindingRegistry()` can still record the severity transition and mark the finding as repeated (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:116-143`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:239-267`).",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2528:      "text": "This is not merely reducer documentation drift. The reducer’s own file inputs and registry builder omit the journal, lineage graph, and mutation-coverage artifacts entirely, so the current recovery gap is structural, not just under-explained (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:145-235`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`).",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2603:      "text": "This is not universal contract drift. README's `mirror drift as packaging work` guidance survives in the dashboard guardrails, and the dimensional-progress/plateau path is also visibly implemented. (`.opencode/skills/sk-improve-agent/README.md:167-169`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:458-463`)",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2613:      "text": "This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2613:      "text": "This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-config.json:48:  "reducerScriptPath": ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:2:{"type":"iteration","mode":"research","run":1,"status":"complete","focus":"D1 reducer rollup and resume drift","findingsCount":5,"newInfoRatio":1.0,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-research/references/state_format.md",".opencode/skills/sk-deep-research/SKILL.md",".opencode/agents/deep-research.md",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml"],"answeredQuestions":["D1: What undocumented edge cases, redundant reducer passes, journal-rollup gaps, or resume-flow drifts exist in the sk-deep-research v1.5.0.0 loop?"],"timestamp":"2026-04-11T08:10:00Z","durationMs":420000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-reducer-event-drop","label":"Reducer drops non-iteration JSONL events"},{"type":"node","id":"finding-stuck-dashboard-drift","label":"Dashboard stuck count under-reports low-ratio stalls"},{"type":"node","id":"finding-rollup-schema-gap","label":"Reducer ignores noveltyJustification, structured ruledOut, sourceStrength, and graphEvents"},{"type":"node","id":"finding-resume-ideas-gap","label":"Resume uses research-ideas side channel that reducer never surfaces"},{"type":"node","id":"finding-ownership-doc-drift","label":"Skill data flow still tells agent to update strategy.md directly"},{"type":"edge","relation":"supports","source":"finding-reducer-event-drop","target":"finding-resume-ideas-gap"},{"type":"edge","relation":"extends","source":"finding-reducer-event-drop","target":"finding-rollup-schema-gap"},{"type":"edge","relation":"supports","source":"finding-ownership-doc-drift","target":"finding-rollup-schema-gap"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:3:{"type":"iteration","mode":"research","run":2,"status":"complete","focus":"D5 Coverage Graph Read-Path Audit","findingsCount":4,"newInfoRatio":0.75,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-001.md",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs"],"answeredQuestions":["D5: Does any loop phase (init / iteration / convergence / synthesis) actively READ from the coverage graph (`coverage-graph-query.ts`, `coverage-graph-convergence.cjs`) to inform decisions, or only WRITE to it?"],"timestamp":"2026-04-11T08:12:39Z","durationMs":587000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-shared-handler-uses-graph-state","label":"Shared convergence handler reads persisted graph state for stop decisions"},{"type":"node","id":"finding-workflows-only-emit-graphevents","label":"Active workflow surfaces emit graphEvents but do not invoke deep_loop_graph tools"},{"type":"node","id":"finding-reducer-does-not-surface-graph","label":"Deep-research reducer does not promote graphEvents into packet state"},{"type":"node","id":"finding-contradictions-depend-on-persisted-namespace","label":"Contradiction blocking depends on persisted graph namespace rather than raw JSONL graphEvents"},{"type":"edge","relation":"supports","source":"finding-shared-handler-uses-graph-state","target":"finding-workflows-only-emit-graphevents"},{"type":"edge","relation":"extends","source":"finding-workflows-only-emit-graphevents","target":"finding-reducer-does-not-surface-graph"},{"type":"edge","relation":"supports","source":"finding-contradictions-depend-on-persisted-namespace","target":"finding-shared-handler-uses-graph-state"}]}
@@ -2150,19 +2150,19 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:9:{"type":"iteration","mode":"research","run":8,"status":"complete","focus":"D2 partial-failure reducer audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-007.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/convergence.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"],"answeredQuestions":[],"timestamp":"2026-04-11T08:33:26Z","durationMs":290000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-jsonl-malformed-lines-skipped","label":"Malformed JSONL lines are silently skipped by the review reducer"},{"type":"node","id":"finding-markdown-authoritative-lifecycle","label":"Finding lifecycle state is derived from parseable iteration markdown rather than iteration summaries"},{"type":"node","id":"finding-dashboard-registry-divergence","label":"Partial iteration markdown can leave dashboard progress ahead of registry lifecycle state"},{"type":"node","id":"finding-blocked-stop-evidence-stranded","label":"Blocked-stop gate evidence remains stranded in JSONL instead of reducer-owned surfaces"},{"type":"node","id":"finding-idempotent-but-lossy","label":"Reducer idempotency is deterministic but omission-based under partial failures"},{"type":"edge","relation":"supports","source":"finding-jsonl-malformed-lines-skipped","target":"finding-idempotent-but-lossy"},{"type":"edge","relation":"supports","source":"finding-markdown-authoritative-lifecycle","target":"finding-dashboard-registry-divergence"},{"type":"edge","relation":"extends","source":"finding-blocked-stop-evidence-stranded","target":"finding-dashboard-registry-divergence"},{"type":"edge","relation":"supports","source":"finding-dashboard-registry-divergence","target":"finding-idempotent-but-lossy"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:10:{"type":"iteration","mode":"research","run":9,"status":"complete","focus":"D2 scale reducer stress audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-008.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/convergence.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"],"answeredQuestions":["D2: Does the new `scripts/reduce-state.cjs` correctly handle partial-failure iterations, severity transitions, and finding deduplication at scale (50+ findings)?"],"timestamp":"2026-04-11T08:38:09Z","durationMs":360000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-review-dedup-stable-at-scale","label":"Map-by-findingId dedup stays stable across a 60-bullet synthetic packet"},{"type":"node","id":"finding-review-transitions-ordered-at-scale","label":"Severity transition histories remain ordered and complete under heavy churn"},{"type":"node","id":"finding-review-repeated-signal-coarse","label":"Repeated finding detection stays deterministic but collapses persistence and severity churn into one bucket"},{"type":"node","id":"finding-review-blockedstop-omission-scales","label":"Blocked-stop gate summaries remain absent from reducer-owned surfaces even when every cycle carries legalStop payloads"},{"type":"node","id":"finding-review-scale-risk-is-observability","label":"The scaled reducer risk is recovery-summary omission rather than merge instability"},{"type":"edge","relation":"supports","source":"finding-review-dedup-stable-at-scale","target":"finding-review-transitions-ordered-at-scale"},{"type":"edge","relation":"extends","source":"finding-review-transitions-ordered-at-scale","target":"finding-review-repeated-signal-coarse"},{"type":"edge","relation":"supports","source":"finding-review-blockedstop-omission-scales","target":"finding-review-scale-risk-is-observability"},{"type":"edge","relation":"extends","source":"finding-review-dedup-stable-at-scale","target":"finding-review-scale-risk-is-observability"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:11:{"type":"iteration","mode":"research","run":10,"status":"complete","focus":"D2 dimension-coverage gate effectiveness audit","findingsCount":5,"newInfoRatio":0.4,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-009.md",".opencode/skills/sk-deep-review/references/convergence.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl"],"answeredQuestions":["D2: How effective is the legal-stop gate bundle in sk-deep-review v1.2.0.0 under real review sessions, and where do dimension coverage gates still allow drift?"],"timestamp":"2026-04-11T08:40:21Z","durationMs":145000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-review-contract-blockedstop-actionable","label":"Deep-review contract defines blockedStop with blockedBy gateResults replay inputs and gate-specific recovery"},{"type":"node","id":"finding-review-fixture-dimension-skew","label":"Dimension-skewed review fixture blocks stop on dimensionCoverage and p0Resolution with actionable recovery"},{"type":"node","id":"finding-review-auto-yaml-no-blockedstop","label":"Active deep-review auto workflow downgrades failed stop votes to CONTINUE without persisting blocked_stop payloads"},{"type":"node","id":"finding-review-dashboard-flattens-blockers","label":"Reducer dashboard flattens blockedBy and recoveryStrategy into generic iteration progress and uncovered-dimension focus"},{"type":"node","id":"finding-review-registry-omits-legalstop","label":"Reducer-owned registry and documented state shape omit legalStop fields needed for recovery handoff"},{"type":"edge","relation":"supports","source":"finding-review-fixture-dimension-skew","target":"finding-review-contract-blockedstop-actionable"},{"type":"edge","relation":"contradicts","source":"finding-review-auto-yaml-no-blockedstop","target":"finding-review-contract-blockedstop-actionable"},{"type":"edge","relation":"extends","source":"finding-review-dashboard-flattens-blockers","target":"finding-review-auto-yaml-no-blockedstop"},{"type":"edge","relation":"supports","source":"finding-review-registry-omits-legalstop","target":"finding-review-dashboard-flattens-blockers"}]}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:13:{"type":"iteration","mode":"research","run":12,"status":"complete","focus":"D3 recovery consumer reconstruction audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-011.md",".opencode/commands/improve/agent.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs",".opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs",".opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md",".opencode/changelog/15--sk-improve-agent/v1.1.0.0.md"],"answeredQuestions":[],"timestamp":"2026-04-11T08:48:04Z","durationMs":210000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d3-resume-contract-overstates-replay","label":"Resume contract promises replay beyond the helper surface actually provided"},{"type":"node","id":"d3-reducer-state-log-only","label":"Reducer reads only state log config and drift report"},{"type":"node","id":"d3-lineage-not-reconstructed","label":"Candidate lineage is persisted as a standalone graph but not rebuilt downstream"},{"type":"node","id":"d3-tradeoff-not-surfaced","label":"Trade-off decisions are promised in dashboard surfaces but not ingested by reducer"},{"type":"node","id":"d3-stability-not-surfaced","label":"Benchmark stability warnings are computed in module space but not replayed into recovery outputs"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-lineage-not-reconstructed"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-tradeoff-not-surfaced"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-stability-not-surfaced"},{"type":"edge","relation":"extends","source":"d3-resume-contract-overstates-replay","target":"d3-reducer-state-log-only"}]}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:13:{"type":"iteration","mode":"research","run":12,"status":"complete","focus":"D3 recovery consumer reconstruction audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-011.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs",".opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs",".opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md",".opencode/changelog/15--sk-improve-agent/v1.1.0.0.md"],"answeredQuestions":[],"timestamp":"2026-04-11T08:48:04Z","durationMs":210000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d3-resume-contract-overstates-replay","label":"Resume contract promises replay beyond the helper surface actually provided"},{"type":"node","id":"d3-reducer-state-log-only","label":"Reducer reads only state log config and drift report"},{"type":"node","id":"d3-lineage-not-reconstructed","label":"Candidate lineage is persisted as a standalone graph but not rebuilt downstream"},{"type":"node","id":"d3-tradeoff-not-surfaced","label":"Trade-off decisions are promised in dashboard surfaces but not ingested by reducer"},{"type":"node","id":"d3-stability-not-surfaced","label":"Benchmark stability warnings are computed in module space but not replayed into recovery outputs"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-lineage-not-reconstructed"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-tradeoff-not-surfaced"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-stability-not-surfaced"},{"type":"edge","relation":"extends","source":"d3-resume-contract-overstates-replay","target":"d3-reducer-state-log-only"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:14:{"type":"iteration","mode":"research","run":13,"status":"complete","focus":"D4 reducer anchor boundary audit","findingsCount":6,"newInfoRatio":0.8,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-012.md",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/references/quick_reference.md",".opencode/skills/sk-improve-agent/SKILL.md"],"answeredQuestions":["D4: Do the reducers ever write outside their declared machine-owned anchors, violating the contract?"],"timestamp":"2026-04-11T08:51:06Z","durationMs":180000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d4-research-anchor-scoped","label":"sk-deep-research rewrites only declared strategy anchors"},{"type":"node","id":"d4-review-surface-bounded","label":"sk-deep-review writes only strategy registry and dashboard surfaces"},{"type":"node","id":"d4-review-contract-underimplemented","label":"sk-deep-review omits several declared per-iteration strategy updates"},{"type":"node","id":"d4-review-fail-open","label":"sk-deep-review silently preserves missing anchor sections instead of halting"},{"type":"node","id":"d4-improve-machine-owned","label":"sk-improve-agent reducer writes only fully generated dashboard and registry files"},{"type":"edge","relation":"supports","source":"d4-research-anchor-scoped","target":"d4-review-surface-bounded"},{"type":"edge","relation":"extends","source":"d4-review-contract-underimplemented","target":"d4-review-surface-bounded"},{"type":"edge","relation":"supports","source":"d4-review-fail-open","target":"d4-review-contract-underimplemented"},{"type":"edge","relation":"supports","source":"d4-improve-machine-owned","target":"d4-review-surface-bounded"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:15:{"type":"iteration","mode":"research","run":14,"status":"complete","focus":"D5 convergence weight vs live callers","findingsCount":6,"newInfoRatio":0.8,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-013.md",".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/references/convergence.md",".opencode/skills/sk-deep-review/references/convergence.md",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"],"answeredQuestions":["D5: Does the coverage graph's contribution to the 3-signal convergence math exceed its weight, or is it merely nominal?"],"timestamp":"2026-04-11T08:54:01Z","durationMs":175000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d5-graph-weight-capped","label":"Graph helper caps graph influence at 40 percent of blendedScore"},{"type":"node","id":"d5-separate-graph-blockers","label":"Graph blocker gates remain separate from the weighted blend"},{"type":"node","id":"d5-research-composite-passthrough","label":"Research reducer reads compositeStop or newInfoRatio instead of graph outputs"},{"type":"node","id":"d5-review-composite-passthrough","label":"Review reducer reads compositeStop or newFindingsRatio instead of graph outputs"},{"type":"node","id":"d5-doc-runtime-gap","label":"Graph-aware reducer docs overstate what the shipped reducers currently execute"},{"type":"node","id":"d5-split-graph-regimes","label":"CJS and MCP graph convergence implementations use different sourceDiversity scales and thresholds"},{"type":"edge","relation":"supports","source":"d5-graph-weight-capped","target":"d5-research-composite-passthrough"},{"type":"edge","relation":"supports","source":"d5-separate-graph-blockers","target":"d5-review-composite-passthrough"},{"type":"edge","relation":"extends","source":"d5-doc-runtime-gap","target":"d5-research-composite-passthrough"},{"type":"edge","relation":"supports","source":"d5-split-graph-regimes","target":"d5-doc-runtime-gap"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:16:{"type":"iteration","mode":"research","run":15,"status":"complete","focus":"D5 structural tool routing gap","findingsCount":6,"newInfoRatio":0.8,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-014.md",".opencode/agents/deep-research.md",".opencode/agents/deep-review.md",".opencode/commands/speckit/deep-research.md",".opencode/commands/speckit/deep-review.md",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/skills/sk-deep-research/SKILL.md",".opencode/skills/sk-deep-review/SKILL.md"],"answeredQuestions":["D5: Are there missing MCP tool calls (e.g., `code_graph_query` for semantic neighbors) that the loops should be making but aren't?"],"timestamp":"2026-04-11T08:57:53Z","durationMs":240000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d5-agent-docs-only-code-graph","label":"Code Graph routing appears only in deep-research and deep-review agent docs"},{"type":"node","id":"d5-command-docs-cocoindex-only","label":"Command docs bootstrap CocoIndex but not structural graph tools"},{"type":"node","id":"d5-yaml-tool-budget-no-graph-tools","label":"Auto YAML wrappers provision CocoIndex only and omit code_graph_query code_graph_context and deep_loop_graph_convergence"},{"type":"node","id":"d5-yaml-reducer-direct-path","label":"Visible iteration path goes from graphEvents emission straight to reduce-state.cjs"},{"type":"node","id":"d5-skill-contracts-omit-graph-tools","label":"Skill-level allowed-tools and integration sections omit structural graph tools"},{"type":"edge","relation":"supports","source":"d5-agent-docs-only-code-graph","target":"d5-yaml-tool-budget-no-graph-tools"},{"type":"edge","relation":"supports","source":"d5-command-docs-cocoindex-only","target":"d5-yaml-tool-budget-no-graph-tools"},{"type":"edge","relation":"supports","source":"d5-yaml-tool-budget-no-graph-tools","target":"d5-yaml-reducer-direct-path"},{"type":"edge","relation":"extends","source":"d5-skill-contracts-omit-graph-tools","target":"d5-agent-docs-only-code-graph"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:18:{"type":"iteration","mode":"research","run":17,"status":"complete","focus":"D3 small-sample trade-off and stability gating","findingsCount":5,"newInfoRatio":0.8,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-012.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-016.md",".opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs",".opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts",".opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts",".opencode/skills/sk-improve-agent/assets/improvement_config.json",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/README.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md"],"answeredQuestions":["D3: Does the trade-off detector produce false positives on small benchmark samples, and does benchmark-stability gating compensate?"],"timestamp":"2026-04-11T09:04:23Z","durationMs":180000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d3-small-sample-tradeoff-two-point-trigger","label":"Trade-off detector fires after two trajectory points and ignores the documented three-point minimum"},{"type":"node","id":"d3-small-sample-stability-no-replay-gate","label":"Benchmark stability helper marks one-sample and low-sample inputs as stable because replayCount is not enforced"},{"type":"node","id":"d3-small-sample-tests-lock-in-behavior","label":"Unit tests accept two-point trade-off detection and two-replay stability as valid"},{"type":"node","id":"d3-small-sample-reducer-weak-benchmark-collapse","label":"Reducer collapses benchmark instability and real regression into weakBenchmarkRuns counters"},{"type":"node","id":"d3-small-sample-dashboard-no-distinction","label":"Dashboard path exposes no trade-off table or stability-specific labeling despite the published contract"},{"type":"edge","relation":"supports","source":"d3-small-sample-tradeoff-two-point-trigger","target":"d3-small-sample-stability-no-replay-gate"},{"type":"edge","relation":"supports","source":"d3-small-sample-stability-no-replay-gate","target":"d3-small-sample-reducer-weak-benchmark-collapse"},{"type":"edge","relation":"extends","source":"d3-small-sample-tests-lock-in-behavior","target":"d3-small-sample-tradeoff-two-point-trigger"},{"type":"edge","relation":"supports","source":"d3-small-sample-reducer-weak-benchmark-collapse","target":"d3-small-sample-dashboard-no-distinction"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:19:{"type":"iteration","mode":"research","run":18,"status":"complete","focus":"D4 contract artifact survival audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-016.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-017.md",".opencode/skills/sk-improve-agent/README.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/changelog/15--sk-improve-agent/v1.1.0.0.md"],"answeredQuestions":[],"timestamp":"2026-04-11T09:06:52Z","durationMs":300000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d4-strategy-template-not-written","label":"Reducer writes dashboard and registry only, leaving improvement_strategy machine-owned sections untouched"},{"type":"node","id":"d4-dimensional-progress-survives","label":"Dimensional progress and plateau stop language survive into the visible dashboard"},{"type":"node","id":"d4-tradeoff-annotations-lost","label":"Trade-off table and resolution guidance do not appear in the visible dashboard output"},{"type":"node","id":"d4-benchmark-stability-label-lost","label":"Benchmark stability and repeatability wording collapse to generic benchmark counters and recommendations"},{"type":"node","id":"d4-stop-outcome-enums-lost","label":"Published stop-reason and session-outcome enums do not survive the reducer dashboard surface"},{"type":"edge","relation":"supports","source":"d4-strategy-template-not-written","target":"d4-tradeoff-annotations-lost"},{"type":"edge","relation":"supports","source":"d4-strategy-template-not-written","target":"d4-benchmark-stability-label-lost"},{"type":"edge","relation":"extends","source":"d4-benchmark-stability-label-lost","target":"d4-stop-outcome-enums-lost"},{"type":"edge","relation":"contradicts","source":"d4-dimensional-progress-survives","target":"d4-strategy-template-not-written"}]}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:20:{"type":"iteration","mode":"research","run":19,"status":"complete","focus":"D4 upstream improve-agent journal emission path","findingsCount":6,"newInfoRatio":0.83,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/commands/improve/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:10:50Z","durationMs":480000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d4-upstream-no-visible-journal-emission","label":"Visible improve-agent YAML path never calls improvement-journal.cjs despite the published journal contract"},{"type":"node","id":"d4-upstream-cli-doc-mismatch","label":"Published session-start command uses an unsupported --event flag instead of passing the event type through --emit"},{"type":"node","id":"d4-upstream-gateresults-not-enforced","label":"Journal validation does not require gateResults for legal-stop or blocked-stop events"},{"type":"node","id":"d4-upstream-reducer-never-reads-journal","label":"Reducer reads only state ledger/config/mirror drift and never opens improvement-journal.jsonl"},{"type":"node","id":"d4-upstream-resume-contract-unexercised","label":"Visible auto and confirm workflows do not replay journals or propagate session lineage inputs"},{"type":"node","id":"d4-upstream-stop-surface-collapsed","label":"Operator-facing stop flow consumes reducer stopStatus booleans and free-text reasons rather than journal enums"},{"type":"edge","relation":"supports","source":"d4-upstream-no-visible-journal-emission","target":"d4-upstream-reducer-never-reads-journal"},{"type":"edge","relation":"supports","source":"d4-upstream-cli-doc-mismatch","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"supports","source":"d4-upstream-gateresults-not-enforced","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"extends","source":"d4-upstream-reducer-never-reads-journal","target":"d4-upstream-stop-surface-collapsed"},{"type":"edge","relation":"supports","source":"d4-upstream-resume-contract-unexercised","target":"d4-upstream-stop-surface-collapsed"}]}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:21:{"type":"iteration","mode":"research","run":20,"status":"complete","focus":"D5 improve-agent coverage-graph operator-loop audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/assets/improvement_config.json",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:13:24Z","durationMs":180000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d5-improve-no-visible-focus-selection","label":"Visible improve-agent loop does not invoke coverage state before candidate generation, so graph data does not steer mutation focus"},{"type":"node","id":"d5-improve-configured-but-not-consumed","label":"Coverage graph is enabled in config and reserved in strategy placeholders but never read by the reducer"},{"type":"node","id":"d5-improve-helper-only-logic","label":"Mutation coverage helper records mutations and convergence eligibility but remains outside the visible command and reducer control path"},{"type":"node","id":"d5-improve-stop-gating-bypasses-graph","label":"Visible stop decisions use ledger and reducer heuristics rather than coverage-graph convergence eligibility"},{"type":"node","id":"d5-improve-no-visible-contradiction-gate","label":"No contradiction-oriented graph gate appears in the published improve-agent operator path"},{"type":"edge","relation":"supports","source":"d5-improve-no-visible-focus-selection","target":"d5-improve-helper-only-logic"},{"type":"edge","relation":"supports","source":"d5-improve-configured-but-not-consumed","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"extends","source":"d5-improve-helper-only-logic","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"supports","source":"d5-improve-stop-gating-bypasses-graph","target":"d5-improve-no-visible-contradiction-gate"}]}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:20:{"type":"iteration","mode":"research","run":19,"status":"complete","focus":"D4 upstream improve-agent journal emission path","findingsCount":6,"newInfoRatio":0.83,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/commands/deep/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:10:50Z","durationMs":480000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d4-upstream-no-visible-journal-emission","label":"Visible improve-agent YAML path never calls improvement-journal.cjs despite the published journal contract"},{"type":"node","id":"d4-upstream-cli-doc-mismatch","label":"Published session-start command uses an unsupported --event flag instead of passing the event type through --emit"},{"type":"node","id":"d4-upstream-gateresults-not-enforced","label":"Journal validation does not require gateResults for legal-stop or blocked-stop events"},{"type":"node","id":"d4-upstream-reducer-never-reads-journal","label":"Reducer reads only state ledger/config/mirror drift and never opens improvement-journal.jsonl"},{"type":"node","id":"d4-upstream-resume-contract-unexercised","label":"Visible auto and confirm workflows do not replay journals or propagate session lineage inputs"},{"type":"node","id":"d4-upstream-stop-surface-collapsed","label":"Operator-facing stop flow consumes reducer stopStatus booleans and free-text reasons rather than journal enums"},{"type":"edge","relation":"supports","source":"d4-upstream-no-visible-journal-emission","target":"d4-upstream-reducer-never-reads-journal"},{"type":"edge","relation":"supports","source":"d4-upstream-cli-doc-mismatch","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"supports","source":"d4-upstream-gateresults-not-enforced","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"extends","source":"d4-upstream-reducer-never-reads-journal","target":"d4-upstream-stop-surface-collapsed"},{"type":"edge","relation":"supports","source":"d4-upstream-resume-contract-unexercised","target":"d4-upstream-stop-surface-collapsed"}]}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:21:{"type":"iteration","mode":"research","run":20,"status":"complete","focus":"D5 improve-agent coverage-graph operator-loop audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/assets/improvement_config.json",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:13:24Z","durationMs":180000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d5-improve-no-visible-focus-selection","label":"Visible improve-agent loop does not invoke coverage state before candidate generation, so graph data does not steer mutation focus"},{"type":"node","id":"d5-improve-configured-but-not-consumed","label":"Coverage graph is enabled in config and reserved in strategy placeholders but never read by the reducer"},{"type":"node","id":"d5-improve-helper-only-logic","label":"Mutation coverage helper records mutations and convergence eligibility but remains outside the visible command and reducer control path"},{"type":"node","id":"d5-improve-stop-gating-bypasses-graph","label":"Visible stop decisions use ledger and reducer heuristics rather than coverage-graph convergence eligibility"},{"type":"node","id":"d5-improve-no-visible-contradiction-gate","label":"No contradiction-oriented graph gate appears in the published improve-agent operator path"},{"type":"edge","relation":"supports","source":"d5-improve-no-visible-focus-selection","target":"d5-improve-helper-only-logic"},{"type":"edge","relation":"supports","source":"d5-improve-configured-but-not-consumed","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"extends","source":"d5-improve-helper-only-logic","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"supports","source":"d5-improve-stop-gating-bypasses-graph","target":"d5-improve-no-visible-contradiction-gate"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-004.md:34:- Novelty justification: F007 is new claim-adjudication schema drift between the visible state-format doc and the live confirm gate; F008 is new operator-doc drift in the weighted convergence vote; F009 is new persisted-stop-contract drift between convergence.md and the state-format/YAML surfaces. Prior iterations covered runtime stop logic, session isolation, and graph ID namespace rather than these remaining confirm/reference mirror mismatches.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-004.md:37:- Reducer-owned graph/session dashboard fields: No new drift surfaced here because the reducer still exposes `sessionId`, `generation`, `lineageMode`, `graphConvergenceScore`, `graphDecision`, and `graphBlockers` consistently — `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:522-538` and `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:742-805`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-001.md:19:- **F001**: Canonical deep-review agent still emits an unparseable iteration schema — `.opencode/agents/deep-review.md:147` — The live agent contract tells the LEAF reviewer to write `# Review Iteration [N]: ...` plus findings like `### P0-NNN:` with freeform bullets, but the reducer only extracts `- **FNNN**:` bullets inside `### P0` / `### P1` / `### P2` subsections from `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:137-206`. A run that follows the canonical agent file can therefore surface zero findings into the registry and dashboard even when the markdown contains substantive defects.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-001.md:39:- Code Graph tool-budget drift on the review path: Not supported by the code — `.opencode/commands/speckit/deep-review.md:4` and `.opencode/agents/deep-review.md:15-16` both provision `code_graph_query` and `code_graph_context`.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:19:- **F012**: Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface — `.opencode/skills/sk-improve-agent/SKILL.md:292` — The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/improve/agent.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:19:- **F012**: Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface — `.opencode/skills/sk-improve-agent/SKILL.md:292` — The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/deep/start-agent-improvement-loop.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:36:- Improvement replay consumers missing entirely: Ruled out because the reducer does read the journal, candidate-lineage, and mutation-coverage artifacts on every refresh — `.opencode/skills/sk-improve-agent/SKILL.md:364-378`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:841-845`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:40:- Candidate-lineage depth as proof of session lifecycle support: `candidate-lineage.json` only summarizes candidate ancestry within a run, so it cannot substantiate resume/restart/fork/completed-continue session semantics — `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:227-267`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-002.md:29:| fail_closed | pass | hard | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:888` | Review and research reducers still fail closed on corrupt JSONL unless `--lenient` is explicitly set (`.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:693`). |
@@ -2174,12 +2174,12 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:3:{"type":"iteration","mode":"review","run":2,"status":"complete","focus":"security session scoping on coverage graph runtime","dimensions":["security","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/upsert.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/query.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-query.ts",".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/loop_protocol.md"],"findingsCount":5,"findingsSummary":{"P0":0,"P1":3,"P2":2},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.4,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:00:52Z","durationMs":520000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:5:{"type":"iteration","mode":"review","run":4,"status":"complete","focus":"confirm/reference contract drift on claim adjudication and convergence docs","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-review/references/convergence.md"],"findingsCount":9,"findingsSummary":{"P0":0,"P1":6,"P2":3},"findingsNew":{"P0":0,"P1":2,"P2":1},"newFindingsRatio":0.33,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:09:16Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:6:{"type":"iteration","mode":"review","run":5,"status":"complete","focus":"lifecycle branch persistence across resume/restart/fork mirrors","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-research/references/state_format.md",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-research/references/quick_reference.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs"],"findingsCount":11,"findingsSummary":{"P0":0,"P1":7,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.18,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:13:53Z","durationMs":300000}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/commands/improve/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/commands/deep/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:8:{"type":"iteration","mode":"review","run":7,"status":"complete","focus":"traceability closure on lifecycle persistence and claim-adjudication gating","dimensions":["traceability","correctness"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:20:53Z","durationMs":510000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:10:{"type":"iteration","mode":"review","run":9,"status":"complete","focus":"release-readiness traceability on bundle summaries and reducer risk surfaces","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-006.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-008.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/changelog/13--sk-deep-review/v1.3.0.0.md",".opencode/changelog/15--sk-improve-agent/v1.2.0.0.md"],"findingsCount":15,"findingsSummary":{"P0":0,"P1":9,"P2":6},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.13,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:28:03Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:10:      "file": ".opencode/agents/deep-review.md",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:12:      "description": "The live agent contract tells the LEAF reviewer to write `# Review Iteration [N]: ...` plus findings like `### P0-NNN:` with freeform bullets, but the reducer only extracts `- **FNNN**:` bullets inside `### P0` / `### P1` / `### P2` subsections from `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:137-206`. A run that follows the canonical agent file can therefore surface zero findings into the registry and dashboard even when the markdown contains substantive defects.",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:152:      "description": "The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/improve/agent.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:152:      "description": "The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/deep/start-agent-improvement-loop.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:310:      "file": ".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:105:### Candidate-lineage depth as proof of session lifecycle support: `candidate-lineage.json` only summarizes candidate ancestry within a run, so it cannot substantiate resume/restart/fork/completed-continue session semantics — `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:227-267`. -- BLOCKED (iteration 6, 1 attempts)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-strategy.md:106:- What was tried: Candidate-lineage depth as proof of session lifecycle support: `candidate-lineage.json` only summarizes candidate ancestry within a run, so it cannot substantiate resume/restart/fork/completed-continue session semantics — `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:227-267`.
@@ -2207,9 +2207,9 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:53:- **Risk**: a canonical reviewer following `.opencode/agents/deep-review.md` can produce markdown the reducer does not parse, which drops real findings out of the registry and dashboard.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:81:- **Risk**: the quick reference teaches the wrong weighted convergence vote, which points operators at the wrong tuning levers during manual audits.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:149:- **Target surfaces**: `.opencode/agents/deep-review.md`, `sk-deep-review` references, the deep-review config JSONL writer in both workflow mirrors
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:243:Target files: `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:248:Target files: `.opencode/agents/deep-review.md`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`  
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:263:Target files: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/tasks.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/checklist.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/implementation-summary.md`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`  
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:243:Target files: `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:248:Target files: `.opencode/agents/deep-review.md`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:263:Target files: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/tasks.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/checklist.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/implementation-summary.md`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:342:| `.opencode/agents/deep-review.md` | X |  |  |  |  |  |  |  |  |  |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:347:| `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs` | X | X |  | X | X |  | X |  | X |  |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:348:| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | X | X |  |  | X |  | X |  |  |  |
@@ -2244,8 +2244,8 @@ exec
 .opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation/checklist.md:17:- [x] `reduce-state.cjs` handles new dimensional data without breaking existing ledger
 .opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation/tasks.md:14:- [x] T007: Refactor `reduce-state.cjs` — add per-dimension tracking + dashboard
 .opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation/implementation-summary.md:27:| `reduce-state.cjs` | 383 | ~467 | Added per-dimension tracking, dimensional dashboard section, dimension plateau stop rule |
-.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation/graph-metadata.json:8:Key Files: scan-integration.cjs, generate-profile.cjs, score-candidate.cjs, run-benchmark.cjs, reduce-state.cjs, improvement_config_reference.md, integration_scanning.md, .opencode/agents/agent-improver.md, .opencode/commands/improve/agent.md, prompt.md, improve_agent-improver_auto.yaml, _confirm.yaml, README.txt, MANUAL_TESTING_PLAYBOOK.md, spec.md, scripts/scan-integration.cjs, scripts/generate-profile.cjs, scripts/score-candidate.cjs, scripts/run-benchmark.cjs, scripts/reduce-state.cjs
-.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/implementation-summary.md:73:Phase 8 transforms the evaluation from structural keyword-checking to a 5-dimension integration-aware scoring framework. New scripts: `scan-integration.cjs` (discovers all surfaces an agent touches), `generate-profile.cjs` (derives scoring from any agent's own rules). Refactored scripts: `score-candidate.cjs` (5D + `--dynamic` mode), `run-benchmark.cjs` (integration consistency), `reduce-state.cjs` (dimensional tracking + plateau stop). Any agent in `.opencode/agents/` is now a valid evaluation target. Skill renamed from `sk-recursive-agent` to `sk-improve-agent`. Command renamed from `/speckit:recursive-agent` to `/improve:agent`. Manual testing playbook created (21 scenarios across 6 categories).
+.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation/graph-metadata.json:8:Key Files: scan-integration.cjs, generate-profile.cjs, score-candidate.cjs, run-benchmark.cjs, reduce-state.cjs, improvement_config_reference.md, integration_scanning.md, .opencode/agents/agent-improver.md, .opencode/commands/deep/start-agent-improvement-loop.md, prompt.md, improve_agent-improver_auto.yaml, _confirm.yaml, README.txt, MANUAL_TESTING_PLAYBOOK.md, spec.md, scripts/scan-integration.cjs, scripts/generate-profile.cjs, scripts/score-candidate.cjs, scripts/run-benchmark.cjs, scripts/reduce-state.cjs
+.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/implementation-summary.md:73:Phase 8 transforms the evaluation from structural keyword-checking to a 5-dimension integration-aware scoring framework. New scripts: `scan-integration.cjs` (discovers all surfaces an agent touches), `generate-profile.cjs` (derives scoring from any agent's own rules). Refactored scripts: `score-candidate.cjs` (5D + `--dynamic` mode), `run-benchmark.cjs` (integration consistency), `reduce-state.cjs` (dimensional tracking + plateau stop). Any agent in `.opencode/agents/` is now a valid evaluation target. Skill renamed from `sk-recursive-agent` to `sk-improve-agent`. Command renamed from `/speckit:recursive-agent` to `/deep:start-agent-improvement-loop`. Manual testing playbook created (21 scenarios across 6 categories).
 .opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts:15:  '.opencode/skills/sk-deep-research/scripts/reduce-state.cjs',
 .opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts:18:const reducer = require('../../../sk-deep-review/scripts/reduce-state.cjs') as {
 .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:36:    '.opencode/agents/deep-research.md',
@@ -2361,7 +2361,7 @@ exec
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/013-agents-alignment/scratch/archive-pass2/iteration-002.md:32:- **Evidence**: deep-review.md/.toml exists in all 5 runtimes. Orchestrate prompts never expose it as dispatch option.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/017-memory-refactor-or-deprecation/research/research.md:143:   `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, `/speckit:deep-research`, `/speckit:deep-review` all embed memory retrieval or memory-save steps (`.opencode/commands/speckit/plan.md:72-309`, `.opencode/commands/speckit/implement.md:201-205`, `.opencode/commands/speckit/complete.md:75-421`, `.opencode/commands/speckit/deep-research.md:68-199`, `.opencode/commands/speckit/deep-review.md:70-235`).
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/017-memory-refactor-or-deprecation/research/research.md:145:   `@context`, `@orchestrate`, `@speckit`, `@deep-research`, and `@ultra-think` all assume memory-first or memory-assisted context loading (`.opencode/agents/context.md:46-164`, `.opencode/agents/orchestrate.md:807-822`, `.opencode/agents/speckit.md:162-172`, `.opencode/agents/deep-research.md:235-242`, `.opencode/agents/ultra-think.md:53-85`).
-.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/010-sk-agent-improver-self-test-fixes/graph-metadata.json:8:Key Files: agent-improver.md, .opencode/commands/speckit/agent-improver.md, .opencode/commands/improve/agent.md, reduce-state.cjs, stopRules.plateauWindow, .opencode/agents/agent-improver.md, .claude/agents/agent-improver.md, .agents/agents/agent-improver.md, .codex/agents/agent-improver.toml, improvement_config.json, improvement_config_reference.md, .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs, .opencode/skills/sk-improve-agent/assets/improvement_config.json, .opencode/skills/sk-improve-agent/assets/improvement_config_reference.md, .opencode/skills/sk-improve-agent/references/improvement_config_reference.md, improve/agent.md, spec.md, plan.md, tasks.md, checklist.md
+.opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/010-sk-agent-improver-self-test-fixes/graph-metadata.json:8:Key Files: agent-improver.md, .opencode/commands/speckit/agent-improver.md, .opencode/commands/deep/start-agent-improvement-loop.md, reduce-state.cjs, stopRules.plateauWindow, .opencode/agents/agent-improver.md, .claude/agents/agent-improver.md, .agents/agents/agent-improver.md, .codex/agents/agent-improver.toml, improvement_config.json, improvement_config_reference.md, .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs, .opencode/skills/sk-improve-agent/assets/improvement_config.json, .opencode/skills/sk-improve-agent/assets/improvement_config_reference.md, .opencode/skills/sk-improve-agent/references/improvement_config_reference.md, deep/start-agent-improvement-loop.md, spec.md, plan.md, tasks.md, checklist.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/017-memory-refactor-or-deprecation/research/deep-research-config.json:56:  "reducerScriptPath": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
 .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/013-agents-alignment/scratch/deep-review-strategy.md:83:- Known drift: Spec claims "9-file family counts" (REQ-008, CHK-020) but current reality shows 10 files per family (deep-review.md was added)
 .opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/research/deep-research-strategy.md:153:### Directly equating `.opencode/agents/*.md` with `autoagent-main`'s single-file harness would erase a key architectural difference: our agent layer is only one surface inside a broader command/skill/runtime ecosystem. [SOURCE: .opencode/skills/sk-deep-research/SKILL.md:16] [SOURCE: .opencode/agents/deep-research.md:28] -- BLOCKED (iteration 2, 1 attempts)
@@ -3270,9 +3270,9 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:476:### This is not a blanket "any truncation breaks lifecycle" failure. If a truncated iteration file still includes a parseable finding bullet, `parseFindingLine()` and `buildFindingRegistry()` can still record the severity transition and mark the finding as repeated (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:116-143`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:239-267`). -- BLOCKED (iteration 8, 1 attempts)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:477:- What was tried: This is not a blanket "any truncation breaks lifecycle" failure. If a truncated iteration file still includes a parseable finding bullet, `parseFindingLine()` and `buildFindingRegistry()` can still record the severity transition and mark the finding as repeated (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:116-143`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:239-267`).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:479:- Do NOT retry: This is not a blanket "any truncation breaks lifecycle" failure. If a truncated iteration file still includes a parseable finding bullet, `parseFindingLine()` and `buildFindingRegistry()` can still record the severity transition and mark the finding as repeated (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:116-143`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:239-267`).
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:486:### This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`) -- BLOCKED (iteration 19, 1 attempts)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:487:- What was tried: This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:489:- Do NOT retry: This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:486:### This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`) -- BLOCKED (iteration 19, 1 attempts)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:487:- What was tried: This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:489:- Do NOT retry: This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:526:### This is not merely reducer documentation drift. The reducer’s own file inputs and registry builder omit the journal, lineage graph, and mutation-coverage artifacts entirely, so the current recovery gap is structural, not just under-explained (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:145-235`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`). -- BLOCKED (iteration 12, 1 attempts)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:527:- What was tried: This is not merely reducer documentation drift. The reducer’s own file inputs and registry builder omit the journal, lineage graph, and mutation-coverage artifacts entirely, so the current recovery gap is structural, not just under-explained (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:145-235`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:529:- Do NOT retry: This is not merely reducer documentation drift. The reducer’s own file inputs and registry builder omit the journal, lineage graph, and mutation-coverage artifacts entirely, so the current recovery gap is structural, not just under-explained (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:145-235`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`).
@@ -3290,7 +3290,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:600:- This is not a blanket "any truncation breaks lifecycle" failure. If a truncated iteration file still includes a parseable finding bullet, `parseFindingLine()` and `buildFindingRegistry()` can still record the severity transition and mark the finding as repeated (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:116-143`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:239-267`). (iteration 8)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:611:- This is not merely reducer documentation drift. The reducer’s own file inputs and registry builder omit the journal, lineage graph, and mutation-coverage artifacts entirely, so the current recovery gap is structural, not just under-explained (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:145-235`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`). (iteration 12)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:626:- This is not universal contract drift. README's `mirror drift as packaging work` guidance survives in the dashboard guardrails, and the dimensional-progress/plateau path is also visibly implemented. (`.opencode/skills/sk-improve-agent/README.md:167-169`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:458-463`) (iteration 18)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:628:- This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`) (iteration 19)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:628:- This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`) (iteration 19)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:666:- New `scripts/reduce-state.cjs` (written this session): review-specific reducer with finding lifecycle (firstSeen/lastSeen/transitions), repeated-finding detection, idempotent output
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:669:- `step_reduce_review_state` in both auto + confirm YAML workflows now invokes `node .opencode/skills/sk-deep-review/scripts/reduce-state.cjs {spec_folder}`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md:719:- `042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt`
@@ -3507,7 +3507,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:3465:/bin/zsh -lc "printf '===== deep-review refs =====\\n'; for f in .opencode/skills/sk-deep-review/references/loop_protocol.md .opencode/skills/sk-deep-review/references/convergence.md .opencode/skills/sk-deep-review/references/state_format.md .opencode/skills/sk-deep-review/assets/review_mode_contract.yaml .opencode/skills/sk-deep-review/assets/deep_review_config.json .opencode/agents/deep-review.md; do echo \"--- "'$f ---"; rg -n "stop|reason|resume|journal|event|lifecycle|convergence|snapshot|replay|wave|parallel|coverage|hotspot|inventory|finding|blocked|session" "$f" | head -n 120; echo; done' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:3489:164:- Composite convergence votes `STOP` only after:
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:3855:--- .opencode/agents/deep-review.md ---
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:3978:/improve:agent ".opencode/agents/handover.md" :confirm --spec-folder=specs/041/008
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:3978:/deep:start-agent-improvement-loop ".opencode/agents/handover.md" :confirm --spec-folder=specs/041/008
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:4024:  Dashboard: specs/041/008/improvement/agent-improvement-dashboard.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:4025:  Registry:  specs/041/008/improvement/experiment-registry.json
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:4026:  Candidates: 3 written to specs/041/008/improvement/candidates/
@@ -3547,10 +3547,10 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8594:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/scratch/codex-gpt54-deep-research.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8596:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/scratch/codex-gpt54-deep-research.md
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8647:P1: make the loop explainable and replayable. Add mutation coverage, full dimension trajectories, trade-off detection, and integration-scan constraints via [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs), and the new scripts Phase 005 already names.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8653:1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8653:1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8663:6. Dimension trajectory. Current reducer only renders latest/best/trend arrows in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs). Add full per-iteration vectors, weighted score, benchmark aggregate, and gate outcomes to a trajectory artifact, and define “stable” as at least 3 scored evidence iterations with all dimension deltas within `±2`, repeatability variance within tolerance, and no unexplored high-value mutation family remaining.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8684:P1: make the loop explainable and replayable. Add mutation coverage, full dimension trajectories, trade-off detection, and integration-scan constraints via [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [scan-integration.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs), and the new scripts Phase 005 already names.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8690:1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8690:1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8700:6. Dimension trajectory. Current reducer only renders latest/best/trend arrows in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs). Add full per-iteration vectors, weighted score, benchmark aggregate, and gate outcomes to a trajectory artifact, and define “stable” as at least 3 scored evidence iterations with all dimension deltas within `±2`, repeatability variance within tolerance, and no unexplored high-value mutation family remaining.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/tasks.md:2:title: "Tasks: Further Deep-Loop Improvements [008]"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/tasks.md:3:description: "Completed Level 3 task record for the delivered Phase 008 runtime-truth, graph, reducer, fixture, and release-closeout work."
@@ -3693,8 +3693,8 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-007.md:29:- .opencode/skills/sk-deep-research/scripts/reduce-state.cjs:244-249
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-007.md:40:Rotate to D2 and audit the new `sk-deep-review` reducer under partial-failure conditions rather than staying on research convergence. The next productive pass is to test whether `scripts/reduce-state.cjs` preserves finding lifecycle state, deduplication, and blocking gate evidence when an iteration file is malformed or only partially written, because that would answer the remaining D2 question about real-world reducer idempotency without reopening the already-covered contradiction/read-path ground.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-020.md:8:- The runtime config enables a coverage-graph file and the strategy template reserves reducer-populated `Mutation Coverage` and `Convergence Eligibility` sections, but `reduce-state.cjs` never opens `mutation-coverage.json`. Its main path reads only `agent-improvement-state.jsonl`, config, and mirror-drift report before writing `experiment-registry.json` and `agent-improvement-dashboard.md`, so graph data does not enter the operator-visible dashboard or recommendation surfaces. (`.opencode/skills/sk-improve-agent/assets/improvement_config.json:92-99`, `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:114-123`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-020.md:10:- Visible stop gating is reducer-driven rather than graph-driven. `checkConvergenceEligibility()` would reject convergence for insufficient or unstable trajectory data, and the strategy template expects a verdict derived from trajectory plus exhaustion, but the actual stop path uses only trailing ties, infra failures, weak benchmark runs, drift ambiguity, and dimension plateau from the JSONL ledger. Coverage-graph convergence eligibility never feeds `step_stop_check`. (`.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:229-272`, `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:116-123`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:152-158`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-020.md:11:- I found no visible contradiction-oriented graph gate in the operator path. The published improve-agent workflow enumerates scan, propose, score, benchmark, append, reduce, and stop steps, and the reducer’s stop evaluator uses no contradiction input or graph query surface, so contradiction handling remains absent from the visible coverage-graph loop rather than participating in stop blocking. (`.opencode/commands/improve/agent.md:272-286`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:137-158`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-325`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-020.md:10:- Visible stop gating is reducer-driven rather than graph-driven. `checkConvergenceEligibility()` would reject convergence for insufficient or unstable trajectory data, and the strategy template expects a verdict derived from trajectory plus exhaustion, but the actual stop path uses only trailing ties, infra failures, weak benchmark runs, drift ambiguity, and dimension plateau from the JSONL ledger. Coverage-graph convergence eligibility never feeds `step_stop_check`. (`.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:229-272`, `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:116-123`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:152-158`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-020.md:11:- I found no visible contradiction-oriented graph gate in the operator path. The published improve-agent workflow enumerates scan, propose, score, benchmark, append, reduce, and stop steps, and the reducer’s stop evaluator uses no contradiction input or graph query surface, so contradiction handling remains absent from the visible coverage-graph loop rather than participating in stop blocking. (`.opencode/commands/deep/start-agent-improvement-loop.md:272-286`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:137-158`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-325`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-020.md:30:- `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-020.md:31:- `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/README.md:1:# Phase 008: Further Deep-Loop Improvements
@@ -3805,7 +3805,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/scratch/codex-gpt54-deep-research.md:12381:- Because the dashboards are reducer-owned markdown, fallback can still render graph summaries locally without MCP if the local graph model is derived in-process [deep_research_dashboard.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/assets/deep_research_dashboard.md#L22), [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/scripts/reduce-state.cjs#L369).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/checklist.md:60:- [x] CHK-021 [P1] REQ-007 richer dashboard metrics are validated in reducer/schema coverage [EVIDENCE: dashboard sections and reducer-metric references] [TESTS: `deep-research-reducer.vitest.ts`; `deep-review-reducer-schema.vitest.ts`]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/checklist.md:74:- [x] CHK-031 [P1] REQ-008 publication critique keeps weaker evidence classes visible instead of silently promoting them [EVIDENCE: evidence-class or critique fields in research contracts] [TESTS: `deep-research-behavioral.vitest.ts`]
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-016.md:8:- The published `sk-improve-agent` contract and visible auto workflow keep that mutation coverage graph local to the improvement runtime rather than bridging it into the shared coverage-graph MCP. The skill describes `scripts/mutation-coverage.cjs` as the reader/writer for the coverage graph and says it uses `loop_type: "improvement"` isolation, while the auto workflow only appends the state ledger and runs `scripts/reduce-state.cjs`; I found no visible `deep_loop_graph_upsert` step on this path (`.opencode/skills/sk-improve-agent/SKILL.md:298-300`, `.opencode/skills/sk-improve-agent/SKILL.md:389-390`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-155`).
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-016.md:8:- The published `sk-improve-agent` contract and visible auto workflow keep that mutation coverage graph local to the improvement runtime rather than bridging it into the shared coverage-graph MCP. The skill describes `scripts/mutation-coverage.cjs` as the reader/writer for the coverage graph and says it uses `loop_type: "improvement"` isolation, while the auto workflow only appends the state ledger and runs `scripts/reduce-state.cjs`; I found no visible `deep_loop_graph_upsert` step on this path (`.opencode/skills/sk-improve-agent/SKILL.md:298-300`, `.opencode/skills/sk-improve-agent/SKILL.md:389-390`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-155`).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/checklist.md:2:title: "Verification Checklist: Further Deep-Loop Improvements [008]"
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/checklist.md:3:description: "Completed Level 3 verification checklist for Phase 008 with evidence grounded in shipped releases, tests, and closing-audit remediation."
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/checklist.md:5:  - "008"
@@ -4032,7 +4032,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:78:  - `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md:99`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:79:  - `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/decision-record.md:169-170`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:88:  - Remove the cross-session default from the phase-008 coverage-graph read surfaces, make `sessionId` mandatory on these handlers/helpers, and thread `specFolder` + `loopType` through the provenance helper queries as well.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:102:| REQ-005 | Pass | CLI example corrected in `.opencode/commands/improve/agent.md` and implementation summary documents the fix: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:48-50`. |
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:102:| REQ-005 | Pass | CLI example corrected in `.opencode/commands/deep/start-agent-improvement-loop.md` and implementation summary documents the fix: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:48-50`. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:103:| REQ-006 | Pass | `trade-off-detector.cjs` min data gate shipped and reducer surfaces `insufficientData`: see implementation summary `.opencode/specs/.../implementation-summary.md:49-50`, reducer `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:127-142,443-476`. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:104:| REQ-007 | Pass | `benchmark-stability.cjs` min replay gate shipped and reducer surfaces `insufficientSample`: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:144-159,443-476`. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/scratch/closing-review.md:105:| REQ-008 | Pass | ADR-001 chooses MCP handler canonical: `.opencode/specs/.../decision-record.md:36-77`. |
@@ -4060,7 +4060,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:11:- Stop-reason and session-outcome wording drift before reaching the operator-facing dashboard. The changelog says sessions should report exact `STOP_REASONS` and `SESSION_OUTCOMES`, and SKILL publishes the outcome labels plus `blockedStop` gate-bundle language, but the reducer collapses stop status to booleans and free-text reasons while only counting `Keep-baseline results` in the global summary. The visible dashboard never renders enum-style stop reasons or session outcomes such as `promoted`, `rolledBack`, or `advisoryOnly`. (`.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:15-18`, `.opencode/skills/sk-improve-agent/SKILL.md:261-289`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:440-468`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:14:- This is not universal contract drift. README's `mirror drift as packaging work` guidance survives in the dashboard guardrails, and the dimensional-progress/plateau path is also visibly implemented. (`.opencode/skills/sk-improve-agent/README.md:167-169`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:458-463`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:25:- `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-503`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:34:Stay on D4 for one more pass, but move upstream from the dashboard to `scripts/improvement-journal.cjs`, `.opencode/commands/improve/agent.md`, and the visible improve-agent YAML workflow. The most productive next step is to determine whether exact stop reasons, session outcomes, and gate-result payloads are emitted correctly and then discarded by `reduce-state.cjs`, or whether the workflow never emits the richer contract in the first place. That would close the self-compliance story end-to-end before rotating back to D5 coverage-graph usage in the improvement loop.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:34:Stay on D4 for one more pass, but move upstream from the dashboard to `scripts/improvement-journal.cjs`, `.opencode/commands/deep/start-agent-improvement-loop.md`, and the visible improve-agent YAML workflow. The most productive next step is to determine whether exact stop reasons, session outcomes, and gate-result payloads are emitted correctly and then discarded by `reduce-state.cjs`, or whether the workflow never emits the richer contract in the first place. That would close the self-compliance story end-to-end before rotating back to D5 coverage-graph usage in the improvement loop.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-012.md:8:- The shipped reducer is not that missing reconstruction layer. `reduce-state.cjs` builds its registry solely from `agent-improvement-state.jsonl`, then derives stop status from recommendation tallies, benchmark fail counts, plateau detection, and mirror-drift text; its `main()` reads only the state log, config, and optional drift report before writing the dashboard and registry. That leaves journal-only events such as `blocked_stop`, `trade_off_detected`, or `benchmark_completed` details outside reducer-owned recovery surfaces (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:145-235`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-012.md:9:- Candidate lineage is persisted but not rebuilt or consumed by any shipped recovery/reporting path I inspected. `candidate-lineage.cjs` is a standalone JSON helper that records nodes and can answer lineage queries, but the reducer never reads `candidate-lineage.json`, and the runtime-truth playbook frames lineage creation as something the orchestrator must invoke after each evaluation rather than something a downstream consumer can reconstruct from existing state (`.opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs:47-109`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md:28-34`).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-012.md:10:- Trade-off decisions are documented as reducer-visible, but the shipped consumer path does not ingest them. The strategy asset says the reducer populates the trade-off table when `trade-off-detector.cjs` flags a Pareto trade-off, and the playbook expects dashboard trade-off annotations, yet the actual reducer renders only dimensional score tables, failure modes, benchmark counts, and generic stop recommendations. The detector itself can only reconstruct trajectory from `candidate_scored` journal events, not from the reducer’s state log (`.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:123-136`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md:20-28`, `.opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs:130-172`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:371-475`).
@@ -4089,7 +4089,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:143:- This is not a blanket "any truncation breaks lifecycle" failure. If a truncated iteration file still includes a parseable finding bullet, `parseFindingLine()` and `buildFindingRegistry()` can still record the severity transition and mark the finding as repeated (`.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:116-143`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:239-267`). (iteration 8)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:154:- This is not merely reducer documentation drift. The reducer’s own file inputs and registry builder omit the journal, lineage graph, and mutation-coverage artifacts entirely, so the current recovery gap is structural, not just under-explained (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:145-235`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`). (iteration 12)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:169:- This is not universal contract drift. README's `mirror drift as packaging work` guidance survives in the dashboard guardrails, and the dimensional-progress/plateau path is also visibly implemented. (`.opencode/skills/sk-improve-agent/README.md:167-169`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:458-463`) (iteration 18)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:171:- This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`) (iteration 19)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-dashboard.md:171:- This is not a reducer-only discard bug. The visible YAML workflow never emits journal events into the reducer input path in the first place, so the contract break begins upstream of `reduce-state.cjs`. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:173-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`) (iteration 19)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:24:      "text": "D2: Does the new `scripts/reduce-state.cjs` correctly handle partial-failure iterations, severity transitions, and finding deduplication at scale (50+ findings)?",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:104:      "text": "Dashboard stuck reporting does not match the loop contract: the protocol says stuck count increments whenever `newInfoRatio < config.convergenceThreshold`, but the dashboard only counts `status == \"stuck\"` or `newInfoRatio === 0`, so low-but-nonzero no-progress passes are invisible in the synchronized packet view (.opencode/skills/sk-deep-research/references/loop_protocol.md:190-198; .opencode/skills/sk-deep-research/scripts/reduce-state.cjs:438-444).",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:108:        ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs:103-127",
@@ -4355,10 +4355,10 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2467:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8542:.opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts:310:    vi.doMock('../../mcp_server/lib/session/session-snapshot.js', () => ({
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2468:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8589:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/scratch/.gitkeep
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2469:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8590:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/scratch/codex-gpt54-deep-research.md
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2470:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8653:1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2470:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8653:1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2471:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8659:4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2472:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8661:5. Mutation coverage graph. Reuse the Phase 002 namespace model from [042.002 spec](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md): `spec_folder + loop_type + session_id`. For improver, use nodes like `TARGET`, `CANDIDATE`, `MUTATION`, `DIMENSION`, `INTEGRATION_SURFACE`, `BENCHMARK_FIXTURE`, `FAILURE_MODE`, and `HYPOTHESIS`, with edges like `MUTATES`, `TOUCHES`, `IMPROVES`, `REGRESSES`, `VALIDATES`, `BLOCKED_BY`, `DERIVED_FROM`, and `EXHAUSTS`; this graph is about mutation-space coverage, not research/review epistemic coverage.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2473:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8690:1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2473:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8690:1. Stop-reason taxonomy. Current implicit stops are in [reduce-state.cjs](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md): trailing ties, infra failures, weak benchmarks, drift ambiguity, plateau, max iterations, cancel, error. I would not use `promoted` or `rolledBack` as `stopReason`; split this into `stopReason = converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery` and `sessionOutcome = keptBaseline | promoted | rolledBack | advisoryOnly`. Pattern: `const STOP_REASONS = Object.freeze({...})` plus `const SESSION_OUTCOMES = Object.freeze({...})`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2474:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8696:4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2475:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8698:5. Mutation coverage graph. Reuse the Phase 002 namespace model from [042.002 spec](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md): `spec_folder + loop_type + session_id`. For improver, use nodes like `TARGET`, `CANDIDATE`, `MUTATION`, `DIMENSION`, `INTEGRATION_SURFACE`, `BENCHMARK_FIXTURE`, `FAILURE_MODE`, and `HYPOTHESIS`, with edges like `MUTATES`, `TOUCHES`, `IMPROVES`, `REGRESSES`, `VALIDATES`, `BLOCKED_BY`, `DERIVED_FROM`, and `EXHAUSTS`; this graph is about mutation-space coverage, not research/review epistemic coverage.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2495:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/description.json:13:    "session-scoping",
@@ -4446,7 +4446,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2588:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/scratch/codex-gpt54-deep-research.md:3353:.opencode/skills/sk-deep-review/references/loop_protocol.md:520:| `restart` | Archive current review state, start a new `sessionId`, increment generation, and set `parentSessionId`. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2590:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:5:{"type":"iteration","mode":"review","run":4,"status":"complete","focus":"confirm/reference contract drift on claim adjudication and convergence docs","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-review/references/convergence.md"],"findingsCount":9,"findingsSummary":{"P0":0,"P1":6,"P2":3},"findingsNew":{"P0":0,"P1":2,"P2":1},"newFindingsRatio":0.33,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:09:16Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2591:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:6:{"type":"iteration","mode":"review","run":5,"status":"complete","focus":"lifecycle branch persistence across resume/restart/fork mirrors","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/loop_protocol.md",".opencode/skills/sk-deep-review/references/quick_reference.md",".opencode/skills/sk-deep-research/references/state_format.md",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-research/references/quick_reference.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs"],"findingsCount":11,"findingsSummary":{"P0":0,"P1":7,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.18,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:13:53Z","durationMs":300000}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2592:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/commands/improve/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2592:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:7:{"type":"iteration","mode":"review","run":6,"status":"complete","focus":"improve-agent lifecycle mirror and snapshot claims","dimensions":["correctness","traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-001.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-003.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-005.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/commands/deep/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/quick_reference.md"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":1,"P2":0},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:17:56Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2593:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:8:{"type":"iteration","mode":"review","run":7,"status":"complete","focus":"traceability closure on lifecycle persistence and claim-adjudication gating","dimensions":["traceability","correctness"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts"],"findingsCount":12,"findingsSummary":{"P0":0,"P1":8,"P2":4},"findingsNew":{"P0":0,"P1":0,"P2":0},"newFindingsRatio":0.0,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:20:53Z","durationMs":510000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2594:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:9:{"type":"iteration","mode":"review","run":8,"status":"complete","focus":"session-isolation closure claims and graph namespace coverage","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts",".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml",".opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml"],"findingsCount":13,"findingsSummary":{"P0":0,"P1":8,"P2":5},"findingsNew":{"P0":0,"P1":0,"P2":1},"newFindingsRatio":0.08,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:23:58Z","durationMs":240000}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2595:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-state.jsonl:10:{"type":"iteration","mode":"review","run":9,"status":"complete","focus":"release-readiness traceability on bundle summaries and reducer risk surfaces","dimensions":["traceability","maintainability"],"filesReviewed":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-006.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-008.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/changelog/13--sk-deep-review/v1.3.0.0.md",".opencode/changelog/15--sk-improve-agent/v1.2.0.0.md"],"findingsCount":15,"findingsSummary":{"P0":0,"P1":9,"P2":6},"findingsNew":{"P0":0,"P1":1,"P2":1},"newFindingsRatio":0.13,"sessionId":"rvw-2026-04-11T13-50-06Z","generation":1,"lineageMode":"new","timestamp":"2026-04-11T14:28:03Z","durationMs":240000}
@@ -4538,10 +4538,10 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2696:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:4631:   361	Example multi-segment session:
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2697:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:4720:- Normalize merge on explicit keys: `sessionId`, `generation`, `segment`, `wave`, `run`, `findingId`. Never trust append order.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2698:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor/scratch/codex-gpt54-deep-research.md:4768:- Normalize merge on explicit keys: `sessionId`, `generation`, `segment`, `wave`, `run`, `findingId`. Never trust append order.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2706:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:19:- **F012**: Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface — `.opencode/skills/sk-improve-agent/SKILL.md:292` — The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/improve/agent.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2706:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:19:- **F012**: Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface — `.opencode/skills/sk-improve-agent/SKILL.md:292` — The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/deep/start-agent-improvement-loop.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2707:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-006.md:40:- Candidate-lineage depth as proof of session lifecycle support: `candidate-lineage.json` only summarizes candidate ancestry within a run, so it cannot substantiate resume/restart/fork/completed-continue session semantics — `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:227-267`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2711:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:52:      "description": "`coverage_nodes` and `coverage_edges` key rows by bare `id` only (`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:152-192`), and both upsert paths decide update vs insert with `WHERE id = ?` instead of the full namespace (`.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302`, `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`). A later session that reuses an earlier node or edge ID mutates the existing row rather than creating a session-local record, violating REQ-012’s `specFolder + loopType + sessionId` isolation contract (`.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md:99-100`) and creating a cross-session overwrite/leak path underneath handlers that otherwise pass `sessionId`.",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2714:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:152:      "description": "The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/improve/agent.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2714:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:152:      "description": "The improvement skill says sessions support `new`, `resume`, `restart`, `fork`, and `completed-continue`, and that resume replays prior artifacts to compute `continuedFromIteration` before dispatch (`.opencode/skills/sk-improve-agent/SKILL.md:292-294`); the operator-facing improve command repeats that contract and says `--session-id=<prior-id>` resumes from the saved journal without re-running completed iterations (`.opencode/commands/deep/start-agent-improvement-loop.md:332-339`). But the shipped auto/confirm workflows only accept `target_path`, `target_profile`, `scoring_mode`, `spec_folder`, `max_iterations`, and execution mode as inputs (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:36-42`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:37-43`), and their runtime only emits `session_start`, per-iteration, and `session_end` journal events with no lineage-branch input or transition step (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:132-183`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:148-217`). The reducer then summarizes only the latest session timestamps plus `stopReason` / `sessionOutcome` and never surfaces session ancestry, lineage mode, or `continuedFromIteration` (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:184-224`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:781-817`). That leaves the improvement bundle advertising safe resume/restart/fork/reopen behavior that operators cannot actually invoke or audit in the live runtime.",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2715:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:172:      "description": "The phase summary says `REQ-001 through REQ-025 all closed`, and its release-closeout prose says the deferred closing deep-review is a low-risk follow-up with no expected P0/P1 regressions at `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:40`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:96`, and `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:215`. But the current review session still carries unresolved required findings on claim-adjudication contract drift and improve-agent lineage execution claims at `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-004.md:18` and `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-006.md:19`, and the reducer-generated dashboard still reports `P1 (Required) | 8` with a next focus explicitly aimed at those remaining gaps at `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:35` and `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:95`. That makes the bundle’s primary closeout summary materially ahead of the evidence now available on release readiness.",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2719:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/deep-review-findings-registry.json:292:      "description": "The summary says `session-isolation.vitest.ts` validates that concurrent sessions cannot see each other's graph nodes, but the shipped suite only seeds disjoint node and edge IDs (`q-a`/`q-b`, `a-answers-1`/`b-answers-1`) and asserts filtered reads on those non-overlapping fixtures at `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91`. The underlying storage layer still upserts by bare `id` only at `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:292-302` and `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts:370-376`, so phase 008 only proved session-scoped reads, not shared-ID collision isolation. The implementation summary therefore reports REQ-024 as fully closed on evidence that does not cover the active collision hazard already captured by F004/F005.",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2720:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:16:- **Scope**: Entire 042 bundle — `spec.md` plus all 8 phase folders (`001` through `008`) and shipped runtime code across `sk-deep-research`, `sk-deep-review`, `sk-improve-agent`, the `system-spec-kit` coverage-graph stack, 6 YAML workflows, vitest suites, changelog surfaces, and packet-root completion artifacts.
@@ -4549,7 +4549,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2731:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:131:- **Target surfaces**: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`, `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-review/references/state_format.md`, phase 008 closeout docs
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2775:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/review-report.md:406:- Phase 008 closing-audit findings `P1-01` through `P1-04` were treated as settled background context and were not re-reported as new findings in this session
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2777:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-020.md:8:- The runtime config enables a coverage-graph file and the strategy template reserves reducer-populated `Mutation Coverage` and `Convergence Eligibility` sections, but `reduce-state.cjs` never opens `mutation-coverage.json`. Its main path reads only `agent-improvement-state.jsonl`, config, and mirror-drift report before writing `experiment-registry.json` and `agent-improvement-dashboard.md`, so graph data does not enter the operator-visible dashboard or recommendation surfaces. (`.opencode/skills/sk-improve-agent/assets/improvement_config.json:92-99`, `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:114-123`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2778:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-020.md:11:- I found no visible contradiction-oriented graph gate in the operator path. The published improve-agent workflow enumerates scan, propose, score, benchmark, append, reduce, and stop steps, and the reducer’s stop evaluator uses no contradiction input or graph query surface, so contradiction handling remains absent from the visible coverage-graph loop rather than participating in stop blocking. (`.opencode/commands/improve/agent.md:272-286`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:137-158`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-325`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2778:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-020.md:11:- I found no visible contradiction-oriented graph gate in the operator path. The published improve-agent workflow enumerates scan, propose, score, benchmark, append, reduce, and stop steps, and the reducer’s stop evaluator uses no contradiction input or graph query surface, so contradiction handling remains absent from the visible coverage-graph loop rather than participating in stop blocking. (`.opencode/commands/deep/start-agent-improvement-loop.md:272-286`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:137-158`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-325`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2779:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-007.md:42:- Lifecycle transition persistence via reducer summaries: The reducer/test surfaces expose `lineageMode`, `generation`, and `sessionId`, but the inspected paths did not reveal any persisted `resumed`, `restarted`, `forked`, or `completed_continue` event handling.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2780:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/archive-rvw-2026-04-11/iterations/iteration-007.md:45:Rotate to the remaining session-isolation and graph namespace findings and verify whether any late phase 008 write-path or test additions now cover shared-ID collisions, since this iteration found no downgrade evidence for the lifecycle or claim-adjudication gaps.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:2781:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/scratch/codex-gpt54-deep-research.md:11:session id: 019d7747-897d-7951-9872-c5b5bc07f716
@@ -5153,7 +5153,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3434:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:4:This iteration audited contract self-compliance for `sk-improve-agent` by comparing the published operator-facing promises in the README, SKILL, changelog, and `assets/improvement_strategy.md` against the visible reducer/dashboard path in `scripts/reduce-state.cjs`. The goal was to verify which promised artifacts actually survive end-to-end and where trade-off labeling, benchmark stability wording, and stop-reason/session-outcome language drift.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3435:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:10:- Benchmark stability wording is lost between the published contract and the reducer surface. README says promotion depends on benchmark status and repeatability evidence, and SKILL says `benchmark-stability.cjs` emits a weight-recommendation report only after a minimum session-count threshold, but the dashboard only shows benchmark run/pass/fail counts, best benchmark score, and a generic benchmark-failure recommendation. There is no replay-count, stability-coefficient, repeatability, or `insufficient data` label in the visible reducer output. (`.opencode/skills/sk-improve-agent/README.md:159-165`, `.opencode/skills/sk-improve-agent/SKILL.md:318-323`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:404-438`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:444-475`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3436:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:11:- Stop-reason and session-outcome wording drift before reaching the operator-facing dashboard. The changelog says sessions should report exact `STOP_REASONS` and `SESSION_OUTCOMES`, and SKILL publishes the outcome labels plus `blockedStop` gate-bundle language, but the reducer collapses stop status to booleans and free-text reasons while only counting `Keep-baseline results` in the global summary. The visible dashboard never renders enum-style stop reasons or session outcomes such as `promoted`, `rolledBack`, or `advisoryOnly`. (`.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:15-18`, `.opencode/skills/sk-improve-agent/SKILL.md:261-289`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:440-468`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3438:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:34:Stay on D4 for one more pass, but move upstream from the dashboard to `scripts/improvement-journal.cjs`, `.opencode/commands/improve/agent.md`, and the visible improve-agent YAML workflow. The most productive next step is to determine whether exact stop reasons, session outcomes, and gate-result payloads are emitted correctly and then discarded by `reduce-state.cjs`, or whether the workflow never emits the richer contract in the first place. That would close the self-compliance story end-to-end before rotating back to D5 coverage-graph usage in the improvement loop.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3438:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md:34:Stay on D4 for one more pass, but move upstream from the dashboard to `scripts/improvement-journal.cjs`, `.opencode/commands/deep/start-agent-improvement-loop.md`, and the visible improve-agent YAML workflow. The most productive next step is to determine whether exact stop reasons, session outcomes, and gate-result payloads are emitted correctly and then discarded by `reduce-state.cjs`, or whether the workflow never emits the richer contract in the first place. That would close the self-compliance story end-to-end before rotating back to D5 coverage-graph usage in the improvement loop.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3444:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/research.md:26:- `(P1)` Published research convergence already treats `sourceDiversity` and `contradictionDensity` as meaningful legal-stop inputs, but the live auto workflow still evaluates STOP with a local 3-signal vote plus `checkQualityGuards(state, strategy)` and never calls the richer graph-backed research signal set. This is runtime integration drift, not missing shared infrastructure. [iteration-007.md; .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:250-277; .opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:175-275]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3445:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/research.md:48:Two consequences follow from that shape. First, research-session recovery is weaker than it looks because resume-relevant events and side channels can be real without surfacing in the synchronized packet state. Second, graph-backed research quality signals are already close enough to the published contract that the current absence is best understood as an integration defect, not as a future enhancement request. [iteration-001.md; iteration-007.md]
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3463:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/research.md:224:These three recommendations are intentionally ordered from operator safety to authoring hygiene. The first two change whether a resumed or completed research session can be trusted; the third reduces future drift while the runtime contract is being fixed. [iteration-001.md; iteration-007.md]
@@ -5165,13 +5165,13 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3507:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/tasks.md:130:| T-CG-NEW-2 | Completed | REQ-003, REQ-004, REQ-006 | `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`; `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3508:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/tasks.md:136:- [x] T-CG-NEW-2 Calibrate coverage-specific edge weights and guard thresholds so inherited memory weights are replaced by coverage-aware values before convergence is finalized. (`.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs`; `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts`; `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3563:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:373:      "text": "`sk-deep-research`'s persisted lineage metadata stays wired to fresh-session defaults in the normal runtime path I inspected. The auto workflow seeds `lineage.lineageMode: \"new\"`, `lineage.parentSessionId: null`, and `lineage.continuedFromRun: null` during config creation (`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:157-180`), then later uses a synthesis fallback of `'completed-continue'` if no stop reason is found (`.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:390-409`). The reducer's status view reads lifecycle mode only from `config.lineage.lineageMode`, while its JSONL load drops all non-`iteration` records (`.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:405-414`, `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs:489-490`). That means resume/reopen semantics can influence control flow without updating reducer-visible lineage state away from `new`.",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3670:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1779:      "text": "The published `sk-improve-agent` contract and visible auto workflow keep that mutation coverage graph local to the improvement runtime rather than bridging it into the shared coverage-graph MCP. The skill describes `scripts/mutation-coverage.cjs` as the reader/writer for the coverage graph and says it uses `loop_type: \"improvement\"` isolation, while the auto workflow only appends the state ledger and runs `scripts/reduce-state.cjs`; I found no visible `deep_loop_graph_upsert` step on this path (`.opencode/skills/sk-improve-agent/SKILL.md:298-300`, `.opencode/skills/sk-improve-agent/SKILL.md:389-390`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-155`).",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3670:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1779:      "text": "The published `sk-improve-agent` contract and visible auto workflow keep that mutation coverage graph local to the improvement runtime rather than bridging it into the shared coverage-graph MCP. The skill describes `scripts/mutation-coverage.cjs` as the reader/writer for the coverage graph and says it uses `loop_type: \"improvement\"` isolation, while the auto workflow only appends the state ledger and runs `scripts/reduce-state.cjs`; I found no visible `deep_loop_graph_upsert` step on this path (`.opencode/skills/sk-improve-agent/SKILL.md:298-300`, `.opencode/skills/sk-improve-agent/SKILL.md:389-390`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-155`).",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3705:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1969:      "text": "Benchmark stability wording is lost between the published contract and the reducer surface. README says promotion depends on benchmark status and repeatability evidence, and SKILL says `benchmark-stability.cjs` emits a weight-recommendation report only after a minimum session-count threshold, but the dashboard only shows benchmark run/pass/fail counts, best benchmark score, and a generic benchmark-failure recommendation. There is no replay-count, stability-coefficient, repeatability, or `insufficient data` label in the visible reducer output. (`.opencode/skills/sk-improve-agent/README.md:159-165`, `.opencode/skills/sk-improve-agent/SKILL.md:318-323`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:404-438`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:444-475`)",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3707:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:1983:      "text": "Stop-reason and session-outcome wording drift before reaching the operator-facing dashboard. The changelog says sessions should report exact `STOP_REASONS` and `SESSION_OUTCOMES`, and SKILL publishes the outcome labels plus `blockedStop` gate-bundle language, but the reducer collapses stop status to booleans and free-text reasons while only counting `Keep-baseline results` in the global summary. The visible dashboard never renders enum-style stop reasons or session outcomes such as `promoted`, `rolledBack`, or `advisoryOnly`. (`.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md:15-18`, `.opencode/skills/sk-improve-agent/SKILL.md:261-289`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-332`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:440-468`)",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3708:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2025:      "text": "`.opencode/commands/improve/agent.md` says the orchestrator MUST emit `candidate_scored`, `legal_stop_evaluated`, and `session_ended` journal events with `gateResults`, `stopReason`, and `sessionOutcome`, but the visible auto and confirm YAML workflows never call `improvement-journal.cjs`. Their loop records only baseline/prompt-score/benchmark ledger data into `agent-improvement-state.jsonl`, runs `reduce-state.cjs`, and makes decisions from registry/dashboard outputs, so the richer journal contract is not emitted on the shipped workflow path. (`.opencode/commands/improve/agent.md:294-309`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:128-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:144-201`)",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3708:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2025:      "text": "`.opencode/commands/deep/start-agent-improvement-loop.md` says the orchestrator MUST emit `candidate_scored`, `legal_stop_evaluated`, and `session_ended` journal events with `gateResults`, `stopReason`, and `sessionOutcome`, but the visible auto and confirm YAML workflows never call `improvement-journal.cjs`. Their loop records only baseline/prompt-score/benchmark ledger data into `agent-improvement-state.jsonl`, runs `reduce-state.cjs`, and makes decisions from registry/dashboard outputs, so the richer journal contract is not emitted on the shipped workflow path. (`.opencode/commands/deep/start-agent-improvement-loop.md:294-309`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:128-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:144-201`)",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3709:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2041:      "text": "`reduce-state.cjs` is not the first place where the rich stop/outcome contract disappears, because it never opens `improvement-journal.jsonl` at all. Its main path reads only `agent-improvement-state.jsonl`, config, and mirror-drift report, then writes `experiment-registry.json` and `agent-improvement-dashboard.md`; any exact stop/session journal events would remain out-of-band from the reducer-owned operator surfaces. (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:42-54`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3714:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2105:      "text": "The visible stop/synthesis path collapses termination to reducer-generated stop-status booleans and free-text reasons rather than exact journal enums. Auto mode stops when `experiment-registry.json` reports `stopStatus.shouldStop`, confirm mode presents dashboard-driven approval choices, and the reducer renders only `Should stop`, `Drift ambiguity`, and concatenated reasons; there is no operator-facing consumption of `sessionOutcome` or enum-valued `stopReason` on the shipped path. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:152-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:176-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-475`)",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3716:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2140:      "text": "I found no visible contradiction-oriented graph gate in the operator path. The published improve-agent workflow enumerates scan, propose, score, benchmark, append, reduce, and stop steps, and the reducer’s stop evaluator uses no contradiction input or graph query surface, so contradiction handling remains absent from the visible coverage-graph loop rather than participating in stop blocking. (`.opencode/commands/improve/agent.md:272-286`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:137-158`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-325`)",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3714:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2105:      "text": "The visible stop/synthesis path collapses termination to reducer-generated stop-status booleans and free-text reasons rather than exact journal enums. Auto mode stops when `experiment-registry.json` reports `stopStatus.shouldStop`, confirm mode presents dashboard-driven approval choices, and the reducer renders only `Should stop`, `Drift ambiguity`, and concatenated reasons; there is no operator-facing consumption of `sessionOutcome` or enum-valued `stopReason` on the shipped path. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:152-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:176-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-475`)",
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3716:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2140:      "text": "I found no visible contradiction-oriented graph gate in the operator path. The published improve-agent workflow enumerates scan, propose, score, benchmark, append, reduce, and stop steps, and the reducer’s stop evaluator uses no contradiction input or graph query surface, so contradiction handling remains absent from the visible coverage-graph loop rather than participating in stop blocking. (`.opencode/commands/deep/start-agent-improvement-loop.md:272-286`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:137-158`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:259-325`)",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3718:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/findings-registry.json:2178:      "text": "The runtime config enables a coverage-graph file and the strategy template reserves reducer-populated `Mutation Coverage` and `Convergence Eligibility` sections, but `reduce-state.cjs` never opens `mutation-coverage.json`. Its main path reads only `agent-improvement-state.jsonl`, config, and mirror-drift report before writing `experiment-registry.json` and `agent-improvement-dashboard.md`, so graph data does not enter the operator-visible dashboard or recommendation surfaces. (`.opencode/skills/sk-improve-agent/assets/improvement_config.json:92-99`, `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md:114-123`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3744:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:2:{"type":"iteration","mode":"research","run":1,"status":"complete","focus":"D1 reducer rollup and resume drift","findingsCount":5,"newInfoRatio":1.0,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/references/loop_protocol.md",".opencode/skills/sk-deep-research/references/state_format.md",".opencode/skills/sk-deep-research/SKILL.md",".opencode/agents/deep-research.md",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml"],"answeredQuestions":["D1: What undocumented edge cases, redundant reducer passes, journal-rollup gaps, or resume-flow drifts exist in the sk-deep-research v1.5.0.0 loop?"],"timestamp":"2026-04-11T08:10:00Z","durationMs":420000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-reducer-event-drop","label":"Reducer drops non-iteration JSONL events"},{"type":"node","id":"finding-stuck-dashboard-drift","label":"Dashboard stuck count under-reports low-ratio stalls"},{"type":"node","id":"finding-rollup-schema-gap","label":"Reducer ignores noveltyJustification, structured ruledOut, sourceStrength, and graphEvents"},{"type":"node","id":"finding-resume-ideas-gap","label":"Resume uses research-ideas side channel that reducer never surfaces"},{"type":"node","id":"finding-ownership-doc-drift","label":"Skill data flow still tells agent to update strategy.md directly"},{"type":"edge","relation":"supports","source":"finding-reducer-event-drop","target":"finding-resume-ideas-gap"},{"type":"edge","relation":"extends","source":"finding-reducer-event-drop","target":"finding-rollup-schema-gap"},{"type":"edge","relation":"supports","source":"finding-ownership-doc-drift","target":"finding-rollup-schema-gap"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3745:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:3:{"type":"iteration","mode":"research","run":2,"status":"complete","focus":"D5 Coverage Graph Read-Path Audit","findingsCount":4,"newInfoRatio":0.75,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-001.md",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs"],"answeredQuestions":["D5: Does any loop phase (init / iteration / convergence / synthesis) actively READ from the coverage graph (`coverage-graph-query.ts`, `coverage-graph-convergence.cjs`) to inform decisions, or only WRITE to it?"],"timestamp":"2026-04-11T08:12:39Z","durationMs":587000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-shared-handler-uses-graph-state","label":"Shared convergence handler reads persisted graph state for stop decisions"},{"type":"node","id":"finding-workflows-only-emit-graphevents","label":"Active workflow surfaces emit graphEvents but do not invoke deep_loop_graph tools"},{"type":"node","id":"finding-reducer-does-not-surface-graph","label":"Deep-research reducer does not promote graphEvents into packet state"},{"type":"node","id":"finding-contradictions-depend-on-persisted-namespace","label":"Contradiction blocking depends on persisted graph namespace rather than raw JSONL graphEvents"},{"type":"edge","relation":"supports","source":"finding-shared-handler-uses-graph-state","target":"finding-workflows-only-emit-graphevents"},{"type":"edge","relation":"extends","source":"finding-workflows-only-emit-graphevents","target":"finding-reducer-does-not-surface-graph"},{"type":"edge","relation":"supports","source":"finding-contradictions-depend-on-persisted-namespace","target":"finding-shared-handler-uses-graph-state"}]}
@@ -5183,18 +5183,18 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3751:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:9:{"type":"iteration","mode":"research","run":8,"status":"complete","focus":"D2 partial-failure reducer audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-007.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-deep-review/references/convergence.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"],"answeredQuestions":[],"timestamp":"2026-04-11T08:33:26Z","durationMs":290000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-jsonl-malformed-lines-skipped","label":"Malformed JSONL lines are silently skipped by the review reducer"},{"type":"node","id":"finding-markdown-authoritative-lifecycle","label":"Finding lifecycle state is derived from parseable iteration markdown rather than iteration summaries"},{"type":"node","id":"finding-dashboard-registry-divergence","label":"Partial iteration markdown can leave dashboard progress ahead of registry lifecycle state"},{"type":"node","id":"finding-blocked-stop-evidence-stranded","label":"Blocked-stop gate evidence remains stranded in JSONL instead of reducer-owned surfaces"},{"type":"node","id":"finding-idempotent-but-lossy","label":"Reducer idempotency is deterministic but omission-based under partial failures"},{"type":"edge","relation":"supports","source":"finding-jsonl-malformed-lines-skipped","target":"finding-idempotent-but-lossy"},{"type":"edge","relation":"supports","source":"finding-markdown-authoritative-lifecycle","target":"finding-dashboard-registry-divergence"},{"type":"edge","relation":"extends","source":"finding-blocked-stop-evidence-stranded","target":"finding-dashboard-registry-divergence"},{"type":"edge","relation":"supports","source":"finding-dashboard-registry-divergence","target":"finding-idempotent-but-lossy"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3752:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:10:{"type":"iteration","mode":"research","run":9,"status":"complete","focus":"D2 scale reducer stress audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-008.md",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/convergence.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"],"answeredQuestions":["D2: Does the new `scripts/reduce-state.cjs` correctly handle partial-failure iterations, severity transitions, and finding deduplication at scale (50+ findings)?"],"timestamp":"2026-04-11T08:38:09Z","durationMs":360000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-review-dedup-stable-at-scale","label":"Map-by-findingId dedup stays stable across a 60-bullet synthetic packet"},{"type":"node","id":"finding-review-transitions-ordered-at-scale","label":"Severity transition histories remain ordered and complete under heavy churn"},{"type":"node","id":"finding-review-repeated-signal-coarse","label":"Repeated finding detection stays deterministic but collapses persistence and severity churn into one bucket"},{"type":"node","id":"finding-review-blockedstop-omission-scales","label":"Blocked-stop gate summaries remain absent from reducer-owned surfaces even when every cycle carries legalStop payloads"},{"type":"node","id":"finding-review-scale-risk-is-observability","label":"The scaled reducer risk is recovery-summary omission rather than merge instability"},{"type":"edge","relation":"supports","source":"finding-review-dedup-stable-at-scale","target":"finding-review-transitions-ordered-at-scale"},{"type":"edge","relation":"extends","source":"finding-review-transitions-ordered-at-scale","target":"finding-review-repeated-signal-coarse"},{"type":"edge","relation":"supports","source":"finding-review-blockedstop-omission-scales","target":"finding-review-scale-risk-is-observability"},{"type":"edge","relation":"extends","source":"finding-review-dedup-stable-at-scale","target":"finding-review-scale-risk-is-observability"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3753:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:11:{"type":"iteration","mode":"research","run":10,"status":"complete","focus":"D2 dimension-coverage gate effectiveness audit","findingsCount":5,"newInfoRatio":0.4,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-009.md",".opencode/skills/sk-deep-review/references/convergence.md",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl"],"answeredQuestions":["D2: How effective is the legal-stop gate bundle in sk-deep-review v1.2.0.0 under real review sessions, and where do dimension coverage gates still allow drift?"],"timestamp":"2026-04-11T08:40:21Z","durationMs":145000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"finding-review-contract-blockedstop-actionable","label":"Deep-review contract defines blockedStop with blockedBy gateResults replay inputs and gate-specific recovery"},{"type":"node","id":"finding-review-fixture-dimension-skew","label":"Dimension-skewed review fixture blocks stop on dimensionCoverage and p0Resolution with actionable recovery"},{"type":"node","id":"finding-review-auto-yaml-no-blockedstop","label":"Active deep-review auto workflow downgrades failed stop votes to CONTINUE without persisting blocked_stop payloads"},{"type":"node","id":"finding-review-dashboard-flattens-blockers","label":"Reducer dashboard flattens blockedBy and recoveryStrategy into generic iteration progress and uncovered-dimension focus"},{"type":"node","id":"finding-review-registry-omits-legalstop","label":"Reducer-owned registry and documented state shape omit legalStop fields needed for recovery handoff"},{"type":"edge","relation":"supports","source":"finding-review-fixture-dimension-skew","target":"finding-review-contract-blockedstop-actionable"},{"type":"edge","relation":"contradicts","source":"finding-review-auto-yaml-no-blockedstop","target":"finding-review-contract-blockedstop-actionable"},{"type":"edge","relation":"extends","source":"finding-review-dashboard-flattens-blockers","target":"finding-review-auto-yaml-no-blockedstop"},{"type":"edge","relation":"supports","source":"finding-review-registry-omits-legalstop","target":"finding-review-dashboard-flattens-blockers"}]}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3755:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:13:{"type":"iteration","mode":"research","run":12,"status":"complete","focus":"D3 recovery consumer reconstruction audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-011.md",".opencode/commands/improve/agent.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs",".opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs",".opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md",".opencode/changelog/15--sk-improve-agent/v1.1.0.0.md"],"answeredQuestions":[],"timestamp":"2026-04-11T08:48:04Z","durationMs":210000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d3-resume-contract-overstates-replay","label":"Resume contract promises replay beyond the helper surface actually provided"},{"type":"node","id":"d3-reducer-state-log-only","label":"Reducer reads only state log config and drift report"},{"type":"node","id":"d3-lineage-not-reconstructed","label":"Candidate lineage is persisted as a standalone graph but not rebuilt downstream"},{"type":"node","id":"d3-tradeoff-not-surfaced","label":"Trade-off decisions are promised in dashboard surfaces but not ingested by reducer"},{"type":"node","id":"d3-stability-not-surfaced","label":"Benchmark stability warnings are computed in module space but not replayed into recovery outputs"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-lineage-not-reconstructed"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-tradeoff-not-surfaced"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-stability-not-surfaced"},{"type":"edge","relation":"extends","source":"d3-resume-contract-overstates-replay","target":"d3-reducer-state-log-only"}]}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3755:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:13:{"type":"iteration","mode":"research","run":12,"status":"complete","focus":"D3 recovery consumer reconstruction audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-011.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/scripts/candidate-lineage.cjs",".opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs",".opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/024-candidate-lineage.md",".opencode/changelog/15--sk-improve-agent/v1.1.0.0.md"],"answeredQuestions":[],"timestamp":"2026-04-11T08:48:04Z","durationMs":210000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d3-resume-contract-overstates-replay","label":"Resume contract promises replay beyond the helper surface actually provided"},{"type":"node","id":"d3-reducer-state-log-only","label":"Reducer reads only state log config and drift report"},{"type":"node","id":"d3-lineage-not-reconstructed","label":"Candidate lineage is persisted as a standalone graph but not rebuilt downstream"},{"type":"node","id":"d3-tradeoff-not-surfaced","label":"Trade-off decisions are promised in dashboard surfaces but not ingested by reducer"},{"type":"node","id":"d3-stability-not-surfaced","label":"Benchmark stability warnings are computed in module space but not replayed into recovery outputs"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-lineage-not-reconstructed"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-tradeoff-not-surfaced"},{"type":"edge","relation":"supports","source":"d3-reducer-state-log-only","target":"d3-stability-not-surfaced"},{"type":"edge","relation":"extends","source":"d3-resume-contract-overstates-replay","target":"d3-reducer-state-log-only"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3756:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:14:{"type":"iteration","mode":"research","run":13,"status":"complete","focus":"D4 reducer anchor boundary audit","findingsCount":6,"newInfoRatio":0.8,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-012.md",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/references/state_format.md",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/references/quick_reference.md",".opencode/skills/sk-improve-agent/SKILL.md"],"answeredQuestions":["D4: Do the reducers ever write outside their declared machine-owned anchors, violating the contract?"],"timestamp":"2026-04-11T08:51:06Z","durationMs":180000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d4-research-anchor-scoped","label":"sk-deep-research rewrites only declared strategy anchors"},{"type":"node","id":"d4-review-surface-bounded","label":"sk-deep-review writes only strategy registry and dashboard surfaces"},{"type":"node","id":"d4-review-contract-underimplemented","label":"sk-deep-review omits several declared per-iteration strategy updates"},{"type":"node","id":"d4-review-fail-open","label":"sk-deep-review silently preserves missing anchor sections instead of halting"},{"type":"node","id":"d4-improve-machine-owned","label":"sk-improve-agent reducer writes only fully generated dashboard and registry files"},{"type":"edge","relation":"supports","source":"d4-research-anchor-scoped","target":"d4-review-surface-bounded"},{"type":"edge","relation":"extends","source":"d4-review-contract-underimplemented","target":"d4-review-surface-bounded"},{"type":"edge","relation":"supports","source":"d4-review-fail-open","target":"d4-review-contract-underimplemented"},{"type":"edge","relation":"supports","source":"d4-improve-machine-owned","target":"d4-review-surface-bounded"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3757:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:15:{"type":"iteration","mode":"research","run":14,"status":"complete","focus":"D5 convergence weight vs live callers","findingsCount":6,"newInfoRatio":0.8,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-013.md",".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs",".opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-signals.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts",".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",".opencode/skills/sk-deep-review/scripts/reduce-state.cjs",".opencode/skills/sk-deep-research/references/convergence.md",".opencode/skills/sk-deep-review/references/convergence.md",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml"],"answeredQuestions":["D5: Does the coverage graph's contribution to the 3-signal convergence math exceed its weight, or is it merely nominal?"],"timestamp":"2026-04-11T08:54:01Z","durationMs":175000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d5-graph-weight-capped","label":"Graph helper caps graph influence at 40 percent of blendedScore"},{"type":"node","id":"d5-separate-graph-blockers","label":"Graph blocker gates remain separate from the weighted blend"},{"type":"node","id":"d5-research-composite-passthrough","label":"Research reducer reads compositeStop or newInfoRatio instead of graph outputs"},{"type":"node","id":"d5-review-composite-passthrough","label":"Review reducer reads compositeStop or newFindingsRatio instead of graph outputs"},{"type":"node","id":"d5-doc-runtime-gap","label":"Graph-aware reducer docs overstate what the shipped reducers currently execute"},{"type":"node","id":"d5-split-graph-regimes","label":"CJS and MCP graph convergence implementations use different sourceDiversity scales and thresholds"},{"type":"edge","relation":"supports","source":"d5-graph-weight-capped","target":"d5-research-composite-passthrough"},{"type":"edge","relation":"supports","source":"d5-separate-graph-blockers","target":"d5-review-composite-passthrough"},{"type":"edge","relation":"extends","source":"d5-doc-runtime-gap","target":"d5-research-composite-passthrough"},{"type":"edge","relation":"supports","source":"d5-split-graph-regimes","target":"d5-doc-runtime-gap"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3758:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:16:{"type":"iteration","mode":"research","run":15,"status":"complete","focus":"D5 structural tool routing gap","findingsCount":6,"newInfoRatio":0.8,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-014.md",".opencode/agents/deep-research.md",".opencode/agents/deep-review.md",".opencode/commands/speckit/deep-research.md",".opencode/commands/speckit/deep-review.md",".opencode/commands/speckit/assets/speckit_deep-research_auto.yaml",".opencode/commands/speckit/assets/speckit_deep-review_auto.yaml",".opencode/skills/sk-deep-research/SKILL.md",".opencode/skills/sk-deep-review/SKILL.md"],"answeredQuestions":["D5: Are there missing MCP tool calls (e.g., `code_graph_query` for semantic neighbors) that the loops should be making but aren't?"],"timestamp":"2026-04-11T08:57:53Z","durationMs":240000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d5-agent-docs-only-code-graph","label":"Code Graph routing appears only in deep-research and deep-review agent docs"},{"type":"node","id":"d5-command-docs-cocoindex-only","label":"Command docs bootstrap CocoIndex but not structural graph tools"},{"type":"node","id":"d5-yaml-tool-budget-no-graph-tools","label":"Auto YAML wrappers provision CocoIndex only and omit code_graph_query code_graph_context and deep_loop_graph_convergence"},{"type":"node","id":"d5-yaml-reducer-direct-path","label":"Visible iteration path goes from graphEvents emission straight to reduce-state.cjs"},{"type":"node","id":"d5-skill-contracts-omit-graph-tools","label":"Skill-level allowed-tools and integration sections omit structural graph tools"},{"type":"edge","relation":"supports","source":"d5-agent-docs-only-code-graph","target":"d5-yaml-tool-budget-no-graph-tools"},{"type":"edge","relation":"supports","source":"d5-command-docs-cocoindex-only","target":"d5-yaml-tool-budget-no-graph-tools"},{"type":"edge","relation":"supports","source":"d5-yaml-tool-budget-no-graph-tools","target":"d5-yaml-reducer-direct-path"},{"type":"edge","relation":"extends","source":"d5-skill-contracts-omit-graph-tools","target":"d5-agent-docs-only-code-graph"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3760:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:18:{"type":"iteration","mode":"research","run":17,"status":"complete","focus":"D3 small-sample trade-off and stability gating","findingsCount":5,"newInfoRatio":0.8,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-012.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-016.md",".opencode/skills/sk-improve-agent/scripts/trade-off-detector.cjs",".opencode/skills/sk-improve-agent/scripts/benchmark-stability.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/skills/sk-improve-agent/scripts/tests/trade-off-detector.vitest.ts",".opencode/skills/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts",".opencode/skills/sk-improve-agent/assets/improvement_config.json",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/README.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md",".opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/029-benchmark-stability.md"],"answeredQuestions":["D3: Does the trade-off detector produce false positives on small benchmark samples, and does benchmark-stability gating compensate?"],"timestamp":"2026-04-11T09:04:23Z","durationMs":180000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d3-small-sample-tradeoff-two-point-trigger","label":"Trade-off detector fires after two trajectory points and ignores the documented three-point minimum"},{"type":"node","id":"d3-small-sample-stability-no-replay-gate","label":"Benchmark stability helper marks one-sample and low-sample inputs as stable because replayCount is not enforced"},{"type":"node","id":"d3-small-sample-tests-lock-in-behavior","label":"Unit tests accept two-point trade-off detection and two-replay stability as valid"},{"type":"node","id":"d3-small-sample-reducer-weak-benchmark-collapse","label":"Reducer collapses benchmark instability and real regression into weakBenchmarkRuns counters"},{"type":"node","id":"d3-small-sample-dashboard-no-distinction","label":"Dashboard path exposes no trade-off table or stability-specific labeling despite the published contract"},{"type":"edge","relation":"supports","source":"d3-small-sample-tradeoff-two-point-trigger","target":"d3-small-sample-stability-no-replay-gate"},{"type":"edge","relation":"supports","source":"d3-small-sample-stability-no-replay-gate","target":"d3-small-sample-reducer-weak-benchmark-collapse"},{"type":"edge","relation":"extends","source":"d3-small-sample-tests-lock-in-behavior","target":"d3-small-sample-tradeoff-two-point-trigger"},{"type":"edge","relation":"supports","source":"d3-small-sample-reducer-weak-benchmark-collapse","target":"d3-small-sample-dashboard-no-distinction"}]}
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3761:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:19:{"type":"iteration","mode":"research","run":18,"status":"complete","focus":"D4 contract artifact survival audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-016.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-017.md",".opencode/skills/sk-improve-agent/README.md",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs",".opencode/changelog/15--sk-improve-agent/v1.1.0.0.md"],"answeredQuestions":[],"timestamp":"2026-04-11T09:06:52Z","durationMs":300000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d4-strategy-template-not-written","label":"Reducer writes dashboard and registry only, leaving improvement_strategy machine-owned sections untouched"},{"type":"node","id":"d4-dimensional-progress-survives","label":"Dimensional progress and plateau stop language survive into the visible dashboard"},{"type":"node","id":"d4-tradeoff-annotations-lost","label":"Trade-off table and resolution guidance do not appear in the visible dashboard output"},{"type":"node","id":"d4-benchmark-stability-label-lost","label":"Benchmark stability and repeatability wording collapse to generic benchmark counters and recommendations"},{"type":"node","id":"d4-stop-outcome-enums-lost","label":"Published stop-reason and session-outcome enums do not survive the reducer dashboard surface"},{"type":"edge","relation":"supports","source":"d4-strategy-template-not-written","target":"d4-tradeoff-annotations-lost"},{"type":"edge","relation":"supports","source":"d4-strategy-template-not-written","target":"d4-benchmark-stability-label-lost"},{"type":"edge","relation":"extends","source":"d4-benchmark-stability-label-lost","target":"d4-stop-outcome-enums-lost"},{"type":"edge","relation":"contradicts","source":"d4-dimensional-progress-survives","target":"d4-strategy-template-not-written"}]}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3762:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:20:{"type":"iteration","mode":"research","run":19,"status":"complete","focus":"D4 upstream improve-agent journal emission path","findingsCount":6,"newInfoRatio":0.83,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/commands/improve/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:10:50Z","durationMs":480000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d4-upstream-no-visible-journal-emission","label":"Visible improve-agent YAML path never calls improvement-journal.cjs despite the published journal contract"},{"type":"node","id":"d4-upstream-cli-doc-mismatch","label":"Published session-start command uses an unsupported --event flag instead of passing the event type through --emit"},{"type":"node","id":"d4-upstream-gateresults-not-enforced","label":"Journal validation does not require gateResults for legal-stop or blocked-stop events"},{"type":"node","id":"d4-upstream-reducer-never-reads-journal","label":"Reducer reads only state ledger/config/mirror drift and never opens improvement-journal.jsonl"},{"type":"node","id":"d4-upstream-resume-contract-unexercised","label":"Visible auto and confirm workflows do not replay journals or propagate session lineage inputs"},{"type":"node","id":"d4-upstream-stop-surface-collapsed","label":"Operator-facing stop flow consumes reducer stopStatus booleans and free-text reasons rather than journal enums"},{"type":"edge","relation":"supports","source":"d4-upstream-no-visible-journal-emission","target":"d4-upstream-reducer-never-reads-journal"},{"type":"edge","relation":"supports","source":"d4-upstream-cli-doc-mismatch","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"supports","source":"d4-upstream-gateresults-not-enforced","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"extends","source":"d4-upstream-reducer-never-reads-journal","target":"d4-upstream-stop-surface-collapsed"},{"type":"edge","relation":"supports","source":"d4-upstream-resume-contract-unexercised","target":"d4-upstream-stop-surface-collapsed"}]}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3763:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:21:{"type":"iteration","mode":"research","run":20,"status":"complete","focus":"D5 improve-agent coverage-graph operator-loop audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md",".opencode/commands/improve/agent.md",".opencode/commands/improve/assets/improve_agent-improver_auto.yaml",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/assets/improvement_config.json",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:13:24Z","durationMs":180000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d5-improve-no-visible-focus-selection","label":"Visible improve-agent loop does not invoke coverage state before candidate generation, so graph data does not steer mutation focus"},{"type":"node","id":"d5-improve-configured-but-not-consumed","label":"Coverage graph is enabled in config and reserved in strategy placeholders but never read by the reducer"},{"type":"node","id":"d5-improve-helper-only-logic","label":"Mutation coverage helper records mutations and convergence eligibility but remains outside the visible command and reducer control path"},{"type":"node","id":"d5-improve-stop-gating-bypasses-graph","label":"Visible stop decisions use ledger and reducer heuristics rather than coverage-graph convergence eligibility"},{"type":"node","id":"d5-improve-no-visible-contradiction-gate","label":"No contradiction-oriented graph gate appears in the published improve-agent operator path"},{"type":"edge","relation":"supports","source":"d5-improve-no-visible-focus-selection","target":"d5-improve-helper-only-logic"},{"type":"edge","relation":"supports","source":"d5-improve-configured-but-not-consumed","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"extends","source":"d5-improve-helper-only-logic","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"supports","source":"d5-improve-stop-gating-bypasses-graph","target":"d5-improve-no-visible-contradiction-gate"}]}
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3765:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:7:- `.opencode/commands/improve/agent.md` says the orchestrator MUST emit `candidate_scored`, `legal_stop_evaluated`, and `session_ended` journal events with `gateResults`, `stopReason`, and `sessionOutcome`, but the visible auto and confirm YAML workflows never call `improvement-journal.cjs`. Their loop records only baseline/prompt-score/benchmark ledger data into `agent-improvement-state.jsonl`, runs `reduce-state.cjs`, and makes decisions from registry/dashboard outputs, so the richer journal contract is not emitted on the shipped workflow path. (`.opencode/commands/improve/agent.md:294-309`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:128-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:144-201`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3762:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:20:{"type":"iteration","mode":"research","run":19,"status":"complete","focus":"D4 upstream improve-agent journal emission path","findingsCount":6,"newInfoRatio":0.83,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-018.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/commands/deep/assets/improve_agent-improver_confirm.yaml",".opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:10:50Z","durationMs":480000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d4-upstream-no-visible-journal-emission","label":"Visible improve-agent YAML path never calls improvement-journal.cjs despite the published journal contract"},{"type":"node","id":"d4-upstream-cli-doc-mismatch","label":"Published session-start command uses an unsupported --event flag instead of passing the event type through --emit"},{"type":"node","id":"d4-upstream-gateresults-not-enforced","label":"Journal validation does not require gateResults for legal-stop or blocked-stop events"},{"type":"node","id":"d4-upstream-reducer-never-reads-journal","label":"Reducer reads only state ledger/config/mirror drift and never opens improvement-journal.jsonl"},{"type":"node","id":"d4-upstream-resume-contract-unexercised","label":"Visible auto and confirm workflows do not replay journals or propagate session lineage inputs"},{"type":"node","id":"d4-upstream-stop-surface-collapsed","label":"Operator-facing stop flow consumes reducer stopStatus booleans and free-text reasons rather than journal enums"},{"type":"edge","relation":"supports","source":"d4-upstream-no-visible-journal-emission","target":"d4-upstream-reducer-never-reads-journal"},{"type":"edge","relation":"supports","source":"d4-upstream-cli-doc-mismatch","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"supports","source":"d4-upstream-gateresults-not-enforced","target":"d4-upstream-no-visible-journal-emission"},{"type":"edge","relation":"extends","source":"d4-upstream-reducer-never-reads-journal","target":"d4-upstream-stop-surface-collapsed"},{"type":"edge","relation":"supports","source":"d4-upstream-resume-contract-unexercised","target":"d4-upstream-stop-surface-collapsed"}]}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3763:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-state.jsonl:21:{"type":"iteration","mode":"research","run":20,"status":"complete","focus":"D5 improve-agent coverage-graph operator-loop audit","findingsCount":5,"newInfoRatio":0.6,"sourcesQueried":[".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/deep-research-strategy.md",".opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md",".opencode/commands/deep/start-agent-improvement-loop.md",".opencode/commands/deep/assets/improve_agent-improver_auto.yaml",".opencode/skills/sk-improve-agent/SKILL.md",".opencode/skills/sk-improve-agent/assets/improvement_config.json",".opencode/skills/sk-improve-agent/assets/improvement_strategy.md",".opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs",".opencode/skills/sk-improve-agent/scripts/reduce-state.cjs"],"answeredQuestions":[],"timestamp":"2026-04-11T09:13:24Z","durationMs":180000,"sessionId":"rsr-2026-04-11T08-02-52Z","generation":1,"lineageMode":"new","graphEvents":[{"type":"node","id":"d5-improve-no-visible-focus-selection","label":"Visible improve-agent loop does not invoke coverage state before candidate generation, so graph data does not steer mutation focus"},{"type":"node","id":"d5-improve-configured-but-not-consumed","label":"Coverage graph is enabled in config and reserved in strategy placeholders but never read by the reducer"},{"type":"node","id":"d5-improve-helper-only-logic","label":"Mutation coverage helper records mutations and convergence eligibility but remains outside the visible command and reducer control path"},{"type":"node","id":"d5-improve-stop-gating-bypasses-graph","label":"Visible stop decisions use ledger and reducer heuristics rather than coverage-graph convergence eligibility"},{"type":"node","id":"d5-improve-no-visible-contradiction-gate","label":"No contradiction-oriented graph gate appears in the published improve-agent operator path"},{"type":"edge","relation":"supports","source":"d5-improve-no-visible-focus-selection","target":"d5-improve-helper-only-logic"},{"type":"edge","relation":"supports","source":"d5-improve-configured-but-not-consumed","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"extends","source":"d5-improve-helper-only-logic","target":"d5-improve-stop-gating-bypasses-graph"},{"type":"edge","relation":"supports","source":"d5-improve-stop-gating-bypasses-graph","target":"d5-improve-no-visible-contradiction-gate"}]}
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3765:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:7:- `.opencode/commands/deep/start-agent-improvement-loop.md` says the orchestrator MUST emit `candidate_scored`, `legal_stop_evaluated`, and `session_ended` journal events with `gateResults`, `stopReason`, and `sessionOutcome`, but the visible auto and confirm YAML workflows never call `improvement-journal.cjs`. Their loop records only baseline/prompt-score/benchmark ledger data into `agent-improvement-state.jsonl`, runs `reduce-state.cjs`, and makes decisions from registry/dashboard outputs, so the richer journal contract is not emitted on the shipped workflow path. (`.opencode/commands/deep/start-agent-improvement-loop.md:294-309`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:128-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:144-201`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3768:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:10:- `reduce-state.cjs` is not the first place where the rich stop/outcome contract disappears, because it never opens `improvement-journal.jsonl` at all. Its main path reads only `agent-improvement-state.jsonl`, config, and mirror-drift report, then writes `experiment-registry.json` and `agent-improvement-dashboard.md`; any exact stop/session journal events would remain out-of-band from the reducer-owned operator surfaces. (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:42-54`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:489-503`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3770:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:12:- The visible stop/synthesis path collapses termination to reducer-generated stop-status booleans and free-text reasons rather than exact journal enums. Auto mode stops when `experiment-registry.json` reports `stopStatus.shouldStop`, confirm mode presents dashboard-driven approval choices, and the reducer renders only `Should stop`, `Drift ambiguity`, and concatenated reasons; there is no operator-facing consumption of `sessionOutcome` or enum-valued `stopReason` on the shipped path. (`.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:152-167`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml:176-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-475`)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3812:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-016.md:8:- The published `sk-improve-agent` contract and visible auto workflow keep that mutation coverage graph local to the improvement runtime rather than bridging it into the shared coverage-graph MCP. The skill describes `scripts/mutation-coverage.cjs` as the reader/writer for the coverage graph and says it uses `loop_type: "improvement"` isolation, while the auto workflow only appends the state ledger and runs `scripts/reduce-state.cjs`; I found no visible `deep_loop_graph_upsert` step on this path (`.opencode/skills/sk-improve-agent/SKILL.md:298-300`, `.opencode/skills/sk-improve-agent/SKILL.md:389-390`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:149-155`).
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3770:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-019.md:12:- The visible stop/synthesis path collapses termination to reducer-generated stop-status booleans and free-text reasons rather than exact journal enums. Auto mode stops when `experiment-registry.json` reports `stopStatus.shouldStop`, confirm mode presents dashboard-driven approval choices, and the reducer renders only `Should stop`, `Drift ambiguity`, and concatenated reasons; there is no operator-facing consumption of `sessionOutcome` or enum-valued `stopReason` on the shipped path. (`.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:152-167`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml:176-201`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:425-475`)
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:3812:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/research/iterations/iteration-016.md:8:- The published `sk-improve-agent` contract and visible auto workflow keep that mutation coverage graph local to the improvement runtime rather than bridging it into the shared coverage-graph MCP. The skill describes `scripts/mutation-coverage.cjs` as the reader/writer for the coverage graph and says it uses `loop_type: "improvement"` isolation, while the auto workflow only appends the state ledger and runs `scripts/reduce-state.cjs`; I found no visible `deep_loop_graph_upsert` step on this path (`.opencode/skills/sk-improve-agent/SKILL.md:298-300`, `.opencode/skills/sk-improve-agent/SKILL.md:389-390`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:149-155`).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:4023:| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Modify | Ingest iteration `graphEvents`, define the reducer/MCP contract, push graph deltas to MCP, query convergence, enforce the fallback authority chain, and keep a local JSON fallback path. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:4028:| `.opencode/agents/deep-research.md` | Modify | Require research iterations to emit graph nodes and edges into JSONL state. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/iterations/iteration-002.md:4029:| `.opencode/agents/deep-review.md` | Modify | Require review iterations to emit graph nodes and edges into JSONL state. |
@@ -5225,29 +5225,29 @@ exec
     12	contextType: "implementation"
     13	---
     14	# Feature Specification: Further Deep-Loop Improvements
-    15	
+    15
     16	<!-- SPECKIT_LEVEL: 3 -->
     17	<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-    18	
+    18
     19	---
-    20	
+    20
     21	## EXECUTIVE SUMMARY
-    22	
+    22
     23	Phase 008 completed the runtime-truth closeout for the 042 bundle. It landed the visible contract fixes that the deep-research audit had called out: blocked-stop emission, graph-aware stop gating, reducer-owned graph and blocked-stop surfacing, fail-closed review handling, improve-agent journal wiring, sample-size enforcement, replay consumers, durable fixtures, and release packaging across all three skills.
-    24	
+    24
     25	The shipped work is traceable through the phase commits `263820da8`, `32e3c1385`, `de922e718`, `466835f7c`, `38f07e065`, `c07c9fbcf`, and `f99739742`, plus the three skill release notes:
-    26	
+    26
     27	- `.opencode/changelog/12--sk-deep-research/v1.6.0.0.md`
     28	- `.opencode/changelog/13--sk-deep-review/v1.3.0.0.md`
     29	- `.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md`
-    30	
+    30
     31	The packet’s final closeout also records the focused closing audit in `scratch/closing-review.md` and the remediation commits that closed the remaining release-readiness findings.
-    32	
+    32
     33	---
-    34	
+    34
     35	<!-- ANCHOR:metadata -->
     36	## 1. METADATA
-    37	
+    37
     38	| Field | Value |
     39	|-------|-------|
     40	| **Level** | 3 |
@@ -5264,20 +5264,20 @@ exec
     51	| **Closing Audit** | `scratch/closing-review.md` |
     52	| **Handoff Criteria** | Runtime-truth fixes, graph integration, reducer surfacing, fixtures, release notes, and closing-audit remediation are all recorded and validated. |
     53	<!-- /ANCHOR:metadata -->
-    54	
+    54
     55	---
-    56	
+    56
     57	<!-- ANCHOR:problem -->
     58	## 2. PROBLEM & PURPOSE
-    59	
+    59
     60	### Problem Statement
-    61	
+    61
     62	The Phase 008 work started from a simple but high-impact gap: the repo already shipped richer stop-state, graph, and replay helpers than the visible workflows actually called. Research, review, and improve-agent all had contract drift between what their docs promised and what the live loop paths emitted, consumed, or surfaced to operators. The deep-research audit showed that the graph was often emitted but not consulted, blocked-stop payloads were dropped or flattened, and improve-agent helpers existed without being fully wired into the operator path.
-    63	
+    63
     64	### Purpose
-    65	
+    65
     66	Capture the completed remediation as a clean Level 3 child packet that shows what Phase 008 actually shipped:
-    67	
+    67
     68	- contract-truth fixes on the visible loop path
     69	- graph upsert and convergence calls on live research and review workflows
     70	- reducer-owned blocked-stop, graph, sample-quality, and replay surfacing
@@ -5285,30 +5285,30 @@ exec
     72	- durable fixtures, new Vitest suites, and playbook scenarios
     73	- release notes and post-audit remediation commits that closed the last release-readiness gaps
     74	<!-- /ANCHOR:problem -->
-    75	
+    75
     76	---
-    77	
+    77
     78	<!-- ANCHOR:scope -->
     79	## 3. SCOPE
-    80	
+    80
     81	### In Scope
-    82	
+    82
     83	- `.opencode/skills/sk-deep-research/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
     84	- `.opencode/skills/sk-deep-review/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
     85	- `.opencode/skills/sk-improve-agent/` runtime docs, reducers, fixtures, and playbooks touched by the Phase 008 release.
     86	- `.opencode/skills/system-spec-kit/` shared coverage-graph helpers, handlers, and tests touched by graph convergence and session isolation work.
-    87	- `.opencode/commands/speckit/` and `.opencode/commands/improve/` workflow docs and YAMLs touched by visible-path wiring.
+    87	- `.opencode/commands/speckit/` and `.opencode/commands/deep/` workflow docs and YAMLs touched by visible-path wiring.
     88	- Phase-local closeout artifacts in `scratch/closing-review.md` and the phase packet documentation itself.
-    89	
+    89
     90	### Out of Scope
-    91	
+    91
     92	- New runtime feature design outside the already shipped Phase 008 and closing-audit remediation work.
     93	- Any packet work after Phase 008.
     94	- Memory-folder edits under this phase.
     95	- Reopening the implementation itself; this pass is documentation alignment and evidence cleanup only.
-    96	
+    96
     97	### Key Delivered Surfaces
-    98	
+    98
     99	| Surface | Delivered Outcome |
    100	|---------|-------------------|
    101	| Research workflows | Blocked-stop emission, pause normalization, graph upsert/convergence calls, graph-facing reducer fields, fixture and playbook coverage |
@@ -5317,14 +5317,14 @@ exec
    104	| Shared graph stack | Canonical graph regime, score harmonization, and session isolation on shared reads |
    105	| Release packaging | `v1.6.0.0`, `v1.3.0.0`, `v1.2.0.0`, plus closing-audit follow-on fixes |
    106	<!-- /ANCHOR:scope -->
-   107	
+   107
    108	---
-   109	
+   109
    110	<!-- ANCHOR:requirements -->
    111	## 4. REQUIREMENTS
-   112	
+   112
    113	### P0 - Blockers (MUST complete)
-   114	
+   114
    115	| ID | Requirement | Acceptance Criteria |
    116	|----|-------------|---------------------|
    117	| REQ-001 | Research and review must emit typed blocked-stop and normalized pause events on the visible path. | Release notes and packet evidence show blocked-stop, `userPaused`, and `stuckRecovery` wiring on research and review workflows. |
@@ -5334,9 +5334,9 @@ exec
    121	| REQ-005 | Improve-agent must emit journal events from the visible workflow and fix the broken CLI example. | `v1.2.0.0` documents YAML journal wiring and the corrected `--emit` command example. |
    122	| REQ-006 | Improve-agent must enforce minimum data and replay counts before claiming trade-off or stability verdicts. | `v1.2.0.0` documents `insufficientData` and `insufficientSample` behavior plus updated tests. |
    123	| REQ-007 | The phase packet must satisfy the current Level 3 contract. | `validate.sh --strict` passes for this phase folder. |
-   124	
+   124
    125	### P1 - Required (complete OR user-approved deferral)
-   126	
+   126
    127	| ID | Requirement | Acceptance Criteria |
    128	|----|-------------|---------------------|
    129	| REQ-008 | Reducer-owned surfaces must show blocked-stop and graph convergence state, not just raw JSONL. | Research and review release notes describe blocked-stop and graph-convergence dashboard/registry surfacing. |
@@ -5345,20 +5345,20 @@ exec
    132	| REQ-011 | The final packet must acknowledge the closing audit and the remediation that followed it. | `implementation-summary.md` and `scratch/closing-review.md` are consistent with the later fix commits. |
    133	| REQ-012 | The final packet must use only real repo paths and current release evidence. | No spec doc integrity errors remain under strict validation. |
    134	<!-- /ANCHOR:requirements -->
-   135	
+   135
    136	---
-   137	
+   137
    138	<!-- ANCHOR:success-criteria -->
    139	## 5. SUCCESS CRITERIA
-   140	
+   140
    141	- **SC-001**: The packet validates strictly as a Level 3 child phase.
    142	- **SC-002**: The packet shows that the coverage graph is actively consulted on the live research and review loop paths.
    143	- **SC-003**: The packet shows that blocked-stop, graph-convergence, and sample-quality state are surfaced in reducer-owned outputs.
    144	- **SC-004**: The packet traces the work through the three release notes plus the closing-audit remediation commits.
    145	- **SC-005**: The packet no longer depends on broken shorthand references or planning-era headings.
-   146	
+   146
    147	### Acceptance Scenarios
-   148	
+   148
    149	1. **Given** a maintainer wants to confirm that graph wiring shipped, **when** they read this packet, **then** they can see the research and review releases explicitly describe `deep_loop_graph_upsert` and `deep_loop_graph_convergence` on the visible path.
    150	2. **Given** a maintainer wants proof that blocked-stop state reaches operator-visible surfaces, **when** they inspect the packet, **then** they can see the reducer-owned dashboard and strategy surfacing described in the release evidence.
    151	3. **Given** a maintainer wants to verify improve-agent replay consumers and sample-quality surfacing, **when** they inspect this packet, **then** they can trace them through `v1.2.0.0` and the implementation summary.
@@ -5366,12 +5366,12 @@ exec
    153	5. **Given** strict validation is run on this phase folder, **when** the validator checks headings, anchors, and references, **then** the packet passes with no errors.
    154	6. **Given** a future operator needs the closing review context, **when** they open `scratch/closing-review.md`, **then** they can understand the audit that led to the final two remediation commits without hunting through git history.
    155	<!-- /ANCHOR:success-criteria -->
-   156	
+   156
    157	---
-   158	
+   158
    159	<!-- ANCHOR:risks -->
    160	## 6. RISKS & DEPENDENCIES
-   161	
+   161
    162	| Type | Item | Impact | Mitigation |
    163	|------|------|--------|------------|
    164	| Dependency | The phase outcome is spread across multiple release and fix commits. | High | Use the three skill changelogs plus the two closing-audit fix commits as the canonical evidence chain. |
@@ -5380,44 +5380,44 @@ exec
    167	| Risk | Broken shorthand references to research, skills, or playbooks can fail validation. | Medium | Use explicit repo-relative paths for every non-packet reference. |
    168	| Risk | Release-readiness status can be overstated if the closing audit is omitted. | Medium | Keep the closing audit and the remediation commits in the packet narrative and verification evidence. |
    169	<!-- /ANCHOR:risks -->
-   170	
+   170
    171	---
-   172	
+   172
    173	## 7. NON-FUNCTIONAL REQUIREMENTS
-   174	
+   174
    175	### Performance
-   176	
+   176
    177	- **NFR-P01**: The closeout packet remains documentation-only and does not change runtime behavior.
    178	- **NFR-P02**: Verification evidence stays grounded in committed files, release notes, and validator output rather than ad hoc claims.
-   179	
+   179
    180	### Reliability
-   181	
+   181
    182	- **NFR-R01**: The packet must be sufficient for a future maintainer to understand the shipped Phase 008 outcome without reconstructing the entire implementation timeline manually.
    183	- **NFR-R02**: Parent and predecessor references remain valid after packet normalization.
-   184	
+   184
    185	### Maintainability
-   186	
+   186
    187	- **NFR-M01**: The packet preserves the substantive A-E delivery story while conforming to the current Level 3 template.
    188	- **NFR-M02**: All external references must resolve cleanly under strict validation.
-   189	
+   189
    190	---
-   191	
+   191
    192	## 8. EDGE CASES
-   193	
+   193
    194	### Release Evidence
-   195	
+   195
    196	- Phase 008 completion is not represented by a single commit. The packet therefore has to reference the release notes and the closing-audit remediation commits together.
    197	- The closing review exists as `scratch/closing-review.md`, not under a `review/` directory, so the packet must cite the phase-local scratch artifact instead of assuming a standard review tree.
-   198	
+   198
    199	### Runtime State
-   200	
+   200
    201	- The improve-agent path uses local replay artifacts rather than joining the shared SQLite graph namespace. The packet records that delivered choice instead of implying a broader migration that did not happen.
    202	- Review fail-closed behavior includes escape hatches (`--lenient`, `--create-missing-anchors`) for legacy packets. The closeout packet should describe them as shipped compatibility behavior, not as unimplemented future work.
-   203	
+   203
    204	---
-   205	
+   205
    206	## 9. COMPLEXITY ASSESSMENT
-   207	
+   207
    208	| Dimension | Score | Triggers |
    209	|-----------|-------|----------|
    210	| Scope | 22/25 | Three skills, shared graph infrastructure, workflow YAMLs, reducers, fixtures, playbooks, and release packaging |
@@ -5426,11 +5426,11 @@ exec
    213	| Multi-Agent | 10/15 | The original delivery split across multiple parts and later remediation passes |
    214	| Coordination | 10/15 | Multiple release notes and closing-audit commits needed to close the packet honestly |
    215	| **Total** | **72/100** | **Level 3** |
-   216	
+   216
    217	---
-   218	
+   218
    219	## 10. RISK MATRIX
-   220	
+   220
    221	| Risk ID | Description | Impact | Likelihood | Mitigation |
    222	|---------|-------------|--------|------------|------------|
    223	| R-001 | Graph integration is described as active, but packet references are incomplete or broken. | High | Use the three release notes and explicit phase-local evidence. |
@@ -5438,28 +5438,28 @@ exec
    225	| R-003 | The packet preserves planning language instead of shipped reality. | Medium | Reframe the packet as completed delivery plus remediation. |
    226	| R-004 | Validator failures recur because of shorthand references. | Medium | Use explicit repo-relative paths and current packet-local links only. |
    227	| R-005 | Future maintainers cannot tell whether the packet was actually finished. | Low | Mark every task and checklist item complete with concrete evidence, plus include strict-validation proof. |
-   228	
+   228
    229	---
-   230	
+   230
    231	## 11. USER STORIES
-   232	
+   232
    233	- As a maintainer, I want one clean phase packet that shows what Phase 008 actually shipped so I can audit the runtime-truth changes quickly.
    234	- As a reviewer, I want the packet to show both the initial release and the later closing-audit remediation so I can trust the release-readiness story.
    235	- As a validator, I want the packet to follow the current Level 3 template so recursive strict validation passes cleanly.
    236	- As a future operator, I want the packet to point me at the correct release notes, fixtures, playbooks, and closing-review artifact instead of dead shorthand paths.
-   237	
+   237
    238	---
-   239	
+   239
    240	<!-- ANCHOR:questions -->
    241	## 12. OPEN QUESTIONS
-   242	
+   242
    243	- None for packet closeout. The implementation and the release-readiness remediation are already shipped; this pass only reconciles the phase docs to the current template and evidence chain.
    244	<!-- /ANCHOR:questions -->
-   245	
+   245
    246	---
-   247	
+   247
    248	## 13. RELATED DOCUMENTS
-   249	
+   249
    250	- `../research/research.md`
    251	- `.opencode/changelog/12--sk-deep-research/v1.6.0.0.md`
    252	- `.opencode/changelog/13--sk-deep-review/v1.3.0.0.md`
@@ -5489,25 +5489,25 @@ exec
     11	contextType: "planning"
     12	---
     13	# Feature Specification: Skill Rename - sk-improve-agent and sk-improve-prompt
-    14	
+    14
     15	<!-- SPECKIT_LEVEL: 3 -->
     16	<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-    17	
+    17
     18	---
-    19	
+    19
     20	## EXECUTIVE SUMMARY
-    21	
+    21
     22	This phase closes the documentation gap around a skill-folder rename that had already shipped in the repo. The two improver skills are now canonically named `sk-improve-agent` and `sk-improve-prompt`, their changelog directories were moved to `14--sk-improve-prompt/` and `15--sk-improve-agent/`, and the live runtime-agent files already use the `improve-agent` naming convention. The packet records that truth so future maintainers can trust the renamed paths without reconstructing the rename from git history.
-    23	
+    23
     24	**Key Decisions**: Canonical `sk-improve-*` skill naming (ADR-001), runtime-agent filename boundary left at `improve-agent` (ADR-002), historical spec-folder slugs preserved as archival identity (ADR-003)
-    25	
+    25
     26	**Critical Dependencies**: Live renamed skill folders at `.opencode/skills/sk-improve-agent/` and `.opencode/skills/sk-improve-prompt/`; renamed changelog directories; live `improve-agent` runtime-agent files across `.opencode/`, `.claude/`, `.gemini/`, and `.codex/`
-    27	
+    27
     28	---
-    29	
+    29
     30	<!-- ANCHOR:metadata -->
     31	## 1. METADATA
-    32	
+    32
     33	| Field | Value |
     34	|-------|-------|
     35	| **Level** | 3 |
@@ -5522,38 +5522,38 @@ exec
     44	| **Successor** | `../008-further-deep-loop-improvements/spec.md` |
     45	| **Handoff Criteria** | Active repo references use the new skill names, renamed folders exist, and Phase 008 can build on the renamed surfaces without alias cleanup work. |
     46	<!-- /ANCHOR:metadata -->
-    47	
+    47
     48	---
-    49	
+    49
     50	<!-- ANCHOR:problem -->
     51	## 2. PROBLEM & PURPOSE
-    52	
+    52
     53	### Problem Statement
     54	The two improver skills were renamed from `sk-agent-improver` and `sk-prompt-improver` to `sk-improve-agent` and `sk-improve-prompt`, but the closeout docs still carried stale metadata, old runtime-agent references, and missing template markers. That left the phase folder out of alignment with the current template contract even though the rename work itself was already complete.
-    55	
+    55
     56	### Purpose
     57	Capture the completed rename as a clean Level 3 phase packet so the phase validates strictly, the renamed paths stay discoverable, and downstream phases can rely on the new canonical skill names without ambiguity.
     58	<!-- /ANCHOR:problem -->
-    59	
+    59
     60	---
-    61	
+    61
     62	<!-- ANCHOR:scope -->
     63	## 3. SCOPE
-    64	
+    64
     65	### In Scope
     66	- Document the completed rename of `.opencode/skills/sk-agent-improver/` to `.opencode/skills/sk-improve-agent/`.
     67	- Document the completed rename of `.opencode/skills/sk-prompt-improver/` to `.opencode/skills/sk-improve-prompt/`.
     68	- Document the completed changelog-folder renames for the two skills.
     69	- Verify that active references in commands, agents, README files, descriptions, and advisor routing now use the new names.
     70	- Bring the phase packet itself into current Level 3 template alignment.
-    71	
+    71
     72	### Out of Scope
     73	- Renaming runtime agent filenames such as `.opencode/agents/improve-agent.md` or `.codex/agents/improve-agent.toml` - those already use the current runtime naming convention (see ADR-002).
     74	- Changing behavior in the improver skills - this phase is documentation and rename closeout only.
     75	- Renaming historical spec-folder slugs - historical packet identities stay stable (see ADR-003).
-    76	
+    76
     77	### Files to Change
-    78	
+    78
     79	| File Path | Change Type | Description |
     80	|-----------|-------------|-------------|
     81	| `spec.md` | Modify | Align the phase specification with the Level 3 contract and completed-state metadata. |
@@ -5564,23 +5564,23 @@ exec
     86	| `decision-record.md` | Create | Record why the new skill names remain canonical and why runtime-agent filenames were left alone. |
     87	| `README.md` | Modify | Repair template-reference links so the packet documentation resolves cleanly. |
     88	<!-- /ANCHOR:scope -->
-    89	
+    89
     90	---
-    91	
+    91
     92	<!-- ANCHOR:requirements -->
     93	## 4. REQUIREMENTS
-    94	
+    94
     95	### P0 - Blockers (MUST complete)
-    96	
+    96
     97	| ID | Requirement | Acceptance Criteria |
     98	|----|-------------|---------------------|
     99	| REQ-001 | The packet must describe the shipped skill-folder renames using the new canonical names. | `spec.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` point to `sk-improve-agent` and `sk-improve-prompt` rather than the retired folder names. |
    100	| REQ-002 | The packet must describe the shipped changelog-folder renames. | The documentation names `.opencode/changelog/14--sk-improve-prompt/` and `.opencode/changelog/15--sk-improve-agent/` as the canonical changelog locations. |
    101	| REQ-003 | Runtime-agent references must point to current files. | The phase references `.opencode/agents/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, and `.codex/agents/improve-agent.toml` instead of missing `agent-improver` paths. |
    102	| REQ-004 | The phase packet must satisfy the current Level 3 template contract. | All required template markers, anchors, and section headers exist and validate under `validate.sh --strict`. |
-   103	
+   103
    104	### P1 - Required (complete OR user-approved deferral)
-   105	
+   105
    106	| ID | Requirement | Acceptance Criteria |
    107	|----|-------------|---------------------|
    108	| REQ-005 | Verification evidence must show the rename actually landed. | The packet cites concrete evidence for zero old-name residuals, renamed skill directories, renamed changelog directories, and updated advisor or description surfaces. |
@@ -5588,19 +5588,19 @@ exec
    110	| REQ-007 | The rename rationale must be preserved as a decision artifact. | `decision-record.md` captures ADR-001 (canonical naming), ADR-002 (runtime-agent boundary), and ADR-003 (historical slug preservation). |
    111	| REQ-008 | The closeout packet must scope-lock work to the phase folder. | No files outside `007-skill-rename-improve-agent-prompt/` are modified during closeout; `memory/` subfolder remains untouched. |
    112	<!-- /ANCHOR:requirements -->
-   113	
+   113
    114	---
-   115	
+   115
    116	<!-- ANCHOR:success-criteria -->
    117	## 5. SUCCESS CRITERIA
-   118	
+   118
    119	- **SC-001**: The phase packet validates cleanly as a Level 3 child phase under `validate.sh --strict`.
    120	- **SC-002**: The packet records `sk-improve-agent` and `sk-improve-prompt` as the only active skill names.
    121	- **SC-003**: Runtime-agent references in the phase docs point at the live `improve-agent` files.
    122	- **SC-004**: The rename story is traceable through completed tasks, checklist evidence, and the implementation summary.
-   123	
+   123
    124	### Acceptance Scenarios
-   125	
+   125
    126	1. **Given** a reader opens Phase 007 to understand the rename, **when** they inspect the packet, **then** they see the new skill names and the correct renamed changelog folders throughout the docs.
    127	2. **Given** a maintainer checks runtime-agent references, **when** they review the phase docs, **then** they are pointed at the live `improve-agent` files rather than missing `agent-improver` paths.
    128	3. **Given** strict validation is run on the phase folder, **when** the packet is checked against the Level 3 template, **then** all required sections, anchors, and template-source markers are present.
@@ -5608,12 +5608,12 @@ exec
    130	5. **Given** a phase owner opens `decision-record.md`, **when** they scan the ADRs, **then** ADR-001, ADR-002, and ADR-003 each present context, alternatives with scores, consequences, and a Five Checks evaluation.
    131	6. **Given** the scope lock rule for this phase, **when** an auditor greps the git diff for out-of-scope edits, **then** no file outside `007-skill-rename-improve-agent-prompt/` was modified during the closeout and `memory/` is untouched.
    132	<!-- /ANCHOR:success-criteria -->
-   133	
+   133
    134	---
-   135	
+   135
    136	<!-- ANCHOR:risks -->
    137	## 6. RISKS & DEPENDENCIES
-   138	
+   138
    139	| Type | Item | Impact | Mitigation |
    140	|------|------|--------|------------|
    141	| Dependency | The underlying repo rename must remain the source of truth. | High | Keep this packet documentation-only and ground every claim in the existing renamed paths. |
@@ -5621,43 +5621,43 @@ exec
    143	| Risk | The phase packet falls behind current template rules even though the rename itself is done. | Medium | Rebuild the phase docs around the current Level 3 contract and verify with strict validation. |
    144	| Risk | Historical folder slugs may be mistaken for active path requirements. | Low | State explicitly in ADR-003 and in edge cases that historical spec-folder names stay unchanged while active runtime paths use the new names. |
    145	<!-- /ANCHOR:risks -->
-   146	
+   146
    147	---
-   148	
+   148
    149	## 7. NON-FUNCTIONAL REQUIREMENTS
-   150	
+   150
    151	### Performance
    152	- **NFR-P01**: Phase validation remains documentation-only and does not introduce runtime work.
    153	- **NFR-P02**: Reference verification should stay grep-driven and fast enough for packet closeout.
-   154	
+   154
    155	### Security
    156	- **NFR-S01**: The phase must not introduce new secrets or credential-bearing paths into documentation.
    157	- **NFR-S02**: All evidence should reference public repo files or validation commands only.
-   158	
+   158
    159	### Reliability
    160	- **NFR-R01**: The packet should be sufficient for future maintainers to re-check rename correctness without rediscovering the repo history.
    161	- **NFR-R02**: Runtime-agent and skill-path references must stay stable across future closeout passes.
-   162	
+   162
    163	---
-   164	
+   164
    165	## 8. EDGE CASES
-   166	
+   166
    167	### Data Boundaries
    168	- Historical packet folder names still include the retired skill names. The docs must distinguish those historical slugs from active runtime paths (ADR-003).
    169	- The phase folder itself intentionally contains old-name strings because it documents the rename from old to new.
-   170	
+   170
    171	### Error Scenarios
    172	- If a future audit finds old names in active repo files, Phase 007 can no longer be treated as fully complete.
    173	- If runtime-agent references change again, this packet must be updated to avoid sending readers to missing files.
-   174	
+   174
    175	### State Transitions
    176	- If a future packet introduces a second rename, this packet remains the evidence of the 2026-04-11 rename baseline.
    177	- If changelog folders move again, the evidence in this phase must be updated to the new canonical locations.
-   178	
+   178
    179	---
-   180	
+   180
    181	## 9. COMPLEXITY ASSESSMENT
-   182	
+   182
    183	| Dimension | Score | Triggers |
    184	|-----------|-------|----------|
    185	| Scope | 12/25 | Files: 7 (packet-local), LOC: documentation-only, Systems: 1 (phase packet) |
@@ -5666,69 +5666,69 @@ exec
    188	| Multi-Agent | 4/15 | Workstreams: 1 (single documentation closeout pass) |
    189	| Coordination | 6/15 | Dependencies: 3 (renamed skill folders, renamed changelog folders, live runtime-agent files) |
    190	| **Total** | **38/100** | **Level 3** |
-   191	
+   191
    192	---
-   193	
+   193
    194	## 10. RISK MATRIX
-   195	
+   195
    196	| Risk ID | Description | Impact | Likelihood | Mitigation |
    197	|---------|-------------|--------|------------|------------|
    198	| R-001 | Stale `agent-improver` paths leak back into active packet text | M | L | Strict validation plus direct grep evidence in checklist |
    199	| R-002 | Runtime-agent reference drift across the four runtime directories | M | L | ADR-002 locks the boundary; tasks verify all four runtime paths |
    200	| R-003 | Historical folder slugs misread as active path requirements | L | M | ADR-003 and spec edge cases make the archival-identity rule explicit |
    201	| R-004 | Future rename bypasses this packet and breaks the 2026-04-11 baseline | L | L | Implementation summary and decision record are the update target for any future rename |
-   202	
+   202
    203	---
-   204	
+   204
    205	## 11. USER STORIES
-   206	
+   206
    207	### US-001: Future maintainer audits the rename (Priority: P0)
-   208	
+   208
    209	**As a** future maintainer auditing the improver-skill rename, **I want** the phase packet to document every renamed path in one place, **so that** I do not need to reconstruct the rename from git history.
-   210	
+   210
    211	**Acceptance Criteria**:
    212	1. Given the rename packet, when I open `spec.md` and `implementation-summary.md`, then I see both renamed skill folders and both renamed changelog directories listed as canonical paths.
    213	2. Given the rename packet, when I scan the packet for retired `agent-improver` strings in active path references, then I find none.
    214	3. Given the rename packet, when I read the decision record, then ADR-001, ADR-002, and ADR-003 explain the naming boundaries.
-   215	
+   215
    216	### US-002: Downstream phase owner relies on renamed surfaces (Priority: P0)
-   217	
+   217
    218	**As a** downstream phase owner building on the renamed skills, **I want** the packet to confirm that the four-runtime mirror and the changelog directories already use the new names, **so that** my phase does not re-do the rename work.
-   219	
+   219
    220	**Acceptance Criteria**:
    221	1. Given the packet, when I look at runtime-agent references, then all four runtime files are cited with `improve-agent` naming.
    222	2. Given the packet, when I check the changelog directories, then the packet confirms `14--sk-improve-prompt/` and `15--sk-improve-agent/` as the shipped locations.
    223	3. Given the packet, when I start my downstream phase, then I have no alias cleanup work to do first.
-   224	
+   224
    225	### US-003: Strict validation gate (Priority: P1)
-   226	
+   226
    227	**As a** packet validator, **I want** the phase folder to pass `validate.sh --strict` at Level 3, **so that** the closeout status can be trusted without manual re-inspection.
-   228	
+   228
    229	**Acceptance Criteria**:
    230	1. Given the packet, when strict validation runs, then all anchors, template markers, and section headers are present.
    231	2. Given the packet, when the checklist is inspected, then every completed P0 and P1 item carries concrete evidence.
    232	3. Given the packet, when the validator reports, then the Level 3 contract is fully satisfied.
-   233	
+   233
    234	---
-   235	
+   235
    236	<!-- ANCHOR:questions -->
    237	## 12. OPEN QUESTIONS
-   238	
+   238
    239	- None. The rename work is complete and this packet only captures the completed-state truth.
    240	<!-- /ANCHOR:questions -->
-   241	
+   241
    242	---
-   243	
+   243
    244	## RELATED DOCUMENTS
-   245	
+   245
    246	- **Implementation Plan**: See `plan.md`
    247	- **Task Breakdown**: See `tasks.md`
    248	- **Verification Checklist**: See `checklist.md`
    249	- **Decision Records**: See `decision-record.md`
    250	- **Implementation Summary**: See `implementation-summary.md`
-   251	
+   251
    252	---
-   253	
+   253
    254	<!--
    255	LEVEL 3 SPEC
    256	- Core + L2 + L3 addendums
@@ -5749,15 +5749,15 @@ exec
      8	contextType: "implementation"
      9	---
     10	# Implementation Summary: Further Deep-Loop Improvements
-    11	
+    11
     12	<!-- SPECKIT_LEVEL: 3 -->
     13	<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-    14	
+    14
     15	---
-    16	
+    16
     17	<!-- ANCHOR:metadata -->
     18	## Metadata
-    19	
+    19
     20	| Field | Value |
     21	|-------|-------|
     22	| **Spec Folder** | 008-further-deep-loop-improvements |
@@ -5767,42 +5767,42 @@ exec
     26	| **Closing Audit Artifact** | `scratch/closing-review.md` |
     27	| **Final Remediation Commits** | `c07c9fbcf`, `f99739742` |
     28	<!-- /ANCHOR:metadata -->
-    29	
+    29
     30	---
-    31	
+    31
     32	<!-- ANCHOR:what-built -->
     33	## What Was Built
-    34	
+    34
     35	Phase 008 closed the visible-path runtime-truth gap across research, review, and improve-agent. The phase did not invent an entirely new system; it wired the already developing graph, journal, and reducer surfaces into the actual workflows and dashboards that operators use.
-    36	
+    36
     37	### Contract Truth and Live Graph Usage
-    38	
+    38
     39	Research and review now emit typed blocked-stop and normalized pause events on the visible path, and both loop families actively consult the coverage graph during live stop checks. That outcome is captured directly in the research and review release notes.
-    40	
+    40
     41	### Reducer Surfacing and Fail-Closed Review Handling
-    42	
+    42
     43	The reducers now surface blocked-stop and graph-convergence state instead of leaving it hidden in JSONL. Review also shipped fail-closed corruption handling and a split between persistent same-severity findings and severity changes, making the operator-facing outputs more trustworthy.
-    44	
+    44
     45	### Improve-Agent Journal Wiring and Replay Consumers
-    46	
-    47	Improve-agent now emits journal events from the visible `/improve:agent` workflow, enforces minimum sample thresholds before trade-off or stability verdicts, and consumes replay artifacts during reducer refresh. The sample-quality surface is operator-visible rather than remaining helper-only.
-    48	
+    46
+    47	Improve-agent now emits journal events from the visible `/deep:start-agent-improvement-loop` workflow, enforces minimum sample thresholds before trade-off or stability verdicts, and consumes replay artifacts during reducer refresh. The sample-quality surface is operator-visible rather than remaining helper-only.
+    48
     49	### Fixtures, Regression, and Release Packaging
-    50	
+    50
     51	The phase added durable fixtures, dedicated graph and reducer suites, and playbook scenarios across all three skill families. The releases `v1.6.0.0`, `v1.3.0.0`, and `v1.2.0.0` package the result for research, review, and improve-agent respectively.
-    52	
+    52
     53	### Closing Audit and Remediation
-    54	
+    54
     55	After the initial A-E delivery shipped, the focused closing review in `scratch/closing-review.md` surfaced the remaining release-readiness issues. Those were then closed in `c07c9fbcf`, and the final packet-root and phase-root readiness surfaces were reconciled in `f99739742`.
     56	<!-- /ANCHOR:what-built -->
-    57	
+    57
     58	---
-    59	
+    59
     60	<!-- ANCHOR:how-delivered -->
     61	## How It Was Delivered
-    62	
+    62
     63	The implementation landed in passes A through E and then received a focused closing-audit follow-through:
-    64	
+    64
     65	- initial phase creation and planning
     66	- contract truth wiring
     67	- graph and reducer integration
@@ -5810,15 +5810,15 @@ exec
     69	- release packaging and memory save
     70	- focused closing audit
     71	- post-audit remediation and release-readiness reconciliation
-    72	
+    72
     73	The important closeout fact is that the final shipped state is not just the initial release notes. The packet also depends on the phase-local closing review and the two remediation commits that closed the remaining findings after the audit.
     74	<!-- /ANCHOR:how-delivered -->
-    75	
+    75
     76	---
-    77	
+    77
     78	<!-- ANCHOR:decisions -->
     79	## Key Decisions
-    80	
+    80
     81	| Decision | Why |
     82	|----------|-----|
     83	| Use the MCP-style graph path as the canonical convergence regime | Best fit for active graph consultation on the visible research/review path |
@@ -5826,12 +5826,12 @@ exec
     85	| Keep structural graph tools on the live path | Matched the explicit graph-integration goal of the phase |
     86	| Run a focused closing review after release packaging | Allowed remaining release-readiness issues to be found and closed before final packet reconciliation |
     87	<!-- /ANCHOR:decisions -->
-    88	
+    88
     89	---
-    90	
+    90
     91	<!-- ANCHOR:verification -->
     92	## Verification
-    93	
+    93
     94	| Check | Result |
     95	|-------|--------|
     96	| Research Phase 008 release note present | PASS |
@@ -5842,20 +5842,20 @@ exec
    101	| Focused closing review preserved | PASS |
    102	| Post-audit remediation commits present | PASS |
    103	| Phase packet strict validation | PASS |
-   104	
+   104
    105	The most important verification chain for this packet is:
-   106	
+   106
    107	1. shipped Phase 008 release notes
    108	2. focused closing review in `scratch/closing-review.md`
    109	3. closing-fix commit `c07c9fbcf`
    110	4. final release-readiness reconciliation commit `f99739742`
    111	<!-- /ANCHOR:verification -->
-   112	
+   112
    113	---
-   114	
+   114
    115	<!-- ANCHOR:limitations -->
    116	## Known Limitations
-   117	
+   117
    118	1. Phase 008 completion is distributed across release notes and follow-on fixes rather than a single closure commit.
    119	2. The focused closing review lives under `scratch/` instead of a phase-local `review/` directory, so packet references must cite the actual scratch artifact.
    120	3. This closeout pass reconciles the packet to current template and evidence standards; it does not rerun the underlying implementation work.
@@ -5874,98 +5874,98 @@ exec
    137	  "downgradeTrigger": "What evidence would justify downgrading or dismissing this finding."
    138	}
    139	```
-   140	
+   140
    141	**Adversarial self-check (tiered):**
    142	- **P0 candidate** --> Run full Hunter/Skeptic/Referee in THIS iteration BEFORE writing to JSONL
    143	- **Gate-relevant P1** --> Run compact skeptic/referee pass in-iteration
    144	- **P2** --> No self-check needed (severity too low to warrant overhead)
-   145	
+   145
    146	#### Step 5: Write Findings
-   147	
+   147
    148	Create `review/iterations/iteration-NNN.md`. The structure below is **parser-sensitive**: the reducer at `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:186` extracts findings by matching the `# Iteration N:` heading, the exact section names (`## Focus`, `## Findings`, `## Ruled Out`, `## Dead Ends`, `## Recommended Next Focus`, `## Assessment`), the `### P0` / `### P1` / `### P2` subheadings inside `## Findings`, and finding bullets of the form `- **FNNN**: Title — file:line — Description`. Deviating from any of these will cause the reducer to silently drop findings.
-   149	
+   149
    150	```markdown
    151	# Iteration [N]: [Focus label, e.g. "Correctness contracts on review loop runtime"]
-   152	
+   152
    153	## Focus
    154	[1–3 sentences describing the dimension, files, and scope investigated this iteration.]
-   155	
+   155
    156	## Scorecard
    157	- Dimensions covered: [correctness, traceability, ...]
    158	- Files reviewed: [count]
    159	- New findings: P0=[n] P1=[n] P2=[n]
    160	- Refined findings: P0=[n] P1=[n] P2=[n]
    161	- New findings ratio: [0.0-1.0]
-   162	
+   162
    163	## Findings
-   164	
+   164
    165	### P0 — Blocker
    166	- **F001**: [Title] — `file:line` — [Description with file:line evidence and why it blocks release]
-   167	
+   167
    168	### P1 — Required
    169	- **F002**: [Title] — `file:line` — [Description]
-   170	
+   170
    171	### P2 — Suggestion
    172	- **F003**: [Title] — `file:line` — [Description]
-   173	
+   173
    174	> Use sequential finding IDs across the whole session (iteration 2 starts at F00K where K = last F-id used in iteration 1). The reducer deduplicates on the `FNNN` prefix, so collisions are silent.
    175	> For every P0/P1 finding, also emit a typed claim-adjudication packet (schema in state_format.md §9 and loop_protocol.md Step 4a) so `step_post_iteration_claim_adjudication` can validate it. A missing or malformed packet vetoes STOP via the `claimAdjudicationGate` on the next convergence check.
-   176	
+   176
    177	```json
    178	{"type":"claim-adjudication","findingId":"F002","claim":"One-sentence statement of the P0/P1 finding being adjudicated.","evidenceRefs":["path/to/file:line"],"counterevidenceSought":"Adjacent code, docs, and prior iterations checked for contradictory evidence.","alternativeExplanation":"Most plausible non-bug explanation considered during skeptic/referee review.","finalSeverity":"P0","confidence":0.9,"downgradeTrigger":"What evidence would justify reducing severity or marking this a false positive."}
    179	```
-   180	
+   180
    181	## Cross-Reference Results
    182	| Protocol | Status | Gate | Evidence | Notes |
    183	|----------|--------|------|----------|-------|
    184	| spec_code | pass/partial/fail | hard | `file:line` | ... |
    185	| checklist_evidence | pass/partial/fail | hard | `file:line` | ... |
    186	| skill_agent | pass/partial/fail | soft | `file:line` | ... |
-   187	
+   187
    188	## Assessment
    189	- New findings ratio: [0.0-1.0]
    190	- Dimensions addressed: [correctness, traceability]
    191	- Novelty justification: [1–2 sentence breakdown of what is net-new vs refinement]
-   192	
+   192
    193	## Ruled Out
    194	- [Approach]: [Why] — [file:line evidence]
-   195	
+   195
    196	## Dead Ends
    197	- [Direction]: [Why the current evidence does not justify escalation]
-   198	
+   198
    199	## Recommended Next Focus
    200	[What the next iteration should investigate. Rotate dimensions unless the current dimension is still incomplete.]
    201	```
-   202	
+   202
    203	## Assessment
    204	- Confirmed findings: [N]
    205	- New findings ratio: [0.XX]
    206	- noveltyJustification: [1 sentence]
    207	- Dimensions addressed: [list]
-   208	
+   208
    209	## Reflection
    210	- What worked: [effective approach]
    211	- What did not work: [ineffective approach]
    212	- Next adjustment: [suggestion for next iteration]
    213	```
-   214	
+   214
    215	#### Step 6: Update Strategy
    216	Edit `review/deep-review-strategy.md`:
-   217	
+   217
    218	1. Mark dimension as reviewed if covered (move from "Review Dimensions" to "Completed Dimensions" with score)
    219	2. Update "Running Findings" counts (P0/P1/P2 totals)
    220	3. Add new entries to "What Worked" with iteration number
    221	4. Add new entries to "What Failed" with iteration number
    222	5. If an approach is fully exhausted, move it to "Exhausted Approaches"
    223	6. Set "Next Focus" for next iteration
-   224	
+   224
    225	#### Step 7: Append JSONL
    226	Append ONE line to `review/deep-review-state.jsonl`:
-   227	
+   227
    228	```json
    229	{"type":"iteration","mode":"review","run":N,"status":"complete","focus":"[dimension - specific area]","dimension":"[dimension name]","dimensions":["[dimension name]"],"findingsCount":N,"newFindingsRatio":0.XX,"noveltyJustification":"...","findingsSummary":{"P0":N,"P1":N,"P2":N},"filesReviewed":["file1","file2"],"dimensionScores":{"correctness":N,"security":N,"traceability":N,"maintainability":N},"findingsNew":{"P0":N,"P1":N,"P2":N},"findingsRefined":{"P0":N,"P1":N,"P2":N},"upgrades":[],"resolved":[],"findingRefs":["P1-001","P2-003"],"traceabilityChecks":{"summary":{"required":N,"executed":N,"pass":N,"partial":N,"fail":N,"blocked":N,"notApplicable":N,"gatingFailures":N},"results":[{"protocolId":"spec_code","status":"pass|partial|fail","gateClass":"hard|advisory","applicable":true,"counts":{"pass":N,"partial":N,"fail":N},"evidence":["path/to/file:line"],"findingRefs":["P1-001"],"summary":"One-line traceability result."}]},"coverage":{"filesReviewed":N,"filesTotal":N,"dimensionsComplete":[]},"ruledOut":["investigated-not-issue"],"focusTrack":"optional","timestamp":"ISO-8601","durationMs":NNNNN}
    230	```
-   231	
+   231
    232	**Status values**: `complete | timeout | error | stuck | insight | thought`
    233	- `complete`: Normal iteration with evidence gathering and findings
    234	- `timeout`: Iteration exceeded time/tool budget before finishing
@@ -5973,16 +5973,16 @@ exec
    236	- `stuck`: No productive review avenues remain for current focus
    237	- `insight`: Low newFindingsRatio but important conceptual finding (e.g., cross-reference contradiction)
    238	- `thought`: Analytical-only iteration (e.g., severity reassessment, deduplication)
-   239	
+   239
    240	**Required fields**:
    241	- `noveltyJustification`: 1-sentence explanation of how newFindingsRatio was calculated
    242	- `ruledOut`: Array of items investigated but not an issue this iteration (may be empty `[]`)
-   243	
+   243
    244	**Optional fields**:
    245	- `focusTrack`: Label tagging this iteration to a review track (e.g., "security", "correctness")
-   246	
+   246
    247	> **Note:** The orchestrator enriches each iteration record with optional `segment` (default: 1) and `convergenceSignals` fields after the agent writes it. The agent does not write these fields.
-   248	
+   248
    249	**newFindingsRatio calculation (severity-weighted)**:
    250	```
 
@@ -5992,51 +5992,51 @@ exec
 /bin/zsh -lc "nl -ba .opencode/agents/deep-review.md | sed -n '250,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    130	[What this iteration investigated and why]
-   131	
+   131
    132	## Findings
    133	1. [Finding with source citation]
    134	2. [Finding with source citation]
    135	3. [Finding with source citation]
-   136	
+   136
    137	## Ruled Out
    138	[Approaches tried this iteration that did not yield results. Document what was attempted and why it failed, so future iterations do not repeat them.]
-   139	
+   139
    140	## Dead Ends
    141	[Paths definitively eliminated -- not just unproductive this iteration, but proven to be fundamentally unviable. These should be promoted to strategy.md "Exhausted Approaches" if not already there.]
-   142	
+   142
    143	## Sources Consulted
    144	- [URL or file:line reference]
    145	- [URL or file:line reference]
-   146	
+   146
    147	## Assessment
    148	- New information ratio: [0.0-1.0]
    149	- Questions addressed: [list]
    150	- Questions answered: [list]
-   151	
+   151
    152	## Reflection
    153	- What worked and why: [approach that yielded results + causal explanation]
    154	- What did not work and why: [approach that failed + root cause]
    155	- What I would do differently: [specific adjustment for next iteration]
-   156	
+   156
    157	## Recommended Next Focus
    158	[What to investigate next, based on gaps discovered]
    159	```
-   160	
+   160
    161	#### Step 5: Respect Reducer-Owned State
    162	Do not treat `research/deep-research-strategy.md`, `research/findings-registry.json`, or `research/deep-research-dashboard.md` as your primary write targets. The workflow reducer owns those synchronized packet surfaces.
-   163	
+   163
    164	Instead:
    165	1. Put worked/failed guidance, answered questions, and next-focus recommendations into the iteration file
    166	2. Append the structured JSONL record
    167	3. Let the workflow reducer refresh strategy machine-owned sections, registry, and dashboard
-   168	
+   168
    169	#### Step 6: Append State
    170	Append ONE line to `research/deep-research-state.jsonl`:
-   171	
+   171
    172	```json
    173	{"type":"iteration","run":N,"status":"complete","focus":"[focus area]","findingsCount":N,"newInfoRatio":0.XX,"noveltyJustification":"1-sentence explanation of newInfoRatio","keyQuestions":["q1","q2"],"answeredQuestions":["q1"],"ruledOut":["approach1","approach2"],"focusTrack":"optional-track-label","toolsUsed":["Read","WebFetch"],"sourcesQueried":["https://example.com/doc","src/file.ts:42"],"timestamp":"ISO-8601","durationMs":NNNNN}
    174	```
-   175	
+   175
    176	**Status values**: `complete | timeout | error | stuck | insight | thought`
    177	- `complete`: Normal iteration with evidence gathering and new findings
    178	- `timeout`: Iteration exceeded time/tool budget before finishing
@@ -6044,28 +6044,28 @@ exec
    180	- `stuck`: No productive research avenues remain for current focus
    181	- `insight`: Low newInfoRatio but important conceptual breakthrough discovered (e.g., a synthesis that reframes prior findings)
    182	- `thought`: Analytical-only iteration with no external evidence gathering (e.g., consolidation, contradiction resolution, model-building)
-   183	
+   183
    184	**Required fields** :
    185	- `noveltyJustification`: 1-sentence explanation of how newInfoRatio was calculated (e.g., "2 of 4 findings were new, 1 partially new")
    186	- `ruledOut`: Array of approaches tried and failed this iteration (may be empty `[]`)
-   187	
+   187
    188	**Optional fields** :
    189	- `focusTrack`: Label tagging this iteration to a research track (e.g., "architecture", "performance", "security"). Useful for multi-track research where iterations alternate between topics.
-   190	
+   190
    191	> **Note:** The orchestrator enriches each iteration record with lineage metadata, optional `segment` (default: 1), `convergenceSignals`, and reducer-driven registry/dashboard updates after the agent writes it.
-   192	
+   192
    193	**newInfoRatio calculation**:
    194	- Count total findings in this iteration
    195	- Count how many are genuinely new (not in prior iterations or strategy)
    196	- Count partially new findings (adds nuance to known info) as 0.5
    197	- `newInfoRatio = (fully_new + 0.5 * partially_new) / total_findings`
    198	- If no findings at all, set to 0.0
-   199	
+   199
    200	**Simplicity bonus**: If this iteration consolidates, simplifies, or resolves contradictions in prior findings -- even without new external information -- apply a +0.10 bonus to newInfoRatio (capped at 1.0). Simplification counts as genuine value:
    201	- Reducing the number of open questions through synthesis
    202	- Resolving contradictions between prior iteration findings
    203	- Providing a cleaner, more parsimonious model of the research topic
-   204	
+   204
    205	#### Step 7: Update Research (Progressive)
    206	Read `research/deep-research-config.json` before touching `research/research.md`.
    207	- If `progressiveSynthesis == true`:
@@ -6074,16 +6074,16 @@ exec
    210	- If `progressiveSynthesis == false`:
    211	  - Do not create or update `research/research.md` during the iteration.
    212	  - Leave `research/research.md` ownership to the synthesis phase.
-   213	
+   213
    214	#### Dashboard Awareness
    215	The orchestrator generates a research dashboard and findings registry after each iteration, summarizing progress, coverage, and convergence trends. The agent does not update those reducer-owned files directly. However, your iteration data (newInfoRatio, status, focus, ruledOut, focusTrack, toolsUsed, sourcesQueried) feeds directly into those synchronized outputs.
-   216	
+   216
    217	---
-   218	
+   218
    219	## 2. CAPABILITY SCAN
-   220	
+   220
    221	### Tools
-   222	
+   222
    223	| Tool | Purpose | Budget |
    224	|------|---------|--------|
    225	| Read | State files, source code | 2-3 calls |
@@ -6093,20 +6093,20 @@ exec
    229	| Grep | Code pattern search | 1-2 calls |
    230	| Glob | File discovery | 0-1 calls |
    231	| Bash | Data processing (jq, wc) | 0-1 calls |
-   232	
+   232
    233	### MCP Tools
-   234	
+   234
    235	| Tool | Purpose |
    236	|------|---------|
    237	| `memory_search` | Find prior research in memory system |
    238	| `memory_context` | Load context for the research topic |
-   239	
+   239
    240	---
-   241	
+   241
    242	## 3. ITERATION PROTOCOL
-   243	
+   243
    244	### Focus Selection
-   245	
+   245
    246	```
    247	Strategy "Next Focus" available?
    248	  Yes --> Use it directly
@@ -6114,9 +6114,9 @@ exec
    250	    No questions? --> Investigate lowest-coverage area
    251	      No coverage data? --> Report stuck (newInfoRatio = 0.0)
    252	```
-   253	
+   253
    254	### Recovery Mode
-   255	
+   255
    256	If dispatch context includes "RECOVERY MODE":
    257	1. Read "Exhausted Approaches" in strategy.md
    258	2. Deliberately choose a DIFFERENT approach:
@@ -6133,13 +6133,13 @@ exec
    256	```
    257	- If no findings at all, set to 0.0
    258	- **P0 override rule**: If ANY new P0 discovered, set `newFindingsRatio = max(calculated, 0.50)`. A single new P0 blocks convergence.
-   259	
+   259
    260	---
-   261	
+   261
    262	## 2. CAPABILITY SCAN
-   263	
+   263
    264	### Tools
-   265	
+   265
    266	| Tool | Purpose | Budget |
    267	|------|---------|--------|
    268	| Read | State files, review target code | 3-4 calls |
@@ -6148,71 +6148,71 @@ exec
    271	| Grep | Pattern search in review target | 1-2 calls |
    272	| Glob | File discovery in review scope | 0-1 calls |
    273	| Bash | Analysis commands (wc, structure checks) | 0-1 calls |
-   274	
+   274
    275	### MCP Tools
-   276	
+   276
    277	| Tool | Purpose |
    278	|------|---------|
    279	| `memory_search` | Find prior research in memory system |
    280	| `memory_context` | Load context for the review topic |
-   281	
+   281
    282	### Skills
-   283	
+   283
    284	| Skill | Purpose |
    285	|-------|---------|
    286	| `sk-code-review` | Shared review doctrine via `references/review_core.md` |
    287	| `sk-code-opencode` / `sk-code-web` / `sk-code-full-stack` | Stack-specific overlay |
-   288	
+   288
    289	---
-   290	
+   290
    291	## 3. REVIEW CONTRACT
-   292	
+   292
    293	This agent loads shared review doctrine from .opencode/skills/sk-code-review/references/review_core.md for severity definitions, evidence requirements, and baseline check families.
-   294	
+   294
    295	### Review Dimensions
-   296	
+   296
    297	| Dimension | Use It For |
    298	|-----------|------------|
    299	| **Correctness** | Logic, state transitions, invariants, edge cases, and behavior against observable intent |
    300	| **Security** | Trust boundaries, auth/authz, input handling, secrets exposure, and exploit paths |
    301	| **Traceability** | Spec alignment, checklist evidence, cross-reference integrity, and runtime parity |
    302	| **Maintainability** | Pattern compliance, documentation quality, clarity, and safe follow-on change cost |
-   303	
+   303
    304	### Binary Quality Gates
-   305	
+   305
    306	| Gate | Pass Condition |
    307	|------|----------------|
    308	| **Evidence** | Every active finding is backed by concrete `file:line` evidence; no active `P0`/`P1` relies only on inference |
    309	| **Scope** | Findings stay inside the declared review target and review boundaries |
    310	| **Coverage** | Required dimensions and required traceability protocols are covered before STOP is allowed |
-   311	
+   311
    312	### Verdicts
-   313	
+   313
    314	| Verdict | Condition | Follow-on |
    315	|---------|-----------|-----------|
    316	| **FAIL** | Active `P0` exists or any binary gate fails | `/speckit:plan` |
    317	| **CONDITIONAL** | No active `P0`, but active `P1` remains | `/speckit:plan` |
    318	| **PASS** | No active `P0` or `P1`; set `hasAdvisories=true` when active `P2` remains | `/create:changelog` |
-   319	
+   319
    320	### Budget Profiles
-   321	
+   321
    322	- `scan`: 9-11 tool calls for standard single-dimension discovery.
    323	- `verify`: 11-13 tool calls when re-reading evidence, traceability protocols, or borderline severity.
    324	- `adjudicate`: 8-10 tool calls for `P0`/`P1` referee work and synthesis-ready confirmation.
-   325	
+   325
    326	### Lifecycle + Reducer Contract
-   327	
+   327
    328	Runtime-supported lifecycle modes (current release):
    329	- `new`: First run against the spec folder; no prior state.
    330	- `resume`: Continue the active review session; same `sessionId`, no archive. The workflow appends a typed `resumed` JSONL event before dispatch.
    331	- `restart`: Archive the existing `review/` tree under `review_archive/{timestamp}/`, mint a fresh `sessionId`, increment `generation`. The workflow appends a typed `restarted` JSONL event with a non-null `archivedPath`.
-   332	
+   332
    333	Deferred (reserved, not runtime-supported):
    334	- `fork`: Earlier drafts described this as a child review session from an earlier lineage point. Not emitted today.
    335	- `completed-continue`: Earlier drafts described re-opening a completed session for additional review coverage. Not emitted today.
-   336	
+   336
    337	See `.opencode/skills/sk-deep-review/references/loop_protocol.md §Lifecycle Branches (current release)` for the canonical event contract.
-   338	
+   338
    339	Always treat these config fields as required read-only lineage metadata:
    340	- `sessionId`
    341	- `parentSessionId`
@@ -6220,20 +6220,20 @@ exec
    343	- `generation`
    344	- `continuedFromRun`
    345	- `releaseReadinessState`
-   346	
+   346
    347	Reducer boundary:
    348	- `review/deep-review-findings-registry.json` is the canonical reducer-owned finding registry.
    349	- This leaf agent may READ the registry for continuity and deduplication context.
    350	- The orchestrator/reducer refreshes the registry after each iteration; do not overwrite it from this agent.
-   351	
+   351
    352	---
-   353	
+   353
    354	## 4. STATE MANAGEMENT + WRITE SAFETY
-   355	
+   355
    356	### File Paths
-   357	
+   357
    358	All paths are relative to the spec folder provided in dispatch context.
-   359	
+   359
    360	| File | Path | Operation |
    361	|------|------|-----------|
    362	| Config | `review/deep-review-config.json` | Read only |
@@ -6242,59 +6242,59 @@ exec
    365	| Strategy | `review/deep-review-strategy.md` | Read + Edit |
    366	| Iteration findings | `review/iterations/iteration-{NNN}.md` | Write (create new) |
    367	| Pause sentinel | `review/.deep-review-pause` | Read only |
-   368	
+   368
    369	### Iteration Number Derivation
-   370	
+   370
    371	```
    372	Count lines in JSONL where type === "iteration"
    373	Current iteration = count + 1
    374	Pad to 3 digits for filename: iteration-001.md, iteration-002.md
    375	```
-   376	
+   376
    377	### Write Safety
-   378	
+   378
    379	- JSONL: Always APPEND (never overwrite). Use Write tool to append a single line.
    380	- Strategy: Use Edit tool to modify specific sections (never Write which overwrites).
    381	- Iteration file: Use Write tool to create new file (should not exist yet).
    382	- **CRITICAL: Review target files are READ-ONLY. NEVER edit code under review.**
    383	- Only write to: `review/iterations/iteration-NNN.md`, `review/deep-review-strategy.md`, `review/deep-review-state.jsonl`
-   384	
+   384
    385	---
-   386	
+   386
    387	## 5. ADVERSARIAL SELF-CHECK (Tiered)
-   388	
+   388
    389	Adapted from @review Hunter/Skeptic/Referee protocol.
-   390	
+   390
    391	### P0 Candidate --> Full 3-Pass (in same iteration BEFORE writing to JSONL)
-   392	
+   392
    393	**Pass 1 -- HUNTER** (bias: find ALL issues)
    394	- Scoring mindset: +1 minor, +5 moderate, +10 critical finding
    395	- Cast wide net. Include borderline findings. Err on the side of flagging
    396	- Ask: "What could go wrong here? What am I missing?"
-   397	
+   397
    398	**Pass 2 -- SKEPTIC** (bias: disprove findings)
    399	- Scoring mindset: +score for each disproved finding, -2x penalty for wrong dismissals
    400	- Challenge each Hunter finding: "Is there codebase context making this acceptable?"
    401	- Ask: "Is this a project pattern, not a bug?", "Is severity inflated?", "Am I seeing phantom issues?"
-   402	
+   402
    403	**Pass 3 -- REFEREE** (neutral judgment)
    404	- Scoring mindset: +1 correct call, -1 wrong call
    405	- Weigh Hunter evidence vs Skeptic challenge for each finding
    406	- Only CONFIRMED findings enter the iteration file
    407	- If unsure: keep the finding but downgrade severity
-   408	
+   408
    409	### Gate-Relevant P1 --> Compact Skeptic/Referee
-   410	
+   410
    411	- Run abbreviated skeptic challenge + referee verdict
    412	- Document in finding entry
-   413	
+   413
    414	### P2 --> No Self-Check
-   415	
+   415
    416	- Severity too low to warrant overhead
    417	- Document evidence and move on
-   418	
+   418
    419	### At Synthesis (orchestrator handles)
-   420	
+   420
 
 exec
 /bin/zsh -lc "nl -ba .opencode/agents/deep-research.md | sed -n '260,420p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -6302,33 +6302,33 @@ exec
    260	   - If prior iterations searched broadly, narrow to specific aspect
    261	   - If prior iterations were domain-specific, try cross-domain analysis
    262	3. Document the recovery attempt explicitly in findings
-   263	
+   263
    264	### Error-Aware Execution
-   265	
+   265
    266	When executing research actions, apply Tier 1-2 error handling:
    267	- **Tier 1 (Source failure)**: If a tool call or source fails, retry with an alternative source (max 2 retries). Do NOT retry the exact same call.
    268	- **Tier 2 (Focus exhaustion)**: If 2 consecutive iterations on the same focus yield newInfoRatio < 0.10, add the focus to "Exhausted Approaches" and pivot to a different area.
    269	- **Tier 3+ escalation**: If Tier 1-2 recovery fails, report the error in your iteration file and set status to "error". The orchestrator handles Tier 3-5.
-   270	
+   270
    271	### Tool Call Budget
-   272	
+   272
    273	| Iteration Phase | Target Calls | Max Calls |
    274	|----------------|-------------|-----------|
    275	| Read state (Step 1) | 2 | 2 |
    276	| Research actions (Step 3) | 3-5 | 6 |
    277	| Write outputs (Steps 4-7) | 3-4 | 4 |
    278	| **Total** | **8-11** | **12** |
-   279	
+   279
    280	If approaching 12 tool calls, stop research and proceed to writing findings.
-   281	
+   281
    282	---
-   283	
+   283
    284	## 4. STATE MANAGEMENT
-   285	
+   285
    286	### File Paths
-   287	
+   287
    288	All paths are relative to the spec folder provided in dispatch context.
-   289	
+   289
    290	| File | Path | Operation |
    291	|------|------|-----------|
    292	| Config | `research/deep-research-config.json` | Read only |
@@ -6337,26 +6337,26 @@ exec
    295	| Findings registry | `research/findings-registry.json` | Read only |
    296	| Iteration findings | `research/iterations/iteration-{NNN}.md` | Write (create new) |
    297	| Research output | `research/research.md` | Read + Edit only when `progressiveSynthesis` is true |
-   298	
+   298
    299	### Iteration Number Derivation
-   300	
+   300
    301	```
    302	Count lines in JSONL where type === "iteration"
    303	Current iteration = count + 1
    304	Pad to 3 digits for filename: iteration-001.md, iteration-002.md
    305	```
-   306	
+   306
    307	### Write Safety
-   308	
+   308
    309	- JSONL: Always APPEND (never overwrite). Use Write tool to append a single line.
    310	- Strategy: Use Edit tool to modify specific sections (never Write which overwrites).
    311	- Iteration file: Use Write tool to create new file (should not exist yet).
    312	- Research.md: Use Edit tool to add content to existing sections.
-   313	
+   313
    314	---
-   315	
+   315
    316	## 5. RULES
-   317	
+   317
    318	### ALWAYS
    319	- Read state files BEFORE any research action
    320	- Write ALL findings to files (iteration-NNN.md), not just in response
@@ -6366,7 +6366,7 @@ exec
    324	- Respect "Exhausted Approaches" -- never retry them
    325	- Stay within tool call budget (target 8-11, max 12)
    326	- Apply Tier 1-2 error recovery for tool/source failures before reporting errors
-   327	
+   327
    328	### NEVER
    329	- Dispatch sub-agents or use Task tool (LEAF-only)
    330	- Hold findings in context without writing to files
@@ -6376,52 +6376,52 @@ exec
    334	- Ask the user questions (autonomous execution)
    335	- Skip writing the iteration file
    336	- Fabricate sources or newInfoRatio
-   337	
+   337
    338	### ESCALATE
    339	- If all approaches exhausted and questions remain, document in findings
    340	- If state files are missing or corrupted, report error status
    341	- If security concern found in research (credentials, proprietary data), flag it
    342	- If tool failures prevent any research, report timeout status
-   343	
+   343
    344	---
-   345	
+   345
    346	## 6. OUTPUT FORMAT
-   347	
+   347
    348	### Iteration Completion Report
-   349	
+   349
    350	Return this summary to the dispatcher after completing the iteration:
-   351	
+   351
    352	```markdown
    353	## Iteration [N] Complete
-   354	
+   354
    355	**Focus**: [What was investigated]
    356	**Findings**: [N] findings ([X] new, [Y] partially new, [Z] redundant)
    357	**newInfoRatio**: [0.XX]
    358	**Questions answered**: [list or "none"]
    359	**Questions remaining**: [count]
    360	**Recommended next focus**: [recommendation]
-   361	
+   361
    362	**Files written**:
    363	- research/iterations/iteration-[NNN].md
    364	- research/deep-research-state.jsonl (appended)
    365	- workflow reducer refreshes research/deep-research-strategy.md, research/findings-registry.json, and research/deep-research-dashboard.md
    366	- research/research.md (updated, if applicable)
-   367	
+   367
    368	**Status**: [complete | timeout | error | stuck | insight | thought]
    369	```
-   370	
+   370
    371	---
-   372	
+   372
    373	## 7. OUTPUT VERIFICATION
-   374	
+   374
    375	### Iron Law
-   376	
+   376
    377	**NEVER claim completion without verifiable evidence.** Every output assertion must be backed by a file existence check, content verification, or tool call result.
-   378	
+   378
    379	### Pre-Delivery Checklist
-   380	
+   380
    381	Before returning the completion report, verify:
-   382	
+   382
    383	```
    384	ITERATION VERIFICATION:
    385	[x] State files read at start (JSONL + strategy.md)
@@ -6437,13 +6437,13 @@ exec
    395	[x] research/research.md updated (if progressive synthesis enabled)
    396	[x] No sub-agents dispatched (LEAF compliance)
    397	```
-   398	
+   398
    399	If any item fails, fix it before returning. If unfixable, report the specific failure in the completion report with status "error".
-   400	
+   400
    401	---
-   402	
+   402
    403	## 8. ANTI-PATTERNS
-   404	
+   404
    405	| Anti-Pattern | Why It Fails | Correct Approach |
    406	|-------------|-------------|------------------|
    407	| Skip reading state | Repeats prior work, ignores exhausted approaches | Always read JSONL + strategy first |
@@ -6452,13 +6452,13 @@ exec
    410	| Retry exhausted approaches | Wastes an iteration on known dead ends | Read and respect exhausted list |
    411	| Exceed tool budget | May timeout or get cut off mid-research | Stop research at budget limit, write what you have |
    412	| Generic web searches | Returns noise, not signal | Use specific URLs (official docs, repos) |
-   413	
+   413
    414	---
-   415	
+   415
    416	## 9. RELATED RESOURCES
-   417	
+   417
    418	### Commands
-   419	
+   419
    420	| Command | Purpose | Path |
 
 exec
@@ -6472,7 +6472,7 @@ exec
    153	      file = evidenceRaw.trim();
    154	    }
    155	  }
-   156	
+   156
    157	  return {
    158	    findingId,
    159	    severity,
@@ -6482,12 +6482,12 @@ exec
    163	    description: normalizeText(description || ''),
    164	  };
    165	}
-   166	
+   166
    167	function parseFindingsBlock(sectionText, severity) {
    168	  if (!sectionText) {
    169	    return [];
    170	  }
-   171	
+   171
    172	  return sectionText
    173	    .split('\n')
    174	    .map((line) => line.trim())
@@ -6495,7 +6495,7 @@ exec
    176	    .map((line) => parseFindingLine(line.replace(/^-\s+/, ''), severity))
    177	    .filter(Boolean);
    178	}
-   179	
+   179
    180	/**
    181	 * Parse a single iteration markdown file into a structured review record.
    182	 *
@@ -6506,26 +6506,26 @@ exec
    187	  const markdown = readUtf8(iterationPath);
    188	  const runMatch = iterationPath.match(/iteration-(\d+)\.md$/);
    189	  const headingMatch = markdown.match(/^#\s+Iteration\s+\d+:\s+(.+)$/m);
-   190	
+   190
    191	  const focusSection = extractSection(markdown, 'Focus');
    192	  const findingsSection = extractSection(markdown, 'Findings');
    193	  const ruledOutSection = extractSection(markdown, 'Ruled Out');
    194	  const deadEndsSection = extractSection(markdown, 'Dead Ends');
    195	  const nextFocusSection = extractSection(markdown, 'Recommended Next Focus');
    196	  const assessmentSection = extractSection(markdown, 'Assessment');
-   197	
+   197
    198	  const p0Block = extractSubsection(findingsSection, 'P0');
    199	  const p1Block = extractSubsection(findingsSection, 'P1');
    200	  const p2Block = extractSubsection(findingsSection, 'P2');
-   201	
+   201
    202	  const findings = [
    203	    ...parseFindingsBlock(p0Block, 'P0'),
    204	    ...parseFindingsBlock(p1Block, 'P1'),
    205	    ...parseFindingsBlock(p2Block, 'P2'),
    206	  ];
-   207	
+   207
    208	  const dimensionsAddressed = (assessmentSection.match(/Dimensions addressed:\s*(.+)/i) || [])[1];
-   209	
+   209
    210	  return {
    211	    path: iterationPath,
    212	    run: runMatch ? Number(runMatch[1]) : 0,
@@ -6539,7 +6539,7 @@ exec
    220	      : [],
    221	  };
    222	}
-   223	
+   223
    224	function parseStrategyDimensions(strategyContent) {
    225	  const section = extractSection(strategyContent, '3. REVIEW DIMENSIONS (remaining)')
    226	    || extractSection(strategyContent, '3. KEY QUESTIONS (remaining)');
@@ -6553,11 +6553,11 @@ exec
    234	      return { checked, text };
    235	    });
    236	}
-   237	
+   237
    238	function uniqueById(items) {
    239	  const seen = new Set();
    240	  const result = [];
-   241	
+   241
    242	  for (const item of items) {
    243	    if (seen.has(item.findingId)) {
    244	      continue;
@@ -6565,17 +6565,17 @@ exec
    246	    seen.add(item.findingId);
    247	    result.push(item);
    248	  }
-   249	
+   249
    250	  return result;
    251	}
-   252	
+   252
    253	// ─────────────────────────────────────────────────────────────────────────────
    254	// 5. CORE LOGIC
    255	// ─────────────────────────────────────────────────────────────────────────────
-   256	
+   256
    257	function buildFindingRegistry(iterationFiles, iterationRecords) {
    258	  const findingById = new Map();
-   259	
+   259
    260	  for (const iteration of iterationFiles) {
 
  succeeded in 0ms:
@@ -6603,7 +6603,7 @@ exec
    261	          releaseReadinessState: "in-progress"
    262	          executionMode: "auto"
    263	        output: "{spec_folder}/review/deep-review-config.json"
-   264	
+   264
    265	      step_create_state_log:
    266	        action: "Initialize JSONL state log with config record including review fields and lineage metadata"
    267	        pre_serialize:
@@ -6615,12 +6615,12 @@ exec
    273	            The resulting string must parse via JSON.parse(...) as a string[], and every element MUST be one of the four canonical dimension names. Never wrap the raw template variable as `["{review_dimensions}"]` — that collapses multiple dimensions into a single string element and breaks replay tooling.
    274	        content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"sessionId":"{ISO_8601_NOW}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
    275	        output: "{spec_folder}/review/deep-review-state.jsonl"
-   276	
+   276
    277	      step_create_findings_registry:
    278	        action: "Initialize reducer-owned review findings registry"
    279	        content: '{"sessionId":"{ISO_8601_NOW}","generation":1,"lineageMode":"new","openFindings":[],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false},"findingsBySeverity":{"P0":0,"P1":0,"P2":0},"openFindingsCount":0,"resolvedFindingsCount":0,"convergenceScore":0.0}'
    280	        output: "{spec_folder}/review/deep-review-findings-registry.json"
-   281	
+   281
    282	      step_create_strategy:
    283	        action: "Create review strategy file from deep_review_strategy.md template"
    284	        template: .opencode/skills/sk-deep-review/assets/deep_review_strategy.md
@@ -6633,17 +6633,17 @@ exec
    291	          max_iterations: "{max_iterations}"
    292	          convergence_threshold: "{convergence_threshold}"
    293	        output: "{spec_folder}/review/deep-review-strategy.md"
-   294	
+   294
    295	      step_enrich_strategy_context:
    296	        action: "Ensure Known Context is written only after strategy.md exists"
    297	        condition: "prior_context_found"
    298	        edit: "{spec_folder}/review/deep-review-strategy.md"
    299	        note: "Append or replace the Known Context section with prior_context_summary and retained detail from prior_context"
-   300	
+   300
    301	      step_init_complete:
    302	        log: "Initialization complete. Config, state, and strategy files created. Review scope: {review_scope_files_count} files, {dimension_queue_count} dimensions."
    303	        set: { current_iteration: 1, stuck_count: 0, p0_count: 0, p1_count: 0, p2_count: 0 }
-   304	
+   304
    305	  # ═══════════════════════════════════════════════════════════════
    306	  # PHASE 2: ITERATION LOOP
    307	  # ═══════════════════════════════════════════════════════════════
@@ -6652,7 +6652,7 @@ exec
    310	    repeat: true
    311	    max_repeats: "{max_iterations}"
    312	    steps:
-   313	
+   313
    314	      step_read_state:
    315	        action: "Read current state from JSONL, strategy, and config"
    316	        read:
@@ -6681,7 +6681,7 @@ exec
    339	          - latest_status: "Extract status from latest iteration record, else 'none yet'"
    340	          - last_claim_adjudication_passed: "Scan state.jsonl for the most recent `claim_adjudication` event; use its `passed` boolean. Default true when no event exists or when activeP0 + activeP1 == 0 (gate is vacuous without adjudicable findings)."
    341	          - claim_adjudication_active_count: "Count of active P0/P1 findings at the time of the last claim_adjudication event; 0 when none exist"
-   342	
+   342
    343	      step_check_pause_sentinel:
    344	        action: "Check for pause sentinel file"
    345	        check: "Does {spec_folder}/review/.deep-review-pause exist?"
@@ -6693,7 +6693,7 @@ exec
    351	          skip_to: step_normalize_pause_events
    352	        if_not_exists:
    353	          proceed: true
-   354	
+   354
    355	      step_graph_convergence:
    356	        action: "Evaluate coverage-graph convergence before the inline review convergence vote"
    357	        inspect:
@@ -6716,7 +6716,7 @@ exec
    374	          - graph_blockers_json: "JSON array of graph blockers when present, else []"
    375	          - graph_blockers_csv: "Comma-separated blocker summary when graph blocks STOP, else empty string"
    376	          - graph_stop_blocked: "Boolean true when graph_decision == STOP_BLOCKED"
-   377	
+   377
    378	      step_check_convergence:
    379	        action: "Evaluate graph-assisted review stop conditions and the legal-stop decision tree"
    380	        algorithm: |
@@ -6872,7 +6872,7 @@ exec
    269	          releaseReadinessState: "in-progress"
    270	          executionMode: "confirm"
    271	        output: "{spec_folder}/review/deep-review-config.json"
-   272	
+   272
    273	      step_create_state_log:
    274	        action: "Initialize JSONL state log with config record including review fields and lineage metadata"
    275	        pre_serialize:
@@ -6884,12 +6884,12 @@ exec
    281	            The resulting string must parse via JSON.parse(...) as a string[], and every element MUST be one of the four canonical dimension names. Never wrap the raw template variable as `["{review_dimensions}"]` — that collapses multiple dimensions into a single string element and breaks replay tooling.
    282	        content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"sessionId":"{ISO_8601_NOW}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
    283	        output: "{spec_folder}/review/deep-review-state.jsonl"
-   284	
+   284
    285	      step_create_findings_registry:
    286	        action: "Initialize reducer-owned review findings registry"
    287	        content: '{"sessionId":"{ISO_8601_NOW}","generation":1,"lineageMode":"new","openFindings":[],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false},"findingsBySeverity":{"P0":0,"P1":0,"P2":0},"openFindingsCount":0,"resolvedFindingsCount":0,"convergenceScore":0.0}'
    288	        output: "{spec_folder}/review/deep-review-findings-registry.json"
-   289	
+   289
    290	      step_create_strategy:
    291	        action: "Create review strategy file from deep_review_strategy.md template"
    292	        template: .opencode/skills/sk-deep-review/assets/deep_review_strategy.md
@@ -6902,33 +6902,33 @@ exec
    299	          max_iterations: "{max_iterations}"
    300	          convergence_threshold: "{convergence_threshold}"
    301	        output: "{spec_folder}/review/deep-review-strategy.md"
-   302	
+   302
    303	      step_enrich_strategy_context:
    304	        action: "Ensure Known Context is written only after strategy.md exists"
    305	        condition: "prior_context_found"
    306	        edit: "{spec_folder}/review/deep-review-strategy.md"
    307	        note: "Append or replace the Known Context section with prior_context_summary and retained detail from prior_context"
-   308	
+   308
    309	      # ─── APPROVAL GATE: Post-Init ───
    310	      gate_init_approval:
    311	        type: approval_gate
    312	        purpose: "Show review scope, dimensions, and target files. Get approval to start loop."
    313	        present: |
    314	          ## Review Initialization Complete
-   315	
+   315
    316	          **Review Target**: {review_target} ({review_target_type})
    317	          **Scope**: {review_scope_files_count} files
    318	          **Dimensions**: {dimension_queue}
    319	          **Max Iterations**: {max_iterations}
    320	          **Convergence Threshold**: {convergence_threshold}
    321	          **Known Context Summary**: {prior_context_summary}
-   322	
+   322
    323	          **Files in scope:**
    324	          {review_scope_files_summary}
-   325	
+   325
    326	          Review `{spec_folder}/review/deep-review-strategy.md` for the full scope and dimension ordering.
    327	          **State files located in**: {spec_folder}/review/
-   328	
+   328
    329	          Options:
    330	          A) Start review loop
    331	          B) Adjust scope or dimensions
@@ -6937,7 +6937,7 @@ exec
    334	        on_A: { set: { current_iteration: 1, stuck_count: 0, p0_count: 0, p1_count: 0, p2_count: 0 }, proceed_to: phase_loop }
    335	        on_B: { action: "Apply user adjustments to strategy.md, scope, or dimensions", return_to: gate_init_approval }
    336	        on_C: { action: "Cancel workflow", status: "CANCELLED" }
-   337	
+   337
    338	  # ═══════════════════════════════════════════════════════════════
    339	  # PHASE 2: ITERATION LOOP
    340	  # ═══════════════════════════════════════════════════════════════
@@ -6946,7 +6946,7 @@ exec
    343	    repeat: true
    344	    max_repeats: "{max_iterations}"
    345	    steps:
-   346	
+   346
    347	      step_read_state:
    348	        action: "Read current state from JSONL, strategy, and config"
    349	        read:
@@ -6975,7 +6975,7 @@ exec
    372	          - latest_status: "Extract status from latest iteration record, else 'none yet'"
    373	          - last_claim_adjudication_passed: "Scan state.jsonl for the most recent `claim_adjudication` event; use its `passed` boolean. Default true when no event exists or when activeP0 + activeP1 == 0 (gate is vacuous without adjudicable findings)."
    374	          - claim_adjudication_active_count: "Count of active P0/P1 findings at the time of the last claim_adjudication event; 0 when none exist"
-   375	
+   375
    376	      step_check_pause_sentinel:
    377	        action: "Check for pause sentinel file"
    378	        check: "Does {spec_folder}/review/.deep-review-pause exist?"
@@ -6987,7 +6987,7 @@ exec
    384	          skip_to: step_normalize_pause_events
    385	        if_not_exists:
    386	          proceed: true
-   387	
+   387
    388	      step_graph_convergence:
    389	        action: "Evaluate coverage-graph convergence before the inline review convergence vote"
    390	        inspect:
@@ -7010,7 +7010,7 @@ exec
    407	          - graph_blockers_json: "JSON array of graph blockers when present, else []"
    408	          - graph_blockers_csv: "Comma-separated blocker summary when graph blocks STOP, else empty string"
    409	          - graph_stop_blocked: "Boolean true when graph_decision == STOP_BLOCKED"
-   410	
+   410
    411	      step_check_convergence:
    412	        action: "Evaluate graph-assisted review stop conditions and the legal-stop decision tree"
    413	        algorithm: |
@@ -7107,7 +7107,7 @@ exec
    479	          - graph_blockers_json: "JSON array of graph blockers"
    480	          - graph_blockers_csv: "Comma-separated graph blocker summary"
    481	          - recovery_strategy: "One-line hint describing the next review action when decision == BLOCKED or STUCK_RECOVERY"
-   482	
+   482
    483	      step_emit_blocked_stop:
    484	        action: "Persist blocked-stop evidence whenever the review legal-stop decision tree vetoes STOP"
    485	        if_blocked:
@@ -7115,7 +7115,7 @@ exec
    487	          log: "Blocked STOP persisted for review loop. Failed gates: {blocked_by_csv}. Recovery strategy: {recovery_strategy}"
    488	        if_not_blocked:
    489	          proceed: true
-   490	
+   490
    491	      step_handle_convergence:
    492	        action: "Act on convergence decision"
    493	        if_stop:
@@ -7138,7 +7138,7 @@ exec
    510	          reset: { stuck_count: 0 }
    511	        if_continue:
    512	          log: "Iteration {current_iteration}: Continuing. Dimension: {next_dimension}"
-   513	
+   513
    514	      step_normalize_pause_events:
    515	        action: "Rewrite raw pause and recovery events to the frozen STOP_REASONS enum at emission time: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused"
    516	        if_pending_pause_event:
@@ -7157,7 +7157,7 @@ exec
    529	            pending_stop_detail: null
    530	        if_no_pending_event:
    531	          proceed: true
-   532	
+   532
    533	      step_generate_state_summary:
    534	        action: "Generate compact state summary for dispatch context (~200 tokens)"
    535	        generate: |
@@ -7237,7 +7237,7 @@ exec
    512	          - graph_blockers_json: "JSON array of graph blockers"
    513	          - graph_blockers_csv: "Comma-separated graph blocker summary"
    514	          - recovery_strategy: "One-line hint describing the next review action when decision == BLOCKED or STUCK_RECOVERY"
-   515	
+   515
    516	      step_emit_blocked_stop:
    517	        action: "Persist blocked-stop evidence whenever the review legal-stop decision tree vetoes STOP"
    518	        if_blocked:
@@ -7245,7 +7245,7 @@ exec
    520	          log: "Blocked STOP persisted for review loop. Failed gates: {blocked_by_csv}. Recovery strategy: {recovery_strategy}"
    521	        if_not_blocked:
    522	          proceed: true
-   523	
+   523
    524	      step_handle_convergence:
    525	        action: "Act on convergence decision"
    526	        if_stop:
@@ -7267,7 +7267,7 @@ exec
    542	          reset: { stuck_count: 0 }
    543	        if_continue:
    544	          log: "Iteration {current_iteration}: Continuing."
-   545	
+   545
    546	      step_normalize_pause_events:
    547	        action: "Rewrite raw pause and recovery events to the frozen STOP_REASONS enum at emission time: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused"
    548	        if_pending_pause_event:
@@ -7293,7 +7293,7 @@ exec
    243	          - least_explored: "First unanswered question not covered by the most recent iteration focus, else first unanswered question"
    244	          - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
    245	          - latest_status: "Extract status from latest iteration record, else 'none yet'"
-   246	
+   246
    247	      step_check_pause_sentinel:
    248	        action: "Check for pause sentinel file"
    249	        check: "Does {spec_folder}/research/.deep-research-pause exist?"
@@ -7303,7 +7303,7 @@ exec
    253	          halt: true
    254	        if_not_exists:
    255	          proceed: true
-   256	
+   256
    257	      step_graph_convergence:
    258	        action: "Evaluate coverage-graph convergence before the inline 3-signal vote and persist the graph decision snapshot"
    259	        mcp_tool:
@@ -7321,7 +7321,7 @@ exec
    271	          - graph_trace_json: "Tool trace payload, else []"
    272	          - graph_convergence_score: "signals.blendedScore when present, else the best available graph score, else 0"
    273	        append_to_jsonl: '{"type":"event","event":"graph_convergence","mode":"research","run":{current_iteration},"decision":{graph_decision_json},"signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-   274	
+   274
    275	      step_check_convergence:
    276	        action: "Evaluate stop conditions and combine the inline 3-signal vote with graph convergence"
    277	        algorithm: |
@@ -7383,7 +7383,7 @@ exec
    333	          - gate_evidence_density_sources: "Source-diversity count or equivalent evidence-depth proxy"
    334	          - gate_hotspot_saturation_pass: "Research placeholder gate; true unless an explicit blocker sets otherwise"
    335	          - recovery_strategy: "One-line hint describing the next research action when decision == BLOCKED or STUCK_RECOVERY"
-   336	
+   336
    337	      step_emit_blocked_stop:
    338	        action: "Persist a first-class blocked_stop event when the legal-stop decision tree returns blocked"
    339	        if_blocked:
@@ -7399,7 +7399,7 @@ exec
    272	          - least_explored: "First unanswered question not covered by the most recent iteration focus, else first unanswered question"
    273	          - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
    274	          - latest_status: "Extract status from latest iteration record, else 'none yet'"
-   275	
+   275
    276	      step_check_pause_sentinel:
    277	        action: "Check for pause sentinel file"
    278	        check: "Does {spec_folder}/research/.deep-research-pause exist?"
@@ -7409,7 +7409,7 @@ exec
    282	          halt: true
    283	        if_not_exists:
    284	          proceed: true
-   285	
+   285
    286	      step_graph_convergence:
    287	        action: "Evaluate coverage-graph convergence before the inline 3-signal vote and persist the graph decision snapshot"
    288	        mcp_tool:
@@ -7427,7 +7427,7 @@ exec
    300	          - graph_trace_json: "Tool trace payload, else []"
    301	          - graph_convergence_score: "signals.blendedScore when present, else the best available graph score, else 0"
    302	        append_to_jsonl: '{"type":"event","event":"graph_convergence","mode":"research","run":{current_iteration},"decision":{graph_decision_json},"signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-   303	
+   303
    304	      step_check_convergence:
    305	        action: "Evaluate stop conditions and combine the inline 3-signal vote with graph convergence"
    306	        algorithm: |
@@ -7492,41 +7492,41 @@ exec
      1	// ╔══════════════════════════════════════════════════════════════════════════╗
      2	// ║ Deep Review State Reducer                                                ║
      3	// ╚══════════════════════════════════════════════════════════════════════════╝
-     4	
+     4
      5	'use strict';
-     6	
+     6
      7	// ─────────────────────────────────────────────────────────────────────────────
      8	// 1. IMPORTS
      9	// ─────────────────────────────────────────────────────────────────────────────
-    10	
+    10
     11	const fs = require('node:fs');
     12	const path = require('node:path');
-    13	
+    13
     14	// ─────────────────────────────────────────────────────────────────────────────
     15	// 2. CONSTANTS
     16	// ─────────────────────────────────────────────────────────────────────────────
-    17	
+    17
     18	const REQUIRED_DIMENSIONS = ['correctness', 'security', 'traceability', 'maintainability'];
     19	const SEVERITY_KEYS = ['P0', 'P1', 'P2'];
     20	const SEVERITY_WEIGHTS = { P0: 10.0, P1: 5.0, P2: 1.0 };
-    21	
+    21
     22	// ─────────────────────────────────────────────────────────────────────────────
     23	// 3. HELPERS
     24	// ─────────────────────────────────────────────────────────────────────────────
-    25	
+    25
     26	function readUtf8(filePath) {
     27	  return fs.readFileSync(filePath, 'utf8');
     28	}
-    29	
+    29
     30	function writeUtf8(filePath, content) {
     31	  fs.mkdirSync(path.dirname(filePath), { recursive: true });
     32	  fs.writeFileSync(filePath, content, 'utf8');
     33	}
-    34	
+    34
     35	function readJson(filePath) {
     36	  return JSON.parse(readUtf8(filePath));
     37	}
-    38	
+    38
     39	function slugify(value) {
     40	  return value
     41	    .toLowerCase()
@@ -7534,23 +7534,23 @@ exec
     43	    .replace(/^-+|-+$/g, '')
     44	    .slice(0, 80) || 'entry';
     45	}
-    46	
+    46
     47	function normalizeText(value) {
     48	  return String(value || '').replace(/\s+/g, ' ').trim();
     49	}
-    50	
+    50
     51	function escapeRegExp(value) {
     52	  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     53	}
-    54	
+    54
     55	function zeroSeverityMap() {
     56	  return { P0: 0, P1: 0, P2: 0 };
     57	}
-    58	
+    58
     59	// ─────────────────────────────────────────────────────────────────────────────
     60	// 4. PARSERS
     61	// ─────────────────────────────────────────────────────────────────────────────
-    62	
+    62
     63	/**
     64	 * Parse JSONL content into an array of records, preserving both iteration and
     65	 * event rows. Backward-compatible array return.
@@ -7561,7 +7561,7 @@ exec
     70	function parseJsonl(jsonlContent) {
     71	  return parseJsonlDetailed(jsonlContent).records;
     72	}
-    73	
+    73
     74	/**
     75	 * Parse JSONL content and report malformed lines (fail-closed pathway).
     76	 *
@@ -7575,14 +7575,14 @@ exec
     84	  const records = [];
     85	  const corruptionWarnings = [];
     86	  let lineNumber = 0;
-    87	
+    87
     88	  for (const rawLine of jsonlContent.split('\n')) {
     89	    lineNumber += 1;
     90	    const line = rawLine.trim();
     91	    if (!line) {
     92	      continue;
     93	    }
-    94	
+    94
     95	    try {
     96	      records.push(JSON.parse(line));
     97	    } catch (error) {
@@ -7593,22 +7593,22 @@ exec
    102	      });
    103	    }
    104	  }
-   105	
+   105
    106	  return { records, corruptionWarnings };
    107	}
-   108	
+   108
    109	function extractSection(markdown, heading) {
    110	  const pattern = new RegExp(`(?:^|\\n)##\\s+${escapeRegExp(heading)}\\s*\\n([\\s\\S]*?)(?=\\n##\\s|$)`, 'i');
    111	  const match = markdown.match(pattern);
    112	  return match ? match[1].trim() : '';
    113	}
-   114	
+   114
    115	function extractSubsection(sectionText, subheading) {
    116	  const pattern = new RegExp(`(?:^|\\n)###\\s+${escapeRegExp(subheading)}[^\\n]*\\n([\\s\\S]*?)(?=\\n###\\s|\\n##\\s|$)`, 'i');
    117	  const match = sectionText.match(pattern);
    118	  return match ? match[1].trim() : '';
    119	}
-   120	
+   120
    121	function extractListItems(sectionText) {
    122	  return sectionText
    123	    .split('\n')
@@ -7617,7 +7617,7 @@ exec
    126	    .map((line) => normalizeText(line.replace(/^([-*]|\d+\.)\s+/, '')))
    127	    .filter(Boolean);
    128	}
-   129	
+   129
    130	/**
    131	 * Parse a finding line of the form: `- **F001**: Title — file:line — Description`
    132	 *
@@ -7630,11 +7630,11 @@ exec
    139	  if (!match) {
    140	    return null;
    141	  }
-   142	
+   142
    143	  const [, findingId, title, evidenceRaw, description] = match;
    144	  let file = null;
    145	  let lineNumber = null;
-   146	
+   146
    147	  if (evidenceRaw) {
    148	    const evidenceMatch = evidenceRaw.trim().match(/^(.+?):(\d+)(?:[:-].*)?$/);
    149	    if (evidenceMatch) {
@@ -7644,7 +7644,7 @@ exec
    153	      file = evidenceRaw.trim();
    154	    }
    155	  }
-   156	
+   156
    157	  return {
    158	    findingId,
    159	    severity,
@@ -7781,7 +7781,7 @@ exec
    288	      }
    289	    }
    290	  }
-   291	
+   291
    292	  const resolvedIdSet = new Set();
    293	  for (const record of iterationRecords) {
    294	    if (Array.isArray(record.resolvedFindings)) {
@@ -7790,7 +7790,7 @@ exec
    297	      }
    298	    }
    299	  }
-   300	
+   300
    301	  const openFindings = [];
    302	  const resolvedFindings = [];
    303	  for (const finding of findingById.values()) {
@@ -7801,13 +7801,13 @@ exec
    308	      openFindings.push(finding);
    309	    }
    310	  }
-   311	
+   311
    312	  openFindings.sort(compareFindings);
    313	  resolvedFindings.sort(compareFindings);
-   314	
+   314
    315	  return { openFindings, resolvedFindings };
    316	}
-   317	
+   317
    318	function compareFindings(left, right) {
    319	  const severityOrder = { P0: 0, P1: 1, P2: 2 };
    320	  const severityDiff = (severityOrder[left.severity] ?? 9) - (severityOrder[right.severity] ?? 9);
@@ -7816,7 +7816,7 @@ exec
    323	  }
    324	  return left.findingId.localeCompare(right.findingId);
    325	}
-   326	
+   326
    327	function deriveDimension(finding, iteration) {
    328	  const focus = `${iteration.focus} ${finding.title} ${finding.description}`.toLowerCase();
    329	  for (const dimension of REQUIRED_DIMENSIONS) {
@@ -7826,13 +7826,13 @@ exec
    333	  }
    334	  return iteration.dimensionsAddressed[0] || 'correctness';
    335	}
-   336	
+   336
    337	function buildDimensionCoverage(iterationRecords, strategyDimensions) {
    338	  const covered = {};
    339	  for (const dimension of REQUIRED_DIMENSIONS) {
    340	    covered[dimension] = false;
    341	  }
-   342	
+   342
    343	  for (const record of iterationRecords) {
    344	    if (!Array.isArray(record.dimensions)) {
    345	      continue;
@@ -7844,7 +7844,7 @@ exec
    351	      }
    352	    }
    353	  }
-   354	
+   354
    355	  for (const entry of strategyDimensions) {
    356	    if (!entry.checked) {
    357	      continue;
@@ -7856,10 +7856,10 @@ exec
    363	      }
    364	    }
    365	  }
-   366	
+   366
    367	  return covered;
    368	}
-   369	
+   369
    370	function buildFindingsBySeverity(openFindings) {
    371	  const counts = zeroSeverityMap();
    372	  for (const finding of openFindings) {
@@ -7869,7 +7869,7 @@ exec
    376	  }
    377	  return counts;
    378	}
-   379	
+   379
    380	function computeConvergenceScore(iterationRecords) {
    381	  const latest = iterationRecords.filter((record) => record.type === 'iteration').at(-1);
    382	  if (!latest) {
@@ -7881,12 +7881,12 @@ exec
    388	    ?? 0
    389	  );
    390	}
-   391	
+   391
    392	function computeGraphConvergenceScore(signals) {
    393	  if (!signals || typeof signals !== 'object' || Array.isArray(signals)) {
    394	    return 0;
    395	  }
-   396	
+   396
    397	  const namedScore = signals.score
    398	    ?? signals.convergenceScore
    399	    ?? signals.compositeScore
@@ -7895,22 +7895,22 @@ exec
    402	  if (typeof namedScore === 'number' && Number.isFinite(namedScore)) {
    403	    return namedScore;
    404	  }
-   405	
+   405
    406	  const numericSignals = Object.values(signals)
    407	    .filter((value) => typeof value === 'number' && Number.isFinite(value));
    408	  if (!numericSignals.length) {
    409	    return 0;
    410	  }
-   411	
+   411
    412	  const sum = numericSignals.reduce((total, value) => total + value, 0);
    413	  return sum / numericSignals.length;
    414	}
-   415	
+   415
    416	function buildGraphConvergenceRollup(records) {
    417	  const latest = records
    418	    .filter((record) => record?.type === 'event' && record?.event === 'graph_convergence')
    419	    .at(-1);
-   420	
+   420
    421	  if (!latest) {
    422	    return {
    423	      score: 0,
@@ -7918,14 +7918,14 @@ exec
    425	      blockers: [],
    426	    };
    427	  }
-   428	
+   428
    429	  return {
    430	    score: computeGraphConvergenceScore(latest.signals),
    431	    decision: normalizeText(latest.decision || '') || null,
    432	    blockers: Array.isArray(latest.blockers) ? latest.blockers : [],
    433	  };
    434	}
-   435	
+   435
    436	/**
    437	 * Phase 008 P1-02 closure: defensively normalize each entry in `blockedBy` so
    438	 * the review dashboard cannot render `[object Object]` even if an older YAML
@@ -7942,7 +7942,7 @@ exec
    449	    : Array.isArray(legacyLegalStop?.blockedBy)
    450	      ? legacyLegalStop.blockedBy
    451	      : [];
-   452	
+   452
    453	  return rawList.map((entry) => {
    454	    if (typeof entry === 'string') return entry;
    455	    if (entry && typeof entry === 'object') {
@@ -7953,7 +7953,7 @@ exec
    460	    return String(entry);
    461	  });
    462	}
-   463	
+   463
    464	function buildBlockedStopHistory(records) {
    465	  return records
    466	    .filter((record) => record?.type === 'event' && record?.event === 'blocked_stop')
@@ -7967,7 +7967,7 @@ exec
    474	        : Array.isArray(record.blockedBy) && record.blockedBy.some((e) => e && typeof e === 'object')
    475	          ? record.blockedBy
    476	          : [];
-   477	
+   477
    478	      return {
    479	        run: typeof record.run === 'number' ? record.run : 0,
    480	        blockedBy,
@@ -7982,7 +7982,7 @@ exec
    489	      };
    490	    });
    491	}
-   492	
+   492
    493	function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, config, corruptionWarnings = []) {
    494	  const { openFindings, resolvedFindings } = buildFindingRegistry(iterationFiles, iterationRecords);
    495	  const dimensionCoverage = buildDimensionCoverage(iterationRecords, strategyDimensions);
@@ -7990,7 +7990,7 @@ exec
    497	  const convergenceScore = computeConvergenceScore(iterationRecords);
    498	  const graphConvergence = buildGraphConvergenceRollup(iterationRecords);
    499	  const blockedStopHistory = buildBlockedStopHistory(iterationRecords);
-   500	
+   500
    501	  // Part C REQ-018: split repeatedFindings into two semantically distinct buckets
    502	  // so persistent-same-severity findings and severity-churn findings don't collapse.
    503	  const persistentSameSeverity = openFindings.filter((finding) => {
@@ -8000,22 +8000,22 @@ exec
    507	    const nontrivialTransitions = transitions.filter((t) => t.from !== null);
    508	    return nontrivialTransitions.length === 0;
    509	  });
-   510	
+   510
    511	  const severityChanged = openFindings.filter((finding) => {
    512	    const transitions = Array.isArray(finding.transitions) ? finding.transitions : [];
    513	    const nontrivialTransitions = transitions.filter((t) => t.from !== null);
    514	    return nontrivialTransitions.length > 0;
    515	  });
-   516	
+   516
    517	  // Deprecated: keep repeatedFindings for backward compatibility with older consumers.
    518	  // New code should read persistentSameSeverity + severityChanged directly.
    519	  const repeatedFindings = openFindings.filter((finding) => finding.lastSeen - finding.firstSeen >= 1);
-   520	
+   520
 
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/scripts/reduce-state.cjs | sed -n '520,860p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-   520	
+   520
    521	  return {
    522	    sessionId: config.sessionId || '',
    523	    generation: config.generation ?? 1,
@@ -8037,17 +8037,17 @@ exec
    539	    corruptionWarnings,
    540	  };
    541	}
-   542	
+   542
    543	function blockFromBulletList(items) {
    544	  if (!items.length) {
    545	    return '[None yet]';
    546	  }
    547	  return items.map((item) => `- ${item}`).join('\n');
    548	}
-   549	
+   549
    550	function buildExhaustedApproaches(iterationFiles) {
    551	  const grouped = new Map();
-   552	
+   552
    553	  for (const iteration of iterationFiles) {
    554	    for (const entry of iteration.deadEnds.concat(iteration.ruledOut)) {
    555	      const bucket = grouped.get(entry) || [];
@@ -8055,11 +8055,11 @@ exec
    557	      grouped.set(entry, bucket);
    558	    }
    559	  }
-   560	
+   560
    561	  if (!grouped.size) {
    562	    return '[No exhausted approach categories yet]';
    563	  }
-   564	
+   564
    565	  return Array.from(grouped.entries())
    566	    .sort(([left], [right]) => left.localeCompare(right))
    567	    .map(([entry, runs]) => {
@@ -8074,7 +8074,7 @@ exec
    576	    })
    577	    .join('\n\n');
    578	}
-   579	
+   579
    580	function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
    581	  const pattern = new RegExp(`<!-- ANCHOR:${anchorId} -->[\\s\\S]*?<!-- \\/ANCHOR:${anchorId} -->`, 'm');
    582	  const replacement = [
@@ -8084,7 +8084,7 @@ exec
    586	    '',
    587	    `<!-- /ANCHOR:${anchorId} -->`,
    588	  ].join('\n');
-   589	
+   589
    590	  if (!pattern.test(content)) {
    591	    if (options.createMissing) {
    592	      const suffix = content.endsWith('\n') ? '' : '\n';
@@ -8097,7 +8097,7 @@ exec
    599	  }
    600	  return content.replace(pattern, replacement);
    601	}
-   602	
+   602
    603	function updateStrategyContent(strategyContent, registry, iterationFiles, options = {}, iterationRecords = []) {
    604	  // Early return when there is no strategy file to update. Empty content
    605	  // cannot contain the machine-owned anchors and replaceAnchorSection would
@@ -8106,7 +8106,7 @@ exec
    608	  if (!strategyContent) {
    609	    return strategyContent;
    610	  }
-   611	
+   611
    612	  const anchorOptions = { createMissing: Boolean(options.createMissingAnchors) };
    613	  const severity = registry.findingsBySeverity;
    614	  const runningFindings = [
@@ -8115,22 +8115,22 @@ exec
    617	    `- P2 (Suggestions): ${severity.P2}`,
    618	    `- Resolved: ${registry.resolvedFindingsCount}`,
    619	  ].join('\n');
-   620	
+   620
    621	  const completedDimensions = REQUIRED_DIMENSIONS
    622	    .filter((dimension) => registry.dimensionCoverage[dimension])
    623	    .map((dimension) => `- [x] ${dimension}`)
    624	    .join('\n') || '[None yet]';
-   625	
+   625
    626	  const remainingDimensions = REQUIRED_DIMENSIONS
    627	    .filter((dimension) => !registry.dimensionCoverage[dimension])
    628	    .map((dimension) => `- [ ] ${dimension}`)
    629	    .join('\n') || '[All dimensions complete]';
-   630	
+   630
    631	  // Default next-focus comes from latest iteration → first uncovered dimension → fallback.
    632	  let nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
    633	    || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
    634	    || '[All dimensions covered]';
-   635	
+   635
    636	  // Part C REQ-014 / Phase 008 P1-03 closure: prefer the latest blocked-stop
    637	  // recovery only when blocked-stop is genuinely the most recent loop event.
    638	  // The earlier implementation read timestamps from the markdown iteration
@@ -8158,7 +8158,7 @@ exec
    660	      ].join('\n');
    661	    }
    662	  }
-   663	
+   663
    664	  let updated = strategyContent;
    665	  updated = replaceAnchorSection(updated, 'review-dimensions', '3. REVIEW DIMENSIONS (remaining)', remainingDimensions, anchorOptions);
    666	  updated = replaceAnchorSection(updated, 'completed-dimensions', '4. COMPLETED DIMENSIONS', completedDimensions, anchorOptions);
@@ -8173,7 +8173,7 @@ exec
    675	  updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus, anchorOptions);
    676	  return updated;
    677	}
-   678	
+   678
    679	function renderDashboard(config, registry, iterationRecords, iterationFiles) {
    680	  const latestIteration = iterationRecords.filter((record) => record.type === 'iteration').at(-1);
    681	  const ratios = iterationRecords
@@ -8184,7 +8184,7 @@ exec
    686	  const nextFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
    687	    || REQUIRED_DIMENSIONS.find((dimension) => !registry.dimensionCoverage[dimension])
    688	    || '[All dimensions covered]';
-   689	
+   689
    690	  const severity = registry.findingsBySeverity;
    691	  const verdict = severity.P0 > 0
    692	    ? 'FAIL'
@@ -8192,7 +8192,7 @@ exec
    694	      ? 'CONDITIONAL'
    695	      : 'PASS';
    696	  const hasAdvisories = verdict === 'PASS' && severity.P2 > 0;
-   697	
+   697
    698	  const progressRows = iterationRecords
    699	    .filter((record) => record.type === 'iteration')
    700	    .map((record) => {
@@ -8203,7 +8203,7 @@ exec
    705	      return `| ${record.run} | ${record.focus || 'unknown'} | ${dimensions} | ${ratio} | ${findings} | ${record.status || 'complete'} |`;
    706	    })
    707	    .join('\n') || '| 0 | none yet | - | 0.00 | 0/0/0 | initialized |';
-   708	
+   708
    709	  const dimensionRows = REQUIRED_DIMENSIONS
    710	    .map((dimension) => {
    711	      const covered = registry.dimensionCoverage[dimension];
@@ -8212,7 +8212,7 @@ exec
    714	      return `| ${dimension} | ${status} | ${openInDimension} |`;
    715	    })
    716	    .join('\n');
-   717	
+   717
    718	  return [
    719	    '---',
    720	    'title: Deep Review Dashboard',
@@ -8364,129 +8364,129 @@ exec
 exec
 /bin/zsh -lc "sed -n '145,215p' .opencode/agents/deep-review.md | cat -n" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-   170	
+   170
    171	### P2 — Suggestion
    172	- **F003**: [Title] — `file:line` — [Description]
-   173	
+   173
    174	> Use sequential finding IDs across the whole session (iteration 2 starts at F00K where K = last F-id used in iteration 1). The reducer deduplicates on the `FNNN` prefix, so collisions are silent.
    175	> For every P0/P1 finding, also emit a typed claim-adjudication packet (schema in state_format.md §9 and loop_protocol.md Step 4a) so `step_post_iteration_claim_adjudication` can validate it. A missing or malformed packet vetoes STOP via the `claimAdjudicationGate` on the next convergence check.
-   176	
+   176
    177	```json
    178	{"type":"claim-adjudication","findingId":"F002","claim":"One-sentence statement of the P0/P1 finding being adjudicated.","evidenceRefs":["path/to/file:line"],"counterevidenceSought":"Adjacent code, docs, and prior iterations checked for contradictory evidence.","alternativeExplanation":"Most plausible non-bug explanation considered during skeptic/referee review.","finalSeverity":"P0","confidence":0.9,"downgradeTrigger":"What evidence would justify reducing severity or marking this a false positive."}
    179	```
-   180	
+   180
    181	## Cross-Reference Results
    182	| Protocol | Status | Gate | Evidence | Notes |
    183	|----------|--------|------|----------|-------|
    184	| spec_code | pass/partial/fail | hard | `file:line` | ... |
    185	| checklist_evidence | pass/partial/fail | hard | `file:line` | ... |
    186	| skill_agent | pass/partial/fail | soft | `file:line` | ... |
-   187	
+   187
    188	## Assessment
    189	- New findings ratio: [0.0-1.0]
    190	- Dimensions addressed: [correctness, traceability]
    191	- Novelty justification: [1–2 sentence breakdown of what is net-new vs refinement]
-   192	
+   192
    193	## Ruled Out
    194	- [Approach]: [Why] — [file:line evidence]
-   195	
+   195
    196	## Dead Ends
    197	- [Direction]: [Why the current evidence does not justify escalation]
-   198	
+   198
    199	## Recommended Next Focus
    200	[What the next iteration should investigate. Rotate dimensions unless the current dimension is still incomplete.]
    201	```
-   202	
+   202
    203	## Assessment
    204	- Confirmed findings: [N]
    205	- New findings ratio: [0.XX]
    206	- noveltyJustification: [1 sentence]
    207	- Dimensions addressed: [list]
-   208	
+   208
    209	## Reflection
    210	- What worked: [effective approach]
    211	- What did not work: [ineffective approach]
    212	- Next adjustment: [suggestion for next iteration]
    213	```
-   214	
+   214
    215	#### Step 6: Update Strategy
    216	Edit `review/deep-review-strategy.md`:
-   217	
+   217
    218	1. Mark dimension as reviewed if covered (move from "Review Dimensions" to "Completed Dimensions" with score)
    219	2. Update "Running Findings" counts (P0/P1/P2 totals)
    220	3. Add new entries to "What Worked" with iteration number
 
  succeeded in 0ms:
-     1	
+     1
      2	#### Step 5: Write Findings
-     3	
+     3
      4	Create `review/iterations/iteration-NNN.md`. The structure below is **parser-sensitive**: the reducer at `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:186` extracts findings by matching the `# Iteration N:` heading, the exact section names (`## Focus`, `## Findings`, `## Ruled Out`, `## Dead Ends`, `## Recommended Next Focus`, `## Assessment`), the `### P0` / `### P1` / `### P2` subheadings inside `## Findings`, and finding bullets of the form `- **FNNN**: Title — file:line — Description`. Deviating from any of these will cause the reducer to silently drop findings.
-     5	
+     5
      6	```markdown
      7	# Iteration [N]: [Focus label, e.g. "Correctness contracts on review loop runtime"]
-     8	
+     8
      9	## Focus
     10	[1–3 sentences describing the dimension, files, and scope investigated this iteration.]
-    11	
+    11
     12	## Scorecard
     13	- Dimensions covered: [correctness, traceability, ...]
     14	- Files reviewed: [count]
     15	- New findings: P0=[n] P1=[n] P2=[n]
     16	- Refined findings: P0=[n] P1=[n] P2=[n]
     17	- New findings ratio: [0.0-1.0]
-    18	
+    18
     19	## Findings
-    20	
+    20
     21	### P0 — Blocker
     22	- **F001**: [Title] — `file:line` — [Description with file:line evidence and why it blocks release]
-    23	
+    23
     24	### P1 — Required
     25	- **F002**: [Title] — `file:line` — [Description]
-    26	
+    26
     27	### P2 — Suggestion
     28	- **F003**: [Title] — `file:line` — [Description]
-    29	
+    29
     30	> Use sequential finding IDs across the whole session (iteration 2 starts at F00K where K = last F-id used in iteration 1). The reducer deduplicates on the `FNNN` prefix, so collisions are silent.
     31	> For every P0/P1 finding, also emit a typed claim-adjudication packet (schema in state_format.md §9 and loop_protocol.md Step 4a) so `step_post_iteration_claim_adjudication` can validate it. A missing or malformed packet vetoes STOP via the `claimAdjudicationGate` on the next convergence check.
-    32	
+    32
     33	```json
     34	{"type":"claim-adjudication","findingId":"F002","claim":"One-sentence statement of the P0/P1 finding being adjudicated.","evidenceRefs":["path/to/file:line"],"counterevidenceSought":"Adjacent code, docs, and prior iterations checked for contradictory evidence.","alternativeExplanation":"Most plausible non-bug explanation considered during skeptic/referee review.","finalSeverity":"P0","confidence":0.9,"downgradeTrigger":"What evidence would justify reducing severity or marking this a false positive."}
     35	```
-    36	
+    36
     37	## Cross-Reference Results
     38	| Protocol | Status | Gate | Evidence | Notes |
     39	|----------|--------|------|----------|-------|
     40	| spec_code | pass/partial/fail | hard | `file:line` | ... |
     41	| checklist_evidence | pass/partial/fail | hard | `file:line` | ... |
     42	| skill_agent | pass/partial/fail | soft | `file:line` | ... |
-    43	
+    43
     44	## Assessment
     45	- New findings ratio: [0.0-1.0]
     46	- Dimensions addressed: [correctness, traceability]
     47	- Novelty justification: [1–2 sentence breakdown of what is net-new vs refinement]
-    48	
+    48
     49	## Ruled Out
     50	- [Approach]: [Why] — [file:line evidence]
-    51	
+    51
     52	## Dead Ends
     53	- [Direction]: [Why the current evidence does not justify escalation]
-    54	
+    54
     55	## Recommended Next Focus
     56	[What the next iteration should investigate. Rotate dimensions unless the current dimension is still incomplete.]
     57	```
-    58	
+    58
     59	## Assessment
     60	- Confirmed findings: [N]
     61	- New findings ratio: [0.XX]
     62	- noveltyJustification: [1 sentence]
     63	- Dimensions addressed: [list]
-    64	
+    64
     65	## Reflection
     66	- What worked: [effective approach]
     67	- What did not work: [ineffective approach]
     68	- Next adjustment: [suggestion for next iteration]
     69	```
-    70	
+    70
     71	#### Step 6: Update Strategy
 
 exec
@@ -8502,16 +8502,16 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
      3	// Validates that the reducer's graph_convergence event ingestion + dashboard
      4	// surfacing work end-to-end. The test should fail if the reducer falls back
      5	// to inline ratio math and ignores graph events.
-     6	
+     6
      7	import fs from 'node:fs';
      8	import os from 'node:os';
      9	import path from 'node:path';
     10	import { createRequire } from 'node:module';
-    11	
+    11
     12	import { afterEach, describe, expect, it } from 'vitest';
-    13	
+    13
     14	const require = createRequire(import.meta.url);
-    15	
+    15
     16	// eslint-disable-next-line @typescript-eslint/no-var-requires
     17	const reducer = require('../../../sk-deep-research/scripts/reduce-state.cjs') as {
     18	  reduceResearchState: (specFolder: string, options?: { write?: boolean }) => {
@@ -8527,9 +8527,9 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
     28	    dashboard: string;
     29	  };
     30	};
-    31	
+    31
     32	const tempRoots: string[] = [];
-    33	
+    33
     34	function makeTempSpecFolder(slug: string): string {
     35	  // Realpath resolves macOS /var -> /private/var so reducer path handling
     36	  // stays stable in temporary fixtures.
@@ -8539,12 +8539,12 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
     40	  fs.mkdirSync(path.join(specFolder, 'research', 'iterations'), { recursive: true });
     41	  return specFolder;
     42	}
-    43	
+    43
     44	function writeFile(filePath: string, content: string): void {
     45	  fs.mkdirSync(path.dirname(filePath), { recursive: true });
     46	  fs.writeFileSync(filePath, content, 'utf8');
     47	}
-    48	
+    48
     49	function writeConfig(specFolder: string, sessionId: string): void {
     50	  writeFile(
     51	    path.join(specFolder, 'research', 'deep-research-config.json'),
@@ -8565,7 +8565,7 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
     66	    }, null, 2)}\n`,
     67	  );
     68	}
-    69	
+    69
     70	function writeStrategy(specFolder: string): void {
     71	  writeFile(
     72	    path.join(specFolder, 'research', 'deep-research-strategy.md'),
@@ -8573,9 +8573,9 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
     74	title: Graph Stop Fixture
     75	description: Minimal strategy fixture with all reducer-owned anchors.
     76	---
-    77	
+    77
     78	# Deep Research Strategy - Session Tracking Template
-    79	
+    79
     80	<!-- ANCHOR:overview -->
     81	## 1. OVERVIEW
     82	Fixture overview
@@ -8636,42 +8636,42 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
    137	`,
    138	  );
    139	}
-   140	
+   140
    141	function writeIteration(specFolder: string, run: number, focus: string, nextFocus: string): void {
    142	  writeFile(
    143	    path.join(specFolder, 'research', 'iterations', `iteration-${String(run).padStart(3, '0')}.md`),
    144	    `# Iteration ${run}: ${focus}
-   145	
+   145
    146	## Focus
    147	${focus}
-   148	
+   148
    149	## Findings
    150	- Graph convergence evidence is available for reducer ingestion.
-   151	
+   151
    152	## Ruled Out
    153	- Inferring graph decisions from inline ratios alone.
-   154	
+   154
    155	## Dead Ends
    156	- Skipping reducer-owned dashboard checks.
-   157	
+   157
    158	## Sources Consulted
    159	- research/deep-research-state.jsonl
-   160	
+   160
    161	## Reflection
    162	- What worked and why: Reducer output makes graph decisions inspectable.
    163	- What did not work and why: Inline ratios alone cannot encode graph blockers.
    164	- What I would do differently: Assert the event rollup directly in tests.
-   165	
+   165
    166	## Recommended Next Focus
    167	${nextFocus}
    168	`,
    169	  );
    170	}
-   171	
+   171
    172	function writeStateLog(specFolder: string, lines: string[]): void {
    173	  writeFile(path.join(specFolder, 'research', 'deep-research-state.jsonl'), `${lines.join('\n')}\n`);
    174	}
-   175	
+   175
    176	function makeFixture(slug: string, stateLines: string[]): string {
    177	  const specFolder = makeTempSpecFolder(slug);
    178	  writeConfig(specFolder, `graph-stop-${slug}`);
@@ -8680,7 +8680,7 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
    181	  writeStateLog(specFolder, stateLines);
    182	  return specFolder;
    183	}
-   184	
+   184
    185	afterEach(() => {
    186	  while (tempRoots.length > 0) {
    187	    const root = tempRoots.pop();
@@ -8689,7 +8689,7 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
    190	    }
    191	  }
    192	});
-   193	
+   193
    194	describe('graph-aware stop evaluation', () => {
    195	  it('propagates graph STOP_BLOCKED blockers into the registry and dashboard', () => {
    196	    const specFolder = makeFixture('blocked', [
@@ -8697,9 +8697,9 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
    198	      '{"type":"iteration","run":1,"status":"complete","focus":"Baseline graph stop probe","findingsCount":1,"newInfoRatio":0.95,"timestamp":"2026-04-11T00:05:00Z","durationMs":1000}',
    199	      '{"type":"event","event":"graph_convergence","decision":"STOP_BLOCKED","signals":{"blendedScore":0.41},"blockers":[{"signal":"contradictionDensity","severity":"high"}],"timestamp":"2026-04-11T00:06:00Z"}',
    200	    ]);
-   201	
+   201
    202	    const result = reducer.reduceResearchState(specFolder, { write: false });
-   203	
+   203
    204	    expect(result.registry.graphDecision).toBe('STOP_BLOCKED');
    205	    expect(result.registry.graphConvergenceScore).toBe(0.41);
    206	    expect(result.registry.graphBlockers).toHaveLength(1);
@@ -8709,7 +8709,7 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
    210	    });
    211	    expect(result.dashboard).toContain('graphDecision: STOP_BLOCKED');
    212	  });
-   213	
+   213
    214	  it('uses the most recent graph_convergence event when STOP_ALLOWED supersedes an earlier block', () => {
    215	    const specFolder = makeFixture('allowed', [
    216	      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-allowed","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
@@ -8717,31 +8717,31 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
    218	      '{"type":"event","event":"graph_convergence","decision":"STOP_BLOCKED","signals":{"blendedScore":0.33},"blockers":[{"signal":"questionCoverage","severity":"medium"}],"timestamp":"2026-04-11T00:06:00Z"}',
    219	      '{"type":"event","event":"graph_convergence","decision":"STOP_ALLOWED","signals":{"blendedScore":0.92},"blockers":[],"timestamp":"2026-04-11T00:07:00Z"}',
    220	    ]);
-   221	
+   221
    222	    const result = reducer.reduceResearchState(specFolder, { write: false });
-   223	
+   223
    224	    expect(result.registry.graphDecision).toBe('STOP_ALLOWED');
    225	    expect(result.registry.graphConvergenceScore).toBe(0.92);
    226	    expect(result.registry.graphBlockers).toEqual([]);
    227	    expect(result.dashboard).toContain('graphDecision: STOP_ALLOWED');
    228	    expect(result.dashboard).toContain('graphConvergenceScore: 0.92');
    229	  });
-   230	
+   230
    231	  it('defaults graph fields when no graph_convergence events are present', () => {
    232	    const specFolder = makeFixture('default', [
    233	      '{"type":"config","topic":"Graph-aware stop fixture","sessionId":"graph-stop-default","maxIterations":5,"createdAt":"2026-04-11T00:00:00Z"}',
    234	      '{"type":"iteration","run":1,"status":"complete","focus":"Baseline graph stop probe","findingsCount":1,"newInfoRatio":0.88,"timestamp":"2026-04-11T00:05:00Z","durationMs":1000}',
    235	    ]);
-   236	
+   236
    237	    const result = reducer.reduceResearchState(specFolder, { write: false });
-   238	
+   238
    239	    expect(result.registry.graphConvergenceScore).toBe(0);
    240	    expect(result.registry.graphDecision).toBeNull();
    241	    expect(result.registry.graphBlockers).toEqual([]);
    242	    expect(result.dashboard).toContain('graphDecision: [Not recorded]');
    243	    expect(result.dashboard).toContain('graphBlockers: none recorded');
    244	  });
-   245	
+   245
    246	  it('consumes the canonical MCP handler output shape (phase 008 P1-01 closure)', () => {
    247	    // Phase 008 P1-01 closure: the MCP handler emits a canonical `score`
    248	    // field at the top level of the graph_convergence event (and mirrored in
@@ -8753,9 +8753,9 @@ nl: .opencode/skills/sk-deep-review/scripts/tests/review-reducer-fail-closed.vit
    254	      '{"type":"iteration","run":1,"status":"complete","focus":"Handler-shape probe","findingsCount":2,"newInfoRatio":0.1,"timestamp":"2026-04-11T00:05:00Z","durationMs":1000}',
    255	      '{"type":"event","event":"graph_convergence","decision":"STOP_ALLOWED","score":0.74,"signals":{"questionCoverage":0.8,"claimVerificationRate":0.7,"contradictionDensity":0.05,"sourceDiversity":2.1,"evidenceDepth":3.2,"score":0.74},"blockers":[],"trace":[],"timestamp":"2026-04-11T00:06:00Z","sessionId":"graph-stop-handler","generation":1}',
    256	    ]);
-   257	
+   257
    258	    const result = reducer.reduceResearchState(specFolder, { write: false });
-   259	
+   259
    260	    expect(result.registry.graphDecision).toBe('STOP_ALLOWED');
    261	    // The reducer reads signals.score ?? signals.blendedScore ?? 0, so it
    262	    // picks up the canonical 0.74 directly from the handler-shaped payload.
@@ -8850,16 +8850,16 @@ exec
      1	import fs from 'node:fs';
      2	import path from 'node:path';
      3	import { fileURLToPath } from 'node:url';
-     4	
+     4
      5	import { describe, expect, it } from 'vitest';
-     6	
+     6
      7	const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
      8	const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
-     9	
+     9
     10	function readWorkspaceFile(relativePath: string): string {
     11	  return fs.readFileSync(path.join(WORKSPACE_ROOT, relativePath), 'utf8');
     12	}
-    13	
+    13
     14	describe('deep-review contract parity', () => {
     15	  const primaryDocs = [
     16	    '.opencode/skills/sk-deep-review/SKILL.md',
@@ -8869,23 +8869,23 @@ exec
     20	    '.opencode/skills/sk-deep-review/references/quick_reference.md',
     21	    '.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml',
     22	  ];
-    23	
+    23
     24	  const runtimeMirrors = [
     25	    '.opencode/agents/deep-review.md',
     26	    '.claude/agents/deep-review.md',
     27	    '.gemini/agents/deep-review.md',
     28	    '.codex/agents/deep-review.toml',
     29	  ];
-    30	
+    30
     31	  const commandAssets = [
     32	    '.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml',
     33	    '.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml',
     34	  ];
-    35	
+    35
     36	  it('keeps primary deep-review docs aligned on canonical artifacts and lifecycle terms', () => {
     37	    for (const docPath of primaryDocs) {
     38	      const content = readWorkspaceFile(docPath);
-    39	
+    39
     40	      expect(content, `${docPath} should mention the canonical config file`).toContain('deep-review-config.json');
     41	      expect(content, `${docPath} should mention the canonical state log`).toContain('deep-review-state.jsonl');
     42	      expect(content, `${docPath} should mention the findings registry`).toContain('deep-review-findings-registry.json');
@@ -8894,11 +8894,11 @@ exec
     45	      expect(content, `${docPath} should mention release readiness`).toContain('releaseReadinessState');
     46	    }
     47	  });
-    48	
+    48
     49	  it('keeps all runtime mirrors aligned on lifecycle and reducer boundaries', () => {
     50	    for (const docPath of runtimeMirrors) {
     51	      const content = readWorkspaceFile(docPath);
-    52	
+    52
     53	      expect(content, `${docPath} should read the canonical state log`).toContain('review/deep-review-state.jsonl');
     54	      expect(content, `${docPath} should mention the reducer-owned registry`).toContain('review/deep-review-findings-registry.json');
     55	      expect(content, `${docPath} should mention completed-continue`).toContain('completed-continue');
@@ -8915,11 +8915,11 @@ exec
     66	      );
     67	    }
     68	  });
-    69	
+    69
     70	  it('keeps command assets aligned on lifecycle controls and dual-read single-write migration', () => {
     71	    for (const docPath of commandAssets) {
     72	      const content = readWorkspaceFile(docPath);
-    73	
+    73
     74	      expect(content, `${docPath} should expose lifecycle mode input`).toContain('lineage_mode');
     75	      expect(content, `${docPath} should write the canonical config file`).toContain('review/deep-review-config.json');
     76	      expect(content, `${docPath} should write the canonical state log`).toContain('review/deep-review-state.jsonl');
@@ -8945,7 +8945,7 @@ exec
     96	        'review/.deep-research-pause',
     97	      );
     98	    }
-    99	
+    99
    100	    // REQ-030 retraction (042 closing audit, F010/F011/F012): the runtime
    101	    // only persists lineage events for `resume` and `restart`. `fork` and
    102	    // `completed-continue` are deferred with an explicit note. The parity
@@ -8956,15 +8956,15 @@ exec
    107	    expect(autoContent).toContain('on_restart:');
    108	    expect(autoContent).toContain('note_deferred_branches:');
    109	    expect(autoContent).not.toContain('on_fork:');
-   110	
+   110
    111	    const confirmContent = readWorkspaceFile(commandAssets[1]);
    112	    expect(confirmContent).toContain('options: [resume, restart, cancel]');
    113	    expect(confirmContent).toContain('fork and completed-continue branches are deferred');
    114	  });
-   115	
+   115
    116	  it('uses the same canonical agent_file path in both auto and confirm YAMLs', () => {
    117	    const canonicalAgentPath = '.opencode/agents/deep-review.md';
-   118	
+   118
    119	    for (const docPath of commandAssets) {
    120	      const content = readWorkspaceFile(docPath);
    121	      expect(content, `${docPath} should reference the canonical agent path`).toContain(
@@ -8975,7 +8975,7 @@ exec
    126	        /agent_file:\s*["']?\.claude\/agents\//,
    127	      );
    128	    }
-   129	
+   129
    130	    // Both YAMLs must agree on the same path
    131	    const autoContent = readWorkspaceFile(commandAssets[0]);
    132	    const confirmContent = readWorkspaceFile(commandAssets[1]);
@@ -8985,10 +8985,10 @@ exec
    136	    expect(confirmMatch, 'confirm YAML should have agent_file').not.toBeNull();
    137	    expect(autoMatch![1]).toBe(confirmMatch![1]);
    138	  });
-   139	
+   139
    140	  it('command doc dimension list matches the supported dimension taxonomy', () => {
    141	    const canonicalDimensions = ['correctness', 'security', 'traceability', 'maintainability'];
-   142	
+   142
    143	    for (const docPath of commandAssets) {
    144	      const content = readWorkspaceFile(docPath);
    145	      // The user_inputs section should list all 4 canonical dimensions
@@ -9012,17 +9012,17 @@ exec
      1	import fs from 'node:fs';
      2	import path from 'node:path';
      3	import { fileURLToPath } from 'node:url';
-     4	
+     4
      5	import yaml from 'js-yaml';
      6	import { describe, expect, it } from 'vitest';
-     7	
+     7
      8	const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
      9	const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
-    10	
+    10
     11	function readWorkspaceFile(relativePath: string): string {
     12	  return fs.readFileSync(path.join(WORKSPACE_ROOT, relativePath), 'utf8');
     13	}
-    14	
+    14
     15	describe('deep-review reducer and schema contract', () => {
     16	  it('keeps reducer, severity, and release-readiness schemas stable in the canonical assets', () => {
     17	    const contract = yaml.load(
@@ -9031,10 +9031,10 @@ exec
     20	    const config = JSON.parse(
     21	      readWorkspaceFile('.opencode/skills/sk-deep-review/assets/deep_review_config.json'),
     22	    ) as Record<string, any>;
-    23	
+    23
     24	    expect(contract.contract.severities.map((item: { id: string }) => item.id)).toEqual(['P0', 'P1', 'P2']);
     25	    expect(contract.contract.severities.map((item: { weight: number }) => item.weight)).toEqual([10, 5, 1]);
-    26	
+    26
     27	    expect(contract.contract.reducer.enabled).toBe(true);
     28	    expect(contract.contract.reducer.inputs).toEqual([
     29	      'latestJSONLDelta',
@@ -9047,7 +9047,7 @@ exec
     36	      'strategyUpdates',
     37	    ]);
     38	    expect(contract.contract.reducer.idempotent).toBe(true);
-    39	
+    39
     40	    expect(contract.contract.releaseReadinessStates.map((item: { id: string }) => item.id)).toEqual([
     41	      'in-progress',
     42	      'converged',
@@ -9057,7 +9057,7 @@ exec
     46	    expect(contract.contract.outputs.findingsRegistry.pathPattern).toContain('deep-review-findings-registry.json');
     47	    expect(contract.contract.outputs.pauseSentinel.pathPattern).toContain('.deep-review-pause');
     48	    expect(contract.contract.outputs.jsonl.pathPattern).toContain('deep-review-state.jsonl');
-    49	
+    49
     50	    expect(config.releaseReadinessState).toBe('in-progress');
     51	    expect(config.reducer.inputs).toEqual(['latestJSONLDelta', 'newIterationFile', 'priorReducedState']);
     52	    expect(config.reducer.outputs).toEqual(['findingsRegistry', 'dashboardMetrics', 'strategyUpdates']);
@@ -9071,11 +9071,11 @@ exec
     60	    expect(config.fileProtection['deep-review-findings-registry.json']).toBe('auto-generated');
     61	    expect(config.fileProtection['.deep-review-pause']).toBe('operator-controlled');
     62	  });
-    63	
+    63
     64	  it('wires reducer refresh and machine-owned report guidance into both review workflows', () => {
     65	    const autoYaml = readWorkspaceFile('.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml');
     66	    const confirmYaml = readWorkspaceFile('.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml');
-    67	
+    67
     68	    for (const [docPath, content] of [
     69	      ['auto', autoYaml],
     70	      ['confirm', confirmYaml],
@@ -9117,22 +9117,22 @@ exec
    106	      );
    107	    }
    108	  });
-   109	
+   109
    110	  it('documents reducer metrics and machine-owned report boundaries in the review references', () => {
    111	    const stateFormat = readWorkspaceFile('.opencode/skills/sk-deep-review/references/state_format.md');
    112	    const loopProtocol = readWorkspaceFile('.opencode/skills/sk-deep-review/references/loop_protocol.md');
    113	    const convergence = readWorkspaceFile('.opencode/skills/sk-deep-review/references/convergence.md');
-   114	
+   114
    115	    expect(stateFormat).toContain('deep-review-findings-registry.json');
    116	    expect(stateFormat).toContain('releaseReadinessState');
    117	    expect(stateFormat).toContain('convergenceScore');
    118	    expect(stateFormat).toContain('review-report-v*.md');
-   119	
+   119
    120	    expect(loopProtocol).toContain('latestJSONLDelta');
    121	    expect(loopProtocol).toContain('dashboardMetrics');
    122	    expect(loopProtocol).toContain('strategyUpdates');
    123	    expect(loopProtocol).toContain('completed-continue');
-   124	
+   124
    125	    expect(convergence).toContain('release-blocking');
    126	    expect(convergence).toContain('converged');
    127	    expect(convergence).toContain('in-progress');
@@ -9151,13 +9151,13 @@ exec
      7	//
      8	// Fixtures are written to a macOS-safe temp root (realpathSync wraps mkdtempSync
      9	// so /var → /private/var symlinks don't poison path.relative in the reducer).
-    10	
+    10
     11	import fs from 'node:fs';
     12	import os from 'node:os';
     13	import path from 'node:path';
-    14	
+    14
     15	import { afterEach, describe, expect, it } from 'vitest';
-    16	
+    16
     17	// eslint-disable-next-line @typescript-eslint/no-var-requires
     18	const reducer = require('../../../sk-deep-review/scripts/reduce-state.cjs') as {
     19	  reduceReviewState: (specFolder: string, options?: {
@@ -9183,9 +9183,9 @@ exec
     39	    options?: { createMissing?: boolean },
     40	  ) => string;
     41	};
-    42	
+    42
     43	const tempRoots: string[] = [];
-    44	
+    44
     45	function makeTempSpecFolder(slug: string): string {
     46	  // Realpath resolves macOS /var → /private/var so internal path.relative stays
     47	  // consistent with validateFilePath's symlink resolution.
@@ -9195,7 +9195,7 @@ exec
     51	  fs.mkdirSync(path.join(specFolder, 'review', 'iterations'), { recursive: true });
     52	  return specFolder;
     53	}
-    54	
+    54
     55	function writeConfig(specFolder: string): void {
     56	  const config = {
     57	    topic: 'fail-closed test',
@@ -9217,7 +9217,7 @@ exec
     73	    'utf8',
     74	  );
     75	}
-    76	
+    76
     77	function writeIterationStub(specFolder: string): void {
     78	  fs.writeFileSync(
     79	    path.join(specFolder, 'review', 'iterations', 'iteration-001.md'),
@@ -9240,7 +9240,7 @@ exec
     96	    'utf8',
     97	  );
     98	}
-    99	
+    99
    100	afterEach(() => {
    101	  while (tempRoots.length > 0) {
    102	    const root = tempRoots.pop();
@@ -9249,7 +9249,7 @@ exec
    105	    }
    106	  }
    107	});
-   108	
+   108
    109	describe('sk-deep-review reducer — fail-closed behavior', () => {
    110	  it('reports corruptionWarnings and flags hasCorruption when JSONL is malformed', () => {
    111	    const specFolder = makeTempSpecFolder('corruption');
@@ -9265,16 +9265,16 @@ exec
    121	      ].join('\n'),
    122	      'utf8',
    123	    );
-   124	
+   124
    125	    const result = reducer.reduceReviewState(specFolder, { write: true });
-   126	
+   126
    127	    expect(result.hasCorruption).toBe(true);
    128	    expect(result.corruptionWarnings).toHaveLength(1);
    129	    expect(result.corruptionWarnings[0].line).toBe(2);
    130	    expect(result.corruptionWarnings[0].error).toMatch(/not valid JSON|JSON/);
    131	    expect(result.registry.corruptionWarnings).toEqual(result.corruptionWarnings);
    132	  });
-   133	
+   133
    134	  it('throws a descriptive error when a machine-owned strategy anchor is missing', () => {
    135	    const specFolder = makeTempSpecFolder('missing-anchor');
    136	    writeConfig(specFolder);
@@ -9308,11 +9308,11 @@ exec
    164	      ].join('\n'),
    165	      'utf8',
    166	    );
-   167	
+   167
    168	    expect(() => reducer.reduceReviewState(specFolder, { write: false }))
    169	      .toThrow(/Missing machine-owned anchor .*completed-dimensions|running-findings|exhausted-approaches|next-focus/);
    170	  });
-   171	
+   171
    172	  it('with --lenient / createMissingAnchors the reducer still records corruption but does not block', () => {
    173	    const specFolder = makeTempSpecFolder('lenient');
    174	    writeConfig(specFolder);
@@ -9328,9 +9328,9 @@ exec
    184	      ].join('\n'),
    185	      'utf8',
    186	    );
-   187	
+   187
    188	    const result = reducer.reduceReviewState(specFolder, { write: true, lenient: true });
-   189	
+   189
    190	    // corruption is still reported...
    191	    expect(result.corruptionWarnings).toHaveLength(2);
    192	    expect(result.hasCorruption).toBe(true);
@@ -9361,7 +9361,7 @@ exec
  succeeded in 0ms:
    216	          - review_scope_files: "List of all files in review scope"
    217	          - cross_reference_targets: "{ spec_paths: [...], code_paths: [...], test_paths: [...] }"
-   218	
+   218
    219	      step_order_dimensions:
    220	        action: "Order review dimensions based on risk priority"
    221	        algorithm: |
@@ -9376,7 +9376,7 @@ exec
    230	        outputs:
    231	          - dimension_queue: "Ordered list of dimensions to review"
    232	          - inventory_pass: true
-   233	
+   233
    234	      step_create_config:
    235	        action: "Create deep-review-config.json from template with review-specific fields"
    236	        template: .opencode/skills/sk-deep-review/assets/deep_review_config.json
@@ -9394,7 +9394,7 @@ exec
  succeeded in 0ms:
    224	          - review_scope_files: "List of all files in review scope"
    225	          - cross_reference_targets: "{ spec_paths: [...], code_paths: [...], test_paths: [...] }"
-   226	
+   226
    227	      step_order_dimensions:
    228	        action: "Order review dimensions based on risk priority"
    229	        algorithm: |
@@ -9409,7 +9409,7 @@ exec
    238	        outputs:
    239	          - dimension_queue: "Ordered list of dimensions to review"
    240	          - inventory_pass: true
-   241	
+   241
    242	      step_create_config:
    243	        action: "Create deep-review-config.json from template with review-specific fields"
    244	        template: .opencode/skills/sk-deep-review/assets/deep_review_config.json
@@ -9512,15 +9512,15 @@ exec
     40	      iteration-002.md
     41	      ...
     42	```
-    43	
+    43
     44	---
-    45	
+    45
     46	<!-- /ANCHOR:overview -->
     47	<!-- ANCHOR:config-file -->
     48	## 2. CONFIG FILE (deep-review-config.json)
-    49	
+    49
     50	Created during initialization. Not modified after creation.
-    51	
+    51
     52	```json
     53	{
     54	  "topic": "Review of sk-deep-review skill package",
@@ -9572,9 +9572,9 @@ exec
    100	  }
    101	}
    102	```
-   103	
+   103
    104	### Field Reference
-   105	
+   105
    106	| Field | Type | Default | Description |
    107	|-------|------|---------|-------------|
    108	| mode | `"review"` | -- | Session mode discriminator (required) |
@@ -9597,28 +9597,28 @@ exec
    125	| releaseReadinessState | string | `"in-progress"` | `in-progress`, `converged`, `release-blocking` |
    126	| fileProtection | object | -- | Mutability declarations (see protection levels below) |
    127	| reducer | object | -- | Canonical reducer inputs, outputs, and metrics names |
-   128	
+   128
    129	### File Protection Levels
-   130	
+   130
 
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/references/convergence.md | sed -n '360,430p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-   360	
+   360
    361	if total_findings == 0:
    362	  newFindingsRatio = 0.0
    363	```
-   364	
+   364
    365	A new critical finding always signals significant remaining work. The 0.50 floor prevents premature convergence when critical issues are still being discovered.
-   366	
+   366
    367	---
-   368	
+   368
    369	<!-- /ANCHOR:severity-weighted-ratio -->
    370	<!-- ANCHOR:quality-guards -->
    371	## 6. LEGAL-STOP GATE BUNDLE
-   372	
+   372
    373	Deep review treats STOP as legal only when the full review-specific gate bundle passes together. Convergence math may request STOP, but the workflow must still evaluate these 5 gates and persist a blocked-stop event when any gate fails.
-   374	
+   374
    375	| Gate | Rule | Fail Action |
    376	|------|------|-------------|
    377	| **findingStability** | Rolling average, MAD noise floor, and novelty ratio must all indicate low-yield review churn | Block STOP, persist `blockedStop` |
@@ -9626,9 +9626,9 @@ exec
    379	| **p0Resolution** | No unresolved P0 findings may remain active at stop time | Block STOP, persist `blockedStop` |
    380	| **evidenceDensity** | Evidence density across active findings must meet the configured threshold | Block STOP, persist `blockedStop` |
    381	| **hotspotSaturation** | Review hotspots must be revisited enough times to satisfy the saturation heuristic | Block STOP, persist `blockedStop` |
-   382	
+   382
    383	### Gate Evaluation
-   384	
+   384
    385	```
    386	function buildReviewLegalStop(state, config, coverage):
    387	  gateResults = {
@@ -9655,7 +9655,7 @@ exec
    408	      detail: "Priority hotspots received enough revisits to satisfy saturation."
    409	    }
    410	  }
-   411	
+   411
    412	  blockedBy = [name for name, result in gateResults.items() if not result.pass]
    413	  return {
    414	    pass: len(blockedBy) == 0,
@@ -9663,11 +9663,11 @@ exec
    416	    gateResults
    417	  }
    418	```
-   419	
+   419
    420	When convergence math returns STOP, invoke `buildReviewLegalStop()`. If it returns `pass: false`, persist a first-class blocked-stop decision with `stopReason=blockedStop`, populate `legalStop.blockedBy` from the failing gates, copy the full `gateResults`, snapshot the replay inputs, and attach a `recoveryStrategy` describing the next review action before overriding the decision to CONTINUE.
-   421	
+   421
    422	### Blocked-Stop Recovery Strategy
-   423	
+   423
    424	| Failed Gate | Recovery Strategy |
    425	|-------------|-------------------|
    426	| `findingStability` | Revisit the noisiest recent dimension and reduce novelty by closing obvious follow-up loops before re-checking STOP. |
@@ -9834,72 +9834,72 @@ exec
 /bin/zsh -lc "nl -ba .opencode/changelog/13--sk-deep-review/v1.3.0.0.md | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	## [**1.3.0.0**] - 2026-04-11
-     2	
+     2
      3	This release lands Phase 008 of the 042 Deep Research & Review Runtime Improvement Bundle. `sk-deep-review` now actively utilizes the coverage graph on the live review loop, persists blocked-stop bundles through reducer-owned surfaces, fails loud (instead of silent) on malformed JSONL and missing machine-owned anchors, and splits `repeatedFindings` into semantically distinct `persistentSameSeverity` + `severityChanged` buckets for precise triage.
-     4	
+     4
      5	---
-     6	
+     6
      7	### Contract Truth (Part A)
-     8	
+     8
      9	- `step_emit_blocked_stop` wires a first-class `blocked_stop` JSONL event into both review workflows with review-specific gate names: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`. Each event carries the full `blockedBy` / `gateResults` / `recoveryStrategy` payload.
     10	- `step_normalize_pause_events` rewrites raw `paused` → `userPaused` and `stuck_recovery` → `stuckRecovery` at emission time using the frozen `STOP_REASONS` enum.
     11	- The reducer no longer drops non-iteration events. `buildBlockedStopHistory()` scans `blocked_stop` rows (with backward-compat for the legacy nested `legalStop` payload shape) and exposes `blockedStopHistory` as a registry field.
-    12	
+    12
     13	---
-    14	
+    14
     15	### Graph Wiring (Part B)
-    16	
+    16
     17	- `spec_kit_deep-review_{auto,confirm}.yaml` now call `deep_loop_graph_upsert` after `step_reduce_review_state` and `deep_loop_graph_convergence` before the inline review convergence vote in `step_check_convergence`. Combined stop rule: STOP requires BOTH inline vote and graph decision to agree. `STOP_BLOCKED` routes to the blocked-stop emission path.
     18	- `buildGraphConvergenceRollup(records)` scans `graph_convergence` JSONL events and exposes `graphConvergenceScore`, `graphDecision`, `graphBlockers` as new registry fields alongside `convergenceScore`.
     19	- Shared coverage-graph reads are now session-scoped: `coverage-graph-query.ts`, `convergence.ts`, `query.ts`, `status.ts` all accept and propagate `sessionId`. Review packets with multiple concurrent sessions no longer bleed across each other's graph state.
-    20	
+    20
     21	---
-    22	
+    22
     23	### Reducer Fail-Closed Hardening (Part C)
-    24	
+    24
     25	- `parseJsonl()` is now backed by `parseJsonlDetailed()` which collects malformed lines into a `corruptionWarnings` array instead of silently dropping them. `parseJsonl` still returns the plain records array for backward compatibility.
     26	- `reduceReviewState()` now emits a warning to stderr when `corruptionWarnings.length > 0` and exits with code `2`. Pass `--lenient` (CLI) or `lenient:true` (function option) to preserve the v1.2.0.0 fail-open behavior for legacy packets.
     27	- `replaceAnchorSection()` now throws `Error('Missing machine-owned anchor "<id>" in deep-review strategy file...')` when a required anchor is absent. Pass `--create-missing-anchors` (or `createMissingAnchors:true`) to bootstrap missing anchor blocks from scratch.
     28	- `review-reducer-fail-closed.vitest.ts` validates all three paths: corruption detection, missing anchor throw, and `--lenient` escape hatch (3/3 passing).
-    29	
+    29
     30	---
-    31	
+    31
     32	### repeatedFindings Split (REQ-018)
-    33	
+    33
     34	- The `repeatedFindings` registry field is now **deprecated**. It's retained as a backward-compat union of the two new arrays:
     35	  - `persistentSameSeverity` — findings observed in ≥2 iterations with no severity transitions (only the initial discovery entry).
     36	  - `severityChanged` — findings that went through ≥1 severity transition (P0↔P1↔P2) in their `transitions` history.
     37	- Dashboard renders both new counters in the TREND section, making triage at scale (50+ findings) possible without conflating "same finding reappeared" with "finding's severity was upgraded".
-    38	
+    38
     39	---
-    40	
+    40
     41	### Reducer Surfacing (Part C)
-    42	
+    42
     43	- Dashboard gained new sections: `BLOCKED STOPS`, `GRAPH CONVERGENCE`, `CORRUPTION WARNINGS`. Each entry is rendered with timestamps, gate result summaries, and recovery strategy hints.
     44	- Strategy `next-focus` anchor prefers the latest blocked-stop `recoveryStrategy` when blocked-stop is the most recent loop event — operators see the blocker before choosing next-iteration direction.
-    45	
+    45
     46	---
-    47	
+    47
     48	### Fixtures and Regression Coverage
-    49	
+    49
     50	- New fixture: `scripts/tests/fixtures/blocked-stop-session/` — a 3-iteration review packet with a full legal-stop blocked bundle, including one severity upgrade (F002: P2 → P1) and two persistent same-severity findings (F001 active P0, F003 active P1). The pre-generated dashboard shows the BLOCKED STOPS section rendering iteration 3 with full gate summary.
     51	- `session-isolation.vitest.ts` validates that two concurrent review sessions in the same packet cannot see each other's graph nodes (3/3 passing).
     52	- `review-reducer-fail-closed.vitest.ts` validates corruption detection + missing anchor throw + `--lenient` escape hatch (3/3 passing).
     53	- New playbook scenarios under `manual_testing_playbook/04--convergence-and-recovery/`: `022-blocked-stop-reducer-surfacing.md` and `023-fail-closed-reducer.md`.
-    54	
+    54
     55	---
-    56	
+    56
     57	### Verification
-    58	
+    58
     59	- Phase 008 vitest run (4 suites, 12 tests): **all passing**. `graph-convergence-parity` (3/3), `session-isolation` (3/3), `review-reducer-fail-closed` (3/3), `graph-aware-stop` (3/3).
     60	- Reducer smoke test on blocked-stop-session fixture: `blockedStopHistory` populated with 1 entry, `severityChanged` with 1 (F002), `persistentSameSeverity` with 2 (F001 + F003), dashboard BLOCKED STOPS section renders iteration 3 with full gate summary.
     61	- Malformed JSONL smoke test: without `--lenient` exits 2 with corruption preview on stderr; with `--lenient` exits 0 and still reports corruption count.
     62	- Idempotency preserved.
-    63	
+    63
     64	---
-    65	
+    65
     66	## Files Changed
-    67	
+    67
     68	| File | Action | Description |
     69	| ---- | ------ | ----------- |
     70	| `.opencode/skills/sk-deep-review/SKILL.md` | Modified | Bumped version to 1.3.0.0 |
@@ -9915,16 +9915,16 @@ exec
     80	| `.opencode/agents/deep-review.md` | Modified | Added explicit graph tool permissions |
     81	| `.claude/agents/deep-review.md` | Modified | Synced graph tool permissions |
     82	| `.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts` | Created | Validates corruption detection + missing anchor throw + --lenient escape hatch |
-    83	
+    83
     84	---
-    85	
+    85
     86	## Upgrade
-    87	
+    87
     88	**Backward-compatible for existing packets** as long as JSONL files are clean and strategy files have all machine-owned anchors. If a packet was authored under v1.2.0.0 and contains:
     89	- Malformed JSONL lines → the v1.3.0.0 reducer will exit non-zero. Pass `--lenient` to preserve the prior fail-open behavior while still reporting corruption in the registry.
     90	- Missing machine-owned strategy anchors → the v1.3.0.0 reducer will throw. Pass `--create-missing-anchors` (or create the missing anchor blocks manually) to bootstrap.
     91	- `repeatedFindings` consumers → the field is retained as a deprecated union of `persistentSameSeverity` + `severityChanged`. New code should read the split arrays directly.
-    92	
+    92
     93	No migration is required for packets created under v1.3.0.0 or later.
 
 exec
@@ -10017,37 +10017,37 @@ exec
     20	  patch: deny
     21	  external_directory: allow
     22	---
-    23	
+    23
     24	# The Deep Researcher: Autonomous Iteration Agent
-    25	
+    25
     26	Executes ONE research iteration within an autonomous loop. Reads externalized state, performs focused research, writes findings to files, and updates state for the next iteration.
-    27	
+    27
     28	**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
-    29	
+    29
     30	**CRITICAL**: This agent executes a SINGLE iteration, not the full loop. The loop is managed by the `/speckit:deep-research` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what to investigate.
-    31	
+    31
     32	**IMPORTANT**: This agent is research-focused and codebase-agnostic. Adapts investigation approach based on the topic and available tools.
-    33	
+    33
     34	> **SPEC FOLDER PERMISSION:** @deep-research has explicit permission to write the `research/` packet, including `research/research.md`, inside spec folders. This is an exception to the @speckit exclusivity rule because deep-research produces iteration artifacts and progressive research synthesis.
-    35	
+    35
     36	---
-    37	
+    37
     38	## 0. ILLEGAL NESTING (HARD BLOCK)
-    39	
+    39
     40	This agent is LEAF-only. Nested sub-agent dispatch is illegal.
     41	- NEVER create sub-tasks or dispatch sub-agents.
     42	- NEVER use the Task tool.
     43	- If a research question requires delegation, document it in findings and recommend it for a future iteration.
     44	- All research actions must be self-contained within this single execution.
-    45	
+    45
     46	---
-    47	
+    47
     48	## 1. CORE WORKFLOW
-    49	
+    49
     50	### Single Iteration Protocol
-    51	
+    51
     52	Every iteration follows this exact sequence:
-    53	
+    53
     54	```
     55	1. READ STATE ──────> Read JSONL + strategy.md
     56	2. DETERMINE FOCUS ─> Pick focus from strategy "Next Focus"
@@ -10057,23 +10057,23 @@ exec
     60	6. REDUCER SYNC ────> Workflow refreshes strategy, registry, dashboard
     61	7. UPDATE RESEARCH ─> Progressively update research/research.md (if exists)
     62	```
-    63	
+    63
     64	### Step-by-Step Detail
-    65	
+    65
     66	#### Step 1: Read State
     67	Read these files (paths provided in dispatch context):
     68	- `research/deep-research-state.jsonl` -- Understand iteration history
     69	- `research/deep-research-strategy.md` -- Understand what to investigate
     70	- `research/findings-registry.json` (if exists) -- Understand open/resolved questions and key findings
     71	- `research/research-ideas.md` (if exists) -- Deferred ideas and promising tangents
-    72	
+    72
     73	Extract from state:
     74	- Current iteration number (count JSONL iteration records + 1)
     75	- Remaining key questions
     76	- Exhausted approaches (DO NOT retry these)
     77	- Recommended next focus
     78	- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`). `fork` and `completed-continue` are deferred — see `.opencode/skills/sk-deep-research/references/loop_protocol.md §Lifecycle Branches`.
-    79	
+    79
     80	#### Step 2: Determine Focus
 
 exec
@@ -10100,35 +10100,35 @@ exec
     19	  list: allow
     20	  patch: deny
     21	---
-    22	
+    22
     23	# The Deep Reviewer: Iterative Code Quality Agent
-    24	
+    24
     25	Executes ONE review iteration within an autonomous review loop. Reads externalized state, reviews code quality across one dimension, produces P0/P1/P2 findings with file:line evidence, and updates state for the next iteration.
-    26	
+    26
     27	**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
-    28	
+    28
     29	**CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by the `/speckit:deep-review` command's YAML workflow. This agent is dispatched once per iteration with explicit context about what dimension to review.
-    30	
+    30
     31	**IMPORTANT**: This agent is a hybrid of @review (quality rubric, severity classification, adversarial self-check) and the deep-review loop contract (state protocol, JSONL, lifecycle continuity). It reviews code but does NOT modify it.
-    32	
+    32
     33	> **SPEC FOLDER PERMISSION:** @deep-review may write only `review/` artifacts inside the active spec folder (iteration artifacts, strategy, JSONL, dashboard, report). Review target files are strictly READ-ONLY, and writes outside `review/` are not part of this agent contract.
-    34	
+    34
     35	---
-    36	
+    36
     37	## 0. ILLEGAL NESTING (HARD BLOCK)
-    38	
+    38
     39	This agent is LEAF-only. Nested sub-agent dispatch is illegal.
     40	- NEVER create sub-tasks or dispatch sub-agents.
     41	- NEVER use the Task tool.
     42	- If a review question requires delegation, document it in findings and recommend it for a future iteration.
     43	- All review actions must be self-contained within this single execution.
-    44	
+    44
     45	---
-    46	
+    46
     47	## 1. CORE WORKFLOW -- Single Review Iteration
-    48	
+    48
     49	Every iteration follows this exact sequence:
-    50	
+    50
     51	```
     52	1. READ STATE ──────> Read JSONL + strategy + config
     53	2. DETERMINE FOCUS ─> Select dimension from strategy "Next Focus"
@@ -10138,16 +10138,16 @@ exec
     57	6. UPDATE STRATEGY ─> Edit review/deep-review-strategy.md sections
     58	7. APPEND JSONL ────> Add ONE iteration record
     59	```
-    60	
+    60
     61	### Step-by-Step Detail
-    62	
+    62
     63	#### Step 1: Read State
     64	Read these files (paths provided in dispatch context):
     65	- `review/deep-review-state.jsonl` -- Understand iteration history
     66	- `review/deep-review-findings-registry.json` -- Read reducer-owned active finding state (read-only for this agent)
     67	- `review/deep-review-strategy.md` -- Understand what dimensions to review
     68	- `review/deep-review-config.json` -- Read review configuration, lineage metadata, and release readiness state (read-only)
-    69	
+    69
     70	Extract from state:
     71	- Current iteration number (count JSONL iteration records + 1)
     72	- Dimensions completed vs remaining
@@ -10155,9 +10155,9 @@ exec
     74	- Exhausted approaches (DO NOT retry these)
     75	- Recommended next focus
     76	- Stuck count
-    77	
+    77
     78	#### Step 2: Determine Focus
-    79	
+    79
     80	**MANDATORY PRE-CHECK**: Before choosing a focus, read strategy.md "Exhausted Approaches" section:
 
 exec
@@ -10178,58 +10178,58 @@ exec
 /bin/zsh -lc "nl -ba /Users/michelkerkmeester/.codex/memories/MEMORY.md | sed -n '111,153p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    914	- runtime-capabilities.cjs, reduce-state.cjs, runtime_capabilities.json, deep-research-reducer.vitest.ts, changelog-028-001-sk-deep-research-improvements.md
-   915	
+   915
    916	## Task 3: Complete phase `002-sk-deep-review-improvements` contract hardening and manual packet-local changelog fallback, outcome success
-   917	
+   917
    918	### rollout_summary_files
-   919	
+   919
    920	- rollout_summaries/2026-04-03T08-53-06-X4xo-deep_review_contract_closeout.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/03/rollout-2026-04-03T10-53-06-019d528b-cc68-77b3-9b4d-8b5dc37b791e.jsonl, updated_at=2026-04-03T09:42:20+00:00, thread_id=019d528b-cc68-77b3-9b4d-8b5dc37b791e)
-   921	
+   921
    922	### keywords
-   923	
+   923
 
  succeeded in 0ms:
    111	- 003-modus-memory-main, dont ask for spec folder, auto mode, validate.sh --strict, research/iterations/iteration-NNN.md, reduce-state.cjs, deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, max 6 agent threads
-   112	
+   112
    113	## Task 3: Continue `001-engram-main` from 10 to 20 iterations and close out packet, outcome success
-   114	
+   114
    115	### rollout_summary_files
-   116	
+   116
    117	- rollout_summaries/2026-04-10T17-54-26-TjXj-engram_deep_research_20_iteration_continuation.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/10/rollout-2026-04-10T19-54-26-019d7887-e8aa-71d1-87bb-c753fa08e8a1.jsonl, updated_at=2026-04-10T18:45:31+00:00, thread_id=019d7887-e8aa-71d1-87bb-c753fa08e8a1, task-local focus=canonical 20-iteration continuation + memory save + strict pass)
-   118	
+   118
    119	### keywords
-   120	
+   120
    121	- 001-engram-main, completed-continue, generate-context.js, causal_links.supersedes, non-blocking MEDIUM D5, adopt now prototype later reject, strict validation RESULT PASSED, findings-registry keyFindings 82
-   122	
+   122
    123	## Task 4: Repair `004-opencode-mnemosyne-main` and complete 20-iteration completed-continue comparison, outcome success with caveats
-   124	
+   124
    125	### rollout_summary_files
-   126	
+   126
    127	- rollout_summaries/2026-04-10T17-53-03-HvLu-mnemosyne_phase_004_completed_continue_research.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/10/rollout-2026-04-10T19-53-03-019d7886-a53c-7980-b0b3-72a7e67da4f4.jsonl, updated_at=2026-04-10T18:45:30+00:00, thread_id=019d7886-a53c-7980-b0b3-72a7e67da4f4, task-local focus=wrapper-vs-README evidence boundary + completed-continue repair)
-   128	
+   128
    129	### keywords
-   130	
+   130
    131	- 004-opencode-mnemosyne-main, external/src/index.ts, wrapper is thin, README marketing claims, completed-continue, synthesis-v1.md, generate-context.js, direct memory_save rejected, memory #2221
-   132	
+   132
    133	## Task 5: Normalize `002-mex-main` runtime packet and finalize 20-iteration completed-continue closeout, outcome success
-   134	
+   134
    135	### rollout_summary_files
-   136	
+   136
    137	- rollout_summaries/2026-04-10T17-54-24-zJvq-mex_deep_research_closeout_canonical_20_iteration_continue.md (cwd=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public, rollout_path=/Users/michelkerkmeester/.codex/sessions/2026/04/10/rollout-2026-04-10T19-54-24-019d7887-e1a8-7041-8479-48e8f478dc88.jsonl, updated_at=2026-04-10T18:44:45+00:00, thread_id=019d7887-e1a8-7041-8479-48e8f478dc88, task-local focus=anchor/strategy fixes + 20-iteration closure)
-   138	
+   138
    139	### keywords
-   140	
+   140
    141	- 002-mex-main, unhashable type slice, deep-research-strategy anchors, key-questions answered-questions what-worked what-failed exhausted-approaches ruled-out-directions next-focus known-context, synthesis-v1 snapshot, deep-research-dashboard Status COMPLETE
-   142	
+   142
    143	## User preferences
-   144	
+   144
    145	- when the user says “dont ask for spec folder, dont ask further questions. Run in auto mode” for a named phase under this packet family, execute directly in that phase folder and skip folder-selection questions [Task 2][Task 3][Task 4][Task 5]
    146	- when the user says `continue` on an already-completed deep-research packet, default to extending the same lineage (`completed-continue`) instead of forking a new packet [Task 1][Task 3][Task 4][Task 5]
    147	- when the user asks for a fixed increment (“run 10 iterations”) on a phase already at 10, continue from 10 to 20 in the same packet and then close out docs/validator rather than restarting [Task 3][Task 5]
    148	- in this family, user steering repeatedly favors one authoritative packet writer with optional parallel read-only discovery helpers, not multiple concurrent writers to packet artifacts [Task 1][Task 2]
-   149	
+   149
    150	## Reusable knowledge
-   151	
+   151
    152	- canonical deep-research runtime packet shape is required for reducer continuity: `research/deep-research-config.json`, `research/deep-research-state.jsonl`, `research/deep-research-strategy.md`, `research/findings-registry.json`, `research/deep-research-dashboard.md`, `research/iterations/iteration-NNN.md`, `research/research.md` [Task 2][Task 3][Task 4][Task 5]
    153	- safe continuation sequence: validate packet shape first, repair missing Level 3 docs if needed, preserve existing synthesis/legacy transcripts, extend iterations, run `reduce-state.cjs`, then sync packet docs and rerun strict validation [Task 2][Task 3][Task 5]
 
@@ -10245,16 +10245,16 @@ exec
     84	  "generation": 1
     85	}
     86	```
-    87	
+    87
     88	- `blockedBy`: array of gate names that failed (string[] — never structured objects). Empty when STOP is legal, in which case no `blocked_stop` event is emitted.
     89	- `gateResults`: named sub-records keyed by `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, and `claimAdjudicationGate`. Each sub-record has a `pass` boolean plus gate-specific fields (score, covered/missing, activeP0, avgEvidencePerFinding, activeP0P1). The reducer reads these verbatim and does not coerce shapes.
     90	- `recoveryStrategy`: human-readable one-liner describing what the next iteration should do before another stop attempt.
     91	- When the graph convergence verdict is `STOP_BLOCKED`, the same event is emitted with `blocked_gate == "graph_blockers"` folded into `blockedBy` and the structured blocker objects preserved under `graph_blocker_detail_json` (see phase 008 P1-02 closure in the auto YAML).
-    92	
+    92
     93	### Decision Priority
-    94	
+    94
     95	Checks are evaluated in this order (first match wins):
-    96	
+    96
     97	1. **Max iterations** -- hard cap, always checked first.
     98	2. **All dimensions covered + clean** -- all 4 dimensions covered, no active P0/P1, stabilization passed, gates passed.
     99	3. **Stuck detection** -- 2+ consecutive no-progress iterations.
@@ -10262,9 +10262,9 @@ exec
 
  succeeded in 0ms:
    371	## 6. LEGAL-STOP GATE BUNDLE
-   372	
+   372
    373	Deep review treats STOP as legal only when the full review-specific gate bundle passes together. Convergence math may request STOP, but the workflow must still evaluate these 5 gates and persist a blocked-stop event when any gate fails.
-   374	
+   374
    375	| Gate | Rule | Fail Action |
    376	|------|------|-------------|
    377	| **findingStability** | Rolling average, MAD noise floor, and novelty ratio must all indicate low-yield review churn | Block STOP, persist `blockedStop` |
@@ -10272,9 +10272,9 @@ exec
    379	| **p0Resolution** | No unresolved P0 findings may remain active at stop time | Block STOP, persist `blockedStop` |
    380	| **evidenceDensity** | Evidence density across active findings must meet the configured threshold | Block STOP, persist `blockedStop` |
    381	| **hotspotSaturation** | Review hotspots must be revisited enough times to satisfy the saturation heuristic | Block STOP, persist `blockedStop` |
-   382	
+   382
    383	### Gate Evaluation
-   384	
+   384
    385	```
    386	function buildReviewLegalStop(state, config, coverage):
    387	  gateResults = {
@@ -10301,7 +10301,7 @@ exec
    408	      detail: "Priority hotspots received enough revisits to satisfy saturation."
    409	    }
    410	  }
-   411	
+   411
    412	  blockedBy = [name for name, result in gateResults.items() if not result.pass]
    413	  return {
    414	    pass: len(blockedBy) == 0,
@@ -10309,9 +10309,9 @@ exec
    416	    gateResults
    417	  }
    418	```
-   419	
+   419
    420	When convergence math returns STOP, invoke `buildReviewLegalStop()`. If it returns `pass: false`, persist a first-class blocked-stop decision with `stopReason=blockedStop`, populate `legalStop.blockedBy` from the failing gates, copy the full `gateResults`, snapshot the replay inputs, and attach a `recoveryStrategy` describing the next review action before overriding the decision to CONTINUE.
-   421	
+   421
 
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-state.jsonl | sed -n '1,20p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -10338,7 +10338,7 @@ exec
    474	        : Array.isArray(record.blockedBy) && record.blockedBy.some((e) => e && typeof e === 'object')
    475	          ? record.blockedBy
    476	          : [];
-   477	
+   477
    478	      return {
    479	        run: typeof record.run === 'number' ? record.run : 0,
    480	        blockedBy,

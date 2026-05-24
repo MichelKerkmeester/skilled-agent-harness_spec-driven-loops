@@ -1,35 +1,18 @@
 {
-  "specFolder": "114-small-ai-model-optimization",
-  "description": "Rename sk-ai-small-model skill to sk-prompt-small-model — filesystem + frontmatter + sibling enhances edges + manual playbooks + root behavioral docs ",
+  "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization",
+  "description": "Feature Specification: small-AI-model optimization",
   "keywords": [
-    "rename",
-    "sk-ai-small-model",
-    "skill",
-    "sk-prompt-small-model",
-    "filesystem",
-    "frontmatter",
-    "sibling",
-    "enhances",
-    "edges",
-    "manual",
-    "playbooks",
-    "root",
-    "behavioral",
-    "docs",
-    "auto-memory",
-    "advisor",
-    "reindex",
-    "rewrite-all",
-    "historical-doc",
-    "policy",
-    "family",
-    "stays",
-    "sk-util"
+    "feature",
+    "specification",
+    "small-ai-model",
+    "optimization"
   ],
-  "lastUpdated": "2026-05-23T13:10:01.553Z",
+  "lastUpdated": "2026-05-23T18:03:58.210Z",
   "specId": "114",
   "folderSlug": "small-ai-model-optimization",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 5,
   "memoryNameHistory": [
     "18-05-26_09-50__which-executor-for-the-20-iter-deep-research-run.md",
@@ -37,6 +20,6 @@
     "18-05-26_13-46__6-new-phase-children-authored-under-114-002.md",
     "18-05-26_16-14__phase-007-hardening-ci-deleted-per-user-direction.md",
     "18-05-26_19-46__post-implementation-follow-on-to-114-phase-002.md",
-    "21-05-26_07-00__007-rename-sk-ai-small-model-shipped.md"
+    "21-05-26_07-00__007-rename-sk-prompt-small-model-shipped.md"
   ]
 }

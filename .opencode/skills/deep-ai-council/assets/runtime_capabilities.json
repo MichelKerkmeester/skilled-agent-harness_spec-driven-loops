@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "deep-ai-council.runtime-capabilities.v1",
+  "skill": "deep-ai-council",
+  "defaultMode": "in-cli",
+  "invariants": {
+    "planningOnly": true,
+    "oneCliPerRound": true,
+    "packetLocalArtifactsAuthoritative": true,
+    "derivedGraphProjectionOnly": true
+  },
+  "runtimes": {
+    "opencode": {
+      "agentPath": ".opencode/agents/ai-council.md",
+      "supportsInCliSeats": true,
+      "supportsExternalCliCapture": true,
+      "notes": "OpenCode supplies in-runtime model diversity when available."
+    },
+    "claude": {
+      "agentPath": ".claude/agents/ai-council.md",
+      "supportsInCliSeats": true,
+      "supportsExternalCliCapture": true,
+      "notes": "Claude Code seats must stay within one CLI per round."
+    },
+    "codex": {
+      "agentPath": ".codex/agents/ai-council.toml",
+      "supportsInCliSeats": true,
+      "supportsExternalCliCapture": true,
+      "notes": "Codex seats use the active runtime unless a caller explicitly delegates an external round."
+    },
+    "gemini": {
+      "agentPath": ".gemini/agents/ai-council.md",
+      "supportsInCliSeats": true,
+      "supportsExternalCliCapture": true,
+      "notes": "Gemini mirrors the same report and artifact contract."
+    }
+  },
+  "validation": {
+    "quickValidate": "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-ai-council --json",
+    "completionAdvisory": "node .opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs <packet>"
+  }
+}

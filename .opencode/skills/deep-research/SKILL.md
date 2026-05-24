@@ -2,14 +2,15 @@
 name: deep-research
 description: "Autonomous deep-research loop: iterative investigation, externalized state, convergence detection, fresh context per pass."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_context, memory_search]
-# Note: Task tool is for the command executor (loop management). The @deep-research agent itself does NOT have Task (LEAF-only).
 argument-hint: "[topic] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
-version: 1.12.0.0
+version: 1.13.0.0
 ---
 
 <!-- Keywords: autoresearch, deep-research, iterative-research, autonomous-loop, convergence-detection, externalized-state, fresh-context, research-agent, JSONL-state, strategy-file -->
 
 # Autonomous Deep Research Loop
+
+Note: `Task` is allowed for the command executor that manages the loop. The `@deep-research` agent itself is LEAF-only and does not dispatch sub-agents.
 
 Iterative research protocol with fresh context per iteration, externalized state, and convergence detection for deep technical investigation.
 
@@ -24,7 +25,7 @@ Operator contract precedence for this skill surface:
 - Convergence math in `references/convergence.md` and the deep-research YAML workflow
 - Runtime agent inventories from the checked-in runtime directories above
 
-## Convergence Threshold Semantics
+### Convergence Threshold Semantics
 
 **Default:** 0.05 on newInfoRatio (fully-new=1.0, partially-new=0.5, +0.10 simplicity bonus, capped 1.0)
 
@@ -38,7 +39,7 @@ Carrying threshold expectations across siblings will cause unexpected iteration 
 
 ## 1. WHEN TO USE
 
-### When to Use This Skill
+### Activation Triggers
 
 Use this skill when:
 - Deep investigation requiring multiple rounds of discovery
@@ -46,6 +47,21 @@ Use this skill when:
 - Initial findings need progressive refinement
 - Overnight or unattended research sessions
 - Research where prior findings inform subsequent queries
+
+Keyword triggers:
+
+- `autoresearch`
+- `deep research`
+- `autonomous research`
+- `research loop`
+- `iterative research`
+- `multi-round research`
+- `deep investigation`
+- `comprehensive research`
+
+### Use Cases
+
+Use deep-research for multi-round technical investigation, source triangulation, repeated exploration with fresh context, and research sessions where prior findings should shape the next focus.
 
 ### When NOT to Use
 
@@ -55,114 +71,49 @@ Use this skill when:
 - Quick codebase searches (use `@context` or direct Grep/Glob)
 - Fewer than 3 sources needed (single-pass research suffices)
 
-### FORBIDDEN INVOCATION PATTERNS
-
-This skill is invoked EXCLUSIVELY through the `/deep:start-research-loop` command. The command's YAML workflow owns state, dispatch, and convergence.
-
-**NEVER:**
-- Write a custom bash/shell dispatcher to parallelize iterations
-- Invoke cli-codex / cli-gemini / cli-claude-code directly in a loop to simulate iterations
-- Manually write iteration prompts to `/tmp` and dispatch them via `copilot -p`
-- Dispatch the `@deep-research` LEAF agent via the Task tool for iteration loops (the agent is LEAF — a single iteration — and MUST be driven by the command's workflow)
-- Skip the state machine: `deep-research-state.jsonl`, `deep-research-config.json`, `deltas/`, `prompts/`, `logs/`
-- Manage iteration state outside the resolved local research packet under `{spec_folder}/research/`
-
-**ALWAYS:**
-- Invoke via `/deep:start-research-loop:auto` or `/deep:start-research-loop:confirm`
-- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`)
-- Let `scripts/reduce-state.cjs` be the SINGLE state writer
-- Require every iteration to produce BOTH the markdown narrative AND the JSONL delta (dispatch scripts must fail if either is missing)
-- Use `resolveArtifactRoot(specFolder, 'research')` from `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical research root
-
-### Executor Selection Contract
-
-The YAML workflow owns executor selection. Native `@deep-research` is the default path; CLI executors are routed through the workflow, not through ad hoc shell loops.
-
-Cross-CLI delegation is possible inside each executor sandbox but discouraged. Do not invoke the same CLI from within itself, and do not assume auth from a parent executor propagates to child CLIs.
-
-**Invariants** the executor MUST satisfy regardless of route:
-
-1. Produce an iteration markdown file at `{state_paths.iteration_pattern}` (non-empty).
-2. Append a JSONL delta record to `{state_paths.state_log}` with required fields: `type`, `iteration`, `newInfoRatio`, `status`, `focus`. Optional: `graphEvents`.
-3. Respect the LEAF-agent constraint: no sub-dispatch, no nested loops. Max 12 tool calls per iteration.
-
-**Failure modes**:
-
-- Missing iteration file → `iteration_file_missing` from `post-dispatch-validate.ts`, emits `schema_mismatch` conflict event.
-- Empty iteration file → `iteration_file_empty`, same downstream.
-- JSONL not appended → `jsonl_not_appended`.
-- JSONL missing required fields → `jsonl_missing_fields`.
-- JSONL malformed → `jsonl_parse_error`.
-- 3 consecutive failures → existing `stuck_recovery` event (unchanged).
-
-**JSONL audit field**: Non-native executor runs append executor metadata (`model`, effort, tier) to the iteration's JSONL record via `executor-audit.ts`. Native runs are recoverable from YAML alone.
-
-**Template**: The executor-agnostic iteration prompt lives at `.opencode/skills/deep-research/assets/prompt_pack_iteration.md.tmpl`. It is rendered by `prompt-pack.ts` before dispatch and either (a) injected as the agent's context (native) or (b) piped to `codex exec` stdin (cli-codex).
-
-**Config surface**: Defined in `assets/deep_research_config.json` under the `executor` key. Schema is in `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`. CLI flag precedence is: `--executor/--model/--reasoning-effort/--service-tier/--executor-timeout > config file > schema default`.
-
-**What NEVER changes regardless of executor route**:
-
-- YAML owns state (`deep-research-state.jsonl`, strategy.md, registry, dashboard).
-- `reduce-state.cjs` is the single state writer.
-- Convergence detection, lifecycle events (new/resume/restart), and stuck_recovery all stay YAML-driven.
-- The `@deep-research` LEAF agent definition is untouched — it is the native executor, not the only one.
-
-### Code-Graph Readiness TrustState Surface
-
-On this skill surface, the live code-graph readiness contract only reaches four TrustState values: `live`, `stale`, `absent`, and `unavailable`.
-
-`cached`, `imported`, `rebuilt`, and `rehomed` remain declared in the shared TrustState type for compatibility and downstream schema stability, but the seven code-graph handlers and readiness helpers used here do not emit them today.
-
-### Keyword Triggers
-
-`autoresearch`, `deep research`, `autonomous research`, `research loop`, `iterative research`, `multi-round research`, `deep investigation`, `comprehensive research`
-
-For iterative code review and quality auditing, see `deep-review`.
-
-### Lifecycle Contract
-
-Runtime-supported lifecycle modes (current release):
-- `new` — first run against the spec folder
-- `resume` — continue the active lineage; appends a typed `resumed` JSONL event with `sessionId`, `parentSessionId`, `lineageMode`, `continuedFromRun`, `generation`, `archivedPath` (null), and `timestamp`
-- `restart` — archive the existing `research/` tree under `research_archive/{timestamp}/`, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` JSONL event with the same field set plus a non-null `archivedPath`
-
-Deferred (reserved, not runtime-supported):
-- `fork` — earlier drafts described a sibling-lineage branch; the workflow no longer exposes this as an option
-- `completed-continue` — earlier drafts described snapshotting the prior synthesis as immutable `synthesis-v{generation}.md`; not runtime-wired
-
-See `references/loop_protocol.md §Lifecycle Branches` for the canonical event contract and the rationale for the retraction.
-
 ---
 
 ## 2. SMART ROUTING
 
+> Pattern: aligned with the [sk-doc smart-router resilience template](../sk-doc/assets/skill/skill_smart_router.md).
+
+### Resource Domains
+
+The router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring from `RESOURCE_MAP`. Keep routing domain-focused rather than hardcoding exhaustive inventories.
+
+- `references/quick_reference.md` for the first-touch operator cheat sheet.
+- `references/loop_protocol.md` for lifecycle, dispatch, reducer sequencing, and command-owned state flow.
+- `references/spec_check_protocol.md` for bounded `spec.md` anchoring and generated-fence write-back.
+- `references/convergence*.md` for stop contracts, signals, recovery, graph gates, and reference-only convergence ideas.
+- `references/state*.md` for packet layout, JSONL records, markdown outputs, reducer ownership, and reconstruction.
+- `references/capability_matrix.md` for runtime parity.
+- `assets/*.md` for markdown templates and prompt assets that are safe to route through guarded markdown loading.
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
-|-------|-------------|-----------|
+|-------|--------------|-----------|
 | ALWAYS | Every skill invocation | Quick reference baseline |
-| CONDITIONAL | If intent signals match | Loop protocol, convergence, state format |
-| ON_DEMAND | Only on explicit request | Templates, detailed specifications |
+| CONDITIONAL | If intent signals match | Loop, convergence, state, spec anchoring, runtime parity references |
+| ON_DEMAND | Only on explicit request | Full reference set and markdown assets |
 
-### Phase Detection
+### Phase Signals
 
-Detect the current research phase from dispatch context to load appropriate resources:
-
-| Phase | Signal | Resources to Load |
+| Phase | Signal | Primary Resources |
 |-------|--------|-------------------|
-| Init | No JSONL exists | Loop protocol, state format |
-| Iteration | Dispatch context includes iteration number | Loop protocol, convergence |
-| Stuck | Dispatch context includes "RECOVERY" | Convergence, loop protocol |
-| Synthesis | Convergence triggered STOP | Quick reference |
+| Init | No JSONL exists or setup context | `loop_protocol.md`, `state_format.md`, `state_jsonl.md` |
+| Iteration | Dispatch context includes iteration number | `loop_protocol.md`, `state_outputs.md`, `convergence_signals.md` |
+| Stuck | Dispatch context includes recovery language | `convergence_recovery.md`, `state_reducer_registry.md` |
+| Synthesis | STOP candidate or final report | `convergence.md`, `state_outputs.md`, `spec_check_protocol.md` |
 
 ### Smart Router Pseudocode
 
+The authoritative routing logic for scoped loading, weighted intent scoring, ambiguity handling, and graceful fallback.
+
 - Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans `references/` and `assets/`.
-- Pattern 2: Existence-Check Before Load - `load_if_available()` uses `_guard_in_skill()`, `inventory`, and `seen`.
-- Pattern 3: Extensible Routing Key - setup, iteration, convergence, and state intents route loop resources.
-- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` asks for loop/setup/state disambiguation and missing intent routes return a "no knowledge base" notice.
+- Pattern 2: Existence-Check Before Load - `load_if_available()` guards paths, checks `inventory`, and suppresses repeats with `seen`.
+- Pattern 3: Extensible Routing Key - intent labels route to loop resource families without static file inventories.
+- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK_CHECKLIST` requests disambiguation and missing families return a helpful notice.
 
 ```python
 from pathlib import Path
@@ -172,37 +123,59 @@ RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/quick_reference.md"
 
 INTENT_SIGNALS = {
-    "LOOP_SETUP": {"weight": 4, "keywords": ["autoresearch", "deep research", "research loop", "autonomous research"]},
-    "ITERATION": {"weight": 4, "keywords": ["iteration", "next round", "continue research", "research cycle"]},
-    "CONVERGENCE": {"weight": 3, "keywords": ["convergence", "stop condition", "diminishing returns", "stuck"]},
-    "STATE": {"weight": 3, "keywords": ["state file", "JSONL", "strategy", "resume", "auto-resume"]},
-}
-
-NOISY_SYNONYMS = {
-    "LOOP_SETUP": {"run research": 2.0, "investigate deeply": 1.8, "overnight research": 1.5},
-    "ITERATION": {"another pass": 1.5, "keep searching": 1.4, "dig deeper": 1.6},
-    "CONVERGENCE": {"good enough": 1.4, "stop when": 1.5, "diminishing": 1.6},
-    "STATE": {"pick up where": 1.5, "continue from": 1.4, "resume": 1.8},
+    "LOOP_SETUP": {"weight": 4, "keywords": ["autoresearch", "deep research", "research loop", "autonomous research", "setup", "init"]},
+    "ITERATION": {"weight": 4, "keywords": ["iteration", "next round", "continue research", "research cycle", "delta", "focus"]},
+    "CONVERGENCE": {"weight": 4, "keywords": ["convergence", "stop condition", "diminishing returns", "legal stop", "newInfoRatio"]},
+    "RECOVERY": {"weight": 4, "keywords": ["stuck", "recovery", "timeout", "reconstruct", "blocked stop", "blocked_stop"]},
+    "STATE": {"weight": 4, "keywords": ["state file", "jsonl", "strategy", "dashboard", "registry", "lineage"]},
+    "SPEC_ANCHORING": {"weight": 3, "keywords": ["spec.md", "generated fence", "folder_state", "lock", "spec anchoring"]},
+    "RUNTIME_PARITY": {"weight": 3, "keywords": ["runtime", "capability", "parity", "codex", "claude", "gemini"]},
+    "RESOURCE_MAP": {"weight": 3, "keywords": ["resource map", "resource-map", "inventory", "coverage gate"]},
 }
 
 RESOURCE_MAP = {
-    "LOOP_SETUP": ["references/loop_protocol.md", "references/state_format.md", "assets/deep_research_config.json"],
-    "ITERATION": ["references/loop_protocol.md", "references/convergence.md"],
-    "CONVERGENCE": ["references/convergence.md"],
-    "STATE": ["references/state_format.md", "assets/deep_research_strategy.md"],
+    "LOOP_SETUP": ["references/loop_protocol.md", "references/state_format.md", "references/state_jsonl.md", "references/spec_check_protocol.md"],
+    "ITERATION": ["references/loop_protocol.md", "references/state_outputs.md", "references/convergence_signals.md"],
+    "CONVERGENCE": ["references/convergence.md", "references/convergence_signals.md", "references/convergence_graph.md"],
+    "RECOVERY": ["references/convergence_recovery.md", "references/state_reducer_registry.md"],
+    "STATE": ["references/state_format.md", "references/state_jsonl.md", "references/state_outputs.md", "references/state_reducer_registry.md"],
+    "SPEC_ANCHORING": ["references/spec_check_protocol.md", "references/state_outputs.md"],
+    "RUNTIME_PARITY": ["references/capability_matrix.md"],
+    "RESOURCE_MAP": ["references/loop_protocol.md", "references/state_outputs.md"],
 }
 
 LOADING_LEVELS = {
     "ALWAYS": [DEFAULT_RESOURCE],
-    "ON_DEMAND_KEYWORDS": ["full protocol", "all templates", "complete reference", "resume deep research", "routing-accuracy iteration", "state log", "research/iterations", "deltas", "overnight research", "active lineage"],
-    "ON_DEMAND": ["references/loop_protocol.md", "references/state_format.md", "references/convergence.md"],
+    "ON_DEMAND_KEYWORDS": ["full protocol", "all references", "complete reference", "resume deep research", "state log", "research/iterations", "deltas", "overnight research", "active lineage", "reference-only", "optimizer"],
+    "ON_DEMAND": [
+        "references/loop_protocol.md",
+        "references/spec_check_protocol.md",
+        "references/convergence.md",
+        "references/convergence_signals.md",
+        "references/convergence_recovery.md",
+        "references/convergence_graph.md",
+        "references/convergence_reference_only.md",
+        "references/state_format.md",
+        "references/state_jsonl.md",
+        "references/state_outputs.md",
+        "references/state_reducer_registry.md",
+        "references/capability_matrix.md",
+    ],
 }
-```
 
-### Scoped Guard and Loading
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm setup vs iteration vs convergence vs state recovery",
+    "Confirm the target spec folder and research packet",
+    "Provide the current phase, latest iteration, or failing state file",
+    "Confirm whether full references or quick routing guidance are needed",
+]
 
-```python
-UNKNOWN_FALLBACK = ["Confirm setup vs iteration vs convergence vs state recovery", "Confirm spec folder and research packet"]
+def _task_text(task) -> str:
+    return " ".join([
+        str(getattr(task, "text", "")),
+        str(getattr(task, "query", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+    ]).lower()
 
 def _guard_in_skill(relative_path: str) -> str:
     resolved = (SKILL_ROOT / relative_path).resolve()
@@ -215,19 +188,114 @@ def discover_markdown_resources() -> set[str]:
     docs = []
     for base in RESOURCE_BASES:
         if base.exists():
-            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
-def load_if_available(relative_path: str) -> None:
-    guarded = _guard_in_skill(relative_path)
-    if guarded in inventory and guarded not in seen:
-        load(guarded)
-        seen.add(guarded)
+def score_intents(task) -> dict[str, float]:
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    if not ranked or ranked[0][1] <= 0:
+        return ["LOOP_SETUP"]
+    selected = [ranked[0][0]]
+    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
+        selected.append(ranked[1][0])
+    return selected[:max_intents]
+
+def route_deep_research_resources(task):
+    inventory = discover_markdown_resources()
+    scores = score_intents(task)
+    intents = select_intents(scores)
+    loaded = []
+    seen = set()
+
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
+
+    for relative_path in LOADING_LEVELS["ALWAYS"]:
+        load_if_available(relative_path)
+
+    if max(scores.values() or [0]) < 0.5:
+        return {
+            "intents": intents,
+            "intent_scores": scores,
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    matched_intents = []
+    for intent in intents:
+        before_count = len(loaded)
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
+        if len(loaded) > before_count:
+            matched_intents.append(intent)
+
+    text = _task_text(task)
+    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
+            load_if_available(relative_path)
+
+    result = {"intents": intents, "intent_scores": scores, "resources": loaded}
+    if not matched_intents:
+        result["notice"] = f"No knowledge base found for intent(s): {', '.join(intents)}"
+    return result
 ```
 
 ---
 
 ## 3. HOW IT WORKS
+
+### Invocation Contract
+
+This skill is invoked exclusively through `/deep:start-research-loop:auto` or `/deep:start-research-loop:confirm`. The command YAML owns state, dispatch, convergence, and synthesis.
+
+Never simulate the loop with ad hoc shell dispatch, nested CLI loops, direct `@deep-research` Task dispatch, `/tmp` prompt files, or state outside the resolved local research packet.
+
+### Executor Selection Contract
+
+The YAML workflow owns executor selection. Native `@deep-research` is the default path; CLI executors are routed through the workflow, not through ad hoc shell loops.
+
+Cross-CLI delegation is possible inside each executor sandbox but discouraged. Do not invoke the same CLI from within itself, and do not assume auth from a parent executor propagates to child CLIs.
+
+Executor invariants:
+
+1. Produce a non-empty iteration markdown file at `{state_paths.iteration_pattern}`.
+2. Append a JSONL delta record to `{state_paths.state_log}` with required fields: `type`, `iteration`, `newInfoRatio`, `status`, and `focus`.
+3. Respect the LEAF-agent constraint: no sub-dispatch, no nested loops, and max 12 tool calls per iteration.
+
+Failure modes include `iteration_file_missing`, `iteration_file_empty`, `jsonl_not_appended`, `jsonl_missing_fields`, and `jsonl_parse_error`. Three consecutive failures route to stuck recovery.
+
+### Lifecycle Contract
+
+Runtime-supported lifecycle modes:
+
+| Mode | Meaning |
+|------|---------|
+| `new` | First run against the spec folder |
+| `resume` | Continue the active lineage and append a typed `resumed` JSONL event |
+| `restart` | Archive the existing research tree, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event |
+
+Deferred modes are `fork` and `completed-continue`. They are reserved but not runtime-supported.
+
+### Code-Graph Readiness TrustState Surface
+
+The live code-graph readiness contract reaches four TrustState values: `live`, `stale`, `absent`, and `unavailable`.
+
+`cached`, `imported`, `rebuilt`, and `rehomed` remain declared in the shared TrustState type for compatibility, but the readiness helpers used here do not emit them today.
 
 ### Resource Map Integration
 
@@ -258,7 +326,7 @@ When `{spec_folder}/resource-map.md` is absent at init:
 
 The research state packet always lives under the target spec's local `research/` folder. Root-spec targets use `{spec_folder}/research/` directly. Child-phase and sub-phase targets use **flat-first**: a first run with an empty `research/` directory writes flat at `{spec_folder}/research/`. A `pt-NN` subfolder (`{basename(spec_folder)}-pt-{NN}`) is allocated only when prior content already exists in `research/` for a non-matching target (continuation runs reuse the existing flat artifact or matching `pt-NN` packet). This avoids the unnecessary `pt-01` wrapper on first runs.
 
-Example (first run on a child phase): `.../026-graph.../019-system-hardening/001-initial-research/004-desc-regen/` → `004-desc-regen/research/` (flat, no subfolder).
+Example (first run on a child phase): `.../026-graph.../019-system-hardening/001-initial-research/004-desc-regen/` writes to `004-desc-regen/research/` directly.
 
 Example (subsequent run with prior content for a different target): `004-desc-regen/research/004-desc-regen-pt-02/` (pt-NN allocated as a sibling to the prior content).
 
@@ -292,7 +360,7 @@ Research continuity is externalized to files, each iteration starts fresh, conve
 
 ## 4. RULES
 
-### ✅ ALWAYS
+### ALWAYS
 
 1. **Read state first** -- Agent must read JSONL and strategy.md before any research action
 2. **One focus per iteration** -- Pick ONE research sub-topic from strategy.md "Next Focus"
@@ -308,8 +376,9 @@ Research continuity is externalized to files, each iteration starts fresh, conve
 12. **Quality guards must pass before convergence** -- Source diversity, focus alignment, and no single-weak-source checks must pass before STOP can trigger
 13. **Respect reducer ownership** -- The workflow reducer, not the agent, is the source of truth for strategy machine-owned sections, dashboard metrics, and findings registry updates
 14. **Use canonical packet names only** -- Write `deep-research-*` artifacts and `research/.deep-research-pause`; legacy names are read-only migration aliases
+15. **Invoke through the command workflow** -- Use `/deep:start-research-loop:auto` or `/deep:start-research-loop:confirm`, and let the YAML workflow own dispatch
 
-### ❌ NEVER
+### NEVER
 
 1. **Dispatch sub-agents** -- @deep-research is LEAF-only (NDP compliance)
 2. **Hold findings in context** -- Write everything to files
@@ -319,6 +388,7 @@ Research continuity is externalized to files, each iteration starts fresh, conve
 6. **Modify config after init** -- Config is read-only after initialization
 7. **Overwrite prior findings** -- Append to research/research.md, never replace
 8. **Implement fixes during research** -- Report findings only; implementation is a separate follow-up step.
+9. **Simulate loop dispatch** -- Do not write custom shell loops, nested CLI loops, `/tmp` prompt dispatchers, or direct Task loops for `@deep-research`
 
 ### Iteration Status Enum
 
@@ -335,7 +405,7 @@ These concepts remain documented for future design work, but they are not part o
 3. **Wave orchestration on the same lineage** -- parallel fan-out remains reference-only
 4. **Alternate CLI dispatch** -- process-isolated `claude -p` or similar dispatch modes
 
-### ⚠️ ESCALATE IF
+### ESCALATE IF
 
 1. **3+ consecutive timeouts** -- Infrastructure issue, not research problem
 2. **State file corruption unrecoverable** -- Cannot reconstruct from JSONL or iteration files
@@ -347,9 +417,15 @@ These concepts remain documented for future design work, but they are not part o
 
 ## 5. REFERENCES
 
-Core documentation: `references/loop_protocol.md`, `references/spec_check_protocol.md`, `references/state_format.md`, `references/convergence.md`, and `references/quick_reference.md`.
+Core documentation: `references/quick_reference.md`, `references/loop_protocol.md`, `references/spec_check_protocol.md`, `references/convergence.md`, and `references/state_format.md`.
 
-Templates: `assets/deep_research_config.json`, `assets/deep_research_strategy.md`, and `assets/deep_research_dashboard.md`.
+Focused convergence references: `references/convergence_signals.md`, `references/convergence_recovery.md`, `references/convergence_graph.md`, and `references/convergence_reference_only.md`.
+
+Focused state references: `references/state_jsonl.md`, `references/state_outputs.md`, and `references/state_reducer_registry.md`.
+
+Templates: `assets/deep_research_config.json`, `assets/deep_research_strategy.md`, `assets/deep_research_dashboard.md`, `assets/prompt_pack_iteration.md.tmpl`, and `assets/runtime_capabilities.json`.
+
+Cross-skill alignment: `deep-research` owns iterative investigation. Its shared resource family mirrors `deep-review` and `deep-ai-council`, but its vocabulary remains novelty, sources, negative knowledge, question coverage, and research synthesis rather than severity findings or council agreement.
 
 ---
 
@@ -405,8 +481,8 @@ Before research, recover context with `/speckit:resume` using `handover.md -> _m
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/convergence.md`, `references/loop_protocol.md`, `references/quick_reference.md`, `references/state_format.md`, `references/capability_matrix.md`, `references/spec_check_protocol.md`, `assets/deep_research_dashboard.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference and markdown asset docs dynamically. Start with `references/quick_reference.md`, then route to loop protocol, spec anchoring, convergence, state, runtime parity, or recovery references based on intent.
 
 Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
 
-Related skills: `deep-review` for iterative audit loops and `system-spec-kit` for command-owned state, packet anchoring, and continuity saves.
+Related skills: `deep-review` for iterative audit loops, `deep-loop-runtime` for shared executor/state/coverage-graph runtime, and `system-spec-kit` for command-owned state, packet anchoring, and continuity saves.

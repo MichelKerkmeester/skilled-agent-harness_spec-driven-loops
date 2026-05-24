@@ -54,7 +54,7 @@ Read this README to learn what the skill does, how to invoke it, how to read its
 
 | Metric | Value |
 |---|---|
-| Version | 1.9.0.0 |
+| Version | 1.10.1.0 |
 | Operating modes | 2 (`:auto`, `:confirm`) |
 | Lifecycle modes | 3 active (`new`, `resume`, `restart`) + 2 reserved (`fork`, `completed-continue`) |
 | Review dimensions | 4 (Correctness, Security, Traceability, Maintainability) |
@@ -215,9 +215,12 @@ deep-review/
 +-- README.md                         # This file
 +-- references/                       # Loaded protocol guidance
 |   +-- convergence.md                # Stop algorithms, signal math, security-sensitive overrides
+|   +-- convergence_signals.md        # Focused STOP signals, P0 override, legal-stop summary
 |   +-- loop_protocol.md              # 4-phase lifecycle, lineage modes, dispatch contract
 |   +-- quick_reference.md            # One-page operator cheat sheet
-|   `-- state_format.md               # Canonical schemas for every state file
+|   +-- state_format.md               # Canonical schemas for every state file
+|   +-- state_outputs.md              # Packet outputs, dashboard, iteration markdown, report
+|   `-- state_reducer_registry.md     # Reducer ownership, registry, reconstruction
 +-- assets/                           # Templates and config payloads
 |   +-- deep_review_config.json       # Default config shape
 |   +-- deep_review_dashboard.md      # Dashboard template
@@ -447,7 +450,10 @@ A: Each iteration appends `graphEvents` to its JSONL record. The coverage-graph 
 |---|---|
 | [`references/loop_protocol.md`](./references/loop_protocol.md) | 4-phase lifecycle, lineage modes, dispatch contract, executor invariants |
 | [`references/convergence.md`](./references/convergence.md) | Stop algorithms, signal math, security-sensitive overrides, threshold semantics, graph-aware legal-stop checks |
+| [`references/convergence_signals.md`](./references/convergence_signals.md) | Focused severity-weighted STOP signals, P0 override, legal-stop summary, sibling threshold contrast |
 | [`references/state_format.md`](./references/state_format.md) | Canonical schemas for config, JSONL, registry, strategy, dashboard, report |
+| [`references/state_outputs.md`](./references/state_outputs.md) | Packet outputs, iteration markdown, dashboard, final report, resource-map behavior |
+| [`references/state_reducer_registry.md`](./references/state_reducer_registry.md) | Reducer ownership, registry semantics, fail-closed behavior, reconstruction |
 | [`references/quick_reference.md`](./references/quick_reference.md) | One-page operator cheat sheet for commands, dimensions, verdicts |
 
 ### Inventory and Tests

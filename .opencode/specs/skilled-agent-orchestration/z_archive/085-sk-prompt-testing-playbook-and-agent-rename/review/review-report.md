@@ -23,7 +23,7 @@ Packet 085 is **operationally complete** with **0 P0 blockers** across all 5 rev
 | 1. Agent-rename completeness | 1, 5 | ✅ PASS (post-fix) | Iter-5 caught UPPERCASE `.codex/` residuals; remediated |
 | 2. Playbook sk-doc conformance | 2 | ✅ PASS | `validate_document.py` 0 issues; 28 SP-NNN files |
 | 3. Scenario realism + coverage | 3 | ✅ PASS | 15 scenarios spot-checked; deterministic pass/fail throughout |
-| 4. Identity preservation | 1 | ✅ PASS | `/improve:prompt` command + `improve/prompt.md` file unchanged |
+| 4. Identity preservation | 1 | ✅ PASS | `/prompt` command + `prompt.md` file unchanged |
 | 5. Documentation hygiene | 4 | ✅ PASS (post-fix) | All 3 spec docs validate strict; SKILL.md has 1 backref line |
 | 6. Frozen continuity respect | 4 | ✅ PASS | No leaks into z_archive, z_future, completed packets |
 
@@ -90,7 +90,7 @@ rg -il 'improve-prompt' .opencode .claude .codex .gemini *.md *.json \
   -g '!**/{054,055,059-agent-implement-code,061,063,067,070,079,081,082-sk-improve-prompt-rename,085-sk-prompt-testing-playbook-and-agent-rename,086,087}-*/**' \
   -g '!**/026-graph-and-context-optimization/**' \
   -g '!**/.git/**' -g '!**/barter/**' \
-  -g '!**/improve/prompt.md'
+  -g '!**/prompt.md'
 ```
 **Result: 0 hits in active scope.** ✅
 
@@ -105,8 +105,8 @@ rg -il 'improve-prompt' .opencode .claude .codex .gemini *.md *.json \
 | Agent file at all 4 new paths | ✅ exists |
 | Agent file at all 4 old paths | ✅ does not exist |
 | Frontmatter `name: prompt-improver` in all 4 | ✅ |
-| Command `/improve:prompt` | ✅ unchanged |
-| Command file `.opencode/commands/improve/prompt.md` | ✅ unchanged (only body refs rotated) |
+| Command `/prompt` | ✅ unchanged |
+| Command file `.opencode/commands/prompt.md` | ✅ unchanged (only body refs rotated) |
 | Agent runtime READMEs | ✅ all 4 reference `prompt-improver` |
 
 ### Playbook (Phase 002)

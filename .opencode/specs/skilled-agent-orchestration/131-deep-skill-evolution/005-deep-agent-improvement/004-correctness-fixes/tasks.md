@@ -62,7 +62,7 @@ Task format: `T### [P?] Description (path) [finding]`.
 - [x] T015 Bump skill version to highest changelog entry (`SKILL.md`) [DAI-017].
 - [x] T016 Replace v1.4.0.0 placeholder content (`changelog/v1.4.0.0.md`) [DAI-018].
 - [x] T017 Add promotion mirror sync TODO and flag (`promote-candidate.cjs`) [DAI-021].
-- [x] T018 Fix manifest filename mismatch (`improve_deep-agent-improvement_*.yaml`, `improvement_config.json`) [DAI-014].
+- [x] T018 Fix manifest filename mismatch (`deep_start-agent-improvement-loop_*.yaml`, `improvement_config.json`) [DAI-014].
 - [x] T019 Fix singular OpenCode paths in scanner (`scan-integration.cjs`) [DAI-016].
 - [x] T020 Author Level 3 packet docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) [docs].
 

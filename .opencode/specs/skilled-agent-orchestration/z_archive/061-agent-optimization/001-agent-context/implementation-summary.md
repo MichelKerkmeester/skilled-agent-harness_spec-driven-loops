@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-End-to-end run of `/improve:agent .opencode/agents/context.md :auto` against @context with cli-copilot as the candidate generator. All substrate steps executed cleanly:
+End-to-end run of `/deep:start-agent-improvement-loop .opencode/agents/context.md :auto` against @context with cli-copilot as the candidate generator. All substrate steps executed cleanly:
 
 - **Integration scan**: 55 surfaces detected, 0 missing, mirror sync `all-aligned`, 4 commands + 19 skills reference @context
 - **Dynamic profile**: 5-dim profile generated (`derivedChecks.structural[]` per @context's actual rules)
@@ -141,7 +141,7 @@ Not applicable — no canonical change to verify against.
 
 2. **Reducer ledger format mismatch:** my hand-written ledger entries used field names that the reducer didn't pick up. The journal + score + benchmark JSONs are the authoritative artifacts; the registry's `iterations: []` is a substrate gap, not a data loss. Worth investigating in the YAML wiring (the YAML spec uses an "action: Append..." step that's vague — actual ledger field shape isn't enforced).
 
-3. **No formal cli-copilot wiring in /improve:agent.** The YAML's `step_generate_candidate` says "Dispatch @improve-agent". I substituted cli-copilot manually because the user asked for that executor. A first-class `--executor=cli-copilot` flag with prompt-templating in the YAML would make this reproducible.
+3. **No formal cli-copilot wiring in /deep:start-agent-improvement-loop.** The YAML's `step_generate_candidate` says "Dispatch @improve-agent". I substituted cli-copilot manually because the user asked for that executor. A first-class `--executor=cli-copilot` flag with prompt-templating in the YAML would make this reproducible.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -69,7 +69,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js'",
+            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js ; stop_status=$? ; bash .opencode/scripts/claude-session-cleanup.sh || true ; exit \"$stop_status\"'",
             "timeout": 10,
             "async": true
           }

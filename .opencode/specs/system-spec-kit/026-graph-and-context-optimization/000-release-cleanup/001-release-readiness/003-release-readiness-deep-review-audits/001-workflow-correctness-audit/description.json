@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-release-readiness-deep-review-audits/001-workflow-correctness-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/001-workflow-correctness-audit",
   "description": "Feature Specification: Workflow Correctness Release-Readiness Audit",
   "keywords": [
     "feature",
@@ -9,13 +9,14 @@
     "release-readiness",
     "audit"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.489Z",
+  "lastUpdated": "2026-05-23T15:24:59.619Z",
   "specId": "001",
-  "folderSlug": "workflow-correctness",
+  "folderSlug": "workflow-correctness-audit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-cleanup",
+    "001-release-readiness",
     "003-release-readiness-deep-review-audits"
   ],
   "memorySequence": 1,

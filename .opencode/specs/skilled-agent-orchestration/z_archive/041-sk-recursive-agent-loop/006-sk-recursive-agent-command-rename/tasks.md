@@ -54,7 +54,7 @@ _memory:
 - [x] T004 Rename the canonical command markdown file into the agent-improver command family
 - [x] T005 Rename the YAML workflow assets to `improve_agent-improver_*.yaml`
 - [x] T006 Rename the `.agents` and `.gemini` wrapper TOMLs to `agent-improver.toml`
-- [x] T007 Update runtime docs, skill docs, README examples, and active packet docs to `/improve:agent-improver`
+- [x] T007 Update runtime docs, skill docs, README examples, and active packet docs to `/deep:start-agent-improvement-loop-improver`
 - [x] T008 Update parent packet `041` and registry metadata to record phase `006`
 <!-- /ANCHOR:phase-2 -->
 

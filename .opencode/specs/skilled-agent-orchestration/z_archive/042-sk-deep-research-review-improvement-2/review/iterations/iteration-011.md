@@ -988,7 +988,7 @@ exec
     37	
     38	### Stop-Reason Taxonomy and Audit Journal
     39	
-    40	The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
+    40	The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
     41	
     42	### Mutation Coverage and Trade-Off Detection
     43	
@@ -1245,7 +1245,7 @@ exec
     84	
     85	### Runtime Parity
     86	
-    87	The `@agent-improver` agent and `/improve:agent` command are mirrored across all 5 runtimes (OpenCode, Claude, Codex, .agents, Gemini). The integration scanner checks mirror parity automatically.
+    87	The `@agent-improver` agent and `/deep:start-agent-improvement-loop` command are mirrored across all 5 runtimes (OpenCode, Claude, Codex, .agents, Gemini). The integration scanner checks mirror parity automatically.
     88	
     89	---
     90	
@@ -1257,7 +1257,7 @@ exec
     96	
     97	## Skill Rename (Phase 008)
     98	
-    99	Renamed from `sk-recursive-agent` to `sk-improve-agent` across 187+ files and 1129+ occurrences. Command moved from `/speckit:recursive-agent` to `/improve:agent`. Agent renamed from `@recursive-agent` to `@agent-improver`. Zero stale references remaining (verified by fresh sub-agent audit).
+    99	Renamed from `sk-recursive-agent` to `sk-improve-agent` across 187+ files and 1129+ occurrences. Command moved from `/speckit:recursive-agent` to `/deep:start-agent-improvement-loop`. Agent renamed from `@recursive-agent` to `@agent-improver`. Zero stale references remaining (verified by fresh sub-agent audit).
    100	
    101	---
    102	
@@ -1272,9 +1272,9 @@ exec
    111	| `.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs` | Modified | Added `--integration-report` flag |
    112	| `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` | Modified | Added dimensional tracking + plateau stop |
    113	| `.opencode/agents/agent-improver.md` | Created | Canonical agent with v1.1.1 frontmatter |
-   114	| `.opencode/commands/improve/agent.md` | Created | Full command with Phase 0, Setup, violations |
-   115	| `.opencode/commands/improve/assets/improve_agent-improver_*.yaml` | Created | Auto + confirm YAML workflows |
-   116	| `.opencode/commands/improve/README.txt` | Created | Command group index |
+   114	| `.opencode/commands/deep/start-agent-improvement-loop.md` | Created | Full command with Phase 0, Setup, violations |
+   115	| `.opencode/commands/deep/assets/improve_agent-improver_*.yaml` | Created | Auto + confirm YAML workflows |
+   116	| `.opencode/commands/README.txt` | Created | Command group index |
    117	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/` | Created | 21 test scenarios across 6 categories |
    118	
    119	---
@@ -1299,13 +1299,13 @@ exec
     14	
     15	## What Changed
     16	
-    17	- **Self-test completed** (Phase 009): Ran `/improve:agent` targeting `agent-improver.md` itself. 3 iterations, baseline 99→100, all 5 dimensions converged at 100. First real end-to-end validation of the skill on its own agent.
-    18	- **Stale command path fixed** (Phase 010): Canonical agent-improver.md had `/improve:agent-improver` pointing to a nonexistent file. Fixed to `/improve:agent` → `.opencode/commands/improve/agent.md`. Synced to all 4 mirrors.
+    17	- **Self-test completed** (Phase 009): Ran `/deep:start-agent-improvement-loop` targeting `agent-improver.md` itself. 3 iterations, baseline 99→100, all 5 dimensions converged at 100. First real end-to-end validation of the skill on its own agent.
+    18	- **Stale command path fixed** (Phase 010): Canonical agent-improver.md had `/deep:start-agent-improvement-loop-improver` pointing to a nonexistent file. Fixed to `/deep:start-agent-improvement-loop` → `.opencode/commands/deep/start-agent-improvement-loop.md`. Synced to all 4 mirrors.
     19	- **Reducer family fix** (Phase 010): `inferFamily()` no longer hardcodes `session-handover` for every profile. Agent-improver now shows its own name in the dashboard.
     20	- **Configurable plateau window** (Phase 010): Plateau detector reads `stopRules.plateauWindow` from config (default 3). Short runs can now use a window of 2.
     21	- **Accepted counting fix** (Phase 010): Dashboard now counts `candidate-acceptable` and `candidate-better` recommendations as accepted (previously always showed 0).
     22	- **Candidate improvements promoted** (Phase 010): Halt condition for missing inputs, merged checklists, checkbox self-validation, 4th anti-pattern, scan report provenance note, summary box label update.
-    23	- **Skill advisor routing** (Phase 011): Added 7 INTENT_BOOSTERS, 13 PHRASE_INTENT_BOOSTERS, 8 COMMAND_BRIDGES for 5D scoring, integration scanning, dynamic profiling, and all `/improve:` + `/create:` slash commands.
+    23	- **Skill advisor routing** (Phase 011): Added 7 INTENT_BOOSTERS, 13 PHRASE_INTENT_BOOSTERS, 8 COMMAND_BRIDGES for 5D scoring, integration scanning, dynamic profiling, and all `/deep:` + `/create:` slash commands.
     24	- **README updates** (Phase 011): Skill README bumped to v1.0.0.0. Root README added Context-Prime and Agent-Improver to Agent Network, rewrote Improve Agent command description. 5 command README.txt files fixed.
     25	- **Gemini mirror fix**: Canonical path reference corrected from `.agents/agents/*.md` to `.gemini/agents/*.md`.
     26	
@@ -1344,9 +1344,9 @@ exec
      6	
      7	### Skill Rename: sk-agent-improver → sk-improve-agent
      8	
-     9	- The skill and its sibling `sk-prompt-improver → sk-improve-prompt` were renamed to the verb-first `improve:*` convention used by the other `/improve:*` slash commands.
+     9	- The skill and its sibling `sk-prompt-improver → sk-improve-prompt` were renamed to the verb-first `deep/root` convention used by the other `/deep:*` slash commands.
     10	- Every playbook scenario, agent mirror, command doc, YAML workflow, asset, and reference path was updated. Legacy `sk-agent-improver` paths are fully removed from live surfaces.
-    11	- The `/improve:agent` command continues to drive the loop; no operator-facing command changed.
+    11	- The `/deep:start-agent-improvement-loop` command continues to drive the loop; no operator-facing command changed.
     12	
     13	---
     14	
@@ -1419,35 +1419,35 @@ exec
     81	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md`                 | Created  | Playbook: dimension trajectory                                                                |
     82	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`           | Created  | Playbook: opt-in parallel candidates                                                          |
     83	| `.opencode/skills/sk-improve-agent/assets/*`                                                                              | Renamed  | Asset tree migrated from `sk-agent-improver` namespace                                        |
-    84	| `.opencode/commands/improve/agent.md`                                                                                     | Modified | Documented stop-reason taxonomy, journal, and promotion gates                                 |
-    85	| `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml`                                                      | Modified | Wired journal emission and legal-stop evaluation in auto mode                                 |
-    86	| `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml`                                                   | Modified | Mirrored the same runtime truth contract in confirm mode                                      |
+    84	| `.opencode/commands/deep/start-agent-improvement-loop.md`                                                                                     | Modified | Documented stop-reason taxonomy, journal, and promotion gates                                 |
+    85	| `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml`                                                      | Modified | Wired journal emission and legal-stop evaluation in auto mode                                 |
+    86	| `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml`                                                   | Modified | Mirrored the same runtime truth contract in confirm mode                                      |
     87	| `.opencode/agents/agent-improver.md`                                                                                      | Modified | Aligned OpenCode runtime mirror with the proposal-only + journal model                        |
     88	
     89	---
     90	
     91	## Upgrade
     92	
-    93	Existing improvement sessions without the new runtime-truth fields continue to run unchanged (backward compatible). Operators invoking `/improve:agent` now get a reviewable audit journal, mutation coverage graph, trade-off detection, and stability-aware promotion gates — all enforced orchestrator-side so the proposal-only agent constraint is preserved. Legacy `sk-agent-improver` paths are fully removed; update any external references to `sk-improve-agent`.
+    93	Existing improvement sessions without the new runtime-truth fields continue to run unchanged (backward compatible). Operators invoking `/deep:start-agent-improvement-loop` now get a reviewable audit journal, mutation coverage graph, trade-off detection, and stability-aware promotion gates — all enforced orchestrator-side so the proposal-only agent constraint is preserved. Legacy `sk-agent-improver` paths are fully removed; update any external references to `sk-improve-agent`.
     94	
     95	---
     96	
     97	> **Update (post-release) — 2026-04-11:**
     98	>
-    99	> This release documented four lifecycle modes for re-entering an `/improve:agent` session: `resume`, `restart`, `fork`, and `completed-continue`. None of the four were ever wired up. The command has no input for lineage mode, the reducer does not carry ancestry across sessions, and the journal helper has no multi-session boundary event. Every invocation is a fresh `new` session.
+    99	> This release documented four lifecycle modes for re-entering an `/deep:start-agent-improvement-loop` session: `resume`, `restart`, `fork`, and `completed-continue`. None of the four were ever wired up. The command has no input for lineage mode, the reducer does not carry ancestry across sessions, and the journal helper has no multi-session boundary event. Every invocation is a fresh `new` session.
    100	>
    101	> Release `v1.2.1.0` retracts the promise. Operators who want to continue evaluating an agent across sessions should archive the prior `improve/` folder under a timestamped path and re-invoke the command. See `v1.2.1.0.md` for the full story.
 ===== .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md
      1	## [**1.2.0.0**] - 2026-04-11
      2	
-     3	This release lands Phase 008 of the 042 Deep Research & Review Runtime Improvement Bundle for `sk-improve-agent`. The skill now (a) actually calls `improvement-journal.cjs` from the visible `/improve:agent` YAML workflow at every iteration boundary, (b) enforces minimum sample sizes before trade-off and stability verdicts, and (c) implements ADR-002 Option A by reading `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` during reducer refresh. The visible operator path now emits the richer runtime-truth state the v1.1.0.0 contract promised.
+     3	This release lands Phase 008 of the 042 Deep Research & Review Runtime Improvement Bundle for `sk-improve-agent`. The skill now (a) actually calls `improvement-journal.cjs` from the visible `/deep:start-agent-improvement-loop` YAML workflow at every iteration boundary, (b) enforces minimum sample sizes before trade-off and stability verdicts, and (c) implements ADR-002 Option A by reading `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` during reducer refresh. The visible operator path now emits the richer runtime-truth state the v1.1.0.0 contract promised.
      4	
      5	---
      6	
      7	### Journal Wiring (REQ-004, REQ-005)
      8	
      9	- `improve_agent-improver_{auto,confirm}.yaml` now invoke `improvement-journal.cjs` at three boundary points: session start, every iteration boundary (candidate generated → scored → gate evaluation), and session end. The orchestrator-only constraint is preserved — the proposal-only agent still never writes journal rows itself.
-    10	- The malformed `--event=session_initialized` CLI example in `.opencode/commands/improve/agent.md` is fixed. The working form is `--emit session_start --payload '<json>'` matching the helper's actual interface.
+    10	- The malformed `--event=session_initialized` CLI example in `.opencode/commands/deep/start-agent-improvement-loop.md` is fixed. The working form is `--emit session_start --payload '<json>'` matching the helper's actual interface.
     11	- `SKILL.md` adds a new "Journal Wiring Contract" section documenting the three boundary points, the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums (aligned to the helper's actual validator: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery` / `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`), and the orchestrator-only emission rule.
     12	
     13	---
@@ -1512,9 +1512,9 @@ exec
     72	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md` | Created | Manual test for journal wiring end-to-end |
     73	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md` | Created | Manual test for insufficient-sample propagation |
     74	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` | Created | Manual test for ADR-002 replay consumer + graceful degradation |
-    75	| `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml` | Modified | Wired step_emit_journal_event at session_start + iteration + session_end |
-    76	| `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml` | Modified | Mirrored the same journal wiring in confirm mode |
-    77	| `.opencode/commands/improve/agent.md` | Modified | Fixed malformed `--event=session_initialized` → `--emit session_start --payload '...'` CLI example |
+    75	| `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml` | Modified | Wired step_emit_journal_event at session_start + iteration + session_end |
+    76	| `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml` | Modified | Mirrored the same journal wiring in confirm mode |
+    77	| `.opencode/commands/deep/start-agent-improvement-loop.md` | Modified | Fixed malformed `--event=session_initialized` → `--emit session_start --payload '...'` CLI example |
     78	
     79	---
     80	
@@ -1522,7 +1522,7 @@ exec
     82	
     83	**Backward-compatible.** Existing sessions without the three new replay artifacts (journal, lineage, mutation-coverage) still work — the reducer defaults each consumer field to `null` when the artifact is absent. The `trade-off-detector` and `benchmark-stability` default thresholds (3 data points / 3 replays) are enforced on new sessions but can be overridden via `minDataPoints` / `minReplayCount` constructor options or env variables for legacy replay flows.
     84	
-    85	Operators invoking `/improve:agent` now see a richer dashboard with the Sample Quality section and the full journal/lineage/coverage summary. The visible workflow emits the journal events the v1.1.0.0 contract already promised — the contract break that Phase 008 Part A surfaced is now closed.
+    85	Operators invoking `/deep:start-agent-improvement-loop` now see a richer dashboard with the Sample Quality section and the full journal/lineage/coverage summary. The visible workflow emits the journal events the v1.1.0.0 contract already promised — the contract break that Phase 008 Part A surfaced is now closed.
 ===== .opencode/changelog/15--sk-improve-agent/v1.2.1.0.md
      1	# v1.2.1.0
      2	
@@ -1542,7 +1542,7 @@ exec
     16	
     17	### Bug Fixes
     18	
-    19	- **Resume/continuation contract retracted to match reality** -- The skill's runtime-truth section and the `/improve:agent` command definition both listed `resume`, `restart`, `fork`, and `completed-continue` as supported lifecycle modes for evaluating an agent across multiple sessions. The shipped workflow has no inputs for any of them, the reducer does not produce ancestry output, and the journal helper has no boundary event for a multi-session lineage. The only thing the runtime actually supports is `new` — every `/improve:agent` invocation starts a fresh session with generation 1. The documentation now says so explicitly. Operators who want to continue an evaluation should archive the prior `improve/` folder under a timestamped path and re-invoke the command. A future release that ships real multi-session lineage will arrive with first-class event emission, reducer ancestry output, and replay coverage; until then, treat every invocation as a standalone evaluation.
+    19	- **Resume/continuation contract retracted to match reality** -- The skill's runtime-truth section and the `/deep:start-agent-improvement-loop` command definition both listed `resume`, `restart`, `fork`, and `completed-continue` as supported lifecycle modes for evaluating an agent across multiple sessions. The shipped workflow has no inputs for any of them, the reducer does not produce ancestry output, and the journal helper has no boundary event for a multi-session lineage. The only thing the runtime actually supports is `new` — every `/deep:start-agent-improvement-loop` invocation starts a fresh session with generation 1. The documentation now says so explicitly. Operators who want to continue an evaluation should archive the prior `improve/` folder under a timestamped path and re-invoke the command. A future release that ships real multi-session lineage will arrive with first-class event emission, reducer ancestry output, and replay coverage; until then, treat every invocation as a standalone evaluation.
     20	
     21	---
     22	
@@ -1551,7 +1551,7 @@ exec
     25	| File                                                           | What changed                                                                             |
     26	| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
     27	| `.opencode/skills/sk-improve-agent/SKILL.md`                    | Version bump 1.2.0.0 → 1.2.1.0; Resume/Continuation Semantics rewritten to `new`-only    |
-    28	| `.opencode/commands/improve/agent.md`                           | Line 339 Supported lineage modes narrowed to `new`; deferred note added                  |
+    28	| `.opencode/commands/deep/start-agent-improvement-loop.md`                           | Line 339 Supported lineage modes narrowed to `new`; deferred note added                  |
     29	| `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md`         | Append-only "Update (post-release)" block pointing at this release                       |
     30	
     31	---
@@ -1850,7 +1850,7 @@ exec
     76	### In Scope
     77	
     78	- Document the delivered journal, coverage, trade-off, lineage, and stability runtime surfaces now living under `.opencode/skills/sk-improve-agent/`.
-    79	- Document the delivered command and runtime-agent updates for `.opencode/commands/improve/agent.md` and `.opencode/agents/improve-agent.md`.
+    79	- Document the delivered command and runtime-agent updates for `.opencode/commands/deep/start-agent-improvement-loop.md` and `.opencode/agents/improve-agent.md`.
     80	- Record the shipped verification surfaces: 5 dedicated Vitest suites, playbook scenarios, changelog evidence, and implementation commit.
     81	- Bring the phase packet into current Level 3 template alignment with completed-state metadata, evidence-backed tasks, and verification checklist items.
     82	
@@ -1876,7 +1876,7 @@ exec
    102	| `.opencode/skills/sk-improve-agent/assets/improvement_strategy.md` | Modified | Added convergence, trade-off, and exhaustion guidance. |
    103	| `.opencode/skills/sk-improve-agent/SKILL.md` | Modified | Published the runtime-truth contract for improve-agent. |
    104	| `.opencode/agents/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
-   105	| `.opencode/commands/improve/agent.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
+   105	| `.opencode/commands/deep/start-agent-improvement-loop.md` | Modified | Documented journal emission, stop-state reporting, and runtime-truth workflow steps. |
    106	<!-- /ANCHOR:scope -->
    107	
    108	---
@@ -2094,7 +2094,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:94:| REQ-001 | Integration coverage must prove CommonJS and TypeScript graph contracts stay aligned. | `coverage-graph-integration.vitest.ts` verifies relation alignment, weight clamping, self-loop rejection, namespace isolation, and convergence-signal parity. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/spec.md:95:| REQ-002 | Stress coverage must exercise larger graph workloads. | `coverage-graph-stress.vitest.ts` covers large graph construction, contradiction scanning, and traversal behavior at scale. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:62:- append-only journal wiring through `improvement-journal.cjs`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:79:- Document the delivered command and runtime-agent updates for `.opencode/commands/improve/agent.md` and `.opencode/agents/improve-agent.md`.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:79:- Document the delivered command and runtime-agent updates for `.opencode/commands/deep/start-agent-improvement-loop.md` and `.opencode/agents/improve-agent.md`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:94:| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Created | Append-only improvement-session journal with validated event types. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:104:| `.opencode/agents/improve-agent.md` | Modified | Kept journaling orchestrator-side and aligned the runtime mirror. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:117:| REQ-001 | The phase must add a dedicated audit journal for improve-agent sessions. | `improvement-journal.cjs` exists and the release notes describe orchestrator-owned journal emission. |
@@ -2102,7 +2102,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:164:| Dependency | Phase 007 renamed the active runtime surfaces after Phase 005 landed. | Medium | Preserve historical context in prose, but point all live references at `sk-improve-agent` and `.opencode/agents/improve-agent.md`. |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:194:- The phase slug still says `agent-improver`, but the active skill and runtime files are now `sk-improve-agent` and `.opencode/agents/improve-agent.md`.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:222:| R-001 | Packet points to retired `agent-improver` runtime paths. | High | All live references now target `.opencode/agents/improve-agent.md` and `.opencode/skills/sk-improve-agent/`. |
-.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:3:This release lands Phase 008 of the 042 Deep Research & Review Runtime Improvement Bundle for `sk-improve-agent`. The skill now (a) actually calls `improvement-journal.cjs` from the visible `/improve:agent` YAML workflow at every iteration boundary, (b) enforces minimum sample sizes before trade-off and stability verdicts, and (c) implements ADR-002 Option A by reading `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` during reducer refresh. The visible operator path now emits the richer runtime-truth state the v1.1.0.0 contract promised.
+.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:3:This release lands Phase 008 of the 042 Deep Research & Review Runtime Improvement Bundle for `sk-improve-agent`. The skill now (a) actually calls `improvement-journal.cjs` from the visible `/deep:start-agent-improvement-loop` YAML workflow at every iteration boundary, (b) enforces minimum sample sizes before trade-off and stability verdicts, and (c) implements ADR-002 Option A by reading `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` during reducer refresh. The visible operator path now emits the richer runtime-truth state the v1.1.0.0 contract promised.
 .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:9:- `improve_agent-improver_{auto,confirm}.yaml` now invoke `improvement-journal.cjs` at three boundary points: session start, every iteration boundary (candidate generated → scored → gate evaluation), and session end. The orchestrator-only constraint is preserved — the proposal-only agent still never writes journal rows itself.
 .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:27:  - `improvement-journal.jsonl` → extracts `lastSessionStart`, `lastSessionEnd`, `totalEvents`, `eventTypeCounts`, and terminal `stopReason` + `sessionOutcome` from the latest session_end event.
 .opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:46:  - `032-journal-wiring.md` — verify YAML workflow calls journal helper at all boundaries
@@ -2120,7 +2120,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:57:- [x] Five dedicated Vitest suites landed alongside the helpers. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts; mutation-coverage.vitest.ts; trade-off-detector.vitest.ts; candidate-lineage.vitest.ts; benchmark-stability.vitest.ts]`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:74:- `improvement-journal.cjs`: append-only event capture for improvement sessions.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:96:- [x] Journal helper created and wired into the improve-agent workflow. `[EVIDENCE: .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:97:- [x] Runtime mirror and command docs were updated to publish the new contract. `[EVIDENCE: .opencode/agents/improve-agent.md; .opencode/commands/improve/agent.md; commit 080cf549e]`
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:97:- [x] Runtime mirror and command docs were updated to publish the new contract. `[EVIDENCE: .opencode/agents/improve-agent.md; .opencode/commands/deep/start-agent-improvement-loop.md; commit 080cf549e]`
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:229:improvement-journal.cjs
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/plan.md:246:| `improvement-journal.cjs` | Session payloads | Journal rows | Orchestrator and reducers |
 .opencode/changelog/15--sk-improve-agent/v1.0.1.0.md:33:| `.opencode/agents/agent-improver.md` | Modified | Fixed command path, promoted candidate improvements (halt condition, merged checklists, 4th anti-pattern) |
@@ -2148,7 +2148,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:139:        "path": "coverage-graph-integration.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:143:        "name": "coverage-graph-stress.vitest.ts",
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment/graph-metadata.json:145:        "path": "coverage-graph-stress.vitest.ts",
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:40:The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:40:The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:64:- the 31/31 manual playbook pass
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:65:- the 10,335-test Vitest result recorded at ship time
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:91:| `improvement-journal.vitest.ts` exists | PASS |
@@ -2186,7 +2186,7 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:917:- [ ] T010 Write `improvement-journal.vitest.ts`: test event emit, append-only enforcement (second write appends not overwrites), invalid event type rejection, resume journal read, session-ended event schema (`.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:948:- [ ] T020 [P] Add parallel wave orchestration branch to agent-improver.md: activation check against `parallelWaves.enabled` and `explorationBreadthScore >= activationThreshold`; spawn 2-3 candidates with different strategies; merge results by selecting highest non-regressive score (`.opencode/agents/agent-improver.md`) (REQ-AI-010)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:976:- [ ] All 5 Vitest suites (`improvement-journal`, `mutation-coverage`, `trade-off-detector`, `candidate-lineage`, `benchmark-stability`) pass with zero failures across 3 consecutive runs
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:1123:/bin/zsh -lc "printf '\\n--- agent-improver.md ---\\n'; sed -n '1,260p' .opencode/agents/agent-improver.md; printf '\\n--- command improve/agent.md ---\\n'; sed -n '1,260p' .opencode/commands/improve/agent.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:1123:/bin/zsh -lc "printf '\\n--- agent-improver.md ---\\n'; sed -n '1,260p' .opencode/agents/agent-improver.md; printf '\\n--- command deep/start-agent-improvement-loop.md ---\\n'; sed -n '1,260p' .opencode/commands/deep/start-agent-improvement-loop.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2425:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:69:- Audit journal (`improvement-journal.jsonl`) capturing all session events
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2433:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:97:| `.opencode/agents/agent-improver.md` | Modify | Add journal emission protocol, legal-stop gate checks, coverage graph update calls |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2435:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/spec.md:99:| `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Create | Append-only JSONL event emitter for improvement session events |
@@ -2204,9 +2204,9 @@ exec
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2568:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:47:- [ ] T007 Add hypothesis verification ledger schema to `improvement-journal.cjs`: `mutation-proposed` and `mutation-outcome` event types capturing proposed mutation, accepted/rejected status, rejection reason, and scored dimensions (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs`) (REQ-AI-005)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2571:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:50:- [ ] T010 Write `improvement-journal.vitest.ts`: test event emit, append-only enforcement (second write appends not overwrites), invalid event type rejection, resume journal read, session-ended event schema (`.opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts`)
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:2584:.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/tasks.md:81:- [ ] T020 [P] Add parallel wave orchestration branch to agent-improver.md: activation check against `parallelWaves.enabled` and `explorationBreadthScore >= activationThreshold`; spawn 2-3 candidates with different strategies; merge results by selecting highest non-regressive score (`.opencode/agents/agent-improver.md`) (REQ-AI-010)
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8645:P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md).
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8645:P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8659:4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8682:P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/improve/agent.md).
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8682:P0: formalize runtime truth before adding new intelligence. That means a typed stop contract, a real resume classifier, and separate journal vs mutation ledger in [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/SKILL.md), [improvement_config.json](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/assets/improvement_config.json), [agent-improver.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/agents/agent-improver.md), and [agent.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/start-agent-improvement-loop.md).
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/scratch/codex-gpt54-deep-research.md:8696:4. Audit journal. Today the improver mixes baseline, candidate, rejected, and benchmark records into one state log; that is too coarse for runtime truth. Add `improvement-journal.jsonl` for lifecycle and stop decisions, plus `mutation-ledger.jsonl` for proposal/evaluation outcomes in [scripts/](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-improve-agent/scripts); journal events should include `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempted`, `promotion_result`, `rollback_result`, and `session_ended`.
 
 exec
@@ -2266,7 +2266,7 @@ exec
     52	- [x] T012 Updated the improve-agent charter with audit-trail and legal-stop obligations. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_charter.md]`
     53	- [x] T013 Updated the improve-agent strategy asset with convergence, exhaustion, and trade-off guidance. `[EVIDENCE: .opencode/skills/sk-improve-agent/assets/improvement_strategy.md]`
     54	- [x] T014 Published the runtime-truth contract in the skill documentation. `[EVIDENCE: .opencode/skills/sk-improve-agent/SKILL.md; .opencode/changelog/15--sk-improve-agent/v1.1.0.0.md]`
-    55	- [x] T015 Updated the visible improve command documentation. `[EVIDENCE: .opencode/commands/improve/agent.md; commit 080cf549e summary]`
+    55	- [x] T015 Updated the visible improve command documentation. `[EVIDENCE: .opencode/commands/deep/start-agent-improvement-loop.md; commit 080cf549e summary]`
     56	- [x] T016 Updated the runtime mirror document at the current path. `[EVIDENCE: .opencode/agents/improve-agent.md]`
     57	- [x] T017 Added end-to-end playbook scenarios for mutation coverage, trade-off detection, and candidate lineage. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md; 023-trade-off-detection.md; 024-candidate-lineage.md]`
     58	- [x] T018 Added runtime-truth playbook scenarios for stop reasons, journal emission, legal-stop gates, stability, trajectory, and optional parallel candidates. `[EVIDENCE: .opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/025-stop-reason-taxonomy.md through 031-parallel-candidates-opt-in.md]`
@@ -2702,7 +2702,7 @@ exec
    171	<!-- /ANCHOR:docs-verify -->
 
 codex
-I’ve found one substantive drift already: the Phase `005` packet presents the journal as shipped runtime behavior, but the later `v1.2.0.0` changelog says the visible `/improve:agent` workflow only started emitting journal events in Phase `008`. I’m validating that against the actual test files now so I can separate “file exists” from “packet accurately traces when behavior became real.”
+I’ve found one substantive drift already: the Phase `005` packet presents the journal as shipped runtime behavior, but the later `v1.2.0.0` changelog says the visible `/deep:start-agent-improvement-loop` workflow only started emitting journal events in Phase `008`. I’m validating that against the actual test files now so I can separate “file exists” from “packet accurately traces when behavior became real.”
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -3958,9 +3958,9 @@ exec
    260	      stddev: stddev(scores),
 
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/improve/assets/improve_agent-improver_auto.yaml | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/deep/assets/improve_agent-improver_auto.yaml | sed -n '1,280p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-nl: .opencode/commands/improve/assets/improve_agent-improver_auto.yaml: No such file or directory
+nl: .opencode/commands/deep/assets/improve_agent-improver_auto.yaml: No such file or directory
 
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -4227,13 +4227,13 @@ exec
    260	      }
 
 exec
-/bin/zsh -lc 'rg --files .opencode/commands/improve/assets' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg --files .opencode/commands/deep/assets' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
 
 exec
-/bin/zsh -lc 'rg -n "session_end|session_ended|candidate_scored|scored|gate_evaluation|trade_off_detected|VALID_EVENT_TYPES|STOP_REASONS|SESSION_OUTCOMES" .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs .opencode/skills/sk-improve-agent/SKILL.md .opencode/commands/improve/agent.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'rg -n "session_end|session_ended|candidate_scored|scored|gate_evaluation|trade_off_detected|VALID_EVENT_TYPES|STOP_REASONS|SESSION_OUTCOMES" .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs .opencode/skills/sk-improve-agent/SKILL.md .opencode/commands/deep/start-agent-improvement-loop.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 .opencode/skills/sk-improve-agent/SKILL.md:267:Event types: `session_start`, `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `gate_evaluation`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempt`, `promotion_result`, `rollback`, `rollback_result`, `trade_off_detected`, `mutation_proposed`, `mutation_outcome`, `session_ended`, `session_end`
 .opencode/skills/sk-improve-agent/SKILL.md:332:The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.
@@ -4265,14 +4265,14 @@ exec
 .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:211:  STOP_REASONS,
 .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:212:  SESSION_OUTCOMES,
 .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:213:  VALID_EVENT_TYPES,
-.opencode/commands/improve/agent.md:304:# candidate_scored after scoring completes
-.opencode/commands/improve/agent.md:305:# gate_evaluation after stop-check or operator-gate evaluation
-.opencode/commands/improve/agent.md:309:# node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
+.opencode/commands/deep/start-agent-improvement-loop.md:304:# candidate_scored after scoring completes
+.opencode/commands/deep/start-agent-improvement-loop.md:305:# gate_evaluation after stop-check or operator-gate evaluation
+.opencode/commands/deep/start-agent-improvement-loop.md:309:# node .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
 
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/sk-improve-agent/SKILL.md | sed -n '260,360p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/improve/agent.md | sed -n '292,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/deep/start-agent-improvement-loop.md | sed -n '292,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
    260	
    261	### Audit Journal Protocol
@@ -4299,11 +4299,11 @@ exec
    282	
    283	### Resume/Continuation Semantics (current release)
    284	
-   285	Sessions support a single lineage mode today: `new`. Every invocation of the `/improve:agent` workflow starts a fresh session with a new session id and generation 1. Multi-generation lineage modes (`resume`, `restart`, `fork`, `completed-continue`) were described in earlier drafts but have no shipped runtime wiring in the improve-agent workflow, reducer, or journal consumer.
+   285	Sessions support a single lineage mode today: `new`. Every invocation of the `/deep:start-agent-improvement-loop` workflow starts a fresh session with a new session id and generation 1. Multi-generation lineage modes (`resume`, `restart`, `fork`, `completed-continue`) were described in earlier drafts but have no shipped runtime wiring in the improve-agent workflow, reducer, or journal consumer.
    286	
    287	Operators who want to continue evaluating an agent after a prior session SHOULD archive the prior session folder (e.g. move `improve/` to `improve_archive/{timestamp}/`) and re-invoke the command, which starts a new `new`-mode session. The reducer treats each session independently and does not carry ancestry across sessions.
    288	
-   289	If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `improve_improve-agent_{auto,confirm}.yaml`, reducer ancestry handling in `sk-improve-agent/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
+   289	If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `deep_start-agent-improvement-loop_{auto,confirm}.yaml`, reducer ancestry handling in `sk-improve-agent/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
    290	
    291	### Mutation Coverage Graph
    292	
@@ -4408,9 +4408,9 @@ exec
    320	- `manualStop` — User cancelled
 
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "nl -ba .opencode/commands/improve/assets/improve_improve-agent_auto.yaml | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "nl -ba .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml | sed -n '1,120p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
      1	# ─────────────────────────────────────────────────────────────────
      2	# AGENT IMPROVER: EVALUATION LOOP (AUTONOMOUS MODE)
@@ -4660,7 +4660,7 @@ exec
  succeeded in 0ms:
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:27:| **Primary Release Note** | `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md` |
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:28:| **Follow-on Correction** | `.opencode/changelog/15--sk-improve-agent/v1.2.1.0.md` |
-.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:40:The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
+.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:40:The phase added `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` and published the surrounding runtime-truth contract through `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`, and `.opencode/agents/improve-agent.md`. The journal gave the loop an append-only event stream and kept the write path outside the proposal agent so the evaluator-first model stayed intact.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:60:The implementation landed in commit `080cf549e`, which records the five helper scripts, the five dedicated test files, and the asset plus command updates. The shipped outcome was then documented in `v1.1.0.0`, which records:
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:67:Later on the packet family corrected one important documentation drift: `v1.2.1.0` explicitly retracted a multi-session lifecycle contract that had been documented but not actually wired. This closeout packet reflects that later correction so Phase 005 is recorded as shipped without silently preserving superseded lifecycle claims.
 .opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:101:Verification evidence for the shipped runtime lives in `.opencode/changelog/15--sk-improve-agent/v1.1.0.0.md`. Verification evidence for the later lifecycle wording correction lives in `.opencode/changelog/15--sk-improve-agent/v1.2.1.0.md`.
@@ -4800,9 +4800,9 @@ exec
     81	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/030-dimension-trajectory.md`                 | Created  | Playbook: dimension trajectory                                                                |
     82	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/031-parallel-candidates-opt-in.md`           | Created  | Playbook: opt-in parallel candidates                                                          |
     83	| `.opencode/skills/sk-improve-agent/assets/*`                                                                              | Renamed  | Asset tree migrated from `sk-agent-improver` namespace                                        |
-    84	| `.opencode/commands/improve/agent.md`                                                                                     | Modified | Documented stop-reason taxonomy, journal, and promotion gates                                 |
-    85	| `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml`                                                      | Modified | Wired journal emission and legal-stop evaluation in auto mode                                 |
-    86	| `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml`                                                   | Modified | Mirrored the same runtime truth contract in confirm mode                                      |
+    84	| `.opencode/commands/deep/start-agent-improvement-loop.md`                                                                                     | Modified | Documented stop-reason taxonomy, journal, and promotion gates                                 |
+    85	| `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml`                                                      | Modified | Wired journal emission and legal-stop evaluation in auto mode                                 |
+    86	| `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml`                                                   | Modified | Mirrored the same runtime truth contract in confirm mode                                      |
     87	| `.opencode/agents/agent-improver.md`                                                                                      | Modified | Aligned OpenCode runtime mirror with the proposal-only + journal model                        |
     88	
     89	---
@@ -4868,14 +4868,14 @@ exec
  succeeded in 0ms:
      1	## [**1.2.0.0**] - 2026-04-11
      2	
-     3	This release lands Phase 008 of the 042 Deep Research & Review Runtime Improvement Bundle for `sk-improve-agent`. The skill now (a) actually calls `improvement-journal.cjs` from the visible `/improve:agent` YAML workflow at every iteration boundary, (b) enforces minimum sample sizes before trade-off and stability verdicts, and (c) implements ADR-002 Option A by reading `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` during reducer refresh. The visible operator path now emits the richer runtime-truth state the v1.1.0.0 contract promised.
+     3	This release lands Phase 008 of the 042 Deep Research & Review Runtime Improvement Bundle for `sk-improve-agent`. The skill now (a) actually calls `improvement-journal.cjs` from the visible `/deep:start-agent-improvement-loop` YAML workflow at every iteration boundary, (b) enforces minimum sample sizes before trade-off and stability verdicts, and (c) implements ADR-002 Option A by reading `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` during reducer refresh. The visible operator path now emits the richer runtime-truth state the v1.1.0.0 contract promised.
      4	
      5	---
      6	
      7	### Journal Wiring (REQ-004, REQ-005)
      8	
      9	- `improve_agent-improver_{auto,confirm}.yaml` now invoke `improvement-journal.cjs` at three boundary points: session start, every iteration boundary (candidate generated → scored → gate evaluation), and session end. The orchestrator-only constraint is preserved — the proposal-only agent still never writes journal rows itself.
-    10	- The malformed `--event=session_initialized` CLI example in `.opencode/commands/improve/agent.md` is fixed. The working form is `--emit session_start --payload '<json>'` matching the helper's actual interface.
+    10	- The malformed `--event=session_initialized` CLI example in `.opencode/commands/deep/start-agent-improvement-loop.md` is fixed. The working form is `--emit session_start --payload '<json>'` matching the helper's actual interface.
     11	- `SKILL.md` adds a new "Journal Wiring Contract" section documenting the three boundary points, the frozen `STOP_REASONS` / `SESSION_OUTCOMES` enums (aligned to the helper's actual validator: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery` / `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`), and the orchestrator-only emission rule.
     12	
     13	---
@@ -4919,9 +4919,9 @@ exec
     72	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/032-journal-wiring.md` | Created | Manual test for journal wiring end-to-end |
     73	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/033-insufficient-sample.md` | Created | Manual test for insufficient-sample propagation |
     74	| `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` | Created | Manual test for ADR-002 replay consumer + graceful degradation |
-    75	| `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml` | Modified | Wired step_emit_journal_event at session_start + iteration + session_end |
-    76	| `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml` | Modified | Mirrored the same journal wiring in confirm mode |
-    77	| `.opencode/commands/improve/agent.md` | Modified | Fixed malformed `--event=session_initialized` → `--emit session_start --payload '...'` CLI example |
+    75	| `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml` | Modified | Wired step_emit_journal_event at session_start + iteration + session_end |
+    76	| `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml` | Modified | Mirrored the same journal wiring in confirm mode |
+    77	| `.opencode/commands/deep/start-agent-improvement-loop.md` | Modified | Fixed malformed `--event=session_initialized` → `--emit session_start --payload '...'` CLI example |
     78	
 
 codex
@@ -4931,7 +4931,7 @@ Severity: `P1`
 Dimension: `traceability`
 File: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:40,60-67`; `.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:3,7-11`
 Title: Phase 005 summary attributes visible journaled runtime to the wrong release
-Description: The Phase 005 summary says the journal “gave the loop an append-only event stream” and treats `v1.1.0.0` as the shipped runtime-truth evidence. But `v1.2.0.0` explicitly says Phase 008 is when the visible `/improve:agent` workflow “actually calls `improvement-journal.cjs`” and that the operator path only then emits the richer state promised earlier. That collapses “helper files existed in Phase 005” with “workflow wiring became real in Phase 008,” so the packet currently overstates what Phase 005 delivered.
+Description: The Phase 005 summary says the journal “gave the loop an append-only event stream” and treats `v1.1.0.0` as the shipped runtime-truth evidence. But `v1.2.0.0` explicitly says Phase 008 is when the visible `/deep:start-agent-improvement-loop` workflow “actually calls `improvement-journal.cjs`” and that the operator path only then emits the richer state promised earlier. That collapses “helper files existed in Phase 005” with “workflow wiring became real in Phase 008,” so the packet currently overstates what Phase 005 delivered.
 Evidence: `implementation-summary.md:40` says the journal gave the loop an event stream; `implementation-summary.md:60-67` treats `v1.1.0.0` as shipped outcome; `v1.2.0.0:3,9-11` says journal wiring and helper-aligned enums landed later.
 Recommendation: Reword Phase 005 to distinguish helper/module delivery from later workflow wiring, and cite `v1.2.0.0` as the follow-on release that made journal emission true on the visible operator path.
 
@@ -4986,7 +4986,7 @@ Severity: `P1`
 Dimension: `traceability`
 File: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment/implementation-summary.md:40,60-67`; `.opencode/changelog/15--sk-improve-agent/v1.2.0.0.md:3,7-11`
 Title: Phase 005 summary attributes visible journaled runtime to the wrong release
-Description: The Phase 005 summary says the journal “gave the loop an append-only event stream” and treats `v1.1.0.0` as the shipped runtime-truth evidence. But `v1.2.0.0` explicitly says Phase 008 is when the visible `/improve:agent` workflow “actually calls `improvement-journal.cjs`” and that the operator path only then emits the richer state promised earlier. That collapses “helper files existed in Phase 005” with “workflow wiring became real in Phase 008,” so the packet currently overstates what Phase 005 delivered.
+Description: The Phase 005 summary says the journal “gave the loop an append-only event stream” and treats `v1.1.0.0` as the shipped runtime-truth evidence. But `v1.2.0.0` explicitly says Phase 008 is when the visible `/deep:start-agent-improvement-loop` workflow “actually calls `improvement-journal.cjs`” and that the operator path only then emits the richer state promised earlier. That collapses “helper files existed in Phase 005” with “workflow wiring became real in Phase 008,” so the packet currently overstates what Phase 005 delivered.
 Evidence: `implementation-summary.md:40` says the journal gave the loop an event stream; `implementation-summary.md:60-67` treats `v1.1.0.0` as shipped outcome; `v1.2.0.0:3,9-11` says journal wiring and helper-aligned enums landed later.
 Recommendation: Reword Phase 005 to distinguish helper/module delivery from later workflow wiring, and cite `v1.2.0.0` as the follow-on release that made journal emission true on the visible operator path.
 

@@ -209,7 +209,7 @@
     ],
     "causal_summary": "MCP `search` now defaults `refresh_index=false`, so a normal semantic query no longer spends the same request budget on index refresh work. A new `cocoindex_refresh_index` MCP tool gives callers an explicit way to refresh before a search batch, while `search(refresh_index=true)` remains supported for backward compatibility.",
     "created_at": "2026-05-14T16:12:41Z",
-    "last_save_at": "2026-05-23T11:55:15.397Z",
+    "last_save_at": "2026-05-24T05:40:25.997Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Packet 119 identified three P2 hygiene gaps: duplicate ruled-out directions could accumulate, workflow YAML script references lacked a direct existence check, and the deep-research skill allowed-tools list needed post-118 pruning verification.",
     "created_at": "2026-05-23T03:56:52.844Z",
-    "last_save_at": "2026-05-23T11:55:14.294Z",
+    "last_save_at": "2026-05-24T05:40:25.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

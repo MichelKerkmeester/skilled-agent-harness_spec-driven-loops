@@ -263,12 +263,12 @@ I have the earlier maintainability findings that mattered most. I’m now checki
   │ .opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs
   └ L1:320 (291 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L130:220 (75 lines read)
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ L290:340 (51 lines read)
 
 I’ve confirmed the iteration 46 playbook drifts still exist in the current tree. I’m checking iteration 42’s version/docs findings next, because those are the other likely release-readiness blockers after the late doc cleanup.
@@ -404,8 +404,8 @@ I’ve confirmed the doc-side P1s. I’m doing one last code-side sweep on the e
 I have a solid evidence trail already, but I’m doing one independent review pass on the same current-tree surfaces to reduce the chance of missing a late-stage maintainability blocker before I render the final verdict.
 
 ● Review Cross-check maintainability
-  │ Read improve_improve-agent_confirm.yaml
-  │   │ .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+  │ Read deep_start-agent-improvement-loop_confirm.yaml
+  │   │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
   │   └ L196:202 (7 lines read)
   └ Read 015-graph-events-review.md
       │ .opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-dis
@@ -455,31 +455,31 @@ I’ve got enough to render the verdict, but I want one tighter citation set for
 - None.
 
 ### P1
-1. **F-050-001 — Wave merge identity and terminal board state still depend on hidden defaults**  
-   - **Files:** `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:208-225,400-407`; `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:188-190,215-221,453-469`  
+1. **F-050-001 — Wave merge identity and terminal board state still depend on hidden defaults**
+   - **Files:** `.opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs:208-225,400-407`; `.opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs:188-190,215-221,453-469`
    - `dispatchWave()` does not carry canonical session/generation metadata per result, `createCanonicalMergeBoard()` still falls back to `sessionId: 'wave-join'` / `generation: 1`, and the normal board lifecycle still derives `merging`, not `completed`, when all segments are terminal.
 
-2. **F-050-002 — Contradiction scanning still bypasses the shared session-normalization helper**  
-   - **Files:** `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:37-60`; `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-session.cjs:19-23,30-35,48-63,77-85`  
+2. **F-050-002 — Contradiction scanning still bypasses the shared session-normalization helper**
+   - **Files:** `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs:37-60`; `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-session.cjs:19-23,30-35,48-63,77-85`
    - `coverage-graph-contradictions.cjs` keeps its own raw session comparison while the shared helper trims and normalizes, so session filtering can drift and already has different behavior for padded IDs.
 
-3. **F-050-003 — Review graph-events verification still points at retired taxonomy and archive-only evidence**  
-   - **Files:** `.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md:14-15,29-35,48-50,66-68`; `.opencode/skills/sk-deep-review/references/state_format.md:235-256`; `.opencode/skills/system-spec-kit/vitest.config.ts:5-8`; `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:21-24`; `.opencode/skills/system-spec-kit/mcp_server/tests/archive/coverage-graph-db.vitest.ts:202-215`  
+3. **F-050-003 — Review graph-events verification still points at retired taxonomy and archive-only evidence**
+   - **Files:** `.opencode/skills/sk-deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md:14-15,29-35,48-50,66-68`; `.opencode/skills/sk-deep-review/references/state_format.md:235-256`; `.opencode/skills/system-spec-kit/vitest.config.ts:5-8`; `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:21-24`; `.opencode/skills/system-spec-kit/mcp_server/tests/archive/coverage-graph-db.vitest.ts:202-215`
    - DRV-015 still tells operators to validate `dimension_node` / `file_node` / `finding_node` against `coverage-graph-db.vitest.ts`, but the shipped review schema is flat (`dimension`, `file`, `finding`, `evidence`, `edge`) and the only `coverage-graph-db.vitest.ts` left is archived.
 
-4. **F-050-004 — Phase 008 / 042 closeout docs still cite superseded releases as primary evidence**  
-   - **Files:** `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/tasks.md:79`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/README.md:24-28`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:25-26,51`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/decision-record.md:27,45-51`; `.opencode/changelog/12--sk-deep-research/v1.6.2.0.md:7-12`; `.opencode/changelog/13--sk-deep-review/v1.3.2.0.md:7-12`; `.opencode/changelog/15--sk-improve-agent/v1.2.2.0.md:7-12`  
+4. **F-050-004 — Phase 008 / 042 closeout docs still cite superseded releases as primary evidence**
+   - **Files:** `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/tasks.md:79`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/README.md:24-28`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:25-26,51`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/decision-record.md:27,45-51`; `.opencode/changelog/12--sk-deep-research/v1.6.2.0.md:7-12`; `.opencode/changelog/13--sk-deep-review/v1.3.2.0.md:7-12`; `.opencode/changelog/15--sk-improve-agent/v1.2.2.0.md:7-12`
    - The packet still routes maintainers to `v1.6.0.0 / v1.3.0.0 / v1.2.0.0` as the evidence chain even though the latest shipped fixes are the `v1.6.2.0 / v1.3.2.0 / v1.2.2.0` patch releases.
 
-5. **F-050-005 — Improve-agent playbooks still describe runtime artifacts the shipped code does not emit**  
-   - **Files:** `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md:9-32`; `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md:13,49-57,61-71,87`; `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:59-67,246-255`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:924-938`; `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:141-143,168-170`; `.opencode/commands/improve/agent.md:299-309,332-334`  
+5. **F-050-005 — Improve-agent playbooks still describe runtime artifacts the shipped code does not emit**
+   - **Files:** `.opencode/skills/sk-improve-agent/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md:9-32`; `.opencode/skills/sk-improve-agent/manual_testing_playbook/07--runtime-truth/027-resume-continuation.md:13,49-57,61-71,87`; `.opencode/skills/sk-improve-agent/scripts/mutation-coverage.cjs:59-67,246-255`; `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:924-938`; `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:141-143,168-170`; `.opencode/commands/deep/start-agent-improvement-loop.md:299-309,332-334`
    - `E2E-022` still expects a node/edge mutation graph, but the runtime persists only `mutations`, `exhausted`, and `trajectory`. `RT-027` still expects `session_start.details.lineageMode` / `generation`, but the emitted event only carries `sessionId`, `target`, `charter`, and `startedAt`, and the prompt text is visibly corrupted.
 
 ### P2
-1. **F-050-006 — Deprecated `repeatedFindings` is still exposed as live deep-review contract surface**  
+1. **F-050-006 — Deprecated `repeatedFindings` is still exposed as live deep-review contract surface**
    - **Files:** `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:732-749,1027-1033`; `.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml:251-259`; `.opencode/skills/sk-deep-review/references/loop_protocol.md:106-110`; `.opencode/skills/sk-deep-review/references/state_format.md:533-536`
 
-2. **F-050-007 — Graph metadata still has an undocumented second entity-length rule**  
+2. **F-050-007 — Graph metadata still has an undocumented second entity-length rule**
    - **Files:** `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:431-435`; `.opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:134-145`; `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts:19-24`
 
 ## ITERATION SUMMARY

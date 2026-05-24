@@ -15,7 +15,7 @@ I targeted the final under-covered seam suggested by iteration 8: runtime mirror
 
 ## Method
 
-I read iterations 1-8 first, then avoided another full triad reread. I traced only the mirror-related files and seams: `scan-integration.cjs`, `check-mirror-drift.cjs`, `mirror_drift_policy.md`, `integration_scanning.md`, `evaluator_contract.md`, the `/improve:agent` command notes, the IS-001 manual scanner scenario, and the runtime mirror files for `improve-agent`; I also ran the scanner once read-only to see which mirrors it actually reports.
+I read iterations 1-8 first, then avoided another full triad reread. I traced only the mirror-related files and seams: `scan-integration.cjs`, `check-mirror-drift.cjs`, `mirror_drift_policy.md`, `integration_scanning.md`, `evaluator_contract.md`, the `/deep:start-agent-improvement-loop` command notes, the IS-001 manual scanner scenario, and the runtime mirror files for `improve-agent`; I also ran the scanner once read-only to see which mirrors it actually reports.
 
 ## Findings
 
@@ -25,7 +25,7 @@ The cumulative answer remains: sk-improve-agent knows mirror sync is downstream 
 
 `scan-integration.cjs` hard-codes three mirror templates: `.claude/agents/{name}.md`, `.codex/agents/{name}.toml`, and `.agents/agents/{name}.md` (`.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs:15-19`). The scanner then maps exactly those templates into `surfaces.mirrors` (`.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs:105-110`) and summarizes missing/diverged mirrors from that list (`.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs:196-227`). A read-only run for `improve-agent` reported `.claude` and `.codex` aligned, but `.agents/agents/improve-agent.md` missing; it did not report `.gemini/agents/improve-agent.md` even though that runtime mirror exists and has matching frontmatter (`.gemini/agents/improve-agent.md:1-20`, `.claude/agents/improve-agent.md:1-20`, `.codex/agents/improve-agent.toml:1-18`).
 
-The documentation is not consistently wrong; it is split-brain. The mirror drift policy says post-promotion drift review should cover `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/` (`.opencode/skills/sk-improve-agent/references/mirror_drift_policy.md:37-49`). The IS-001 manual scanner scenario also tells operators to compare `.claude/agents/`, `.codex/agents/`, `.opencode/agents/`, and `.gemini/agents/` when mirror sync fails, and lists `.gemini/agents/` as an implementation/verification anchor (`.opencode/skills/sk-improve-agent/manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md:43-45`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md:70-80`). But `integration_scanning.md` still documents `.agents/agents/{name}.md` as the third mirror and shows `.agents/agents/{agent-name}.md` in the sample JSON (`.opencode/skills/sk-improve-agent/references/integration_scanning.md:32-44`, `.opencode/skills/sk-improve-agent/references/integration_scanning.md:73-79`), while the command notes claim runtime parity is across `.opencode`, `.claude`, `.codex`, and `.agents` (`.opencode/commands/improve/agent.md:400-407`).
+The documentation is not consistently wrong; it is split-brain. The mirror drift policy says post-promotion drift review should cover `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/` (`.opencode/skills/sk-improve-agent/references/mirror_drift_policy.md:37-49`). The IS-001 manual scanner scenario also tells operators to compare `.claude/agents/`, `.codex/agents/`, `.opencode/agents/`, and `.gemini/agents/` when mirror sync fails, and lists `.gemini/agents/` as an implementation/verification anchor (`.opencode/skills/sk-improve-agent/manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md:43-45`, `.opencode/skills/sk-improve-agent/manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md:70-80`). But `integration_scanning.md` still documents `.agents/agents/{name}.md` as the third mirror and shows `.agents/agents/{agent-name}.md` in the sample JSON (`.opencode/skills/sk-improve-agent/references/integration_scanning.md:32-44`, `.opencode/skills/sk-improve-agent/references/integration_scanning.md:73-79`), while the command notes claim runtime parity is across `.opencode`, `.claude`, `.codex`, and `.agents` (`.opencode/commands/deep/start-agent-improvement-loop.md:400-407`).
 
 This is material to scoring, not cosmetic. The evaluator gives Integration Consistency 0.25 weight and says runtime mirror sync is part of that dimension, with mirror consistency carrying 60% of the integration score (`.opencode/skills/sk-improve-agent/references/evaluator_contract.md:91-100`). Therefore scanning `.agents` instead of `.gemini` can penalize a real Gemini mirror as missing and can also fail to detect drift in the actual Gemini runtime file.
 
@@ -35,7 +35,7 @@ Prior iterations answered the skill-load question. This pass adds a mirror-speci
 
 `check-mirror-drift.cjs` already has a more flexible interface: it accepts explicit `--canonical`, `--mirrors=a,b,c`, and `--manifest` inputs (`.opencode/skills/sk-improve-agent/scripts/check-mirror-drift.cjs:51-63`), folds those declared surfaces into one set (`.opencode/skills/sk-improve-agent/scripts/check-mirror-drift.cjs:77-97`), and then reports each known mirror's status (`.opencode/skills/sk-improve-agent/scripts/check-mirror-drift.cjs:118-143`). `scan-integration.cjs`, by contrast, has no equivalent manifest or runtime list input; its mirror list is only the constant array (`.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs:15-19`, `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs:185-199`).
 
-That means "script fired" is still insufficient evidence for runtime truth. A disciplined `/improve:agent` Call B must prove that the scanner checked the expected runtime mirror set, not merely that `scan-integration.cjs` ran and returned `status:"complete"`.
+That means "script fired" is still insufficient evidence for runtime truth. A disciplined `/deep:start-agent-improvement-loop` Call B must prove that the scanner checked the expected runtime mirror set, not merely that `scan-integration.cjs` ran and returned `status:"complete"`.
 
 ### RQ-5: What does Call A (baseline) vs Call B (sk-improve-agent-disciplined) look like? Can the differential be made grep-checkable?
 
@@ -109,7 +109,7 @@ Proposed text:
 | Gemini mirror | `.gemini/agents/{name}.md` | Exists, sync status vs canonical |
 ```
 
-For `.opencode/commands/improve/agent.md` at `## 7. NOTES`, current text:
+For `.opencode/commands/deep/start-agent-improvement-loop.md` at `## 7. NOTES`, current text:
 
 ```markdown
 - **Runtime parity**: Agent exists across 4 runtimes (.opencode, .claude, .codex, .agents). Scanner checks all.
@@ -134,11 +134,11 @@ node .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs --agent=debu
 
 | Field | Scenario |
 | --- | --- |
-| Purpose | Prove `/improve:agent` checks the real runtime mirror set and cannot satisfy mirror parity by scanning stale `.agents/agents` paths. |
+| Purpose | Prove `/deep:start-agent-improvement-loop` checks the real runtime mirror set and cannot satisfy mirror parity by scanning stale `.agents/agents` paths. |
 | Sandbox | `/tmp/cp-068-sandbox` plus `/tmp/cp-068-sandbox-baseline`, reset between Call A and Call B. |
 | Fixture | Canonical `.opencode/agents/cp068.md` with mirrors under `.claude/agents/cp068.md`, `.codex/agents/cp068.toml`, and `.gemini/agents/cp068.md`; no `.agents/agents/cp068.md`. |
 | Call A | Generic improvement task may update canonical or mention mirrors narratively. |
-| Call B | Disciplined `/improve:agent` path with integration scan and mirror drift review. |
+| Call B | Disciplined `/deep:start-agent-improvement-loop` path with integration scan and mirror drift review. |
 | PASS signals | Integration report includes `.gemini/agents/cp068.md`; report excludes `.agents/agents/cp068.md` unless manifest-declared; `mirrorSyncStatus:"all-aligned"` only after all expected runtime paths exist and align; transcript names `.gemini/agents`. |
 | FAIL signals | Scanner reports `.agents/agents/cp068.md` missing while omitting `.gemini`; pass criteria only checks three mirror entries; integration score penalizes missing `.agents` despite the real Gemini mirror being present; mirror drift note mentions `.gemini` only in prose/triage, not report JSON. |
 

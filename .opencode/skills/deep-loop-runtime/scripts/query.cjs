@@ -93,7 +93,7 @@ async function main() {
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);
   const queryType = args.queryType || args.query;
-  if (loopType !== 'research' && loopType !== 'review') throw inputError('loopType must be "research" or "review"');
+  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council') throw inputError('loopType must be "research", "review", or "council"');
   if (!queryType || typeof queryType !== 'string') throw inputError('queryType is required');
 
   const ns = { specFolder, loopType, sessionId };
@@ -101,11 +101,98 @@ async function main() {
   let db = null;
 
   try {
-    db = await import('../lib/coverage-graph/coverage-graph-db.ts');
+    const isCouncil = loopType === 'council';
+    db = isCouncil
+      ? await import('../lib/council/council-graph-db.ts')
+      : await import('../lib/coverage-graph/coverage-graph-db.ts');
     installSignalHandlers(() => db?.closeDb());
     maybeThrowTestFault();
-    const query = await import('../lib/coverage-graph/coverage-graph-query.ts');
+    const query = isCouncil
+      ? await import('../lib/council/council-graph-query.ts')
+      : await import('../lib/coverage-graph/coverage-graph-query.ts');
     let data;
+    if (isCouncil) {
+      const councilNs = { specFolder, sessionId };
+      switch (queryType) {
+        case 'unresolved_disagreements': {
+          const disagreements = query.findUnresolvedDisagreements(councilNs);
+          data = {
+            queryType,
+            namespace: ns,
+            scopeMode: 'session',
+            disagreements: disagreements.slice(0, limit),
+            totalUnresolved: disagreements.length,
+            sourceOfTruth: 'derived_from_ai_council_artifacts',
+          };
+          break;
+        }
+        case 'evidence_chain': {
+          const nodeId = ensureString(args, 'nodeId');
+          const maxDepth = Math.min(Math.max(Number(args.maxDepth || 10), 1), 20);
+          const chain = query.findEvidenceChain(councilNs, nodeId, maxDepth);
+          data = {
+            queryType,
+            namespace: ns,
+            scopeMode: 'session',
+            rootNodeId: nodeId,
+            chain: chain.slice(0, limit),
+            totalSteps: chain.length,
+            maxDepth,
+            sourceOfTruth: 'derived_from_ai_council_artifacts',
+          };
+          break;
+        }
+        case 'decision_support': {
+          const support = query.findDecisionSupport(councilNs, args.nodeId).slice(0, limit);
+          data = {
+            queryType,
+            namespace: ns,
+            scopeMode: 'session',
+            support,
+            totalReturned: support.length,
+            sourceOfTruth: 'derived_from_ai_council_artifacts',
+          };
+          break;
+        }
+        case 'convergence_blockers': {
+          const blockers = query.findConvergenceBlockers(councilNs);
+          data = {
+            queryType,
+            namespace: ns,
+            scopeMode: 'session',
+            blockers: {
+              unresolvedCriticalDisagreements: blockers.unresolvedCriticalDisagreements.slice(0, limit),
+              lowConfidenceDecisions: blockers.lowConfidenceDecisions.slice(0, limit),
+              unsupportedDecisions: blockers.unsupportedDecisions.slice(0, limit),
+            },
+            totals: {
+              unresolvedCriticalDisagreements: blockers.unresolvedCriticalDisagreements.length,
+              lowConfidenceDecisions: blockers.lowConfidenceDecisions.length,
+              unsupportedDecisions: blockers.unsupportedDecisions.length,
+            },
+            sourceOfTruth: 'derived_from_ai_council_artifacts',
+          };
+          break;
+        }
+        case 'hot_nodes': {
+          const hotNodes = query.rankHotNodes(councilNs, limit);
+          data = {
+            queryType,
+            namespace: ns,
+            scopeMode: 'session',
+            hotNodes,
+            totalReturned: hotNodes.length,
+            sourceOfTruth: 'derived_from_ai_council_artifacts',
+          };
+          break;
+        }
+        default:
+          throw inputError(`Unknown queryType: "${queryType}"`);
+      }
+      jsonOut({ status: 'ok', data });
+      return;
+    }
+
     switch (queryType) {
       case 'uncovered_questions':
         if (loopType !== 'research') throw inputError('uncovered_questions is only valid for research graphs; use coverage_gaps for review graphs');

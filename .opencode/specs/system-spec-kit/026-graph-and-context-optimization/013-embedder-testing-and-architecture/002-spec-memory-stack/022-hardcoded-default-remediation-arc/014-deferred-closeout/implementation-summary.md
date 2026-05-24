@@ -7,12 +7,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/014-deferred-closeout"
-    last_updated_at: "2026-05-23T22:00:00Z"
+    last_updated_at: "2026-05-23T22:45:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Shipped — 5 files (3 new + 2 modified), R1-R5 PASS"
-    next_safe_action: "Commit + push"
+    recent_action: "Post-014 fixes pushed (6acd845dfd)"
+    next_safe_action: "n/a — arc 022 closed"
     blockers: []
-    key_files: ["spec.md", "plan.md", "tasks.md"]
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/fixtures/intent-prompt-corpus.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/fixtures/harder-intent-prompt-corpus.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/rerank-sidecar-canonical-parity.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000002b1d"
       session_id: "016-002-022-014-summary"
@@ -21,6 +29,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "R1-R5 all pass; 3 deferred items closed; 1 no-op; 1 deferred"
+      - "Post-014 closeout: 2 more deferred items closed (test fixture rename + cross-language sidecar parity test) in commit 6acd845dfd. 53/53 scorer + 4/4 parity tests pass."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

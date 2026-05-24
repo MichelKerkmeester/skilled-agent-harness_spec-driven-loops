@@ -39,7 +39,7 @@ Report exact actual counts and any drift. Cite README line numbers + ls output f
 
 ### F-002-003: Command count
 - **Claim in README**: "22 command entry points" (line 7), "⌨️ 22 Commands" (line 56)
-- **Current truth**: 22 commands (agent_router.md, create/agent.md, create/changelog.md, create/feature-catalog.md, create/folder_readme.md, create/sk-skill.md, create/testing-playbook.md, doctor.md, doctor/mcp.md, doctor/update.md, improve/agent.md, improve/prompt.md, memory/learn.md, memory/manage.md, memory/save.md, memory/search.md, spec_kit/complete.md, spec_kit/deep-research.md, spec_kit/deep-review.md, spec_kit/implement.md, spec_kit/plan.md, spec_kit/resume.md)
+- **Current truth**: 22 commands (agent_router.md, create/agent.md, create/changelog.md, create/feature-catalog.md, create/folder_readme.md, create/sk-skill.md, create/testing-playbook.md, doctor.md, doctor/mcp.md, doctor/update.md, deep/start-agent-improvement-loop.md, prompt.md, memory/learn.md, memory/manage.md, memory/save.md, memory/search.md, spec_kit/complete.md, spec_kit/deep-research.md, spec_kit/deep-review.md, spec_kit/implement.md, spec_kit/plan.md, spec_kit/resume.md)
 - **Status**: CURRENT
 - **Suggested edit**: None
 

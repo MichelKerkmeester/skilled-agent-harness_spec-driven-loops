@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Use the loaded model's tokenizer and training context size to guarantee llama-cpp never receives oversized embedding input, while preserving the existing cross-provider character cap and local fallback behavior.",
     "created_at": "2026-05-14T14:21:37Z",
-    "last_save_at": "2026-05-23T11:55:15.391Z",
+    "last_save_at": "2026-05-24T05:40:25.994Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment",
+  "specFolder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment",
   "description": "Feature Specification: Graph Testing and Playbook Alignment",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "playbook",
     "alignment"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.858Z",
+  "lastUpdated": "2026-05-23T15:24:59.308Z",
   "specId": "006",
   "folderSlug": "graph-testing-and-playbook-alignment",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "042-sk-deep-research-review-improvement-2"
   ],
   "memorySequence": 0,

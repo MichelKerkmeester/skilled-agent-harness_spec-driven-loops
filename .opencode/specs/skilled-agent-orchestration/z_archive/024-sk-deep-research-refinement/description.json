@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/024-sk-deep-research-refinement",
+  "specFolder": "skilled-agent-orchestration/z_archive/024-sk-deep-research-refinement",
   "description": "Feature Specification: sk-deep-research Refinement via Self-Research",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "via",
     "self-research"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.709Z",
+  "lastUpdated": "2026-05-23T15:24:59.175Z",
   "specId": "024",
   "folderSlug": "sk-deep-research-refinement",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

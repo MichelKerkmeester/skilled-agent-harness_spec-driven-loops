@@ -32,7 +32,7 @@ This iteration focused on Q4: how existing write-capable internal agents bound t
 
 9. `@improve-agent` is write-capable but bounded as a proposal-only mutator: it must write one candidate under a packet-local candidate/runtime area, never edit the canonical target or runtime mirrors, never score/promote/benchmark, and return structured metadata. Evidence: `.opencode/agents/improve-agent.md:24`, `.opencode/agents/improve-agent.md:26`, `.opencode/agents/improve-agent.md:36`, `.opencode/agents/improve-agent.md:38`, `.opencode/agents/improve-agent.md:40`, `.opencode/agents/improve-agent.md:80`, `.opencode/agents/improve-agent.md:99`, `.opencode/agents/improve-agent.md:106`, `.opencode/agents/improve-agent.md:107`, `.opencode/agents/improve-agent.md:123`, `.opencode/agents/improve-agent.md:137`, `.opencode/agents/improve-agent.md:138`.
 
-10. `@improve-agent` also separates write authority from journal/state authority: journal emission is orchestrator-only, and the command workflow records/scans/scores candidates outside the agent. Evidence: `.opencode/agents/improve-agent.md:155`, `.opencode/agents/improve-agent.md:157`, `.opencode/agents/improve-agent.md:160`, `.opencode/agents/improve-agent.md:167`; `.opencode/commands/improve/agent.md:188`, `.opencode/commands/improve/agent.md:197`; `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:150`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:153`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:154`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:158`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:164`.
+10. `@improve-agent` also separates write authority from journal/state authority: journal emission is orchestrator-only, and the command workflow records/scans/scores candidates outside the agent. Evidence: `.opencode/agents/improve-agent.md:155`, `.opencode/agents/improve-agent.md:157`, `.opencode/agents/improve-agent.md:160`, `.opencode/agents/improve-agent.md:167`; `.opencode/commands/deep/start-agent-improvement-loop.md:188`, `.opencode/commands/deep/start-agent-improvement-loop.md:197`; `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:150`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:153`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:154`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:158`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:164`.
 
 11. `@improve-prompt` is the counterexample: it avoids write-bound complexity by denying write, edit, bash, memory, webfetch, chrome_devtools, task, and patch in frontmatter. Its body repeats that it is LEAF-only and read-only, never edits files, and only returns a structured prompt package. Evidence: `.opencode/agents/improve-prompt.md:6`, `.opencode/agents/improve-prompt.md:8`, `.opencode/agents/improve-prompt.md:9`, `.opencode/agents/improve-prompt.md:10`, `.opencode/agents/improve-prompt.md:16`, `.opencode/agents/improve-prompt.md:24`, `.opencode/agents/improve-prompt.md:26`, `.opencode/agents/improve-prompt.md:96`, `.opencode/agents/improve-prompt.md:99`, `.opencode/agents/improve-prompt.md:208`, `.opencode/agents/improve-prompt.md:210`.
 
@@ -139,12 +139,12 @@ This iteration focused on Q4: how existing write-capable internal agents bound t
 - `.opencode/commands/speckit/assets/speckit_implement_auto.yaml:355`
 - `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:356`
 - `.opencode/commands/speckit/assets/speckit_deep-research_auto.yaml:359`
-- `.opencode/commands/improve/agent.md:188`
-- `.opencode/commands/improve/agent.md:197`
-- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:150`
-- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:154`
-- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:158`
-- `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:164`
+- `.opencode/commands/deep/start-agent-improvement-loop.md:188`
+- `.opencode/commands/deep/start-agent-improvement-loop.md:197`
+- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:150`
+- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:154`
+- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:158`
+- `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:164`
 - `AGENTS.md:36`
 - `AGENTS.md:333`
 - `AGENTS.md:340`

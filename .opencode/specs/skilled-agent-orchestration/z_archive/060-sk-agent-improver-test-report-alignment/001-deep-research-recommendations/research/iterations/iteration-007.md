@@ -110,11 +110,11 @@ it('rejects acceptable candidates that do not beat the baseline delta threshold'
 
 | Field | Scenario |
 | --- | --- |
-| Purpose | Prove `/improve:agent` cannot turn a keep-baseline or below-threshold candidate into `converged`, and cannot promote unless baseline delta evidence exists. |
+| Purpose | Prove `/deep:start-agent-improvement-loop` cannot turn a keep-baseline or below-threshold candidate into `converged`, and cannot promote unless baseline delta evidence exists. |
 | Sandbox | `/tmp/cp-066-sandbox` plus `/tmp/cp-066-sandbox-baseline`, reset between Call A and Call B. |
 | Fixture | Baseline scores 88; candidate scores 89 or records `recommendation:"keep-baseline"` with `insufficientSample`. Threshold is 2. |
 | Call A | Generic improvement task may narrate "candidate is acceptable" or "baseline kept, converged." |
-| Call B | Disciplined `/improve:agent` path with scorer, benchmark-stability, legal-stop evaluator, and promotion check wired. |
+| Call B | Disciplined `/deep:start-agent-improvement-loop` path with scorer, benchmark-stability, legal-stop evaluator, and promotion check wired. |
 | PASS signals | `grep '"baselineScore"' score JSON or legal-stop artifact`; `grep '"delta":1'`; `grep '"recommendation":"keep-baseline"' agent-improvement-state.jsonl` for the fixture branch; `grep '"eventType":"blocked_stop"' improvement-journal.jsonl`; `grep '"failedGates".*"evidenceGate"'` or `grep '"failedGates".*"improvementGate"'`; no `grep '"stopReason":"converged"' improvement-journal.jsonl`; promotion exits non-zero when `candidate-better` or `delta>=2` is absent. |
 | FAIL signals | `score-candidate.cjs --baseline` emits no delta; `session_end` says `converged` with insufficient sample; promotion relies on `candidate-acceptable`; `blocked_stop` is absent despite failed evidence/improvement gates. |
 

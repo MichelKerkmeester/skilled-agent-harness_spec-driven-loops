@@ -36,14 +36,14 @@ Planning Packet:
     "Require task/checklist/resource-map state to match implementation-summary completion claims"
   ],
   "planSeed": [
-    "Replace stale Gemini YAML asset references with improve_deep-agent-improvement_{auto,confirm}.yaml or document Gemini non-YAML behavior explicitly",
+    "Replace stale Gemini YAML asset references with deep_start-agent-improvement-loop_{auto,confirm}.yaml or document Gemini non-YAML behavior explicitly",
     "Replace active playbook/default benchmark/feature-catalog old agent paths with .opencode/agents/deep-agent-improvement.md",
     "Populate implementation-summary placeholders and mark task/checklist evidence truthfully",
     "Re-run active-scope old-name inventory and update resource-map OK rows only after verification"
   ],
   "findingClasses": ["cross-consumer", "matrix/evidence"],
   "affectedSurfacesSeed": [
-    ".gemini/commands/improve/",
+    ".gemini/commands/deep/",
     ".opencode/skills/deep-agent-improvement/manual_testing_playbook/",
     ".opencode/skills/deep-agent-improvement/feature_catalog/",
     ".opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json",
@@ -57,7 +57,7 @@ Planning Packet:
 
 | ID | Sev | Dimension | Evidence | Summary | Disposition |
 |----|-----|-----------|----------|---------|-------------|
-| F001 | P1 | correctness | `.gemini/commands/improve/improve-agent.toml:60`; `.gemini/commands/improve/README.txt:158` | Gemini command docs still point at obsolete `improve_improve-agent_{auto,confirm}.yaml` names while OpenCode/Claude use renamed assets. | active |
+| F001 | P1 | correctness | `.gemini/commands/deep/start-agent-improvement-loop.toml:60`; `.gemini/commands/deep/start-agent-improvement-loop.toml:158` | Gemini command docs still point at obsolete `deep_start-agent-improvement-loop_{auto,confirm}.yaml` names while OpenCode/Claude use renamed assets. | active |
 | F002 | P1 | correctness | `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/014-proposal-only-boundary.md:77`; `015-active-critic-overfit.md:73` | Active playbook commands still `cat .opencode/agents/improve-agent.md` after the file was renamed. | active |
 | F003 | P1 | correctness | `implementation-summary.md:33`, `:43`, `:55`, `:79`, `:133`, `:147`, `:161` | Implementation summary claims COMPLETE while retaining `[POPULATE]` placeholders. | active |
 | F004 | P1 | traceability | `implementation-summary.md:33`; `tasks.md:128-131`; `checklist.md:139-140` | Completion claims are not traceable to task/checklist ledgers, which remain unchecked. | active |
@@ -82,13 +82,13 @@ Fix F005 after Workstreams A/B by changing false `OK` rows to accurate status/ev
 
 ## 5. Spec Seed
 
-- Add explicit acceptance criteria: active old-name inventory must include `.gemini/commands/improve`, `feature_catalog`, `manual_testing_playbook`, `SKILL.md`, benchmark profile JSON, and runtime docs outside `specs/`, `.opencode/specs/`, `z_archive`, and `barter` exclusions.
+- Add explicit acceptance criteria: active old-name inventory must include `.gemini/commands/deep`, `feature_catalog`, `manual_testing_playbook`, `SKILL.md`, benchmark profile JSON, and runtime docs outside `specs/`, `.opencode/specs/`, `z_archive`, and `barter` exclusions.
 - Add completion invariant: `implementation-summary.md` cannot claim COMPLETE while any `[POPULATE]` placeholder, unchecked P0/P1 checklist total, or unchecked task completion criterion remains.
 - Add resource-map invariant: `Updated | OK` rows must cite current verified evidence and cannot represent intended future state.
 
 ## 6. Plan Seed
 
-1. Run active exact searches for `improve_improve-agent`, `.opencode/agents/improve-agent.md`, `@improve-agent`, `name: improve-agent`, and `name = "improve-agent"`, excluding historical spec/archive/barter paths.
+1. Run active exact searches for `deep_start-agent-improvement-loop`, `.opencode/agents/improve-agent.md`, `@improve-agent`, `name: improve-agent`, and `name = "improve-agent"`, excluding historical spec/archive/barter paths.
 2. Update each active stale reference to `deep-agent-improvement` naming or document a narrowly scoped non-rename reason where applicable.
 3. Populate `implementation-summary.md` with actual completion date, delivery narrative, limitations, and commit/verification evidence.
 4. Update `tasks.md`, `checklist.md`, and `resource-map.md` to match verified reality.
@@ -138,7 +138,7 @@ Iterations:
 Quality gates:
 
 - Evidence: PASS for review reporting. Each P1 has file-line evidence in iteration artifacts.
-- Scope: PASS. Historical `z_archive`, unchanged `/improve:agent`, and Gemini command filename non-rename were not treated as defects.
+- Scope: PASS. Historical `z_archive`, unchanged `/deep:start-agent-improvement-loop`, and Gemini command filename non-rename were not treated as defects.
 - Coverage: PASS for configured dimensions, FAIL for release readiness because six P1 findings remain active.
 
 Final release-readiness state: `in-progress`. No P0 means not `release-blocking`, but active P1s block PASS.

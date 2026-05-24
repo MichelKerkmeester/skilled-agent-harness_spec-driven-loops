@@ -17,9 +17,9 @@
     "fixture",
     "harness"
   ],
-  "lastUpdated": "2026-05-22T19:07:31.265Z",
+  "lastUpdated": "2026-05-23T15:24:58.993Z",
   "specId": "002",
-  "folderSlug": "002-complexity-seeded-fixture-harness",
+  "folderSlug": "complexity-seeded-fixture-harness",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

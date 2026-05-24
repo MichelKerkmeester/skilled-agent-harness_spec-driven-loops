@@ -19,8 +19,8 @@ _memory:
     blockers: []
     key_files:
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research/research/research.md
-      - .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
-      - .opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+      - .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
+      - .opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
       - .opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs
       - .opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs
       - .opencode/skills/sk-improve-agent/scripts/reduce-state.cjs
@@ -128,8 +128,8 @@ Land all executable wirings so the command-flow pipeline produces evidence that 
 | `.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs` | Modify | Accept materialized fixture inputs; produce report.json with status:"benchmark-complete" |
 | `.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs` | Modify | Accept nested `details.gateResults` validation |
 | `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` | Modify | Consume `details.gateResults`; render in dashboard |
-| `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` | Modify | Replace flat `gate_evaluation` with nested `legal_stop_evaluated.details.gateResults`; wire materialize+run-benchmark; emit benchmark_completed after report exists |
-| `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` | Modify | Same as auto (lockstep parity) |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Modify | Replace flat `gate_evaluation` with nested `legal_stop_evaluated.details.gateResults`; wire materialize+run-benchmark; emit benchmark_completed after report exists |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | Modify | Same as auto (lockstep parity) |
 | `.opencode/skills/sk-improve-agent/SKILL.md` | Modify | Document static-asset benchmark location, materializer ownership, nested gateResults shape, stop-reason enum truth |
 | `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/` (or new path) | Modify if needed | Native RT-028/RT-032 fixture alignment if these reference 062-specific shapes |
 | `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-018*.md` | Modify | Update expected signal shapes for CP-040..045 to match 062's new shapes |

@@ -14,7 +14,7 @@
     "channel",
     "routing"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.386Z",
+  "lastUpdated": "2026-05-23T15:25:00.822Z",
   "specId": "002",
   "folderSlug": "fix-deep-review-findings-for-causal-graph-channel-routing",
   "parentChain": [

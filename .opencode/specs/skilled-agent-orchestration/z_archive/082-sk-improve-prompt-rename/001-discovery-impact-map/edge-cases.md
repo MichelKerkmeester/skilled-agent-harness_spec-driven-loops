@@ -11,7 +11,7 @@
 
 3. **Changelog symlink.** `.opencode/changelog/sk-improve-prompt` exists as a symlink to `../skill/sk-improve-prompt/changelog`, despite the prompt saying it is currently deleted. Phase 002 should rename or recreate it as `.opencode/changelog/sk-prompt` pointing to `../skill/sk-prompt/changelog`.
 
-4. **URL and path links.** Docs and command bodies link to `.opencode/skills/sk-improve-prompt/` or `.opencode/skills/sk-improve-prompt/SKILL.md`, including `.opencode/commands/improve/prompt.md` (10 refs), `.opencode/commands/improve/README.txt` (2 refs), `.gemini/commands/create/prompt.toml` (2 refs), and runtime agent mirrors (9 refs each).
+4. **URL and path links.** Docs and command bodies link to `.opencode/skills/sk-improve-prompt/` or `.opencode/skills/sk-improve-prompt/SKILL.md`, including `.opencode/commands/prompt.md` (10 refs), `.opencode/commands/README.txt` (2 refs), `.gemini/commands/create/prompt.toml` (2 refs), and runtime agent mirrors (9 refs each).
 
 5. **Hardcoded skill IDs.** Python and TypeScript literals appear in `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` (31 refs), `lib/scorer/lanes/explicit.ts` (9 refs), `lib/scorer/lanes/lexical.ts` (1 ref), and `lib/scorer/fusion.ts` (1 ref).
 

@@ -51,8 +51,8 @@ Six stages, executed in dependency order per 060/003 research §9 hand-off. Tota
 ## 4. STAGE 3 — RUN-BENCHMARK + YAML LOCKSTEP
 
 1. Modify `run-benchmark.cjs` to consume materialized fixtures + emit `report.json` with `status:"benchmark-complete"` and per-fixture metrics
-2. Patch `improve_improve-agent_auto.yaml` benchmark step: `node materialize-benchmark-fixtures.cjs --profile <static-path>` then `node run-benchmark.cjs --profile <static-path> --outputs-dir <packet-local>`; emit `benchmark_completed` only after report file exists
-3. Patch `improve_improve-agent_confirm.yaml` identically (lockstep)
+2. Patch `deep_start-agent-improvement-loop_auto.yaml` benchmark step: `node materialize-benchmark-fixtures.cjs --profile <static-path>` then `node run-benchmark.cjs --profile <static-path> --outputs-dir <packet-local>`; emit `benchmark_completed` only after report file exists
+3. Patch `deep_start-agent-improvement-loop_confirm.yaml` identically (lockstep)
 4. Add `benchmark_run` state-log row from run-benchmark.cjs
 
 ## 5. STAGE 4 — LEGAL-STOP NESTED + REDUCER + STOP-REASON
@@ -65,7 +65,7 @@ Six stages, executed in dependency order per 060/003 research §9 hand-off. Tota
 
 ## 6. STAGE 5 — NATIVE RT ALIGNMENT + SKILL.MD DOCS
 
-1. Audit RT-028 + RT-032 native fixture scenarios for `/improve:improve-agent` naming drift, command names, target agent paths, event vocabulary, expected signal lists
+1. Audit RT-028 + RT-032 native fixture scenarios for `/deep:start-agent-improvement-loop` naming drift, command names, target agent paths, event vocabulary, expected signal lists
 2. Reconcile (rename/update as needed)
 3. Run RT-028 + RT-032 end-to-end against the new wiring; confirm GREEN
 4. Update SKILL.md sections for: benchmark static-asset location, materializer ownership, nested legal-stop shape, stop-reason enum truth, reducer behavior

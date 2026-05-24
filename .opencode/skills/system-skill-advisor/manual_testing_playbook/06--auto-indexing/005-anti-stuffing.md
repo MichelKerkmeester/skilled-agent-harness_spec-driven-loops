@@ -37,7 +37,7 @@ Validate that `lib/derived/anti-stuffing.ts` enforces cardinality caps on derive
 <!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/deferred-decisions.md` §F34 for rationale.
+> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred_decisions.md` §F34 for rationale.
 
 1. Copy an existing active skill into the disposable copy and duplicate a trigger phrase 1000 times in its body.
 2. Add a second fixture where a single n-gram is repeated with only punctuation variation.

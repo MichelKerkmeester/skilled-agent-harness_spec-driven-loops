@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phases 002-007 shipped the v2 review-depth contract across fixtures, schema, validator, reducer, STOP gates, and graph vocabulary. Operators now need a compact manual playbook that exercises those shipped surfaces without changing production defaults prematurely.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-23T11:55:14.265Z",
+    "last_save_at": "2026-05-24T05:40:25.255Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

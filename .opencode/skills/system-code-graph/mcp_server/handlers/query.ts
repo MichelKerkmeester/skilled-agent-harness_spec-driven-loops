@@ -22,7 +22,7 @@ import type {
 } from '../lib/query-result-adapter.js';
 // R-007-P2-6: emit a stable failure-counter metric so operators can
 // distinguish DB / compute failures from legitimately empty blast radii.
-import { isSpeckitMetricsEnabled, speckitMetrics } from '../../../system-skill-advisor/mcp_server/lib/metrics.js';
+import { isSpeckitMetricsEnabled, speckitMetrics } from '../lib/shared/metrics-stub.js';
 
 export interface QueryArgs {
   operation: 'outline' | 'calls_from' | 'calls_to' | 'imports_from' | 'imports_to' | 'blast_radius';

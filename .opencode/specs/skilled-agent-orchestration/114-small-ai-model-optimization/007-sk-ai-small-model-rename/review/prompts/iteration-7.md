@@ -10,7 +10,7 @@ Iters 1-5 covered correctness, traceability, security, maintainability, adversar
 
 ### Pre-planning
 
-1. **Hypothesis A1: sk-ai-small-model SKILL.md body internal references**. Read `.opencode/skills/sk-ai-small-model/SKILL.md` end-to-end. Look for:
+1. **Hypothesis A1: sk-prompt-small-model SKILL.md body internal references**. Read `.opencode/skills/sk-prompt-small-model/SKILL.md` end-to-end. Look for:
    - Any link/path/wikilink that still resolves to a `deep-ai-council` analog or other broken reference
    - Any inconsistency between frontmatter `name` and H1
    - Any orphaned section due to the rename
@@ -22,7 +22,7 @@ Iters 1-5 covered correctness, traceability, security, maintainability, adversar
 3. **Hypothesis A3: agent surface impact**. The 007 packet was a skill rename, not an agent rename. But: do any agent files (`.opencode/agents/**.md`) load `.opencode/skills/sk-small-model/...`? If so, that's a missed reference.
    - Acceptance: per-agent grep verdict.
 
-4. **Hypothesis A4: pattern-index.md table internal links**. Read `.opencode/skills/sk-ai-small-model/references/pattern-index.md`. Verify every internal link `[...](path)` resolves to an existing file post-rename.
+4. **Hypothesis A4: pattern-index.md table internal links**. Read `.opencode/skills/sk-prompt-small-model/references/pattern-index.md`. Verify every internal link `[...](path)` resolves to an existing file post-rename.
    - Acceptance: per-link verdict.
 
 5. **Hypothesis A5: incidental fixes are reversible**. The 007 incidental fixes to `system-rerank-sidecar` (category) and `mcp-coco-index` (reverse-sibling) introduced edges that didn't exist before. Verify they're consistent with sibling skill metadata in those skills' READMEs/SKILL.md/references.

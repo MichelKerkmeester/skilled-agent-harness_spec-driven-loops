@@ -66,11 +66,11 @@
 .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/plan.md:3
 .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/spec.md:3
 .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation/tasks.md:1
-.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/.backup-20260521-082304/spec.md:1
-.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/checklist.md:8
-.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/plan.md:36
-.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/spec.md:39
-.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/tasks.md:10
+.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/.backup-20260521-082304/spec.md:1
+.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/checklist.md:8
+.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/plan.md:36
+.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/spec.md:39
+.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/tasks.md:10
 .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/description.json:2
 .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/review/deep-review-config.json:1
 .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/review/deep-review-state.jsonl:18

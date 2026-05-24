@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:purpose -->
 ## ROOT PURPOSE
 
-In packet 060/004 we proved that `@improve-agent`'s discipline lives in its command orchestrator (`/improve:agent`), not in the agent body. The 060/002 same-task A/B prepend-body stress scored **0/2/4** because we tested the wrong layer. Restructuring to per-CP layer partition (some scenarios test command-flow, some body-level) produced final composite **PASS 6 / PARTIAL 0 / FAIL 0** by R3.
+In packet 060/004 we proved that `@improve-agent`'s discipline lives in its command orchestrator (`/deep:start-agent-improvement-loop`), not in the agent body. The 060/002 same-task A/B prepend-body stress scored **0/2/4** because we tested the wrong layer. Restructuring to per-CP layer partition (some scenarios test command-flow, some body-level) produced final composite **PASS 6 / PARTIAL 0 / FAIL 0** by R3.
 
 **`@deep-research` and `@deep-review` have the SAME ARCHITECTURE as `@improve-agent`**:
 - Each is a LEAF agent dispatched ONLY by its command (`/speckit:deep-research`, `/speckit:deep-review`)

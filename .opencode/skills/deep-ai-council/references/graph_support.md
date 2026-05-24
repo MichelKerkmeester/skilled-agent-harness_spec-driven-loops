@@ -1,10 +1,10 @@
 ---
 title: "AI Council Graph Support"
-description: "Derived council graph support boundaries, MCP tool surface, and recovery rules."
+description: "Derived council graph support boundaries, deep-loop-runtime CLI surface, and recovery rules."
 trigger_phrases:
   - "deep-ai-council graph support"
   - "council graph"
-  - "council_graph tools"
+  - "council graph runtime CLI"
   - "derived council graph"
 importance_tier: "normal"
 contextType: "reference"
@@ -12,7 +12,7 @@ contextType: "reference"
 
 # AI Council Graph Support
 
-Dedicated council graph support is available as a derived MCP projection. It does not replace packet-local `ai-council/**` artifacts or append-only state.
+Dedicated council graph support is available as a derived `deep-loop-runtime` CLI projection. It does not replace packet-local `ai-council/**` artifacts or append-only state.
 
 ---
 
@@ -32,16 +32,16 @@ If graph rows disagree with artifacts, the artifacts win and graph rows should b
 
 ---
 
-## 2. TOOL SURFACE
+## 2. RUNTIME CLI SURFACE
 
-Dedicated MCP tools use the `council_graph_*` prefix:
+Dedicated graph operations run through the shared deep-loop runtime scripts with `--loop-type council`:
 
-- `council_graph_upsert` writes derived nodes and edges.
-- `council_graph_query` reads unresolved disagreements, evidence chains, decision support, convergence blockers, and hot nodes.
-- `council_graph_status` reports readiness, counts, schema version, and current signals.
-- `council_graph_convergence` computes council-specific convergence decisions.
+- `deep-loop-runtime/scripts/upsert.cjs --loop-type council` writes derived nodes and edges.
+- `deep-loop-runtime/scripts/query.cjs --loop-type council` reads unresolved disagreements, evidence chains, decision support, convergence blockers, and hot nodes.
+- `deep-loop-runtime/scripts/status.cjs --loop-type council` reports readiness, counts, schema version, and current signals.
+- `deep-loop-runtime/scripts/convergence.cjs --loop-type council` computes council-specific convergence decisions.
 
-Do not use `deep_loop_graph_*` for council data. Those tools are scoped to research/review coverage graphs.
+Do not use research/review graph namespaces for council data. Council has its own runtime-owned SQLite projection under `deep-loop-runtime`.
 
 ---
 
@@ -99,10 +99,10 @@ Safe recovery path:
 
 1. Keep `ai-council/**` artifacts unchanged.
 2. Delete or ignore stale `council-graph.sqlite` rows scoped to the affected `specFolder` and `sessionId` only.
-3. Replay derived nodes and edges from packet-local artifacts with `scripts/replay-graph-from-artifacts.cjs`, which reads `ai-council-state.jsonl` and emits a `council_graph_upsert` payload across the SESSION / ROUND / SEAT / CLAIM / EVIDENCE / DISAGREEMENT / DECISION / RECOMMENDATION node kinds.
-4. Re-run `council_graph_status` and `council_graph_convergence`.
+3. Replay derived nodes and edges from packet-local artifacts with `scripts/replay-graph-from-artifacts.cjs`, which reads `ai-council-state.jsonl` and calls the runtime `upsert.cjs --loop-type council` path across the SESSION / ROUND / SEAT / CLAIM / EVIDENCE / DISAGREEMENT / DECISION / RECOMMENDATION node kinds. Use `--dry-run` to inspect the derived payload without writing.
+4. Re-run `status.cjs --loop-type council` and `convergence.cjs --loop-type council`.
 
-`council_graph_status` reports the bounded cleanup contract in its `recovery` payload so callers do not need to infer whether artifacts or derived rows are authoritative.
+The council status script reports the bounded cleanup contract in its `recovery` payload so callers do not need to infer whether artifacts or derived rows are authoritative.
 
 Never rewrite historical `ai-council-state.jsonl` rows to fit the graph.
 
@@ -113,6 +113,6 @@ Never rewrite historical `ai-council-state.jsonl` rows to fit the graph.
 - State format: `references/state_format.md`
 - Folder layout: `references/folder_layout.md`
 - Convergence signals: `references/convergence_signals.md`
-- MCP implementation: `.opencode/skills/system-spec-kit/mcp_server/lib/council-graph/`
-- Graph replay script: `scripts/replay-graph-from-artifacts.cjs` (derives the `council_graph_upsert` payload from `ai-council-state.jsonl`; run it after deleting stale derived rows during recovery)
+- Runtime implementation: `.opencode/skills/deep-loop-runtime/lib/council/`
+- Graph replay script: `scripts/replay-graph-from-artifacts.cjs` (derives the council payload from `ai-council-state.jsonl` and writes it through `deep-loop-runtime/scripts/upsert.cjs --loop-type council`; run it after deleting stale derived rows during recovery)
 - Deep-mode state hierarchy: `references/deep_mode.md`

@@ -47,6 +47,7 @@
       ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
       ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
       ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+      ".opencode/specs/descriptions.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -87,6 +88,12 @@
         "name": "v2.4.0.0.md",
         "kind": "doc",
         "path": ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After code and runtime consumers are renamed, user-facing docs and active config surfaces may still advertise `sk-improve-prompt`. Leaving those refs behind creates broken setup guidance and stale skill catalog entries.",
     "created_at": "2026-05-06T10:22:42Z",
-    "last_save_at": "2026-05-23T11:55:14.641Z",
+    "last_save_at": "2026-05-24T05:40:25.508Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

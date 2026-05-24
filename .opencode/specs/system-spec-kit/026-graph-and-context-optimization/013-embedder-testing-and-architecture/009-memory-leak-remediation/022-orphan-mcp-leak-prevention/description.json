@@ -1,0 +1,22 @@
+{
+  "specFolder": "022-orphan-mcp-leak-prevention",
+  "description": "Orphan MCP Leak Prevention",
+  "keywords": [
+    "orphan",
+    "mcp",
+    "leak",
+    "prevention"
+  ],
+  "lastUpdated": "2026-05-24T07:17:45.000Z",
+  "specId": "022",
+  "folderSlug": "orphan-mcp-leak-prevention",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

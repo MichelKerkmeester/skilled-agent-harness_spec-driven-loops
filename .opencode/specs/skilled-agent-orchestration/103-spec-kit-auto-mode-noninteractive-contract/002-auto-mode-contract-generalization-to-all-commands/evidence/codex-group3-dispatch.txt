@@ -1,6 +1,6 @@
-# /improve:agent
+# /deep:start-agent-improvement-loop
 
-- Command file: `.opencode/commands/improve/agent.md`
+- Command file: `.opencode/commands/deep/start-agent-improvement-loop.md`
 - Fields migrated count: 6
 - Fields migrated: `target_path`, `target_profile`, `spec_folder`, `execution_mode`, `scoring_mode`, `max_iterations`
 - Tier-2 candidates identified: `spec_folder`

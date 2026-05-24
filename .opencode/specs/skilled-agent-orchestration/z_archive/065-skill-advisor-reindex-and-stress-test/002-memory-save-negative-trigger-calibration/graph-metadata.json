@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The baseline router campaign found two related memory-save issues. `memory:save` scored 0.82 for `save the file I'm working on`, which is a file operation rather than context preservation. The advisor also missed `preserve everything we figured out today so the next session doesn't lose it`, which is context preservation without literal `save` or `context`.",
     "created_at": "2026-05-18T07:49:27.132Z",
-    "last_save_at": "2026-05-23T11:55:14.532Z",
+    "last_save_at": "2026-05-24T05:40:25.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

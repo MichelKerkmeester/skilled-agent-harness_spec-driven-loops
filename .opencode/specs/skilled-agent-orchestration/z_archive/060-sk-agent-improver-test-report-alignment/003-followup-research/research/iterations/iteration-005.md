@@ -51,8 +51,8 @@ Functionally complete as shipped remains unchanged for three areas: proposal-onl
 
 The further-iteration priority is now more precise:
 
-1. **Benchmark path is the least complete diff area.** Auto YAML declares `run-benchmark.cjs` as the benchmark script but `step_run_benchmark` is still prose `action`, followed by `benchmark_completed` assuming `{benchmark_output_path}` exists [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:87-93`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:171-179`]. Even replacing the action with a command is insufficient unless 063 also supplies `--profiles-dir` and materializes fixture-ID markdown outputs.
-2. **Legal-stop event shape is incomplete but narrowly fixable.** YAML emits flat `contractGate`, `behaviorGate`, `integrationGate`, `evidenceGate`, and `improvementGate` fields [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:192-198`], while the reducer only reads `details.gateResults` for `legal_stop_evaluated` [SOURCE: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-218`].
+1. **Benchmark path is the least complete diff area.** Auto YAML declares `run-benchmark.cjs` as the benchmark script but `step_run_benchmark` is still prose `action`, followed by `benchmark_completed` assuming `{benchmark_output_path}` exists [SOURCE: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:87-93`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:171-179`]. Even replacing the action with a command is insufficient unless 063 also supplies `--profiles-dir` and materializes fixture-ID markdown outputs.
+2. **Legal-stop event shape is incomplete but narrowly fixable.** YAML emits flat `contractGate`, `behaviorGate`, `integrationGate`, `evidenceGate`, and `improvementGate` fields [SOURCE: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:192-198`], while the reducer only reads `details.gateResults` for `legal_stop_evaluated` [SOURCE: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-218`].
 3. **Journal vocabulary remains partially inconsistent.** The skill lists `legal_stop_evaluated` and `blocked_stop` as event types and says all five legal-stop gates must precede any `session_end` [SOURCE: `.opencode/skills/sk-improve-agent/SKILL.md:271-291`], but the later boundary table still says auto mode emits `candidate_generated`, `candidate_scored`, and `gate_evaluation` inside each loop [SOURCE: `.opencode/skills/sk-improve-agent/SKILL.md:343-364`].
 
 ### RQ-3: Prefer nested producer shape over reducer tolerance for 063 GREEN
@@ -91,7 +91,7 @@ Evaluator asset completeness:
 - Benchmark report, state-log row, and journal event are causally ordered.
 ```
 
-This is distinct from "ordered artifact/journal truth." The latter checks event sequence after execution. Evaluator asset completeness checks whether the scenario was capable of producing the evidence at all. It would have blocked CP-045's green expectation because the R1 report says CP-045 expected `run-benchmark.cjs`, `benchmark_completed`, and a sentinel [SOURCE: `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md:88-98`], while the YAML had only action prose for benchmark execution [SOURCE: `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:171-176`].
+This is distinct from "ordered artifact/journal truth." The latter checks event sequence after execution. Evaluator asset completeness checks whether the scenario was capable of producing the evidence at all. It would have blocked CP-045's green expectation because the R1 report says CP-045 expected `run-benchmark.cjs`, `benchmark_completed`, and a sentinel [SOURCE: `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md:88-98`], while the YAML had only action prose for benchmark execution [SOURCE: `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:171-176`].
 
 ### RQ-7: Generalize test-layer selection with an evaluator preflight subsection
 
@@ -115,14 +115,14 @@ The key question for future packet authors is no longer only "which layer owns t
 ## New Open Questions
 
 1. Should 063 create a packet-local benchmark profile for `cp-improve-target`, or should the sk-improve-agent asset tree grow canonical target-profile fixtures first?
-2. What should materialize `{fixture.id}.md` outputs: the `/improve:agent` YAML workflow, the `@improve-agent` candidate generator, or the CP runner harness?
+2. What should materialize `{fixture.id}.md` outputs: the `/deep:start-agent-improvement-loop` YAML workflow, the `@improve-agent` candidate generator, or the CP runner harness?
 3. Should the stale manual benchmark tests that use `--profile=debug` be updated in the same downstream packet as command-flow 063, or split into a separate benchmark-assets cleanup packet?
 
 ## Ruled Out
 
 - **Ruled out: `--outputs-dir={candidate_path}`.** The runner appends `${fixture.id}.md` to the supplied output directory, so a file path cannot satisfy the contract [SOURCE: `.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:217-221`].
 - **Ruled out: using generated `dynamic-profile.json` directly as a benchmark profile.** The generator emits `benchmark.fixtureDir:null`, and the runner expects `profile.benchmark.fixtureDir` to be listable JSON fixtures [SOURCE: `.opencode/skills/sk-improve-agent/scripts/generate-profile.cjs:218-237`, `.opencode/skills/sk-improve-agent/scripts/run-benchmark.cjs:217-220`].
-- **Ruled out: reducer-tolerant flat legal-stop fields as the primary GREEN proof.** Tolerance may preserve old logs, but the reducer's current consumer shape is nested `details.gateResults`; GREEN should prove the producer emits that shape [SOURCE: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-218`, `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:192-198`].
+- **Ruled out: reducer-tolerant flat legal-stop fields as the primary GREEN proof.** Tolerance may preserve old logs, but the reducer's current consumer shape is nested `details.gateResults`; GREEN should prove the producer emits that shape [SOURCE: `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:213-218`, `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:192-198`].
 
 ## Sketches (if any)
 

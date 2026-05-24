@@ -1,16 +1,39 @@
 {
   "title": "API Response Shape Closure for F9 F32 F39 F97 F99",
-  "description": "Level 2 packet closing deferred P2 sidecar-client findings for test-only env export separation, response aliases, camelCase naming, and pending-map discriminator narrowing.",
-  "contextType": "implementation",
-  "importance_tier": "important",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/004-fix-deferred-p2s-for-api-response-shape",
-  "level": 2,
-  "status": "complete",
   "trigger_phrases": [
     "020 004 api response shape",
     "F9 F32 F39 F97 F99 sidecar-client",
     "sidecar response aliases"
   ],
+  "level": 2,
+  "contextType": "implementation",
+  "importance_tier": "important",
+  "status": "complete",
   "created_at": "2026-05-23T10:45:00Z",
-  "updated_at": "2026-05-23T11:00:00Z"
+  "updated_at": "2026-05-23T11:00:00Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/004-fix-deferred-p2s-for-api-response-shape",
+  "description": "Spec: API Response Shape Closure for F9 F32 F39 F97 F99",
+  "keywords": [
+    "spec",
+    "api",
+    "response",
+    "shape",
+    "closure",
+    "f32",
+    "f39",
+    "f97",
+    "f99"
+  ],
+  "lastUpdated": "2026-05-23T15:25:00.993Z",
+  "specId": "004",
+  "folderSlug": "fix-deferred-p2s-for-api-response-shape",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

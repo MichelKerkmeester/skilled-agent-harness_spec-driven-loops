@@ -24,7 +24,8 @@
     "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design",
     "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper",
     "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes",
-    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2"
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+    "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -39,6 +40,11 @@
       "009 memory leak arc",
       "process lifecycle cleanup",
       "sidecar daemon memory cleanup"
+      ,
+      "orphan mcp leak prevention",
+      "orphan mcp sweeper",
+      "launcher idle self kill",
+      "claude session cleanup"
     ],
     "key_topics": [
       "memory",
@@ -51,13 +57,21 @@
       "cleanup",
       "sidecar",
       "daemon",
+      "orphan",
+      "mcp",
+      "sweeper",
+      "claude",
+      "idle",
       "coordinate",
       "process-lifecycle"
     ],
     "importance_tier": "critical",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "022-orphan-mcp-leak-prevention/spec.md",
+      "022-orphan-mcp-leak-prevention/plan.md",
+      "022-orphan-mcp-leak-prevention/tasks.md"
     ],
     "entities": [
       {
@@ -105,7 +119,7 @@
     ],
     "causal_summary": "Coordinate memory and process-lifecycle remediation across the 016 embedder architecture umbrella. The arc covers CLI dispatch containment, deep-loop state safety, expected-daemon classification, host-memory telemetry, CocoIndex indexing lifecycle, Code Graph launcher ownership, rerank sidecar/model cleanup, and Spec Kit Memory runtime retention.",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-23T11:55:15.639Z",
+    "last_save_at": "2026-05-24T05:40:26.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -82,12 +82,16 @@ lib/
 +-- auth/                       # Trusted caller checks
 +-- compat/                     # Compatibility and daemon probes
 +-- corpus/                     # Text scoring helpers
++-- cross-skill-edges/          # Inbound enhances edge detection/apply helpers
 +-- daemon/                     # Advisor daemon helpers
 +-- derived/                    # Derived metadata helpers
++-- embedders/                  # Advisor embedder schema and shared registry shims
 +-- freshness/                  # Freshness and cache state helpers
++-- ipc/                        # Launcher IPC bridge and idle-timeout helpers
 +-- lifecycle/                  # Skill lifecycle metadata helpers
 +-- scorer/                     # Advisor scorer implementation
 +-- shadow/                     # Shadow-mode telemetry helpers
++-- shared/                     # Small advisor-local shared helpers
 +-- utils/                      # Small utility functions
 +-- advisor-runtime-values.ts   # Runtime defaults and constants
 +-- prompt-policy.ts            # Prompt handling policy
@@ -134,7 +138,11 @@ lib/
 +-- skill-advisor-brief.ts
 +-- source-cache.ts
 +-- subprocess.ts
++-- cross-skill-edges/
++-- embedders/
++-- ipc/
 +-- scorer/
++-- shared/
 `-- README.md
 ```
 
@@ -154,6 +162,10 @@ lib/
 | `skill-advisor-brief.ts` | Builds concise advisor recommendation briefs. |
 | `normalize-adapter-output.ts` | Normalizes adapter result shapes. |
 | `subprocess.ts` | Wraps external process execution for advisor scripts or probes. |
+| `cross-skill-edges/` | Detects and optionally applies inbound `enhances` graph edges. |
+| `embedders/` | Owns advisor vector schema helpers and shared embedder shims. |
+| `ipc/` | Owns launcher socket bridge and idle-timeout helpers. |
+| `shared/` | Keeps advisor-local shared helpers and compatibility shims. |
 
 ---
 
@@ -190,7 +202,11 @@ prompt or status request
 | `prompt-policy.ts` | Module | Applies prompt-safety and routing policy. |
 | `scorer/` | Folder | Native scoring implementation. |
 | `compat/` | Folder | Compatibility and daemon probe helpers. |
+| `cross-skill-edges/` | Folder | Inbound enhances edge propagation helpers. |
+| `embedders/` | Folder | Active embedder schema and shared registry shims. |
 | `freshness/` | Folder | Freshness state helpers. |
+| `ipc/` | Folder | Launcher IPC helpers. |
+| `shared/` | Folder | Shared local helper modules. |
 
 ---
 
@@ -217,5 +233,9 @@ Expected result: exit code `0`.
 - [`../README.md`](../README.md)
 - [`../handlers/README.md`](../handlers/README.md)
 - [`../scripts/README.md`](../scripts/README.md)
+- [`cross-skill-edges/README.md`](cross-skill-edges/README.md)
+- [`embedders/README.md`](embedders/README.md)
+- [`ipc/README.md`](ipc/README.md)
+- [`shared/README.md`](shared/README.md)
 
 <!-- /ANCHOR:9-related -->

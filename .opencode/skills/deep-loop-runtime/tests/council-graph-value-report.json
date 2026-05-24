@@ -1,0 +1,32 @@
+{
+  "DAC-027": {
+    "baselineFileReads": 12,
+    "runtimeGraphCalls": 1,
+    "ratio": 12
+  },
+  "DAC-028": {
+    "baselineFileReads": 13,
+    "runtimeGraphCalls": 1,
+    "ratio": 13
+  },
+  "DAC-029": {
+    "baselineFileReads": 1,
+    "runtimeGraphCalls": 1,
+    "ratio": 1
+  },
+  "DAC-030": {
+    "baselineFileReads": 7,
+    "runtimeGraphCalls": 1,
+    "ratio": 7
+  },
+  "DAC-031": {
+    "baselineFileReads": 8,
+    "runtimeGraphCalls": 1,
+    "ratio": 8
+  },
+  "DAC-032": {
+    "baselineFileReads": 1,
+    "runtimeGraphCalls": 1,
+    "ratio": 1
+  }
+}

@@ -1,24 +1,4 @@
 {
-  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation",
-  "description": "10-iter deep-research audit of deep-review vs deep-research vs (assumed-upgraded) deep-ai-council: characterize each skill's defensible single-best-fit, inventory overlap, recommend differentiation strategy + skill-advisor routing rules, name parity-test invariants.",
-  "keywords": [
-    "deep-skills-differentiation",
-    "deep-review",
-    "deep-research",
-    "deep-ai-council",
-    "skill-advisor-routing",
-    "boundary-analysis"
-  ],
-  "lastUpdated": "2026-05-23T06:00:00Z",
-  "specId": "130",
-  "folderSlug": "001-unique-value-differentiation",
-  "parentChain": [
-    "skilled-agent-orchestration",
-    "131-deep-skill-evolution",
-    "006-deep-skills-differentiation"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
   "level": "3",
   "status": "draft",
   "manual": {
@@ -26,5 +6,26 @@
     "related_to": [
       "skilled-agent-orchestration/131-deep-skill-evolution"
     ]
-  }
+  },
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation",
+  "description": "Feature Specification: Deep Skills Unique-Value Differentiation Analysis",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "skills",
+    "unique-value",
+    "differentiation",
+    "analysis"
+  ],
+  "lastUpdated": "2026-05-23T15:24:59.145Z",
+  "specId": "001",
+  "folderSlug": "unique-value-differentiation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "006-deep-skills-differentiation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

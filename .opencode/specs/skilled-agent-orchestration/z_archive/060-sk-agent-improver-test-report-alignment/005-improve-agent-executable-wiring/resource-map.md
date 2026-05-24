@@ -86,8 +86,8 @@ Shipped on commit **`6374d5806`**.
 ### Command YAMLs (auto + confirm lockstep)
 
 ```
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml       (materializer→run-benchmark wiring; nested legal_stop_evaluated; benchmark_completed gated on report file)
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml    (same — lockstep parity)
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml       (materializer→run-benchmark wiring; nested legal_stop_evaluated; benchmark_completed gated on report file)
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml    (same — lockstep parity)
 ```
 
 ### Skill docs + references

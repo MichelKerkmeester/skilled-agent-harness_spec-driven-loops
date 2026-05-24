@@ -33,7 +33,7 @@ Read end-to-end:
 **Step 3: Adversarial YAML review (if exists)**
 
 Find any `improve_agent` or `deep-agent-improvement` related YAML at:
-- `.opencode/commands/improve/*.{md,yaml}`
+- `.opencode/commands/deep/*.{md,yaml}`
 - `.opencode/commands/speckit/assets/*.yaml`
 
 For each YAML:

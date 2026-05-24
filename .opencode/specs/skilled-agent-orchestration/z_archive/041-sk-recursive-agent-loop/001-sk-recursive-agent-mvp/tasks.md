@@ -80,7 +80,7 @@ _memory:
 
 ### Command and Workflow Integration
 
-- [x] T-040: Create the `/improve:agent-improver` command spec
+- [x] T-040: Create the `/deep:start-agent-improvement-loop-improver` command spec
 - [x] T-041: Create `improve_agent-improver_auto.yaml`
 - [x] T-042: Create `improve_agent-improver_confirm.yaml`
 - [x] T-043: Wire packet initialization, iteration dispatch, scoring, and reducer steps into both workflows

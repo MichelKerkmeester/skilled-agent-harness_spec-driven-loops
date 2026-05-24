@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Code Graph Index Scope Policy
+// ───────────────────────────────────────────────────────────────
+
 const SEGMENT_BOUNDARY = '(^|/)';
 
 function compileSegmentPattern(segment: string): RegExp {

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Our review skills (sk-code-review, deep-review) emit free-form verdicts that are unreliable to parse via regex or NLP. sk-code-review SKILL.md:308 produces \"APPROVE / REQUEST_CHANGES / COMMENT\" in prose; deep-review SKILL.md:367-372 produces \"FAIL/CONDITIONAL/PASS\" embedded in synthesis text. CI bots, PR status checks, and automation scripts cannot reliably extract review status without ad-hoc regex that breaks on prose variation.",
     "created_at": "2026-05-16T07:00:00Z",
-    "last_save_at": "2026-05-23T11:55:14.147Z",
+    "last_save_at": "2026-05-24T05:40:25.156Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -47,7 +47,7 @@ const ADVISOR_SOURCE_PATHS = [
   BRIDGE_PATH,
   fileURLToPath(new URL('../bin/mk-skill-advisor-launcher.cjs', import.meta.url)),
   fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/advisor-server.ts', import.meta.url)),
-  fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js', import.meta.url)),
+  fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/dist/mcp_server/advisor-server.js', import.meta.url)),
 ];
 
 async function loadConfig() {

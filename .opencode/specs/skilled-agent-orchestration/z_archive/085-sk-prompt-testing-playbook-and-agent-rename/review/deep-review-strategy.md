@@ -22,7 +22,7 @@ Packet `skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-ren
 | 1 | Agent-rename completeness | Any active-scope `@improve-prompt` or `improve-prompt` (as agent name) refs missed? Frontmatter `name:` rotated in all 4 runtime files? |
 | 2 | Playbook sk-doc conformance | Root index has all required sections (TOC, OVERVIEW, GLOBAL PRECONDITIONS, EVIDENCE REQUIREMENTS, COMMAND NOTATION, REVIEW PROTOCOL, ORCHESTRATION, category sections, AUTOMATED TEST CROSS-REFERENCE, FEATURE CATALOG INDEX). Per-feature files have 5 mandatory sections. |
 | 3 | Scenario realism + coverage | Each of 28 scenarios has a realistic operator-style user request (NOT a SKILL.md paraphrase). Coverage matches the 7-category split documented in spec.md. Pass/fail conditions are deterministic. |
-| 4 | Identity preservation | Command `/improve:prompt` and command file path UNCHANGED. Only agent name + agent file rotated. |
+| 4 | Identity preservation | Command `/prompt` and command file path UNCHANGED. Only agent name + agent file rotated. |
 | 5 | Documentation hygiene | Spec docs (parent + 2 children) PASS strict validate. SKILL.md has ONE backref link, not 28 inline. |
 | 6 | Frozen continuity respect | Historical/completed packet docs (z_archive, z_future, completed packets, .git, barter) NOT touched. |
 

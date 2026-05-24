@@ -1,16 +1,16 @@
 ---
-title: "Implementation Plan: Phase 7 — rename sk-small-model → sk-ai-small-model"
+title: "Implementation Plan: Phase 7 — rename sk-small-model → sk-prompt-small-model"
 description: "Rename the sentinel skill directory via git mv, edit name fields + sibling enhances edges + root behavioral docs + auto-memory current-state entries, then regenerate the compiled skill-graph.json and verify advisor surfaces the renamed skill."
 trigger_phrases:
   - "rename sk-small-model"
-  - "sk-ai-small-model implementation"
+  - "sk-prompt-small-model implementation"
   - "skill rename plan"
   - "skill-advisor reindex"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename"
+    packet_pointer: "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename"
     last_updated_at: "2026-05-21T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored plan.md"
@@ -34,7 +34,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Implementation Plan: Phase 7 — rename sk-small-model → sk-ai-small-model
+# Implementation Plan: Phase 7 — rename sk-small-model → sk-prompt-small-model
 
 ---
 
@@ -51,7 +51,7 @@ _memory:
 | **Testing** | `validate.sh --strict`, `advisor_recommend` MCP smoke test, `jq` assertions, repo-wide `rg` audit |
 
 ### Overview
-Rename the `sk-small-model` skill directory to `sk-ai-small-model` via `git mv`, then update every live surface that references the old name (sibling skill `enhances` edges, manual testing playbooks, behavioral root docs, auto-memory current-state entries), and regenerate the compiled `skill-graph.json` so the advisor surfaces the renamed skill. Historical spec/research/review artifacts under 114/001-006 and 026/ are preserved as provenance.
+Rename the `sk-small-model` skill directory to `sk-prompt-small-model` via `git mv`, then update every live surface that references the old name (sibling skill `enhances` edges, manual testing playbooks, behavioral root docs, auto-memory current-state entries), and regenerate the compiled `skill-graph.json` so the advisor surfaces the renamed skill. Historical spec/research/review artifacts under 114/001-006 and 026/ are preserved as provenance.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -69,9 +69,9 @@ Rename the `sk-small-model` skill directory to `sk-ai-small-model` via `git mv`,
 ### Definition of Done
 - [ ] `rg "sk-small-model"` against the live-surface allow-list returns zero hits
 - [ ] `rg "sk-small-model"` against the historical-surface set still returns the original hit count (provenance preserved)
-- [ ] `jq` assertions on cli-devin + cli-opencode + sk-ai-small-model `graph-metadata.json` all reference the new name
-- [ ] Compiled `skill-graph.json` regenerated; `jq '.skills | has("sk-ai-small-model")'` returns `true` and `has("sk-small-model")` returns `false`
-- [ ] `advisor_recommend` MCP smoke test on a representative small-model prompt returns `sk-ai-small-model` in top-3 ≥ 0.7 confidence
+- [ ] `jq` assertions on cli-devin + cli-opencode + sk-prompt-small-model `graph-metadata.json` all reference the new name
+- [ ] Compiled `skill-graph.json` regenerated; `jq '.skills | has("sk-prompt-small-model")'` returns `true` and `has("sk-small-model")` returns `false`
+- [ ] `advisor_recommend` MCP smoke test on a representative small-model prompt returns `sk-prompt-small-model` in top-3 ≥ 0.7 confidence
 - [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <007> --strict` exits 0
 - [ ] Parent `114/graph-metadata.json` `children_ids` includes 007 and `derived.last_active_child_id` points to it
 <!-- /ANCHOR:quality-gates -->
@@ -85,7 +85,7 @@ Rename the `sk-small-model` skill directory to `sk-ai-small-model` via `git mv`,
 **Mechanical refactor across a fixed live-surface allow-list.** No new code; coordinate of edits + advisor reindex.
 
 ### Key Components
-- **Skill body** (`.opencode/skills/sk-ai-small-model/`): The thing being renamed. Internal references (SKILL.md frontmatter, README.md title, description.json, graph-metadata.json `skill_id`, references/pattern-index.md self-references, changelog/v0.3.0.0.md new-file).
+- **Skill body** (`.opencode/skills/sk-prompt-small-model/`): The thing being renamed. Internal references (SKILL.md frontmatter, README.md title, description.json, graph-metadata.json `skill_id`, references/pattern-index.md self-references, changelog/v0.3.0.0.md new-file).
 - **Sibling skill graph metadata** (cli-devin + cli-opencode `graph-metadata.json`): live `edges.enhances[].target` + `manual.related_to[]` references that route the advisor to the sentinel skill.
 - **Manual testing playbooks** (cli-devin + cli-opencode `manual_testing_playbook/`): operator-facing how-to docs that reference the skill by name in filename + body.
 - **Root behavioral docs** (AGENTS.md + CLAUDE.md + README.md): the "Small-model dispatch rule" + the skill catalog entry.
@@ -95,7 +95,7 @@ Rename the `sk-small-model` skill directory to `sk-ai-small-model` via `git mv`,
 
 ### Data Flow
 ```
-git mv sk-small-model → sk-ai-small-model
+git mv sk-small-model → sk-prompt-small-model
   ↓
 Edit skill body files (frontmatter, README, description.json, graph-metadata.json, pattern-index)
   ↓
@@ -124,8 +124,8 @@ This is a rename refactor (research_intent=refactor), not a fix_bug. The "Out of
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.opencode/skills/sk-small-model/` (whole dir) | The sentinel skill | RENAME via `git mv` | `ls .opencode/skills/sk-small-model 2>&1` is no-such-file; `git log --follow .opencode/skills/sk-ai-small-model/SKILL.md` traces back to old path |
-| `cli-devin/graph-metadata.json` (`edges.enhances`, `manual.related_to`) | Sibling pointing at sentinel | UPDATE target/related_to refs | `jq '.edges.enhances[].target, .manual.related_to[]' ...` shows sk-ai-small-model |
+| `.opencode/skills/sk-small-model/` (whole dir) | The sentinel skill | RENAME via `git mv` | `ls .opencode/skills/sk-small-model 2>&1` is no-such-file; `git log --follow .opencode/skills/sk-prompt-small-model/SKILL.md` traces back to old path |
+| `cli-devin/graph-metadata.json` (`edges.enhances`, `manual.related_to`) | Sibling pointing at sentinel | UPDATE target/related_to refs | `jq '.edges.enhances[].target, .manual.related_to[]' ...` shows sk-prompt-small-model |
 | `cli-opencode/graph-metadata.json` (`edges.enhances`, `manual.related_to`) | Sibling pointing at sentinel | UPDATE target/related_to refs | `jq` assertion as above |
 | `cli-devin/manual_testing_playbook/03--model-presets/00{5,6}-...sk-small-model...` | Operator-facing tests | RENAME files + edit body refs + update playbook index | `ls` shows new filenames; `rg "sk-small-model"` in playbook dir zero |
 | `cli-opencode/manual_testing_playbook/07--prompt-templates/00{4,5}-...sk-small-model...` | Same | Same | Same |
@@ -134,7 +134,7 @@ This is a rename refactor (research_intent=refactor), not a fix_bug. The "Out of
 | `AGENTS.md`, `CLAUDE.md`, `README.md` | Repo-level behavioral docs | UPDATE the rule + catalog line | `rg "sk-small-model" AGENTS.md CLAUDE.md README.md` zero |
 | `~/.claude/.../memory/MEMORY.md` | Auto-memory index | UPDATE the dispatch-matrix description | `rg "sk-small-model"` in MEMORY.md zero |
 | `~/.claude/.../memory/reference_small_model_dispatch_matrix.md` | Dispatch matrix record (current state) | UPDATE body refs (NOT filename — preserves inbound links) | `rg "^[^#].*sk-small-model" file` zero, or only narrative-with-rename-tag |
-| `~/.claude/.../memory/feedback_skill_graph_compiler_rebuild.md` | Feedback record (historical incident 2026-05-18) | UPDATE skill-name refs with "(renamed sk-ai-small-model 2026-05-21)" tag | Reading flows naturally; the 2026-05-18 date stays |
+| `~/.claude/.../memory/feedback_skill_graph_compiler_rebuild.md` | Feedback record (historical incident 2026-05-18) | UPDATE skill-name refs with "(renamed sk-prompt-small-model 2026-05-21)" tag | Reading flows naturally; the 2026-05-18 date stays |
 | `skill-graph.json` (compiled) | Advisor index | REGENERATE via `skill_graph_compiler.py --export-json --pretty` | `jq` keys assertion |
 | `114/spec.md` PHASE DOCUMENTATION MAP | Parent phase index | APPEND a single Phase 7 row | `rg "Phase 7 .*007-rename"` matches; prior rows unchanged |
 | `114/graph-metadata.json` | Parent graph metadata | REFRESH via `generate-context.js` (Step 13) | `children_ids` += 007; `derived.last_active_child_id` = 007 |
@@ -145,7 +145,7 @@ This is a rename refactor (research_intent=refactor), not a fix_bug. The "Out of
 - Historical-surface `rg "sk-small-model"` BEFORE: 70+ hits across 114/001-006 + 114/review + 026/.../iteration-009.md.
 - Historical-surface `rg "sk-small-model"` AFTER: identical hit count (provenance preserved invariant).
 
-**Algorithmic invariant**: For every `sk-small-model` literal in the repo at start, classify into {live → rename to `sk-ai-small-model`} OR {historical → leave unchanged}. The classifier is the explicit allow-lists in spec.md §3 (In Scope vs Out of Scope). Any unclassified hit is a HALT condition.
+**Algorithmic invariant**: For every `sk-small-model` literal in the repo at start, classify into {live → rename to `sk-prompt-small-model`} OR {historical → leave unchanged}. The classifier is the explicit allow-lists in spec.md §3 (In Scope vs Out of Scope). Any unclassified hit is a HALT condition.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -169,13 +169,13 @@ This is a rename refactor (research_intent=refactor), not a fix_bug. The "Out of
 - **Dispatch contract**: RCAF framework via sk-prompt, medium-density pre-planning (3-4 ordered steps), bundle-gate "standard", `devin --prompt-file <path> --model swe-1.6 --permission-mode auto -p ... 2>&1 </dev/null` per cli-devin/SKILL.md §3 + ALWAYS §4/§5/§8/§12
 
 ### Phase C: Skill directory rename + body edits (~5 min)
-- [ ] `git mv .opencode/skills/sk-small-model .opencode/skills/sk-ai-small-model`
-- [ ] Edit `sk-ai-small-model/SKILL.md` (frontmatter `name:`, H1, in-body refs)
-- [ ] Edit `sk-ai-small-model/README.md`
-- [ ] Edit `sk-ai-small-model/description.json` (skill_id + path fields)
-- [ ] Edit `sk-ai-small-model/graph-metadata.json` (`skill_id`, entity.name, entity.path, derived.key_files, derived.entities)
-- [ ] Edit `sk-ai-small-model/references/pattern-index.md` (header + self-refs)
-- [ ] Create `sk-ai-small-model/changelog/v0.3.0.0.md` (rename note)
+- [ ] `git mv .opencode/skills/sk-small-model .opencode/skills/sk-prompt-small-model`
+- [ ] Edit `sk-prompt-small-model/SKILL.md` (frontmatter `name:`, H1, in-body refs)
+- [ ] Edit `sk-prompt-small-model/README.md`
+- [ ] Edit `sk-prompt-small-model/description.json` (skill_id + path fields)
+- [ ] Edit `sk-prompt-small-model/graph-metadata.json` (`skill_id`, entity.name, entity.path, derived.key_files, derived.entities)
+- [ ] Edit `sk-prompt-small-model/references/pattern-index.md` (header + self-refs)
+- [ ] Create `sk-prompt-small-model/changelog/v0.3.0.0.md` (rename note)
 - [ ] Leave `changelog/v0.1.0.0.md` and `v0.2.0.0.md` untouched (historical version state)
 
 ### Phase D: Sibling skill propagation (~5 min)
@@ -194,14 +194,14 @@ This is a rename refactor (research_intent=refactor), not a fix_bug. The "Out of
 - [ ] Edit `README.md` line 912 skill catalog entry
 - [ ] Edit `~/.claude/projects/.../memory/MEMORY.md` index entry
 - [ ] Edit `~/.claude/projects/.../memory/reference_small_model_dispatch_matrix.md` body
-- [ ] Edit `~/.claude/projects/.../memory/feedback_skill_graph_compiler_rebuild.md` skill-name refs (tag with "(renamed sk-ai-small-model 2026-05-21)")
+- [ ] Edit `~/.claude/projects/.../memory/feedback_skill_graph_compiler_rebuild.md` skill-name refs (tag with "(renamed sk-prompt-small-model 2026-05-21)")
 
 ### Phase F: Advisor reindex (~3 min)
 - [ ] `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py --export-json --pretty`
-- [ ] Verify `skill-graph.json` `generated_at` is fresh + `skills` has `sk-ai-small-model` + lacks `sk-small-model`
+- [ ] Verify `skill-graph.json` `generated_at` is fresh + `skills` has `sk-prompt-small-model` + lacks `sk-small-model`
 - [ ] Run `advisor_rebuild` MCP call (refreshes runtime cache)
 - [ ] Run `advisor_validate` MCP call (confirms graph integrity)
-- [ ] Run `advisor_recommend` MCP call on `"dispatch swe-1.6 via cli-devin"` — expect sk-ai-small-model in top-3 ≥ 0.7
+- [ ] Run `advisor_recommend` MCP call on `"dispatch swe-1.6 via cli-devin"` — expect sk-prompt-small-model in top-3 ≥ 0.7
 
 ### Phase G: Validation + parent reconcile (~3 min)
 - [ ] Post-rename `rg "sk-small-model"` on live-surface allow-list — expect zero hits
@@ -263,7 +263,7 @@ Phase A (pre-flight) ──▶ Phase B (cli-devin context gathering) ──┐
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Repo-wide regression (live) | Every live-surface file mentions `sk-ai-small-model`, not `sk-small-model` | `rg --files-with-matches sk-small-model` against live allow-list |
+| Repo-wide regression (live) | Every live-surface file mentions `sk-prompt-small-model`, not `sk-small-model` | `rg --files-with-matches sk-small-model` against live allow-list |
 | Repo-wide invariant (historical) | Historical surface byte-identical | `git diff --stat` for 114/001-006 + 114/review + 026/ paths |
 | Skill-graph regeneration | Compiled JSON contains new name, lacks old name | `jq '.skills | keys'` |
 | Advisor recommend | Renamed skill surfaces on canonical small-model prompts | `advisor_recommend` MCP call |

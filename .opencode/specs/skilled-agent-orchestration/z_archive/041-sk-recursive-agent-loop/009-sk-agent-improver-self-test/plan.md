@@ -38,7 +38,7 @@ Verify all 8 scripts work against the agent-improver target before running the f
 
 ### D2: Execute Self-Improvement Loop
 
-Run the full `/improve:agent` command targeting agent-improver.md.
+Run the full `/deep:start-agent-improvement-loop` command targeting agent-improver.md.
 
 - Target: `.opencode/agents/agent-improver.md`
 - Mode: `:confirm` (interactive gates for observation at each iteration)

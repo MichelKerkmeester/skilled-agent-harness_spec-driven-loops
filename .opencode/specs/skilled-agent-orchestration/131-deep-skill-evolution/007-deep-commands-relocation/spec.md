@@ -96,7 +96,7 @@ Complete the relocation: move workflow assets to co-located `commands/deep/asset
 
 - Touching non-deep `commands/speckit/` workflows (`complete`, `plan`, `implement`, `resume`) — they stay.
 - Renaming the `131-deep-skill-evolution` packet itself.
-- Renaming `improve:deep-agent-improvement` (lives at `.opencode/commands/improve/`, unaffected).
+- Renaming `deep:start-agent-improvement-loop` (lives at `.opencode/commands/deep/`, unaffected).
 - Modifying deep-* skill source code (code-level logic stays unchanged).
 - Any `.codex/commands/` edits (symlink to `.opencode/commands/`, auto-resolves).
 

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "CocoIndex operators had no single preflight for three high-trust failure modes: a stale global `ccc`, non-commercial default reranker licensing, and expensive model-swap reindexing. The default reranker was empirically strong but licensed CC BY-NC 4.0, which creates silent commercial risk if the operator assumes Apache-licensed project code means unrestricted model use.",
     "created_at": "2026-05-19T20:36:58.000Z",
-    "last_save_at": "2026-05-23T11:55:15.539Z",
+    "last_save_at": "2026-05-24T05:40:26.081Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

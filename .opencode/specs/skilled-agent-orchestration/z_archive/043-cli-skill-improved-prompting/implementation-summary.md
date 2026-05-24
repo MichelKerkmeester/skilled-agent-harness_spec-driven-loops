@@ -84,7 +84,7 @@ The feature landed as the two-tier prompt-quality architecture planned in this p
 - All four CLI prompt-template assets now carry `Framework:` annotations.
 - `.opencode/skills/sk-improve-prompt/SKILL.md` now documents the canonical card, the agent invocation contract, the fast-path asset, and the version bump to `1.3.0.0`.
 - `@improve-prompt` landed across `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`.
-- `.opencode/commands/improve/prompt.md` now supports Inline versus Agent dispatch mode selection and documents the shared escalation surface.
+- `.opencode/commands/prompt.md` now supports Inline versus Agent dispatch mode selection and documents the shared escalation surface.
 - The optional drift check landed as `.opencode/skills/skill-advisor/scripts/check-prompt-quality-card-sync.sh`.
 <!-- /ANCHOR:what-built -->
 
@@ -95,7 +95,7 @@ The feature landed as the two-tier prompt-quality architecture planned in this p
 
 The implementation kept the fast path local to each CLI skill so `_guard_in_skill()` and same-skill markdown discovery remain valid. The canonical prompt-quality guidance stayed in `sk-improve-prompt`, but routine callers consume only the short mirrored card under their own `assets/` tree. High-complexity and compliance-sensitive prompts now route to the shared `@improve-prompt` agent instead of loading the full prompt-engineering skill inline.
 
-The command surface was aligned with the same design: `/improve:prompt` now supports both Inline mode for ordinary interactive use and Agent mode for fresh-context improvement when `complexity_hint >= 7` or explicit isolation/fresh-context signals are present. The drift-management story also shipped, not just the footer comments: `check-prompt-quality-card-sync.sh` hashes the framework-selection table across the canonical card and four mirrors and exits cleanly only when they match.
+The command surface was aligned with the same design: `/prompt` now supports both Inline mode for ordinary interactive use and Agent mode for fresh-context improvement when `complexity_hint >= 7` or explicit isolation/fresh-context signals are present. The drift-management story also shipped, not just the footer comments: `check-prompt-quality-card-sync.sh` hashes the framework-selection table across the canonical card and four mirrors and exits cleanly only when they match.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -107,7 +107,7 @@ The command surface was aligned with the same design: `/improve:prompt` now supp
 |----------|-----|
 | Use local mirror cards instead of cross-skill resource paths | `_guard_in_skill()` and same-skill markdown discovery make cross-skill routing invalid |
 | Use an isolated `@improve-prompt` agent for escalations | Complex prompts need the full methodology without polluting the caller context |
-| Keep `/improve:prompt` as the shared command surface | One command surface is cleaner than splitting inline and agent paths into separate commands |
+| Keep `/prompt` as the shared command surface | One command surface is cleaner than splitting inline and agent paths into separate commands |
 | Land the drift-check automation as a shell script | Mirror sync risk was real enough to justify a lightweight repo-local verification command |
 <!-- /ANCHOR:decisions -->
 

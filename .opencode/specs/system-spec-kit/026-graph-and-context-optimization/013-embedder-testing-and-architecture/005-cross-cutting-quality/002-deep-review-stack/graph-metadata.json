@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The 016-019 stack landed a lot of new code in a short window: pluggable embedder architecture (016), retrieval-rescue layer (016/004), dist-freshness vitest (post-016), CocoIndex jina-code swap + MPS auto-detect + registered_embedders + INSTALL_GUIDE updates (018 + 019). All have unit-level coverage and have been smoke-tested, but no adversarial deep-review has been run across the whole stack.",
     "created_at": "2026-05-18T16:14:38.218Z",
-    "last_save_at": "2026-05-23T11:55:15.553Z",
+    "last_save_at": "2026-05-24T05:40:26.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/004-iteration-ordering-fix",
-  "description": "Feature Specification: 120 \u2014 Deep-Research Iteration Ordering Fix",
+  "description": "Feature Specification: 120 — Deep-Research Iteration Ordering Fix",
   "keywords": [
     "feature",
     "specification",
@@ -11,9 +11,9 @@
     "ordering",
     "fix"
   ],
-  "lastUpdated": "2026-05-23T09:11:13.011Z",
-  "specId": "120",
-  "folderSlug": "004-iteration-ordering-fix",
+  "lastUpdated": "2026-05-23T15:24:59.088Z",
+  "specId": "004",
+  "folderSlug": "iteration-ordering-fix",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

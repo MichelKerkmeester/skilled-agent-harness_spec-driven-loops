@@ -298,7 +298,7 @@ exec
      5	
      6	# Auto Mode Contract Reference
      7	
-     8	This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/speckit:*`, `/create:*`, `/improve:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
+     8	This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/speckit:*`, `/create:*`, `/deep:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
      9	
     10	Origin: shipped in `.opencode/specs/skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/001-deep-review-three-tier-setup/` (deep-review prototype) and generalized in `.../002-auto-mode-contract-generalization-to-all-commands/` (12-command rollout).
     11	
@@ -470,7 +470,7 @@ exec
    177	
    178	## §8. Out of Scope
    179	
-   180	- Commands without paired YAML workflows (`/improve:prompt`, `agent_router`, etc.) — they have no setup-phase surface where the contract applies.
+   180	- Commands without paired YAML workflows (`/prompt`, `agent_router`, etc.) — they have no setup-phase surface where the contract applies.
 
 codex
 - **Citation present:** yes, line 84.

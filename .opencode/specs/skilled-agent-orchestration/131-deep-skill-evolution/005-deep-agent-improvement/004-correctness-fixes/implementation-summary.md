@@ -46,7 +46,7 @@ Closed the requested packet 124 findings:
 | DAI-009 | Fixed | `typed-errors.cjs`, `generate-profile.cjs`, `score-candidate.cjs` |
 | DAI-010 | Fixed | `score-candidate.cjs` |
 | DAI-013 | Fixed | `README.md`, `SKILL.md` |
-| DAI-014 | Fixed | `improve_deep-agent-improvement_auto.yaml`, `improve_deep-agent-improvement_confirm.yaml`, `improvement_config.json` |
+| DAI-014 | Fixed | `deep_start-agent-improvement-loop_auto.yaml`, `deep_start-agent-improvement-loop_confirm.yaml`, `improvement_config.json` |
 | DAI-016 | Fixed | `scan-integration.cjs` |
 | DAI-017 | Fixed | `SKILL.md` |
 | DAI-018 | Fixed | `changelog/v1.4.0.0.md` |
@@ -65,8 +65,8 @@ Files changed:
 | `.opencode/skills/deep-agent-improvement/README.md` | Modified | Plateau condition truth. |
 | `.opencode/skills/deep-agent-improvement/changelog/v1.4.0.0.md` | Modified | Real retroactive changelog. |
 | `.opencode/skills/deep-agent-improvement/assets/improvement_config.json` | Modified | Manifest filename alignment. |
-| `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml` | Modified | Manifest filename alignment. |
-| `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml` | Modified | Manifest filename alignment. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Modified | Manifest filename alignment. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | Modified | Manifest filename alignment. |
 | `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/004-correctness-fixes/` | Modified | Level 3 docs and metadata. |
 
 <!-- /ANCHOR:what-built -->
@@ -157,8 +157,8 @@ Explicit `git add` paths:
 .opencode/skills/deep-agent-improvement/README.md
 .opencode/skills/deep-agent-improvement/changelog/v1.4.0.0.md
 .opencode/skills/deep-agent-improvement/assets/improvement_config.json
-.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml
-.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
 .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/004-correctness-fixes/spec.md
 .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/004-correctness-fixes/plan.md
 .opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/004-correctness-fixes/tasks.md

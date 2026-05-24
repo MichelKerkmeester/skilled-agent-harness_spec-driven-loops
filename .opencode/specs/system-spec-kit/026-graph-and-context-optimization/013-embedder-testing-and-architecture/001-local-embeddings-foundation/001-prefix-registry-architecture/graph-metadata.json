@@ -204,7 +204,7 @@
     ],
     "causal_summary": "This is **Phase 1** of `014-local-embeddings-setup-a`. It is the load-bearing architectural change that makes the rest of the packet's model swaps (sub-phases 002–008) work without silent recall loss.",
     "created_at": "2026-05-12T16:27:47Z",
-    "last_save_at": "2026-05-23T11:55:15.326Z",
+    "last_save_at": "2026-05-24T05:40:25.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

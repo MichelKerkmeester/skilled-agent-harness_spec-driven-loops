@@ -110,7 +110,7 @@ run_fix "4-workflows-and-docs" "Fix workflow YAML issues, agent definitions, and
 2. .opencode/commands/speckit/assets/speckit_deep-research_auto.yaml and _confirm.yaml:
    - Remove direct completed-session to synthesize routing
 
-3. .opencode/commands/improve/assets/improve_improve-agent_auto.yaml and _confirm.yaml:
+3. .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml and _confirm.yaml:
    - Add explicit loop steps calling mutation-coverage.cjs, candidate-lineage.cjs, trade-off-detector.cjs, benchmark-stability.cjs
    - Pass real target agent identifier to scan-integration.cjs
    - Add session-boundary gate before init

@@ -5,8 +5,8 @@ You are a senior refactor reviewer. Verify a rename plan for manual testing play
 
 ## Context
 Repo root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/`
-- Spec folder pre-approved (skip Gate 3): `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/`.
-- Rename: `sk-small-model` → `sk-ai-small-model`.
+- Spec folder pre-approved (skip Gate 3): `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/`.
+- Rename: `sk-small-model` → `sk-prompt-small-model`.
 - Read-only mode — do NOT edit any file.
 
 ## Scope (files to inspect)

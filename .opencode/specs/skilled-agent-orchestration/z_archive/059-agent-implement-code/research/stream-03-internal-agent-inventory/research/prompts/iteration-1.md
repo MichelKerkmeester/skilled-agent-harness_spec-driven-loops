@@ -42,7 +42,7 @@ Focus on Q3 (caller-restriction enforcement) — this is the explicit D3 blocker
 2. Read AGENTS.md (root) §5 "Distributed Governance Rule" and §5 Agent Routing — capture the exact wording about which agents are dispatched by what.
 3. Read `.opencode/agents/orchestrate.md` — identify how it lists/routes to other agents (e.g. is there a body section "Routes to: @debug, @write, ..." that the harness honors? Or is it pure prose?).
 4. Search for any harness-level dispatch validator: grep/coco for `dispatchableBy`, `caller`, `parent_agent`, `restricted_callers`, `if (!isOrchestrator)` patterns in `.opencode/skills/system-spec-kit/mcp_server/`, `.opencode/plugin/`, or anywhere the harness loads agent files.
-5. Note also: `.opencode/agents/improve-agent.md` and `.opencode/agents/improve-prompt.md` are dispatched by `/improve:agent` and `/improve:prompt` commands — check if their frontmatter says anything about caller restriction. Same for `@deep-research` and `@deep-review`.
+5. Note also: `.opencode/agents/improve-agent.md` and `.opencode/agents/improve-prompt.md` are dispatched by `/deep:start-agent-improvement-loop` and `/prompt` commands — check if their frontmatter says anything about caller restriction. Same for `@deep-research` and `@deep-review`.
 
 Begin by inventorying every agent's frontmatter as a table, then assess what fields exist that COULD enforce caller restriction at the harness level vs convention only.
 

@@ -1,23 +1,26 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-system-skill-advisor-package-extraction/004-standalone-mcp-launcher-runtime-configs",
-  "description": "Step 3 of ADR-001's locked 5-phase migration: add .opencode/bin/skill-advisor-launcher.cjs and system_skill_advisor MCP registrations in OpenCode, Codex, Claude, and Gemini. Preserve spec_kit_memory unchanged, keep advisor_* tool ids stable, use SYSTEM_SKILL_ADVISOR_DB_DIR env override before the package-local skill-graph.sqlite default, and prove cold-start build behavior.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/004-standalone-mcp-launcher-runtime-configs",
+  "description": "Feature Specification: Standalone MCP launcher and runtime configs",
   "keywords": [
-    "standalone-mcp-launcher",
-    "system_skill_advisor",
-    "runtime-config-registration",
-    "advisor-tool-id-stability",
-    "cold-start-build",
-    "db-path-visibility"
+    "feature",
+    "specification",
+    "standalone",
+    "mcp",
+    "launcher",
+    "runtime",
+    "configs"
   ],
-  "lastUpdated": "2026-05-14T12:45:00Z",
+  "lastUpdated": "2026-05-23T15:25:00.471Z",
   "specId": "004",
-  "folderSlug": "standalone-mcp-launcher-and-runtime-configs",
+  "folderSlug": "standalone-mcp-launcher-runtime-configs",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "006-skill-advisor",
-    "002-semantic-routing-lane",
-    "009-system-skill-advisor-extraction"
-  ]
+    "001-skill-graph",
+    "006-system-skill-advisor-package-extraction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

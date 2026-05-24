@@ -42,7 +42,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/spec_kit/resume.md",
       "scripts/spec/create.sh",
       "spec.md",
       "references/hooks/skill-advisor-hook.md",
@@ -53,23 +52,18 @@
       ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
       ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      ".opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml",
       ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
       ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts",
       "scratch/e2e-trace.txt",
       "scripts/spec/is-phase-parent.ts",
       "plan.md",
       "tasks.md",
-      "scripts/dist/memory/generate-context.js"
+      "scripts/dist/memory/generate-context.js",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      "checklist.md",
+      "scripts/dist/spec/is-phase-parent.js"
     ],
     "entities": [
-      {
-        "name": "resume.md",
-        "kind": "doc",
-        "path": ".opencode/commands/spec_kit/resume.md",
-        "source": "derived"
-      },
       {
         "name": "create.sh",
         "kind": "script",
@@ -125,18 +119,6 @@
         "source": "derived"
       },
       {
-        "name": "spec_kit_resume_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_resume_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml",
-        "source": "derived"
-      },
-      {
         "name": "phase-parent-pointer.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts",
@@ -164,6 +146,12 @@
         "name": "generate-context.js",
         "kind": "code",
         "path": "scripts/dist/memory/generate-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -207,11 +195,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 shipped the lean-trio enforcement and documentation but deferred several additive items. Today, `/spec_kit:resume` on a phase parent walks the filesystem to list children — works correctly, but each resume pays the listing cost. `create.sh --phase` scaffolds the parent with level-N templates plus the phase-parent-section addendum — the resulting surface validates as a phase parent, but it carries vestigial heavy docs that the new lean template would skip entirely. There is no automated check warning a reviewer when a phase-parent `spec.md` slips into merge/migration narrative. And no end-to-end walkthrough exists to confirm the round trip from `/spec_kit:plan :with-phases` through `/spec_kit:resume`.",
     "created_at": "2026-04-27T12:20:00Z",
-    "last_save_at": "2026-05-23T11:55:14.778Z",
+    "last_save_at": "2026-05-24T05:40:25.621Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

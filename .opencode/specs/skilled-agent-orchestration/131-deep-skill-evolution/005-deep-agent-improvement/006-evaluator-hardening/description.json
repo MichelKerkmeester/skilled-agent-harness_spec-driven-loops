@@ -9,9 +9,9 @@
     "evaluator",
     "hardening"
   ],
-  "lastUpdated": "2026-05-23T09:11:13.038Z",
-  "specId": "126",
-  "folderSlug": "006-evaluator-hardening",
+  "lastUpdated": "2026-05-23T15:24:59.120Z",
+  "specId": "006",
+  "folderSlug": "evaluator-hardening",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

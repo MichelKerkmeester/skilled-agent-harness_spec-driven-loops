@@ -1,16 +1,36 @@
 {
   "title": "Identify and Close 3 Remaining Deferred P2 Findings",
-  "description": "Level 2 packet reconciling the original 68 P2 findings against child checklist closure evidence, then closing or ADR-deferring the 3 still-open IDs.",
-  "contextType": "implementation",
-  "importance_tier": "important",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/001-identify-and-close-3-remaining-deferred-p2",
-  "level": 2,
-  "status": "blocked",
   "trigger_phrases": [
     "021 001 remaining deferred p2",
     "F103 F104 remaining P2",
     "p2 closure tally"
   ],
+  "level": 2,
+  "contextType": "implementation",
+  "importance_tier": "important",
+  "status": "blocked",
   "created_at": "2026-05-23T13:00:00Z",
-  "updated_at": "2026-05-23T13:30:00Z"
+  "updated_at": "2026-05-23T13:30:00Z",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/001-identify-and-close-3-remaining-deferred-p2",
+  "description": "Spec: Identify and Close 3 Remaining Deferred P2 Findings",
+  "keywords": [
+    "spec",
+    "identify",
+    "close",
+    "remaining",
+    "deferred",
+    "findings"
+  ],
+  "lastUpdated": "2026-05-23T15:25:01.013Z",
+  "specId": "001",
+  "folderSlug": "identify-and-close-3-remaining-deferred-p2",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "013-embedder-testing-and-architecture",
+    "009-memory-leak-remediation",
+    "021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

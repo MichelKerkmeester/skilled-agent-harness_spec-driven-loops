@@ -58,7 +58,7 @@ Exit Codes:
 Servers Checked:
   mk-spec-memory       Spec Kit Memory (Node.js MCP, SQLite + embeddings)
   mk_skill_advisor      Skill Advisor (Node.js MCP, advisor_recommend + skill_graph_*)
-  mk_code_index         System Code Graph (Node.js MCP, structural AST + 10 graph tools)
+  mk_code_index         System Code Graph (Node.js MCP, structural AST + 11 graph tools)
   cocoindex_code        CocoIndex Code (Python MCP, semantic search)
   code_mode             Code Mode (Node.js MCP, TypeScript tool orchestration)
   sequential_thinking   Sequential Thinking (npx MCP, structured reasoning)
@@ -438,8 +438,7 @@ diagnose_mk_code_index() {
   local srv="mk_code_index"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/system-code-graph"
   local dist_entry="$skill_dir/mcp_server/dist/index.js"
-  local shared_dep="$skill_dir/node_modules/@spec-kit/shared"
-  local shared_import_probe="$skill_dir/dist/system-spec-kit/mcp_server/lib/utils/skill-label-sanitizer.js"
+  local stale_root_dist="$skill_dir/dist"
   local launcher="$PROJECT_ROOT/.opencode/bin/mk-code-index-launcher.cjs"
   # DB path: prefer SPECKIT_CODE_GRAPH_DB_DIR override → new standalone location →
   # legacy skill-local fallback (auto-migrated by the launcher on first run).
@@ -486,38 +485,17 @@ diagnose_mk_code_index() {
     needs_fix=true
   fi
 
-  # Check 4: @spec-kit/shared local package link
-  if [[ -e "$shared_dep" ]]; then
-    record_pass "$srv" "shared_dependency" "@spec-kit/shared resolved"
-    _log log_pass "@spec-kit/shared dependency link present"
-  else
-    record_fail "$srv" "shared_dependency" "Missing $shared_dep — run cd $skill_dir && npm install"
-    _log log_fail "@spec-kit/shared dependency link missing — needs npm install"
+  # Check 4: root-level dist is absent. Code Graph now emits directly to mcp_server/dist.
+  if [[ -e "$stale_root_dist" ]]; then
+    record_fail "$srv" "root_dist_absent" "Stale root dist present: $stale_root_dist"
+    _log log_fail "stale root dist present — run npm run clean && npm run build"
     needs_fix=true
-  fi
-
-  # Check 5: shared import probe catches ERR_MODULE_NOT_FOUND before MCP startup
-  if [[ -f "$shared_import_probe" ]]; then
-    local shared_import_output
-    if shared_import_output="$(node -e "import(process.argv[1])" "$shared_import_probe" 2>&1)"; then
-      record_pass "$srv" "shared_import" "Compiled shared import resolved"
-      _log log_pass "Compiled shared import resolves"
-    else
-      if [[ "$shared_import_output" == *"@spec-kit/shared"* ]] || [[ "$shared_import_output" == *"ERR_MODULE_NOT_FOUND"* ]]; then
-        record_fail "$srv" "shared_import" "$shared_import_output"
-        _log log_fail "Compiled shared import failed — run npm install + build"
-        needs_fix=true
-      else
-        record_warn "$srv" "shared_import" "$shared_import_output"
-        _log log_warn "Compiled shared import probe returned a non-startup warning"
-      fi
-    fi
   else
-    record_skip "$srv" "shared_import" "Probe file not found: $shared_import_probe"
-    _log log_skip "Compiled shared import probe not found"
+    record_pass "$srv" "root_dist_absent" "No root-level dist directory"
+    _log log_pass "root-level dist absent"
   fi
 
-  # Check 6: database directory (new standalone path; legacy skill-local checked as fallback)
+  # Check 5: database directory (new standalone path; legacy skill-local checked as fallback)
   if [[ -d "$db_dir" ]]; then
     local db_file="$db_dir/code-graph.sqlite"
     if [[ -f "$db_file" ]]; then
@@ -540,7 +518,7 @@ diagnose_mk_code_index() {
     needs_fix=true
   fi
 
-  # Check 7: Server entry point loads without native errors
+  # Check 6: Server entry point loads without native errors
   if [[ -f "$dist_entry" ]]; then
     if timeout 5 node -e "
       try { require('$dist_entry'); } catch(e) {
@@ -571,10 +549,12 @@ diagnose_mk_code_index() {
       record_pass "$srv" "fix_db_dir" "Created database directory: $db_dir"
       _log log_info "Created database directory: $db_dir"
     fi
+    rm -rf "$stale_root_dist" 2>/dev/null || true
     (cd "$skill_dir" && npm install 2>&1 | tail -3 && \
+      npm run clean 2>&1 | tail -3 && \
       ./node_modules/.bin/tsc --build ./tsconfig.json 2>&1 | tail -3) || true
-    record_pass "$srv" "fix_npm" "npm install + tsc --build attempted"
-    _log log_info "Ran npm install + tsc --build"
+    record_pass "$srv" "fix_npm" "npm install + clean + tsc --build attempted"
+    _log log_info "Ran npm install + clean + tsc --build"
   fi
 }
 
@@ -582,9 +562,9 @@ diagnose_mk_code_index() {
 diagnose_mk_skill_advisor() {
   local srv="mk_skill_advisor"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/system-skill-advisor"
-  local dist_entry="$skill_dir/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js"
+  local dist_entry="$skill_dir/mcp_server/dist/mcp_server/advisor-server.js"
   local shared_dep="$skill_dir/mcp_server/node_modules/@spec-kit/shared"
-  local shared_import_probe="$skill_dir/mcp_server/dist/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.js"
+  local shared_import_probe="$skill_dir/mcp_server/dist/mcp_server/lib/scorer/lanes/semantic-shadow.js"
   local launcher="$PROJECT_ROOT/.opencode/bin/mk-skill-advisor-launcher.cjs"
   local db_dir="$skill_dir/mcp_server/database"
   local needs_fix=false
@@ -697,6 +677,23 @@ diagnose_mk_skill_advisor() {
       fi
     fi
   fi
+
+  # Check 8: advisor dist has no stale skill-root layout.
+  local stale_dist_root
+  for stale_dist_root in \
+    "$skill_dir/mcp_server/dist/system-skill-advisor" \
+    "$skill_dir/mcp_server/dist/system-spec-kit" \
+    "$skill_dir/mcp_server/dist/system-code-graph"; do
+    local drift_key
+    drift_key="dist_drift_$(basename "$stale_dist_root" | tr '-' '_')"
+    if [[ -e "$stale_dist_root" ]]; then
+      record_fail "$srv" "$drift_key" "Stale dist root present: $stale_dist_root"
+      _log log_fail "Stale dist root present: $stale_dist_root"
+      needs_fix=true
+    else
+      record_pass "$srv" "$drift_key" "Absent: $stale_dist_root"
+    fi
+  done
 
   # Fix mode
   if [[ "$FIX_MODE" == true ]] && [[ "$needs_fix" == true ]]; then

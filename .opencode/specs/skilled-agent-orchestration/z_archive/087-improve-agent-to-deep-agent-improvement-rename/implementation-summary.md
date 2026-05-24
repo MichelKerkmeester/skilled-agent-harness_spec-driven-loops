@@ -54,7 +54,7 @@ _memory:
 
 [POPULATE-T-023: Open with the impact hook — what changed and why it matters.]
 
-After this packet, the naming-family is consistent: skill `deep-agent-improvement` ↔ agent `@deep-agent-improvement` ↔ command family `/improve:*` (sub-name `agent` stays generic, parallel to `/improve:prompt`). Pure semantic rename — no behavior change.
+After this packet, the naming-family is consistent: skill `deep-agent-improvement` ↔ agent `@deep-agent-improvement` ↔ command family `/deep:*` (sub-name `agent` stays generic, parallel to `/prompt`). Pure semantic rename — no behavior change.
 
 ### Files Changed
 
@@ -64,8 +64,8 @@ After this packet, the naming-family is consistent: skill `deep-agent-improvemen
 | `.claude/agents/improve-agent.md` → `deep-agent-improvement.md` | Renamed | Claude runtime mirror |
 | `.gemini/agents/improve-agent.md` → `deep-agent-improvement.md` | Renamed | Gemini runtime mirror |
 | `.codex/agents/improve-agent.toml` → `deep-agent-improvement.toml` | Renamed | Codex runtime mirror |
-| `improve_improve-agent_{auto,confirm}.yaml` × 2 runtimes | Renamed | YAML asset filename pattern reflects new agent identity |
-| `.opencode/commands/improve/agent.md` + mirrors | Modified | YAML filename refs + dispatch refs |
+| `deep_start-agent-improvement-loop_{auto,confirm}.yaml` × 2 runtimes | Renamed | YAML asset filename pattern reflects new agent identity |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` + mirrors | Modified | YAML filename refs + dispatch refs |
 | `.opencode/skills/deep-agent-improvement/**` | Modified | ~22 internal `@improve-agent` refs migrated |
 | `AGENTS.md`, `README.md`, `.opencode/agents/README.txt` | Modified | Public registry entries |
 | `.opencode/skills/deep-agent-improvement/changelog/v1.5.0.0.md` | Created | New changelog documenting the rename |
@@ -88,8 +88,8 @@ The rename shipped as 3 phases via direct Claude shell+sed (per 079 lesson on CL
 
 | Decision | Why |
 |----------|-----|
-| Agent file renamed; slash command `/improve:agent` and Gemini command file `improve-agent.toml` UNCHANGED | The slash command and Gemini command file are command-scoped (named after `/improve:agent`, the verb-target syntax), not agent-scoped. Mirrors the `/improve:prompt` family pattern. |
-| YAML asset filenames renamed (`improve_improve-agent_*.yaml` → `improve_deep-agent-improvement_*.yaml`) | Filename pattern is `improve_<TARGET>_<MODE>.yaml`; target identity changed, so filename changes too. |
+| Agent file renamed; slash command `/deep:start-agent-improvement-loop` and Gemini command file `improve-agent.toml` UNCHANGED | The slash command and Gemini command file are command-scoped (named after `/deep:start-agent-improvement-loop`, the verb-target syntax), not agent-scoped. Mirrors the `/prompt` family pattern. |
+| YAML asset filenames renamed (`deep_start-agent-improvement-loop_*.yaml` → `deep_start-agent-improvement-loop_*.yaml`) | Filename pattern is `improve_<TARGET>_<MODE>.yaml`; target identity changed, so filename changes too. |
 | Historical record (z_archive specs) untouched | ~189 historical references stay verbatim per 079 historical-record policy. |
 | Direct Claude execution (no CLI dispatch) | Per 079 feedback memory: CLI dispatches under heavy parallelism are unreliable. Mechanical sed work is faster and deterministic. |
 <!-- /ANCHOR:decisions -->
@@ -116,8 +116,8 @@ The rename shipped as 3 phases via direct Claude shell+sed (per 079 lesson on CL
 |--------|--------|----------|
 | REQ-001 (4 agent files renamed) | MET | `ls` confirms `.opencode/agents/deep-agent-improvement.md`, `.claude/agents/deep-agent-improvement.md`, `.gemini/agents/deep-agent-improvement.md`, `.codex/agents/deep-agent-improvement.toml` exist; old paths absent |
 | REQ-002 (frontmatter `name:` rotated) | MET | All 4 files show `name: deep-agent-improvement` (or `name = "deep-agent-improvement"` for TOML) |
-| REQ-003 (4 YAML asset files renamed) | MET | `improve_deep-agent-improvement_{auto,confirm}.yaml` exist in `.opencode/commands/improve/assets/` and `.claude/commands/improve/assets/`; old filenames absent |
-| REQ-004 (atomic agent.md + YAML rename) | MET | `agent.md` body refs updated in same wave as `git mv`; `rg 'improve_improve-agent_'` returns 0 in command/improve dirs |
+| REQ-003 (4 YAML asset files renamed) | MET | `deep_start-agent-improvement-loop_{auto,confirm}.yaml` exist in `.opencode/commands/deep/assets/` and `.claude/commands/deep/assets/`; old filenames absent |
+| REQ-004 (atomic agent.md + YAML rename) | MET | `agent.md` body refs updated in same wave as `git mv`; `rg 'deep_start-agent-improvement-loop_'` returns 0 in deep command dirs |
 | REQ-005 (active-code residual = 0) | MET | `rg -F '@improve-agent' .opencode .claude .gemini .codex AGENTS.md README.md \| grep -v specs/ \| grep -v z_archive/ \| grep -v barter/` returns 0 |
 | REQ-006 (active-scope frontmatter = 0) | MET | `rg -F 'name: improve-agent'` and `rg -F 'name = "improve-agent"'` in active scope return 0 |
 | REQ-007 (validate.sh --strict exits 0) | MET | `RESULT: PASSED`, Errors: 0, Warnings: 0 |
@@ -142,8 +142,8 @@ The rename shipped as 3 phases via direct Claude shell+sed (per 079 lesson on CL
 
 1. **Historical changelog narrative untouched.** Skill `changelog/v1.0.0.0.md..v1.4.0.0.md` keep narrative prose verbatim — only `@improve-agent` mentions in active prose are migrated; if any v1.x.x entry documents past behavior of `@improve-agent`, it stays factually accurate as written.
 2. **`specs/z_archive/` research artifacts unchanged.** ~189 historical references to `@improve-agent` remain as historical record per 079 policy.
-3. **`/improve:agent` slash command unchanged.** The `agent` sub-name is generic; rename would have been gratuitous (parallel to `/improve:prompt`).
-4. **Gemini `.gemini/commands/improve/improve-agent.toml` filename unchanged.** Slash-command file (Gemini convention names files by flat slash-command form, not by agent name).
+3. **`/deep:start-agent-improvement-loop` slash command unchanged.** The `agent` sub-name is generic; rename would have been gratuitous (parallel to `/prompt`).
+4. **Gemini `.gemini/commands/deep/start-agent-improvement-loop.toml` filename unchanged.** Slash-command file (Gemini convention names files by flat slash-command form, not by agent name).
 
 [POPULATE-T-023 with any additional limitations discovered during execution]
 <!-- /ANCHOR:limitations -->

@@ -52,6 +52,26 @@ code-graph.sqlite
 .opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite
 .opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-shm
 .opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-wal
+.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite
+.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite-*
+.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite.bak*
+.opencode/skills/system-skill-advisor/mcp_server/database/*.db
+.opencode/skills/system-skill-advisor/mcp_server/database/*.db-*
+.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json
+.opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.json
+.opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.lockdir/
+.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl
+.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl.*
+
+# system-skill-advisor source-tree compiler byproducts
+.opencode/skills/system-skill-advisor/mcp_server/lib/**/*.js
+.opencode/skills/system-skill-advisor/mcp_server/lib/**/*.js.map
+.opencode/skills/system-skill-advisor/mcp_server/lib/**/*.d.ts
+.opencode/skills/system-skill-advisor/mcp_server/lib/**/*.d.ts.map
+.opencode/skills/system-skill-advisor/mcp_server/schemas/**/*.js
+.opencode/skills/system-skill-advisor/mcp_server/schemas/**/*.js.map
+.opencode/skills/system-skill-advisor/mcp_server/schemas/**/*.d.ts
+.opencode/skills/system-skill-advisor/mcp_server/schemas/**/*.d.ts.map
 
 # ───────────────────────────────────────────
 # Dependencies

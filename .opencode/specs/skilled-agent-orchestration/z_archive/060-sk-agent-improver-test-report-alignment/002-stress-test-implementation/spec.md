@@ -20,8 +20,8 @@ _memory:
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations/research/research.md
       - .opencode/skills/sk-improve-agent/SKILL.md
       - .opencode/agents/improve-agent.md
-      - .opencode/commands/improve/agent.md
-      - .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+      - .opencode/commands/deep/start-agent-improvement-loop.md
+      - .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
       - .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs
       - .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs
     completion_pct: 5
@@ -105,7 +105,7 @@ Execute the 001/research §8 hand-off plan: apply diffs, author scenarios, build
 - **Apply diff sketches** from 001/research/research.md §5:
   - `.opencode/agents/improve-agent.md` — add §6.5 CRITIC PASS bullets (P0)
   - `.opencode/skills/sk-improve-agent/SKILL.md` — clarify "skill load is not protocol execution" (P0)
-  - `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` — emit `legal_stop_evaluated` with 5-gate bundle (P0)
+  - `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` — emit `legal_stop_evaluated` with 5-gate bundle (P0)
   - `.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs` — actually use `--baseline` and emit `delta` (P0)
   - `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs` — fix `.gemini/agents` mirror path constant (P1)
 - **Mirror agent edits across 4 runtimes** per memory rule (`.opencode/agents/improve-agent.md` → `.claude/agents/improve-agent.md` + `.gemini/agents/improve-agent.md` + `.codex/agents/improve-agent.toml`)
@@ -138,8 +138,8 @@ Execute the 001/research §8 hand-off plan: apply diffs, author scenarios, build
 | `.gemini/agents/improve-agent.md` | Modify | Mirror of above |
 | `.codex/agents/improve-agent.toml` | Modify | Mirror of above (toml-wrapped) |
 | `.opencode/skills/sk-improve-agent/SKILL.md` | Modify | Clarify "skill load ≠ protocol execution" (P0) |
-| `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` | Modify | Emit `legal_stop_evaluated` with 5-gate bundle (P0) |
-| `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` | Modify | Same legal-stop emission |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Modify | Emit `legal_stop_evaluated` with 5-gate bundle (P0) |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | Modify | Same legal-stop emission |
 | `.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs` | Modify | Actually use `--baseline`, emit `delta` (P0) |
 | `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs` | Modify | Fix `.gemini/agents` mirror path (P1) |
 | `.opencode/skills/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/013-skill-load-not-protocol.md` | Create | CP-040 |
@@ -227,7 +227,7 @@ A successful 002 produces:
 
 - **Research source:** `001-deep-research-recommendations/research/research.md` (854 lines, all sections — the source of truth for this packet)
 - **Methodology template:** `../../059-agent-implement-code/test-report.md` (570 lines, §9 lessons-learned, ANCHOR pair structure)
-- **Target triad:** `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/agents/improve-agent.md`, `.opencode/commands/improve/agent.md`
+- **Target triad:** `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/agents/improve-agent.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`
 - **Helper scripts to modify:** `score-candidate.cjs`, `scan-integration.cjs` under `.opencode/skills/sk-improve-agent/scripts/`
 - **Playbook root:** `.opencode/skills/cli-copilot/manual_testing_playbook/manual_testing_playbook.md`
 - **Memory rules consulted:**

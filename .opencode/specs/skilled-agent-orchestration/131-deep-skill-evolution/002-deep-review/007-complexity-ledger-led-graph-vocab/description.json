@@ -18,9 +18,9 @@
     "graph",
     "vocabulary"
   ],
-  "lastUpdated": "2026-05-22T19:07:31.295Z",
+  "lastUpdated": "2026-05-23T15:24:59.019Z",
   "specId": "007",
-  "folderSlug": "007-complexity-ledger-led-graph-vocab",
+  "folderSlug": "complexity-ledger-led-graph-vocab",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

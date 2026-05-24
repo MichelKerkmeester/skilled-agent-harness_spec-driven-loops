@@ -30,10 +30,15 @@ import type { SkillGraphFsWatcher } from './lib/daemon/watcher.js';
 import { readAdvisorStatus } from './handlers/advisor-status.js';
 import { runWithCallerContext, type MCPCallerContext } from './lib/context/caller-context.js';
 import {
+  getIpcBridgeStats,
   resolveIpcSocketPath,
   startIpcSocketServer,
   type IpcSocketServerHandle,
 } from './lib/ipc/socket-server.js';
+import {
+  createLauncherIdleMonitor,
+  type LauncherIdleMonitor,
+} from './lib/ipc/launcher-idle-timeout.js';
 
 type MCPResponse = {
   content: Array<{ type: 'text'; text: string }>;
@@ -157,12 +162,17 @@ async function startupSkillGraphScan(): Promise<void> {
 let transport: StdioServerTransport | null = null;
 let skillGraphDaemon: SkillGraphDaemon | null = null;
 let ipcBridge: IpcSocketServerHandle | null = null;
+let launcherIdleMonitor: LauncherIdleMonitor | null = null;
 let shuttingDown = false;
 
 async function shutdownAdvisor(reason: string): Promise<void> {
   if (shuttingDown) return;
   shuttingDown = true;
   console.error(`[mk-skill-advisor-launcher] ${reason}`);
+  if (launcherIdleMonitor) {
+    launcherIdleMonitor.stop();
+    launcherIdleMonitor = null;
+  }
   if (ipcBridge) {
     await ipcBridge.close().catch((error: unknown) => {
       const message = error instanceof Error ? error.message : String(error);
@@ -284,10 +294,20 @@ export async function main(): Promise<void> {
   console.error(`[mk-skill-advisor-launcher] Skill graph daemon active=${skillGraphDaemon.active}`);
   transport = new StdioServerTransport();
   await server.connect(transport);
+  launcherIdleMonitor = createLauncherIdleMonitor({
+    serviceName: 'mk-skill-advisor-launcher',
+    getActiveClientCount: () => getIpcBridgeStats().secondary_clients_count,
+    onIdle: async () => {
+      await shutdownAdvisor('launcher idle timeout');
+      process.exit(0);
+    },
+    log: (message: string) => console.error(message),
+  });
   ipcBridge = await startIpcSocketServer({
     socketPath: resolveIpcSocketPath(resolveSkillGraphDbDir()),
     createServer: () => createAdvisorMcpServer(),
     log: (message: string) => console.error(message),
+    onActivity: () => launcherIdleMonitor?.markActivity(),
   });
 }
 

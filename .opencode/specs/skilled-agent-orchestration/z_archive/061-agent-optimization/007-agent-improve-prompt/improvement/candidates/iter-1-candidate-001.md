@@ -267,7 +267,7 @@ Fix verification gaps first
 
 | Command | Purpose | Path |
 | ------- | ------- | ---- |
-| `/improve:prompt` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/improve/prompt.md` |
+| `/prompt` | Shared prompt-improvement command surface with inline vs agent routing | `.opencode/commands/prompt.md` |
 
 ### Skills
 

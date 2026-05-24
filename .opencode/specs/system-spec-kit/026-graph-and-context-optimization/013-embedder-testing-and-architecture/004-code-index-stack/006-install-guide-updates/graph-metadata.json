@@ -190,7 +190,7 @@
     ],
     "causal_summary": "A new user clones the repo and runs CocoIndex. They get jina-code by default (post-018/001). But they don't know:",
     "created_at": "2026-05-18T08:18:02.784Z",
-    "last_save_at": "2026-05-23T11:55:15.491Z",
+    "last_save_at": "2026-05-24T05:40:26.059Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

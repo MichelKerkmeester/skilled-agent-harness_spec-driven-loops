@@ -29,7 +29,7 @@
     ".opencode/skills/system-spec-kit/templates",
     ".opencode/skills/system-spec-kit/SKILL.md"
   ],
-  "specFolder": "skilled-agent-orchestration/058-spec-kit-ux-adoptions",
+  "specFolder": "skilled-agent-orchestration/z_archive/058-spec-kit-ux-adoptions",
   "description": "Feature Specification: spec-kit UX adoptions from SPAR-Kit research",
   "keywords": [
     "feature",
@@ -39,11 +39,12 @@
     "spar-kit",
     "research"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.934Z",
+  "lastUpdated": "2026-05-23T15:24:59.350Z",
   "specId": "058",
   "folderSlug": "spec-kit-ux-adoptions",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

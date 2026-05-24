@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Children 002-005 deferred a set of findings from the 001 research synthesis. Each Known Limitations section enumerated what was punted plus why. Most of those deferrals fall into 3 categories: easy mechanical (Tier A), false-positive re-verify (Tier B), bulk-safe HVR (Tier C subset). This child closes those categories. Tier C non-safe (semicolons) plus Tier D (architectural decisions plus structural sweeps) stay deferred to a future packet.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-05-23T11:55:15.221Z",
+    "last_save_at": "2026-05-24T05:40:25.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

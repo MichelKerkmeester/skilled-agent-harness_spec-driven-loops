@@ -276,6 +276,10 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
     if (recommendation.skill === 'system-spec-kit') return R.corpusStudySpecKitBonus;
     if (recommendation.skill === 'sk-prompt' || recommendation.skill === 'mcp-chrome-devtools' || recommendation.skill === 'sk-doc') return R.corpusStudyOtherSkillsPenalty;
   }
+  if (promptLower.includes('/speckit:resume')) {
+    if (recommendation.skill === 'system-spec-kit') return R.speckitResumeSpecKitBonus;
+    if (recommendation.skill === 'command-spec-kit') return R.speckitResumeCommandPenalty;
+  }
   if (promptLower.includes('/deep:start-research-loop') && recommendation.skill === 'sk-deep-research') return R.slashCommandDeepResearchBonus;
   if (promptLower.includes('/deep:start-review-loop') && recommendation.skill === 'sk-deep-review') return R.slashCommandDeepReviewBonus;
   if (/\b(save context|save memory)\b/.test(promptLower)) {

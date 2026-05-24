@@ -28,8 +28,8 @@ The YAML workflows own when candidate generation happens. Autonomous mode runs t
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/agents/deep-agent-improvement.md` | Proposal agent | Defines the proposal-only contract, required inputs, and runtime-only write boundary. |
-| `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml` | Workflow | Dispatches the candidate-generation step on each autonomous iteration. |
-| `.opencode/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml` | Workflow | Gates candidate generation behind operator approval in interactive mode. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Workflow | Dispatches the candidate-generation step on each autonomous iteration. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | Workflow | Gates candidate generation behind operator approval in interactive mode. |
 | `.opencode/skills/deep-agent-improvement/SKILL.md` | Skill orchestration | Describes the bounded-candidate rule and the packet-local `candidates/` directory contract. |
 
 ### Validation And Tests

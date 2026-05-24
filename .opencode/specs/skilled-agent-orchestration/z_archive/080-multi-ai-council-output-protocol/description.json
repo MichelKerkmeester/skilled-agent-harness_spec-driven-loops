@@ -1,6 +1,6 @@
 {
   "level": 3,
-  "specFolder": "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+  "specFolder": "skilled-agent-orchestration/z_archive/080-multi-ai-council-output-protocol",
   "description": "Feature Specification: Multi-AI Council Output Protocol",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "output",
     "protocol"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.293Z",
+  "lastUpdated": "2026-05-23T15:24:59.478Z",
   "specId": "080",
   "folderSlug": "multi-ai-council-output-protocol",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

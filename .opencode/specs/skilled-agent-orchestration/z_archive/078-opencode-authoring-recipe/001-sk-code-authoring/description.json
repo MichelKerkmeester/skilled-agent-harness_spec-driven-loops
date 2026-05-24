@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/078-opencode-authoring-recipe/001-sk-code-authoring",
+  "specFolder": "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe/001-sk-code-authoring",
   "description": "Feature Specification: 078/001 sk-code OpenCode Authoring Recipe (foundation)",
   "keywords": [
     "feature",
@@ -13,11 +13,12 @@
     "recipe",
     "foundation"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.270Z",
+  "lastUpdated": "2026-05-23T15:24:59.471Z",
   "specId": "001",
   "folderSlug": "sk-code-authoring",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "078-opencode-authoring-recipe"
   ],
   "memorySequence": 0,

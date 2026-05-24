@@ -44,18 +44,18 @@ _memory:
 
 This packet coordinates the spec-kit `:auto` (autonomous) setup-resolution contract: a three-tier flow (resolve confidently → ask one targeted clarification when genuinely ambiguous → fail fast as last resort) that ensures `/command:*:auto` dispatches never hang on stdin under non-interactive runtimes.
 
-Phase 1 (001, ex-028) introduced and verified the contract for `/deep:start-review-loop`. Phase 2 (002) lifts the contract into a shared reference doc and migrates the remaining 11 `:auto` commands across `/spec_kit/`, `/create/`, and `/improve/` to cite it, with full live `:auto` dispatch verification per command.
+Phase 1 (001, ex-028) introduced and verified the contract for `/deep:start-review-loop`. Phase 2 (002) lifts the contract into a shared reference doc and migrates the remaining 11 `:auto` commands across `/spec_kit/`, `/create/`, and `/deep/` to cite it, with full live `:auto` dispatch verification per command.
 
 ## 3. Scope
 
 In scope:
 - Author the three-tier `:auto` contract for `/deep:start-review-loop` (Phase 1, completed pre-rename as packet 028).
 - Lift the contract into `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md` so 12 commands cite a single source.
-- Migrate `/speckit:` (deep-research, complete, implement, plan, resume), `/create:` (sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme), and `/improve:agent` to the shared contract.
+- Migrate `/speckit:` (deep-research, complete, implement, plan, resume), `/create:` (sk-skill, agent, changelog, feature-catalog, testing-playbook, folder_readme), and `/deep:start-agent-improvement-loop` to the shared contract.
 - Full live `:auto` dispatch verification across all 12 commands.
 
 Out of scope:
-- `/improve:prompt` and `agent_router` (no paired YAML; dispatch-only).
+- `/prompt` and `agent_router` (no paired YAML; dispatch-only).
 - YAML workflow asset edits (unless a per-command live verification forces it).
 - Cross-command integration tests (e.g., `:plan:auto` → `:implement:auto`).
 - Non-`/command:*` skill-internal `:auto` flows.

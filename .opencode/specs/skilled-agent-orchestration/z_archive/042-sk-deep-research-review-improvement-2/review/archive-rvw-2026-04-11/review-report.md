@@ -41,7 +41,7 @@ CONDITIONAL routes to `/speckit:plan` for remediation before the 042 bundle can 
 | F009 | P2 | traceability | Convergence reference still describes a persisted `legalStop` synthesis payload the shipped JSONL schema does not write | `I004` (`iteration-004.md:22`) | `.opencode/skills/sk-deep-review/references/convergence.md:44`; `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:896` | 4 | 4 | active |
 | F010 | P1 | correctness | Resume/restart/fork/completed-continue are exposed as live lifecycle branches without any matching lineage write path | `I005` (`iteration-005.md:19`) | `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml:167`; `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml:143-146` | 5 | 5 | active |
 | F011 | P2 | traceability | Resume-event examples remain skeletal even where the visible state contract expects lineage metadata | `I005` (`iteration-005.md:22`) | `.opencode/skills/sk-deep-research/references/loop_protocol.md:83`; `.opencode/skills/sk-deep-review/references/state_format.md:240-243` | 5 | 5 | active |
-| F012 | P1 | correctness | Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface | `I006` (`iteration-006.md:19`) | `.opencode/skills/sk-improve-agent/SKILL.md:292`; `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml:36-42` | 6 | 6 | active |
+| F012 | P1 | correctness | Improve-agent docs promise resumable lineage modes that the shipped workflow cannot execute or surface | `I006` (`iteration-006.md:19`) | `.opencode/skills/sk-improve-agent/SKILL.md:292`; `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml:36-42` | 6 | 6 | active |
 | F013 | P2 | traceability | Phase 008 implementation summary overclaims REQ-024 closure | `I008` (`iteration-008.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:59`; `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts:61-91` | 8 | 8 | active |
 | F014 | P1 | traceability | Phase 008 closeout claims full requirement closure while open review P1s remain | `I009` (`iteration-009.md:19`) | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md:157`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:35` | 9 | 9 | active |
 | F015 | P2 | traceability | Reducer-owned `ACTIVE RISKS` summary hides non-P0 release-readiness debt | `I009` (`iteration-009.md:22`) | `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs:832`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/review/deep-review-dashboard.md:100` | 9 | 9 | active |
@@ -204,64 +204,64 @@ Phase closeout summaries, packet-root completion artifacts, and reducer-owned da
 
 ## 6. Plan Seed
 
-1. **T001 [correctness] Wire claim-adjudication into the deep-review legal-stop tree**  
-Target files: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`  
-Findings: F002  
+1. **T001 [correctness] Wire claim-adjudication into the deep-review legal-stop tree**
+Target files: `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
+Findings: F002
 REQ: REQ-026
 
-2. **T002 [traceability] Replace prose claim-adjudication examples with the typed packet contract**  
-Target files: `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`  
-Findings: F007  
+2. **T002 [traceability] Replace prose claim-adjudication examples with the typed packet contract**
+Target files: `.opencode/skills/sk-deep-review/references/state_format.md`, `.opencode/skills/sk-deep-review/references/loop_protocol.md`
+Findings: F007
 REQ: REQ-027
 
-3. **T003 [security] Change coverage-graph upsert identity to a session-safe namespace**  
-Target files: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, related query helpers if needed  
-Findings: F004  
+3. **T003 [security] Change coverage-graph upsert identity to a session-safe namespace**
+Target files: `.opencode/skills/system-spec-kit/mcp_server/lib/coverage-graph/coverage-graph-db.ts`, related query helpers if needed
+Findings: F004
 REQ: REQ-028
 
-4. **T004 [security] Add a collision-path regression for shared node and edge IDs across sessions**  
-Target files: `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`  
-Findings: F005  
+4. **T004 [security] Add a collision-path regression for shared node and edge IDs across sessions**
+Target files: `.opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts`
+Findings: F005
 REQ: REQ-029
 
-5. **T005 [traceability] Document graphEvents payload schema and namespace expectations on review and research references**  
-Target files: `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-review/references/state_format.md`  
-Findings: F006  
+5. **T005 [traceability] Document graphEvents payload schema and namespace expectations on review and research references**
+Target files: `.opencode/skills/sk-deep-research/references/state_format.md`, `.opencode/skills/sk-deep-review/references/state_format.md`
+Findings: F006
 REQ: REQ-029
 
-6. **T006 [correctness] Implement or retract lifecycle branches on deep-review and deep-research workflows**  
-Target files: `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`, any paired auto assets touched by the chosen solution  
-Findings: F010  
+6. **T006 [correctness] Implement or retract lifecycle branches on deep-review and deep-research workflows**
+Target files: `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`, `.opencode/commands/speckit/assets/speckit_deep-research_confirm.yaml`, any paired auto assets touched by the chosen solution
+Findings: F010
 REQ: REQ-030
 
-7. **T007 [traceability] Normalize lifecycle event examples and state-format rows after the runtime decision lands**  
-Target files: `sk-deep-review` and `sk-deep-research` `state_format.md`, `loop_protocol.md`, `quick_reference.md`  
-Findings: F011  
+7. **T007 [traceability] Normalize lifecycle event examples and state-format rows after the runtime decision lands**
+Target files: `sk-deep-review` and `sk-deep-research` `state_format.md`, `loop_protocol.md`, `quick_reference.md`
+Findings: F011
 REQ: REQ-031
 
-8. **T008 [correctness] Decide whether improve-agent ships lineage modes or narrows its promise surface**  
-Target files: `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/improve/agent.md`, `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml`, `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`  
-Findings: F012  
+8. **T008 [correctness] Decide whether improve-agent ships lineage modes or narrows its promise surface**
+Target files: `.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`, `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml`, `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml`, `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs`
+Findings: F012
 REQ: REQ-030
 
-9. **T009 [correctness] Align the canonical deep-review agent schema with reducer parsing and fix config-array serialization**  
-Target files: `.opencode/agents/deep-review.md`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`  
-Findings: F001, F003  
+9. **T009 [correctness] Align the canonical deep-review agent schema with reducer parsing and fix config-array serialization**
+Target files: `.opencode/agents/deep-review.md`, `.opencode/commands/speckit/assets/speckit_deep-review_auto.yaml`, `.opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml`
+Findings: F001, F003
 REQ: REQ-032
 
-10. **T010 [traceability] Reconcile quick-reference and convergence docs with the live stop schema**  
-Target files: `.opencode/skills/sk-deep-review/references/quick_reference.md`, `.opencode/skills/sk-deep-review/references/convergence.md`, `.opencode/skills/sk-deep-review/references/state_format.md`  
-Findings: F008, F009  
+10. **T010 [traceability] Reconcile quick-reference and convergence docs with the live stop schema**
+Target files: `.opencode/skills/sk-deep-review/references/quick_reference.md`, `.opencode/skills/sk-deep-review/references/convergence.md`, `.opencode/skills/sk-deep-review/references/state_format.md`
+Findings: F008, F009
 REQ: REQ-033
 
-11. **T011 [traceability] Rewrite phase 008 closeout claims against the post-remediation evidence set**  
-Target files: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md`  
-Findings: F013, F014  
+11. **T011 [traceability] Rewrite phase 008 closeout claims against the post-remediation evidence set**
+Target files: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md`
+Findings: F013, F014
 REQ: REQ-034
 
-12. **T012 [traceability] Reconcile packet-root completion surfaces and dashboard risk wording with the live review ledger**  
-Target files: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/tasks.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/checklist.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/implementation-summary.md`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`  
-Findings: F015, F016  
+12. **T012 [traceability] Reconcile packet-root completion surfaces and dashboard risk wording with the live review ledger**
+Target files: `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/spec.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/tasks.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/checklist.md`, `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/implementation-summary.md`, `.opencode/skills/sk-deep-review/scripts/reduce-state.cjs`
+Findings: F015, F016
 REQ: REQ-034
 
 ## 7. Traceability Status
@@ -270,7 +270,7 @@ REQ: REQ-034
 |---|---|---|---|---|
 | `spec_code` | core | fail | Iterations 1, 2, 5, 6, 9, and 10 all recorded hard failures between packet/runtime claims and the shipped path; see F001, F002, F004, F010, F012, F014, F016 | Runtime and packet surfaces still promise behavior the code does not fully implement or gate |
 | `checklist_evidence` | core | fail | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/checklist.md:95-97`; `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/implementation-summary.md:60-61`; F014, F016 | Completion artifacts certify implemented status without absorbing the live review debt |
-| `feature_catalog_code` | overlay | fail | `.opencode/skills/sk-improve-agent/SKILL.md:292-294`; `.opencode/commands/improve/agent.md:332-339`; `.opencode/skills/sk-deep-review/references/quick_reference.md:145-151`; F008, F012 | Operator-facing capability summaries market lifecycle and convergence behavior not supported by the live workflows |
+| `feature_catalog_code` | overlay | fail | `.opencode/skills/sk-improve-agent/SKILL.md:292-294`; `.opencode/commands/deep/start-agent-improvement-loop.md:332-339`; `.opencode/skills/sk-deep-review/references/quick_reference.md:145-151`; F008, F012 | Operator-facing capability summaries market lifecycle and convergence behavior not supported by the live workflows |
 | `playbook_capability` | overlay | partial | `.opencode/skills/sk-deep-review/references/state_format.md:621-635`; `.opencode/skills/sk-deep-review/references/convergence.md:44-87`; `.opencode/skills/sk-deep-research/references/loop_protocol.md:83`; F007, F009, F011 | The playbooks are structurally present and close to the live flow, but key packet examples and persisted schemas are still stale |
 
 Traceability is strongest where the reducer and state log tell the truth about the current session, and weakest where packet-root or quick-reference surfaces compress that truth into earlier "implemented" or "low-risk follow-up" framing. The follow-up remediation packet should therefore treat every closeout artifact as downstream of the runtime contract, not as independent evidence.
@@ -356,9 +356,9 @@ The matrix below tracks evidence-backed hotspot coverage from the structured `fi
 | `.opencode/skills/sk-deep-review/references/loop_protocol.md` |  | X |  | X | X |  |  |  |  |  |
 | `.opencode/skills/sk-deep-research/references/loop_protocol.md` |  | X |  |  | X |  |  |  |  |  |
 | `.opencode/skills/sk-improve-agent/SKILL.md` |  |  |  |  |  | X |  |  |  |  |
-| `.opencode/commands/improve/agent.md` |  |  |  |  |  | X |  |  |  |  |
-| `.opencode/commands/improve/assets/improve_agent-improver_auto.yaml` |  |  |  |  |  | X |  |  |  |  |
-| `.opencode/commands/improve/assets/improve_agent-improver_confirm.yaml` |  |  |  |  |  | X |  |  |  |  |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` |  |  |  |  |  | X |  |  |  |  |
+| `.opencode/commands/deep/assets/improve_agent-improver_auto.yaml` |  |  |  |  |  | X |  |  |  |  |
+| `.opencode/commands/deep/assets/improve_agent-improver_confirm.yaml` |  |  |  |  |  | X |  |  |  |  |
 | `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` |  | X |  |  |  | X |  |  |  |  |
 | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec.md` | X | X | X | X |  | X | X | X | X |  |
 | `.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary.md` |  |  |  |  |  |  |  | X | X | X |

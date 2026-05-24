@@ -705,7 +705,7 @@ grep -q '"sequential_thinking"' opencode.json && echo "✅ PASS" || echo "❌ FA
 
 ### 10.4 System Code Graph (`mk_code_index` — Structural Code Intelligence)
 
-The standalone `mk_code_index` MCP server registers 10 tools for structural AST indexing, blast-radius analysis, neighborhood context, and change detection (`code_graph_scan/query/context/status/verify/apply`, `detect_changes`, `ccc_status/reindex/feedback`).
+The standalone `mk_code_index` MCP server registers 11 tools for structural AST indexing, blast-radius analysis, neighborhood context, query classification and change detection (`code_graph_scan/query/context/status/verify/apply/classify_query_intent`, `detect_changes`, `ccc_status/reindex/feedback`).
 
 > **Detailed Guide:** See [system-code-graph/INSTALL_GUIDE.md](../skills/system-code-graph/INSTALL_GUIDE.md) for full installation, configuration, verification, and troubleshooting.
 > **Runtime Diagnostics:** See [SET-UP - Code Graph.md](./SET-UP%20-%20Code%20Graph.md) for `/doctor code-graph` post-install audit.
@@ -720,7 +720,8 @@ test -f .opencode/skills/system-code-graph/mcp_server/dist/index.js && echo "Ins
 **Install if missing:**
 ```bash
 npm --prefix .opencode/skills/system-code-graph install
-.opencode/skills/system-code-graph/node_modules/.bin/tsc --build .opencode/skills/system-code-graph/tsconfig.json
+npm --prefix .opencode/skills/system-code-graph run clean
+npm --prefix .opencode/skills/system-code-graph run build
 ```
 
 **Configure in `opencode.json`:**
@@ -731,8 +732,8 @@ npm --prefix .opencode/skills/system-code-graph install
       "type": "local",
       "command": ["node", ".opencode/bin/mk-code-index-launcher.cjs"],
       "environment": {
-        "_NOTE_1_DB": "Database lives at .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
-        "_NOTE_2_TOOLS": "Registers 10 tools: code_graph_scan/query/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*",
+        "_NOTE_1_DB": "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
+        "_NOTE_2_TOOLS": "Registers 11 tools: code_graph_scan/query/context/status/verify/apply/classify_query_intent, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*",
         "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_AGENTS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "false",
@@ -773,18 +774,16 @@ The standalone `mk_skill_advisor` MCP server registers 8 tools (`advisor_recomme
 
 **Check:**
 ```bash
-test -f .opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js && echo "Installed" || echo "Needs build"
+test -f .opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/advisor-server.js && echo "Installed" || echo "Needs build"
 ```
 
 **Install if missing:**
 ```bash
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server install
 npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
-# tsc does not copy non-TS assets — run this to copy data/*.json into dist/
-bash .opencode/scripts/copy-skill-advisor-dist-data.sh
 ```
 
-> **Build pipeline note:** `tsc` does not copy non-TypeScript files (e.g. `data/prompt-policy.default.json`) into `dist/`. The launcher fails on first start without that file. Run `bash .opencode/scripts/copy-skill-advisor-dist-data.sh` after every `npm run build` to keep the dist tree consistent. Operators may also add a local `postbuild` script to their (gitignored) `mcp_server/package.json` that invokes the same script — see `.opencode/scripts/copy-skill-advisor-dist-data.sh` header for the snippet.
+> **Build pipeline note:** `npm run build` builds `@spec-kit/shared`, compiles advisor hooks and MCP server code, then copies `data/*.json` into `dist/mcp_server/data`. Use `bash .opencode/scripts/copy-skill-advisor-dist-data.sh` only as a manual repair helper when dist data is missing or stale.
 
 **Configure in `opencode.json`:**
 ```json
@@ -808,7 +807,7 @@ bash .opencode/scripts/copy-skill-advisor-dist-data.sh
 ### Validation: `mk_skill_advisor_check`
 
 - [ ] Launcher exists: `.opencode/bin/mk-skill-advisor-launcher.cjs`
-- [ ] Built entry exists: `.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/mcp_server/advisor-server.js`
+- [ ] Built entry exists: `.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/advisor-server.js`
 - [ ] Configuration added to opencode.json (key: `mk_skill_advisor`)
 
 **Quick Verification:**

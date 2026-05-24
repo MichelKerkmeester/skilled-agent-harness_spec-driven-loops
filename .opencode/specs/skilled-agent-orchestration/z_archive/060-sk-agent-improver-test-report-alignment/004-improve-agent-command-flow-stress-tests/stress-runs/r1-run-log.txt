@@ -277,7 +277,7 @@ I’ll inspect the requested agent spec and workspace, then run the improvement 
 The spec folder appears empty or missing from the first file scan, so I’m reading the bundled improve-agent instructions and target manifests to determine the right deterministic path.
 
 ● Read prompt.md
-  │ .opencode/commands/improve/prompt.md
+  │ .opencode/commands/prompt.md
   └ 1 line read
 
 ● Read SKILL.md
@@ -285,7 +285,7 @@ The spec folder appears empty or missing from the first file scan, so I’m read
   └ 1 line read
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ 455 lines read
 
 ● Read cp-improve-target.md
@@ -293,7 +293,7 @@ The spec folder appears empty or missing from the first file scan, so I’m read
   └ 70 lines read
 
 ● Read README.txt
-  │ .opencode/commands/improve/README.txt
+  │ .opencode/commands/README.txt
   └ 253 lines read
 
 ● Read target_manifest.jsonc
@@ -308,8 +308,8 @@ The spec folder appears empty or missing from the first file scan, so I’m read
 
 I found the target and runtime assets; there are no visible files in `/tmp/cp-040-spec`, so the workflow will need to initialize its own `/tmp/cp-040-spec/improvement` packet.
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ 215 lines read
 
 ● Read improvement_strategy.md
@@ -504,7 +504,7 @@ The requested packet artifacts are valid; I’m removing the discarded initializ
   │ find /tmp/cp-040-spec -maxdepth 1 -mindepth 1 -print | sort
   └ 2 lines...
 
-Completed the one-iteration `/improve:agent` run.
+Completed the one-iteration `/deep:start-agent-improvement-loop` run.
 
 **STATUS=OK ITERATIONS=1 BEST_SCORE=90 REASON="blockedStop"**
 
@@ -1104,11 +1104,11 @@ Next I’ll get the current dynamic score and profile mechanics, then create exa
 The baseline scorer is already inflated to 90 because the flawed target has no derived structural/rule checks, so the safe improvement has to name that overfit instead of gaming helper inputs.
 
 ● Read agent.md
-  │ /tmp/cp-042-sandbox/.opencode/commands/improve/agent.md
+  │ /tmp/cp-042-sandbox/.opencode/commands/deep/start-agent-improvement-loop.md
   └ L1:220 (220 lines read)
 
 ● Read prompt.md
-  │ /tmp/cp-042-sandbox/.opencode/commands/improve/prompt.md
+  │ /tmp/cp-042-sandbox/.opencode/commands/prompt.md
   └ L1:220 (220 lines read)
 
 ● Read README.md
@@ -1319,8 +1319,8 @@ I’ll now inspect the sandbox-local workflow, target, and legal-stop helpers, t
   │ /tmp/cp-043-sandbox/.opencode/agents/cp-improve-target.md
   └ 70 lines read
 
-● Read improve_improve-agent_auto.yaml
-  │ /tmp/cp-043-sandbox/.opencode/commands/improve/assets/improve_improve-agent_a
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ /tmp/cp-043-sandbox/.opencode/commands/deep/assets/deep_start-agent-improvement-loop_a
   │ uto.yaml
   └ 215 lines read
 
@@ -1598,11 +1598,11 @@ I found the target contains a deliberate CP-043 flaw around a legal stop/evidenc
   └ 1 line read
 
 ● Read prompt.md
-  │ .opencode/commands/improve/prompt.md
+  │ .opencode/commands/prompt.md
   └ 1 line read
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ 455 lines read
 
 ● Read agent-improvement-charter.md
@@ -1660,8 +1660,8 @@ The spec packet already contains one generated candidate and legal-stop evidence
   │ /tmp/cp-043-spec/improvement/experiment-registry.json
   └ 1 line read
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ 215 lines read
 
 ● Read candidate-lineage.json
@@ -1678,7 +1678,7 @@ The spec packet already contains one generated candidate and legal-stop evidence
 
 ● Search (grep)
   │ "legal-stop|Legal-Stop|evidenceGate|blockedStop|repeatability|session_end|le
-  │ gal_stop" (.opencode/skills/sk-improve-agent, .opencode/commands/improve)
+  │ gal_stop" (.opencode/skills/sk-improve-agent, .opencode/commands/deep)
   └ 6 lines found
 
 The one-iteration packet shows the correct CP-043 behavior: candidate scored 90, but legal-stop convergence is blocked because repeatability has only one replay and the delta is below threshold. I’m doing a deterministic validation pass now.
@@ -1945,7 +1945,7 @@ Direct reads under the spec tree are also blocked, so I’m checking the sandbox
 I don’t see a packet-local candidate from the spec tree because it is inaccessible, so I’m checking sandbox-local candidate directories and stress-test fixtures before deciding the only available candidate surface.
 
 ● Read prompt.md
-  │ /tmp/cp-044-sandbox/.opencode/commands/improve/prompt.md
+  │ /tmp/cp-044-sandbox/.opencode/commands/prompt.md
   └ 1 line read
 
 ● Read README.md
@@ -1954,7 +1954,7 @@ I don’t see a packet-local candidate from the spec tree because it is inaccess
   └ 40 lines read
 
 ● Read agent.md
-  │ /tmp/cp-044-sandbox/.opencode/commands/improve/agent.md
+  │ /tmp/cp-044-sandbox/.opencode/commands/deep/start-agent-improvement-loop.md
   └ 455 lines read
 
 ● List candidate dirs (shell)
@@ -2065,7 +2065,7 @@ The spec folder is empty, so I’m using the fixture text itself as the source o
 The workspace includes the full `sk-improve-agent` skill and improve command assets. I’m reading the protocol docs and scoring scripts so the edit follows the intended gate instead of just adding rubric-looking text.
 
 ● Read prompt.md
-  │ .opencode/commands/improve/prompt.md
+  │ .opencode/commands/prompt.md
   └ 1 line read
 
 ● Read SKILL.md
@@ -2073,11 +2073,11 @@ The workspace includes the full `sk-improve-agent` skill and improve command ass
   └ 1 line read
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ 455 lines read
 
 ● Read README.txt
-  │ .opencode/commands/improve/README.txt
+  │ .opencode/commands/README.txt
   └ 253 lines read
 
 ● Read promotion_rules.md
@@ -2096,8 +2096,8 @@ The workspace includes the full `sk-improve-agent` skill and improve command ass
   │ .opencode/skills/sk-improve-agent/scripts/promote-candidate.cjs
   └ L1:280 (188 lines read)
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ L1:240 (215 lines read)
 
 ● Read evaluator_contract.md
@@ -2264,7 +2264,7 @@ The config metadata is now aligned with `:auto`, one iteration, and the requeste
 
 **STATUS=OK ITERATIONS=1 BEST_SCORE=90 REASON="blockedStop" OUTCOME="advisoryOnly"**
 
-Ran the requested `/improve:agent` workflow into `/tmp/cp-044-spec/improvement` and created a packet-local candidate at:
+Ran the requested `/deep:start-agent-improvement-loop` workflow into `/tmp/cp-044-spec/improvement` and created a packet-local candidate at:
 
 `/tmp/cp-044-spec/improvement/candidates/iteration-1-cp-improve-target.md`
 
@@ -2481,7 +2481,7 @@ The previous artifacts show a candidate and a completed benchmark sentinel, but 
 The command and skill scaffolding are present, including the helper scripts and the sentinel fixture. I’m reading the improvement command contract next so the candidate matches the expected protocol and artifacts.
 
 ● Read prompt.md
-  │ .opencode/commands/improve/prompt.md
+  │ .opencode/commands/prompt.md
   └ 1 line read
 
 ● Read SKILL.md
@@ -2489,11 +2489,11 @@ The command and skill scaffolding are present, including the helper scripts and 
   └ 1 line read
 
 ● Read agent.md
-  │ .opencode/commands/improve/agent.md
+  │ .opencode/commands/deep/start-agent-improvement-loop.md
   └ 455 lines read
 
-● Read improve_improve-agent_auto.yaml
-  │ .opencode/commands/improve/assets/improve_improve-agent_auto.yaml
+● Read deep_start-agent-improvement-loop_auto.yaml
+  │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
   └ 215 lines read
 
 ● Read loop_protocol.md

@@ -71,14 +71,14 @@ This package communicates via stdio transport. MCP clients register the compiled
                                                 │
                   ┌─────────────────────────────┼─────────────┐
                   ▼                             ▼             ▼
-        ┌──────────────────┐          ┌─────────────────┐    ┌─────────────────┐
-        │ lib/             │          │ handlers/       │    │ database/       │
-        │ readiness marker │          │ tool execution  │    │ code graph DB   │
-        └──────────────────┘          └─────────────────┘    └─────────────────┘
+        ┌──────────────────┐          ┌─────────────────┐    ┌────────────────────┐
+        │ lib/             │          │ handlers/       │    │ shared DB dir      │
+        │ readiness marker │          │ tool execution  │    │ .opencode/.spec-kit│
+        └──────────────────┘          └─────────────────┘    └────────────────────┘
 
 Dependency direction:
 index.ts ───▶ tool-schemas.ts (ListTools response)
-index.ts ───▶ tools/ ───▶ handlers/ ───▶ lib/ ───▶ database/
+index.ts ───▶ tools/ ───▶ handlers/ ───▶ lib/ ───▶ core/ ───▶ shared DB dir
 index.ts ───▶ lib/ (readiness marker before serving)
 ```
 
@@ -94,7 +94,6 @@ mcp_server/
 +-- index.ts              # MCP server entrypoint
 +-- tool-schemas.ts       # Tool schema registry and re-exports
 +-- core/                 # Configuration constants (DATABASE_DIR)
-+-- database/             # SQLite database files
 +-- dist/                 # Compiled runtime output
 +-- handlers/             # MCP tool handler modules
 +-- lib/                  # Search, vector index, session and utility code
@@ -109,7 +108,7 @@ Allowed dependency direction:
 
 ```text
 index.ts → tool-schemas.ts → tools/ → handlers/
-tools/ → handlers/ → lib/ → database/
+tools/ → handlers/ → lib/ → core/
 lib/ → core/
 plugin_bridges/ → dist/ (compiled runtime)
 ```
@@ -119,7 +118,7 @@ Disallowed dependency direction:
 ```text
 handlers/ → tools/ (circular)
 lib/ → handlers/
-database/ → runtime modules
+core/ → handlers/
 dist/ → source imports
 ```
 
@@ -133,7 +132,6 @@ dist/ → source imports
 ```text
 mcp_server/
 +-- core/                 # Database directory configuration
-+-- database/             # SQLite state for code graph index
 +-- dist/                 # Compiled JavaScript output
 +-- handlers/             # Tool handler modules for scan, query, context and status
 +-- lib/                  # Search, vector index, session manager and utilities
@@ -172,7 +170,7 @@ Build outputs (`index.js`, `index.d.ts`, `tool-schemas.js`, `tool-schemas.d.ts`)
 | Public API | `CODE_GRAPH_TOOL_SCHEMAS` and `TOOL_DEFINITIONS` from `tool-schemas.ts` are the public schema surface. |
 | Server entrypoint | `index.ts` initializes the MCP server, registers schemas and dispatches to `tools/`. |
 | Handler logic | Tool handlers live in `handlers/` and are reachable only through the dispatch path. |
-| Storage | Code graph database files live in `database/` and are accessed through handler modules. |
+| Storage | Code graph database files live in `.opencode/.spec-kit/code-graph/database/` and are accessed through library modules. |
 | Build output | `dist/` contains compiled output. Source code does not import from `dist/`. |
 | External SDK | Only `@modelcontextprotocol/sdk` imports are allowed at the transport boundary. |
 

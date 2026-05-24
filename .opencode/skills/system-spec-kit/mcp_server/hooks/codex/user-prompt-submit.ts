@@ -5,7 +5,7 @@
 import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
-const TARGET = '.opencode/skills/system-skill-advisor/mcp_server/dist/system-skill-advisor/hooks/codex/user-prompt-submit.js';
+const TARGET = '.opencode/skills/system-skill-advisor/mcp_server/dist/hooks/codex/user-prompt-submit.js';
 
 const result = spawnSync(process.execPath, [TARGET, ...process.argv.slice(2)], {
   cwd: process.cwd(),

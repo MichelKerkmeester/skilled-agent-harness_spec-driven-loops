@@ -115,7 +115,7 @@
     ],
     "causal_summary": "This sub-phase owns general cleanup and technical debt remediation across the system-spec-kit codebase. The 31 children bind together thematically through documentation fixes, template debt cleanup, orphan file management, test infrastructure remediation, and code graph resource finalization. Work ranges from removing vestigial embedding-readiness gates to fixing daemon concurrency races, with emphasis on bringing documentation and templates into conformance with current standards.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-23T11:55:14.759Z",
+    "last_save_at": "2026-05-24T05:40:25.590Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

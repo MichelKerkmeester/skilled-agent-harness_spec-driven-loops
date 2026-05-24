@@ -170,7 +170,7 @@ Fix the proposal boundary first
 
 | Command | Purpose | Path |
 | ------- | ------- | ---- |
-| `/improve:agent-improver` | Initializes and runs the bounded agent-improver workflow | `.opencode/commands/improve/agent.md` |
+| `/deep:start-agent-improvement-loop-improver` | Initializes and runs the bounded agent-improver workflow | `.opencode/commands/deep/start-agent-improvement-loop.md` |
 
 ### Skills
 

@@ -21,8 +21,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >    - `maxIterations`
 >    - `convergenceThreshold`
 > 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
->    - Auto: `deep_review_auto.yaml`
->    - Confirm: `deep_review_confirm.yaml`
+>    - Auto: `deep_start-review-loop_auto.yaml`
+>    - Confirm: `deep_start-review-loop_confirm.yaml`
 > 3. Execute the YAML workflow step by step using those resolved values
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
@@ -35,7 +35,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`
 
-> **Canonical mode syntax:** use attached command suffixes (`/speckit:deep-review:auto`, `/speckit:deep-review:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
+> **Canonical mode syntax:** use attached command suffixes (`/deep:start-review-loop:auto`, `/deep:start-review-loop:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
 
 # SINGLE CONSOLIDATED SETUP PROMPT
 
@@ -59,7 +59,7 @@ Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
-3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/speckit:deep-review:auto` as the command name. Exit non-zero. Do not load YAML.
+3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-review-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the Consolidated Setup Prompt section below.
 
@@ -293,9 +293,9 @@ Run an iterative loop for code review: Initialize the review packet under `{arti
 
 | Mode | Invocation | Behavior |
 |------|-----------|----------|
-| `:auto` | `/speckit:deep-review:auto "target"` | All iterations without approval |
-| `:confirm` | `/speckit:deep-review:confirm "target"` | Multi-gate review at setup, iteration, and synthesis |
-| (default) | `/speckit:deep-review "target"` | Ask user to choose mode during setup |
+| `:auto` | `/deep:start-review-loop:auto "target"` | All iterations without approval |
+| `:confirm` | `/deep:start-review-loop:confirm "target"` | Multi-gate review at setup, iteration, and synthesis |
+| (default) | `/deep:start-review-loop "target"` | Ask user to choose mode during setup |
 
 ---
 
@@ -385,12 +385,12 @@ Key references:
 ## 9. EXAMPLES
 
 ```
-/speckit:deep-review "skill:deep-research"
-/speckit:deep-review:auto "specs/03--commands-and-skills/030-deep-research-review-mode/"
-/speckit:deep-review:confirm "agent:deep-research" --max-iterations=5
-/speckit:deep-review "track:03--commands-and-skills"
-/speckit:deep-review:auto ".opencode/skills/sk-git/**/*.md" --convergence=0.15
-/speckit:deep-review:confirm "skill:sk-code router-guidance" --spec-folder=specs/04--quality/041-review-code-router/
+/deep:start-review-loop "skill:deep-research"
+/deep:start-review-loop:auto "specs/03--commands-and-skills/030-deep-research-review-mode/"
+/deep:start-review-loop:confirm "agent:deep-research" --max-iterations=5
+/deep:start-review-loop "track:03--commands-and-skills"
+/deep:start-review-loop:auto ".opencode/skills/sk-git/**/*.md" --convergence=0.15
+/deep:start-review-loop:confirm "skill:sk-code router-guidance" --spec-folder=specs/04--quality/041-review-code-router/
 ```
 
 ---
@@ -402,7 +402,7 @@ Key references:
 | Review FAIL/CONDITIONAL, need fixes | `/speckit:plan [remediation]` | Plan remediation from review findings |
 | Review PASS, ready for release | `/create:changelog` | Generate changelog entry |
 | Need to fix specific findings | `/speckit:implement [spec-folder]` | Implement fixes from existing plan |
-| Need more investigation | `/speckit:deep-research [topic]` | Deep research session for unclear areas |
+| Need more investigation | `/deep:start-research-loop [topic]` | Deep research session for unclear areas |
 | Want to refresh search support | `/memory:save [spec-folder]` | Refresh the indexed canonical spec document while canonical continuity stays in spec docs |
 
 ---
@@ -452,8 +452,8 @@ Key references:
 
 ## 13. COMMAND CHAIN
 
-**Review path (findings):** `/speckit:deep-review` -> (if FAIL/CONDITIONAL) `/speckit:plan` -> `/speckit:implement`
-**Review path (clean):** `/speckit:deep-review` -> (if PASS) `/create:changelog`
+**Review path (findings):** `/deep:start-review-loop` -> (if FAIL/CONDITIONAL) `/speckit:plan` -> `/speckit:implement`
+**Review path (clean):** `/deep:start-review-loop` -> (if PASS) `/create:changelog`
 
 ---
 

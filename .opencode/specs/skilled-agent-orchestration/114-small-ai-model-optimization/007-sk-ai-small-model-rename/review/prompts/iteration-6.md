@@ -19,7 +19,7 @@ Iter-5 found 2 P2 findings (H5-001: 114/spec.md frontmatter stale; H5-002: 114/d
 
 2. **Re-read** `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/description.json`. Verify:
    - `description` field does NOT mention `sk-small-model` as a CURRENT name (rename FROM-context tolerated if explicit)
-   - `keywords` array does NOT contain bare `sk-small-model` (or, if it does, the `sk-ai-small-model` is also present)
+   - `keywords` array does NOT contain bare `sk-small-model` (or, if it does, the `sk-prompt-small-model` is also present)
    - Acceptance: field verdicts.
 
 3. **Hunt for second-order drift**: do OTHER parent or sibling metadata files have similar stale-after-007 issues? Sweep across 114/{001-006}/description.json + graph-metadata.json frontmatter sections for any "sk-small-model" or stale `last_updated_at`.

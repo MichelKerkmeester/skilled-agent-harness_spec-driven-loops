@@ -16,7 +16,7 @@
       "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/007-foundational-runtime",
   "description": "Feature Specification: Foundational Runtime (merged)",
   "keywords": [
     "feature",
@@ -25,13 +25,13 @@
     "runtime",
     "merged"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.606Z",
-  "specId": "001",
+  "lastUpdated": "2026-05-23T15:25:00.364Z",
+  "specId": "007",
   "folderSlug": "foundational-runtime",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "004-runtime-executor-hardening"
+    "003-continuity-memory-runtime"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

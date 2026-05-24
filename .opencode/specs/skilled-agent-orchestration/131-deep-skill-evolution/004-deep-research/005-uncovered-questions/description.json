@@ -1,28 +1,24 @@
 {
+  "level": "3",
   "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/005-uncovered-questions",
-  "description": "Packet 121 DR-003 adds deep-research uncovered question tracking in the reducer registry and dashboard.",
+  "description": "Feature Specification: Deep Research Uncovered Questions Tracking",
   "keywords": [
-    "packet",
-    "121",
-    "dr-003",
-    "adds",
-    "deep-research",
+    "feature",
+    "specification",
+    "deep",
+    "research",
     "uncovered",
-    "question",
-    "tracking",
-    "reducer",
-    "registry",
-    "dashboard"
+    "questions",
+    "tracking"
   ],
-  "lastUpdated": "2026-05-23T03:56:41.959Z",
-  "specId": "121",
-  "folderSlug": "005-uncovered-questions",
+  "lastUpdated": "2026-05-23T15:24:59.093Z",
+  "specId": "005",
+  "folderSlug": "uncovered-questions",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",
     "004-deep-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

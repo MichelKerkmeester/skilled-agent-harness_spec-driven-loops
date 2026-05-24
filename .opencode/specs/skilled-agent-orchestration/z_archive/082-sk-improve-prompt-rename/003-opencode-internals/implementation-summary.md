@@ -85,7 +85,7 @@ The change was a scoped literal rotation after reading the reference shapes. I u
 
 | Decision | Why |
 |----------|-----|
-| Left `/improve:prompt` and `@improve-prompt` names unchanged | The parent and phase specs explicitly preserve command and agent names. |
+| Left `/prompt` and `@improve-prompt` names unchanged | The parent and phase specs explicitly preserve command and agent names. |
 | Did not touch Phase 005 residual grep hits | The user explicitly forbade root docs, install guides, observability, active changelogs, and other Phase 005 surfaces during Phase 003. |
 | Did not alter `deep-agent-improvement` `skill_id` | The advisor rebuild blocker is real, but changing `sk-improve-agent` to `deep-agent-improvement` is outside the requested `sk-improve-prompt` to `sk-prompt` literal rename. |
 <!-- /ANCHOR:decisions -->

@@ -123,6 +123,8 @@ export interface RoutingCalibration {
   readonly corpusStudySpecKitBonus: number;
   readonly corpusStudyOtherSkillsPenalty: number;
   // explicit slash-command bonuses
+  readonly speckitResumeSpecKitBonus: number;
+  readonly speckitResumeCommandPenalty: number;
   readonly slashCommandDeepResearchBonus: number;
   readonly slashCommandDeepReviewBonus: number;
   // phase-folder intent
@@ -194,6 +196,8 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     compareAuditCodeOpenCodePenalty: -0.18,
     corpusStudySpecKitBonus: 0.35,
     corpusStudyOtherSkillsPenalty: -0.16,
+    speckitResumeSpecKitBonus: 0.16,
+    speckitResumeCommandPenalty: -0.12,
     slashCommandDeepResearchBonus: 0.45,
     slashCommandDeepReviewBonus: 0.45,
     phaseFolderSpecKitBonus: 0.35,

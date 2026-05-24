@@ -1,11 +1,11 @@
 ---
 title: "Deep-review strategy: 007 rename packet"
-description: "Auto-generated strategy for 109-iter cap deep-review of the sk-small-model → sk-ai-small-model rename packet."
+description: "Auto-generated strategy for 109-iter cap deep-review of the sk-small-model → sk-prompt-small-model rename packet."
 ---
 
 # Deep-Review Strategy — 007 rename packet
 
-**Target**: `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename/`
+**Target**: `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-prompt-small-model-rename/`
 **Executor**: cli-devin SWE-1.6 (`-p --prompt-file ... --model swe-1.6 --permission-mode auto </dev/null`)
 **Max iters**: 109 (with convergence detection — expected to stop ~5-10 iters)
 **Convergence threshold**: 0.15 newFindingsRatio over 3 consecutive iters

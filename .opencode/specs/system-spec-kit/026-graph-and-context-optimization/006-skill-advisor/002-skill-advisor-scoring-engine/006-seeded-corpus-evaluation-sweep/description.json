@@ -1,21 +1,29 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/006-seeded-corpus-evaluation-sweep",
-  "description": "Seed cosine embeddings into the lane-weight sweep test fixture so the sweep can finally measure cosine-lane effects, then emit a numbers-driven weight recommendation.",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine/006-seeded-corpus-evaluation-sweep",
+  "description": "Feature Specification: Seed cosine embeddings into the sweep test and produce a real weight recommendation",
   "keywords": [
-    "corpus-seeded-sweep",
-    "embedding-cache-fixture",
-    "advisor-weight-recommendation",
-    "vitest-spy",
-    "lane-weight-sweep-rerun"
+    "feature",
+    "specification",
+    "seed",
+    "cosine",
+    "embeddings",
+    "sweep",
+    "test",
+    "produce",
+    "real",
+    "weight",
+    "recommendation"
   ],
-  "lastUpdated": "2026-05-14T00:00:00Z",
-  "specId": "004",
-  "folderSlug": "corpus-seeded-sweep",
+  "lastUpdated": "2026-05-23T15:25:00.635Z",
+  "specId": "006",
+  "folderSlug": "seeded-corpus-evaluation-sweep",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "006-skill-advisor",
-    "002-semantic-routing-lane"
-  ]
+    "002-skill-advisor-scoring-engine"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

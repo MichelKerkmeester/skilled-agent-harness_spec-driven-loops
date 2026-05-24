@@ -34,14 +34,14 @@ export type RunScriptOptions = {
 
 export type ScriptNamespace = {
   specFolder: string;
-  loopType: 'research' | 'review';
+  loopType: 'research' | 'review' | 'council';
   sessionId: string;
 };
 
 /**
  * Generates a unique namespace for a script run with timestamp and random nonce.
  */
-export function uniqueNamespace(scriptName: ScriptName, loopType: 'research' | 'review' = 'review'): ScriptNamespace {
+export function uniqueNamespace(scriptName: ScriptName, loopType: ScriptNamespace['loopType'] = 'review'): ScriptNamespace {
   const nonce = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
   return {
     specFolder: `specs/118-007-${scriptName}-${nonce}`,
@@ -141,6 +141,16 @@ export function seedReviewNode(namespace: ScriptNamespace, id = 'dimension-1'): 
  * Deletes all coverage graph rows for a namespace to clean up after a test.
  */
 export async function cleanupNamespace(namespace: ScriptNamespace): Promise<void> {
+  if (namespace.loopType === 'council') {
+    const db = await import('../../lib/council/council-graph-db.js');
+    db.cleanupNamespace({
+      specFolder: namespace.specFolder,
+      sessionId: namespace.sessionId,
+    });
+    db.closeDb();
+    return;
+  }
+
   const db = await import('../../lib/coverage-graph/coverage-graph-db.js');
   const connection = db.getDb();
   connection.prepare(

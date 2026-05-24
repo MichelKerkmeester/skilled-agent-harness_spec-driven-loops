@@ -35,7 +35,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
-> **Status:** COMPLETE. R1 surfaced a methodology-level gap: the scenarios invoked the thin `@improve-agent` mutator body while the discipline under test lives in the `/improve:agent` command orchestrator.
+> **Status:** COMPLETE. R1 surfaced a methodology-level gap: the scenarios invoked the thin `@improve-agent` mutator body while the discipline under test lives in the `/deep:start-agent-improvement-loop` command orchestrator.
 
 ---
 
@@ -81,8 +81,8 @@ Tripwire-dirty verdicts are false positives for scenario mutation. They reflect 
 |---|---|---|
 | `.opencode/agents/improve-agent.md` (+ 3 mirrors) | §6.5 CRITIC PASS bullets | done |
 | `.opencode/skills/sk-improve-agent/SKILL.md` | Skill-load clarification | done |
-| `improve_improve-agent_auto.yaml` | `legal_stop_evaluated` 5-gate bundle + benchmark/blocked events | done |
-| `improve_improve-agent_confirm.yaml` | Same | done |
+| `deep_start-agent-improvement-loop_auto.yaml` | `legal_stop_evaluated` 5-gate bundle + benchmark/blocked events | done |
+| `deep_start-agent-improvement-loop_confirm.yaml` | Same | done |
 | `score-candidate.cjs` | `--baseline` + `delta` + `thresholdDelta` emission | done |
 | `scan-integration.cjs` | `.gemini/agents` mirror path fix | done |
 <!-- /ANCHOR:diff-application -->
@@ -94,7 +94,7 @@ Tripwire-dirty verdicts are false positives for scenario mutation. They reflect 
 
 Recommended follow-on packet: `004-improve-agent-command-flow-stress-tests`.
 
-The deferred work is not "fix CP-040..CP-045 wording." The real task is to restructure Call B so it invokes `/improve:agent` through the command/YAML workflow. Evidence should come from command logs, generated `improvement/` artifacts, scorer JSON, and `improvement-journal.jsonl`, not only the prepended agent-body transcript.
+The deferred work is not "fix CP-040..CP-045 wording." The real task is to restructure Call B so it invokes `/deep:start-agent-improvement-loop` through the command/YAML workflow. Evidence should come from command logs, generated `improvement/` artifacts, scorer JSON, and `improvement-journal.jsonl`, not only the prepended agent-body transcript.
 
 Start from the six existing scenario claims:
 

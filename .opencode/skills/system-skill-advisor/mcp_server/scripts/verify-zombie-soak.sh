@@ -17,7 +17,7 @@
 # Evidence capture for CHK-014 in 007/checklist.md:
 #   bash .../verify-zombie-soak.sh --verbose > /tmp/soak-evidence-$(date +%Y%m%d).log 2>&1
 
-set -uo pipefail
+set -euo pipefail
 
 VERBOSE=0
 case "${1:-}" in

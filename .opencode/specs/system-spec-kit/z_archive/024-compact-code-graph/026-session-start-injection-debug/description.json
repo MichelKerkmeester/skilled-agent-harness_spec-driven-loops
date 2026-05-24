@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/024-compact-code-graph/026-session-start-injection-debug",
+  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/026-session-start-injection-debug",
   "description": "Spec: Startup Context Injection Debug — Hook Runtime Brief + Sibling Handoff",
   "keywords": [
     "spec",
@@ -13,11 +13,12 @@
     "sibling",
     "handoff"
   ],
-  "lastUpdated": "2026-04-02T17:21:39.869Z",
+  "lastUpdated": "2026-05-23T15:25:01.203Z",
   "specId": "026",
   "folderSlug": "session-start-injection-debug",
   "parentChain": [
     "system-spec-kit",
+    "z_archive",
     "024-compact-code-graph"
   ],
   "memorySequence": 0,

@@ -89,9 +89,10 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `references/templates/` for level selection, template selection, and structure guides.
 - `references/validation/` for checklist policy, verification rules, decision formats, and template compliance contracts.
 - `references/structure/` for folder organization and sub-folder versioning.
-- `references/workflows/` for command workflows and worked examples.
+- `references/workflows/` for command workflows, shared intake, rename procedures, and worked examples.
 - `references/debugging/` for troubleshooting and root-cause methodology.
-- `references/config/` for runtime environment configuration.
+- `references/config/` for runtime environment configuration and launcher/lease contracts.
+- `references/hooks/` for prompt-time advisor hooks, runtime hook parity, and hook validation playbooks.
 
 ### Template and Script Sources of Truth
 
@@ -153,6 +154,10 @@ INTENT_SIGNALS = {
     "HANDOVER": {"weight": 4, "keywords": ["handover", "continue later", "next session", "pause"]},
     "PHASE": {"weight": 4, "keywords": ["phase", "decompose", "split", "workstream", "multi-phase", "phased approach", "phased", "multi-session"]},
     "RETRIEVAL_TUNING": {"weight": 3, "keywords": ["retrieval", "search tuning", "fusion", "scoring", "pipeline"]},
+    "INTAKE": {"weight": 4, "keywords": ["intake", "folder_state", "start_state", "repair-mode", "intake-only"]},
+    "HOOKS": {"weight": 4, "keywords": ["hook", "skill advisor hook", "advisor hook", "prompt-time advisor", "advisor_validate"]},
+    "LAUNCHER": {"weight": 4, "keywords": ["launcher", "lease", "pid file", "single-writer", "lease_held_by"]},
+    "RENAME": {"weight": 3, "keywords": ["rename", "mechanical refactor", "rename pattern", "git mv", "case variants"]},
     "EVALUATION": {"weight": 3, "keywords": ["evaluate", "ablation", "benchmark", "baseline", "metrics"]},
     "SCORING_CALIBRATION": {"weight": 3, "keywords": ["calibration", "scoring", "normalization", "decay", "interference"]},
     "ROLLOUT_FLAGS": {"weight": 3, "keywords": ["feature flag", "rollout", "toggle", "enable", "disable"]},
@@ -161,7 +166,8 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "PLAN": [
-                "references/templates/template_guide.md",
+        "references/templates/template_guide.md",
+        "references/workflows/intake_contract.md",
         "references/validation/template_compliance_contract.md",
     ],
     "RESEARCH": [
@@ -182,6 +188,7 @@ RESOURCE_MAP = {
     "COMPLETE": [
         "references/validation/validation_rules.md",
         "references/workflows/nested_changelog.md",
+        "references/workflows/intake_contract.md",
     ],
     "MEMORY": [
         "references/memory/memory_system.md",
@@ -199,7 +206,25 @@ RESOURCE_MAP = {
     "RETRIEVAL_TUNING": [
         "references/memory/embedder_architecture.md",
         "references/memory/embedding_resilience.md",
+        "references/memory/embedder_pluggability.md",
         "references/memory/trigger_config.md",
+    ],
+    "INTAKE": [
+        "references/workflows/intake_contract.md",
+        "references/templates/template_guide.md",
+        "references/validation/template_compliance_contract.md",
+    ],
+    "HOOKS": [
+        "references/hooks/skill_advisor_hook.md",
+        "references/hooks/skill_advisor_hook_validation.md",
+        "references/config/hook_system.md",
+    ],
+    "LAUNCHER": [
+        "references/config/launcher_lease.md",
+        "references/memory/memory_system.md",
+    ],
+    "RENAME": [
+        "references/workflows/rename_pattern.md",
     ],
     "EVALUATION": [
         "references/memory/epistemic_vectors.md",
@@ -221,6 +246,7 @@ COMMAND_BOOSTS = {
     "/speckit:plan": "PLAN",
     "/speckit:implement": "IMPLEMENT",
     "/speckit:complete": "COMPLETE",
+    "/speckit:plan --intake-only": "INTAKE",
     "/speckit:plan :with-phases": "PHASE",
     "/memory:search": "MEMORY",
     "/memory:save": "MEMORY",
@@ -235,6 +261,8 @@ LOADING_LEVELS = {
     "ON_DEMAND": [
         "references/validation/phase_checklists.md",
         "references/templates/template_guide.md",
+        "references/workflows/intake_contract.md",
+        "references/hooks/skill_advisor_hook_validation.md",
     ],
 }
 
@@ -387,7 +415,7 @@ Cross-encoder reranking is opt-in. Default is OFF based on the 011 decision arc 
 
 ### Validation and Recovery
 
-Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, code graph, and CocoIndex readiness details live in `references/config/hook_system.md`, `mcp_server/hooks/copilot/README.md`, and the code graph references.
+Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, code graph, and CocoIndex readiness details live in `references/config/hook_system.md`, `references/hooks/skill_advisor_hook.md`, `mcp_server/hooks/copilot/README.md`, and the code graph references.
 
 ### Code Graph and Search Routing
 
@@ -480,7 +508,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Upgrade level | `bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/007-feature/ --to 2` |
 | Completeness | `.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh specs/007-feature/` |
 
-Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:start-research-loop` follows `../deep-research/references/spec_check_protocol.md` when research needs bounded `spec.md` anchoring, and `/speckit:plan` or `/speckit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skills/system-spec-kit/references/intake-contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
+Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:start-research-loop` follows `../deep-research/references/spec_check_protocol.md` when research needs bounded `spec.md` anchoring, and `/speckit:plan` or `/speckit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
 
 **Remember**: This skill is the foundational documentation orchestrator. It enforces structure, template usage, context preservation, and workflow-required validation for all file modifications. Every conversation that modifies files MUST have a spec folder.
 

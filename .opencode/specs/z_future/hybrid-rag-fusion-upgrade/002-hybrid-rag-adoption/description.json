@@ -1,17 +1,18 @@
 {
-  "specFolder": "system-spec-kit/z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption",
-  "description": "002-hybrid-rag-adoption: Hybrid RAG Adoption",
+  "specFolder": "z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption",
+  "description": "Feature Specification: hybrid-rag-adoption: Hybrid RAG Adoption",
   "keywords": [
-    "002-hybrid-rag-adoption",
+    "feature",
+    "specification",
+    "hybrid-rag-adoption",
     "hybrid",
     "rag",
     "adoption"
   ],
-  "lastUpdated": "2026-04-27T13:33:11Z",
+  "lastUpdated": "2026-05-23T15:25:01.332Z",
   "specId": "002",
   "folderSlug": "hybrid-rag-adoption",
   "parentChain": [
-    "system-spec-kit",
     "z_future",
     "hybrid-rag-fusion-upgrade"
   ],

@@ -43,7 +43,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The repo already completed a physical rename from `sk-agent-improver` and `sk-prompt-improver` to `sk-improve-agent` and `sk-improve-prompt`. The rename was driven by alignment with the shipped `/improve:agent` and `/improve:prompt` command namespace. At closeout time, the phase packet itself still carried stale metadata, old runtime-agent references, and missing template markers while every active repo reference had already been migrated.
+The repo already completed a physical rename from `sk-agent-improver` and `sk-prompt-improver` to `sk-improve-agent` and `sk-improve-prompt`. The rename was driven by alignment with the shipped `/deep:start-agent-improvement-loop` and `/prompt` command namespace. At closeout time, the phase packet itself still carried stale metadata, old runtime-agent references, and missing template markers while every active repo reference had already been migrated.
 
 The closeout raised three related questions that must be settled together so the packet cannot drift again:
 
@@ -54,7 +54,7 @@ The closeout raised three related questions that must be settled together so the
 ### Constraints
 
 - The live skill folders at `.opencode/skills/sk-improve-agent/` and `.opencode/skills/sk-improve-prompt/` must remain the single source of truth.
-- The shipped `/improve:agent` and `/improve:prompt` command namespace cannot be changed as part of this closeout.
+- The shipped `/deep:start-agent-improvement-loop` and `/prompt` command namespace cannot be changed as part of this closeout.
 - Historical spec-folder slugs referencing the retired names already exist on disk and in git history and must not be rewritten.
 - The runtime-agent files already match the current runtime naming convention across four runtime directories.
 - The phase is documentation-only; no runtime behavior may change.
@@ -137,7 +137,7 @@ Historical spec folders that still carry retired names in their slugs remain unc
 | 2 | **Beyond Local Maxima?** | PASS | Six alternatives were evaluated and scored across the three sub-decisions |
 | 3 | **Sufficient?** | PASS | One canonical rule per sub-decision is the simplest structure that removes drift |
 | 4 | **Fits Goal?** | PASS | Matches the documentation-only closeout charter; no runtime surface is touched |
-| 5 | **Open Horizons?** | PASS | Aligns with the shipped `/improve:*` command namespace, keeps four-runtime mirror stable, and preserves parent link stability for future phases |
+| 5 | **Open Horizons?** | PASS | Aligns with the shipped `/deep:*` command namespace, keeps four-runtime mirror stable, and preserves parent link stability for future phases |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-001-five-checks -->

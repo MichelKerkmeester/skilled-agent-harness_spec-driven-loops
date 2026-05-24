@@ -131,7 +131,7 @@ Write to `research/iterations/iteration-017.md`:
 |-------|-------|-----------|----------|-------------------|----------------|
 | deep-research | <N> | user via /deep:start-research-loop | <N> | <description> | <vocab> |
 | deep-review | <N> | user via /deep:start-review-loop | <N> | <description> | P0/P1/P2 |
-| deep-agent-improvement | <N> | user via /improve:agent | <N> | <description> | <vocab> |
+| deep-agent-improvement | <N> | user via /deep:start-agent-improvement-loop | <N> | <description> | <vocab> |
 
 ### Gap Matrix (17 mechanisms × 3 skills)
 | Mechanism | deep-research | deep-review | deep-agent-improvement |

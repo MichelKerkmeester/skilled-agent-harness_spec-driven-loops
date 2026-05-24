@@ -39,7 +39,7 @@
     "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural",
     "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement",
     "skilled-agent-orchestration/114-small-ai-model-optimization",
-    "skilled-agent-orchestration/132-cmd-speckit-family-rename"
+    "skilled-agent-orchestration/115-cmd-speckit-family-rename"
   ],
   "manual": {
     "depends_on": [],
@@ -86,7 +86,7 @@
     "source_docs": [
       "description.json"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/132-cmd-speckit-family-rename",
+    "last_active_child_id": "skilled-agent-orchestration/115-cmd-speckit-family-rename",
     "last_active_at": "2026-05-23T14:11:36.363Z"
   }
 }

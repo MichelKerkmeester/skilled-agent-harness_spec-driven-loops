@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The 015 deep review passed the `system_skill_advisor` to `mk_skill_advisor` rename but left nine P2 advisories: stale parent graph metadata, an env-var discoverability gap, build freshness evidence, three missing rename-invariant tests, and one stale advisor README validation path. D2b from packet 011 also flagged two shared-concern seams that need either extraction or explicit acceptance.",
     "created_at": "2026-05-19T15:11:02.193Z",
-    "last_save_at": "2026-05-23T11:55:15.138Z",
+    "last_save_at": "2026-05-24T05:40:25.860Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

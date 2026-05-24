@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "skilled-agent-orchestration/068-sk-doc-organization",
+  "specFolder": "skilled-agent-orchestration/z_archive/068-sk-doc-organization",
   "description": "Feature Specification: Reorganize sk-doc/assets - promote heavy-traffic templates to assets root, propagate references across 4 runtimes",
   "keywords": [
     "feature",
@@ -17,11 +17,12 @@
     "across",
     "runtimes"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.094Z",
+  "lastUpdated": "2026-05-23T15:24:59.428Z",
   "specId": "068",
   "folderSlug": "sk-doc-organization",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

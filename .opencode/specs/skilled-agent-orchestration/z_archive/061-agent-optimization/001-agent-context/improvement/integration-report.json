@@ -153,13 +153,13 @@
         ]
       },
       {
-        "path": ".opencode/commands/improve/assets/improve_improve-agent_auto.yaml",
+        "path": ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
         "references": [
           "context"
         ]
       },
       {
-        "path": ".opencode/commands/improve/assets/improve_improve-agent_confirm.yaml",
+        "path": ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
         "references": [
           "context"
         ]

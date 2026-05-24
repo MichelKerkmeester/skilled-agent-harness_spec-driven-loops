@@ -26,7 +26,7 @@
     ".opencode/commands/create",
     ".opencode/agent"
   ],
-  "specFolder": "skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade",
+  "specFolder": "skilled-agent-orchestration/z_archive/057-cmd-spec-kit-ux-upgrade",
   "description": "Feature Specification: spec-kit UX comparison vs external SPAR-Kit",
   "keywords": [
     "feature",
@@ -36,11 +36,12 @@
     "external",
     "spar-kit"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.930Z",
+  "lastUpdated": "2026-05-23T15:24:59.345Z",
   "specId": "057",
   "folderSlug": "cmd-spec-kit-ux-upgrade",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

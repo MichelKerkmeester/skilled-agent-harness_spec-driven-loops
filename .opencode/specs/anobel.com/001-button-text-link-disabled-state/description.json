@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "anobel.com/001-button-text-link-disabled-state",
+  "description": "Feature Specification: Text Link Button Disabled State",
+  "keywords": [
+    "feature",
+    "specification",
+    "text",
+    "link",
+    "button",
+    "disabled",
+    "state"
+  ],
+  "lastUpdated": "2026-05-23T18:03:58.202Z",
+  "specId": "001",
+  "folderSlug": "button-text-link-disabled-state",
+  "parentChain": [
+    "anobel.com"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

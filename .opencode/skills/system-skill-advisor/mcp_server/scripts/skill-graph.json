@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-23T12:13:04.928720+00:00",
+  "generated_at": "2026-05-24T06:32:16.105504+00:00",
   "skill_count": 23,
   "families": {
     "cli": [
@@ -27,10 +27,10 @@
     "sk-util": [
       "deep-agent-improvement",
       "deep-ai-council",
-      "sk-ai-small-model",
       "sk-doc",
       "sk-git",
-      "sk-prompt"
+      "sk-prompt",
+      "sk-prompt-small-model"
     ],
     "system": [
       "system-code-graph",
@@ -58,7 +58,7 @@
     },
     "cli-devin": {
       "enhances": {
-        "sk-ai-small-model": 0.5
+        "sk-prompt-small-model": 0.5
       },
       "siblings": {
         "cli-claude-code": 0.5,
@@ -77,7 +77,7 @@
     },
     "cli-opencode": {
       "enhances": {
-        "sk-ai-small-model": 0.5
+        "sk-prompt-small-model": 0.5
       },
       "siblings": {
         "cli-claude-code": 0.5,
@@ -104,8 +104,8 @@
         "system-spec-kit": 0.7
       },
       "enhances": {
-        "deep-review": 0.9,
-        "deep-research": 0.9
+        "deep-review": 0.7,
+        "deep-research": 0.7
       },
       "siblings": {
         "deep-review": 0.6,
@@ -150,12 +150,6 @@
     "mcp-code-mode": {
       "prerequisite_for": {
         "mcp-chrome-devtools": 0.7
-      }
-    },
-    "sk-ai-small-model": {
-      "enhances": {
-        "cli-devin": 0.5,
-        "cli-opencode": 0.5
       }
     },
     "sk-code": {
@@ -206,6 +200,12 @@
         "deep-agent-improvement": 0.4
       }
     },
+    "sk-prompt-small-model": {
+      "enhances": {
+        "cli-devin": 0.5,
+        "cli-opencode": 0.5
+      }
+    },
     "system-code-graph": {
       "depends_on": {
         "system-spec-kit": 0.8
@@ -225,9 +225,6 @@
       },
       "siblings": {
         "mcp-coco-index": 0.4
-      },
-      "prerequisite_for": {
-        "system-spec-kit": 0.3
       }
     },
     "system-skill-advisor": {
@@ -367,20 +364,6 @@
       "mcp tool",
       "call tool chain"
     ],
-    "sk-ai-small-model": [
-      "small model",
-      "small-model dispatch",
-      "swe-1.6",
-      "deepseek-v4",
-      "kimi-k2.6",
-      "qwen3.6",
-      "glm-5.1",
-      "opencode-go",
-      "deepseek-api",
-      "context budget",
-      "output verification",
-      "structured permissions"
-    ],
     "sk-code": [
       "code work",
       "code surface detection",
@@ -482,6 +465,20 @@
       "prompt framework",
       "clear score"
     ],
+    "sk-prompt-small-model": [
+      "small model",
+      "small-model dispatch",
+      "swe-1.6",
+      "deepseek-v4",
+      "kimi-k2.6",
+      "qwen3.6",
+      "glm-5.1",
+      "opencode-go",
+      "deepseek-api",
+      "context budget",
+      "output verification",
+      "structured permissions"
+    ],
     "system-code-graph": [
       "code graph",
       "code-graph",
@@ -527,11 +524,5 @@
     "sk-code-review",
     "system-spec-kit"
   ],
-  "topology_warnings": {
-    "weight_band": [
-      "WEIGHT-BAND: deep-loop-runtime edges.enhances[0] weight 0.9 outside recommended band [0.3, 0.7]",
-      "WEIGHT-BAND: deep-loop-runtime edges.enhances[1] weight 0.9 outside recommended band [0.3, 0.7]",
-      "WEIGHT-BAND: system-rerank-sidecar edges.prerequisite_for[0] weight 0.3 outside recommended band [0.7, 1.0]"
-    ]
-  }
+  "topology_warnings": {}
 }

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Sibling packet `002-manifest-driven-template-design/` ran a 14-iteration deep-research loop and converged on a chosen design (C+F hybrid manifest-driven greenfield) with 5 ADRs covering the architectural decisions and the workflow-invariance constraint. This packet **executes** the implementation across 4 gated phases: ADD private manifest+resolver+renderer+CI-test, MODIFY scaffolder, MODIFY validators, DELETE legacy. The full file-by-file blast radius lives in `resource-map.md` (~85 file references; 20 created / 18 modified / 51 deleted / many intentionally untouched).",
     "created_at": "2026-05-01T12:37:22Z",
-    "last_save_at": "2026-05-23T11:55:15.282Z",
+    "last_save_at": "2026-05-24T05:40:25.926Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

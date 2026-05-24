@@ -22,7 +22,7 @@ contextType: "implementation"
 | F-007 | P1 | Blocked | `.codex/agents/{context,orchestrate,write}.toml` | Codex TOML still references `.md` paths; same write denial prevented fix. |
 | F-008 | P2 | Fixed where writable | `.opencode/agents/orchestrate.md`, `.claude/agents/orchestrate.md`, `.gemini/agents/orchestrate.md` | Added runtime directory resolution table text. Codex equivalent remains blocked under F-007. |
 | F-009 | P2 | Fixed where writable | `.opencode/agents/write.md`, `.claude/agents/write.md`, `.gemini/agents/write.md` | Added evergreen-doc rule for command/agent/README/guide/catalog/playbook docs. Codex equivalent remains blocked under F-007. |
-| F-010 | P2 | Fixed | `.opencode/agents/improve-agent.md`, Claude/Gemini mirrors, `.opencode/commands/improve/agent.md` | Removed stale phase-number labels from evergreen agent/command narrative. |
+| F-010 | P2 | Fixed | `.opencode/agents/improve-agent.md`, Claude/Gemini mirrors, `.opencode/commands/deep/start-agent-improvement-loop.md` | Removed stale phase-number labels from evergreen agent/command narrative. |
 | F-011 | P2 | Fixed | `deep_start-research-loop_auto.yaml`, `deep_start-review-loop_auto.yaml`, `deep_start-review-loop_confirm.yaml` | Replaced packet-history authority-guard and blocked-stop comments with current source-anchor wording. |
 
 ## Blocked Evidence

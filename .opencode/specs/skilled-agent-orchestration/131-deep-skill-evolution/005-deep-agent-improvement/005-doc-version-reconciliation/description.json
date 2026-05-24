@@ -47,9 +47,9 @@
     "version",
     "reconciliation"
   ],
-  "lastUpdated": "2026-05-23T09:11:13.029Z",
-  "specId": "125",
-  "folderSlug": "005-doc-version-reconciliation",
+  "lastUpdated": "2026-05-23T15:24:59.115Z",
+  "specId": "005",
+  "folderSlug": "doc-version-reconciliation",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

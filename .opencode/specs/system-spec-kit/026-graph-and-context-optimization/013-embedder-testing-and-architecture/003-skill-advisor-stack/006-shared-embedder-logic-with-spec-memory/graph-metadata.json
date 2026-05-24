@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Skill-advisor and mk-spec-memory currently have separate embedder registries with competing defaults and parallel factory implementations. The operator decision is to remove that drift by making skill-advisor consume the same shared embedder contract surface as mk-spec-memory. The alignment target is mk-spec-memory's current state (`'auto'` sentinel that triggers a content-type-aware cascade landing on `nomic-embed-text-v1.5` in local-only environments). The original scaffold mentioned `sbert/nomic-ai/CodeRankEmbed` — that target is overridden because (a) CodeRankEmbed is code-tuned and skill-advisor indexes prose skill metadata, (b) mk-spec-memory is the \"most recently updated\" canonical source and its cascade lands on text-tuned `nomic-embed-text-v1.5`.",
     "created_at": "2026-05-21T18:08:46.935Z",
-    "last_save_at": "2026-05-23T11:55:15.477Z",
+    "last_save_at": "2026-05-24T05:40:26.053Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

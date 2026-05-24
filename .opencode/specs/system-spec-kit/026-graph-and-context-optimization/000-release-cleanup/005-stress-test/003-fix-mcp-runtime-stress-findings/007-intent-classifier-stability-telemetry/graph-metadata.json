@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Implement the normalized `IntentTelemetry` schema per 007 §5 Q8 (`taskIntent` + `backendRouting` as parallel objects with explicit `classificationKind`, optional `paraphraseGroup`). Add a paired paraphrase stability corpus covering 20+ query pairs across CLI styles. Add cross-CLI drift metric. Treat as P2 because Q8 has lower evidence; document residual evidence gap in implementation-summary.",
     "created_at": "2026-04-27T07:56:33.777Z",
-    "last_save_at": "2026-05-23T11:55:14.860Z",
+    "last_save_at": "2026-05-24T05:40:25.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

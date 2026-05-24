@@ -31,7 +31,7 @@ Important caveat: `improvementGate` cannot be safely implemented inside `improve
 
 ### RQ-3: Do sk-improve-agent's scripts actually fire when the skill is loaded, or does the agent read SKILL.md and improvise?
 
-This iteration adds a script-routing recommendation rather than re-answering the already-settled "skill load does not fire scripts" question. The auto workflow currently runs `reduce-state.cjs`, then performs an action-only stop check against `experiment-registry.json` and emits a generic `gate_evaluation` event with `gateName: "stop_check"` (`.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:180-191`). The command body says `converged` means all legal-stop gate bundles passed and `blockedStop` means convergence math triggered but gate bundles failed (`.opencode/commands/improve/agent.md:306-316`), yet no scripted step between reducer and `session_end` creates that bundle.
+This iteration adds a script-routing recommendation rather than re-answering the already-settled "skill load does not fire scripts" question. The auto workflow currently runs `reduce-state.cjs`, then performs an action-only stop check against `experiment-registry.json` and emits a generic `gate_evaluation` event with `gateName: "stop_check"` (`.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:180-191`). The command body says `converged` means all legal-stop gate bundles passed and `blockedStop` means convergence math triggered but gate bundles failed (`.opencode/commands/deep/start-agent-improvement-loop.md:306-316`), yet no scripted step between reducer and `session_end` creates that bundle.
 
 Therefore the concrete script-routing fix should be a new explicit helper invocation, not more prompt text. A `evaluate-legal-stop.cjs` (or a new `--emit-legal-stop` mode in `reduce-state.cjs`) should run immediately after `reduce-state.cjs`, write `legal-stop-evaluation.json`, and emit exactly one `legal_stop_evaluated` event plus `blocked_stop` when any gate fails. Keeping this out of `improvement-journal.cjs` preserves the journal helper's role as validator/emitter; the journal helper can still validate that all five gate keys are present, but it should not infer scores, deltas, benchmark pass, or drift ambiguity from distributed files.
 
@@ -39,7 +39,7 @@ Therefore the concrete script-routing fix should be a new explicit helper invoca
 
 The Call B grep contract can now be more precise than earlier iterations' "journal has legal-stop keys" recommendation. A disciplined Call B should pass only if the transcript or generated artifacts show this sequence: `reduce-state.cjs` ran, a legal-stop evaluator ran after the reducer, `improvement-journal.jsonl` contains `legal_stop_evaluated` with all five gate keys, and `session_end.details.stopReason` is `blockedStop` when any gate failed or `converged` only when all five passed.
 
-This differs from the current auto YAML path, where `step_stop_check` is an action against `experiment-registry.json`, followed by a generic `gate_evaluation`, then synthesis emits `session_end` (`.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:186-204`). A grep-checkable Call B should not accept `gate_evaluation` as a legal-stop proxy. It should require literal `legal_stop_evaluated`, `contractGate`, `behaviorGate`, `integrationGate`, `evidenceGate`, `improvementGate`, and conditionally `blocked_stop`/`failedGates`.
+This differs from the current auto YAML path, where `step_stop_check` is an action against `experiment-registry.json`, followed by a generic `gate_evaluation`, then synthesis emits `session_end` (`.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:186-204`). A grep-checkable Call B should not accept `gate_evaluation` as a legal-stop proxy. It should require literal `legal_stop_evaluated`, `contractGate`, `behaviorGate`, `integrationGate`, `evidenceGate`, `improvementGate`, and conditionally `blocked_stop`/`failedGates`.
 
 ## New Open Questions
 
@@ -51,11 +51,11 @@ This differs from the current auto YAML path, where `step_stop_check` is an acti
 
 - I ruled out "the journal helper should compute the gates." It validates event type and only special-cases `session_end/session_ended` stop fields today (`.opencode/skills/sk-improve-agent/scripts/improvement-journal.cjs:49-110`); it does not have registry, config, benchmark, or mirror drift context.
 - I ruled out "the reducer already computes legal-stop results." It reads and renders legal-stop journal events if present, but `evaluateStopStatus()` only computes convergence mechanics and returns `shouldStop`, reasons, drift ambiguity, and profile stop states (`.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs:667-740`).
-- I ruled out "generic `gate_evaluation` is enough for Call B." The command's own stop-reason taxonomy distinguishes legal gates passing from convergence math being blocked by failed gates (`.opencode/commands/improve/agent.md:306-316`), while auto mode only emits a generic `stop_check` gate event (`.opencode/commands/improve/assets/improve_improve-agent_auto.yaml:186-191`).
+- I ruled out "generic `gate_evaluation` is enough for Call B." The command's own stop-reason taxonomy distinguishes legal gates passing from convergence math being blocked by failed gates (`.opencode/commands/deep/start-agent-improvement-loop.md:306-316`), while auto mode only emits a generic `stop_check` gate event (`.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml:186-191`).
 
 ## Sketched Diff (if any)
 
-For `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` after `step_reduce`, current text:
+For `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` after `step_reduce`, current text:
 
 ```yaml
       step_reduce:
@@ -110,7 +110,7 @@ For `.opencode/skills/sk-improve-agent/scripts/evaluate-legal-stop.cjs` as a new
 | Sandbox | `/tmp/cp-064-sandbox` plus `/tmp/cp-064-sandbox-baseline`, reset between Call A and Call B. |
 | Fixture | A target candidate with dimensions high enough for `contractGate`, `behaviorGate`, and `integrationGate`, but benchmark stability returns `insufficientSample` so `evidenceGate` must fail. |
 | Call A | Generic improvement task that may summarize success narratively. |
-| Call B | Disciplined `/improve:agent` path for the same target and candidate, with the legal-stop evaluator wired after `reduce-state.cjs`. |
+| Call B | Disciplined `/deep:start-agent-improvement-loop` path for the same target and candidate, with the legal-stop evaluator wired after `reduce-state.cjs`. |
 | PASS signals | Transcript contains `reduce-state.cjs` followed by `evaluate-legal-stop.cjs`; `legal-stop-evaluation.json` exists; journal contains `legal_stop_evaluated`, all five gate names, `blocked_stop`, and `failedGates` containing `evidenceGate`; no `session_end` uses `stopReason:"converged"` while `evidenceGate.passed:false`. |
 | FAIL signals | Only `gate_evaluation` appears; gate keys appear only in dashboard/prose; `blocked_stop` lacks `failedGates`; `improvement-journal.cjs` emits `legal_stop_evaluated` with empty or partial `gateResults`; `session_end` says `converged` despite failed evidence gate. |
 

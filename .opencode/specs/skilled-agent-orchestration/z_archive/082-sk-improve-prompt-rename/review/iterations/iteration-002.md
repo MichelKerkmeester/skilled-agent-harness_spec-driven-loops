@@ -4,7 +4,7 @@
 PASS
 
 ## Summary
-Audited the skill-graph.json for complete rotation of signals/families/adjacency/hub_skills — all 5 reference locations use `sk-prompt` with zero residuals. Advisor probes return `sk-prompt` as top-1 (confidence 0.9262–0.9332). Agent name `@improve-prompt` and command `/improve:prompt` identities remain fully intact across all 4 runtimes, with only the loaded skill name changed to `sk-prompt`. The pre-existing P1 (FRONTMATTER_MEMORY_BLOCK on parent validation) from Iteration 1 persists but is unrelated to this dimension.
+Audited the skill-graph.json for complete rotation of signals/families/adjacency/hub_skills — all 5 reference locations use `sk-prompt` with zero residuals. Advisor probes return `sk-prompt` as top-1 (confidence 0.9262–0.9332). Agent name `@improve-prompt` and command `/prompt` identities remain fully intact across all 4 runtimes, with only the loaded skill name changed to `sk-prompt`. The pre-existing P1 (FRONTMATTER_MEMORY_BLOCK on parent validation) from Iteration 1 persists but is unrelated to this dimension.
 
 ## Findings
 
@@ -55,12 +55,12 @@ python3 .../skill_advisor.py "enhance my prompt using CRISPE and CRAFT" --thresh
 | `@improve-prompt` | `.claude/agents/improve-prompt.md` | File name unchanged ✅ |
 | `@improve-prompt` | `.codex/agents/improve-prompt.toml` | File name unchanged ✅ |
 | `@improve-prompt` | `.gemini/agents/improve-prompt.md` | File name unchanged ✅ |
-| `/improve:prompt` | `.opencode/commands/improve/prompt.md` | File name unchanged ✅ |
+| `/prompt` | `.opencode/commands/prompt.md` | File name unchanged ✅ |
 
-### Identity preservation: @improve-prompt and /improve:prompt still in body text
-All 5 agent/command files reference `@improve-prompt` and `/improve:prompt` by identity. Example hits:
+### Identity preservation: @improve-prompt and /prompt still in body text
+All 5 agent/command files reference `@improve-prompt` and `/prompt` by identity. Example hits:
 - `@improve-prompt`: command body lines 9, 18, 48, 51, 204, 217, 297
-- `/improve:prompt`: agent bodies at INT-CMD-IMPROVE-PROMPT entries and command surface references
+- `/prompt`: agent bodies at INT-CMD-IMPROVE-PROMPT entries and command surface references
 
 ### Loaded skill name: all agent bodies reference sk-prompt (not old name)
 Each agent's INT-SKILL-IMPROVE-PROMPT entry now reads `.opencode/skills/sk-prompt/SKILL.md`:
@@ -69,12 +69,12 @@ Each agent's INT-SKILL-IMPROVE-PROMPT entry now reads `.opencode/skills/sk-promp
 .codex/agents/improve-prompt.toml:| INT-SKILL-IMPROVE-PROMPT | `.opencode/skills/sk-prompt/SKILL.md` | ...
 .gemini/agents/improve-prompt.md:| INT-SKILL-IMPROVE-PROMPT | `.opencode/skills/sk-prompt/SKILL.md` | ...
 .opencode/agents/improve-prompt.md:| INT-SKILL-IMPROVE-PROMPT | `.opencode/skills/sk-prompt/SKILL.md` | ...
-.opencode/commands/improve/prompt.md: 10 refs to `sk-prompt`, 0 refs to `sk-improve-prompt`
+.opencode/commands/prompt.md: 10 refs to `sk-prompt`, 0 refs to `sk-improve-prompt`
 ```
 
 ### Zero old skill name in any agent/command body
 ```bash
-rg -n 'sk-improve-prompt' .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md .opencode/commands/improve/prompt.md
+rg -n 'sk-improve-prompt' .opencode/agents/improve-prompt.md .claude/agents/improve-prompt.md .codex/agents/improve-prompt.toml .gemini/agents/improve-prompt.md .opencode/commands/prompt.md
 ```
 **Result: 0 hits** ✅
 
@@ -115,7 +115,7 @@ Pre-existing P1 from Iteration 1 (`resource-map.md` missing `trigger_phrases`, `
 
 - **Could an old skill-graph key alias still route incorrectly?** Verified that `rg 'sk-improve-prompt' skill-graph.json` returns 0 hits. The advisor rebuild in Phase 002 bumped generation 1213→1214, and the probe results (0.9262, 0.9332 confidence) confirm correct routing. No stale aliases.
 
-- **Did I check that agent identities (@improve-prompt, /improve:prompt) were NOT renamed?** Yes — file names, body references, command surface entries all preserve the original identities. Only the loaded skill name changed from `sk-improve-prompt` to `sk-prompt`.
+- **Did I check that agent identities (@improve-prompt, /prompt) were NOT renamed?** Yes — file names, body references, command surface entries all preserve the original identities. Only the loaded skill name changed from `sk-improve-prompt` to `sk-prompt`.
 
 - **Are the .codex TOML agent references correctly rotated?** Yes — `improve-prompt.toml` has 0 `sk-improve-prompt` hits, 9 `sk-prompt` hits, and the INT-SKILL table entry reads `.opencode/skills/sk-prompt/SKILL.md`. TOML structure preserved.
 

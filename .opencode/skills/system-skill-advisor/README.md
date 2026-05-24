@@ -167,7 +167,13 @@ system-skill-advisor/
 +-- INSTALL_GUIDE.md                  # Install, setup, runtime hooks, rollback
 +-- feature_catalog/                  # Current feature inventory across 7 groups
 +-- manual_testing_playbook/          # Operator validation scenarios across 9 categories
-+-- references/                       # Tool ids, scorer, lane weights, db path, hook contract
++-- references/                       # Canonical reference folders plus root compatibility stubs
+|   +-- scoring/                      # Scorer, lane tuning, validation baselines
+|   +-- graph/                        # Skill graph query, drift, extraction, enhances propagation
+|   +-- runtime/                      # MCP shape, tool ids, bridge, freshness, daemon lease
+|   +-- config/                       # Database path policy
+|   +-- hooks/                        # Prompt-time hook reference
+|   `-- decisions/                    # Deferred decision records
 +-- hooks/                            # Per-runtime prompt-submit hooks
 |   +-- claude/                       # Claude Code hook
 |   +-- codex/                        # Codex hook (with optional prompt wrapper)
@@ -195,9 +201,9 @@ system-skill-advisor/
 | [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) | Install, setup, runtime hooks, rollback, operator checks. |
 | [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md) | Inventory of current runtime features. |
 | [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Manual scenario index and evidence protocol. |
-| [references/tool-ids-reference.md](./references/tool-ids-reference.md) | All 9 tool ids with inputs and output shapes. |
-| [references/advisor-scorer.md](./references/advisor-scorer.md) | Lane attribution model and fusion rules. |
-| [references/hooks/skill-advisor-hook.md](./references/hooks/skill-advisor-hook.md) | Runtime hook contract for Claude, Codex, Gemini, Devin, OpenCode. |
+| [references/runtime/tool_ids_reference.md](./references/runtime/tool_ids_reference.md) | All 9 tool ids with inputs and output shapes. |
+| [references/scoring/advisor_scorer.md](./references/scoring/advisor_scorer.md) | Lane attribution model and fusion rules. |
+| [references/hooks/skill_advisor_hook.md](./references/hooks/skill_advisor_hook.md) | Runtime hook contract for Claude, Codex, Gemini, Devin, OpenCode. |
 
 <!-- /ANCHOR:structure -->
 
@@ -214,18 +220,21 @@ system-skill-advisor/
 | `MK_SKILL_ADVISOR_HOOK_DISABLED` | (unset) | Devin-specific hook disable flag. Checked first by the Devin hook, then falls back to `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`. |
 | `SPECKIT_ADVISOR_SHADOW_MODE` | `0` | Set to `1` to disable the live scorer and run shadow-mode only. |
 | `SKILL_ADVISOR_DEBUG` | `0` | Set to `1` to enable opt-in debug logging (v0.3.0+). |
+| `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` | `30` | Shared MCP server idle self-exit timeout. Fractional values are allowed for tests; `0` disables the monitor. |
 
 Per-call options on `advisor_recommend` (`topK`, `includeAttribution`) override matching defaults. Use environment variables for process-wide defaults and per-call options for one request.
 
+`mk_skill_advisor` participates in the shared native MCP lifecycle guardrails. The server refreshes idle activity from primary stdio and secondary IPC socket connect/data/write events. Orphan cleanup and LaunchAgent rollout are documented centrally in the [repo scripts runbook](../../scripts/README.md); the LaunchAgent remains a template until explicitly installed by an operator.
+
 ### Pluggable embedder layer
 
-The `semantic_shadow` lane (lowest live weight at `0.05`) runs against a pluggable embedder layer shared with `mk-spec-memory`. The contract lives in `@spec-kit/shared/embeddings/`: an `EmbedderAdapter` interface, a frozen `MANIFESTS` registry of seven text-tuned candidates (`nomic-embed-text-v1.5`, `mxbai-embed-large-v1`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `jina-embeddings-v3`, `bge-m3`, `snowflake-arctic-embed-l-v2.0`) and a `setActiveEmbedder(db, name, dim)` helper that writes the active pointer into the package-local `skill-graph.sqlite`. Skill-advisor's local `mcp_server/lib/embedders/` files are thin re-export shims. (Note: skill-advisor's `setActiveEmbedder` is 3-arg; mk-spec-memory ships a 4-arg variant that also persists the cascade-tier provider in `vec_metadata`. The two helpers diverge by design — skill-advisor recovers provider from the manifest backend at need. See [embedder-pluggability.md](../system-spec-kit/references/embedder-pluggability.md) for the cross-skill comparison.)
+The `semantic_shadow` lane (lowest live weight at `0.05`) runs against a pluggable embedder layer shared with `mk-spec-memory`. The contract lives in `@spec-kit/shared/embeddings/`: an `EmbedderAdapter` interface, a frozen `MANIFESTS` registry of seven text-tuned candidates (`nomic-embed-text-v1.5`, `mxbai-embed-large-v1`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `jina-embeddings-v3`, `bge-m3`, `snowflake-arctic-embed-l-v2.0`) and a `setActiveEmbedder(db, name, dim)` helper that writes the active pointer into the package-local `skill-graph.sqlite`. Skill-advisor's local `mcp_server/lib/embedders/` files are thin re-export shims. (Note: skill-advisor's `setActiveEmbedder` is 3-arg; mk-spec-memory ships a 4-arg variant that also persists the cascade-tier provider in `vec_metadata`. The two helpers diverge by design — skill-advisor recovers provider from the manifest backend at need. See [embedder_pluggability.md](../system-spec-kit/references/memory/embedder_pluggability.md) for the cross-skill comparison.)
 
 The persisted default is the `'auto'` sentinel. On daemon startup, `ensureActiveEmbedder()` invokes the shared cascade (Ollama → hf-local → OpenAI → Voyage) and persists the winner. In local-only environments the cascade picks `nomic-embed-text-v1.5` at 768 dim. Manual `setActiveEmbedder()` calls pin the pointer and skip the cascade on subsequent restarts. There is no environment variable for embedder selection and no `embedder_set` MCP tool — the surface is one database helper plus the cascade sentinel.
 
 CocoIndex uses a separate code-tuned embedder cascade in Python (out of scope here). The TS shared cascade is text-only by design; a `contentType: 'text' \| 'code'` parameter on the shared cascade preserves the conceptual split for any future TS code consumer.
 
-See [INSTALL_GUIDE.md §12 "Choosing an embedder"](./INSTALL_GUIDE.md#12--choosing-an-embedder) for the cascade tier table, swap workflow, and content-type rationale. See [`embedder-pluggability.md`](../system-spec-kit/references/embedder-pluggability.md) for the canonical multi-MCP narrative covering mk-spec-memory and CocoIndex alongside skill-advisor.
+See [INSTALL_GUIDE.md §12 "Choosing an embedder"](./INSTALL_GUIDE.md#12--choosing-an-embedder) for the cascade tier table, swap workflow, and content-type rationale. See [`embedder_pluggability.md`](../system-spec-kit/references/memory/embedder_pluggability.md) for the canonical multi-MCP narrative covering mk-spec-memory and CocoIndex alongside skill-advisor.
 
 <!-- /ANCHOR:configuration -->
 
@@ -300,7 +309,7 @@ A: Routing is operationally distinct from memory. You may want to roll back, res
 
 **Q: Can I change the lane weights?**
 
-A: Yes, but the change must come with measured evidence. The advisor exposes `advisor_validate` for corpus, holdout, parity, safety plus latency slices. Run a baseline, change weights in `lib/scorer/lane-registry.ts`, re-run validate, then ship the diff with the doc updates in `references/advisor-scorer.md` and `feature_catalog/04--scorer-fusion/`.
+A: Yes, but the change must come with measured evidence. The advisor exposes `advisor_validate` for corpus, holdout, parity, safety plus latency slices. Run a baseline, change weights in `lib/scorer/lane-registry.ts`, re-run validate, then ship the diff with the doc updates in `references/scoring/advisor_scorer.md` and `feature_catalog/04--scorer-fusion/`.
 
 **Q: How does the advisor stay safe to call from hooks?**
 
@@ -312,7 +321,7 @@ A: Memory, spec folders, continuity stay in `system-spec-kit`. The advisor depen
 
 **Q: Where do I learn about the runtime hooks?**
 
-A: See [references/hooks/skill-advisor-hook.md](./references/hooks/skill-advisor-hook.md) for the canonical hook contract across Claude, Codex, Gemini, Devin plus the OpenCode plugin.
+A: See [references/hooks/skill_advisor_hook.md](./references/hooks/skill_advisor_hook.md) for the advisor hook contract across Claude, Codex, Gemini, Devin plus the OpenCode plugin.
 
 <!-- /ANCHOR:faq -->
 
@@ -326,19 +335,27 @@ A: See [references/hooks/skill-advisor-hook.md](./references/hooks/skill-advisor
 | [SKILL.md](./SKILL.md) | Runtime routing, tool choice, invariants. |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | System design, MCP surface, data flow, database layout. |
 | [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) | Setup, runtime hooks, rollback, operator checks. |
-| [references/tool-ids-reference.md](./references/tool-ids-reference.md) | All 9 tool ids with input or output schemas. |
-| [references/advisor-scorer.md](./references/advisor-scorer.md) | Lane attribution model and fusion rules. |
-| [references/db-path-policy.md](./references/db-path-policy.md) | Package-local SQLite path policy. |
-| [references/standalone-mcp-shape.md](./references/standalone-mcp-shape.md) | Standalone MCP topology (ADR-001 bridge). |
-| [references/legacy-tool-bridge.md](./references/legacy-tool-bridge.md) | Stable tool id bridge policy across the standalone migration. |
-| [references/propagate-enhances.md](./references/propagate-enhances.md) | Cross-skill enhances auto-propagation contract. |
-| [references/skill-graph-extraction-plan.md](./references/skill-graph-extraction-plan.md) | Skill-graph extraction history and plan. |
-| [references/skill-graph-drift.md](./references/skill-graph-drift.md) | Detect and reconcile SQLite drift from source files. |
-| [references/deferred-decisions.md](./references/deferred-decisions.md) | Tier D decision records (F4 Devin hooks, F6 deprecation banners). |
-| [references/hooks/skill-advisor-hook.md](./references/hooks/skill-advisor-hook.md) | Runtime hook contract for Claude, Codex, Gemini, Devin, OpenCode. |
+| [references/runtime/tool_ids_reference.md](./references/runtime/tool_ids_reference.md) | All 9 tool ids with input or output schemas. |
+| [references/scoring/advisor_scorer.md](./references/scoring/advisor_scorer.md) | Lane attribution model and fusion rules. |
+| [references/scoring/lane_weight_tuning.md](./references/scoring/lane_weight_tuning.md) | Evidence requirements for lane weight changes. |
+| [references/scoring/validation_baselines.md](./references/scoring/validation_baselines.md) | `advisor_validate` baselines and troubleshooting. |
+| [references/config/db_path_policy.md](./references/config/db_path_policy.md) | Package-local SQLite path policy. |
+| [references/runtime/standalone_mcp_shape.md](./references/runtime/standalone_mcp_shape.md) | Standalone MCP topology (ADR-001 bridge). |
+| [references/runtime/legacy_tool_bridge.md](./references/runtime/legacy_tool_bridge.md) | Stable tool id bridge policy across the standalone migration. |
+| [references/runtime/freshness_contract.md](./references/runtime/freshness_contract.md) | Trust-state vocabulary and caller obligations. |
+| [references/runtime/daemon_lease_contract.md](./references/runtime/daemon_lease_contract.md) | Single-writer daemon lease semantics. |
+| [references/hooks/skill_advisor_hook.md](./references/hooks/skill_advisor_hook.md) | Prompt-time hook behavior for the advisor package. |
+| [references/graph/skill_graph_query_cookbook.md](./references/graph/skill_graph_query_cookbook.md) | Worked examples for graph query types. |
+| [references/graph/propagate_enhances.md](./references/graph/propagate_enhances.md) | Cross-skill enhances auto-propagation contract. |
+| [references/graph/skill_graph_extraction_plan.md](./references/graph/skill_graph_extraction_plan.md) | Skill-graph extraction history and plan. |
+| [references/graph/skill_graph_drift.md](./references/graph/skill_graph_drift.md) | Detect and reconcile SQLite drift from source files. |
+| [references/decisions/deferred_decisions.md](./references/decisions/deferred_decisions.md) | Tier D decision records (F4 Devin hooks, F6 deprecation banners). |
+| [system-spec-kit hook reference](../system-spec-kit/references/hooks/skill_advisor_hook.md) | Sibling Spec Kit hook configuration reference. |
+| [repo scripts runbook](../../scripts/README.md) | Shared orphan MCP sweeper, Claude cleanup, and LaunchAgent template notes. |
+| [orphan MCP leak prevention packet](../../specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md) | Canonical lifecycle guardrail implementation summary. |
 | [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md) | Current feature inventory. |
 | [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenario index. |
 | [changelog/v0.2.0.md](./changelog/v0.2.0.md) | v0.2.0 production isolation from system-spec-kit. |
-| [Embedder pluggability narrative](../system-spec-kit/references/embedder-pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference shared with mk-spec-memory and CocoIndex. |
+| [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder_pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference shared with mk-spec-memory and CocoIndex. |
 
 <!-- /ANCHOR:related-documents -->

@@ -215,7 +215,7 @@ For changes that alter agent discipline, run at least one same-task A/B stress s
 
 1. Call A: a generic improvement attempt against an isolated sandbox copy of the target.
 2. Reset the sandbox to its baseline copy.
-3. Call B: the disciplined `/improve:agent` path against the identical prompt and files.
+3. Call B: the disciplined `/deep:start-agent-improvement-loop` path against the identical prompt and files.
 4. Judge only grep/file/diff/exit-code signals: helper invocation, packet-local candidate boundary, no canonical or mirror mutation before promotion, benchmark journal boundary, legal-stop gate keys, and stop-reason correctness.
 
 Do not treat `Read(SKILL.md)` or `skill(deep-agent-improvement)` as evidence that this protocol executed.
@@ -316,11 +316,11 @@ A session may NOT claim `converged` unless all five gate bundles pass: `contract
 
 ### Resume/Continuation Semantics (current release)
 
-Sessions support a single lineage mode today: `new`. Every invocation of the `/improve:agent` workflow starts a fresh session with a new session id and generation 1. Multi-generation lineage modes (`resume`, `restart`, `fork`, `completed-continue`) were described in earlier drafts but have no shipped runtime wiring in the deep-agent-improvement workflow, reducer, or journal consumer.
+Sessions support a single lineage mode today: `new`. Every invocation of the `/deep:start-agent-improvement-loop` workflow starts a fresh session with a new session id and generation 1. Multi-generation lineage modes (`resume`, `restart`, `fork`, `completed-continue`) were described in earlier drafts but have no shipped runtime wiring in the deep-agent-improvement workflow, reducer, or journal consumer.
 
 Operators who want to continue evaluating an agent after a prior session SHOULD archive the prior session folder (e.g. move `improve/` to `improve_archive/{timestamp}/`) and re-invoke the command, which starts a new `new`-mode session. The reducer treats each session independently and does not carry ancestry across sessions.
 
-If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `improve_deep-agent-improvement_{auto,confirm}.yaml`, reducer ancestry handling in `deep-agent-improvement/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
+If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `deep_start-agent-improvement-loop_{auto,confirm}.yaml`, reducer ancestry handling in `deep-agent-improvement/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
 
 ### Mutation Coverage Graph
 
@@ -478,7 +478,7 @@ Core references: `README.md`, `references/quick_reference.md`, `references/loop_
 
 ## 9. INTEGRATION POINTS
 
-- `/improve:agent` initializes and runs the bounded workflow
+- `/deep:start-agent-improvement-loop` initializes and runs the bounded workflow
 - `.opencode/agents/deep-agent-improvement.md` provides the mutator surface for deep-agent-improvement runs
 - `sk-doc` validators enforce package-shape, README, and markdown document consistency
 - `system-spec-kit` packet validation proves phase records remain truthful

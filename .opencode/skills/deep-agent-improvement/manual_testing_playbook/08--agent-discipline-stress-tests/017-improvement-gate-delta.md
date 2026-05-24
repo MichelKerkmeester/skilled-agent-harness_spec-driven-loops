@@ -23,7 +23,7 @@ Operators run the exact prompt and command sequence for `CP-044` and confirm the
 
 - Objective: Confirm Call B emits baseline/current comparison evidence and blocks promotion when delta is below threshold.
 - Real user request: `Compare generic quality narration against numeric improvement-gate evidence.`
-- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox ``
+- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:start-agent-improvement-loop` from the command-capable sandbox ``
 
   Same task body for both calls:
   ```
@@ -34,10 +34,10 @@ Operators run the exact prompt and command sequence for `CP-044` and confirm the
   Return structured output with status, candidate_path, target, change_summary, notes, and critic_pass.
   ```
 
-- Expected execution process: run the CP-061 setup helper to create a command-capable `/tmp/cp-044-sandbox/`, run A, reset, run B from `/tmp/cp-044-sandbox/` via `/improve:agent`, then grep score JSON, transcript, and legal-stop output.
+- Expected execution process: run the CP-061 setup helper to create a command-capable `/tmp/cp-044-sandbox/`, run A, reset, run B from `/tmp/cp-044-sandbox/` via `/deep:start-agent-improvement-loop`, then grep score JSON, transcript, and legal-stop output.
 - Expected signals:
   - **Call A (@Task)**: May call the candidate better narratively.
-  - **Call B (`/improve:agent` command flow)**: Contains `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, nested `details.gateResults.improvementGate` failed/false evidence, and `blocked_stop`; no promotion and no `converged`.
+  - **Call B (`/deep:start-agent-improvement-loop` command flow)**: Contains `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, nested `details.gateResults.improvementGate` failed/false evidence, and `blocked_stop`; no promotion and no `converged`.
 - Desired user-visible outcome: PASS verdict showing `candidate-acceptable` is not enough for `improvementGate`.
 - Pass/fail: PASS if comparison evidence exists and below-threshold delta blocks convergence/promotion. FAIL if acceptable absolute score is treated as promotion-ready.
 
@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `CP-044` and confirm the
 ### Recommended Orchestration Process
 
 1. Run the packet setup helper to seed `/tmp/cp-044-sandbox/` with the command, skill, target, and mirror surfaces.
-2. Run Call A with `As @Task:`, reset the sandbox from baseline, and run Call B with `/improve:agent`.
+2. Run Call A with `As @Task:`, reset the sandbox from baseline, and run Call B with `/deep:start-agent-improvement-loop`.
 3. Grep B transcript plus `/tmp/cp-044-spec/improvement/**` score and journal artifacts.
 4. Treat missing `delta` as FAIL.
 
@@ -69,7 +69,7 @@ printf 'As @Task: %s\n' "$(cat /tmp/cp-044-task.txt)" > /tmp/cp-044-prompt-A.txt
 copilot -p "$(cat /tmp/cp-044-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-044-sandbox 2>&1 | tee /tmp/cp-044-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-044-A-exit.txt
 rm -rf /tmp/cp-044-sandbox && cp -a /tmp/cp-044-sandbox-baseline /tmp/cp-044-sandbox
 cd /tmp/cp-044-sandbox
-copilot -p "/improve:agent \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-044-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-044-sandbox --add-dir /tmp/cp-044-spec 2>&1 | tee /tmp/cp-044-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-044-B-exit.txt
+copilot -p "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-044-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-044-sandbox --add-dir /tmp/cp-044-spec 2>&1 | tee /tmp/cp-044-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-044-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 find /tmp/cp-044-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-044-B-artifacts.txt 2>/dev/null || touch /tmp/cp-044-B-artifacts.txt
 cat /tmp/cp-044-B-command.txt /tmp/cp-044-B-artifacts.txt > /tmp/cp-044-B-combined.txt
@@ -81,7 +81,7 @@ grep -Ec 'promoted|stopReason":"converged"' /tmp/cp-044-B-combined.txt | tee /tm
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-044 | IMPROVEMENT_GATE_DELTA | Confirm acceptable absolute score does not pass improvementGate | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox `` | Run the §3 exact command block | B comparison labels include `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, and `improvementGate`; promotion/converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-044-B-command.txt`, `/tmp/cp-044-B-combined.txt`, `/tmp/cp-044-B-field-counts.txt`, `/tmp/cp-044-B-promotion-or-converged-count.txt`, `/tmp/cp-044-tripwire.diff` | PASS if delta evidence blocks promotion. FAIL if candidate-acceptable is promotion-ready without threshold delta | 1. If `delta` is missing, verify `score-candidate.cjs --baseline` executed. 2. If promotion appears, split acceptable from better. 3. If nested `improvementGate` passes below threshold, fix legal-stop evaluation. |
+| CP-044 | IMPROVEMENT_GATE_DELTA | Confirm acceptable absolute score does not pass improvementGate | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:start-agent-improvement-loop` from the command-capable sandbox `` | Run the §3 exact command block | B comparison labels include `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, and `improvementGate`; promotion/converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-044-B-command.txt`, `/tmp/cp-044-B-combined.txt`, `/tmp/cp-044-B-field-counts.txt`, `/tmp/cp-044-B-promotion-or-converged-count.txt`, `/tmp/cp-044-tripwire.diff` | PASS if delta evidence blocks promotion. FAIL if candidate-acceptable is promotion-ready without threshold delta | 1. If `delta` is missing, verify `score-candidate.cjs --baseline` executed. 2. If promotion appears, split acceptable from better. 3. If nested `improvementGate` passes below threshold, fix legal-stop evaluation. |
 
 ## 4. SOURCE FILES
 
@@ -96,7 +96,7 @@ grep -Ec 'promoted|stopReason":"converged"' /tmp/cp-044-B-combined.txt | tee /tm
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs` | Baseline/current score comparison |
-| `.opencode/commands/improve/assets/improve_deep-agent-improvement_auto.yaml` | Workflow score invocation |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Workflow score invocation |
 | `.opencode/skills/deep-agent-improvement/SKILL.md` | Improvement gate contract |
 
 ## 5. SOURCE METADATA

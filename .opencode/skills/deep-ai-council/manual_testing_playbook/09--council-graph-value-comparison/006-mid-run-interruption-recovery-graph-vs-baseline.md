@@ -1,6 +1,6 @@
 ---
 title: "DAC-032 -- Mid-run interruption recovery: graph vs no-graph baseline"
-description: "Real-world scenario where a council process is interrupted mid-round. Graph status returns counts, readiness, and a namespace-scoped recovery payload; baseline requires manual JSONL parsing. Anchors to `council_graph_status`."
+description: "Real-world scenario where a council process is interrupted mid-round. Graph status returns counts, readiness, and a namespace-scoped recovery payload; baseline requires manual JSONL parsing. Anchors to `runtime status CLI`."
 ---
 
 # DAC-032 -- Mid-run interruption recovery: graph vs no-graph baseline
@@ -11,13 +11,13 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates that `council_graph_status` materially beats the no-graph baseline for the operations task: "the council process was killed mid-round — where did state stop, and how do I recover?"
+This scenario validates that `runtime status CLI` materially beats the no-graph baseline for the operations task: "the council process was killed mid-round — where did state stop, and how do I recover?"
 
 ### Why This Matters
 
-The append-only `ai-council-state.jsonl` captures every state transition, including `council_complete`. When the process is interrupted before `council_complete`, the operator must determine the last completed round, what artifacts persisted, and whether to resume or roll back. Without graph: parse the JSONL line-by-line, cross-reference filesystem artifacts. With graph: `council_graph_status` returns counts + readiness + namespace-scoped `recovery` payload in one call.
+The append-only `ai-council-state.jsonl` captures every state transition, including `council_complete`. When the process is interrupted before `council_complete`, the operator must determine the last completed round, what artifacts persisted, and whether to resume or roll back. Without graph: parse the JSONL line-by-line, cross-reference filesystem artifacts. With graph: `runtime status CLI` returns counts + readiness + namespace-scoped `recovery` payload in one call.
 
-> **Automated test anchor:** `mcp_server/tests/council-graph-value-scenarios.vitest.ts` test name `DAC-032 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `mcp_server/tests/council-graph-value-report.json`.
+> **Automated test anchor:** `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-032 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json`.
 
 ---
 
@@ -25,11 +25,11 @@ The append-only `ai-council-state.jsonl` captures every state transition, includ
 
 Operators run the exact prompt and command sequence for `DAC-032` and confirm the with-graph path produces a structured recovery payload while the no-graph baseline requires manual JSONL forensics.
 
-- Objective: Demonstrate `council_graph_status` returns structured recovery context where the baseline requires manual JSONL parsing.
+- Objective: Demonstrate `runtime status CLI` returns structured recovery context where the baseline requires manual JSONL parsing.
 - Real-world situation: A 4-round council was killed (e.g., SIGKILL) during round 3. `ai-council-state.jsonl` carries `round_started` for round 3 but no `round_complete` and no `council_complete` event. Graph rows for rounds 1 and 2 are fully persisted; round 3 has partial seat nodes but no DECISION node. Operator returns to triage the interrupted run.
 - Real user request: This council process got killed during round 3 — where did state stop, and can I recover?
-- Prompt: `As a council-graph integration validator, recover from an interrupted council session — first via the no-graph baseline (manually parse ai-council-state.jsonl), then via council_graph_status — and confirm the with-graph path returns counts, readiness, and a namespace-scoped recovery payload in one MCP call.`
-- Expected execution process: Seed an interrupted state: 2 full rounds persisted to graph, 1 partial round, no `council_complete` event in JSONL. Run baseline JSONL forensics. Run `council_graph_status`. Compare diagnostic quality.
+- Prompt: `As a council-graph integration validator, recover from an interrupted council session — first via the no-graph baseline (manually parse ai-council-state.jsonl), then via runtime status CLI — and confirm the with-graph path returns counts, readiness, and a namespace-scoped recovery payload in one runtime CLI call.`
+- Expected execution process: Seed an interrupted state: 2 full rounds persisted to graph, 1 partial round, no `council_complete` event in JSONL. Run baseline JSONL forensics. Run `runtime status CLI`. Compare diagnostic quality.
 - Expected signals: Baseline yields raw JSONL events requiring operator interpretation. Graph returns `counts: { sessions, rounds, seats, claims, evidence, disagreements, decisions, recommendations }`, `readiness: ...`, `signals: { ... }`, `recovery: { replay-hint scoped to (specFolder, sessionId) }`.
 - Desired user-visible outcome: Operator knows exactly which round to resume from and what derived rows to discard/replay.
 - Pass/fail: PASS if graph response includes a non-empty `recovery` payload scoped to the session; FAIL if recovery payload absent or globally-scoped.
@@ -42,12 +42,12 @@ Operators run the exact prompt and command sequence for `DAC-032` and confirm th
 
 1. Seed: persist artifacts for rounds 1 + 2 fully, then simulate interruption (round 3 partial: ROUND node + 1 SEAT node, no DECISION, no `council_complete` event in JSONL).
 2. Run **no-graph baseline**: parse `ai-council-state.jsonl` manually; find last event for the session; determine what artifacts persisted.
-3. Run **with-graph workflow**: `council_graph_status`.
+3. Run **with-graph workflow**: `runtime status CLI`.
 4. Compare diagnostic completeness.
 
 ### Prompt
 
-`As a council-graph integration validator, recover from an interrupted council session — first via the no-graph baseline (manually parse ai-council-state.jsonl), then via council_graph_status — and confirm the with-graph path returns counts, readiness, and a namespace-scoped recovery payload in one MCP call.`
+`As a council-graph integration validator, recover from an interrupted council session — first via the no-graph baseline (manually parse ai-council-state.jsonl), then via runtime status CLI — and confirm the with-graph path returns counts, readiness, and a namespace-scoped recovery payload in one runtime CLI call.`
 
 ### Commands
 
@@ -60,8 +60,8 @@ Operators run the exact prompt and command sequence for `DAC-032` and confirm th
 
 **With-graph:**
 
-5. `tool: council_graph_upsert({ specFolder: 'sandbox/dac-032', sessionId: 'dac-032-run-01', nodes: [...round 1 + 2 full, round 3 partial: ROUND + 1 SEAT only...], edges: [...] })`
-6. `tool: council_graph_status({ specFolder: 'sandbox/dac-032', sessionId: 'dac-032-run-01' })`
+5. `tool: runtime upsert CLI({ specFolder: 'sandbox/dac-032', sessionId: 'dac-032-run-01', nodes: [...round 1 + 2 full, round 3 partial: ROUND + 1 SEAT only...], edges: [...] })`
+6. `tool: runtime status CLI({ specFolder: 'sandbox/dac-032', sessionId: 'dac-032-run-01' })`
 
 ### Expected
 
@@ -78,11 +78,11 @@ Capture: baseline tail/parse transcript + operator hypothesis, graph status resp
 
 ### Failure Triage
 
-If recovery payload missing, inspect `handlers/council-graph/status.ts` for the P2-001 remediation. If globally-scoped, inspect `lib/council-graph/council-graph-db.ts` recovery query for namespace filter regression.
+If recovery payload missing, inspect `scripts/status.cjs` for the P2-001 remediation. If globally-scoped, inspect `lib/council/council-graph-db.ts` recovery query for namespace filter regression.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-032 | Mid-run interruption recovery value | Demonstrate graph status produces recovery payload; baseline needs JSONL forensics | `As a council-graph integration validator, recover from an interrupted council session — first via the no-graph baseline (manually parse ai-council-state.jsonl), then via council_graph_status — and confirm the with-graph path returns counts, readiness, and a namespace-scoped recovery payload in one MCP call.` | baseline: tail+rg+find -> with-graph: upsert + status | Structured counts + readiness + recovery payload vs raw JSONL | Baseline transcript + graph status response | PASS if non-empty namespace-scoped recovery payload | Inspect status P2-001 + namespace filter |
+| DAC-032 | Mid-run interruption recovery value | Demonstrate graph status produces recovery payload; baseline needs JSONL forensics | `As a council-graph integration validator, recover from an interrupted council session — first via the no-graph baseline (manually parse ai-council-state.jsonl), then via runtime status CLI — and confirm the with-graph path returns counts, readiness, and a namespace-scoped recovery payload in one runtime CLI call.` | baseline: tail+rg+find -> with-graph: upsert + status | Structured counts + readiness + recovery payload vs raw JSONL | Baseline transcript + graph status response | PASS if non-empty namespace-scoped recovery payload | Inspect status P2-001 + namespace filter |
 
 ---
 
@@ -93,15 +93,15 @@ If recovery payload missing, inspect `handlers/council-graph/status.ts` for the 
 | File | Role |
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md` | Functional anchor for `council_graph_status` recovery payload |
+| `../08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md` | Functional anchor for `runtime status CLI` recovery payload |
 | `../06--depth-and-failure-handling/002-resume-after-interrupted-state.md` | Baseline JSONL-resume contract |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/status.ts` | MCP handler with `recovery` field (P2-001 remediation) |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-db.ts` | Storage layer: namespace-scoped recovery query |
+| `.opencode/skills/deep-loop-runtime/scripts/status.cjs` | runtime CLI script with `recovery` field (P2-001 remediation) |
+| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Storage layer: namespace-scoped recovery query |
 | `.opencode/skills/deep-ai-council/references/state_format.md` | Documents append-only `ai-council-state.jsonl` event contract |
 | `.opencode/skills/deep-ai-council/references/graph_support.md` §5 | Documents the recovery + replay contract |
 

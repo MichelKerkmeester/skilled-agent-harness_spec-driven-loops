@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Code Graph Metrics Stub
+// ───────────────────────────────────────────────────────────────
+
 export function isSpeckitMetricsEnabled(): boolean {
   return false;
 }

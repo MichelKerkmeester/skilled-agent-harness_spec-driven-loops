@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-prompt/SKILL.md"
-      - ".opencode/commands/improve/agent.md"
+      - ".opencode/commands/deep/start-agent-improvement-loop.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-091"
@@ -58,8 +58,8 @@ Final cleanup of the description-budget trim arc. Trimmed the 8 remaining `OVER-
 | `.opencode/commands/create/changelog.md` | 114 | 97 | 17 |
 | `.opencode/commands/create/sk-skill.md` | 112 | 96 | 16 |
 | `.opencode/commands/doctor/code-graph.md` | 119 | 102 | 17 |
-| `.opencode/commands/improve/agent.md` | 122 | 100 | 22 |
-| `.opencode/commands/improve/prompt.md` | 112 | 97 | 15 |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | 122 | 100 | 22 |
+| `.opencode/commands/prompt.md` | 112 | 97 | 15 |
 | `.opencode/commands/memory/manage.md` | 116 | 97 | 19 |
 | `.opencode/commands/memory/search.md` | 112 | 94 | 18 |
 

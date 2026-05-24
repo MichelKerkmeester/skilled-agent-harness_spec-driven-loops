@@ -20,9 +20,9 @@
     "guards",
     "docs"
   ],
-  "lastUpdated": "2026-05-23T09:11:13.087Z",
-  "specId": "006",
-  "folderSlug": "013-iterative-parity-cost-docs",
+  "lastUpdated": "2026-05-23T15:24:58.978Z",
+  "specId": "013",
+  "folderSlug": "iterative-parity-cost-docs",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution",

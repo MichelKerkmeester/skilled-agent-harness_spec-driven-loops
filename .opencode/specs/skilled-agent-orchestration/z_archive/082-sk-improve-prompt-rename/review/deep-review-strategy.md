@@ -19,7 +19,7 @@ Packet `skilled-agent-orchestration/082-sk-improve-prompt-rename` — semantic r
 | 1 | Completeness | Any active-scope `sk-improve-prompt` refs missed? |
 | 2 | Consistency | Do all rotated files reference `sk-prompt` consistently? Path embeds vs string refs aligned? |
 | 3 | Skill graph integrity | skill-graph.json signals/families/adjacency/hub_skills rotated; advisor probes return sk-prompt top-1 |
-| 4 | Identity preservation | Agent name `@improve-prompt`, command `/improve:prompt`, agent file `improve-prompt.md` UNCHANGED |
+| 4 | Identity preservation | Agent name `@improve-prompt`, command `/prompt`, agent file `improve-prompt.md` UNCHANGED |
 | 5 | Documentation hygiene | Spec docs mirror 070 precedent shape; strict --recursive validate passes parent + 6 children |
 | 6 | Frozen continuity respect | Historical/completed packet docs (z_archive, z_future, 054, 055, 061, 063, 067, 070, 079, 081, 026-graph) NOT touched |
 
@@ -72,7 +72,7 @@ Packet `skilled-agent-orchestration/082-sk-improve-prompt-rename` — semantic r
 - **Findings:** P0:0, P1:1, P2:2
 
 ### Iteration 2 — Skill graph + Identity
-- **What worked:** All 5 skill-graph.json reference locations use `sk-prompt` with zero residuals. Advisor probes confirm top-1 `sk-prompt` (confidence 0.9262-0.9332). Agent name `@improve-prompt` and command `/improve:prompt` identities fully intact across 4 runtimes.
+- **What worked:** All 5 skill-graph.json reference locations use `sk-prompt` with zero residuals. Advisor probes confirm top-1 `sk-prompt` (confidence 0.9262-0.9332). Agent name `@improve-prompt` and command `/prompt` identities fully intact across 4 runtimes.
 - **What failed:** Pre-existing P1 (FRONTMATTER_MEMORY_BLOCK) persists but is unrelated to this dimension.
 - **Findings:** P0:0, P1:0, P2:0
 

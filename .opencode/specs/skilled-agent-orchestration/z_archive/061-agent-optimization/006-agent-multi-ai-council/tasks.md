@@ -49,8 +49,8 @@ _memory:
 ### T-002: Generate dynamic 5-dimension profile
 - `node .opencode/skills/sk-improve-agent/scripts/generate-profile.cjs --agent=.opencode/agents/ultra-think.md --output=<packet>/profile.json`
 
-### T-003: Dispatch /improve:agent
-- `/improve:agent .opencode/agents/ultra-think.md :auto --spec-folder=specs/skilled-agent-orchestration/061-agent-optimization/006-agent-multi-ai-council`
+### T-003: Dispatch /deep:start-agent-improvement-loop
+- `/deep:start-agent-improvement-loop .opencode/agents/ultra-think.md :auto --spec-folder=specs/skilled-agent-orchestration/061-agent-optimization/006-agent-multi-ai-council`
 <!-- /ANCHOR:phase-1 -->
 
 ---

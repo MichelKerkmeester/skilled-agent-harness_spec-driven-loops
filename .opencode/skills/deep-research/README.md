@@ -22,11 +22,13 @@ trigger_phrases:
 2. [QUICK START](#2--quick-start)
 3. [FEATURES](#3--features)
 4. [STRUCTURE](#4--structure)
-5. [LIFECYCLE MODES](#5--lifecycle-modes)
-6. [RUNTIME PARITY](#6--runtime-parity)
-7. [TROUBLESHOOTING](#7--troubleshooting)
-8. [FAQ](#8--faq)
-9. [RELATED DOCUMENTS](#9--related-documents)
+5. [CONFIGURATION](#5--configuration)
+6. [USAGE EXAMPLES](#6--usage-examples)
+7. [LIFECYCLE MODES](#7--lifecycle-modes)
+8. [RUNTIME PARITY](#8--runtime-parity)
+9. [TROUBLESHOOTING](#9--troubleshooting)
+10. [FAQ](#10--faq)
+11. [RELATED DOCUMENTS](#11--related-documents)
 <!-- /ANCHOR:table-of-contents -->
 
 ---
@@ -34,9 +36,46 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
+### Purpose
+
 `deep-research` is research-only. It runs repeated investigation cycles through `/deep:start-research-loop`, dispatching a fresh `@deep-research` agent for each iteration while keeping continuity in packet files instead of live conversation memory.
 
-The packet is now lineage-aware. Every run carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, and `continuedFromRun`, so the workflow can distinguish an active resume from a restart. `fork` and `completed-continue` are reserved for a future release and are not runtime-supported today. See `references/loop_protocol.md §Lifecycle Branches` for the canonical one-session contract.
+### Usage
+
+Use this README for human orientation: command examples, packet layout, lifecycle modes, troubleshooting, and reference navigation. Use `SKILL.md` for runtime instructions and smart routing.
+
+### Key Statistics
+
+| Metric | Value |
+|---|---|
+| Version | `1.13.0.0` |
+| Primary command | `/deep:start-research-loop` |
+| Runtime modes | `auto`, `confirm` |
+| Live lifecycle branches | `new`, `resume`, `restart` |
+| Focused references | 12 |
+| Scripts | 2 primary helpers |
+
+### How This Compares
+
+| Capability | This Skill | Related Skill |
+|---|---|---|
+| Research loop | Multi-round investigation and synthesis | `@context` handles single-pass lookup |
+| Review loop | Out of scope | `deep-review` owns iterative code review |
+| Shared runtime | Consumes executor and graph support | `deep-loop-runtime` owns shared libraries |
+| Packet docs | Writes research artifacts under a spec folder | `system-spec-kit` owns spec validation and memory continuity |
+
+### Key Features
+
+| Feature | What It Does |
+|---|---|
+| Fresh-context iteration | Starts each research pass with externalized packet state |
+| Reducer synchronization | Keeps strategy, registry, dashboard, and synthesis metadata aligned |
+| Legal-stop convergence | Blocks premature STOP until coverage and quality gates pass |
+| Graph-aware gates | Uses `graphEvents` as extra STOP-blocking evidence when present |
+| Spec anchoring | Bounded `spec.md` seed and generated-fence write-back during the workflow |
+| Shared resource family | Quick reference, loop protocol, split convergence/state references, config, strategy, dashboard, prompt-pack, and runtime capability assets aligned with sibling deep skills while staying research-specific. |
+
+The packet is lineage-aware. Every run carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, and `continuedFromRun`, so the workflow can distinguish an active resume from a restart. `fork` and `completed-continue` are reserved for a future release and are not runtime-supported today. See the Lifecycle Branches section in `references/loop_protocol.md` for the canonical one-session contract.
 
 The packet is also reducer-synchronized. The agent writes the iteration file plus the JSONL record. The workflow reducer then updates the machine-owned packet surfaces so `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, and synthesis metadata cannot drift apart.
 
@@ -79,7 +118,7 @@ The artifact directory always lives under the target spec's local `research/` fo
 ## 3. FEATURES
 
 - Fresh context per iteration: Each iteration uses a fresh LEAF agent dispatch.
-- Lineage-aware lifecycle: Supports `new`, `resume`, and `restart`. `fork` and `completed-continue` are deferred. See `references/loop_protocol.md §Lifecycle Branches`.
+- Lineage-aware lifecycle: Supports `new`, `resume`, and `restart`. `fork` and `completed-continue` are deferred. See the Lifecycle Branches section in `references/loop_protocol.md`.
 - Reducer synchronization: Strategy, dashboard, registry, and synthesis metadata are updated from canonical iteration outputs.
 - Packet-first recovery: Hook and non-hook runtimes derive the same next action from packet files.
 - Runtime capability matrix: One documented and machine-readable source of truth for provider quirks and parity expectations.
@@ -89,7 +128,7 @@ The artifact directory always lives under the target spec's local `research/` fo
 - Progressive synthesis: `research.md` can be updated incrementally and is finalized during synthesis.
 - Negative knowledge: Ruled-out directions and dead ends are preserved as first-class outputs.
 - Quality guards: Source diversity, focus alignment, and weak-source checks must pass before STOP is accepted.
-- 3-signal convergence model: Composite stop decision uses three weighted signals. Rolling Average (0.45), MAD Noise Floor (0.30), and Coverage/Age (0.25). STOP requires weighted score > 0.60 threshold.
+- 3-signal convergence model: Composite stop decision uses Rolling Average (`0.30`), MAD Noise Floor (`0.35`), and Question Entropy (`0.35`). STOP requires a normalized weighted score above `0.60`, then legal-stop gates must pass.
 - Graph-aware legal-stop checks: When `graphEvents` exist, structural graph signals add extra STOP-blocking evidence on top of the standard convergence math.
 - Semantic coverage graph: Each iteration emits `graphEvents` (nodes + edges) in JSONL, building an in-memory coverage graph with relation types (ANSWERS, SUPPORTS, CONTRADICTS, SUPERSEDES, DERIVED_FROM, COVERS, CITES).
 - Graph convergence guards: STOP-blocking guards. sourceDiversity (>= 0.4) and evidenceDepth (>= 1.5) must pass before convergence is accepted, preventing premature termination from single-source or shallow-evidence research.
@@ -111,13 +150,22 @@ The artifact directory always lives under the target spec's local `research/` fo
   references/
     capability_matrix.md
     convergence.md
+    convergence_graph.md
+    convergence_recovery.md
+    convergence_reference_only.md
+    convergence_signals.md
     loop_protocol.md
     quick_reference.md
     state_format.md
+    state_jsonl.md
+    state_outputs.md
+    state_reducer_registry.md
   assets/
     deep_research_config.json
     deep_research_dashboard.md
     deep_research_strategy.md
+    prompt_pack_iteration.md.tmpl
+    runtime_capabilities.json
   feature_catalog/
     feature_catalog.md
     01--loop-lifecycle/
@@ -155,8 +203,57 @@ Ownership model:
 
 ---
 
+<!-- ANCHOR:configuration -->
+## 5. CONFIGURATION
+
+| Setting | Default | Purpose |
+|---|---|---|
+| `--max-iterations` | `10` | Hard iteration ceiling |
+| `--convergence` | `0.05` | Novelty threshold for rolling convergence |
+| `progressiveSynthesis` | `true` | Allows `research.md` updates before final synthesis |
+| `stuckThreshold` | `3` | Consecutive no-progress iterations before recovery |
+| `executor.kind` | `native` | Selects native LEAF agent or workflow-routed CLI executor |
+
+Non-configurable invariants: the command YAML owns dispatch, `reduce-state.cjs` owns reducer writes, and `@deep-research` remains LEAF-only.
+<!-- /ANCHOR:configuration -->
+
+---
+
+<!-- ANCHOR:usage-examples -->
+## 6. USAGE EXAMPLES
+
+**Autonomous investigation**
+
+```text
+User request: Deep research browser WebSocket reconnection behavior
+Skill routing: LOOP_SETUP + CONVERGENCE
+Resources loaded: quick_reference, loop_protocol, convergence, state_format
+Expected output: research packet with iterations, dashboard, registry, and synthesis
+```
+
+**Resume an active packet**
+
+```text
+User request: Continue the deep research run
+Skill routing: STATE + ITERATION
+Resources loaded: state_jsonl, state_outputs, state_reducer_registry, loop_protocol
+Expected output: resumed lineage event and next iteration or synthesis
+```
+
+**Diagnose a blocked STOP**
+
+```text
+User request: Why did convergence not stop?
+Skill routing: CONVERGENCE + RECOVERY
+Resources loaded: convergence, convergence_signals, convergence_recovery, convergence_graph
+Expected output: gate/blocker explanation and next focus
+```
+<!-- /ANCHOR:usage-examples -->
+
+---
+
 <!-- ANCHOR:lifecycle-modes -->
-## 5. LIFECYCLE MODES
+## 7. LIFECYCLE MODES
 
 | Mode | Meaning |
 |------|---------|
@@ -166,13 +263,13 @@ Ownership model:
 | `fork` (deferred) | Reserved. Earlier drafts described this as a sibling-lineage branch. the runtime does not emit lineage events for `fork` today. Do not expose it in user-facing workflows. |
 | `completed-continue` (deferred) | Reserved. Earlier drafts described snapshotting the prior synthesis as immutable `synthesis-v{generation}.md`. the runtime does not emit lineage events for `completed-continue` today. |
 
-See `references/loop_protocol.md §Lifecycle Branches` for the canonical event contract. Legacy artifact names remain read-only migration aliases for a 4-week window. The workflow writes only canonical `deep-research-*` names and emits migration events when it consumes a legacy alias.
+See the Lifecycle Branches section in `references/loop_protocol.md` for the canonical event contract. Legacy artifact names remain read-only migration aliases for a 4-week window. The workflow writes only canonical `deep-research-*` names and emits migration events when it consumes a legacy alias.
 <!-- /ANCHOR:lifecycle-modes -->
 
 ---
 
 <!-- ANCHOR:runtime-parity -->
-## 6. RUNTIME PARITY
+## 8. RUNTIME PARITY
 
 The workflow resolves the runtime mirror from the active CLI, but every mirror must preserve the same packet contract:
 
@@ -189,7 +286,7 @@ Read `.opencode/skills/deep-research/references/capability_matrix.md` for the pa
 ---
 
 <!-- ANCHOR:troubleshooting -->
-## 7. TROUBLESHOOTING
+## 9. TROUBLESHOOTING
 
 | Problem | Check |
 |---------|-------|
@@ -204,13 +301,13 @@ Read `.opencode/skills/deep-research/references/capability_matrix.md` for the pa
 ---
 
 <!-- ANCHOR:faq -->
-## 8. FAQ
+## 10. FAQ
 
 **Q: Does the agent still edit `deep-research-strategy.md` directly?**
 A: Not as the source of truth. The reducer owns the machine-managed sections so packet state stays synchronized.
 
 **Q: What is the difference between `resume` and `restart`?**
-A: `resume` continues the same `sessionId` and generation, leaving the `research/` tree in place. the workflow appends a `resumed` JSONL event. `restart` archives the existing `research/` tree under `research_archive/{timestamp}/`, mints a fresh `sessionId`, increments `generation`, and appends a `restarted` JSONL event. Both events share the full lineage-contract field set documented in `references/loop_protocol.md §Lifecycle Branches`.
+A: `resume` continues the same `sessionId` and generation, leaving the `research/` tree in place. The workflow appends a `resumed` JSONL event. `restart` archives the existing `research/` tree under `research_archive/{timestamp}/`, mints a fresh `sessionId`, increments `generation`, and appends a `restarted` JSONL event. Both events share the full lineage-contract field set documented in the Lifecycle Branches section of `references/loop_protocol.md`.
 
 **Q: What happened to `fork` and `completed-continue`?**
 A: Both were described in earlier drafts but never shipped as runtime branches. They are deferred and the workflow no longer exposes them as options. If the long-form lineage feature is implemented later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures. until then treat each run as a standalone session or use `restart` to archive the prior one.
@@ -228,7 +325,7 @@ A: Use `deep-review` and `/deep:start-review-loop`.
 ---
 
 <!-- ANCHOR:related-documents -->
-## 9. RELATED DOCUMENTS
+## 11. RELATED DOCUMENTS
 
 ### Dependencies
 
@@ -239,8 +336,15 @@ A: Use `deep-review` and `/deep:start-review-loop`.
 | `SKILL.md` | Full protocol and rules |
 | `references/loop_protocol.md` | Detailed lifecycle and reducer sequencing |
 | `references/spec_check_protocol.md` | Bounded `spec.md` anchoring, `folder_state` rules, advisory lock lifecycle, and generated-fence write-back |
-| `references/state_format.md` | Canonical config, JSONL, registry, and dashboard schemas |
-| `references/convergence.md` | Stop and recovery logic, including graph-aware legal-stop behavior |
+| `references/state_format.md` | State packet hub and mutability/navigation summary |
+| `references/state_jsonl.md` | Config, iteration, event, lineage, graph, and blocked-stop records |
+| `references/state_outputs.md` | Strategy, iteration markdown, `research.md`, dashboard, resource-map, and spec anchoring outputs |
+| `references/state_reducer_registry.md` | Reducer ownership, findings registry, validation, reconstruction, and file protection |
+| `references/convergence.md` | Live stop contract, legal-stop gates, and convergence navigation hub |
+| `references/convergence_signals.md` | `newInfoRatio`, rolling average, MAD, entropy, stuck count, and reporting |
+| `references/convergence_recovery.md` | Stuck recovery, recovery strategy selection, tiered errors, and escalation |
+| `references/convergence_graph.md` | Graph-aware STOP gates, graph convergence events, and graceful degradation |
+| `references/convergence_reference_only.md` | Non-executable segment, semantic, dead-end, and optimizer notes |
 | `manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` | Operator test case for graph stop guards and blocked-stop behavior |
 | `references/capability_matrix.md` | Runtime parity source of truth |
 | `feature_catalog/feature_catalog.md` | Canonical feature inventory across loop lifecycle, state management, convergence, and research output |

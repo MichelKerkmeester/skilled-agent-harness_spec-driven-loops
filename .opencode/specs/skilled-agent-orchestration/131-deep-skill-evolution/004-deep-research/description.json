@@ -1,21 +1,25 @@
 {
+  "level": "2",
   "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research",
-  "description": "Phase parent for 6 deep-research sub-phases: uplift investigation in 3 phases (001-003 research / applicability / recommendations) plus 3 leaf fixes (",
+  "description": "Feature Specification: Deep Research uplift + ordering + uncovered + hygiene arc",
   "keywords": [
-    "deep-research",
+    "feature",
+    "specification",
+    "deep",
+    "research",
     "uplift",
-    "iteration-ordering",
-    "uncovered-questions",
-    "hygiene"
+    "ordering",
+    "uncovered",
+    "hygiene",
+    "arc"
   ],
-  "lastUpdated": "2026-05-23T09:52:56.265976Z",
+  "lastUpdated": "2026-05-23T15:24:59.083Z",
   "specId": "004",
-  "folderSlug": "004-deep-research",
+  "folderSlug": "deep-research",
   "parentChain": [
     "skilled-agent-orchestration",
     "131-deep-skill-evolution"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -947,5 +947,3 @@ Severity for `resource-map-coverage` findings is calibrated to the coverage-gate
 | Coverage | Required dimensions and required protocols covered |
 
 All three gates must pass before STOP. Gate failure forces `verdict: "FAIL"` regardless of finding counts.
-
----

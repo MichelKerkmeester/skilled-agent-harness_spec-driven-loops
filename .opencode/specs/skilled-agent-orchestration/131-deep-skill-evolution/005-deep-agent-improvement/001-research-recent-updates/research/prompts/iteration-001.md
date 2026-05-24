@@ -53,7 +53,7 @@ Aim for ≥30 patterns catalogued.
 Skim:
 - `.opencode/skills/deep-agent-improvement/SKILL.md` (top-level structure + what it does)
 - 1-2 reference docs from `references/`
-- 1 sample agent improvement run (search specs for any 026/* arc that used `/improve:agent`)
+- 1 sample agent improvement run (search specs for any 026/* arc that used `/deep:start-agent-improvement-loop`)
 
 Note: what does deep-agent-improvement DO? Iterative? Single-shot? Scored? Per-iter dispatch?
 

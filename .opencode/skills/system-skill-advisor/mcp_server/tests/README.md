@@ -90,6 +90,8 @@ tests/
 +-- python/                  # Python wrapper and script tests
 +-- schemas/                 # Schema validation tests
 +-- scorer/                  # Native scorer tests
++-- embedders/               # Embedder schema and shared parity tests
++-- skill-graph/             # Skill-graph round-trip tests
 +-- *.vitest.ts              # Package-level regression suites
 +-- *.test.ts                # Focused unit tests
 `-- README.md
@@ -125,6 +127,8 @@ tests/
 +-- routing-fixtures.affordance.test.ts
 +-- shadow-sink.vitest.ts
 +-- skill-graph-db.vitest.ts
++-- embedders/
++-- skill-graph/
 +-- daemon-freshness-foundation.vitest.ts
 +-- lifecycle-derived-metadata.vitest.ts
 +-- scorer/
@@ -146,6 +150,8 @@ tests/
 | `shadow-sink.vitest.ts` | Covers shadow telemetry sink behavior. |
 | `skill-graph-db.vitest.ts` | Checks skill-graph database behavior used by advisor tests. |
 | `manual-testing-playbook.vitest.ts` | Verifies manual testing playbook routing fixtures. |
+| `embedders/` | Covers embedder schema, registry and shared-factory parity. |
+| `skill-graph/` | Covers focused skill-graph refresh round trips. |
 
 ---
 
@@ -182,6 +188,8 @@ fixture or inline scenario
 | `*.test.ts` | Test files | Focused unit tests for affordance and attribution helpers. |
 | `fixtures/` | Test data | Shared prompt and routing inputs. |
 | `scorer/` | Test folder | Native scorer regression coverage. |
+| `embedders/` | Test folder | Embedder boundary and schema coverage. |
+| `skill-graph/` | Test folder | Focused skill-graph database coverage. |
 
 ---
 
@@ -207,6 +215,8 @@ Expected result: exit code `0`.
 
 - [`../README.md`](../README.md)
 - [`../lib/README.md`](../lib/README.md)
+- [`embedders/README.md`](embedders/README.md)
+- [`skill-graph/README.md`](skill-graph/README.md)
 - [`scorer/README.md`](scorer/README.md)
 
 <!-- /ANCHOR:9-related -->

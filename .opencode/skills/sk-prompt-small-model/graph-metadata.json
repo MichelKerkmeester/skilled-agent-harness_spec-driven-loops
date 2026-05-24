@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "skill_id": "sk-ai-small-model",
+  "skill_id": "sk-prompt-small-model",
   "family": "sk-util",
   "category": "utility",
   "edges": {
@@ -91,14 +91,14 @@
       "small-model structured permissions"
     ],
     "key_files": [
-      ".opencode/skills/sk-ai-small-model/SKILL.md",
-      ".opencode/skills/sk-ai-small-model/references/pattern-index.md"
+      ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      ".opencode/skills/sk-prompt-small-model/references/pattern-index.md"
     ],
     "entities": [
       {
-        "name": "sk-ai-small-model",
+        "name": "sk-prompt-small-model",
         "kind": "skill",
-        "path": ".opencode/skills/sk-ai-small-model/SKILL.md",
+        "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
         "source": "derived"
       }
     ],

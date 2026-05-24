@@ -1334,7 +1334,7 @@ workflow:
     next_steps:
       - "/speckit:plan [remediation] (if FAIL or CONDITIONAL verdict)"
       - "/create:changelog (if PASS, including PASS with hasAdvisories=true)"
-      - "/speckit:deep-review [target] (for another review)"
+      - "/deep:start-review-loop [target] (for another review)"
       - "/memory:save {spec_folder} (refresh canonical continuity before the next session)"
 
 # ─────────────────────────────────────────────────────────────────

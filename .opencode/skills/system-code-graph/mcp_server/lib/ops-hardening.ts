@@ -1,8 +1,8 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Ops Hardening
 // ───────────────────────────────────────────────────────────────
-// Public compatibility surface. The neutral contract now lives in
-// @spec-kit/shared so spec-kit and code-graph do not import each other.
+// Public compatibility surface. The neutral contract is local here so
+// spec-kit and code-graph do not import each other at runtime.
 
 export {
   normalizeStructuralReadiness,

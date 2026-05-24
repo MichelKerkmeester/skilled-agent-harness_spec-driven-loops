@@ -70,12 +70,12 @@ Upstream auto-review combines three loop-prevention mechanisms: (1) text-based m
 - Largest gap: No marker-based dedup for mutation type tracking across iterations
 - Highest-impact adoption: Marker-based dedup for mutation coverage graph (prevents re-evaluating same mutation type)
 - Estimated effort: 6-8 hours (add mutation signature tracking to scripts/mutation-coverage.cjs, integrate with existing exhausted log)
-- Implementation notes: Extend scripts/mutation-coverage.cjs to generate mutation signatures (dimension + mutationType + targetSection), track signatures in agent-improvement-state.jsonl, skip mutation types already in exhausted set, add signature-based dedup check in improve_deep-agent-improvement_auto.yaml loop before candidate generation
+- Implementation notes: Extend scripts/mutation-coverage.cjs to generate mutation signatures (dimension + mutationType + targetSection), track signatures in agent-improvement-state.jsonl, skip mutation types already in exhausted set, add signature-based dedup check in deep_start-agent-improvement-loop_auto.yaml loop before candidate generation
 
 ### Detailed Gap Analysis by Category
 
 **Activation & Scope (3 mechanisms, all n/a)**
-- Event-driven activation: n/a for all three skills (skill-vs-plugin mismatch). The upstream plugin's session.idle event handler (auto-review.ts:139-151) is a runtime hook that only applies to OpenCode SDK plugins. All three deep-* skills are manually invoked via commands (/deep:start-research-loop, /deep:start-review-loop, /improve:agent).
+- Event-driven activation: n/a for all three skills (skill-vs-plugin mismatch). The upstream plugin's session.idle event handler (auto-review.ts:139-151) is a runtime hook that only applies to OpenCode SDK plugins. All three deep-* skills are manually invoked via commands (/deep:start-research-loop, /deep:start-review-loop, /deep:start-agent-improvement-loop).
 - Cross-model selection: n/a for all three skills. The upstream inferReviewModels function (iter-008) with rank function is specific to plugins that choose reviewer models dynamically. All three deep-* skills use executor config with CLI flag precedence but do not perform cross-model selection.
 - Cross-AI family bias: n/a for all three skills. The upstream rank function prioritizing differentFamily cohort (iter-008) is irrelevant to skills that don't select models. All three deep-* skills are model-agnostic and rely on the executor to choose the model.
 

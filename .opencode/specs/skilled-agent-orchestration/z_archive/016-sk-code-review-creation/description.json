@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/016-sk-code-review-creation",
+  "specFolder": "skilled-agent-orchestration/z_archive/016-sk-code-review-creation",
   "description": "Feature Specification: sk-code-review Promotion",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "sk-code-review",
     "promotion"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.669Z",
+  "lastUpdated": "2026-05-23T15:24:59.163Z",
   "specId": "016",
   "folderSlug": "sk-code-review-creation",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -739,7 +739,7 @@ rg -n \"resolveArtifactRoot|resource-map|resourceMap|spec_folder|specFolder|revi
     78	  return [...new Set(values.map(value => value.trim()).filter(value => SKILL_NAME_PATTERN.test(value)))].sort();
     79	}
     80	
-.claude/settings.local.json:19:      "Bash(mv .agents/commands/improve/agent-improver.toml .agents/commands/improve/improve-agent.toml)",
+.claude/settings.local.json:19:      "Bash(mv .agents/commands/deep/agent-improver.toml .agents/commands/deep/improve-agent.toml)",
 .claude/settings.local.json:36:            "type": "command",
 .claude/settings.local.json:37:            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
 .claude/settings.local.json:48:            "type": "command",
@@ -2697,7 +2697,7 @@ nl -ba .claude/settings.local.json | sed -n '1,90p'" in /Users/michelkerkmeester
     16	      "Bash(mv .claude/agents/agent-improver.md .claude/agents/improve-agent.md)",
     17	      "Bash(mv .codex/agents/agent-improver.toml .codex/agents/improve-agent.toml)",
     18	      "Bash(mv .agents/agents/agent-improver.md .agents/agents/improve-agent.md)",
-    19	      "Bash(mv .agents/commands/improve/agent-improver.toml .agents/commands/improve/improve-agent.toml)",
+    19	      "Bash(mv .agents/commands/deep/agent-improver.toml .agents/commands/deep/improve-agent.toml)",
     20	      "Skill(cli-codex)",
     21	      "Bash(codex exec *)",
     22	      "Bash(git *)",

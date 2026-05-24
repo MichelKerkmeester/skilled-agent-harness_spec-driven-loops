@@ -1,22 +1,20 @@
 {
   "level": "2",
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/003-align-arc-020-spec-docs-with-sk-doc",
+  "status": "complete",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/003-align-arc-020-spec-docs-with-sk-doc",
   "description": "Spec: Arc 020 Spec Docs sk-doc Alignment",
   "keywords": [
     "spec",
-    "arc-020",
+    "arc",
+    "020",
+    "docs",
     "sk-doc",
-    "alignment",
-    "h2",
-    "evergreen",
-    "doctor"
+    "alignment"
   ],
-  "lastUpdated": "2026-05-23T14:30:00Z",
+  "lastUpdated": "2026-05-23T15:25:01.022Z",
   "specId": "003",
   "folderSlug": "align-arc-020-spec-docs-with-sk-doc",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "013-embedder-testing-and-architecture",
@@ -24,6 +22,5 @@
     "021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "status": "complete"
+  "memoryNameHistory": []
 }

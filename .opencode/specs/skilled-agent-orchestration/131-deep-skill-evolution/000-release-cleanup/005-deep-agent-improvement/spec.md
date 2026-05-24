@@ -116,7 +116,7 @@ Deliver a release-ready `deep-agent-improvement` skill folder: every documentati
 
 - Sibling phases under `000-release-cleanup/` — independent cleanup packets owned by separate dispatches.
 - Scoring/promotion/rollback runtime behavior changes to the `.cjs` scripts — bug-scan only (path refs + `node --check` syntax), no logic refactor and no template enforcement on code files.
-- The `@deep-agent-improvement` agent file and `/improve:agent` command definitions — referenced as cross-system integration points in the README rewrite, never modified here (agent/command improvement is the skill's own job, not a doc-cleanup task).
+- The `@deep-agent-improvement` agent file and `/deep:start-agent-improvement-loop` command definitions — referenced as cross-system integration points in the README rewrite, never modified here (agent/command improvement is the skill's own job, not a doc-cleanup task).
 - Cross-skill refactoring (`deep-loop-runtime`, `deep-research`, `deep-review`) — touched only through cross-system reference naming in the README rewrite, never modified.
 - The vitest test suite under `scripts/tests/` — inventoried and bug-scanned only; no test authoring.
 

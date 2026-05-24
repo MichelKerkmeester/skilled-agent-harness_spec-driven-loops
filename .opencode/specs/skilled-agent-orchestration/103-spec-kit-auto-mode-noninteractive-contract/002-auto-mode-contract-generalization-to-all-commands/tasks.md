@@ -80,7 +80,7 @@ _memory:
 - [x] T029 Live `:auto` dispatch — `/create:feature-catalog`.
 - [x] T030 Live `:auto` dispatch — `/create:testing-playbook`.
 - [x] T031 Live `:auto` dispatch — `/create:folder_readme`.
-- [x] T032 Live `:auto` dispatch — `/improve:agent`.
+- [x] T032 Live `:auto` dispatch — `/deep:start-agent-improvement-loop`.
 - [x] T033 Populate `implementation-summary.md` with 12-row results matrix + per-PARTIAL/FAIL finding.
 - [x] T034 strict-validate 103 phase parent + 001 + 002 — all exit 0.
 - [x] T035 Update `_memory.continuity` blocks to `completion_pct: 100`.

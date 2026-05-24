@@ -43,6 +43,6 @@ _memory:
 - Materializer + runner E2E wrote 3 fixture markdown files, `benchmark-outputs/report.json` with `status:"benchmark-complete"`, and `agent-improvement-state.jsonl` with `benchmark_run`.
 - `improvement-journal.cjs` accepts nested `details.gateResults` with all five gates and rejects non-canonical stop reasons such as `benchmarkPlateau`.
 - `reduce-state.cjs` surfaces `journalSummary.latestLegalStop.gateResults` and renders the latest legal-stop table in the dashboard.
-- YAML parsing passed for both `improve_improve-agent_auto.yaml` and `improve_improve-agent_confirm.yaml`.
+- YAML parsing passed for both `deep_start-agent-improvement-loop_auto.yaml` and `deep_start-agent-improvement-loop_confirm.yaml`.
 - Script syntax checks passed for `materialize-benchmark-fixtures.cjs`, `run-benchmark.cjs`, `improvement-journal.cjs`, and `reduce-state.cjs`.
 - Strict validation exited 2 with template-header/template-anchor errors plus warnings; required files and placeholder checks passed.

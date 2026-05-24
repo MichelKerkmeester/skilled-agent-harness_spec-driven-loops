@@ -64,11 +64,11 @@ Phase 004 updates only `.claude/`, `.codex/`, and `.gemini/` mirror bodies that 
 - Update `.claude/agents/improve-prompt.md` body references.
 - Update `.codex/agents/improve-prompt.toml` body references.
 - Update `.gemini/agents/improve-prompt.md` body references.
-- Update `.gemini/commands/improve/README.txt`.
+- Update `.gemini/commands/deep/start-agent-improvement-loop.toml`.
 - Verify and update `.gemini/commands/create/prompt.toml` if it contains old skill references.
 
 ### Out of Scope
-- Renaming agent files, agent names, `/improve:prompt` command mirrors, or command files.
+- Renaming agent files, agent names, `/prompt` command mirrors, or command files.
 - Editing `.opencode/` internals, skill-local files, root docs, or install guides.
 - Updating generated graph data, advisor fixtures, or final recursive validation state.
 
@@ -79,7 +79,7 @@ Phase 004 updates only `.claude/`, `.codex/`, and `.gemini/` mirror bodies that 
 | `.claude/agents/improve-prompt.md` | Modify | Claude agent body refs only |
 | `.codex/agents/improve-prompt.toml` | Modify | Codex agent body refs only |
 | `.gemini/agents/improve-prompt.md` | Modify | Gemini agent body refs only |
-| `.gemini/commands/improve/README.txt` | Modify | Gemini command README body refs |
+| `.gemini/commands/deep/start-agent-improvement-loop.toml` | Modify | Gemini command README body refs |
 | `.gemini/commands/create/prompt.toml` | Verify/Modify | Update only if old refs exist |
 <!-- /ANCHOR:scope -->
 

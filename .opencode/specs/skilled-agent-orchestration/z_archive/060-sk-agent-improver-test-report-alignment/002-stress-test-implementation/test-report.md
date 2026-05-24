@@ -1,6 +1,6 @@
 ---
 title: "Test Report: sk-improve-agent Stress-Test Campaign (060/002)"
-description: "R1 stress testing of the sk-improve-agent packet found a methodology-level gap: the scenarios invoked the thin @improve-agent mutator body, while the discipline under test lives in the /improve:agent command orchestrator."
+description: "R1 stress testing of the sk-improve-agent packet found a methodology-level gap: the scenarios invoked the thin @improve-agent mutator body, while the discipline under test lives in the /deep:start-agent-improvement-loop command orchestrator."
 trigger_phrases:
   - "060/002 test report"
   - "sk-improve-agent stress test"
@@ -19,11 +19,11 @@ _memory:
     key_files:
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/test-report.md
       - .opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/002-stress-test-implementation/stress-runs/stage4-summary.md
-      - .opencode/commands/improve/agent.md
+      - .opencode/commands/deep/start-agent-improvement-loop.md
       - .opencode/agents/improve-agent.md
     completion_pct: 100
     open_questions:
-      - "Follow-on packet should rerun CP-040..CP-045 through the /improve:agent command workflow instead of prepending only the agent body."
+      - "Follow-on packet should rerun CP-040..CP-045 through the /deep:start-agent-improvement-loop command workflow instead of prepending only the agent body."
     answered_questions:
       - "Did Stages 1-3 land? — YES: 6/6 diff sketches, 6/6 scenarios, fixture target, root playbook index, 4-runtime mirrors."
       - "Did R1 pass? — NO: PASS 0 / PARTIAL 2 / FAIL 4."
@@ -34,7 +34,7 @@ _memory:
 
 | | |
 |---|---|
-| **Subject** | sk-improve-agent triad (`.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/agents/improve-agent.md`, `.opencode/commands/improve/agent.md`) |
+| **Subject** | sk-improve-agent triad (`.opencode/skills/sk-improve-agent/SKILL.md`, `.opencode/agents/improve-agent.md`, `.opencode/commands/deep/start-agent-improvement-loop.md`) |
 | **Window** | 2026-05-02 |
 | **Executor** | `cli-copilot --model gpt-5.5` (high reasoning via `~/.copilot/settings.json`) |
 | **Scenarios** | CP-040..CP-045 (6 stress tests authored from `001/research/research.md` §4 sketches) |
@@ -46,13 +46,13 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. TL;DR
 
-R1 surfaced a methodology-level gap, not a per-scenario design gap. The 060/002 scenarios copied packet 059's same-task A/B shape: Call A is a generic task, Call B prepends the agent body, adds `Depth: 1`, and dispatches the same task. That worked for `@code` because `@code`'s discipline lives in the agent body. It does not translate cleanly to `@improve-agent`, where the discipline under test lives in the `/improve:agent` command orchestrator.
+R1 surfaced a methodology-level gap, not a per-scenario design gap. The 060/002 scenarios copied packet 059's same-task A/B shape: Call A is a generic task, Call B prepends the agent body, adds `Depth: 1`, and dispatches the same task. That worked for `@code` because `@code`'s discipline lives in the agent body. It does not translate cleanly to `@improve-agent`, where the discipline under test lives in the `/deep:start-agent-improvement-loop` command orchestrator.
 
 Stages 1-3 still landed cleanly. The implementation changed 9 source files by +257 / -77, applied all 6 diff sketches, added CP-040 through CP-045, built the 060 fixture under `.opencode/skills/sk-improve-agent/test-fixtures/060-stress-test/`, updated the root playbook index, and kept the improve-agent mirrors aligned across `.opencode`, `.claude`, `.gemini`, and `.codex`.
 
 R1 did not prove the command discipline held. The final score was **PASS 0 / PARTIAL 2 / FAIL 4**. CP-040 and CP-041 were partial; CP-042 through CP-045 failed. The tripwire-dirty signals in CP-041, CP-044, and CP-045 are false positives: they reflect parallel-track `description.json` indexing chatter from the user's other work, not scenario-induced project mutation. Per the worktree-cleanliness memory rule, that is not a blocker.
 
-The close-out path is to document the gap honestly and stop here. R2 would not be a small re-run; it would require restructuring the scenarios so Call B invokes `/improve:agent` and exercises the YAML workflow, helper scripts, journal events, score gates, and stop taxonomy. That is a new packet, not an in-place patch to this report.
+The close-out path is to document the gap honestly and stop here. R2 would not be a small re-run; it would require restructuring the scenarios so Call B invokes `/deep:start-agent-improvement-loop` and exercises the YAML workflow, helper scripts, journal events, score gates, and stop taxonomy. That is a new packet, not an in-place patch to this report.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -161,13 +161,13 @@ And then:
 
 > "Provide all required inputs before re-invoking this agent."
 
-Those are not random model failures. They are evidence that the Call B prompt reached `@improve-agent` the mutator, not `/improve:agent` the orchestrated command flow.
+Those are not random model failures. They are evidence that the Call B prompt reached `@improve-agent` the mutator, not `/deep:start-agent-improvement-loop` the orchestrated command flow.
 
 ### The methodology finding
 
 Packet 059's `@code` campaign worked because `@code` stores its enforcement machinery in the agent body itself: self-validation, Critic challenges, anti-patterns, mode discipline, and RETURN shape. Prepending the body gives the model the discipline.
 
-The sk-improve-agent triad is different. ADR-001 made `@improve-agent` proposal-only. The agent body should never score, benchmark, emit journal events, promote, or synchronize mirrors. Those responsibilities sit in the `/improve:agent` command: YAML workflow steps, helper script invocations, score/delta production, benchmark events, legal-stop evaluation, `blocked_stop`, and session stop assignment.
+The sk-improve-agent triad is different. ADR-001 made `@improve-agent` proposal-only. The agent body should never score, benchmark, emit journal events, promote, or synchronize mirrors. Those responsibilities sit in the `/deep:start-agent-improvement-loop` command: YAML workflow steps, helper script invocations, score/delta production, benchmark events, legal-stop evaluation, `blocked_stop`, and session stop assignment.
 
 So R1 mostly tested the wrong layer. It proved the thin mutator does not do orchestrator-owned work. That is expected. The follow-on test must target the command flow.
 <!-- /ANCHOR:r1 -->
@@ -179,7 +179,7 @@ So R1 mostly tested the wrong layer. It proved the thin mutator does not do orch
 
 R2 would only be meaningful if it changed the invocation mode. Re-running the same prepended-agent-body pattern after editing scenario wording would likely reproduce the same outcome: the mutator checks required inputs, refuses to score or benchmark, and stops.
 
-The honest path is ADR-4's "document honest gaps" route. The packet has already delivered the Stage 1-3 source/scenario work. The failed R1 is valuable because it identifies the exact design flaw in the test harness: Call B must invoke `/improve:agent`, not merely prepend `.opencode/agents/improve-agent.md`.
+The honest path is ADR-4's "document honest gaps" route. The packet has already delivered the Stage 1-3 source/scenario work. The failed R1 is valuable because it identifies the exact design flaw in the test harness: Call B must invoke `/deep:start-agent-improvement-loop`, not merely prepend `.opencode/agents/improve-agent.md`.
 
 That rework is not a small round. It needs command-owned setup: packet-local `improvement/` directories, charter/control/profile files, YAML workflow invocation, helper-script evidence capture, journal inspection, and stop-condition assertions. That is enough surface area for a separate packet.
 <!-- /ANCHOR:r2 -->
@@ -189,7 +189,7 @@ That rework is not a small round. It needs command-owned setup: packet-local `im
 <!-- ANCHOR:r3 -->
 ## 7. WHAT SHOULD HAPPEN INSTEAD
 
-The follow-on should restructure CP-040 through CP-045 so Call B enters through the `/improve:agent` command. The acceptance criteria should remain grep-checkable, but the evidence source needs to move from the mutator transcript alone to the command's artifacts:
+The follow-on should restructure CP-040 through CP-045 so Call B enters through the `/deep:start-agent-improvement-loop` command. The acceptance criteria should remain grep-checkable, but the evidence source needs to move from the mutator transcript alone to the command's artifacts:
 
 | Scenario | Follow-on evidence source |
 |---|---|
@@ -214,8 +214,8 @@ The source implementation landed as scoped changes to 9 files:
 |---|---:|---:|---|
 | `.opencode/skills/sk-improve-agent/scripts/scan-integration.cjs` | 1 | 1 | Fix stale `.agents/agents` mirror path to `.gemini/agents/{name}.md`. |
 | `.opencode/skills/sk-improve-agent/scripts/score-candidate.cjs` | 94 | 1 | Add baseline/current scoring, `delta`, `thresholdDelta`, and candidate-better vs acceptable recommendation. |
-| `.opencode/commands/improve/assets/improve_improve-agent_auto.yaml` | 10 | 3 | Emit `benchmark_completed`, `legal_stop_evaluated`, and `blocked_stop` boundaries. |
-| `.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml` | 10 | 3 | Mirror the command-boundary event emissions for confirm mode. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | 10 | 3 | Emit `benchmark_completed`, `legal_stop_evaluated`, and `blocked_stop` boundaries. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | 10 | 3 | Mirror the command-boundary event emissions for confirm mode. |
 | `.opencode/agents/improve-agent.md` | 13 | 6 | Add active `CRITIC PASS` challenge points and journal-boundary wording. |
 | `.claude/agents/improve-agent.md` | 25 | 18 | Runtime mirror of the improve-agent body. |
 | `.gemini/agents/improve-agent.md` | 25 | 18 | Runtime mirror with `.gemini/agents/*.md` path convention. |
@@ -349,8 +349,8 @@ The six scenario files exist at `.opencode/skills/sk-improve-agent/manual_testin
 ```
 .opencode/skills/sk-improve-agent/scripts/scan-integration.cjs
 .opencode/skills/sk-improve-agent/scripts/score-candidate.cjs
-.opencode/commands/improve/assets/improve_improve-agent_auto.yaml
-.opencode/commands/improve/assets/improve_improve-agent_confirm.yaml
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml
+.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml
 .opencode/agents/improve-agent.md
 .claude/agents/improve-agent.md
 .gemini/agents/improve-agent.md
@@ -372,7 +372,7 @@ The six scenario files exist at `.opencode/skills/sk-improve-agent/manual_testin
 
 ### Recommended follow-on packet
 
-Create `004-improve-agent-command-flow-stress-tests`. Its job is to restructure CP-040 through CP-045 so Call B invokes `/improve:agent` through the command/YAML workflow, then re-run stress tests against the orchestrator-level flow.
+Create `004-improve-agent-command-flow-stress-tests`. Its job is to restructure CP-040 through CP-045 so Call B invokes `/deep:start-agent-improvement-loop` through the command/YAML workflow, then re-run stress tests against the orchestrator-level flow.
 
 The follow-on should keep the same six scenario claims, but change the runner evidence:
 
