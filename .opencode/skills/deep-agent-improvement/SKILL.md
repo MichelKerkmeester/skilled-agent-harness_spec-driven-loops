@@ -2,7 +2,7 @@
 name: deep-agent-improvement
 description: "Evaluator-first bounded agent improvement: 5-dim scoring, dynamic profiling, packet-local candidates, guarded promotion."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.6.0.0
+version: 1.7.0.0
 triggers:
   - deep-agent-improvement
   - agent improvement loop
@@ -252,70 +252,18 @@ Profiles are generated on the fly from any agent file via `scripts/generate-prof
 
 ---
 
-## Mixed-Executor Dispatch (Recommended)
+## 5. MULTI-ITER METHODOLOGY
 
-For multi-iter evaluation sweeps, the mixed-executor pattern provides better breadth/synthesis balance than single-executor approaches. This pattern was proven in arc 119 (deep-research uplift) and is recommended for DAI operators running multi-iter sweeps.
+For multi-iter evaluation sweeps, a mixed-executor split plus an adjudication pass gives better breadth, better synthesis, and less noise than a single-executor run.
 
-### Pattern: 8+2 Split
+- **Mixed-executor 8+2 split**: run breadth iterations on cli-devin SWE-1.6 and synthesis iterations on cli-codex gpt-5.5. For a 10-iter sweep, that is iters 1-8 breadth and iters 9-10 synthesis.
+- **Adjudication iter**: insert a false-positive filter pass before the synthesis iterations (typically the iter-7 mark) so only confirmed findings carry forward. In validation this delivers a 90%+ false-positive reduction, with one pass dropping 9 false-positive and 4 outdated items to take a 20-item queue down to 7.
 
-- **Breadth iters (1-N-2)**: cli-devin SWE-1.6 for breadth exploration
-- **Synthesis iters (N-1, N)**: cli-codex gpt-5.5 for synthesis and quality pass
-
-### Example: 10-Iter Sweep
-
-- Iters 1-8: cli-devin SWE-1.6 (breadth)
-- Iter 9: cli-codex gpt-5.5 (synthesis)
-- Iter 10: cli-codex gpt-5.5 (final validation)
-
-### When to Use
-
-- Multi-iter evaluation sweeps (not single-shot scoring)
-- When breadth exploration and synthesis quality are both important
-- When false-positive reduction is a priority (see adjudication-iter below)
-
-### Precedent
-
-Arc 119 deep-research uplift methodology. See `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/001-uplift-research-deep-review-changes/research/research-report.md` for the 10-iter research that validated this pattern.
-
-### Reference Doc
-
-See `references/mixed_executor_methodology.md` for detailed guidance on when to use the pattern, the 8+2 split mechanics, adjudication-iter implementation, and cross-link to 119.
+See `references/mixed_executor_methodology.md` for the split mechanics, adjudication details, and the full validation evidence.
 
 ---
 
-## Adjudication-Iter Pattern (Recommended)
-
-For multi-iter evaluation sweeps, an adjudication-iter false-positive filter significantly reduces noise. This pattern was proven in arc 119 (deep-research uplift) with a 90%+ false-positive reduction rate.
-
-### Pattern: False-Positive Filter Pass
-
-- **Adjudication iter**: Typically at iter-7-equivalent (before synthesis iters)
-- **Mechanism**: Cross-finding adjudication to drop outdated and false-positive items
-- **Outcome**: Only confirmed findings proceed to synthesis
-
-### Example: 10-Iter Sweep with Adjudication
-
-- Iters 1-6: cli-devin SWE-1.6 (breadth)
-- Iter 7: cli-devin SWE-1.6 (adjudication pass)
-- Iters 8-10: cli-codex gpt-5.5 (synthesis on confirmed findings only)
-
-### When to Use
-
-- Multi-iter evaluation sweeps with adversarial passes
-- When false-positive rate is a concern (90%+ without adjudication per 119 precedent)
-- When synthesis quality depends on clean input
-
-### Precedent
-
-Arc 119 deep-research uplift methodology. Iteration 7 adjudication dropped 9 false-positive items and 4 outdated items, reducing the uplift queue from 20 to 7 confirmed findings.
-
-### Reference Doc
-
-See `references/mixed_executor_methodology.md` for detailed guidance on adjudication-iter implementation and cross-link to 119.
-
----
-
-## 4B. RUNTIME TRUTH CONTRACTS (Phase 005)
+## 6. RUNTIME TRUTH CONTRACTS
 
 ### Stop-Reason Taxonomy
 
@@ -380,7 +328,7 @@ If the long-form lineage feature is implemented later, it will arrive with first
 
 Tracks explored dimensions, tried mutation types per dimension, and exhausted mutation sets using `loop_type: "improvement"` namespace isolation (ADR-002). The orchestrator skips mutation types already in the exhausted log.
 
-#### Mutation Signature Dedup (Packet 110, M-3)
+#### Mutation Signature Dedup
 
 Each mutation entry in `mutation-coverage.json` carries a `signature` field computed as:
 
@@ -407,7 +355,9 @@ When set, `isSignatureSeen()` always returns `{ seen: false }` — every mutatio
 
 ### Dimension Trajectory
 
-Trajectory data records per-iteration dimension scores. Convergence requires minimum 3 data points (ADR-003) with all dimension deltas within +/-2 across the last 3 points.
+Trajectory data records per-iteration dimension scores. The shipped `stopOnDimensionPlateau` rule requires at least 3 data points and treats a dimension as plateaued only when its last 3 scores are identical (exact-repeat in `reduce-state.cjs`), not a tolerance band.
+
+Stop-condition counters (`maxConsecutiveTies`, `maxInfraFailuresPerProfile`, `maxWeakBenchmarkRunsPerProfile`) default to disabled, with no cap, unless the runtime config sets them. Only configured counters can trigger `blockedStop`.
 
 ### Trade-Off Detection
 
@@ -429,9 +379,9 @@ Reads historical session data and emits a weight-recommendation report. Recommen
 
 ---
 
-## Journal Wiring Contract
+### Journal Wiring Contract
 
-Journal emission is orchestrator-only. The target agent being evaluated never writes journal rows directly; only the visible YAML workflow or an operator-side wrapper invokes `scripts/improvement-journal.cjs`.
+Journal emission is orchestrator-only. The target agent being evaluated never writes journal rows directly. Only the visible YAML workflow or an operator-side wrapper invokes `scripts/improvement-journal.cjs`.
 
 The CLI contract is:
 
@@ -472,9 +422,9 @@ These inputs remain optional. Missing files do not fail the reducer; the corresp
 
 For legal-stop replay, the reducer consumes `details.gateResults` from the latest `legal_stop_evaluated` event and surfaces it as `journalSummary.latestLegalStop.gateResults` in `experiment-registry.json` plus the dashboard's latest legal-stop table.
 
-## ADR-002: Journal Replay Consumer
+### Journal Replay Consumer
 
-ADR-002 is implemented in the reducer via replay consumers instead of a separate orchestrator-only synthesis step. During each refresh pass, `scripts/reduce-state.cjs` now reads the following artifacts when present:
+The reducer consumes replay artifacts instead of running a separate orchestrator-only synthesis step. During each refresh pass, `scripts/reduce-state.cjs` reads the following artifacts when present:
 
 - `improvement-journal.jsonl` to summarize last session boundaries, total replayed events, per-event counts, and terminal `stopReason` / `sessionOutcome`
 - `candidate-lineage.json` to summarize lineage depth, total candidate count, and the latest candidate leaf
@@ -490,7 +440,7 @@ Graceful degradation is required: if any artifact is missing, unreadable, or not
 
 The dashboard now also includes a dedicated **Sample Quality** section. This separates replay/stability sample sufficiency from benchmark failures so operators can tell the difference between a true regression and an iteration that simply lacked enough data for trade-off or replay-stability trust.
 
-## 5. RULES
+## 7. RULES
 
 ### ✅ ALWAYS
 
@@ -520,13 +470,13 @@ The dashboard now also includes a dedicated **Sample Quality** section. This sep
 
 ---
 
-## 6. REFERENCES
+## 8. REFERENCES
 
 Core references: `README.md`, `references/quick_reference.md`, `references/loop_protocol.md`, evaluator/promotion/rollback/no-go/onboarding docs, runtime assets under `assets/`, benchmark assets, and helper scripts for scoring, reduction, promotion, rollback, scanning, drift, journal, mutation coverage, trade-offs, candidate lineage, and benchmark stability.
 
 ---
 
-## 7. INTEGRATION POINTS
+## 9. INTEGRATION POINTS
 
 - `/improve:agent` initializes and runs the bounded workflow
 - `.opencode/agents/deep-agent-improvement.md` provides the mutator surface for deep-agent-improvement runs
@@ -535,7 +485,7 @@ Core references: `README.md`, `references/quick_reference.md`, `references/loop_
 
 ---
 
-## 8. REFERENCES AND RELATED RESOURCES
+## 10. REFERENCES AND RELATED RESOURCES
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/loop_protocol.md`, `references/quick_reference.md`, `references/benchmark_operator_guide.md`, `references/evaluator_contract.md`, `references/integration_scanning.md`, `references/mirror_drift_policy.md`, `references/no_go_conditions.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 

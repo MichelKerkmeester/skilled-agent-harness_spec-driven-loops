@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://internal/spec/131/000/005/validation-report.schema.json",
+  "title": "Validation Report Entry",
+  "description": "One row in validation-report.jsonl emitted by phase 4. Per-artifact alignment status against the mapped sk-doc template. Aggregated into validation-report.md human-readable summary.",
+  "type": "object",
+  "required": [
+    "report_id",
+    "artifact_path",
+    "template_ref",
+    "template_match_pct",
+    "deviations",
+    "severity_breakdown",
+    "status",
+    "validated_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "report_id": {
+      "type": "string",
+      "pattern": "^VR-[0-9]{4}$",
+      "description": "Sequential identifier (VR-0001, VR-0002, ...)"
+    },
+    "artifact_path": {
+      "type": "string",
+      "description": "Repo-relative path to the artifact validated"
+    },
+    "template_ref": {
+      "type": "string",
+      "description": "Repo-relative path to the sk-doc template the artifact is validated against"
+    },
+    "template_match_pct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Percentage of template required sections present and structurally correct"
+    },
+    "deviations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["section", "severity", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "section": {"type": "string"},
+          "severity": {"type": "string", "enum": ["P0", "P1", "P2"]},
+          "description": {"type": "string", "minLength": 10},
+          "audit_finding_ref": {
+            "type": ["string", "null"],
+            "pattern": "^AF-[0-9]{4}$|^$"
+          }
+        }
+      }
+    },
+    "severity_breakdown": {
+      "type": "object",
+      "required": ["p0", "p1", "p2"],
+      "additionalProperties": false,
+      "properties": {
+        "p0": {"type": "integer", "minimum": 0},
+        "p1": {"type": "integer", "minimum": 0},
+        "p2": {"type": "integer", "minimum": 0}
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PASS", "PASS_WITH_DEVIATIONS", "FAIL"],
+      "description": "PASS = 100% match. PASS_WITH_DEVIATIONS = match_pct < 100 with only P2 deviations OR explicit deferral. FAIL = any open P0 or unresolved P1."
+    },
+    "validated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "examples": [
+    {
+      "report_id": "VR-0001",
+      "artifact_path": ".opencode/skills/deep-agent-improvement/SKILL.md",
+      "template_ref": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
+      "template_match_pct": 100,
+      "deviations": [],
+      "severity_breakdown": {"p0": 0, "p1": 0, "p2": 0},
+      "status": "PASS",
+      "validated_at": "2026-05-26T14:00:00Z"
+    },
+    {
+      "report_id": "VR-0002",
+      "artifact_path": ".opencode/skills/deep-agent-improvement/references/score_dimensions.md",
+      "template_ref": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
+      "template_match_pct": 92,
+      "deviations": [
+        {
+          "section": "WHEN TO USE",
+          "severity": "P2",
+          "description": "Stylistic deviation: intro paragraph longer than the one-sentence template guidance",
+          "audit_finding_ref": "AF-0007"
+        }
+      ],
+      "severity_breakdown": {"p0": 0, "p1": 0, "p2": 1},
+      "status": "PASS_WITH_DEVIATIONS",
+      "validated_at": "2026-05-26T14:01:00Z"
+    }
+  ]
+}

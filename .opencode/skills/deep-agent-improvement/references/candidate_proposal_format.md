@@ -24,9 +24,9 @@ Candidate proposals are packet-local agent mutations that live under `{spec_fold
 
 **Generation method:** Delegated to `@deep-agent-improvement` subagent during proposal phase
 
-**Mutation tracking:** `mutation-coverage.json` with signature-based dedup (Packet 110, M-3)
+**Mutation tracking:** `mutation-coverage.json` with signature-based dedup
 
-**Candidate proposal dedup:** `candidate-lineage.json` stores a SHA-256 `contentHash` computed over normalized candidate content after frontmatter and rubric metadata are stripped. This mirrors packet 122/DR-005's normalized content-hash approach while preserving first-seen candidate lineage.
+**Candidate proposal dedup:** `candidate-lineage.json` stores a SHA-256 `contentHash` computed over normalized candidate content after frontmatter and rubric metadata are stripped. The normalized content-hash approach preserves first-seen candidate lineage.
 
 ---
 

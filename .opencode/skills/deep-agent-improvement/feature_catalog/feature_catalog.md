@@ -158,7 +158,7 @@ Checks whether the runtime-specific mirrors still reflect the canonical agent bo
 
 #### Current Reality
 
-Mirror parity is signal-based, not byte-for-byte. The scanner strips frontmatter, extracts up to three emphasized signal strings from the canonical body, and marks a mirror `aligned` when at least two signals appear in the mirror body; it currently checks `.claude/agents`, `.codex/agents`, and `.agents/agents`, but not `.gemini/agents`.
+Mirror parity is signal-based, not byte-for-byte. The scanner strips frontmatter, extracts up to three emphasized signal strings from the canonical body, and marks a mirror `aligned` when at least two signals appear in the mirror body. It checks `.claude/agents`, `.codex/agents`, and `.gemini/agents` against the canonical `.opencode/agents`.
 
 #### Source Files
 

@@ -12,7 +12,7 @@ trigger_phrases:
 
 This reference documents the profile-selection audit log format and retention policy for deep-agent-improvement, addressing DAI-004 (dynamic profiling auditability).
 
-## 1. Overview
+## 1. OVERVIEW
 
 The profile-selection audit log provides debuggability and auditability for dynamic profile selection in DAI. When a profile is chosen for a candidate, the rationale is logged so operators can understand why a particular profile was selected. The log is append-only and stored in the improvement state directory with per-packet retention.
 
@@ -159,7 +159,5 @@ grep '"chosen_profile":"strict"' improvement/profile-selection.log
 
 ## Related References
 
-- DAI-004 finding: See packet 123 improvement roadmap for DAI-004 context
-- Packet 128 spec: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/spec.md`
-- generate-profile.cjs: `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs`
-- typed-errors.cjs: `.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs`
+- `generate-profile.cjs`: `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs`
+- `typed-errors.cjs`: `.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs`

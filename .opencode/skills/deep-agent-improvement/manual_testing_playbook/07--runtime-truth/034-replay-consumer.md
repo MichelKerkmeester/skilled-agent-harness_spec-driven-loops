@@ -85,7 +85,7 @@ Output excerpt:
 
 ---
 
-## 6. M-3 SIGNATURE DEDUP SMOKE TEST (Packet 110)
+## 6. SIGNATURE DEDUP SMOKE TEST
 
 Verify that `mutation-coverage.cjs` computes, stores, and respects mutation signatures for deduplication.
 

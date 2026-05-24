@@ -24,7 +24,7 @@ The modules are consumed by sibling scripts only and are not a cross-skill impor
 | File | Purpose |
 |---|---|
 | `typed-errors.cjs` | Typed error wrappers for `FILE_NOT_FOUND`, `PARSE_ERROR`, and `SCRIPT_CRASH`, mirroring deep-loop-runtime's CLI guard pattern. |
-| `promotion-gates.cjs` | Promotion thresholds and gate evaluators codified from packet 124 ADR-001, including weighted score, benchmark aggregate, and per-dimension gate values. |
+| `promotion-gates.cjs` | Promotion thresholds and gate evaluators, including weighted score, benchmark aggregate, and per-dimension gate values. |
 | `mirror-sync-verify.cjs` | Four-runtime agent mirror sync verifier for Claude, Codex, Gemini, and OpenCode. It handles Codex TOML body-only token comparison while Markdown mirrors use extracted body equivalence. |
 
 ## 3. USAGE

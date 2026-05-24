@@ -11,9 +11,9 @@ trigger_phrases:
 
 # Mixed-Executor Methodology for Multi-Iter Evaluation Sweeps
 
-## 1. Overview
+## 1. OVERVIEW
 
-This reference documents the mixed-executor dispatch pattern and adjudication-iter false-positive filter proven in arc 119 (deep-research uplift). These patterns are recommended for DAI operators running multi-iter evaluation sweeps.
+This reference documents the mixed-executor dispatch pattern and the adjudication-iter false-positive filter. Both are proven, recommended practices for DAI operators running multi-iter evaluation sweeps.
 
 The mixed-executor pattern combines breadth exploration (cli-devin SWE-1.6) with synthesis quality (cli-codex gpt-5.5) using an 8+2 split for 10-iter sweeps. The adjudication-iter pattern adds a false-positive filter pass (typically at iter-7-equivalent) to reduce noise before synthesis. Together, these patterns provide better breadth/synthesis balance and 90%+ false-positive reduction compared to single-executor approaches.
 
@@ -94,42 +94,32 @@ The adjudication iter should:
 3. Drop items marked as `OUTDATED` or `FALSE-POSITIVE`
 4. Keep only `CONFIRMED` items for synthesis
 
-### Precedent: Arc 119 Results
+### Validation Evidence
 
-In arc 119 (deep-research uplift), iteration 7 adjudication:
+In a 10-iter validation sweep, the iteration-7 adjudication pass:
 - Dropped 9 false-positive items
 - Dropped 4 outdated items
-- Reduced the uplift queue from 20 to 7 confirmed findings
+- Reduced the queue from 20 to 7 confirmed findings
 - Achieved 90%+ false-positive reduction
-
-See `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/001-uplift-research-deep-review-changes/research/research-report.md` for the full 10-iter research.
 
 ---
 
-## Cross-Reference to Arc 119
+## Why It Works
 
-This methodology is adapted from arc 119 (deep-research uplift). The 119 research validated the mixed-executor pattern and adjudication-iter through a 10-iter deep-research investigation.
-
-### Key Findings from 119
+A 10-iter deep-research investigation validated this methodology. Its key findings:
 
 - Single-executor approaches lose breadth/synthesis balance
 - Without adjudication, adversarial passes produce 90%+ false-positive findings
 - The 8+2 split provides the best balance of cost and quality
-- Adjudication at iter-7-equivalent is optimal for 10-iter sweeps
-
-### Source Documents
-
-- 119 spec: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/spec.md`
-- 119 research report: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/004-deep-research/001-uplift-research-deep-review-changes/research/research-report.md`
-- 119 improvement roadmap: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/003-recommendations/improvement-roadmap.md`
+- Adjudication at the iter-7 mark is optimal for 10-iter sweeps
 
 ---
 
 ## Implementation Notes for DAI
 
-### Current Status (Packet 128)
+### Current Status
 
-As of packet 128, the mixed-executor and adjudication patterns are documented as **RECOMMENDED** practices. They are not enforced in the DAI YAML workflow.
+The mixed-executor and adjudication patterns are documented as **RECOMMENDED** practices. They are not enforced in the DAI YAML workflow.
 
 ### Future Enhancement: Auto-Dispatch
 
@@ -149,6 +139,5 @@ Operators can manually implement the mixed-executor pattern by:
 
 ## Related References
 
-- DAI SKILL.md: Sections "Mixed-Executor Dispatch (Recommended)" and "Adjudication-Iter Pattern (Recommended)"
-- Packet 128 spec: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/spec.md`
-- Packet 128 ADR-001: `decision-record.md` in packet 128
+- DAI SKILL.md: section "5. MULTI-ITER METHODOLOGY"
+- `references/loop_protocol.md`: end-to-end operator workflow that consumes this methodology
