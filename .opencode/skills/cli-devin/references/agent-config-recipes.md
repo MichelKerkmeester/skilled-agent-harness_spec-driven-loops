@@ -39,6 +39,8 @@ Devin's `--agent-config` accepts JSON or YAML. The accepted top-level keys (veri
 | `mcp_servers` (or `mcp-servers`) | object map | MCP server registry (Devin 2026.5.6+ schema). DEFERRED in v1.0.4.0 — the binary currently rejects every shape with "untagged enum McpServer" and self-logs `ACP: agent_config mcp_servers are not yet supported in the ACP path and will be ignored`. Enforce sequential_thinking via user-scope registration (`devin mcp add sequential_thinking ...`) PLUS the `system_instructions` mandate. Re-introduce this field once Devin lands `--agent-config mcp_servers` support |
 | `extensions` | array | Extension allowlist (not used by deep-loop recipes) |
 
+> **Rejected custom fields.** The strict parser accepts ONLY the keys above. Fields such as `verification_enabled`, `verification_languages`, `bayesian_scoring_enabled`, `bayesian_score_file`, and `fallback_chain` are NOT valid Devin agent-config keys — the binary rejects the entire recipe if any are present. The features they were meant to gate (`output-verification.md`, `quota-fallback.md`, `confidence-scoring-rubric.md`) are deferred at the recipe layer until Devin supports custom agent-config fields, the same way `mcp_servers` is deferred. Do not re-add them to the shipped recipes.
+
 ### Permission entry syntax
 
 | Form | Example | Meaning |

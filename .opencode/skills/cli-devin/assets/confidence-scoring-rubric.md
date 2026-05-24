@@ -158,7 +158,7 @@ Failure examples:
 
 ## Recipe Contract
 
-The three Phase 004 cli-devin recipes expose:
+The shipped `--agent-config` recipes do NOT carry `verification_enabled` / `verification_languages` fields. Devin's strict `--agent-config` parser rejects unknown top-level fields (the same constraint that defers `mcp_servers`), so recipe-level opt-in is deferred until Devin supports custom agent-config fields. The intended shape was:
 
 ```json
 {
@@ -167,7 +167,7 @@ The three Phase 004 cli-devin recipes expose:
 }
 ```
 
-`verification_enabled` defaults false.
+When supplied through a Devin-supported channel, `verification_enabled` defaults false.
 
 `verification_languages` is an allowlist of:
 

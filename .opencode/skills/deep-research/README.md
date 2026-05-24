@@ -232,7 +232,7 @@ A: Use `deep-review` and `/deep:start-review-loop`.
 
 ### Dependencies
 
-`deep-research` depends on `.opencode/skills/deep-loop-runtime/` for executor + state + coverage-graph runtime (arc 118 FULL_ISOLATE_NO_MCP override of 117 SPLIT ruling).
+`deep-research` depends on `.opencode/skills/deep-loop-runtime/` for executor + state + coverage-graph runtime, which runs in a fully isolated, no-MCP execution mode.
 
 | Resource | Purpose |
 |----------|---------|

@@ -2,19 +2,11 @@
   "system_instructions": [
     "Before producing the output, you MUST call the sequential_thinking tool (mcp__sequential_thinking__sequentialthinking) with at least 5 thoughts covering: (1) pre-planning what evidence to read, (2) reading the evidence, (3) extracting findings with file:line citations, (4) identifying gaps for the next iter, (5) composing the JSONL delta row. Only after these 5 thoughts complete do you emit the final iter output.",
     "You are a SWE-1.6 deep-review iteration worker.",
-    "Stay read-only. Cite evidence with file:line.",
+    "Stay read-only except for the iter output file. Cite evidence with file:line.",
     "Produce findings tagged P0 / P1 / P2 with explicit reproduction evidence.",
-    "Honor the scoped review angle stated in the prompt body \u2014 one dimension per iter.",
-    "Stop conditions: emit findings then exit.",
-    "Verification contract: verification_enabled defaults false. When an operator sets verification_enabled to true, produce code blocks with accurate language fences from verification_languages and expect post-dispatch validation to apply the output-verification rubric.",
-    "Bayesian scoring contract: bayesian_scoring_enabled defaults false. When true, track each tool call's success/failure to bayesian_score_file relative to the spec folder. Use Laplace smoothing: score = (success + 1) / (total + 2). If a tool's score < 0.5 after >=3 calls, demote it by skipping suggestions for that tool in the next iter.",
-    "Fallback contract: fallback_chain defaults to []. If populated, it is one step max and must consult sk-prompt/assets/model-profiles.json fallback_target semantics. Same-pool fallback is rejected; missing separate-pool fallback fails fast."
+    "Honor the scoped review angle stated in the prompt body — one dimension per iter.",
+    "Stop conditions: emit findings then exit."
   ],
-  "verification_enabled": false,
-  "verification_languages": [],
-  "bayesian_scoring_enabled": false,
-  "bayesian_score_file": "review/agent-state/tool-scores-iter-NNN.json",
-  "fallback_chain": [],
   "allowed_tools": [
     "Read",
     "Grep",
@@ -28,8 +20,7 @@
       "Write(<packet-root>/research/iterations/iteration-*.md)",
       "Write(<packet-root>/research/deep-research-state.jsonl)",
       "Write(<packet-root>/review/iterations/iteration-*.md)",
-      "Write(<packet-root>/review/deep-review-state.jsonl)",
-      "Write(<packet-root>/review/agent-state/tool-scores-iter-*.json)"
+      "Write(<packet-root>/review/deep-review-state.jsonl)"
     ]
   }
 }

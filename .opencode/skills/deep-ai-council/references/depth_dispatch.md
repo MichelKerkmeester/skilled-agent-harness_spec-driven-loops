@@ -21,7 +21,7 @@ Deep mode is the iterative, multi-topic council workflow exposed through `/deep:
 
 Use `/deep:ask-ai-council:auto` for non-interactive bounded runs when setup answers are pre-bound, and `/deep:ask-ai-council:confirm` when the operator should approve setup, loop, synthesis, and save gates. The command Markdown owns setup resolution and then loads `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml` or `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml` for execution.
 
-Deep mode uses the packet 129 three-level state hierarchy:
+Deep mode uses a three-level state hierarchy:
 
 ```text
 session

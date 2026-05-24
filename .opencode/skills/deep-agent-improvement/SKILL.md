@@ -355,7 +355,7 @@ When set, `isSignatureSeen()` always returns `{ seen: false }` — every mutatio
 
 ### Dimension Trajectory
 
-Trajectory data records per-iteration dimension scores. The shipped `stopOnDimensionPlateau` rule requires at least 3 data points and treats a dimension as plateaued only when its last 3 scores are identical (exact-repeat in `reduce-state.cjs`), not a tolerance band.
+Trajectory data records per-iteration dimension scores. Two distinct convergence signals run side by side and must not be conflated. `mutation-coverage.cjs` `checkConvergenceEligibility()` marks a profile convergence-eligible when it has at least 3 data points and every dimension delta across the last 3 points is within `DEFAULT_STABILITY_DELTA` (+/-2) — a tolerance band. Separately, `reduce-state.cjs` `stopOnDimensionPlateau` fires the plateau stop only when a dimension's last 3 scores are identical (exact-repeat). The +/-2 trajectory eligibility and the exact-repeat plateau stop are different checks.
 
 Stop-condition counters (`maxConsecutiveTies`, `maxInfraFailuresPerProfile`, `maxWeakBenchmarkRunsPerProfile`) default to disabled, with no cap, unless the runtime config sets them. Only configured counters can trigger `blockedStop`.
 

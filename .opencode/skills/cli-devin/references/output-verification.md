@@ -7,9 +7,9 @@ description: "Opt-in Smallcode-derived verification pass for cli-devin iteration
 
 ## Overview
 
-Phase 004 adds an opt-in verification pattern for cli-devin recipes and deep-loop post-dispatch validation.
+Phase 004 adds an opt-in verification pattern for deep-loop post-dispatch validation.
 
-Default behavior remains unchanged. Existing recipes set `verification_enabled` to `false`, and `post-dispatch-validate.ts` treats missing config the same way.
+The shipped `--agent-config` recipes do NOT carry a `verification_enabled` field. Devin's strict `--agent-config` parser rejects unknown top-level fields (the same constraint that defers `mcp_servers`), so recipe-level opt-in is not available on the current binary. `post-dispatch-validate.ts` treats absent config as `verification_enabled: false` — the only behavior today. The pipeline below describes the intended design for when the config is supplied through a Devin-supported channel.
 
 The pipeline is derived from SmallCode's verifier and hard-fail policy:
 

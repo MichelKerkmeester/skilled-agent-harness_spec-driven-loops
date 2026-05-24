@@ -428,7 +428,7 @@ unknown model {model_id}; no quota pool available for fallback routing
 
 ## Recipe Contract
 
-The three cli-devin recipes expose:
+The shipped `--agent-config` recipes do NOT carry a `fallback_chain` field. Devin's strict `--agent-config` parser rejects unknown top-level fields (the same constraint that defers `mcp_servers`), so the recipe-level fallback declaration is deferred until Devin supports custom agent-config fields. The intended shape was:
 
 ```json
 {
@@ -436,11 +436,7 @@ The three cli-devin recipes expose:
 }
 ```
 
-The field is optional and defaults to an empty array.
-
-It is one-step max.
-
-It does not override the registry.
+When supplied through a Devin-supported channel, the field is optional and defaults to an empty array. It is one-step max. It does not override the registry.
 
 Recipe instructions tell workers to consult registry `fallback_target` semantics.
 
