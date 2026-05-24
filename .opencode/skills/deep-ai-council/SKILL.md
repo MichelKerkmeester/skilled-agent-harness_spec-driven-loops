@@ -2,7 +2,7 @@
 name: deep-ai-council
 description: "AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 2.1.0.0
+version: 2.1.1.0
 ---
 
 <!-- Keywords: deep-ai-council, ai council, council deliberation, multi-seat planning, ai-council artifacts, council convergence, planning council, council artifact persistence -->
@@ -154,11 +154,11 @@ INTENT_MODEL = {
 
 RESOURCE_MAP = {
     "COUNCIL_RUN": ["references/seat_diversity_patterns.md", "references/convergence_signals.md", "references/output_schema.md"],
-    "ARTIFACT_PERSISTENCE": ["references/folder_layout.md", "references/output_schema.md", "references/state_format.md", "references/command_wiring.md"],
+    "ARTIFACT_PERSISTENCE": ["references/folder_layout.md", "references/output_schema.md", "references/state_format.md", "references/command_wiring.md", "references/findings_registry.md"],
     "RECOVERY_OR_AUDIT": ["references/state_format.md", "references/folder_layout.md", "references/command_wiring.md"],
     "CONVERGENCE_CHECK": ["references/convergence_signals.md", "references/seat_diversity_patterns.md", "references/state_format.md"],
     "SCORING": ["references/scoring_rubric.md"],
-    "DEPTH_DISPATCH": ["references/depth_dispatch.md"],
+    "DEPTH_DISPATCH": ["references/depth_dispatch.md", "references/deep_mode.md", "references/findings_registry.md"],
     "FAILURE_HANDLING": ["references/failure_handling.md"],
     "ANTI_PATTERNS": ["references/anti_patterns.md"],
     "GRAPH_SUPPORT": ["references/graph_support.md", "references/state_format.md", "references/folder_layout.md"],
@@ -401,6 +401,8 @@ Ordered by load priority — most-loaded intent first.
 - `references/seat_diversity_patterns.md` - seat lens and vantage diversity rules.
 - `references/convergence_signals.md` - convergence and escape-hatch rules.
 - `references/graph_support.md` - derived council graph boundaries, tool surface, and recovery behavior.
+- `references/deep_mode.md` - deep-mode session/topic/round hierarchy, state files, cost guards and the deep-loop-runtime dependency.
+- `references/findings_registry.md` - cross-topic findings registry, fingerprint dedup and filesystem locking.
 - `manual_testing_playbook/manual_testing_playbook.md` - operator validation scenarios.
 - `README.md` - human-facing overview.
 

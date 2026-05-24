@@ -1,0 +1,23 @@
+{
+  "specFolder": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/011-deep-ai-council-deep-mode-docs-and-tests",
+  "description": "Feature Specification: deep-ai-council deep-mode docs + script tests (011)",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-ai-council",
+    "deep-mode",
+    "docs",
+    "tests",
+    "follow-on"
+  ],
+  "lastUpdated": "2026-05-24T06:00:00.000Z",
+  "specId": "011",
+  "folderSlug": "deep-ai-council-deep-mode-docs-and-tests",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 11,
+  "memoryNameHistory": []
+}

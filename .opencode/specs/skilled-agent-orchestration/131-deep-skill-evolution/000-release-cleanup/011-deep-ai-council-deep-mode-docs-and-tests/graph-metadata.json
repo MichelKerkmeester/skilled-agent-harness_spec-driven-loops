@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/011-deep-ai-council-deep-mode-docs-and-tests",
+  "spec_folder": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/011-deep-ai-council-deep-mode-docs-and-tests",
+  "parent_id": "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup",
+  "children_ids": [],
+  "migrated": false,
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/131-deep-skill-evolution/000-release-cleanup/004-deep-ai-council"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-ai-council deep-mode docs",
+      "deep-ai-council follow-on",
+      "findings-registry reference",
+      "deep-ai-council script tests",
+      "DAC-001 narrative reconciliation"
+    ],
+    "key_topics": [
+      "deep-ai-council",
+      "deep-mode",
+      "findings-registry",
+      "graph-replay",
+      "script-tests",
+      "follow-on"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/deep-ai-council/references/deep_mode.md",
+      ".opencode/skills/deep-ai-council/references/findings_registry.md",
+      ".opencode/skills/deep-ai-council/references/graph_support.md"
+    ],
+    "entities": [
+      {"name": "spec.md", "kind": "doc", "path": "spec.md", "source": "derived"},
+      {"name": "plan.md", "kind": "doc", "path": "plan.md", "source": "derived"},
+      {"name": "tasks.md", "kind": "doc", "path": "tasks.md", "source": "derived"},
+      {"name": "checklist.md", "kind": "doc", "path": "checklist.md", "source": "derived"},
+      {"name": "implementation-summary.md", "kind": "doc", "path": "implementation-summary.md", "source": "derived"},
+      {"name": "deep_mode.md", "kind": "doc", "path": ".opencode/skills/deep-ai-council/references/deep_mode.md", "source": "derived"},
+      {"name": "findings_registry.md", "kind": "doc", "path": ".opencode/skills/deep-ai-council/references/findings_registry.md", "source": "derived"}
+    ],
+    "causal_summary": "Closes the five deferred follow-ons from the 004 deep-ai-council release-cleanup phase-5 deep-research loop (F-002 deep-mode reference, F-003 findings-registry reference, F-004 graph-replay cross-link, F-006 vitest coverage for 5 scripts, DAC-001 rename-narrative reconciliation). Documentation + tests only; no deep-mode runtime/script logic changes.",
+    "created_at": "2026-05-24T06:00:00.000Z",
+    "last_save_at": "2026-05-24T06:00:00.000Z",
+    "save_lineage": "hand_authored",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

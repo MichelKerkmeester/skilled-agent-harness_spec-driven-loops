@@ -99,7 +99,7 @@ Safe recovery path:
 
 1. Keep `ai-council/**` artifacts unchanged.
 2. Delete or ignore stale `council-graph.sqlite` rows scoped to the affected `specFolder` and `sessionId` only.
-3. Replay derived nodes and edges from packet-local artifacts.
+3. Replay derived nodes and edges from packet-local artifacts with `scripts/replay-graph-from-artifacts.cjs`, which reads `ai-council-state.jsonl` and emits a `council_graph_upsert` payload across the SESSION / ROUND / SEAT / CLAIM / EVIDENCE / DISAGREEMENT / DECISION / RECOMMENDATION node kinds.
 4. Re-run `council_graph_status` and `council_graph_convergence`.
 
 `council_graph_status` reports the bounded cleanup contract in its `recovery` payload so callers do not need to infer whether artifacts or derived rows are authoritative.
@@ -114,3 +114,5 @@ Never rewrite historical `ai-council-state.jsonl` rows to fit the graph.
 - Folder layout: `references/folder_layout.md`
 - Convergence signals: `references/convergence_signals.md`
 - MCP implementation: `.opencode/skills/system-spec-kit/mcp_server/lib/council-graph/`
+- Graph replay script: `scripts/replay-graph-from-artifacts.cjs` (derives the `council_graph_upsert` payload from `ai-council-state.jsonl`; run it after deleting stale derived rows during recovery)
+- Deep-mode state hierarchy: `references/deep_mode.md`

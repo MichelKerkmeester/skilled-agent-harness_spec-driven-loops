@@ -363,7 +363,9 @@ A: Preserve the failed artifacts under `failed/round-NNN-<timestamp>/` and appen
 | [`references/scoring_rubric.md`](./references/scoring_rubric.md) | Five-dimension scoring and critique roles |
 | [`references/convergence_signals.md`](./references/convergence_signals.md) | Convergence rules and escape hatches |
 | [`references/graph_support.md`](./references/graph_support.md) | Derived council graph and MCP tool boundary |
-| [`changelog/`](./changelog/) | Per-release notes (v1.0.0.0 through v2.1.0.0) |
+| [`references/deep_mode.md`](./references/deep_mode.md) | Deep-mode session/topic/round hierarchy, state files and cost guards |
+| [`references/findings_registry.md`](./references/findings_registry.md) | Cross-topic findings registry, fingerprint dedup and filesystem locking |
+| [`changelog/`](./changelog/) | Per-release notes (v1.0.0.0 through v2.1.1.0) |
 
 Related skills: [`deep-research`](../deep-research/SKILL.md) for evidence-first investigation vantages and [`system-spec-kit`](../system-spec-kit/SKILL.md) for packet documentation, validation, resume and continuity.
 
