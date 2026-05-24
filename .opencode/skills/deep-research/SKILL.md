@@ -34,7 +34,7 @@ Operator contract precedence for this skill surface:
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See this skill's changelog and decision records for the cross-sibling threshold research and parity invariants that confirm thresholds do not carry across siblings.
 
 ## 1. WHEN TO USE
 
@@ -99,7 +99,7 @@ Cross-CLI delegation is possible inside each executor sandbox but discouraged. D
 
 **Template**: The executor-agnostic iteration prompt lives at `.opencode/skills/deep-research/assets/prompt_pack_iteration.md.tmpl`. It is rendered by `prompt-pack.ts` before dispatch and either (a) injected as the agent's context (native) or (b) piped to `codex exec` stdin (cli-codex).
 
-**Config surface**: Defined in `assets/deep_research_config.json` under the `executor` key. Schema is in `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts`. CLI flag precedence is: `--executor/--model/--reasoning-effort/--service-tier/--executor-timeout > config file > schema default`.
+**Config surface**: Defined in `assets/deep_research_config.json` under the `executor` key. Schema is in `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`. CLI flag precedence is: `--executor/--model/--reasoning-effort/--service-tier/--executor-timeout > config file > schema default`.
 
 **What NEVER changes regardless of executor route**:
 
@@ -145,6 +145,17 @@ See `references/loop_protocol.md §Lifecycle Branches` for the canonical event c
 | ALWAYS | Every skill invocation | Quick reference baseline |
 | CONDITIONAL | If intent signals match | Loop protocol, convergence, state format |
 | ON_DEMAND | Only on explicit request | Templates, detailed specifications |
+
+### Phase Detection
+
+Detect the current research phase from dispatch context to load appropriate resources:
+
+| Phase | Signal | Resources to Load |
+|-------|--------|-------------------|
+| Init | No JSONL exists | Loop protocol, state format |
+| Iteration | Dispatch context includes iteration number | Loop protocol, convergence |
+| Stuck | Dispatch context includes "RECOVERY" | Convergence, loop protocol |
+| Synthesis | Convergence triggered STOP | Quick reference |
 
 ### Smart Router Pseudocode
 
@@ -214,17 +225,6 @@ def load_if_available(relative_path: str) -> None:
         seen.add(guarded)
 ```
 
-### Phase Detection
-
-Detect the current research phase from dispatch context to load appropriate resources:
-
-| Phase | Signal | Resources to Load |
-|-------|--------|-------------------|
-| Init | No JSONL exists | Loop protocol, state format |
-| Iteration | Dispatch context includes iteration number | Loop protocol, convergence |
-| Stuck | Dispatch context includes "RECOVERY" | Convergence, loop protocol |
-| Synthesis | Convergence triggered STOP | Quick reference |
-
 ---
 
 ## 3. HOW IT WORKS
@@ -264,7 +264,7 @@ Example (subsequent run with prior content for a different target): `004-desc-re
 
 State files include `deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, `deep-research-findings-registry.json`, `deep-research-dashboard.md`, `.deep-research-pause`, `.deep-research.lock`, `resource-map.md`, `research.md`, and `iterations/iteration-NNN.md`.
 
-v(next): `deep-research-findings-registry.json` is the canonical registry name for sibling-skill consistency per 130 research F54.
+v(next): `deep-research-findings-registry.json` is the canonical registry name for sibling-skill consistency.
 
 ### Core Innovation: Fresh Context Per Iteration
 
