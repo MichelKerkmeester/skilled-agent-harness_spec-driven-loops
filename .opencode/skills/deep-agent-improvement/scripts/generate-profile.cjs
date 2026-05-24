@@ -267,7 +267,7 @@ function buildProfile(agentPath, content) {
       outputChecks: deriveOutputChecks(secs), forbiddenBehaviors: deriveForbidden(secs),
       integrationPoints: deriveIntegration(secs), capabilityMismatches: deriveMismatches(secs, perms),
     },
-    benchmark: { fixtureDir: null, requiredAggregateScore: 75, minimumFixtureScore: 60, repeatabilityTolerance: 0 },
+    benchmark: { fixtureDir: null, requiredAggregateScore: 80, minimumFixtureScore: 60, repeatabilityTolerance: 0 },
   };
 }
 

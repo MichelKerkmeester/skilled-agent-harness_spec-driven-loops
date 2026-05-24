@@ -255,7 +255,7 @@ function main() {
   const profileArg = args.profile;
   const outputsDir = args['outputs-dir'];
   const outputPath = args.output || (outputsDir ? path.join(outputsDir, 'report.json') : null);
-  const profilesDir = args['profiles-dir'] || '.opencode/skills/deep-agent-improvement/assets/target-profiles';
+  const profilesDir = args['profiles-dir'] || '.opencode/skills/deep-agent-improvement/assets/benchmark-profiles';
   const integrationReportPath = args['integration-report'] || null;
 
   if (!profileArg || !outputsDir || !outputPath) {
