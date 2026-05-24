@@ -266,7 +266,7 @@ Respect user-selected custom strategies up to the maximum of three PER ROUND. If
 
 ## 7. CROSS-REFERENCES
 
-- Agent body: `.opencode/agents/deep-ai-council.md` §3 and §16.
+- Agent body: `.opencode/agents/ai-council.md` §3 and §16.
 - Decision context: local doctor command ADRs ADR-001.
 - Scoring rubric: `scoring_rubric.md`.
 - Depth dispatch: `depth_dispatch.md`.

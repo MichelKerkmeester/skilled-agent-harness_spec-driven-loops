@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify scorer coverage for deep-ai-counci
 ## 4. SOURCE METADATA
 - Group: Runtime Routing And Rename
 - Feature ID: DAC-002
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/01--runtime-routing-and-rename/02-advisor-routes-council-prompts-to-skill.md`
 - Playbook scenario: `manual_testing_playbook/01--runtime-routing-and-rename/002-advisor-routes-council-prompts-to-skill.md`

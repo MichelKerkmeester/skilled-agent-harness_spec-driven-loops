@@ -23,8 +23,8 @@ The report remains markdown, not JSON. The helper accepts normal heading variati
 
 Cross-references:
 
-- Agent body: `.opencode/agents/deep-ai-council.md` §8 OUTPUT FORMAT and §16 Caller Persistence Protocol
-- Runtime mirrors: `.claude/agents/deep-ai-council.md`, `.codex/agents/deep-ai-council.toml`
+- Agent body: `.opencode/agents/ai-council.md` §8 OUTPUT FORMAT and §16 Caller Persistence Protocol
+- Runtime mirrors: `.claude/agents/ai-council.md`, `.codex/agents/ai-council.toml`
 - Helper: `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs`
 
 ---

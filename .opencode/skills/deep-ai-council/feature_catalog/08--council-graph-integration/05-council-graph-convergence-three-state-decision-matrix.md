@@ -47,6 +47,6 @@ The user-visible contract is concrete: Verify council_graph_convergence returns 
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
 - Feature ID: DAC-023
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/05-council-graph-convergence-three-state-decision-matrix.md`
 - Playbook scenario: `manual_testing_playbook/08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md`

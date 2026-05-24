@@ -178,6 +178,6 @@ The last completed event determines the next action. If `round_start` exists wit
 Per ADR-003, validation is convention-only for v1. Do not add a runtime schema validator unless a follow-on packet proves real drift.
 
 Cross-references:
-- Agent body: `.opencode/agents/deep-ai-council.md` §14
+- Agent body: `.opencode/agents/ai-council.md` §14
 - Decision context: ADR-001 in internal design notes
 - Decision context: local doctor command ADRs ADR-003 and ADR-004

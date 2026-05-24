@@ -55,7 +55,7 @@ Score every usable council seat out of 100 points.
 | Completeness | 20% | Edge cases handled, all requirements met | 20=all covered, 15=most, 10=some, 0=minimal |
 | Elegance | 15% | Simple, clean, maintainable | 15=exemplary, 10=good, 5=acceptable, 0=poor |
 | Robustness | 20% | Error handling, performance, security | 20=bulletproof, 15=solid, 10=adequate, 0=fragile |
-| Integration | 15% | Fits existing codebase patterns and workflow constraints | 15=seamless, 10=compatible, 5=minor friction, 0=conflicts |
+| Integration | 15% | Fits existing codebase patterns and workflow constraints | 15=no friction, 10=compatible, 5=minor friction, 0=conflicts |
 
 Operator checks:
 
@@ -336,7 +336,7 @@ Example:
 
 ## 7. CROSS-REFERENCES
 
-- Agent body: `.opencode/agents/deep-ai-council.md` §6 SYNTHESIS PROTOCOL.
+- Agent body: `.opencode/agents/ai-council.md` §6 SYNTHESIS PROTOCOL.
 - Output schema: `output_schema.md` §4 Seat Section Fallback.
 - Council signals: `convergence_signals.md`.
 - Seat diversity: `seat_diversity_patterns.md`.

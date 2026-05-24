@@ -295,7 +295,7 @@ Unless those tools actually ran (and were dispatched as separate rounds).
 
 ## 7. CROSS-REFERENCES
 
-- Agent body: `.opencode/agents/deep-ai-council.md` §0 ILLEGAL NESTING and §5 PARALLEL VS SEQUENTIAL.
+- Agent body: `.opencode/agents/ai-council.md` §0 ILLEGAL NESTING and §5 PARALLEL VS SEQUENTIAL.
 - Caller patterns: `command_wiring.md`.
 - Seat selection: `seat_diversity_patterns.md`.
 - Failure policy: `failure_handling.md`.

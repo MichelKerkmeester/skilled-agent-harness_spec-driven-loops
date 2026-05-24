@@ -46,6 +46,6 @@ The user-visible contract is concrete: Verify council_graph_upsert returns expli
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
 - Feature ID: DAC-020
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/02-council-graph-upsert-empty-input-no-op-success.md`
 - Playbook scenario: `manual_testing_playbook/08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md`

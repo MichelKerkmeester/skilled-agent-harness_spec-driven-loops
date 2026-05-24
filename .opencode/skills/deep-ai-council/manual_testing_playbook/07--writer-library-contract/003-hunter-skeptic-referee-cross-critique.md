@@ -88,7 +88,7 @@ Restore `scoring_rubric.md` §4 from agent §6 adversarial cross-critique conten
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-ai-council/references/scoring_rubric.md` | Cross-critique reference |
-| `.opencode/agents/deep-ai-council.md` | Authoritative synthesis protocol |
+| `.opencode/agents/ai-council.md` | Authoritative synthesis protocol |
 
 ---
 

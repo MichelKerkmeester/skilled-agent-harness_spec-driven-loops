@@ -48,6 +48,6 @@ The user-visible contract is concrete: Demonstrate the graph provides a safety g
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
 - Feature ID: DAC-029
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/09--council-graph-value-comparison/03-convergence-safety-under-critical-disagreement-graph-vs-baseline.md`
 - Playbook scenario: `manual_testing_playbook/09--council-graph-value-comparison/003-convergence-safety-under-critical-disagreement-graph-vs-baseline.md`

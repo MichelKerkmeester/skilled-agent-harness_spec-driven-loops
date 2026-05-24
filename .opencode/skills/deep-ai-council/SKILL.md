@@ -2,7 +2,7 @@
 name: deep-ai-council
 description: "AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 2.0.0.0
+version: 2.1.0.0
 ---
 
 <!-- Keywords: deep-ai-council, ai council, council deliberation, multi-seat planning, ai-council artifacts, council convergence, planning council, council artifact persistence -->
@@ -425,13 +425,13 @@ Council alignment is complete when:
 - **Structure**: SKILL.md follows sk-doc required section order and frontmatter.
 - **Routing**: Section 3 is the only authoritative routing source.
 - **Reference shape**: reference filenames are snake_case and intro sections are short.
-- **Playbook coverage**: manual testing package has 18 scenarios across 7 categories.
+- **Playbook coverage**: manual testing package has 32 scenarios across 9 categories.
 - **Boundary discipline**: graph rows never replace `ai-council/**` artifacts and council seats do not mutate graph storage directly.
 
 ### Validation Success
 
 - ✅ `quick_validate.py` accepts the skill package.
-- ✅ `validate.sh --strict` accepts the Phase 001 spec folder.
+- ✅ The skill's packet spec docs pass `validate.sh --strict`.
 - ✅ Old kebab-case reference links are absent from live callers.
 
 ---

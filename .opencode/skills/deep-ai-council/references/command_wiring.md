@@ -109,7 +109,7 @@ steps:
       "${packet.spec_folder}"
 ```
 
-This is a documentation-only pattern. Packet 092 does not edit live `/speckit:*` YAML assets.
+This is a documentation-only pattern. This pattern does not edit live `/speckit:*` YAML assets.
 
 ---
 
@@ -156,7 +156,7 @@ It always exits `0` and is not part of `validate.sh --strict`.
 
 ## 8. CROSS-REFERENCES
 
-- Agent body §16: `.opencode/agents/deep-ai-council.md`
+- Agent body §16: `.opencode/agents/ai-council.md`
 - Output schema: `.opencode/skills/deep-ai-council/references/output_schema.md`
 - State format: `.opencode/skills/deep-ai-council/references/state_format.md`
 - Persistence helper: `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs`

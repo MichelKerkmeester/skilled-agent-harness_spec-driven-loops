@@ -45,7 +45,7 @@ The council is useful only if it remains a planning agent and hands implementati
 
 ### Commands
 
-1. `bash: rg -n "planning-only|ai-council/\\*\\*|application code|spec docs|patch|Bash" .opencode/skills/deep-ai-council/SKILL.md .opencode/agents/deep-ai-council.md`
+1. `bash: rg -n "planning-only|ai-council/\\*\\*|application code|spec docs|patch|Bash" .opencode/skills/deep-ai-council/SKILL.md .opencode/agents/ai-council.md`
 
 ### Expected
 
@@ -66,7 +66,7 @@ Check SKILL.md rules first, then runtime permissions and output protocol.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-012 | Planning-only boundary | Verify implementation writes rejected | `As a planning-only validator, check whether the council may implement code after choosing a plan. Return the refusal boundary and handoff.` | `bash: rg -n "planning-only|ai-council/\\*\\*|application code|spec docs|patch|Bash" .opencode/skills/deep-ai-council/SKILL.md .opencode/agents/deep-ai-council.md` | Write scope is restricted | Grep output | PASS if implementation writes are forbidden | Inspect runtime permissions |
+| DAC-012 | Planning-only boundary | Verify implementation writes rejected | `As a planning-only validator, check whether the council may implement code after choosing a plan. Return the refusal boundary and handoff.` | `bash: rg -n "planning-only|ai-council/\\*\\*|application code|spec docs|patch|Bash" .opencode/skills/deep-ai-council/SKILL.md .opencode/agents/ai-council.md` | Write scope is restricted | Grep output | PASS if implementation writes are forbidden | Inspect runtime permissions |
 
 ---
 
@@ -84,7 +84,7 @@ Check SKILL.md rules first, then runtime permissions and output protocol.
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-ai-council/SKILL.md` | Skill rules and integration points |
-| `.opencode/agents/deep-ai-council.md` | Runtime permission boundary |
+| `.opencode/agents/ai-council.md` | Runtime permission boundary |
 
 ---
 

@@ -47,6 +47,6 @@ The user-visible contract is concrete: Demonstrate measurable audit-quality impr
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
 - Feature ID: DAC-028
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/09--council-graph-value-comparison/02-decision-provenance-audit-graph-vs-baseline.md`
 - Playbook scenario: `manual_testing_playbook/09--council-graph-value-comparison/002-decision-provenance-audit-graph-vs-baseline.md`

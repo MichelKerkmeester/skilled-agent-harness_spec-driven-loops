@@ -48,6 +48,6 @@ The user-visible contract is concrete: Verify council_graph_* tools are register
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
 - Feature ID: DAC-026
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/08-council-graph-tools-registered-separately-from-deep-loop.md`
 - Playbook scenario: `manual_testing_playbook/08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md`

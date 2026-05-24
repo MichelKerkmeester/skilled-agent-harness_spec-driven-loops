@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `DAC-014` and confirm th
 
 ### Recommended Orchestration Process
 
-1. Read `.opencode/agents/deep-ai-council.md` §0 and §5.
+1. Read `.opencode/agents/ai-council.md` §0 and §5.
 2. Read `references/depth_dispatch.md`.
 3. Run the grep commands and compare the source and reference signals.
 
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `DAC-014` and confirm th
 
 ### Commands
 
-1. `bash: rg -n "Depth 0|Depth 1|sequential_thinking" .opencode/agents/deep-ai-council.md`
+1. `bash: rg -n "Depth 0|Depth 1|sequential_thinking" .opencode/agents/ai-council.md`
 2. `bash: rg -n "## [0-9]+\\." .opencode/skills/deep-ai-council/references/depth_dispatch.md`
 
 ### Expected
@@ -69,7 +69,7 @@ Check whether the agent body was renumbered, then update `depth_dispatch.md` fro
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-014 | Depth detection | Verify Depth 0 vs Depth 1 dispatch detection | `As a council dispatcher, classify a request with explicit Depth: 1 marker. Verify sequential_thinking inline mode is selected. Return mode + rationale.` | `bash: rg -n "Depth 0\|Depth 1\|sequential_thinking" .opencode/agents/deep-ai-council.md` -> `bash: rg -n "## [0-9]+\\." .opencode/skills/deep-ai-council/references/depth_dispatch.md` | Depth rules exist in source and reference | Grep output | PASS if source and reference both contain the rule | Check agent renumbering and reference parity |
+| DAC-014 | Depth detection | Verify Depth 0 vs Depth 1 dispatch detection | `As a council dispatcher, classify a request with explicit Depth: 1 marker. Verify sequential_thinking inline mode is selected. Return mode + rationale.` | `bash: rg -n "Depth 0\|Depth 1\|sequential_thinking" .opencode/agents/ai-council.md` -> `bash: rg -n "## [0-9]+\\." .opencode/skills/deep-ai-council/references/depth_dispatch.md` | Depth rules exist in source and reference | Grep output | PASS if source and reference both contain the rule | Check agent renumbering and reference parity |
 
 ---
 
@@ -86,7 +86,7 @@ Check whether the agent body was renumbered, then update `depth_dispatch.md` fro
 
 | File | Role |
 |---|---|
-| `.opencode/agents/deep-ai-council.md` | Authoritative Depth 0 and Depth 1 source |
+| `.opencode/agents/ai-council.md` | Authoritative Depth 0 and Depth 1 source |
 | `.opencode/skills/deep-ai-council/references/depth_dispatch.md` | Reference mirror for operator use |
 
 ---

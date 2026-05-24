@@ -32,7 +32,7 @@ The user-visible contract is concrete: Verify three distinct seat lenses are req
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/deep-ai-council/references/seat_diversity_patterns.md` | Reference | Seat diversity contract |
-| `.opencode/agents/deep-ai-council.md` | Runtime Mirror | Runtime strategy rules |
+| `.opencode/agents/ai-council.md` | Runtime Mirror | Runtime strategy rules |
 
 ### Validation And Tests
 
@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify three distinct seat lenses are req
 ## 4. SOURCE METADATA
 - Group: Council Deliberation And Seat Diversity
 - Feature ID: DAC-003
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/02--council-deliberation-and-seat-diversity/01-three-seat-diverse-deliberation.md`
 - Playbook scenario: `manual_testing_playbook/02--council-deliberation-and-seat-diversity/001-three-seat-diverse-deliberation.md`

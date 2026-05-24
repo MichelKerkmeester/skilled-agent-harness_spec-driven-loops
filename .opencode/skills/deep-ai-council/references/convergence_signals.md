@@ -45,7 +45,7 @@ ADR-001 keeps the convention lightweight. Sophisticated convergence math is non-
 State schema and convergence fields are convention-only for v1. If drift appears in real council artifacts, graduate to a typed validator in a follow-on packet.
 
 Cross-references:
-- Agent body: `.opencode/agents/deep-ai-council.md` §16
+- Agent body: `.opencode/agents/ai-council.md` §16
 - Decision context: local doctor command ADRs ADR-001 and ADR-003
 
 ---
@@ -60,4 +60,4 @@ Cross-references:
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See this skill's changelog and decision records for the cross-sibling threshold research and parity invariants that confirm thresholds do not carry across siblings.

@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify final state includes council_compl
 ## 4. SOURCE METADATA
 - Group: Artifact Persistence And State Format
 - Feature ID: DAC-006
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/03--artifact-persistence-and-state-format/02-state-jsonl-records-council-complete-event.md`
 - Playbook scenario: `manual_testing_playbook/03--artifact-persistence-and-state-format/002-state-jsonl-records-council-complete-event.md`

@@ -32,7 +32,7 @@ The user-visible contract is concrete: Verify Hunter, Skeptic, and Referee roles
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/deep-ai-council/references/scoring_rubric.md` | Reference | Cross-critique reference |
-| `.opencode/agents/deep-ai-council.md` | Runtime Mirror | Authoritative synthesis protocol |
+| `.opencode/agents/ai-council.md` | Runtime Mirror | Authoritative synthesis protocol |
 
 ### Validation And Tests
 
@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify Hunter, Skeptic, and Referee roles
 ## 4. SOURCE METADATA
 - Group: Writer Library Contract
 - Feature ID: DAC-016
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/07--writer-library-contract/03-hunter-skeptic-referee-cross-critique.md`
 - Playbook scenario: `manual_testing_playbook/07--writer-library-contract/003-hunter-skeptic-referee-cross-critique.md`

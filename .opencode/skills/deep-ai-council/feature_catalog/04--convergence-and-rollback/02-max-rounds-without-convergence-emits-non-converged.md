@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify non-converged completion behavior.
 ## 4. SOURCE METADATA
 - Group: Convergence And Rollback
 - Feature ID: DAC-009
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/04--convergence-and-rollback/02-max-rounds-without-convergence-emits-non-converged.md`
 - Playbook scenario: `manual_testing_playbook/04--convergence-and-rollback/002-max-rounds-without-convergence-emits-non-converged.md`

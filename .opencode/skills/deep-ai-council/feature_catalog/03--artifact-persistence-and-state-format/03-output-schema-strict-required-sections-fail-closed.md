@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify missing required report sections e
 ## 4. SOURCE METADATA
 - Group: Artifact Persistence And State Format
 - Feature ID: DAC-007
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/03--artifact-persistence-and-state-format/03-output-schema-strict-required-sections-fail-closed.md`
 - Playbook scenario: `manual_testing_playbook/03--artifact-persistence-and-state-format/003-output-schema-strict-required-sections-fail-closed.md`

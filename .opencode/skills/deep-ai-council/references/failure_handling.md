@@ -253,7 +253,7 @@ Then append `artifact_superseded` rows for artifacts from that round.
 
 ## 7. CROSS-REFERENCES
 
-- Agent body: `.opencode/agents/deep-ai-council.md` §10 FAILURE HANDLING and §17 ROLLBACK FOR OPERATORS.
+- Agent body: `.opencode/agents/ai-council.md` §10 FAILURE HANDLING and §17 ROLLBACK FOR OPERATORS.
 - State format: `state_format.md`.
 - Scoring rubric: `scoring_rubric.md`.
 - Convergence signals: `convergence_signals.md`.

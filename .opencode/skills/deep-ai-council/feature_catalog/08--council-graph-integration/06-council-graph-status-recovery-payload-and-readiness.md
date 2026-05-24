@@ -47,6 +47,6 @@ The user-visible contract is concrete: Verify council_graph_status returns readi
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
 - Feature ID: DAC-024
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/06-council-graph-status-recovery-payload-and-readiness.md`
 - Playbook scenario: `manual_testing_playbook/08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md`

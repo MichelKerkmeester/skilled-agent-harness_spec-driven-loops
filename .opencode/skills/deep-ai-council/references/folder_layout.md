@@ -65,10 +65,10 @@ specs/<track>/<NNN-name>/ai-council/
 **Schema authority:** the §8 OUTPUT FORMAT shape this layout is derived from is documented at `references/output_schema.md`.
 
 Cross-references:
-- Agent body: `.opencode/agents/deep-ai-council.md` §12 OUTPUT PROTOCOL (this layout) + §13 INVOCATION CONTRACT + §14 STATE SCHEMA + §16 COUNCIL PERSISTENCE PROTOCOL + §18 ROLLBACK FOR OPERATORS
+- Agent body: `.opencode/agents/ai-council.md` §12 OUTPUT PROTOCOL (this layout) + §13 INVOCATION CONTRACT + §14 STATE SCHEMA + §16 COUNCIL PERSISTENCE PROTOCOL + §18 ROLLBACK FOR OPERATORS
 - Council writer library: `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.cjs`
 - Helper fallback: `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs`
 - Schema: `.opencode/skills/deep-ai-council/references/output_schema.md`
 - State format: `.opencode/skills/deep-ai-council/references/state_format.md`
 - Command wiring: `.opencode/skills/deep-ai-council/references/command_wiring.md`
-- Decision records: packet 080 ADR-002 (folder layout), ADR-004 (validator policy); packet 089 ADR-001..004 (helper/schema/§17/parity); packet 092 ADR-001..004 (v1.1 metadata + payload routing + advisor + command wiring)
+- Decision records: ADR-002 (folder layout), ADR-004 (validator policy); the helper/schema/§17/parity ADRs; the v1.1 metadata + payload routing + advisor + command wiring ADRs

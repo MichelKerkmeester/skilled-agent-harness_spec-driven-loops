@@ -45,7 +45,7 @@ Immediate agreement can hide shared assumptions; critique forces the council to 
 
 ### Commands
 
-1. `bash: rg -n "cross-critique|critique|premature|convergence" .opencode/agents/deep-ai-council.md .opencode/skills/deep-ai-council/references/convergence_signals.md .opencode/skills/deep-ai-council/references/seat_diversity_patterns.md`
+1. `bash: rg -n "cross-critique|critique|premature|convergence" .opencode/agents/ai-council.md .opencode/skills/deep-ai-council/references/convergence_signals.md .opencode/skills/deep-ai-council/references/seat_diversity_patterns.md`
 
 ### Expected
 
@@ -66,7 +66,7 @@ Check convergence signals, then seat diversity, then agent workflow.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-004 | Cross-seat critique | Verify critique before convergence | `Use the council to pressure-test this plan before we implement it and call out whether convergence is real.` | `bash: rg -n "cross-critique|critique|premature|convergence" .opencode/agents/deep-ai-council.md .opencode/skills/deep-ai-council/references/convergence_signals.md .opencode/skills/deep-ai-council/references/seat_diversity_patterns.md` | Critique and escape-hatch rules present | Grep transcript | PASS if critique gates convergence | Inspect convergence guidance |
+| DAC-004 | Cross-seat critique | Verify critique before convergence | `Use the council to pressure-test this plan before we implement it and call out whether convergence is real.` | `bash: rg -n "cross-critique|critique|premature|convergence" .opencode/agents/ai-council.md .opencode/skills/deep-ai-council/references/convergence_signals.md .opencode/skills/deep-ai-council/references/seat_diversity_patterns.md` | Critique and escape-hatch rules present | Grep transcript | PASS if critique gates convergence | Inspect convergence guidance |
 
 ---
 
@@ -83,7 +83,7 @@ Check convergence signals, then seat diversity, then agent workflow.
 
 | File | Role |
 |---|---|
-| `.opencode/agents/deep-ai-council.md` | Deliberation workflow |
+| `.opencode/agents/ai-council.md` | Deliberation workflow |
 | `.opencode/skills/deep-ai-council/references/convergence_signals.md` | Convergence escape hatches |
 
 ---

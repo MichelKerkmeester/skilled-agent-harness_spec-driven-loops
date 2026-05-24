@@ -47,6 +47,6 @@ The user-visible contract is concrete: Verify deleting derived graph rows for on
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
 - Feature ID: DAC-025
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/07-council-graph-derived-projection-rebuilds-from-artifacts.md`
 - Playbook scenario: `manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md`

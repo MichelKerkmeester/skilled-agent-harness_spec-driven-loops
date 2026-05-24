@@ -32,7 +32,7 @@ The user-visible contract is concrete: Verify lib/persist-artifacts.js exports t
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js` | Library | Writer library and audit event implementation |
-| `.opencode/agents/deep-ai-council.md` | Runtime Mirror | Canonical writer sequence in invocation contract |
+| `.opencode/agents/ai-council.md` | Runtime Mirror | Canonical writer sequence in invocation contract |
 
 ### Validation And Tests
 
@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify lib/persist-artifacts.js exports t
 ## 4. SOURCE METADATA
 - Group: Writer Library Contract
 - Feature ID: DAC-013
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/07--writer-library-contract/01-library-writer-call-sequence.md`
 - Playbook scenario: `manual_testing_playbook/07--writer-library-contract/001-library-writer-call-sequence.md`

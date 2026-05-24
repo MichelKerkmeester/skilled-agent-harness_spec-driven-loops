@@ -46,6 +46,6 @@ The user-visible contract is concrete: Verify failed rounds move under failed/ a
 ## 4. SOURCE METADATA
 - Group: Convergence And Rollback
 - Feature ID: DAC-010
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/04--convergence-and-rollback/03-rollback-failed-round-preserves-forensic-trail.md`
 - Playbook scenario: `manual_testing_playbook/04--convergence-and-rollback/003-rollback-failed-round-preserves-forensic-trail.md`

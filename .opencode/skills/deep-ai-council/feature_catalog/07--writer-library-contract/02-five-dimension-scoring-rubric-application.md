@@ -32,7 +32,7 @@ The user-visible contract is concrete: Verify the 5-dimension rubric is document
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/deep-ai-council/references/scoring_rubric.md` | Reference | Rubric and comparison-table reference |
-| `.opencode/agents/deep-ai-council.md` | Runtime Mirror | Authoritative synthesis protocol |
+| `.opencode/agents/ai-council.md` | Runtime Mirror | Authoritative synthesis protocol |
 
 ### Validation And Tests
 
@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify the 5-dimension rubric is document
 ## 4. SOURCE METADATA
 - Group: Writer Library Contract
 - Feature ID: DAC-015
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/07--writer-library-contract/02-five-dimension-scoring-rubric-application.md`
 - Playbook scenario: `manual_testing_playbook/07--writer-library-contract/002-five-dimension-scoring-rubric-application.md`

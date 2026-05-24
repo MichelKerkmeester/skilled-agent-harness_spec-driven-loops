@@ -89,7 +89,7 @@ Check whether the writer was renamed, moved, or converted to another declaration
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js` | Writer library and audit event implementation |
-| `.opencode/agents/deep-ai-council.md` | Canonical writer sequence in invocation contract |
+| `.opencode/agents/ai-council.md` | Canonical writer sequence in invocation contract |
 
 ---
 

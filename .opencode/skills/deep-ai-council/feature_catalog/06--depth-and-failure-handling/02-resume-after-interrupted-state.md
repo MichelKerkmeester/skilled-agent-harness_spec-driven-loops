@@ -32,7 +32,7 @@ The user-visible contract is concrete: Verify an interrupted council run can res
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/deep-ai-council/references/state_format.md` | Reference | Resume semantics reference |
-| `.opencode/agents/deep-ai-council.md` | Runtime Mirror | Authoritative invocation and resume contract |
+| `.opencode/agents/ai-council.md` | Runtime Mirror | Authoritative invocation and resume contract |
 
 ### Validation And Tests
 
@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify an interrupted council run can res
 ## 4. SOURCE METADATA
 - Group: Depth And Failure Handling
 - Feature ID: DAC-018
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/06--depth-and-failure-handling/02-resume-after-interrupted-state.md`
 - Playbook scenario: `manual_testing_playbook/06--depth-and-failure-handling/002-resume-after-interrupted-state.md`

@@ -44,6 +44,6 @@ The user-visible contract is concrete: Verify two-of-three agreement triggers co
 ## 4. SOURCE METADATA
 - Group: Convergence And Rollback
 - Feature ID: DAC-008
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/04--convergence-and-rollback/01-two-of-three-agree-triggers-convergence.md`
 - Playbook scenario: `manual_testing_playbook/04--convergence-and-rollback/001-two-of-three-agree-triggers-convergence.md`

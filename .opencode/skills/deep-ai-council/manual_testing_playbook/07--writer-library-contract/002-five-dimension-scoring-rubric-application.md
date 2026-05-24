@@ -86,7 +86,7 @@ Update `scoring_rubric.md` from the authoritative agent §6 table, then rerun va
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-ai-council/references/scoring_rubric.md` | Rubric and comparison-table reference |
-| `.opencode/agents/deep-ai-council.md` | Authoritative synthesis protocol |
+| `.opencode/agents/ai-council.md` | Authoritative synthesis protocol |
 
 ---
 

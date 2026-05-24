@@ -32,7 +32,7 @@ The user-visible contract is concrete: Verify writes outside ai-council/** are r
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js` | Library | Path guard implementation |
-| `.opencode/agents/deep-ai-council.md` | Runtime Mirror | Scoped-write authority declaration |
+| `.opencode/agents/ai-council.md` | Runtime Mirror | Scoped-write authority declaration |
 
 ### Validation And Tests
 
@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify writes outside ai-council/** are r
 ## 4. SOURCE METADATA
 - Group: Writer Library Contract
 - Feature ID: DAC-017
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/07--writer-library-contract/04-out-of-scope-write-rejection.md`
 - Playbook scenario: `manual_testing_playbook/07--writer-library-contract/004-out-of-scope-write-rejection.md`

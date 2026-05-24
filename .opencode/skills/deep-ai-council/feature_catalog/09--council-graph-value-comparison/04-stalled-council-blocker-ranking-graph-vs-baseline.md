@@ -47,6 +47,6 @@ The user-visible contract is concrete: Demonstrate the graph produces a prioriti
 ## 4. SOURCE METADATA
 - Group: Council Graph Value Comparison
 - Feature ID: DAC-030
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/09--council-graph-value-comparison/04-stalled-council-blocker-ranking-graph-vs-baseline.md`
 - Playbook scenario: `manual_testing_playbook/09--council-graph-value-comparison/004-stalled-council-blocker-ranking-graph-vs-baseline.md`

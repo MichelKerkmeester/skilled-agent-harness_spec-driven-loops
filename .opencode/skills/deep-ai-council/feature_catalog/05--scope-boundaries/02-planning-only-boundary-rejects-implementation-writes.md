@@ -32,7 +32,7 @@ The user-visible contract is concrete: Verify the council writes only packet-loc
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/deep-ai-council/SKILL.md` | Skill | Skill rules and integration points |
-| `.opencode/agents/deep-ai-council.md` | Runtime Mirror | Runtime permission boundary |
+| `.opencode/agents/ai-council.md` | Runtime Mirror | Runtime permission boundary |
 
 ### Validation And Tests
 
@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify the council writes only packet-loc
 ## 4. SOURCE METADATA
 - Group: Scope Boundaries
 - Feature ID: DAC-012
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/05--scope-boundaries/02-planning-only-boundary-rejects-implementation-writes.md`
 - Playbook scenario: `manual_testing_playbook/05--scope-boundaries/002-planning-only-boundary-rejects-implementation-writes.md`

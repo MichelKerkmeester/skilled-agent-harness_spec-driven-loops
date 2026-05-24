@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://internal/spec/131/000/004/audit-finding.schema.json",
+  "title": "Audit Finding",
+  "description": "One row in audit-findings.jsonl emitted by phase 2 of the deep-ai-council release-cleanup packet. Each line is a separate JSON document conforming to this schema.",
+  "type": "object",
+  "required": [
+    "finding_id",
+    "artifact_path",
+    "template_ref",
+    "deviation_type",
+    "severity",
+    "finding_class",
+    "description",
+    "recommended_fix",
+    "status",
+    "detected_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "finding_id": {
+      "type": "string",
+      "pattern": "^AF-[0-9]{4}$",
+      "description": "Sequential identifier (AF-0001, AF-0002, ...)"
+    },
+    "artifact_path": {
+      "type": "string",
+      "description": "Repo-relative path to the deep-ai-council artifact under audit (e.g. .opencode/skills/deep-ai-council/references/scoring_rubric.md)"
+    },
+    "template_ref": {
+      "type": "string",
+      "description": "Repo-relative path to the sk-doc template the artifact is compared against (e.g. .opencode/skills/sk-doc/assets/skill/skill_reference_template.md)"
+    },
+    "deviation_type": {
+      "type": "string",
+      "enum": [
+        "missing_section",
+        "extra_section",
+        "wrong_order",
+        "frontmatter_missing_field",
+        "frontmatter_wrong_value",
+        "hvr_violation",
+        "broken_path_ref",
+        "broken_mcp_tool_name",
+        "stale_version_pin",
+        "internal_contradiction",
+        "schema_mismatch",
+        "structural_diff",
+        "prose_drift",
+        "other"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["P0", "P1", "P2"],
+      "description": "P0 = HARD BLOCKER, P1 = required (resolve or get approval), P2 = optional (can defer with rationale)"
+    },
+    "finding_class": {
+      "type": "string",
+      "enum": [
+        "instance-only",
+        "class-of-bug",
+        "cross-consumer",
+        "algorithmic",
+        "matrix/evidence",
+        "test-isolation"
+      ],
+      "description": "Required by checklist CHK-FIX-001. Drives blast-radius assessment."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Specific deviation description with file:line refs where applicable"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Optional list of evidence pointers (file:line, command output snippet, grep result)"
+    },
+    "candidate_verified": {
+      "type": ["boolean", "null"],
+      "description": "For phase-1 candidate-drift items: true once verified against the actual template + file. Findings derived from candidates MUST be verified before an edit (false-positive-P0 discipline). null for findings discovered fresh in phase 2."
+    },
+    "recommended_fix": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Concrete fix proposal"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "in_progress", "resolved", "deferred", "dropped_false_positive"],
+      "description": "Status at the moment this line was last updated. 'dropped_false_positive' = a candidate that failed phase-2 verification."
+    },
+    "resolution_sha": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{7,40}$|^$",
+      "description": "Git SHA of the commit that resolved this finding (required when status=resolved)"
+    },
+    "deferral_rationale": {
+      "type": ["string", "null"],
+      "description": "Required when status=deferred or status=dropped_false_positive. Explains why the fix is being held or the candidate was dropped."
+    },
+    "detected_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the finding was emitted"
+    },
+    "resolved_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when status transitioned to resolved/deferred/dropped"
+    }
+  },
+  "examples": [
+    {
+      "finding_id": "AF-0001",
+      "artifact_path": ".opencode/skills/deep-ai-council/SKILL.md",
+      "template_ref": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
+      "deviation_type": "internal_contradiction",
+      "severity": "P1",
+      "finding_class": "instance-only",
+      "description": "SKILL.md §7 Quality Targets claims 'manual testing package has 18 scenarios across 7 categories' but §3 + README + the directory show 32 scenarios across 9 categories",
+      "evidence": [".opencode/skills/deep-ai-council/SKILL.md:428", ".opencode/skills/deep-ai-council/SKILL.md:122"],
+      "candidate_verified": true,
+      "recommended_fix": "Update §7 Quality Targets to '32 scenarios across 9 categories' to match §3 and the on-disk playbook",
+      "status": "open",
+      "resolution_sha": null,
+      "deferral_rationale": null,
+      "detected_at": "2026-05-24T10:00:00Z",
+      "resolved_at": null
+    }
+  ]
+}

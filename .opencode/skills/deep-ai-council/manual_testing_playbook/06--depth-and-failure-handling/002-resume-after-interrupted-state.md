@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `DAC-018` and confirm th
 ### Recommended Orchestration Process
 
 1. Read `state_format.md` §6 RESUME SEMANTICS.
-2. Read `.opencode/agents/deep-ai-council.md` §13 case 3.
+2. Read `.opencode/agents/ai-council.md` §13 case 3.
 3. Run the grep command and confirm the partial-event cases are documented.
 
 ### Prompt
@@ -86,7 +86,7 @@ Update `state_format.md` from agent §13 resume semantics, then rerun the grep c
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-ai-council/references/state_format.md` | Resume semantics reference |
-| `.opencode/agents/deep-ai-council.md` | Authoritative invocation and resume contract |
+| `.opencode/agents/ai-council.md` | Authoritative invocation and resume contract |
 
 ---
 

@@ -45,6 +45,6 @@ The user-visible contract is concrete: Verify helper-created artifact layout. Th
 ## 4. SOURCE METADATA
 - Group: Artifact Persistence And State Format
 - Feature ID: DAC-005
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/03--artifact-persistence-and-state-format/01-persist-artifacts-helper-writes-packet-local-tree.md`
 - Playbook scenario: `manual_testing_playbook/03--artifact-persistence-and-state-format/001-persist-artifacts-helper-writes-packet-local-tree.md`

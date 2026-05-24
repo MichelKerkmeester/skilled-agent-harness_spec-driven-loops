@@ -84,10 +84,10 @@ Check the mirror frontmatter/name first, then Codex TOML name, then any converte
 
 | File | Role |
 |---|---|
-| `.opencode/agents/deep-ai-council.md` | OpenCode runtime mirror |
-| `.claude/agents/deep-ai-council.md` | Claude runtime mirror |
-| `.codex/agents/deep-ai-council.toml` | Codex runtime mirror |
-| `.gemini/agents/deep-ai-council.md` | Gemini runtime mirror |
+| `.opencode/agents/ai-council.md` | OpenCode runtime mirror |
+| `.claude/agents/ai-council.md` | Claude runtime mirror |
+| `.codex/agents/ai-council.toml` | Codex runtime mirror |
+| `.gemini/agents/ai-council.md` | Gemini runtime mirror |
 
 ---
 

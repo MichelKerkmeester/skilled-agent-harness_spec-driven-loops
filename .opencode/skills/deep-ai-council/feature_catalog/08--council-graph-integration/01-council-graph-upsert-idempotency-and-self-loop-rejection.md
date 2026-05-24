@@ -47,6 +47,6 @@ The user-visible contract is concrete: Verify council_graph_upsert is idempotent
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
 - Feature ID: DAC-019
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/01-council-graph-upsert-idempotency-and-self-loop-rejection.md`
 - Playbook scenario: `manual_testing_playbook/08--council-graph-integration/001-council-graph-upsert-idempotency-and-self-loop-rejection.md`

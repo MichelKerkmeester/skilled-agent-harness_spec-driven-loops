@@ -48,6 +48,6 @@ The user-visible contract is concrete: Verify all 5 documented council_graph_que
 ## 4. SOURCE METADATA
 - Group: Council Graph Integration
 - Feature ID: DAC-022
-- Canonical catalog source: `manual_testing_playbook.md`
+- Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/04-council-graph-query-five-modes-prompt-safe-context.md`
 - Playbook scenario: `manual_testing_playbook/08--council-graph-integration/004-council-graph-query-five-modes-prompt-safe-context.md`
