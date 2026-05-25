@@ -1,0 +1,7 @@
+{"type":"iteration","iteration":1,"newInfoRatio":0,"status":"negative","focus":"residual-gap sweep","graphEvents":[]}
+{"type":"ruled_out","label":"mis-sized/mis-placed/orphaned/duplicated reference files","iteration":1}
+{"type":"ruled_out","label":"stale or dangling cross-references in SKILL.md RESOURCE_MAP entries","iteration":1}
+{"type":"ruled_out","label":"SKILL.md router + README structure tree mismatches","iteration":1}
+{"type":"ruled_out","label":"stale paths in feature_catalog snippets","iteration":1}
+{"type":"ruled_out","label":"stale paths in manual_testing_playbook snippets","iteration":1}
+{"type":"ruled_out","label":"other stale infra paths from 003 isolation or 008 moves","iteration":1}

@@ -194,6 +194,16 @@ phase5_backlog:
       status: FIXED
       fix: "swapped system-spec-kit/mcp_server/lib/deep-loop/ -> deep-loop-runtime/lib/deep-loop/ in the 2 deep-research YAMLs + 2 command .md stale-as-current citations; deep-loop-runtime self-doc deprecation notes left intact; all referenced lib paths now resolve"
       impact: "the deep-research auto + confirm loops were non-functional (prompt-pack render + executor-config + post-dispatch-validate pointed at a missing dir); now restored to the deep-review precedent"
+  loop_outcome_009:
+    status: "CONVERGED NEGATIVE — 0 residual gaps"
+    iterations_run: 2
+    max_iterations: 10
+    stop_reason: "all_questions_answered (early convergence on the freshly-audited corpus)"
+    executor: "cli-devin swe-1.6, one-at-a-time with SIGKILL between, ~45s/iter"
+    iter_1: "full residual-gap sweep across the 5 skills' references/, SKILL.md routers, READMEs, feature_catalog, manual_testing_playbook, command/agent surfaces — newInfoRatio 0.0, 0 findings, 6 directions ruled out"
+    iter_2: "ADVERSARIAL concrete re-verification (distrust iter-1; actual grep/ls/diff evidence, NOT resource-map.yaml self-report) — newInfoRatio 0.0, 0 findings; 300+ references/ links resolved with 0 dangling; README structure trees match on-disk (deep-research 13/13, deep-review 10/10, deep-ai-council 15/15, deep-agent-improvement 15/15); 0 orphans; 0 stale flat paths in .claude/.gemini/.codex/ + .opencode/commands/deep/; deep-loop-runtime flat-by-design confirmed (4 files/4 consumers)"
+    new_backlog_items: "NONE — the 008 doc-evolution pass is confirmed complete; no new deferred items beyond those already recorded above"
+    artifacts: "009-deep-research-gap-backstop/research/ (deep-research-state.jsonl, iterations/iteration-00{1,2}.md, deltas/iter-00{1,2}.jsonl, findings-registry.json, deep-research-dashboard.md, resource-map.md)"
 
 # ============================================================================
 # 002a findings (inbound-link inventory + verification baseline) — 2026-05-25

@@ -1,0 +1,7 @@
+{"type":"iteration","iteration":2,"newInfoRatio":0,"status":"negative","focus":"adversarial concrete re-verification","graphEvents":[]}
+{"type":"ruled_out","label":"dangling references/ links (0 across 300+ checked)","iteration":2}
+{"type":"ruled_out","label":"README structure tree mismatches (all 4 subfoldered skills match on-disk)","iteration":2}
+{"type":"ruled_out","label":"orphaned reference files (0 across 5 skills)","iteration":2}
+{"type":"ruled_out","label":"stale flat paths in agent mirrors (0 in .claude/.gemini/.codex/)","iteration":2}
+{"type":"ruled_out","label":"stale flat paths in command surfaces (0 in .opencode/commands/deep/)","iteration":2}
+{"type":"ruled_out","label":"deep-loop-runtime subfoldering need (confirmed flat-by-design)","iteration":2}

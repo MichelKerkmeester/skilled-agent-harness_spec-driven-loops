@@ -1,0 +1,137 @@
+{
+  "sessionId": "116-008-009-dr-2026-05-25",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "all_questions_answered",
+    "totalIterations": 2,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-05-25T18:47:40Z"
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-are-any-reference-files-still-mis-sized-mis-placed-orphaned-or-duplicated-aft",
+      "text": "Q1 — Are any reference files still mis-sized, mis-placed, orphaned, or duplicated after the subfoldering + splits?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-2-q2-are-there-remaining-stale-or-dangling-cross-references-skill-skill-agent-mirr",
+      "text": "Q2 — Are there remaining stale or dangling cross-references (skill->skill, agent mirror, command, feature_catalog, manual_testing_playbook) introduced or missed by the 008 moves?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-3-q3-do-the-skill-md-smart-routers-readmes-fully-and-accurately-reflect-the-new-su",
+      "text": "Q3 — Do the SKILL.md smart routers + READMEs fully and accurately reflect the new subfolder structure (resource maps, intent lists, structure trees)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-4-q4-are-the-feature-catalog-manual-testing-playbook-snippets-template-conformant-",
+      "text": "Q4 — Are the feature_catalog + manual_testing_playbook snippets template-conformant with current reference paths?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-5-q5-does-any-other-deep-infrastructure-command-yamls-mds-agent-mirrors-tests-conf",
+      "text": "Q5 — Does any other deep-* infrastructure (command YAMLs/MDs, agent mirrors, tests, configs) still carry stale paths from the 003 isolation or the 008 moves, beyond the already-fixed deep-research loop driver?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-cbeffbec8308",
+      "text": "Mis-sized/mis-placed/orphaned/duplicated reference files — all 5 skills' references/ structures verified clean",
+      "contentHash": "cbeffbec8308",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-07200c35faa0",
+      "text": "Other stale infra paths from 003 isolation or 008 moves — resource-map.yaml phase_002b_completion records 0 residual stale refs",
+      "contentHash": "07200c35faa0",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-ca9f8a931db2",
+      "text": "SKILL.md router + README structure tree mismatches — all routers align with on-disk subfolders",
+      "contentHash": "ca9f8a931db2",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-65f8c20ac0fa",
+      "text": "Stale or dangling cross-references in SKILL.md RESOURCE_MAP entries — all paths resolve correctly",
+      "contentHash": "65f8c20ac0fa",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0f47f1ae48fc",
+      "text": "Stale paths in feature_catalog snippets — spot-checked samples use current subfoldered paths",
+      "contentHash": "0f47f1ae48fc",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c63007bf55d4",
+      "text": "Stale paths in manual_testing_playbook snippets — spot-checked samples use current subfoldered paths",
+      "contentHash": "c63007bf55d4",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-bea2a978c383",
+      "text": "Dangling references/ links — 0 dangling across 300+ links checked in 5 skills (grep + ls verification)",
+      "contentHash": "bea2a978c383",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ae9d58485045",
+      "text": "deep-loop-runtime subfoldering need — confirmed flat-by-design with 4 files and 4 consumers (find + grep verification)",
+      "contentHash": "ae9d58485045",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4fbc40bf05ef",
+      "text": "Orphaned reference files — 0 orphans across 5 skills (every on-disk file has inbound links)",
+      "contentHash": "4fbc40bf05ef",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9c9a521dff8b",
+      "text": "README structure tree mismatches — all 4 subfoldered skills match on-disk find results exactly (deep-research 13/13, deep-review 10/10, deep-ai-council 15/15, deep-agent-improvement 15/15)",
+      "contentHash": "9c9a521dff8b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-699c60370b91",
+      "text": "Stale flat paths in agent mirrors — 0 stale flat references/ patterns in .claude/, .gemini/, .codex/ (grep verification)",
+      "contentHash": "699c60370b91",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3db475a68c3c",
+      "text": "Stale flat paths in command surfaces — 0 stale flat references/ patterns in .opencode/commands/deep/ (grep verification)",
+      "contentHash": "3db475a68c3c",
+      "addedAtIteration": 2
+    }
+  ],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 2,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "COMPLETE"
+}
