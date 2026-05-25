@@ -420,9 +420,8 @@ function resolveSubject(
 }
 
 // Phase 017 / T-CGC-01: readiness helpers extracted to
-// lib/code-graph/readiness-contract.ts so the 6 sibling
-// code-graph handlers (scan, status, context, ccc-status,
-// ccc-reindex, ccc-feedback) can share one vocabulary — see
+// lib/code-graph/readiness-contract.ts so the sibling
+// code-graph handlers (scan, status, context) can share one vocabulary — see
 // T-W1-CGC-03 (Wave B) for the propagation task. See that module
 // for M8 / T-CGQ-09 / T-CGQ-11 origin notes (R18-001, R20-003,
 // R22-001, R23-001).

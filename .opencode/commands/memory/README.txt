@@ -228,7 +228,7 @@ The `/memory:manage` command accepts these subcommands:
 
 Primary MCP tools mapped to their command home:
 
-> **026 Note:** Tool count increased from 33 to 47 with the addition of session management tools (`session_bootstrap`, `session_health`, `session_resume`), code graph tools (`code_graph_query`, `code_graph_scan`, `code_graph_status`, `code_graph_context`), and CCC tools (`ccc_status`, `ccc_feedback`, `ccc_reindex`). Graph-first retrieval routing (026) means `code_graph_query` is now the preferred first channel for structural code search before semantic/vector or FTS5/BM25 fallback. Phase 005 moved code-graph implementation/docs ownership to `.opencode/skills/system-code-graph/` while preserving tool IDs.
+> **026 Note:** Tool count increased from 33 to 44 with the addition of session management tools (`session_bootstrap`, `session_health`, `session_resume`) and code graph tools (`code_graph_query`, `code_graph_scan`, `code_graph_status`, `code_graph_context`); the former CocoIndex bridge tools were removed in the 014 deprecation. Graph-first retrieval routing (026) means `code_graph_query` is now the preferred first channel for structural code search before vector or FTS5/BM25 fallback. Phase 005 moved code-graph implementation/docs ownership to `.opencode/skills/system-code-graph/` while preserving tool IDs.
 
 | # | Tool | Layer | Primary Command |
 |---|------|-------|-----------------|
@@ -268,9 +268,6 @@ Primary MCP tools mapped to their command home:
 | 34 | `code_graph_scan` | L7 | `/memory:manage` |
 | 35 | `code_graph_status` | L3 | `/memory:manage` |
 | 36 | `code_graph_context` | L2 | `/memory:search` |
-| 37 | `ccc_status` | L3 | `/memory:manage` |
-| 38 | `ccc_feedback` | L4 | `/memory:manage` |
-| 39 | `ccc_reindex` | L7 | `/memory:manage` |
 ### Coverage by Command
 
 | Command | Tools Owned | Helper Tools | Layers |

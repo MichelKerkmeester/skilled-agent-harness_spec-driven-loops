@@ -3,9 +3,8 @@
 // ───────────────────────────────────────────────────────────────
 // Phase 017 / T-CGC-01: shared readiness contract for code-graph
 // handlers. Extracted from handlers/code-graph/query.ts so the
-// query handler and its 6 siblings (scan, status, context,
-// ccc-status, ccc-reindex, ccc-feedback) can converge on one
-// readiness vocabulary — see T-W1-CGC-03 (Wave B) for the
+// query handler and its sibling handlers (scan, status, context)
+// can converge on one readiness vocabulary — see T-W1-CGC-03 (Wave B) for the
 // propagation task that wires this contract into the remaining
 // handlers.
 //

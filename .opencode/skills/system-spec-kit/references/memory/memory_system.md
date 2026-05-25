@@ -136,9 +136,6 @@ plus 4 Skill Advisor descriptors imported into the same registry.
 | L7: Maintenance | `memory_get_learning_history()` | Get learning history (preflight/postflight records) | Analyze learning patterns |
 | L7: Maintenance | `code_graph_scan()` | Build or refresh the structural code graph index | Re-index after branch switches or large code changes |
 | L7: Maintenance | `code_graph_status()` | Report code graph freshness and node/edge counts | Check whether the structural index is usable |
-| L7: Maintenance | `ccc_status()` | Report Code Graph availability and index health | Confirm semantic code search is ready |
-| L7: Maintenance | `ccc_reindex()` | Trigger incremental or full Code Graph re-indexing | Refresh semantic search after a refactor |
-| L7: Maintenance | `ccc_feedback()` | Submit search-quality feedback for Code Graph results | Record whether semantic hits were helpful |
 
 Code-graph implementation and package docs are owned by `.opencode/skills/system-code-graph/`; memory keeps the L6/L7 routing surface because the stable MCP tool IDs remain co-resident.
 

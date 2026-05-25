@@ -46,8 +46,8 @@ test -f ~/.cache/huggingface/gguf/bge-base-en-v1.5/bge-base-en-v1.5-300M-Q8_0.gg
 # Confirm the Memory MCP database exists and is the active profile:
 ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite | head -3
 
-# Confirm Code Graph has indexed the repo:
-.opencode/skills/system-code-graph/mcp_server/.venv/bin/ccc status 2>&1 | head -5
+# Confirm Code Graph has indexed the repo (structural tree-sitter index):
+# call the code_graph_status MCP tool (run code_graph_scan first if the graph is empty)
 
 # Confirm at least 2 external CLIs are installed for cross-AI scenarios:
 which codex && codex --version
