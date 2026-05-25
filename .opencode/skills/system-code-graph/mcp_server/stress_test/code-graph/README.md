@@ -32,12 +32,12 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`stress_test/code-graph/` contains Vitest stress coverage for scan breadth, context generation, degraded-mode behavior, change detection, manual diagnostics, CCC bridge pressure and denial-of-service caps. These tests exercise paths that are broader or more adversarial than normal unit tests.
+`stress_test/code-graph/` contains Vitest stress coverage for scan breadth, context generation, degraded-mode behavior, change detection, manual diagnostics and denial-of-service caps. These tests exercise paths that are broader or more adversarial than normal unit tests.
 
 Current state:
 
 - Covers scan, context, degraded sweep, change detection and manual diagnostics behavior.
-- Covers CCC bridge integration pressure and deep-loop graph scenarios.
+- Covers deep-loop graph scenarios.
 - Exercises walker caps and doctor apply-mode policy in disposable temp workspaces.
 - Exports no runtime code.
 
@@ -51,7 +51,6 @@ Current state:
 ```text
 code-graph/
 +-- budget-allocator-stress.vitest.ts
-+-- ccc-integration-stress.vitest.ts
 +-- code-graph-context-stress.vitest.ts
 +-- code-graph-degraded-sweep.vitest.ts
 +-- code-graph-scan-stress.vitest.ts
@@ -79,7 +78,6 @@ code-graph/
 | `code-graph-degraded-sweep.vitest.ts` | Stresses degraded-mode sweep behavior. |
 | `context-handler-normalization-stress.vitest.ts` | Stresses context handler normalization paths. |
 | `detect-changes-preflight-stress.vitest.ts` | Stresses diff-to-symbol preflight behavior. |
-| `ccc-integration-stress.vitest.ts` | Stresses Code Graph bridge status, indexing and feedback behavior. |
 | `doctor-apply-mode-stress.vitest.ts` | Stresses doctor apply-mode policy and rollback simulation. |
 | `manual-diagnostics-stress.vitest.ts` | Stresses manual diagnostics output. |
 | `walker-dos-caps.vitest.ts` | Verifies traversal cap behavior under pressure. |
@@ -119,7 +117,6 @@ large, stale or adversarial fixture
 | `code-graph-scan-stress.vitest.ts` | Test file | Scan stress coverage. |
 | `code-graph-context-stress.vitest.ts` | Test file | Context stress coverage. |
 | `detect-changes-preflight-stress.vitest.ts` | Test file | Change detection stress coverage. |
-| `ccc-integration-stress.vitest.ts` | Test file | Code Graph bridge stress coverage. |
 | `doctor-apply-mode-stress.vitest.ts` | Test file | Doctor apply-mode policy coverage. |
 | `walker-dos-caps.vitest.ts` | Test file | Traversal cap coverage. |
 

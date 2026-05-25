@@ -38,7 +38,7 @@ Schema validation rejects malformed tool calls before handler execution for regi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:20-31` | Tool surface | registers `code_graph_*`, `detect_changes` and `code_graph_* and detect_changes` names |
+| `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:20-31` | Tool surface | registers `code_graph_*` and `detect_changes` names |
 | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:60-100` | Tool surface | dispatches those names to handlers |
 | `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts:30-49` | Tool surface | registers and dispatches deep-loop coverage graph tools |
 | `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:19-216` | Schema | defines code graph, detect_changes and structural schemas |

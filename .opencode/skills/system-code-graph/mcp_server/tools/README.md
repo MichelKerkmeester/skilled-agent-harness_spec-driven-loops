@@ -35,7 +35,7 @@ trigger_phrases:
 
 Current state:
 
-- Dispatches `code_graph_scan`, `code_graph_query`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, `detect_changes` and `ccc_*` tools.
+- Dispatches `code_graph_scan`, `code_graph_query`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, `code_graph_classify_query_intent` and `detect_changes` tools.
 - Validates required string arguments before calling handlers that need them.
 - Converts handler text payloads into the shared `MCPResponse` shape.
 - Returns an `Unknown mk-code-index tool` error for unregistered names.
@@ -114,7 +114,7 @@ Run from the repository root.
 
 ```bash
 .opencode/skills/system-code-graph/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-code-graph/tsconfig.json
-.opencode/skills/system-code-graph/node_modules/.bin/vitest --config .opencode/skills/system-code-graph/vitest.config.ts --run code-graph-context-retired-search-telemetry-passthrough code-graph-query-handler detect-changes
+.opencode/skills/system-code-graph/node_modules/.bin/vitest --config .opencode/skills/system-code-graph/vitest.config.ts --run code-graph-context-handler code-graph-query-handler detect-changes
 ```
 
 Expected result: TypeScript exits `0`, and dispatch-adjacent handler tests pass.

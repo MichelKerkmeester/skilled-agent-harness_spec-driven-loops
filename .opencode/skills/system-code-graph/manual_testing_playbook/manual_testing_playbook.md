@@ -1,6 +1,6 @@
 ---
 title: "Code Graph: Manual Testing Playbook"
-description: "Operator validation package for the system-code-graph skill and mk-code-index MCP server, covering readiness, structural queries, detect_changes, context retrieval, coverage graph references, structural tool tools and doctor-code-graph policy."
+description: "Operator validation package for the system-code-graph skill and mk-code-index MCP server, covering readiness, structural queries, detect_changes, context retrieval, coverage graph references and doctor-code-graph policy."
 trigger_phrases:
   - "system-code-graph manual testing playbook"
   - "mk-code-index manual testing playbook"
@@ -10,7 +10,7 @@ importance_tier: "important"
 ---
 # Code Graph: Manual Testing Playbook
 
-This playbook validates the code graph runtime at `.opencode/skills/system-code-graph/mcp_server/`. Live MCP examples use the `mk-code-index` namespace as `mcp__mk_code_index__*`, while the stable tool IDs remain `code_graph_*`, `detect_changes` and `code_graph_* and detect_changes`.
+This playbook validates the code graph runtime at `.opencode/skills/system-code-graph/mcp_server/`. Live MCP examples use the `mk-code-index` namespace as `mcp__mk_code_index__*`, while the stable tool IDs remain `code_graph_*` and `detect_changes`.
 
 ---
 
@@ -28,18 +28,17 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 - [10. CONTEXT RETRIEVAL](#10--context-retrieval)
 - [11. COVERAGE GRAPH](#11--coverage-graph)
 - [12. MCP TOOL SURFACE](#12--mcp-tool-surface)
-- [13. structural INTEGRATION](#13--ccc-integration)
-- [14. DOCTOR CODE GRAPH](#14--doctor-code-graph)
-- [15. POST-RENAME INFRASTRUCTURE](#15--post-rename-infrastructure)
-- [16. DEVIN HOOKS](#16--devin-hooks)
-- [17. AUTOMATED TEST CROSS-REFERENCE](#17--automated-test-cross-reference)
-- [18. FEATURE CATALOG CROSS-REFERENCE INDEX](#18--feature-catalog-cross-reference-index)
+- [13. DOCTOR CODE GRAPH](#13--doctor-code-graph)
+- [14. POST-RENAME INFRASTRUCTURE](#14--post-rename-infrastructure)
+- [15. DEVIN HOOKS](#15--devin-hooks)
+- [16. AUTOMATED TEST CROSS-REFERENCE](#16--automated-test-cross-reference)
+- [17. FEATURE CATALOG CROSS-REFERENCE INDEX](#17--feature-catalog-cross-reference-index)
 
 ---
 
 ## 1. OVERVIEW
 
-The playbook contains 19 scenarios across 9 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, structural tools are manual and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes. Group 10 adds the Devin CLI SessionStart hook scenario shipped in packet 036-cli-devin-code-graph-hook.
+The playbook contains 16 scenarios across 9 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes. Group 10 adds the Devin CLI SessionStart hook scenario shipped in packet 036-cli-devin-code-graph-hook.
 
 | Group | Scenario Files |
 | --- | --- |
@@ -49,7 +48,6 @@ The playbook contains 19 scenarios across 9 groups. It targets the current reali
 | Context retrieval | [04--context-retrieval](./04--context-retrieval/) |
 | Coverage graph | [05--coverage-graph](./05--coverage-graph/) |
 | MCP tool surface | [06--mcp-tool-surface](./06--mcp-tool-surface/) |
-| retired tool integration | [07--ccc-integration](./07--ccc-integration/) |
 | Doctor code graph | [08--doctor-code-graph](./08--doctor-code-graph/) |
 | Post-rename infrastructure | [09--post-rename-infrastructure](./09--post-rename-infrastructure/) |
 | Devin hooks | [10--devin-hooks](./10--devin-hooks/) |
@@ -141,17 +139,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 ---
 
-## 13. structural INTEGRATION
-
-| ID | Scenario | File |
-| --- | --- | --- |
-| 012 | code_graph_scan binary shell out | [012-ccc-reindex-binary-shell-out.md](./07--ccc-integration/012-ccc-reindex-binary-shell-out.md) |
-| 013 | code_graph_verify jsonl append | [013-ccc-feedback-jsonl-append.md](./07--ccc-integration/013-ccc-feedback-jsonl-append.md) |
-| 014 | code_graph_status availability probe | [014-ccc-status-availability-probe.md](./07--ccc-integration/014-ccc-status-availability-probe.md) |
-
----
-
-## 14. DOCTOR CODE GRAPH
+## 13. DOCTOR CODE GRAPH
 
 | ID | Scenario | File |
 | --- | --- | --- |
@@ -160,7 +148,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 ---
 
-## 15. POST-RENAME INFRASTRUCTURE
+## 14. POST-RENAME INFRASTRUCTURE
 
 | ID | Scenario | File |
 | --- | --- | --- |
@@ -172,7 +160,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 ---
 
-## 16. DEVIN HOOKS
+## 15. DEVIN HOOKS
 
 Validates the Devin CLI `SessionStart` hook variant shipped in packet `036-cli-devin-code-graph-hook`. The hook source lives at `system-spec-kit/mcp_server/hooks/devin/session-start.ts` (intentional asymmetry vs the advisor pattern — see ADR-001 of packet 036). Registration lives in `.devin/hooks.v1.json` under `SessionStart`.
 
@@ -182,10 +170,10 @@ Validates the Devin CLI `SessionStart` hook variant shipped in packet `036-cli-d
 
 ---
 
-## 17. AUTOMATED TEST CROSS-REFERENCE
+## 16. AUTOMATED TEST CROSS-REFERENCE
 
 Automated coverage lives in the code_graph runtime tests and build checks. Use this section as the manual-to-automated trace point when recording evidence for release review.
 
-## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 Each scenario maps to the runtime catalog at [../feature_catalog/feature_catalog.md](../feature_catalog/feature_catalog.md).

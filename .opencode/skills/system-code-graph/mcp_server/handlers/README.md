@@ -1,11 +1,10 @@
 ---
 title: "Code Graph Handlers: MCP Request Adapters"
-description: "MCP handler entrypoints for structural code-graph tools, recovery operations, change detection and structural search bridge tools."
+description: "MCP handler entrypoints for structural code-graph tools, recovery operations and change detection."
 trigger_phrases:
   - "code graph handlers"
   - "code_graph handlers"
   - "mk-code-index handlers"
-  - "ccc handlers"
   - "detect_changes handler"
 ---
 
@@ -35,13 +34,13 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`handlers/` owns the MCP request adapters for the standalone code graph package. Each handler accepts parsed tool arguments, calls lower-level behavior in `../lib/` and returns a typed payload with readiness, trust, recovery or bridge metadata.
+`handlers/` owns the MCP request adapters for the standalone code graph package. Each handler accepts parsed tool arguments, calls lower-level behavior in `../lib/` and returns a typed payload with readiness, trust and recovery metadata.
 
 Current state:
 
 - Structural handlers cover scan, query, status, context, verify and apply-mode recovery.
 - `detect_changes` maps unified diffs to affected indexed symbols and refuses stale graph reads.
-- structural search bridge handlers cover status, reindex and feedback for the `code_graph_* and detect_changes` tools.
+- `status.ts` / `scan.ts` / `verify.ts` back the `code_graph_status` / `code_graph_scan` / `code_graph_verify` availability, reindex and feedback tools directly against the tree-sitter graph.
 - Read handlers use shared readiness contracts instead of returning silent empty answers.
 - Parser quarantine state surfaces through `parserHealth` and `parserSkipList` fields.
 
@@ -57,7 +56,7 @@ mk-code-index MCP client
   -> ../tools/code-graph-tools.ts
   -> handlers/index.ts
   -> handler file for the requested tool
-  -> ../lib graph, readiness, recovery or bridge module
+  -> ../lib graph, readiness or recovery module
   -> typed MCP payload
 ```
 
@@ -86,9 +85,7 @@ handlers/
 +-- verify.ts            # Gold-query verification battery
 +-- apply.ts             # Verification-gated recovery operations
 +-- detect-changes.ts    # Unified-diff affected-symbol preflight
-+-- ccc-status.ts        # structural search bridge status
-+-- ccc-reindex.ts       # structural search bridge reindex trigger
-+-- ccc-feedback.ts      # structural search bridge feedback sink
++-- classify-query-intent.ts  # Query-intent classification helper
 `-- README.md
 ```
 
@@ -105,7 +102,7 @@ Disallowed dependency direction:
 ```text
 ../lib -> handlers
 handler file -> another handler file for shared logic
-ccc bridge handler -> structural index internals without a library adapter
+handler file -> graph or index internals without a library adapter
 ```
 
 <!-- /ANCHOR:package-topology -->
@@ -118,9 +115,7 @@ ccc bridge handler -> structural index internals without a library adapter
 ```text
 handlers/
 +-- apply.ts
-+-- ccc-feedback.ts
-+-- ccc-reindex.ts
-+-- ccc-status.ts
++-- classify-query-intent.ts
 +-- context.ts
 +-- detect-changes.ts
 +-- index.ts
@@ -143,13 +138,11 @@ handlers/
 | `scan.ts` | Handles `code_graph_scan`, resolves scan scope and updates the SQLite graph through the indexer. |
 | `query.ts` | Handles `code_graph_query` structural reads such as outline, calls, imports and blast radius. |
 | `status.ts` | Handles `code_graph_status` health probes with freshness, readiness, parse health and graph-quality fields. |
-| `context.ts` | Handles `code_graph_context` neighborhoods from manual, graph or structural search seeds. |
+| `context.ts` | Handles `code_graph_context` neighborhoods from manual or graph seeds. |
 | `verify.ts` | Handles `code_graph_verify` checks against the current index. |
 | `apply.ts` | Handles `code_graph_apply` verification-gated recovery operations and audit output. |
 | `detect-changes.ts` | Handles `detect_changes` by mapping unified diffs to indexed symbols only when graph readiness is fresh. |
-| `ccc-status.ts` | Handles `code_graph_status` availability and index-state checks for structural search Code. |
-| `ccc-reindex.ts` | Handles `code_graph_scan` incremental or full structural search reindex requests. |
-| `ccc-feedback.ts` | Handles `code_graph_verify` quality feedback for structural search search results. |
+| `classify-query-intent.ts` | Classifies a query into a structural intent to shape downstream graph reads. |
 | `index.ts` | Re-exports handler modules for the tool registry. |
 
 <!-- /ANCHOR:key-files -->
@@ -169,10 +162,10 @@ handlers/
 Main flow:
 
 ```text
-MCP client calls code_graph_*, detect_changes or code_graph_* and detect_changes
+MCP client calls code_graph_* or detect_changes
   -> tools/code-graph-tools.ts validates required arguments
   -> handler adapts args and readiness checks
-  -> ../lib executes graph, recovery, bridge or DB work
+  -> ../lib executes graph, recovery or DB work
   -> handler returns typed MCP payload
 ```
 
@@ -193,7 +186,6 @@ MCP client calls code_graph_*, detect_changes or code_graph_* and detect_changes
 | `code_graph_verify` | MCP tool | Runs graph verification checks. |
 | `code_graph_apply` | MCP tool | Runs guarded graph recovery operations. |
 | `detect_changes` | MCP tool | Maps a unified diff to affected graph symbols. |
-| `code_graph_status`, `code_graph_scan`, `code_graph_verify` | MCP tools | Bridge to structural search Code status, indexing and feedback. |
 
 <!-- /ANCHOR:entrypoints -->
 

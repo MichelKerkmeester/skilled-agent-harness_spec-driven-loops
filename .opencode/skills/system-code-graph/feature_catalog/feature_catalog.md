@@ -13,7 +13,7 @@ importance_tier: "important"
 
 <!-- Filename: lowercase per project convention; sk-doc template suggests FEATURE_CATALOG.md but lowercase is intentional. -->
 
-This catalog is the current feature inventory for `.opencode/skills/system-code-graph/mcp_server/`. Live MCP callers use the standalone `mk-code-index` namespace, exposed as `mcp__mk_code_index__*`. The stable tool IDs remain `code_graph_*`, `detect_changes` and `code_graph_* and detect_changes`.
+This catalog is the current feature inventory for `.opencode/skills/system-code-graph/mcp_server/`. Live MCP callers use the standalone `mk-code-index` namespace, exposed as `mcp__mk_code_index__*`. The stable tool IDs remain `code_graph_*` and `detect_changes`.
 
 ---
 
@@ -26,16 +26,15 @@ This catalog is the current feature inventory for `.opencode/skills/system-code-
 - [5. CONTEXT RETRIEVAL](#5--context-retrieval)
 - [6. COVERAGE GRAPH](#6--coverage-graph)
 - [7. MCP TOOL SURFACE](#7--mcp-tool-surface)
-- [8. structural INTEGRATION](#8--ccc-integration)
-- [9. DOCTOR CODE GRAPH](#9--doctor-code-graph)
+- [8. DOCTOR CODE GRAPH](#8--doctor-code-graph)
 
 ---
 
 ## 1. OVERVIEW
 
-The catalog covers 17 runtime features across 8 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
+The catalog covers 14 runtime features across 7 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
 
-**Feature-to-tool granularity (F013/F014).** The 17 features map to **11 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool. For example, `code_graph_query` provides multiple query operations (`outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius`), each catalogued as its own feature. Previously, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) were registered with the `mk-spec-memory` MCP server; they were removed in arc 118 (FULL_ISOLATE_NO_MCP) and now live as direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`. The catalog entries below are retained as historical reference and point at the current script paths.
+**Feature-to-tool granularity (F013/F014).** The 14 features map to **11 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool. For example, `code_graph_query` provides multiple query operations (`outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius`), each catalogued as its own feature. Previously, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) were registered with the `mk-spec-memory` MCP server; they were removed in arc 118 (FULL_ISOLATE_NO_MCP) and now live as direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`. The catalog entries below are retained as historical reference and point at the current script paths.
 
 | Group | Count | Scope |
 | --- | ---: | --- |
@@ -45,10 +44,9 @@ The catalog covers 17 runtime features across 8 groups. Per-feature files carry 
 | [04--context-retrieval](./04--context-retrieval/) | 2 | Context retrieval |
 | [05--coverage-graph](./05--coverage-graph/) | 4 | Coverage graph |
 | [06--mcp-tool-surface](./06--mcp-tool-surface/) | 1 | MCP tool surface |
-| [07--ccc-integration](./07--ccc-integration/) | 3 | retired tool integration |
 | [08--doctor-code-graph](./08--doctor-code-graph/) | 1 | Doctor code graph |
 
-Reality classification source: read-path freshness is half-auto because requested reads can run bounded repair, full scan/verify/status are manual, structural tools are manual, deep-loop convergence runs automatically inside command YAML, deep-loop upsert is conditional and deep-loop query/status are manual.
+Reality classification source: read-path freshness is half-auto because requested reads can run bounded repair, full scan/verify/status are manual, deep-loop convergence runs automatically inside command YAML, deep-loop upsert is conditional and deep-loop query/status are manual.
 
 ---
 
@@ -160,7 +158,7 @@ See [`03--detect-changes/01-detect-changes-preflight.md`](03--detect-changes/01-
 
 #### Description
 
-LLM-oriented context retrieval surface that expands seeds (manual, graph, structural search) into compact graph neighborhoods with neighborhood, outline and impact modes while preserving readiness and partial-output metadata.
+LLM-oriented context retrieval surface that expands seeds (manual, graph) into compact graph neighborhoods with neighborhood, outline and impact modes while preserving readiness and partial-output metadata.
 
 #### Current Reality
 
@@ -176,7 +174,7 @@ See [`04--context-retrieval/01-code-graph-context.md`](04--context-retrieval/01-
 
 #### Description
 
-Handler-level context assembly that normalizes structural search/manual/graph seeds, picks a query mode, enforces deadlines and routes blocked readiness before building compact graph context.
+Handler-level context assembly that normalizes manual/graph seeds, picks a query mode, enforces deadlines and routes blocked readiness before building compact graph context.
 
 #### Current Reality
 
@@ -262,7 +260,7 @@ See [`05--coverage-graph/04-deep-loop-graph-convergence.md`](05--coverage-graph/
 
 #### Description
 
-MCP registration and dispatch surface for the `mk-code-index` runtime. Exposes `code_graph_*`, `detect_changes` and `code_graph_* and detect_changes` names through the code graph dispatcher. Deep-loop coverage graph tools dispatch through the `mk-spec-memory` server.
+MCP registration and dispatch surface for the `mk-code-index` runtime. Exposes `code_graph_*` and `detect_changes` names through the code graph dispatcher. Deep-loop coverage graph tools dispatch through the `mk-spec-memory` server.
 
 #### Current Reality
 
@@ -274,57 +272,7 @@ See [`06--mcp-tool-surface/01-tool-registrations.md`](06--mcp-tool-surface/01-to
 
 ---
 
-## 8. structural INTEGRATION
-
-### code_graph_scan
-
-#### Description
-
-Direct bridge to the structural search CLI for incremental or full reindexing. Does not refresh the structural code graph.
-
-#### Current Reality
-
-Manual (class: manual). Direct MCP call only. Session/bootstrap surfaces probe availability through helpers, not this tool. Requires the local `ccc` binary.
-
-#### Source Files
-
-See [`07--ccc-integration/01-ccc-reindex.md`](07--ccc-integration/01-ccc-reindex.md) for full implementation and source paths.
-
----
-
-### code_graph_verify
-
-#### Description
-
-Appends operator search-feedback JSONL for structural search search results. Does not alter ranking immediately.
-
-#### Current Reality
-
-Manual (class: manual). Direct MCP call only. No hook, CI, session bootstrap or memory command path invokes feedback automatically. Writes to `.opencode/skills/system-code-graph/feedback/search-feedback.jsonl`.
-
-#### Source Files
-
-See [`07--ccc-integration/02-ccc-feedback.md`](07--ccc-integration/02-ccc-feedback.md) for full implementation and source paths.
-
----
-
-### code_graph_status
-
-#### Description
-
-structural search bridge status probe reporting binary availability, index presence and next-operator-action recommendation text.
-
-#### Current Reality
-
-Manual (class: manual). Direct MCP call only. Availability does not prove search quality. Pair with an actual structural search search or reindex run.
-
-#### Source Files
-
-See [`07--ccc-integration/03-ccc-status.md`](07--ccc-integration/03-ccc-status.md) for full implementation and source paths.
-
----
-
-## 9. DOCTOR CODE GRAPH
+## 8. DOCTOR CODE GRAPH
 
 ### Doctor code-graph route policy
 

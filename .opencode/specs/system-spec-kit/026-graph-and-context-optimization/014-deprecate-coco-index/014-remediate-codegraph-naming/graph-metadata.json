@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/014-remediate-codegraph-naming",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/014-remediate-codegraph-naming",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/013-post-deprecation-deep-review"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": ["code-graph ccc residue","remove ccc references code-graph","code-graph naming remediation"],
+    "key_topics": ["code-graph","ccc-residue","doc-remediation","tree-sitter","structural-search-rename","013-deep-review-followup"],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": ["spec.md","implementation-summary.md","../013-post-deprecation-deep-review/review/review-report.md"],
+    "entities": [],
+    "causal_summary": "Remediated the system-code-graph doc-residue class surfaced by the 013 deep-review (iters 5-7). Code was already renamed to its own clean names (status.ts/scan.ts/verify.ts, code_graph_* tools, tree-sitter); only docs lagged. Removed every literal ccc reference across 11 docs, then expanded to the deprecation's botched ccc->'structural search' + ccc_*->'code_graph_* and detect_changes' find-replace residue (false bridge/binary/CLI prose, phantom tool, broken getstructural searchBinaryPath, dead semantic-index runtime) across 13 docs total incl ARCHITECTURE.md. Verified code clean (docs-only), seeds are manual/graph only, no binary/sqlite-vec. Renumbered feature_catalog (9->8) + playbook (14-18->13-17) to avoid ToC gaps. Gate: rg -i ccc == 0 + full residue sweep 0; validate.sh --strict PASSED.",
+    "created_at": "2026-05-25T14:58:18Z",
+    "last_save_at": "2026-05-25T15:35:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","implementation-summary.md"]
+  }
+}

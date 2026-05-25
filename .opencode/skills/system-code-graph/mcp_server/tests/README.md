@@ -80,7 +80,7 @@ tests -> assets
 | Scope policy and doc-language | `code-graph-indexer.vitest.ts`, `code-graph-scan.vitest.ts`, `code-graph-doc-language.test-d.ts` | Default excludes, env and per-call precedence, granular `sk-*` list selection and doc-language row behavior. |
 | Parser skip-list resilience | `parser-skip-list.vitest.ts` | B1/B2 classification, UPSERT behavior, fail-open SQLite handling, summary output and production seeding. |
 | Readiness and scope fingerprint | `code-graph-scope-readiness.vitest.ts`, `code-graph-siblings-readiness.vitest.ts`, `code-graph-status-readiness-snapshot.vitest.ts` | Freshness gates, workspace scope decisions and v2 scope-fingerprint round-trip. |
-| Query and context handlers | `code-graph-query-handler.vitest.ts`, `code-graph-context-handler.vitest.ts`, `code-graph-context-retired-search-telemetry-passthrough.vitest.ts` | MCP handler output contracts, seed telemetry and graph context shaping. |
+| Query and context handlers | `code-graph-query-handler.vitest.ts`, `code-graph-context-handler.vitest.ts` | MCP handler output contracts, seed telemetry and graph context shaping. |
 | Apply-mode recovery | `code-graph-apply-orchestrator.vitest.ts`, `code-graph-apply-e2e.vitest.ts`, `code-graph-recovery-procedures.vitest.ts` | Verification-gated repair, rollback, dry-run behavior and recovery playbook scenarios. |
 | Seed and subject resolution | `code-graph-seed-resolver.vitest.ts`, `code-graph-resolve-subject-typed.vitest.ts` | File, symbol and external seed mapping. |
 | Change detection | `detect-changes.test.ts` | Blocked responses on stale or failed readiness and line-range overlap attribution. |
