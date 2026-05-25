@@ -81,8 +81,6 @@ describe('structural trust axis contract', () => {
         id: 1,
         score: 0.92,
         sources: ['semantic', 'code-graph'],
-        rerankerScore: 0.8,
-        rerankerApplied: true,
         anchorMetadata: [{ key: 'summary' }, { key: 'next-steps' }],
       },
       {

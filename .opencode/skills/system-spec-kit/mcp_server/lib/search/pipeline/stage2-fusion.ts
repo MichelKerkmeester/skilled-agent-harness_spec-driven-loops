@@ -43,8 +43,6 @@
 // Stage 3 (rerank) MAY overwrite `score` with the reranked value and MUST
 // preserve the original in `stage2Score` for auditability (see F2.02 fix).
 // Stage 4 (filter) MUST NOT mutate any score fields — it is read-only.
-// The canonical reranker output is `rerankerScore`; `score` is synced to it
-// for downstream consumer compatibility.
 
 import type Database from 'better-sqlite3';
 import path from 'path';

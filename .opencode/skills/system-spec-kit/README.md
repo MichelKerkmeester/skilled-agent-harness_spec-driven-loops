@@ -308,7 +308,7 @@ Every search goes through four stages, like an assembly line where each station 
 
 1. **Gather** -- collect candidates from active channels in parallel. Constitutional memories are always injected regardless of score.
 2. **Score** -- fuse channel results with RRF, then apply 8 post-fusion scoring signals (co-activation boost, FSRS decay, interference penalty, cold-start boost, session recency, causal 2-hop, intent weights, channel min-representation).
-3. **Rerank** -- run a local cross-encoder model to re-check ranking accuracy. Chunks are collapsed back to parent memories. If your machine lacks VRAM, the reranker gracefully skips.
+3. **Rerank** -- apply MMR diversity reranking (algorithmic, no model) to reduce near-duplicate results, then collapse chunks back to parent memories.
 4. **Filter** -- enforce score immutability, apply state filtering, annotate with confidence labels (high/medium/low) and truncate at the confidence gap.
 
 #### Query Intelligence

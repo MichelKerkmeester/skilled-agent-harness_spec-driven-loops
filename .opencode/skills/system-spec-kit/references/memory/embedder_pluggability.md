@@ -1,6 +1,6 @@
 ---
-title: "Embedder Pluggability: mk-spec-memory + Code Graph"
-description: "Canonical reference for the two-MCP / two-embedder / two-mechanism embedder architecture, covering defaults, swap flows, device selection, and the out-of-box support matrix."
+title: "Embedder Pluggability: mk-spec-memory"
+description: "Canonical mk-spec-memory pluggable-embedder reference, covering defaults, swap flows, rollback, and the out-of-box support matrix."
 trigger_phrases:
   - "embedder pluggability"
   - "embedder swap"
@@ -13,9 +13,9 @@ importance_tier: "important"
 contextType: "reference"
 ---
 
-# Embedder Pluggability: mk-spec-memory + Code Graph
+# Embedder Pluggability: mk-spec-memory
 
-Canonical reference for the two-MCP embedder architecture. Read this when a new user asks "which embedder do you use", before swapping models, or when triaging retrieval-quality regressions across either MCP.
+Canonical reference for mk-spec-memory embedder pluggability. Read this when a new user asks "which embedder do you use", before swapping memory embedders, or when triaging memory retrieval-quality regressions.
 
 ---
 
@@ -23,40 +23,27 @@ Canonical reference for the two-MCP embedder architecture. Read this when a new 
 
 ### Purpose
 
-Explain the two-MCP, two-embedder architecture across mk-spec-memory and Code Graph, including defaults, swap flows, device selection, rollback, and supported candidates.
+Explain mk-spec-memory embedder pluggability, including defaults, swap flows, rollback, and supported candidates.
 
 ### When to Use
 
-Load this reference when comparing memory and code retrieval embedders, changing an embedder, diagnosing retrieval-quality regressions, or answering operator questions about out-of-box support.
+Load this reference when changing the mk-spec-memory text embedder, diagnosing memory retrieval-quality regressions, or answering operator questions about out-of-box support.
 
 ### Core Principle
 
-Spec-memory and Code Graph are both pluggable, but they index different content classes and use different swap mechanisms by design.
+mk-spec-memory has a pluggable text embedder. The current default is `nomic-embed-text-v1.5` through the local-first cascade described below.
 
-### The two-MCP, two-embedder, two-mechanism picture
-
-Two MCP servers each run their own vector index and pick their own embedder:
-
-| MCP server | Default embedder | Dim | Backend | Pluggable via | Index store |
-|---|---|---:|---|---|---|
-| `mk-spec-memory` (Spec Kit Memory) | `sbert/nomic-ai/CodeRankEmbed` | 768 | `auto` cascade: Ollama -> hf-local Nomic | MCP tools + MANIFESTS registry | sqlite-vec `vec_<dim>` tables |
-| `system-code-graph` (Code Graph Code) | `sbert/nomic-ai/CodeRankEmbed` | 768 | sentence-transformers (PyTorch) | `CODE_GRAPH_CODE_EMBEDDING_MODEL` env var + registered_embedders.py | sqlite-vec inside `.mk_code_index/` |
-
-Both are pluggable. They use different mechanisms because they index different content classes and have different runtime constraints.
-
-### Why two embedders (text vs code)
+### Scope after 014
 
 `mk-spec-memory` indexes prose: spec docs, decision records, continuity frontmatter, conversation summaries. Prose recall benefits from text-tuned embedders that handle paraphrase, multilingual prefixes, and synonym overlap.
 
-`system-code-graph` indexes source code: function bodies, import graphs, identifiers, doc-comments. Code recall benefits from code-tuned embedders trained on `<query, source-snippet>` pairs across languages.
-
-Trying to share one embedder across both was rejected empirically. The pre-018 baseline used `bge-base-en-v1.5` (general-text) for both, and Code Graph code recall lagged measurably. Packet 018 and follow-ons moved Code Graph to Nomic CodeRankEmbed; mk-spec-memory also now follows the Nomic/CodeRankEmbed local cascade. Jina-v3 remains important historical bake-off evidence, not the current default.
+`system-code-graph` was a separate code-embedder MCP until the 014 CocoIndex deprecation; after 014 it became a structural tree-sitter indexer with no embeddings, so embedder pluggability now applies to mk-spec-memory only.
 
 ### What "out-of-box for any embedder" means
 
-The promise is operator-facing: a new install picks the right default for each MCP without configuration, and swapping to a different embedder from the vetted list never requires code changes — only an MCP tool call (memory) or an env var plus reindex (Code Graph). Schema migrations, device probing, and dim-mismatch handling are automatic.
+The promise is operator-facing: a new install picks the mk-spec-memory default without configuration, and swapping to a different text embedder from the vetted list never requires code changes. Schema migrations and dim-mismatch handling are automatic.
 
-The promise does NOT mean any HuggingFace model just works. Only vetted candidates in the two registries are guaranteed first-class. Adding a new candidate is a one-row append (see §2 and §3) — not a new code path.
+The promise does NOT mean any HuggingFace model just works. Only vetted candidates in the memory registry are guaranteed first-class. Adding a new candidate is a one-row append (see §2) — not a new code path.
 
 ---
 
@@ -184,125 +171,26 @@ Per-row empirical results live in `evidence/embedder-comparison-with-rescue.json
 
 ---
 
-## 3. CODE_GRAPH SIDE
+## 3. CODE GRAPH (no embedder since 014)
 
-> **⚠️ Obsolete as of the 014 CocoIndex deprecation.** system-code-graph no longer has a pluggable embedder or a CocoIndex/`ccc` vector layer — it is now a structural **tree-sitter** indexer (nodes/edges only), with no embeddings, no `ccc` CLI, and no `.venv`. The CocoIndex semantic/vector layer this section (and the "system-code-graph" columns in §4–§6 below) describes was removed in 014 (the `mcp-coco-index` skill was deleted; the `ccc_*` bridge was severed in 002). **The `ccc`-based commands and `.venv/bin/ccc` paths below no longer exist.** This material is retained only as a record of the pre-014 architecture; embedder pluggability now applies to **mk-spec-memory only (§2)**.
-
-### Current default: sbert/nomic-ai/CodeRankEmbed (768d code-tuned) — pre-014 record
-
-Production default per packet 018 ADR-001 (commit `8f909d229`):
-
-Source path: `.opencode/skills/system-code-graph/mcp_server/mk_code_index/config.py`
-
-```python
-_DEFAULT_MODEL = "sbert/nomic-ai/CodeRankEmbed"
-```
-
-768 dimensions, code-tuned (Python/JS/Go/Java/Ruby/PHP), 8192-token context, ~280 MB on disk, Metal-accelerated on Apple Silicon. The dim matches the pre-swap gemma baseline (also 768), so the existing Code Graph index schema did not need migration when the default flipped.
-
-### registered_embedders.py pattern (mirrors MANIFESTS)
-
-Source of truth: `.opencode/skills/system-code-graph/mcp_server/mk_code_index/registered_embedders.py` (commit `49e3338ff`). Six candidates registered today, each as a frozen `EmbedderMetadata` dataclass with seven fields:
-
-```python
-@dataclass(frozen=True)
-class EmbedderMetadata:
-    name: str           # "sbert/" or "litellm/" prefixed model string
-    dim: int
-    ram_mb: int         # approximate resident memory
-    disk_mb: int        # approximate HuggingFace cache footprint
-    mps_compatible: bool
-    category: Literal["text", "code"]
-    hf_url: str         # authoritative model card URL
-    notes: str          # operator-facing "when to prefer"
-```
-
-Public API:
-
-| Function | Returns |
-|---|---|
-| `list_embedders()` | Frozen tuple of all registered candidates. |
-| `get_embedder_metadata(name)` | One candidate by sbert/ string; `None` if unregistered. |
-| `default_embedder()` | The candidate whose `name` matches `_DEFAULT_MODEL`; raises if drift detected. |
-
-This is intentionally NOT full 016 parity. There are no MCP tools (`code_graph_embedder_set` etc.) and no daemon hot-reload. The registry is consumed by `INSTALL_GUIDE.md` §4 (operator-facing chooser table) and by the parity unit test that catches `config.py` ↔ `registered_embedders.py` drift.
-
-### Swap mechanism: env var + ccc reset + ccc index
-
-Three-step operator runbook (mirrors INSTALL_GUIDE §4):
-
-```bash
-$ # 1. Choose a model name from the registry
-export CODE_GRAPH_CODE_EMBEDDING_MODEL="sbert/nomic-ai/CodeRankEmbed"
-
-$ # 2. Restart the daemon (graceful kill; supervisor auto-respawns on next ccc call)
-ps -eo pid,command | grep "ccc run-daemon" | grep -v grep \
-  | awk '{print $1}' | xargs kill
-
-$ # 3. Purge old vectors + reindex with new embedder
-.opencode/skills/system-code-graph/mcp_server/.venv/bin/ccc reset --force
-.opencode/skills/system-code-graph/mcp_server/.venv/bin/ccc index
-```
-
-`reset --force` is required because Code Graph's on-disk vectors must match the live model's dimensionality. Skipping reset on a dim-changing swap (e.g., 768→2048 to SFR-2B) leaves a stale table and silently corrupts retrieval. `reset` clears the table; `index` rebuilds it.
-
-First-use note: sentence-transformers downloads the model from HuggingFace on first instantiation (~270-340 MB for the small candidates, ~4 GB for SFR-2B). Cached at `~/.cache/huggingface/hub/`.
-
-### MPS auto-detect (_resolve_device): CUDA → MPS → CPU
-
-Source: `.opencode/skills/system-code-graph/mcp_server/mk_code_index/config.py` `_resolve_device()` (commit `8f909d229`). Resolution order is explicit:
-
-1. If `CODE_GRAPH_CODE_DEVICE` env var is set and non-empty → trust as-is (operator override).
-2. Otherwise lazy-import `torch` and probe in order:
-   - `torch.cuda.is_available()` → `"cuda"`
-   - `torch.backends.mps.is_available()` → `"mps"`
-   - else → `"cpu"`
-3. If torch is not importable → return `None` and let the downstream framework choose.
-
-The lazy import keeps the config module cheap when the caller does not need a device hint. The MPS branch is the 018 patch: pre-018 only checked CUDA, so Apple Silicon hosts got CPU inference even though Metal was available.
-
-### CODE_GRAPH_CODE_DEVICE=cpu kill switch
-
-Set the env var to force any device:
-
-```bash
-$ # Force CPU (kill switch for MPS instability)
-export CODE_GRAPH_CODE_DEVICE=cpu
-
-$ # Force CUDA (skip MPS probe even on machines with both)
-export CODE_GRAPH_CODE_DEVICE=cuda
-```
-
-The override is unconditional. It bypasses the probe and is passed straight through to sentence-transformers. Use `cpu` when MPS produces unstable embeddings on an older PyTorch build, or when you need bit-exact reproducibility across machines.
-
-### Packet trail (018 + 019)
-
-- **018/001** (`8f909d229`) — Default flip from `bge-base-en-v1.5` to `jinaai/jina-embeddings-v2-base-code`; MPS auto-detect branch added; unit test covers the MPS fallback.
-- **018/002** — Code-retrieval fixture (10–20 deterministic query→source pairs) for benchmarking the swap.
-- **018/003** — Benchmark gemma/Jina/BGE/Nomic lanes on the fixture; follow-ons ratify `sbert/nomic-ai/CodeRankEmbed` as the production choice.
-- **019/001** (`49e3338ff`) — `registered_embedders.py` declarative registry + parity test against `config.py`.
-- **019/002** — `INSTALL_GUIDE.md` §4 "Choosing an embedder" + README cross-link, so a first-install operator can see the full chooser table without diving into Python.
-
-The 019 packet is explicit about scope: minimal viable parity with 016. MCP-tool surface for Code Graph is deferred until operator demand surfaces; the env-var + reset/reindex path is the canonical swap mechanism today.
+`system-code-graph` had a pluggable code embedder before 014, including `CodeRankEmbed`, sentence-transformers, MPS device selection, and a `ccc reset/index` swap workflow. The 014 CocoIndex deprecation removed that semantic/vector layer completely. `system-code-graph` is now a structural tree-sitter indexer under `.opencode/skills/system-code-graph/`, storing nodes and edges with no embeddings, no embedder runtime, no `ccc` CLI, and no `.cocoindex_code/`. Embedder pluggability now applies only to mk-spec-memory.
 
 ---
 
 ## 4. OPERATING MODES
 
-### First-install flow (per MCP)
+### First-install flow
 
-| Step | mk-spec-memory | system-code-graph |
-|---|---|---|
-| 1 | Install the MCP server (per skill INSTALL_GUIDE). | Run `bash .opencode/skills/system-code-graph/scripts/install.sh`. |
-| 2 | Pull the default Ollama model: `ollama pull hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M`. | First `ccc index` triggers sentence-transformers to download the default Nomic CodeRankEmbed model from HuggingFace. |
-| 3 | Start the MCP server; first `embedder_status` call returns the active Nomic/CodeRankEmbed profile. | `ccc init` creates `.mk_code_index/`; `ccc index` builds the vector store. |
-| 4 | Optional: confirm `SPECKIT_RERANK_LAYER` unset (default-on). | Optional: confirm `_resolve_device()` picked `mps` on Apple Silicon via `ccc status`. |
+| Step | mk-spec-memory |
+|---|---|
+| 1 | Install the MCP server (per skill INSTALL_GUIDE). |
+| 2 | Pull the default Ollama model: `ollama pull nomic-embed-text:v1.5`. |
+| 3 | Start the MCP server; first `embedder_status` call returns the active `nomic-embed-text-v1.5` profile. |
+| 4 | Optional: confirm `SPECKIT_RERANK_LAYER` unset (default-on). |
 
 No code changes. No schema migrations. A fresh clone reaches a ready state from the documented commands above.
 
-### Swap flow (per MCP)
-
-mk-spec-memory:
+### Swap flow
 
 ```text
 1. embedder_list({})                          // confirm candidate is registered + ready
@@ -311,80 +199,36 @@ mk-spec-memory:
 4. memory_search probe                        // sanity-check a known-good query
 ```
 
-system-code-graph:
+The mk-spec-memory swap is single-MCP-call and crash-resumable.
 
-```text
-1. Look up the candidate in registered_embedders.py (or INSTALL_GUIDE §4 chooser table)
-2. export CODE_GRAPH_CODE_EMBEDDING_MODEL=<sbert-string>
-3. kill the ccc run-daemon process
-4. ccc reset --force && ccc index
-5. ccc search "<known-good query>"            // sanity check
-```
-
-The mk-spec-memory swap is single-MCP-call and crash-resumable. The Code Graph swap is operator-driven and requires a daemon restart and explicit reset.
-
-### Rollback flow (per MCP)
+### Rollback flow
 
 mk-spec-memory rollback is a same-shape `embedder_set` call that re-points active back to the prior embedder. The previous `vec_<dim>` table is preserved, so rollback is fast when same-to-same (the re-index orchestrator can short-circuit if the destination table already has fresh vectors for the current corpus). Eight rollbacks executed cleanly across ADR-001..ADR-008.
-
-system-code-graph rollback is the same three-step swap pointed back to the previous `sbert/` string. `ccc reset --force && ccc index` will rebuild with the prior embedder. There is no automatic preservation of prior vectors — the index store is single-dim, so a full reindex is required.
-
-### Device selection logic (Code Graph only)
-
-```text
-CODE_GRAPH_CODE_DEVICE set?
-├─ YES → trust as-is (operator override; no probe)
-└─ NO  → import torch
-         ├─ cuda available?   → "cuda"
-         ├─ mps available?    → "mps"   (Apple Silicon)
-         └─ else              → "cpu"
-```
-
-mk-spec-memory inherits device selection from the underlying backend. The `ollama` baseline (gemma) uses the local ollama configuration; `ollama` backends inherit Ollama's own device handling, which already covers Metal/CUDA/CPU autonomously. There is no equivalent `_resolve_device` shim on the memory side because Ollama owns the runtime.
 
 ---
 
 ## 5. OUT-OF-BOX SUPPORT MATRIX
 
-The table below lists embedders that work in either MCP without any code changes. "Yes" means the registry already includes the candidate; "No (env-var only)" means the candidate works but is not in the curated chooser.
+The table below lists mk-spec-memory embedders that work without code changes because the registry already includes the candidate.
 
-| Embedder | mk-spec-memory backend | system-code-graph backend | Dim | Approx RAM | MPS | Notes |
-|---|---|---|---:|---:|:---:|---|
-| `bge-base-en-v1.5` | ollama (baseline) | sbert (legacy baseline) | 768 | ~600 MB | Yes | General-text; baseline on both sides pre-swap. |
-| `jina-embeddings-v3` | ollama (historical/default candidate) | — (not in registry) | 1024 | ~600 MB (GGUF Q4_K_M) | n/a | Text-tuned; production memory default per ADR-012. |
-| `jinaai/jina-embeddings-v2-base-code` | — (not in registry) | sbert (historical) | 768 | ~600 MB | Yes | Code-tuned, 8192 ctx; historical Code Graph default per 018 ADR-001, superseded by `sbert/nomic-ai/CodeRankEmbed` in the 018 follow-on (corrected-pipeline bench tied `bge-code-v1` on hit rate with lower latency). |
-| `jinaai/jina-embeddings-v2-base-en` | — | sbert | 768 | ~600 MB | Yes | English-text variant for docs-heavy repos. |
-| `nomic-embed-text-v1.5` | ollama | — | 768 | ~600 MB | n/a | Text retrieval specialist; 5–8/10 on 409 leaderboard. |
-| `nomic-ai/CodeRankEmbed` | auto/hf-local Nomic | sbert (DEFAULT) | 768 | ~550 MB | Yes | Code-tuned alternative; Python-leaning training. |
-| `BAAI/bge-code-v1` | — | sbert | 768 | ~700 MB | Yes | Multilingual code coverage emphasis. |
-| `bge-small-en-v1.5` | ollama | — | 384 | small | n/a | Compact 33M-param text baseline; `vec_384` schema. |
-| `bge-large-en-v1.5` | ollama | — | 1024 | ~1.5 GB | n/a | BAAI flagship text retrieval. |
-| `bge-m3` | ollama | — | 1024 | ~1.5 GB | n/a | Multilingual hybrid (dense+sparse+colbert), 8192 ctx. |
-| `mxbai-embed-large-v1` | ollama | — | 1024 | ~1 GB | n/a | AnglE-loss paraphrase-tuned. |
-| `snowflake-arctic-embed-l-v2.0` | ollama | — | 1024 | ~1.5 GB | n/a | Snowflake late-2024 flagship; multilingual, 8192 ctx. |
-| `Salesforce/SFR-Embedding-Code-2B_R` | — | sbert | 2048 | ~4.5 GB | Yes | Large (2B params), top CoIR; needs GPU/RAM headroom; `ccc reset` required (dim mismatch). |
-
-Read across the row to see whether a given embedder is registered in each MCP. An empty cell means the candidate is not in that MCP's vetted registry — it may still work via the env-var override path on Code Graph, but it would not be first-class without a registry row.
-
-**Cross-listing is intentional, not a bug.** `jina-embeddings-v3` is text-tuned and lives only in the memory registry; `jina-embeddings-v2-base-code` is code-tuned and lives only in the Code Graph registry. Sharing one embedder across both was rejected empirically (see §1).
+| Embedder | mk-spec-memory backend | Dim | Approx RAM | Notes |
+|---|---|---:|---:|---|
+| `bge-base-en-v1.5` | ollama (baseline) | 768 | ~600 MB | General-text legacy baseline. |
+| `jina-embeddings-v3` | ollama (historical/default candidate) | 1024 | ~600 MB (GGUF Q4_K_M) | Text-tuned; production memory default per ADR-012. |
+| `nomic-embed-text-v1.5` | ollama | 768 | ~600 MB | Current default text retrieval specialist; 5-8/10 on 409 leaderboard. |
+| `bge-small-en-v1.5` | ollama | 384 | small | Compact 33M-param text baseline; `vec_384` schema. |
+| `bge-large-en-v1.5` | ollama | 1024 | ~1.5 GB | BAAI flagship text retrieval. |
+| `bge-m3` | ollama | 1024 | ~1.5 GB | Multilingual hybrid (dense+sparse+colbert), 8192 ctx. |
+| `mxbai-embed-large-v1` | ollama | 1024 | ~1 GB | AnglE-loss paraphrase-tuned. |
+| `snowflake-arctic-embed-l-v2.0` | ollama | 1024 | ~1.5 GB | Snowflake late-2024 flagship; multilingual, 8192 ctx. |
 
 ---
 
 ## 6. TRADE-OFFS
 
-### Per-category guidance (when to prefer text vs code embedders)
+### Fit guidance
 
-Choose text-tuned embedders when:
-- Indexing prose: spec docs, decision records, meeting notes, conversation summaries.
-- Queries are paraphrase-heavy ("how do we handle X" rather than literal symbol lookups).
-- Multilingual or cross-domain recall matters.
-
-Choose code-tuned embedders when:
-- Indexing source: function bodies, identifiers, comments, type signatures.
-- Queries are intent-based ("find the auth middleware") on real codebases.
-- Per-language nuance matters (Python imports vs Go imports vs JS imports).
-
-The split is not optional. Pre-018 measurements showed material code-recall loss when Code Graph ran the general-text gemma model, and packet 018/001 swapped it out. Conversely, mk-spec-memory tested a code-tuned variant during 016/004 and it did not help prose recall.
+mk-spec-memory indexes prose: spec docs, decision records, meeting notes, conversation summaries. Text-tuned embedders are the right class when queries are paraphrase-heavy ("how do we handle X" rather than literal symbol lookups), or when multilingual or cross-domain recall matters.
 
 ### Size vs quality
 
@@ -393,24 +237,10 @@ Larger embedders trade RAM and disk for stronger recall on long-tail queries. Us
 - **Small** (≤500 MB): `bge-small-en-v1.5` (384d). Fast indexing; weaker paraphrase capacity. Use only when you are RAM-bound.
 - **Mid** (500 MB–1 GB): all current defaults plus most registered alternatives. Best general trade-off.
 - **Large** (>1 GB): `bge-large-en-v1.5`, `bge-m3`, `snowflake-arctic-embed-l-v2.0`, `mxbai-embed-large-v1`. Pick one of these only after measuring on a fixture; empirically none beat the production defaults on the cat-24/409 sweep.
-- **Very large** (>4 GB): `Salesforce/SFR-Embedding-Code-2B_R`. Only when you have GPU/RAM headroom and need maximum code retrieval quality.
 
 ### Latency vs recall
 
 The rescue layer on the memory side is the clearest example of the trade. ADR-011 measured `+1` quality at `~2.16x` median latency. The verdict was GATE default-on with a documented kill switch. Embedder choice itself rarely produces latency that large; the dominant cost is the rescue stage when active. If you need to chase tail latency, the lever to pull first is `SPECKIT_RERANK_LAYER=false`, not the embedder.
-
-On the Code Graph side, latency is dominated by:
-- First-token model load (cold start, ~1–3 s after daemon restart).
-- Per-query embed cost (~30–100 ms on MPS; ~5x higher on CPU).
-- sqlite-vec search itself (sub-100 ms on indexes up to ~50k snippets).
-
-Switching from CPU to MPS via `_resolve_device()` is the single biggest latency win on Apple Silicon — that is why the 018 patch landed.
-
-### A brief note on API-backed embedders
-
-Code Graph supports LiteLLM-backed embedders in principle (Voyage, OpenAI, Gemini, Cohere) via the `litellm/` prefix. These are out of scope for this document by policy: the project is local-only by default to avoid API-key management, billing, and offline-mode regressions. If you need an API-backed embedder, see `.opencode/skills/system-code-graph/references/settings_reference.md` for the LiteLLM configuration surface and treat it as an unsupported escape hatch.
-
----
 
 ## 7. APPENDIX: VALIDATED AGAINST
 
@@ -422,16 +252,9 @@ This document was authored against the following source files at the commits bel
 | Memory MANIFESTS registry | `4a4e166ab` | `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts` |
 | Memory ADR trail (001–012) | `1aa46e523` | Internal design notes |
 | Memory ADR evidence | `1aa46e523` | (sibling) `evidence/embedder-comparison-with-rescue.jsonl` |
-| Code Graph `_DEFAULT_MODEL` + `_resolve_device` | `8f909d229` | `.opencode/skills/system-code-graph/mcp_server/mk_code_index/config.py` |
-| Code Graph `registered_embedders.py` | `49e3338ff` | `.opencode/skills/system-code-graph/mcp_server/mk_code_index/registered_embedders.py` |
-| Code Graph INSTALL_GUIDE §4 | `49e3338ff` | `.opencode/skills/system-code-graph/INSTALL_GUIDE.md` |
-| Packet 018 (Code Graph code-embedder swap) | (parent) | Internal design notes |
-| Packet 019 (Code Graph registry parity) | (parent) | Internal design notes |
 
 ### Cross-links
 
-- Code Graph installer chooser table: [`.opencode/skills/system-code-graph/INSTALL_GUIDE.md`](../../system-code-graph/INSTALL_GUIDE.md) §4 "Choosing an embedder"
-- Code Graph registry source: [`registered_embedders.py`](../../system-code-graph/mcp_server/mk_code_index/registered_embedders.py)
 - Memory ADR trail: [`decision-record.md`](../../../<spec-folder>)
 - Memory registry source: [`registry.ts`](../mcp_server/lib/embedders/registry.ts)
 - Memory adapter interface: [`adapter.ts`](../mcp_server/lib/embedders/adapter.ts)

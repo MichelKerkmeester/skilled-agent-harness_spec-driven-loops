@@ -9,7 +9,6 @@ const CONFIDENCE_FLAG = 'SPECKIT_RESULT_CONFIDENCE_V1';
 const DRIVER_NAMES = [
   'large_margin',
   'multi_channel_agreement',
-  'reranker_boost',
   'anchor_density',
 ] as const;
 
@@ -55,7 +54,6 @@ function makeResult(id: number, overrides: Partial<RawSearchResult> = {}): RawSe
     averageSimilarity: 70,
     triggerPhrases: ['retrieval', 'confidence'],
     created_at: '2026-03-21T18:01:48.473Z',
-    scoringMethod: 'cross-encoder',
     ...overrides,
   };
 }
@@ -89,21 +87,13 @@ function getResultConfidence(envelope: SearchEnvelope, resultId: number): Confid
 
 describe('D5 Phase A: result confidence scoring', () => {
   let originalFlag: string | undefined;
-  let originalCrossEncoder: string | undefined;
 
   beforeEach(() => {
     originalFlag = process.env[CONFIDENCE_FLAG];
     process.env[CONFIDENCE_FLAG] = 'true';
-    originalCrossEncoder = process.env.SPECKIT_CROSS_ENCODER;
-    process.env.SPECKIT_CROSS_ENCODER = 'true';
   });
 
   afterEach(() => {
-    if (originalCrossEncoder === undefined) {
-      delete process.env.SPECKIT_CROSS_ENCODER;
-    } else {
-      process.env.SPECKIT_CROSS_ENCODER = originalCrossEncoder;
-    }
     if (originalFlag === undefined) {
       delete process.env[CONFIDENCE_FLAG];
     } else {
@@ -119,7 +109,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.94,
         rrfScore: 0.92,
         fts_score: 0.89,
-        rerankerScore: 0.91,
         anchorMetadata: [
           { id: 'decision-1', type: 'decision' },
           { id: 'state-1', type: 'state' },
@@ -143,7 +132,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.42,
         rrfScore: 0.4,
         fts_score: 0.35,
-        rerankerScore: 0.34,
         anchorMetadata: [{ id: 'note-1', type: 'note' }],
       }),
     ]);
@@ -162,7 +150,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.82,
         rrfScore: 0.8,
         fts_score: 0.79,
-        rerankerScore: 0.78,
         anchorMetadata: [
           { id: 'decision-1', type: 'decision' },
           { id: 'rationale-1', type: 'rationale' },
@@ -186,7 +173,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.63,
         rrfScore: 0.61,
         fts_score: 0.58,
-        rerankerScore: 0.55,
       }),
     ]);
     const disagreementEnvelope = await formatEnvelope([
@@ -196,7 +182,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.68,
         rrfScore: 0.67,
         fts_score: 0.21,
-        rerankerScore: 0.44,
         anchorMetadata: [],
         traceMetadata: {
           attribution: {
@@ -211,7 +196,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.64,
         rrfScore: 0.63,
         fts_score: 0.72,
-        rerankerScore: 0.42,
       }),
     ]);
 
@@ -230,7 +214,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.36,
         rrfScore: 0.35,
         fts_score: 0.31,
-        rerankerScore: 0.18,
         anchorMetadata: [],
       }),
       makeResult(2, {
@@ -239,7 +222,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.35,
         rrfScore: 0.34,
         fts_score: 0.3,
-        rerankerScore: 0.17,
         anchorMetadata: [],
       }),
     ]);
@@ -257,8 +239,11 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.93,
         rrfScore: 0.92,
         fts_score: 0.88,
-        rerankerScore: 0.9,
-        anchorMetadata: [{ id: 'decision-1', type: 'decision' }],
+        sources: ['vector', 'fts'],
+        anchorMetadata: [
+          { id: 'decision-1', type: 'decision' },
+          { id: 'decision-2', type: 'decision' },
+        ],
       }),
       makeResult(2, {
         similarity: 50,
@@ -274,7 +259,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.62,
         rrfScore: 0.6,
         fts_score: 0.49,
-        rerankerScore: 0.45,
         anchorMetadata: [{ id: 'state-1', type: 'state' }],
       }),
       makeResult(2, {
@@ -291,7 +275,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.34,
         rrfScore: 0.33,
         fts_score: 0.28,
-        rerankerScore: 0.18,
       }),
       makeResult(2, {
         similarity: 53,
@@ -324,7 +307,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.95,
         rrfScore: 0.94,
         fts_score: 0.9,
-        rerankerScore: 0.92,
         anchorMetadata: [
           { id: 'decision-1', type: 'decision' },
           { id: 'state-1', type: 'state' },
@@ -365,7 +347,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.9,
         rrfScore: 0.89,
         fts_score: 0.84,
-        rerankerScore: 0.88,
       }),
       makeResult(2, {
         similarity: 72,
@@ -373,7 +354,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.68,
         rrfScore: 0.66,
         fts_score: 0.63,
-        rerankerScore: 0.61,
         traceMetadata: {
           attribution: {
             vector: [2],
@@ -389,7 +369,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.43,
         rrfScore: 0.41,
         fts_score: 0.25,
-        rerankerScore: 0.22,
       }),
       makeResult(2, {
         similarity: 55,
@@ -420,7 +399,6 @@ describe('D5 Phase A: result confidence scoring', () => {
         intentAdjustedScore: 0.94,
         rrfScore: 0.92,
         fts_score: 0.89,
-        rerankerScore: 0.91,
       }),
       makeResult(2, {
         similarity: 48,

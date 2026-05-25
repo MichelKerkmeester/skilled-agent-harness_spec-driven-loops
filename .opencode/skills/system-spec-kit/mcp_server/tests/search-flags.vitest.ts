@@ -4,14 +4,12 @@
 // TEST: Search Feature Flags
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import * as crossEncoder from '../lib/search/cross-encoder';
 import {
   getGraphWalkRolloutState,
   isGraphWalkRuntimeEnabled,
   isGraphWalkTraceEnabled,
 } from '../lib/search/graph-flags';
 import {
-  isCrossEncoderEnabled,
   isContextHeadersEnabled,
   isFileWatcherEnabled,
   isGraphRefreshDisabled,
@@ -43,7 +41,6 @@ function clearFlags(): void {
   for (const flag of FLAG_NAMES) {
     delete process.env[flag];
   }
-  crossEncoder.resetProvider();
 }
 
 describe('Search Feature Flags', () => {
@@ -62,14 +59,12 @@ describe('Search Feature Flags', () => {
         process.env[flag] = ORIGINAL_ENV[flag];
       }
     }
-    crossEncoder.resetProvider();
-  });
+    });
 
-  it('defaults graduated gates on while cross-encoder remains unavailable', () => {
+  it('defaults graduated gates on', () => {
     expect(isMMREnabled()).toBe(true);
     expect(isTRMEnabled()).toBe(true);
     expect(isMultiQueryEnabled()).toBe(true);
-    expect(isCrossEncoderEnabled()).toBe(false);
     expect(isContextHeadersEnabled()).toBe(true);
     expect(isReconsolidationEnabled()).toBe(true);
   });
@@ -84,7 +79,6 @@ describe('Search Feature Flags', () => {
     expect(isMMREnabled()).toBe(false);
     expect(isTRMEnabled()).toBe(false);
     expect(isMultiQueryEnabled()).toBe(false);
-    expect(isCrossEncoderEnabled()).toBe(false);
     expect(isContextHeadersEnabled()).toBe(false);
     expect(isReconsolidationEnabled()).toBe(false);
   });
@@ -99,7 +93,6 @@ describe('Search Feature Flags', () => {
     expect(isMMREnabled()).toBe(true);
     expect(isTRMEnabled()).toBe(true);
     expect(isMultiQueryEnabled()).toBe(true);
-    expect(isCrossEncoderEnabled()).toBe(false);
     expect(isContextHeadersEnabled()).toBe(true);
     expect(isReconsolidationEnabled()).toBe(true);
   });
@@ -119,14 +112,6 @@ describe('Search Feature Flags', () => {
 
     process.env.SPECKIT_RECONSOLIDATION = '0';
     expect(isReconsolidationEnabled()).toBe(false);
-  });
-
-  it('cross-encoder provider resolution remains disabled after provider removal', () => {
-    process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX'; // >= 20 chars per looksLikeValidApiKey() contract
-    crossEncoder.resetProvider();
-
-    expect(crossEncoder.resolveProvider()).toBe(null);
-    expect(crossEncoder.isRerankerAvailable()).toBe(false);
   });
 
   it('file watcher remains opt-in by default', () => {

@@ -2106,20 +2106,6 @@ Job state transitions through queued→parsing→embedding→indexing→complete
 > **Feature File:** [097](05--lifecycle/097-async-ingestion-job-lifecycle-p0-3.md)
 > **Catalog:** [05--lifecycle/05-async-ingestion-job-lifecycle.md](../feature_catalog/05--lifecycle/05-async-ingestion-job-lifecycle.md)
 
-### 098 | Local GGUF reranker via Ollama runtime 
-
-#### Description
-Confirm reranker gating and graceful fallback.
-
-#### Scenario Contract
-Prompt: `Validate the local GGUF reranker behavior for RERANKER_LOCAL=1 and graceful fallback cases.`
-
-Reranker not activated for truthy-but-not-'true' values; silent fallback when model file missing; custom model path lowers the total-memory threshold to 2GB from the default 8GB; getRerankerStatus reports cache hits/misses/staleHits/evictions with bounded p95 latency; applyLengthPenalty is compatibility-only; scoring runs sequentially in logs
-
-#### Test Execution
-> **Feature File:** [098](11--scoring-and-calibration/098-local-gguf-reranker-via-Ollama runtime-p1-5.md)
-> **Catalog:** [11--scoring-and-calibration/14-local-gguf-reranker-via-Ollama runtime.md](../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-Ollama runtime.md)
-
 ### 099 | Real-time filesystem watching 
 
 #### Description
@@ -2140,9 +2126,9 @@ File add seeds hash cache; modifications trigger reindex after 2s debounce; iden
 Confirm graceful shutdown completes async cleanup.
 
 #### Scenario Contract
-Prompt: `Validate server shutdown deadline behavior. Capture the evidence needed to prove File watcher closes; local reranker disposes; vector index closes; shutdown completes within 5s; force exit fires if cleanup exceeds deadline. Return a concise user-facing pass/fail verdict with the main reason.`
+Prompt: `Validate server shutdown deadline behavior. Capture the evidence needed to prove File watcher closes; vector index closes; shutdown completes within 5s; force exit fires if cleanup exceeds deadline. Return a concise user-facing pass/fail verdict with the main reason.`
 
-File watcher closes; local reranker disposes; vector index closes; shutdown completes within 5s; force exit fires if cleanup exceeds deadline
+File watcher closes; vector index closes; shutdown completes within 5s; force exit fires if cleanup exceeds deadline
 
 #### Test Execution
 > **Feature File:** [100](05--lifecycle/100-async-shutdown-with-deadline-server-lifecycle.md)
@@ -3180,12 +3166,12 @@ Prompt: `Validate empty result recovery payloads for empty and weak memory_searc
 ### 180 | Result confidence (SPECKIT_RESULT_CONFIDENCE_V1)
 
 #### Description
-Verify per-result calibrated confidence scoring with 4-factor weighting: margin (0.35), channel agreement (0.30), reranker (0.20), anchor density (0.15).
+Verify per-result calibrated confidence scoring with 3-factor weighting: margin (0.35), channel agreement (0.30), anchor density (0.15).
 
 #### Scenario Contract
 Prompt: `Validate result confidence scoring factors, thresholds, labels, drivers, and requestQuality output.`
 
-4 factors: margin 0.35, channel agreement 0.30, reranker support 0.20, anchor density 0.15; HIGH_THRESHOLD=0.7; LOW_THRESHOLD=0.4; labels: high/medium/low; confidence drivers reported per result; heuristic only (no LLM)
+3 factors: margin 0.35, channel agreement 0.30, anchor density 0.15; HIGH_THRESHOLD=0.7; LOW_THRESHOLD=0.4; labels: high/medium/low; confidence drivers reported per result; heuristic only (no LLM)
 
 #### Test Execution
 > **Feature File:** [180](18--ux-hooks/180-result-confidence-speckit-result-confidence-v1.md)
@@ -3739,7 +3725,6 @@ This split playbook keeps automated coverage references in three places:
 | 095 | Features | Strict Zod schema validation (P0-1) | [095](14--pipeline-architecture/095-strict-zod-schema-validation-p0-1.md) | [14--pipeline-architecture/13-strict-zod-schema-validation.md](../feature_catalog/14--pipeline-architecture/13-strict-zod-schema-validation.md) |
 | 096 | Features | Provenance-rich response envelopes (P0-2) | [096](15--retrieval-enhancements/096-provenance-rich-response-envelopes-p0-2.md) | [15--retrieval-enhancements/08-provenance-rich-response-envelopes.md](../feature_catalog/15--retrieval-enhancements/08-provenance-rich-response-envelopes.md) |
 | 097 | Features | Async ingestion job lifecycle (P0-3) | [097](05--lifecycle/097-async-ingestion-job-lifecycle-p0-3.md) | [05--lifecycle/05-async-ingestion-job-lifecycle.md](../feature_catalog/05--lifecycle/05-async-ingestion-job-lifecycle.md) |
-| 098 | Features | Local GGUF reranker via Ollama runtime  | [098](11--scoring-and-calibration/098-local-gguf-reranker-via-Ollama runtime-p1-5.md) | [11--scoring-and-calibration/14-local-gguf-reranker-via-Ollama runtime.md](../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-Ollama runtime.md) |
 | 099 | Features | Real-time filesystem watching  | [099](16--tooling-and-scripts/099-real-time-filesystem-watching-p1-7.md) | [16--tooling-and-scripts/06-real-time-filesystem-watching-with-chokidar.md](../feature_catalog/16--tooling-and-scripts/06-real-time-filesystem-watching-with-chokidar.md) |
 | 100 | Features | Async shutdown with deadline (server lifecycle) | [100](05--lifecycle/100-async-shutdown-with-deadline-server-lifecycle.md) | *(server lifecycle — no dedicated catalog entry)* |
 | 101 | Features | memory_delete confirm schema tightening | [101](02--mutation/101-memory-delete-confirm-schema-tightening.md) | *(memory_delete confirm schema — covered by `02--mutation/03`)* |

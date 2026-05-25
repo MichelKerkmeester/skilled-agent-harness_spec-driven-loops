@@ -1,30 +1,36 @@
 ---
 title: "Implementation Plan: Delete the inactive LLM-model reranking (cross-encoder + local GGUF reranker + reranker interface + conditional-rerank gate + 7 tests; remove stage3 Step 1) while preserving the active algorithmic MMR diversity reranker; behavior-neutral, triple-verified via tsc + full memory-search vitest [template:level_2/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Plan for the completed 017 cleanup layer: remove residual inactive LLM-reranker code/docs/tests, preserve MMR, and verify with compile plus targeted and broad subsystem vitest evidence."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
+  - "implementation plan"
+  - "remove llm reranking"
+  - "keep mmr"
+  - "reranker cleanup"
+  - "stage 3 mmr"
+importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/017-remove-llm-reranking-keep-mmr"
-    last_updated_at: "2026-05-25T17:30:46Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/017-remove-llm-reranking-keep-mmr"
+    last_updated_at: "2026-05-25T18:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Captured the implemented A/B/C cleanup breakdown and verification plan."
+    next_safe_action: "commit 017 changeset"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts"
+      - ".opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/017-remove-llm-reranking-keep-mmr"
+      fingerprint: "sha256:6587d9dbefe05b61a2b6749dfc08d87f9e0321641eb442f35ef528a02dd0cb0b"
+      session_id: "017-remove-llm-reranking-keep-mmr-doc-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The implementation is already complete and verified; this plan documents the completed approach."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Delete the inactive LLM-model reranking (cross-encoder + local GGUF reranker + reranker interface + conditional-rerank gate + 7 tests; remove stage3 Step 1) while preserving the active algorithmic MMR diversity reranker; behavior-neutral, triple-verified via tsc + full memory-search vitest
@@ -40,13 +46,13 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript and Markdown |
+| **Framework** | mk-spec-memory MCP server search pipeline |
+| **Storage** | Existing memory/search fixtures only; no migrations |
+| **Testing** | `tsc --noEmit` and Vitest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+This packet documents the completion layer after the predecessor 014/003 core removal, commit `b564013c0e`. The implementation removes residual dead LLM-reranker confidence, explainability, audit, doc, and test vestiges while preserving the active `SPECKIT_MMR` algorithmic Stage 3 diversity step.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,14 +61,14 @@ _memory:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented.
+- [x] Success criteria measurable.
+- [x] Dependencies identified: predecessor 014/003 removal already landed in `b564013c0e`.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Residual inactive LLM-model reranker confidence, explainability, audit, doc, and test vestiges removed from active surfaces.
+- [x] MMR diversity reranker preserved and verified independent of cross-encoder imports.
+- [x] Verification evidence captured: `tsc`, affected test set, and broad subsystem subset.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -71,14 +77,17 @@ _memory:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+MCP server search pipeline cleanup with behavior-neutral removal of dead code paths and docs.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Confidence scoring**: Uses margin, channel agreement, and anchor density. The inert reranker confidence factor is removed and not redistributed.
+- **Result explainability**: Reports live signals only; dead `reranker_support` is removed.
+- **Decision audit**: Tracks live decision metrics only; stale `rerankTriggerRate` is removed.
+- **Stage 3 reranking**: Keeps algorithmic MMR diversity reranking and MPAB chunk collapse.
+- **Documentation and tests**: Align active references and fixtures to the MMR-only pipeline.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Search results still flow through fusion, MMR diversity reranking, MPAB chunk collapse, effective-score/floor-score handling, confidence scoring, explainability, and response envelopes. The removed paths no longer add model-based reranker confidence or audit metadata.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -86,18 +95,20 @@ _memory:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Confidence scoring | Computes result confidence drivers. | Remove inert reranker factor, driver, fields, and signal helper. | `tsc` 0 errors; affected confidence tests pass. |
+| Explainability | Builds result support signals and summaries. | Remove dead `reranker_support`. | Affected result-confidence/explainability tests pass. |
+| Decision audit | Reports search decision metrics. | Remove `rerankTriggerRate`. | Decision-envelope and decision-audit fixtures pass. |
+| Stage 3 MMR | Algorithmic diversity reranking. | Preserve. | MMR independence confirmed; `stage3-rerank-regression` passes MMR-only. |
+| Active docs | Operator-facing current behavior. | Align to MMR diversity reranking plus MPAB chunk collapse; remove retired flags and stale sidecar/cloud rows. | Docs changed in packet; active docs no longer describe cross-encoder/local GGUF sidecar reranking as live. |
+| Tests | Regression coverage for scoring, envelopes, retrieval, and pipeline behavior. | Remove reranker-specific assertions/fixtures/cases; strengthen high-confidence fixture without reranker boost. | Affected set: 14 files / 493 tests passed; broad subset: 107 files / 2371 tests passed. |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: verified zero live assignments of `rerankerScore` in `mcp_server/lib` plus handlers.
+- Consumers of changed symbols: affected scoring, envelope, audit, search, and Stage 3 regression tests updated and passing.
+- Matrix axes: code vestiges, active docs, tests, MMR preservation, historical records.
+- Algorithm invariant: MMR remains independent algorithmic vector math and does not share cross-encoder imports.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -106,19 +117,21 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirm predecessor scope: 014/003 core removal landed in commit `b564013c0e`.
+- [x] Classify active MMR as distinct from LLM-model reranking.
+- [x] Identify out-of-scope historical records to preserve.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] **A. Code cleanup**: Remove inert confidence reranker factor, dead explainability signal, stale audit metric, and stale stage2-fusion comment.
+- [x] **B. Documentation alignment**: Align Stage 3 docs to MMR diversity reranking plus MPAB chunk collapse; remove retired flags and stale sidecar/cloud reranker references from active docs.
+- [x] **C. Test cleanup**: Remove reranker-specific assertions, fixtures, and cases; strengthen high-confidence fixture without reranker boost.
+- [x] **Post-deprecation doc alignment**: Correct root README, embedder pluggability docs, tool counts, and the stale embedder-default test assertion.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Run `node_modules/.bin/tsc --noEmit -p mcp_server/tsconfig.json`.
+- [x] Run affected 14-file / 493-test set.
+- [x] Run broad search/scoring/pipeline/retrieval subsystem subset: 107 files / 2371 tests.
+- [x] Document full 528-file suite limitation and substitution evidence.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -128,9 +141,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Type check | All compiled mcp_server files; catches broken imports to deleted reranker modules. | `node_modules/.bin/tsc --noEmit -p mcp_server/tsconfig.json` |
+| Affected regression | Confidence, scoring, envelopes, search, Stage 3, and decision-audit affected files. | Vitest, 14 files / 493 tests |
+| Broad subsystem regression | Search/scoring/pipeline/retrieval subsystem subset. | Vitest, 107 files / 2371 tests |
+| Manual/code review evidence | MMR preservation and no live `rerankerScore` assignments. | Source inspection and grep evidence recorded in brief |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -140,7 +154,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| 014/003 core removal commit `b564013c0e` | Internal predecessor | Complete | 017 would not be a residual cleanup layer without the core module/gate removal. |
+| MMR Stage 3 path | Internal algorithmic behavior | Preserved | Removing it would violate the operator directive. |
+| Existing Vitest suites | Internal verification | Available | Used for affected and broad subsystem verification. |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -148,8 +164,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A verified regression attributable to removing residual reranker vestiges, broken imports, incorrect docs, or MMR behavior drift.
+- **Procedure**: Revert the 017 cleanup changeset, then re-run `tsc`, affected tests, and Stage 3 MMR regression before retrying a narrower cleanup.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -161,17 +177,18 @@ Required inventories:
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
+Phase 1 (Classify) ──► Phase 2A (Code) ─────┐
+                         Phase 2B (Docs) ───┼──► Phase 3 (Verify)
+                         Phase 2C (Tests) ──┘
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| Classify | Predecessor commit `b564013c0e` | Code, Docs, Tests |
+| Code | Classify | Verify |
+| Docs | Classify | Verify |
+| Tests | Code | Verify |
+| Verify | Code, Docs, Tests | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -181,10 +198,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup/Classify | Medium | Completed |
+| Core Implementation | Medium | Completed |
+| Verification | Medium | Completed |
+| **Total** | | **Completed before packet authoring** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -193,19 +210,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] No data migrations involved.
+- [x] No new feature flag added.
+- [x] MMR flag `SPECKIT_MMR` remains the relevant Stage 3 diversity control.
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Revert the 017 cleanup changeset.
+2. Re-run `node_modules/.bin/tsc --noEmit -p mcp_server/tsconfig.json`.
+3. Re-run affected confidence, search, envelope, decision-audit, and Stage 3 tests.
+4. Re-check active docs for MMR-only wording before a corrected follow-up.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No.
+- **Reversal procedure**: N/A.
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -216,4 +233,3 @@ LEVEL 2 PLAN (~140 lines)
 - Phase dependencies, effort estimation
 - Enhanced rollback procedures
 -->
-

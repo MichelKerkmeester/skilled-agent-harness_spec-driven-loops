@@ -29,7 +29,6 @@ export interface SearchDecisionSlaMetrics {
   p95LatencyMs: number;
   decisionClassDistribution: Record<string, number>;
   refusalRate: number;
-  rerankTriggerRate: number;
   latencyByStage: Record<string, { averageMs: number; p95Ms: number }>;
 }
 
@@ -74,7 +73,6 @@ function computeSearchDecisionSlaMetrics(
   const decisionClassDistribution: Record<string, number> = {};
   const stageLatencies: Record<string, number[]> = {};
   let refusalCount = 0;
-  let rerankTriggerCount = 0;
 
   for (const envelope of envelopes) {
     const decisionClass = envelope.trustTree?.decision ?? 'unknown';
@@ -110,7 +108,6 @@ function computeSearchDecisionSlaMetrics(
     p95LatencyMs: round(percentile(latencies, 0.95)),
     decisionClassDistribution,
     refusalRate: envelopes.length > 0 ? round(refusalCount / envelopes.length) : 0,
-    rerankTriggerRate: envelopes.length > 0 ? round(rerankTriggerCount / envelopes.length) : 0,
     latencyByStage,
   };
 }

@@ -54,13 +54,11 @@ describe('W13 decision audit', () => {
       buildSearchDecisionEnvelope({
         requestId: 'a',
         queryPlan: createEmptyQueryPlan(),
-        rerankGateDecision: { shouldRerank: true, reason: 'eligible:complex-query', triggers: ['complex-query'] },
         latencyMs: 10,
       }),
       buildSearchDecisionEnvelope({
         requestId: 'b',
         queryPlan: createEmptyQueryPlan(),
-        rerankGateDecision: { shouldRerank: false, reason: 'none', triggers: [] },
         latencyMs: 20,
       }),
     ];
@@ -70,6 +68,5 @@ describe('W13 decision audit', () => {
     expect(metrics.count).toBe(2);
     expect(metrics.averageLatencyMs).toBe(15);
     expect(metrics.p95LatencyMs).toBe(20);
-    expect(metrics.rerankTriggerRate).toBe(0.5);
   });
 });

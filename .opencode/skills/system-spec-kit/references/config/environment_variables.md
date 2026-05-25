@@ -23,7 +23,6 @@ These variables control memory system behavior, token budgets, script execution,
 | `MEMORY_BASE_PATH` | Current working directory | Workspace root path |
 | `MEMORY_ALLOWED_PATHS` | `specs/,.opencode/` (Note: effective read boundary also includes `process.cwd()` and `~/.claude/` at runtime. For tighter isolation, explicitly set this variable to restrict filesystem access.) | Additional allowed paths (colon-separated) |
 | `DEBUG_TRIGGER_MATCHER` | `false` | Enable verbose trigger matching logs |
-| `ENABLE_RERANKER` | `false` | Enable experimental ML reranking (requires Python) |
 | `SPECKIT_STRICT_SCHEMAS` | `true` | Enforce strict Zod MCP tool input validation for the 54-tool `mk-spec-memory` surface (`false` allows unknown passthrough keys and is development-only) |
 | `SPECKIT_RESPONSE_TRACE` | `false` | Include provenance-rich `scores`/`source`/`trace` fields by default in search responses |
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | Auto-detected | Fallback chain for database directory path. `SPEC_KIT_DB_DIR` checked first, then `SPECKIT_DB_DIR` |
@@ -32,8 +31,6 @@ These variables control memory system behavior, token budgets, script execution,
 | `SPECKIT_DYNAMIC_INIT` | `true` | Inject dynamic startup instructions with memory/index summary at MCP initialization |
 | `SPECKIT_CONTEXT_HEADERS` | `true` | Prepend contextual tree headers to markdown search content chunks |
 | `SPECKIT_FILE_WATCHER` | `false` | Enable chokidar-based real-time markdown re-indexing |
-| `RERANKER_LOCAL` | `false` | Enable local GGUF reranker path in Stage 3 (`Ollama runtime`) |
-| `SPECKIT_RERANKER_MODEL` | `models/bge-reranker-v2-m3.Q4_K_M.gguf` | Optional model path override for local reranker |
 
 Codex note: point `SPEC_KIT_DB_DIR` at a writable directory outside read-only repo paths (for example under your home directory or `/tmp`) so the MCP server can derive and create the active SQLite database safely. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
 
@@ -127,9 +124,6 @@ DEBUG=1 echo '{"specFolder":"001-feature","sessionSummary":"..."}' | node script
 # Use a writable database directory and let the runtime derive the sqlite filename
 SPEC_KIT_DB_DIR=/tmp/spec-kit-db node mcp_server/dist/context-server.js
 
-# Enable experimental reranker
-ENABLE_RERANKER=true node mcp_server/dist/context-server.js
-
 # Quiet mode for CI/CD
 SPECKIT_QUIET=true bash scripts/spec/validate.sh specs/001-feature/
 
@@ -173,10 +167,7 @@ These flags are managed via `isFeatureEnabled()` in `rollout-policy.ts` with 100
 |------|---------|--------|---------|
 | `SPECKIT_RRF` | ON | S0 | Reciprocal Rank Fusion for multi-channel result merging |
 | `SPECKIT_SCORE_NORMALIZATION` | ON | S1 | Min-max normalization of scores to [0,1] range (both RRF and composite) |
-| `SPECKIT_MMR` | ON | S1 | Graph-guided MMR diversity reranking |
-| `SPECKIT_CROSS_ENCODER` | ON | S1 | Cross-encoder reranking gate |
-| `RERANKER_LOCAL` | OFF | S9 | Route Stage 3 reranking to local GGUF model instead of remote provider |
-| `SPECKIT_RERANKER_MODEL` | `models/bge-reranker-v2-m3.Q4_K_M.gguf` | S9 | Relative or absolute model path for local reranker |
+| `SPECKIT_MMR` | ON | S1 | Graph-guided MMR diversity reranking (algorithmic; the only Stage 3 reranker) |
 | `SPECKIT_MULTI_QUERY` | ON | S1 | Multi-query expansion for deep-mode retrieval |
 | `SPECKIT_SEARCH_FALLBACK` | ON | S2 | Quality-aware 3-tier search fallback chain (PI-A2) |
 | `SPECKIT_EMBEDDING_EXPANSION` | ON | S3 | Query expansion for embedding retrieval. Suppressed when classification = "simple" |
@@ -273,7 +264,7 @@ These flags are managed via `isFeatureEnabled()` in `rollout-policy.ts` with 100
 | `SPECKIT_RRF_K_EXPERIMENTAL` | ON | R-011 | Per-intent NDCG@10-maximizing K selection over sweep grid {10,20,40,60,80,100,120}. Falls back to K=60 when OFF |
 | `SPECKIT_TYPED_TRAVERSAL` | ON | R-011 | Sparse-first policy + intent-aware edge traversal. Density < 0.5 constrains to 1-hop. Score: seedScore * edgePrior * hopDecay * freshness |
 | `SPECKIT_EMPTY_RESULT_RECOVERY_V1` | ON | R-011 | Structured recovery payloads for empty/weak search results. Classifies outcome, diagnoses cause, suggests alternatives |
-| `SPECKIT_RESULT_CONFIDENCE_V1` | ON | R-011 | Per-result calibrated confidence from 4 weighted factors: margin (0.35), channel agreement (0.30), reranker (0.20), anchor density (0.15) |
+| `SPECKIT_RESULT_CONFIDENCE_V1` | ON | R-011 | Per-result calibrated confidence from 3 weighted factors: margin (0.35), channel agreement (0.30), anchor density (0.15) |
 | `SPECKIT_BATCH_LEARNED_FEEDBACK` | ON | R-011 | Weekly batch feedback learning. Confidence-weighted signals (strong=1.0, medium=0.5, weak=0.1), min-support 3 sessions, boost-cap 0.10. Audit-only until promoted |
 | `SPECKIT_ASSISTIVE_RECONSOLIDATION` | ON | R-011 | Three-tier assistive reconsolidation: auto-merge (>=0.96), review (>=0.88), keep-separate (<0.88). Review-tier logs recommendation only |
 | `SPECKIT_RESULT_EXPLAIN_V1` | ON | R-011 | Two-tier result explainability: slim (summary + topSignals) and debug (per-channel breakdown). Set `false` to disable |
@@ -325,7 +316,6 @@ These flags are managed via `isFeatureEnabled()` in `rollout-policy.ts` with 100
 
 | Flag | Default | Sprint | Purpose |
 |------|---------|--------|---------|
-| `SPECKIT_RERANKER_TIMEOUT_MS` | `30000` | S9 | Timeout in milliseconds for local reranker inference |
 | `SPECKIT_RECENCY_DECAY_DAYS` | `30` | S7 | Recency decay window in days for access tracking |
 | `SPECKIT_TOKEN_BUDGET` | auto | S5 | Override token budget for hybrid search responses |
 | `SPECKIT_FOLDER_TOP_K` | `5` | S3 | Top-K folder candidates for folder-scoped retrieval |

@@ -158,7 +158,6 @@ describe('D5 Phase A: empty result recovery', () => {
           intentAdjustedScore: 0.18,
           rrfScore: 0.16,
           fts_score: 0.03,
-          rerankerScore: 0.05,
           anchorMetadata: [],
         }),
         makeResult(2, {
@@ -167,7 +166,6 @@ describe('D5 Phase A: empty result recovery', () => {
           intentAdjustedScore: 0.17,
           rrfScore: 0.15,
           fts_score: 0.02,
-          rerankerScore: 0.04,
           anchorMetadata: [],
         }),
       ],
@@ -196,9 +194,6 @@ describe('D5 Phase A: empty result recovery', () => {
         makeResult(1, {
           intentAdjustedScore: 0.95,
           rrfScore: 0.93,
-          rerankerScore: 0.91,
-          rerankerApplied: true,
-          scoringMethod: 'reranker',
           sources: ['semantic', 'fts'],
           anchorMetadata: [
             { id: 'decision-1', type: 'decision' },
@@ -209,9 +204,6 @@ describe('D5 Phase A: empty result recovery', () => {
         makeResult(2, {
           intentAdjustedScore: 0.91,
           rrfScore: 0.89,
-          rerankerScore: 0.87,
-          rerankerApplied: true,
-          scoringMethod: 'reranker',
           sources: ['semantic', 'fts'],
           anchorMetadata: [
             { id: 'decision-2', type: 'decision' },
@@ -222,9 +214,6 @@ describe('D5 Phase A: empty result recovery', () => {
         makeResult(3, {
           intentAdjustedScore: 0.88,
           rrfScore: 0.86,
-          rerankerScore: 0.84,
-          rerankerApplied: true,
-          scoringMethod: 'reranker',
           sources: ['semantic', 'fts'],
           anchorMetadata: [
             { id: 'decision-3', type: 'decision' },
@@ -253,7 +242,6 @@ describe('D5 Phase A: empty result recovery', () => {
           intentAdjustedScore: 0.74,
           rrfScore: 0.71,
           fts_score: 0.64,
-          rerankerScore: 0.69,
           anchorMetadata: [{ id: 'decision-1', type: 'decision' }],
         }),
       ],
@@ -296,7 +284,6 @@ describe('D5 Phase A: empty result recovery', () => {
           intentAdjustedScore: 0.18,
           rrfScore: 0.16,
           fts_score: 0.03,
-          rerankerScore: 0.05,
           anchorMetadata: [],
         }),
         makeResult(2, {
@@ -305,7 +292,6 @@ describe('D5 Phase A: empty result recovery', () => {
           intentAdjustedScore: 0.17,
           rrfScore: 0.15,
           fts_score: 0.02,
-          rerankerScore: 0.04,
           anchorMetadata: [],
         }),
         makeResult(3, {
@@ -314,7 +300,6 @@ describe('D5 Phase A: empty result recovery', () => {
           intentAdjustedScore: 0.16,
           rrfScore: 0.14,
           fts_score: 0.01,
-          rerankerScore: 0.03,
           anchorMetadata: [],
         }),
         makeResult(4, {
@@ -323,7 +308,6 @@ describe('D5 Phase A: empty result recovery', () => {
           intentAdjustedScore: 0.15,
           rrfScore: 0.13,
           fts_score: 0.01,
-          rerankerScore: 0.02,
           anchorMetadata: [],
         }),
         makeResult(5, {
@@ -332,7 +316,6 @@ describe('D5 Phase A: empty result recovery', () => {
           intentAdjustedScore: 0.14,
           rrfScore: 0.12,
           fts_score: 0.01,
-          rerankerScore: 0.01,
           anchorMetadata: [],
         }),
       ],

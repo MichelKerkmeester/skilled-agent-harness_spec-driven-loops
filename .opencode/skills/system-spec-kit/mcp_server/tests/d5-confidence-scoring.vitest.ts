@@ -100,7 +100,6 @@ describe('computeResultConfidence() — label thresholds', () => {
       id: 1,
       score: 0.95,
       sources: ['semantic', 'lexical'],
-      rerankerScore: 0.88,
       anchorMetadata: [{ id: 'state', type: 'state' }, { id: 'summary', type: 'summary' }],
     });
     const [conf] = computeResultConfidence([result, makeResult({ id: 2, score: 0.15 })]);
@@ -109,7 +108,7 @@ describe('computeResultConfidence() — label thresholds', () => {
   });
 
   it('labels "low" when value < 0.4', () => {
-    // Zero score, single channel, no reranker, no anchors → very low confidence
+    // Zero score, single channel, no anchors -> very low confidence
     const result = makeResult({ id: 1, score: 0, sources: [] });
     const [conf] = computeResultConfidence([result]);
     expect(conf.confidence.label).toBe('low');
@@ -208,34 +207,6 @@ describe('computeResultConfidence() — multi-channel agreement', () => {
   });
 });
 
-// -- computeResultConfidence — reranker support --
-
-describe('computeResultConfidence() — reranker support', () => {
-  it('adds "reranker_boost" driver when rerankerScore is present', () => {
-    const result = makeResult({ id: 1, score: 0.8, rerankerScore: 0.72, rerankerApplied: true });
-    const [conf] = computeResultConfidence([result]);
-    expect(conf.confidence.drivers).toContain('reranker_boost');
-  });
-
-  it('does NOT add "reranker_boost" when rerankerApplied is false (fallback score)', () => {
-    const result = makeResult({ id: 1, score: 0.8, rerankerScore: 0.72 });
-    const [conf] = computeResultConfidence([result]);
-    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-  });
-
-  it('does NOT add "reranker_boost" when rerankerScore is absent', () => {
-    const result = makeResult({ id: 1, score: 0.8 });
-    const [conf] = computeResultConfidence([result]);
-    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-  });
-
-  it('does NOT add "reranker_boost" when rerankerScore is NaN', () => {
-    const result = makeResult({ id: 1, score: 0.8, rerankerScore: NaN });
-    const [conf] = computeResultConfidence([result]);
-    expect(conf.confidence.drivers).not.toContain('reranker_boost');
-  });
-});
-
 // -- computeResultConfidence — anchor density --
 
 describe('computeResultConfidence() — anchor density', () => {
@@ -305,7 +276,7 @@ describe('computeResultConfidence() — score resolution', () => {
 
 describe('computeResultConfidence() — drivers list', () => {
   it('returns empty drivers array when no factors contributed', () => {
-    // Score=0, no channels, no reranker, no anchors, next score is similar (small margin)
+    // Score=0, no channels, no anchors, next score is similar (small margin)
     const results = makeResults([0.01, 0.009]);
     const [conf] = computeResultConfidence(results);
     expect(Array.isArray(conf.confidence.drivers)).toBe(true);
@@ -318,15 +289,12 @@ describe('computeResultConfidence() — drivers list', () => {
       id: 1,
       score: 0.95,
       sources: ['semantic', 'lexical'],
-      rerankerScore: 0.9,
-      rerankerApplied: true,
       anchorMetadata: [{ id: 'state' }, { id: 'summary' }],
     };
     const [conf] = computeResultConfidence([result, makeResult({ id: 2, score: 0.2 })]);
     expect(conf.confidence.drivers.length).toBeGreaterThan(1);
     expect(conf.confidence.drivers).toContain('large_margin');
     expect(conf.confidence.drivers).toContain('multi_channel_agreement');
-    expect(conf.confidence.drivers).toContain('reranker_boost');
     expect(conf.confidence.drivers).toContain('anchor_density');
   });
 });
@@ -341,7 +309,7 @@ describe('assessRequestQuality()', () => {
 
   it('returns "good" when most results are high/medium confidence and top score is high', () => {
     const results: ScoredResult[] = [
-      { id: 1, score: 0.95, sources: ['semantic', 'lexical'], rerankerScore: 0.9 },
+      { id: 1, score: 0.95, sources: ['semantic', 'lexical'] },
       { id: 2, score: 0.85, sources: ['semantic', 'lexical'] },
       { id: 3, score: 0.8, sources: ['semantic', 'lexical'] },
     ];

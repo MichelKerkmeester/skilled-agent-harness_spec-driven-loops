@@ -88,7 +88,6 @@ stress suites -> search pipeline under test
 ```text
 search-quality/
 +-- baseline.vitest.ts
-+-- cross-encoder-cap.vitest.ts
 +-- harness-telemetry-export.vitest.ts
 +-- measurement-output.vitest.ts
 +-- ndcg-mrr.vitest.ts

@@ -114,16 +114,6 @@ The framework adds four layers on top of the base platform:
          └──────────────────────────────────────────┘
 ```
 
-### What's Shipped Recently
-
-The code graph now lives in `.opencode/skills/system-code-graph/` with its own MCP boundary. A follow-on rename established `mk_code_index` as the standalone server identity and `mcp__mk_code_index__*` as the live documentation namespace.
-
-Recent work also tightened the public surface without turning this README into a changelog: the local llama-cpp embedding path now has stronger failure reporting plus token-aware truncation.
-
-### Embedder Architecture
-
-The memory MCP is pluggable out of the box, no code change to swap. **mk-spec-memory** defaults to `sbert/nomic-ai/CodeRankEmbed` (768 dim, MIT) through the Ollama -> hf-local Nomic cascade. `SPECKIT_POSITIONAL_SCORING` stays default-off, with the configured opt-in reranker `cross-encoder/ms-marco-MiniLM-L-6-v2`. See the canonical narrative at [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md).
-
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:quick-start -->
@@ -430,7 +420,7 @@ Every search passes through 4 stages:
 
 - **Candidate generation** - Parallel retrieval from the active channels plus constitutional injection where applicable.
 - **Fusion** - RRF-based scoring with post-fusion signals such as co-activation, FSRS decay, interference control, intent weights and graph/session boosts when enabled.
-- **Rerank** - Cross-encoder reranking with chunk reassembly, a minimum Stage 3 gate of 4 candidates and compatibility-only length-penalty wiring that resolves to a neutral `1.0` multiplier. `getRerankerStatus()` exposes latency plus cache hits, misses, stale hits and evictions. If the reranker is unavailable, Stage 2 order is preserved with degraded metadata.
+- **Rerank** - MMR diversity reranking (algorithmic, gated by `SPECKIT_MMR`) with MPAB chunk reassembly and compatibility-only length-penalty wiring that resolves to a neutral `1.0` multiplier.
 - **Filtering** - State/quality filtering, confidence annotation, token-budget enforcement and final response shaping without mutating post-rerank scores.
 
 &nbsp;
@@ -550,7 +540,7 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 &nbsp;
 #### Embedding Providers
 
-The embedder layer is pluggable. Swap defaults via env vars without touching code. Canonical narrative: [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md).
+The mk-spec-memory text embedder layer is pluggable. Swap defaults through the memory embedder controls without touching code. Canonical narrative: [embedder_pluggability.md](.opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md).
 
 - **Ollama (nomic-embed-text-v1.5)** - Default since 2026-05-19 (ADR-013/014). Free, local, 768d retrieval-tuned. Pull once with `ollama pull nomic-embed-text:v1.5`. The cascade falls back to `jina-embeddings-v3` (1024d Q4_K_M) when nomic isn't pulled.
 - **HuggingFace Local** - Fallback when the Ollama probe fails. Free, local, 768d q8 ONNX.
@@ -864,7 +854,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 **system-spec-kit**
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
-- Integrates the 39-tool memory surface with constitutional-tier support, session bootstrap and hybrid 5-channel retrieval
+- Integrates the 35-tool memory surface with constitutional-tier support, session bootstrap and hybrid 5-channel retrieval
 - Manages the manifest template source, 20 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
 **system-code-graph**
@@ -1205,12 +1195,12 @@ Canonical native server set:
 
 | Server                 | Tools | Purpose                                                                |
 | ---------------------- | ----- | ---------------------------------------------------------------------- |
-| `mk-spec-memory`      | 39    | Cognitive memory, session recovery, causal/eval tools and graph loops  |
+| `mk-spec-memory`      | 35    | Cognitive memory, session recovery, causal/eval tools and graph loops  |
 | `mk_skill_advisor`     | 9     | Gate 2 advisor routing plus skill-graph scan/query/status/validation   |
-| `mk_code_index`        | 11    | Structural code graph, `detect_changes` and impact analysis            |
+| `mk_code_index`        | 8     | Structural code graph, `detect_changes` and impact analysis            |
 | `code_mode`            | 7     | External tool orchestration via TypeScript execution                   |
 | `sequential_thinking`  | 1     | Structured multi-step reasoning for complex problems                   |
-| **Total**              | **67** |                                                                        |
+| **Total**              | **60** |                                                                        |
 
 Lifecycle guardrails: `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` use the shared idle-timeout knob `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`. Orphan cleanup is documented in [.opencode/scripts/README.md](.opencode/scripts/README.md); the checked-in LaunchAgent is only a template until an operator copies and loads it.
 
@@ -1305,7 +1295,7 @@ The other shipped skills will continue working unchanged: `sk-doc` will still va
 The memory server reads configuration from environment variables:
 
 - **`VOYAGE_API_KEY`** (optional) - Voyage AI cloud embeddings (opt-in only, gated by egress guard)
-- **`SPECKIT_EMBEDDER`** (optional) - Override the default embedder id (default: `ollama-nomic-v1.5` since ADR-013/014 2026-05-19; was previously `ollama-jina-v3`). See [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md) for the registered list.
+- **`SPECKIT_EMBEDDER`** (optional) - Override the default embedder id (default: `ollama-nomic-v1.5` since ADR-013/014 2026-05-19; was previously `ollama-jina-v3`). See [embedder_pluggability.md](.opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md) for the registered list.
 - **`SPECKIT_RERANK_LAYER`** (optional) - Retrieval-rescue layer toggle, default `true` per ADR-011. Set to `false` to disable.
 - **`HF_EMBEDDINGS_DTYPE`** (optional) - hf-local fallback dtype (default: `q8`. Also: `fp32`, `fp16`, `q4`, `int8`, `uint8`, `bnb4`)
 - **`OPENAI_API_KEY`** (optional) - OpenAI embeddings (alternative)

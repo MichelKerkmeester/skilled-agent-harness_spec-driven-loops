@@ -36,7 +36,7 @@ Use this folder for retrieval flow changes that need a clear stage boundary. The
 | `orchestrator.ts` | Runs the four stages in order and assembles `PipelineResult`. |
 | `stage1-candidate-gen.ts` | Generates candidates from hybrid, vector, multi-concept, and expansion channels. |
 | `stage2-fusion.ts` | Applies score fusion and retrieval signals. |
-| `stage3-rerank.ts` | Applies cross-encoder reranking, MMR, and MPAB chunk collapse. |
+| `stage3-rerank.ts` | Applies MMR diversity reranking and MPAB chunk collapse. |
 | `stage4-filter.ts` | Filters by state and tier, adds annotations, and checks score immutability. |
 | `types.ts` | Shared data contracts and score invariant helpers. |
 

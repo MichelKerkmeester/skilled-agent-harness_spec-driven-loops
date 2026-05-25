@@ -155,8 +155,6 @@ lib/search/
 +-- hybrid-search.ts
 +-- bm25-index.ts
 +-- sqlite-fts.ts
-+-- cross-encoder.ts
-+-- local-reranker.ts
 +-- graph-search-fn.ts
 +-- entity-density.ts        # Cached entity-density signal for graph-preservation gate (60s TTL)
 +-- intent-classifier.ts
@@ -267,7 +265,6 @@ Main flow:
 | `vectorSearch` | Function | Reads vector similarity results from the vector index. |
 | `initializeDb` | Function | Creates or opens the search database schema. |
 | `pipeline/orchestrator.ts` | Module | Runs staged retrieval when the pipeline path is used. |
-| `cross-encoder.ts` | Module | Reranks candidates with remote or local providers when enabled. |
 | `bm25-index.ts` | Module | Provides direct lexical search helpers. |
 | `sqlite-fts.ts` | Module | Provides FTS5-backed lexical helpers. |
 

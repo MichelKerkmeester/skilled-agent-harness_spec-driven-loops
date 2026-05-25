@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // REQ-D5-004: Per-result calibrated confidence scoring
 //
-// PURPOSE: Combine margin, multi-channel agreement, reranker support,
+// PURPOSE: Combine margin, multi-channel agreement,
 // and anchor density into a single calibrated confidence score per
 // result. V1 uses heuristic scoring only — no LLM calls in the hot path.
 //
@@ -24,7 +24,6 @@
 // IMPORTANT: This module only models ranking confidence for retrieval ordering.
 // It is not freshness authority and it is not a substitute for StructuralTrust.
 import { resolveEffectiveScore, type PipelineRow } from './pipeline/types.js';
-import { isRerankerExpected } from './search-flags.js';
 
 declare const rankingConfidenceBrand: unique symbol;
 
@@ -33,10 +32,12 @@ declare const rankingConfidenceBrand: unique symbol;
 const HIGH_THRESHOLD = 0.7;
 const LOW_THRESHOLD = 0.4;
 
-// Weights for each confidence factor (must sum to 1.0)
+// Weights for each active confidence factor. The former reranker weight (0.20)
+// was removed with the LLM reranker; its term was already inert (always 0), so
+// rawValue stays capped at 0.80 exactly as before — behavior-neutral. The 0.20
+// is intentionally NOT redistributed (that would change confidence scores).
 const WEIGHT_MARGIN = 0.35;
 const WEIGHT_CHANNEL_AGREEMENT = 0.30;
-const WEIGHT_RERANKER = 0.20;
 const WEIGHT_ANCHOR_DENSITY = 0.15;
 
 // Margin thresholds (gap between top score and next score, 0–1 scale)
@@ -67,7 +68,6 @@ export type RequestQualityLabel = 'good' | 'weak' | 'gap';
 export type ConfidenceDriver =
   | 'large_margin'
   | 'multi_channel_agreement'
-  | 'reranker_boost'
   | 'anchor_density';
 
 /** Per-result confidence payload. */
@@ -107,10 +107,6 @@ export interface ScoredResult extends Record<string, unknown> {
   intentAdjustedScore?: number;
   /** Raw cosine similarity (0–100 scale from sqlite-vec). */
   similarity?: number;
-  /** Reranker cross-encoder score if available. */
-  rerankerScore?: number;
-  /** Explicit reranker application marker from the pipeline. */
-  rerankerApplied?: boolean;
   /** Score origin metadata for distinguishing real reranks from fallbacks. */
   scoringMethod?: string;
   /** Anchor metadata array populated by Stage 2. */
@@ -175,14 +171,6 @@ function countAnchors(result: ScoredResult): number {
   return result.anchorMetadata.length;
 }
 
-function hasRerankerSignal(result: ScoredResult): boolean {
-  const hasFiniteRerankerScore = typeof result.rerankerScore === 'number' && Number.isFinite(result.rerankerScore);
-  if (!hasFiniteRerankerScore) return false;
-  if (result.scoringMethod === 'fallback') return false;
-  if (result.rerankerApplied === true) return true;
-  return typeof result.scoringMethod === 'string' && result.scoringMethod.trim().length > 0;
-}
-
 /**
  * Compute the score margin between result[i] and result[i+1].
  * Tail results have no successor, so they receive no synthetic margin boost.
@@ -215,7 +203,6 @@ export function asRankingConfidenceValue(value: number): RankingConfidenceValue 
  * Each result receives a confidence object derived from:
  *   - Score margin to the next result (35% weight)
  *   - Number of channels that contributed this result (30%)
- *   - Presence of a reranker score (20%)
  *   - Anchor density in anchorMetadata (15%)
  *
  * @param results - Ranked results (highest score first). Ordering is assumed.
@@ -233,7 +220,6 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
     const margin = computeMargin(score, nextScore);
     const channelCount = countChannels(result);
     const anchorCount = countAnchors(result);
-    const hasReranker = hasRerankerSignal(result);
 
     // Factor scores (each 0–1)
     const marginFactor = margin >= LARGE_MARGIN_THRESHOLD
@@ -265,7 +251,6 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
     const drivers: ConfidenceDriver[] = [];
     if (margin >= LARGE_MARGIN_THRESHOLD) drivers.push('large_margin');
     if (channelCount >= STRONG_CHANNEL_AGREEMENT_MIN) drivers.push('multi_channel_agreement');
-    if (hasReranker) drivers.push('reranker_boost');
     if (anchorCount >= 2) drivers.push('anchor_density');
 
       return {

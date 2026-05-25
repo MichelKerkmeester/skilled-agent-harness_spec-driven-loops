@@ -47,7 +47,6 @@ The fallback chain (`searchWithFallback()`) provides resilience. When `SPECKIT_S
 | `mcp_server/lib/search/dynamic-token-budget.ts` | Lib | Tier-aware token budget computation |
 | `mcp_server/lib/search/folder-relevance.ts` | Lib | Folder relevance scoring and two-phase retrieval |
 | `mcp_server/lib/search/folder-discovery.ts` | Lib | Spec folder description cache for folder-scoped search |
-| `mcp_server/lib/search/local-reranker.ts` | Lib | Local GGUF reranker |
 | `mcp_server/lib/search/search-flags.ts` | Lib | Feature flag registry for all channel and stage toggles |
 | `mcp_server/lib/cognitive/co-activation.ts` | Lib | Co-activation spreading (0.25x boost, top 5) |
 | `mcp_server/lib/scoring/mpab-aggregation.ts` | Lib | MPAB chunk-to-memory aggregation and reassembly |

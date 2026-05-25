@@ -35,7 +35,6 @@ export type SignalLabel =
   | 'session_boosted'
   | 'causal_boosted'
   | 'community_boosted'
-  | 'reranker_support'
   | 'feedback_boosted'
   | 'validation_quality'
   | `anchor:${string}`;
@@ -127,13 +126,6 @@ function extractSignals(row: PipelineRow): SignalLabel[] {
     signals.push('session_boosted');
   }
 
-  // Reranker support: row has a rerankerScore distinct from stage2Score
-  const rerankerScore = typeof row.rerankerScore === 'number' ? row.rerankerScore : null;
-  const stage2Score = typeof row.stage2Score === 'number' ? row.stage2Score : null;
-  if (rerankerScore !== null && stage2Score !== null && rerankerScore !== stage2Score) {
-    signals.push('reranker_support');
-  }
-
   // Feedback boost (learned trigger weight)
   const learnedBoost = typeof row.learnedBoost === 'number' ? row.learnedBoost : 0;
   if (learnedBoost > 0) {
@@ -207,7 +199,6 @@ function composeSummary(topSignals: SignalLabel[], rank: number): string {
     if (signal === 'session_boosted') return 'session attention';
     if (signal === 'causal_boosted') return 'causal graph';
     if (signal === 'community_boosted') return 'community detection';
-    if (signal === 'reranker_support') return 'reranker confirmation';
     if (signal === 'feedback_boosted') return 'learned trigger';
     if (signal === 'validation_quality') return 'high spec quality';
     if (signal.startsWith('anchor:')) {

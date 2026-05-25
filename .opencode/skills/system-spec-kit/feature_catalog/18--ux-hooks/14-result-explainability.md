@@ -15,7 +15,7 @@ When you get search results, you often want to know why each result ranked where
 
 ## 2. CURRENT REALITY
 
-The explainability module extracts active scoring signals from each `PipelineRow`, detecting: `semantic_match`, `lexical_match` (FTS/BM25 channel attribution), `graph_boosted` / `causal_boosted` / `community_boosted` (from `graphContribution`), `session_boosted` (from `sessionBoost`), `reranker_support` (distinct reranker vs stage2 score), `feedback_boosted` (learned trigger boost), `validation_quality` (quality score > 0.7), and `anchor:*` labels from anchor metadata.
+The explainability module extracts active scoring signals from each `PipelineRow`, detecting: `semantic_match`, `lexical_match` (FTS/BM25 channel attribution), `graph_boosted` / `causal_boosted` / `community_boosted` (from `graphContribution`), `session_boosted` (from `sessionBoost`), `feedback_boosted` (learned trigger boost), `validation_quality` (quality score > 0.7), and `anchor:*` labels from anchor metadata.
 
 The output shape per result:
 ```

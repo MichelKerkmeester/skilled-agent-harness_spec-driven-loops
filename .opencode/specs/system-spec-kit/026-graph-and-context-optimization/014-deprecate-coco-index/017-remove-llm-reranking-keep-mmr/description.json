@@ -1,0 +1,39 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
+  "description": "Documents the completed residual cleanup layer that removes inactive LLM-model reranker confidence, explainability, audit, doc, and test vestiges whil",
+  "keywords": [
+    "documents",
+    "completed",
+    "residual",
+    "cleanup",
+    "layer",
+    "removes",
+    "inactive",
+    "llm-model",
+    "reranker",
+    "confidence",
+    "explainability",
+    "audit",
+    "doc",
+    "test",
+    "vestiges",
+    "while",
+    "preserving",
+    "algorithmic",
+    "mmr",
+    "diversity",
+    "reranking"
+  ],
+  "lastUpdated": "2026-05-25T19:42:42.174Z",
+  "specId": "017",
+  "folderSlug": "remove-llm-reranking-keep-mmr",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-deprecate-coco-index"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-05-26_20-29__017-is-the-completion-cleanup-layer-of-the-014.md"
+  ]
+}

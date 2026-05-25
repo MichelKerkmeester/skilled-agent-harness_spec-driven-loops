@@ -25,7 +25,7 @@ Stage 2 (Fusion and Signal Integration) applies scoring/enrichment in a fixed or
 
 **Update:** Stage 2 now uses the shared `resolveEffectiveScore()` function from `pipeline/types.ts` (aliased as `resolveBaseScore`) for consistent score resolution. The five-factor composite weights auto-normalize to sum 1.0 after partial overrides. Cross-variant RRF fusion no longer double-counts convergence bonuses (per-variant bonus subtracted before cross-variant bonus). Adaptive fusion core weights (semantic + keyword + recency) normalize after doc-type adjustments.
 
-Stage 3 (Rerank and Aggregate) handles optional cross-encoder reranking (gated by `SPECKIT_CROSS_ENCODER`) and MPAB chunk collapse with parent reassembly preserving document order.
+Stage 3 (Rerank and Aggregate) handles MMR diversity reranking and MPAB chunk collapse with parent reassembly preserving document order.
 
 Stage 4 (Filter and Annotate) enforces the "no score changes" invariant via dual enforcement: compile-time `Stage4ReadonlyRow` readonly fields plus runtime `verifyScoreInvariant()` assertion checking all six score fields. Within this invariant, it applies memory state filtering, TRM evidence gap detection and annotation metadata.
 
@@ -42,7 +42,7 @@ Stage 4 (Filter and Annotate) enforces the "no score changes" invariant via dual
 | `mcp_server/lib/search/pipeline/orchestrator.ts` | Lib | Pipeline orchestration — dispatches Stage 1-4 in sequence |
 | `mcp_server/lib/search/pipeline/stage1-candidate-gen.ts` | Lib | Stage 1: candidate generation across search channels |
 | `mcp_server/lib/search/pipeline/stage2-fusion.ts` | Lib | Stage 2: fusion and signal integration (session boost, causal boost, co-activation, graph signals, FSRS, intent, feedback) |
-| `mcp_server/lib/search/pipeline/stage3-rerank.ts` | Lib | Stage 3: cross-encoder reranking and MPAB chunk collapse |
+| `mcp_server/lib/search/pipeline/stage3-rerank.ts` | Lib | Stage 3: MMR diversity reranking and MPAB chunk collapse |
 | `mcp_server/lib/search/pipeline/stage4-filter.ts` | Lib | Stage 4: filter and annotate with score-immutability invariant (`Stage4ReadonlyRow`, `verifyScoreInvariant()`) |
 | `mcp_server/lib/search/pipeline/types.ts` | Lib | Shared pipeline types including `resolveEffectiveScore()` |
 | `mcp_server/lib/search/hybrid-search.ts` | Lib | Entry point: invokes orchestrator, applies post-pipeline steps |

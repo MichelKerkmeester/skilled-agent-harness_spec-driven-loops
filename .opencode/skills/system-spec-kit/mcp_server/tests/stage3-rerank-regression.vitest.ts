@@ -1,23 +1,17 @@
-// TEST: Stage 3 Rerank Regression
+// TEST: Stage 3 Rerank Regression (MMR diversity + chunk-collapse)
+// Model-based cross-encoder reranking was removed; Stage 3 now performs only
+// algorithmic MMR diversity (gated by SPECKIT_MMR) + MPAB chunk-collapse.
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { PipelineRow } from '../lib/search/pipeline/types';
 
 const flagState = {
-  crossEncoder: true,
   mmr: false,
 };
 
-const rerankResultsMock = vi.fn();
 const applyMMRMock = vi.fn();
 const requireDbMock = vi.fn();
 
 vi.mock('../lib/search/search-flags', () => ({
-  isCrossEncoderEnabled: () => flagState.crossEncoder,
   isMMREnabled: () => flagState.mmr,
-}));
-
-vi.mock('../lib/search/cross-encoder', () => ({
-  rerankResults: (...args: unknown[]) => rerankResultsMock(...args),
 }));
 
 vi.mock('@spec-kit/shared/algorithms/mmr-reranker', () => ({
@@ -29,181 +23,21 @@ vi.mock('../utils', () => ({
   toErrorMessage: (error: unknown) => error instanceof Error ? error.message : String(error),
 }));
 
-import { __testables } from '../lib/search/pipeline/stage3-rerank';
 import { executeStage3 } from '../lib/search/pipeline/stage3-rerank';
 import { INTENT_LAMBDA_MAP } from '../lib/search/intent-classifier';
 
-const RERANK_OPTIONS = {
-  rerank: true,
-  applyLengthPenalty: false,
-  limit: 5,
-  queryPlan: {
-    intent: 'unknown',
-    complexity: 'complex',
-    artifactClass: 'unknown',
-    authorityNeed: 'unknown',
-    selectedChannels: ['vector'],
-    skippedChannels: [],
-    routingReasons: [],
-    fallbackPolicy: { mode: 'none', reason: 'test fixture' },
-  },
-} as const;
-
-describe('stage3-rerank regression (F-16)', () => {
+describe('stage3 MMR diversity regression', () => {
   beforeEach(() => {
-    flagState.crossEncoder = true;
     flagState.mmr = false;
-    rerankResultsMock.mockReset();
     applyMMRMock.mockReset();
     requireDbMock.mockReset();
   });
 
-  it('uses the cross-encoder path when the gate is enabled', async () => {
-    flagState.crossEncoder = true;
-    rerankResultsMock.mockResolvedValue([
-      { id: 1, score: 0.95, rerankerScore: 0.95 },
-      { id: 2, score: 0.85, rerankerScore: 0.85 },
-      { id: 3, score: 0.75, rerankerScore: 0.75 },
-      { id: 4, score: 0.65, rerankerScore: 0.65 },
-    ]);
-
-    const result = await __testables.applyCrossEncoderReranking('query', [
-      { id: 1, score: 0.6, content: 'alpha' },
-      { id: 2, score: 0.5, content: 'beta' },
-      { id: 3, score: 0.4, content: 'gamma' },
-      { id: 4, score: 0.3, content: 'delta' },
-    ], RERANK_OPTIONS);
-
-    expect(result.applied).toBe(true);
-    expect(result.provider).toBe('cross-encoder');
-    expect(rerankResultsMock).toHaveBeenCalledOnce();
-  });
-
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
-  it('floors negative cross-encoder scores at rerank output boundary', async () => {
-    rerankResultsMock.mockResolvedValue([
-      { id: 1, score: -0.9, rerankerScore: -0.7 },
-      { id: 2, score: -0.5, rerankerScore: -0.4 },
-      { id: 3, score: -0.4, rerankerScore: -0.3 },
-      { id: 4, score: -0.2, rerankerScore: -0.1 },
-    ]);
-
-    const input: PipelineRow[] = [
-      { id: 1, score: 0.8, content: 'alpha' },
-      { id: 2, score: 0.7, content: 'beta' },
-      { id: 3, score: 0.6, content: 'gamma' },
-      { id: 4, score: 0.5, content: 'delta' },
-    ];
-
-    const result = await __testables.applyCrossEncoderReranking('query', input, RERANK_OPTIONS);
-
-    expect(result.applied).toBe(true);
-    for (const row of result.rows) {
-      const score = typeof row.score === 'number' ? row.score : Number.NaN;
-      const rerankerScore = typeof row.rerankerScore === 'number' ? row.rerankerScore : Number.NaN;
-      expect(score).toBeGreaterThanOrEqual(0);
-      expect(rerankerScore).toBeGreaterThanOrEqual(0);
-    }
-  });
-
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
-  it('preserves attentionScore as an independent signal after reranking', async () => {
-    rerankResultsMock.mockResolvedValue([
-      { id: 1, score: 0.92, rerankerScore: 0.92 },
-      { id: 2, score: 0.61, rerankerScore: 0.61 },
-      { id: 3, score: 0.55, rerankerScore: 0.55 },
-      { id: 4, score: 0.41, rerankerScore: 0.41 },
-    ]);
-
-    const input: PipelineRow[] = [
-      { id: 1, score: 0.6, attentionScore: 0.17, content: 'alpha' },
-      { id: 2, score: 0.5, attentionScore: 0.04, content: 'beta' },
-      { id: 3, score: 0.4, attentionScore: 0.03, content: 'gamma' },
-      { id: 4, score: 0.3, attentionScore: 0.02, content: 'delta' },
-    ];
-
-    const result = await __testables.applyCrossEncoderReranking('query', input, RERANK_OPTIONS);
-
-    expect(result.applied).toBe(true);
-    expect(result.rows[0]?.score).toBe(0.92);
-    expect(result.rows[0]?.rerankerScore).toBe(0.92);
-    expect(result.rows[0]?.attentionScore).toBe(0.17);
-  });
-
-  it('pins exact trigger matches ahead of cross-encoder reranked rows', async () => {
-    rerankResultsMock.mockResolvedValue([
-      { id: 2, score: 0.95, rerankerScore: 0.95 },
-      { id: 1, score: 0.88, rerankerScore: 0.88 },
-      { id: 4, score: 0.71, rerankerScore: 0.71 },
-      { id: 3, score: 0.12, rerankerScore: 0.12 },
-    ]);
-
-    const result = await executeStage3({
-      scored: [
-        { id: 1, score: 0.9, content: 'semantic hit' },
-        { id: 2, score: 0.8, content: 'lexical hit' },
-        { id: 3, score: 0.7, triggerScore: 1, exactTriggerMatch: true, content: 'exact trigger hit' },
-        { id: 4, score: 0.6, content: 'other hit' },
-      ],
-      config: {
-        query: 'exact trigger phrase',
-        searchType: 'hybrid',
-        limit: 5,
-        includeArchived: false,
-        includeConstitutional: false,
-        includeContent: false,
-        minState: 'WARM',
-        applyStateLimits: false,
-        useDecay: true,
-        rerank: true,
-        applyLengthPenalty: false,
-        enableDedup: false,
-        enableSessionBoost: false,
-        enableCausalBoost: false,
-        trackAccess: false,
-        detectedIntent: null,
-        intentConfidence: 0,
-        intentWeights: null,
-        queryPlan: RERANK_OPTIONS.queryPlan,
-      },
-    });
-
-    expect(rerankResultsMock).toHaveBeenCalledOnce();
-    expect(result.reranked.map((row) => row.id)).toEqual([3, 2, 1, 4]);
-    expect(result.reranked[0]?.score).toBe(0.7);
-  });
-
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
-  it('skips cross-encoder reranking for 3-result candidate sets and keeps 4-result sets eligible', async () => {
-    rerankResultsMock.mockResolvedValue([
-      { id: 1, score: 0.91, rerankerScore: 0.91 },
-      { id: 2, score: 0.81, rerankerScore: 0.81 },
-      { id: 3, score: 0.71, rerankerScore: 0.71 },
-      { id: 4, score: 0.61, rerankerScore: 0.61 },
-    ]);
-
-    const threeRowResult = await __testables.applyCrossEncoderReranking('query', [
-      { id: 1, score: 0.8, content: 'alpha' },
-      { id: 2, score: 0.7, content: 'beta' },
-      { id: 3, score: 0.6, content: 'gamma' },
-    ], RERANK_OPTIONS);
-
-    expect(threeRowResult.applied).toBe(false);
-    expect(rerankResultsMock).not.toHaveBeenCalled();
-
-    const fourRowResult = await __testables.applyCrossEncoderReranking('query', [
-      { id: 1, score: 0.8, content: 'alpha' },
-      { id: 2, score: 0.7, content: 'beta' },
-      { id: 3, score: 0.6, content: 'gamma' },
-      { id: 4, score: 0.5, content: 'delta' },
-    ], RERANK_OPTIONS);
-
-    expect(fourRowResult.applied).toBe(true);
-    expect(rerankResultsMock).toHaveBeenCalledOnce();
+  afterEach(() => {
+    vi.clearAllMocks();
   });
 
   it('keeps non-embedded rows near their original rank after MMR diversification', async () => {
-    flagState.crossEncoder = false;
     flagState.mmr = true;
     applyMMRMock.mockReturnValue([
       { id: 30, score: 0.74, embedding: new Float32Array([0.3, 0.3]) },
@@ -253,7 +87,6 @@ describe('stage3-rerank regression (F-16)', () => {
   });
 
   it('prefers adaptiveFusionIntent over detectedIntent when choosing the Stage 3 MMR lambda', async () => {
-    flagState.crossEncoder = false;
     flagState.mmr = true;
     applyMMRMock.mockImplementation((candidates: unknown, options: unknown) => {
       expect(Array.isArray(candidates)).toBe(true);

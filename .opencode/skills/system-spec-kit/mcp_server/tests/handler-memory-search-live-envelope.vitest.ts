@@ -8,7 +8,7 @@
 // - Mocked: getGraphReadinessSnapshotFromMarker returns deterministic readiness
 //   snapshots so TC-3 validates handler wiring without depending on repo
 //   graph state.
-// - Deterministic fields: tenantId, queryPlan presence, rerankGateDecision,
+// - Deterministic fields: tenantId, queryPlan presence,
 //   degradedReadiness, pipelineTiming, and audit
 //   JSONL emission.
 // - Derived fields: requestId, timestamp, latencyMs, trustTree decision, and
@@ -109,11 +109,6 @@ function pipelineFixture(overrides: Partial<PipelineResult> = {}): PipelineResul
       stage3: {
         rerankApplied: true,
         rerankProvider: 'fixture',
-        rerankGateDecision: {
-          shouldRerank: true,
-          reason: 'eligible:complex-query',
-          triggers: ['complex-query'],
-        },
         chunkReassemblyStats: {
           collapsedChunkHits: 0,
           chunkParents: 0,
@@ -237,10 +232,6 @@ describe('handleMemorySearch live SearchDecisionEnvelope seam', () => {
     expect(envelope.queryPlan.selectedChannels.length).toBeGreaterThan(0);
     expect(envelope.trustTree).toBeDefined();
     expect(envelope.trustTree?.decision).toEqual(expect.any(String));
-    expect(envelope.rerankGateDecision).toMatchObject({
-      shouldRerank: true,
-      triggers: ['complex-query'],
-    });
     expect(envelope.latencyMs).toEqual(expect.any(Number));
   });
 
@@ -256,7 +247,6 @@ describe('handleMemorySearch live SearchDecisionEnvelope seam', () => {
       tenantId: 'tenant-live-envelope',
       queryPlan: expect.any(Object),
       trustTree: expect.any(Object),
-      rerankGateDecision: expect.any(Object),
       pipelineTiming: expect.objectContaining({
         stage1: 3,
         stage2: 4,

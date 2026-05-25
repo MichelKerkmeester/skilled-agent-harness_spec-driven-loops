@@ -23,7 +23,7 @@ In the dispatch layer (`tools/memory-tools.ts`), the `memory_quick_search` case 
 - `enableDedup: true` — session deduplication is active
 - `includeContent: true` — full content is returned with results
 - `includeConstitutional: true` — constitutional memories are included
-- `rerank: true` — cross-encoder reranking is applied
+- `rerank: true` — Stage 3 reranking (MMR diversity + MPAB chunk collapse) is applied
 
 The constructed `SearchArgs` are passed directly to `handleMemorySearch()`, the same handler used by `memory_search`. There is no separate search path — `memory_quick_search` is a thin delegation layer only.
 

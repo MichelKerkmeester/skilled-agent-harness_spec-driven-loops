@@ -438,7 +438,6 @@ describe('Context Server', () => {
       '../handlers/memory-index-discovery',
       '../handlers/mutation-hooks',
       '../lib/response/envelope',
-      '../lib/search/local-reranker',
       '@spec-kit/shared/embeddings/factory',
     ] as const
 
@@ -1048,8 +1047,6 @@ describe('Context Server', () => {
         createMCPErrorResponse: vi.fn((data: unknown) => ({ content: [{ type: 'text', text: JSON.stringify(data) }], isError: true })),
         wrapForMCP: vi.fn((data: unknown, isError?: boolean) => ({ content: [{ type: 'text', text: JSON.stringify(data) }], isError: isError ?? false })),
       }))
-      vi.doMock('../lib/search/local-reranker', () => ({ disposeLocalReranker: vi.fn() }))
-      vi.doMock('../lib/search/local-reranker.js', () => ({ disposeLocalReranker: vi.fn() }))
       vi.doMock('../lib/ops/job-queue', () => ({ initIngestJobQueue: vi.fn(() => ({ resetCount: 0 })) }))
       vi.doMock('../lib/ops/job-queue.js', () => ({ initIngestJobQueue: vi.fn(() => ({ resetCount: 0 })) }))
       vi.doMock('../lib/search/folder-discovery', () => ({ getSpecsBasePaths: vi.fn(() => options?.watchPaths ?? []) }))

@@ -8,7 +8,6 @@ import { describe, expect, it } from 'vitest';
 import { createEmptyQueryPlan } from '../../lib/query/query-plan.js';
 import {
   attachDegradedReadiness,
-  attachRerankDecision,
   attachShadowDeltas,
   buildSearchDecisionEnvelope,
 } from '../../lib/search/search-decision-envelope.js';
@@ -51,11 +50,6 @@ describe('W8 SearchDecisionEnvelope', () => {
         responsePolicy: { state: 'live', decision: 'cite_results' },
         codeGraph: { trustState: 'stale', canonicalReadiness: 'stale' },
       },
-      rerankGateDecision: {
-        shouldRerank: true,
-        reason: 'eligible:complex-query+high-authority',
-        triggers: ['complex-query', 'high-authority'],
-      },
       shadowDeltas: [{
         recommendation: 'sk-code',
         liveScore: 0.7,
@@ -74,7 +68,6 @@ describe('W8 SearchDecisionEnvelope', () => {
     });
 
     expect(envelope.trustTree?.decision).toBe('degraded');
-    expect(envelope.rerankGateDecision?.triggers).toEqual(['complex-query', 'high-authority']);
     expect(envelope.shadowDeltas?.[0]?.dominantLane).toBe('semantic_shadow');
     expect(envelope.degradedReadiness?.trustState).toBe('stale');
     expect(envelope.tenantId).toBe('tenant-a');
@@ -87,12 +80,7 @@ describe('W8 SearchDecisionEnvelope', () => {
       timestamp: '2026-04-29T00:00:00.000Z',
     });
 
-    const withRerank = attachRerankDecision(base, {
-      shouldRerank: false,
-      reason: 'no_eligible_ambiguity_or_disagreement',
-      triggers: [],
-    });
-    const withShadow = attachShadowDeltas(withRerank, [{
+    const withShadow = attachShadowDeltas(base, [{
       liveScore: 0.3,
       shadowScore: 0.4,
       delta: 0.1,
@@ -101,8 +89,6 @@ describe('W8 SearchDecisionEnvelope', () => {
     }]);
     const complete = attachDegradedReadiness(withShadow, { freshness: 'empty', trustState: 'absent' });
 
-    expect(base.rerankGateDecision).toBeUndefined();
-    expect(complete.rerankGateDecision?.shouldRerank).toBe(false);
     expect(complete.shadowDeltas).toHaveLength(1);
     expect(complete.degradedReadiness?.freshness).toBe('empty');
   });

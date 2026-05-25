@@ -53,7 +53,6 @@ function createMockResult(overrides: Partial<RawSearchResult> = {}): RawSearchRe
     rrfScore: 0.68,
     intentAdjustedScore: 0.73,
     score: 0.55,
-    rerankerScore: 0.88,
     attentionScore: 0.77,
     triggerPhrases: ['alpha', 'beta'],
     created_at: '2026-01-01T00:00:00.000Z',
@@ -147,7 +146,6 @@ describe('MCP Protocol Response Envelope (T536)', () => {
       fusion: 0.68,
       composite: 0.73,
       intentAdjusted: 0.73,
-      rerank: 0.88,
       attention: 0.77,
     }));
 
