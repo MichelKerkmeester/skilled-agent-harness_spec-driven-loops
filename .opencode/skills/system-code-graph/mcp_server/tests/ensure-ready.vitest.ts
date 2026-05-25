@@ -91,7 +91,7 @@ describe('ensure-ready', () => {
     mocks.getLastGitHeadMock.mockReturnValue(null);
     mocks.getLastGoldVerificationMock.mockReturnValue(null);
     mocks.getStoredCodeGraphScopeMock.mockReturnValue({
-      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
       label: 'end-user code only',
       source: 'default',
     });

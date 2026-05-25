@@ -145,7 +145,6 @@ export function getDefaultConfig(
     '**/external/**',
     '**/z_future/**',
     '**/z_archive/**',
-    '**/mcp-coco-index/mcp_server/**',
     ...scopePolicy.excludedSkillGlobs,
     ...scopePolicy.excludedAgentGlobs,
     ...scopePolicy.excludedCommandGlobs,

@@ -235,8 +235,8 @@ describe('code-graph sibling readiness emission', () => {
       recentErrors: [],
     });
     mocks.getStoredCodeGraphScope.mockReturnValue({
-      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
-      label: 'end-user code only; .opencode skill, agent, command, specs and plugins excluded; mcp-coco-index/mcp_server excluded',
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
+      label: 'end-user code only; .opencode skill, agent, command, specs and plugins excluded',
       includeSkills: false,
       includedSkillsList: 'none',
       includeAgents: false,

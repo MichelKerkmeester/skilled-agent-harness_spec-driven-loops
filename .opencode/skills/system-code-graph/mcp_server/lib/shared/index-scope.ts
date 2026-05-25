@@ -52,7 +52,6 @@ export const EXCLUDED_FOR_CODE_GRAPH = [
   compileSegmentPattern('vendor'),
   compileSegmentPattern('z_future'),
   compileSegmentPattern('z_archive'),
-  /(^|\/)mcp-coco-index\/mcp_server(\/|$)/i,
 ] as const;
 
 export function shouldIndexForCodeGraph(

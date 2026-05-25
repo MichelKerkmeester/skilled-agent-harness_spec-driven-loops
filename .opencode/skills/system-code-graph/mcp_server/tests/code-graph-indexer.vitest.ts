@@ -358,7 +358,7 @@ describe('indexer-types', () => {
 
       expect(config.scopePolicy.includeSkills).toBe(false);
       expect(config.scopePolicy.includedSkillsList).toBe('none');
-      expect(config.scopePolicy.fingerprint).toBe('code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded');
+      expect(config.scopePolicy.fingerprint).toBe('code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none');
       expect(config.excludeGlobs).toContain('**/.opencode/skills/**');
       expect(config.excludeGlobs).toContain('**/.opencode/agents/**');
       expect(config.excludeGlobs).toContain('**/.opencode/commands/**');
@@ -402,7 +402,7 @@ describe('indexer-types', () => {
         includeSkills: true,
         includedSkillsList: 'all',
         source: 'env',
-        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none',
       });
       expect(config.excludeGlobs).not.toContain('**/.opencode/skills/**');
       expect(shouldIndexForCodeGraph('/root/.opencode/skills/sk-doc/example.ts', config.scopePolicy)).toBe(true);
@@ -426,17 +426,10 @@ describe('indexer-types', () => {
       expect(config.scopePolicy).toMatchObject({
         includeSkills: false,
         source: 'scan-argument',
-        fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+        fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
       });
       expect(config.excludeGlobs).toContain('**/.opencode/skills/**');
       expect(shouldIndexForCodeGraph('/root/.opencode/skills/sk-doc/example.ts', config.scopePolicy)).toBe(false);
-    });
-
-    it('keeps mcp-coco-index/mcp_server excluded even when skill indexing is enabled', () => {
-      const config = getDefaultConfig('/root', resolveIndexScopePolicy({ includeSkills: true, env: {} }));
-
-      expect(config.excludeGlobs).toContain('**/mcp-coco-index/mcp_server/**');
-      expect(shouldIndexForCodeGraph('/root/.opencode/skills/mcp-coco-index/mcp_server/index.ts', config.scopePolicy)).toBe(false);
     });
 
     // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
@@ -537,7 +530,7 @@ describe('indexer-types', () => {
       });
 
       expect(policy.fingerprint).toBe(policyReordered.fingerprint);
-      expect(policy.fingerprint).toBe('code-graph-scope:v2:skills=list[sk-code-review,sk-doc]:agents=all:commands=none:specs=none:plugins=all:mcp-coco-index=excluded');
+      expect(policy.fingerprint).toBe('code-graph-scope:v2:skills=list[sk-code-review,sk-doc]:agents=all:commands=none:specs=none:plugins=all');
       expect(parseIndexScopePolicyFromFingerprint({
         fingerprint: policy.fingerprint,
         source: policy.source,
@@ -550,7 +543,7 @@ describe('indexer-types', () => {
         source: 'scan-argument',
       });
       expect(parseIndexScopePolicyFromFingerprint({
-        fingerprint: 'code-graph-scope:v1:skills=included:mcp-coco-index=excluded',
+        fingerprint: 'code-graph-scope:v1:skills=included',
       })).toBeNull();
     });
 
@@ -561,7 +554,7 @@ describe('indexer-types', () => {
         env: {},
       });
 
-      expect(policy.fingerprint).toBe('code-graph-scope:v3:skills=none:agents=none:commands=none:specs=none:plugins=none:includeGlobs=[lib%2F**%2F*.ts,src%2F**%2F*.ts]:excludeGlobs=[**%2F*.test.ts,**%2Ffixtures%2F**]:mcp-coco-index=excluded');
+      expect(policy.fingerprint).toBe('code-graph-scope:v3:skills=none:agents=none:commands=none:specs=none:plugins=none:includeGlobs=[lib%2F**%2F*.ts,src%2F**%2F*.ts]:excludeGlobs=[**%2F*.test.ts,**%2Ffixtures%2F**]');
       expect(parseIndexScopePolicyFromFingerprint({
         fingerprint: policy.fingerprint,
         source: policy.source,

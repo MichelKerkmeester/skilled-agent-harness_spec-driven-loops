@@ -84,8 +84,8 @@ describe('code graph scope readiness', () => {
       setCodeGraphScope(policy);
 
       expect(getStoredCodeGraphScope()).toEqual({
-        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
-        label: 'end-user code only; opted-in .opencode folders: skills; mcp-coco-index/mcp_server excluded',
+        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none',
+        label: 'end-user code only; opted-in .opencode folders: skills',
         includeSkills: true,
         includedSkillsList: 'all',
         includeAgents: false,
@@ -162,11 +162,11 @@ describe('code graph scope readiness', () => {
       writeTrackedNode(tempDir);
       setCodeGraphMetadata(
         CODE_GRAPH_SCOPE_FINGERPRINT_KEY,
-        'code-graph-scope:v1:skills=excluded:mcp-coco-index=excluded',
+        'code-graph-scope:v1:skills=excluded',
       );
       setCodeGraphMetadata(
         CODE_GRAPH_SCOPE_LABEL_KEY,
-        'end-user code only; .opencode/skill and mcp-coco-index/mcp_server excluded',
+        'end-user code only; .opencode/skill excluded',
       );
       setCodeGraphMetadata(CODE_GRAPH_SCOPE_SOURCE_KEY, 'default');
 

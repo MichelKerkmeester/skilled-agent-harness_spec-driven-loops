@@ -27,10 +27,10 @@ import {
 
 describe('F-018: shouldAutoRescan policy', () => {
   const matchingScope = {
-    fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+    fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
   };
   const mismatchedScope = {
-    fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+    fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none',
   };
 
   function makeArgs(overrides: Partial<AutoRescanPolicyArgs> = {}): AutoRescanPolicyArgs {
@@ -146,12 +146,12 @@ describe('F-007: blocked full-scan payload surfaces diagnostics on data', () => 
       inlineIndexPerformed: false,
       reason: 'candidate manifest drift: indexable file set has changed since last scan',
       activeScope: {
-        fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+        fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
         label: 'end-user code only',
         source: 'default',
       },
       storedScope: {
-        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none',
         label: 'skills included',
         source: 'env',
       },
@@ -286,7 +286,7 @@ describe('F-019: code_graph_verify scope-aware preflight', () => {
       })),
       setLastGoldVerification: vi.fn(),
       getStoredCodeGraphScope: vi.fn(() => ({
-        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none',
         label: 'skills included',
         source: 'env',
       })),

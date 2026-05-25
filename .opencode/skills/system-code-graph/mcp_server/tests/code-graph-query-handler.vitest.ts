@@ -226,12 +226,12 @@ describe('code-graph-query handler', () => {
       inlineIndexPerformed: false,
       reason: 'candidate manifest drift: indexable file set has changed since last scan',
       activeScope: {
-        fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+        fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
         label: 'end-user code only',
         source: 'default',
       },
       storedScope: {
-        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none',
         label: 'skills included',
         source: 'env',
       },

@@ -140,7 +140,6 @@ function buildFingerprint(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'
     `commands=${policy.includeCommands ? 'all' : 'none'}`,
     `specs=${policy.includeSpecs ? 'all' : 'none'}`,
     `plugins=${policy.includePlugins ? 'all' : 'none'}`,
-    'mcp-coco-index=excluded',
   ];
   if (policy.includeGlobs.length === 0 && policy.excludeGlobs.length === 0) {
     return baseSegments.join(':');
@@ -148,10 +147,9 @@ function buildFingerprint(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'
 
   return [
     'code-graph-scope:v3',
-    ...baseSegments.slice(1, -1),
+    ...baseSegments.slice(1),
     `includeGlobs=${encodeGlobList(policy.includeGlobs)}`,
     `excludeGlobs=${encodeGlobList(policy.excludeGlobs)}`,
-    baseSegments[baseSegments.length - 1],
   ].join(':');
 }
 
@@ -166,7 +164,7 @@ function buildLabel(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'>): st
   const includedSuffix = includedFolders.length > 0
     ? `; opted-in .opencode folders: ${includedFolders.join(', ')}`
     : '; .opencode skill, agent, command, specs and plugins excluded';
-  return `end-user code only${includedSuffix}; mcp-coco-index/mcp_server excluded`;
+  return `end-user code only${includedSuffix}`;
 }
 
 function buildIndexScopePolicy(input: {
@@ -260,10 +258,6 @@ export function parseIndexScopePolicyFromFingerprint(input: {
       return null;
     }
     values.set(key, value);
-  }
-
-  if (values.get('mcp-coco-index') !== 'excluded') {
-    return null;
   }
 
   const skillsValue = values.get('skills');

@@ -96,7 +96,7 @@ function parseDoctorActiveScopeFingerprint(fingerprint: string | null): DoctorAc
   }
 
   return {
-    status: values.get('mcp-coco-index') === 'excluded' ? 'active' : 'needs_full_scan',
+    status: values.has('skills') ? 'active' : 'needs_full_scan',
     includedSkills,
     includeAgents: values.get('agents') === 'all',
     includeCommands: values.get('commands') === 'all',
@@ -231,7 +231,7 @@ describe('cg-017 — doctor apply mode', () => {
 
   it('cg-017 treats v2 activeScope as parseable and v1 scope as a full-scan requirement', () => {
     expect(parseDoctorActiveScopeFingerprint(
-      'code-graph-scope:v2:skills=list[sk-code-review,sk-doc]:agents=all:commands=none:specs=all:plugins=none:mcp-coco-index=excluded',
+      'code-graph-scope:v2:skills=list[sk-code-review,sk-doc]:agents=all:commands=none:specs=all:plugins=none',
     )).toEqual({
       status: 'active',
       includedSkills: ['sk-code-review', 'sk-doc'],
@@ -242,7 +242,7 @@ describe('cg-017 — doctor apply mode', () => {
     });
 
     expect(parseDoctorActiveScopeFingerprint(
-      'code-graph-scope:v1:skills=included:mcp-coco-index=excluded',
+      'code-graph-scope:v1:skills=included',
     )).toMatchObject({
       status: 'needs_full_scan',
     });

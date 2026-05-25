@@ -130,7 +130,7 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
     mocks.getLastGoldVerification.mockReturnValue(null);
     mocks.getCodeGraphMetadata.mockReturnValue(null);
     mocks.getStoredCodeGraphScope.mockReturnValue({
-      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
       label: null,
       includeSkills: false,
       includedSkillsList: 'none',
@@ -273,7 +273,7 @@ describe('code_graph_status is side-effect free (criterion E)', () => {
     writeSurfaceMocks.getLastGoldVerification.mockReturnValue(null);
     writeSurfaceMocks.getCodeGraphMetadata.mockReturnValue(null);
     writeSurfaceMocks.getStoredCodeGraphScope.mockReturnValue({
-      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
       label: null,
       includeSkills: false,
       includedSkillsList: 'none',

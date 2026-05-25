@@ -8,8 +8,6 @@ export interface IndexScopePolicy {
 }
 
 export function shouldIndexForCodeGraph(filePath: string, policy: IndexScopePolicy): boolean {
-  if (filePath.includes('mcp-coco-index/mcp_server/')) return false;
-
   if (filePath.includes('.opencode/skills/')) {
     if (policy.includeSkills) {
       if (policy.includedSkillsList === 'all') return true;

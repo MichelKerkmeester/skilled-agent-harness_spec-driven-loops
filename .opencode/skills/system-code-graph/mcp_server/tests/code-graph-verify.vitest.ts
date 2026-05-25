@@ -108,7 +108,7 @@ describe('code-graph verify', () => {
       reason: 'ok',
     });
     mocks.getStoredCodeGraphScope.mockReturnValue({
-      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
       label: 'end-user code only',
       source: 'default',
     });
@@ -359,12 +359,12 @@ describe('code-graph verify', () => {
         scopePreflight: {
           status: 'pass',
           activeScope: {
-            fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+            fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
             label: expect.any(String),
             source: 'default',
           },
           storedScope: {
-            fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+            fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
             label: 'end-user code only',
             source: 'default',
           },
@@ -380,7 +380,7 @@ describe('code-graph verify', () => {
       // and surfaces the canonical { stored, active, recommendation }
       // envelope alongside the normal verification result.
       mocks.getStoredCodeGraphScope.mockReturnValueOnce({
-        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none',
         label: 'skills included',
         source: 'env',
       });

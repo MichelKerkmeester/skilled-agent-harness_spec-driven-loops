@@ -223,8 +223,8 @@ describe('handleCodeGraphScan', () => {
     });
     mocks.getCodeGraphMetadataMock.mockReturnValue(null);
     mocks.getStoredCodeGraphScopeMock.mockReturnValue({
-      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
-      label: 'end-user code only; .opencode skill, agent, command, specs and plugins excluded; mcp-coco-index/mcp_server excluded',
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
+      label: 'end-user code only; .opencode skill, agent, command, specs and plugins excluded',
     });
     mocks.countTrackedSkillFilesMock.mockReturnValue(0);
     mocks.getGraphFreshnessMock.mockReturnValue('fresh');
@@ -398,7 +398,7 @@ describe('handleCodeGraphScan', () => {
     });
     expect(mocks.setLastGitHeadMock).toHaveBeenCalledWith('new-head');
     expect(mocks.setCodeGraphScopeMock).toHaveBeenCalledWith(expect.objectContaining({
-      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
       includeSkills: false,
     }));
   });
@@ -419,7 +419,7 @@ describe('handleCodeGraphScan', () => {
         scopePolicy: expect.objectContaining({
           includeSkills: true,
           source: 'scan-argument',
-          fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+          fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none',
         }),
         excludeGlobs: expect.not.arrayContaining(['**/.opencode/skills/**']),
       }),
@@ -447,7 +447,7 @@ describe('handleCodeGraphScan', () => {
         scopePolicy: expect.objectContaining({
           includeSkills: false,
           source: 'scan-argument',
-          fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+          fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
         }),
         excludeGlobs: expect.arrayContaining(['**/.opencode/skills/**']),
       }),
@@ -475,7 +475,7 @@ describe('handleCodeGraphScan', () => {
           includeSkills: true,
           includedSkillsList: ['sk-code-review', 'sk-doc'],
           source: 'scan-argument',
-          fingerprint: 'code-graph-scope:v2:skills=list[sk-code-review,sk-doc]:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+          fingerprint: 'code-graph-scope:v2:skills=list[sk-code-review,sk-doc]:agents=none:commands=none:specs=none:plugins=none',
         }),
         excludeGlobs: expect.not.arrayContaining(['**/.opencode/skills/**']),
       }),
@@ -1074,8 +1074,8 @@ describe('handleCodeGraphScan', () => {
       },
     });
     mocks.getStoredCodeGraphScopeMock.mockReturnValue({
-      fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
-      label: 'all .opencode skill files included; agent, command, specs and plugins excluded; mcp-coco-index/mcp_server excluded',
+      fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none',
+      label: 'all .opencode skill files included; agent, command, specs and plugins excluded',
       includeSkills: true,
       includedSkillsList: null,
       includeAgents: false,
@@ -1144,8 +1144,8 @@ describe('handleCodeGraphScan', () => {
       },
     });
     mocks.getStoredCodeGraphScopeMock.mockReturnValue({
-      fingerprint: 'code-graph-scope:v3:skills=none:agents=none:commands=none:specs=none:plugins=none:includeGlobs=[**%2F*.ts]:excludeGlobs=[]:mcp-coco-index=excluded',
-      label: 'end-user code only; .opencode skill, agent, command, specs and plugins excluded; mcp-coco-index/mcp_server excluded',
+      fingerprint: 'code-graph-scope:v3:skills=none:agents=none:commands=none:specs=none:plugins=none:includeGlobs=[**%2F*.ts]:excludeGlobs=[]',
+      label: 'end-user code only; .opencode skill, agent, command, specs and plugins excluded',
       source: 'scan-argument',
     });
     mocks.indexFilesMock.mockResolvedValue(withPreParseSkippedCount([{
@@ -1201,8 +1201,8 @@ describe('handleCodeGraphScan', () => {
       },
     });
     mocks.getStoredCodeGraphScopeMock.mockReturnValue({
-      fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
-      label: 'all .opencode skill files included; agent, command, specs and plugins excluded; mcp-coco-index/mcp_server excluded',
+      fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none',
+      label: 'all .opencode skill files included; agent, command, specs and plugins excluded',
       includeSkills: true,
       includedSkillsList: null,
       includeAgents: false,
@@ -1233,7 +1233,7 @@ describe('handleCodeGraphScan', () => {
     expect(payload.status).toBe('ok');
     expect(mocks.persistIndexedFileResultMock).toHaveBeenCalledTimes(5);
     expect(mocks.setCodeGraphScopeMock).toHaveBeenCalledWith(expect.objectContaining({
-      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
     }));
   });
 
@@ -1277,7 +1277,7 @@ describe('handleCodeGraphScan', () => {
     expect(payload.status).toBe('ok');
     expect(mocks.persistIndexedFileResultMock).toHaveBeenCalledTimes(5);
     expect(mocks.setCodeGraphScopeMock).toHaveBeenCalledWith(expect.objectContaining({
-      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
     }));
   });
 
