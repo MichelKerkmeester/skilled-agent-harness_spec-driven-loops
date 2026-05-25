@@ -1,7 +1,7 @@
 ---
 description: Implementation workflow (9 steps): execute pre-planned work. Requires plan.md. Modes :auto, :confirm.
 argument-hint: "<spec-folder> [:auto|:confirm] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan, mcp__cocoindex_code__search
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan
 ---
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
@@ -238,7 +238,7 @@ Missing prerequisites -> guide user to `/speckit:plan` first.
 
 ### Code Search During Plan Review (Step 1)
 
-When reviewing plan.md references to codebase patterns, use CocoIndex semantic search (`mcp__cocoindex_code__search`) to verify that referenced code still exists and find related patterns. Use 2-5 word concept queries. Reserve Grep for exact token verification.
+When reviewing plan.md references to codebase patterns, use Code Graph structural queries plus exact-text Grep to verify that referenced code still exists and find related patterns. Use 2-5 word concept queries. Reserve Grep for exact token verification.
 
 **Execute steps IN ORDER. Mark each ONLY after completing ALL activities. DO NOT SKIP.**
 

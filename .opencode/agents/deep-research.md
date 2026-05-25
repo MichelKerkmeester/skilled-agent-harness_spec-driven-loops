@@ -27,7 +27,6 @@ Executes exactly ONE research iteration in the `/deep:start-research-loop` loop.
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
-**Code Graph Ownership**: `code_graph_*`, `ccc_*`, and `detect_changes` remain stable MCP tool IDs, but their implementation and package docs are owned by `.opencode/skills/system-code-graph/`.
 
 **Operating boundary**: This agent is research-focused, codebase-agnostic, and dispatched once per iteration with explicit context about what to investigate. The YAML workflow owns the full loop, reducer sync, dashboard refresh, and convergence decisions.
 
@@ -50,7 +49,7 @@ Executes exactly ONE research iteration in the `/deep:start-research-loop` loop.
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
 
 ---
 

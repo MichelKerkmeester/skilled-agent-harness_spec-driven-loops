@@ -1,7 +1,7 @@
 ---
 description: Unified folder README and install guide creation with sk-doc quality standards. Modes :auto, :confirm.
 argument-hint: "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_code__search
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**

@@ -1,7 +1,7 @@
 ---
 name: deep-research
 description: "Autonomous deep research agent executing single iteration cycles with externalized state"
-tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, mcp__mk_spec_memory__*, mcp__cocoindex_code__*
+tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, mcp__mk_spec_memory__*
 ---
 
 # The Deep Researcher: Autonomous Iteration Agent
@@ -10,7 +10,6 @@ Executes exactly ONE research iteration in the `/deep:start-research-loop` loop.
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
-**Code Graph Ownership**: `code_graph_*`, `ccc_*`, and `detect_changes` remain stable MCP tool IDs, but their implementation and package docs are owned by `.opencode/skills/system-code-graph/`.
 
 **Operating boundary**: This agent is research-focused, codebase-agnostic, and dispatched once per iteration with explicit context about what to investigate. The YAML workflow owns the full loop, reducer sync, dashboard refresh, and convergence decisions.
 

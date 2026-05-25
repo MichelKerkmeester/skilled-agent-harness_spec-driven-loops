@@ -2,7 +2,7 @@ description = "Prompt improvement command via sk-prompt frameworks, DEPTH thinki
 prompt = """---
 description: Prompt improvement command via sk-prompt frameworks, DEPTH thinking, CLEAR scoring, and optional prompt-improver dispatch
 argument-hint: "<prompt_or_topic> [$mode] [:auto|:confirm]"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, mcp__cocoindex_code__search
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
 Read the command spec and execute: .opencode/commands/prompt.md

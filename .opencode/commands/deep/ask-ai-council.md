@@ -2,7 +2,7 @@
 title: "Deep Council"
 description: Multi-topic deep-ai-council session loop with adjudicator-verdict stability. Modes :auto, :confirm.
 argument-hint: "<deliberation-topic|topics> [:auto|:confirm] [--max-rounds-per-topic=N] [--max-topics=N] [--saturation=N] [--convergence=N] [--spec-folder=PATH] (:auto supports PRE-BOUND SETUP ANSWERS)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__cocoindex_code__search, code_graph_query, code_graph_context
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, code_graph_query, code_graph_context
 ---
 
 > **EXECUTION PROTOCOL -- READ FIRST**
@@ -21,8 +21,8 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory
 >    - `spec_folder`
 >    - `execution_mode`
 > 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
->    - Auto: `assets/deep_ai-council_auto.yaml`
->    - Confirm: `assets/deep_ai-council_confirm.yaml`
+>    - Auto: `assets/deep_ask-ai-council_auto.yaml`
+>    - Confirm: `assets/deep_ask-ai-council_confirm.yaml`
 > 3. Execute the YAML workflow step by step using those resolved values.
 >
 > All content below is reference context for the YAML workflow. Do not treat reference sections as direct instructions to execute.
@@ -382,4 +382,4 @@ Key references:
 
 - Command workflow assets: `.opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml` and `.opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml`
 - Skill package: `.opencode/skills/deep-ai-council/SKILL.md`
-- State hierarchy ADR: `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md`
+- State hierarchy ADR: `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture/decision-record.md`

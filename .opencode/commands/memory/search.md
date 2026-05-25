@@ -113,7 +113,7 @@ The unified context tool runs a hybrid retrieval pipeline with **graph-first rou
 
 - **Structural code graph channel has priority** in the fusion strategy: structural queries (callers, imports, dependencies) are routed to `code_graph_query` first, before semantic or lexical channels
 - Tri-channel retrieval (graph + vector/semantic + FTS5/BM25) with graph results given precedence in the fusion merge
-- CocoIndex semantic search (`mcp__cocoindex_code__search`) integrates as the vector/semantic channel, providing natural-language code discovery alongside indexed-continuity vector search
+- Code Graph structural queries plus exact-text Grep integrates as the vector/semantic channel, providing natural-language code discovery alongside indexed-continuity vector search
 - When graph and semantic channels miss or return weak results, a 3-tier FTS fallback activates: FTS5 full-text → BM25 keyword scoring → Grep/Glob filesystem search. Post-026 FTS5 remediation improved BM25 tokenization and ranking accuracy
 - Intent-adaptive fusion and reranking (weights adapt when `SPECKIT_ADAPTIVE_FUSION` is enabled, including the internal continuity profile: semantic `0.52`, keyword `0.18`, recency `0.07`, graph `0.23`)
 - MMR diversity pruning to reduce redundant chunks, with continuity-oriented Stage 3 passes using a dedicated lambda of `0.65`

@@ -33,8 +33,6 @@
         "_NOTE_5_CLOUD_PROVIDERS": "Cloud tiers are explicit opt-in: add VOYAGE_API_KEY or OPENAI_API_KEY only when you want cloud embeddings; otherwise the cascade keeps everything local. Voyage is embeddings-only here; cloud rerankers (voyage/cohere) were removed in 022/013.",
         "_NOTE_6_GET_VOYAGE_KEY": "Get Voyage key: https://dash.voyageai.com/api-keys",
         "_NOTE_7_GET_OPENAI_KEY": "Get OpenAI key: https://platform.openai.com/api-keys",
-        "_NOTE_8_FEATURE_FLAGS": "Opt-OUT flags (default ON, set =false to disable): SPECKIT_ADAPTIVE_FUSION, SPECKIT_SESSION_BOOST, SPECKIT_CAUSAL_BOOST, SPECKIT_HYDE_ACTIVE, SPECKIT_ENTITY_LINKING, SPECKIT_GRAPH_CONCEPT_ROUTING, SPECKIT_GRAPH_REFRESH_MODE=write_local. Opt-IN flags (default OFF): SPECKIT_CROSS_ENCODER + RERANKER_LOCAL activate the local rerank sidecar (both required post-022/013; no API-key auto-activation). Tier 3 LLM save routing is always on (fail-open to Tier 2 on timeout).",
-        "_NOTE_9_RERANK_OPT_IN": "Rerank sidecar is OPT-IN. To enable: (1) install the system-rerank-sidecar skill, (2) add SPECKIT_CROSS_ENCODER=true + RERANKER_LOCAL=true to this env block, (3) optionally add RERANK_SIDECAR_PORT=8765 to override the default. Not advertised here by default to keep the boot path minimal.",
         "_NOTE_RECOMMENDED_SETUP": "New users: install Ollama (https://ollama.com) and run `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects Ollama and persists nomic-embed-text-v1.5 (768d) as the active embedder — no API keys, all-local."
       }
     },
@@ -64,7 +62,7 @@
       "environment": {
         "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-code-index",
         "_NOTE_1_DB": "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides. Legacy location (.opencode/skills/system-code-graph/mcp_server/database/) is auto-migrated on first launcher startup.",
-        "_NOTE_2_TOOLS": "Registers 11 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*",
+        "_NOTE_2_TOOLS": "Registers 8 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply and detect_changes. MCP namespace: mcp__mk_code_index__*",
         "_NOTE_CONTEXT_BUDGET": "Tool-schema wire payload: ~2,200 tokens (11 tools).",
         "_NOTE_3_INDEX_DEFAULTS": "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control.",
         "_NOTE_4_RESCAN_THRESHOLD": "SPECKIT_CODE_GRAPH_SELECTIVE_REINDEX_THRESHOLD (default 50) controls when the launcher switches from selective rescan to full scan. Raise to delay full-scans (faster session-boot, more drift tolerance); lower to keep the DB tighter. Post-commit hook (.opencode/scripts/git-hooks/post-commit) also invalidates the SQLite when commits exceed SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD (default 100).",
@@ -73,21 +71,6 @@
         "SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_SPECS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_PLUGINS": "false"
-      }
-    },
-    "cocoindex_code": {
-      "type": "local",
-      "command": [
-        ".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc",
-        "mcp"
-      ],
-      "environment": {
-        "COCOINDEX_CODE_ROOT_PATH": ".",
-        "_NOTE_1_INSTALL": "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh",
-        "_NOTE_2_DEFAULT_EMBEDDER": "Default embedder: sbert/nomic-ai/CodeRankEmbed (sentence-transformers wrapper, 768d, no API key). Promoted over jina-v2-base-code in 018 follow-on after corrected-pipeline bench tied bge-code-v1 on hit rate with lower latency. Source: cocoindex_code/embedders/registered_embedders.py:DEFAULT_EMBEDDER_NAME.",
-        "_NOTE_3_DEFAULT_RERANKER": "Default reranker: Qwen/Qwen3-Reranker-0.6B (served by the local system-rerank-sidecar). Promoted over jina-v3 in 023B follow-on after 73-probe expanded-fixture bench (n=3, +1 hit/73, -32% p95, Apache-2.0). Reranker is OPT-IN: add SPECKIT_CROSS_ENCODER=true to activate.",
-        "_NOTE_4_STORAGE": "Index stored in .cocoindex_code/ (gitignored)",
-        "_NOTE_CONTEXT_BUDGET": "Tool-schema wire payload: ~3–5K tokens (3 tools: search, ccc_search, ccc_status; Python descriptions are verbose)."
       }
     },
     "code_mode": {
@@ -99,7 +82,7 @@
       "environment": {
         "UTCP_CONFIG_FILE": ".utcp_config.json",
         "_NOTE_CONTEXT_BUDGET": "Tool-schema wire payload: ~1–3K tokens (varies by .utcp_config.json declared tool surface).",
-        "_NOTE_TOTAL_MCP_BUDGET": "Project-wide MCP context-token rollup (rough, wire-payload estimates at ~3.5 chars/token): mk-spec-memory ~7–8K + mk_code_index ~2.2K + mk_skill_advisor ~2.2K + cocoindex_code ~3–5K + sequential_thinking ~0.3K + code_mode ~1–3K = ~16–21K tokens total. On a 200K-context model this is ~8–11% of total budget; on 1M-context Opus ~2%. mk-spec-memory remains the dominant single-MCP cost. Methodology: source-byte ÷ 3.5 × wire-compression factor 0.5; full repro in .opencode/skills/system-spec-kit/scripts/ (or pipe `tools/list` JSON-RPC to each launcher for exact wire bytes)."
+        "_NOTE_TOTAL_MCP_BUDGET": "Project-wide MCP context-token rollup (rough, wire-payload estimates at ~3.5 chars/token): mk-spec-memory ~7–8K + mk_code_index ~2.2K + mk_skill_advisor ~2.2K + sequential_thinking ~0.3K + code_mode ~1–3K = ~13–16K tokens total. On a 200K-context model this is ~8–11% of total budget; on 1M-context Opus ~2%. mk-spec-memory remains the dominant single-MCP cost. Methodology: source-byte ÷ 3.5 × wire-compression factor 0.5; full repro in .opencode/skills/system-spec-kit/scripts/ (or pipe `tools/list` JSON-RPC to each launcher for exact wire bytes)."
       }
     }
   },

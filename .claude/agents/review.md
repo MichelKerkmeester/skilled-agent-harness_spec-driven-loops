@@ -1,7 +1,7 @@
 ---
 name: review
 description: Code review specialist with pattern validation, quality scoring, and standards enforcement for PRs and code changes
-tools: Read, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__cocoindex_code__*
+tools: Read, Bash, Grep, Glob, mcp__mk_spec_memory__*
 ---
 
 # The Reviewer: Code Quality Guardian

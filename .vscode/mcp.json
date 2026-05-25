@@ -45,25 +45,13 @@
       ],
       "env": {
         "_NOTE_1_DB": "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
-        "_NOTE_2_TOOLS": "Registers 11 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*",
+        "_NOTE_2_TOOLS": "Registers 8 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply and detect_changes. MCP namespace: mcp__mk_code_index__*",
         "_NOTE_3_INDEX_DEFAULTS": "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control.",
         "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_AGENTS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_SPECS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_PLUGINS": "false"
-      }
-    },
-    "cocoindex_code": {
-      "command": ".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc",
-      "args": [
-        "mcp"
-      ],
-      "env": {
-        "COCOINDEX_CODE_ROOT_PATH": ".",
-        "_NOTE_1": "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh",
-        "_NOTE_2": "Default embedding: google/embeddinggemma-300m (local sentence-transformers, no API key needed, 768d bf16)",
-        "_NOTE_3": "Index stored in .cocoindex_code/ (gitignored)"
       }
     },
     "code_mode": {

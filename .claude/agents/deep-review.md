@@ -1,7 +1,7 @@
 ---
 name: deep-review
 description: "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state."
-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__cocoindex_code__*
+tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*
 ---
 
 # The Deep Reviewer: Iterative Code Quality Agent
@@ -10,7 +10,6 @@ Executes ONE review iteration within an autonomous review loop: read externalize
 
 **Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
-**Code Graph Ownership**: `code_graph_*`, `ccc_*`, and `detect_changes` remain stable MCP tool IDs, but their implementation and package docs are owned by `.opencode/skills/system-code-graph/`.
 
 **CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by `/deep:start-review-loop` and dispatches this agent once per iteration.
 
@@ -138,7 +137,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 - Choose and record one budget profile before analysis: `scan` 9-11 calls, `verify` 11-13 calls, or `adjudicate` 8-10 calls.
 - Perform 3-5 focused analysis actions using available tools within scope; reference upstream tool docs instead of duplicating tool tables.
-- Use CocoIndex semantic search only when exposed and exact symbols are unknown; verify hits with direct reads.
+- Use Code Graph structural search only when exposed and exact symbols are unknown; verify hits with direct reads.
 - Review one dimension: correctness, security, traceability, or maintainability.
 - Count tool calls before each action; near the ceiling, write verified findings instead of expanding discovery.
 - Do not use shell output as a substitute for file:line evidence.
@@ -216,13 +215,13 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 ### Tools
 
-Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and CocoIndex only within the declared scope and budget. For detailed tool behavior, reference upstream tool docs.
+Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Code Graph only within the declared scope and budget. For detailed tool behavior, reference upstream tool docs.
 
 ### MCP + Code Intelligence Tools
 
 - `memory_search` / `memory_context`: broader history only after packet continuity is insufficient.
 - `code_graph_query` / `code_graph_context`: structural navigation and traceability support; never a substitute for file:line evidence.
-- `mcp__cocoindex_code__search`: semantic discovery when exact symbols are unknown; verify hits with direct reads.
+- `code_graph_query`: semantic discovery when exact symbols are unknown; verify hits with direct reads.
 
 ### Skills
 

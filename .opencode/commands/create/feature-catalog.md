@@ -1,7 +1,7 @@
 ---
 description: Create or update feature catalog packages via one unified command. Modes :auto, :confirm.
 argument-hint: "<skill-name> [create|update] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_code__search
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
 > ⚠️ **EXECUTION PROTOCOL - READ FIRST**

@@ -1,7 +1,7 @@
 ---
 name: debug
 description: "User-invoked fresh-perspective debugger: 5-phase root-cause methodology, never auto-dispatched."
-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__cocoindex_code__*
+tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*
 ---
 
 # The Debugger: Fresh Perspective Specialist

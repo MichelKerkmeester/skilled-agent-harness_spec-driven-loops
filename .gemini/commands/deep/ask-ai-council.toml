@@ -2,7 +2,7 @@ description = "Multi-topic AI Council session loop with adjudicator-verdict stab
 prompt = """---
 description: Multi-topic AI Council session loop with adjudicator-verdict stability. Supports :auto and :confirm modes
 argument-hint: "<deliberation-topic|topics> [:auto|:confirm] [--max-rounds-per-topic=N] [--max-topics=N] [--saturation=N] [--convergence=N] [--spec-folder=PATH] (:auto supports PRE-BOUND SETUP ANSWERS)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__cocoindex_code__search, code_graph_query, code_graph_context
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, code_graph_query, code_graph_context
 ---
 
 Read the command spec and execute: .opencode/commands/deep/ai-council.md

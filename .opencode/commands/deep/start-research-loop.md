@@ -1,7 +1,7 @@
 ---
 description: Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.
 argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_context, memory_search, mcp__cocoindex_code__search, code_graph_query, code_graph_context
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_context, memory_search, code_graph_query, code_graph_context
 ---
 
 > **Code Graph ownership:** `code_graph_query` and `code_graph_context` stay stable MCP tool IDs; implementation and docs now live under `.opencode/skills/system-code-graph/`.
@@ -226,7 +226,7 @@ For code review and quality auditing, see `/deep:start-review-loop`.
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
 
 ```yaml
 role: Deep Research Loop Manager
@@ -310,7 +310,7 @@ STATUS=FAIL ERROR="[message]"
 - Inject results into strategy.md "Known Context" section
 
 ### Code Context Bootstrap
-- Use CocoIndex (`mcp__cocoindex_code__search`) to find relevant code examples before starting research
+- Use Code Graph (`code_graph_query`) to find relevant code examples before starting research
 - Query: 2-5 word concept descriptions related to the research topic
 - Inject discovered code patterns into strategy.md "Known Context" section alongside memory findings
 

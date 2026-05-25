@@ -128,7 +128,7 @@ mutation_boundaries:
     - ".opencode/commands/doctor/assets/doctor_*.yaml"
     - "mcp_server/database/migration-manifest.json"
     - "**/migration-manifest.json"
-    - "source files indexed by code graph or CocoIndex"
+    - "source files indexed by code graph or Code Graph"
     - "direct SQL outside VACUUM INTO snapshot and snapshot restore"
   validator:
     name: canonical_path_validator

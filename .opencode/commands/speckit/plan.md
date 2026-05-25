@@ -1,7 +1,7 @@
 ---
 description: Planning workflow (8 steps): spec through plan only. Modes :auto, :confirm, :with-phases.
 argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan, mcp__cocoindex_code__search
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan
 ---
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
@@ -132,9 +132,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ├─ --start-state=STATE → requested_start_state = STATE
    ├─ --repair-mode=MODE → repair_mode = MODE
    ├─ --record-relationships=yes|no → collect_relationships = [true|false]
-   ├─ --depends-on=PACKET_ID[,...] → seed manual_relationships.depends_on[]
-   ├─ --related-to=PACKET_ID[,...] → seed manual_relationships.related_to[]
-   └─ --supersedes=PACKET_ID[,...] → seed manual_relationships.supersedes[]
+   ├─ --depends-on=PACKET_ID[...] → seed manual_relationships.depends_on[]
+   ├─ --related-to=PACKET_ID[...] → seed manual_relationships.related_to[]
+   └─ --supersedes=PACKET_ID[...] → seed manual_relationships.supersedes[]
 
 1b. CHECK --phase-folder flag:
    ├─ --phase-folder=<path> provided → auto-resolve spec_path to that child folder path
@@ -388,10 +388,10 @@ After agents return, verify hypotheses by reading identified files.
 |------|------|---------|
 | Exact text/token | Grep | `function authenticate(` |
 | File name/path | Glob | `**/*auth*.ts` |
-| Concept/intent | CocoIndex (`mcp__cocoindex_code__search`) | "authentication middleware" |
+| Concept/intent | Code Graph (`code_graph_query`) | "authentication middleware" |
 | Prior decisions | memory_search | `{ query: "auth decisions" }` |
 
-**Rule**: When exact function name or text is unknown, use CocoIndex FIRST (2-5 word natural language queries), then verify with Grep/Read. Do NOT Grep to guess at patterns when semantic search can find the concept directly.
+**Rule**: When exact function name or text is unknown, use Code Graph FIRST (2-5 word natural language queries), then verify with Grep/Read. Do NOT Grep to guess at patterns when semantic search can find the concept directly.
 
 ---
 

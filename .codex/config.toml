@@ -50,18 +50,6 @@ description = "Code review specialist focused on correctness, risk, and tests."
 child_agents_md = true
 multi_agent = true
 
-[mcp_servers.cocoindex_code]
-args = ["mcp"]
-command = ".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc"
-
-[mcp_servers.cocoindex_code.env]
-COCOINDEX_CODE_ROOT_PATH = "."
-RERANK_SIDECAR_PORT = "8765"
-_NOTE_1 = "Install: bash .opencode/skills/mcp-coco-index/scripts/install.sh"
-_NOTE_2 = "Default embedding: google/embeddinggemma-300m (sentence-transformers, ~620MB, no API key)"
-_NOTE_3 = "Index stored in .cocoindex_code/ (gitignored)"
-_NOTE_RERANK = "CocoIndex MCP uses this port when SPECKIT_CROSS_ENCODER=true to ensure or attach to the system-rerank-sidecar HTTP service."
-
 [mcp_servers.code_mode]
 args = [".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"]
 command = "node"
@@ -75,7 +63,6 @@ command = "node"
 
 [mcp_servers.mk-spec-memory.env]
 EMBEDDINGS_PROVIDER = "auto"
-RERANK_SIDECAR_PORT = "8765"
 SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-spec-memory"
 _NOTE_1_DB = "Default DB (recommended): context-index__ollama__nomic-embed-text-v1.5__768.sqlite (auto-derived from provider+model+dim). Pull `ollama pull nomic-embed-text:v1.5` for the local-first new-user setup; hf-local with nomic-ai/nomic-embed-text-v1.5 is the Python-side fallback."
 _NOTE_2_TOOLS = "Registers 42 tools: memory_save/search/context/match_triggers/index_scan/stats/health/validate/update/delete/bulk_delete/list/drift_why/retention_sweep/get_learning_history/quick_search (16 memory), memory_causal_link/stats (2 causal), memory_ingest_start/status/cancel (3 async ingest), embedder_list/set/status (3 embedder), session_bootstrap/resume/health (3 session), checkpoint_create/delete/list/restore (4 checkpoint), task_preflight/postflight (2 task), council_graph_query/status/upsert/convergence (4 council), deep_loop_graph_query/status/upsert/convergence (4 deep-loop), eval_run_ablation/reporting_dashboard (2 eval). MCP namespace: mcp__mk_spec_memory__*"
@@ -86,7 +73,6 @@ _NOTE_6_GET_VOYAGE_KEY = "Get Voyage key: https://dash.voyageai.com/api-keys"
 _NOTE_7_GET_OPENAI_KEY = "Get OpenAI key: https://platform.openai.com/api-keys"
 _NOTE_8_FEATURE_FLAGS = "Opt-out flags (default ON): SPECKIT_ADAPTIVE_FUSION, SPECKIT_SESSION_BOOST, SPECKIT_CAUSAL_BOOST, SPECKIT_HYDE_ACTIVE, SPECKIT_ENTITY_LINKING, SPECKIT_GRAPH_CONCEPT_ROUTING, SPECKIT_RERANK_LAYER, SPECKIT_GRAPH_REFRESH_MODE=write_local. Tier 3 LLM save routing is always on (fail-open to Tier 2 on timeout)."
 _NOTE_RECOMMENDED_SETUP = "New users: install Ollama (https://ollama.com) and run `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects Ollama and persists nomic-embed-text-v1.5 (768d) as the active embedder — no API keys, all-local."
-_NOTE_RERANK = "Phase 008/003: when SPECKIT_CROSS_ENCODER=true, the launcher probes localhost:RERANK_SIDECAR_PORT and spawns the system-rerank-sidecar skill detached if absent. Sigmoid-normalized Qwen/Qwen3-Reranker-0.6B scores feed Stage 3 of the cross-encoder pipeline."
 _NOTE_SOCKET = "macOS sun_path limit (104 chars): the default bridge socket path under database/daemon-ipc.sock exceeds the limit and the launcher fails with EINVAL. Pin to a short /tmp path so the multi-client bridge can bind."
 
 [mcp_servers.mk_code_index]
@@ -94,7 +80,6 @@ args = [".opencode/bin/mk-code-index-launcher.cjs"]
 command = "node"
 
 [mcp_servers.mk_code_index.env]
-RERANK_SIDECAR_PORT = "8765"
 SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
 SPECKIT_CODE_GRAPH_INDEX_COMMANDS = "false"
 SPECKIT_CODE_GRAPH_INDEX_PLUGINS = "false"
@@ -104,7 +89,6 @@ SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-code-index"
 _NOTE_1_DB = "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides."
 _NOTE_2_TOOLS = "Registers 11 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*"
 _NOTE_3_INDEX_DEFAULTS = "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control."
-_NOTE_RERANK = "Rerank sidecar default port shared with spec-memory and CocoIndex. The system-rerank-sidecar skill must be installed for automatic startup; absence degrades to positional fallback."
 
 [mcp_servers.mk_skill_advisor]
 args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]

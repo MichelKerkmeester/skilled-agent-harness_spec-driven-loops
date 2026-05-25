@@ -1,7 +1,7 @@
 ---
 description: End-to-end SpecKit workflow (14+ steps). Modes: :auto, :confirm, :with-research, :with-phases.
 argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan, mcp__cocoindex_code__search
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan
 ---
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
@@ -506,10 +506,10 @@ Steps 3 (Specification), 6 (Planning + auto 4-agent), 8 (Analysis), 10 (Developm
 |------|------|---------|
 | Exact text/token | Grep | `function authenticate(` |
 | File name/path | Glob | `**/*auth*.ts` |
-| Concept/intent | CocoIndex (`mcp__cocoindex_code__search`) | "authentication middleware" |
+| Concept/intent | Code Graph (`code_graph_query`) | "authentication middleware" |
 | Prior decisions | memory_search | `{ query: "auth decisions" }` |
 
-**Rule**: When exact function name or text is unknown, use CocoIndex FIRST (2-5 word natural language queries), then verify with Grep/Read. Do NOT Grep to guess at patterns when semantic search can find the concept directly.
+**Rule**: When exact function name or text is unknown, use Code Graph FIRST (2-5 word natural language queries), then verify with Grep/Read. Do NOT Grep to guess at patterns when semantic search can find the concept directly.
 
 ---
 

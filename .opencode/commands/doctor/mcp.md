@@ -112,7 +112,6 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 `/doctor:mcp` bundles two MCP infrastructure operations:
 
-- **`install`** — Fresh install (or reinstall) all 6 MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`, `retired-search-code`, `sequential-thinking`, `code-mode`) from their canonical install guides. Checks runtime prerequisites (Node ≥ 20.11.0, Python ≥ 3.11, npm, npx), assesses current state per server, runs install/build/configure steps, and verifies via `mcp-doctor.sh --json`.
 - **`debug`** — Diagnose and repair broken MCP servers. Runs `mcp-doctor.sh --json`, cross-references each failure with its install guide, offers targeted repair (`--fix`), re-verifies, and reports a final status.
 
 These are the only two operations on MCP infrastructure itself. Every other `/doctor*` workflow runs INSIDE the working MCP layer; if MCP is broken, run `/doctor:mcp debug --fix` first.
@@ -152,7 +151,6 @@ These are the only two operations on MCP infrastructure itself. Every other `/do
 # Debug (diagnose + optional repair)
 /doctor:mcp debug                                    # Run diagnostics, report findings, propose repairs
 /doctor:mcp debug --fix                              # Run diagnostics + apply guided repairs
-/doctor:mcp debug --server retired-search-code --fix      # Repair just the retired-search-code server
 /doctor:mcp debug --server mk_code_index --fix       # Repair just System Code Graph
 /doctor:mcp debug --server mk_skill_advisor --fix    # Repair just Skill Advisor
 

@@ -1,7 +1,7 @@
 ---
 description: Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.
 argument-hint: "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_code__search
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
 > ⚠️ **EXECUTION PROTOCOL - READ FIRST**

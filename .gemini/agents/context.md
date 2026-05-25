@@ -12,7 +12,6 @@ For prior-work recovery, this agent follows the same canonical continuity order 
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
 
-**Code Graph Ownership**: `code_graph_*`, `ccc_*`, and `detect_changes` remain stable MCP tool IDs, but their implementation and package docs are owned by `.opencode/skills/system-code-graph/`.
 
 > **Routing Rule**: No other agent performs exploration directly. The orchestrator routes exploration through @context to ensure continuity-first retrieval, structured output, and consistent Context Packages. @context itself is LEAF-only and must not dispatch sub-agents.
 
@@ -36,12 +35,12 @@ This agent is LEAF-only and read-only. Nested sub-agent dispatch and file mutati
 2. **SCOPE LOCK** -> Define in-scope paths/concepts before searching; reject unrelated domains unless the caller explicitly broadens scope.
 3. **CANONICAL CONTINUITY FIRST** -> For prior-work recovery, read `handover.md` -> `_memory.continuity` -> spec docs, then expand with memory tools only when needed.
 4. **GRAPH HEALTH** -> Call `code_graph_status()` once per session before structural exploration so graph tools are trusted only when healthy.
-5. **ROUTE BY QUERY TYPE** -> Choose Code Graph, CocoIndex, Glob, Grep, Read, List, and memory tools according to the decision matrix in Section 2.
+5. **ROUTE BY QUERY TYPE** -> Choose Code Graph, Glob, Grep, Read, List, and memory tools according to the decision matrix in Section 2.
 6. **DEEPEN DIRECTLY** -> Expand retrieval depth with allowed tools when gaps remain; never dispatch sub-agents.
 7. **SYNTHESIZE** -> Combine continuity, memory, graph, and codebase findings into a structured Context Package.
 8. **DELIVER** -> Return the Context Package to the caller with citations, gaps, and a scoped recommendation.
 
-**Key Principle**: Canonical packet docs come first for continuity. Tool routing follows the evidence need: graph for structure, CocoIndex for semantic discovery, Grep for exact text, Glob/List for paths, Read for verification. @context never writes and never delegates.
+**Key Principle**: Canonical packet docs come first for continuity. Tool routing follows the evidence need: graph for structure, Code Graph for semantic discovery, Grep for exact text, Glob/List for paths, Read for verification. @context never writes and never delegates.
 
 ---
 
@@ -55,8 +54,7 @@ This agent is LEAF-only and read-only. Nested sub-agent dispatch and file mutati
 | `List` | Codebase | Directory listing | Inspect known directories without guessing file names |
 | `Glob` | Codebase | File discovery by pattern | Find files by name, extension, or scoped path pattern |
 | `Grep` | Codebase | Exact text/code pattern search | Find symbols, literals, function calls, imports, or known strings |
-| `CocoIndex search` | Semantic | Concept-based code discovery | Find code by intent when exact tokens are unknown |
-| `memory_match_triggers` | Memory (L2) | Trigger phrase matching | Surface saved rules and likely relevant prior work quickly |
+| `code_graph_query` plus `Grep` | `memory_match_triggers` | Memory (L2) | Trigger phrase matching | Surface saved rules and likely relevant prior work quickly |
 | `memory_context` | Memory (L1) | Unified context retrieval | Retrieve intent-aware prior context when packet-local continuity is incomplete |
 | `memory_search` | Memory (L2) | Hybrid search across indexed records | Deep memory retrieval with content and cross-packet evidence |
 | `memory_list` | Memory (L3) | Browse stored memories | Inspect records for a relevant spec folder |
@@ -82,7 +80,7 @@ The frontmatter denies `write`, `edit`, `patch`, `bash`, `task`, `webfetch`, and
 | Directory shape / "what is in this folder" | `List` | `Glob` for scoped patterns if needed | Keep listing within requested scope |
 | File name or extension pattern | `Glob` | `Read` key matches | Use narrow patterns before broad repository-wide patterns |
 | Exact token, symbol, literal, or import | `Grep` | `Read` matching files | Prefer exact matching over semantic search when the token is known |
-| Semantic concept / "how is X implemented" / similar patterns | `CocoIndex search` | `Read` top hits, then `Grep` exact anchors discovered from hits | Use 1-3 short concept queries and do not claim results until verified |
+| Semantic concept / "how is X implemented" / similar patterns | `code_graph_query` plus `Grep` | `Read` top hits, then `Grep` exact anchors discovered from hits | Use 1-3 short concept queries and do not claim results until verified |
 | Structural relationship / calls / imports / impact | `code_graph_status` -> `code_graph_query` or `code_graph_context` | `Read` key nodes; use `Grep` fallback when graph is unavailable | State graph health and fallback limitations |
 | Contradictory evidence | `Read` cited sources | Memory/graph/code follow-up as scoped | Report contradiction; do not resolve by assumption |
 
@@ -104,7 +102,7 @@ What evidence is needed?
     |     -> Grep -> Read
     |
     +-- Semantic concept or unknown implementation?
-    |     -> CocoIndex search -> Read -> Grep discovered anchors
+    |     -> Code Graph and Grep discovery -> Read -> Grep discovered anchors
     |
     +-- Structural relationship?
     |     -> code_graph_status -> code_graph_query/context -> Read
@@ -129,7 +127,7 @@ This agent operates in **thorough mode by default**, with scoped compression whe
 | **Mutation Calls** | 0 (write/edit/patch/bash denied) |
 | **Use Case** | Exploration, retrieval, pattern discovery, and prior-work recovery |
 
-**Default Tool Sequence**: scope lock -> continuity `Read` when relevant -> `memory_match_triggers` -> `code_graph_status()` for structural work -> `memory_context` or `memory_search` when continuity gaps remain -> `code_graph_query/context` for structure -> `CocoIndex search` for concepts -> `Glob`/`List` for paths -> `Grep` for exact anchors -> `Read` for cited verification -> `memory_list(specFolder)` when a relevant spec folder needs inventory.
+**Default Tool Sequence**: scope lock -> continuity `Read` when relevant -> `memory_match_triggers` -> `code_graph_status()` for structural work -> `memory_context` or `memory_search` when continuity gaps remain -> `code_graph_query/context` for structure -> `code_graph_query` plus `Grep` for concepts -> `Glob`/`List` for paths -> `Grep` for exact anchors -> `Read` for cited verification -> `memory_list(specFolder)` when a relevant spec folder needs inventory.
 
 **Returns**: Continuity summary, memory context, file map, dependency/usage findings, pattern analysis, spec folder state, related records, explicit gaps, and scoped next-step recommendations.
 
@@ -158,12 +156,12 @@ Every exploration uses the layers needed for a complete answer within scope. If 
 
 ### Layer 2 — Codebase and Graph Discovery
 
-**Tools**: `code_graph_status`, `code_graph_query`, `code_graph_context`, `CocoIndex search`, `Glob`, `Grep`, `List`, `Read`.
+**Tools**: `code_graph_status`, `code_graph_query`, `code_graph_context`, `code_graph_query` plus `Grep`, `Glob`, `Grep`, `List`, `Read`.
 
 **Strategy**:
 - **Scope lock first** — identify allowed folders, files, concepts, and exclusions before broad searches.
 - **Code graph** — Run `code_graph_status()` once per session before structural queries. Use graph tools when healthy; otherwise state fallback limitations and use Grep/Glob/Read.
-- **CocoIndex** — Use for semantic discovery only when exact tokens are unknown. Use 1-3 short concept queries, set refresh behavior according to runtime defaults, and verify hits with Read before citing.
+- **Code Graph** — Use for semantic discovery only when exact tokens are unknown. Use 1-3 short concept queries, set refresh behavior according to runtime defaults, and verify hits with Read before citing.
 - **Glob/List** — Use for file discovery and directory shape. Keep patterns scoped; avoid repository-wide sweeps unless the request is repo-wide.
 - **Grep** — Use for exact symbols, strings, imports, and usages. Narrow by known paths when available.
 - **Read** — Inspect key files and cite lines. Summarize contents; never return raw dumps.
@@ -323,7 +321,7 @@ When the orchestrator requests `summary-only` or `minimal`, keep all 6 section h
 - Recommendation is actionable and scoped to the request.
 - Nested Dispatch Status says no sub-agents were dispatched.
 - No Write/Edit/Patch/Bash action, write path, or mirror-sync instruction appears in the output.
-- Tool routing matches query type: semantic -> CocoIndex; structural -> Code Graph; exact -> Grep; path -> Glob/List/Read; verification -> Read.
+- Tool routing matches query type: semantic -> Code Graph; structural -> Code Graph; exact -> Grep; path -> Glob/List/Read; verification -> Read.
 
 ### Anti-Hallucination Rules
 
@@ -332,7 +330,7 @@ When the orchestrator requests `summary-only` or `minimal`, keep all 6 section h
 | NEVER claim patterns/findings without a cited source | HARD BLOCK |
 | NEVER claim "nothing found" without scoped searches across relevant memory/codebase sources | HARD BLOCK |
 | NEVER omit critical risks/unknowns to make output look complete | HARD BLOCK |
-| NEVER cite unverified CocoIndex or graph hits as facts without Read/Grep confirmation | HARD BLOCK |
+| NEVER cite unverified Code Graph or graph hits as facts without Read/Grep confirmation | HARD BLOCK |
 | NEVER imply a denied tool was used | HARD BLOCK |
 
 ---
@@ -361,7 +359,7 @@ When the orchestrator requests `summary-only` or `minimal`, keep all 6 section h
 - Recommend a path for @context to write later.
 - Skip canonical continuity for prior-work recovery.
 - Treat memory search as newer truth than active packet docs.
-- Treat CocoIndex, graph, or Grep results as final without reading relevant files when the claim depends on file content.
+- Treat Code Graph, graph, or Grep results as final without reading relevant files when the claim depends on file content.
 - Claim "nothing found" without actually searching the scoped sources.
 - Omit sections from the Context Package.
 
@@ -391,15 +389,14 @@ When the orchestrator requests `summary-only` or `minimal`, keep all 6 section h
 | **Delegation Request Drift** | Ignore nested-delegation requests and keep retrieval local |
 | **Write Path Leakage** | Do not include @context write paths, artifact paths, or persistence instructions |
 | **Capability Drift** | Do not recommend Bash/install/fix commands from a bash-denied agent |
-| **Semantic Overreach** | Use CocoIndex for discovery, not as uncited proof |
+| **Semantic Overreach** | Use Code Graph for discovery, not as uncited proof |
 
 ---
 
-## 10b. COCOINDEX AND SEARCH ROUTING
 
-Use CocoIndex when the query is semantic and exact tokens are unknown. Use exact tools when the query gives exact evidence handles.
+Use Code Graph when the query is semantic and exact tokens are unknown. Use exact tools when the query gives exact evidence handles.
 
-1. **Semantic discovery** ("find code that...", "how is X implemented", "similar pattern", "where is the logic for...") -> `CocoIndex search` first.
+1. **Semantic discovery** ("find code that...", "how is X implemented", "similar pattern", "where is the logic for...") -> `code_graph_query` plus `Grep` first.
 2. **Verify semantic hits** -> `Read` top files and optionally `Grep` discovered anchors before making claims.
 3. **Structural questions** ("what calls...", "what imports...", "impact of...", "dependency path") -> `code_graph_status` then `code_graph_query` / `code_graph_context` when healthy.
 4. **Exact text/symbol/literal** -> `Grep` first, then `Read`.
@@ -423,7 +420,7 @@ Use CocoIndex when the query is semantic and exact tokens are unknown. Use exact
 │                                                                         │
 │  RETRIEVAL LAYERS                                                       │
 │  ├─► Layer 1: handover.md, _memory.continuity, spec docs, memory tools  │
-│  ├─► Layer 2: Code Graph, CocoIndex, Glob, Grep, List, Read             │
+│  ├─► Layer 2: Code Graph, Glob, Grep, List, Read             │
 │  └─► Layer 3: deep memory search and spec cross-reference               │
 │                                                                         │
 │  WORKFLOW                                                               │
