@@ -21,17 +21,10 @@ import type { ParserProvenance } from '../context/shared-payload.js';
  *   around Z=1.4 consistently. 1.3 reflects the realistic steady-state
  *   floor under that configuration.)
  *
- * Post-022/013 state:
- * - The local sidecar (Qwen/Qwen3-Reranker-0.6B on http://localhost:8765/rerank)
- *   is the only supported reranker. Activation requires explicit
- *   SPECKIT_CROSS_ENCODER=true AND RERANKER_LOCAL=true (no API-key
- *   auto-activation since the voyage/cohere providers were removed).
- * - Operators with both flags set should see Z floor rise toward the
- *   1.5 baseline because the cross-encoder restores ranking lift on
- *   paraphrase queries. Raising the constant to 1.5 unconditionally
- *   would over-penalize operators running without the sidecar, so the
- *   threshold stays conservative at 1.3 until a per-operator
- *   reranker-presence signal is wired (deferred follow-on).
+ * Post-reranker-removal state:
+ * - Neural reranking is no longer available in mk-spec-memory.
+ * - The threshold stays conservative at 1.3 so positional fallback scoring
+ *   does not over-penalize healthy vector/BM25/RRF retrieval.
  */
 const Z_SCORE_THRESHOLD = 1.3;
 

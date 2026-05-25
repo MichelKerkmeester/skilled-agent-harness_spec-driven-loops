@@ -9,7 +9,6 @@ import {
   isMMREnabled,
   isTRMEnabled,
   isMultiQueryEnabled,
-  isCrossEncoderEnabled,
   isSearchFallbackEnabled,
   isFolderDiscoveryEnabled,
   isDocscoreAggregationEnabled,
@@ -35,7 +34,6 @@ const ALL_SPECKIT_FLAGS = [
   'SPECKIT_MMR',
   'SPECKIT_TRM',
   'SPECKIT_MULTI_QUERY',
-  'SPECKIT_CROSS_ENCODER',
   'SPECKIT_SEARCH_FALLBACK',
   'SPECKIT_FOLDER_DISCOVERY',
   'SPECKIT_DOCSCORE_AGGREGATION',
@@ -58,7 +56,6 @@ const FLAG_CHECKERS: Array<{ flag: string; checker: () => boolean }> = [
   { flag: 'SPECKIT_MMR', checker: isMMREnabled },
   { flag: 'SPECKIT_TRM', checker: isTRMEnabled },
   { flag: 'SPECKIT_MULTI_QUERY', checker: isMultiQueryEnabled },
-  { flag: 'SPECKIT_CROSS_ENCODER', checker: isCrossEncoderEnabled },
   { flag: 'SPECKIT_SEARCH_FALLBACK', checker: isSearchFallbackEnabled },
   { flag: 'SPECKIT_FOLDER_DISCOVERY', checker: isFolderDiscoveryEnabled },
   { flag: 'SPECKIT_DOCSCORE_AGGREGATION', checker: isDocscoreAggregationEnabled },
@@ -197,5 +194,5 @@ describe('Feature Flag Ceiling Test (A10-P2-2)', () => {
 // Agent: Opus-J | TCB: 9+
 // Scope: Feature flag ceiling test (A10-P2-2)
 // Mutation surface: tests/flag-ceiling.vitest.ts (new file)
-// Verified: All 20 SPECKIT_* flags from search-flags.ts covered
+// Verified: All active SPECKIT_* flags from search-flags.ts covered
 // No production code modified by this test file

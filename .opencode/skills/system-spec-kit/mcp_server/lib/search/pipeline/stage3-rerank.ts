@@ -4,7 +4,7 @@
 // 4-Stage Retrieval Pipeline: Stage 3 of 4
 //
 // Responsibilities (in execution order):
-// 1. Cross-encoder reranking   — re-scores results via neural model
+// 1. Cross-encoder reranking   — skipped when no provider is configured
 // 2. MMR diversity pruning     — maximal marginal relevance (SPECKIT_MMR flag)
 // 3. MPAB chunk collapse        — dedup chunks, reassemble parents
 //
@@ -20,7 +20,7 @@
 //     - Chunk rows (parent_id != null) are collapsed; only parent rows exit
 //     - contentSource is set to 'reassembled_chunks' or 'file_read_fallback'
 // Side effects:
-//     - Cross-encoder model inference (external call, when SPECKIT_CROSS_ENCODER on)
+//     - Cross-encoder fallback scoring when a provider is configured
 //     - DB reads to fetch parent content during MPAB reassembly
 //
 // Score changes: YES
@@ -28,8 +28,7 @@
 import { resolveEffectiveScore } from './types.js';
 import type { Stage3Input, Stage3Output, PipelineRow } from './types.js';
 import * as crossEncoder from '../cross-encoder.js';
-import { rerankLocal } from '../local-reranker.js';
-import { isCrossEncoderEnabled, isMMREnabled, isLocalRerankerEnabled } from '../search-flags.js';
+import { isCrossEncoderEnabled, isMMREnabled } from '../search-flags.js';
 import { computeMPAB } from '../../scoring/mpab-aggregation.js';
 import { applyMMR } from '@spec-kit/shared/algorithms/mmr-reranker';
 import type { MMRCandidate } from '@spec-kit/shared/algorithms/mmr-reranker';
@@ -117,7 +116,7 @@ interface ChunkGroup {
   parentScore: number;
 }
 
-type RerankProvider = 'cross-encoder' | 'local-gguf' | 'fallback-sort' | 'none';
+type RerankProvider = 'cross-encoder' | 'fallback-sort' | 'none';
 
 // -- Stage 3 Entry Point ----------------------------------------
 
@@ -332,7 +331,7 @@ function preserveExactTriggerMatches(before: PipelineRow[], after: PipelineRow[]
  *
  * Returns the original array unchanged if:
  *   - The `rerank` option is not set
- *   - The `SPECKIT_CROSS_ENCODER` feature flag is disabled
+ *   - No cross-encoder provider is configured
  *   - There are fewer than {@link MIN_RESULTS_FOR_RERANK} results
  *
  * On any reranker error, logs a warning and returns the original
@@ -377,10 +376,9 @@ async function applyCrossEncoderReranking(
   });
 
   const crossEncoderEnabled = isCrossEncoderEnabled();
-  const localRerankerEnabled = isLocalRerankerEnabled();
 
   // Feature-flag guard
-  if (!options.rerank || (!crossEncoderEnabled && !localRerankerEnabled)) {
+  if (!options.rerank || !crossEncoderEnabled) {
     return { rows: results, applied: false, provider: 'none', gateDecision: gate };
   }
 
@@ -466,46 +464,6 @@ async function applyCrossEncoderReranking(
     }
   }
 
-  // Local GGUF reranker compatibility shim (P1-5): RERANKER_LOCAL=true.
-  // Cross-encoder takes precedence; this legacy path runs only when it is off.
-  // On any failure/unavailable precondition, rerankLocal returns original rows unchanged.
-  if (localRerankerEnabled) {
-    try {
-      const localReranked = await rerankLocal(query, results, options.limit);
-      if (localReranked === results) {
-        return { rows: results, applied: false, provider: 'local-gguf', gateDecision: gate };
-      }
-
-      const localRows: PipelineRow[] = localReranked.map((row) => {
-        const original = rowMap.get(row.id);
-        const rerankScoreRaw = row.rerankerScore ?? row.score;
-        const rerankScore = resolveRerankOutputScore(
-          rerankScoreRaw,
-          original ? effectiveScore(original) : 0,
-        );
-
-        return {
-          ...(original ?? row),
-          ...row,
-          stage2Score: original?.score,
-          score: rerankScore,
-          similarity: original?.similarity ?? row.similarity,
-          rerankerScore: rerankScore,
-          // F2.02 fix: Sync all score aliases for local reranker path too.
-          rrfScore: rerankScore,
-          intentAdjustedScore: rerankScore,
-          attentionScore: original?.attentionScore ?? row.attentionScore,
-        };
-      });
-
-      return { rows: localRows, applied: true, provider: 'local-gguf', gateDecision: gate };
-    } catch (err: unknown) {
-      console.warn(
-        `[stage3-rerank] Local reranking failed: ${toErrorMessage(err)} — returning original results`
-      );
-      return { rows: results, applied: false, provider: 'local-gguf', gateDecision: gate };
-    }
-  }
   return { rows: results, applied: false, provider: 'none', gateDecision: gate };
 }
 

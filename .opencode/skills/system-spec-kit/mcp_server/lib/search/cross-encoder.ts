@@ -1,46 +1,23 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Cross Encoder
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: local and cloud neural reranking
+// Feature catalog: positional fallback reranking
 //
-// Neural reranking via the local cross-encoder sidecar
-// (`Qwen/Qwen3-Reranker-0.6B` on http://localhost:8765/rerank,
-// with `cross-encoder/ms-marco-MiniLM-L-6-v2` as the canonical
-// fallback model). When the sidecar is not configured the
-// module returns a positional fallback (scored 0–0.5) and marks
-// results with scoringMethod:'fallback' so callers can distinguish
-// real model scores from synthetic ones.
-//
-// Cloud reranker providers (Voyage, Cohere) were removed in
-// 022/013 — their auto-resolution from API-key presence created
-// a silent re-routing footgun when those keys were set for
-// unrelated purposes (e.g. embeddings).
+// Neural reranker providers have been removed. The module now returns a
+// positional fallback (scored 0-0.5) and marks results with
+// scoringMethod:'fallback' so callers keep receiving valid scored rows.
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION
 ----------------------------------------------------------------*/
 
-import { getRerankerFallback } from '../../../shared/embeddings/registry.js';
-import { isCrossEncoderEnabled } from './search-flags.js';
-
 interface ProviderConfigEntry {
   name: string;
   model: string;
-  endpoint: string;
-  apiKeyEnv: string;
   maxDocuments: number;
   timeout: number;
 }
 
-const PROVIDER_CONFIG: Record<string, ProviderConfigEntry> = {
-  local: {
-    name: 'local',
-    model: getRerankerFallback('local'),
-    endpoint: 'http://localhost:8765/rerank',
-    apiKeyEnv: '',
-    maxDocuments: 50,
-    timeout: 30000,
-  },
-} as const;
+const PROVIDER_CONFIG: Record<string, ProviderConfigEntry> = {} as const;
 
 const LENGTH_PENALTY = {
   shortThreshold: 50,
@@ -60,11 +37,6 @@ interface RerankDocument {
   [key: string]: unknown;
 }
 
-interface RerankApiResult {
-  index: number;
-  relevance_score: number;
-}
-
 interface RerankResult {
   id: number | string;
   score: number;
@@ -73,7 +45,7 @@ interface RerankResult {
   provider: string;
   /**
    * P3-16: Discriminator for score origin.
-   *   'cross-encoder'      — score from the local neural reranker (sidecar at localhost:8765)
+   *   'cross-encoder'      — score from a neural reranker provider
    *   'cross-encoder-tail' — F-011-C1-03: candidate fell outside the provider
    *                          maxDocuments window; original ordering preserved,
    *                          synthetic positional score appended after the
@@ -145,10 +117,8 @@ function enforceCacheBound(): void {
 const latencyTracker: { durations: number[] } = { durations: [] };
 const MAX_LATENCY_SAMPLES = 100;
 
-// T3-15 circuit breaker — prevents cascading failures when the local
-// Rerank sidecar is unreachable. After FAILURE_THRESHOLD consecutive
-// Failures, the circuit opens and calls skip the sidecar for COOLDOWN_MS,
-// Returning positional fallback scores instead.
+// T3-15 circuit breaker — retained for test harness compatibility. With no
+// configured provider, callers return positional fallback before this is used.
 const CIRCUIT_FAILURE_THRESHOLD = 3;
 const CIRCUIT_COOLDOWN_MS = 60_000; // 1 minute
 
@@ -200,14 +170,6 @@ function recordFailure(provider: string): void {
 ----------------------------------------------------------------*/
 
 function resolveProvider(): string | null {
-  if (!isCrossEncoderEnabled()) {
-    return null;
-  }
-
-  // 022/013: cloud reranker auto-resolution removed. The local sidecar is
-  // the only supported reranker; activate it via RERANKER_LOCAL=true.
-  if (process.env.RERANKER_LOCAL?.toLowerCase().trim() === 'true') return 'local';
-
   return null;
 }
 
@@ -263,47 +225,6 @@ function hashString(value: string): string {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   7. PROVIDER-SPECIFIC RERANKING
-----------------------------------------------------------------*/
-
-async function rerankLocal(
-  query: string,
-  documents: RerankDocument[]
-): Promise<RerankResult[]> {
-  const config = PROVIDER_CONFIG.local;
-
-  // P3-13: Build map of document ID → input position (pre-rerank rank)
-  const inputRankMap = new Map<number | string, number>();
-  documents.forEach((d, i) => inputRankMap.set(d.id, i));
-
-  const response = await fetch(config.endpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query,
-      documents: documents.map(d => d.content),
-      model: config.model,
-    }),
-    signal: AbortSignal.timeout(config.timeout),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Local rerank failed: ${response.status} ${response.statusText}`);
-  }
-
-  const data = await response.json() as { results: RerankApiResult[] };
-
-  return data.results.map((item: RerankApiResult) => ({
-    ...documents[item.index],
-    rerankerScore: item.relevance_score,
-    score: item.relevance_score,
-    originalRank: inputRankMap.get(documents[item.index].id) ?? item.index,
-    provider: 'local',
-    scoringMethod: 'cross-encoder' as const,
-  })).sort((a: RerankResult, b: RerankResult) => b.rerankerScore - a.rerankerScore);
-}
-
-/* ───────────────────────────────────────────────────────────────
    8. MAIN RERANK FUNCTION
 ----------------------------------------------------------------*/
 
@@ -316,145 +237,20 @@ async function rerankResults(
 
   if (!documents || documents.length === 0) return [];
 
-  const provider = resolveProvider();
-  if (!provider) {
-    // No reranker available — P3-16: use 'fallback' scoringMethod and distinct score range
-    return documents.slice(0, limit).map((d, i) => ({
-      ...d,
-      rerankerScore: 0.5 - (i / (documents.length * 2)),
-      score: 0.5 - (i / (documents.length * 2)),
-      originalRank: i,
-      provider: 'none',
-      scoringMethod: 'fallback' as const,
-    }));
-  }
+  void query;
+  void useCache;
+  void shouldApplyLengthPenalty;
 
-  // T3-15 — Circuit breaker check. When the provider has failed
-  // Consecutively, skip the API call and return positional fallback.
-  if (isCircuitOpen(provider)) {
-    return documents.slice(0, limit).map((d, i) => ({
-      ...d,
-      rerankerScore: 0.5 - (i / (documents.length * 2)),
-      score: 0.5 - (i / (documents.length * 2)),
-      originalRank: i,
-      provider: 'fallback',
-      scoringMethod: 'fallback' as const,
-    }));
-  }
-
-  // Check cache — length penalty is now a no-op, so cache keys only vary by
-  // provider + query + canonicalized document ids and content fingerprints.
-  if (useCache) {
-    const cacheKey = generateCacheKey(query, documents, provider);
-    const cached = cache.get(cacheKey);
-    if (cached) {
-      if (Date.now() - cached.timestamp < CACHE_TTL) {
-        cacheTelemetry.hits++;
-        return cached.results.slice(0, limit);
-      }
-
-      cacheTelemetry.misses++;
-      cacheTelemetry.staleHits++;
-      cacheTelemetry.evictions++;
-      cache.delete(cacheKey);
-    } else {
-      cacheTelemetry.misses++;
-    }
-  }
-
-  const start = Date.now();
-
-  // F-011-C1-03: enforce provider maxDocuments BEFORE the API call. The
-  // PROVIDER_CONFIG declares a per-provider cap (local = 50) — without it the
-  // local sidecar would receive the entire candidate list, inflating payload
-  // size and per-batch latency.
-  // We split into head (top-N for the provider) and tail (remainder, kept
-  // in original order with `cross-encoder-tail` marker so callers can audit
-  // that those rows did NOT receive a neural score). Documents arrive in
-  // upstream-ranked order (Stage 3 sorts by effective score before calling),
-  // so the natural head is the higher-quality slice.
-  let providerCap = PROVIDER_CONFIG[provider]?.maxDocuments ?? documents.length;
-  // arc 008/008 — operator can cap the local provider's batch via env to fit
-  // smaller GPU memory budgets (e.g. Apple Silicon MPS at small Qwen batches).
-  if (provider === 'local') {
-    const override = process.env.SPECKIT_RERANK_LOCAL_MAX_DOCS;
-    if (override) {
-      const parsed = Number.parseInt(override.trim(), 10);
-      if (Number.isFinite(parsed) && parsed > 0) {
-        providerCap = Math.min(providerCap, parsed);
-      }
-    }
-  }
-  const head = documents.length > providerCap
-    ? documents.slice(0, providerCap)
-    : documents;
-  const tail = documents.length > providerCap
-    ? documents.slice(providerCap)
-    : [];
-
-  try {
-    let results: RerankResult[];
-
-    switch (provider) {
-      case 'local':
-        results = await rerankLocal(query, head);
-        break;
-      default:
-        throw new Error(`Unknown provider: ${provider}`);
-    }
-
-    // F-011-C1-03: append the un-reranked tail in original order. Tail rows
-    // get a deterministic positional score below the head's minimum so they
-    // sort cleanly after the reranked head when the caller slices to `limit`.
-    if (tail.length > 0) {
-      const tailBaseScore = 0.4; // below typical neural rerank scores (~0.5+)
-      const tailResults: RerankResult[] = tail.map((document, index) => ({
-        ...document,
-        rerankerScore: tailBaseScore - (index / (tail.length * 4)),
-        score: tailBaseScore - (index / (tail.length * 4)),
-        originalRank: providerCap + index,
-        provider,
-        scoringMethod: 'cross-encoder-tail' as const,
-      }));
-      results = [...results, ...tailResults];
-    }
-
-    // Apply length penalty only when requested
-    if (shouldApplyLengthPenalty) {
-      results = applyLengthPenalty(results);
-    }
-
-    // Track latency
-    const duration = Date.now() - start;
-    latencyTracker.durations.push(duration);
-    if (latencyTracker.durations.length > MAX_LATENCY_SAMPLES) {
-      latencyTracker.durations.shift();
-    }
-
-    // Cache results — length penalty is retired, so cache keys ignore that flag.
-    // Phase C: enforceCacheBound() ensures MAX_CACHE_ENTRIES limit.
-    if (useCache) {
-      const cacheKey = generateCacheKey(query, documents, provider);
-      cache.set(cacheKey, { results, timestamp: Date.now() });
-      enforceCacheBound();
-    }
-
-    recordSuccess(provider);
-    return results.slice(0, limit);
-  } catch (error: unknown) {
-    recordFailure(provider);
-    const msg = error instanceof Error ? error.message : String(error);
-    console.warn(`[cross-encoder] Reranking failed (${provider}): ${msg} — falling back to positional scoring`);
-    // Fallback scores use distinct range (0–0.5) and scoringMethod marker
-    return documents.slice(0, limit).map((d, i) => ({
-      ...d,
-      rerankerScore: 0.5 - (i / (documents.length * 2)),
-      score: 0.5 - (i / (documents.length * 2)),
-      originalRank: i,
-      provider: 'fallback',
-      scoringMethod: 'fallback' as const,
-    }));
-  }
+  // No reranker provider remains. Preserve the D1 invariant: callers still get
+  // deterministic scored rows instead of an exception, hang, or empty result.
+  return documents.slice(0, limit).map((d, i) => ({
+    ...d,
+    rerankerScore: 0.5 - (i / (documents.length * 2)),
+    score: 0.5 - (i / (documents.length * 2)),
+    originalRank: i,
+    provider: 'none',
+    scoringMethod: 'fallback' as const,
+  }));
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -529,7 +325,6 @@ export {
   generateCacheKey,
 
   // Reranking
-  rerankLocal,
   rerankResults,
 
   // Status

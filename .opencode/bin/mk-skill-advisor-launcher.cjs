@@ -6,6 +6,8 @@
 // server child. All stderr lines are tagged with the bracketed module prefix for ops
 // grepping. See .opencode/skills/system-skill-advisor/ for the standalone skill.
 
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
@@ -90,7 +92,6 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_METRICS_ENABLED',
   'SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS',
   'SPECKIT_IPC_SOCKET_DIR',
-  'RERANK_SIDECAR_PORT',
   'SPECKIT_LAUNCHER_BRIDGE_DISABLED',
   'SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN',
   'SPECKIT_MAX_SECONDARY_CLIENTS',

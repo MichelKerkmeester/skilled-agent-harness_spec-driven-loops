@@ -2,7 +2,6 @@
 // MODULE: Local Reranker Compatibility Shim
 // ───────────────────────────────────────────────────────────────
 // Runtime reranking now lives in the sentence-transformers cross-encoder path.
-// This compatibility shim activates only when SPECKIT_CROSS_ENCODER is NOT set.
 // This module preserves the old import surface as a no-op so shutdown hooks and
 // tests keep a stable API while the in-process model loader surface is gone.
 

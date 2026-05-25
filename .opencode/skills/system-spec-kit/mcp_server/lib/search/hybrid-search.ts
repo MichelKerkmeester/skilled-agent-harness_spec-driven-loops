@@ -20,14 +20,11 @@ import { fts5Bm25Search } from './sqlite-fts.js';
 import { DEGREE_CHANNEL_WEIGHT } from './graph-search-fn.js';
 import {
   isMMREnabled,
-  isCrossEncoderEnabled,
-  isLocalRerankerEnabled,
   isSearchFallbackEnabled,
   isDocscoreAggregationEnabled,
   isDegreeBoostEnabled,
   isContextHeadersEnabled,
 } from './search-flags.js';
-import { rerankLocal } from './local-reranker.js';
 import { computeDegreeScores } from './graph-search-fn.js';
 import type { GraphSearchFn } from './search-types.js';
 
@@ -1639,15 +1636,6 @@ async function enrichFusedResults(
   // Reuse embeddings already returned by the vector channel when present and
   // only query vec_memories for missing IDs.
   let reranked: HybridSearchResult[] = fusedHybridResults.slice(0, limit);
-
-  // P1-5: Optional local GGUF reranking path (RERANKER_LOCAL=true).
-  // Preserve cross-encoder gate semantics: when SPECKIT_CROSS_ENCODER=false, skip reranking.
-  if (isCrossEncoderEnabled() && isLocalRerankerEnabled() && reranked.length >= MMR_MIN_CANDIDATES) {
-    const localReranked = await rerankLocal(query, reranked, limit);
-    if (localReranked !== reranked) {
-      reranked = localReranked as HybridSearchResult[];
-    }
-  }
 
   if (db && isMMREnabled()) {
     const numericIds = reranked

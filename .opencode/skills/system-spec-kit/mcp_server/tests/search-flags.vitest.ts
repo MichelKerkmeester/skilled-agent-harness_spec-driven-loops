@@ -16,7 +16,6 @@ import {
   isFileWatcherEnabled,
   isGraphRefreshDisabled,
   isGraphSignalsEnabled,
-  isLocalRerankerEnabled,
   isMMREnabled,
   isMultiQueryEnabled,
   resolveGraphWalkRolloutState,
@@ -28,7 +27,6 @@ const FLAG_NAMES = [
   'SPECKIT_MMR',
   'SPECKIT_TRM',
   'SPECKIT_MULTI_QUERY',
-  'SPECKIT_CROSS_ENCODER',
   'SPECKIT_CONTEXT_HEADERS',
   'SPECKIT_RECONSOLIDATION',
   'SPECKIT_FILE_WATCHER',
@@ -36,7 +34,6 @@ const FLAG_NAMES = [
   'SPECKIT_GRAPH_REFRESH_MODE',
   'SPECKIT_GRAPH_WALK_ROLLOUT',
   'SPECKIT_ROLLOUT_PERCENT',
-  'RERANKER_LOCAL',
   'VOYAGE_API_KEY',
 ] as const;
 
@@ -68,7 +65,7 @@ describe('Search Feature Flags', () => {
     crossEncoder.resetProvider();
   });
 
-  it('defaults graduated gates on while cross-encoder remains opt-in', () => {
+  it('defaults graduated gates on while cross-encoder remains unavailable', () => {
     expect(isMMREnabled()).toBe(true);
     expect(isTRMEnabled()).toBe(true);
     expect(isMultiQueryEnabled()).toBe(true);
@@ -81,7 +78,6 @@ describe('Search Feature Flags', () => {
     process.env.SPECKIT_MMR = 'false';
     process.env.SPECKIT_TRM = 'false';
     process.env.SPECKIT_MULTI_QUERY = 'false';
-    process.env.SPECKIT_CROSS_ENCODER = 'false';
     process.env.SPECKIT_CONTEXT_HEADERS = 'false';
     process.env.SPECKIT_RECONSOLIDATION = 'false';
 
@@ -97,14 +93,13 @@ describe('Search Feature Flags', () => {
     process.env.SPECKIT_MMR = 'true';
     process.env.SPECKIT_TRM = 'true';
     process.env.SPECKIT_MULTI_QUERY = 'true';
-    process.env.SPECKIT_CROSS_ENCODER = 'true';
     process.env.SPECKIT_CONTEXT_HEADERS = 'true';
     process.env.SPECKIT_RECONSOLIDATION = 'true';
 
     expect(isMMREnabled()).toBe(true);
     expect(isTRMEnabled()).toBe(true);
     expect(isMultiQueryEnabled()).toBe(true);
-    expect(isCrossEncoderEnabled()).toBe(true);
+    expect(isCrossEncoderEnabled()).toBe(false);
     expect(isContextHeadersEnabled()).toBe(true);
     expect(isReconsolidationEnabled()).toBe(true);
   });
@@ -126,46 +121,31 @@ describe('Search Feature Flags', () => {
     expect(isReconsolidationEnabled()).toBe(false);
   });
 
-  it('cross-encoder provider resolution is blocked when SPECKIT_CROSS_ENCODER=false', () => {
+  it('cross-encoder provider resolution remains disabled after provider removal', () => {
     process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX'; // >= 20 chars per looksLikeValidApiKey() contract
-    process.env.SPECKIT_CROSS_ENCODER = 'false';
     crossEncoder.resetProvider();
 
     expect(crossEncoder.resolveProvider()).toBe(null);
     expect(crossEncoder.isRerankerAvailable()).toBe(false);
   });
 
-  it('cross-encoder provider resolution works when gate is enabled and provider key exists', () => {
-    process.env.VOYAGE_API_KEY = 'test-voyage-api-key-XXXXXXXXX'; // >= 20 chars per looksLikeValidApiKey() contract
-    process.env.SPECKIT_CROSS_ENCODER = 'true';
-    crossEncoder.resetProvider();
-
-    expect(crossEncoder.resolveProvider()).toBe('voyage');
-    expect(crossEncoder.isRerankerAvailable()).toBe(true);
-  });
-
-  it('file watcher and local reranker remain opt-in by default', () => {
+  it('file watcher remains opt-in by default', () => {
     expect(isFileWatcherEnabled()).toBe(false);
-    expect(isLocalRerankerEnabled()).toBe(false);
   });
 
-  it('enables file watcher and local reranker only with explicit opt-in', () => {
+  it('enables file watcher only with explicit opt-in', () => {
     process.env.SPECKIT_FILE_WATCHER = 'true';
-    process.env.RERANKER_LOCAL = 'true';
     process.env.SPECKIT_ROLLOUT_PERCENT = '100';
 
     expect(isFileWatcherEnabled()).toBe(true);
-    expect(isLocalRerankerEnabled()).toBe(true);
   });
 
-  it('applies rollout policy to opt-in wrappers and defaults to enabled on partial rollout without identity', () => {
+  it('applies rollout policy to file watcher and defaults to enabled on partial rollout without identity', () => {
     process.env.SPECKIT_FILE_WATCHER = 'true';
-    process.env.RERANKER_LOCAL = 'true';
     process.env.SPECKIT_ROLLOUT_PERCENT = '50';
 
     // With no identity, rollout policy defaults to enabled (fail-open for missing identity)
     expect(isFileWatcherEnabled()).toBe(true);
-    expect(isLocalRerankerEnabled()).toBe(true);
   });
 
   it('defaults graph-walk rollout to bounded_runtime when graph signals are enabled', () => {

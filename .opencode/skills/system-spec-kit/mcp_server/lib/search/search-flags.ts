@@ -19,7 +19,6 @@ import { isFeatureEnabled } from '../cognitive/rollout-policy.js';
 export type SavePlannerMode = 'plan-only' | 'full-auto' | 'hybrid';
 
 const TRUTHY_OPT_IN = new Set(['true', '1', 'yes', 'on', 'enabled']);
-const FALSY_OPT_OUT = new Set(['false', '0', 'no', 'off', 'disabled']);
 
 /**
  * Returns true for explicit opt-in values: true, 1, yes, on, enabled.
@@ -28,45 +27,6 @@ const FALSY_OPT_OUT = new Set(['false', '0', 'no', 'off', 'disabled']);
 function isOptInEnabled(variableName: string): boolean {
   const value = process.env[variableName]?.toLowerCase().trim();
   return value !== undefined && TRUTHY_OPT_IN.has(value);
-}
-
-/**
- * Returns true when the env var is explicitly set to a falsy value
- * (false, 0, no, off, disabled). This is the veto signal — used to
- * hard-disable a feature explicitly (e.g. `SPECKIT_CROSS_ENCODER=false`
- * vetos cross-encoder).
- */
-function isOptOutExplicit(variableName: string): boolean {
-  const value = process.env[variableName]?.toLowerCase().trim();
-  return value !== undefined && FALSY_OPT_OUT.has(value);
-}
-
-/**
- * Cross-encoder opt-in signals (used by isCrossEncoderEnabled() for provider selection).
- * Does NOT include RERANKER_LOCAL — that's a separate legacy-shim flag handled by
- * isLocalRerankerEnabled(). Including it here would conflate two semantically distinct
- * rerankers and break the suppression contract in isLocalRerankerEnabled().
- *
- * 022/013: VOYAGE_API_KEY / COHERE_API_KEY no longer auto-enable cross-encoder.
- * Those keys are used for embeddings, and the auto-activation silently re-routed
- * reranking to cloud providers whenever they were set. Operators now opt in
- * explicitly via SPECKIT_CROSS_ENCODER=true.
- */
-function hasAnyCrossEncoderOptInSignal(): boolean {
-  if (isOptOutExplicit('SPECKIT_CROSS_ENCODER')) return false; // explicit veto
-  if (isOptInEnabled('SPECKIT_CROSS_ENCODER')) return true;
-  return false;
-}
-
-/**
- * Broader reranker opt-in signals (used by isRerankerExpected() for confidence scoring).
- * Includes RERANKER_LOCAL because the confidence penalty should fire when ANY reranker
- * was opted-in but is unreachable — including the legacy local shim.
- */
-function hasAnyRerankerOptInSignal(): boolean {
-  if (hasAnyCrossEncoderOptInSignal()) return true;
-  if (process.env.RERANKER_LOCAL?.toLowerCase().trim() === 'true') return true;
-  return false;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -141,42 +101,14 @@ export function isMultiQueryEnabled(): boolean {
   return isFeatureEnabled('SPECKIT_MULTI_QUERY');
 }
 
-/**
- * Both reranker opt-in helpers check operator-intent signals and delegate to
- * hasAnyRerankerOptInSignal() for consistency.
- *
- * isCrossEncoderEnabled() is the legacy alias used by cross-encoder.ts for
- * provider selection. isRerankerExpected() is the canonical detector used by
- * confidence-scoring.ts for the conditional missing-reranker penalty.
- * Prefer isRerankerExpected() for new code.
- *
- * Cross-encoder reranking gate.
- * Default: FALSE (opt-in). See 011 arc 011/005-opt-in-only-closure
- * for the evidence + decision.
- */
+/** Cross-encoder reranking has no configured provider after sidecar removal. */
 export function isCrossEncoderEnabled(): boolean {
-  return hasAnyCrossEncoderOptInSignal();
+  return false;
 }
 
-/**
- * Both reranker opt-in helpers check operator-intent signals and delegate to
- * hasAnyRerankerOptInSignal() for consistency.
- *
- * isCrossEncoderEnabled() is the legacy alias used by cross-encoder.ts for
- * provider selection. isRerankerExpected() is the canonical detector used by
- * confidence-scoring.ts for the conditional missing-reranker penalty.
- * Prefer isRerankerExpected() for new code.
- *
- * Returns true when reranker was opted-in by operator intent
- * (cloud API key set OR SPECKIT_CROSS_ENCODER explicitly true
- * OR RERANKER_LOCAL explicitly true). False for default-off.
- *
- * Used by confidence-scoring to decide whether a missing
- * reranker counts as a penalty (opted-in but unavailable)
- * versus an expected absence (correctly off-by-default).
- */
+/** No reranker opt-in signal remains, so missing-reranker confidence penalties are inactive. */
 export function isRerankerExpected(): boolean {
-  return hasAnyRerankerOptInSignal();
+  return false;
 }
 
 /**
@@ -429,18 +361,6 @@ export function isContextHeadersEnabled(): boolean {
 export function isFileWatcherEnabled(): boolean {
   if (process.env.SPECKIT_FILE_WATCHER?.toLowerCase().trim() !== 'true') return false;
   return isFeatureEnabled('SPECKIT_FILE_WATCHER');
-}
-
-/**
- * P1-5: Local GGUF reranker gate.
- * Default: FALSE. Set RERANKER_LOCAL=true to enable.
- * SPECKIT_CROSS_ENCODER takes precedence and suppresses this legacy shim.
- * Honors SPECKIT_ROLLOUT_PERCENT global rollout policy.
- */
-export function isLocalRerankerEnabled(): boolean {
-  if (isCrossEncoderEnabled()) return false;
-  if (process.env.RERANKER_LOCAL?.toLowerCase().trim() !== 'true') return false;
-  return isFeatureEnabled('RERANKER_LOCAL');
 }
 
 /**

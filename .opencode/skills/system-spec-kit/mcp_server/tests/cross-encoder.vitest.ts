@@ -36,42 +36,15 @@ describe('Cross-Encoder Reranking (T040-T051)', () => {
       expect(crossEncoder.LENGTH_PENALTY.longPenalty).toBe(1.0);
     });
 
-    it('PROVIDER_CONFIG includes voyage, cohere, local', () => {
-      expect(crossEncoder.PROVIDER_CONFIG.voyage).toBeTruthy();
-      expect(crossEncoder.PROVIDER_CONFIG.cohere).toBeTruthy();
-      expect(crossEncoder.PROVIDER_CONFIG.local).toBeTruthy();
+    it('PROVIDER_CONFIG has no active providers after reranker removal', () => {
+      expect(crossEncoder.PROVIDER_CONFIG).toEqual({});
     });
   });
 
   // SUITE: Provider Configuration Tests (T040-T042)
   describe('Provider Configuration Tests (T040-T042)', () => {
-    it('T040: Voyage provider has correct configuration', () => {
-      const voyageConfig = crossEncoder.PROVIDER_CONFIG.voyage;
-      expect(voyageConfig.name).toBe('voyage');
-      expect(voyageConfig.model).toBe('rerank-2.5');
-      expect(voyageConfig.endpoint).toBe('https://api.voyageai.com/v1/rerank');
-      expect(voyageConfig.apiKeyEnv).toBe('VOYAGE_API_KEY');
-      expect(voyageConfig.timeout).toBe(15000);
-      expect(voyageConfig.maxDocuments).toBe(100);
-    });
-
-    it('T041: Cohere provider has correct configuration', () => {
-      const cohereConfig = crossEncoder.PROVIDER_CONFIG.cohere;
-      expect(cohereConfig.name).toBe('cohere');
-      expect(cohereConfig.model).toBe('rerank-english-v3.0');
-      expect(cohereConfig.endpoint).toBe('https://api.cohere.ai/v1/rerank');
-      expect(cohereConfig.apiKeyEnv).toBe('COHERE_API_KEY');
-      expect(cohereConfig.timeout).toBe(15000);
-      expect(cohereConfig.maxDocuments).toBe(100);
-    });
-
-    it('T042: Local provider has correct configuration', () => {
-      const localConfig = crossEncoder.PROVIDER_CONFIG.local;
-      expect(localConfig.name).toBe('local');
-      expect(localConfig.model).toBe('cross-encoder/ms-marco-MiniLM-L-6-v2');
-      expect(localConfig.endpoint).toBe('http://localhost:8765/rerank');
-      expect(localConfig.timeout).toBe(30000);
-      expect(localConfig.maxDocuments).toBe(50);
+    it('T040-T042: provider configuration is intentionally empty', () => {
+      expect(Object.keys(crossEncoder.PROVIDER_CONFIG)).toHaveLength(0);
     });
   });
 
@@ -83,7 +56,7 @@ describe('Cross-Encoder Reranking (T040-T051)', () => {
       crossEncoder.resetProvider();
 
       const provider = crossEncoder.resolveProvider();
-      expect(provider === null || typeof provider === 'string').toBe(true);
+      expect(provider).toBe(null);
     });
   });
 
@@ -157,7 +130,7 @@ describe('Cross-Encoder Reranking (T040-T051)', () => {
       crossEncoder.resetProvider();
 
       const provider = crossEncoder.resolveProvider();
-      expect(provider === null || typeof provider === 'string').toBe(true);
+      expect(provider).toBe(null);
     });
   });
 
@@ -260,6 +233,26 @@ describe('Cross-Encoder Reranking (T040-T051)', () => {
       expect(reranked.length).toBeGreaterThan(0);
       expect(typeof reranked[0].rerankerScore).toBe('number');
       expect(typeof reranked[0].provider).toBe('string');
+    });
+
+    it('D1: returns positional fallback scores when no provider is configured', async () => {
+      const results = [
+        { id: 1, content: 'first result', title: 'First' },
+        { id: 2, content: 'second result', title: 'Second' },
+        { id: 3, content: 'third result', title: 'Third' },
+      ];
+
+      const reranked = await crossEncoder.rerankResults('test query', results, {
+        limit: 3,
+        useCache: false,
+      });
+
+      expect(reranked).toHaveLength(3);
+      expect(reranked.map((row) => row.scoringMethod)).toEqual(['fallback', 'fallback', 'fallback']);
+      expect(reranked.map((row) => row.provider)).toEqual(['none', 'none', 'none']);
+      expect(reranked[0].score).toBeGreaterThan(reranked[1].score);
+      expect(reranked[1].score).toBeGreaterThan(reranked[2].score);
+      expect(reranked.every((row) => row.score >= 0 && row.score <= 0.5)).toBe(true);
     });
   });
 });
