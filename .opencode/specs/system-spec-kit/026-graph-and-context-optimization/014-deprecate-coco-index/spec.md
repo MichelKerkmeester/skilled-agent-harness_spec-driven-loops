@@ -14,17 +14,17 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index"
     last_updated_at: "2026-05-25T00:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "001 research complete (12 iters); scaffolded phases 002-008 from DAG"
-    next_safe_action: "Plan/execute 002-decouple-code-graph (decouple before delete)"
+    recent_action: "Phases 002-012 done; coco+rerank coupling removed; builds+tests green"
+    next_safe_action: "Optional: scrub harmless residual (index-scope exclusion, sweep, data)"
     blockers: []
     key_files:
       - "spec.md"
-      - "001-touchpoint-research/spec.md"
+      - "resource-map.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000014000"
-      session_id: "014-scaffold"
+      session_id: "014-deprecation-complete"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | phase-parent |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete (functional; harmless residual enumerated) |
 | **Created** | 2026-05-25 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -98,30 +98,39 @@ Enumerated, deduplicated, and classified (DELETE / EDIT-decouple / EDIT-remove-r
 
 > Phased decomposition. 001 is research-first; the deprecation phases (002+) are scaffolded FROM the 001 resource map (ordering finalized by the research DAG).
 
-| Phase | Folder | Focus | Status |
+| Phase | Folder / Commit | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-touchpoint-research/` | Deep-research (12 iters): classified touchpoint map + phase DAG → `resource-map.md` | Complete |
-| 002 | `002-decouple-code-graph/` | Sever ccc_* bridge (11→8 tools), routing, doctor route; keep code-graph green | Planned |
-| 003 | `003-remove-memory-rerank-path/` | Remove mk-spec-memory local cross-encoder path + flags + ensure helper | Planned |
-| 004 | `004-remove-rerank-sidecar-skill/` | Delete the system-rerank-sidecar skill (after 003) | Planned |
-| 005 | `005-remove-coco-index-skill/` | Delete the mcp-coco-index skill + ccc CLI (after 002) | Planned |
-| 006 | `006-runtime-configs-4runtime-mirror/` | Remove coco MCP regs + RERANK env from 4-runtime configs (after 004,005) | Planned |
-| 007 | `007-docs-readme-search-routing/` | Rewrite 27 YAML assets + docs to HYBRID search policy (after 006) | Planned |
-| 008 | `008-runtime-artifacts-cleanup/` | venvs, daemon sockets, sweeper, port 8765 (after 004,005) | Planned |
+| 002 | `002-decouple-code-graph/` | Sever ccc_* bridge (11→8 tools), routing, doctor route; keep code-graph green | Complete |
+| 003 | `003-remove-memory-rerank-path/` | Remove mk-spec-memory local cross-encoder path + flags + ensure helper | Complete |
+| 004 | `004-remove-rerank-sidecar-skill/` | Delete the system-rerank-sidecar skill | Complete |
+| 005 | `005-remove-coco-index-skill/` | Delete the mcp-coco-index skill + ccc CLI | Complete |
+| 006 | `006-runtime-configs-4runtime-mirror/` | Remove coco MCP regs + RERANK env from 4-runtime configs (+ missed `.mcp.json`/`.devin`) | Complete |
+| 007 | `007-docs-readme-search-routing/` | Rewrite 27 YAML assets + docs to HYBRID search policy | Complete |
+| 008 | `008-runtime-artifacts-cleanup/` | skill-advisor de-reference + scripts + venvs/daemon/sweeper; skill-graph→21 skills | Complete |
+| 009 | commit `3d9e3d0b39` | Skill-doc HYBRID sweep across cli-*/sk-*/commands/README (38 docs) | Complete |
+| 010 | `010-remove-memory-coco-integration/` | **Discovered gap:** memory's live coco integration (daemon-probe, calibration, cocoIndexAvailable, vector warning) + repair 002 latent typecheck break | Complete |
+| 011 | commit `4a8b2332b0` | **Discovered gap:** complete 002 — remove code-graph's vestigial cocoIndex budget lane + StartupBrief field | Complete |
+| 012 | commit `c65e05ae8f` | Functional residue: delete orphan rerank-parity test + sk-doc dead branch | Complete |
 
 ### Phase Transition Rules
-- Each phase MUST pass `validate.sh` independently before the next begins.
-- 002+ are not finalized until 001 converges and the resource map is promoted to this root.
-- **Decouple before delete:** sever code-graph↔coco and memory↔sidecar BEFORE deleting the coco / sidecar skills.
+- Decouple-before-delete honored: code-graph↔coco (002) + memory↔sidecar (003) severed before deleting skills (004/005).
+- Per-phase scope-strict commits on `main` as rollback points; frozen specs/changelogs/benchmarks untouched.
+
+### Residual (intentionally retained — harmless, not functional coupling)
+- **code-graph index-scope exclusion** (`index-scope.ts`/`index-scope-policy.ts`/`indexer-types.ts` + ~12 tests): `'mcp-coco-index=excluded'` — defensive exclusion of the now-deleted dir; removing it churns 12 assertion tests for zero functional gain.
+- **process sweep patterns** (`process-memory-harness.ts`/`process-sweep.vitest.ts`): `cocoindex-daemon`/`cocoindex-mcp` kill-classes — defensive orphan cleanup of any lingering old processes.
+- **Frozen data**: benchmark runs, observability measurements, test fixtures, `matrix-manifest.json` F8 cell, changelogs — historical records (left like changelogs).
+- A whole-repo scrub of these is a quick optional follow-on; none are live dependencies or documented features.
 <!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
-## 4. OPEN QUESTIONS
-- What replaces "semantic code search" once CocoIndex is gone — drop it, repoint to `memory_search`, or grep + code-graph structural? (RQ4)
-- Does removing the sidecar force `mk-spec-memory` to lose cross-encoder rerank entirely, and what is the safe fallback? (RQ2)
-- Exact dependency-correct ordering + rollback points for the deletion phases. (RQ6)
+## 4. RESOLVED QUESTIONS
+- **RQ4** (semantic code-search replacement): HYBRID — Code Graph structural (`code_graph_query`) + Grep; `memory_search` stays for spec-docs/memory only. Applied in 007/009.
+- **RQ2** (memory rerank fallback): memory's real search is embedder-backed hybrid (vector/bm25/fts/graph/degree via `vector-index.ts`); the coco/rerank coupling was vestigial telemetry, so default search is unaffected (verified 010).
+- **RQ6** (ordering/rollback): decouple-before-delete DAG + per-phase scope-strict commits. Note: 001 research under-mapped two couplings that surfaced during execution — 010 (memory's live coco integration) and 011 (code-graph's cocoIndex budget lane) — plus a latent 002 cross-skill typecheck break; all closed.
 <!-- /ANCHOR:questions -->
 
 ---
