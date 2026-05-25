@@ -141,7 +141,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - `--executor-timeout` -> `config.executor.timeoutSeconds`
 
    Validation hook:
-   - `parseExecutorConfig` from `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts` runs at config-write time
+   - `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` runs at config-write time
    - Invalid combinations fail fast with clear errors, including `cli-codex` without `--model` and reserved-but-unwired executor kinds
 
 4. Search for related spec folders across alias roots:

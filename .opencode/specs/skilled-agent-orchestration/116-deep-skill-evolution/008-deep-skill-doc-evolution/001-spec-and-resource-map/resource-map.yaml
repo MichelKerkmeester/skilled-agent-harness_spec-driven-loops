@@ -186,7 +186,14 @@ delta_reconciliation:
 phase5_backlog:
   carried_forward_from_000:
     - "deep-review phase-5 augmentation backlog (24 gaps recorded in 000-release-cleanup/003-deep-review resource-map) — re-confirm relevance during 005"
-  discovered_in_008: []   # populated by phase 009
+  discovered_in_008:
+    # 009 deep-research backstop — headline finding surfaced during loop SETUP (before iteration 1):
+    - finding: "deep-research loop driver referenced the DELETED system-spec-kit/mcp_server/lib/deep-loop/ path"
+      detail: "The 003 deep-loop-runtime isolation relocated the libs to deep-loop-runtime/lib/deep-loop/ and migrated deep-review's YAMLs + the runtime scripts (convergence.cjs/upsert.cjs), but MISSED deep-research's lib imports. deep_start-research-loop_auto.yaml (11 refs) + _confirm.yaml (4 refs) + start-research-loop.md + start-review-loop.md cited prompt-pack.ts/executor-config.ts/executor-audit.ts/post-dispatch-validate.ts at the deleted path."
+      severity: P0
+      status: FIXED
+      fix: "swapped system-spec-kit/mcp_server/lib/deep-loop/ -> deep-loop-runtime/lib/deep-loop/ in the 2 deep-research YAMLs + 2 command .md stale-as-current citations; deep-loop-runtime self-doc deprecation notes left intact; all referenced lib paths now resolve"
+      impact: "the deep-research auto + confirm loops were non-functional (prompt-pack render + executor-config + post-dispatch-validate pointed at a missing dir); now restored to the deep-review precedent"
 
 # ============================================================================
 # 002a findings (inbound-link inventory + verification baseline) — 2026-05-25

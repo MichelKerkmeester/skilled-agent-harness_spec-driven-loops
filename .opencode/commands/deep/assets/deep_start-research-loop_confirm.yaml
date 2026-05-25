@@ -532,7 +532,7 @@ workflow:
         action: "Dispatch one iteration via the selected executor"
         resolve_executor:
           source: "config.executor"
-          loader: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts#parseExecutorConfig"
+          loader: ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
         pre_dispatch:
           generate_summary: |
             STATE SUMMARY (auto-generated):
@@ -542,7 +542,7 @@ workflow:
             Next focus: {next_focus}
           render_prompt_pack:
             template_path: ".opencode/skills/deep-research/assets/prompt_pack_iteration.md.tmpl"
-            renderer: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/prompt-pack.ts#renderPromptPack"
+            renderer: ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
             variables:
               state_summary: "{state_summary}"
@@ -560,7 +560,7 @@ workflow:
               state_paths_delta_pattern: "{state_paths.delta_pattern}"
         pre_dispatch_audit:
           skip_when: "config.executor.type == 'native'"
-          call: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
+          call: ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
           args:
             stateLogPath: "{state_paths.state_log}"
             executor: "{config.executor}"
@@ -668,7 +668,7 @@ workflow:
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude/Codex/Gemini/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
             - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See cli-opencode SKILL.md §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         post_dispatch_validate:
-          validator: ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+          validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
           assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus]
