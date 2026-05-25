@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/010-remove-memory-coco-integration",
+  "description": "Feature Specification: Remove memory's live CocoIndex integration",
+  "keywords": [
+    "remove",
+    "memory",
+    "cocoindex",
+    "integration",
+    "scope-gap"
+  ],
+  "lastUpdated": "2026-05-25T00:00:00.000Z",
+  "specId": "010",
+  "folderSlug": "remove-memory-coco-integration",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-deprecate-coco-index"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
