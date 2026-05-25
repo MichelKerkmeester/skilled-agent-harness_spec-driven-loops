@@ -97,7 +97,7 @@ Safety brakes that force the loop to stop or refuse broader rollout. Do not expa
 - canonical mutation happens without explicit approval
 - benchmark evidence and mirror-sync evidence are being mixed together
 - a profile exceeds the configured infra-failure or weak-benchmark limits
-- all 5 evaluation dimensions have plateaued (3+ consecutive identical scores per dimension), indicating the loop has exhausted its current approach — stop and reassess the hypothesis or target
+- all 5 evaluation dimensions have plateaued (3+ consecutive identical scores per dimension), indicating the loop has exhausted its current approach - stop and reassess the hypothesis or target
 
 The reducer consumes these configured stop rules and marks the runtime `shouldStop` when the packet crosses them.
 

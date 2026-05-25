@@ -283,13 +283,13 @@ Attribute the recommended plan, validation steps, risk mitigations, dropped alte
 Use this pattern:
 
 ```text
-- <Plan element> — contributed by <Seat>, strengthened by <Seat>, retained because <reason>.
+- <Plan element> - contributed by <Seat>, strengthened by <Seat>, retained because <reason>.
 ```
 
 Example:
 
 ```text
-- Keep the change documentation-only — contributed by Pragmatic Seat, reinforced by Critical Seat, retained because the request names no runtime behavior change.
+- Keep the change documentation-only - contributed by Pragmatic Seat, reinforced by Critical Seat, retained because the request names no runtime behavior change.
 ```
 
 ### Seat Labeling

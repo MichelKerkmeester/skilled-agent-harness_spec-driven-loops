@@ -86,7 +86,7 @@ The reducer deduplicates findings at synthesis time using a two-tier match.
    - `line_range`: e.g., `"42"` or `"42-56"`
    - `finding_type`: one of `security`, `correctness`, `performance`, `maintainability`, `test_quality`, `contract_safety`, `removal`
    - `normalized_description_80chars`: first 80 characters of the description, whitespace-collapsed and lowercased
-2. **FALLBACK (legacy records): file:line + normalized_title** — applied when one or both records lack a `content_hash`, preserving existing behavior unchanged.
+2. **FALLBACK (legacy records): file:line + normalized_title** - applied when one or both records lack a `content_hash`, preserving existing behavior unchanged.
 
 ### Synthesis Behavior
 

@@ -84,7 +84,7 @@ Preferred seat extraction uses one markdown heading per seat:
 
 Accepted variations:
 
-- `### Seat 001 — Analytical / cli-codex`
+- `### Seat 001 - Analytical / cli-codex`
 - `### Seat 1: Analytical / cli-codex`
 - `#### Seat-001 Analytical / cli-codex`
 

@@ -50,7 +50,7 @@ Use different strategy lenses for each seat. The temperature values describe the
 
 ## 3. AI VANTAGE TARGETS
 
-> **Primary mode: in-CLI.** The default council run uses the CURRENT active runtime's own model bench as seats — no external dispatch needed. The "Vantage Target" below names *which CLI's models supply the round's seats*, whether that CLI is the active runtime (in-CLI mode) or an externally-dispatched one (via the `cli-*` skill family).
+> **Primary mode: in-CLI.** The default council run uses the CURRENT active runtime's own model bench as seats - no external dispatch needed. The "Vantage Target" below names *which CLI's models supply the round's seats*, whether that CLI is the active runtime (in-CLI mode) or an externally-dispatched one (via the `cli-*` skill family).
 >
 > **One-CLI-per-round invariant.** A single round MUST run all its seats through ONE CLI's models. Seat diversity inside a round comes from different models/reasoning lenses on that CLI (and from different strategy lenses). Multiple CLIs in the same deliberation are staged as MULTIPLE rounds, each with its own state event. See `SKILL.md §0` Operational Modes and `§4` ALWAYS rule 6 / NEVER rule 5.
 
@@ -95,7 +95,7 @@ when Claude Code did not run.
 
 ### Pairing Guidance
 
-Pair lenses and vantages to create complementary coverage. **All pairings below are SINGLE-ROUND patterns** — each entry stays within one CLI; multi-CLI rounds are not pairings, they are sequential rounds.
+Pair lenses and vantages to create complementary coverage. **All pairings below are SINGLE-ROUND patterns** - each entry stays within one CLI; multi-CLI rounds are not pairings, they are sequential rounds.
 
 - Analytical + `cli-codex` (gpt-5.5 high): implementation sequence and codebase fit.
 - Pragmatic + `cli-codex` (gpt-5.5 medium): minimal working path and churn control.
@@ -130,7 +130,7 @@ Analytical + Critical + Pragmatic
 
 ### 2. Vantage Diversity (within a single round)
 
-Within ONE round, vantage diversity is achieved via DIFFERENT MODELS or REASONING LEVELS on the SAME CLI (e.g. on `cli-opencode`: `opencode-go/deepseek-v4-pro --variant high` + `opencode-go/kimi-k2.6`; on `cli-claude-code`: Opus + Haiku). Across-CLI diversity is staged as ADDITIONAL ROUNDS — each round runs on one CLI only.
+Within ONE round, vantage diversity is achieved via DIFFERENT MODELS or REASONING LEVELS on the SAME CLI (e.g. on `cli-opencode`: `opencode-go/deepseek-v4-pro --variant high` + `opencode-go/kimi-k2.6`; on `cli-claude-code`: Opus + Haiku). Across-CLI diversity is staged as ADDITIONAL ROUNDS - each round runs on one CLI only.
 
 If real external vantages are unavailable, preserve lens diversity and label simulated vantages.
 
@@ -260,7 +260,7 @@ Task Type Received
             separate dedicated rounds (one CLI per round) rather than mixing.
 ```
 
-Respect user-selected custom strategies up to the maximum of three PER ROUND. If the user requests more than three seats or multiple CLIs, stage them as additional dedicated rounds — never widen a single round beyond its CLI boundary.
+Respect user-selected custom strategies up to the maximum of three PER ROUND. If the user requests more than three seats or multiple CLIs, stage them as additional dedicated rounds - never widen a single round beyond its CLI boundary.
 
 ---
 

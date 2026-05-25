@@ -169,7 +169,7 @@ The following consumers were surfaced by a deep-research audit and were absent f
 
 ### Note: cross-package test discovery
 
-`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts:9` imports `'../../../../deep-review/scripts/reduce-state.cjs'` — the test file lives in `mcp_server` but exercises `deep-review` code, and is discovered via deep-loop-runtime's vitest glob in `vitest.config.ts:20`. Effective SC-007 boundary for any deep-loop-runtime change is therefore tighter than the literal directory listing: changes to `deep-review/scripts/reduce-state.cjs` ALSO re-validate through deep-loop-runtime's test surface.
+`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts:9` imports `'../../../../deep-review/scripts/reduce-state.cjs'` - the test file lives in `mcp_server` but exercises `deep-review` code, and is discovered via deep-loop-runtime's vitest glob in `vitest.config.ts:20`. Effective SC-007 boundary for any deep-loop-runtime change is therefore tighter than the literal directory listing: changes to `deep-review/scripts/reduce-state.cjs` ALSO re-validate through deep-loop-runtime's test surface.
 
 ---
 

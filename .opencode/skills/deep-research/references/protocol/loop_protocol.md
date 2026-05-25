@@ -164,7 +164,7 @@ When the convergence algorithm returns STOP:
    - Persist the blocked legal-stop outcome: `{"type":"event","event":"blocked_stop","mode":"research","run":N,"blockedBy":["<gate>"],"gateResults":{"convergence":{"pass":true,"score":0.0},"keyQuestionCoverage":{"pass":false,"answered":X,"total":Y},"evidenceDensity":{"pass":false,"sources":N},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"<one-line hint>","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
    - Append failed guard details to strategy.md "Active Risks" section
 5. The loop continues until BOTH convergence AND quality guards pass simultaneously
-6. Guard checks apply only to STOP decisions — CONTINUE and STUCK_RECOVERY bypass this step
+6. Guard checks apply only to STOP decisions - CONTINUE and STUCK_RECOVERY bypass this step
 
 If the legal-stop decision tree returns `blocked`, the workflow MUST append the `blocked_stop` JSONL event before continuing. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
 
@@ -243,7 +243,7 @@ Cross-CLI delegation (a running executor invoking other CLIs via its shell) is d
 
 Failure handling remains unchanged from spec 018: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
 
-The dispatch context may include a suggested `focusTrack` label (e.g., `"focusTrack": "performance"`, `"focusTrack": "security"`). Agents may tag their iteration with this track label for post-hoc grouping and analysis. Track labels are metadata only — the orchestrator does not use them for loop decisions.
+The dispatch context may include a suggested `focusTrack` label (e.g., `"focusTrack": "performance"`, `"focusTrack": "security"`). Agents may tag their iteration with this track label for post-hoc grouping and analysis. Track labels are metadata only - the orchestrator does not use them for loop decisions.
 
 #### Step 3a: Per-Iteration Budget
 
@@ -254,7 +254,7 @@ After dispatch, the orchestrator monitors the running iteration against budget l
   1. Mark the iteration as `"status": "timeout"` in the JSONL record
   2. Log event: `{"type":"event","event":"iteration_timeout","iteration":N,"reason":"tool_calls|elapsed_time"}`
   3. Continue to the next iteration (do not retry the timed-out iteration)
-- Budget limits are soft caps — if the agent is actively writing its iteration file when the limit is reached, allow completion
+- Budget limits are soft caps - if the agent is actively writing its iteration file when the limit is reached, allow completion
 
 #### Step 4: Evaluate Results
 After agent completes:
@@ -281,7 +281,7 @@ After evaluating iteration results, generate a human-readable dashboard:
    - **Next focus**: Current value from strategy.md
    - **Active risks**: Guard violations, stuck count, budget warnings
 3. Log event: `{"type":"event","event":"dashboard_generated","iteration":N}`
-4. The dashboard is **auto-generated only** — never manually edited
+4. The dashboard is **auto-generated only** - never manually edited
 5. The dashboard file is overwritten each iteration (not appended)
 6. Dashboard generation is non-blocking: if it fails, log a warning and continue the loop
 
@@ -347,11 +347,11 @@ When stuckThreshold consecutive iterations show no progress (default: 3, configu
 Before selecting a recovery strategy, classify why progress stalled:
 1. Read the last N iteration files (where N = stuckThreshold) to determine the failure pattern
 2. Classify into one of the following modes:
-   - `shallow_sources` — iterations find content but lack depth or authoritative sources
-   - `contradictory` — iterations return conflicting information without resolution
-   - `too_broad` — focus area is too wide, producing scattered low-value findings
-   - `repetitive` — iterations keep rediscovering the same information
-   - `exhausted` — the topic area has been thoroughly explored with diminishing returns
+   - `shallow_sources` - iterations find content but lack depth or authoritative sources
+   - `contradictory` - iterations return conflicting information without resolution
+   - `too_broad` - focus area is too wide, producing scattered low-value findings
+   - `repetitive` - iterations keep rediscovering the same information
+   - `exhausted` - the topic area has been thoroughly explored with diminishing returns
 3. Select a targeted recovery prompt based on the classification (see convergence.md §4 for category-specific strategies)
 4. Log classification: `{"type":"event","event":"stuck_classified","mode":"<classification>","iteration":N}`
 
@@ -506,7 +506,7 @@ Compile all iteration findings into final research/research.md. The synthesis wo
      - Consolidate all `## Dead Ends` sections from iteration files
      - Format as a table: `| Approach | Reason Eliminated | Evidence | Iteration(s) |`
      - This section documents negative knowledge (what was tried and why it failed)
-     - Treat as primary research output — not an appendix or afterthought
+     - Treat as primary research output - not an appendix or afterthought
      - Place after Section 11 (Recommendations) and before Section 12 (Open Questions)
 4. **If reopening a completed packet later**: snapshot this file as `research/synthesis-v{generation}.md` before any `completed-continue` flow
 5. **Update config status**: Set `status: "complete"` in config.json
