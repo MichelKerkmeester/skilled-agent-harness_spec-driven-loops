@@ -20,10 +20,6 @@ function loadCanonicalModels() {
     __dirname,
     '../../system-spec-kit/shared/embeddings/registry.ts'
   );
-  const cocoIndexPath = path.join(
-    __dirname,
-    '../../mcp-coco-index/mcp_server/cocoindex_code/embedders/registered_embedders.py'
-  );
 
   const canonical = new Set();
 
@@ -71,32 +67,6 @@ function loadCanonicalModels() {
           canonical.add(valueMatch[1]);
         }
       }
-    }
-  }
-
-  // Load from registered_embedders.py
-  if (fs.existsSync(cocoIndexPath)) {
-    const cocoContent = fs.readFileSync(cocoIndexPath, 'utf-8');
-
-    // Extract DEFAULT_EMBEDDER_NAME and DEFAULT_RERANKER_NAME
-    const defaultEmbedderMatch = cocoContent.match(
-      /DEFAULT_EMBEDDER_NAME\s*=\s*["']([^"']+)["']/
-    );
-    if (defaultEmbedderMatch) {
-      canonical.add(defaultEmbedderMatch[1]);
-    }
-
-    const defaultRerankerMatch = cocoContent.match(
-      /DEFAULT_RERANKER_NAME\s*=\s*["']([^"']+)["']/
-    );
-    if (defaultRerankerMatch) {
-      canonical.add(defaultRerankerMatch[1]);
-    }
-
-    // Extract names from MANIFESTS or similar declarations
-    const nameMatches = cocoContent.matchAll(/name\s*=\s*["']([^"']+)["']/g);
-    for (const match of nameMatches) {
-      canonical.add(match[1]);
     }
   }
 
@@ -177,7 +147,7 @@ const LEGACY_MODEL_NAMES = [
 ];
 
 // Common model org prefixes to help identify actual model names
-// 022/011 bugfix: added `sbert/` wrapper prefix used by CocoIndex's sbert/ namespace
+// 022/011 bugfix: added `sbert/` wrapper prefix for sbert/-namespaced model ids
 // (e.g. sbert/nomic-ai/CodeRankEmbed). Without this, multi-level wrapped names
 // were not extractable by the regex on line 210 and false-positive flagged as drift.
 const MODEL_ORG_PREFIXES = [
@@ -218,7 +188,14 @@ const INTENTIONAL_MARKER_WORDS = [
   'pre-',
   'opt-in fallback',
   'previous default',
+  'legacy',
+  'deprecated',
+  'retired',
 ];
+
+// Matched tokens ending in a source/file extension are file paths caught by the
+// org-prefix regex (e.g. openai/codex/.../discovery.rs), not model identifiers.
+const FILE_LIKE_SUFFIX = /\.(rs|ts|tsx|js|cjs|mjs|py|md|json|jsonc|ya?ml|sh|toml|sqlite|lock)$/i;
 
 function getModelPattern(canonicalModels) {
   // Match specific legacy model names OR org/name pattern with model-like characteristics
@@ -237,6 +214,21 @@ function escapeRegex(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// A doc may cite a canonical model with its HuggingFace org prefix
+// (e.g. `nomic-ai/nomic-embed-text-v1.5`) — that is the hf-local form
+// registry getCanonicalFallback() constructs. The canonical set stores the bare
+// manifest name (`nomic-embed-text-v1.5`), so strip ONE known org prefix and
+// re-check. Precise: `BAAI/bge-base-en-v1.5` strips to `bge-base-en-v1.5`, which
+// is NOT canonical, so true drift stays flagged.
+function orgPrefixedCanonical(modelName, canonicalModels) {
+  for (const prefix of MODEL_ORG_PREFIXES) {
+    if (modelName.startsWith(prefix) && canonicalModels.has(modelName.slice(prefix.length))) {
+      return true;
+    }
+  }
+  return false;
+}
+
 function scanDoc(filePath, canonicalModels, verbose = false) {
   const content = fs.readFileSync(filePath, 'utf-8');
   const lines = content.split('\n');
@@ -251,8 +243,13 @@ function scanDoc(filePath, canonicalModels, verbose = false) {
       // Extract the actual model name (strip quotes if present)
       let modelName = matchedText.replace(/^["']|["']$/g, '');
 
-      // Skip if it's in the canonical set
-      if (canonicalModels.has(modelName)) {
+      // Skip file paths the org-prefix regex catches (e.g. openai/codex/.../foo.rs)
+      if (FILE_LIKE_SUFFIX.test(modelName)) {
+        continue;
+      }
+
+      // Skip if canonical directly, or as an org-prefixed form of a canonical bare name
+      if (canonicalModels.has(modelName) || orgPrefixedCanonical(modelName, canonicalModels)) {
         continue;
       }
 
@@ -324,7 +321,6 @@ Exits:
 
 Canonical sources:
   - .opencode/skills/system-spec-kit/shared/embeddings/registry.ts
-  - .opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/embedders/registered_embedders.py
 
 Scanned paths:
   - .opencode/skills/**/*.md (excludes changelog/, scratch/, benchmarks/, *archive*, research/iterations/)
@@ -334,7 +330,10 @@ Scanned paths:
 
   try {
     const canonicalModels = loadCanonicalModels();
-    const skillsRoot = path.join(__dirname, '../../..');
+    // Scan .opencode/skills/** per the documented scope. (Was '../../..' =>
+    // .opencode/**, which over-scanned historical specs/ implementation records —
+    // frozen provenance the canonical-drift check was never meant to police.)
+    const skillsRoot = path.join(__dirname, '../../');
 
     const excludePatterns = [
       '**/changelog/**',
