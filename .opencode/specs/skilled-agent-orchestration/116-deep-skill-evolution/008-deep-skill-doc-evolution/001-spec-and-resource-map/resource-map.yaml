@@ -204,6 +204,20 @@ phase5_backlog:
     iter_2: "ADVERSARIAL concrete re-verification (distrust iter-1; actual grep/ls/diff evidence, NOT resource-map.yaml self-report) — newInfoRatio 0.0, 0 findings; 300+ references/ links resolved with 0 dangling; README structure trees match on-disk (deep-research 13/13, deep-review 10/10, deep-ai-council 15/15, deep-agent-improvement 15/15); 0 orphans; 0 stale flat paths in .claude/.gemini/.codex/ + .opencode/commands/deep/; deep-loop-runtime flat-by-design confirmed (4 files/4 consumers)"
     new_backlog_items: "NONE — the 008 doc-evolution pass is confirmed complete; no new deferred items beyond those already recorded above"
     artifacts: "009-deep-research-gap-backstop/research/ (deep-research-state.jsonl, iterations/iteration-00{1,2}.md, deltas/iter-00{1,2}.jsonl, findings-registry.json, deep-research-dashboard.md, resource-map.md)"
+  loop_outcome_010:
+    status: "PASS — post-implementation deep-review (0 P0, 0 P1, 2 P2 both fixed)"
+    packet: "010-post-impl-deep-review"
+    executor: "cli-devin swe-1.6, 4 dimension iterations one-at-a-time with SIGKILL between"
+    dimensions: "correctness (clean), traceability (1 P2), maintainability (0 confirmed; 2 adjudicated FP), security (clean)"
+    confirmed_findings_fixed:
+      - "F-iter2-002 (P2): stale README Version fields -> bumped deep-research 1.14.0.0, deep-ai-council 2.3.0.0, deep-review 1.11.0.0"
+      - "F-synth-001 (P2, found in synthesis verification): deep-loop-runtime README changelog refs frozen at v1.1.0.0 -> tree + related-docs table updated to list v1.0.0.0..v1.4.0.0"
+    adjudicated_false_positives:
+      - "F-iter2-001 (P1): a phase ref inside a CHANGELOG is the sanctioned location (not a present-tense violation); pre-008 file documenting a removal"
+      - "F-iter3-001 (P2): em dashes are a pervasive pre-existing corpus convention (sk-code/refs 350, cli-devin/refs 151, sk-doc/refs 27), not an 008 regression"
+      - "F-iter3-002 (P2): 'Robustness' scoring column + 'robust statistical test' (MAD) are legitimate terminology, not AI-filler"
+    out_of_scope_noted: "deep-loop-runtime v1.2.0.0/v1.3.0.0 changelogs carry version: frontmatter (pre-008 convention deviation); not modified by this review"
+    verdict_doc: "010-post-impl-deep-review/review/review-report.md"
 
 # ============================================================================
 # 002a findings (inbound-link inventory + verification baseline) — 2026-05-25

@@ -240,7 +240,10 @@ The database is session-scoped through node and edge tagging, not through per-se
 ├── README.md                             # This file
 ├── changelog/
 │   ├── v1.0.0.0.md                       # Initial shipped release
-│   └── v1.1.0.0.md                       # Phase-1-3 release-cleanup pass
+│   ├── v1.1.0.0.md                       # Phase-1-3 release-cleanup pass
+│   ├── v1.2.0.0.md                       # Phase-5 audit backlog closure (doc + council + tests)
+│   ├── v1.3.0.0.md                       # Structural cleanup (storage/ to database/, test READMEs)
+│   └── v1.4.0.0.md                       # sk-doc conformance pass (health-check + consumer/test docs)
 ├── lib/
 │   ├── README.md
 │   ├── deep-loop/                        # 10 TS modules (executor, prompt, state, scoring, routing)
@@ -438,6 +441,9 @@ The SKILL.md is the operational contract loaded by AI agents at routing time (sm
 | [`SKILL.md`](SKILL.md) | Operational contract: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES (ALWAYS / NEVER / ESCALATE IF) |
 | [`changelog/v1.0.0.0.md`](changelog/v1.0.0.0.md) | Initial shipped release notes |
 | [`changelog/v1.1.0.0.md`](changelog/v1.1.0.0.md) | Phase-1-3 release-cleanup pass (README rewrite + 4 surgical SKILL.md edits) |
+| [`changelog/v1.2.0.0.md`](changelog/v1.2.0.0.md) | Phase-5 deep-research audit backlog closure (doc alignment + council surface + test coverage) |
+| [`changelog/v1.3.0.0.md`](changelog/v1.3.0.0.md) | Structural cleanup (storage/ to database/ rename, gitignore runtime sqlite, test-subfolder READMEs) |
+| [`changelog/v1.4.0.0.md`](changelog/v1.4.0.0.md) | sk-doc conformance pass (health-check + consumer/test documentation) |
 | [`feature_catalog/feature_catalog.md`](feature_catalog/feature_catalog.md) | Per-feature canonical inventory across 7 domains |
 | [`manual_testing_playbook/manual_testing_playbook.md`](manual_testing_playbook/manual_testing_playbook.md) | Operator-facing manual-test scenarios (17 scenarios + 1 index) |
 | [`references/coverage_graph_schema.md`](references/coverage_graph_schema.md) | SQLite schema, node kinds, relation kinds, indexes |

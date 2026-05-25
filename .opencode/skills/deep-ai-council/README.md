@@ -56,7 +56,7 @@ A plain single-model plan gives you one lens and no record of what it ruled out.
 
 | Metric | Value |
 |---|---|
-| Version | 2.2.0.0 |
+| Version | 2.3.0.0 |
 | Operating modes | In-CLI (primary), external-CLI (secondary) |
 | References | 15 |
 | Assets | 5 council runtime templates |

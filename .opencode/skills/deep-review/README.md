@@ -54,7 +54,7 @@ Read this README to learn what the skill does, how to invoke it, how to read its
 
 | Metric | Value |
 |---|---|
-| Version | 1.10.1.0 |
+| Version | 1.11.0.0 |
 | Operating modes | 2 (`:auto`, `:confirm`) |
 | Lifecycle modes | 3 active (`new`, `resume`, `restart`) + 2 reserved (`fork`, `completed-continue`) |
 | Review dimensions | 4 (Correctness, Security, Traceability, Maintainability) |

@@ -48,7 +48,7 @@ Use this README for human orientation: command examples, packet layout, lifecycl
 
 | Metric | Value |
 |---|---|
-| Version | `1.13.0.0` |
+| Version | `1.14.0.0` |
 | Primary command | `/deep:start-research-loop` |
 | Runtime modes | `auto`, `confirm` |
 | Live lifecycle branches | `new`, `resume`, `restart` |

@@ -5,7 +5,8 @@
   "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution",
   "children_ids": [
     "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/001-spec-and-resource-map",
-    "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/009-deep-research-gap-backstop"
+    "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/009-deep-research-gap-backstop",
+    "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/010-post-impl-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -36,7 +37,7 @@
     ],
     "importance_tier": "important",
     "status": "complete",
-    "last_active_child_id": "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/009-deep-research-gap-backstop",
+    "last_active_child_id": "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/010-post-impl-deep-review",
     "key_files": [
       ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       ".opencode/skills/sk-doc/references/global/validation.md",

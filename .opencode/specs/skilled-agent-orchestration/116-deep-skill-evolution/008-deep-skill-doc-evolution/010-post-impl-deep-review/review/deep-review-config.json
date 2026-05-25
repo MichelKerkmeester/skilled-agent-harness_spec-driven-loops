@@ -1,0 +1,85 @@
+{
+  "topic": "Post-implementation deep-review of the 008 deep-skill doc-evolution ship (5f3e0a2f53): the 5 deep-* skills' SKILL.md, README, references, feature_catalog, manual_testing_playbook, and changelogs",
+  "sessionId": "116-008-010-dr-review-2026-05-25",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 15,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/010-post-impl-deep-review",
+  "createdAt": "2026-05-25T19:05:00Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "type": "cli-devin",
+    "model": "swe-1.6",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "008 deep-skill doc-evolution ship — the 5 deep-* skills (deep-loop-runtime, deep-research, deep-review, deep-ai-council, deep-agent-improvement) docs as committed in 5f3e0a2f53",
+  "reviewTargetType": "track",
+  "reviewDimensions": [
+    "correctness",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}
