@@ -566,7 +566,7 @@ console.log(extractTriggerPhrases('memory search trigger extraction'))"
 | Resource                                                                  | Description                        |
 | ------------------------------------------------------------------------- | ---------------------------------- |
 | [@huggingface/transformers](https://github.com/huggingface/transformers.js) | JavaScript ML library for HF local |
-| [BGE local fallback GGUF](https://huggingface.co/unsloth/bge-base-en-v1.5-GGUF) | Default ollama embedding model |
+| [nomic-embed-text v1.5](https://ollama.com/library/nomic-embed-text) | Default ollama embedding model |
 | [BGE local fallback ONNX](https://huggingface.co/onnx-community/bge-base-en-v1.5-ONNX) | Fallback HF Local embedding model |
 | [Voyage AI](https://www.voyageai.com/)                                    | Cloud embedding provider (opt-in)  |
 | [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings)   | OpenAI embedding API docs          |

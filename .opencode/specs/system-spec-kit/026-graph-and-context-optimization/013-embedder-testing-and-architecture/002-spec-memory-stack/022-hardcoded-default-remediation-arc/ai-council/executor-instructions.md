@@ -103,7 +103,7 @@ Agent files to mirror:
 | `.opencode/agents/deep-research.md:51` | Remove `(proposed)` qualifier from deep-ai-council reference |
 | `.opencode/agents/deep-review.md:45` | Remove `(proposed)` qualifier from deep-ai-council reference |
 
-The rename arc (131-deep-skill-evolution) has shipped — `deep-ai-council` is the canonical name.
+The rename arc (116-deep-skill-evolution) has shipped — `deep-ai-council` is the canonical name.
 
 ### Verification Gate
 

@@ -1,0 +1,32 @@
+{
+  "trigger_phrases": [
+    "deep-review seeded fixtures",
+    "review-depth fixture harness"
+  ],
+  "level": "2",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/002-complexity-seeded-fixture-harness",
+  "description": "Feature Specification: 116/002 - Seeded Fixture Harness",
+  "keywords": [
+    "feature",
+    "specification",
+    "116",
+    "002",
+    "seeded",
+    "fixture",
+    "harness"
+  ],
+  "lastUpdated": "2026-05-25T11:53:22.291Z",
+  "specId": "002",
+  "folderSlug": "complexity-seeded-fixture-harness",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "002-deep-review"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "22-05-26_12-23__created-review-depth-validator-vitest-ts-with.md"
+  ]
+}

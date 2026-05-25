@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution",
+  "description": "Feature Specification: deep-skill evolution arc (nested)",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-skill",
+    "evolution",
+    "arc",
+    "nested"
+  ],
+  "lastUpdated": "2026-05-23T15:24:58.900Z",
+  "specId": "131",
+  "folderSlug": "deep-skill-evolution",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review",
+  "description": "Feature Specification: deep-review skill release cleanup",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-review",
+    "skill",
+    "release",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-23T15:16:23.363Z",
+  "specId": "003",
+  "folderSlug": "deep-review",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "23-05-26_16-16__7-spec-docs-4-json-schemas-authored-mirrors.md"
+  ]
+}

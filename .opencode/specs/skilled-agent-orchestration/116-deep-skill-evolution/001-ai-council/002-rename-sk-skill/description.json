@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/002-rename-sk-skill",
+  "description": "Feature Specification: 115/002 — skill dir rename",
+  "keywords": [
+    "feature",
+    "specification",
+    "115",
+    "002",
+    "skill",
+    "dir",
+    "rename"
+  ],
+  "lastUpdated": "2026-05-23T15:24:58.924Z",
+  "specId": "002",
+  "folderSlug": "rename-sk-skill",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "001-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

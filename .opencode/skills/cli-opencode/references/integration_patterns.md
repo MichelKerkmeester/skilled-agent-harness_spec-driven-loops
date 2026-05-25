@@ -30,7 +30,7 @@ The cycle ADR-001 protects against is the operator inside OpenCode asking cli-op
 The calling AI is Claude Code, Codex, Copilot, Gemini, or a raw shell. The task needs the project's full plugin / skill / MCP / Spec Kit Memory runtime — not just a raw model dispatch. Examples:
 
 - Run `memory_search` against the project's spec-doc database
-- Call CocoIndex for semantic code search across the repo
+- Call Code Graph for semantic code search across the repo
 - Dispatch a `@deep-research` or `@deep-review` agent loop with externalized state
 - Run a sub-agent that needs Spec Kit Memory for continuity across iterations
 

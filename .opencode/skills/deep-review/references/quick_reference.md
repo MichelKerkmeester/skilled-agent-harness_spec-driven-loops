@@ -157,7 +157,7 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 Each @deep-review iteration:
 1. Read `deep-review-state.jsonl`, `deep-review-findings-registry.json`, and `deep-review-strategy.md`
 2. Determine focus dimension from strategy "Next Focus"
-3. Execute 3-5 review actions (Read, Grep, Glob, mcp__cocoindex_code__search)
+3. Execute 3-5 review actions (Read, Grep, Glob, code_graph_query + Grep)
 4. Write `review/iterations/iteration-NNN.md` with P0/P1/P2 findings
 5. Run adversarial self-check on any P0 findings (Hunter/Skeptic/Referee)
 6. Update `deep-review-strategy.md` (findings, coverage, next focus)

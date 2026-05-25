@@ -1,0 +1,7 @@
+{"event":"round_start","round":1,"timestamp":"2026-05-24T18:00:00Z","seats":["seat-001-analytical-contract-auditor","seat-002-critical-failure-mode-reviewer","seat-003-pragmatic-release-integrator"]}
+{"event":"seat_returned","round":1,"seat":"seat-001-analytical-contract-auditor","timestamp":"2026-05-24T18:05:00Z","status":"ok","tokens":0}
+{"event":"seat_returned","round":1,"seat":"seat-002-critical-failure-mode-reviewer","timestamp":"2026-05-24T18:10:00Z","status":"ok","tokens":0}
+{"event":"seat_returned","round":1,"seat":"seat-003-pragmatic-release-integrator","timestamp":"2026-05-24T18:15:00Z","status":"ok","tokens":0}
+{"event":"deliberation_synthesized","round":1,"timestamp":"2026-05-24T18:20:00Z","convergence_score":1.0}
+{"event":"round_end","round":1,"timestamp":"2026-05-24T18:20:00Z","new_findings_count":3}
+{"event":"council_complete","timestamp":"2026-05-24T18:20:00Z","final_report_path":".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/003-reference-asset-alignment/ai-council/council-report.md","convergence":true}

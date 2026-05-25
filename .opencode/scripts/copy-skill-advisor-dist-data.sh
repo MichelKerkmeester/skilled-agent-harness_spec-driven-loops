@@ -14,7 +14,7 @@
 #
 # Idempotent. Safe to re-run. Exits 0 if source files are missing (no-op).
 
-set -eu
+set -euo pipefail
 
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
 if [ -z "$REPO_ROOT" ]; then

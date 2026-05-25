@@ -96,7 +96,7 @@ Documentation-only; ban-list grep verification.
 ## 6. DEPENDENCIES
 
 - Investigation findings (this session) supersede audit's stale P0 claims
-- `deep-ai-council` rename arc (131-deep-skill-evolution) shipped — makes `(proposed)` qualifier stale
+- `deep-ai-council` rename arc (116-deep-skill-evolution) shipped — makes `(proposed)` qualifier stale
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

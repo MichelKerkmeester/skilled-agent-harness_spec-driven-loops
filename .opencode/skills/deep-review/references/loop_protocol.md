@@ -287,7 +287,7 @@ Failure handling remains unchanged from spec 018: `schema_mismatch` → conflict
 - `@deep-review` is LEAF-only: it cannot dispatch sub-agents
 - No WebFetch: review is code-only and read-only
 - Target 8-11 tool calls per iteration (max 12). Breadth over depth per cycle
-- Tools available: Read, Grep, Glob, Edit (state files only), mcp__cocoindex_code__search
+- Tools available: Read, Grep, Glob, Edit (state files only), code_graph_query + Grep
 
 #### Step 3a: Cross-Reference Protocol Execution
 

@@ -20,7 +20,7 @@ The three sibling cli-* skills (cli-claude-code, cli-codex, cli-gemini) dispatch
 3. Every MCP tool wired through `opencode.json` and `.utcp_config.json`
 4. The full Spec Kit Memory MCP database
 5. The project's CLAUDE.md / AGENTS.md instructions
-6. The structural code graph and CocoIndex semantic index
+6. The structural code graph and Code Graph semantic index
 
 The cli-opencode skill exists because no sibling provides this. It is the bridge between an external AI and the full plugin / skill / MCP runtime this repo defines.
 
@@ -31,7 +31,7 @@ The cli-opencode skill exists because no sibling provides this. It is the bridge
 When `opencode run` starts a session, the runtime loads every plugin, skill, and MCP server the project configures. The dispatched agent has access to:
 
 - All `Skill` invocations the calling AI has access to (system-spec-kit, sk-doc, `sk-code` surface routing, `sk-code-review`, etc.)
-- All MCP tools (Spec Kit Memory's 40+ tools, CocoIndex semantic search, Code Mode for ClickUp / Figma / external services, sequential thinking)
+- All MCP tools (Spec Kit Memory's 40+ tools, Code Graph structural query + Grep, Code Mode for ClickUp / Figma / external services, sequential thinking)
 - Every project-local plugin
 - The repo's CLAUDE.md / AGENTS.md instruction set as the system prompt
 

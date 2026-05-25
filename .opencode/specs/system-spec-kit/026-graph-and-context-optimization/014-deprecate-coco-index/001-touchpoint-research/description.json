@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/001-touchpoint-research",
   "description": "Feature Specification: Touchpoint Research — CocoIndex / Rerank-Sidecar Deprecation Discovery",
   "keywords": [
@@ -11,7 +12,7 @@
     "deprecation",
     "discovery"
   ],
-  "lastUpdated": "2026-05-25T06:46:25.385Z",
+  "lastUpdated": "2026-05-25T11:53:22.535Z",
   "specId": "001",
   "folderSlug": "touchpoint-research",
   "parentChain": [
@@ -20,6 +21,5 @@
     "014-deprecate-coco-index"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

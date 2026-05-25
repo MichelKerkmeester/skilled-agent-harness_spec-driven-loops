@@ -114,7 +114,7 @@ Closes 2 audit findings from packet 021:
   with no action required.
 - P1 f-iter003-002: removed ' (proposed)' qualifier from
   .opencode/agents/deep-research.md:51 + deep-review.md:45 since deep-ai-council
-  rename arc (131-deep-skill-evolution) has shipped.
+  rename arc (116-deep-skill-evolution) has shipped.
 
 Preserved: ai-council.md:39 (proposed) refers to threshold VALUE (0.20 calibration),
 not name maturity; kept as documentation of ongoing tuning.

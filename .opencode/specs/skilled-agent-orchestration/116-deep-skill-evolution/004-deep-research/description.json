@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research",
+  "description": "Feature Specification: Deep Research uplift + ordering + uncovered + hygiene arc",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "research",
+    "uplift",
+    "ordering",
+    "uncovered",
+    "hygiene",
+    "arc"
+  ],
+  "lastUpdated": "2026-05-25T11:53:22.366Z",
+  "specId": "004",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -60,7 +60,7 @@ providers/
 | File | Provider | Default model | Dimensions | Role |
 | ---- | -------- | ------------- | ---------- | ---- |
 | `ollama.ts` | Ollama | `jina-embeddings-v3` | 384, 768, 1024 | Active embedder provider for Jina v3, Nomic, mxbai, BGE, and Snowflake manifests |
-| `ollama.ts` | ollama | `unsloth/bge-base-en-v1.5-GGUF` | 768 | Default local provider. Metal GPU acceleration, Q8_0 GGUF quantization, BGE local fallback prefixes |
+| `ollama.ts` | ollama | `nomic-embed-text-v1.5` | 768 | Default local provider. Metal GPU acceleration, nomic-embed-text local-first default (ADR-014) |
 | `hf-local.ts` | HuggingFace Local | `onnx-community/bge-base-en-v1.5-ONNX` | 768 | Fallback local provider. ONNX q8 quantization on CPU when ollama is unavailable |
 | `openai.ts` | OpenAI | `text-embedding-3-small` | 1536 | Cloud provider with OpenAI usage tracking and retry handling |
 | `voyage.ts` | Voyage AI | `voyage-4` | 1024 | Cloud provider using Voyage `input_type` for document and query embeddings |

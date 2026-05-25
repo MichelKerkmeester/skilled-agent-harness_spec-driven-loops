@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup",
+  "description": "Feature Specification: deep-* skills release cleanup",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "skills",
+    "release",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-25T08:01:02.981Z",
+  "specId": "000",
+  "folderSlug": "release-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council",
+  "description": "Feature Specification: AI Council cluster (rename + shared runtime + iterative multi-topic)",
+  "keywords": [
+    "feature",
+    "specification",
+    "council",
+    "cluster",
+    "rename",
+    "shared",
+    "runtime",
+    "iterative",
+    "multi-topic"
+  ],
+  "lastUpdated": "2026-05-25T11:53:22.245Z",
+  "specId": "001",
+  "folderSlug": "ai-council",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/006-evaluator-hardening",
+  "description": "Packet 126: deep-agent-improvement evaluator hardening",
+  "keywords": [
+    "packet",
+    "126",
+    "deep-agent-improvement",
+    "evaluator",
+    "hardening"
+  ],
+  "lastUpdated": "2026-05-25T11:53:22.388Z",
+  "specId": "006",
+  "folderSlug": "evaluator-hardening",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "005-deep-agent-improvement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

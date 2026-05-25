@@ -273,7 +273,7 @@ Edge cases:
 - **Audit packet**: `../021-hardcoded-default-audit-deep-research/research/research.md` (drives per-finding remediation)
 - **ADR origin**: `../004-spec-memory-embedder-bake-off/decision-record.md` (ADR-001..ADR-013)
 - **ADR-014 packet**: `../015-cascade-reorder-and-nomic-hf-local-default/` (canonical Level 2 template source)
-- **Sibling arc**: `skilled-agent-orchestration/131-deep-skill-evolution/` (the 17→6 nested consolidation; same multi-phase pattern)
+- **Sibling arc**: `skilled-agent-orchestration/116-deep-skill-evolution/` (the 17→6 nested consolidation; same multi-phase pattern)
 - **Plan file**: `~/.claude/plans/turn-these-spec-folders-shimmying-lagoon.md` (current session full-detail plan)
 - **Executor SKILL.md**: `.opencode/skills/cli-devin/SKILL.md`, `.opencode/skills/cli-opencode/SKILL.md`, `.opencode/skills/sk-prompt/SKILL.md`
 - **Helper reused**: `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts` (`getCanonicalFallback`)

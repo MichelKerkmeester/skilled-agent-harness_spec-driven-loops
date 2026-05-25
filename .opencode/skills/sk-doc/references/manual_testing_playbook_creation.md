@@ -19,7 +19,7 @@ Manual testing playbooks are operator-facing validation packages for skills with
 - [manual_testing_playbook_template.md](../assets/testing_playbook/manual_testing_playbook_template.md)
 - [manual_testing_playbook_snippet_template.md](../assets/testing_playbook/manual_testing_playbook_snippet_template.md)
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/`
-- `.opencode/skills/mcp-coco-index/manual_testing_playbook/`
+- `.opencode/skills/system-code-graph/manual_testing_playbook/`
 
 **Current Reality Highlights**:
 - The canonical package is a root `manual_testing_playbook.md` plus numbered category folders at the playbook root.

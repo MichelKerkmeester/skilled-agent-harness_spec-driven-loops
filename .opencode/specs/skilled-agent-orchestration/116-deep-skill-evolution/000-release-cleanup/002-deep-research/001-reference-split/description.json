@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/002-deep-research/001-reference-split",
+  "description": "Feature Specification: deep-research reference split and router alignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-research",
+    "reference",
+    "split",
+    "router",
+    "alignment"
+  ],
+  "lastUpdated": "2026-05-24T08:08:00.157Z",
+  "specId": "012",
+  "folderSlug": "deep-research-reference-split",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "000-release-cleanup",
+    "002-deep-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

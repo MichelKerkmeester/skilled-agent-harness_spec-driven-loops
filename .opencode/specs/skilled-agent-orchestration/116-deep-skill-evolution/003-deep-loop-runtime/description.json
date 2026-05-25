@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime",
+  "description": "Feature Specification: Deep Loop runtime isolation arc",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "loop",
+    "runtime",
+    "isolation",
+    "arc"
+  ],
+  "lastUpdated": "2026-05-23T15:24:59.031Z",
+  "specId": "003",
+  "folderSlug": "deep-loop-runtime",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

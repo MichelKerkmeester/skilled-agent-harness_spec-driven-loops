@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "status": "draft",
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/010-iterative-per-topic-multi-round"
+    ],
+    "related_to": []
+  },
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry",
+  "description": "Feature Specification: Multi-Topic Session and Findings Registry",
+  "keywords": [
+    "feature",
+    "specification",
+    "multi-topic",
+    "session",
+    "findings",
+    "registry"
+  ],
+  "lastUpdated": "2026-05-25T11:53:22.278Z",
+  "specId": "011",
+  "folderSlug": "iterative-session-findings-registry",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "001-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

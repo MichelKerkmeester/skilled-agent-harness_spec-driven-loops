@@ -13,7 +13,7 @@ operating_mode:
 operating_principles:
   core: "Session -> topic -> round state with registry-backed cross-topic priors"
   approach: "Run bounded topic loops, persist final verdicts, feed prior fingerprints into later topics"
-  mandate: "Never activate command surface from this scaffold. F4 wires /speckit:deep-council."
+  mandate: "Command surface is live. Persist ai-council/** artifacts as source-of-truth and replay derived graph state through deep-loop-runtime --loop-type council."
 
 user_inputs:
   deliberation_topic: "[DELIBERATION_TOPIC] - Overall council topic or question set. REQUIRED."
@@ -71,7 +71,7 @@ workflow:
         verify:
           - required_values_present: [deliberation_topic, spec_folder, max_rounds_per_topic, max_topics_per_session, saturation_threshold, executor]
           - spec_folder_is_within: "specs/ or .opencode/specs/"
-          - command_surface_activation: "MUST remain false until F4 edits deep-council.md"
+          - command_surface_activation: "LIVE via ask-ai-council.md and deep_ask-ai-council_*.yaml"
         on_fail: "Halt with STATUS=FAIL and report the missing binding"
       step_create_directories:
         action: "Create packet-local ai-council directories"

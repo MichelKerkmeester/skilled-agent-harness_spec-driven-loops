@@ -351,9 +351,9 @@ The bake-off compared six text embedders against a deterministic paraphrase-reca
 
 **Lesson**: A benchmark folder pays off most when the spec packet has many ADRs supporting one curated headline. Promote a `runtime-measurements.md` companion only when the runtime profile is part of the decision (RAM headroom, daemon residency, cold-load time).
 
-### Case study 2: code-embedder bake-off (mcp-coco-index, May 18, 2026)
+### Case study 2: code-embedder bake-off (system-code-graph, May 18, 2026)
 
-Path: `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-18/`
+Path: `.opencode/skills/system-code-graph/mcp_server/benchmarks/benchmark-2026-05-18/`
 
 The bake-off compared five code-tuned embedders against an 18-pair paraphrased fixture. One skipped on Apple Silicon because of an xformers requirement. The leading candidate was ahead by two net pairs over the current default (four unique wins minus two unique losses). No promotion shipped on May 18 because the lead was a single-run signal requiring a 3-run confirmation.
 
@@ -403,7 +403,7 @@ The bake-off compared five code-tuned embedders against an 18-pair paraphrased f
 | Path | What |
 |---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/` | mk-spec-memory text-embedder bake-off (Section 9 Case study 1) |
-| `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-18/` | mcp-coco-index code-embedder bake-off (Section 9 Case study 2) |
+| `.opencode/skills/system-code-graph/mcp_server/benchmarks/benchmark-2026-05-18/` | system-code-graph code-embedder bake-off (Section 9 Case study 2) |
 
 ### Related sk-doc references
 

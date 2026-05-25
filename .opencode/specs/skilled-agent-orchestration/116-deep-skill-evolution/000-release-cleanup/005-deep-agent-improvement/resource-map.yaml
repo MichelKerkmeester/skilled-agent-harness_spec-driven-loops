@@ -1,0 +1,488 @@
+# =============================================================================
+# Resource Map - deep-agent-improvement skill release cleanup
+# =============================================================================
+# Machine-readable artifact inventory (ADR-003: this YAML is the single source
+# of truth for this packet; no resource-map.md companion).
+#
+# Each `artifacts[]` entry maps one deep-agent-improvement artifact to the
+# sk-doc template it is audited against and tracks its audit_status. Phase 2
+# dispatch iterates these entries; phase 5b appends to `phase5_augmentation`.
+#
+#   audit_status : PENDING -> PASS | PASS_WITH_DEVIATIONS | FAIL  (set in phase 2)
+#   action       : Analyzed | Updated | Created | Cited | Validated | BugScanOnly
+#   phase        : the workflow phase that touches this row
+# =============================================================================
+
+meta:
+  packet: "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/005-deep-agent-improvement"
+  target_skill: ".opencode/skills/deep-agent-improvement"
+  target_version_baseline: "1.6.0.0"
+  target_version_after_cleanup: "1.7.0.0"
+  pattern_source: ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/002-deep-research"
+  generated: "2026-05-23"
+  total_artifacts_approx: 110
+  audit_status_vocab: [PENDING, PASS, PASS_WITH_DEVIATIONS, FAIL]
+  action_vocab: [Analyzed, Updated, Created, Cited, Validated, BugScanOnly]
+  phase2_audit:
+    completed: true
+    findings_total: 9
+    resolved: 9        # ALL findings resolved after the phase-4-gate operator override (fix deferred P2s before phase 5)
+    deferred: 0        # AF-0003/0004 closed by SKILL.md restructure; AF-0008 closed by evergreen rewording across 5 files
+    p0_open: 0
+    p1_open: 0         # both P1s (AF-0001, AF-0005) resolved
+    operator_override: "phase-4 gate: fix deferred P2s before phase 5 (AF-0003/0004/0008)"
+    smart_router_touched: false   # SKILL.md §2 preserved (ADR-004 holds; no ADR-005 needed)
+    findings_ledger: "audit-findings.jsonl"
+  notes: >
+    Counts at phase-1 baseline: SKILL.md (1, ~545 LOC), README.md (1, ~410 LOC),
+    references (15), assets (9: 3 md + 2 json/jsonc + 4 benchmark json),
+    feature_catalog (14: root + 6 + 3 + 4), manual_testing_playbook (39: root +
+    37 scenarios + 1 sandbox .sh), changelog (10 + 1 planned v1.7.0.0),
+    scripts (14 cjs + 3 lib cjs + 3 READMEs + vitest suite). graph-metadata.json (1).
+
+# -----------------------------------------------------------------------------
+# Top-level skill docs
+# -----------------------------------------------------------------------------
+artifacts:
+  - path: ".opencode/skills/deep-agent-improvement/SKILL.md"
+    category: skill-md
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_md_template.md"
+    phase: 2
+    action: Updated            # version bump 1.6.0.0 -> 1.7.0.0 (phase 3) + surgical audit
+    audit_status: PASS  # AF-0003/0004/0005 all RESOLVED (restructured to 492 LOC, contiguous §1-§10)
+    note: "492 LOC (under cap after the §5 MULTI-ITER condense). Smart Router §2 PRESERVED by ADR-004 (no §2 edits; no ADR-005 needed)."
+
+  - path: ".opencode/skills/deep-agent-improvement/README.md"
+    category: readme
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md"
+    phase: 3
+    action: Updated            # full rewrite
+    audit_status: PASS  # AF-0001/AF-0002 RESOLVED by Phase 3 README rewrite
+    note: "~410 LOC. Tone anchor Public/README.md @ ~70%; structural anchor system-spec-kit/README.md. Known stale: §5 lists 10 refs (actual 15), §6 lists 8 scripts (actual 14), §3 numbering jumps 3.6->3.8."
+
+# -----------------------------------------------------------------------------
+# references/ (15 files) -> skill_reference_template.md
+# -----------------------------------------------------------------------------
+  - path: ".opencode/skills/deep-agent-improvement/references/benchmark_operator_guide.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/references/candidate_proposal_format.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS  # AF-0008 RESOLVED (evergreen citations reworded)
+    note: "NOT listed in README §5 STRUCTURE — README currency finding."
+  - path: ".opencode/skills/deep-agent-improvement/references/evaluator_contract.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/references/integration_scanning.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/references/loop_protocol.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/references/mirror_drift_policy.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/references/mixed_executor_methodology.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS  # AF-0006 + AF-0008 RESOLVED (OVERVIEW casing + evergreen reworded)
+    note: "NOT listed in README §5. Drives phase-5 breadth/adjudication/synthesis split (ADR-001)."
+  - path: ".opencode/skills/deep-agent-improvement/references/no_go_conditions.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/references/profiling_audit_log.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS  # AF-0007 + AF-0008 RESOLVED (OVERVIEW casing + evergreen reworded)
+    note: "NOT listed in README §5 — README currency finding."
+  - path: ".opencode/skills/deep-agent-improvement/references/promotion_gate_contract.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "NOT listed in README §5 — README currency finding."
+  - path: ".opencode/skills/deep-agent-improvement/references/promotion_rules.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/references/quick_reference.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "ALWAYS-load default per SKILL.md §2 router."
+  - path: ".opencode/skills/deep-agent-improvement/references/rollback_runbook.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/references/score_dimensions.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "NOT listed in README §5 — README currency finding."
+  - path: ".opencode/skills/deep-agent-improvement/references/target_onboarding.md"
+    category: reference
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+
+# -----------------------------------------------------------------------------
+# assets/ (9 files) -> skill_asset_template.md (md) / JSON-validity (json/jsonc)
+# -----------------------------------------------------------------------------
+  - path: ".opencode/skills/deep-agent-improvement/assets/improvement_charter.md"
+    category: asset
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/assets/improvement_config_reference.md"
+    category: asset
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/assets/improvement_strategy.md"
+    category: asset
+    template_ref: ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/assets/improvement_config.json"
+    category: asset-config
+    template_ref: "json-validity-only"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "Runtime config; JSON validity + field-reference consistency only, no template enforcement."
+  - path: ".opencode/skills/deep-agent-improvement/assets/target_manifest.jsonc"
+    category: asset-config
+    template_ref: "jsonc-validity-only"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/assets/benchmark-fixtures/fixture-baseline.json"
+    category: asset-config
+    template_ref: "json-validity-only"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/assets/benchmark-fixtures/fixture-edge.json"
+    category: asset-config
+    template_ref: "json-validity-only"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/assets/benchmark-fixtures/fixture-improved.json"
+    category: asset-config
+    template_ref: "json-validity-only"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+  - path: ".opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json"
+    category: asset-config
+    template_ref: "json-validity-only"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+
+# -----------------------------------------------------------------------------
+# feature_catalog/ (14 files) -> feature_catalog_template.md + feature_catalog_creation.md
+# -----------------------------------------------------------------------------
+  - path: ".opencode/skills/deep-agent-improvement/feature_catalog/feature_catalog.md"
+    category: feature-catalog-root
+    template_ref: ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "Root inventory; phase-3 README feature list maps to this."
+  - path: ".opencode/skills/deep-agent-improvement/feature_catalog/01--evaluation-loop/"
+    category: feature-catalog-section
+    template_ref: ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "6 files: 01-initialization, 02-candidate-generation, 03-scoring-dispatch, 04-promotion-gates, 05-rollback, 06-plateau-detection."
+  - path: ".opencode/skills/deep-agent-improvement/feature_catalog/02--integration-scanning/"
+    category: feature-catalog-section
+    template_ref: ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "3 files: 01-surface-discovery, 02-runtime-mirrors, 03-command-dispatch."
+  - path: ".opencode/skills/deep-agent-improvement/feature_catalog/03--scoring-system/"
+    category: feature-catalog-section
+    template_ref: ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "4 files: 01-five-dimension-rubric, 02-dynamic-profiling, 03-deterministic-scoring, 04-dimensional-progress."
+
+# -----------------------------------------------------------------------------
+# manual_testing_playbook/ (39 files) -> manual_testing_playbook_template.md
+# Grouped by category; every .md scenario gets the same template diff (Analyzed).
+# -----------------------------------------------------------------------------
+  - path: ".opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md"
+    category: playbook-root
+    template_ref: ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "Root orchestrator; verify the advertised scenario count matches the actual 37 scenario files."
+  - path: ".opencode/skills/deep-agent-improvement/manual_testing_playbook/01--integration-scanner/"
+    category: playbook-section
+    template_ref: ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "4 scenarios (001-004)."
+  - path: ".opencode/skills/deep-agent-improvement/manual_testing_playbook/02--profile-generator/"
+    category: playbook-section
+    template_ref: ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "4 scenarios (005-008)."
+  - path: ".opencode/skills/deep-agent-improvement/manual_testing_playbook/03--5d-scorer/"
+    category: playbook-section
+    template_ref: ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "3 scenarios (010, 012, 013) — numbering gap at 009/011; verify intentional."
+  - path: ".opencode/skills/deep-agent-improvement/manual_testing_playbook/04--benchmark-integration/"
+    category: playbook-section
+    template_ref: ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "2 scenarios (014, 015)."
+  - path: ".opencode/skills/deep-agent-improvement/manual_testing_playbook/05--reducer-dimensions/"
+    category: playbook-section
+    template_ref: ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "3 scenarios (017, 018, 019)."
+  - path: ".opencode/skills/deep-agent-improvement/manual_testing_playbook/06--end-to-end-loop/"
+    category: playbook-section
+    template_ref: ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "5 scenarios (020-024)."
+  - path: ".opencode/skills/deep-agent-improvement/manual_testing_playbook/07--runtime-truth/"
+    category: playbook-section
+    template_ref: ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS  # AF-0008 RESOLVED (034-replay-consumer reworded)
+    note: "10 scenarios (025-034)."
+  - path: ".opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/"
+    category: playbook-section
+    template_ref: ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "6 scenarios (013-018, CP-040..045 battery) + setup-cp-sandbox.sh (bug-scan only)."
+
+# -----------------------------------------------------------------------------
+# changelog/ (10 existing + 1 planned) -> changelog-entry.schema.json (sk-doc changelog convention)
+# -----------------------------------------------------------------------------
+  - path: ".opencode/skills/deep-agent-improvement/changelog/"
+    category: changelog
+    template_ref: "schemas/changelog-entry.schema.json"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS  # AF-0009 RESOLVED (lone v1.5.0.0 frontmatter stripped; 10/10 now summary-first)
+    note: "10 existing: v1.0.0.0, v1.0.1.0, v1.1.0.0, v1.2.0.0, v1.2.1.0, v1.2.2.0, v1.3.0.0, v1.4.0.0, v1.5.0.0, v1.6.0.0. Format-only audit; sk-doc convention = no frontmatter, no version header (per reference_sk_doc_changelog_convention)."
+  - path: ".opencode/skills/deep-agent-improvement/changelog/v1.7.0.0.md"
+    category: changelog
+    template_ref: "schemas/changelog-entry.schema.json"
+    phase: 3
+    action: Created
+    audit_status: PASS
+    note: "Authored end of phase 3; summarizes phases 1-3."
+
+# -----------------------------------------------------------------------------
+# scripts/ (bug-scan only: path refs + node --check; no template enforcement)
+# -----------------------------------------------------------------------------
+  - path: ".opencode/skills/deep-agent-improvement/scripts/"
+    category: scripts
+    template_ref: "bug-scan-only"
+    phase: 2
+    action: BugScanOnly
+    audit_status: PASS
+    note: "14 cjs: benchmark-stability, candidate-lineage, check-mirror-drift, generate-profile, improvement-journal, materialize-benchmark-fixtures, mutation-coverage, promote-candidate, reduce-state, rollback-candidate, run-benchmark, scan-integration, score-candidate, trade-off-detector."
+  - path: ".opencode/skills/deep-agent-improvement/scripts/lib/"
+    category: scripts
+    template_ref: "bug-scan-only"
+    phase: 2
+    action: BugScanOnly
+    audit_status: PASS
+    note: "3 cjs: mirror-sync-verify, promotion-gates, typed-errors + lib/README.md (doc, sk-doc readme convention)."
+  - path: ".opencode/skills/deep-agent-improvement/scripts/tests/"
+    category: scripts-tests
+    template_ref: "bug-scan-only"
+    phase: 2
+    action: BugScanOnly
+    audit_status: PASS
+    note: "vitest suite (8 *.vitest.ts) + tests/README.md + fixtures/low-sample-benchmark/*. Inventory + syntax only; NO test authoring (out of scope)."
+  - path: ".opencode/skills/deep-agent-improvement/scripts/README.md"
+    category: readme
+    template_ref: ".opencode/skills/sk-doc/references/readme_creation.md"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "scripts/ subdir README; bug-scan + readme-convention check only."
+
+# -----------------------------------------------------------------------------
+# skill-level config
+# -----------------------------------------------------------------------------
+  - path: ".opencode/skills/deep-agent-improvement/graph-metadata.json"
+    category: skill-config
+    template_ref: "skill-advisor-input"
+    phase: 2
+    action: Analyzed
+    audit_status: PASS
+    note: "Skill advisor input. Untouched unless edits cascade; then re-run skill_graph_compiler.py."
+
+# -----------------------------------------------------------------------------
+# External anchors (Cited, NOT modified)
+# -----------------------------------------------------------------------------
+external_anchors:
+  - path: "Public/README.md"
+    role: "tone-anchor (~70% intensity)"
+  - path: ".opencode/skills/system-spec-kit/README.md"
+    role: "structural-anchor (section pattern)"
+  - path: ".opencode/skills/sk-doc/references/global/hvr_rules.md"
+    role: "HVR rules; pass threshold >=85"
+  - path: ".opencode/skills/sk-doc/references/readme_creation.md"
+    role: "README creation standards"
+  - path: ".opencode/skills/sk-doc/references/skill_creation.md"
+    role: "skill-folder standards"
+  - path: ".opencode/skills/sk-doc/references/feature_catalog_creation.md"
+    role: "feature catalog standards"
+  - path: ".opencode/skills/sk-doc/references/manual_testing_playbook_creation.md"
+    role: "playbook standards"
+  - path: ".opencode/skills/cli-devin/SKILL.md"
+    role: "phase-5 RCAF + medium-density dispatch rule (read before dispatch)"
+  - path: ".opencode/skills/sk-prompt-small-model/SKILL.md"
+    role: "phase-5 small-model dispatch sentinel"
+  - path: ".opencode/skills/sk-code/references/opencode"
+    role: "code standards for scripts bug-scan"
+
+# -----------------------------------------------------------------------------
+# This spec folder's own deliverables
+# -----------------------------------------------------------------------------
+spec_folder_deliverables:
+  - { path: "spec.md", phase: 1, status: OK }
+  - { path: "plan.md", phase: 1, status: OK }
+  - { path: "tasks.md", phase: 1, status: OK }
+  - { path: "checklist.md", phase: 1, status: OK }
+  - { path: "decision-record.md", phase: 1, status: OK }
+  - { path: "implementation-summary.md", phase: 1, status: OK_SKELETON }
+  - { path: "resource-map.yaml", phase: 1, status: OK }
+  - { path: "schemas/audit-finding.schema.json", phase: 1, status: OK }
+  - { path: "schemas/changelog-entry.schema.json", phase: 1, status: OK }
+  - { path: "schemas/validation-report.schema.json", phase: 1, status: OK }
+  - { path: "schemas/iteration-output.schema.json", phase: 1, status: OK }
+  - { path: "description.json", phase: 1, status: PLANNED }
+  - { path: "graph-metadata.json", phase: 1, status: PLANNED }
+  - { path: "audit-findings.jsonl", phase: 2, status: PLANNED }
+  - { path: "validation-report.jsonl", phase: 4, status: PLANNED }
+  - { path: "validation-report.md", phase: 4, status: PLANNED }
+  - { path: "research/iterations/iter-NN-executor.json", phase: 5, status: PLANNED }
+  - { path: "research/convergence-summary.md", phase: 5, status: PLANNED }
+
+# -----------------------------------------------------------------------------
+# Phase-5 Augmentation (RESERVED) - populated after step 5b merge.
+# Each entry = one novel logic gap surfaced by the deep-research iterations that
+# is NOT already in spec.md or audit-findings.jsonl. If 10 iterations converge
+# with no novel gaps, record a single entry noting the empty result.
+# -----------------------------------------------------------------------------
+phase5_augmentation:
+  meta:
+    loop: "10-cap deep-research; converged at iter 7 (adjudication) after full surface coverage"
+    executor: "cli-devin swe-1.6 (read-only research-iter recipe)"
+    iterations_run: 7   # 6 breadth + 1 adjudication
+    verified_verdict: "0 P0, 5 P1, 1 P2 (by-design)"
+    summary_doc: "research/convergence-summary.md"
+    state_log: "research/deep-research-state.jsonl"
+    note: "All 6 gaps are NOVEL (none in spec.md or audit-findings.jsonl, which were doc-conformance). LG-0001 downgraded P0->P1 by orchestrator verification."
+  gaps:
+    - gap_id: LG-0001
+      severity: P1
+      class: doc-vs-code
+      source_iter: iteration-01
+      description: "SKILL.md §6 Dimension Trajectory claimed a +/-2 tolerance band, but reduce-state.cjs:767-770 implements exact-equality plateau (last 3 scores identical), matching the README. Doc inaccuracy, not a runtime bug (downgraded from Devin's P0)."
+      disposition: FIXED
+      fix: "SKILL.md §6 reworded to exact-repeat; if a +/-2 tolerance was intended per the ADR-003 design note, that is a code feature escalated as a follow-on."
+    - gap_id: LG-0002
+      severity: P1
+      class: doc-gap
+      source_iter: iteration-01
+      description: "reduce-state.cjs:732-745 stop counters (maxConsecutiveTies, maxInfraFailuresPerProfile, maxWeakBenchmarkRunsPerProfile) default to Infinity (no cap); SKILL.md §6 did not document this."
+      disposition: FIXED
+      fix: "SKILL.md §6 now documents the no-cap defaults and that only configured counters trigger blockedStop."
+    - gap_id: LG-0003
+      severity: P2
+      class: by-design
+      source_iter: iteration-01
+      description: "score-candidate.cjs:604-628 evaluates promotion gates but only reports them; promote-candidate.cjs:243-247 enforces. Intentional scoring-reports / promotion-enforces separation."
+      disposition: NO_ACTION
+      fix: "By design (confirmed at adjudication). No change."
+    - gap_id: LG-0004
+      severity: P1
+      class: config-drift
+      source_iter: iteration-02
+      description: "Three benchmark thresholds: generate-profile.cjs:270 requiredAggregateScore=75, benchmark-profiles/default.json:15 requiredAggregateScore=80, improvement_config.json:57 minimumAggregateScore=85 (docs/gate contract also 85). A candidate could pass benchmark at 75/80 but fail the 85 gate."
+      disposition: ESCALATED
+      fix: "Reconcile to one authoritative threshold in code/config. Out of packet scope (spec §3: no .cjs/config changes). Follow-on sub-task T120."
+    - gap_id: LG-0005
+      severity: P1
+      class: doc-vs-code
+      source_iter: iteration-03
+      description: "scan-integration.cjs:15-19 MIRROR_TEMPLATES checks .gemini/agents (and .gemini/agents/deep-agent-improvement.md exists on disk; .agents/agents does NOT), but integration_scanning.md:39 + README RUNTIME PARITY claimed .agents/agents. README error was introduced/propagated in this packet's phase-3 rewrite."
+      disposition: FIXED
+      fix: "Corrected .agents/agents -> .gemini/agents across integration_scanning.md (surfaces table + JSON example), README RUNTIME PARITY, feature_catalog.md, and feature_catalog/02--integration-scanning/02-runtime-mirrors.md (matches scan-integration.cjs + the on-disk .gemini mirror + the 4-runtime model). Changelog v1.0.1.0 history left intact; mirror_drift_policy.md already correct."
+    - gap_id: LG-0006
+      severity: P1
+      class: code-bug
+      source_iter: iteration-06
+      description: "run-benchmark.cjs:258 defaults profilesDir to assets/target-profiles (which does not exist); shipped dir is benchmark-profiles. The default benchmark path fails unless --profiles-dir is passed."
+      disposition: ESCALATED
+      fix: "Change the run-benchmark.cjs default to benchmark-profiles. Out of packet scope (spec §3: scripts bug-scan-only). Follow-on sub-task T121."

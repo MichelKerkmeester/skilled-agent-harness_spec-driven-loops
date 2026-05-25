@@ -88,7 +88,7 @@ In scope:
 Out of scope:
 - Re-implementing the embedder provider abstraction (preserves ADR-013/014 design).
 - Adding cloud providers (`voyage`, `openai`) to MANIFESTS array (different operational semantics).
-- Restarting the spec-memory MCP daemon (handled in sibling `131-deep-skill-evolution` execution context).
+- Restarting the spec-memory MCP daemon (handled in sibling `116-deep-skill-evolution` execution context).
 - Changing the `embedder_set` MCP tool semantics.
 - Auditing other repo subsystems for similar hardcoded-default drift (deferred to follow-on deep-research packet).
 - Touching CocoIndex's embedder defaults (different code path; healthy).
@@ -200,5 +200,5 @@ All answered during execution (see frontmatter `answered_questions`). Follow-on 
 - **Helper file**: `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts`
 - **Invariant test**: `.opencode/skills/system-spec-kit/shared/embeddings/registry.test.ts`
 - **Refactored sites**: 5 files listed in `_memory.continuity.key_files`
-- **Sibling-arc context**: `skilled-agent-orchestration/131-deep-skill-evolution/` (the open-advisories work that unblocked this fix)
+- **Sibling-arc context**: `skilled-agent-orchestration/116-deep-skill-evolution/` (the open-advisories work that unblocked this fix)
 <!-- /ANCHOR:cross-links -->

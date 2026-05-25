@@ -10,7 +10,7 @@
 #
 # Bypass any installed hook: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ...
 
-set -eu
+set -euo pipefail
 
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
 if [ -z "$REPO_ROOT" ]; then

@@ -5,7 +5,7 @@ set -euo pipefail
 #   ln -s ../../.github/hooks/scripts/pre-push-council.sh .git/hooks/pre-push
 #
 # The hook stays local-only. It runs the council matrix when the branch being
-# pushed changes deep-ai-council skill, council MCP, or 101 phase files.
+# pushed changes deep-ai-council skill, council graph runtime, or packet 010 files.
 
 CHANGED_FILES_SOURCE="env"
 
@@ -23,7 +23,7 @@ if [[ -z "${CHANGED_FILES:-}" ]]; then
   fi
 fi
 
-COUNCIL_PATTERN='^(\.opencode/skills/deep-ai-council/|\.opencode/skills/system-spec-kit/mcp_server/(handlers|lib|tests|schemas)/.*council|\.opencode/specs/skilled-agent-orchestration/101-)'
+COUNCIL_PATTERN='^(\.opencode/skills/deep-ai-council/|\.opencode/skills/deep-loop-runtime/.*council|\.opencode/skills/system-spec-kit/mcp_server/(handlers|lib|tests|schemas)/.*council|\.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration/)'
 
 if printf '%s\n' "$CHANGED_FILES" | grep -Eq "$COUNCIL_PATTERN"; then
   if [[ "$CHANGED_FILES_SOURCE" == "env" ]]; then

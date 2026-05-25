@@ -1,0 +1,33 @@
+{
+  "trigger_phrases": [
+    "review graph vocabulary",
+    "ledger-led graph",
+    "BUG_CLASS node"
+  ],
+  "level": "2",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab",
+  "description": "Feature Specification: 116/007 - Ledger-Led Graph Vocabulary",
+  "keywords": [
+    "feature",
+    "specification",
+    "116",
+    "007",
+    "ledger-led",
+    "graph",
+    "vocabulary"
+  ],
+  "lastUpdated": "2026-05-25T11:53:22.314Z",
+  "specId": "007",
+  "folderSlug": "complexity-ledger-led-graph-vocab",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "002-deep-review"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "22-05-26_13-22__review-graph-node-vocabulary-extended.md"
+  ]
+}

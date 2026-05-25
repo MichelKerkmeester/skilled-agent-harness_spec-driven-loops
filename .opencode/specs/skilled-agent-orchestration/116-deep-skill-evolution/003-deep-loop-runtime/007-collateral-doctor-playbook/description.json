@@ -1,0 +1,26 @@
+{
+  "level": "feature",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/007-collateral-doctor-playbook",
+  "description": "Feature Specification: 118/006 — Update /doctor + system-code-graph Playbook Collateral",
+  "keywords": [
+    "feature",
+    "specification",
+    "118",
+    "006",
+    "update",
+    "doctor",
+    "system-code-graph",
+    "playbook",
+    "collateral"
+  ],
+  "lastUpdated": "2026-05-25T11:53:22.350Z",
+  "specId": "007",
+  "folderSlug": "collateral-doctor-playbook",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "003-deep-loop-runtime"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": []
+}
