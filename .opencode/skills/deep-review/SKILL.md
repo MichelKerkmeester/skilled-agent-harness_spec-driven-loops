@@ -1,7 +1,7 @@
 ---
 name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__cocoindex_code__search]
+allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, code_graph_query + Grep]
 # Note: Task tool is for the command executor (loop management). The @deep-review agent itself does NOT have Task (LEAF-only).
 # No WebFetch: review is code-only and read-only. No external resource fetching.
 argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
@@ -512,9 +512,9 @@ Key integrations:
 
 Recover context via `/speckit:resume` in the order `handover.md -> _memory.continuity -> spec docs`. During review, the agent writes iteration, strategy, and JSONL state. After synthesis, run `generate-context.js`.
 
-### CocoIndex Integration
+### Code Graph Integration
 
-`mcp__cocoindex_code__search` is available to `@deep-review` for semantic code search when Grep/Glob exact matching is insufficient. Use for:
+`code_graph_query + Grep` is available to `@deep-review` for semantic code search when Grep/Glob exact matching is insufficient. Use for:
 - Finding all usages of a pattern by concept/intent
 - Locating implementations when exact symbol names are unknown
 - Cross-referencing behavior across unfamiliar code paths

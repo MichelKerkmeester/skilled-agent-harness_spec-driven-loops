@@ -12,7 +12,7 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`code_graph_context` returns compact structural neighborhoods for LLM use. It accepts manual, graph and CocoIndex seeds and embeds readiness metadata in both success and blocked responses.
+`code_graph_context` returns compact structural neighborhoods for LLM use. It accepts manual, graph and Code Graph seeds and embeds readiness metadata in both success and blocked responses.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->

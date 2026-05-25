@@ -69,7 +69,7 @@ permission:
   external_directory: allow
 mcpServers:
   - mk-spec-memory
-  - cocoindex_code
+  - code_graph
 ---
 ```
 
@@ -84,7 +84,7 @@ Use the unified `permission:` object with `allow`, `deny`, or `ask`. The older s
 | `mode` | string | Yes | `subagent`, `agent`, `primary`, or `all` as supported by runtime |
 | `temperature` | float | Yes | Usually `0.1`; use higher values only when variation is useful |
 | `permission` | object | Yes | Runtime capability boundary |
-| `mcpServers` | list | No | Explicit MCP servers available to the agent, for example `[mk-spec-memory, cocoindex_code]` |
+| `mcpServers` | list | No | Explicit MCP servers available to the agent, for example `[mk-spec-memory, code_graph]` |
 
 ### Mode Reference
 
@@ -684,7 +684,7 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 | Agent | File | Type | Key Patterns |
 | --- | --- | --- | --- |
 | `@code` | `code.md` | LEAF implementation subagent | Stack-aware implementation via `sk-code`, orchestrator-only dispatch convention, write-capable scoped edits |
-| `@context` | `context.md` | LEAF read-only subagent | Canonical continuity retrieval, no nested dispatch, no mutation, Context Package output, `mcpServers` for memory + CocoIndex |
+| `@context` | `context.md` | LEAF read-only subagent | Canonical continuity retrieval, no nested dispatch, no mutation, Context Package output, `mcpServers` for memory + Code Graph |
 | `@debug` | `debug.md` | LEAF debugging subagent | 5-phase root-cause workflow, prompted opt-in after repeated failures, scoped debug artifacts |
 | `@deep-research` | `deep-research.md` | LEAF research subagent | Single research iteration, externalized state, convergence-driven command orchestration |
 | `@deep-review` | `deep-review.md` | LEAF review subagent | Single review iteration, BINDING emission, canonical REFUSE, scoped review packet writes |

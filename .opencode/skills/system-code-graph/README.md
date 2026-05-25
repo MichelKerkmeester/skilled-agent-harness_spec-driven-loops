@@ -27,7 +27,7 @@ trigger_phrases:
   - [3.2 GRAPH-AWARE QUERIES](#32--graph-aware-queries)
   - [3.3 IMPACT ANALYSIS](#33--impact-analysis)
   - [3.4 RECOVERY OPERATIONS](#34--recovery-operations)
-  - [3.5 COCOINDEX BRIDGE](#35--retired-search-bridge)
+  - [3.5 CODE_GRAPH BRIDGE](#35--retired-search-bridge)
 - [4. STRUCTURE](#4--structure)
 - [5. CONFIGURATION](#5--configuration)
 - [6. USAGE EXAMPLES](#6--usage-examples)

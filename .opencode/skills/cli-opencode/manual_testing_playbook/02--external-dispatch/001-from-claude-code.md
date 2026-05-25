@@ -15,7 +15,7 @@ This scenario validates External dispatch from Claude Code into OpenCode for `CO
 
 ### Why This Matters
 
-Use case 1 is the most common cli-opencode dispatch path. It is the bridge that lets Claude Code (and other external runtimes) reach the project's spec-kit memory, code graph and CocoIndex semantic index without forcing the operator to leave their host session. If this path breaks (binary missing, self-invocation guard misfires, plugin runtime fails to load inside the dispatched session), every external-AI workflow that depends on the project runtime regresses. This test proves the canonical use case 1 dispatch shape from Claude Code actually works end-to-end.
+Use case 1 is the most common cli-opencode dispatch path. It is the bridge that lets Claude Code (and other external runtimes) reach the project's spec-kit memory, code graph and Code Graph semantic index without forcing the operator to leave their host session. If this path breaks (binary missing, self-invocation guard misfires, plugin runtime fails to load inside the dispatched session), every external-AI workflow that depends on the project runtime regresses. This test proves the canonical use case 1 dispatch shape from Claude Code actually works end-to-end.
 
 ---
 

@@ -41,7 +41,7 @@ manual_testing_playbook/
 
 **Existing Examples**:
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/` (integrated root playbook + 195 per-feature files)
-- `.opencode/skills/mcp-coco-index/manual_testing_playbook/` (older package shape; migrate toward integrated root guidance)
+- `.opencode/skills/system-code-graph/manual_testing_playbook/` (older package shape; migrate toward integrated root guidance)
 
 ---
 

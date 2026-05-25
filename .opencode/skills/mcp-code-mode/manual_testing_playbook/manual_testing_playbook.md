@@ -496,7 +496,7 @@ Expected signals: Step 1: call returns error; Step 2: error message contains "ma
 |---|---|---|
 | `.opencode/skills/mcp-code-mode/scripts/validate_config.py` | `.utcp_config.json` schema + env-var presence | CM-010 |
 | `.opencode/skills/mcp-code-mode/scripts/test/manual_namespace.test.js` (if present) | Manual-namespace contract | CM-005, CM-006, CM-007 |
-| Integration smoke (manual): existing `mcp-coco-index` playbook (precedent) | MCP tool surface validation | Cross-skill reference for MCP testing patterns |
+| Integration smoke (manual): existing `system-code-graph` playbook (precedent) | MCP tool surface validation | Cross-skill reference for MCP testing patterns |
 
 > Note: most Code Mode behavior is exercised through the live MCP servers it wraps, not through dedicated unit tests in the skill itself. The playbook scenarios serve as the primary regression surface.
 

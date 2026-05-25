@@ -55,11 +55,11 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 | Folders with graph metadata | 22 | Every top-level non-hidden skill folder under `.opencode/skills/` currently ships with `graph-metadata.json` |
 | Graph families | 6 | `cli`, `mcp`, `sk-code`, `sk-util`, `system`, `deep-loop` |
 | CLI orchestrator skills | 5 | cli-claude-code, cli-codex, cli-devin, cli-gemini, cli-opencode |
-| MCP integration skills | 3 | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode |
+| MCP integration skills | 3 | mcp-chrome-devtools, system-code-graph, mcp-code-mode |
 | Code workflow and review skills | 2 | sk-code, sk-code-review |
 | sk-util utility skills | 6 | deep-agent-improvement, deep-ai-council, sk-prompt-small-model, sk-doc, sk-git, sk-prompt |
 | Deep-loop skills | 3 | deep-loop-runtime, deep-research, deep-review |
-| System skills | 4 | system-code-graph, system-rerank-sidecar, system-skill-advisor, system-spec-kit |
+| System skills | 4 | system-code-graph, positional-scoring fallback, system-skill-advisor, system-spec-kit |
 | Skills with local scripts/ | 10 | See Section 4 for the current script-bearing folders |
 | Native advisor tools | 8 | `advisor_*` plus `skill_graph_*` tools exposed by `mk_skill_advisor` |
 | Shared compatibility scripts | 5 | `skill_advisor.py`, runtime, bench, regression, and graph compiler |
@@ -134,7 +134,7 @@ The skill system covers four distinct workflow domains.
 
 **CLI Delegation.** The five CLI skills (cli-claude-code, cli-codex, cli-devin, cli-gemini, cli-opencode) let any AI assistant hand off work to an external AI binary. Each skill specifies the right binary flags, model selection, prompt formatting, and output parsing. This enables parallel execution and cross-AI validation without the calling AI needing to know binary internals. cli-devin uniquely adds local-to-cloud handoff for async multi-hour work.
 
-**MCP Tool Wrapping.** The three MCP integration skills route tool calls through Code Mode or package-local MCP surfaces for token-efficient execution. mcp-code-mode is the hub for external services, mcp-chrome-devtools handles browser debugging, and mcp-coco-index adds semantic code search via vector embeddings for finding relevant implementations by concept rather than exact keyword.
+**MCP Tool Wrapping.** The three MCP integration skills route tool calls through Code Mode or package-local MCP surfaces for token-efficient execution. mcp-code-mode is the hub for external services, mcp-chrome-devtools handles browser debugging, and system-code-graph adds semantic code search via vector embeddings for finding relevant implementations by concept rather than exact keyword.
 
 **Code Workflow Skills.** `sk-code` provides **multi-stack coding standards, references, and assets** — surface-aware patterns, checklists, and verification recipes for project-specific frontend and system-code surfaces (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP/agents/commands/skills). Smart-routing internals auto-detect the active stack. `sk-code-review` provides the findings-first review baseline and uses `sk-code` surface evidence where applicable.
 
@@ -157,7 +157,7 @@ The skill system covers four distinct workflow domains.
 | Skill | Version | Description |
 | --- | --- | --- |
 | `mcp-chrome-devtools` | 1.0.7.0 | Browser debugging via CLI (bdg) with MCP fallback for multi-tool integration |
-| `mcp-coco-index` | 1.0.0 | Semantic code search via vector embeddings using natural-language queries |
+| `system-code-graph` | 1.0.0 | Semantic code search via vector embeddings using natural-language queries |
 | `mcp-code-mode` | 1.0.7.0 | TypeScript-based MCP orchestration hub for all external tool calls |
 
 **Code Quality Skills**
@@ -204,7 +204,7 @@ The skill system covers four distinct workflow domains.
 ├── cli-gemini/             # Google Gemini CLI orchestrator
 ├── cli-opencode/           # OpenCode CLI orchestrator
 ├── mcp-chrome-devtools/    # Browser debugging via MCP
-├── mcp-coco-index/         # Semantic code search via vector embeddings
+├── system-code-graph/         # Semantic code search via vector embeddings
 ├── mcp-code-mode/          # MCP orchestration hub (TypeScript)
 ├── deep-agent-improvement/       # Evaluator-first agent improvement loop
 ├── deep-loop-runtime/      # Shared runtime for deep-review and deep-research
@@ -255,7 +255,7 @@ For the full system-spec-kit script inventory, see `system-spec-kit/scripts/scri
 | `cli-gemini` | Yes | Yes | No |
 | `cli-opencode` | Yes | Yes | No |
 | `mcp-chrome-devtools` | Yes | No | Yes |
-| `mcp-coco-index` | Yes | No | No |
+| `system-code-graph` | Yes | No | No |
 | `mcp-code-mode` | Yes | Yes | Yes |
 | `deep-agent-improvement` | Yes | No | Yes |
 | `deep-loop-runtime` | Yes | No | Yes |

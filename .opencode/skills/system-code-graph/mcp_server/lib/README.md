@@ -42,7 +42,7 @@ Current state:
 - The indexer parses TypeScript, JavaScript, Python and shell files through tree-sitter with fallback handling.
 - Markdown, JSON, JSONC, YAML, YML and TOML files can be registered as `language='doc'` rows when `.opencode/` folders are explicitly opted in.
 - The database layer stores files, nodes, edges, metadata, diagnostics, parser skip-list rows and verification records.
-- Context builders merge structural graph, Spec Kit memory and CocoIndex inputs under token budgets.
+- Context builders merge structural graph, Spec Kit memory and Code Graph inputs under token budgets.
 - Apply-mode recovery runs pre and post verification before committing graph repair operations.
 
 <!-- /ANCHOR:overview -->
@@ -89,7 +89,7 @@ lib/
 +-- close-db-assertion.ts       # DB close assertion helper
 +-- code-graph-context.ts       # Compact context assembly
 +-- seed-resolver.ts            # File and line seeds to graph nodes
-+-- compact-merger.ts           # Memory, graph and CocoIndex merge
++-- compact-merger.ts           # Memory, graph and Code Graph merge
 +-- ensure-ready.ts             # Readiness guard and scan trigger logic
 +-- readiness-contract.ts       # Readiness and trust vocabulary
 +-- owner-lease.ts              # Single-owner lifecycle lease
@@ -196,8 +196,8 @@ lib/
 | `canonical-db-dir.ts` | Resolves canonical DB directories and enforces workspace-contained overrides. |
 | `close-db-assertion.ts` | Asserts stale DB handles are closed after lifecycle shutdown. |
 | `code-graph-context.ts` | Builds token-bounded neighborhoods for `code_graph_context`. |
-| `seed-resolver.ts` | Resolves manual, graph and CocoIndex seeds to indexed graph nodes. |
-| `compact-merger.ts` | Merges Spec Kit memory, code graph and CocoIndex context payloads. |
+| `seed-resolver.ts` | Resolves manual, graph and Code Graph seeds to indexed graph nodes. |
+| `compact-merger.ts` | Merges Spec Kit memory, code graph and Code Graph context payloads. |
 | `ensure-ready.ts` | Determines whether graph reads can proceed or must return a blocked payload. |
 | `readiness-contract.ts` | Defines readiness, canonical readiness and trust-state terms. |
 | `query-result-adapter.ts` | Normalizes query handler result shapes. |

@@ -300,7 +300,7 @@ Appends operator search-feedback JSONL for structural search search results. Doe
 
 #### Current Reality
 
-Manual (class: manual). Direct MCP call only. No hook, CI, session bootstrap or memory command path invokes feedback automatically. Writes to `.opencode/skills/mcp-coco-index/feedback/search-feedback.jsonl`.
+Manual (class: manual). Direct MCP call only. No hook, CI, session bootstrap or memory command path invokes feedback automatically. Writes to `.opencode/skills/system-code-graph/feedback/search-feedback.jsonl`.
 
 #### Source Files
 

@@ -41,7 +41,7 @@ sk-code is the single code-work skill in this template repo. It runs a surface-a
 
 The skill follows a four-step lifecycle: detect the surface → classify the intent (implementation, debugging, quality, verification) → load matching resources from `references/<surface>/` and `assets/<surface>/` → produce verification evidence before any "done" claim. The Iron Law applies across all surfaces: no completion claim is valid without surface-appropriate verification (browser evidence for WEBFLOW, alignment-drift script + targeted tests for OPENCODE).
 
-This is also **the template customization surface** for end users adopting this repo for their own project. Replace the shipped `references/{webflow,opencode,motion_dev}/` and `assets/{webflow,opencode,motion_dev}/` trees with your stack's references and assets. Update `STACK_FOLDERS` and `RESOURCE_MAP` in SKILL.md §2 to match. Every other skill in the repo (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`, etc.) is codebase-agnostic and stays that way so upstream pulls remain clean.
+This is also **the template customization surface** for end users adopting this repo for their own project. Replace the shipped `references/{webflow,opencode,motion_dev}/` and `assets/{webflow,opencode,motion_dev}/` trees with your stack's references and assets. Update `STACK_FOLDERS` and `RESOURCE_MAP` in SKILL.md §2 to match. Every other skill in the repo (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `system-code-graph`, etc.) is codebase-agnostic and stays that way so upstream pulls remain clean.
 
 ### Key Features
 
@@ -329,7 +329,7 @@ Fix: Reference a specific motion.dev API or import in the prompt to activate MOT
 
 **Q: Why is sk-code the only skill I should edit when forking this repo?**
 
-A: sk-code is the surface-detection layer. Your stack's surfaces (frontend frameworks, backend languages, infrastructure) live in `references/<surface>/` and `assets/<surface>/`. Every other skill in the repo (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`) is intentionally codebase-agnostic (they don't know your stack). Editing them creates merge conflicts when you pull upstream updates. Editing sk-code does not (your customization stays in `references/<surface>/` and `assets/<surface>/`, which upstream doesn't touch).
+A: sk-code is the surface-detection layer. Your stack's surfaces (frontend frameworks, backend languages, infrastructure) live in `references/<surface>/` and `assets/<surface>/`. Every other skill in the repo (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `system-code-graph`) is intentionally codebase-agnostic (they don't know your stack). Editing them creates merge conflicts when you pull upstream updates. Editing sk-code does not (your customization stays in `references/<surface>/` and `assets/<surface>/`, which upstream doesn't touch).
 
 **Q: What's the difference between WEBFLOW, OPENCODE, and MOTION_DEV?**
 

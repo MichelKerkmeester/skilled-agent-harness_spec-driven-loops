@@ -18,7 +18,7 @@ This checklist covers the foundation needed for a new OpenCode MCP server to be 
 
 ## 3. PRE-CHECKS
 
-- [ ] Read canonical MCP server examples at `.opencode/skills/system-spec-kit/mcp_server/`, `.opencode/skills/mcp-coco-index/mcp_server/`, and `.opencode/skills/sk-prompt/mcp_server/` when present.
+- [ ] Read canonical MCP server examples at `.opencode/skills/system-spec-kit/mcp_server/`, `.opencode/skills/system-code-graph/mcp_server/`, and `.opencode/skills/sk-prompt/mcp_server/` when present.
 - [ ] Decide whether the server should be Python or TypeScript based on existing skill runtime, dependencies, and typed schema needs.
 - [ ] Verify MCP tool registration in the relevant registry or server entrypoint.
 - [ ] Define input schema validation before implementing handler logic.
@@ -45,5 +45,5 @@ This checklist covers the foundation needed for a new OpenCode MCP server to be 
 ## 6. RELATED RESOURCES
 
 - sk-doc references/specific/skill_creation.md (source-of-truth for skill packaging around MCP assets)
-- Prior examples: `.opencode/skills/system-spec-kit/mcp_server/`, `.opencode/skills/mcp-coco-index/mcp_server/`, `.opencode/skills/sk-prompt/mcp_server/`
+- Prior examples: `.opencode/skills/system-spec-kit/mcp_server/`, `.opencode/skills/system-code-graph/mcp_server/`, `.opencode/skills/sk-prompt/mcp_server/`
 - Verification recipes: `.opencode/skills/sk-code/assets/opencode/checklists/typescript_checklist.md`, `.opencode/skills/sk-code/assets/opencode/checklists/python_checklist.md`

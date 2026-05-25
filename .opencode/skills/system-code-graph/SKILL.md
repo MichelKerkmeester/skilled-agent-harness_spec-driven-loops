@@ -49,7 +49,7 @@ Use this skill for:
 
 - Text-only exact searches: use Grep.
 - Filename or path globbing: use Glob.
-- Semantic concept search without known structure: use `mcp-coco-index`.
+- Semantic concept search without known structure: use `system-code-graph`.
 
 ---
 
@@ -71,7 +71,7 @@ user prompt
         |
         +-- structural -> system-code-graph resources and readiness gate
         |
-        +-- semantic -> mcp-coco-index resources
+        +-- semantic -> system-code-graph resources
         |
         +-- hybrid -> structural search seeds, then code_graph_context
 ```

@@ -12,7 +12,7 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The context handler is the boundary between external seeds and internal graph context assembly. It normalizes CocoIndex/manual/graph seeds, picks a query mode and refuses unsafe readiness before `buildContext()`.
+The context handler is the boundary between external seeds and internal graph context assembly. It normalizes Code Graph/manual/graph seeds, picks a query mode and refuses unsafe readiness before `buildContext()`.
 <!-- /ANCHOR:overview -->
 
 <!-- ANCHOR:current-reality -->

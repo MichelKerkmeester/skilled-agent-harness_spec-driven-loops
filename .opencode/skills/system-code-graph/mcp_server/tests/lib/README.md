@@ -51,7 +51,7 @@ tests/lib/
 +-- canonical-db-dir.vitest.ts  # Canonical DB path and symlink escape behavior
 +-- close-db.vitest.ts          # DB close assertion coverage
 +-- owner-lease.vitest.ts       # Owner lease acquisition and stale-state behavior
-+-- security-hardening.vitest.ts # IPC and CocoIndex path hardening
++-- security-hardening.vitest.ts # IPC and Code Graph path hardening
 `-- README.md
 ```
 
@@ -75,7 +75,7 @@ tests/lib does not depend on the live developer database
 | `canonical-db-dir.vitest.ts` | Canonicalization, missing-directory creation and symlink escape rejection. |
 | `close-db.vitest.ts` | DB close assertions and failure reporting. |
 | `owner-lease.vitest.ts` | Single-owner lease behavior and stale owner recovery. |
-| `security-hardening.vitest.ts` | IPC socket containment and CocoIndex binary path safety. |
+| `security-hardening.vitest.ts` | IPC socket containment and Code Graph binary path safety. |
 
 <!-- /ANCHOR:key-files -->
 

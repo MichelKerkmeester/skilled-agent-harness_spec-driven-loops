@@ -23,7 +23,7 @@ Baseline: per `.opencode/skills/system-spec-kit/scripts/observability/smart-rout
 | P2 | OPENCODE | TypeScript | `Implement a negative-trigger whitelist in gate-3-classifier.ts and run the targeted tests.` (golden set rr-iter2-001) |
 | P3 | OPENCODE | Python | `Refactor skill_advisor.py to surface raw ambiguity counts in debug output.` (golden set rr-iter2-004) |
 | P4 | OPENCODE | TypeScript | `Write a Vitest covering classifyPrompt() for the resume deep review phrase.` (golden set rr-iter2-006) |
-| P5 | OPENCODE | Config | `Configure .vscode/mcp.json to mirror the current cocoindex server inputs.` (golden set rr-iter2-009) |
+| P5 | OPENCODE | Config | `Configure .vscode/mcp.json to mirror the current codeGraph server inputs.` (golden set rr-iter2-009) |
 | P6 | OPENCODE | Python | `Use the OpenCode standards route to clean up this CommonJS helper.` (golden set rr-iter2-059) |
 | P7 | OPENCODE | TypeScript | `Add a packet-local helper that formats Gate 3 confusion-matrix rows for the research summary.` (golden set rr-iter3-061) |
 | P8 | OPENCODE | Config | `Generate a replacement gate3-baseline.json fixture for the first 100 prompts.` (golden set rr-iter3-064) |

@@ -43,7 +43,7 @@ trigger_phrases:
 
 MCP Code Mode is the mandatory execution layer for all external MCP tool calls. Instead of exposing hundreds of tool schemas directly into the AI context window, Code Mode provides a single `call_tool_chain` tool that executes TypeScript code with full access to your entire toolkit. Tools are discovered on demand and called using a consistent naming pattern, so the AI context stays small regardless of how many tools are configured.
 
-Code Mode applies to tools configured in `.utcp_config.json`: ClickUp, Figma, MyService, Notion, Chrome DevTools, and other external MCP servers. It does not apply to native MCP tools such as Spec Kit Memory, Sequential Thinking, CocoIndex Code, or first-class app connectors exposed directly by the active runtime. This boundary is strict: using Code Mode for native tools wastes overhead, and bypassing Code Mode for external tools causes context exhaustion.
+Code Mode applies to tools configured in `.utcp_config.json`: ClickUp, Figma, MyService, Notion, Chrome DevTools, and other external MCP servers. It does not apply to native MCP tools such as Spec Kit Memory, Sequential Thinking, Code Graph Code, or first-class app connectors exposed directly by the active runtime. This boundary is strict: using Code Mode for native tools wastes overhead, and bypassing Code Mode for external tools causes context exhaustion.
 
 The core Code Mode surface is four meta-tools: `call_tool_chain` executes arbitrary TypeScript with tool access, `search_tools` finds relevant tools by description, `list_tools` returns registered tool names, and `tool_info` returns the TypeScript interface for a specific tool. Some installations also expose manual-registration helpers, but workflows should discover the live surface at runtime instead of assuming those helpers exist. Together these meta-tools replace what would otherwise be a large external-tool inventory loaded upfront.
 
@@ -149,7 +149,7 @@ Environment variable handling has one non-obvious rule. Code Mode prefixes all e
 | Tool Category | Examples | How to Call |
 |---------------|----------|-------------|
 | Code Mode tools | ClickUp, Figma, MyService, Notion, Chrome DevTools | Via call_tool_chain |
-| Native MCP tools | Spec Kit Memory, Sequential Thinking, CocoIndex | Call directly, NOT via call_tool_chain |
+| Native MCP tools | Spec Kit Memory, Sequential Thinking, Code Graph | Call directly, NOT via call_tool_chain |
 | File operations | Read, Write, Edit, Grep, Glob, Bash | Call directly |
 
 **Timeout Guidelines**
@@ -403,7 +403,7 @@ Fix: Use an absolute path in the `UTCP_CONFIG_FILE` value, verify the active run
 
 **Q: When should I NOT use call_tool_chain?**
 
-A: Do not use `call_tool_chain` for file operations (Read, Write, Edit, Grep, Glob, Bash), for native MCP tools (Spec Kit Memory, Sequential Thinking, CocoIndex Code), or for any tool already exposed as a first-class tool in the AI client. Code Mode is exclusively for tools registered in `.utcp_config.json`. Using `call_tool_chain` for native tools adds unnecessary overhead and does not give you access to those tools anyway, since Code Mode only sees what is in `.utcp_config.json`.
+A: Do not use `call_tool_chain` for file operations (Read, Write, Edit, Grep, Glob, Bash), for native MCP tools (Spec Kit Memory, Sequential Thinking, Code Graph Code), or for any tool already exposed as a first-class tool in the AI client. Code Mode is exclusively for tools registered in `.utcp_config.json`. Using `call_tool_chain` for native tools adds unnecessary overhead and does not give you access to those tools anyway, since Code Mode only sees what is in `.utcp_config.json`.
 
 **Q: Why does list_tools() not show Sequential Thinking or Spec Kit Memory?**
 

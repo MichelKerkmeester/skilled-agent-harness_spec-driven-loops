@@ -82,7 +82,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-g
 4. The GitHub Copilot subscription is active and registered in `opencode auth list` (the canonical default `opencode-go/deepseek-v4-pro` resolves through it). The `opencode-go/deepseek-v4-pro` Anthropic alternative also resolves through the same OAuth (no separate Anthropic credentials required). Multi-provider scenarios additionally need: opencode-go subscription registered when exercising `opencode-go/deepseek-v4-pro` and direct DeepSeek API credentials (`DEEPSEEK_API_KEY` / `auth login deepseek`) when exercising `deepseek/...`.
 5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars are set: `env | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
 6. The skill's reference and asset files exist at `.opencode/skills/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
-7. The project's MCP servers (Spec Kit Memory, CocoIndex Code) are registered in `opencode.json` so use case 1 (CO-006) and use case 3 (CO-021, CO-022) scenarios can call `memory_health`, CocoIndex search and `memory_search`.
+7. The project's MCP servers (Spec Kit Memory, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) and use case 3 (CO-021, CO-022) scenarios can call `memory_health`, Code Graph search and `memory_search`.
 8. The operator's repo root resolves via `REPO_ROOT="$(pwd)"` (run from the project root). Most scenarios pass `--dir "$(pwd)"` directly so they portably target whichever repo the operator runs them in. The `<repo-root>` placeholders in prose refer to the same value. Adapt to a different absolute path only if a scenario explicitly requires a non-default repo (e.g., CO-029 cross-repo dispatch derives a sibling path via `dirname "$(pwd)"`).
 9. Destructive scenarios involving `--share` (CO-026, CO-027, CO-028) MUST follow strict sandboxing and recovery rules. Each MUST run with `--dir /tmp/co-share-sandbox-NNN/` (where NNN is the scenario ID). Each MUST NOT run with `--dir` pointing at the operator project tree. Each MUST NOT publish the share URL to anyone without explicit operator confirmation per CHK-033. Recovery is mandatory after every run (pass or fail). Step (a) revoke every captured share URL via `opencode session revoke ${SESSION_ID}`. Step (b) remove the sandbox tmpdir via `rm -rf /tmp/co-share-sandbox-NNN/`. The test only validates the session-creation path. No real URL publication occurs.
 
@@ -310,13 +310,13 @@ Expected signals: Dispatch exits 0. Tool.call event for memory_health appears. S
 
 #### Description
 
-Verify a Codex-originated cli-opencode dispatch routes to use case 1 (general full-runtime) when the prompt does not name a spec-kit subsystem and the dispatched OpenCode session loads the project plugin runtime to call CocoIndex semantic search.
+Verify a Codex-originated cli-opencode dispatch routes to use case 1 (general full-runtime) when the prompt does not name a spec-kit subsystem and the dispatched OpenCode session loads the project plugin runtime to call Code Graph structural query + Grep.
 
 #### Scenario Contract
 
-Prompt summary: You are Codex dispatching from a fresh shell into a new OpenCode session via cli-opencode use case 1. Goal: have OpenCode confirm CocoIndex semantic search MCP is loaded and reachable, then run a single small semantic search to validate. Context: this is use case 1 (general full-runtime), not use case 3 (spec-kit handback).
+Prompt summary: You are Codex dispatching from a fresh shell into a new OpenCode session via cli-opencode use case 1. Goal: have OpenCode confirm Code Graph structural query + Grep MCP is loaded and reachable, then run a single small semantic search to validate. Context: this is use case 1 (general full-runtime), not use case 3 (spec-kit handback).
 
-Expected signals: Dispatch exits 0. Tool.call event for CocoIndex search MCP appears. Session.completed references the search snippets.
+Expected signals: Dispatch exits 0. Tool.call event for Code Graph search MCP appears. Session.completed references the search snippets.
 
 #### Test Execution
 
