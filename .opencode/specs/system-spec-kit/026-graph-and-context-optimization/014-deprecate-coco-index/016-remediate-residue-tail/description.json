@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/016-remediate-residue-tail",
+  "description": "Feature Specification: Close the CocoIndex/rerank deprecation residue tail + record the completeness verdict",
+  "keywords": [
+    "feature",
+    "specification",
+    "close",
+    "cocoindex",
+    "rerank",
+    "deprecation",
+    "residue",
+    "tail",
+    "record",
+    "completeness",
+    "verdict"
+  ],
+  "lastUpdated": "2026-05-25T16:48:54.634Z",
+  "specId": "016",
+  "folderSlug": "remediate-residue-tail",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-deprecate-coco-index"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

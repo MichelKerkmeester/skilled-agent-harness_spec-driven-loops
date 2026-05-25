@@ -3311,9 +3311,9 @@ Shared helper imports visible; Copilot compact-cache emits cached provenance-wra
 Verify the code-graph sibling handlers emit one shared readiness vocabulary.
 
 #### Scenario Contract
-Prompt: `Validate the shared code-graph readiness contract across sibling handlers and CCC stubs.`
+Prompt: `Validate the shared code-graph readiness contract across sibling handlers and the code_graph status/scan/verify handlers.`
 
-Shared readiness fields present across the sibling handlers; trustState values align with the canonical vocabulary; CCC trio exposes the documented stub behavior
+Shared readiness fields present across the sibling handlers; trustState values align with the canonical vocabulary; the code_graph status/scan/verify handlers expose the documented stub behavior
 
 #### Test Execution
 > **Feature File:** [275](22--context-preservation/275-code-graph-readiness-contract.md)

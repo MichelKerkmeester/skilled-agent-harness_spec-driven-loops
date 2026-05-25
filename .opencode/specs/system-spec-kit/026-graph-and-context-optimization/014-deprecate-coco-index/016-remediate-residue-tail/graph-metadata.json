@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/016-remediate-residue-tail",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/016-remediate-residue-tail",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/015-remediate-cross-surface-residue"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/014-remediate-codegraph-naming"
+    ]
+  },
+    "derived": {
+    "trigger_phrases": ["deprecation residue completeness verdict","coco ccc rerank cleanup closed","exhaustive sweep methodology bug"],
+    "key_topics": ["residue-tail","completeness-verdict","kept-exceptions","cross-encoder-027-caveat","grep-false-negative-bug","cocoindex-deprecation"],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": ["spec.md","implementation-summary.md"],
+    "entities": [],
+    "causal_summary": "Ended the wave-by-wave residue hunt with one exhaustive verify-first sweep. Diagnosed the recurring false-negative cause (unquoted-shell-variable -g exclude globs mangled by zsh under 2>/dev/null); corrected via inline-quoted excludes + per-token greps + --hidden. Verdict: the 014 CocoIndex/rerank-sidecar/ccc deprecation residue is closed except a 2-item live-doc tail, now fixed (deep-loop README deleted sidecar_ledger.py line removed; playbook 'CCC stubs/trio' -> code_graph status/scan/verify). Filesystem-verified every referenced artifact before fix-vs-keep. KEPT (with reasons): the LIVE in-process rerank/MMR pipeline (cross-encoder.ts/stage3 wired - NOT residue), accurate-history banners, frozen benchmarks/observability, generated scan artifacts, cli-* pkill exception, legit 'structural search' prose. DEFERRED: sidecar-client.ts:170 cross-encoder JSDoc (027-xce evolving subsystem, operator decision). Open: dead-code audit of the in-process cross-encoder is a separate scope.",
+    "created_at": "2026-05-25T16:46:14Z",
+    "last_save_at": "2026-05-25T16:52:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","implementation-summary.md"]
+  }
+}
