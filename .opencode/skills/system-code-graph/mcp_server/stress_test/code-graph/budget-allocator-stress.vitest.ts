@@ -17,7 +17,6 @@ describe('code graph budget allocator stress behavior', () => {
     const result = allocateBudget(createDefaultSources(
       DEFAULT_FLOORS.constitutional + 300,
       DEFAULT_FLOORS.codeGraph + 500,
-      DEFAULT_FLOORS.cocoIndex,
       0,
       200,
     ));
@@ -36,7 +35,6 @@ describe('code graph budget allocator stress behavior', () => {
     const result = allocateBudget([
       { name: 'constitutional', floor: 700, actualSize: 1_000 },
       { name: 'codeGraph', floor: 1_200, actualSize: 2_000 },
-      { name: 'cocoIndex', floor: 900, actualSize: 2_000 },
       { name: 'sessionState', floor: 0, actualSize: 1_000 },
       { name: 'triggered', floor: 400, actualSize: 2_000 },
     ], 2_000);

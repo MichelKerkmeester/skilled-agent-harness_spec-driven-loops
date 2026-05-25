@@ -120,7 +120,6 @@ function formatGraphQualitySummary(graphQualitySummary: StartupGraphQualitySumma
 function buildStartupSurface(args: {
   stats: CodeGraphStatsSnapshot | null;
   graphState: StartupBriefResult['graphState'];
-  cocoIndexAvailable: boolean;
 }): string {
   let codeGraphLine = 'unavailable';
   if (args.stats && (args.graphState === 'ready' || args.graphState === 'stale')) {
@@ -140,7 +139,6 @@ function buildStartupSurface(args: {
     '',
     '- Memory: startup summary only (resume on demand)',
     `- Code Graph: ${codeGraphLine}`,
-    `- CocoIndex: ${args.cocoIndexAvailable ? 'available' : 'missing'}`,
     '- Note: this is a startup snapshot; later structural reads may differ if the repo state changed.',
     '',
     'What would you like to work on?',
@@ -175,7 +173,7 @@ function buildStartupBrief(
     }
     const highlights = queryStartupHighlights(5);
     if (highlights.length > 0) {
-      lines.push('Orientation: use code graph highlights for structural entry points and call paths; use CocoIndex for semantic discovery when the symbol or file is still unknown.');
+      lines.push('Orientation: use code graph highlights for structural entry points and call paths; use Grep for concept discovery when the symbol or file is still unknown.');
       lines.push('Highlights:');
       lines.push(...highlights.map(formatHighlight));
     }
@@ -184,7 +182,6 @@ function buildStartupBrief(
   const startupSurface = buildStartupSurface({
     stats,
     graphState: markerBase.graphState,
-    cocoIndexAvailable: false,
   });
   const sharedPayload = {
     kind: 'startup',
@@ -209,7 +206,6 @@ function buildStartupBrief(
     graphQualitySummary,
     graphState: markerBase.graphState,
     graphTrustState: trustStateFromFreshness(markerBase.graphFreshness),
-    cocoIndexAvailable: false,
     startupSurface,
     sharedPayload,
     sharedPayloadTransport: JSON.stringify({

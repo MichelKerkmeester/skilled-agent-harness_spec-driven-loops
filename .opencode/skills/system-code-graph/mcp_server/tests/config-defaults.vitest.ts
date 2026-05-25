@@ -30,7 +30,6 @@ describe('config-defaults', () => {
       expect(CODE_GRAPH_DEFAULTS.floors).toMatchObject({
         constitutional: 700,
         codeGraph: 1200,
-        cocoIndex: 900,
         triggered: 400,
         overflow: 800,
       });
@@ -57,7 +56,6 @@ describe('config-defaults', () => {
       expect(DEFAULT_FLOORS).toEqual({
         constitutional: 700,
         codeGraph: 1200,
-        cocoIndex: 900,
         triggered: 400,
         overflow: 800,
       });

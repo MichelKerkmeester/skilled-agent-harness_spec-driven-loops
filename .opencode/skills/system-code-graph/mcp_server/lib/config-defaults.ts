@@ -38,7 +38,6 @@ export const CODE_GRAPH_DEFAULTS = {
     {
       constitutional: 700,
       codeGraph: 1200,
-      cocoIndex: 900,
       triggered: 400,
       overflow: 800,
     },

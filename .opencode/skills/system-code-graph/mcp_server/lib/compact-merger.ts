@@ -134,7 +134,6 @@ export function mergeCompactBrief(
   const sources = createDefaultSources(
     constitutionalSize,
     codeGraphSize,
-    0,
     triggeredSize,
     sessionStateSize,
   );

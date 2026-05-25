@@ -8,7 +8,6 @@ describe('compact merger', () => {
   const createInput = (overrides: Partial<MergeInput> = {}): MergeInput => ({
     constitutional: 'Rule 1: Always read files first.',
     codeGraph: 'function parseFile in structural-indexer.ts:150',
-    cocoIndex: 'Similar: memory-surface.ts autoSurfaceAtCompaction',
     triggered: 'Trigger: compaction recovery context',
     sessionState: 'Working on phase 001 PreCompact hook',
     ...overrides,
@@ -30,7 +29,7 @@ describe('compact merger', () => {
     });
 
     it('omits empty sections', () => {
-      const result = mergeCompactBrief(createInput({ cocoIndex: '', triggered: '' }));
+      const result = mergeCompactBrief(createInput({ triggered: '' }));
       expect(result.sections.length).toBe(3);
       expect(result.text).not.toContain('Semantic Neighbors');
       expect(result.text).not.toContain('Triggered Memories');
@@ -40,7 +39,7 @@ describe('compact merger', () => {
       const result = mergeCompactBrief(createInput());
       expect(result.allocation).toBeDefined();
       expect(result.allocation.totalBudget).toBe(4000);
-      expect(result.allocation.allocations.length).toBe(5);
+      expect(result.allocation.allocations.length).toBe(4);
       expect(result.payloadContract.kind).toBe('compaction');
       expect(result.payloadContract.provenance.producer).toBe('compact_merger');
     });
@@ -55,7 +54,6 @@ describe('compact merger', () => {
       const result = mergeCompactBrief(createInput({
         constitutional: '',
         codeGraph: '',
-        cocoIndex: '',
         triggered: '',
         sessionState: 'S'.repeat(4000),
       }), 1);
@@ -69,7 +67,6 @@ describe('compact merger', () => {
       const result = mergeCompactBrief(createInput({
         constitutional: '',
         codeGraph: 'A'.repeat(100),
-        cocoIndex: 'B'.repeat(100),
         triggered: '',
         sessionState: '',
       }), 1);
