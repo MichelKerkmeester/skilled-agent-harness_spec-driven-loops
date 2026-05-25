@@ -192,7 +192,6 @@ interface AutoSurfaceResult {
     specFolder: string | null;
     currentTask: string | null;
     codeGraphStatus: 'fresh' | 'stale' | 'empty';
-    cocoIndexAvailable: boolean;
     recommendedCalls: string[];
   };
   surfaced_at?: string;
@@ -732,7 +731,7 @@ function injectSessionPrimeHints(
     if (pkg.specFolder) {
       hints.push(`Active spec folder: ${pkg.specFolder}`);
     }
-    hints.push(`Code graph: ${pkg.codeGraphStatus}, CocoIndex: ${pkg.cocoIndexAvailable ? 'available' : 'not installed'}`);
+    hints.push(`Code graph: ${pkg.codeGraphStatus}`);
     if (pkg.recommendedCalls.length > 0) {
       hints.push(`Recommended next calls: ${pkg.recommendedCalls.join(', ')}`);
     }
@@ -851,9 +850,6 @@ async function buildServerInstructions(): Promise<string> {
     const { getSessionSnapshot: getSnap } = await import('./lib/session/session-snapshot.js');
     const snap = getSnap();
     const routingRules: string[] = [];
-    if (snap.cocoIndexAvailable) {
-      routingRules.push('Semantic/concept code search → mcp__cocoindex_code__search');
-    }
     if (snap.graphFreshness === 'fresh' || snap.graphFreshness === 'stale') {
       routingRules.push('Structural queries (callers, imports, deps) → mcp__mk_code_index__code_graph_query');
     } else if (snap.graphFreshness === 'empty') {
@@ -1059,7 +1055,7 @@ function registerContextServerHandlers(targetServer: Server): void {
           const envelope = JSON.parse(result.content[0].text) as Record<string, unknown>;
           if (envelope && typeof envelope === 'object' && !Array.isArray(envelope)) {
             const existingHints = Array.isArray(envelope.hints) ? envelope.hints as string[] : [];
-            existingHints.push('Tip: For code search queries, consider using mcp__cocoindex_code__search for semantic code search or mcp__mk_code_index__code_graph_query for structural lookups.');
+            existingHints.push('Tip: For code search queries, use mcp__mk_code_index__code_graph_query for structural lookups and Grep for exact text or token searches.');
             envelope.hints = existingHints;
             result.content[0].text = JSON.stringify(envelope, null, 2);
           }

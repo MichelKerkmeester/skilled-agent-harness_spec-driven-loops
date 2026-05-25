@@ -26,7 +26,6 @@ import {
   getSnapshot as getRoutingTelemetrySnapshot,
   WINDOW_SIZE as ROUTING_TELEMETRY_WINDOW_SIZE,
 } from '../lib/search/routing-telemetry.js';
-import { probeCocoIndexDaemon } from '../lib/cocoindex/daemon-probe.js';
 import {
   getByteEstimate as getEmbeddingCacheByteEstimate,
   getEmbeddingCacheByProfileStats,
@@ -792,11 +791,6 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     const hint = `Routing telemetry unavailable (${errClass}: ${errMsg})`.slice(0, 160);
     hints.push(hint);
   }
-  const cocoIndex = probeCocoIndexDaemon();
-  if (cocoIndex.status !== 'reachable') {
-    hints.push('WARN: vector channel unavailable, lexical-only');
-  }
-
   return createMCPSuccessResponse({
     tool: 'memory_health',
     summary,
@@ -822,14 +816,6 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         databasePath: redactPath(vectorIndex.getDbPath() ?? ''),
       },
       embeddingRetry,
-      cocoIndex: {
-        status: cocoIndex.status,
-        reason: cocoIndex.reason,
-        logCapState: cocoIndex.logCapState,
-        pidLockHolder: cocoIndex.pidLockHolder,
-        checkedAt: cocoIndex.checkedAt,
-        ttlMs: cocoIndex.ttlMs,
-      },
       routing: {
         graphChannelInvocationRate: routingTelemetry.graphChannelInvocationRate,
         channelInvocationRates: routingTelemetry.channelInvocationRates,

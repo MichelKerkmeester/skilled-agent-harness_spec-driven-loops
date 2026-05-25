@@ -5,7 +5,6 @@
 import type { RetrievalTrace } from '@spec-kit/shared/contracts/retrieval-trace';
 import type { QueryPlan } from '../../query/query-plan.js';
 import type { RerankGateDecision } from '../rerank-gate.js';
-import type { CocoIndexCalibrationTelemetry } from '../cocoindex-calibration.js';
 
 // Feature catalog: 4-stage pipeline architecture
 
@@ -281,7 +280,6 @@ export interface Stage3Output {
     rerankApplied: boolean;
     rerankProvider?: string;
     rerankGateDecision?: RerankGateDecision;
-    cocoindexCalibration?: CocoIndexCalibrationTelemetry;
     chunkReassemblyStats: {
       collapsedChunkHits: number;
       chunkParents: number;

@@ -181,7 +181,6 @@ describe('session-resume handler', () => {
     expect(parsed.data.memory.source).toBe('handover');
     expect(parsed.data.memory.specFolder).toBe(specFolder);
     expect(parsed.data.codeGraph).toBeDefined();
-    expect(parsed.data.cocoIndex).toBeDefined();
     expect(parsed.data.payloadContract.kind).toBe('resume');
     expect(parsed.data.payloadContract.provenance.producer).toBe('session_resume');
     expect(parsed.data.opencodeTransport.transportOnly).toBe(true);
@@ -288,7 +287,6 @@ describe('session-resume handler', () => {
     expect(parsed.data.opencodeTransport.transportOnly).toBe(true);
     expect(parsed.data.opencodeTransport.messagesTransform.length).toBeGreaterThan(0);
     expect(parsed.data.codeGraph.status).toBe('fresh');
-    expect(typeof parsed.data.cocoIndex.available).toBe('boolean');
     expect(parsed.data.structuralContext.sourceSurface).toBe('session_resume');
     expect(parsed.data.graphOps.readiness.sourceSurface).toBe('session_resume');
     expect(parsed.data.sessionQuality).toBe('degraded');

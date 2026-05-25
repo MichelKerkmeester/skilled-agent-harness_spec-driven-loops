@@ -74,7 +74,6 @@ export interface StartupBriefResult {
   graphQualitySummary: StartupGraphQualitySummary | null;
   graphState: 'ready' | 'stale' | 'empty' | 'missing';
   graphTrustState?: string;
-  cocoIndexAvailable: boolean;
   startupSurface: string;
   sharedPayload: unknown | null;
   sharedPayloadTransport: string | null;

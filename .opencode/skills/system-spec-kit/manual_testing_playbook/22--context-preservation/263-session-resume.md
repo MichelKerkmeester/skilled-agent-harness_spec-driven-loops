@@ -15,11 +15,11 @@ This scenario validates the detailed Session resume tool (`session_resume`). It 
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Verify that `session_resume` rebuilds recovery state from the current resume ladder (`handover.md -> _memory.continuity -> spec docs`), reports freshness-aware code graph status (`fresh | stale | empty | error`), checks CocoIndex availability, appends the shared structural `ready | stale | missing` contract, binds explicit `args.sessionId` to the transport caller context by default, and merges everything into a single `SessionResumeResult`; Failures must degrade into hints and status fields instead of crashing the tool, except for strict auth mismatches which should reject cleanly; The response must include `memory` (ladder-backed recovery context), `codeGraph` (freshness status with counts), `cocoIndex` (available boolean with binary path), `structuralContext` (`status`, `summary`, `recommendedAction`, `sourceSurface`), and `hints`.
-- Real user request: `` Please validate Session resume returns detailed recovery state against session_resume({}) and tell me whether the expected signals are present: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; cocoIndex.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs; permissive mode logs and continues. ``
-- Prompt: `Validate session_resume returns detailed recovery state across memory, code graph, CocoIndex, and structural context.`
+- Objective: Verify that `session_resume` rebuilds recovery state from the current resume ladder (`handover.md -> _memory.continuity -> spec docs`), reports freshness-aware code graph status (`fresh | stale | empty | error`), checks Code Graph availability, appends the shared structural `ready | stale | missing` contract, binds explicit `args.sessionId` to the transport caller context by default, and merges everything into a single `SessionResumeResult`; Failures must degrade into hints and status fields instead of crashing the tool, except for strict auth mismatches which should reject cleanly; The response must include `memory` (ladder-backed recovery context), `codeGraph` (freshness status with counts), `codeGraph` (available boolean with binary path), `structuralContext` (`status`, `summary`, `recommendedAction`, `sourceSurface`), and `hints`.
+- Real user request: `` Please validate Session resume returns detailed recovery state against session_resume({}) and tell me whether the expected signals are present: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; codeGraph.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs; permissive mode logs and continues. ``
+- Prompt: `Validate session_resume returns detailed recovery state across memory, code graph, Code Graph, and structural context.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; cocoIndex.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs; permissive mode logs and continues
+- Expected signals: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; codeGraph.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs; permissive mode logs and continues
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS: All subsystem results and structuralContext fields are present in response when auth passes, the spec-doc record payload follows the resume ladder contract, degraded structural states emit the expected bootstrap guidance without throwing, and strict-vs-permissive session binding matches the documented contract; FAIL: Missing subsystem or structuralContext in response, unhandled exception from sub-call, missing type fields, or incorrect auth-binding behavior
 
@@ -88,7 +88,7 @@ Check graphDb.getStats() and code-graph-db.ts query
 ### Prompt
 
 ```
-As a context-and-code-graph validation operator, validate CocoIndex availability check against session_resume({}). Verify cocoIndex.available is boolean, binaryPath is string. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a context-and-code-graph validation operator, validate Code Graph availability check against session_resume({}). Verify codeGraph.available is boolean, binaryPath is string. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
@@ -97,20 +97,20 @@ As a context-and-code-graph validation operator, validate CocoIndex availability
 
 ### Expected
 
-cocoIndex.available is boolean, binaryPath is string
+codeGraph.available is boolean, binaryPath is string
 
 ### Evidence
 
-session_resume response JSON cocoIndex field
+session_resume response JSON codeGraph field
 
 ### Pass / Fail
 
-- **Pass**: cocoIndex fields present with correct types
+- **Pass**: codeGraph fields present with correct types
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 
 ### Failure Triage
 
-Check `cocoindex-path.ts` plus the availability probe used by session-resume.ts
+Check `code_graph-path.ts` plus the availability probe used by session-resume.ts
 
 ---
 

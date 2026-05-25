@@ -11,7 +11,6 @@ describe('MCP subprocess env allowlist', () => {
     process.env.SSH_AUTH_SOCK = '/tmp/ssh-auth-leak';
     process.env.RANDOM_USER_VAR = 'should-not-pass';
     process.env.SPECKIT_TEST_VAR = 'project-namespace-passes';
-    process.env.COCOINDEX_DEMO = 'project-namespace-passes';
   });
 
   afterEach(() => {
@@ -44,10 +43,9 @@ describe('MCP subprocess env allowlist', () => {
     expect(env.HOME).toBeTruthy();
   });
 
-  it('passes SPECKIT_* + COCOINDEX_* (project namespace)', () => {
+  it('passes SPECKIT_* (project namespace)', () => {
     const env = buildSubprocessEnv();
     expect(env.SPECKIT_TEST_VAR).toBe('project-namespace-passes');
-    expect(env.COCOINDEX_DEMO).toBe('project-namespace-passes');
   });
 
   it('extras override and add', () => {

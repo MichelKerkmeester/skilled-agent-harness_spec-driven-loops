@@ -6,9 +6,8 @@
 // re-export from here.
 //
 // Promoted from mk-spec-memory's mcp_server/lib/embedders/registry.ts in
-// phase 003/006. 7 text-tuned embedder manifests. CocoIndex's code-tuned
-// embedders live in Python at `cocoindex_code/embedders/registered_embedders.py`
-// and are intentionally separate — the content-type split is preserved.
+// phase 003/006. 7 text-tuned embedder manifests are intentionally kept
+// separate from future code-tuned consumers.
 // ───────────────────────────────────────────────────────────────
 
 import type { EmbedderAdapter } from './adapter.js';

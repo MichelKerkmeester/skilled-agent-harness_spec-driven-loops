@@ -1,6 +1,6 @@
 ---
 title: "RAG Library: Trust Tree"
-description: "Builds answer-level trust summaries from memory, graph, advisor, CocoIndex and causal signals."
+description: "Builds answer-level trust summaries from memory, graph, advisor, Code Graph and causal signals."
 trigger_phrases:
   - "rag trust tree"
   - "answer trust signals"
@@ -38,7 +38,7 @@ rag/
 
 ## 4. ENTRYPOINTS
 
-- `buildTrustTree(input)` composes response policy, code graph, advisor, CocoIndex and causal inputs.
+- `buildTrustTree(input)` composes response policy, code graph, advisor, Code Graph and causal inputs.
 - Exported types include `TrustTree`, `TrustSignal`, `TrustSignalState`, `TrustTreeDecision`, `CausalRelation`, `CausalTrustEdge` and `BuildTrustTreeInput`.
 
 ## 5. BOUNDARIES

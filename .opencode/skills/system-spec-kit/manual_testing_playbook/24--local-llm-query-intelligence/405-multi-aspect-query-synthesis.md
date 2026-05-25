@@ -13,7 +13,7 @@ Operators frequently fire compound queries: "Apple Silicon Metal GPU embedding d
 2. Acceleration — Metal GPU
 3. Feature — embedding default selection
 
-A naive search ranker collapses onto the most-frequent term ("embedding"); a competent semantic ranker preserves all three aspects and surfaces documents that touch each. Verify Memory MCP + CocoIndex represent all three aspects in the top 5 results.
+A naive search ranker collapses onto the most-frequent term ("embedding"); a competent semantic ranker preserves all three aspects and surfaces documents that touch each. Verify Memory MCP + Code Graph represent all three aspects in the top 5 results.
 
 ---
 
@@ -40,7 +40,7 @@ Fire the compound query 'Apple Silicon Metal GPU embedding default' and verify t
 ### Commands
 
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "Apple Silicon Metal GPU embedding default provider selection",
   num_results: 10,
 })
@@ -83,7 +83,7 @@ Coverage summary:
 
 ### Evidence
 
-- The exact compound query payload for both Memory MCP and CocoIndex.
+- The exact compound query payload for both Memory MCP and Code Graph.
 - The top-10 result paths for each.
 - The aspect-tagging table.
 - An honest note on which result was "most synthesized" (touches the most aspects).

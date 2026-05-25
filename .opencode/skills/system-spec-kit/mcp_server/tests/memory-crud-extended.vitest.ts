@@ -85,18 +85,6 @@ vi.mock('../hooks/memory-surface', async (importOriginal) => {
   };
 });
 
-// drift: Unit A REQ-012 added cocoindex daemon probe to memory_health.
-// Default to 'unreachable' so EXT-H15 ("vector channel unavailable") fires
-// the expected hint deterministically; tests that need 'reachable' can
-// override via vi.mocked(probeCocoIndexDaemon).mockReturnValue(...).
-vi.mock('../lib/cocoindex/daemon-probe', () => ({
-  probeCocoIndexDaemon: vi.fn(() => ({
-    status: 'unreachable',
-    reason: 'test-default',
-    probedAt: new Date().toISOString(),
-  })),
-}));
-
 vi.mock('../lib/storage/mutation-ledger', async () => {
   return {
     initLedger: vi.fn(),

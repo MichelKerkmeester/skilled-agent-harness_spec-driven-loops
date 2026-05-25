@@ -8,7 +8,7 @@ audited_post_018: true
 
 ## 1. OVERVIEW
 
-When an operator types a question-form query like "how does provider auto-cascade resolution work?", they want the IMPLEMENTATION (factory.ts:resolveProvider) — not the README that describes the implementation in prose. CocoIndex semantic search must rank the implementation file higher than the doc, because the operator is looking for code to read/debug, not narrative to read.
+When an operator types a question-form query like "how does provider auto-cascade resolution work?", they want the IMPLEMENTATION (factory.ts:resolveProvider) — not the README that describes the implementation in prose. Code Graph semantic search must rank the implementation file higher than the doc, because the operator is looking for code to read/debug, not narrative to read.
 
 The behavior is user-observable: developers asking implementation questions want source files; documentation queries can be a tiebreaker but should not dominate.
 
@@ -17,8 +17,8 @@ The behavior is user-observable: developers asking implementation questions want
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm implementation-over-docs ranking for code-intent queries.
-- Real user request: `Verify that when I ask "how does X work?" through CocoIndex, the implementation file outranks its README.`
-- RCAF Prompt: `As a query-intelligence validation operator, fire 4 question-form code queries through CocoIndex and report whether the implementation file ranks above its README in each top-5. Return a pass/fail verdict and a table of rank pairs.`
+- Real user request: `Verify that when I ask "how does X work?" through Code Graph, the implementation file outranks its README.`
+- RCAF Prompt: `As a query-intelligence validation operator, fire 4 question-form code queries through Code Graph and report whether the implementation file ranks above its README in each top-5. Return a pass/fail verdict and a table of rank pairs.`
 - Expected execution process: run 4 code-intent queries, identify implementation-file rank and README rank in each top-5, compare.
 - Expected signals: implementation rank < README rank in ≥ 3 of 4 queries; both files are present in top-10.
 - Desired user-visible outcome: `PASS — 3/4 queries rank implementation above README; the 1 inversion was a tied-content tiebreaker.`
@@ -31,14 +31,14 @@ The behavior is user-observable: developers asking implementation questions want
 ### Prompt
 
 ```
-For each of 4 code-intent queries, check whether the implementation file ranks above its README in CocoIndex top-5.
+For each of 4 code-intent queries, check whether the implementation file ranks above its README in Code Graph top-5.
 ```
 
 ### Commands
 
 **Query A — provider cascade:**
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "how does embedding provider auto-cascade resolution work when no API keys are set",
   num_results: 10,
 })
@@ -47,7 +47,7 @@ Expected: `shared/embeddings/factory.ts` (impl) ranks above `shared/embeddings/R
 
 **Query B — ollama availability probe:**
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "how does the system detect whether ollama runtime is installed",
   num_results: 10,
 })
@@ -56,7 +56,7 @@ Expected: `shared/embeddings/ollama-availability.ts` (impl) ranks above `shared/
 
 **Query C — sqlite-vec virtual table creation:**
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "how is the sqlite-vec virtual table created and queried for embeddings",
   num_results: 10,
 })
@@ -65,7 +65,7 @@ Expected: `mcp_server/lib/search/vector-index-store.ts` or `vector-index-impl.ts
 
 **Query D — profile-keyed DB filename:**
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "how is the active profile sqlite filename derived from provider model dim and dtype",
   num_results: 10,
 })
@@ -91,7 +91,7 @@ A table like:
 
 ### Evidence
 
-- The exact `mcp__cocoindex_code__search` payload for each query.
+- The exact `mcp__mk_code_index__code_graph_query` payload for each query.
 - The top-10 result paths for each query.
 - The rank-pair table above.
 - An honest assessment: if implementation ranks below docs, IS the doc actually a better answer for this query? (Sometimes the inversion is correct — INSTALL_GUIDE may be more authoritative for setup-related questions.)

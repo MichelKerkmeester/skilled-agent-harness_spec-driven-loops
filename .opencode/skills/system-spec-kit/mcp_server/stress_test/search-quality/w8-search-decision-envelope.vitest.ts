@@ -7,7 +7,6 @@ import { describe, expect, it } from 'vitest';
 
 import { createEmptyQueryPlan } from '../../lib/query/query-plan.js';
 import {
-  attachCocoIndexCalibration,
   attachDegradedReadiness,
   attachRerankDecision,
   attachShadowDeltas,
@@ -35,7 +34,7 @@ describe('W8 SearchDecisionEnvelope', () => {
     expect(envelope.trustTree).toBeUndefined();
   });
 
-  it('composes trust tree, rerank decision, shadow deltas, calibration, and degraded readiness', () => {
+  it('composes trust tree, rerank decision, shadow deltas, and degraded readiness', () => {
     const queryPlan = createEmptyQueryPlan({
       complexity: 'complex',
       authorityNeed: 'high',
@@ -65,16 +64,6 @@ describe('W8 SearchDecisionEnvelope', () => {
         dominantLane: 'semantic_shadow',
         timestamp: '2026-04-29T00:00:00.000Z',
       }],
-      cocoindexCalibration: {
-        requestedLimit: 5,
-        effectiveLimit: 5,
-        duplicateDensity: 0.5,
-        duplicateCount: 2,
-        uniquePathCount: 2,
-        adaptiveOverfetchApplied: false,
-        overfetchMultiplier: 1,
-        pathClassCounts: { runtime: 4 },
-      },
       degradedReadiness: {
         freshness: 'stale',
         canonicalReadiness: 'stale',
@@ -87,8 +76,6 @@ describe('W8 SearchDecisionEnvelope', () => {
     expect(envelope.trustTree?.decision).toBe('degraded');
     expect(envelope.rerankGateDecision?.triggers).toEqual(['complex-query', 'high-authority']);
     expect(envelope.shadowDeltas?.[0]?.dominantLane).toBe('semantic_shadow');
-    expect(envelope.cocoindexCalibration?.recommendedMultiplier).toBe(4);
-    expect(envelope.cocoindexCalibration?.adaptiveOverfetchApplied).toBe(false);
     expect(envelope.degradedReadiness?.trustState).toBe('stale');
     expect(envelope.tenantId).toBe('tenant-a');
   });
@@ -112,22 +99,11 @@ describe('W8 SearchDecisionEnvelope', () => {
       dominantLane: 'semantic_shadow',
       timestamp: '2026-04-29T00:00:00.000Z',
     }]);
-    const withCalibration = attachCocoIndexCalibration(withShadow, {
-      requestedLimit: 10,
-      effectiveLimit: 10,
-      duplicateDensity: 0,
-      duplicateCount: 0,
-      uniquePathCount: 10,
-      adaptiveOverfetchApplied: false,
-      overfetchMultiplier: 1,
-      pathClassCounts: {},
-    });
-    const complete = attachDegradedReadiness(withCalibration, { freshness: 'empty', trustState: 'absent' });
+    const complete = attachDegradedReadiness(withShadow, { freshness: 'empty', trustState: 'absent' });
 
     expect(base.rerankGateDecision).toBeUndefined();
     expect(complete.rerankGateDecision?.shouldRerank).toBe(false);
     expect(complete.shadowDeltas).toHaveLength(1);
-    expect(complete.cocoindexCalibration?.recommendedMultiplier).toBe(1);
     expect(complete.degradedReadiness?.freshness).toBe('empty');
   });
 });

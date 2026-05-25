@@ -26,12 +26,11 @@ export interface AllocationResult {
 export const DEFAULT_FLOORS = {
   constitutional: 700,
   codeGraph: 1200,
-  cocoIndex: 900,
   triggered: 400,
   overflow: 800,
 } as const;
 
-const PRIORITY_ORDER = ['constitutional', 'codeGraph', 'cocoIndex', 'sessionState', 'triggered'] as const;
+const PRIORITY_ORDER = ['constitutional', 'codeGraph', 'sessionState', 'triggered'] as const;
 
 export function allocateBudget(
   sources: SourceBudget[],
@@ -94,14 +93,12 @@ export function allocateBudget(
 export function createDefaultSources(
   constitutionalSize: number,
   codeGraphSize: number,
-  cocoIndexSize: number,
   triggeredSize: number,
   sessionStateSize: number = 0,
 ): SourceBudget[] {
   return [
     { name: 'constitutional', floor: DEFAULT_FLOORS.constitutional, actualSize: constitutionalSize },
     { name: 'codeGraph', floor: DEFAULT_FLOORS.codeGraph, actualSize: codeGraphSize },
-    { name: 'cocoIndex', floor: DEFAULT_FLOORS.cocoIndex, actualSize: cocoIndexSize },
     { name: 'sessionState', floor: 0, actualSize: sessionStateSize },
     { name: 'triggered', floor: DEFAULT_FLOORS.triggered, actualSize: triggeredSize },
   ];

@@ -93,7 +93,7 @@ const SEARCH_QUALITY_CORPUS: SearchQualityCorpus = {
 const WORKSTREAM_SEARCH_QUALITY_CASES: SearchQualityCase[] = [
   {
     id: 'w3-trust-tree-contradiction',
-    query: 'compose response policy code graph advisor cocoindex contradiction provenance',
+    query: 'compose response policy code graph advisor contradiction provenance',
     source: 'trust-tree',
     workstream: 'W3',
     expectedRelevantIds: ['trust-tree-response-policy', 'trust-tree-contradiction-edge'],
@@ -128,14 +128,14 @@ const WORKSTREAM_SEARCH_QUALITY_CASES: SearchQualityCase[] = [
     notes: 'W5 labeled advisor prompt for shadow learned-weight diagnostics.',
   },
   {
-    id: 'w6-cocoindex-duplicate-heavy',
+    id: 'w6-duplicate-heavy',
     query: 'semantic code search duplicate-heavy path-class calibration',
     source: 'duplicate-heavy',
     workstream: 'W6',
-    expectedRelevantIds: ['cocoindex-canonical-spec'],
+    expectedRelevantIds: ['canonical-spec'],
     expectedChannels: ['memory_search'],
     citationExpectation: {
-      requiredIds: ['cocoindex-canonical-spec'],
+      requiredIds: ['canonical-spec'],
     },
     notes: 'W6 duplicate-heavy candidate list where adaptive overfetch should preserve canonical path recall.',
   },

@@ -1,6 +1,6 @@
 ---
 title: "264 -- Query-intent routing in memory_context"
-description: "This scenario validates Query-intent routing for 264. It focuses on verifying structural queries route to code graph and semantic queries route to CocoIndex."
+description: "This scenario validates Query-intent routing for 264. It focuses on verifying structural queries route to code graph and semantic queries route to Code Graph."
 audited_post_018: true
 ---
 
@@ -15,7 +15,7 @@ This scenario validates Query-intent routing in memory_context.
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Verify that memory_context auto-routes queries based on the query-intent classifier; Structural queries (containing keywords like "calls", "imports", "callers", "function", "class") must route to the code graph backend; Semantic queries (containing keywords like "similar", "find examples", "how to") must route to the standard memory/CocoIndex pipeline; Hybrid queries must trigger both backends and merge results; The classifier confidence score and matched keywords must be available in the response metadata.
+- Objective: Verify that memory_context auto-routes queries based on the query-intent classifier; Structural queries (containing keywords like "calls", "imports", "callers", "function", "class") must route to the code graph backend; Semantic queries (containing keywords like "similar", "find examples", "how to") must route to the standard memory/Code Graph pipeline; Hybrid queries must trigger both backends and merge results; The classifier confidence score and matched keywords must be available in the response metadata.
 - Real user request: `Please validate Query-intent routing in memory_context against memory_context({ input: "what functions call handleMemoryContext" }) and tell me whether the expected signals are present: Structural query: response includes code graph symbols/edges, classifier intent === 'structural'; Semantic query: response includes memory hits with similarity scores, classifier intent === 'semantic'; Hybrid query: response includes both code graph and memory results, classifier intent === 'hybrid'.`
 - Prompt: `Validate query-intent routing in memory_context for callers of handleMemoryContext.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.

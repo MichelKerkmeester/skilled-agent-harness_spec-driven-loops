@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
-import { execFile } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
 import { pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
-import { promisify } from 'node:util';
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, '../../../../../..');
@@ -26,14 +24,9 @@ const MEMORY_DAEMON_STDERR_LOG = path.join(
   SANDBOX_EVIDENCE_DIR,
   'run-2026-05-14-shared-daemon.daemon.stderr.log',
 );
-const COCOINDEX_DAEMON_STDERR_LOG = path.join(
-  SANDBOX_EVIDENCE_DIR,
-  'run-2026-05-14-shared-daemon.cocoindex.stderr.log',
-);
 const DAEMON_STDERR_CAP_BYTES = 200000;
 const CONNECT_TIMEOUT_MS = 60000;
 export const DEFAULT_SCENARIOS = Array.from({ length: 15 }, (_, index) => 401 + index);
-const execFileAsync = promisify(execFile);
 const DAEMON_ENV_DENYLIST = /^(GITHUB_TOKEN|GITLAB_TOKEN|NPM_TOKEN|GH_TOKEN|AWS_|GCP_|GOOGLE_|AZURE_|SLACK_|DISCORD_|TWILIO_|STRIPE_|SSH_|GPG_|GNUPGHOME|PASSWORD|SECRET)/i;
 
 const sdkRequire = createRequire(path.join(MEMORY_SERVER_ROOT, 'package.json'));
@@ -130,7 +123,6 @@ function findMatchingParen(source, openIndex) {
 }
 
 function normalizeToolName(server, tool) {
-  if (server === 'cocoindex_code' && tool === 'search') return 'search';
   return tool;
 }
 
@@ -147,7 +139,6 @@ export function selectClientForServer(clients, server) {
   if (server === 'mk_spec_memory' || server === 'mk-spec-memory') {
     return clients.mk_spec_memory ?? clients['mk-spec-memory'] ?? null;
   }
-  if (server === 'cocoindex_code') return clients.cocoindex_code ?? clients.cocoindex ?? null;
   return null;
 }
 
@@ -252,10 +243,6 @@ async function callTool(client, name, args, timeoutMs = 120000) {
   ]);
 }
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 function responseFailureMessage(response) {
   if (response?.isError) return 'MCP tool returned isError=true';
   const parsed = response?.structuredContent ?? parseToolJson(response);
@@ -271,33 +258,8 @@ function responseFailureMessage(response) {
   return null;
 }
 
-function isTransientCocoIndexFailure(message) {
-  return /Input data was truncated|timed out after \d+ms|tool timeout after \d+ms/i.test(message);
-}
-
 async function callScenarioTool(client, call) {
-  const maxAttempts = call.server === 'cocoindex_code' && call.tool === 'search' ? 3 : 1;
-  let lastResponse = null;
-  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
-    let response;
-    try {
-      response = await callTool(client, call.tool, call.arguments);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      if (attempt === maxAttempts || !isTransientCocoIndexFailure(message)) {
-        throw error;
-      }
-      await sleep(8000);
-      continue;
-    }
-    const failureMessage = responseFailureMessage(response);
-    if (!failureMessage || attempt === maxAttempts || !isTransientCocoIndexFailure(failureMessage)) {
-      return response;
-    }
-    lastResponse = response;
-    await sleep(8000);
-  }
-  return lastResponse;
+  return callTool(client, call.tool, call.arguments);
 }
 
 function createCappedStderrStream(logPath) {
@@ -377,27 +339,6 @@ async function connectSharedClient({ name, transportOptions, stderrLog }) {
   }
 }
 
-async function waitForCocoIndexDaemonIdle({ command, cwd, env, projectRoot, timeoutMs = 120000 }) {
-  const started = performance.now();
-  while (performance.now() - started < timeoutMs) {
-    try {
-      const { stdout } = await execFileAsync(command, ['daemon', 'status'], {
-        cwd,
-        env,
-        timeout: 5000,
-        maxBuffer: 10000,
-      });
-      if (stdout.includes(`${projectRoot} [idle]`) || !stdout.includes('[indexing]')) {
-        return true;
-      }
-    } catch {
-      // The first status probe can race daemon startup; retry until the bounded timeout.
-    }
-    await sleep(2000);
-  }
-  return false;
-}
-
 export function percentile(values, p) {
   if (values.length === 0) return 0;
   const sorted = [...values].sort((a, b) => a - b);
@@ -412,7 +353,6 @@ function buildLatencyWorkload() {
     'ollama embed',
     'gate 3',
     'validate',
-    'cocoindex',
     'handover',
     'checkpoint',
     'drift',
@@ -431,7 +371,7 @@ function buildLatencyWorkload() {
     'What packet documented the Metal context contention?',
     'Show prior work on query expansion context size.',
     'Find implementation summaries for substrate repair followups.',
-    'Which specs mention CocoIndex IPC observability?',
+    'Which specs mention IPC observability?',
     'Find validation evidence for token aware chunking.',
     'Search for memory save pipeline enforcement notes.',
     'Locate graph metadata backfill context.',
@@ -683,31 +623,6 @@ async function main() {
     });
     connections.push(memoryConnection);
 
-    const cocoindexCommand = path.join(REPO_ROOT, '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc');
-    const cocoindexEnv = buildDaemonEnv({
-      COCOINDEX_CODE_ROOT_PATH: REPO_ROOT,
-      COCOINDEX_CODE_MCP_REQUEST_TIMEOUT_MS: '120000',
-    });
-    const cocoindexConnection = await connectSharedClient({
-      name: 'cocoindex-code',
-      transportOptions: {
-        command: cocoindexCommand,
-        args: ['mcp'],
-        cwd: REPO_ROOT,
-        env: cocoindexEnv,
-      },
-      stderrLog: options.stderrLog ? COCOINDEX_DAEMON_STDERR_LOG : null,
-    });
-    connections.push(cocoindexConnection);
-    if (cocoindexConnection.client) {
-      await waitForCocoIndexDaemonIdle({
-        command: cocoindexCommand,
-        cwd: REPO_ROOT,
-        env: cocoindexEnv,
-        projectRoot: REPO_ROOT,
-      });
-    }
-
     for (const connection of connections) {
       if (connection.diagnostic) {
         rows.push(connection.diagnostic);
@@ -717,11 +632,9 @@ async function main() {
 
     const clients = {
       mk_spec_memory: memoryConnection.client,
-      cocoindex_code: cocoindexConnection.client,
     };
     const toolNameSets = {
       mk_spec_memory: memoryConnection.toolNames,
-      cocoindex_code: cocoindexConnection.toolNames,
     };
     for (const scenario of options.scenarios) {
       const row = await runScenario(clients, toolNameSets, scenario);

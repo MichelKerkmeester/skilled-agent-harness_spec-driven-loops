@@ -12,7 +12,6 @@ import {
 } from '../rag/trust-tree.js';
 import type { QueryPlan } from '../query/query-plan.js';
 import type { RerankGateDecision } from './rerank-gate.js';
-import type { CocoIndexCalibrationTelemetry } from './cocoindex-calibration.js';
 
 export interface ShadowDeltaTelemetry {
   prompt?: string;
@@ -22,10 +21,6 @@ export interface ShadowDeltaTelemetry {
   delta: number;
   dominantLane: string | null;
   timestamp: string;
-}
-
-export interface CocoIndexCalibrationEnvelopeTelemetry extends CocoIndexCalibrationTelemetry {
-  recommendedMultiplier: number;
 }
 
 export interface DegradedReadinessTelemetry {
@@ -51,7 +46,6 @@ export interface SearchDecisionEnvelope {
   trustTree?: TrustTree;
   rerankGateDecision?: RerankGateDecision;
   shadowDeltas?: ShadowDeltaTelemetry[];
-  cocoindexCalibration?: CocoIndexCalibrationEnvelopeTelemetry;
   degradedReadiness?: DegradedReadinessTelemetry;
   pipelineTiming?: Record<string, number>;
   timestamp: string;
@@ -68,7 +62,6 @@ export interface BuildSearchDecisionEnvelopeInput {
   trustTreeInput?: BuildTrustTreeInput;
   rerankGateDecision?: RerankGateDecision;
   shadowDeltas?: readonly ShadowDeltaTelemetry[];
-  cocoindexCalibration?: CocoIndexCalibrationTelemetry;
   degradedReadiness?: DegradedReadinessTelemetry;
   pipelineTiming?: Record<string, number>;
   timestamp?: string;
@@ -90,15 +83,12 @@ function buildSearchDecisionEnvelope(input: BuildSearchDecisionEnvelopeInput): S
 
   const trustTree = input.trustTree ?? (input.trustTreeInput ? buildTrustTree(input.trustTreeInput) : undefined);
   return attachDegradedReadiness(
-    attachCocoIndexCalibration(
-      attachShadowDeltas(
-        attachRerankDecision(
-          attachTrustTree(envelope, trustTree),
-          input.rerankGateDecision,
-        ),
-        input.shadowDeltas,
+    attachShadowDeltas(
+      attachRerankDecision(
+        attachTrustTree(envelope, trustTree),
+        input.rerankGateDecision,
       ),
-      input.cocoindexCalibration,
+      input.shadowDeltas,
     ),
     input.degradedReadiness,
   );
@@ -134,21 +124,6 @@ function attachShadowDeltas(
   };
 }
 
-function attachCocoIndexCalibration(
-  envelope: SearchDecisionEnvelope,
-  calibration?: CocoIndexCalibrationTelemetry,
-): SearchDecisionEnvelope {
-  if (!calibration) return { ...envelope };
-  const recommendedMultiplier = calibration.duplicateDensity >= 0.35 ? 4 : 1;
-  return {
-    ...envelope,
-    cocoindexCalibration: {
-      ...cloneJson(calibration),
-      recommendedMultiplier,
-    },
-  };
-}
-
 function attachDegradedReadiness(
   envelope: SearchDecisionEnvelope,
   degradedReadiness?: DegradedReadinessTelemetry,
@@ -171,7 +146,6 @@ function cloneJson<T>(value: T): T {
 }
 
 export {
-  attachCocoIndexCalibration,
   attachDegradedReadiness,
   attachRerankDecision,
   attachShadowDeltas,

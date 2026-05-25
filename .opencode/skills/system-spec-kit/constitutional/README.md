@@ -101,7 +101,7 @@ README.md -> replacement for the rule files themselves
 ```text
 constitutional/
 +-- gate-enforcement.md     # Gate enforcement edge cases and cross-reference guidance
-+-- gate-tool-routing.md    # Search, retrieval, graph and CocoIndex routing rules
++-- gate-tool-routing.md    # Search, retrieval, graph and Code Graph routing rules
 `-- README.md               # This folder guide
 ```
 
@@ -117,7 +117,7 @@ Do not document `.DS_Store` or other local machine artifacts as part of the pack
 | File | Responsibility |
 |---|---|
 | `gate-enforcement.md` | Defines hard and soft gate behavior for edge cases, continuation and tool-use ordering. |
-| `gate-tool-routing.md` | Defines search and retrieval routing rules across memory, code graph and CocoIndex. |
+| `gate-tool-routing.md` | Defines search and retrieval routing rules across memory, code graph and Code Graph. |
 | `README.md` | Explains folder ownership, file topology and validation steps. |
 
 <!-- /ANCHOR:key-files -->

@@ -744,7 +744,6 @@ describe('compaction pipeline integration', () => {
     const input: MergeInput = {
       constitutional: '## Rules\nAlways cite sources.',
       codeGraph: '## Structure\nauth.ts → middleware.ts',
-      cocoIndex: '## Semantic\nAuthentication patterns found in 3 files.',
       triggered: '## Triggered\nRecent auth memory surfaced.',
       sessionState: '## Session\nWorking on auth refactor.',
     };
@@ -768,7 +767,6 @@ describe('compaction pipeline integration', () => {
     const input: MergeInput = {
       constitutional: 'Rules text',
       codeGraph: 'Graph text',
-      cocoIndex: '',
       triggered: '',
       sessionState: 'Session text',
     };
@@ -780,10 +778,8 @@ describe('compaction pipeline integration', () => {
 
     // Sections with empty sources should not appear
     const sources = brief.sections.map(s => s.source);
-    // cocoIndex and triggered were empty — their section sources ('cocoindex', 'memory') should not
-    // appear unless constitutional also uses 'memory'. Filter more specifically by name.
+    // Triggered was empty and should not appear.
     const sectionNames = brief.sections.map(s => s.name);
-    expect(sectionNames).not.toContain('Semantic Neighbors');
     expect(sectionNames).not.toContain('Triggered Memories');
 
     expect(brief.metadata.totalTokenEstimate).toBeGreaterThan(0);
@@ -794,7 +790,6 @@ describe('compaction pipeline integration', () => {
     const largeInput: MergeInput = {
       constitutional: repeat('## Rules\nAlways cite sources. Follow the spec.', 100),
       codeGraph: repeat('## Structure\nauth.ts → middleware.ts → session.ts', 100),
-      cocoIndex: repeat('## Semantic\nAuthentication patterns found in 3 files.', 100),
       triggered: repeat('## Triggered\nRecent auth memory surfaced from specs/007.', 100),
       sessionState: repeat('## Session\nWorking on auth refactor. Next: update tests.', 100),
     };

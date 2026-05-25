@@ -9,7 +9,7 @@ fixture_version: "post-surgery"
 
 ## 1. OVERVIEW
 
-The same concept can be expressed using domain-specific jargon or everyday language. The Memory MCP and CocoIndex should treat paired phrasings as referring to the same retrieval target; top-K results should overlap heavily across the two queries.
+The same concept can be expressed using domain-specific jargon or everyday language. The Memory MCP and Code Graph should treat paired phrasings as referring to the same retrieval target; top-K results should overlap heavily across the two queries.
 
 The behavior is user-observable: an operator new to the codebase uses casual phrasing; a veteran uses technical terms. Both should reach the same canonical reference.
 
@@ -18,7 +18,7 @@ The behavior is user-observable: an operator new to the codebase uses casual phr
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm cross-vocabulary semantic mapping.
-- Real user request: `Verify that domain-jargon and plain-English versions of the same concept retrieve the same documents from Memory MCP and CocoIndex.`
+- Real user request: `Verify that domain-jargon and plain-English versions of the same concept retrieve the same documents from Memory MCP and Code Graph.`
 - RCAF Prompt: `As a query-intelligence validation operator, run two queries that express the same concept with different vocabularies. Report the Jaccard overlap of the top-5 results between the two queries and whether the current canonical target appears in both variants. Return a concise pass/fail verdict and the overlap percentage.`
 - Expected execution process: fire 4 query pairs (memory + code), compute top-5 Jaccard overlap, record any divergence.
 - Expected signals: At least 2 of 4 query pairs have top-5 overlap >= 25%; no query returns zero hits; the current canonical target appears in BOTH variants. Calibration source: 016/004 post-surgery evidence showed the previous 3/4 at 60% bar was not empirically met even after live-ID remap, so this scenario now gates fair target visibility plus modest overlap.
@@ -32,7 +32,7 @@ The behavior is user-observable: an operator new to the codebase uses casual phr
 ### Prompt
 
 ```
-Verify cross-vocabulary semantic mapping in Memory MCP + CocoIndex by firing 4 query pairs (jargon vs plain) and measuring top-5 overlap.
+Verify cross-vocabulary semantic mapping in Memory MCP + Code Graph by firing 4 query pairs (jargon vs plain) and measuring top-5 overlap.
 ```
 
 ### Commands
@@ -51,16 +51,16 @@ memory_search({ query: "template consolidation decision compose.sh levels addend
 memory_search({ query: "ADR about merging spec-kit templates into the level and addendum generator" }) -> top 5
 ```
 
-**Pair C - CocoIndex, code concept:**
+**Pair C - Code Graph, code concept:**
 ```
-mcp__cocoindex_code__search({ query: "embedding provider auto-detection cascade" }) -> top 5
-mcp__cocoindex_code__search({ query: "pick which model to use based on API keys" }) -> top 5
+mcp__mk_code_index__code_graph_query({ query: "embedding provider auto-detection cascade" }) -> top 5
+mcp__mk_code_index__code_graph_query({ query: "pick which model to use based on API keys" }) -> top 5
 ```
 
-**Pair D - CocoIndex, code concept:**
+**Pair D - Code Graph, code concept:**
 ```
-mcp__cocoindex_code__search({ query: "SQLite virtual table for vector similarity" }) -> top 5
-mcp__cocoindex_code__search({ query: "fast cosine search backed by vec0 extension" }) -> top 5
+mcp__mk_code_index__code_graph_query({ query: "SQLite virtual table for vector similarity" }) -> top 5
+mcp__mk_code_index__code_graph_query({ query: "fast cosine search backed by vec0 extension" }) -> top 5
 ```
 
 For each pair, compute the Jaccard overlap of the top-5 result IDs:

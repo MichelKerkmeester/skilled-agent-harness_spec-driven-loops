@@ -3,7 +3,7 @@
 // MODULE: PreCompact Hook — Compact Inject
 // ───────────────────────────────────────────────────────────────
 // Runs on Claude Code PreCompact event. Precomputes critical context
-// using the 3-source merge pipeline (Memory, Code Graph, CocoIndex)
+// using the merge pipeline (Memory, Code Graph, session state)
 // and caches to hook state for later injection by SessionStart hook.
 // stdout is NOT injected on PreCompact — we only cache here.
 
@@ -148,11 +148,6 @@ export function buildCompactContext(transcriptLines: string[]): string {
     sections.push('## Recent Context\n' + meaningfulLines.join('\n'));
   }
 
-  // Hint for AI to use CocoIndex for semantic neighbors after recovery
-  if (filePaths.length > 0) {
-    sections.push('## Semantic Context (CocoIndex)\nUse `mcp__cocoindex_code__search` to find semantic neighbors of active files listed above.');
-  }
-
   return sections.join('\n\n');
 }
 
@@ -224,11 +219,6 @@ async function buildMergedContext(transcriptLines: string[]): Promise<string> {
   }
   const codeGraph = codeGraphParts.join('\n\n');
 
-  // Build cocoIndex input: semantic neighbor hint for post-recovery
-  const cocoIndex = filePaths.length > 0
-    ? 'Use `mcp__cocoindex_code__search` to find semantic neighbors of active files listed above.'
-    : '';
-
   // Build sessionState input: recent context + topics + attention signals
   const sessionParts: string[] = [];
 
@@ -276,7 +266,6 @@ async function buildMergedContext(transcriptLines: string[]): Promise<string> {
   const mergeInput: MergeInput = {
     constitutional: '',   // Constitutional rules come from Memory MCP, not available in hooks
     codeGraph,
-    cocoIndex,
     triggered: '',        // Triggered memories not available in hooks
     sessionState,
   };
@@ -361,9 +350,6 @@ async function buildMergedPayloadContract(transcriptLines: string[]): Promise<Sh
   const mergeInput: MergeInput = {
     constitutional: '',
     codeGraph: filePaths.length > 0 ? 'Active files:\n' + filePaths.map((filePath) => `- ${filePath}`).join('\n') : '',
-    cocoIndex: filePaths.length > 0
-      ? 'Use `mcp__cocoindex_code__search` to find semantic neighbors of active files listed above.'
-      : '',
     triggered: '',
     sessionState: sessionParts.join('\n\n'),
   };

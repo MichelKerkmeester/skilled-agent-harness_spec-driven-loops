@@ -44,27 +44,11 @@ describe('045 shared daemon runner helpers', () => {
 ## 3. TEST EXECUTION
 
 \`\`\`
-mcp__cocoindex_code__search({
-  query: "how does provider cascade work",
-  num_results: 10,
-})
-\`\`\`
-
-\`\`\`
 memory_search({ query: "latency baseline", limit: 5 })
 \`\`\`
 `;
 
     expect(parseScenarioToolCalls(markdown)).toEqual([
-      {
-        server: 'cocoindex_code',
-        tool: 'search',
-        arguments: {
-          query: 'how does provider cascade work',
-          limit: 10,
-        },
-        raw: expect.stringContaining('mcp__cocoindex_code__search'),
-      },
       {
         server: 'mk_spec_memory',
         tool: 'memory_search',
@@ -79,22 +63,18 @@ memory_search({ query: "latency baseline", limit: 5 })
 
   it('selects the MCP client for each known server', () => {
     const memoryClient = { name: 'memory' };
-    const cocoindexClient = { name: 'cocoindex' };
-    const clients = { mk_spec_memory: memoryClient, cocoindex_code: cocoindexClient };
+    const clients = { mk_spec_memory: memoryClient };
 
     expect(selectClientForServer(clients, 'mk_spec_memory')).toBe(memoryClient);
     expect(selectClientForServer(clients, 'mk-spec-memory')).toBe(memoryClient);
-    expect(selectClientForServer(clients, 'cocoindex_code')).toBe(cocoindexClient);
     expect(selectClientForServer(clients, 'unknown_server')).toBeNull();
   });
 
-  it('routes via primary daemon keys (mk_spec_memory + cocoindex_code)', () => {
+  it('routes via primary daemon keys', () => {
     const memoryClient = { name: 'mem' };
-    const cocoindexClient = { name: 'coco' };
-    const clients = { mk_spec_memory: memoryClient, cocoindex_code: cocoindexClient };
+    const clients = { mk_spec_memory: memoryClient };
 
     expect(selectClientForServer(clients, 'mk_spec_memory')).toBe(memoryClient);
-    expect(selectClientForServer(clients, 'cocoindex_code')).toBe(cocoindexClient);
     expect(selectClientForServer(clients, 'unknown')).toBeNull();
   });
 
@@ -134,18 +114,18 @@ memory_search({ query: "latency baseline", limit: 5 })
   it('checks tool availability and executes every runnable call before aggregating failures', async () => {
     const calls = [
       { server: 'mk_spec_memory', tool: 'memory_search', arguments: { query: 'ok' } },
-      { server: 'cocoindex_code', tool: 'search', arguments: { query: 'bad' } },
+      { server: 'mk_spec_memory', tool: 'memory_context', arguments: { input: 'bad' } },
     ];
     const availability = checkToolAvailability(calls, {
-      mk_spec_memory: new Set(['memory_search']),
-      cocoindex_code: new Set(['search']),
+      mk_spec_memory: new Set(['memory_search', 'memory_context']),
     });
     const clients = {
       mk_spec_memory: {
-        callTool: async () => ({ content: [{ type: 'text', text: '{"success":true}' }] }),
-      },
-      cocoindex_code: {
-        callTool: async () => ({ content: [{ type: 'text', text: '{"status":"failed","message":"boom"}' }] }),
+        callTool: async ({ name }: { name: string }) => (
+          name === 'memory_search'
+            ? { content: [{ type: 'text', text: '{"success":true}' }] }
+            : { content: [{ type: 'text', text: '{"status":"failed","message":"boom"}' }] }
+        ),
       },
     };
 
@@ -154,7 +134,7 @@ memory_search({ query: "latency baseline", limit: 5 })
       succeeded: 1,
       failed: 1,
       firstError: {
-        call: { tool: 'search' },
+        call: { tool: 'memory_context' },
         error: 'boom',
       },
     });

@@ -74,7 +74,7 @@ The Spec Kit Memory MCP server exposes **54 tools** overall across the 7-layer M
 | `/memory:learn` | 6 | shared | `memory_save`, `memory_search`, `memory_stats`, `memory_list`, `memory_delete`, `memory_index_scan` |
 | `/memory:manage` | 20 primary + 1 helper | owns + borrows | Primary home: `memory_stats`, `memory_list`, `memory_index_scan`, `memory_validate`, `memory_update`, `memory_delete`, `memory_bulk_delete`, `memory_retention_sweep`, `memory_health`, `checkpoint_create`, `checkpoint_restore`, `checkpoint_list`, `checkpoint_delete`, `memory_ingest_start`, `memory_ingest_status`, `memory_ingest_cancel`; helper access: `memory_search` |
 | `/memory:save` | 4 | shared | `memory_save`, `memory_index_scan`, `memory_stats`, `memory_update` |
-| `/spec_kit:resume` | broader helper surface | shared | Primary recovery chain: `memory_context`, `memory_search`, `memory_list`; wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and CocoIndex helpers |
+| `/spec_kit:resume` | broader helper surface | shared | Primary recovery chain: `memory_context`, `memory_search`, `memory_list`; wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and Code Graph helpers |
 
 **Owns** means the command is the primary home for those tools. **Shared** means the command borrows tools whose primary home is another command (typically `/memory:search` or `/memory:manage`).
 
@@ -306,7 +306,7 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 
 #### Current Reality
 
-**SHIPPED.** `/spec_kit:resume` owns session recovery and continuation. Its primary recovery chain relies on 3 borrowed tools: `memory_context`, `memory_search`, and `memory_list`. `memory_stats` remains diagnostic/helper access, and the live wrapper also permits `memory_match_triggers`, `memory_delete`, `memory_update`, health, indexing, validation, checkpoint, and CocoIndex helpers that support the broader recovery workflow.
+**SHIPPED.** `/spec_kit:resume` owns session recovery and continuation. Its primary recovery chain relies on 3 borrowed tools: `memory_context`, `memory_search`, and `memory_list`. `memory_stats` remains diagnostic/helper access, and the live wrapper also permits `memory_match_triggers`, `memory_delete`, `memory_update`, health, indexing, validation, checkpoint, and Code Graph helpers that support the broader recovery workflow.
 
 The primary recovery path calls `memory_context` in `resume` mode with anchors targeting `state`, `next-steps`, `summary`, and `blockers`. Resume mode uses a 1200-token budget with `minState=WARM`, `includeContent=true`, dedup and decay both disabled.
 
@@ -4574,7 +4574,7 @@ These flags are the main control panel for how search works. They turn major ret
 | `SPECKIT_SHADOW_SCORING` | inert | boolean | `lib/eval/shadow-scoring.ts` | **Deprecated.** Shadow scoring runtime is permanently disabled: `runShadowScoring()` returns `null` and `logShadowComparison()` returns `false`. The env var is retained for compatibility/testing context but does not enable production scoring paths. |
 | `SPECKIT_SIGNAL_VOCAB` | `true` | boolean | `lib/parsing/trigger-matcher.ts` | Enables signal vocabulary expansion in the trigger matcher. Augments the trigger phrase vocabulary with derived signal terms during matching. Disabled with explicit `'false'`. |
 | `SPECKIT_SKIP_API_VALIDATION` | `false` | boolean | `context-server.ts` | When `'true'`, skips API key validation at startup. Useful for testing without a real embedding provider. Default is to validate API credentials. |
-| `SPECKIT_STRICT_SCHEMAS` | `true` | boolean | `schemas/tool-input-schemas.ts` | **IMPLEMENTED (Sprint 019, later expanded by session/code-graph additions).** P0-1: Controls Zod schema enforcement mode for the schema-backed L1-L7 MCP tool surface. When `true`, `.strict()` rejects unexpected parameters with stderr logging (CHK-029). When `false`, `.passthrough()` allows undocumented parameters for backward compatibility. The L8 code-graph/CocoIndex dispatch helpers still use lighter required-field guards instead of the same `validateToolArgs` path. |
+| `SPECKIT_STRICT_SCHEMAS` | `true` | boolean | `schemas/tool-input-schemas.ts` | **IMPLEMENTED (Sprint 019, later expanded by session/code-graph additions).** P0-1: Controls Zod schema enforcement mode for the schema-backed L1-L7 MCP tool surface. When `true`, `.strict()` rejects unexpected parameters with stderr logging (CHK-029). When `false`, `.passthrough()` allows undocumented parameters for backward compatibility. The L8 code-graph/Code Graph dispatch helpers still use lighter required-field guards instead of the same `validateToolArgs` path. |
 | `SPECKIT_TIER3_ROUTING` | _removed_ | _n/a_ | `handlers/memory-save.ts` | **Removed.** Tier 3 LLM routing is now always on by default (fail-open to Tier 2 on timeout). No feature flag needed. |
 | `SPECKIT_TRM` | `true` | boolean | `lib/search/search-flags.ts` | Enables the Transparent Reasoning Module (evidence-gap detection). Stage 4 runs a TRM Z-score analysis to detect evidence gaps and annotate results accordingly. |
 | `SPECKIT_TYPED_TRAVERSAL` | `true` | boolean | `lib/search/causal-boost.ts` | **Default ON (graduated).** Sparse-first policy + intent-aware edge traversal. Density < 0.5 constrains to 1-hop. Score: seedScore * edgePrior * hopDecay * freshness. |
@@ -4751,7 +4751,7 @@ See [`19--feature-flag-reference/07-7-ci-and-build-informational.md`](19--featur
 
 ### Description
 
-This category tracks the compact-code-graph rollout: hook lifecycle capture, hookless priming, code-graph retrieval, CocoIndex bridging, and routing enforcement surfaces that preserve context across long-running sessions.
+This category tracks the compact-code-graph rollout: hook lifecycle capture, hookless priming, code-graph retrieval, Code Graph bridging, and routing enforcement surfaces that preserve context across long-running sessions.
 
 ### Current Reality
 

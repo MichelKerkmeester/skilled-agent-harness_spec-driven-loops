@@ -38,7 +38,7 @@ const HYPOTHESES: Record<SearchQualityWorkstream | 'all', string> = {
   W3: 'W3 trust-tree composition should improve citation-quality on multi-source contradiction cells without reducing precision, recall, or refusal-survival.',
   W4: 'W4 conditional rerank should improve precision@3 on ambiguous weak-agreement cells while keeping synthetic p95 latency under 5ms.',
   W5: 'W5 shadow learned weights should improve advisor diagnostic citation-quality while leaving live recommendation behavior unchanged.',
-  W6: 'W6 CocoIndex duplicate-density calibration should improve duplicate-heavy precision@3 and preserve recall through canonical path selection.',
+  W6: 'W6 duplicate-density calibration should improve duplicate-heavy precision@3 and preserve recall through canonical path selection.',
   W7: 'W7 degraded-readiness stress cells should preserve recall, citation-quality, and refusal-survival across stale, empty, full-scan-required, and unavailable graph states.',
 };
 
@@ -70,11 +70,11 @@ const BASELINE_CANDIDATES: Record<string, Partial<Record<SearchQualityChannel, S
       candidate('advisor-shadow-weight-diagnostic', 'Shadow learned weight diagnostic', 'skill_graph_query', 2, []),
     ],
   },
-  'w6-cocoindex-duplicate-heavy': {
+  'w6-duplicate-heavy': {
     memory_search: [
-      candidate('cocoindex-duplicate-spec-a', 'Duplicate spec path A', 'memory_search', 1),
-      candidate('cocoindex-duplicate-spec-b', 'Duplicate spec path B', 'memory_search', 2),
-      candidate('cocoindex-canonical-spec', 'Canonical CocoIndex spec path', 'memory_search', 3),
+      candidate('duplicate-spec-a', 'Duplicate spec path A', 'memory_search', 1),
+      candidate('duplicate-spec-b', 'Duplicate spec path B', 'memory_search', 2),
+      candidate('canonical-spec', 'Canonical spec path', 'memory_search', 3),
     ],
   },
   'w7-code-graph-stale': {
@@ -130,9 +130,9 @@ const VARIANT_CANDIDATES: Record<SearchQualityWorkstream, Record<string, Partial
     },
   },
   W6: {
-    'w6-cocoindex-duplicate-heavy': {
+    'w6-duplicate-heavy': {
       memory_search: [
-        candidate('cocoindex-canonical-spec', 'Canonical CocoIndex spec path', 'memory_search', 1),
+        candidate('canonical-spec', 'Canonical spec path', 'memory_search', 1),
       ],
     },
   },

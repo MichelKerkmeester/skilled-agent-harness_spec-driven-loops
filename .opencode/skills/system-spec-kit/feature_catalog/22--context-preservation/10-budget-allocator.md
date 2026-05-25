@@ -9,7 +9,7 @@ description: "Token budget allocator distributes 4000-token compaction budget ac
 
 Token budget allocator distributes 4000-token compaction budget across context sources using floor allocations plus overflow redistribution.
 
-Floors: constitutional 700, code graph 1200, CocoIndex 900, triggered 400, overflow pool 800. Empty sources release their floor to the overflow pool. Redistribution follows priority: constitutional > codeGraph > cocoIndex > triggered. Total cap enforced with deterministic trim in reverse priority.
+Floors: constitutional 700, code graph 1200, Code Graph 900, triggered 400, overflow pool 800. Empty sources release their floor to the overflow pool. Redistribution follows priority: constitutional > codeGraph > codeGraph > triggered. Total cap enforced with deterministic trim in reverse priority.
 
 ---
 

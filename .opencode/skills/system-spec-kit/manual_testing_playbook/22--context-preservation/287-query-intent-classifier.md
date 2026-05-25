@@ -1,6 +1,6 @@
 ---
 title: "287 -- Query-intent classifier"
-description: "Validates the heuristic query-intent classifier that routes queries to structural (code graph), semantic (CocoIndex), or hybrid backends and emits IntentTelemetry."
+description: "Validates the heuristic query-intent classifier that routes queries to structural (code graph), semantic (Code Graph), or hybrid backends and emits IntentTelemetry."
 audited_post_018: true
 ---
 
@@ -18,7 +18,7 @@ This scenario validates the keyword-dictionary classifier that labels queries as
 - Real user request: `Please validate the query-intent classifier on three sample queries (one structural, one semantic, one hybrid) and prove the IntentTelemetry envelope returns the expected classificationKind and a paraphraseGroup that holds across paraphrases.`
 - Prompt: `Validate query-intent classifier and confirm intent labels, telemetry envelope, and stable paraphraseGroup tokens.`
 - Expected execution process: Run memory_context with three category queries plus one paraphrase, capture the IntentTelemetry envelope, compare labels and paraphrase groups.
-- Expected signals: structural query routes to code-graph backend with `taskIntent.classificationKind` marker; semantic query routes to CocoIndex backend; hybrid query merges both; paraphrased version of the structural query returns the same `paraphraseGroup` token as the original.
+- Expected signals: structural query routes to code-graph backend with `taskIntent.classificationKind` marker; semantic query routes to Code Graph backend; hybrid query merges both; paraphrased version of the structural query returns the same `paraphraseGroup` token as the original.
 - Desired user-visible outcome: Pass/fail verdict with cited classifier output.
 - Pass/fail: PASS when labels, telemetry shape, and paraphraseGroup stability hold. FAIL when labels are wrong, telemetry envelope is missing, or paraphraseGroup tokens differ for known paraphrases.
 
@@ -40,7 +40,7 @@ Validate query-intent classifier and confirm intent labels, telemetry envelope, 
    - Hybrid: `where is the cache invalidation logic and how does it work`
 2. Run `memory_context({ input: "<each query>", includeTrace: true })` and capture the IntentTelemetry envelope from each.
 3. Assert each envelope contains `taskIntent.classificationKind` and `backendRouting.classificationKind` plus a `paraphraseGroup` token.
-4. Assert the structural query routes to code-graph backend, the semantic query routes to CocoIndex, and the hybrid query merges both.
+4. Assert the structural query routes to code-graph backend, the semantic query routes to Code Graph, and the hybrid query merges both.
 5. Issue a paraphrase of the structural query: `who calls memory_search` and capture the envelope.
 6. Assert the paraphrase returns the same `paraphraseGroup` token as the original structural query.
 

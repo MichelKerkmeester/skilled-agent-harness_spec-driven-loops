@@ -38,7 +38,7 @@ Fire 3 queries on BGE local fallback at abstract/mid/specific levels and verify 
 
 **Level 1 — ABSTRACT:**
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "local embeddings for memory and code search",
   num_results: 5,
 })
@@ -47,7 +47,7 @@ Expected top-3: high-level READMEs (`shared/README.md`, `mcp_server/INSTALL_GUID
 
 **Level 2 — MID:**
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "Q8_0 GGUF quantization for sentence embeddings via ollama",
   num_results: 5,
 })
@@ -56,7 +56,7 @@ Expected top-3: design/architecture docs + the ollama provider source (`shared/e
 
 **Level 3 — SPECIFIC:**
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "OLLAMA_DEFAULT_MODEL_PATH constant in ollama-availability",
   num_results: 5,
 })

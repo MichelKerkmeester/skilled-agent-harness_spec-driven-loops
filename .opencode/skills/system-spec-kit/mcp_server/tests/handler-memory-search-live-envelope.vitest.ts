@@ -9,7 +9,7 @@
 //   snapshots so TC-3 validates handler wiring without depending on repo
 //   graph state.
 // - Deterministic fields: tenantId, queryPlan presence, rerankGateDecision,
-//   cocoindexCalibration shape, degradedReadiness, pipelineTiming, and audit
+//   degradedReadiness, pipelineTiming, and audit
 //   JSONL emission.
 // - Derived fields: requestId, timestamp, latencyMs, trustTree decision, and
 //   token/response metadata are produced by the live handler path.
@@ -241,12 +241,6 @@ describe('handleMemorySearch live SearchDecisionEnvelope seam', () => {
       shouldRerank: true,
       triggers: ['complex-query'],
     });
-    expect(envelope.cocoindexCalibration).toMatchObject({
-      requestedLimit: 2,
-      effectiveLimit: expect.any(Number),
-      duplicateDensity: expect.any(Number),
-      recommendedMultiplier: expect.any(Number),
-    });
     expect(envelope.latencyMs).toEqual(expect.any(Number));
   });
 
@@ -263,7 +257,6 @@ describe('handleMemorySearch live SearchDecisionEnvelope seam', () => {
       queryPlan: expect.any(Object),
       trustTree: expect.any(Object),
       rerankGateDecision: expect.any(Object),
-      cocoindexCalibration: expect.any(Object),
       pipelineTiming: expect.objectContaining({
         stage1: 3,
         stage2: 4,

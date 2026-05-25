@@ -25,7 +25,6 @@ describe('Codex freshness hardening', () => {
         graphQualitySummary: null,
         graphState: 'ready',
         graphTrustState: 'live',
-        cocoIndexAvailable: false,
         startupSurface: 'Session context received.',
         sharedPayload: null,
         sharedPayloadTransport: null,

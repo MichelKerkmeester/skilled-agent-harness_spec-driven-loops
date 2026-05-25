@@ -15,11 +15,11 @@ This scenario validates tool routing enforcement.
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Verify that the tool routing enforcement layer (Phase 025) correctly injects routing rules at all 3 MCP enforcement points (server instructions, session priming, response hints) and that runtime instruction files plus the canonical resume/bootstrap surfaces propagate the same routing directives; This ensures AI assistants across all CLIs use CocoIndex for semantic searches and Code Graph for structural queries instead of defaulting to Grep.
-- Real user request: `` Please validate Tool routing enforcement against Manual: call memory_stats({}) on a fresh session and inspect response hints for primePackage.routingRules.toolRouting and tell me whether the expected signals are present: Server instructions include a `## Tool Routing` section; PrimePackage contains `routingRules.toolRouting` with SEARCH ROUTING guidance; Code-search-oriented tool responses include hints pointing to `mcp__cocoindex_code__search`; All 4 runtime instruction files contain CocoIndex/semantic-search routing enforcement language; Canonical resume/bootstrap surfaces rely on the same routing contract without a separate bootstrap agent surface. ``
+- Objective: Verify that the tool routing enforcement layer (Phase 025) correctly injects routing rules at all 3 MCP enforcement points (server instructions, session priming, response hints) and that runtime instruction files plus the canonical resume/bootstrap surfaces propagate the same routing directives; This ensures AI assistants across all CLIs use Code Graph for semantic searches and Code Graph for structural queries instead of defaulting to Grep.
+- Real user request: `` Please validate Tool routing enforcement against Manual: call memory_stats({}) on a fresh session and inspect response hints for primePackage.routingRules.toolRouting and tell me whether the expected signals are present: Server instructions include a `## Tool Routing` section; PrimePackage contains `routingRules.toolRouting` with SEARCH ROUTING guidance; Code-search-oriented tool responses include hints pointing to `mcp__mk_code_index__code_graph_query`; All 4 runtime instruction files contain Code Graph/semantic-search routing enforcement language; Canonical resume/bootstrap surfaces rely on the same routing contract without a separate bootstrap agent surface. ``
 - Prompt: `Validate tool routing enforcement from a fresh memory_stats prime package.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: Server instructions include a `## Tool Routing` section; PrimePackage contains `routingRules.toolRouting` with SEARCH ROUTING guidance; Code-search-oriented tool responses include hints pointing to `mcp__cocoindex_code__search`; All 4 runtime instruction files contain CocoIndex/semantic-search routing enforcement language; Canonical resume/bootstrap surfaces rely on the same routing contract without a separate bootstrap agent surface
+- Expected signals: Server instructions include a `## Tool Routing` section; PrimePackage contains `routingRules.toolRouting` with SEARCH ROUTING guidance; Code-search-oriented tool responses include hints pointing to `mcp__mk_code_index__code_graph_query`; All 4 runtime instruction files contain Code Graph/semantic-search routing enforcement language; Canonical resume/bootstrap surfaces rely on the same routing contract without a separate bootstrap agent surface
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS: All 3 MCP enforcement points emit routing guidance and all runtime/agent files propagate the same decision tree; FAIL: Any enforcement point omits routing rules, or any runtime/agent file lacks the routing directive
 
@@ -39,7 +39,7 @@ Validate 267a server instruction routing section
 
 ### Expected
 
-`buildServerInstructions()` source includes `## Tool Routing` section and routing-rule assembly mentioning CocoIndex and Code Graph
+`buildServerInstructions()` source includes `## Tool Routing` section and routing-rule assembly mentioning Code Graph and Code Graph
 
 ### Evidence
 
@@ -88,7 +88,7 @@ Check `mcp_server/hooks/memory-surface.ts` prime assembly and confirm the sessio
 ### Prompt
 
 ```
-As a context-and-code-graph validation operator, validate Tool response hints fire on code-search queries against Manual: call memory_search({ query: "find function implementations" }). Verify response hints suggest semantic code search via mcp__cocoindex_code__search. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a context-and-code-graph validation operator, validate Tool response hints fire on code-search queries against Manual: call memory_search({ query: "find function implementations" }). Verify response hints suggest semantic code search via mcp__mk_code_index__code_graph_query. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
@@ -97,7 +97,7 @@ As a context-and-code-graph validation operator, validate Tool response hints fi
 
 ### Expected
 
-Response hints suggest semantic code search via `mcp__cocoindex_code__search`
+Response hints suggest semantic code search via `mcp__mk_code_index__code_graph_query`
 
 ### Evidence
 
@@ -105,7 +105,7 @@ MCP response hints showing routing recommendation
 
 ### Pass / Fail
 
-- **Pass**: a hint explicitly mentions `cocoindex_code__search`
+- **Pass**: a hint explicitly mentions `mk_code_index__search`
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 
 ### Failure Triage
@@ -122,7 +122,7 @@ Validate 267d runtime instruction routing tables
 
 ### Commands
 
-1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "CocoIndex|semantic search|Tool Routing Enforcement|SEARCH ROUTING" CLAUDE.md .claude/CLAUDE.md .codex/CODEX.md .gemini/GEMINI.md
+1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "Code Graph|semantic search|Tool Routing Enforcement|SEARCH ROUTING" CLAUDE.md .claude/CLAUDE.md .codex/CODEX.md .gemini/GEMINI.md
 
 ### Expected
 
@@ -151,7 +151,7 @@ Validate 267e resume/bootstrap routing contract
 
 ### Commands
 
-1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "session_bootstrap|session_resume|/spec_kit:resume|SEARCH ROUTING|code_graph_query|mcp__cocoindex_code__search" .opencode/commands/spec_kit/README.txt .opencode/commands/spec_kit/resume.md .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/23-tool-routing-enforcement.md
+1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "session_bootstrap|session_resume|/spec_kit:resume|SEARCH ROUTING|code_graph_query|mcp__mk_code_index__code_graph_query" .opencode/commands/spec_kit/README.txt .opencode/commands/spec_kit/resume.md .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/23-tool-routing-enforcement.md
 
 ### Expected
 

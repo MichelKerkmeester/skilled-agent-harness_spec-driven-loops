@@ -250,13 +250,11 @@ describe('session-prime hook', () => {
             graphEdgeEnrichmentSummary: { edgeEvidenceClass: 'direct_call', numericConfidence: 0.92 },
           },
           graphState: 'ready',
-          cocoIndexAvailable: true,
           startupSurface: [
             'Session context received. Current state:',
             '',
             '- Memory: stale placeholder',
             '- Code Graph: ready',
-            '- CocoIndex: available',
           ].join('\n'),
           sharedPayloadTransport: JSON.stringify({
             kind: 'startup',
@@ -298,13 +296,11 @@ describe('session-prime hook', () => {
             graphSummary: null,
             graphQualitySummary: null,
             graphState: 'missing',
-            cocoIndexAvailable: false,
             startupSurface: [
               'Session context received. Current state:',
               '',
               '- Memory: startup summary only (resume on demand)',
               '- Code Graph: unavailable',
-              '- CocoIndex: unknown',
             ].join('\n'),
             sharedPayload: null,
             sharedPayloadTransport: null,

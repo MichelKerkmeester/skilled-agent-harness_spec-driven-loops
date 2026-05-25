@@ -44,9 +44,8 @@ export interface AutoSelectMetadataStore {
  * - `'text'`: prose-tuned embedders (default). Used by mk-spec-memory and
  *   skill-advisor, which index prose memory and skill metadata respectively.
  * - `'code'`: code-tuned embedders. Today the TS-side shared cascade has no
- *   code consumer (CocoIndex runs its own code-tuned cascade in Python at
- *   `cocoindex_code/embedders/registered_embedders.py`). The parameter is
- *   reserved for a future TS code consumer. Current cascade behaviour is
+ *   code consumer. The parameter is reserved for a future TS code consumer.
+ *   Current cascade behaviour is
  *   identical regardless of `contentType` because every registered manifest
  *   is text-tuned. Voyage's `voyage-code-3` is documented as an acknowledged
  *   compromise for prose memory at current scale — a future contentType-aware
@@ -65,9 +64,8 @@ export interface AutoSelectOptions {
   readonly runPythonImportProbe?: () => Promise<boolean>;
   /**
    * Content type the consumer is optimising for. Defaults to `'text'`.
-   * CocoIndex's code-tuned cascade lives in Python and is intentionally
-   * separate — this parameter preserves the conceptual content-type split
-   * on the TS side without forcing a runtime branch yet.
+   * This parameter preserves the conceptual content-type split on the TS side
+   * without forcing a runtime branch yet.
    */
   readonly contentType?: EmbedderContentType;
 }

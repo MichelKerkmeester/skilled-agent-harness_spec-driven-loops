@@ -1,13 +1,13 @@
 ---
 title: "Compact merger"
-description: "Compact merger combines context from Memory, Code Graph, and CocoIndex into a unified compact brief within the 4000-token budget."
+description: "Compact merger combines context from Memory, Code Graph, and Code Graph into a unified compact brief within the 4000-token budget."
 ---
 
 # Compact merger
 
 ## 1. OVERVIEW
 
-Compact merger combines context from Memory, Code Graph, and CocoIndex into a unified compact brief within the 4000-token budget.
+Compact merger combines context from Memory, Code Graph, and Code Graph into a unified compact brief within the 4000-token budget.
 
 Accepts shaped results from 3 sources. Renders sections: Constitutional Rules, Active Files & Structural Context, Semantic Neighbors, Session State, Triggered Memories. Uses budget allocator for per-source token allocation. Includes allocation metadata and merge timestamp.
 

@@ -22,7 +22,7 @@ This scenario probes whether the LLM's pretraining recognizes these domain-speci
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm contextual disambiguation across 3 senses of "save context".
-- Real user request: `Verify that adding context-disambiguating phrases to a polysemous query 'save context' steers Memory MCP and CocoIndex to the correct sense.`
+- Real user request: `Verify that adding context-disambiguating phrases to a polysemous query 'save context' steers Memory MCP and Code Graph to the correct sense.`
 - RCAF Prompt: `As a query-intelligence validation operator, fire 3 variants of a polysemous query 'save context' (each adding a different disambiguator) and verify the top-3 results match the intended sense. Return a pass/fail verdict.`
 - Expected execution process: fire 3 query variants, inspect top-3 results for each, mark which sense the top-3 represents.
 - Expected signals: each variant's top-3 is dominated by its intended sense (≥ 2 of 3 results match).
@@ -36,14 +36,14 @@ This scenario probes whether the LLM's pretraining recognizes these domain-speci
 ### Prompt
 
 ```
-Fire 3 variants of 'save context' through CocoIndex + Memory MCP and verify each is disambiguated by its added qualifier.
+Fire 3 variants of 'save context' through Code Graph + Memory MCP and verify each is disambiguated by its added qualifier.
 ```
 
 ### Commands
 
 **Variant 1 — Memory MCP sense:**
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "save context to Memory MCP after a successful spec-folder workflow",
   num_results: 5,
 })
@@ -52,7 +52,7 @@ Expected top-3: `memory:save` skill files, `generate-context.js`, `_memory.conti
 
 **Variant 2 — Git sense:**
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "save context to a git branch before switching",
   num_results: 5,
 })
@@ -61,7 +61,7 @@ Expected top-3: `sk-git` skill files, git-worktree references, git-stash pattern
 
 **Variant 3 — File-system sense:**
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "save context to disk as a structured JSON snapshot file",
   num_results: 5,
 })
@@ -85,7 +85,7 @@ For each variant:
 
 ### Evidence
 
-- The exact CocoIndex query for each variant.
+- The exact Code Graph query for each variant.
 - The top-5 file paths returned by each.
 - A sense-classification table (manual judgment per result file).
 - An honest note if a particular variant's top-3 mixes senses — list which senses appeared and discuss whether the mixing is reasonable (e.g., a `memory_save` file might appear in the git-sense query because both involve "saving").

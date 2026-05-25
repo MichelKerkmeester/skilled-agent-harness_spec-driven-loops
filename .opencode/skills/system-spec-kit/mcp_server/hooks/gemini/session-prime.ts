@@ -42,7 +42,6 @@ type StartupBrief = {
   graphSummary: { files: number; nodes: number; edges: number; lastScan: string | null } | null;
   graphQualitySummary?: unknown;
   graphState: 'ready' | 'stale' | 'empty' | 'missing';
-  cocoIndexAvailable: boolean;
   startupSurface: string;
   sharedPayloadTransport?: string | null;
 };
@@ -169,7 +168,6 @@ function handleStartup(input: { sessionId?: string; cwd?: unknown; specFolder?: 
         '',
         '- Memory: startup summary unavailable',
         '- Code Graph: unavailable',
-        '- CocoIndex: unknown',
         '',
         'What would you like to work on?',
       ].join('\n'),

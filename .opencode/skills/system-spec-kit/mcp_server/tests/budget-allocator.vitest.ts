@@ -11,14 +11,13 @@ describe('budget allocator manual scenario 256', () => {
     expect(DEFAULT_FLOORS).toEqual({
       constitutional: 700,
       codeGraph: 1200,
-      cocoIndex: 900,
       triggered: 400,
       overflow: 800,
     });
   });
 
   it('grants each source at least min(floor, actualSize) and releases empty floors', () => {
-    const result = allocateBudget(createDefaultSources(500, 1500, 0, 100), 4000);
+    const result = allocateBudget(createDefaultSources(500, 1500, 100), 4000);
     const byName = Object.fromEntries(result.allocations.map((allocation) => [allocation.name, allocation]));
 
     expect(byName.constitutional).toMatchObject({
@@ -27,28 +26,21 @@ describe('budget allocator manual scenario 256', () => {
       granted: 500,
       dropped: 0,
     });
-    expect(byName.cocoIndex).toMatchObject({
-      floor: DEFAULT_FLOORS.cocoIndex,
-      requested: 0,
-      granted: 0,
-      dropped: 0,
-    });
     expect(result.totalUsed).toBeLessThanOrEqual(result.totalBudget);
   });
 
   it('redistributes overflow in priority order', () => {
-    const result = allocateBudget(createDefaultSources(1200, 1800, 1600, 900), 4000);
+    const result = allocateBudget(createDefaultSources(1200, 1800, 900), 4000);
     const byName = Object.fromEntries(result.allocations.map((allocation) => [allocation.name, allocation]));
 
     expect(byName.constitutional.granted).toBe(1200);
-    expect(byName.codeGraph.granted).toBe(1500);
-    expect(byName.cocoIndex.granted).toBe(900);
-    expect(byName.triggered.granted).toBe(400);
-    expect(result.totalUsed).toBe(4000);
+    expect(byName.codeGraph.granted).toBe(1800);
+    expect(byName.triggered.granted).toBe(900);
+    expect(result.totalUsed).toBe(3900);
   });
 
   it('never exceeds the total cap', () => {
-    const result = allocateBudget(createDefaultSources(10_000, 10_000, 10_000, 10_000), 4000);
+    const result = allocateBudget(createDefaultSources(10_000, 10_000, 10_000), 4000);
 
     expect(result.totalUsed).toBeLessThanOrEqual(4000);
     expect(result.allocations.every((allocation) => allocation.granted >= 0)).toBe(true);

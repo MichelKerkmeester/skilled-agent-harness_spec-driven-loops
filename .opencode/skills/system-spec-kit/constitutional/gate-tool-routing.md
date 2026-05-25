@@ -22,7 +22,7 @@ triggerPhrases:
   - local search
   # Tool selection
   - which tool
-  - CocoIndex
+  - Code Graph
   - Code Graph
   - memory_search
   - memory_context
@@ -40,7 +40,7 @@ Route code search queries using this priority order:
 
 | Query Type | Primary Tool | Fallback |
 |-----------|-------------|----------|
-| **Semantic/concept** (meaning-based) | `mcp__cocoindex_code__search` (CocoIndex) | `memory_search` |
+| **Semantic/concept** (meaning-based) | `mcp__mk_code_index__code_graph_query` (Code Graph) | `memory_search` |
 | **Structural** (callers, imports, deps) | `code_graph_query` (Code Graph) | `Grep` / `Glob` |
 | **Exact text/regex** (string literal) | `Grep` | `Glob` |
 
@@ -101,7 +101,7 @@ Implementation surfaces backing this routing contract:
 
 | Tool | Source File | Role |
 |------|-------------|------|
-| `mcp__cocoindex_code__search` | `.opencode/skills/mcp-coco-index/SKILL.md` | Semantic code search via vector embeddings |
+| `mcp__mk_code_index__code_graph_query` | `.opencode/skills/system-code-graph/SKILL.md` | Semantic code search via vector embeddings |
 | `code_graph_query` | `.opencode/skills/system-code-graph/mcp_server/code_graph/tools/code-graph-tools.ts` | Structural query handler (callers/imports/deps) |
 | `code_graph_context` | `.opencode/skills/system-code-graph/mcp_server/code_graph/tools/code-graph-tools.ts` | Bounded code-graph context retrieval |
 | `memory_search` | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | 3-channel hybrid search with RRF fusion |

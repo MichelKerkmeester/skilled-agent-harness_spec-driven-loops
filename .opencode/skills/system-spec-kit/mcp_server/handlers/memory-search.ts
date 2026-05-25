@@ -21,9 +21,7 @@ import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
 // Artifact-class routing (spec/plan/tasks/checklist/memory)
 import { getStrategyForQuery } from '../lib/search/artifact-routing.js';
 import { routeQuery } from '../lib/search/query-router.js';
-import { probeCocoIndexDaemon } from '../lib/cocoindex/daemon-probe.js';
 import { createEmptyQueryPlan, type QueryPlan } from '../lib/query/query-plan.js';
-import { calibrateCocoIndexOverfetch } from '../lib/search/cocoindex-calibration.js';
 import { getGraphReadinessSnapshotFromMarker } from '../lib/code-graph-boundary.js';
 import { mapGraphReadinessToTelemetry } from '../lib/search/graph-readiness-mapper.js';
 import {
@@ -764,7 +762,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   const effectiveQuery = normalizedQuery ?? (hasValidConcepts ? concepts.join(', ') : '');
   const searchDecisionRequestId = `memory_search-${_searchStartTime}`;
   let searchDecisionEnvelope: SearchDecisionEnvelope | null = null;
-  const cocoIndexProbe = probeCocoIndexDaemon();
 
   if (!hasValidQuery && !hasValidConcepts) {
     return createMCPErrorResponse({
@@ -1114,14 +1111,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       pipelineMetadata: pipelineResult.metadata,
       qualityGapFallback: qualityFallback,
     };
-    if (cocoIndexProbe.status !== 'reachable') {
-      extraData.cocoIndex = {
-        status: cocoIndexProbe.status,
-        reason: cocoIndexProbe.reason,
-        logCapState: cocoIndexProbe.logCapState,
-      };
-      extraData.vectorChannelWarning = 'WARN: vector channel unavailable, lexical-only';
-    }
     if (lexicalCapability) {
       extraData.lexicalPath = lexicalCapability.lexicalPath;
       extraData.fallbackState = lexicalCapability.fallbackState;
@@ -1181,24 +1170,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     if (includeTrace && pipelineResult.trace) {
       extraData.retrievalTrace = pipelineResult.trace;
     }
-    const cocoindexCalibration = calibrateCocoIndexOverfetch({
-      requestedLimit: limit,
-      tenantId: normalizedScope.tenantId,
-      userId: normalizedScope.userId,
-      agentId: normalizedScope.agentId,
-      candidates: pipelineResult.results.map((result) => {
-        const raw = result as unknown as Record<string, unknown>;
-        return {
-          id: result.id,
-          filePath: typeof raw.file_path === 'string'
-            ? raw.file_path
-            : (typeof raw.filePath === 'string' ? raw.filePath : undefined),
-          pathClass: typeof raw.contextType === 'string'
-            ? raw.contextType
-            : (typeof raw.context_type === 'string' ? raw.context_type : undefined),
-        };
-      }),
-    });
     const degradedReadiness = mapGraphReadinessToTelemetry(
       getGraphReadinessSnapshotFromMarker(),
     );
@@ -1213,13 +1184,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
           state: 'live',
           decision: 'memory_search_response',
         },
-        cocoIndex: {
-          available: cocoIndexProbe.status === 'reachable',
-          pathClass: Object.keys(cocoindexCalibration.pathClassCounts)[0],
-        },
       },
       rerankGateDecision: pipelineResult.metadata.stage3.rerankGateDecision,
-      cocoindexCalibration,
       degradedReadiness,
       pipelineTiming: pipelineResult.metadata.timing,
       timestamp: new Date(_searchStartTime).toISOString(),
@@ -1279,20 +1245,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         // Non-fatal
       }
     }
-    if (cocoIndexProbe.status !== 'reachable' && formatted?.content?.[0]?.text) {
-      try {
-        const parsed = JSON.parse(formatted.content[0].text) as Record<string, unknown>;
-        const hints = Array.isArray(parsed.hints) ? parsed.hints : [];
-        parsed.hints = [
-          ...hints,
-          'WARN: vector channel unavailable, lexical-only',
-        ];
-        formatted.content[0].text = JSON.stringify(parsed, null, 2);
-      } catch (_error: unknown) {
-        // Non-fatal
-      }
-    }
-
     if (isProgressiveDisclosureEnabled()) {
       const parsedFormatted = parseResponseEnvelope(formatted);
       if (parsedFormatted) {

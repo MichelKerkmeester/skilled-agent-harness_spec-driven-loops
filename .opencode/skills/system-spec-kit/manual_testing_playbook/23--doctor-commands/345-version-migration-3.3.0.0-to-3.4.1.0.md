@@ -50,7 +50,7 @@ Simulate a new user at v3.3.0.0. They git-pull to current. Run /doctor:update --
 
 ### Expected
 
-The command reads `migration-manifest.json`, recognizes `3.3.0.0` as a valid source, and executes the declared chain `3.3.0.0 -> 3.4.0.0 -> 3.4.1.0`. It runs or falls back through the declared migration operations for continuity, graph metadata, code graph, context index, skill graph, deep-loop graph, and CocoIndex refresh. Legacy `memory/*.md` files are detected and flagged under ADR-008 detect-and-recommend semantics but are not deleted.
+The command reads `migration-manifest.json`, recognizes `3.3.0.0` as a valid source, and executes the declared chain `3.3.0.0 -> 3.4.0.0 -> 3.4.1.0`. It runs or falls back through the declared migration operations for continuity, graph metadata, code graph, context index, skill graph, deep-loop graph, and Code Graph refresh. Legacy `memory/*.md` files are detected and flagged under ADR-008 detect-and-recommend semantics but are not deleted.
 
 ### Evidence
 

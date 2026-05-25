@@ -36,7 +36,7 @@ Current state:
 - Each template follows the naming pattern `F{N}-{feature-name}.md` and contains the exact pass signal `MATRIX_CELL_PASS F{N}`.
 - Templates are inspection-only payloads. They do not modify files.
 - The matrix covers 14 features across 4 CLI executors (cli-codex, cli-gemini, cli-claude-code, cli-opencode), producing up to 56 test cells with selective applicability rules.
-- Features covered: spec folder workflow (F1), skill advisor (F2), memory search (F3), memory context (F4), code graph query (F5), code graph scan (F6), causal graph (F7), CocoIndex (F8), continuity (F9), deep loop (F10), hooks (F11), validators (F12), stress cycle (F13), search W3-W13 (F14).
+- Features covered: spec folder workflow (F1), skill advisor (F2), memory search (F3), memory context (F4), code graph query (F5), code graph scan (F6), causal graph (F7), Code Graph (F8), continuity (F9), deep loop (F10), hooks (F11), validators (F12), stress cycle (F13), search W3-W13 (F14).
 - Each template is self-contained and loaded independently by the matrix runner.
 
 <!-- /ANCHOR:overview -->
@@ -55,7 +55,7 @@ Current state:
 | `F5-code-graph-query.md` | Prompt template for testing code_graph_query functionality. |
 | `F6-code-graph-scan.md` | Prompt template for testing code_graph_scan and verify functionality. |
 | `F7-causal-graph.md` | Prompt template for testing causal graph functionality. |
-| `F8-cocoindex.md` | Prompt template for testing CocoIndex search functionality. |
+| `F8-code_graph.md` | Prompt template for testing Code Graph search functionality. |
 | `F9-continuity.md` | Prompt template for testing continuity and generate-context functionality. |
 | `F10-deep-loop.md` | Prompt template for testing deep-research and deep-review loops. |
 | `F11-hooks.md` | Prompt template for testing hook functionality. |

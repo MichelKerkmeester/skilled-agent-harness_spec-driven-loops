@@ -9,7 +9,7 @@ import { buildTrustTree } from '../../lib/rag/trust-tree.js';
 import { runMeasurement } from './measurement-fixtures.js';
 
 describe('W3 composed RAG trust tree', () => {
-  it('composes response policy, graph, advisor, CocoIndex, and causal contradiction signals', () => {
+  it('composes response policy, graph, advisor, and causal contradiction signals', () => {
     const trustTree = buildTrustTree({
       responsePolicy: {
         state: 'live',
@@ -24,12 +24,6 @@ describe('W3 composed RAG trust tree', () => {
       advisor: {
         trustState: 'live',
         citations: ['advisor-trust-state-signal'],
-      },
-      cocoIndex: {
-        available: true,
-        pathClass: 'runtime',
-        rawScore: 0.82,
-        citations: ['cocoindex-path-signal'],
       },
       causal: {
         edges: [{

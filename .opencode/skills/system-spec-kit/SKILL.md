@@ -419,7 +419,7 @@ Spec Kit Memory provides context retrieval, search, save, checkpoint, health, an
 
 ### Reranking (opt-in)
 
-Cross-encoder reranking is opt-in. Default is OFF based on the 011 decision arc (evidence: 011/001 OFF baseline + 011/002 bge-v2-m3 trial). To enable, set `SPECKIT_CROSS_ENCODER=true` (or `RERANKER_LOCAL=true`) and ensure the system-rerank-sidecar is running at `http://localhost:8765`. Cocoindex consumes the sidecar by default; spec-memory consumes it opt-in only.
+Cross-encoder reranking is opt-in. Default is OFF based on the 011 decision arc (evidence: 011/001 OFF baseline + 011/002 bge-v2-m3 trial). To enable, set `SPECKIT_CROSS_ENCODER=true` (or `RERANKER_LOCAL=true`) and ensure the system-rerank-sidecar is running at `http://localhost:8765`. Code Graph consumes the sidecar by default; spec-memory consumes it opt-in only.
 
 ## Security
 
@@ -430,11 +430,11 @@ Cross-encoder reranking is opt-in. Default is OFF based on the 011 decision arc 
 
 ### Validation and Recovery
 
-Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, code graph, and CocoIndex readiness details live in `references/config/hook_system.md`, `references/hooks/skill_advisor_hook.md`, `mcp_server/hooks/copilot/README.md`, and the code graph references.
+Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, code graph, and Code Graph readiness details live in `references/config/hook_system.md`, `references/hooks/skill_advisor_hook.md`, `mcp_server/hooks/copilot/README.md`, and the code graph references.
 
 ### Code Graph and Search Routing
 
-Use CocoIndex for semantic discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`, and `detect_changes` (under MCP namespace `mcp__mk_code_index__*`, owned by the standalone `system-code-graph` skill) share the readiness contract and return blocked/degraded payloads rather than silent empty answers when graph state is stale.
+Use Code Graph for semantic discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`, and `detect_changes` (under MCP namespace `mcp__mk_code_index__*`, owned by the standalone `system-code-graph` skill) share the readiness contract and return blocked/degraded payloads rather than silent empty answers when graph state is stale.
 
 <!-- /ANCHOR:3-how-it-works -->
 

@@ -41,7 +41,7 @@ Fire a compound question about auto-migration + cascade fallback + warmup failur
 ### Commands
 
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "what happens when ollama auto-migration starts but the provider warmup fails — does the cascade fall back to hf-local or does migration error out?",
   num_results: 10,
 })

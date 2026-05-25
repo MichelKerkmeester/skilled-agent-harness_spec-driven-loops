@@ -11,7 +11,6 @@ import {
   getGraphFreshnessFromMarker,
   getGraphStatsFromMarker,
 } from '../code-graph-boundary.js';
-import { isCocoIndexAvailable } from '../utils/cocoindex-path.js';
 import {
   trustStateFromStructuralStatus,
   type SharedPayloadProvenance,
@@ -31,7 +30,6 @@ export interface SessionSnapshot {
   specFolder: string | null;
   currentTask: string | null;
   graphFreshness: 'fresh' | 'stale' | 'empty' | 'error';
-  cocoIndexAvailable: boolean;
   sessionQuality: 'healthy' | 'degraded' | 'critical' | 'unknown';
   lastToolCallAgoMs: number | null;
   primed: boolean;
@@ -142,12 +140,6 @@ export function getSessionSnapshot(): SessionSnapshot {
   // Graph freshness
   const graphFreshness = resolveGraphFreshness();
 
-  // CocoIndex availability
-  let cocoIndexAvailable = false;
-  try {
-    cocoIndexAvailable = isCocoIndexAvailable();
-  } catch { /* unavailable */ }
-
   // Quality score
   let sessionQuality: SessionSnapshot['sessionQuality'] = 'unknown';
   try {
@@ -171,9 +163,6 @@ export function getSessionSnapshot(): SessionSnapshot {
 
   // Build routing recommendation
   const routingParts: string[] = [];
-  if (cocoIndexAvailable) {
-    routingParts.push('semantic/concept search → mcp__cocoindex_code__search');
-  }
   if (graphFreshness === 'fresh') {
     routingParts.push('structural queries (callers, deps) → code_graph_query');
   }
@@ -184,7 +173,6 @@ export function getSessionSnapshot(): SessionSnapshot {
     specFolder,
     currentTask,
     graphFreshness,
-    cocoIndexAvailable,
     sessionQuality,
     lastToolCallAgoMs,
     primed,

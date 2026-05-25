@@ -50,7 +50,6 @@ function createCompactPayloadEnvelope(input: SharedPayloadEnvelope): SharedPaylo
 export interface MergeInput {
   constitutional: string;
   codeGraph: string;
-  cocoIndex: string;
   triggered: string;
   sessionState: string;
 }
@@ -147,7 +146,6 @@ export function mergeCompactBrief(
   const sources = createDefaultSources(
     estimateTokens(input.constitutional),
     estimateTokens(input.codeGraph),
-    estimateTokens(input.cocoIndex),
     estimateTokens(input.triggered),
     estimateTokens(input.sessionState),
   );
@@ -177,7 +175,6 @@ export function mergeCompactBrief(
 
   pushSection(input.constitutional, 'constitutional', 'Constitutional Rules', 'memory');
   pushSection(input.codeGraph, 'codeGraph', 'Active Files & Structural Context', 'code-graph');
-  pushSection(input.cocoIndex, 'cocoIndex', 'Semantic Neighbors', 'cocoindex');
   pushSection(input.sessionState, 'sessionState', 'Session State / Next Steps', 'session');
   pushSection(input.triggered, 'triggered', 'Triggered Memories', 'memory');
 
@@ -197,9 +194,7 @@ export function mergeCompactBrief(
         content: section.content,
         source: section.source === 'code-graph'
           ? 'code-graph'
-          : section.source === 'cocoindex'
-            ? 'semantic'
-            : section.source === 'session'
+          : section.source === 'session'
               ? 'session'
               : 'memory',
       })),
@@ -223,7 +218,6 @@ export function mergeCompactBrief(
       freshness: freshness ?? [
         { source: 'constitutional', lastUpdated: null, staleness: 'unknown' },
         { source: 'codeGraph', lastUpdated: null, staleness: 'unknown' },
-        { source: 'cocoIndex', lastUpdated: null, staleness: 'unknown' },
         { source: 'triggered', lastUpdated: null, staleness: 'unknown' },
       ],
       ...(selection ? { selection } : {}),

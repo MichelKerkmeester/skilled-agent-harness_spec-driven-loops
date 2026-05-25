@@ -2,7 +2,7 @@
 // MODULE: Session Resume Handler
 // ───────────────────────────────────────────────────────────────
 // Phase 020: Composite MCP tool that merges memory resume context,
-// code graph status, and CocoIndex availability into a single call.
+// and code graph status into a single call.
 // T-SRS-BND-01 (R2-P1-001): bind public session_resume sessionId input to the
 // MCP transport caller context before cached-session lookups can consume it.
 // Default mode is strict rejection; MCP_SESSION_RESUME_AUTH_MODE=permissive
@@ -10,7 +10,6 @@
 
 import { createHash } from 'node:crypto';
 import { statSync } from 'node:fs';
-import { isCocoIndexAvailable } from '../lib/utils/cocoindex-path.js';
 import {
   getCodeGraphStatusViaRpc,
   getGraphFreshnessFromMarker,
@@ -110,15 +109,9 @@ interface CodeGraphStatus {
   fileCount: number;
 }
 
-interface CocoIndexStatus {
-  available: boolean;
-  binaryPath: string;
-}
-
 interface SessionResumeResult {
   memory: Record<string, unknown>;
   codeGraph: CodeGraphStatus;
-  cocoIndex: CocoIndexStatus;
   cachedSummary?: CachedSessionSummaryDecision;
   structuralContext?: StructuralBootstrapContract;
   sessionQuality?: 'healthy' | 'degraded' | 'critical' | 'unknown';
@@ -131,7 +124,6 @@ interface SessionResumeResult {
 interface SessionResumeMinimalResult {
   mode: 'minimal';
   codeGraph: CodeGraphStatus;
-  cocoIndex: CocoIndexStatus;
   cachedSummary?: CachedSessionSummaryDecision;
   structuralContext: StructuralBootstrapContract;
   sessionQuality: 'healthy' | 'degraded' | 'critical' | 'unknown';
@@ -144,7 +136,6 @@ interface SessionResumeMinimalResult {
 interface SessionResumeTransportState {
   payloadContract?: SharedPayloadEnvelope | null;
   codeGraph: CodeGraphStatus;
-  cocoIndex: CocoIndexStatus;
   structuralContext: StructuralBootstrapContract;
   structuralTrust: ReturnType<typeof buildStructuralContextTrust>;
   graphOps: CodeGraphOpsContract;
@@ -170,7 +161,6 @@ function normalizeSpecFolder(specFolder: string | null | undefined): string | nu
 
 function buildMinimalResumePayload(state: SessionResumeTransportState): SharedPayloadEnvelope {
   const codeGraphCertainty: SharedPayloadCertainty = state.codeGraph.status === 'error' ? 'unknown' : 'exact';
-  const cocoIndexCertainty: SharedPayloadCertainty = 'exact';
   const structuralCertainty: SharedPayloadCertainty = 'exact';
 
   return createSharedPayloadEnvelope({
@@ -184,15 +174,6 @@ function buildMinimalResumePayload(state: SessionResumeTransportState): SharedPa
         certainty: codeGraphCertainty,
       },
       {
-        key: 'cocoindex-status',
-        title: 'CocoIndex Status',
-        content: state.cocoIndex.available
-          ? `available at ${state.cocoIndex.binaryPath}`
-          : `unavailable; expected at ${state.cocoIndex.binaryPath}`,
-        source: 'semantic',
-        certainty: cocoIndexCertainty,
-      },
-      {
         key: 'structural-context',
         title: 'Structural Context',
         content: state.structuralContext.summary,
@@ -203,7 +184,6 @@ function buildMinimalResumePayload(state: SessionResumeTransportState): SharedPa
     ],
     summary: `Minimal resume payload: ${summarizeCertaintyContract([
       { label: 'graph', certainty: codeGraphCertainty },
-      { label: 'cocoindex', certainty: cocoIndexCertainty },
       { label: 'structural', certainty: structuralCertainty },
     ])}; graph=${state.codeGraph.status}; graphStatus=${state.codeGraph.status}`,
     provenance: {
@@ -212,7 +192,7 @@ function buildMinimalResumePayload(state: SessionResumeTransportState): SharedPa
       trustState: trustStateFromStructuralStatus(state.structuralContext.status),
       generatedAt: new Date().toISOString(),
       lastUpdated: state.structuralContext.provenance?.lastUpdated ?? state.codeGraph.lastScan,
-      sourceRefs: ['code-graph-db', 'cocoindex-path', 'session-snapshot'],
+      sourceRefs: ['code-graph-db', 'session-snapshot'],
     },
   });
 }
@@ -542,7 +522,7 @@ export function logCachedSummaryDecision(
    3. HANDLER
 ──────────────────────────────────────────────────────────────── */
 
-/** Handle session_resume tool call — composite resume with memory + graph + cocoindex */
+/** Handle session_resume tool call — composite resume with memory + graph */
 export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPResponse> {
   const callerCtx = getCallerContext();
   const requestedSessionId = typeof args.sessionId === 'string' && args.sessionId.trim().length > 0
@@ -615,15 +595,6 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
     hints.push('Code graph unavailable. Run `code_graph_scan` to initialize.');
   }
 
-  // ── Sub-call 3: CocoIndex availability (F046/F051: shared helper) ──
-  const cocoIndex: CocoIndexStatus = {
-    available: isCocoIndexAvailable(),
-    binaryPath: '.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc',
-  };
-  if (!cocoIndex.available) {
-    hints.push('CocoIndex not installed. Install: `bash .opencode/skills/mcp-coco-index/scripts/install.sh`');
-  }
-
   // Phase 027: Structural bootstrap contract for resume surface
   const structuralContext = buildStructuralBootstrapContract('session_resume');
   if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
@@ -647,7 +618,6 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
   });
   const transportStateBase = {
     codeGraph,
-    cocoIndex,
     structuralContext,
     structuralTrust,
     graphOps,
@@ -658,7 +628,6 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
     const minimalResult: SessionResumeMinimalResult = {
       mode: 'minimal',
       codeGraph,
-      cocoIndex,
       cachedSummary: cachedSummaryDecision,
       structuralContext,
       sessionQuality: sessionQuality ?? 'unknown',
@@ -691,7 +660,6 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
     ? 'defaulted'
     : 'exact';
   const codeGraphCertainty: SharedPayloadCertainty = codeGraph.status === 'error' ? 'unknown' : 'exact';
-  const cocoIndexCertainty: SharedPayloadCertainty = 'exact';
   const structuralCertainty: SharedPayloadCertainty = 'exact';
 
   const payloadSections: SharedPayloadSection[] = [
@@ -712,15 +680,6 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
       certainty: codeGraphCertainty,
     },
     {
-      key: 'cocoindex-status',
-      title: 'CocoIndex Status',
-      content: cocoIndex.available
-        ? `available at ${cocoIndex.binaryPath}`
-        : `unavailable; expected at ${cocoIndex.binaryPath}`,
-      source: 'semantic',
-      certainty: cocoIndexCertainty,
-    },
-    {
       key: 'structural-context',
       title: 'Structural Context',
       content: structuralContext.summary,
@@ -737,7 +696,6 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
     summary: `Resume payload: ${summarizeCertaintyContract([
       { label: 'memory', certainty: memoryCertainty },
       { label: 'graph', certainty: codeGraphCertainty },
-      { label: 'cocoindex', certainty: cocoIndexCertainty },
       { label: 'structural', certainty: structuralCertainty },
     ])}; resumeSource=${memoryResult.source}; graph=${codeGraph.status}; graphStatus=${codeGraph.status}`,
     provenance: {
@@ -746,13 +704,12 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
       trustState: trustStateFromStructuralStatus(structuralContext.status),
       generatedAt: new Date().toISOString(),
       lastUpdated: structuralContext.provenance?.lastUpdated ?? codeGraph.lastScan,
-      sourceRefs: ['resume-ladder', 'code-graph-db', 'cocoindex-path', 'session-snapshot'],
+      sourceRefs: ['resume-ladder', 'code-graph-db', 'session-snapshot'],
     },
   });
   const result: SessionResumeResult = {
     memory: memoryResult as unknown as Record<string, unknown>,
     codeGraph,
-    cocoIndex,
     cachedSummary: cachedSummaryDecision,
     structuralContext,
     payloadContract,

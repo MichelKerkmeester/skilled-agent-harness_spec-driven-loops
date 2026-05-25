@@ -87,7 +87,6 @@ function buildStartupSections(startupBrief: StartupBriefResult): OutputSection[]
     '',
     '- Memory: startup summary only (resume on demand)',
     '- Code Graph: unavailable',
-    '- CocoIndex: unknown',
     '',
     'What would you like to work on?',
   ].join('\n');
@@ -145,7 +144,6 @@ function buildFallbackStartupSections(): OutputSection[] {
         '',
         '- Memory: startup summary only (resume on demand)',
         '- Code Graph: unavailable',
-        '- CocoIndex: unknown',
         '',
         'What would you like to work on?',
       ].join('\n'),

@@ -119,7 +119,6 @@ function buildFingerprint(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'
     `commands=${policy.includeCommands ? 'all' : 'none'}`,
     `specs=${policy.includeSpecs ? 'all' : 'none'}`,
     `plugins=${policy.includePlugins ? 'all' : 'none'}`,
-    'mcp-coco-index=excluded',
   ].join(':');
 }
 
@@ -134,7 +133,7 @@ function buildLabel(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'>): st
   const includedSuffix = includedFolders.length > 0
     ? `; opted-in .opencode folders: ${includedFolders.join(', ')}`
     : '; .opencode skill, agent, command, specs and plugins excluded';
-  return `end-user code only${includedSuffix}; mcp-coco-index/mcp_server excluded`;
+  return `end-user code only${includedSuffix}`;
 }
 
 function resolveIndexScopePolicy(input: ResolveIndexScopePolicyInput = {}): IndexScopePolicy {
@@ -198,7 +197,6 @@ export const EXCLUDED_FOR_CODE_GRAPH = [
   compileSegmentPattern('vendor'),
   compileSegmentPattern('z_future'),
   compileSegmentPattern('z_archive'),
-  /(^|\/)mcp-coco-index\/mcp_server(\/|$)/i,
 ] as const;
 
 function getCodeGraphPolicy(

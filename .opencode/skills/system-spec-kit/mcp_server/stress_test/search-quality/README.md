@@ -25,7 +25,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`stress_test/search-quality/` contains stress coverage for retrieval quality measurement, degraded readiness, reranking, CocoIndex calibration, decision envelopes and metric output. It combines a harness, fixtures, metrics helpers and many targeted Vitest suites.
+`stress_test/search-quality/` contains stress coverage for retrieval quality measurement, degraded readiness, reranking, Code Graph calibration, decision envelopes and metric output. It combines a harness, fixtures, metrics helpers and many targeted Vitest suites.
 
 Current state:
 
@@ -98,7 +98,7 @@ search-quality/
 +-- w7-degraded-stale.vitest.ts
 +-- w7-degraded-unavailable.vitest.ts
 +-- w8-search-decision-envelope.vitest.ts
-+-- w11-cocoindex-calibration-telemetry.vitest.ts
++-- w11-code_graph-calibration-telemetry.vitest.ts
 +-- w13-decision-audit.vitest.ts
 `-- README.md
 ```

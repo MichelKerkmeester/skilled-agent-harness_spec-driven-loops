@@ -1,13 +1,13 @@
 ---
 title: "Doctor commands"
-description: "Category covering the spec-kit /doctor argv-positional router and its subsystem routes (memory, causal-graph, deep-loop, cocoindex), plus the /doctor:update cross-subsystem aligner, /doctor:mcp infra surface, and version-migration flows."
+description: "Category covering the spec-kit /doctor argv-positional router and its subsystem routes (memory, causal-graph, deep-loop, code_graph), plus the /doctor:update cross-subsystem aligner, /doctor:mcp infra surface, and version-migration flows."
 ---
 
 # Doctor commands
 
 ## 1. OVERVIEW
 
-Category covering the spec-kit `/doctor` argv-positional router and its subsystem routes (memory, causal-graph, deep-loop, cocoindex), plus the `/doctor:update` cross-subsystem aligner, `/doctor:mcp` infra surface, and version-migration flows.
+Category covering the spec-kit `/doctor` argv-positional router and its subsystem routes (memory, causal-graph, deep-loop, code_graph), plus the `/doctor:update` cross-subsystem aligner, `/doctor:mcp` infra surface, and version-migration flows.
 
 This category documents the consolidated `/doctor <target>` command surface that diagnoses and repairs spec-kit subsystems. It replaced the legacy `/doctor:<name>` colon-form commands after the 013 Phase 5 hard cutover, and it now exposes one route manifest, one CI assertion, and one harness layout that exercises every route end-to-end through the manual testing playbook.
 
@@ -15,7 +15,7 @@ This category documents the consolidated `/doctor <target>` command surface that
 
 ## 2. CURRENT REALITY
 
-The shipped surface now includes five subsystem routes under `/doctor <target>` (memory, causal-graph, deep-loop, cocoindex, skill-advisor, skill-budget, code-graph), a standalone `/doctor:update` cross-subsystem aligner with snapshot, validate, rollback, and run-log behavior, a standalone `/doctor:mcp install|debug` infra surface, and a version-migration flow that moves the spec-kit MCP through point releases.
+The shipped surface now includes five subsystem routes under `/doctor <target>` (memory, causal-graph, deep-loop, code_graph, skill-advisor, skill-budget, code-graph), a standalone `/doctor:update` cross-subsystem aligner with snapshot, validate, rollback, and run-log behavior, a standalone `/doctor:mcp install|debug` infra surface, and a version-migration flow that moves the spec-kit MCP through point releases.
 
 The route manifest declares every target's location and mutation class so Gate 3 can be answered per-route before execution. Routes marked `read-only` may inspect and report without a spec-folder write path; `add-only` routes may create scoped logs, snapshots, or evidence after Gate 3 is satisfied; `mutates` routes follow the same spec-folder discipline as any other file or database mutation. A CI assertion verifies the manifest against the router source.
 

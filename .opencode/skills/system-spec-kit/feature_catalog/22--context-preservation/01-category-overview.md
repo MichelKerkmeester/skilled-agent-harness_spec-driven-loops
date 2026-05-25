@@ -1,15 +1,15 @@
 ---
 title: "Context preservation and code graph"
-description: "Category covering Claude Code hooks (PreCompact, SessionStart, Stop), structural code graph (indexer, SQLite, MCP tools), CocoIndex bridge, and compaction working-set integration."
+description: "Category covering Claude Code hooks (PreCompact, SessionStart, Stop), structural code graph (indexer, SQLite, MCP tools), Code Graph bridge, and compaction working-set integration."
 ---
 
 # Context preservation and code graph
 
 ## 1. OVERVIEW
 
-Category covering runtime hook automation, structural code graph (indexer, SQLite, MCP tools), CocoIndex bridge, and compaction working-set integration.
+Category covering runtime hook automation, structural code graph (indexer, SQLite, MCP tools), Code Graph bridge, and compaction working-set integration.
 
-This category documents the hybrid context injection system that preserves critical knowledge across context compaction events. It combines three complementary systems: hook-based lifecycle automation, structural code analysis (code graph), and semantic search (CocoIndex) — all merging under a 4000-token budget for compaction injection.
+This category documents the hybrid context injection system that preserves critical knowledge across context compaction events. It combines three complementary systems: hook-based lifecycle automation, structural code analysis (code graph), and semantic search (Code Graph) — all merging under a 4000-token budget for compaction injection.
 
 ---
 
@@ -37,7 +37,7 @@ Phase 005 split code-graph-owned category-22 docs into the sibling skill. For th
 | `.opencode/skills/system-code-graph/mcp_server/lib/query-intent-classifier.ts` | Lib | Structural/semantic/hybrid query routing |
 | `.opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts` | Lib | Auto-trigger with git HEAD staleness detection |
 | `mcp_server/handlers/session-health.ts` | Handler | Session readiness and quality score |
-| `mcp_server/handlers/session-resume.ts` | Handler | Composite resume (memory + graph + CocoIndex) |
+| `mcp_server/handlers/session-resume.ts` | Handler | Composite resume (memory + graph + Code Graph) |
 | `mcp_server/handlers/session-bootstrap.ts` | Handler | Canonical first-call bootstrap (resume + health + structural contract) |
 | `mcp_server/lib/session/session-snapshot.ts` | Lib | Shared ready/stale/missing structural context contract |
 | `mcp_server/hooks/gemini/` | Hook | 5 Gemini CLI lifecycle hook scripts |

@@ -7,7 +7,7 @@ description: "Argv-positional /doctor router that dispatches to per-subsystem YA
 
 ## 1. OVERVIEW
 
-`/doctor <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of seven subsystem YAML workflows (memory, causal-graph, code-graph, deep-loop, cocoindex, skill-advisor, skill-budget) by reading the canonical route manifest `.opencode/commands/doctor/_routes.yaml`. Two companion commands round out the surface: `/doctor:mcp <install|debug>` for MCP-server infrastructure repair, and `/doctor:update` for the cross-subsystem rebuild orchestrator.
+`/doctor <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of seven subsystem YAML workflows (memory, causal-graph, code-graph, deep-loop, code_graph, skill-advisor, skill-budget) by reading the canonical route manifest `.opencode/commands/doctor/_routes.yaml`. Two companion commands round out the surface: `/doctor:mcp <install|debug>` for MCP-server infrastructure repair, and `/doctor:update` for the cross-subsystem rebuild orchestrator.
 
 The router shipped as a hard cutover in `010-doctor-update-orchestrator` phases 004 + 005, replacing 10 standalone `/doctor:<name>` commands with 3 markdown files (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`). Each subsystem keeps its existing YAML workflow under `assets/doctor_<target>.yaml` — only the markdown command surface was consolidated.
 
@@ -33,7 +33,7 @@ The router parses the FIRST positional argument as the target name, then runs a 
 
 ### Mutation Boundaries
 
-The router itself never mutates anything. Each YAML workflow declares its own mutation class in `_routes.yaml`: read-only (skill-budget), add-only (causal-graph), or mutates (memory, code-graph, deep-loop, cocoindex, skill-advisor). The combined GATE 3 STATUS table in `doctor.md` cites each target's specific mutation location.
+The router itself never mutates anything. Each YAML workflow declares its own mutation class in `_routes.yaml`: read-only (skill-budget), add-only (causal-graph), or mutates (memory, code-graph, deep-loop, code_graph, skill-advisor). The combined GATE 3 STATUS table in `doctor.md` cites each target's specific mutation location.
 
 ---
 

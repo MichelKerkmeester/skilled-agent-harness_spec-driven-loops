@@ -101,7 +101,7 @@ plus 4 Skill Advisor descriptors imported into the same registry.
 | Layer | Tool | Purpose | Example Use |
 |-------|------|---------|-------------|
 | L1: Orchestration | `memory_context()` | Unified entry point with intent-aware routing (7 intents) | START HERE for most memory operations |
-| L1: Orchestration | `session_resume()` | Resume memory, code graph, and CocoIndex state in one call | Detailed recovery payload after reconnect, or when you want direct merged resume state |
+| L1: Orchestration | `session_resume()` | Resume memory, code graph, and Code Graph state in one call | Detailed recovery payload after reconnect, or when you want direct merged resume state |
 | L1: Orchestration | `session_bootstrap()` | Composite bootstrap combining resume and health checks | Canonical first tool call in a fresh OpenCode-style session or after `/clear` |
 | L2: Core | `memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
 | L2: Core | `memory_quick_search()` | Simplified search wrapper for fast lookups | Quick keyword-based retrieval |
@@ -128,7 +128,7 @@ plus 4 Skill Advisor descriptors imported into the same registry.
 | L6: Analysis | `eval_run_ablation()` | Run ablation study on memory scoring components | Compare scoring strategies |
 | L6: Analysis | `eval_reporting_dashboard()` | Generate evaluation and reporting dashboard data | Review system metrics |
 | L6: Analysis | `code_graph_query()` | Query structural relationships such as callers, imports, and outlines | Find what calls a symbol or which files import a module |
-| L6: Analysis | `code_graph_context()` | Expand CocoIndex or symbol seeds into compact graph neighborhoods | Pull structural context for an LLM prompt |
+| L6: Analysis | `code_graph_context()` | Expand Code Graph or symbol seeds into compact graph neighborhoods | Pull structural context for an LLM prompt |
 | L7: Maintenance | `memory_index_scan()` | Bulk scan and index packet docs, constitutional files, and graph metadata | After continuity or spec-doc updates |
 | L7: Maintenance | `memory_ingest_start()` | Start async bulk memory ingestion | Import large memory sets |
 | L7: Maintenance | `memory_ingest_status()` | Check status of running ingestion job | Monitor import progress |
@@ -136,9 +136,9 @@ plus 4 Skill Advisor descriptors imported into the same registry.
 | L7: Maintenance | `memory_get_learning_history()` | Get learning history (preflight/postflight records) | Analyze learning patterns |
 | L7: Maintenance | `code_graph_scan()` | Build or refresh the structural code graph index | Re-index after branch switches or large code changes |
 | L7: Maintenance | `code_graph_status()` | Report code graph freshness and node/edge counts | Check whether the structural index is usable |
-| L7: Maintenance | `ccc_status()` | Report CocoIndex availability and index health | Confirm semantic code search is ready |
-| L7: Maintenance | `ccc_reindex()` | Trigger incremental or full CocoIndex re-indexing | Refresh semantic search after a refactor |
-| L7: Maintenance | `ccc_feedback()` | Submit search-quality feedback for CocoIndex results | Record whether semantic hits were helpful |
+| L7: Maintenance | `ccc_status()` | Report Code Graph availability and index health | Confirm semantic code search is ready |
+| L7: Maintenance | `ccc_reindex()` | Trigger incremental or full Code Graph re-indexing | Refresh semantic search after a refactor |
+| L7: Maintenance | `ccc_feedback()` | Submit search-quality feedback for Code Graph results | Record whether semantic hits were helpful |
 
 Code-graph implementation and package docs are owned by `.opencode/skills/system-code-graph/`; memory keeps the L6/L7 routing surface because the stable MCP tool IDs remain co-resident.
 

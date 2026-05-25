@@ -14,7 +14,7 @@ description: All SPECKIT_* environment variables used by the Spec Kit Memory MCP
 
 All variables are optional. The server runs with sensible defaults when none are set. Variables use **graduated semantics** unless noted: they default to ON and you disable them by setting `=false`.
 
-**Graph as a first-class feature family.** The `SPECKIT_GRAPH_*` variables form a dedicated feature family (see [Section 6](#6-graph) and [Section 7](#7-graph-calibration)) controlling structural code graph indexing, graph-first routing in the search pipeline, causal graph traversal, and calibration profiles. Since graph-first routing is now the default query dispatch order (Code Graph -> CocoIndex -> Memory), the graph env vars are among the most impactful configuration levers.
+**Graph as a first-class feature family.** The `SPECKIT_GRAPH_*` variables form a dedicated feature family (see [Section 6](#6-graph) and [Section 7](#7-graph-calibration)) controlling structural code graph indexing, graph-first routing in the search pipeline, causal graph traversal, and calibration profiles. Since graph-first routing is now the default query dispatch order (Code Graph -> Code Graph -> Memory), the graph env vars are among the most impactful configuration levers.
 
 **Flag convention:**
 
@@ -101,11 +101,11 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Community search fallback | ON | `SPECKIT_COMMUNITY_SEARCH_FALLBACK` | Community-level fallback channel | Phase B T018 |
 | Dual retrieval | ON | `SPECKIT_DUAL_RETRIEVAL` | Local/global/auto retrieval level control | Phase B T019 |
 | Intent auto profile | ON | `SPECKIT_INTENT_AUTO_PROFILE` | Intent-to-response-profile auto-routing | Phase C |
-<!-- PHASE-007-ENV-SLOT: SPECKIT_COCOINDEX_INTENT_* flags inserted here (027/007) -->
+<!-- PHASE-007-ENV-SLOT: SPECKIT_CODE_GRAPH_INTENT_* flags inserted here (027/007) -->
 <!-- PHASE-008-ENV-SLOT: SPECKIT_SEMANTIC_TRIGGERS_* flags inserted here (027/008) -->
-<!-- PHASE-009-ENV-SLOT: SPECKIT_FEEDBACK_* / SPECKIT_COCOINDEX_FEEDBACK_RERANK_* / SPECKIT_SESSION_TRACE_CAUSAL_* / SPECKIT_FEEDBACK_RETENTION_* flags inserted here (027/009) -->
-<!-- PHASE-010-ENV-SLOT: SPECKIT_COCO_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
-<!-- PHASE-011-ENV-SLOT: SPECKIT_COCOINDEX_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
+<!-- PHASE-009-ENV-SLOT: SPECKIT_FEEDBACK_* / SPECKIT_CODE_GRAPH_FEEDBACK_RERANK_* / SPECKIT_SESSION_TRACE_CAUSAL_* / SPECKIT_FEEDBACK_RETENTION_* flags inserted here (027/009) -->
+<!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
+<!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
 Total unique variables documented: 139 (legacy HYDRA aliases removed in commit 6f2c2c939).
 
@@ -308,7 +308,7 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_CODE_GRAPH_TTL_MS` | `60000` | number (positive int) | Owner-lease TTL in milliseconds. | `.opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts` |
 | `SPECKIT_CODE_GRAPH_FIND_FILES_MAX_DEPTH` | `20` | number (positive int) | Maximum directory descent depth during file discovery. | `.opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts` |
 | `SPECKIT_CODE_GRAPH_QUARANTINE_AGE_DAYS` | `14` | number (positive int) | Minimum age (days) for parser-skip-list entries to become eligible for repair-node re-parsing. | `.opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts` |
-| `SPECKIT_CODE_GRAPH_FLOORS_JSON` | `{"constitutional":700,"codeGraph":1200,"cocoIndex":900,"triggered":400,"overflow":800}` | JSON string (partial merge) | Budget-allocator floor overrides.  Provide a JSON object with any subset of keys; missing keys retain their default values. | `.opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts` |
+| `SPECKIT_CODE_GRAPH_FLOORS_JSON` | `{"constitutional":700,"codeGraph":1200,"codeGraph":900,"triggered":400,"overflow":800}` | JSON string (partial merge) | Budget-allocator floor overrides.  Provide a JSON object with any subset of keys; missing keys retain their default values. | `.opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts` |
 | `SPECKIT_CODE_GRAPH_EDGE_WEIGHTS_JSON` | `{"CONTAINS":1.0,"IMPORTS":1.0,"EXPORTS":1.0,"EXTENDS":0.95,"IMPLEMENTS":0.95,"DECORATES":0.9,"OVERRIDES":0.9,"TYPE_OF":0.85,"CALLS":0.8,"TESTED_BY":0.6}` | JSON string (partial merge) | Edge-weight overrides for the structural indexer.  Provide a JSON object with any subset of edge-type keys. | `.opencode/skills/system-code-graph/mcp_server/lib/config-defaults.ts` |
 | `SPECKIT_CODE_GRAPH_SELECTIVE_REINDEX_THRESHOLD` | `50` | number (positive int) | Maximum stale files before the launcher switches from selective rescan (fast, incremental) to full scan (slow, complete). Raise to reduce session-boot latency at the cost of letting more drift accumulate before each full pass. Lower to keep the graph tighter at the cost of more frequent full-scans. | `.opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts` |
 | `SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD` | `100` | number (positive int) | File-count threshold above which the advisory `post-commit` git hook (`.opencode/scripts/git-hooks/post-commit`) invalidates the code-graph SQLite + lease files. Forces the next Claude Code session to run an inline full scan at launcher boot, preventing accumulated drift. Only effective when the hook is installed via `bash .opencode/scripts/install-git-hooks.sh`. | `.opencode/scripts/git-hooks/post-commit` |

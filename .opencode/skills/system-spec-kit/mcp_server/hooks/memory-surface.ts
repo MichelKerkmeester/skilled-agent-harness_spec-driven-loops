@@ -2,7 +2,6 @@
 // MODULE: Memory Surface
 // ───────────────────────────────────────────────────────────────
 // Lib modules
-import { isCocoIndexAvailable } from '../lib/utils/cocoindex-path.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
 import { enrichWithRetrievalDirectives } from '../lib/search/retrieval-directives.js';
@@ -70,7 +69,6 @@ interface PrimePackage {
   specFolder: string | null;
   currentTask: string | null;
   codeGraphStatus: 'fresh' | 'stale' | 'empty';
-  cocoIndexAvailable: boolean;
   recommendedCalls: string[];
   /** Phase 027: Structural bootstrap contract for non-hook runtimes */
   structuralContext?: StructuralBootstrapContract;
@@ -425,9 +423,6 @@ function buildPrimePackage(
     }
   }
 
-  // F046: CocoIndex availability via shared helper (no process.cwd())
-  const cocoIndexAvailable = isCocoIndexAvailable();
-
   // Build recommended calls based on state
   const recommendedCalls: string[] = [];
   if (codeGraphStatus === 'stale' || codeGraphStatus === 'empty') {
@@ -436,14 +431,11 @@ function buildPrimePackage(
   if (!specFolder) {
     recommendedCalls.push('memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })');
   }
-  if (cocoIndexAvailable && recommendedCalls.length === 0) {
+  if (recommendedCalls.length === 0) {
     recommendedCalls.push('memory_match_triggers({ prompt: "<your task>" })');
   }
 
   const toolRoutingRules: string[] = [];
-  if (cocoIndexAvailable) {
-    toolRoutingRules.push('semantic/concept queries → mcp__cocoindex_code__search');
-  }
   if (codeGraphStatus !== 'empty') {
     toolRoutingRules.push('structural queries (callers, deps) → code_graph_query');
   }
@@ -453,7 +445,7 @@ function buildPrimePackage(
   const structuralContext = buildStructuralBootstrapContract('auto-prime');
 
   return {
-    specFolder, currentTask, codeGraphStatus, cocoIndexAvailable, recommendedCalls,
+    specFolder, currentTask, codeGraphStatus, recommendedCalls,
     structuralContext,
     routingRules: {
       graphRetrieval: 'For broad topic questions, use memory_search with retrievalLevel: "global" for community-level results. For specific memories, use "local" (default). Use "auto" for automatic fallback.',

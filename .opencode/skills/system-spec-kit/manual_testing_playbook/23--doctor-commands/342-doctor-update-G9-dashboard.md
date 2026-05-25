@@ -19,7 +19,7 @@ The dashboard is the operator's decision surface. If it omits a subsystem or dro
 - Playbook ID: DOC-342.
 - Real user request: `Run /doctor:update and verify the cross-subsystem dashboard renders all 7 subsystems with status + age + recommended action.`
 - Prompt: `Run /doctor:update and verify the cross-subsystem dashboard renders all 7 subsystems with status + age + recommended action.`
-- Preconditions: All dashboard subsystems are present and probeable with varied states across code-graph, context-index, causal-edges, skill-graph, deep-loop-graph, cocoindex, and eval.
+- Preconditions: All dashboard subsystems are present and probeable with varied states across code-graph, context-index, causal-edges, skill-graph, deep-loop-graph, code_graph, and eval.
 - Expected execution process: Run `/doctor:update`, capture the dashboard before or during action selection, count rows, and verify each row includes status, age, and recommended action.
 - Expected signals: exactly seven dashboard rows with statuses such as `FRESH`, `DEGRADED`, `STALE`, or `MISSING`; each row includes `last_indexed_at` age or equivalent age value plus recommended action.
 - Desired user-visible outcome: A dashboard verdict proving every subsystem is visible and actionable.
@@ -42,7 +42,7 @@ Run /doctor:update and verify the cross-subsystem dashboard renders all 7 subsys
 2. Seed or select varied health states across the subsystems where practical.
 3. Run `/doctor:update` through the real runtime.
 4. Capture the `Cross-Subsystem Health Dashboard` output.
-5. Count dashboard rows for code-graph, context-index, causal-edges, skill-graph, deep-loop-graph, cocoindex, and eval.
+5. Count dashboard rows for code-graph, context-index, causal-edges, skill-graph, deep-loop-graph, code_graph, and eval.
 6. Verify every row includes status, age or `last_indexed_at` equivalent, and recommended action.
 7. Capture `.doctor-update.last-run.json` for any actions taken after the dashboard.
 
@@ -85,7 +85,7 @@ If row count is wrong, inspect `doctor_update.yaml` Phase 4 dashboard rows and c
 - Feature name: Doctor update G9 dashboard
 - Command mode: `/doctor:update`
 - YAML asset: `doctor_update.yaml`
-- Dashboard rows: code-graph, context-index, causal-edges, skill-graph, deep-loop-graph, cocoindex, eval
+- Dashboard rows: code-graph, context-index, causal-edges, skill-graph, deep-loop-graph, code_graph, eval
 - Runtime policy: Real dashboard output only.
 - Destructive: Potentially, if the interactive flow follows dashboard recommendations; use disposable workspace.
 - Feature file path: `23--doctor-commands/342-doctor-update-G9-dashboard.md`

@@ -21,7 +21,7 @@ describe('trigger-phrase sanitizer', () => {
   });
 
   it('rejects suspicious prefixes without blocking standalone domain nouns', () => {
-    expect(sanitizeTriggerPhrase('phase 7 cocoindex')).toEqual({ keep: false, reason: 'suspicious_prefix' });
+    expect(sanitizeTriggerPhrase('phase 7 search')).toEqual({ keep: false, reason: 'suspicious_prefix' });
     expect(sanitizeTriggerPhrase('f21 arithmetic inconsistency')).toEqual({ keep: false, reason: 'suspicious_prefix' });
     expect(sanitizeTriggerPhrase('iteration 15 filter list')).toEqual({ keep: false, reason: 'suspicious_prefix' });
     expect(sanitizeTriggerPhrase('phase')).toEqual({ keep: true });

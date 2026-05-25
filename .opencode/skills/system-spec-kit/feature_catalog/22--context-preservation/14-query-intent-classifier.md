@@ -1,15 +1,15 @@
 ---
 title: "Query-intent classifier"
-description: "Heuristic pre-classifier that routes queries to the optimal retrieval backend: structural (code graph), semantic (CocoIndex), or hybrid (both)."
+description: "Heuristic pre-classifier that routes queries to the optimal retrieval backend: structural (code graph), semantic (Code Graph), or hybrid (both)."
 ---
 
 # Query-intent classifier
 
 ## 1. OVERVIEW
 
-Heuristic pre-classifier that routes queries to the optimal retrieval backend: structural (code graph), semantic (CocoIndex), or hybrid (both).
+Heuristic pre-classifier that routes queries to the optimal retrieval backend: structural (code graph), semantic (Code Graph), or hybrid (both).
 
-Keyword-dictionary scoring classifies queries into three intents: structural (symbol/relationship queries routed to code graph), semantic (conceptual/discovery queries routed to CocoIndex), and hybrid (mixed queries that merge results from both). Confidence scores and matched keywords are returned alongside the intent classification. Integrated into memory_context handler for automatic query-intent routing.
+Keyword-dictionary scoring classifies queries into three intents: structural (symbol/relationship queries routed to code graph), semantic (conceptual/discovery queries routed to Code Graph), and hybrid (mixed queries that merge results from both). Confidence scores and matched keywords are returned alongside the intent classification. Integrated into memory_context handler for automatic query-intent routing.
 
 ---
 

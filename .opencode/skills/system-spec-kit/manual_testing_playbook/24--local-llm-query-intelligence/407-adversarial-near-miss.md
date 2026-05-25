@@ -17,7 +17,7 @@ If BGE local fallback's semantic representation is functioning correctly, it pul
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm semantic > lexical when they disagree.
-- Real user request: `Verify CocoIndex's semantic ranking beats lexical decoys: fire 3 adversarial queries and confirm the semantically-correct file ranks above the lexical decoy in each top-5.`
+- Real user request: `Verify Code Graph's semantic ranking beats lexical decoys: fire 3 adversarial queries and confirm the semantically-correct file ranks above the lexical decoy in each top-5.`
 - RCAF Prompt: `As a query-intelligence validation operator, fire 3 adversarial queries with intentional lexical decoys and verify the semantically-correct file outranks the decoy in each top-5. Return a pass/fail verdict.`
 - Expected execution process: run 3 queries with engineered lexical+semantic mismatch, identify the correct file and the decoy in each result list, check ranks.
 - Expected signals: correct file rank < decoy rank in ≥ 2 of 3 queries.
@@ -41,7 +41,7 @@ Lexical decoy: `embedding-circuit-breaker.vitest.ts` (high term overlap with "em
 Semantic target: `mcp_server/lib/cache/embedding-cache.ts` (the actual cache impl)
 
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "where are embedding results cached by content hash to skip recomputation",
   num_results: 10,
 })
@@ -54,7 +54,7 @@ Lexical decoy: `vector-index-impl.vitest.ts` (test file)
 Semantic target: `mcp_server/lib/search/vector-index-store.ts` (the impl)
 
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "core class that opens the sqlite-vec virtual table for runtime vector queries",
   num_results: 10,
 })
@@ -67,7 +67,7 @@ Lexical decoy: `embeddings-ollama-factory.vitest.ts` (test file)
 Semantic target: `shared/embeddings/factory.ts` (the impl)
 
 ```
-mcp__cocoindex_code__search({
+mcp__mk_code_index__code_graph_query({
   query: "primary entry point that constructs concrete embedding provider instances and resolves auto cascade",
   num_results: 10,
 })

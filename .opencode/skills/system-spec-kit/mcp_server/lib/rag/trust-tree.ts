@@ -8,7 +8,7 @@ type TrustTreeDecision = 'trusted' | 'mixed' | 'degraded' | 'unavailable';
 type CausalRelation = 'supports' | 'supersedes' | 'contradicts';
 
 interface TrustSignal {
-  source: 'memory.responsePolicy' | 'code_graph.readiness' | 'advisor.trustState' | 'cocoindex' | 'causal';
+  source: 'memory.responsePolicy' | 'code_graph.readiness' | 'advisor.trustState' | 'causal';
   state: TrustSignalState;
   summary: string;
   citations: string[];
@@ -37,12 +37,6 @@ interface BuildTrustTreeInput {
     trustState?: TrustSignalState | string;
     citations?: readonly string[];
   };
-  cocoIndex?: {
-    available?: boolean;
-    pathClass?: string;
-    rawScore?: number;
-    citations?: readonly string[];
-  };
   causal?: {
     edges?: readonly CausalTrustEdge[];
     citations?: readonly string[];
@@ -68,7 +62,6 @@ function buildTrustTree(input: BuildTrustTreeInput): TrustTree {
     responsePolicySignal(input.responsePolicy),
     codeGraphSignal(input.codeGraph),
     advisorSignal(input.advisor),
-    cocoIndexSignal(input.cocoIndex),
     causalSignal(causalEdges, input.causal?.citations),
   ];
   const hasContradiction = causalEdges.some((edge) => edge.relation === 'contradicts');
@@ -133,16 +126,6 @@ function advisorSignal(input: BuildTrustTreeInput['advisor']): TrustSignal {
     input.citations,
     input,
   );
-}
-
-function cocoIndexSignal(input: BuildTrustTreeInput['cocoIndex']): TrustSignal {
-  if (!input) {
-    return signal('cocoindex', 'absent', 'No CocoIndex signal supplied');
-  }
-  const state = input.available === false ? 'unavailable' : 'live';
-  const score = typeof input.rawScore === 'number' ? ` rawScore=${round(input.rawScore)}` : '';
-  const pathClass = input.pathClass ? ` pathClass=${input.pathClass}` : '';
-  return signal('cocoindex', state, `CocoIndex signal present.${pathClass}${score}`, input.citations, input);
 }
 
 function causalSignal(edges: readonly CausalTrustEdge[], citations: readonly string[] = []): TrustSignal {
@@ -244,10 +227,6 @@ function buildReasons(args: {
 
 function uniqueStrings(values: readonly string[]): string[] {
   return [...new Set(values.filter((value) => value.length > 0))];
-}
-
-function round(value: number): number {
-  return Math.round(value * 1000) / 1000;
 }
 
 export {

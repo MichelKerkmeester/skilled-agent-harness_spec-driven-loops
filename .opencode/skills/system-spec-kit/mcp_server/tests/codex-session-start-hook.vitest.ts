@@ -25,7 +25,6 @@ async function runHook(input: CodexSessionStartInput) {
         '',
         '- Memory: startup summary only (resume on demand)',
         '- Code Graph: files=12 nodes=34 edges=56 freshness=live',
-        '- CocoIndex: available',
       ].join('\n'),
     },
     {
@@ -62,7 +61,6 @@ describe('Codex SessionStart startup-context hook', () => {
           '',
           '- Memory: startup summary only (resume on demand)',
           '- Code Graph: files=12 nodes=34 edges=56 freshness=live',
-          '- CocoIndex: available',
           '',
           '## Startup Payload Contract',
           '{',

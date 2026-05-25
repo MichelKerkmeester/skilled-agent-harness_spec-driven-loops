@@ -26,10 +26,6 @@ vi.mock('../lib/session/context-metrics.js', () => ({
   getLastToolCallAt: vi.fn(() => null),
 }));
 
-vi.mock('../lib/utils/cocoindex-path.js', () => ({
-  isCocoIndexAvailable: vi.fn(() => false),
-}));
-
 import { buildStructuralBootstrapContract } from '../lib/session/session-snapshot.js';
 
 function graphStats(overrides: Partial<CodeGraphStatsSnapshot> = {}): CodeGraphStatsSnapshot {

@@ -133,7 +133,7 @@ function parseToolData(response: { content: Array<{ text: string }> }): Record<s
 }
 
 function countRecoveryPasses(data: Record<string, unknown>): number {
-  const baseCount = countPresentFields(data, ['memory', 'codeGraph', 'cocoIndex', 'structuralContext']);
+  const baseCount = countPresentFields(data, ['memory', 'codeGraph', 'structuralContext']);
   return baseCount + (data.cachedSummary && typeof data.cachedSummary === 'object' && (data.cachedSummary as { status?: string }).status === 'accepted' ? 1 : 0);
 }
 
@@ -263,16 +263,15 @@ describe('cached SessionStart consumer corpus', () => {
     const liveBaseline = {
       memory: { resumed: true },
       codeGraph: { status: 'fresh' },
-      cocoIndex: { available: true },
       structuralContext: { status: 'ready' },
     };
     const additiveResult = applyCachedSummaryAdditively(liveBaseline, decision);
-    const requiredFields = ['memory', 'codeGraph', 'cocoIndex', 'structuralContext', 'cachedSummary'] as const;
+    const requiredFields = ['memory', 'codeGraph', 'structuralContext', 'cachedSummary'] as const;
 
     const baselineScore = countPresentFields(liveBaseline, requiredFields);
     const additiveScore = countPresentFields(additiveResult, requiredFields);
 
-    expect(baselineScore).toBe(4);
+    expect(baselineScore).toBe(3);
     expect(additiveScore).toBeGreaterThanOrEqual(baselineScore);
     expect(additiveResult.cachedSummary?.continuityText).toContain('Last session worked on');
     expect(additiveResult.cachedSummary?.summaryText).toContain('packet 012');
@@ -295,10 +294,6 @@ describe('cached SessionStart consumer corpus', () => {
         totalEdges: 17,
         totalFiles: 9,
       })),
-    }));
-
-    vi.doMock('../../mcp_server/lib/utils/cocoindex-path.js', () => ({
-      isCocoIndexAvailable: vi.fn(() => true),
     }));
 
     vi.doMock('../../mcp_server/lib/session/context-metrics.js', () => ({
@@ -332,13 +327,11 @@ describe('cached SessionStart consumer corpus', () => {
         sessionContinuity: null,
         graphSummary: { files: 9, nodes: 42, edges: 17, lastScan: '2026-04-08T12:00:00.000Z' },
         graphState: 'ready',
-        cocoIndexAvailable: true,
         startupSurface: [
           'Session context received. Current state:',
           '',
           '- Memory: startup summary only (resume on demand)',
           '- Code Graph: ready',
-          '- CocoIndex: available',
           '',
           'What would you like to work on?',
         ].join('\n'),
