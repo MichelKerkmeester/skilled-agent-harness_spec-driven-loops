@@ -47,7 +47,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review graphEvents records and confirm the coverage-graph reducer ingests them under loop_type=review.
 ### Commands
-1. `bash: rg -n 'graphEvents|review iteration records|graph-aware review convergence' .opencode/skills/deep-review/references/convergence.md`
+1. `bash: rg -n 'graphEvents|review iteration records|graph-aware review convergence' .opencode/skills/deep-review/references/convergence/convergence.md`
 2. `bash: rg -n "LoopType|loop_type.*review|coverage_nodes|coverage_edges" .opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts`
 3. `bash: rg -n 'graphEvents|loop_type|review' .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts`
 ### Expected
@@ -72,7 +72,7 @@ Privilege the convergence reference for the contract, the `coverage-graph-db.ts`
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/convergence.md` | Graph-aware review convergence contract, documents `graphEvents` as iteration-record input |
+| `.opencode/skills/deep-review/references/convergence/convergence.md` | Graph-aware review convergence contract, documents `graphEvents` as iteration-record input |
 | `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts` | Active coverage-graph reducer source, defines `LoopType = 'research' \| 'review'` and persists nodes/edges keyed by `(spec_folder, loop_type, session_id, iteration)` |
 | `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts` | Live convergence tests with JSONL-shaped graph events exercising the review loop_type path |
 

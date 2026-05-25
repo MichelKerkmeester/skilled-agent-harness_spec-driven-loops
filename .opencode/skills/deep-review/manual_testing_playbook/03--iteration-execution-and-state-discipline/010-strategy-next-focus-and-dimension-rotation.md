@@ -46,7 +46,7 @@ Validate deep-review dimension rotation through strategy Next Focus and skipped 
 ### Commands
 1. `bash: rg -n 'next_dimension|next_focus|dimensions_covered|dimension_queue|Next Focus' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 2. `bash: rg -n 'Next Focus|dimension.*rotation|dimension.*coverage|exhausted' .opencode/skills/deep-review/assets/deep_review_strategy.md`
-3. `bash: rg -n 'Dimension Coverage|dimensions.*covered|minStabilization' .opencode/skills/deep-review/references/quick_reference.md`
+3. `bash: rg -n 'Dimension Coverage|dimensions.*covered|minStabilization' .opencode/skills/deep-review/references/protocol/quick_reference.md`
 ### Expected
 The read-state step extracts the next uncovered dimension. The dispatch step injects it as the focus. The strategy template has a "Next Focus" section. Convergence requires all dimensions covered.
 ### Evidence
@@ -72,8 +72,8 @@ Check the strategy template for explicit dimension tracking sections and verify 
 |---|---|
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Loop dimension extraction and dispatch, inspect `step_read_state` and `step_dispatch_review_agent` |
 | `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Strategy template, inspect "Next Focus" and dimension tracking sections |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Convergence signals, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
-| `.opencode/skills/deep-review/references/convergence.md` | Shared convergence algorithm, inspect dimension coverage signal |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | Convergence signals, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
+| `.opencode/skills/deep-review/references/convergence/convergence.md` | Shared convergence algorithm, inspect dimension coverage signal |
 
 ---
 

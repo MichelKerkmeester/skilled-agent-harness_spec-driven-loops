@@ -103,7 +103,7 @@ Serves as the "persistent brain" for a deep research session. Records what to in
 - Machine-owned sections: reducer controls Sections 3, 6, 7-11
 - Canonical pause sentinel: `research/.deep-research-pause`
 - Capability matrix: `.opencode/skills/deep-research/assets/runtime_capabilities.json`
-- Capability matrix doc: `.opencode/skills/deep-research/references/capability_matrix.md`
+- Capability matrix doc: `.opencode/skills/deep-research/references/guides/capability_matrix.md`
 - Capability resolver: `.opencode/skills/deep-research/scripts/runtime-capabilities.cjs`
 - Current generation: [from config.lineage.generation]
 - Started: [timestamp]

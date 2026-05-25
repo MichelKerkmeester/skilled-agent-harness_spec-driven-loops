@@ -15,7 +15,7 @@ This scenario validates that `runtime convergence CLI` provides a safety guarant
 
 ### Why This Matters
 
-The two-of-three convergence rule is documented in `references/convergence_signals.md` and is the no-graph baseline for stop decisions. But "2 of 3 agree" can mask unresolved critical issues: seats A and B may both endorse Plan X while seat C's unresolved security concern about Plan X gets lost. Without graph: convergence triggers and the issue ships. With graph: `unresolvedCriticalDisagreements` is a hard `STOP_BLOCKED` signal — graph prevents premature convergence.
+The two-of-three convergence rule is documented in `references/convergence/convergence_signals.md` and is the no-graph baseline for stop decisions. But "2 of 3 agree" can mask unresolved critical issues: seats A and B may both endorse Plan X while seat C's unresolved security concern about Plan X gets lost. Without graph: convergence triggers and the issue ships. With graph: `unresolvedCriticalDisagreements` is a hard `STOP_BLOCKED` signal — graph prevents premature convergence.
 
 > **Automated test anchor:** `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-029 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json`.
 
@@ -54,7 +54,7 @@ Operators run the exact prompt and command sequence for `DAC-029` and confirm th
 **No-graph baseline:**
 
 1. `bash: rg "Seat (A|B|C).*Plan X|endorses|dissent|disagree" <spec-folder>*.md` (operator tallies seat positions)
-2. Operator applies documented two-of-three rule from `references/convergence_signals.md` → records "would converge" conclusion.
+2. Operator applies documented two-of-three rule from `references/convergence/convergence_signals.md` → records "would converge" conclusion.
 
 **With-graph:**
 
@@ -101,7 +101,7 @@ If graph returns `STOP_ALLOWED`, inspect `scripts/convergence.cjs` for the `unre
 | `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Three-state decision logic |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | `unresolvedCriticalDisagreements` calculator |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | "blocks convergence for empty derived graphs instead of returning false-safe success" + STOP_BLOCKED branch test |
-| `.opencode/skills/deep-ai-council/references/convergence_signals.md` | Documents the baseline two-of-three rule |
+| `.opencode/skills/deep-ai-council/references/convergence/convergence_signals.md` | Documents the baseline two-of-three rule |
 
 ---
 

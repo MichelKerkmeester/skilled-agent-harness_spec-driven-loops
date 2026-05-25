@@ -44,7 +44,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate progressive synthesis updates research/research.md during the loop while final synthesis still owns completion.
 ### Commands
-1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .opencode/skills/deep-research/README.md .opencode/skills/deep-research/references/state_format.md .opencode/skills/deep-research/SKILL.md`
+1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .opencode/skills/deep-research/README.md .opencode/skills/deep-research/references/state/state_format.md .opencode/skills/deep-research/SKILL.md`
 2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .codex/agents/deep-research.toml`
 3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 ### Expected
@@ -71,7 +71,7 @@ Use the runtime agent’s Step 7 and the README configuration table to resolve t
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-research/README.md` | Progressive synthesis defaults and state-file table; use `ANCHOR:overview` and `ANCHOR:configuration` |
-| `.opencode/skills/deep-research/references/state_format.md` | Canonical ownership wording; use `ANCHOR:overview` and `ANCHOR:config-file` |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Canonical ownership wording; use `ANCHOR:overview` and `ANCHOR:config-file` |
 | `.opencode/skills/deep-research/SKILL.md` | Rule-level ownership statement; use `ANCHOR:rules` |
 | `.codex/agents/deep-research.toml` | Runtime progressive update rules; inspect `Step 7: Update Research` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Synthesis and save workflow |

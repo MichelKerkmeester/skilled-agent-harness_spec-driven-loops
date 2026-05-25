@@ -44,8 +44,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate each deep-research iteration writes iteration files, appends JSONL, and refreshes reducer-owned strategy artifacts.
 ### Commands
-1. `bash: rg -n 'iteration-{NNN}|Verify JSONL was appended|reducer refreshed' .opencode/skills/deep-research/references/loop_protocol.md`
-2. `bash: rg -n 'iteration-NNN|deep-research-state.jsonl|findings-registry.json|Reducer Contract' .opencode/skills/deep-research/references/state_format.md .codex/agents/deep-research.toml`
+1. `bash: rg -n 'iteration-{NNN}|Verify JSONL was appended|reducer refreshed' .opencode/skills/deep-research/references/protocol/loop_protocol.md`
+2. `bash: rg -n 'iteration-NNN|deep-research-state.jsonl|findings-registry.json|Reducer Contract' .opencode/skills/deep-research/references/state/state_format.md .codex/agents/deep-research.toml`
 3. `bash: rg -n 'step_reduce_state|reduce-state.cjs|findings-registry.json|deep-research-dashboard.md' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 ### Expected
 Iteration file creation, JSONL append, and reducer refresh are all mandatory parts of the loop, not optional side effects.
@@ -70,8 +70,8 @@ Use the reducer script and runtime agent write contract as the lower-level sourc
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Evaluation and write-back checks; use `ANCHOR:phase-iteration-loop` |
-| `.opencode/skills/deep-research/references/state_format.md` | Schema expectations for JSONL and strategy; use `ANCHOR:state-log` and `ANCHOR:strategy-file` |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Evaluation and write-back checks; use `ANCHOR:phase-iteration-loop` |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Schema expectations for JSONL and strategy; use `ANCHOR:state-log` and `ANCHOR:strategy-file` |
 | `.codex/agents/deep-research.toml` | Iteration write sequence; inspect `Step 4`, `Step 5`, and `Step 6` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow verification after dispatch |
 | `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow verification after dispatch |

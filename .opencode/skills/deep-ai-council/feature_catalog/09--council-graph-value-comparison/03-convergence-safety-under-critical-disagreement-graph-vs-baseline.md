@@ -9,7 +9,7 @@ description: "Demonstrate the graph provides a safety guarantee (block on unreso
 
 Demonstrate the graph provides a safety guarantee (block on unresolved critical) that the two-of-three baseline does not.
 
-The two-of-three convergence rule is documented in references/convergence_signals.md and is the no-graph baseline for stop decisions.
+The two-of-three convergence rule is documented in references/convergence/convergence_signals.md and is the no-graph baseline for stop decisions.
 
 Operators use this feature when the real request is: This council looks like it has 2 of 3 agreement on Plan X -- can we stop, or is something blocking?
 
@@ -33,7 +33,7 @@ The user-visible contract is concrete: Demonstrate the graph provides a safety g
 |------|-------|------|
 | `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Handler | Three-state decision logic |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Library | `unresolvedCriticalDisagreements` calculator |
-| `.opencode/skills/deep-ai-council/references/convergence_signals.md` | Reference | Documents the baseline two-of-three rule |
+| `.opencode/skills/deep-ai-council/references/convergence/convergence_signals.md` | Reference | Documents the baseline two-of-three rule |
 
 ### Validation And Tests
 

@@ -44,9 +44,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the deep-review pause sentinel and report whether the loop halts before synthesis.
 ### Commands
-1. `bash: rg -n '.deep-review-pause|paused|Delete.*pause|review/.deep-review-pause' .opencode/skills/deep-review/references/loop_protocol.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md`
+1. `bash: rg -n '.deep-review-pause|paused|Delete.*pause|review/.deep-review-pause' .opencode/skills/deep-review/references/protocol/loop_protocol.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md`
 2. `bash: rg -n 'step_check_pause_sentinel|paused|halt.*true|review/.deep-review-pause|pause.*sentinel' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
-3. `bash: rg -n 'pause|sentinel|review/.deep-review-pause|Pause' .opencode/skills/deep-review/references/quick_reference.md .opencode/commands/deep/start-review-loop.md`
+3. `bash: rg -n 'pause|sentinel|review/.deep-review-pause|Pause' .opencode/skills/deep-review/references/protocol/quick_reference.md .opencode/commands/deep/start-review-loop.md`
 ### Expected
 The sentinel is checked before dispatch, a paused event is logged to JSONL, the loop halts rather than flowing into synthesis, and the sentinel location is `review/.deep-review-pause`.
 ### Evidence
@@ -70,11 +70,11 @@ Use the loop protocol pause subsection as the canonical flow and verify both rev
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/loop_protocol.md` | Pause sentinel contract, use the pause-handling subsection |
+| `.opencode/skills/deep-review/references/protocol/loop_protocol.md` | Pause sentinel contract, use the pause-handling subsection |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Pause check step, inspect `step_check_pause_sentinel` |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Pause check step, inspect `step_check_pause_sentinel` |
 | `.opencode/commands/deep/start-review-loop.md` | Command entrypoint, review-specific pause documentation |
-| `.opencode/skills/deep-review/references/quick_reference.md` | State files showing pause sentinel location, use `ANCHOR:state-files` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | State files showing pause sentinel location, use `ANCHOR:state-files` |
 | `.opencode/skills/deep-review/SKILL.md` | Rule-level context, use `ANCHOR:rules` |
 | `.opencode/skills/deep-review/README.md` | User-facing pause FAQ |
 

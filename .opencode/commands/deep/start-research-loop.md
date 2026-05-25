@@ -35,7 +35,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_conte
 > **Canonical mode syntax:** use attached command suffixes (`/deep:start-research-loop:auto`, `/deep:start-research-loop:confirm`) and keep AGENTS, skills, and quick references synchronized to this entrypoint.
 
 > **Note:** Late-INIT `spec.md` detection and bounded `spec.md` mutations follow
-> `.opencode/skills/deep-research/references/spec_check_protocol.md`.
+> `.opencode/skills/deep-research/references/protocol/spec_check_protocol.md`.
 > Acquire `{spec_folder}/research/.deep-research.lock` before `folder_state` classification and keep `research/research.md` as the source of truth for any generated findings sync.
 > Targeted strict validation after deep-research spec mutations uses the Node validation orchestrator; the current strict path is designed for fast packet checks and was measured at about 108ms for a fresh Level 3 packet on the local harness.
 
@@ -328,11 +328,11 @@ STATUS=FAIL ERROR="[message]"
 Full protocol documentation: `.opencode/skills/deep-research/SKILL.md`
 
 Key references:
-- Loop protocol: `deep-research/references/loop_protocol.md`
-- Spec check protocol: `deep-research/references/spec_check_protocol.md`
-- State formats: `deep-research/references/state_format.md`
-- Convergence: `deep-research/references/convergence.md`
-- Quick reference: `deep-research/references/quick_reference.md`
+- Loop protocol: `deep-research/references/protocol/loop_protocol.md`
+- Spec check protocol: `deep-research/references/protocol/spec_check_protocol.md`
+- State formats: `deep-research/references/state/state_format.md`
+- Convergence: `deep-research/references/convergence/convergence.md`
+- Quick reference: `deep-research/references/guides/quick_reference.md`
 
 For code review, see `deep-review` skill (`.opencode/skills/deep-review/SKILL.md`).
 
@@ -404,4 +404,4 @@ Convergence thresholds and recovery settings used by this command are a governed
 **References:**
 - Optimizer configuration: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json`
 - Tunable thresholds: `convergenceThreshold`, `stuckThreshold`, `maxIterations`
-- Convergence reference: `.opencode/skills/deep-research/references/convergence.md`
+- Convergence reference: `.opencode/skills/deep-research/references/convergence/convergence.md`

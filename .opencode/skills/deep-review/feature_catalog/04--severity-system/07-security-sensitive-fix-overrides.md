@@ -25,7 +25,7 @@ The target contract applies to reruns after fixes involving security, path discl
 
 | File | Layer | Role |
 |---|---|---|
-| `references/convergence.md` | Protocol | Security-Sensitive Fix Overrides section, marked SPEC ONLY, with the override matrix and replay requirement. |
+| `references/convergence/convergence.md` | Protocol | Security-Sensitive Fix Overrides section, marked SPEC ONLY, with the override matrix and replay requirement. |
 | `feature_catalog/04--severity-system/05-quality-gates.md` | Catalog | `fixCompletenessReplayGate` is the legal-stop gate that would enforce this contract once shipped. |
 
 ### Validation And Tests
@@ -41,5 +41,5 @@ The target contract applies to reruns after fixes involving security, path discl
 - Group: Severity system
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `04--severity-system/07-security-sensitive-fix-overrides.md`
-- Primary sources: `references/convergence.md`
+- Primary sources: `references/convergence/convergence.md`
 - Status: SPEC ONLY (not yet runtime-enforced)

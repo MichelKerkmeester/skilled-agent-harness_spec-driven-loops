@@ -614,10 +614,10 @@ No dedicated automated test suite currently exists for `deep-review`. This playb
 - `Agent (OpenCode)`: `.opencode/agents/deep-review.md`
 - `Agent (Claude)`: `.claude/agents/deep-review.md`
 - `Review Contract`: `.opencode/skills/deep-review/assets/review_mode_contract.yaml`
-- `Loop Protocol`: `.opencode/skills/deep-review/references/loop_protocol.md`
-- `Convergence`: `.opencode/skills/deep-review/references/convergence.md`
-- `State Format`: `.opencode/skills/deep-review/references/state_format.md`
-- `Quick Reference`: `.opencode/skills/deep-review/references/quick_reference.md`
+- `Loop Protocol`: `.opencode/skills/deep-review/references/protocol/loop_protocol.md`
+- `Convergence`: `.opencode/skills/deep-review/references/convergence/convergence.md`
+- `State Format`: `.opencode/skills/deep-review/references/state/state_format.md`
+- `Quick Reference`: `.opencode/skills/deep-review/references/protocol/quick_reference.md`
 
 ---
 

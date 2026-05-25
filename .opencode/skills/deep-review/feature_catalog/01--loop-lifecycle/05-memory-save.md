@@ -25,7 +25,7 @@ If the save step fails, the current `review/` packet remains the ground truth. T
 
 | File | Layer | Role |
 |---|---|---|
-| `references/loop_protocol.md` | Protocol | Defines the save phase, supported script boundary, and failure behavior. |
+| `references/protocol/loop_protocol.md` | Protocol | Defines the save phase, supported script boundary, and failure behavior. |
 | `SKILL.md` | Skill contract | Requires `generate-context.js` for continuity saves and marks save as a post-loop phase. |
 | `assets/review_mode_contract.yaml` | Contract | Supplies the canonical packet outputs that must remain intact regardless of save result. |
 
@@ -43,4 +43,4 @@ If the save step fails, the current `review/` packet remains the ground truth. T
 - Group: Loop lifecycle
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `01--loop-lifecycle/05-memory-save.md`
-- Primary sources: `references/loop_protocol.md`, `SKILL.md`, `assets/review_mode_contract.yaml`
+- Primary sources: `references/protocol/loop_protocol.md`, `SKILL.md`, `assets/review_mode_contract.yaml`

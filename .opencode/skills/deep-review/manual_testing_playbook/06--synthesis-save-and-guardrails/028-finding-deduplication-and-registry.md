@@ -46,7 +46,7 @@ Validate deep-review finding deduplication and confirm the active registry prese
 ### Commands
 1. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|Active Finding Registry|unique.*finding|merge.*finding|duplicate' .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md`
 2. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|active_finding|merge|duplicate|unique' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
-3. `bash: rg -n 'Active Finding Registry|Dedup|finalSeverity|finding.*registry|finding.*evidence|unique.*finding' .opencode/skills/deep-review/references/quick_reference.md .opencode/commands/deep/start-review-loop.md .opencode/skills/deep-review/assets/deep_review_strategy.md`
+3. `bash: rg -n 'Active Finding Registry|Dedup|finalSeverity|finding.*registry|finding.*evidence|unique.*finding' .opencode/skills/deep-review/references/protocol/quick_reference.md .opencode/commands/deep/start-review-loop.md .opencode/skills/deep-review/assets/deep_review_strategy.md`
 ### Expected
 Findings compared across iterations, `finalSeverity` is highest severity encountered, Active Finding Registry has unique entries, P0 never downgraded, evidence included.
 ### Evidence
@@ -75,7 +75,7 @@ Privilege the SKILL.md rules for deduplication logic and the quick reference for
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Synthesis step with deduplication logic |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Synthesis step with deduplication logic |
 | `.opencode/commands/deep/start-review-loop.md` | Command entrypoint, output format and synthesis documentation |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Active Finding Registry section definition, use `ANCHOR:review-report-sections` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | Active Finding Registry section definition, use `ANCHOR:review-report-sections` |
 | `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Strategy template with findings tracking |
 
 ---

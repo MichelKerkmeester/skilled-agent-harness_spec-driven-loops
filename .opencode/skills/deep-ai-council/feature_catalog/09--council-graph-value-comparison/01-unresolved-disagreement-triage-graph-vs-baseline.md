@@ -33,7 +33,7 @@ The user-visible contract is concrete: Demonstrate measurable effort reduction b
 |------|-------|------|
 | `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | Handler | runtime CLI script for `runtime query CLI` |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Library | `getUnresolvedDisagreements` helper |
-| `.opencode/skills/deep-ai-council/references/graph_support.md 3` | Reference | Documents the RESOLVES edge contract |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md 3` | Reference | Documents the RESOLVES edge contract |
 
 ### Validation And Tests
 

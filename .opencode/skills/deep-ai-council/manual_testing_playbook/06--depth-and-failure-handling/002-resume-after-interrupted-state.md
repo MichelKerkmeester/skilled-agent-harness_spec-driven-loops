@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `DAC-018` and confirm th
 
 ### Commands
 
-1. `bash: rg -n "RESUME SEMANTICS|round_start.*without|deliberation_synthesized.*missing" .opencode/skills/deep-ai-council/references/state_format.md`
+1. `bash: rg -n "RESUME SEMANTICS|round_start.*without|deliberation_synthesized.*missing" .opencode/skills/deep-ai-council/references/structure/state_format.md`
 
 ### Expected
 
@@ -68,7 +68,7 @@ Update `state_format.md` from agent §13 resume semantics, then rerun the grep c
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-018 | Resume interrupted state | Verify resume from last JSONL event | `Resume an interrupted council run from the last completed JSONL event and continue toward council_complete.` | `bash: rg -n "RESUME SEMANTICS\|round_start.*without\|deliberation_synthesized.*missing" .opencode/skills/deep-ai-council/references/state_format.md` | Resume semantics mention partial round and missing synthesis cases | Grep output | PASS if all resume cases are documented | Update state reference from agent source |
+| DAC-018 | Resume interrupted state | Verify resume from last JSONL event | `Resume an interrupted council run from the last completed JSONL event and continue toward council_complete.` | `bash: rg -n "RESUME SEMANTICS\|round_start.*without\|deliberation_synthesized.*missing" .opencode/skills/deep-ai-council/references/structure/state_format.md` | Resume semantics mention partial round and missing synthesis cases | Grep output | PASS if all resume cases are documented | Update state reference from agent source |
 
 ---
 
@@ -85,7 +85,7 @@ Update `state_format.md` from agent §13 resume semantics, then rerun the grep c
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-ai-council/references/state_format.md` | Resume semantics reference |
+| `.opencode/skills/deep-ai-council/references/structure/state_format.md` | Resume semantics reference |
 | `.opencode/agents/ai-council.md` | Authoritative invocation and resume contract |
 
 ---

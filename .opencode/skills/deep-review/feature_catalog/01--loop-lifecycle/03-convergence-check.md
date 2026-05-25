@@ -25,9 +25,9 @@ Even when the weighted vote requests STOP, the loop still has to pass the review
 
 | File | Layer | Role |
 |---|---|---|
-| `references/convergence.md` | Protocol | Defines hard stops, stuck detection, composite vote, legal-stop gates, recovery strategies, and convergence reporting. |
-| `references/loop_protocol.md` | Protocol | Wires convergence, pause sentinel checks, blocked-stop persistence, and loop-decision behavior into the lifecycle. |
-| `references/state_format.md` | Schema | Defines blocked-stop, graph-convergence, pause, recovery, and synthesis event shapes in JSONL. |
+| `references/convergence/convergence.md` | Protocol | Defines hard stops, stuck detection, composite vote, legal-stop gates, recovery strategies, and convergence reporting. |
+| `references/protocol/loop_protocol.md` | Protocol | Wires convergence, pause sentinel checks, blocked-stop persistence, and loop-decision behavior into the lifecycle. |
+| `references/state/state_format.md` | Schema | Defines blocked-stop, graph-convergence, pause, recovery, and synthesis event shapes in JSONL. |
 | `assets/review_mode_contract.yaml` | Contract | Declares convergence defaults, severity math, quality gates, verdicts, and release-readiness states. |
 
 ### Validation And Tests
@@ -47,4 +47,4 @@ Even when the weighted vote requests STOP, the loop still has to pass the review
 - Group: Loop lifecycle
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `01--loop-lifecycle/03-convergence-check.md`
-- Primary sources: `references/convergence.md`, `references/loop_protocol.md`, `references/state_format.md`, `assets/review_mode_contract.yaml`
+- Primary sources: `references/convergence/convergence.md`, `references/protocol/loop_protocol.md`, `references/state/state_format.md`, `assets/review_mode_contract.yaml`

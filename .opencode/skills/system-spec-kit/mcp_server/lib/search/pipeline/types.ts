@@ -4,7 +4,6 @@
 // Stage interfaces with the Stage 4 immutability invariant
 import type { RetrievalTrace } from '@spec-kit/shared/contracts/retrieval-trace';
 import type { QueryPlan } from '../../query/query-plan.js';
-import type { RerankGateDecision } from '../rerank-gate.js';
 
 // Feature catalog: 4-stage pipeline architecture
 
@@ -279,7 +278,6 @@ export interface Stage3Output {
   metadata: {
     rerankApplied: boolean;
     rerankProvider?: string;
-    rerankGateDecision?: RerankGateDecision;
     chunkReassemblyStats: {
       collapsedChunkHits: number;
       chunkParents: number;

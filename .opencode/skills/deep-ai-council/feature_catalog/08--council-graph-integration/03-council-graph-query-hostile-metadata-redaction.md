@@ -33,7 +33,7 @@ The user-visible contract is concrete: Verify runtime query CLI redacts arbitrar
 |------|-------|------|
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Library | Allowlist + length bounds (P1-003 remediation) |
 | `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | Handler | runtime CLI script: prompt-safe query envelope |
-| `.opencode/skills/deep-ai-council/references/graph_support.md` | Reference | Documents the allowlist contract |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md` | Reference | Documents the allowlist contract |
 
 ### Validation And Tests
 

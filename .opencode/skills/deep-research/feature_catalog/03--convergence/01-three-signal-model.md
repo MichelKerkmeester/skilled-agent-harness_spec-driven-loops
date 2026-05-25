@@ -27,9 +27,9 @@ The model is selective about which iterations count. `thought` iterations are ig
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Reference | Defines hard stops, weighted signals, stop-score threshold, and status handling. |
-| `.opencode/skills/deep-research/references/state_format.md` | Reference | Defines the `convergenceSignals` payload written into iteration records. |
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Reference | Places the statistical vote inside the live loop order before guard evaluation. |
+| `.opencode/skills/deep-research/references/convergence/convergence.md` | Reference | Defines hard stops, weighted signals, stop-score threshold, and status handling. |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Reference | Defines the `convergenceSignals` payload written into iteration records. |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Reference | Places the statistical vote inside the live loop order before guard evaluation. |
 
 ### Validation And Tests
 

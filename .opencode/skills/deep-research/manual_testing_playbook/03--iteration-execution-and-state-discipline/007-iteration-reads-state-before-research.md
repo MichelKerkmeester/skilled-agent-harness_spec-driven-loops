@@ -44,9 +44,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate each deep-research iteration reads JSONL and strategy state before any research action.
 ### Commands
-1. `bash: rg -n 'Step 1: Read State|Read current state|read state first' .opencode/skills/deep-research/references/loop_protocol.md .opencode/skills/deep-research/SKILL.md`
+1. `bash: rg -n 'Step 1: Read State|Read current state|read state first' .opencode/skills/deep-research/references/protocol/loop_protocol.md .opencode/skills/deep-research/SKILL.md`
 2. `bash: rg -n 'step_read_state|current_iteration|next_focus' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
-3. `bash: sed -n '1,220p' .opencode/skills/deep-research/references/quick_reference.md && sed -n '1,220p' .codex/agents/deep-research.toml`
+3. `bash: sed -n '1,220p' .opencode/skills/deep-research/references/guides/quick_reference.md && sed -n '1,220p' .codex/agents/deep-research.toml`
 ### Expected
 Loop step order begins with state reads, the quick reference checklist says the same, and the agent definition starts with JSONL plus strategy reads.
 ### Evidence
@@ -70,10 +70,10 @@ Check the agent sequence under `Single Iteration Protocol` if the higher-level d
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Iteration loop order; use `ANCHOR:phase-iteration-loop` |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Iteration loop order; use `ANCHOR:phase-iteration-loop` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Loop state extraction; inspect `step_read_state` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Loop state extraction; inspect `step_read_state` |
-| `.opencode/skills/deep-research/references/quick_reference.md` | Iteration checklist; use `ANCHOR:agent-iteration-checklist` |
+| `.opencode/skills/deep-research/references/guides/quick_reference.md` | Iteration checklist; use `ANCHOR:agent-iteration-checklist` |
 | `.codex/agents/deep-research.toml` | Canonical runtime agent sequence; inspect `## 1. CORE WORKFLOW` |
 
 ---

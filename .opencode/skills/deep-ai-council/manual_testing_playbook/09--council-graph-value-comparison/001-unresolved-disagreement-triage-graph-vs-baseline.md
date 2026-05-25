@@ -101,7 +101,7 @@ If graph response includes resolved disagreements, inspect `lib/council/council-
 | `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | runtime CLI script for `runtime query CLI` |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | `getUnresolvedDisagreements` helper |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | "upserts prompt-safe council graph data and queries unresolved disagreements and decision support" |
-| `.opencode/skills/deep-ai-council/references/graph_support.md` §3 | Documents the RESOLVES edge contract |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md` §3 | Documents the RESOLVES edge contract |
 
 ---
 

@@ -32,7 +32,7 @@ The user-visible contract is concrete: Verify helper-created artifact layout. Th
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs` | Script | CLI wrapper |
-| `.opencode/skills/deep-ai-council/references/folder_layout.md` | Reference | Artifact layout |
+| `.opencode/skills/deep-ai-council/references/structure/folder_layout.md` | Reference | Artifact layout |
 
 ### Validation And Tests
 

@@ -70,7 +70,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Every skill invocation | `references/quick_reference.md` |
+| ALWAYS | Every skill invocation | `references/workflow/quick_reference.md` |
 | CONDITIONAL | If intent signals match | Workflow, policy, or onboarding references |
 | ON_DEMAND | Only on explicit request or full setup | Markdown runtime templates in `assets/` |
 
@@ -81,14 +81,14 @@ The authoritative routing logic for scoped markdown loading and explicit runtime
 - Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively scans `references/` and `assets/`.
 - Pattern 2: Existence-Check Before Load - `load_if_available()` uses `_guard_in_skill()`, `inventory`, and `seen`.
 - Pattern 3: Extensible Routing Key - quick-reference, loop, evaluation, promotion, target onboarding, integration, and setup intents route resources.
-- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` asks for target/action/gate disambiguation and missing intent routes return a "no knowledge base" notice.
+- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK_CHECKLIST` asks for target/action/gate disambiguation and missing intent routes return a "no knowledge base" notice.
 
 ```python
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/quick_reference.md"
+DEFAULT_RESOURCE = "references/workflow/quick_reference.md"
 
 INTENT_SIGNALS = {
     "QUICK_REFERENCE": {"weight": 3, "keywords": ["quick reference", "short reminder", "command example"]},
@@ -101,12 +101,12 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "QUICK_REFERENCE": ["references/quick_reference.md"],
-    "LOOP_EXECUTION": ["references/loop_protocol.md", "references/benchmark_operator_guide.md"],
-    "EVALUATION_POLICY": ["references/evaluator_contract.md", "references/no_go_conditions.md", "references/promotion_rules.md"],
-    "PROMOTION_OPERATIONS": ["references/rollback_runbook.md", "references/mirror_drift_policy.md", "references/promotion_rules.md"],
-    "TARGET_ONBOARDING": ["references/target_onboarding.md"],
-    "INTEGRATION_SCAN": ["references/integration_scanning.md", "references/evaluator_contract.md"],
+    "QUICK_REFERENCE": ["references/workflow/quick_reference.md"],
+    "LOOP_EXECUTION": ["references/workflow/loop_protocol.md", "references/workflow/benchmark_operator_guide.md"],
+    "EVALUATION_POLICY": ["references/scoring/evaluator_contract.md", "references/promotion-gates/promotion_rules.md"],
+    "PROMOTION_OPERATIONS": ["references/promotion-gates/rollback_runbook.md", "references/integration/mirror_drift_policy.md", "references/promotion-gates/promotion_rules.md"],
+    "TARGET_ONBOARDING": ["references/workflow/target_onboarding.md"],
+    "INTEGRATION_SCAN": ["references/integration/integration_scanning.md", "references/scoring/evaluator_contract.md"],
     "FULL_SETUP": ["assets/improvement_charter.md", "assets/improvement_strategy.md"],
 }
 
@@ -123,7 +123,7 @@ def _task_text(task) -> str:
         " ".join(getattr(task, "keywords", []) or []),
     ]).lower()
 
-UNKNOWN_FALLBACK = ["Confirm target path", "Confirm proposal vs scoring vs promotion", "Confirm packet-local evidence path"]
+UNKNOWN_FALLBACK_CHECKLIST = ["Confirm target path", "Confirm proposal vs scoring vs promotion", "Confirm packet-local evidence path"]
 
 def _guard_in_skill(relative_path: str) -> str:
     resolved = (SKILL_ROOT / relative_path).resolve()
@@ -259,7 +259,7 @@ For multi-iter evaluation sweeps, a mixed-executor split plus an adjudication pa
 - **Mixed-executor 8+2 split**: run breadth iterations on cli-devin SWE-1.6 and synthesis iterations on cli-codex gpt-5.5. For a 10-iter sweep, that is iters 1-8 breadth and iters 9-10 synthesis.
 - **Adjudication iter**: insert a false-positive filter pass before the synthesis iterations (typically the iter-7 mark) so only confirmed findings carry forward. In validation this delivers a 90%+ false-positive reduction, with one pass dropping 9 false-positive and 4 outdated items to take a 20-item queue down to 7.
 
-See `references/mixed_executor_methodology.md` for the split mechanics, adjudication details, and the full validation evidence.
+See `references/scoring/mixed_executor_methodology.md` for the split mechanics, adjudication details, and the full validation evidence.
 
 ---
 
@@ -472,7 +472,7 @@ The dashboard now also includes a dedicated **Sample Quality** section. This sep
 
 ## 8. REFERENCES
 
-Core references: `README.md`, `references/quick_reference.md`, `references/loop_protocol.md`, evaluator/promotion/rollback/no-go/onboarding docs, runtime assets under `assets/`, benchmark assets, and helper scripts for scoring, reduction, promotion, rollback, scanning, drift, journal, mutation coverage, trade-offs, candidate lineage, and benchmark stability.
+Core references: `README.md`, `references/workflow/quick_reference.md`, `references/workflow/loop_protocol.md`, evaluator/promotion/rollback/no-go/onboarding docs, runtime assets under `assets/`, benchmark assets, and helper scripts for scoring, reduction, promotion, rollback, scanning, drift, journal, mutation coverage, trade-offs, candidate lineage, and benchmark stability.
 
 ---
 
@@ -487,7 +487,7 @@ Core references: `README.md`, `references/quick_reference.md`, `references/loop_
 
 ## 10. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/loop_protocol.md`, `references/quick_reference.md`, `references/benchmark_operator_guide.md`, `references/evaluator_contract.md`, `references/integration_scanning.md`, `references/mirror_drift_policy.md`, `references/no_go_conditions.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/workflow/loop_protocol.md`, `references/workflow/quick_reference.md`, `references/workflow/benchmark_operator_guide.md`, `references/scoring/evaluator_contract.md`, `references/integration/integration_scanning.md`, `references/integration/mirror_drift_policy.md`, `references/promotion-gates/promotion_rules.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/benchmark-stability.cjs`, `scripts/candidate-lineage.cjs`, `scripts/check-mirror-drift.cjs`, `scripts/generate-profile.cjs`, `scripts/improvement-journal.cjs`, `scripts/materialize-benchmark-fixtures.cjs`, `scripts/mutation-coverage.cjs`, `scripts/promote-candidate.cjs`, `scripts/reduce-state.cjs`, `scripts/rollback-candidate.cjs`, `scripts/run-benchmark.cjs`, `scripts/scan-integration.cjs`, `scripts/score-candidate.cjs`, `scripts/trade-off-detector.cjs`.
 

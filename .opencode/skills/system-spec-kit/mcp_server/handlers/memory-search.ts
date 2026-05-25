@@ -1185,7 +1185,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
           decision: 'memory_search_response',
         },
       },
-      rerankGateDecision: pipelineResult.metadata.stage3.rerankGateDecision,
       degradedReadiness,
       pipelineTiming: pipelineResult.metadata.timing,
       timestamp: new Date(_searchStartTime).toISOString(),

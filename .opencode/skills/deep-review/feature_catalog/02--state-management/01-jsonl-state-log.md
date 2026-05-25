@@ -25,9 +25,9 @@ The same file also persists first-class lifecycle events such as `blocked_stop`,
 
 | File | Layer | Role |
 |---|---|---|
-| `references/state_format.md` | Schema | Defines the config record, iteration fields, event payloads, graph events, and normalization rules. |
-| `references/loop_protocol.md` | Protocol | Requires JSONL reads before dispatch and appends state after each loop phase. |
-| `references/convergence.md` | Protocol | Defines the shared stop-reason enum and blocked-stop persistence rules that land in JSONL. |
+| `references/state/state_format.md` | Schema | Defines the config record, iteration fields, event payloads, graph events, and normalization rules. |
+| `references/protocol/loop_protocol.md` | Protocol | Requires JSONL reads before dispatch and appends state after each loop phase. |
+| `references/convergence/convergence.md` | Protocol | Defines the shared stop-reason enum and blocked-stop persistence rules that land in JSONL. |
 | `assets/review_mode_contract.yaml` | Contract | Declares required iteration and synthesis-event fields and lifecycle metadata. |
 
 ### Validation And Tests
@@ -46,4 +46,4 @@ The same file also persists first-class lifecycle events such as `blocked_stop`,
 - Group: State management
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `02--state-management/01-jsonl-state-log.md`
-- Primary sources: `references/state_format.md`, `references/loop_protocol.md`, `references/convergence.md`, `assets/review_mode_contract.yaml`
+- Primary sources: `references/state/state_format.md`, `references/protocol/loop_protocol.md`, `references/convergence/convergence.md`, `assets/review_mode_contract.yaml`

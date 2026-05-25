@@ -81,8 +81,8 @@ Privilege `deep-review-findings-registry.json` as the reducer-owned source of tr
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Canonical reducer implementation, promotes `blocked_stop` into `blockedStopHistory`, renders `BLOCKED STOPS`, and rewrites `ANCHOR:next-focus` |
-| `.opencode/skills/deep-review/references/state_format.md` | Review state contract, defines `blockedStopHistory`, dashboard `BLOCKED STOPS`, strategy next-focus override, and review-specific gate payload shape |
-| `.opencode/skills/deep-review/references/loop_protocol.md` | Review legal-stop workflow contract, defines the review-specific gate names used in `blocked_stop` events |
+| `.opencode/skills/deep-review/references/state/state_format.md` | Review state contract, defines `blockedStopHistory`, dashboard `BLOCKED STOPS`, strategy next-focus override, and review-specific gate payload shape |
+| `.opencode/skills/deep-review/references/protocol/loop_protocol.md` | Review legal-stop workflow contract, defines the review-specific gate names used in `blocked_stop` events |
 
 ---
 

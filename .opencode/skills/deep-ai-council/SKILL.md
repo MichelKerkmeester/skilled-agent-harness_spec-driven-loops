@@ -11,7 +11,7 @@ version: 2.2.0.0
 
 Planning-only council deliberation with diverse seats, convergence checks, and packet-local `ai-council/**` artifact persistence.
 
-> Convergence threshold semantics: see [`references/convergence_signals.md`](references/convergence_signals.md). Deep Mode (iterative multi-topic): see [`references/depth_dispatch.md`](references/depth_dispatch.md).
+> Convergence threshold semantics: see [`references/convergence/convergence_signals.md`](references/convergence/convergence_signals.md). Deep Mode (iterative multi-topic): see [`references/convergence/depth_dispatch.md`](references/convergence/depth_dispatch.md).
 
 ---
 
@@ -129,7 +129,7 @@ manual_testing_playbook/**/*.md
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Every skill invocation | `references/quick_reference.md` |
+| ALWAYS | Every skill invocation | `references/integration/quick_reference.md` |
 | CONDITIONAL | Intent signals match | Intent-mapped references from `RESOURCE_MAP` |
 | ON_DEMAND | Explicit validation or operator testing | `manual_testing_playbook/manual_testing_playbook.md` and scenario files |
 
@@ -140,7 +140,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets", SKILL_ROOT / "manual_testing_playbook")
-DEFAULT_RESOURCE = "references/quick_reference.md"
+DEFAULT_RESOURCE = "references/integration/quick_reference.md"
 
 INTENT_MODEL = {
     "COUNCIL_RUN": {"keywords": [("deep ai council", 5), ("council deliberation", 5), ("planning council", 4), ("strategy comparison", 3)]},
@@ -156,16 +156,16 @@ INTENT_MODEL = {
 }
 
 RESOURCE_MAP = {
-    "COUNCIL_RUN": ["references/loop_protocol.md", "references/seat_diversity_patterns.md", "references/convergence_signals.md", "references/output_schema.md", "assets/deep_ai_council_strategy.md"],
-    "COUNCIL_SETUP": ["references/quick_reference.md", "references/loop_protocol.md", "assets/deep_ai_council_strategy.md", "assets/deep_ai_council_dashboard.md"],
-    "ARTIFACT_PERSISTENCE": ["references/folder_layout.md", "references/output_schema.md", "references/state_format.md", "references/command_wiring.md", "references/findings_registry.md", "assets/deep_ai_council_dashboard.md"],
-    "RECOVERY_OR_AUDIT": ["references/state_format.md", "references/folder_layout.md", "references/command_wiring.md", "references/loop_protocol.md"],
-    "CONVERGENCE_CHECK": ["references/convergence_signals.md", "references/seat_diversity_patterns.md", "references/state_format.md", "references/loop_protocol.md"],
-    "SCORING": ["references/scoring_rubric.md"],
-    "DEPTH_DISPATCH": ["references/depth_dispatch.md", "references/deep_mode.md", "references/findings_registry.md"],
-    "FAILURE_HANDLING": ["references/failure_handling.md"],
-    "ANTI_PATTERNS": ["references/anti_patterns.md"],
-    "GRAPH_SUPPORT": ["references/graph_support.md", "references/state_format.md", "references/folder_layout.md"],
+    "COUNCIL_RUN": ["references/integration/loop_protocol.md", "references/patterns/seat_diversity_patterns.md", "references/convergence/convergence_signals.md", "references/structure/output_schema.md", "assets/deep_ai_council_strategy.md"],
+    "COUNCIL_SETUP": ["references/integration/quick_reference.md", "references/integration/loop_protocol.md", "assets/deep_ai_council_strategy.md", "assets/deep_ai_council_dashboard.md"],
+    "ARTIFACT_PERSISTENCE": ["references/structure/folder_layout.md", "references/structure/output_schema.md", "references/structure/state_format.md", "references/patterns/command_wiring.md", "references/scoring/findings_registry.md", "assets/deep_ai_council_dashboard.md"],
+    "RECOVERY_OR_AUDIT": ["references/structure/state_format.md", "references/structure/folder_layout.md", "references/patterns/command_wiring.md", "references/integration/loop_protocol.md"],
+    "CONVERGENCE_CHECK": ["references/convergence/convergence_signals.md", "references/patterns/seat_diversity_patterns.md", "references/structure/state_format.md", "references/integration/loop_protocol.md"],
+    "SCORING": ["references/scoring/scoring_rubric.md"],
+    "DEPTH_DISPATCH": ["references/convergence/depth_dispatch.md", "references/convergence/deep_mode.md", "references/scoring/findings_registry.md"],
+    "FAILURE_HANDLING": ["references/convergence/failure_handling.md"],
+    "ANTI_PATTERNS": ["references/patterns/anti_patterns.md"],
+    "GRAPH_SUPPORT": ["references/integration/graph_support.md", "references/structure/state_format.md", "references/structure/folder_layout.md"],
 }
 
 LOAD_LEVELS = {
@@ -315,9 +315,9 @@ STEP 3: Persist And Hand Off
 1. Resolve the target spec folder before any council execution.
 2. Select two or three distinct council seats with different reasoning lenses and, when real executors are available, different AI vantage targets.
 3. Deliberate across independent proposals, adversarial critique, and convergence reconciliation.
-4. Return a council report with required sections from `references/output_schema.md`.
+4. Return a council report with required sections from `references/structure/output_schema.md`.
 5. Persist packet-local artifacts with `scripts/persist-artifacts.cjs` when the caller owns a write-capable context.
-6. Verify completion with `scripts/advise-council-completion.cjs` and the append-only state rules in `references/state_format.md`.
+6. Verify completion with `scripts/advise-council-completion.cjs` and the append-only state rules in `references/structure/state_format.md`.
 
 ### Resource Usage Pattern
 
@@ -391,25 +391,25 @@ node .opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs <pac
 
 ---
 
-## 6. REFERENCES
+## 6. REFERENCES AND RELATED RESOURCES
 
 Ordered by load priority — most-loaded intent first.
 
-- `references/quick_reference.md` - first-touch operator cheat sheet and validation commands (ALWAYS-loaded default).
-- `references/loop_protocol.md` - end-to-end council workflow from packet resolution to persistence and recovery.
-- `references/output_schema.md` - markdown report contract parsed by the persistence helper.
-- `references/scoring_rubric.md` - five-dimension scoring, adversarial critique, conflict resolution, and attribution rules.
-- `references/depth_dispatch.md` - Depth 0 parallel dispatch and Depth 1 sequential inline dispatch rules.
-- `references/failure_handling.md` - timeout, all-seat failure, contradiction, insufficient vantage, and rollback-state guidance.
-- `references/anti_patterns.md` - council quality failure modes, detection cues, and recovery actions.
-- `references/folder_layout.md` - packet-local artifact tree and writer ownership.
-- `references/state_format.md` - append-only JSONL event semantics.
-- `references/command_wiring.md` - caller-owned post-dispatch persistence patterns.
-- `references/seat_diversity_patterns.md` - seat lens and vantage diversity rules.
-- `references/convergence_signals.md` - convergence and escape-hatch rules.
-- `references/graph_support.md` - derived council graph boundaries, tool surface, and recovery behavior.
-- `references/deep_mode.md` - deep-mode session/topic/round hierarchy, state files, cost guards and the deep-loop-runtime dependency.
-- `references/findings_registry.md` - cross-topic findings registry, fingerprint dedup and filesystem locking.
+- `references/integration/quick_reference.md` - first-touch operator cheat sheet and validation commands (ALWAYS-loaded default).
+- `references/integration/loop_protocol.md` - end-to-end council workflow from packet resolution to persistence and recovery.
+- `references/structure/output_schema.md` - markdown report contract parsed by the persistence helper.
+- `references/scoring/scoring_rubric.md` - five-dimension scoring, adversarial critique, conflict resolution, and attribution rules.
+- `references/convergence/depth_dispatch.md` - Depth 0 parallel dispatch and Depth 1 sequential inline dispatch rules.
+- `references/convergence/failure_handling.md` - timeout, all-seat failure, contradiction, insufficient vantage, and rollback-state guidance.
+- `references/patterns/anti_patterns.md` - council quality failure modes, detection cues, and recovery actions.
+- `references/structure/folder_layout.md` - packet-local artifact tree and writer ownership.
+- `references/structure/state_format.md` - append-only JSONL event semantics.
+- `references/patterns/command_wiring.md` - caller-owned post-dispatch persistence patterns.
+- `references/patterns/seat_diversity_patterns.md` - seat lens and vantage diversity rules.
+- `references/convergence/convergence_signals.md` - convergence and escape-hatch rules.
+- `references/integration/graph_support.md` - derived council graph boundaries, tool surface, and recovery behavior.
+- `references/convergence/deep_mode.md` - deep-mode session/topic/round hierarchy, state files, cost guards and the deep-loop-runtime dependency.
+- `references/scoring/findings_registry.md` - cross-topic findings registry, fingerprint dedup and filesystem locking.
 - `assets/deep_ai_council_strategy.md` - operator-maintained round strategy template.
 - `assets/deep_ai_council_dashboard.md` - council status dashboard template.
 - `assets/deep_ai_council_config.json` - run-config template for council sessions.
@@ -470,20 +470,20 @@ The council is a planning LEAF. It hands recommendations, risk analysis, and pac
 
 **Required**:
 
-- `references/output_schema.md` - parser and report requiredness contract; persistence must fail closed if missing.
+- `references/structure/output_schema.md` - parser and report requiredness contract; persistence must fail closed if missing.
 
 **Optional**:
 
-- `references/command_wiring.md` - caller post-dispatch examples.
-- `references/convergence_signals.md` - convergence guidance.
-- `references/scoring_rubric.md` - synthesis scoring and critique guidance.
-- `references/depth_dispatch.md` - adaptive dispatch guidance.
-- `references/failure_handling.md` - failure and rollback treatment.
-- `references/anti_patterns.md` - quality anti-pattern detection and recovery.
-- `references/graph_support.md` - derived graph support and deep-loop-runtime CLI boundary.
-- `references/folder_layout.md` - artifact shape and rollback layout.
-- `references/seat_diversity_patterns.md` - lens selection.
-- `references/state_format.md` - state event semantics.
+- `references/patterns/command_wiring.md` - caller post-dispatch examples.
+- `references/convergence/convergence_signals.md` - convergence guidance.
+- `references/scoring/scoring_rubric.md` - synthesis scoring and critique guidance.
+- `references/convergence/depth_dispatch.md` - adaptive dispatch guidance.
+- `references/convergence/failure_handling.md` - failure and rollback treatment.
+- `references/patterns/anti_patterns.md` - quality anti-pattern detection and recovery.
+- `references/integration/graph_support.md` - derived graph support and deep-loop-runtime CLI boundary.
+- `references/structure/folder_layout.md` - artifact shape and rollback layout.
+- `references/patterns/seat_diversity_patterns.md` - lens selection.
+- `references/structure/state_format.md` - state event semantics.
 - `manual_testing_playbook/manual_testing_playbook.md` - operator validation.
 
 ### External Tools

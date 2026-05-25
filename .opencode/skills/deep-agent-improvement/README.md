@@ -175,7 +175,7 @@ These contracts match the deep-research and deep-review runtime-truth model so t
 For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 
 - **Mixed-executor dispatch.** Runs breadth iterations on cli-devin SWE-1.6 and synthesis iterations on cli-codex gpt-5.5 in an 8+2 split, which balances exploration cost against synthesis quality.
-- **Adjudication-iter filter.** Adds a false-positive filter pass before synthesis, typically at the iteration-7 mark, so only confirmed findings reach the synthesis iterations. See `references/mixed_executor_methodology.md` for the split mechanics and adjudication details.
+- **Adjudication-iter filter.** Adds a false-positive filter pass before synthesis, typically at the iteration-7 mark, so only confirmed findings reach the synthesis iterations. See `references/scoring/mixed_executor_methodology.md` for the split mechanics and adjudication details.
 
 <!-- /ANCHOR:features -->
 
@@ -188,7 +188,11 @@ For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 .opencode/skills/deep-agent-improvement/
 +-- SKILL.md                    # Router and runtime instructions
 +-- README.md                   # This file
-+-- references/                 # 15 operator and policy guides
++-- references/                 # operator and policy guides, grouped by topic
+|   +-- scoring/                # score dimensions, evaluator contract, mixed-executor
+|   +-- promotion-gates/        # promotion gate + rules, rollback runbook, no-go conditions
+|   +-- integration/            # integration scanning, mirror drift, profiling audit log
+|   `-- workflow/               # loop protocol, quick reference, proposal format, onboarding, benchmark guide
 +-- assets/                     # Charter, strategy, config, manifest, benchmark fixtures
 +-- scripts/                    # 14 deterministic helpers + lib/ + tests/
 +-- feature_catalog/            # Current-state feature inventory (3 categories)
@@ -209,7 +213,6 @@ For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 | `promotion_gate_contract.md` | Gate contract the promotion helper enforces |
 | `rollback_runbook.md` | Promotion rollback procedure |
 | `mirror_drift_policy.md` | Mirror packaging policy |
-| `no_go_conditions.md` | Stop and expansion blockers |
 | `target_onboarding.md` | Adding new bounded targets |
 | `integration_scanning.md` | Integration scanner documentation |
 | `profiling_audit_log.md` | Profile-selection rationale logging |
@@ -366,9 +369,9 @@ A: When all five dimensions repeat their scores across the plateau window, the r
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Router and runtime instructions |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Current-state feature inventory across the three categories |
-| [`references/quick_reference.md`](./references/quick_reference.md) | Command and dimension reminder |
-| [`references/loop_protocol.md`](./references/loop_protocol.md) | End-to-end operator workflow |
-| [`references/evaluator_contract.md`](./references/evaluator_contract.md) | Five-dimension scoring and benchmark contract |
+| [`references/workflow/quick_reference.md`](./references/workflow/quick_reference.md) | Command and dimension reminder |
+| [`references/workflow/loop_protocol.md`](./references/workflow/loop_protocol.md) | End-to-end operator workflow |
+| [`references/scoring/evaluator_contract.md`](./references/scoring/evaluator_contract.md) | Five-dimension scoring and benchmark contract |
 
 ### Cross-System Connections
 

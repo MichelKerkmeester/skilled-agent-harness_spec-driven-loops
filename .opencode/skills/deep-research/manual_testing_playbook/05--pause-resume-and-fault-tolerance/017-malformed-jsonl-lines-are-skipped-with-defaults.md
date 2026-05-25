@@ -44,8 +44,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate malformed JSONL lines are skipped with defaults and warnings instead of crashing the loop.
 ### Commands
-1. `bash: rg -n 'Fault Tolerance|skip malformed|defaults|Warning:' .opencode/skills/deep-research/references/state_format.md .opencode/skills/deep-research/references/convergence.md`
-2. `bash: rg -n 'missing_newInfoRatio|malformed|skipped' .opencode/skills/deep-research/references/state_format.md`
+1. `bash: rg -n 'Fault Tolerance|skip malformed|defaults|Warning:' .opencode/skills/deep-research/references/state/state_format.md .opencode/skills/deep-research/references/convergence/convergence.md`
+2. `bash: rg -n 'missing_newInfoRatio|malformed|skipped' .opencode/skills/deep-research/references/state/state_format.md`
 3. `bash: rg -n 'State file corrupt|Validate JSONL' .opencode/skills/deep-research/README.md`
 ### Expected
 Per-line parse protection exists, defaults are specified, skipped-line warnings are documented, and convergence operates on valid entries only.
@@ -70,8 +70,8 @@ Use the state-format reference as the primary source and the convergence referen
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/state_format.md` | Fault tolerance and event schema; use `ANCHOR:state-log` |
-| `.opencode/skills/deep-research/references/convergence.md` | Defensive JSONL reading; use `ANCHOR:signal-definitions` |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Fault tolerance and event schema; use `ANCHOR:state-log` |
+| `.opencode/skills/deep-research/references/convergence/convergence.md` | Defensive JSONL reading; use `ANCHOR:signal-definitions` |
 | `.opencode/skills/deep-research/README.md` | Troubleshooting language; use `ANCHOR:troubleshooting` |
 
 ---

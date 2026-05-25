@@ -33,8 +33,8 @@ The user-visible contract is concrete: Demonstrate runtime status CLI returns st
 |------|-------|------|
 | `.opencode/skills/deep-loop-runtime/scripts/status.cjs` | Handler | runtime CLI script with `recovery` field (P2-001 remediation) |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Library | Storage layer: namespace-scoped recovery query |
-| `.opencode/skills/deep-ai-council/references/state_format.md` | Reference | Documents append-only `ai-council-state.jsonl` event contract |
-| `.opencode/skills/deep-ai-council/references/graph_support.md 5` | Reference | Documents the recovery + replay contract |
+| `.opencode/skills/deep-ai-council/references/structure/state_format.md` | Reference | Documents append-only `ai-council-state.jsonl` event contract |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md 5` | Reference | Documents the recovery + replay contract |
 
 ### Validation And Tests
 

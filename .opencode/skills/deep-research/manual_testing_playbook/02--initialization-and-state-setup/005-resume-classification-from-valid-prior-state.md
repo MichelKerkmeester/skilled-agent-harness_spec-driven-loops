@@ -44,7 +44,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-research resume classification inspects prior config, JSONL, and strategy before writing new files.
 ### Commands
-1. `bash: rg -n 'Auto-Resume Protocol|resume|completed-session|invalid-state' .opencode/skills/deep-research/references/loop_protocol.md`
+1. `bash: rg -n 'Auto-Resume Protocol|resume|completed-session|invalid-state' .opencode/skills/deep-research/references/protocol/loop_protocol.md`
 2. `bash: rg -n 'step_classify_session|on_resume|on_completed_session|on_invalid_state' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 3. `bash: rg -n 'Auto-resume|resume' .opencode/skills/deep-research/README.md`
 ### Expected
@@ -70,7 +70,7 @@ Verify completed sessions route differently from active resumes and that both YA
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Resume contract; use `ANCHOR:phase-initialization` and `Auto-Resume Protocol` |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Resume contract; use `ANCHOR:phase-initialization` and `Auto-Resume Protocol` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Session classification; inspect `step_classify_session` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Session classification; inspect `step_classify_session` |
 | `.opencode/skills/deep-research/README.md` | User-facing auto-resume claim; use `ANCHOR:features` and `ANCHOR:faq` |

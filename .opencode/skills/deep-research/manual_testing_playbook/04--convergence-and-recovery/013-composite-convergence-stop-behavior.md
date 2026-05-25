@@ -44,9 +44,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate composite convergence uses rolling average, MAD, entropy, weights, and the stop-score threshold.
 ### Commands
-1. `bash: sed -n '1,260p' .opencode/skills/deep-research/references/convergence.md`
+1. `bash: sed -n '1,260p' .opencode/skills/deep-research/references/convergence/convergence.md`
 2. `bash: rg -n 'COMPOSITE CONVERGENCE|rolling average|MAD noise|entropy|0.60' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
-3. `bash: rg -n 'Convergence Detection|Composite:|Signals:' .opencode/skills/deep-research/README.md .opencode/skills/deep-research/references/quick_reference.md`
+3. `bash: rg -n 'Convergence Detection|Composite:|Signals:' .opencode/skills/deep-research/README.md .opencode/skills/deep-research/references/guides/quick_reference.md`
 ### Expected
 Three named signals, weights of 0.30/0.35/0.35, graceful degradation with fewer iterations, and a stop threshold above 0.60.
 ### Evidence
@@ -70,11 +70,11 @@ Privilege the convergence reference for exact math and use README or quick refer
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math; use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
+| `.opencode/skills/deep-research/references/convergence/convergence.md` | Canonical convergence math; use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow algorithm; inspect `step_check_convergence` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow algorithm; inspect `step_check_convergence` |
 | `.opencode/skills/deep-research/README.md` | Feature summary for convergence; use `ANCHOR:features` |
-| `.opencode/skills/deep-research/references/quick_reference.md` | Progress visualization and decision tree; use `ANCHOR:convergence-decision-tree` and `ANCHOR:progress-visualization` |
+| `.opencode/skills/deep-research/references/guides/quick_reference.md` | Progress visualization and decision tree; use `ANCHOR:convergence-decision-tree` and `ANCHOR:progress-visualization` |
 
 ---
 

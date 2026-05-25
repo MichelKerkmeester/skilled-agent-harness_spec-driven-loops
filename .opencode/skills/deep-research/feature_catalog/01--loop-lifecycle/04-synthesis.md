@@ -27,8 +27,8 @@ Negative knowledge is part of the live contract here. Synthesis must consolidate
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Reference | Defines the synthesis phase steps, required output shape, and terminal event contract. |
-| `.opencode/skills/deep-research/references/state_format.md` | Reference | Defines the `research/research.md` lifecycle and progressive update rules. |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Reference | Defines the synthesis phase steps, required output shape, and terminal event contract. |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Reference | Defines the `research/research.md` lifecycle and progressive update rules. |
 | `.opencode/commands/deep/start-research-loop.md` | Command | Publishes the synth phase as a canonical command output. |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow | Drives the autonomous synthesis phase and config-status update. |
 | `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow | Mirrors the same synthesis phase with confirm-mode review gates. |

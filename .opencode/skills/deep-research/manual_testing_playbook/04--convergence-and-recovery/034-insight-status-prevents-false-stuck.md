@@ -44,8 +44,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate insight-status iterations avoid false stuck counting despite low raw novelty.
 ### Commands
-1. `bash: rg -n 'insight' .opencode/skills/deep-research/references/state_format.md`
-2. `bash: rg -n 'stuckCount\|stuck_count\|insight' .opencode/skills/deep-research/references/convergence.md`
+1. `bash: rg -n 'insight' .opencode/skills/deep-research/references/state/state_format.md`
+2. `bash: rg -n 'stuckCount\|stuck_count\|insight' .opencode/skills/deep-research/references/convergence/convergence.md`
 3. `bash: rg -n 'insight\|thought\|stuck' .opencode/skills/deep-research/SKILL.md`
 4. `bash: rg -n 'stuck_count.*insight\|insight.*stuck' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 ### Expected
@@ -71,8 +71,8 @@ Privilege state_format.md for the status taxonomy and convergence.md for the stu
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/state_format.md` | Canonical JSONL schema; insight status definition and its relationship to stuck counting |
-| `.opencode/skills/deep-research/references/convergence.md` | Convergence math; stuckCount computation and which statuses increment it |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Canonical JSONL schema; insight status definition and its relationship to stuck counting |
+| `.opencode/skills/deep-research/references/convergence/convergence.md` | Convergence math; stuckCount computation and which statuses increment it |
 | `.opencode/skills/deep-research/SKILL.md` | Skill overview; iteration status taxonomy including insight |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow algorithm; stuck_count update logic in step_update_state |
 

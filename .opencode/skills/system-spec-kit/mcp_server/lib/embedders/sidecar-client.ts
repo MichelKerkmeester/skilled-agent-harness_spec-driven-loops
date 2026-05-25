@@ -167,9 +167,6 @@ export const SIDECAR_ENV_ALLOWLIST = SIDECAR_ENV_ALLOWLIST_MODULE.SIDECAR_ENV_AL
 /**
  * Recognized SPECKIT_ environment variables for embedder sidecar configuration.
  *
- * **Cross-encoder sidecar (ensure-rerank-sidecar.cjs):**
- * - `SPECKIT_CROSS_ENCODER`: Set to "true" to enable the cross-encoder sidecar (default: disabled)
- *
  * **Embedder sidecar client (sidecar-client.ts):**
  * - `SPECKIT_EMBEDDER_SIDECAR_IDLE_MS`: Idle timeout before worker eviction (default: 300000)
  * - `SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS`: Health check ping timeout (default: 2000)
@@ -186,17 +183,12 @@ export const SIDECAR_ENV_ALLOWLIST = SIDECAR_ENV_ALLOWLIST_MODULE.SIDECAR_ENV_AL
  *
  * **Shared sidecar child env allowlist:**
  * - Exact keys: `HOME`, `LANG`, `PATH`, `TEMP`, `TMP`, `TMPDIR`, `TRANSFORMERS_OFFLINE`, `PYTORCH_ENABLE_MPS_FALLBACK`
- * - Prefixes: `LC_*`, `SPECKIT_*`, `RERANK_*`, `HF_*`
+ * - Prefixes: `LC_*`, `SPECKIT_*`, `HF_*`
  * - Disallowed keys are dropped with a key-only stderr warning.
- *
- * **Config-prefix overlap precedence:**
- * - When `SPECKIT_RERANK_*` and matching `RERANK_*` keys both configure the same sidecar setting,
- *   the `SPECKIT_RERANK_*` value wins and a key-only stderr warning is emitted.
  *
  * @see mcp_server/ENV_REFERENCE.md for canonical environment variable documentation
  */
 export const RECOGNIZED_SPECKIT_ENV_VARS = [
-  'SPECKIT_CROSS_ENCODER',
   'SPECKIT_EMBEDDER_SIDECAR_IDLE_MS',
   'SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS',
   'SPECKIT_EMBEDDER_SIDECAR_REQUEST_TIMEOUT_MS',

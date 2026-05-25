@@ -47,7 +47,7 @@ Validate resource-map emission from delta evidence and --no-resource-map suppres
 
 ### Commands
 
-1. `bash: rg -n 'resource-map|no-resource-map|emit-resource-map' .opencode/commands/deep/start-research-loop.md .opencode/skills/deep-research/SKILL.md .opencode/skills/deep-research/references/convergence.md`
+1. `bash: rg -n 'resource-map|no-resource-map|emit-resource-map' .opencode/commands/deep/start-research-loop.md .opencode/skills/deep-research/SKILL.md .opencode/skills/deep-research/references/convergence/convergence.md`
 2. `bash: rg -n 'resource_map|resource-map|emit-resource-map' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml .opencode/skills/deep-research/scripts/reduce-state.cjs`
 3. `bash: node .opencode/skills/deep-research/scripts/reduce-state.cjs <spec-folder> --emit-resource-map`
 4. `bash: node .opencode/skills/deep-research/scripts/reduce-state.cjs <spec-folder> --emit-resource-map` with `deep-research-config.json` edited to `"resource_map": { "emit": false }`

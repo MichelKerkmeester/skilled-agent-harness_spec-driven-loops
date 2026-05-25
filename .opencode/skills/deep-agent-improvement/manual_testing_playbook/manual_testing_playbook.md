@@ -727,4 +727,4 @@ The feature catalog root is `.opencode/skills/deep-agent-improvement/feature_cat
 | End-to-End Loop | `.opencode/skills/deep-agent-improvement/feature_catalog/01--evaluation-loop/01-initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md` |
 | Runtime Truth | No single catalog category owns all runtime-truth scenarios; use the per-feature source anchors plus the evaluation-loop and scoring-system catalog files above. |
 
-Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/evaluator_contract.md`, `references/integration_scanning.md`, and `references/quick_reference.md`.
+Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/scoring/evaluator_contract.md`, `references/integration/integration_scanning.md`, and `references/workflow/quick_reference.md`.

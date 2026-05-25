@@ -27,7 +27,7 @@ Two signals supplement the 3-signal composite vote and participate in legal-stop
 
 | File | Layer | Role |
 |---|---|---|
-| `references/convergence.md` | Protocol | Semantic Convergence Signals section: definitions, computation, thresholds, and gate integration. |
+| `references/convergence/convergence.md` | Protocol | Semantic Convergence Signals section: definitions, computation, thresholds, and gate integration. |
 | `scripts/reduce-state.cjs` | Reducer | `computeConvergenceScore` and the registry stability inputs the signals draw from. |
 
 ### Validation And Tests
@@ -44,4 +44,4 @@ Two signals supplement the 3-signal composite vote and participate in legal-stop
 - Group: Severity system
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `04--severity-system/06-convergence-signals.md`
-- Primary sources: `references/convergence.md`, `scripts/reduce-state.cjs`
+- Primary sources: `references/convergence/convergence.md`, `scripts/reduce-state.cjs`

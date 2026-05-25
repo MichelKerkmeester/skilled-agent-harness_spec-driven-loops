@@ -24,7 +24,7 @@ Operators need a clear stop rule that does not pretend unanimity is required.
 - Objective: Verify two-of-three agreement triggers convergence.
 - Real user request: Check whether this council has enough agreement to proceed.
 - Prompt: `Check whether this council has enough agreement to proceed and cite the convergence rule.`
-- Expected execution process: Inspect `references/convergence_signals.md` and cite the two-of-three rule.
+- Expected execution process: Inspect `references/convergence/convergence_signals.md` and cite the two-of-three rule.
 - Expected signals: Reference states 2 of 3 seats can declare convergence after critique.
 - Desired user-visible outcome: The user gets a clear convergence verdict and rule citation.
 - Pass/fail: PASS if the rule is explicit; FAIL if convergence is undefined.
@@ -45,8 +45,8 @@ Operators need a clear stop rule that does not pretend unanimity is required.
 
 ### Commands
 
-1. `bash: sed -n '1,120p' .opencode/skills/deep-ai-council/references/convergence_signals.md`
-2. `bash: rg -n "two-of-three|2 of 3|convergence" .opencode/skills/deep-ai-council/references/convergence_signals.md`
+1. `bash: sed -n '1,120p' .opencode/skills/deep-ai-council/references/convergence/convergence_signals.md`
+2. `bash: rg -n "two-of-three|2 of 3|convergence" .opencode/skills/deep-ai-council/references/convergence/convergence_signals.md`
 
 ### Expected
 
@@ -67,7 +67,7 @@ Check the convergence reference first, then the SKILL.md success criteria.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-008 | Two-of-three convergence | Verify convergence trigger | `Check whether this council has enough agreement to proceed and cite the convergence rule.` | `bash: sed -n '1,120p' .opencode/skills/deep-ai-council/references/convergence_signals.md -> bash: rg -n "two-of-three|2 of 3|convergence" .opencode/skills/deep-ai-council/references/convergence_signals.md` | Two-of-three rule present | Reference lines | PASS if explicit | Inspect convergence reference |
+| DAC-008 | Two-of-three convergence | Verify convergence trigger | `Check whether this council has enough agreement to proceed and cite the convergence rule.` | `bash: sed -n '1,120p' .opencode/skills/deep-ai-council/references/convergence/convergence_signals.md -> bash: rg -n "two-of-three|2 of 3|convergence" .opencode/skills/deep-ai-council/references/convergence/convergence_signals.md` | Two-of-three rule present | Reference lines | PASS if explicit | Inspect convergence reference |
 
 ---
 
@@ -84,7 +84,7 @@ Check the convergence reference first, then the SKILL.md success criteria.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-ai-council/references/convergence_signals.md` | Convergence rule |
+| `.opencode/skills/deep-ai-council/references/convergence/convergence_signals.md` | Convergence rule |
 
 ---
 

@@ -102,8 +102,8 @@ If recovery payload missing, inspect `scripts/status.cjs` for the P2-001 remedia
 |---|---|
 | `.opencode/skills/deep-loop-runtime/scripts/status.cjs` | runtime CLI script with `recovery` field (P2-001 remediation) |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Storage layer: namespace-scoped recovery query |
-| `.opencode/skills/deep-ai-council/references/state_format.md` | Documents append-only `ai-council-state.jsonl` event contract |
-| `.opencode/skills/deep-ai-council/references/graph_support.md` §5 | Documents the recovery + replay contract |
+| `.opencode/skills/deep-ai-council/references/structure/state_format.md` | Documents append-only `ai-council-state.jsonl` event contract |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md` §5 | Documents the recovery + replay contract |
 
 ---
 

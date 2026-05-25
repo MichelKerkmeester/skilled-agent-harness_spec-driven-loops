@@ -55,7 +55,7 @@ Under `DEEP_REVIEW_V2_ENFORCEMENT=strict`, all five v2 failure codes fire on the
 
 - Validator: `.opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts` (v2 strict checks branch + new failure-reason union members).
 - Fixture: `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts`.
-- Schema: `.opencode/skills/deep-review/references/state_format.md` (`## Review Depth Schema (v2)`).
+- Schema: `.opencode/skills/deep-review/references/state/state_format.md` (`## Review Depth Schema (v2)`).
 
 ## 5. SOURCE_METADATA
 

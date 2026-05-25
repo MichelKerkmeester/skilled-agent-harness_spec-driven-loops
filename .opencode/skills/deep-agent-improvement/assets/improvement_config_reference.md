@@ -66,5 +66,5 @@ Use this reference when:
 ## 3. RELATED RESOURCES
 
 - `improvement_config.json` — the actual config file
-- `../references/evaluator_contract.md` — scoring rubric details
-- `../references/no_go_conditions.md` — stop condition reference
+- `../references/scoring/evaluator_contract.md` — scoring rubric details
+- `../references/promotion-gates/promotion_rules.md` — stop condition reference

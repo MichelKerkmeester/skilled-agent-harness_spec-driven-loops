@@ -44,9 +44,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review stuck recovery and report whether the loop switches to the least-covered dimension.
 ### Commands
-1. `bash: rg -n 'stuck|STUCK|noProgress|no_progress|stuckThreshold|recovery|widen|least.covered' .opencode/skills/deep-review/references/convergence.md`
+1. `bash: rg -n 'stuck|STUCK|noProgress|no_progress|stuckThreshold|recovery|widen|least.covered' .opencode/skills/deep-review/references/convergence/convergence.md`
 2. `bash: rg -n 'stuck|STUCK|recovery|widen|least_covered|no_progress|stuckThreshold|RECOVERY' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
-3. `bash: rg -n 'stuck|recovery|dimension.*focus|noProgress|least.covered|Next Focus' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/assets/deep_review_strategy.md`
+3. `bash: rg -n 'stuck|recovery|dimension.*focus|noProgress|least.covered|Next Focus' .opencode/skills/deep-review/references/protocol/quick_reference.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/assets/deep_review_strategy.md`
 ### Expected
 `stuckThreshold=2`, `noProgressThreshold=0.05`, recovery selects least-covered dimension, strategy.md "Next Focus" is updated, and stuck event logged to JSONL.
 ### Evidence
@@ -70,10 +70,10 @@ Privilege the convergence reference for stuck detection math and the YAML workfl
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/convergence.md` | Canonical convergence math, stuck detection and recovery rules |
+| `.opencode/skills/deep-review/references/convergence/convergence.md` | Canonical convergence math, stuck detection and recovery rules |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm, inspect stuck recovery step |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm, inspect stuck recovery step |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Convergence parameters including stuckThreshold, use `ANCHOR:convergence` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | Convergence parameters including stuckThreshold, use `ANCHOR:convergence` |
 | `.opencode/skills/deep-review/SKILL.md` | Rules for dimension focus and exhausted approaches, use `ANCHOR:rules` |
 | `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Strategy template showing "Next Focus" and dimension coverage tracking |
 

@@ -34,7 +34,7 @@ The user-visible contract is concrete: Verify all 5 documented runtime query CLI
 | `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | Handler | runtime CLI script: per-mode dispatch |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Library | Per-mode query helpers |
 | `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | Runtime CLI | Query-type dispatch for all five council modes |
-| `.opencode/skills/deep-ai-council/references/graph_support.md` | Reference | Documents the five query modes |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md` | Reference | Documents the five query modes |
 
 ### Validation And Tests
 

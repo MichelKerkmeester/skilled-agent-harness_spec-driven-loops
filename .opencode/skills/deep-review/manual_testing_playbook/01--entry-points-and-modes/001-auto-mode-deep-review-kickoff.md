@@ -44,7 +44,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the autonomous deep-review entrypoint and report whether docs, command routing, YAML, and expected artifacts agree.
 ### Commands
-1. `bash: rg -n '/deep:start-review-loop:auto|review/review-report.md|review/iterations' .opencode/skills/deep-review/README.md .opencode/skills/deep-review/references/quick_reference.md`
+1. `bash: rg -n '/deep:start-review-loop:auto|review/review-report.md|review/iterations' .opencode/skills/deep-review/README.md .opencode/skills/deep-review/references/protocol/quick_reference.md`
 2. `bash: sed -n '1,220p' .opencode/commands/deep/start-review-loop.md`
 3. `bash: sed -n '1,260p' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 ### Expected
@@ -71,7 +71,7 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` and `ANCHOR:configuration` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` and `ANCHOR:state-files` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` and `ANCHOR:state-files` |
 | `.opencode/commands/deep/start-review-loop.md` | Markdown setup and mode routing, use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Autonomous workflow contract, inspect `state_paths`, `phase_init`, and `phase_loop` |
 

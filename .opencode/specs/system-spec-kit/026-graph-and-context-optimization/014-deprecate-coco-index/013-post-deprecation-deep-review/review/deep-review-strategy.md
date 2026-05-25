@@ -89,27 +89,32 @@ Iteration 1 → **D1 Correctness** over cluster A (reference completeness) + the
 ## 3. REVIEW DIMENSIONS (remaining)
 - [ ] security
 - [ ] traceability
+- [ ] maintainability
 
 <!-- /ANCHOR:review-dimensions -->
 
 <!-- ANCHOR:completed-dimensions -->
 ## 4. COMPLETED DIMENSIONS
 - [x] correctness
-- [x] maintainability
 
 <!-- /ANCHOR:completed-dimensions -->
 
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 1
-- P1 (Required): 3
-- P2 (Suggestions): 3
+- P1 (Required): 7
+- P2 (Suggestions): 6
 - Resolved: 0
 
 <!-- /ANCHOR:running-findings -->
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
+### **.opencode/bin/ launcher libs**: mk-code-index-launcher.cjs, mk-skill-advisor-launcher.cjs, mk-spec-memory-launcher.cjs, launcher-ipc-bridge.cjs contain no coco/ccc/rerank/8765 residue (only sidecar-env-allowlist.cjs has the dead RERANK_ prefix). -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **.opencode/bin/ launcher libs**: mk-code-index-launcher.cjs, mk-skill-advisor-launcher.cjs, mk-spec-memory-launcher.cjs, launcher-ipc-bridge.cjs contain no coco/ccc/rerank/8765 residue (only sidecar-env-allowlist.cjs has the dead RERANK_ prefix).
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **.opencode/bin/ launcher libs**: mk-code-index-launcher.cjs, mk-skill-advisor-launcher.cjs, mk-spec-memory-launcher.cjs, launcher-ipc-bridge.cjs contain no coco/ccc/rerank/8765 residue (only sidecar-env-allowlist.cjs has the dead RERANK_ prefix).
+
 ### **Agent mirror parity**: context and deep-review agents across .opencode, .claude, .gemini are clean — no coco references. (.codex uses canonical .opencode agents, no local copies found.) -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: **Agent mirror parity**: context and deep-review agents across .opencode, .claude, .gemini are clean — no coco references. (.codex uses canonical .opencode agents, no local copies found.)
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -130,6 +135,16 @@ Iteration 1 → **D1 Correctness** over cluster A (reference completeness) + the
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: **Doc-prose accuracy (surface 29)**: No misleading instructions:
 
+### **Exhaustive alias grep**: No NEW live refs found beyond documented exceptions: -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **Exhaustive alias grep**: No NEW live refs found beyond documented exceptions:
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **Exhaustive alias grep**: No NEW live refs found beyond documented exceptions:
+
+### **feature_catalog in other skills**: deep-agent-improvement, deep-ai-council, deep-loop-runtime, deep-research, deep-review catalogs contain no coco/ccc/rerank references (grepped with case-insensitive patterns). -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **feature_catalog in other skills**: deep-agent-improvement, deep-ai-council, deep-loop-runtime, deep-research, deep-review catalogs contain no coco/ccc/rerank references (grepped with case-insensitive patterns).
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **feature_catalog in other skills**: deep-agent-improvement, deep-ai-council, deep-loop-runtime, deep-research, deep-review catalogs contain no coco/ccc/rerank references (grepped with case-insensitive patterns).
+
 ### **Incident-revert cleanliness (surfaces 21-22)**: No residue: -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: **Incident-revert cleanliness (surfaces 21-22)**: No residue:
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -144,6 +159,11 @@ Iteration 1 → **D1 Correctness** over cluster A (reference completeness) + the
 - What was tried: **MCP configs**: All 5 accessible configs (.vscode/mcp.json, .gemini/settings.json, .codex/config.toml, .mcp.json, .devin/config.json) are clean — no `cocoindex_code` server blocks, no `RERANK_SIDECAR` or `8765` env vars. (Note: `opencode.json` does not exist at the expected path.)
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: **MCP configs**: All 5 accessible configs (.vscode/mcp.json, .gemini/settings.json, .codex/config.toml, .mcp.json, .devin/config.json) are clean — no `cocoindex_code` server blocks, no `RERANK_SIDECAR` or `8765` env vars. (Note: `opencode.json` does not exist at the expected path.)
+
+### **references/ docs (excl changelog)**: No misleading "enable the sidecar" or "use CocoIndex" instructions found. The only cocoindex reference is in embedder_pluggability.md:189 with a clear deprecation banner (documented exception). -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: **references/ docs (excl changelog)**: No misleading "enable the sidecar" or "use CocoIndex" instructions found. The only cocoindex reference is in embedder_pluggability.md:189 with a clear deprecation banner (documented exception).
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: **references/ docs (excl changelog)**: No misleading "enable the sidecar" or "use CocoIndex" instructions found. The only cocoindex reference is in embedder_pluggability.md:189 with a clear deprecation banner (documented exception).
 
 ### **Resource-map DELETE classifications**: Both deleted skills confirmed gone — mcp-coco-index and system-rerank-sidecar folders do not exist in .opencode/skills/. -- BLOCKED (iteration 3, 1 attempts)
 - What was tried: **Resource-map DELETE classifications**: Both deleted skills confirmed gone — mcp-coco-index and system-rerank-sidecar folders do not exist in .opencode/skills/.
@@ -170,6 +190,26 @@ Iteration 1 → **D1 Correctness** over cluster A (reference completeness) + the
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: **Static behavioral review (surfaces 16-20)**: No dangling references or broken paths:
 
+### `8765`: Only in benchmark reports (historical). -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: `8765`: Only in benchmark reports (historical).
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `8765`: Only in benchmark reports (historical).
+
+### `ccc ` (bare): Only in embedder_pluggability.md (bannered exception), process-memory-harness.ts (documented exception), cli-* SKILL.md pkill references (documented exception), system-code-graph feature_catalog (F010), and tool_surface.md (F011). -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: `ccc ` (bare): Only in embedder_pluggability.md (bannered exception), process-memory-harness.ts (documented exception), cli-* SKILL.md pkill references (documented exception), system-code-graph feature_catalog (F010), and tool_surface.md (F011).
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `ccc ` (bare): Only in embedder_pluggability.md (bannered exception), process-memory-harness.ts (documented exception), cli-* SKILL.md pkill references (documented exception), system-code-graph feature_catalog (F010), and tool_surface.md (F011).
+
+### `ccc_status`, `ccc_reindex`, `ccc_feedback`: No matches in skills/commands. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: `ccc_status`, `ccc_reindex`, `ccc_feedback`: No matches in skills/commands.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `ccc_status`, `ccc_reindex`, `ccc_feedback`: No matches in skills/commands.
+
+### `cocoindex`: Only in embedder_pluggability.md:189 (bannered exception), process-memory-harness.ts (documented exception), F-AC3 fixtures (documented exception), 409-fixture (documented exception), benchmark data (historical). -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: `cocoindex`: Only in embedder_pluggability.md:189 (bannered exception), process-memory-harness.ts (documented exception), F-AC3 fixtures (documented exception), 409-fixture (documented exception), benchmark data (historical).
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `cocoindex`: Only in embedder_pluggability.md:189 (bannered exception), process-memory-harness.ts (documented exception), F-AC3 fixtures (documented exception), 409-fixture (documented exception), benchmark data (historical).
+
 ### `code-graph-boundary.ts` - no references to removed cocoIndex/cocoIndexAvailable fields. The file uses the readiness marker pattern (line 152-183) and MCP RPC to code-graph (line 269-302), with no coco coupling. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: `code-graph-boundary.ts` - no references to removed cocoIndex/cocoIndexAvailable fields. The file uses the readiness marker pattern (line 152-183) and MCP RPC to code-graph (line 269-302), with no coco coupling.
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -180,10 +220,65 @@ Iteration 1 → **D1 Correctness** over cluster A (reference completeness) + the
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `compact-inject.ts` (claude) - no references to removed cocoIndex/cocoIndexAvailable fields. The file uses the 3-source merge pipeline (line 210) and auto-surface from memory (line 284), with no coco coupling.
 
+### `deep_start-research-loop_auto.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]; no cocoindex_code references -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `deep_start-research-loop_auto.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]; no cocoindex_code references
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `deep_start-research-loop_auto.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]; no cocoindex_code references
+
+### `deep_start-research-loop_confirm.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]; no cocoindex_code references -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `deep_start-research-loop_confirm.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]; no cocoindex_code references
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `deep_start-research-loop_confirm.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]; no cocoindex_code references
+
+### `deep_start-review-loop_auto.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob]; no cocoindex_code references -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `deep_start-review-loop_auto.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob]; no cocoindex_code references
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `deep_start-review-loop_auto.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob]; no cocoindex_code references
+
+### `deep_start-review-loop_confirm.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob]; no cocoindex_code references -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `deep_start-review-loop_confirm.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob]; no cocoindex_code references
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `deep_start-review-loop_confirm.yaml` - mcp_servers: [mk-spec-memory] only; tools: [Read, Write, Edit, Bash, Grep, Glob]; no cocoindex_code references
+
 ### `embedder_pluggability.md:189` - explicit obsolescence banner: "⚠️ Obsolete as of the 014 CocoIndex deprecation. system-code-graph no longer has a pluggable embedder or a CocoIndex/`ccc` vector layer — it is now a structural tree-sitter indexer." -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: `embedder_pluggability.md:189` - explicit obsolescence banner: "⚠️ Obsolete as of the 014 CocoIndex deprecation. system-code-graph no longer has a pluggable embedder or a CocoIndex/`ccc` vector layer — it is now a structural tree-sitter indexer."
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `embedder_pluggability.md:189` - explicit obsolescence banner: "⚠️ Obsolete as of the 014 CocoIndex deprecation. system-code-graph no longer has a pluggable embedder or a CocoIndex/`ccc` vector layer — it is now a structural tree-sitter indexer."
+
+### `handlers/memory-search.ts` - No references to probeCocoIndex, calibrateCoco, cocoIndexProbe, isCocoIndexAvailable, cocoindexCalibration identifiers -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `handlers/memory-search.ts` - No references to probeCocoIndex, calibrateCoco, cocoIndexProbe, isCocoIndexAvailable, cocoindexCalibration identifiers
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `handlers/memory-search.ts` - No references to probeCocoIndex, calibrateCoco, cocoIndexProbe, isCocoIndexAvailable, cocoindexCalibration identifiers
+
+### `handlers/session-resume.ts` - No dangling coco identifier references -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `handlers/session-resume.ts` - No dangling coco identifier references
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `handlers/session-resume.ts` - No dangling coco identifier references
+
+### `hooks/claude/compact-inject.ts` - No dangling coco identifier references -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `hooks/claude/compact-inject.ts` - No dangling coco identifier references
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `hooks/claude/compact-inject.ts` - No dangling coco identifier references
+
+### `hooks/claude/session-prime.ts` - No dangling coco identifier references -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `hooks/claude/session-prime.ts` - No dangling coco identifier references
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `hooks/claude/session-prime.ts` - No dangling coco identifier references
+
+### `hooks/gemini/session-prime.ts` - No dangling coco identifier references -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `hooks/gemini/session-prime.ts` - No dangling coco identifier references
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `hooks/gemini/session-prime.ts` - No dangling coco identifier references
+
+### `lib/code-graph-boundary.ts` - No dangling coco identifier references -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `lib/code-graph-boundary.ts` - No dangling coco identifier references
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `lib/code-graph-boundary.ts` - No dangling coco identifier references
+
+### `mcp__cocoindex_code`: No matches. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: `mcp__cocoindex_code`: No matches.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `mcp__cocoindex_code`: No matches.
 
 ### `memory-search.ts` - no references to removed cocoIndex/cocoIndexAvailable fields, calibration logic, or daemon-probe code. The file uses the 4-stage pipeline architecture (line 16) and has no coco-specific imports or logic. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: `memory-search.ts` - no references to removed cocoIndex/cocoIndexAvailable fields, calibration logic, or daemon-probe code. The file uses the 4-stage pipeline architecture (line 16) and has no coco-specific imports or logic.
@@ -200,6 +295,11 @@ Iteration 1 → **D1 Correctness** over cluster A (reference completeness) + the
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `process-sweep.vitest.ts:141-157` - test fixture preserves ccc-daemon classification as historical test coverage for the process-sweep logic. The test verifies that ccc daemons without owner tokens are preserved (line 153-156), not spawned.
 
+### `rerank_sidecar`: Only in process-memory-harness.ts, process-sweep.vitest.ts, process-memory-harness.vitest.ts (documented exceptions), benchmark reports (historical). -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: `rerank_sidecar`: Only in process-memory-harness.ts, process-sweep.vitest.ts, process-memory-harness.vitest.ts (documented exceptions), benchmark reports (historical).
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `rerank_sidecar`: Only in process-memory-harness.ts, process-sweep.vitest.ts, process-memory-harness.vitest.ts (documented exceptions), benchmark reports (historical).
+
 ### `session-prime.ts` (claude) - no references to removed cocoIndex/cocoIndexAvailable fields. The file uses getStartupBriefFromMarker (line 26) and handles compact/startup/resume/clear sources, with no coco coupling. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: `session-prime.ts` (claude) - no references to removed cocoIndex/cocoIndexAvailable fields. The file uses getStartupBriefFromMarker (line 26) and handles compact/startup/resume/clear sources, with no coco coupling.
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -215,10 +315,50 @@ Iteration 1 → **D1 Correctness** over cluster A (reference completeness) + the
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `session-resume.ts` - no references to removed cocoIndex/cocoIndexAvailable fields. The file uses code-graph-boundary for status (line 14-15) and builds resume context, with no coco coupling.
 
+### `SPECKIT_CROSS_ENCODER`: Extensive references in feature_catalog.md and benchmarks, but SKILL.md:422 explicitly documents the flag as "no longer wired" post-014 (documented exception). -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: `SPECKIT_CROSS_ENCODER`: Extensive references in feature_catalog.md and benchmarks, but SKILL.md:422 explicitly documents the flag as "no longer wired" post-014 (documented exception).
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `SPECKIT_CROSS_ENCODER`: Extensive references in feature_catalog.md and benchmarks, but SKILL.md:422 explicitly documents the flag as "no longer wired" post-014 (documented exception).
+
+### `system-code-graph/mcp_server/lib/shared/code-graph-contracts.ts` - No cocoIndex/cocoIndexAvailable/cocoindexCalibration fields in any exported interfaces (StartupBriefResult, CodeGraphReadinessMarker, MergeInput types all clean) -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `system-code-graph/mcp_server/lib/shared/code-graph-contracts.ts` - No cocoIndex/cocoIndexAvailable/cocoindexCalibration fields in any exported interfaces (StartupBriefResult, CodeGraphReadinessMarker, MergeInput types all clean)
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `system-code-graph/mcp_server/lib/shared/code-graph-contracts.ts` - No cocoIndex/cocoIndexAvailable/cocoindexCalibration fields in any exported interfaces (StartupBriefResult, CodeGraphReadinessMarker, MergeInput types all clean)
+
+### `system-spec-kit/mcp_server/lib/code-graph-boundary.ts` - Imports from @spec-kit/shared/code-graph-contracts are clean; no references to removed coco fields on imported types -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: `system-spec-kit/mcp_server/lib/code-graph-boundary.ts` - Imports from @spec-kit/shared/code-graph-contracts are clean; no references to removed coco fields on imported types
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `system-spec-kit/mcp_server/lib/code-graph-boundary.ts` - Imports from @spec-kit/shared/code-graph-contracts are clean; no references to removed coco fields on imported types
+
+### All YAMLs use standard tool sets and mk-spec-memory MCP server exclusively; no code context bootstrap steps call removed coco tools -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: All YAMLs use standard tool sets and mk-spec-memory MCP server exclusively; no code context bootstrap steps call removed coco tools
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: All YAMLs use standard tool sets and mk-spec-memory MCP server exclusively; no code context bootstrap steps call removed coco tools
+
 ### cli-* SKILL.md files (cli-codex:357, cli-claude-code:350, cli-opencode:296, cli-devin:372, cli-gemini:309) - `pkill -9 -f "ccc search"` lines are documented cleanup safety mechanisms for orphaned dispatcher processes, not live coupling to the deleted ccc CLI. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: cli-* SKILL.md files (cli-codex:357, cli-claude-code:350, cli-opencode:296, cli-devin:372, cli-gemini:309) - `pkill -9 -f "ccc search"` lines are documented cleanup safety mechanisms for orphaned dispatcher processes, not live coupling to the deleted ccc CLI.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: cli-* SKILL.md files (cli-codex:357, cli-claude-code:350, cli-opencode:296, cli-devin:372, cli-gemini:309) - `pkill -9 -f "ccc search"` lines are documented cleanup safety mechanisms for orphaned dispatcher processes, not live coupling to the deleted ccc CLI.
+
+### Doctor command surface: Only the already-known F006 (doctor_deep-loop.yaml:97 forbidden-target glob) found; no new vestigial routes or stale doctor-cocoindex references -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: Doctor command surface: Only the already-known F006 (doctor_deep-loop.yaml:97 forbidden-target glob) found; no new vestigial routes or stale doctor-cocoindex references
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Doctor command surface: Only the already-known F006 (doctor_deep-loop.yaml:97 forbidden-target glob) found; no new vestigial routes or stale doctor-cocoindex references
+
+### Grep search for `import type.*from.*system-code-graph` and `import type.*from.*system-spec-kit` across .opencode/skills found only legitimate cross-skill imports (system-skill-advisor benchmarks, test fixtures) with no coco field usage -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: Grep search for `import type.*from.*system-code-graph` and `import type.*from.*system-spec-kit` across .opencode/skills found only legitimate cross-skill imports (system-skill-advisor benchmarks, test fixtures) with no coco field usage
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Grep search for `import type.*from.*system-code-graph` and `import type.*from.*system-spec-kit` across .opencode/skills found only legitimate cross-skill imports (system-skill-advisor benchmarks, test fixtures) with no coco field usage
+
+### Install guides: No coco/ccc/rerank/8765 references found in `.opencode/install_guides/**` -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: Install guides: No coco/ccc/rerank/8765 references found in `.opencode/install_guides/**`
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Install guides: No coco/ccc/rerank/8765 references found in `.opencode/install_guides/**`
+
+### MCP config _NOTE_* blocks: All 5 configs clean; the only rerank references are to Voyage's cloud rerank-2.5 service (not the removed system-rerank-sidecar) -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: MCP config _NOTE_* blocks: All 5 configs clean; the only rerank references are to Voyage's cloud rerank-2.5 service (not the removed system-rerank-sidecar)
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: MCP config _NOTE_* blocks: All 5 configs clean; the only rerank references are to Voyage's cloud rerank-2.5 service (not the removed system-rerank-sidecar)
 
 ### No `codeGraph-*` rename artifacts found outside review docs (009 incident revert was clean). -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: No `codeGraph-*` rename artifacts found outside review docs (009 incident revert was clean).
@@ -240,6 +380,11 @@ Iteration 1 → **D1 Correctness** over cluster A (reference completeness) + the
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Only historical reference found: `changelog/v3.2.0.0.md:209` mentions "Must use CocoIndex" style instructions in past tense as part of historical context about routing enforcement changes. This is not a live instruction.
 
+### Scripts: No coco/ccc/rerank/8765/ensure-rerank residue found in `.opencode/scripts/**` -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: Scripts: No coco/ccc/rerank/8765/ensure-rerank residue found in `.opencode/scripts/**`
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Scripts: No coco/ccc/rerank/8765/ensure-rerank residue found in `.opencode/scripts/**`
+
 ### Test fixtures use "coco" as search-term data only: `F-AC3-happy-path.json:22` expects "phase 7 cocoindex" as absent trigger (test data); `409-fixture.json:3` uses "CocoIndex complete-fork" as historical query data for memory retrieval testing (frozen benchmark data). -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: Test fixtures use "coco" as search-term data only: `F-AC3-happy-path.json:22` expects "phase 7 cocoindex" as absent trigger (test data); `409-fixture.json:3` uses "CocoIndex complete-fork" as historical query data for memory retrieval testing (frozen benchmark data).
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -249,6 +394,6 @@ Iteration 1 → **D1 Correctness** over cluster A (reference completeness) + the
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Synthesis (all 4 dimensions covered: correctness, security, traceability, maintainability). The review is complete with no new findings in iteration 4. All kept exceptions are justified-inert, behavioral paths are clean, incident reverts left no residue, and doc prose is accurate. Review verdict: PASS
+Synthesis if exhausted, OR remaining gap. This iteration found 4 NEW findings (F010-F013) across the analogous surfaces to iter-6, confirming the pattern that deeper digging finds more residue. The exhaustive alias grep confirmed no NEW live refs beyond documented exceptions. The remaining gap is the feature_catalog residue (F010) and the misleading handler references (F011-F012) which are traceability/maintainability issues. Review verdict: FAIL
 
 <!-- /ANCHOR:next-focus -->

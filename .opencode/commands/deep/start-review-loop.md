@@ -469,4 +469,4 @@ Convergence thresholds and recovery settings used by this command are a governed
 **References:**
 - Optimizer configuration: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json`
 - Tunable thresholds: `convergenceThreshold`, `stuckThreshold`, `maxIterations`, `compositeStopScore`
-- Convergence reference: `.opencode/skills/deep-review/references/convergence.md`
+- Convergence reference: `.opencode/skills/deep-review/references/convergence/convergence.md`

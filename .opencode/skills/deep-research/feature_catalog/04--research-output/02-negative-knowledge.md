@@ -28,8 +28,8 @@ The reducer and synthesis phases keep that information alive. `reduce-state.cjs`
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/agents/deep-research.md` | Agent | Requires `Ruled Out` and `Dead Ends` sections in iteration files and records ruled-out paths in JSONL. |
-| `.opencode/skills/deep-research/references/state_format.md` | Reference | Defines the `ruledOut` JSONL payload and iteration-file requirements. |
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Reference | Defines the `Eliminated Alternatives` synthesis contract. |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Reference | Defines the `ruledOut` JSONL payload and iteration-file requirements. |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Reference | Defines the `Eliminated Alternatives` synthesis contract. |
 | `.opencode/skills/deep-research/scripts/reduce-state.cjs` | Reducer | Promotes ruled-out directions into synchronized strategy and registry state. |
 
 ### Validation And Tests

@@ -75,11 +75,11 @@ Use this README for human orientation: command examples, packet layout, lifecycl
 | Spec anchoring | Bounded `spec.md` seed and generated-fence write-back during the workflow |
 | Shared resource family | Quick reference, loop protocol, split convergence/state references, config, strategy, dashboard, prompt-pack, and runtime capability assets aligned with sibling deep skills while staying research-specific. |
 
-The packet is lineage-aware. Every run carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, and `continuedFromRun`, so the workflow can distinguish an active resume from a restart. `fork` and `completed-continue` are reserved for a future release and are not runtime-supported today. See the Lifecycle Branches section in `references/loop_protocol.md` for the canonical one-session contract.
+The packet is lineage-aware. Every run carries `sessionId`, `parentSessionId`, `lineageMode`, `generation`, and `continuedFromRun`, so the workflow can distinguish an active resume from a restart. `fork` and `completed-continue` are reserved for a future release and are not runtime-supported today. See the Lifecycle Branches section in `references/protocol/loop_protocol.md` for the canonical one-session contract.
 
 The packet is also reducer-synchronized. The agent writes the iteration file plus the JSONL record. The workflow reducer then updates the machine-owned packet surfaces so `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, and synthesis metadata cannot drift apart.
 
-The workflow also anchors every run to a real `spec.md`. During late INIT it follows [`references/spec_check_protocol.md`](references/spec_check_protocol.md): acquire `research/.deep-research.lock`, classify `folder_state` as `no-spec`, `spec-present`, `spec-just-created-by-this-run`, or `conflict-detected`, and then either seed a Level 1 spec or append bounded context before LOOP starts.
+The workflow also anchors every run to a real `spec.md`. During late INIT it follows [`references/protocol/spec_check_protocol.md`](references/protocol/spec_check_protocol.md): acquire `research/.deep-research.lock`, classify `folder_state` as `no-spec`, `spec-present`, `spec-just-created-by-this-run`, or `conflict-detected`, and then either seed a Level 1 spec or append bounded context before LOOP starts.
 
 During SYNTHESIS the same contract replaces exactly one `<!-- BEGIN GENERATED: deep-research/spec-findings -->` ... `<!-- END GENERATED: deep-research/spec-findings -->` block under the chosen host anchor while keeping `research/research.md` canonical.
 
@@ -118,11 +118,11 @@ The artifact directory always lives under the target spec's local `research/` fo
 ## 3. FEATURES
 
 - Fresh context per iteration: Each iteration uses a fresh LEAF agent dispatch.
-- Lineage-aware lifecycle: Supports `new`, `resume`, and `restart`. `fork` and `completed-continue` are deferred. See the Lifecycle Branches section in `references/loop_protocol.md`.
+- Lineage-aware lifecycle: Supports `new`, `resume`, and `restart`. `fork` and `completed-continue` are deferred. See the Lifecycle Branches section in `references/protocol/loop_protocol.md`.
 - Reducer synchronization: Strategy, dashboard, registry, and synthesis metadata are updated from canonical iteration outputs.
 - Packet-first recovery: Hook and non-hook runtimes derive the same next action from packet files.
 - Runtime capability matrix: One documented and machine-readable source of truth for provider quirks and parity expectations.
-- `spec.md` anchoring: Late INIT follows `references/spec_check_protocol.md` to seed or sync bounded packet context before LOOP begins.
+- `spec.md` anchoring: Late INIT follows `references/protocol/spec_check_protocol.md` to seed or sync bounded packet context before LOOP begins.
 - Folder-state contract: `folder_state` resolves to `no-spec`, `spec-present`, `spec-just-created-by-this-run`, or `conflict-detected` before any `spec.md` mutation branch runs.
 - Advisory lock + generated fence: The workflow holds `research/.deep-research.lock` through synthesis and replaces one `BEGIN/END GENERATED` findings block in `spec.md`.
 - Progressive synthesis: `research.md` can be updated incrementally and is finalized during synthesis.
@@ -148,19 +148,23 @@ The artifact directory always lives under the target spec's local `research/` fo
   SKILL.md
   README.md
   references/
-    capability_matrix.md
-    convergence.md
-    convergence_graph.md
-    convergence_recovery.md
-    convergence_reference_only.md
-    convergence_signals.md
-    loop_protocol.md
-    quick_reference.md
-    spec_check_protocol.md
-    state_format.md
-    state_jsonl.md
-    state_outputs.md
-    state_reducer_registry.md
+    convergence/
+      convergence.md
+      convergence_graph.md
+      convergence_recovery.md
+      convergence_reference_only.md
+      convergence_signals.md
+    state/
+      state_format.md
+      state_jsonl.md
+      state_outputs.md
+      state_reducer_registry.md
+    protocol/
+      loop_protocol.md
+      spec_check_protocol.md
+    guides/
+      capability_matrix.md
+      quick_reference.md
   assets/
     deep_research_config.json
     deep_research_dashboard.md
@@ -199,7 +203,7 @@ Ownership model:
 - Agent-owned writes: `iteration-NNN.md`, JSONL iteration/event append, optional progressive synthesis content.
 - Reducer-owned writes: `deep-research-strategy.md` machine-owned sections, `findings-registry.json`, `deep-research-dashboard.md`.
 - Workflow-owned output: `research.md` and lifecycle snapshot files such as `synthesis-v{generation}.md`.
-- Protocol-owned packet mutations: bounded `spec.md` seeding, context append, advisory lock lifecycle, and generated-fence replacement defined in `references/spec_check_protocol.md`.
+- Protocol-owned packet mutations: bounded `spec.md` seeding, context append, advisory lock lifecycle, and generated-fence replacement defined in `references/protocol/spec_check_protocol.md`.
 <!-- /ANCHOR:structure -->
 
 ---
@@ -264,7 +268,7 @@ Expected output: gate/blocker explanation and next focus
 | `fork` (deferred) | Reserved. Earlier drafts described this as a sibling-lineage branch. the runtime does not emit lineage events for `fork` today. Do not expose it in user-facing workflows. |
 | `completed-continue` (deferred) | Reserved. Earlier drafts described snapshotting the prior synthesis as immutable `synthesis-v{generation}.md`. the runtime does not emit lineage events for `completed-continue` today. |
 
-See the Lifecycle Branches section in `references/loop_protocol.md` for the canonical event contract. Legacy artifact names remain read-only migration aliases for a 4-week window. The workflow writes only canonical `deep-research-*` names and emits migration events when it consumes a legacy alias.
+See the Lifecycle Branches section in `references/protocol/loop_protocol.md` for the canonical event contract. Legacy artifact names remain read-only migration aliases for a 4-week window. The workflow writes only canonical `deep-research-*` names and emits migration events when it consumes a legacy alias.
 <!-- /ANCHOR:lifecycle-modes -->
 
 ---
@@ -281,7 +285,7 @@ The workflow resolves the runtime mirror from the active CLI, but every mirror m
 | Codex | `.codex/agents/deep-research.toml` |
 | Gemini | `.gemini/agents/deep-research.md` |
 
-Read `.opencode/skills/deep-research/references/capability_matrix.md` for the parity checklist and `.opencode/skills/deep-research/assets/runtime_capabilities.json` plus `.opencode/skills/deep-research/scripts/runtime-capabilities.cjs` for the machine-readable lookup path.
+Read `.opencode/skills/deep-research/references/guides/capability_matrix.md` for the parity checklist and `.opencode/skills/deep-research/assets/runtime_capabilities.json` plus `.opencode/skills/deep-research/scripts/runtime-capabilities.cjs` for the machine-readable lookup path.
 <!-- /ANCHOR:runtime-parity -->
 
 ---
@@ -294,9 +298,9 @@ Read `.opencode/skills/deep-research/references/capability_matrix.md` for the pa
 | Packet resumes when you expected a new run | Inspect `config.lineage` and the latest lifecycle event in `deep-research-state.jsonl`. |
 | Strategy/dashboard drift | Confirm the reducer ran and regenerated `findings-registry.json` and `deep-research-dashboard.md`. |
 | JSONL parse failure | Run `cat research/deep-research-state.jsonl | jq .` and fall back to iteration-file reconstruction if needed. |
-| Runtime mirror behaves differently | Compare the mirror against `references/capability_matrix.md`. |
+| Runtime mirror behaves differently | Compare the mirror against `references/guides/capability_matrix.md`. |
 | Loop will not continue after pause | Remove `research/.deep-research-pause` and restart the command so the lifecycle check can emit `resumed`. |
-| `spec.md` write is blocked | Inspect `folder_state`, `research/.deep-research.lock`, and the conflict details defined in `references/spec_check_protocol.md`. |
+| `spec.md` write is blocked | Inspect `folder_state`, `research/.deep-research.lock`, and the conflict details defined in `references/protocol/spec_check_protocol.md`. |
 <!-- /ANCHOR:troubleshooting -->
 
 ---
@@ -308,7 +312,7 @@ Read `.opencode/skills/deep-research/references/capability_matrix.md` for the pa
 A: Not as the source of truth. The reducer owns the machine-managed sections so packet state stays synchronized.
 
 **Q: What is the difference between `resume` and `restart`?**
-A: `resume` continues the same `sessionId` and generation, leaving the `research/` tree in place. The workflow appends a `resumed` JSONL event. `restart` archives the existing `research/` tree under `research_archive/{timestamp}/`, mints a fresh `sessionId`, increments `generation`, and appends a `restarted` JSONL event. Both events share the full lineage-contract field set documented in the Lifecycle Branches section of `references/loop_protocol.md`.
+A: `resume` continues the same `sessionId` and generation, leaving the `research/` tree in place. The workflow appends a `resumed` JSONL event. `restart` archives the existing `research/` tree under `research_archive/{timestamp}/`, mints a fresh `sessionId`, increments `generation`, and appends a `restarted` JSONL event. Both events share the full lineage-contract field set documented in the Lifecycle Branches section of `references/protocol/loop_protocol.md`.
 
 **Q: What happened to `fork` and `completed-continue`?**
 A: Both were described in earlier drafts but never shipped as runtime branches. They are deferred and the workflow no longer exposes them as options. If the long-form lineage feature is implemented later it will arrive with first-class event emission, reducer ancestry handling, and replay fixtures. until then treat each run as a standalone session or use `restart` to archive the prior one.
@@ -317,7 +321,7 @@ A: Both were described in earlier drafts but never shipped as runtime branches. 
 A: Yes. Packet files are the authority. Hooks only improve startup ergonomics.
 
 **Q: What can `/deep:start-research-loop` change in `spec.md`?**
-A: Only the bounded mutations in `references/spec_check_protocol.md`. seed markers or pre-init context during INIT, plus one machine-owned `BEGIN GENERATED` / `END GENERATED` findings block during SYNTHESIS.
+A: Only the bounded mutations in `references/protocol/spec_check_protocol.md`. seed markers or pre-init context during INIT, plus one machine-owned `BEGIN GENERATED` / `END GENERATED` findings block during SYNTHESIS.
 
 **Q: Where should review work go now?**
 A: Use `deep-review` and `/deep:start-review-loop`.
@@ -335,19 +339,19 @@ A: Use `deep-review` and `/deep:start-review-loop`.
 | Resource | Purpose |
 |----------|---------|
 | `SKILL.md` | Full protocol and rules |
-| `references/loop_protocol.md` | Detailed lifecycle and reducer sequencing |
-| `references/spec_check_protocol.md` | Bounded `spec.md` anchoring, `folder_state` rules, advisory lock lifecycle, and generated-fence write-back |
-| `references/state_format.md` | State packet hub and mutability/navigation summary |
-| `references/state_jsonl.md` | Config, iteration, event, lineage, graph, and blocked-stop records |
-| `references/state_outputs.md` | Strategy, iteration markdown, `research.md`, dashboard, resource-map, and spec anchoring outputs |
-| `references/state_reducer_registry.md` | Reducer ownership, findings registry, validation, reconstruction, and file protection |
-| `references/convergence.md` | Live stop contract, legal-stop gates, and convergence navigation hub |
-| `references/convergence_signals.md` | `newInfoRatio`, rolling average, MAD, entropy, stuck count, and reporting |
-| `references/convergence_recovery.md` | Stuck recovery, recovery strategy selection, tiered errors, and escalation |
-| `references/convergence_graph.md` | Graph-aware STOP gates, graph convergence events, and graceful degradation |
-| `references/convergence_reference_only.md` | Non-executable segment, semantic, dead-end, and optimizer notes |
+| `references/protocol/loop_protocol.md` | Detailed lifecycle and reducer sequencing |
+| `references/protocol/spec_check_protocol.md` | Bounded `spec.md` anchoring, `folder_state` rules, advisory lock lifecycle, and generated-fence write-back |
+| `references/state/state_format.md` | State packet hub and mutability/navigation summary |
+| `references/state/state_jsonl.md` | Config, iteration, event, lineage, graph, and blocked-stop records |
+| `references/state/state_outputs.md` | Strategy, iteration markdown, `research.md`, dashboard, resource-map, and spec anchoring outputs |
+| `references/state/state_reducer_registry.md` | Reducer ownership, findings registry, validation, reconstruction, and file protection |
+| `references/convergence/convergence.md` | Live stop contract, legal-stop gates, and convergence navigation hub |
+| `references/convergence/convergence_signals.md` | `newInfoRatio`, rolling average, MAD, entropy, stuck count, and reporting |
+| `references/convergence/convergence_recovery.md` | Stuck recovery, recovery strategy selection, tiered errors, and escalation |
+| `references/convergence/convergence_graph.md` | Graph-aware STOP gates, graph convergence events, and graceful degradation |
+| `references/convergence/convergence_reference_only.md` | Non-executable segment, semantic, dead-end, and optimizer notes |
 | `manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` | Operator test case for graph stop guards and blocked-stop behavior |
-| `references/capability_matrix.md` | Runtime parity source of truth |
+| `references/guides/capability_matrix.md` | Runtime parity source of truth |
 | `feature_catalog/feature_catalog.md` | Canonical feature inventory across loop lifecycle, state management, convergence, and research output |
 | `deep-review` | Dedicated iterative code review skill |
 <!-- /ANCHOR:related-documents -->

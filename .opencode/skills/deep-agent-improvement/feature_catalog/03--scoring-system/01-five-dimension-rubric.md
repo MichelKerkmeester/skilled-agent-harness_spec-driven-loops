@@ -27,7 +27,7 @@ The dynamic scorer is lenient in one important way: missing derived checks defau
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-agent-improvement/references/evaluator_contract.md` | Contract reference | Documents the five-dimension rubric and the benchmark rubric that sits beside it. |
+| `.opencode/skills/deep-agent-improvement/references/scoring/evaluator_contract.md` | Contract reference | Documents the five-dimension rubric and the benchmark rubric that sits beside it. |
 | `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs` | Scorer | Implements the five dimension functions, weights, and recommendation threshold. |
 | `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs` | Profile builder | Supplies the derived structural, rule, output, integration, and mismatch checks that the rubric consumes. |
 | `.opencode/skills/deep-agent-improvement/assets/improvement_config.json` | Runtime config | Stores the default dimension weights and threshold delta. |
@@ -36,7 +36,7 @@ The dynamic scorer is lenient in one important way: missing derived checks defau
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-agent-improvement/references/quick_reference.md` | Operator reference | Restates the shipped dimension weights for the live release. |
+| `.opencode/skills/deep-agent-improvement/references/workflow/quick_reference.md` | Operator reference | Restates the shipped dimension weights for the live release. |
 | `.opencode/skills/deep-agent-improvement/README.md` | Package reference | Mirrors the current recommendation threshold and weighted-score formula for operators. |
 
 ---

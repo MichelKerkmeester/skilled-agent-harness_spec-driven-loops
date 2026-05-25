@@ -46,7 +46,7 @@ Validate deep-review scope discovery and dimension ordering for target resolutio
 ### Commands
 1. `bash: rg -n 'step_scope_discovery|step_order_dimensions' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 2. `bash: sed -n '/step_scope_discovery/,/step_order_dimensions/p' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
-3. `bash: rg -n 'correctness.*security.*traceability.*maintainability|priority.*1|priority.*2|priority.*3|priority.*4|D1|D2|D3|D4' .opencode/skills/deep-review/references/quick_reference.md .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
+3. `bash: rg -n 'correctness.*security.*traceability.*maintainability|priority.*1|priority.*2|priority.*3|priority.*4|D1|D2|D3|D4' .opencode/skills/deep-review/references/protocol/quick_reference.md .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 ### Expected
 The scope discovery step has resolution rules for each target type. The dimension ordering step enforces correctness > security > traceability > maintainability. The quick reference dimension table matches.
 ### Evidence
@@ -72,7 +72,7 @@ Check the YAML step_scope_discovery resolve block for each target type (spec-fol
 |---|---|
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Scope discovery and dimension ordering, inspect `step_scope_discovery` and `step_order_dimensions` |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Scope discovery and dimension ordering, inspect `step_scope_discovery` and `step_order_dimensions` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Dimension table, use `ANCHOR:review-dimensions` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | Dimension table, use `ANCHOR:review-dimensions` |
 | `.opencode/skills/deep-review/assets/review_mode_contract.yaml` | Review mode contract with dimension definitions |
 
 ---

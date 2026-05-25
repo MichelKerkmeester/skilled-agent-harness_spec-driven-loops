@@ -19,7 +19,7 @@ Operators use this feature when the real request is: Tell me what happens if the
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `04--convergence-and-rollback/002-max-rounds-without-convergence-emits-non-converged.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-009.
 
-Current behavior is grounded in `.opencode/skills/deep-ai-council/references/convergence_signals.md`, which the scenario identifies as escape hatch guidance. Validation is anchored by `manual_testing_playbook/04--convergence-and-rollback/002-max-rounds-without-convergence-emits-non-converged.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/deep-ai-council/references/convergence/convergence_signals.md`, which the scenario identifies as escape hatch guidance. Validation is anchored by `manual_testing_playbook/04--convergence-and-rollback/002-max-rounds-without-convergence-emits-non-converged.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify non-converged completion behavior. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -31,8 +31,8 @@ The user-visible contract is concrete: Verify non-converged completion behavior.
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/deep-ai-council/references/convergence_signals.md` | Reference | Escape hatch guidance |
-| `.opencode/skills/deep-ai-council/references/state_format.md` | Reference | Completion event semantics |
+| `.opencode/skills/deep-ai-council/references/convergence/convergence_signals.md` | Reference | Escape hatch guidance |
+| `.opencode/skills/deep-ai-council/references/structure/state_format.md` | Reference | Completion event semantics |
 
 ### Validation And Tests
 

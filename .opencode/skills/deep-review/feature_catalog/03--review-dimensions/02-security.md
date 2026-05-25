@@ -27,7 +27,7 @@ Because security findings can escalate to P0, this dimension sits near the front
 |---|---|---|
 | `assets/review_mode_contract.yaml` | Contract | Declares security as dimension `2`, defines its checks, and marks it as required for severity coverage. |
 | `SKILL.md` | Skill contract | Lists security in the live four-dimension model and ties it to vulnerability review. |
-| `references/loop_protocol.md` | Protocol | Orders security second and includes it in required convergence coverage. |
+| `references/protocol/loop_protocol.md` | Protocol | Orders security second and includes it in required convergence coverage. |
 | `assets/deep_review_strategy.md` | Template | Seeds the strategy checklist with the security dimension. |
 
 ### Validation And Tests
@@ -45,4 +45,4 @@ Because security findings can escalate to P0, this dimension sits near the front
 - Group: Review dimensions
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `03--review-dimensions/02-security.md`
-- Primary sources: `assets/review_mode_contract.yaml`, `SKILL.md`, `references/loop_protocol.md`, `assets/deep_review_strategy.md`
+- Primary sources: `assets/review_mode_contract.yaml`, `SKILL.md`, `references/protocol/loop_protocol.md`, `assets/deep_review_strategy.md`

@@ -105,9 +105,9 @@ describe('deep-review reducer and schema contract', () => {
   });
 
   it('documents reducer metrics and machine-owned report boundaries in the review references', () => {
-    const stateFormat = readWorkspaceFile('.opencode/skills/deep-review/references/state_format.md');
-    const loopProtocol = readWorkspaceFile('.opencode/skills/deep-review/references/loop_protocol.md');
-    const convergence = readWorkspaceFile('.opencode/skills/deep-review/references/convergence.md');
+    const stateFormat = readWorkspaceFile('.opencode/skills/deep-review/references/state/state_format.md');
+    const loopProtocol = readWorkspaceFile('.opencode/skills/deep-review/references/protocol/loop_protocol.md');
+    const convergence = readWorkspaceFile('.opencode/skills/deep-review/references/convergence/convergence.md');
 
     expect(stateFormat).toContain('deep-review-findings-registry.json');
     expect(stateFormat).toContain('releaseReadinessState');

@@ -44,8 +44,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate final synthesis records ruled-out directions from JSONL and iteration dead-end sections.
 ### Commands
-1. `bash: rg -n 'Eliminated Alternatives\|ruledOut\|Dead Ends\|negative knowledge' .opencode/skills/deep-research/references/loop_protocol.md`
-2. `bash: rg -n 'ruledOut\|Ruled Out\|Dead Ends' .opencode/skills/deep-research/references/state_format.md`
+1. `bash: rg -n 'Eliminated Alternatives\|ruledOut\|Dead Ends\|negative knowledge' .opencode/skills/deep-research/references/protocol/loop_protocol.md`
+2. `bash: rg -n 'ruledOut\|Ruled Out\|Dead Ends' .opencode/skills/deep-research/references/state/state_format.md`
 3. `bash: sed -n '/ANCHOR:ruled-out-directions/,/\/ANCHOR:ruled-out-directions/p' .opencode/skills/deep-research/assets/deep_research_strategy.md`
 4. `bash: rg -n 'rule.*10\|ruled-out' .opencode/skills/deep-research/SKILL.md`
 ### Expected
@@ -71,8 +71,8 @@ Privilege the loop protocol synthesis rules for the canonical consolidation cont
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Loop protocol; inspect `ANCHOR:phase-synthesis` for the Eliminated Alternatives consolidation rules (synthesis Step 3) |
-| `.opencode/skills/deep-research/references/state_format.md` | State format; inspect `ruledOut` array under `ANCHOR:state-log` (Negative Knowledge subsection) and iteration file requirements under `ANCHOR:iteration-files` |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Loop protocol; inspect `ANCHOR:phase-synthesis` for the Eliminated Alternatives consolidation rules (synthesis Step 3) |
+| `.opencode/skills/deep-research/references/state/state_format.md` | State format; inspect `ruledOut` array under `ANCHOR:state-log` (Negative Knowledge subsection) and iteration file requirements under `ANCHOR:iteration-files` |
 | `.opencode/skills/deep-research/assets/deep_research_strategy.md` | Strategy template; inspect `ANCHOR:ruled-out-directions` for section 10 (Ruled Out Directions) |
 | `.opencode/skills/deep-research/SKILL.md` | Skill rules; inspect ALWAYS rule 10: "Document ruled-out directions per iteration" |
 

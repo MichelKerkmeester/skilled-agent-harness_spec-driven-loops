@@ -24,7 +24,7 @@ The skill must not imply council seats write graph storage directly or that grap
 - Objective: Verify graph support is derived and scoped.
 - Real user request: Does the council write to graph storage yet?
 - Prompt: `As a planning-only validator, verify graph support remains a derived projection and not council-agent-owned state. Return the allowed interpretation.`
-- Expected execution process: Grep SKILL.md and `references/graph_support.md` for graph references and confirm source-of-truth boundaries.
+- Expected execution process: Grep SKILL.md and `references/integration/graph_support.md` for graph references and confirm source-of-truth boundaries.
 - Expected signals: Graph references state that `ai-council/**` artifacts remain authoritative and graph updates use caller-owned `deep-loop-runtime` CLI tooling.
 - Desired user-visible outcome: The user is told graph support is available only as a derived runtime CLI projection.
 - Pass/fail: PASS if graph is derived/scoped; FAIL if council seats directly mutate graph storage or graph rows replace artifacts.
@@ -64,11 +64,11 @@ Capture grep output and classification notes.
 
 ### Failure Triage
 
-Inspect Section 1, Section 4, Section 7, and `references/graph_support.md` for unsafe source-of-truth claims.
+Inspect Section 1, Section 4, Section 7, and `references/integration/graph_support.md` for unsafe source-of-truth claims.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-011 | Graph boundary | Verify graph support is derived and scoped | `As a planning-only validator, verify graph support remains a derived projection and not council-agent-owned state. Return the allowed interpretation.` | `bash: rg -n "graph" .opencode/skills/deep-ai-council/SKILL.md .opencode/skills/deep-ai-council/references/graph_support.md` | Derived projection and artifact source-of-truth language | Grep output | PASS if no council-seat-owned graph mutation | Inspect SKILL.md and graph_support.md scope language |
+| DAC-011 | Graph boundary | Verify graph support is derived and scoped | `As a planning-only validator, verify graph support remains a derived projection and not council-agent-owned state. Return the allowed interpretation.` | `bash: rg -n "graph" .opencode/skills/deep-ai-council/SKILL.md .opencode/skills/deep-ai-council/references/integration/graph_support.md` | Derived projection and artifact source-of-truth language | Grep output | PASS if no council-seat-owned graph mutation | Inspect SKILL.md and graph_support.md scope language |
 
 ---
 

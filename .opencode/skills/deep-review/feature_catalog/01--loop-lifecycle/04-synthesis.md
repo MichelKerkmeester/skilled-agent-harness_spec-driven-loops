@@ -25,9 +25,9 @@ The final report follows a fixed nine-section contract covering the executive su
 
 | File | Layer | Role |
 |---|---|---|
-| `references/loop_protocol.md` | Protocol | Defines synthesis deduplication, replay validation, review-report generation, verdict determination, and final JSONL emission. |
-| `references/state_format.md` | Schema | Defines the nine report sections, synthesis event payload, and active-finding registry expectations. |
-| `references/convergence.md` | Protocol | Defines the provisional verdict contract and convergence report content reused at synthesis time. |
+| `references/protocol/loop_protocol.md` | Protocol | Defines synthesis deduplication, replay validation, review-report generation, verdict determination, and final JSONL emission. |
+| `references/state/state_format.md` | Schema | Defines the nine report sections, synthesis event payload, and active-finding registry expectations. |
+| `references/convergence/convergence.md` | Protocol | Defines the provisional verdict contract and convergence report content reused at synthesis time. |
 | `assets/review_mode_contract.yaml` | Contract | Declares the report sections, verdict conditions, and next-command routing. |
 
 ### Validation And Tests
@@ -45,4 +45,4 @@ The final report follows a fixed nine-section contract covering the executive su
 - Group: Loop lifecycle
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `01--loop-lifecycle/04-synthesis.md`
-- Primary sources: `references/loop_protocol.md`, `references/state_format.md`, `references/convergence.md`, `assets/review_mode_contract.yaml`
+- Primary sources: `references/protocol/loop_protocol.md`, `references/state/state_format.md`, `references/convergence/convergence.md`, `assets/review_mode_contract.yaml`

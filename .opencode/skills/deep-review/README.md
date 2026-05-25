@@ -160,7 +160,7 @@ Synthesis dedups findings across iterations using content-hash plus file:line, r
 
 Twenty features grouped by the four catalog categories. Full per-feature detail lives under `feature_catalog/`.
 
-**Loop Lifecycle** (6 features, primary surface `references/loop_protocol.md`)
+**Loop Lifecycle** (6 features, primary surface `references/protocol/loop_protocol.md`)
 
 | Feature | Current Behavior | Source |
 |---|---|---|
@@ -171,7 +171,7 @@ Twenty features grouped by the four catalog categories. Full per-feature detail 
 | Memory save | Routes through `generate-context.js`, keeps the on-disk packet as ground truth, never discards review results on save failure | [`feature_catalog/01--loop-lifecycle/05-memory-save.md`](./feature_catalog/01--loop-lifecycle/05-memory-save.md) |
 | Resource-map emission | One explicit `--emit-resource-map` reducer pass during synthesis writes `{artifact_dir}/resource-map.md` grouped by category with per-file P0/P1/P2 counts | [`feature_catalog/01--loop-lifecycle/06-resource-map-emission.md`](./feature_catalog/01--loop-lifecycle/06-resource-map-emission.md) |
 
-**State Management** (5 features, primary surface `references/state_format.md`)
+**State Management** (5 features, primary surface `references/state/state_format.md`)
 
 | Feature | Current Behavior | Source |
 |---|---|---|
@@ -190,7 +190,7 @@ Twenty features grouped by the four catalog categories. Full per-feature detail 
 | Traceability | Priority-3 dimension: spec/code alignment, checklist evidence, overlay protocols (skill-agent, feature-catalog, playbook) | [`feature_catalog/03--review-dimensions/03-traceability.md`](./feature_catalog/03--review-dimensions/03-traceability.md) |
 | Maintainability | Priority-4 dimension: patterns, documentation quality, clarity, change cost, required for full coverage | [`feature_catalog/03--review-dimensions/04-maintainability.md`](./feature_catalog/03--review-dimensions/04-maintainability.md) |
 
-**Severity System** (5 features, primary surface `references/convergence.md`)
+**Severity System** (5 features, primary surface `references/convergence/convergence.md`)
 
 | Feature | Current Behavior | Source |
 |---|---|---|
@@ -213,14 +213,20 @@ Twenty features grouped by the four catalog categories. Full per-feature detail 
 deep-review/
 +-- SKILL.md                          # Runtime instructions and smart router
 +-- README.md                         # This file
-+-- references/                       # Loaded protocol guidance
-|   +-- convergence.md                # Stop algorithms, signal math, security-sensitive overrides
-|   +-- convergence_signals.md        # Focused STOP signals, P0 override, legal-stop summary
-|   +-- loop_protocol.md              # 4-phase lifecycle, lineage modes, dispatch contract
-|   +-- quick_reference.md            # One-page operator cheat sheet
-|   +-- state_format.md               # Canonical schemas for every state file
-|   +-- state_outputs.md              # Packet outputs, dashboard, iteration markdown, report
-|   `-- state_reducer_registry.md     # Reducer ownership, registry, reconstruction
++-- references/                       # Loaded protocol guidance, grouped by topic
+|   +-- convergence/                  # stop algorithms, signals, recovery
+|   |   +-- convergence.md            # Stop contract, composite math, legal-stop gates
+|   |   +-- convergence_signals.md    # Focused STOP signals, P0 override, legal-stop summary
+|   |   `-- convergence_recovery.md   # Stuck recovery, convergence report, graph-aware convergence
+|   +-- state/                        # state schemas, JSONL records, outputs, reducer
+|   |   +-- state_format.md           # Config + canonical state-file schemas
+|   |   +-- state_jsonl.md            # JSONL record schemas + Review Depth Schema v2
+|   |   +-- state_outputs.md          # Packet outputs, dashboard, iteration markdown, report
+|   |   `-- state_reducer_registry.md # Reducer ownership, registry, reconstruction, finding dedup
+|   `-- protocol/                     # lifecycle, executor contract, transitions/gates, cheat sheet
+|       +-- loop_protocol.md          # 4-phase lifecycle, dispatch + executor selection contract
+|       +-- loop_state_and_gates.md   # State transitions, error handling, quality gates
+|       `-- quick_reference.md        # One-page operator cheat sheet
 +-- assets/                           # Templates and config payloads
 |   +-- deep_review_config.json       # Default config shape
 |   +-- deep_review_dashboard.md      # Dashboard template
@@ -282,7 +288,7 @@ Created under the resolved `{artifact_dir}` during initialization. First runs wi
 | `--spec-folder` | auto-detected | Target spec folder for state and output |
 | `--dimensions` | all 4 | Comma-separated subset to restrict the active dimensions |
 | `--no-resource-map` | off | Disable convergence-time `resource-map.md` emission for one run |
-| `--executor` | native | Optional CLI executor (e.g. `cli-codex`), see `references/loop_protocol.md` |
+| `--executor` | native | Optional CLI executor (e.g. `cli-codex`), see `references/protocol/loop_protocol.md` |
 
 ### Default Configuration
 
@@ -297,7 +303,7 @@ Created under the resolved `{artifact_dir}` during initialization. First runs wi
 | Composite stop score | 0.60 |
 | Tool budget per iteration | 9 to 12 (max 13) |
 
-Threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05 vs deep-ai-council 0.20) live in [`references/convergence.md`](./references/convergence.md) §1 under "Threshold Semantics and Sibling Parity".
+Threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05 vs deep-ai-council 0.20) live in [`references/convergence/convergence.md`](./references/convergence/convergence.md) §1 under "Threshold Semantics and Sibling Parity".
 
 ### Review Dimensions
 
@@ -329,7 +335,7 @@ Threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 
 
 ### Security-Sensitive Override
 
-Runs that target security, path handling, env precedence, schema boundaries, persistence, or shared policy automatically raise the bar: `minStabilizationPasses=2`, closed-finding replay is required, and the fix-completeness gate is enforced. STOP is not legal until the review report contains a closed-gate replay table that marks each prior active or remediated P0/P1 as `PASS`, `FAIL`, or `carried forward`, with file:line or command evidence. Full contract in [`references/convergence.md`](./references/convergence.md).
+Runs that target security, path handling, env precedence, schema boundaries, persistence, or shared policy automatically raise the bar: `minStabilizationPasses=2`, closed-finding replay is required, and the fix-completeness gate is enforced. STOP is not legal until the review report contains a closed-gate replay table that marks each prior active or remediated P0/P1 as `PASS`, `FAIL`, or `carried forward`, with file:line or command evidence. Full contract in [`references/convergence/convergence.md`](./references/convergence/convergence.md).
 
 ### Pause and Resume
 
@@ -347,7 +353,7 @@ Create a file at `{spec_folder}/review/.deep-review-pause` during a running loop
 ```text
 User request: Audit the deep-research skill before the release cleanup ships.
 Skill routing: deep-review intent → REVIEW_SETUP
-Resources loaded: references/loop_protocol.md, references/convergence.md, assets/deep_review_strategy.md
+Resources loaded: references/protocol/loop_protocol.md, references/convergence/convergence.md, assets/deep_review_strategy.md
 Command: /deep:start-review-loop:auto "skill deep-research"
 Expected output: 6 iterations covering inventory + 4 dimensions + 1 stabilization pass. Convergence on dimension coverage. review-report.md with PASS or CONDITIONAL verdict.
 ```
@@ -357,7 +363,7 @@ Expected output: 6 iterations covering inventory + 4 dimensions + 1 stabilizatio
 ```text
 User request: Run an interactive audit on this packet so I can review findings before the loop continues.
 Skill routing: deep-review intent → REVIEW_ITERATION (operator approval per iteration)
-Resources loaded: references/loop_protocol.md, references/state_format.md
+Resources loaded: references/protocol/loop_protocol.md, references/state/state_format.md
 Command: /deep:start-review-loop:confirm "<spec-folder>"
 Expected output: init creates config + strategy. Operator approves each iteration before dispatch. Dashboard updates between iterations. Synthesis runs only after final approval.
 ```
@@ -367,7 +373,7 @@ Expected output: init creates config + strategy. Operator approves each iteratio
 ```text
 User request: Audit every spec folder under the skilled-agent-orchestration track.
 Skill routing: deep-review intent → REVIEW_SETUP (target=track)
-Resources loaded: references/loop_protocol.md, references/convergence.md
+Resources loaded: references/protocol/loop_protocol.md, references/convergence/convergence.md
 Command: /deep:start-review-loop:auto "track skilled-agent-orchestration"
 Expected output: one review-report.md per child spec folder. Any FAIL verdict on a child rolls up to a track-level FAIL. Coverage + finding summaries aggregated into a track-level summary.
 ```
@@ -448,13 +454,13 @@ A: Each iteration appends `graphEvents` to its JSONL record. The coverage-graph 
 
 | Document | Purpose |
 |---|---|
-| [`references/loop_protocol.md`](./references/loop_protocol.md) | 4-phase lifecycle, lineage modes, dispatch contract, executor invariants |
-| [`references/convergence.md`](./references/convergence.md) | Stop algorithms, signal math, security-sensitive overrides, threshold semantics, graph-aware legal-stop checks |
-| [`references/convergence_signals.md`](./references/convergence_signals.md) | Focused severity-weighted STOP signals, P0 override, legal-stop summary, sibling threshold contrast |
-| [`references/state_format.md`](./references/state_format.md) | Canonical schemas for config, JSONL, registry, strategy, dashboard, report |
-| [`references/state_outputs.md`](./references/state_outputs.md) | Packet outputs, iteration markdown, dashboard, final report, resource-map behavior |
-| [`references/state_reducer_registry.md`](./references/state_reducer_registry.md) | Reducer ownership, registry semantics, fail-closed behavior, reconstruction |
-| [`references/quick_reference.md`](./references/quick_reference.md) | One-page operator cheat sheet for commands, dimensions, verdicts |
+| [`references/protocol/loop_protocol.md`](./references/protocol/loop_protocol.md) | 4-phase lifecycle, lineage modes, dispatch contract, executor invariants |
+| [`references/convergence/convergence.md`](./references/convergence/convergence.md) | Stop algorithms, signal math, security-sensitive overrides, threshold semantics, graph-aware legal-stop checks |
+| [`references/convergence/convergence_signals.md`](./references/convergence/convergence_signals.md) | Focused severity-weighted STOP signals, P0 override, legal-stop summary, sibling threshold contrast |
+| [`references/state/state_format.md`](./references/state/state_format.md) | Canonical schemas for config, JSONL, registry, strategy, dashboard, report |
+| [`references/state/state_outputs.md`](./references/state/state_outputs.md) | Packet outputs, iteration markdown, dashboard, final report, resource-map behavior |
+| [`references/state/state_reducer_registry.md`](./references/state/state_reducer_registry.md) | Reducer ownership, registry semantics, fail-closed behavior, reconstruction |
+| [`references/protocol/quick_reference.md`](./references/protocol/quick_reference.md) | One-page operator cheat sheet for commands, dimensions, verdicts |
 
 ### Inventory and Tests
 

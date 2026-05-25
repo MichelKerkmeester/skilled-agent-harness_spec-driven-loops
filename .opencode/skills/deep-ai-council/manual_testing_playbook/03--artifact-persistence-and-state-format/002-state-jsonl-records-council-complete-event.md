@@ -83,7 +83,7 @@ Run the completion advisory, then inspect helper output and report writes.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-ai-council/references/state_format.md` | State event contract |
+| `.opencode/skills/deep-ai-council/references/structure/state_format.md` | State event contract |
 | `.opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs` | Completion advisory |
 
 ---

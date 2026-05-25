@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate that each deep-review iteration reads JSONL and strategy state before any review actions.
 ### Commands
 1. `bash: rg -n 'step_read_state|current_iteration|next_focus|Read.*state' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
-2. `bash: rg -n 'Read.*state\|Read.*strategy\|Read.*JSONL\|step 1\|1\. Read' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-review/SKILL.md`
+2. `bash: rg -n 'Read.*state\|Read.*strategy\|Read.*JSONL\|step 1\|1\. Read' .opencode/skills/deep-review/references/protocol/quick_reference.md .opencode/skills/deep-review/SKILL.md`
 3. `bash: sed -n '1,220p' .codex/agents/deep-review.toml && sed -n '1,220p' .claude/agents/deep-review.md`
 ### Expected
 Loop step order begins with state reads, the quick reference checklist says the same, and the agent definition starts with JSONL plus strategy reads.
@@ -72,7 +72,7 @@ Check the agent sequence under the iteration checklist if the higher-level docs 
 |---|---|
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Loop state extraction, inspect `step_read_state` |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Loop state extraction, inspect `step_read_state` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
 | `.opencode/skills/deep-review/SKILL.md` | Skill-level iteration documentation |
 | `.codex/agents/deep-review.toml` | Codex runtime agent sequence, inspect iteration protocol |
 | `.claude/agents/deep-review.md` | Claude runtime agent sequence, inspect iteration protocol |

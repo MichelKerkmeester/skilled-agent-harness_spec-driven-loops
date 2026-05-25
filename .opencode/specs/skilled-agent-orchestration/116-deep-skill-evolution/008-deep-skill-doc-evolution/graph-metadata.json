@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution",
+  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution",
+  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution",
+  "children_ids": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/001-spec-and-resource-map"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep skill doc evolution",
+      "deep-* references subfoldering",
+      "deep-* sk-doc conformance",
+      "deep-skill readme rewrite",
+      "deep-skill alignment gate"
+    ],
+    "key_topics": [
+      "deep",
+      "skill",
+      "doc",
+      "evolution",
+      "references",
+      "subfoldering",
+      "sk-doc",
+      "conformance",
+      "deep-skill",
+      "readme",
+      "rewrite",
+      "alignment"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+      ".opencode/skills/sk-doc/references/global/validation.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "hvr_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/global/validation.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five deep-* skills (`deep-loop-runtime`, `deep-research`, `deep-review`, `deep-ai-council`, `deep-agent-improvement`) are mature and shipped, but their documentation surface has uneven structure. Every skill keeps its `references/` directory flat, so navigation degrades as reference count grows. Several reference files have grown into monoliths that mix multiple contracts. `deep-review/SKILL.md` exceeds the project's 500-line house rule. Feature catalogs and testing playbooks predate the latest sk-doc templates in places, and README structure varies skill to skill.",
+    "created_at": "2026-05-25T14:20:12.826Z",
+    "last_save_at": "2026-05-25T14:26:45.196Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}

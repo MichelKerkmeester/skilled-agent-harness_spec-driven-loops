@@ -108,7 +108,6 @@ import {
 import { runCleanupStep, runAsyncCleanupStep } from './lib/utils/cleanup-helpers.js';
 import { clearAllTimers, clearRegisteredTimer, registerTimeout } from './lib/runtime/timer-registry.js';
 import { runShutdownHooks } from './lib/runtime/shutdown-hooks.js';
-import { disposeLocalReranker } from './lib/search/local-reranker.js';
 import {
   getIpcBridgeStats,
   resolveIpcSocketPath,
@@ -1446,9 +1445,6 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
         await fileWatcher.close();
         fileWatcher = null;
       }
-    });
-    await runAsyncCleanupStep('local-reranker', async () => {
-      await disposeLocalReranker();
     });
     runCleanupStep('vectorIndex', () => vectorIndex.closeDb());
     // P1-09 FIX: Close MCP transport on shutdown

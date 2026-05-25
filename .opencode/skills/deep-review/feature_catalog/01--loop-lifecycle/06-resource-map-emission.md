@@ -31,7 +31,7 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 | `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Reducer | Adds the `--emit-resource-map` path and honors `config.resource_map.emit`. |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow | Triggers emission during synthesis after the final adjudication pass. |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow | Mirrors the same synthesis-time emission path in confirm mode. |
-| `.opencode/skills/deep-review/references/convergence.md` | Reference | Documents the convergence-to-synthesis emission step and operator opt-out. |
+| `.opencode/skills/deep-review/references/convergence/convergence.md` | Reference | Documents the convergence-to-synthesis emission step and operator opt-out. |
 
 ### Validation And Tests
 

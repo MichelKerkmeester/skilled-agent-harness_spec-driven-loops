@@ -25,8 +25,8 @@ The combined-stop rule is strict: final STOP is legal only when the inline revie
 
 | File | Layer | Role |
 |---|---|---|
-| `references/state_format.md` | Schema | Graph Convergence Event schema, decision enum, and combined-stop rule. |
-| `references/convergence.md` | Protocol | How the graph decision interacts with the inline vote and the legal-stop bundle. |
+| `references/state/state_format.md` | Schema | Graph Convergence Event schema, decision enum, and combined-stop rule. |
+| `references/convergence/convergence.md` | Protocol | How the graph decision interacts with the inline vote and the legal-stop bundle. |
 | `scripts/reduce-state.cjs` | Reducer | `buildGraphConvergenceRollup` and `computeGraphConvergenceScore` roll events into registry history. |
 
 ### Validation And Tests
@@ -43,4 +43,4 @@ The combined-stop rule is strict: final STOP is legal only when the inline revie
 - Group: State management
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `02--state-management/06-graph-convergence-event.md`
-- Primary sources: `references/state_format.md`, `references/convergence.md`, `scripts/reduce-state.cjs`
+- Primary sources: `references/state/state_format.md`, `references/convergence/convergence.md`, `scripts/reduce-state.cjs`

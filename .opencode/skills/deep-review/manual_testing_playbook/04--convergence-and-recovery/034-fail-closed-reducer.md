@@ -84,7 +84,7 @@ Privilege `reduce-state.cjs` for exit semantics and `review-reducer-fail-closed.
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-review/scripts/reduce-state.cjs` | Canonical reducer implementation, emits `corruptionWarnings`, exits non-zero on corruption, and enforces machine-owned anchor presence unless recovery flags are passed |
-| `.opencode/skills/deep-review/references/state_format.md` | Review state contract, documents `corruptionWarnings`, fail-closed semantics, dashboard surfaces, and strategy anchor bootstrap behavior |
+| `.opencode/skills/deep-review/references/state/state_format.md` | Review state contract, documents `corruptionWarnings`, fail-closed semantics, dashboard surfaces, and strategy anchor bootstrap behavior |
 | `.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts` | Concrete regression coverage for corruption, `--lenient`, missing anchors, and `--create-missing-anchors` behavior |
 
 ---

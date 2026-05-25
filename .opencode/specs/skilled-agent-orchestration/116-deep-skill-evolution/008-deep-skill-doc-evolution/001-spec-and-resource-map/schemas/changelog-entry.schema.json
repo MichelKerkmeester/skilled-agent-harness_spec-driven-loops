@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "deep-skill-doc-evolution/changelog-entry.schema.json",
+  "title": "Changelog Entry",
+  "description": "Data that renders one per-skill changelog file under <skill>/changelog/. The rendered file has NO frontmatter: it starts with the summary paragraph, then a spec-folder pointer line, then #### category subsections.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["skill", "version", "summary", "spec_folder_pointer", "categories"],
+  "properties": {
+    "skill": {
+      "type": "string",
+      "enum": ["deep-loop-runtime", "deep-research", "deep-review", "deep-ai-council", "deep-agent-improvement"]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(\\.[0-9]+)?$",
+      "description": "Target version for this release, e.g. 1.11.0.0."
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Lead paragraph: what this release does and why it matters. Rendered first, no header above it."
+    },
+    "spec_folder_pointer": {
+      "type": "string",
+      "description": "Spec folder path for the > Spec folder: pointer line. This is the ONLY place a spec/phase citation is allowed."
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "changes"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Rendered as a #### Category Name subsection (H4, never H3)."
+          },
+          "changes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["title", "what", "why"],
+              "properties": {
+                "title": { "type": "string", "minLength": 1 },
+                "what": { "type": "string", "minLength": 1, "description": "What was broken or missing, and what changed." },
+                "why": { "type": "string", "minLength": 1, "description": "Why it matters." }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

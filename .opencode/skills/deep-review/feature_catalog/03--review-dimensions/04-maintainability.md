@@ -27,7 +27,7 @@ This dimension often becomes the least-covered pivot target during stuck recover
 |---|---|---|
 | `assets/review_mode_contract.yaml` | Contract | Declares maintainability as dimension `4` and defines its checks. |
 | `SKILL.md` | Skill contract | Summarizes maintainability in the four-dimension model. |
-| `references/loop_protocol.md` | Protocol | Orders maintainability last by default and uses it as a recovery pivot when coverage lags. |
+| `references/protocol/loop_protocol.md` | Protocol | Orders maintainability last by default and uses it as a recovery pivot when coverage lags. |
 | `assets/deep_review_strategy.md` | Template | Provides the maintainability checkbox and completed-dimension tracking surface. |
 
 ### Validation And Tests
@@ -45,4 +45,4 @@ This dimension often becomes the least-covered pivot target during stuck recover
 - Group: Review dimensions
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `03--review-dimensions/04-maintainability.md`
-- Primary sources: `assets/review_mode_contract.yaml`, `SKILL.md`, `references/loop_protocol.md`, `assets/deep_review_strategy.md`
+- Primary sources: `assets/review_mode_contract.yaml`, `SKILL.md`, `references/protocol/loop_protocol.md`, `assets/deep_review_strategy.md`

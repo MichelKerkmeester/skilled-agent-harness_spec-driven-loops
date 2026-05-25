@@ -44,7 +44,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate fresh deep-research initialization creates canonical config, JSONL state, and strategy files from live templates.
 ### Commands
-1. `bash: sed -n '1,220p' .opencode/skills/deep-research/references/loop_protocol.md`
+1. `bash: sed -n '1,220p' .opencode/skills/deep-research/references/protocol/loop_protocol.md`
 2. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_strategy' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 3. `bash: sed -n '1,220p' .opencode/skills/deep-research/assets/deep_research_config.json && sed -n '1,220p' .opencode/skills/deep-research/assets/deep_research_strategy.md`
 ### Expected
@@ -70,7 +70,7 @@ Check both YAML variants, verify the JSONL init step writes a config record, and
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Initialization lifecycle; use `ANCHOR:phase-initialization` |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Initialization lifecycle; use `ANCHOR:phase-initialization` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Autonomous init steps; inspect `phase_init` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Interactive init steps; inspect `phase_init` |
 | `.opencode/skills/deep-research/assets/deep_research_config.json` | Config template |

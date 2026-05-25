@@ -248,17 +248,12 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
         ? 0.5
         : 0;
 
-    const rerankerFactor = hasReranker ? 1.0 : 0;
-
     // Anchor density: 1 anchor → 0.3, 2 → 0.6, 3+ → 1.0
     const anchorFactor = Math.min(1, anchorCount * 0.33);
-
-    const rerankerPenalty = isRerankerExpected() ? WEIGHT_RERANKER * rerankerFactor : 0;
 
     const rawValue =
       WEIGHT_MARGIN * marginFactor +
       WEIGHT_CHANNEL_AGREEMENT * channelFactor +
-      rerankerPenalty +
       WEIGHT_ANCHOR_DENSITY * anchorFactor;
 
     // Base score is a strong prior: if the score itself is very high, confidence

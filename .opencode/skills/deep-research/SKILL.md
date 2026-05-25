@@ -22,7 +22,7 @@ Runtime path resolution:
 
 Operator contract precedence for this skill surface:
 - Command entrypoint syntax in `.opencode/commands/deep/start-research-loop.md`
-- Convergence math in `references/convergence.md` and the deep-research YAML workflow
+- Convergence math in `references/convergence/convergence.md` and the deep-research YAML workflow
 - Runtime agent inventories from the checked-in runtime directories above
 
 ### Convergence Threshold Semantics
@@ -81,12 +81,12 @@ Use deep-research for multi-round technical investigation, source triangulation,
 
 The router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring from `RESOURCE_MAP`. Keep routing domain-focused rather than hardcoding exhaustive inventories.
 
-- `references/quick_reference.md` for the first-touch operator cheat sheet.
-- `references/loop_protocol.md` for lifecycle, dispatch, reducer sequencing, and command-owned state flow.
-- `references/spec_check_protocol.md` for bounded `spec.md` anchoring and generated-fence write-back.
+- `references/guides/quick_reference.md` for the first-touch operator cheat sheet.
+- `references/protocol/loop_protocol.md` for lifecycle, dispatch, reducer sequencing, and command-owned state flow.
+- `references/protocol/spec_check_protocol.md` for bounded `spec.md` anchoring and generated-fence write-back.
 - `references/convergence*.md` for stop contracts, signals, recovery, graph gates, and reference-only convergence ideas.
 - `references/state*.md` for packet layout, JSONL records, markdown outputs, reducer ownership, and reconstruction.
-- `references/capability_matrix.md` for runtime parity.
+- `references/guides/capability_matrix.md` for runtime parity.
 - `assets/*.md` for markdown templates and prompt assets that are safe to route through guarded markdown loading.
 
 ### Resource Loading Levels
@@ -120,7 +120,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/quick_reference.md"
+DEFAULT_RESOURCE = "references/guides/quick_reference.md"
 
 INTENT_SIGNALS = {
     "LOOP_SETUP": {"weight": 4, "keywords": ["autoresearch", "deep research", "research loop", "autonomous research", "setup", "init"]},
@@ -134,32 +134,32 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "LOOP_SETUP": ["references/loop_protocol.md", "references/state_format.md", "references/state_jsonl.md", "references/spec_check_protocol.md"],
-    "ITERATION": ["references/loop_protocol.md", "references/state_outputs.md", "references/convergence_signals.md"],
-    "CONVERGENCE": ["references/convergence.md", "references/convergence_signals.md", "references/convergence_graph.md"],
-    "RECOVERY": ["references/convergence_recovery.md", "references/state_reducer_registry.md"],
-    "STATE": ["references/state_format.md", "references/state_jsonl.md", "references/state_outputs.md", "references/state_reducer_registry.md"],
-    "SPEC_ANCHORING": ["references/spec_check_protocol.md", "references/state_outputs.md"],
-    "RUNTIME_PARITY": ["references/capability_matrix.md"],
-    "RESOURCE_MAP": ["references/loop_protocol.md", "references/state_outputs.md"],
+    "LOOP_SETUP": ["references/protocol/loop_protocol.md", "references/state/state_format.md", "references/state/state_jsonl.md", "references/protocol/spec_check_protocol.md"],
+    "ITERATION": ["references/protocol/loop_protocol.md", "references/state/state_outputs.md", "references/convergence/convergence_signals.md"],
+    "CONVERGENCE": ["references/convergence/convergence.md", "references/convergence/convergence_signals.md", "references/convergence/convergence_graph.md"],
+    "RECOVERY": ["references/convergence/convergence_recovery.md", "references/state/state_reducer_registry.md"],
+    "STATE": ["references/state/state_format.md", "references/state/state_jsonl.md", "references/state/state_outputs.md", "references/state/state_reducer_registry.md"],
+    "SPEC_ANCHORING": ["references/protocol/spec_check_protocol.md", "references/state/state_outputs.md"],
+    "RUNTIME_PARITY": ["references/guides/capability_matrix.md"],
+    "RESOURCE_MAP": ["references/protocol/loop_protocol.md", "references/state/state_outputs.md"],
 }
 
 LOADING_LEVELS = {
     "ALWAYS": [DEFAULT_RESOURCE],
     "ON_DEMAND_KEYWORDS": ["full protocol", "all references", "complete reference", "resume deep research", "state log", "research/iterations", "deltas", "overnight research", "active lineage", "reference-only", "optimizer"],
     "ON_DEMAND": [
-        "references/loop_protocol.md",
-        "references/spec_check_protocol.md",
-        "references/convergence.md",
-        "references/convergence_signals.md",
-        "references/convergence_recovery.md",
-        "references/convergence_graph.md",
-        "references/convergence_reference_only.md",
-        "references/state_format.md",
-        "references/state_jsonl.md",
-        "references/state_outputs.md",
-        "references/state_reducer_registry.md",
-        "references/capability_matrix.md",
+        "references/protocol/loop_protocol.md",
+        "references/protocol/spec_check_protocol.md",
+        "references/convergence/convergence.md",
+        "references/convergence/convergence_signals.md",
+        "references/convergence/convergence_recovery.md",
+        "references/convergence/convergence_graph.md",
+        "references/convergence/convergence_reference_only.md",
+        "references/state/state_format.md",
+        "references/state/state_jsonl.md",
+        "references/state/state_outputs.md",
+        "references/state/state_reducer_registry.md",
+        "references/guides/capability_matrix.md",
     ],
 }
 
@@ -361,7 +361,7 @@ That contract is exact:
 - `folder_state` is always one of `no-spec`, `spec-present`, `spec-just-created-by-this-run`, or `conflict-detected`
 - the advisory lock lives at `research/.deep-research.lock` from late INIT through save, skip-save, or cancel cleanup
 - post-synthesis write-back replaces exactly one `<!-- BEGIN GENERATED: deep-research/spec-findings -->` ... `<!-- END GENERATED: deep-research/spec-findings -->` fence under the chosen host anchor
-- the full bounded mutation rules live in [spec_check_protocol.md](references/spec_check_protocol.md)
+- the full bounded mutation rules live in [spec_check_protocol.md](references/protocol/spec_check_protocol.md)
 
 ### Key Concepts
 
@@ -428,11 +428,11 @@ These concepts remain documented for future design work, but they are not part o
 
 ## 5. REFERENCES
 
-Core documentation: `references/quick_reference.md`, `references/loop_protocol.md`, `references/spec_check_protocol.md`, `references/convergence.md`, and `references/state_format.md`.
+Core documentation: `references/guides/quick_reference.md`, `references/protocol/loop_protocol.md`, `references/protocol/spec_check_protocol.md`, `references/convergence/convergence.md`, and `references/state/state_format.md`.
 
-Focused convergence references: `references/convergence_signals.md`, `references/convergence_recovery.md`, `references/convergence_graph.md`, and `references/convergence_reference_only.md`.
+Focused convergence references: `references/convergence/convergence_signals.md`, `references/convergence/convergence_recovery.md`, `references/convergence/convergence_graph.md`, and `references/convergence/convergence_reference_only.md`.
 
-Focused state references: `references/state_jsonl.md`, `references/state_outputs.md`, and `references/state_reducer_registry.md`.
+Focused state references: `references/state/state_jsonl.md`, `references/state/state_outputs.md`, and `references/state/state_reducer_registry.md`.
 
 Templates: `assets/deep_research_config.json`, `assets/deep_research_strategy.md`, `assets/deep_research_dashboard.md`, `assets/prompt_pack_iteration.md.tmpl`, and `assets/runtime_capabilities.json`.
 
@@ -492,7 +492,7 @@ Before research, recover context with `/speckit:resume` using `handover.md -> _m
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference and markdown asset docs dynamically. Start with `references/quick_reference.md`, then route to loop protocol, spec anchoring, convergence, state, runtime parity, or recovery references based on intent.
+The router discovers reference and markdown asset docs dynamically. Start with `references/guides/quick_reference.md`, then route to loop protocol, spec anchoring, convergence, state, runtime parity, or recovery references based on intent.
 
 Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
 

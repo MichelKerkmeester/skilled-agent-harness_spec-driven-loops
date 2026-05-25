@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `DAC-015` and confirm th
 
 ### Commands
 
-1. `bash: rg -n "Correctness.*30|Completeness.*20|Elegance.*15|Robustness.*20|Integration.*15" .opencode/skills/deep-ai-council/references/scoring_rubric.md`
+1. `bash: rg -n "Correctness.*30|Completeness.*20|Elegance.*15|Robustness.*20|Integration.*15" .opencode/skills/deep-ai-council/references/scoring/scoring_rubric.md`
 
 ### Expected
 
@@ -68,7 +68,7 @@ Update `scoring_rubric.md` from the authoritative agent §6 table, then rerun va
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-015 | Five-dimension scoring | Verify weighted rubric application | `Score this hypothetical council seat output using the 5-dimension rubric and show the comparison table row.` | `bash: rg -n "Correctness.*30\|Completeness.*20\|Elegance.*15\|Robustness.*20\|Integration.*15" .opencode/skills/deep-ai-council/references/scoring_rubric.md` | Five weighted dimensions present | Grep output | PASS if all dimensions match agent §6 | Restore rubric from agent source |
+| DAC-015 | Five-dimension scoring | Verify weighted rubric application | `Score this hypothetical council seat output using the 5-dimension rubric and show the comparison table row.` | `bash: rg -n "Correctness.*30\|Completeness.*20\|Elegance.*15\|Robustness.*20\|Integration.*15" .opencode/skills/deep-ai-council/references/scoring/scoring_rubric.md` | Five weighted dimensions present | Grep output | PASS if all dimensions match agent §6 | Restore rubric from agent source |
 
 ---
 
@@ -85,7 +85,7 @@ Update `scoring_rubric.md` from the authoritative agent §6 table, then rerun va
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-ai-council/references/scoring_rubric.md` | Rubric and comparison-table reference |
+| `.opencode/skills/deep-ai-council/references/scoring/scoring_rubric.md` | Rubric and comparison-table reference |
 | `.opencode/agents/ai-council.md` | Authoritative synthesis protocol |
 
 ---

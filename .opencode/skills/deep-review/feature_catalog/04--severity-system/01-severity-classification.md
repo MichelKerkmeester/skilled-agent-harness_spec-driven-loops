@@ -26,8 +26,8 @@ The semantic meaning of each level is stable across the skill. P0 covers correct
 | File | Layer | Role |
 |---|---|---|
 | `SKILL.md` | Skill contract | Summarizes P0, P1, and P2 criteria and blocking behavior. |
-| `references/convergence.md` | Protocol | Defines severity weights, weighted ratio math, and the P0 override rule. |
-| `references/state_format.md` | Schema | Defines severity weights, iteration finding sections, and finding-registry severity fields. |
+| `references/convergence/convergence.md` | Protocol | Defines severity weights, weighted ratio math, and the P0 override rule. |
+| `references/state/state_format.md` | Schema | Defines severity weights, iteration finding sections, and finding-registry severity fields. |
 | `assets/review_mode_contract.yaml` | Contract | Declares the stable severity taxonomy and per-level weights. |
 
 ### Validation And Tests
@@ -44,4 +44,4 @@ The semantic meaning of each level is stable across the skill. P0 covers correct
 - Group: Severity system
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `04--severity-system/01-severity-classification.md`
-- Primary sources: `SKILL.md`, `references/convergence.md`, `references/state_format.md`, `assets/review_mode_contract.yaml`
+- Primary sources: `SKILL.md`, `references/convergence/convergence.md`, `references/state/state_format.md`, `assets/review_mode_contract.yaml`

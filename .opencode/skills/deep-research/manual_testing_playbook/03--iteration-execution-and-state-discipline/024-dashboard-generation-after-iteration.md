@@ -44,8 +44,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the dashboard regenerates after each deep-research iteration with progress, question status, risks, and next focus.
 ### Commands
-1. `bash: rg -n 'Step 4a\|Generate Dashboard\|dashboard_generated' .opencode/skills/deep-research/references/loop_protocol.md`
-2. `bash: sed -n '/ANCHOR:dashboard/,/\/ANCHOR:dashboard/p' .opencode/skills/deep-research/references/state_format.md`
+1. `bash: rg -n 'Step 4a\|Generate Dashboard\|dashboard_generated' .opencode/skills/deep-research/references/protocol/loop_protocol.md`
+2. `bash: sed -n '/ANCHOR:dashboard/,/\/ANCHOR:dashboard/p' .opencode/skills/deep-research/references/state/state_format.md`
 3. `bash: cat .opencode/skills/deep-research/assets/deep_research_dashboard.md`
 4. `bash: rg -n 'step_reduce_state\|step_generate_dashboard\|reduce-state.cjs' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 5. `bash: rg -n 'renderDashboard\|dashboardPath' .opencode/skills/deep-research/scripts/reduce-state.cjs`
@@ -72,8 +72,8 @@ Privilege the loop protocol Step 4a for the generation contract, the reducer scr
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Loop protocol; inspect Step 4a (Generate Dashboard) under `ANCHOR:phase-iteration-loop` |
-| `.opencode/skills/deep-research/references/state_format.md` | State format; inspect `ANCHOR:dashboard` for content sections, lifecycle, and file protection rules |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Loop protocol; inspect Step 4a (Generate Dashboard) under `ANCHOR:phase-iteration-loop` |
+| `.opencode/skills/deep-research/references/state/state_format.md` | State format; inspect `ANCHOR:dashboard` for content sections, lifecycle, and file protection rules |
 | `.opencode/skills/deep-research/assets/deep_research_dashboard.md` | Dashboard template; structural reference for all required sections (Status, Progress, Questions, Trend, Dead Ends, Next Focus, Active Risks) |
 | `.opencode/skills/deep-research/scripts/reduce-state.cjs` | Reducer script; `renderDashboard` generates the dashboard content; `reduceResearchState` writes it to disk |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |

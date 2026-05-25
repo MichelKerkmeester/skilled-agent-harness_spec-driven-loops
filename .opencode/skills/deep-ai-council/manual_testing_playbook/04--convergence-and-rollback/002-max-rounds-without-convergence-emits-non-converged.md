@@ -45,7 +45,7 @@ The council must stop truthfully when agreement fails instead of forcing a fake 
 
 ### Commands
 
-1. `bash: rg -n "max_rounds|max rounds|convergence:false|non-converged|council_complete" .opencode/skills/deep-ai-council/references/convergence_signals.md .opencode/skills/deep-ai-council/references/state_format.md`
+1. `bash: rg -n "max_rounds|max rounds|convergence:false|non-converged|council_complete" .opencode/skills/deep-ai-council/references/convergence/convergence_signals.md .opencode/skills/deep-ai-council/references/structure/state_format.md`
 
 ### Expected
 
@@ -66,7 +66,7 @@ Check convergence signals and state format before agent prose.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-009 | Max-round non-convergence | Verify non-converged output | `Tell me what happens if the council reaches max rounds without agreement and what artifacts should remain.` | `bash: rg -n "max_rounds|max rounds|convergence:false|non-converged|council_complete" .opencode/skills/deep-ai-council/references/convergence_signals.md .opencode/skills/deep-ai-council/references/state_format.md` | Non-converged completion guidance | Grep output | PASS if convergence is not fabricated | Inspect convergence reference |
+| DAC-009 | Max-round non-convergence | Verify non-converged output | `Tell me what happens if the council reaches max rounds without agreement and what artifacts should remain.` | `bash: rg -n "max_rounds|max rounds|convergence:false|non-converged|council_complete" .opencode/skills/deep-ai-council/references/convergence/convergence_signals.md .opencode/skills/deep-ai-council/references/structure/state_format.md` | Non-converged completion guidance | Grep output | PASS if convergence is not fabricated | Inspect convergence reference |
 
 ---
 
@@ -83,8 +83,8 @@ Check convergence signals and state format before agent prose.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-ai-council/references/convergence_signals.md` | Escape hatch guidance |
-| `.opencode/skills/deep-ai-council/references/state_format.md` | Completion event semantics |
+| `.opencode/skills/deep-ai-council/references/convergence/convergence_signals.md` | Escape hatch guidance |
+| `.opencode/skills/deep-ai-council/references/structure/state_format.md` | Completion event semantics |
 
 ---
 

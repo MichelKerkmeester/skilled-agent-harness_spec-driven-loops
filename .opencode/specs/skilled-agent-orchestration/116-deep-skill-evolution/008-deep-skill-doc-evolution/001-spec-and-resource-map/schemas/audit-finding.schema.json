@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "deep-skill-doc-evolution/audit-finding.schema.json",
+  "title": "Audit Finding",
+  "description": "One documentation audit finding emitted by a per-skill phase (003-007) of the 008 deep-skill doc-evolution cluster.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "skill", "artifact_path", "artifact_type", "severity", "category", "finding", "recommendation", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^F-[0-9]{3}$",
+      "description": "Finding id, e.g. F-001, unique within a skill phase."
+    },
+    "skill": {
+      "type": "string",
+      "enum": ["deep-loop-runtime", "deep-research", "deep-review", "deep-ai-council", "deep-agent-improvement"]
+    },
+    "artifact_path": {
+      "type": "string",
+      "description": "Repo-relative path to the artifact the finding is about."
+    },
+    "artifact_type": {
+      "type": "string",
+      "enum": ["skill_md", "readme", "reference", "feature_catalog", "manual_testing_playbook", "smart_router", "changelog"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["P0", "P1", "P2"],
+      "description": "P0 blocks the gate, P1 must be fixed or deferred with approval, P2 is optional."
+    },
+    "category": {
+      "type": "string",
+      "enum": ["sk-doc-conformance", "hvr", "references-structure", "dead-link", "oversized", "present-tense-discipline", "smart-router-parity", "other"]
+    },
+    "finding": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What is wrong or missing, stated plainly."
+    },
+    "recommendation": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The concrete fix."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "fixed", "deferred"]
+    },
+    "evidence": {
+      "type": "string",
+      "description": "Optional file:line or command output backing the finding."
+    },
+    "deferred_reason": {
+      "type": "string",
+      "description": "Required in spirit when status is deferred; the rationale for deferral."
+    }
+  }
+}

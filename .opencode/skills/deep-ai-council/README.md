@@ -144,13 +144,13 @@ The 32 features group into 9 categories. The feature catalog carries the full in
 | Category | Features | Primary Resource |
 |---|---|---|
 | Runtime routing and rename | 2 | [`feature_catalog/01--runtime-routing-and-rename/`](feature_catalog/01--runtime-routing-and-rename/) |
-| Council deliberation and seat diversity | 2 | [`references/seat_diversity_patterns.md`](references/seat_diversity_patterns.md) |
-| Artifact persistence and state format | 3 | [`references/state_format.md`](references/state_format.md) |
-| Convergence and rollback | 3 | [`references/convergence_signals.md`](references/convergence_signals.md) |
-| Scope boundaries | 2 | [`references/graph_support.md`](references/graph_support.md) |
-| Depth and failure handling | 2 | [`references/depth_dispatch.md`](references/depth_dispatch.md) |
-| Writer library contract | 4 | [`references/output_schema.md`](references/output_schema.md) |
-| Council graph integration | 8 | [`references/graph_support.md`](references/graph_support.md) |
+| Council deliberation and seat diversity | 2 | [`references/patterns/seat_diversity_patterns.md`](references/patterns/seat_diversity_patterns.md) |
+| Artifact persistence and state format | 3 | [`references/structure/state_format.md`](references/structure/state_format.md) |
+| Convergence and rollback | 3 | [`references/convergence/convergence_signals.md`](references/convergence/convergence_signals.md) |
+| Scope boundaries | 2 | [`references/integration/graph_support.md`](references/integration/graph_support.md) |
+| Depth and failure handling | 2 | [`references/convergence/depth_dispatch.md`](references/convergence/depth_dispatch.md) |
+| Writer library contract | 4 | [`references/structure/output_schema.md`](references/structure/output_schema.md) |
+| Council graph integration | 8 | [`references/integration/graph_support.md`](references/integration/graph_support.md) |
 | Council graph value comparison | 6 | [`feature_catalog/09--council-graph-value-comparison/`](feature_catalog/09--council-graph-value-comparison/) |
 
 Full inventory: [`feature_catalog/FEATURE_CATALOG.md`](feature_catalog/FEATURE_CATALOG.md).
@@ -168,7 +168,12 @@ Full inventory: [`feature_catalog/FEATURE_CATALOG.md`](feature_catalog/FEATURE_C
 ├── SKILL.md                    # Runtime instructions and smart router
 ├── README.md                   # This file
 ├── changelog/                  # Per-release notes (v1.0.0.0 through v2.2.0.0)
-├── references/                 # 15 operating-contract references
+├── references/                 # operating-contract references, grouped by topic
+│   ├── convergence/            # convergence signals, depth dispatch, deep mode, failure handling
+│   ├── scoring/                # scoring rubric, findings registry
+│   ├── structure/              # output schema, state format, folder layout
+│   ├── patterns/               # seat diversity, anti-patterns, command wiring
+│   └── integration/            # graph support, loop protocol, quick reference
 ├── assets/                     # Council config, strategy, dashboard, prompt-pack and capability templates
 ├── feature_catalog/            # Root inventory + 32 per-feature files across 9 categories
 ├── manual_testing_playbook/    # Root playbook + 32 scenarios across 9 categories
@@ -193,9 +198,9 @@ Runtime packet layout (what a council run writes):
 | Path | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Agent-facing router and operating contract |
-| [`references/quick_reference.md`](./references/quick_reference.md) | Operator cheat sheet for council runs and validation |
-| [`references/loop_protocol.md`](./references/loop_protocol.md) | Full packet-to-handoff council workflow |
-| [`references/output_schema.md`](./references/output_schema.md) | Required report sections parsed by the persistence helper |
+| [`references/integration/quick_reference.md`](./references/integration/quick_reference.md) | Operator cheat sheet for council runs and validation |
+| [`references/integration/loop_protocol.md`](./references/integration/loop_protocol.md) | Full packet-to-handoff council workflow |
+| [`references/structure/output_schema.md`](./references/structure/output_schema.md) | Required report sections parsed by the persistence helper |
 | [`assets/deep_ai_council_strategy.md`](./assets/deep_ai_council_strategy.md) | Round strategy template for seat setup and disagreements |
 | [`assets/deep_ai_council_dashboard.md`](./assets/deep_ai_council_dashboard.md) | Status dashboard template for active and persisted runs |
 | [`scripts/persist-artifacts.cjs`](./scripts/persist-artifacts.cjs) | Caller-owned artifact writer |
@@ -253,7 +258,7 @@ node .opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs <packet> \
 ```text
 User request: Run a deep AI council to compare these two implementation plans and persist the artifacts.
 Skill routing: COUNCIL_RUN
-Resources loaded: references/seat_diversity_patterns.md, references/convergence_signals.md, references/output_schema.md
+Resources loaded: references/patterns/seat_diversity_patterns.md, references/convergence/convergence_signals.md, references/structure/output_schema.md
 Expected output: a council report plus a persisted ai-council/ tree ending in council_complete.
 ```
 
@@ -262,7 +267,7 @@ Expected output: a council report plus a persisted ai-council/ tree ending in co
 ```text
 User request: Depth 1. Dispatch @deep-ai-council as a planning LEAF, then persist the returned report from the parent context.
 Skill routing: DEPTH_DISPATCH
-Resources loaded: references/depth_dispatch.md
+Resources loaded: references/convergence/depth_dispatch.md
 Expected output: an inline planning result the orchestrator persists from its own write context.
 ```
 
@@ -271,7 +276,7 @@ Expected output: an inline planning result the orchestrator persists from its ow
 ```text
 User request: Run the council via an external CLI and capture the report it produced.
 Skill routing: ARTIFACT_PERSISTENCE
-Resources loaded: references/command_wiring.md, references/folder_layout.md
+Resources loaded: references/patterns/command_wiring.md, references/structure/folder_layout.md
 Expected output: persisted artifacts only when the external runtime actually produced the report. Simulated vantages stay labeled simulated.
 ```
 
@@ -299,7 +304,7 @@ Expected output: persisted artifacts only when the external runtime actually pro
 
 **Common causes**: The report is missing a required section from the output schema.
 
-**Fix**: Compare the report against [`references/output_schema.md`](references/output_schema.md) and add the missing section.
+**Fix**: Compare the report against [`references/structure/output_schema.md`](references/structure/output_schema.md) and add the missing section.
 
 ---
 
@@ -368,14 +373,14 @@ A: Preserve the failed artifacts under `failed/round-NNN-<timestamp>/` and appen
 | [`SKILL.md`](./SKILL.md) | Agent-facing router and operating contract |
 | [`feature_catalog/FEATURE_CATALOG.md`](./feature_catalog/FEATURE_CATALOG.md) | Full feature inventory across 9 categories |
 | [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation package (32 scenarios) |
-| [`references/quick_reference.md`](./references/quick_reference.md) | Operator cheat sheet for commands, artifacts, stops and validation |
-| [`references/loop_protocol.md`](./references/loop_protocol.md) | End-to-end council flow from packet resolution through recovery |
-| [`references/output_schema.md`](./references/output_schema.md) | Required report sections (parser contract) |
-| [`references/scoring_rubric.md`](./references/scoring_rubric.md) | Five-dimension scoring and critique roles |
-| [`references/convergence_signals.md`](./references/convergence_signals.md) | Convergence rules and escape hatches |
-| [`references/graph_support.md`](./references/graph_support.md) | Derived council graph and deep-loop-runtime CLI boundary |
-| [`references/deep_mode.md`](./references/deep_mode.md) | Deep-mode session/topic/round hierarchy, state files and cost guards |
-| [`references/findings_registry.md`](./references/findings_registry.md) | Cross-topic findings registry, fingerprint dedup and filesystem locking |
+| [`references/integration/quick_reference.md`](./references/integration/quick_reference.md) | Operator cheat sheet for commands, artifacts, stops and validation |
+| [`references/integration/loop_protocol.md`](./references/integration/loop_protocol.md) | End-to-end council flow from packet resolution through recovery |
+| [`references/structure/output_schema.md`](./references/structure/output_schema.md) | Required report sections (parser contract) |
+| [`references/scoring/scoring_rubric.md`](./references/scoring/scoring_rubric.md) | Five-dimension scoring and critique roles |
+| [`references/convergence/convergence_signals.md`](./references/convergence/convergence_signals.md) | Convergence rules and escape hatches |
+| [`references/integration/graph_support.md`](./references/integration/graph_support.md) | Derived council graph and deep-loop-runtime CLI boundary |
+| [`references/convergence/deep_mode.md`](./references/convergence/deep_mode.md) | Deep-mode session/topic/round hierarchy, state files and cost guards |
+| [`references/scoring/findings_registry.md`](./references/scoring/findings_registry.md) | Cross-topic findings registry, fingerprint dedup and filesystem locking |
 | [`assets/deep_ai_council_config.json`](./assets/deep_ai_council_config.json) | Council run-config template |
 | [`assets/deep_ai_council_strategy.md`](./assets/deep_ai_council_strategy.md) | Council round strategy template |
 | [`assets/deep_ai_council_dashboard.md`](./assets/deep_ai_council_dashboard.md) | Council status dashboard template |

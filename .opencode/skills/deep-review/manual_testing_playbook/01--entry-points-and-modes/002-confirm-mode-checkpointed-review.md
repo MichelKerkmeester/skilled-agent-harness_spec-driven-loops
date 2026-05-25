@@ -44,7 +44,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the confirm-mode deep-review entrypoint and report whether approval gates appear at every phase transition.
 ### Commands
-1. `bash: rg -n '/deep:start-review-loop:confirm|approval|multi_gate' .opencode/skills/deep-review/README.md .opencode/skills/deep-review/references/quick_reference.md`
+1. `bash: rg -n '/deep:start-review-loop:confirm|approval|multi_gate' .opencode/skills/deep-review/README.md .opencode/skills/deep-review/references/protocol/quick_reference.md`
 2. `bash: rg -n 'confirm|approval|gate|pause' .opencode/commands/deep/start-review-loop.md`
 3. `bash: rg -n 'approvals|approval_gate|wait_for_approval|interactive' .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 ### Expected
@@ -71,7 +71,7 @@ Compare the auto and confirm YAMLs side by side to verify the confirm variant ad
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` |
 | `.opencode/commands/deep/start-review-loop.md` | Markdown setup and mode routing, use `## 0. UNIFIED SETUP PHASE` |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Confirm workflow contract, inspect `operating_mode`, `approvals`, and approval gate steps |
 

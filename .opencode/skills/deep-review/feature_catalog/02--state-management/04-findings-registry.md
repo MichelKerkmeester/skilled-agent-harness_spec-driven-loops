@@ -25,8 +25,8 @@ The reducer contract is fail-closed by default. Malformed JSONL or missing machi
 
 | File | Layer | Role |
 |---|---|---|
-| `references/state_format.md` | Schema | Defines the registry schema, blocked-stop history, graph fields, and fail-closed semantics. |
-| `references/loop_protocol.md` | Protocol | Defines reducer refresh inputs, outputs, and metrics consumed during the loop. |
+| `references/state/state_format.md` | Schema | Defines the registry schema, blocked-stop history, graph fields, and fail-closed semantics. |
+| `references/protocol/loop_protocol.md` | Protocol | Defines reducer refresh inputs, outputs, and metrics consumed during the loop. |
 | `SKILL.md` | Skill contract | Declares canonical reducer inputs, outputs, and metric names. |
 | `assets/review_mode_contract.yaml` | Contract | Declares reducer IO and output surfaces that stay aligned with the registry. |
 
@@ -45,4 +45,4 @@ The reducer contract is fail-closed by default. Malformed JSONL or missing machi
 - Group: State management
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `02--state-management/04-findings-registry.md`
-- Primary sources: `references/state_format.md`, `references/loop_protocol.md`, `SKILL.md`, `assets/review_mode_contract.yaml`
+- Primary sources: `references/state/state_format.md`, `references/protocol/loop_protocol.md`, `SKILL.md`, `assets/review_mode_contract.yaml`

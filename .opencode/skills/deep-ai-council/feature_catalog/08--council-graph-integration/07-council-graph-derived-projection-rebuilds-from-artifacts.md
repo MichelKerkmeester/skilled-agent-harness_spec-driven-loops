@@ -32,7 +32,7 @@ The user-visible contract is concrete: Verify deleting derived graph rows for on
 | File | Layer | Role |
 |------|-------|------|
 | Internal design notes | Spec | ADR-001 derived-projection contract |
-| `.opencode/skills/deep-ai-council/references/graph_support.md 5` | Reference | Recovery and rollback contract |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md 5` | Reference | Recovery and rollback contract |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Library | Namespace-scoped delete + upsert |
 
 ### Validation And Tests

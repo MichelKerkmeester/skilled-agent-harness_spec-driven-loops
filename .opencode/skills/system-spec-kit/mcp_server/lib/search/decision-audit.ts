@@ -87,9 +87,6 @@ function computeSearchDecisionSlaMetrics(
       refusalCount += 1;
     }
 
-    if ((envelope.rerankGateDecision?.triggers.length ?? 0) > 0) {
-      rerankTriggerCount += 1;
-    }
 
     const timing = readPipelineTiming(envelope);
     for (const [stage, value] of Object.entries(timing)) {

@@ -30,7 +30,7 @@ user_inputs:
   review_target_type: "[spec-folder|skill|agent|track|files] - Target type for scope derivation. REQUIRED."
   review_dimensions: "[all|correctness,security,traceability,maintainability] - Dimensions to check. Default: all."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for state files. REQUIRED."
-  lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for `resume` (same sessionId, no archive) and `restart` (new sessionId, generation+1, prior review/ archived). `fork` and `completed-continue` are deferred and no longer accepted — see deep-review/references/loop_protocol.md §Lifecycle Branches."
+  lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for `resume` (same sessionId, no archive) and `restart` (new sessionId, generation+1, prior review/ archived). `fork` and `completed-continue` are deferred and no longer accepted — see deep-review/references/protocol/loop_protocol.md §Lifecycle Branches."
   max_iterations: 7
   convergence_threshold: 0.10
 
@@ -56,9 +56,9 @@ skill_reference:
   skill: deep-review
   skill_md: .opencode/skills/deep-review/SKILL.md
   references:
-    loop_protocol: .opencode/skills/deep-review/references/loop_protocol.md
-    state_format: .opencode/skills/deep-review/references/state_format.md
-    convergence: .opencode/skills/deep-review/references/convergence.md
+    loop_protocol: .opencode/skills/deep-review/references/protocol/loop_protocol.md
+    state_format: .opencode/skills/deep-review/references/state/state_format.md
+    convergence: .opencode/skills/deep-review/references/convergence/convergence.md
   templates:
     config: .opencode/skills/deep-review/assets/deep_review_config.json
     strategy: .opencode/skills/deep-review/assets/deep_review_strategy.md
@@ -211,7 +211,7 @@ workflow:
           on_cancel_choice:
             halt: true
             message: "Review session preserved. Manually archive or edit review/ before re-running."
-          note: "fork and completed-continue branches are deferred. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are runtime-supported in this release. See deep-review/references/loop_protocol.md `Session Lifecycle` for the canonical one-session model."
+          note: "fork and completed-continue branches are deferred. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are runtime-supported in this release. See deep-review/references/protocol/loop_protocol.md `Session Lifecycle` for the canonical one-session model."
         on_completed_session:
           log: "Prior session already completed. Either archive the completed review/ tree and start a fresh session, or jump straight to synthesis with the existing artifacts."
           skip_to: phase_synthesis
@@ -1238,7 +1238,7 @@ workflow:
              - Convergence summary, coverage summary, ruled-out claims, sources reviewed
              - Cross-reference appendix MUST be split into `Core Protocols` and `Overlay Protocols`
 
-          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: `completed-continue` lineage branch is deferred — see `deep-review/references/loop_protocol.md §Lifecycle Branches`.)
+          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: `completed-continue` lineage branch is deferred — see `deep-review/references/protocol/loop_protocol.md §Lifecycle Branches`.)
         output: "{state_paths.review_output}"
 
       step_convergence_report:

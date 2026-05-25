@@ -25,8 +25,8 @@ A normalization rule governs the event name: if the runtime first observes a raw
 
 | File | Layer | Role |
 |---|---|---|
-| `references/loop_protocol.md` | Protocol | Step 2a Check Pause Sentinel, the userPaused event, the normalization rule, and the create/resume flow. |
-| `references/state_format.md` | Schema | `userPaused` stop reason and the persisted event shape. |
+| `references/protocol/loop_protocol.md` | Protocol | Step 2a Check Pause Sentinel, the userPaused event, the normalization rule, and the create/resume flow. |
+| `references/state/state_format.md` | Schema | `userPaused` stop reason and the persisted event shape. |
 
 ### Validation And Tests
 
@@ -42,4 +42,4 @@ A normalization rule governs the event name: if the runtime first observes a raw
 - Group: State management
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `02--state-management/07-pause-sentinel.md`
-- Primary sources: `references/loop_protocol.md`, `references/state_format.md`
+- Primary sources: `references/protocol/loop_protocol.md`, `references/state/state_format.md`

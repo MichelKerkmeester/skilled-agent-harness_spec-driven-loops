@@ -27,7 +27,7 @@ The reducer consumes the newest `graph_convergence` event and surfaces its verdi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Reference | Defines the graph-aware convergence model and graph-specific stop support signals. |
+| `.opencode/skills/deep-research/references/convergence/convergence.md` | Reference | Defines the graph-aware convergence model and graph-specific stop support signals. |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow | Calls the graph convergence tool and appends `graph_convergence` events in autonomous mode. |
 | `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Workflow | Mirrors the same graph convergence call path in confirm mode. |
 | `.opencode/skills/deep-research/scripts/reduce-state.cjs` | Reducer | Reads the latest graph event and exposes graph score, decision, and blockers. |

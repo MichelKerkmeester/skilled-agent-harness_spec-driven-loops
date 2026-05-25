@@ -67,10 +67,10 @@ skill_reference:
   skill: deep-research
   skill_md: .opencode/skills/deep-research/SKILL.md
   references:
-    loop_protocol: .opencode/skills/deep-research/references/loop_protocol.md
-    spec_check_protocol: .opencode/skills/deep-research/references/spec_check_protocol.md
-    state_format: .opencode/skills/deep-research/references/state_format.md
-    convergence: .opencode/skills/deep-research/references/convergence.md
+    loop_protocol: .opencode/skills/deep-research/references/protocol/loop_protocol.md
+    spec_check_protocol: .opencode/skills/deep-research/references/protocol/spec_check_protocol.md
+    state_format: .opencode/skills/deep-research/references/state/state_format.md
+    convergence: .opencode/skills/deep-research/references/convergence/convergence.md
   templates:
     config: .opencode/skills/deep-research/assets/deep_research_config.json
     strategy: .opencode/skills/deep-research/assets/deep_research_strategy.md
@@ -224,7 +224,7 @@ workflow:
             generation: "{prior_generation + 1}"
           append_jsonl: '{"type":"event","event":"restarted","mode":"research","sessionId":"{session_id}","parentSessionId":"{prior_session_id}","lineageMode":"restart","generation":{generation},"archivedPath":"{state_paths.archive_root}/{timestamp_slug}","timestamp":"{ISO_8601_NOW}"}'
           skip_to: step_create_config
-        note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See deep-research/references/loop_protocol.md §Lifecycle Branch Contract for the one-session contract."
+        note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See deep-research/references/protocol/loop_protocol.md §Lifecycle Branch Contract for the one-session contract."
         on_completed_session:
           log: "Prior session already completed. Do not route directly to synthesis; archive the completed research/ tree or start a fresh packet instead."
           halt: true
@@ -313,7 +313,7 @@ workflow:
 
       step_preinit_spec_branch:
         action: "Run the bounded pre-init spec branch required by spec_check_protocol"
-        protocol_reference: ".opencode/skills/deep-research/references/spec_check_protocol.md"
+        protocol_reference: ".opencode/skills/deep-research/references/protocol/spec_check_protocol.md"
         branches:
           no-spec:
             create: "{spec_folder}/spec.md"
@@ -966,7 +966,7 @@ workflow:
             3. Add citations from original sources
             4. Note unanswered questions in Open Questions section
             5. If `resource_map_present` is true, cite `{spec_folder}/resource-map.md` in References; otherwise omit any placeholder map citation
-          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: `completed-continue` lineage branch is deferred — see `deep-research/references/loop_protocol.md §Lifecycle Branch Contract`.)
+          Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: `completed-continue` lineage branch is deferred — see `deep-research/references/protocol/loop_protocol.md §Lifecycle Branch Contract`.)
         output: "{state_paths.research_output}"
 
       step_convergence_report:

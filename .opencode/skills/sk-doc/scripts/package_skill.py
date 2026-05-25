@@ -69,7 +69,7 @@ RECOMMENDED_SECTIONS = [
 ]
 
 # Valid file extensions for each resource type
-VALID_SCRIPT_EXTENSIONS = ['.py', '.sh', '.bash', '.js']
+VALID_SCRIPT_EXTENSIONS = ['.py', '.sh', '.bash', '.js', '.cjs', '.mjs']
 VALID_REFERENCE_EXTENSIONS = ['.md']
 VALID_ASSET_EXTENSIONS = ['.md', '.yaml', '.yml', '.json', '.txt', '.html', '.css', '.js']
 
@@ -270,8 +270,8 @@ def validate_resources(skill_path: Path) -> Tuple[bool, str, List[str]]:
 
     if scripts_dir.exists():
         for file in scripts_dir.iterdir():
-            if file.is_file() and file.suffix not in VALID_SCRIPT_EXTENSIONS:
-                warnings.append(f"Unexpected file type in scripts/: {file.name} (expected: {', '.join(VALID_SCRIPT_EXTENSIONS)})")
+            if file.is_file() and file.name != 'README.md' and file.suffix not in VALID_SCRIPT_EXTENSIONS:
+                warnings.append(f"Unexpected file type in scripts/: {file.name} (expected: {', '.join(VALID_SCRIPT_EXTENSIONS)}, README.md)")
 
     if refs_dir.exists():
         for file in refs_dir.iterdir():
@@ -285,8 +285,10 @@ def validate_resources(skill_path: Path) -> Tuple[bool, str, List[str]]:
     if assets_dir.exists():
         for file in assets_dir.iterdir():
             if file.is_file():
-                # snake_case naming per skill_asset_template.md
-                name_without_ext = file.stem
+                # snake_case naming per skill_asset_template.md; strip ALL extensions so
+                # multi-extension templates like prompt_pack_round.md.tmpl are judged on
+                # their base name, not the intermediate ".md".
+                name_without_ext = file.name.split('.')[0]
                 if not re.match(r'^[a-z0-9_]+$', name_without_ext):
                     warnings.append(f"Asset file '{file.name}' should use snake_case naming")
 

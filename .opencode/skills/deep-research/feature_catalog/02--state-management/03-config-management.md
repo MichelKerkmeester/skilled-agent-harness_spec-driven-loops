@@ -28,7 +28,7 @@ The config also points at the runtime capability matrix and resolver script. `ru
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/deep-research/assets/deep_research_config.json` | Asset | Defines the default config fields, reducer paths, file protections, and optimizer-managed knobs. |
-| `.opencode/skills/deep-research/references/state_format.md` | Reference | Defines the config schema, field meanings, and file-protection map. |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Reference | Defines the config schema, field meanings, and file-protection map. |
 | `.opencode/skills/deep-research/assets/runtime_capabilities.json` | Asset | Defines the machine-readable runtime capability matrix for supported mirrors. |
 | `.opencode/skills/deep-research/scripts/runtime-capabilities.cjs` | Script | Loads and validates the capability matrix and resolves runtime records by ID. |
 | `.opencode/skills/deep-research/SKILL.md` | Skill | Publishes the live lifecycle modes, capability-path references, and optimizer-managed config fields. |

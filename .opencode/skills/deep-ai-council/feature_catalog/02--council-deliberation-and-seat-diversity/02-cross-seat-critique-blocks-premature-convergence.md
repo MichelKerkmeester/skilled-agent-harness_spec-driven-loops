@@ -32,7 +32,7 @@ The user-visible contract is concrete: Verify cross-seat critique is required be
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/agents/ai-council.md` | Runtime Mirror | Deliberation workflow |
-| `.opencode/skills/deep-ai-council/references/convergence_signals.md` | Reference | Convergence escape hatches |
+| `.opencode/skills/deep-ai-council/references/convergence/convergence_signals.md` | Reference | Convergence escape hatches |
 
 ### Validation And Tests
 

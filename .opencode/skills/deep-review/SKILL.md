@@ -19,7 +19,7 @@ Runtime path resolution:
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
 
-Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05 vs deep-ai-council 0.20) live in `references/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
+Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05 vs deep-ai-council 0.20) live in `references/convergence/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
 
 ## 1. WHEN TO USE
 
@@ -84,7 +84,7 @@ This skill is invoked EXCLUSIVELY through the `/deep:start-review-loop` command.
 
 | Level | When to Load | Resources |
 |-------|-------------|-----------|
-| ALWAYS | Every skill invocation | `references/quick_reference.md` |
+| ALWAYS | Every skill invocation | `references/protocol/quick_reference.md` |
 | CONDITIONAL | If intent signals match | Loop protocol, convergence, state format, review contract |
 | ON_DEMAND | Only on explicit request | Full protocol docs, detailed specifications |
 
@@ -100,7 +100,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/quick_reference.md"
+DEFAULT_RESOURCE = "references/protocol/quick_reference.md"
 
 INTENT_SIGNALS = {
     "REVIEW_SETUP":       {"weight": 4, "keywords": ["deep review", "review mode", "code audit", "iterative review", ":review", "audit spec"]},
@@ -119,26 +119,26 @@ NOISY_SYNONYMS = {
 # RESOURCE_MAP: local markdown assets + local review-specific protocol docs
 RESOURCE_MAP = {
     "REVIEW_SETUP":       [
-        "references/loop_protocol.md",
-        "references/state_format.md",
-        "references/state_outputs.md",
-        "references/state_reducer_registry.md",
+        "references/protocol/loop_protocol.md",
+        "references/state/state_format.md",
+        "references/state/state_outputs.md",
+        "references/state/state_reducer_registry.md",
         "assets/deep_review_strategy.md",
     ],
     "REVIEW_ITERATION":   [
-        "references/loop_protocol.md",
-        "references/convergence.md",
-        "references/convergence_signals.md",
+        "references/protocol/loop_protocol.md",
+        "references/convergence/convergence.md",
+        "references/convergence/convergence_signals.md",
     ],
     "REVIEW_CONVERGENCE": [
-        "references/convergence.md",
-        "references/convergence_signals.md",
-        "references/state_outputs.md",
+        "references/convergence/convergence.md",
+        "references/convergence/convergence_signals.md",
+        "references/state/state_outputs.md",
     ],
     "REVIEW_REPORT":      [
-        "references/state_format.md",
-        "references/state_outputs.md",
-        "references/state_reducer_registry.md",
+        "references/state/state_format.md",
+        "references/state/state_outputs.md",
+        "references/state/state_reducer_registry.md",
         "assets/deep_review_dashboard.md",
     ],
 }
@@ -147,20 +147,20 @@ LOADING_LEVELS = {
     "ALWAYS":            [DEFAULT_RESOURCE],
     "ON_DEMAND_KEYWORDS": ["full protocol", "all templates", "complete reference", "resume deep review", "deep-review wave", "review artifact", "release-readiness audit", "convergence-tracked", "same session lineage", "P0"],
     "ON_DEMAND":         [
-        "references/loop_protocol.md",
-        "references/state_format.md",
-        "references/convergence.md",
-        "references/convergence_signals.md",
-        "references/state_outputs.md",
-        "references/state_reducer_registry.md",
+        "references/protocol/loop_protocol.md",
+        "references/state/state_format.md",
+        "references/convergence/convergence.md",
+        "references/convergence/convergence_signals.md",
+        "references/state/state_outputs.md",
+        "references/state/state_reducer_registry.md",
     ],
 }
 
 PHASE_RESOURCE_MAP = {
-    "init": ["references/loop_protocol.md", "references/state_format.md", "references/state_outputs.md"],
-    "iteration": ["references/loop_protocol.md", "references/convergence.md", "references/convergence_signals.md"],
-    "stuck": ["references/convergence.md", "references/convergence_signals.md", "references/loop_protocol.md", "references/state_reducer_registry.md"],
-    "synthesis": ["references/state_format.md", "references/state_outputs.md", "references/state_reducer_registry.md", "assets/deep_review_dashboard.md"],
+    "init": ["references/protocol/loop_protocol.md", "references/state/state_format.md", "references/state/state_outputs.md"],
+    "iteration": ["references/protocol/loop_protocol.md", "references/convergence/convergence.md", "references/convergence/convergence_signals.md"],
+    "stuck": ["references/convergence/convergence.md", "references/convergence/convergence_signals.md", "references/protocol/loop_protocol.md", "references/state/state_reducer_registry.md"],
+    "synthesis": ["references/state/state_format.md", "references/state/state_outputs.md", "references/state/state_reducer_registry.md", "assets/deep_review_dashboard.md"],
 }
 
 NON_MARKDOWN_REFERENCES = {
@@ -367,41 +367,7 @@ Downstream automation (including the synthesis phase and CI gate parser) parses 
 
 ### Executor Selection Contract
 
-Executor settings are owned by the YAML workflow and rendered prompt pack. Do not bypass the workflow by hand-dispatching review iterations. Each iteration must stay LEAF-only and produce the required markdown plus JSONL delta.
-
-**Invariants** every executor path MUST satisfy:
-
-1. Produce an iteration markdown file at `{state_paths.iteration_pattern}` (non-empty).
-2. Append a JSONL delta record to `{state_paths.state_log}` with required fields: `type`, `iteration`, `dimensions`, `filesReviewed`, `findingsSummary`, `findingsNew`, `findingDetails`, `newFindingsRatio`.
-3. Respect the LEAF-agent constraint: no sub-dispatch, no nested loops. Max 12 tool calls per iteration.
-
-**Failure modes**:
-
-- Missing iteration file → `iteration_file_missing` from `post-dispatch-validate.ts`, emits `schema_mismatch` conflict event.
-- Empty iteration file → `iteration_file_empty`, same downstream.
-- JSONL not appended → `jsonl_not_appended`.
-- JSONL missing required fields → `jsonl_missing_fields`.
-- JSONL malformed → `jsonl_parse_error`.
-- 3 consecutive failures → existing `stuck_recovery` event (unchanged).
-
-**JSONL audit field**: Non-native executor runs append an `executor` block with model and runtime settings to the iteration's JSONL record via `executor-audit.ts`. Native runs are recoverable from YAML alone.
-
-**Template**: The executor-agnostic iteration prompt lives at `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl`. It is rendered by `prompt-pack.ts` before dispatch and either (a) injected as the agent's context (native) or (b) piped to `codex exec` stdin (cli-codex).
-
-**Config surface**: Defined in `assets/deep_review_config.json` under the `executor` key. Schema is in `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`. CLI flag precedence is: `--executor/--model/--reasoning-effort/--service-tier/--executor-timeout > config file > schema default`.
-
-**What NEVER changes regardless of executor route**:
-
-- YAML owns state (`deep-review-state.jsonl`, strategy.md, registry, dashboard).
-- `reduce-state.cjs` is the single state writer.
-- Convergence detection, lifecycle events (new/resume/restart), review dimensions pass (correctness, security, traceability, maintainability), and stuck_recovery all stay YAML-driven.
-- The `@deep-review` LEAF agent definition is untouched: it is the native executor, not the only one.
-
-### Code-Graph Readiness TrustState Surface
-
-On this skill surface, the live code-graph readiness contract only reaches four TrustState values: `live`, `stale`, `absent`, and `unavailable`.
-
-`cached`, `imported`, `rebuilt`, and `rehomed` remain declared in the shared TrustState type for compatibility and downstream schema stability, but the seven code-graph handlers and readiness helpers used here do not emit them today.
+Executor settings are owned by the YAML workflow and rendered prompt pack. Do not bypass the workflow by hand-dispatching review iterations; each iteration stays LEAF-only and produces the required markdown plus JSONL delta. The full contract -- per-iteration invariants, failure modes, JSONL audit field, config surface and precedence, executor-invariant guarantees, and the four-value code-graph readiness TrustState surface -- lives in `references/protocol/loop_protocol.md`.
 
 ---
 
@@ -449,9 +415,11 @@ On this skill surface, the live code-graph readiness contract only reaches four 
 
 ## 5. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/quick_reference.md`, `references/loop_protocol.md`, `references/convergence.md`, `references/convergence_signals.md`, `references/state_format.md`, `references/state_outputs.md`, `references/state_reducer_registry.md`, `assets/deep_review_dashboard.md`, `assets/deep_review_strategy.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/protocol/quick_reference.md`, `references/protocol/loop_protocol.md`, `references/convergence/convergence.md`, `references/convergence/convergence_signals.md`, `references/state/state_format.md`, `references/state/state_outputs.md`, `references/state/state_reducer_registry.md`, `assets/deep_review_dashboard.md`, `assets/deep_review_strategy.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
+
+Detailed contracts: `references/protocol/loop_protocol.md` (executor invariants, failure modes, config surface) and `references/state/state_reducer_registry.md` (two-tier content-hash dedup).
 
 Related skills: `deep-research` for investigation loops, `sk-code-review` for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.
 
@@ -482,7 +450,7 @@ Each gate is binary: pass or block. STOP cannot be legal until every gate passes
 - **Severity coverage**: every reported finding carries `severity` in {P0, P1, P2}, `category`, `file:line` evidence, `finding_class`, and a `content_hash` for synthesis dedup.
 - **Adversarial replay**: every P0 finding survived adversarial self-check. Rejected P0s downgraded with rationale recorded in the iteration narrative.
 - **Coverage threshold**: `dimensions_covered_count == configured_dimensions_count` AND required traceability protocols covered, stable for at least `minStabilizationPasses` iterations.
-- **Security-sensitive override**: when the run targets security, path handling, env precedence, schema boundaries, persistence, or shared policy, the gates from `references/convergence.md` "Security-Sensitive Fix Overrides" apply (`minStabilizationPasses=2`, closed-finding replay required, fix-completeness gate enforced).
+- **Security-sensitive override**: when the run targets security, path handling, env precedence, schema boundaries, persistence, or shared policy, the gates from `references/convergence/convergence.md` "Security-Sensitive Fix Overrides" apply (`minStabilizationPasses=2`, closed-finding replay required, fix-completeness gate enforced).
 
 ### Validation Success
 
@@ -519,30 +487,3 @@ Recover context via `/speckit:resume` in the order `handover.md -> _memory.conti
 - Locating implementations when exact symbol names are unknown
 - Cross-referencing behavior across unfamiliar code paths
 
----
-
-## 8. FINDING DEDUPLICATION
-
-### 8.1 Two-Tier Deduplication
-
-Finding dedup uses a two-tier match at synthesis time:
-
-1. **PRIMARY: content_hash**, `sha256(file_path + "\u001f" + line_range + "\u001f" + finding_type + "\u001f" + normalized_description_80chars)`
-   - `file_path`: repo-relative path of the finding
-   - `line_range`: e.g., `"42"` or `"42-56"`
-   - `finding_type`: one of `security`, `correctness`, `performance`, `maintainability`, `test_quality`, `contract_safety`, `removal`
-   - `normalized_description_80chars`: first 80 characters of the finding description, whitespace-collapsed and lowercased
-
-2. **FALLBACK (legacy records): file:line + normalized_title**
-   - Applied when one or both records lack a `content_hash` field
-   - Preserves the existing behavior unchanged
-
-### 8.2 Synthesis Behavior
-
-When the same `content_hash` appears across iterations from different dimensions, the synthesis step collapses them to **ONE entry** with `dimensions: [<list of all dimensions that emitted this finding>]` rather than emitting multiple records.
-
-Backward compatibility: state records without `content_hash` field fall back to the existing `file:line + normalized_title` behavior. No migration is required for existing JSONL state files.
-
-### 8.3 Emission Requirement
-
-Every finding emitted into the JSONL delta (field `findingDetails[]`) MUST include a `content_hash` field computed per §8.1. The reducer (`reduce-state.cjs`) reads this field for synthesis dedup.

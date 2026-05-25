@@ -26,8 +26,8 @@ The initializer also applies the live four-dimension priority order: correctness
 | File | Layer | Role |
 |---|---|---|
 | `SKILL.md` | Skill contract | Describes the 3-layer architecture, packet location, lifecycle modes, and required packet files. |
-| `references/loop_protocol.md` | Protocol | Defines Phase 1 initialization, target resolution, dimension ordering, protocol planning, and init outputs. |
-| `references/state_format.md` | Schema | Defines the config file fields, initial JSONL config record, registry shape, and file protection rules. |
+| `references/protocol/loop_protocol.md` | Protocol | Defines Phase 1 initialization, target resolution, dimension ordering, protocol planning, and init outputs. |
+| `references/state/state_format.md` | Schema | Defines the config file fields, initial JSONL config record, registry shape, and file protection rules. |
 | `assets/deep_review_strategy.md` | Template | Supplies the strategy sections populated during initialization. |
 | `assets/review_mode_contract.yaml` | Contract | Declares target types, dimensions, lineage fields, outputs, and reducer IO. |
 
@@ -47,4 +47,4 @@ The initializer also applies the live four-dimension priority order: correctness
 - Group: Loop lifecycle
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `01--loop-lifecycle/01-initialization.md`
-- Primary sources: `SKILL.md`, `references/loop_protocol.md`, `references/state_format.md`, `assets/deep_review_strategy.md`, `assets/review_mode_contract.yaml`
+- Primary sources: `SKILL.md`, `references/protocol/loop_protocol.md`, `references/state/state_format.md`, `assets/deep_review_strategy.md`, `assets/review_mode_contract.yaml`

@@ -36,8 +36,8 @@ The YAML workflows own when candidate generation happens. Autonomous mode runs t
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-agent-improvement/references/loop_protocol.md` | Reference | Documents the proposal-first sequence and runtime-only candidate path. |
-| `.opencode/skills/deep-agent-improvement/references/no_go_conditions.md` | Safety reference | Stops the loop when mutator and scorer boundaries blur or scope broadens. |
+| `.opencode/skills/deep-agent-improvement/references/workflow/loop_protocol.md` | Reference | Documents the proposal-first sequence and runtime-only candidate path. |
+| `.opencode/skills/deep-agent-improvement/references/promotion-gates/promotion_rules.md` | Safety reference | Stops the loop when mutator and scorer boundaries blur or scope broadens. |
 
 ---
 

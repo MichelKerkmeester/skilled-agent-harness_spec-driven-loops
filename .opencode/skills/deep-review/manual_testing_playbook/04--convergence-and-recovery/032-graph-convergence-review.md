@@ -47,7 +47,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the graph-backed legal-stop gate and report whether blocked-stop state persists when coverage fails.
 ### Commands
-1. `bash: rg -n 'blockedStop|dimensionCoverage|buildReviewLegalStop|graphEvents|graph-aware review convergence' .opencode/skills/deep-review/references/convergence.md`
+1. `bash: rg -n 'blockedStop|dimensionCoverage|buildReviewLegalStop|graphEvents|graph-aware review convergence' .opencode/skills/deep-review/references/convergence/convergence.md`
 2. `bash: rg -n 'dimensionCoverage|threshold|STOP_BLOCKED|blocking' .opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts`
 3. `bash: rg -n 'blocked_stop|blockedStop|dimensionCoverage' .opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl`
 ### Expected
@@ -57,7 +57,7 @@ Capture the review convergence legal-stop wording, the handler threshold/check f
 ### Pass/Fail
 PASS if the review docs, graph convergence handler, and blocked-stop fixture all agree that dimension-coverage failure prevents STOP even when other signals are favorable. FAIL if dimension-coverage failure is only advisory or not persisted.
 ### Failure Triage
-Privilege `references/convergence.md` for the review stop contract and the fixture for concrete JSONL persistence. If the handler threshold and packet-level wording differ, flag threshold drift for follow-up.
+Privilege `references/convergence/convergence.md` for the review stop contract and the fixture for concrete JSONL persistence. If the handler threshold and packet-level wording differ, flag threshold drift for follow-up.
 ---
 
 ## 4. SOURCE FILES
@@ -72,7 +72,7 @@ Privilege `references/convergence.md` for the review stop contract and the fixtu
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/convergence.md` | Canonical review legal-stop and graph-aware convergence contract |
+| `.opencode/skills/deep-review/references/convergence/convergence.md` | Canonical review legal-stop and graph-aware convergence contract |
 | `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` | Graph convergence handler, review `dimensionCoverage` threshold and blocking behavior |
 | `.opencode/skills/system-spec-kit/scripts/tests/fixtures/deep-loop-optimizer/sample-040-corpus.jsonl` | Concrete blocked-stop fixture showing `dimensionCoverage` in `blockedBy` |
 

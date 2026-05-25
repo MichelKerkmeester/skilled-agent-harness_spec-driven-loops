@@ -32,8 +32,8 @@ The user-visible contract is concrete: Verify failed rounds move under failed/ a
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/deep-ai-council/scripts/lib/rollback.js` | Library | Rollback behavior |
-| `.opencode/skills/deep-ai-council/references/folder_layout.md` | Reference | Failed folder layout |
-| `.opencode/skills/deep-ai-council/references/state_format.md` | Reference | Rollback state events |
+| `.opencode/skills/deep-ai-council/references/structure/folder_layout.md` | Reference | Failed folder layout |
+| `.opencode/skills/deep-ai-council/references/structure/state_format.md` | Reference | Rollback state events |
 
 ### Validation And Tests
 

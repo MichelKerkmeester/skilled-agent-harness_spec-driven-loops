@@ -11,7 +11,6 @@ import {
   type TrustTree,
 } from '../rag/trust-tree.js';
 import type { QueryPlan } from '../query/query-plan.js';
-import type { RerankGateDecision } from './rerank-gate.js';
 
 export interface ShadowDeltaTelemetry {
   prompt?: string;
@@ -44,7 +43,6 @@ export interface SearchDecisionEnvelope {
   agentId?: string;
   queryPlan: QueryPlan;
   trustTree?: TrustTree;
-  rerankGateDecision?: RerankGateDecision;
   shadowDeltas?: ShadowDeltaTelemetry[];
   degradedReadiness?: DegradedReadinessTelemetry;
   pipelineTiming?: Record<string, number>;
@@ -60,7 +58,6 @@ export interface BuildSearchDecisionEnvelopeInput {
   queryPlan: QueryPlan;
   trustTree?: TrustTree;
   trustTreeInput?: BuildTrustTreeInput;
-  rerankGateDecision?: RerankGateDecision;
   shadowDeltas?: readonly ShadowDeltaTelemetry[];
   degradedReadiness?: DegradedReadinessTelemetry;
   pipelineTiming?: Record<string, number>;
@@ -84,10 +81,7 @@ function buildSearchDecisionEnvelope(input: BuildSearchDecisionEnvelopeInput): S
   const trustTree = input.trustTree ?? (input.trustTreeInput ? buildTrustTree(input.trustTreeInput) : undefined);
   return attachDegradedReadiness(
     attachShadowDeltas(
-      attachRerankDecision(
-        attachTrustTree(envelope, trustTree),
-        input.rerankGateDecision,
-      ),
+      attachTrustTree(envelope, trustTree),
       input.shadowDeltas,
     ),
     input.degradedReadiness,
@@ -99,17 +93,6 @@ function attachTrustTree(envelope: SearchDecisionEnvelope, trustTree?: TrustTree
   return {
     ...envelope,
     trustTree: cloneJson(trustTree),
-  };
-}
-
-function attachRerankDecision(
-  envelope: SearchDecisionEnvelope,
-  rerankGateDecision?: RerankGateDecision,
-): SearchDecisionEnvelope {
-  if (!rerankGateDecision) return { ...envelope };
-  return {
-    ...envelope,
-    rerankGateDecision: cloneJson(rerankGateDecision),
   };
 }
 
@@ -147,7 +130,6 @@ function cloneJson<T>(value: T): T {
 
 export {
   attachDegradedReadiness,
-  attachRerankDecision,
   attachShadowDeltas,
   attachTrustTree,
   buildSearchDecisionEnvelope,

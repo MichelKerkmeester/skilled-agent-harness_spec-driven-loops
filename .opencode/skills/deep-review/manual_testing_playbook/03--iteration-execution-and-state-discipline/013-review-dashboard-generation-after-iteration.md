@@ -46,7 +46,7 @@ Validate deep-review dashboard generation after each iteration from JSONL and st
 ### Commands
 1. `bash: rg -n 'step_generate_dashboard|dashboard' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
 2. `bash: sed -n '1,220p' .opencode/skills/deep-review/assets/deep_review_dashboard.md`
-3. `bash: rg -n 'dashboard|deep-review-dashboard' .opencode/skills/deep-review/references/quick_reference.md .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
+3. `bash: rg -n 'dashboard|deep-review-dashboard' .opencode/skills/deep-review/references/protocol/quick_reference.md .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 ### Expected
 The step_generate_dashboard runs after validation. It reads JSONL and strategy. It writes deep-review-dashboard.md. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
 ### Evidence
@@ -73,7 +73,7 @@ Compare the dashboard template in assets/ with the YAML step_generate_dashboard 
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Dashboard generation step, inspect `step_generate_dashboard` |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Dashboard generation step, inspect `step_generate_dashboard` |
 | `.opencode/skills/deep-review/assets/deep_review_dashboard.md` | Dashboard template |
-| `.opencode/skills/deep-review/references/quick_reference.md` | State files table, use `ANCHOR:state-files` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | State files table, use `ANCHOR:state-files` |
 
 ---
 

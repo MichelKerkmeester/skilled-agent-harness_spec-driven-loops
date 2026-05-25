@@ -33,7 +33,7 @@ The user-visible contract is concrete: Verify runtime status CLI returns readine
 |------|-------|------|
 | `.opencode/skills/deep-loop-runtime/scripts/status.cjs` | Handler | runtime CLI script: counts/schema/signals + recovery payload (P2-001 remediation) |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Library | Storage layer: counts + namespace filter |
-| `.opencode/skills/deep-ai-council/references/graph_support.md 5` | Reference | Documents the recovery contract |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md 5` | Reference | Documents the recovery contract |
 
 ### Validation And Tests
 

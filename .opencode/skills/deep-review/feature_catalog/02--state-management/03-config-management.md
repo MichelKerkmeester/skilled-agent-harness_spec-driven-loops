@@ -25,8 +25,8 @@ The same document also declares reducer IO names and metric names, which makes i
 
 | File | Layer | Role |
 |---|---|---|
-| `references/state_format.md` | Schema | Defines the config shape, default values, field meanings, and file protection levels. |
-| `references/loop_protocol.md` | Protocol | Requires config creation at init and agreement checks on resume. |
+| `references/state/state_format.md` | Schema | Defines the config shape, default values, field meanings, and file protection levels. |
+| `references/protocol/loop_protocol.md` | Protocol | Requires config creation at init and agreement checks on resume. |
 | `assets/deep_review_config.json` | Template | Provides the config seed copied into the packet during initialization. |
 | `assets/review_mode_contract.yaml` | Contract | Declares target types, dimensions, lifecycle fields, release-readiness states, and reducer IO reflected into config. |
 
@@ -45,4 +45,4 @@ The same document also declares reducer IO names and metric names, which makes i
 - Group: State management
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `02--state-management/03-config-management.md`
-- Primary sources: `references/state_format.md`, `references/loop_protocol.md`, `assets/deep_review_config.json`, `assets/review_mode_contract.yaml`
+- Primary sources: `references/state/state_format.md`, `references/protocol/loop_protocol.md`, `assets/deep_review_config.json`, `assets/review_mode_contract.yaml`

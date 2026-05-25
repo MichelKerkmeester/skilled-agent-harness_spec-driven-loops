@@ -27,7 +27,7 @@ Correctness also feeds the severity system directly. Findings in this dimension 
 |---|---|---|
 | `assets/review_mode_contract.yaml` | Contract | Declares correctness as dimension `1`, labels its checks, and marks it as required for severity coverage. |
 | `SKILL.md` | Skill contract | Summarizes correctness as the first review dimension in the live four-dimension model. |
-| `references/loop_protocol.md` | Protocol | Orders correctness first during initialization and treats it as part of required dimension coverage. |
+| `references/protocol/loop_protocol.md` | Protocol | Orders correctness first during initialization and treats it as part of required dimension coverage. |
 | `assets/deep_review_strategy.md` | Template | Seeds correctness as the first checkbox in the strategy file. |
 
 ### Validation And Tests
@@ -45,4 +45,4 @@ Correctness also feeds the severity system directly. Findings in this dimension 
 - Group: Review dimensions
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `03--review-dimensions/01-correctness.md`
-- Primary sources: `assets/review_mode_contract.yaml`, `SKILL.md`, `references/loop_protocol.md`, `assets/deep_review_strategy.md`
+- Primary sources: `assets/review_mode_contract.yaml`, `SKILL.md`, `references/protocol/loop_protocol.md`, `assets/deep_review_strategy.md`

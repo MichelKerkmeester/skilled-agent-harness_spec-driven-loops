@@ -84,7 +84,7 @@ Check required headings in the report, packet path, and write permissions.
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs` | CLI wrapper |
-| `.opencode/skills/deep-ai-council/references/folder_layout.md` | Artifact layout |
+| `.opencode/skills/deep-ai-council/references/structure/folder_layout.md` | Artifact layout |
 
 ---
 

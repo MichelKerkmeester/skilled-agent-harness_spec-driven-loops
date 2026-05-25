@@ -26,8 +26,8 @@ Traceability is not marked `requiredForSeverityCoverage` in the contract, but it
 | File | Layer | Role |
 |---|---|---|
 | `assets/review_mode_contract.yaml` | Contract | Declares traceability checks and the core and overlay cross-reference protocols. |
-| `references/loop_protocol.md` | Protocol | Defines protocol execution during traceability iterations and required protocol coverage in convergence. |
-| `references/state_format.md` | Schema | Defines `traceabilityChecks`, protocol status summaries, and report surfaces for traceability output. |
+| `references/protocol/loop_protocol.md` | Protocol | Defines protocol execution during traceability iterations and required protocol coverage in convergence. |
+| `references/state/state_format.md` | Schema | Defines `traceabilityChecks`, protocol status summaries, and report surfaces for traceability output. |
 | `assets/deep_review_strategy.md` | Template | Provides the `cross-reference-status` table maintained during traceability work. |
 
 ### Validation And Tests
@@ -45,4 +45,4 @@ Traceability is not marked `requiredForSeverityCoverage` in the contract, but it
 - Group: Review dimensions
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `03--review-dimensions/03-traceability.md`
-- Primary sources: `assets/review_mode_contract.yaml`, `references/loop_protocol.md`, `references/state_format.md`, `assets/deep_review_strategy.md`
+- Primary sources: `assets/review_mode_contract.yaml`, `references/protocol/loop_protocol.md`, `references/state/state_format.md`, `assets/deep_review_strategy.md`

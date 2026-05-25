@@ -97,7 +97,7 @@ If counts diverge, inspect the replay loop for missing event types or out-of-ord
 |---|---|
 | Internal design notes | ADR-001 derived-projection contract |
 | Internal design notes | CHK-028 rollback path |
-| `.opencode/skills/deep-ai-council/references/graph_support.md` §5 | Recovery and rollback contract |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md` §5 | Recovery and rollback contract |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Namespace-scoped delete + upsert |
 
 ---

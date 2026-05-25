@@ -29,8 +29,8 @@ The final workflow still owns synthesis. After convergence, the synth phase read
 |---|---|---|
 | `.opencode/skills/deep-research/assets/deep_research_config.json` | Asset | Sets `progressiveSynthesis` to `true` by default in the live config template. |
 | `.opencode/agents/deep-research.md` | Agent | Defines when the iteration agent may create or update `research/research.md`. |
-| `.opencode/skills/deep-research/references/state_format.md` | Reference | Defines progressive update rules for `research/research.md`. |
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Reference | Defines the final synthesis cleanup pass that consolidates the document. |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Reference | Defines progressive update rules for `research/research.md`. |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Reference | Defines the final synthesis cleanup pass that consolidates the document. |
 | `.opencode/commands/speckit/deep-research.md` | Command | Publishes `research/research.md` as a canonical loop output. |
 
 ### Validation And Tests

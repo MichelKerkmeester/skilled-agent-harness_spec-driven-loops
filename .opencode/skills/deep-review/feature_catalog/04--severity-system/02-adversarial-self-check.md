@@ -26,8 +26,8 @@ The adversarial re-check is separate from the typed claim-adjudication packet. S
 | File | Layer | Role |
 |---|---|---|
 | `SKILL.md` | Skill contract | Requires adversarial self-check on P0 findings in both the loop rules and success criteria. |
-| `references/loop_protocol.md` | Protocol | Places blocker re-read and severity confirmation in the post-iteration evaluation flow. |
-| `references/convergence.md` | Protocol | Treats unresolved active P0 findings as a legal-stop blocker and verdict driver. |
+| `references/protocol/loop_protocol.md` | Protocol | Places blocker re-read and severity confirmation in the post-iteration evaluation flow. |
+| `references/convergence/convergence.md` | Protocol | Treats unresolved active P0 findings as a legal-stop blocker and verdict driver. |
 
 ### Validation And Tests
 
@@ -43,4 +43,4 @@ The adversarial re-check is separate from the typed claim-adjudication packet. S
 - Group: Severity system
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `04--severity-system/02-adversarial-self-check.md`
-- Primary sources: `SKILL.md`, `references/loop_protocol.md`, `references/convergence.md`
+- Primary sources: `SKILL.md`, `references/protocol/loop_protocol.md`, `references/convergence/convergence.md`

@@ -46,11 +46,11 @@ Validate convergence STOP is overridden when quality guards fail, then the loop 
 
 ### Commands
 
-1. `bash: sed -n '165,175p' .opencode/skills/deep-research/references/convergence.md`
-2. `bash: sed -n '104,139p' .opencode/skills/deep-research/references/convergence.md`
+1. `bash: sed -n '165,175p' .opencode/skills/deep-research/references/convergence/convergence.md`
+2. `bash: sed -n '104,139p' .opencode/skills/deep-research/references/convergence/convergence.md`
 3. `bash: sed -n '218,247p' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
-4. `bash: sed -n '97,107p' .opencode/skills/deep-research/references/loop_protocol.md`
-5. `bash: rg -n 'guard_violation' .opencode/skills/deep-research/references/state_format.md`
+4. `bash: sed -n '97,107p' .opencode/skills/deep-research/references/protocol/loop_protocol.md`
+5. `bash: rg -n 'guard_violation' .opencode/skills/deep-research/references/state/state_format.md`
 
 ### Expected
 
@@ -83,9 +83,9 @@ Trace the path from convergence.md Decision Priority (canonical order) through a
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Canonical convergence math and quality guard definitions; use Decision Priority (step 4.5) and §2.4 Quality Guard Protocol |
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check for the override flow |
-| `.opencode/skills/deep-research/references/state_format.md` | JSONL event schema; use guard_violation event definition to confirm override logging |
+| `.opencode/skills/deep-research/references/convergence/convergence.md` | Canonical convergence math and quality guard definitions; use Decision Priority (step 4.5) and §2.4 Quality Guard Protocol |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check for the override flow |
+| `.opencode/skills/deep-research/references/state/state_format.md` | JSONL event schema; use guard_violation event definition to confirm override logging |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow algorithm; inspect `step_check_convergence` step 6 for the guardResult override block |
 
 ---

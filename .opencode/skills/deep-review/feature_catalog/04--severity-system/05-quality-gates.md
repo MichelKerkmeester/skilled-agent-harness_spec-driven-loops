@@ -27,7 +27,7 @@ The gate model is split across two layers. The contract-level binary gates are E
 | `candidateCoverageGate` | Search debt cleared and required bug classes covered (v2 rollout, passes trivially when inactive) |
 | `graphlessFallbackGate` | Required bug classes carry fallback ledger rows when the graph is unavailable (v2 rollout) |
 
-If any required gate fails, STOP is vetoed and the loop appends a `blocked_stop` event with the failing gates and a recovery hint. See `references/convergence.md` §Section-1 for the authoritative event shape.
+If any required gate fails, STOP is vetoed and the loop appends a `blocked_stop` event with the failing gates and a recovery hint. See `references/convergence/convergence.md` §Section-1 for the authoritative event shape.
 
 Gate failures also affect verdicts. A quality-gate failure yields FAIL regardless of raw finding counts, and unresolved blockers or missing evidence keep the review in a non-terminal state until a later iteration repairs the packet or closes the gap.
 
@@ -40,9 +40,9 @@ Gate failures also affect verdicts. A quality-gate failure yields FAIL regardles
 | File | Layer | Role |
 |---|---|---|
 | `SKILL.md` | Skill contract | Lists the required quality guards and marks them blocking before convergence. |
-| `references/convergence.md` | Protocol | Defines the legal-stop bundle, blocked-stop persistence, recovery strategies, and verdict impact. |
-| `references/loop_protocol.md` | Protocol | Applies gate evaluation during the loop and before synthesis. |
-| `references/state_format.md` | Schema | Defines blocked-stop records, traceability checks, and gate-sensitive registry/report fields. |
+| `references/convergence/convergence.md` | Protocol | Defines the legal-stop bundle, blocked-stop persistence, recovery strategies, and verdict impact. |
+| `references/protocol/loop_protocol.md` | Protocol | Applies gate evaluation during the loop and before synthesis. |
+| `references/state/state_format.md` | Schema | Defines blocked-stop records, traceability checks, and gate-sensitive registry/report fields. |
 | `assets/review_mode_contract.yaml` | Contract | Declares binary quality gates, verdict conditions, and stop thresholds. |
 
 ### Validation And Tests
@@ -60,4 +60,4 @@ Gate failures also affect verdicts. A quality-gate failure yields FAIL regardles
 - Group: Severity system
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `04--severity-system/05-quality-gates.md`
-- Primary sources: `SKILL.md`, `references/convergence.md`, `references/loop_protocol.md`, `references/state_format.md`, `assets/review_mode_contract.yaml`
+- Primary sources: `SKILL.md`, `references/convergence/convergence.md`, `references/protocol/loop_protocol.md`, `references/state/state_format.md`, `assets/review_mode_contract.yaml`

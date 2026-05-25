@@ -25,9 +25,9 @@ Missing packets or missing required fields fail the adjudication step and trip `
 
 | File | Layer | Role |
 |---|---|---|
-| `references/loop_protocol.md` | Protocol | Defines the claim-adjudication step, required packet fields, and stop-veto behavior. |
-| `references/state_format.md` | Schema | Defines the typed packet schema, required fields, validation rules, and severity transitions. |
-| `references/convergence.md` | Protocol | Includes `claimAdjudicationGate` in blocked-stop event payloads and legal-stop evaluation. |
+| `references/protocol/loop_protocol.md` | Protocol | Defines the claim-adjudication step, required packet fields, and stop-veto behavior. |
+| `references/state/state_format.md` | Schema | Defines the typed packet schema, required fields, validation rules, and severity transitions. |
+| `references/convergence/convergence.md` | Protocol | Includes `claimAdjudicationGate` in blocked-stop event payloads and legal-stop evaluation. |
 | `assets/review_mode_contract.yaml` | Contract | Declares the claim-adjudication gate as part of the persisted gate-result bundle. |
 
 ### Validation And Tests
@@ -45,4 +45,4 @@ Missing packets or missing required fields fail the adjudication step and trip `
 - Group: Severity system
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `04--severity-system/03-claim-adjudication.md`
-- Primary sources: `references/loop_protocol.md`, `references/state_format.md`, `references/convergence.md`, `assets/review_mode_contract.yaml`
+- Primary sources: `references/protocol/loop_protocol.md`, `references/state/state_format.md`, `references/convergence/convergence.md`, `assets/review_mode_contract.yaml`

@@ -26,8 +26,8 @@ The dashboard is explicitly auto-generated and read-only. If generation fails, t
 | File | Layer | Role |
 |---|---|---|
 | `assets/deep_review_dashboard.md` | Template | Provides the dashboard scaffold for generated review summaries. |
-| `references/state_format.md` | Schema | Defines the dashboard location, inputs, sections, and overwrite rules. |
-| `references/loop_protocol.md` | Protocol | Defines when the dashboard is regenerated and what it must summarize. |
+| `references/state/state_format.md` | Schema | Defines the dashboard location, inputs, sections, and overwrite rules. |
+| `references/protocol/loop_protocol.md` | Protocol | Defines when the dashboard is regenerated and what it must summarize. |
 | `assets/deep_review_strategy.md` | Template | Supplies the strategy inputs the dashboard reads for coverage and next-focus state. |
 
 ### Validation And Tests
@@ -44,4 +44,4 @@ The dashboard is explicitly auto-generated and read-only. If generation fails, t
 - Group: State management
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `02--state-management/05-dashboard.md`
-- Primary sources: `assets/deep_review_dashboard.md`, `references/state_format.md`, `references/loop_protocol.md`, `assets/deep_review_strategy.md`
+- Primary sources: `assets/deep_review_dashboard.md`, `references/state/state_format.md`, `references/protocol/loop_protocol.md`, `assets/deep_review_strategy.md`

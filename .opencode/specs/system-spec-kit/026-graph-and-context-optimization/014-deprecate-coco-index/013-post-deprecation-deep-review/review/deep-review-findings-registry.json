@@ -1,11 +1,11 @@
 {
   "sessionId": "2026-05-25T00-00-00Z",
-  "parentSessionId": null,
+  "parentSessionId": "2026-05-25T00-00-00Z",
   "generation": 1,
-  "lineageMode": "new",
-  "continuedFromRun": null,
+  "lineageMode": "resume",
+  "continuedFromRun": 4,
   "terminalStop": null,
-  "status": "INITIALIZED",
+  "status": "IN-PROGRESS",
   "openFindings": [
     {
       "findingId": "F001",
@@ -104,6 +104,102 @@
       "mergedFindingIds": []
     },
     {
+      "findingId": "F009",
+      "severity": "P1",
+      "title": "Dead RERANK_ env var prefix in sidecar allowlist for removed feature",
+      "file": ".opencode/bin/lib/sidecar-env-allowlist.cjs",
+      "line": 17,
+      "description": "The `RERANK_` prefix is still allowed in the sidecar env allowlist, but `RERANKER_LOCAL` was removed in the 014 deprecation (system-spec-kit/SKILL.md:422 states \"the SPECKIT_CROSS_ENCODER/RERANKER_LOCAL flags are no longer wired\"). Allowing env vars for a dead feature is a security/maintainability risk. Recommendation: Remove `'RERANK_'` from the prefixes array in SIDECAR_ENV_ALLOWLIST.",
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P1",
+      "title": "Stale feature catalog claims deleted `07--ccc-integration` directory",
+      "file": ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md:29,48,287,291,307,323",
+      "line": null,
+      "description": "The catalog claims 3 features in `07--ccc-integration/` (lines 48, 287, 291, 307, 323) with TOC entry (line 29), but the directory does not exist. Lines 287, 291, 323 reference the deleted `ccc` binary and tools. This is analogous to F008 found in iter-6 for the code-graph catalog. Recommendation: Remove the `07--ccc-integration` section entirely (TOC entry + 3 feature entries) or replace with a deprecation note.",
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F011",
+      "severity": "P1",
+      "title": "Misleading tool handler references to deleted `lib/ccc/` paths",
+      "file": ".opencode/skills/system-code-graph/references/runtime/tool_surface.md",
+      "line": 84,
+      "description": "Lines 84-86 claim tools route to `lib/ccc/` (deleted in 002), and line 115 references deleted `ccc_bridge_integration.md`. The actual handlers are `lib/scan/`, `lib/status/`, `lib/verify/` per the code-graph tree-sitter architecture. Recommendation: Update handler map to reflect actual tree-sitter paths and remove the deleted integration doc reference.",
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F012",
+      "severity": "P1",
+      "title": "Dead cross-references to deleted `ccc_bridge_integration.md`",
+      "file": null,
+      "line": null,
+      "description": "`.opencode/skills/system-code-graph/README.md:343`, `.opencode/skills/system-code-graph/SKILL.md:160,291,404` — Three files reference the deleted integration doc. The integration doc does not exist (`integrations/` directory is gone). Recommendation: Remove these cross-references or replace with a note about the 002 decouple.",
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
       "findingId": "F004",
       "severity": "P2",
       "title": ".gitignore has a stale .cocoindex_code/ ignore entry",
@@ -174,6 +270,78 @@
         "security"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "Stale catalog entry claiming removed CCC integration capability",
+      "file": ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md:29,48,291,307,323",
+      "line": null,
+      "description": "The feature catalog references a non-existent `07--ccc-integration` directory and claims CCC integration capabilities (ccc-reindex, ccc-feedback, ccc-status tools) that were removed in the 014 deprecation. Directory listing shows no 07--ccc-integration folder exists. Recommendation: Remove the CCC integration section from the catalog or replace with a deprecation notice.",
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F013",
+      "severity": "P2",
+      "title": "Vestigial `RERANK_` env prefix in sidecar allowlist",
+      "file": ".opencode/bin/lib/sidecar-env-allowlist.cjs",
+      "line": 17,
+      "description": "The `RERANK_` prefix (line 17) is dead since the rerank sidecar was deleted in 014. This file itself may be vestigial since no sidecar exists to consume the allowlist. Recommendation: Remove the `RERANK_` prefix and evaluate whether the entire file is still needed (no active sidecar consumers).",
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F014",
+      "severity": "P2",
+      "title": "Obsolete ccc path reference in session-start testing playbook",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/250-session-start-startup.md:20,23,143",
+      "line": null,
+      "description": "Lines 20, 23, 143 reference `.opencode/skills/system-code-graph/mcp_server/.venv/bin/ccc` which no longer exists (tree-sitter has no venv/ccc). Recommendation: Update to reflect tree-sitter readiness check or remove the ccc-specific assertion.",
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
@@ -185,14 +353,14 @@
     "correctness": true,
     "security": false,
     "traceability": false,
-    "maintainability": true
+    "maintainability": false
   },
   "findingsBySeverity": {
     "P0": 1,
-    "P1": 3,
-    "P2": 3
+    "P1": 7,
+    "P2": 6
   },
-  "openFindingsCount": 7,
+  "openFindingsCount": 14,
   "resolvedFindingsCount": 0,
   "convergenceScore": 0,
   "graphConvergenceScore": 0,
@@ -235,6 +403,16 @@
       "line": 3,
       "raw": "{\"type\":\"iteration\",\"iteration\":2,\"mode\":\"review\",\"dimensions\":[\"security\"],\"filesReviewed\":[\".vscode/mcp.json:1-67\",\".gemini/settings.json:1-169\",\".codex/config.toml:1-118\",\".mcp.json:1-69\",\".devin/c...",
       "error": "Unexpected non-whitespace character after JSON at position 2004 (line 1 column 2005)"
+    },
+    {
+      "line": 4,
+      "raw": "{\"type\":\"iteration\",\"iteration\":4,\"mode\":\"review\",\"dimensions\":[\"maintainability\"],\"filesReviewed\":[\".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts\",\".opencode/skills/system-sp...",
+      "error": "Unexpected non-whitespace character after JSON at position 1390 (line 1 column 1391)"
+    },
+    {
+      "line": 6,
+      "raw": "{\"type\":\"iteration\",\"iteration\":5,\"mode\":\"review\",\"dimensions\":[\"correctness\"],\"filesReviewed\":[\".opencode/skills/system-code-graph/mcp_server/lib/shared/code-graph-contracts.ts\",\".opencode/skills/sys...",
+      "error": "Unexpected non-whitespace character after JSON at position 1058 (line 1 column 1059)"
     }
   ]
 }

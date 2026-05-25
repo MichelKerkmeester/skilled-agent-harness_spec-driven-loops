@@ -101,7 +101,7 @@ If graph response misses evidence, inspect `lib/council/council-graph-query.ts` 
 |---|---|
 | `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | runtime CLI script |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | `getDecisionSupport` helper |
-| `.opencode/skills/deep-ai-council/references/graph_support.md` §3 | Documents SUPPORTS / PROPOSES / RECOMMENDS edges |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md` §3 | Documents SUPPORTS / PROPOSES / RECOMMENDS edges |
 
 ---
 

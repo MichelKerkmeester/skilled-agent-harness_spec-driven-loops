@@ -28,7 +28,7 @@ This same reducer pass also refreshes `findings-registry.json` and `deep-researc
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/deep-research/assets/deep_research_strategy.md` | Asset | Defines the strategy anchors and machine-owned section boundaries. |
-| `.opencode/skills/deep-research/references/state_format.md` | Reference | Defines the update protocol for strategy, dashboard, and reducer-owned state. |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Reference | Defines the update protocol for strategy, dashboard, and reducer-owned state. |
 | `.opencode/skills/deep-research/scripts/reduce-state.cjs` | Reducer | Rebuilds the findings registry, updates strategy anchors, and regenerates the dashboard. |
 | `.opencode/agents/deep-research.md` | Agent | Defines how iteration files feed next-focus guidance and reducer-owned state refresh. |
 | `.opencode/skills/deep-research/assets/deep_research_dashboard.md` | Asset | Defines the dashboard sections the reducer fills from strategy and registry data. |

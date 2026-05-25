@@ -33,7 +33,7 @@ The user-visible contract is concrete: Demonstrate the graph produces a prioriti
 |------|-------|------|
 | `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | Handler | runtime CLI script |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Library | `getConvergenceBlockers` helper |
-| `.opencode/skills/deep-ai-council/references/convergence_signals.md` | Reference | Documents `max_rounds` escape hatch |
+| `.opencode/skills/deep-ai-council/references/convergence/convergence_signals.md` | Reference | Documents `max_rounds` escape hatch |
 
 ### Validation And Tests
 

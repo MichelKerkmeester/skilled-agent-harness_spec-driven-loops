@@ -17,7 +17,7 @@ This scenario validates review quality guards block premature stop for `DRV-018`
 
 Quality guards are the review-specific safety net that prevents the loop from stopping when convergence signals look good but the review output is incomplete or unreliable. Unlike research mode, review mode enforces evidence completeness on every finding, scope containment against the declared review target, and coverage of all configured dimensions including traceability protocols.
 
-These 3 contract-level binary gates (evidence, scope, coverage) declared in `review_mode_contract.yaml` are the coarse layer. The legal-stop decision tree expands them into the 9 named event-shape gates emitted by `step_emit_blocked_stop`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. This scenario validates the 3 binary gates, the 9-gate bundle is the authoritative stop check (see `references/convergence.md` §6).
+These 3 contract-level binary gates (evidence, scope, coverage) declared in `review_mode_contract.yaml` are the coarse layer. The legal-stop decision tree expands them into the 9 named event-shape gates emitted by `step_emit_blocked_stop`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. This scenario validates the 3 binary gates, the 9-gate bundle is the authoritative stop check (see `references/convergence/convergence.md` §6).
 
 ---
 
@@ -46,9 +46,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review quality guards for evidence, scope, and coverage before any STOP decision.
 ### Commands
-1. `bash: rg -n 'quality.guard|binary.gate|evidence.*gate|scope.*gate|coverage.*gate|QUALITY_GUARD|gate.*pass' .opencode/skills/deep-review/references/convergence.md`
+1. `bash: rg -n 'quality.guard|binary.gate|evidence.*gate|scope.*gate|coverage.*gate|QUALITY_GUARD|gate.*pass' .opencode/skills/deep-review/references/convergence/convergence.md`
 2. `bash: rg -n 'quality_guard|binary_gate|evidence_gate|scope_gate|coverage_gate|guard.*check|gate.*pass' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
-3. `bash: rg -n 'Quality Guard|Evidence|Scope|Coverage|binary gate|gate.*pass|inference.only' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md`
+3. `bash: rg -n 'Quality Guard|Evidence|Scope|Coverage|binary gate|gate.*pass|inference.only' .opencode/skills/deep-review/references/protocol/quick_reference.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md`
 ### Expected
 Three named binary gates (evidence, scope, coverage), each must return true, enforcement happens after convergence check but before STOP, and gates are review-specific.
 ### Evidence
@@ -72,10 +72,10 @@ Privilege the convergence reference for gate definitions and the YAML workflow f
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/convergence.md` | Canonical quality guard definitions, use §6 LEGAL-STOP GATE BUNDLE for the 9 review-specific gates |
+| `.opencode/skills/deep-review/references/convergence/convergence.md` | Canonical quality guard definitions, use §6 LEGAL-STOP GATE BUNDLE for the 9 review-specific gates |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Workflow algorithm, inspect quality guard enforcement in convergence step |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Workflow algorithm, inspect quality guard enforcement in convergence step |
-| `.opencode/skills/deep-review/references/quick_reference.md` | Quality guard summary, use `ANCHOR:quality-guards` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | Quality guard summary, use `ANCHOR:quality-guards` |
 | `.opencode/skills/deep-review/SKILL.md` | Quality guard rules, use `ANCHOR:rules` Rule 12 |
 | `.opencode/skills/deep-review/README.md` | Feature summary for quality guards |
 

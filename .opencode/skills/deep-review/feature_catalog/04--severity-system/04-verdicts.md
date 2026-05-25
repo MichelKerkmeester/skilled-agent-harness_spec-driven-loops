@@ -26,8 +26,8 @@ Verdicts also carry workflow routing. FAIL and CONDITIONAL both point to `/speck
 | File | Layer | Role |
 |---|---|---|
 | `SKILL.md` | Skill contract | Summarizes PASS, CONDITIONAL, and FAIL conditions for review mode. |
-| `references/convergence.md` | Protocol | Defines verdict determination and post-verdict routing. |
-| `references/state_format.md` | Schema | Defines verdict rules in JSONL and review-report semantics. |
+| `references/convergence/convergence.md` | Protocol | Defines verdict determination and post-verdict routing. |
+| `references/state/state_format.md` | Schema | Defines verdict rules in JSONL and review-report semantics. |
 | `assets/review_mode_contract.yaml` | Contract | Declares the canonical verdict list, conditions, and next commands. |
 
 ### Validation And Tests
@@ -44,4 +44,4 @@ Verdicts also carry workflow routing. FAIL and CONDITIONAL both point to `/speck
 - Group: Severity system
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `04--severity-system/04-verdicts.md`
-- Primary sources: `SKILL.md`, `references/convergence.md`, `references/state_format.md`, `assets/review_mode_contract.yaml`
+- Primary sources: `SKILL.md`, `references/convergence/convergence.md`, `references/state/state_format.md`, `assets/review_mode_contract.yaml`

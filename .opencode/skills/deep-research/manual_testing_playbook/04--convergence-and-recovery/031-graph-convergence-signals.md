@@ -48,7 +48,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate source-diversity threshold blocks STOP and records blockedStop persistence.
 ### Commands
 1. `bash: rg -n 'SOURCE_DIVERSITY_THRESHOLD|evaluateGraphGates|sourceDiversityGate|allPass' .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs`
-2. `bash: rg -n 'blockedStop|blocked_stop|graph-aware convergence|graphEvents|sourceDiversity' .opencode/skills/deep-research/references/convergence.md`
+2. `bash: rg -n 'blockedStop|blocked_stop|graph-aware convergence|graphEvents|sourceDiversity' .opencode/skills/deep-research/references/convergence/convergence.md`
 3. `bash: rg -n 'sourceDiversity|threshold: 0.4|blocking' .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts`
 ### Expected
 `SOURCE_DIVERSITY_THRESHOLD = 0.4`; low `sourceDiversity` fails the guard; deep-research convergence persists blocked-stop state when legal-stop gates fail.
@@ -57,7 +57,7 @@ Capture the helper threshold definition, the `evaluateGraphGates()` pass/fail lo
 ### Pass/Fail
 PASS if low `sourceDiversity` fails the graph stop gate and blocked-stop persistence is documented for failed legal-stop evaluation; FAIL if either the threshold enforcement or blocked-stop persistence is missing or contradictory.
 ### Failure Triage
-Privilege `coverage-graph-convergence.cjs` for the enforcement contract and `references/convergence.md` for the deep-research stop-state behavior. If wording differs between `blocked_stop` event name and `blockedStop` stop reason, treat both as the same blocked-stop pathway and note the distinction in the operator verdict.
+Privilege `coverage-graph-convergence.cjs` for the enforcement contract and `references/convergence/convergence.md` for the deep-research stop-state behavior. If wording differs between `blocked_stop` event name and `blockedStop` stop reason, treat both as the same blocked-stop pathway and note the distinction in the operator verdict.
 ---
 
 ## 4. SOURCE FILES
@@ -73,7 +73,7 @@ Privilege `coverage-graph-convergence.cjs` for the enforcement contract and `ref
 | File | Role |
 |---|---|
 | `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs` | Canonical graph stop-guard helper; threshold constants and `evaluateGraphGates()` |
-| `.opencode/skills/deep-research/references/convergence.md` | Deep-research legal-stop and blocked-stop contract, including graph-aware convergence |
+| `.opencode/skills/deep-research/references/convergence/convergence.md` | Deep-research legal-stop and blocked-stop contract, including graph-aware convergence |
 | `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts` | Cross-layer threshold assertions for graph stop-guard behavior |
 
 ---

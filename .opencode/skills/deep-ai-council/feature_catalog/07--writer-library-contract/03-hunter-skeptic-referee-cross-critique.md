@@ -19,7 +19,7 @@ Operators use this feature when the real request is: Apply the Hunter / Skeptic 
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `07--writer-library-contract/003-hunter-skeptic-referee-cross-critique.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-016.
 
-Current behavior is grounded in `.opencode/skills/deep-ai-council/references/scoring_rubric.md`, which the scenario identifies as cross-critique reference. Validation is anchored by `manual_testing_playbook/07--writer-library-contract/003-hunter-skeptic-referee-cross-critique.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/deep-ai-council/references/scoring/scoring_rubric.md`, which the scenario identifies as cross-critique reference. Validation is anchored by `manual_testing_playbook/07--writer-library-contract/003-hunter-skeptic-referee-cross-critique.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify Hunter, Skeptic, and Referee roles are documented with the score adjustment rule and comparison-table treatment. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -31,7 +31,7 @@ The user-visible contract is concrete: Verify Hunter, Skeptic, and Referee roles
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/deep-ai-council/references/scoring_rubric.md` | Reference | Cross-critique reference |
+| `.opencode/skills/deep-ai-council/references/scoring/scoring_rubric.md` | Reference | Cross-critique reference |
 | `.opencode/agents/ai-council.md` | Runtime Mirror | Authoritative synthesis protocol |
 
 ### Validation And Tests

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "docPath": ".opencode/skills/deep-review/references/quick_reference.md",
+  "docPath": ".opencode/skills/deep-review/references/protocol/quick_reference.md",
   "resolverScript": ".opencode/skills/deep-review/scripts/runtime-capabilities.cjs",
   "runtimes": [
     {

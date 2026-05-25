@@ -33,7 +33,7 @@ The user-visible contract is concrete: Demonstrate measurable audit-quality impr
 |------|-------|------|
 | `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | Handler | runtime CLI script |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Library | `getDecisionSupport` helper |
-| `.opencode/skills/deep-ai-council/references/graph_support.md 3` | Reference | Documents SUPPORTS / PROPOSES / RECOMMENDS edges |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md 3` | Reference | Documents SUPPORTS / PROPOSES / RECOMMENDS edges |
 
 ### Validation And Tests
 

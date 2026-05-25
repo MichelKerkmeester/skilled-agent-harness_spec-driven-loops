@@ -256,10 +256,25 @@ Shipped layout:
 
 ---
 
-## 8. REFERENCES
+## 8. SUCCESS CRITERIA
+
+The runtime is healthy when:
+
+- Every `scripts/` entry point (`status`, `query`, `upsert`, `convergence`) returns valid JSON on its documented stdout contract
+- Consumer workflows resolve their `lib/` imports without path errors
+- The runtime-owned SQLite under `database/` is present and its coverage-graph schema matches `coverage-graph-db.ts`
+- Runtime tests under `tests/` pass through the system-spec-kit Vitest discovery glob
+
+---
+
+## 9. REFERENCES AND RELATED RESOURCES
 
 - ADR-001 (script interface contract): documents the script-shim and DB-relocation contract.
 - Isolation ADR (FULL_ISOLATE_NO_MCP): documents the MCP tool surface removal rationale.
 - Decision rationale lives in this skill's changelog and originating decision records.
-- changelog: `changelog/v1.0.0.0.md` (initial shipped release)
-- changelog: `changelog/v1.1.0.0.md` (Phase-1-3 release-cleanup pass)
+
+Related resources:
+
+- Consumer skills: the `deep-review` and `deep-research` workflows call this runtime through the script entry points
+- `system-spec-kit/mcp_server/vitest.config.ts` discovers this skill's `tests/`
+- Per-release detail and rationale: this skill's `changelog/` directory

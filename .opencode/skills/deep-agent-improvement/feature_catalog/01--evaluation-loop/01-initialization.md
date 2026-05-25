@@ -39,8 +39,8 @@ The runtime templates still use the `improvement_*` asset names in the skill fol
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-agent-improvement/references/loop_protocol.md` | Reference | Describes the initialization sequence and copied runtime artifacts. |
-| `.opencode/skills/deep-agent-improvement/references/quick_reference.md` | Reference | Confirms the packet-local runtime layout and runtime file naming. |
+| `.opencode/skills/deep-agent-improvement/references/workflow/loop_protocol.md` | Reference | Describes the initialization sequence and copied runtime artifacts. |
+| `.opencode/skills/deep-agent-improvement/references/workflow/quick_reference.md` | Reference | Confirms the packet-local runtime layout and runtime file naming. |
 
 ---
 

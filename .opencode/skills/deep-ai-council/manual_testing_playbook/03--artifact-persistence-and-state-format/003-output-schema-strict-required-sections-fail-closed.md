@@ -62,7 +62,7 @@ Capture stderr/stdout and exit code.
 
 ### Failure Triage
 
-Check `references/output_schema.md`, parser requiredness matrix, and fixture headings.
+Check `references/structure/output_schema.md`, parser requiredness matrix, and fixture headings.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -83,7 +83,7 @@ Check `references/output_schema.md`, parser requiredness matrix, and fixture hea
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-ai-council/references/output_schema.md` | Requiredness contract |
+| `.opencode/skills/deep-ai-council/references/structure/output_schema.md` | Requiredness contract |
 | `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs` | Parser entrypoint |
 
 ---

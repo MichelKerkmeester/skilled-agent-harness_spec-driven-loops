@@ -27,16 +27,11 @@
 
 import { resolveEffectiveScore } from './types.js';
 import type { Stage3Input, Stage3Output, PipelineRow } from './types.js';
-import * as crossEncoder from '../cross-encoder.js';
-import { isCrossEncoderEnabled, isMMREnabled } from '../search-flags.js';
+import { isMMREnabled } from '../search-flags.js';
 import { computeMPAB } from '../../scoring/mpab-aggregation.js';
 import { applyMMR } from '@spec-kit/shared/algorithms/mmr-reranker';
 import type { MMRCandidate } from '@spec-kit/shared/algorithms/mmr-reranker';
 import { INTENT_LAMBDA_MAP } from '../intent-classifier.js';
-import { createEmptyQueryPlan } from '../../query/query-plan.js';
-import type { QueryPlan } from '../../query/query-plan.js';
-import { decideConditionalRerank } from '../rerank-gate.js';
-import type { RerankGateDecision } from '../rerank-gate.js';
 import { addTraceEntry } from '@spec-kit/shared/contracts/retrieval-trace';
 import { requireDb } from '../../../utils/index.js';
 import { toErrorMessage } from '../../../utils/index.js';
@@ -49,45 +44,20 @@ import { compareDeterministicRows, sortDeterministicRows } from './ranking-contr
 
 // -- Constants --------------------------------------------------
 
-/** Minimum number of results required before reranking can change ordering. Below 4 rows the reranker cost (cross-encoder forward pass) is not justified by the marginal ordering change available. F-16 regression guard: keep this at 4 to match `tests/stage3-rerank-regression.vitest.ts`. */
-const MIN_RESULTS_FOR_RERANK = 4;
-
 /** Minimum number of candidates required before MMR diversity pruning is worthwhile. */
 const MMR_MIN_CANDIDATES = 2;
 
 /** Fallback lambda (diversity vs relevance) when intent is not in INTENT_LAMBDA_MAP. */
 const MMR_DEFAULT_LAMBDA = 0.7;
 
-/** Column order priority for assembling display text sent to cross-encoder. */
-const TEXT_FIELD_PRIORITY = ['content', 'file_path'] as const;
-
 /**
- * Enforce non-negative score outputs at Stage 3 rerank boundaries.
+ * Enforce non-negative score outputs at Stage 3 boundaries.
  */
 function floorScore(value: number): number {
   return Math.max(0, value);
 }
 
-function resolveRerankOutputScore(raw: unknown, fallback: number): number {
-  if (typeof raw === 'number' && Number.isFinite(raw)) {
-    return floorScore(raw);
-  }
-  return floorScore(fallback);
-}
-
 // -- Internal Interfaces ----------------------------------------
-
-/**
- * Document format consumed by the cross-encoder reranker.
- * Matches the RerankDocument interface in cross-encoder.ts:
- *   { id: number | string; content: string; title?: string; [key: string]: unknown }
- */
-interface RerankDocument {
-  id: string | number;
-  content: string;
-  score?: number;
-  [key: string]: unknown;
-}
 
 /**
  * Aggregated statistics from the MPAB chunk-collapse pass.
@@ -137,40 +107,15 @@ export async function executeStage3(input: Stage3Input): Promise<Stage3Output> {
   const { scored, config } = input;
 
   let results = scored;
-  let rerankApplied = false;
-  let rerankProvider: RerankProvider = 'none';
-  let rerankGateDecision: RerankGateDecision | undefined;
 
-  // -- Step 1: Cross-encoder reranking ---------------------------
-  const rerankStart = Date.now();
-  const beforeRerank = results.length;
-
-  // Destructure { rows, applied } — dedicated boolean flag replaces
-  // Fragile reference inequality check `results !== scored` (A1-P2-3)
-  const rerankResult = await applyCrossEncoderReranking(config.query, results, {
-    rerank: config.rerank,
-    applyLengthPenalty: config.applyLengthPenalty,
-    limit: config.limit,
-    queryPlan: config.queryPlan,
-    tenantId: config.tenantId,
-    userId: config.userId,
-    agentId: config.agentId,
-  });
-  results = preserveExactTriggerMatches(results, rerankResult.rows);
-  rerankApplied = rerankResult.applied;
-  rerankProvider = rerankResult.provider;
-  rerankGateDecision = rerankResult.gateDecision;
-
-  if (config.trace) {
-    addTraceEntry(
-      config.trace,
-      'rerank',
-      beforeRerank,
-      results.length,
-      Date.now() - rerankStart,
-      { rerankApplied, provider: rerankProvider }
-    );
-  }
+  // -- Step 1: (removed) model-based cross-encoder reranking -----
+  // The cross-encoder / local-GGUF reranking layer was removed: it had no
+  // configured provider after the sidecar deprecation (isCrossEncoderEnabled()
+  // was hard-off), so it was an inactive no-op. Stage 3 now performs only
+  // algorithmic MMR diversity (Step 2) and MPAB chunk-collapse (Step 3).
+  // These constants preserve the unchanged metadata/envelope shape.
+  const rerankApplied = false;
+  const rerankProvider: RerankProvider = 'none';
 
   // -- Step 2: MMR diversity pruning ----------------------------
   // Gated behind SPECKIT_MMR feature flag. Retrieves embeddings from
@@ -283,7 +228,6 @@ export async function executeStage3(input: Stage3Input): Promise<Stage3Output> {
   const metadata = {
     rerankApplied,
     rerankProvider,
-    ...(rerankGateDecision ? { rerankGateDecision } : {}),
     chunkReassemblyStats: chunkStats,
     durationMs: Date.now() - stageStart,
   };
@@ -292,218 +236,6 @@ export async function executeStage3(input: Stage3Input): Promise<Stage3Output> {
     reranked: results,
     metadata,
   };
-}
-
-function isExactTriggerMatch(row: PipelineRow): boolean {
-  if (row.exactTriggerMatch === true) return true;
-  return typeof row.triggerScore === 'number' && row.triggerScore >= 0.94;
-}
-
-function preserveExactTriggerMatches(before: PipelineRow[], after: PipelineRow[]): PipelineRow[] {
-  const pinned = before.filter(isExactTriggerMatch);
-  if (pinned.length === 0 || after === before) {
-    return after;
-  }
-
-  const pinnedIds = new Set(pinned.map((row) => row.id));
-  const rerankedById = new Map(after.map((row) => [row.id, row]));
-  const pinnedRows = pinned.map((row) => {
-    const reranked = rerankedById.get(row.id);
-    return reranked
-      ? {
-        ...reranked,
-        score: resolveEffectiveScore(row),
-        rrfScore: resolveEffectiveScore(row),
-        intentAdjustedScore: resolveEffectiveScore(row),
-        stage2Score: row.score,
-      }
-      : row;
-  });
-  const remaining = after.filter((row) => !pinnedIds.has(row.id));
-
-  return [...pinnedRows, ...remaining];
-}
-
-// -- Internal: Cross-Encoder Reranking -------------------------
-
-/**
- * Apply cross-encoder reranking to a list of pipeline results.
- *
- * Returns the original array unchanged if:
- *   - The `rerank` option is not set
- *   - No cross-encoder provider is configured
- *   - There are fewer than {@link MIN_RESULTS_FOR_RERANK} results
- *
- * On any reranker error, logs a warning and returns the original
- * results unmodified (graceful degradation).
- *
- * @param query       - The user's search query string.
- * @param results     - Pipeline rows from Stage 2 fusion.
- * @param options     - Rerank configuration flags.
- * @returns Object with reranked rows, whether reranking was applied, and the
- * reranker path that executed.
- */
-async function applyCrossEncoderReranking(
-  query: string,
-  results: PipelineRow[],
-  options: {
-    rerank: boolean;
-    applyLengthPenalty: boolean;
-    limit: number;
-    queryPlan?: QueryPlan;
-    tenantId?: string;
-    userId?: string;
-    agentId?: string;
-  }
-): Promise<{ rows: PipelineRow[]; applied: boolean; provider: RerankProvider; gateDecision?: RerankGateDecision }> {
-  const inferredChannels = inferResultChannels(results);
-  const queryPlan = options.queryPlan ?? createEmptyQueryPlan({
-    complexity: 'unknown',
-    selectedChannels: inferredChannels,
-  });
-  const gate = decideConditionalRerank({
-    queryPlan,
-    scope: {
-      tenantId: options.tenantId,
-      userId: options.userId,
-      agentId: options.agentId,
-    },
-    signals: {
-      candidateCount: results.length,
-      channelCount: inferredChannels.length,
-      topScoreMargin: topScoreMargin(results),
-    },
-  });
-
-  const crossEncoderEnabled = isCrossEncoderEnabled();
-
-  // Feature-flag guard
-  if (!options.rerank || !crossEncoderEnabled) {
-    return { rows: results, applied: false, provider: 'none', gateDecision: gate };
-  }
-
-  // Minimum-document guard
-  if (results.length < MIN_RESULTS_FOR_RERANK) {
-    return { rows: results, applied: false, provider: 'none', gateDecision: gate };
-  }
-
-  if (!gate.shouldRerank) {
-    return { rows: results, applied: false, provider: 'none', gateDecision: gate };
-  }
-
-  // Build a lookup map so we can restore all original PipelineRow fields
-  // After reranking (the cross-encoder only knows about id + text + score).
-  const rowMap = new Map<string | number, PipelineRow>();
-  for (const row of results) {
-    rowMap.set(row.id, row);
-  }
-
-  if (crossEncoderEnabled) {
-    // Map PipelineRow → RerankDocument (uses `content` field per cross-encoder interface)
-    // P1-015: Use effectiveScore() for consistent fallback chain
-    const documents: RerankDocument[] = results.map((row) => ({
-      id: row.id,
-      content: resolveDisplayText(row),
-      score: floorScore(effectiveScore(row)),
-    }));
-
-    try {
-      // Cast through unknown: our local RerankDocument is structurally equivalent to
-      // The cross-encoder module's internal RerankDocument but declared separately.
-      const reranked = await crossEncoder.rerankResults(
-        query,
-        documents as unknown as Parameters<typeof crossEncoder.rerankResults>[1],
-        {
-          limit: options.limit,
-          useCache: true,
-          applyLengthPenalty: options.applyLengthPenalty,
-        }
-      );
-
-      const rerankProvider: RerankProvider = reranked.some(
-        (result) => result.scoringMethod === 'fallback'
-      )
-        ? 'fallback-sort'
-        : 'cross-encoder';
-
-      // Re-map reranked results back to PipelineRow, preserving all original
-      // Fields and updating only the score-related values from the reranker.
-      const rerankedRows: PipelineRow[] = [];
-      for (const rerankResult of reranked) {
-        const original = rowMap.get(rerankResult.id);
-        if (!original) {
-          // Defensive: reranker returned an unknown id — skip it
-          continue;
-        }
-        const rerankScore = resolveRerankOutputScore(
-          rerankResult.rerankerScore ?? rerankResult.score,
-          effectiveScore(original),
-        );
-        rerankedRows.push({
-          ...original,
-          // P1-015: Preserve Stage 2 composite score for auditability
-          stage2Score: original.score,
-          score: rerankScore,
-          similarity: original.similarity,
-          rerankerScore: rerankScore,
-          // F2.02 fix: Sync all score aliases so resolveEffectiveScore() returns
-          // the reranked value instead of stale Stage 2 values.
-          rrfScore: rerankScore,
-          intentAdjustedScore: rerankScore,
-          attentionScore: original.attentionScore,
-        });
-      }
-
-      return { rows: rerankedRows, applied: true, provider: rerankProvider, gateDecision: gate };
-    } catch (err: unknown) {
-      // Graceful degradation — return original results on any reranker failure
-      console.warn(
-        `[stage3-rerank] Cross-encoder reranking failed: ${toErrorMessage(err)} — returning original results`
-      );
-      return { rows: results, applied: false, provider: 'cross-encoder', gateDecision: gate };
-    }
-  }
-
-  return { rows: results, applied: false, provider: 'none', gateDecision: gate };
-}
-
-function inferResultChannels(results: readonly PipelineRow[]): string[] {
-  const channels = results.flatMap((row) => {
-    const raw = row.channelAttribution ?? row.sources ?? row.source;
-    if (Array.isArray(raw)) return raw.map(String);
-    if (typeof raw === 'string') return [raw];
-    return [];
-  });
-  return [...new Set(channels.filter((channel) => channel.length > 0))];
-}
-
-function topScoreMargin(results: readonly PipelineRow[]): number {
-  const scores = results
-    .map((row) => resolveEffectiveScore(row))
-    .sort((left, right) => right - left);
-  if (scores.length < 2) return 1;
-  return Math.max(0, scores[0] - scores[1]);
-}
-
-/**
- * Resolve the content string used for cross-encoder scoring for a given row.
- * Prefers `content` over `file_path`; falls back to an empty string if
- * neither is available (rare edge case for index-only entries).
- *
- * This value is placed into the `content` field of the RerankDocument sent
- * to the cross-encoder module.
- *
- * @param row - A pipeline result row.
- * @returns Content string for the cross-encoder.
- */
-function resolveDisplayText(row: PipelineRow): string {
-  for (const field of TEXT_FIELD_PRIORITY) {
-    const value = row[field];
-    if (typeof value === 'string' && value.length > 0) {
-      return value;
-    }
-  }
-  return '';
 }
 
 // -- Internal: MPAB Chunk Collapse + Parent Reassembly ---------
@@ -764,11 +496,9 @@ function markFallback(chunk: PipelineRow, parentScore: number): PipelineRow {
  * @internal
  */
 export const __testables = {
-  applyCrossEncoderReranking,
   collapseAndReassembleChunkResults,
   electBestChunk,
   effectiveScore,
-  resolveDisplayText,
   reassembleParentRow,
   markFallback,
 };

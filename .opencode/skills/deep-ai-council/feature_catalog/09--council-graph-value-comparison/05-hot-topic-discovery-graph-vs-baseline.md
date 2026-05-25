@@ -33,7 +33,7 @@ The user-visible contract is concrete: Demonstrate hot_nodes mode surfaces high-
 |------|-------|------|
 | `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | Handler | runtime CLI script |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Library | `getHotNodes` ranking helper |
-| `.opencode/skills/deep-ai-council/references/graph_support.md 3` | Reference | Documents edge kinds counted toward hotness |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md 3` | Reference | Documents edge kinds counted toward hotness |
 
 ### Validation And Tests
 

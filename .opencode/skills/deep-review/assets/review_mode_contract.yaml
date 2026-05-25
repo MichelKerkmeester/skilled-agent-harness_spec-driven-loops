@@ -437,7 +437,7 @@ render:
         - cross-reference-protocols
         - outputs
     - id: quick-reference-review-mode
-      path: .opencode/skills/deep-review/references/quick_reference.md
+      path: .opencode/skills/deep-review/references/protocol/quick_reference.md
       ownership: mixed
       format: markdown
       markers:

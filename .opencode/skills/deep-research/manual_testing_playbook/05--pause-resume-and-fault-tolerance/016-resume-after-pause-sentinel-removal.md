@@ -44,7 +44,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate removing pause sentinels logs resumed events and continues from state reads.
 ### Commands
-1. `bash: rg -n 'On resume|resumed|Continue from step_read_state|review/.deep-research-pause' .opencode/skills/deep-research/references/loop_protocol.md .opencode/skills/deep-research/references/state_format.md`
+1. `bash: rg -n 'On resume|resumed|Continue from step_read_state|review/.deep-research-pause' .opencode/skills/deep-research/references/protocol/loop_protocol.md .opencode/skills/deep-research/references/state/state_format.md`
 2. `bash: rg -n 'resumed|on_resume|skip_to: phase_loop|skip_to: gate_init_approval|review/.deep-research-pause|research/.deep-research-pause' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml .opencode/commands/deep/assets/deep_start-research-loop_review_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_review_confirm.yaml`
 3. `bash: rg -n 'Delete the file to resume|Auto-resume|review/.deep-research-pause' .opencode/skills/deep-research/README.md`
 ### Expected
@@ -70,8 +70,8 @@ Check both the pause subsection and the broader auto-resume classification rules
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Pause-resume flow; use `ANCHOR:phase-iteration-loop` and `ANCHOR:phase-initialization` |
-| `.opencode/skills/deep-research/references/state_format.md` | Resumed event schema; use `ANCHOR:state-log` |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Pause-resume flow; use `ANCHOR:phase-iteration-loop` and `ANCHOR:phase-initialization` |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Resumed event schema; use `ANCHOR:state-log` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Resume branch behavior |
 | `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Resume branch behavior |
 | `.opencode/skills/deep-research/README.md` | User-facing pause and resume language; use `ANCHOR:faq` |

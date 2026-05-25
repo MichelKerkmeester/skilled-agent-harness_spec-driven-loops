@@ -48,7 +48,7 @@ As a manual-testing orchestrator, validate the review resource-map emission cont
 
 ### Commands
 
-1. `bash: rg -n 'resource-map|no-resource-map|emit-resource-map' .opencode/commands/deep/start-review-loop.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/references/convergence.md`
+1. `bash: rg -n 'resource-map|no-resource-map|emit-resource-map' .opencode/commands/deep/start-review-loop.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/references/convergence/convergence.md`
 2. `bash: rg -n 'resource_map|resource-map|emit-resource-map' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml .opencode/skills/deep-review/scripts/reduce-state.cjs`
 3. `bash: node .opencode/skills/deep-review/scripts/reduce-state.cjs <spec-folder> --emit-resource-map`
 4. `bash: node .opencode/skills/deep-review/scripts/reduce-state.cjs <spec-folder> --emit-resource-map` with `deep-review-config.json` edited to `"resource_map": { "emit": false }`

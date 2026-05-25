@@ -81,7 +81,7 @@ Privilege `findings-registry.json` as the reducer-owned source of truth. If the 
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-research/scripts/reduce-state.cjs` | Canonical reducer implementation; promotes `blocked_stop` into `blockedStopHistory`, renders `BLOCKED STOPS`, and rewrites `ANCHOR:next-focus` |
-| `.opencode/skills/deep-research/references/state_format.md` | Research state contract; defines `blockedStopHistory`, dashboard `BLOCKED STOPS`, and reducer-driven strategy next-focus override |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Research state contract; defines `blockedStopHistory`, dashboard `BLOCKED STOPS`, and reducer-driven strategy next-focus override |
 
 ---
 

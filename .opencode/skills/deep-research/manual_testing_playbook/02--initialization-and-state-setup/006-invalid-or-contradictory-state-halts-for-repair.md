@@ -44,7 +44,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate invalid deep-research state halts for repair instead of guessing through partial or contradictory artifacts.
 ### Commands
-1. `bash: rg -n 'invalid-state|halt for repair|contradictory|guessing' .opencode/skills/deep-research/references/loop_protocol.md .opencode/skills/deep-research/SKILL.md`
+1. `bash: rg -n 'invalid-state|halt for repair|contradictory|guessing' .opencode/skills/deep-research/references/protocol/loop_protocol.md .opencode/skills/deep-research/SKILL.md`
 2. `bash: rg -n 'on_invalid_state|halt: true|incomplete or contradictory' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml .opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml`
 3. `bash: rg -n 'State file corrupt|repair|recover' .opencode/skills/deep-research/README.md`
 ### Expected
@@ -70,7 +70,7 @@ Distinguish invalid-state from recoverable JSONL corruption and verify both YAML
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Invalid-state contract; use `ANCHOR:phase-initialization` |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Invalid-state contract; use `ANCHOR:phase-initialization` |
 | `.opencode/skills/deep-research/SKILL.md` | Rule-level guardrails; use `ANCHOR:rules` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Halt behavior; inspect `step_classify_session` |
 | `.opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml` | Halt behavior; inspect `step_classify_session` |

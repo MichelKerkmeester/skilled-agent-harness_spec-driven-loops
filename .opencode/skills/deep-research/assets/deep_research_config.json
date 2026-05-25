@@ -52,7 +52,7 @@
     ]
   },
   "capabilityMatrixPath": ".opencode/skills/deep-research/assets/runtime_capabilities.json",
-  "capabilityMatrixDocPath": ".opencode/skills/deep-research/references/capability_matrix.md",
+  "capabilityMatrixDocPath": ".opencode/skills/deep-research/references/guides/capability_matrix.md",
   "runtimeCapabilityResolver": ".opencode/skills/deep-research/scripts/runtime-capabilities.cjs",
   "reducerScriptPath": ".opencode/skills/deep-research/scripts/reduce-state.cjs",
   "pauseSentinelPath": "research/.deep-research-pause",

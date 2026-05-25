@@ -44,7 +44,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate research charter initialization adds Non-Goals and Stop Conditions, then surfaces them in confirm mode.
 ### Commands
-1. `bash: rg -n 'Step 5a\|Validate Research Charter\|Non-Goals\|Stop Conditions\|charter' .opencode/skills/deep-research/references/loop_protocol.md`
+1. `bash: rg -n 'Step 5a\|Validate Research Charter\|Non-Goals\|Stop Conditions\|charter' .opencode/skills/deep-research/references/protocol/loop_protocol.md`
 2. `bash: sed -n '/ANCHOR:non-goals/,/\/ANCHOR:stop-conditions/p' .opencode/skills/deep-research/assets/deep_research_strategy.md`
 3. `bash: rg -n 'Non-Goals\|Stop Conditions\|charter' .opencode/skills/deep-research/README.md`
 ### Expected
@@ -70,7 +70,7 @@ Privilege the loop protocol Step 5a for the canonical charter validation contrac
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Loop protocol; inspect Step 5a (Validate Research Charter) under `ANCHOR:phase-initialization` |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Loop protocol; inspect Step 5a (Validate Research Charter) under `ANCHOR:phase-initialization` |
 | `.opencode/skills/deep-research/assets/deep_research_strategy.md` | Strategy template; inspect `ANCHOR:non-goals` (section 4) and `ANCHOR:stop-conditions` (section 5) |
 
 ---

@@ -33,7 +33,7 @@ The user-visible contract is concrete: Verify runtime convergence CLI returns th
 |------|-------|------|
 | `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Handler | runtime CLI script: three-state decision logic |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Library | Per-signal helpers (`agreementRatio`, `dissentDensity`, etc.) |
-| `.opencode/skills/deep-ai-council/references/graph_support.md 4` | Reference | Documents the convergence signals |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md 4` | Reference | Documents the convergence signals |
 
 ### Validation And Tests
 

@@ -32,7 +32,7 @@ The user-visible contract is concrete: Verify Depth 0 versus Depth 1 dispatch de
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/agents/ai-council.md` | Runtime Mirror | Authoritative Depth 0 and Depth 1 source |
-| `.opencode/skills/deep-ai-council/references/depth_dispatch.md` | Reference | Reference mirror for operator use |
+| `.opencode/skills/deep-ai-council/references/convergence/depth_dispatch.md` | Reference | Reference mirror for operator use |
 
 ### Validation And Tests
 

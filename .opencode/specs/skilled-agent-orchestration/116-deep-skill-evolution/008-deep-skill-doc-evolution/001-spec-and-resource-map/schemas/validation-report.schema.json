@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "deep-skill-doc-evolution/validation-report.schema.json",
+  "title": "Alignment Validation Report",
+  "description": "Output of the 008 alignment validation gate (phase 008): combined spec-folder validation plus the sk-doc skill toolchain, per skill.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "spec_validate", "skills", "overall"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date-time" },
+    "spec_validate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["folder", "exit_code"],
+      "properties": {
+        "folder": { "type": "string" },
+        "exit_code": { "type": "integer", "enum": [0, 1, 2] },
+        "recursive": { "type": "boolean" }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["skill", "quick_validate", "package_skill", "skill_md_lines", "dqi", "hvr_score", "deviations"],
+        "properties": {
+          "skill": {
+            "type": "string",
+            "enum": ["deep-loop-runtime", "deep-research", "deep-review", "deep-ai-council", "deep-agent-improvement"]
+          },
+          "quick_validate": { "type": "string", "enum": ["PASS", "FAIL"] },
+          "package_skill": { "type": "string", "enum": ["PASS", "FAIL"] },
+          "skill_md_lines": { "type": "integer" },
+          "wc_under_house_cap": { "type": "boolean", "description": "True when SKILL.md is under the 500-line house rule." },
+          "dqi": {
+            "type": "object",
+            "description": "DQI total per artifact type; each 0-100, pass at 75.",
+            "additionalProperties": { "type": "integer", "minimum": 0, "maximum": 100 }
+          },
+          "hvr_score": { "type": "integer", "minimum": 0, "maximum": 100, "description": "HVR self-score; pass at 85." },
+          "deviations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["artifact", "rule", "severity", "resolution"],
+              "properties": {
+                "artifact": { "type": "string" },
+                "rule": { "type": "string" },
+                "severity": { "type": "string", "enum": ["P0", "P1", "P2"] },
+                "resolution": { "type": "string", "enum": ["fixed", "deferred", "accepted"] },
+                "justification": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "overall": { "type": "string", "enum": ["PASS", "CONDITIONAL", "FAIL"] }
+  }
+}

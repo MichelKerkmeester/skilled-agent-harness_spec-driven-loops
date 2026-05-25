@@ -101,7 +101,7 @@ If `d1` is not first, inspect `lib/council/council-graph-query.ts` `getConvergen
 |---|---|
 | `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | runtime CLI script |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | `getConvergenceBlockers` helper |
-| `.opencode/skills/deep-ai-council/references/convergence_signals.md` | Documents `max_rounds` escape hatch |
+| `.opencode/skills/deep-ai-council/references/convergence/convergence_signals.md` | Documents `max_rounds` escape hatch |
 
 ---
 

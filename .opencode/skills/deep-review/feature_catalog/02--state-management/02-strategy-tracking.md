@@ -26,8 +26,8 @@ The reducer also depends on machine-owned anchors in this file. Missing anchors 
 | File | Layer | Role |
 |---|---|---|
 | `assets/deep_review_strategy.md` | Template | Defines the full strategy scaffold, machine-owned anchors, and section semantics. |
-| `references/state_format.md` | Schema | Lists the required sections and update protocol for the strategy file. |
-| `references/loop_protocol.md` | Protocol | Requires the strategy file to be read before review and updated after every iteration. |
+| `references/state/state_format.md` | Schema | Lists the required sections and update protocol for the strategy file. |
+| `references/protocol/loop_protocol.md` | Protocol | Requires the strategy file to be read before review and updated after every iteration. |
 | `SKILL.md` | Skill contract | Defines one-dimension focus, exhausted-approach discipline, and next-focus updates. |
 
 ### Validation And Tests
@@ -45,4 +45,4 @@ The reducer also depends on machine-owned anchors in this file. Missing anchors 
 - Group: State management
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `02--state-management/02-strategy-tracking.md`
-- Primary sources: `assets/deep_review_strategy.md`, `references/state_format.md`, `references/loop_protocol.md`, `SKILL.md`
+- Primary sources: `assets/deep_review_strategy.md`, `references/state/state_format.md`, `references/protocol/loop_protocol.md`, `SKILL.md`

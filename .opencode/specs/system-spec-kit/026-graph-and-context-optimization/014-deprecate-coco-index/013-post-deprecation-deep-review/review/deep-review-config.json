@@ -15,7 +15,7 @@
   "progressiveSynthesis": false,
   "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/013-post-deprecation-deep-review/",
   "createdAt": "2026-05-25T00:00:00Z",
-  "status": "complete",
+  "status": "in-progress",
   "releaseReadinessState": "release-blocking",
   "executionMode": "auto",
   "executor": {

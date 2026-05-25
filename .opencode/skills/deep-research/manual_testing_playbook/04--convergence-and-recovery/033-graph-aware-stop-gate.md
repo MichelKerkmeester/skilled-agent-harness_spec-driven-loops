@@ -81,7 +81,7 @@ Privilege reducer-owned registry output for surfaced state and the workflow YAML
 | File | Role |
 |---|---|
 | `.opencode/skills/deep-research/scripts/reduce-state.cjs` | Canonical reducer implementation; surfaces `graphConvergenceScore`, `graphDecision`, `graphBlockers`, and dashboard `GRAPH CONVERGENCE` |
-| `.opencode/skills/deep-research/references/state_format.md` | Research state contract; defines reducer-owned graph convergence fields and dashboard rendering expectations |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Research state contract; defines reducer-owned graph convergence fields and dashboard rendering expectations |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Live research auto workflow; invokes `deep_loop_graph_upsert` and `deep_loop_graph_convergence` before the inline 3-signal vote |
 
 ---

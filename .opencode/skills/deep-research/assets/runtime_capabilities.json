@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "docPath": ".opencode/skills/deep-research/references/capability_matrix.md",
+  "docPath": ".opencode/skills/deep-research/references/guides/capability_matrix.md",
   "resolverScript": ".opencode/skills/deep-research/scripts/runtime-capabilities.cjs",
   "runtimes": [
     {

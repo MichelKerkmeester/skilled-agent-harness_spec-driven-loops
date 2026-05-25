@@ -101,16 +101,6 @@ export function isMultiQueryEnabled(): boolean {
   return isFeatureEnabled('SPECKIT_MULTI_QUERY');
 }
 
-/** Cross-encoder reranking has no configured provider after sidecar removal. */
-export function isCrossEncoderEnabled(): boolean {
-  return false;
-}
-
-/** No reranker opt-in signal remains, so missing-reranker confidence penalties are inactive. */
-export function isRerankerExpected(): boolean {
-  return false;
-}
-
 /**
  * PI-A2: Quality-aware 3-tier search fallback chain.
  * Default: TRUE (graduated). Set SPECKIT_SEARCH_FALLBACK=false to disable.

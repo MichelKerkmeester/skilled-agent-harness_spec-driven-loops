@@ -25,10 +25,10 @@ Use this catalog as the canonical inventory for the live `deep-review` feature s
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
-| Loop lifecycle | 7 features | `SKILL.md`, `references/loop_protocol.md`, deep-review workflows |
-| State management | 7 features | `references/state_format.md`, review packet files, reducer outputs |
+| Loop lifecycle | 7 features | `SKILL.md`, `references/protocol/loop_protocol.md`, deep-review workflows |
+| State management | 7 features | `references/state/state_format.md`, review packet files, reducer outputs |
 | Review dimensions | 4 features | `assets/review_mode_contract.yaml`, `assets/deep_review_strategy.md` |
-| Severity system | 7 features | `references/convergence.md`, `references/state_format.md`, review contract |
+| Severity system | 7 features | `references/convergence/convergence.md`, `references/state/state_format.md`, review contract |
 
 ---
 

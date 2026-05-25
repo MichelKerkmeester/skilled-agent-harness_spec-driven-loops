@@ -29,8 +29,8 @@ The current release ships only this dynamic path. `target_manifest.jsonc` enable
 |---|---|---|
 | `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs` | Profile builder | Parses agent markdown and emits the derived checks used by the scorer. |
 | `.opencode/skills/deep-agent-improvement/assets/target_manifest.jsonc` | Manifest | Declares dynamic profiling as the canonical path and leaves the static target catalog empty. |
-| `.opencode/skills/deep-agent-improvement/references/target_onboarding.md` | Operator reference | Requires dynamic-profile generation when new targets are onboarded. |
-| `.opencode/skills/deep-agent-improvement/references/evaluator_contract.md` | Contract reference | Defines dynamic mode as the only scoring surface. |
+| `.opencode/skills/deep-agent-improvement/references/workflow/target_onboarding.md` | Operator reference | Requires dynamic-profile generation when new targets are onboarded. |
+| `.opencode/skills/deep-agent-improvement/references/scoring/evaluator_contract.md` | Contract reference | Defines dynamic mode as the only scoring surface. |
 
 ### Validation And Tests
 

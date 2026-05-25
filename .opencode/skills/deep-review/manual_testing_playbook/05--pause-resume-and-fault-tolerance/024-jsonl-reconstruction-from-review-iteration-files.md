@@ -44,9 +44,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review JSONL reconstruction from iteration markdown and report whether resume still works.
 ### Commands
-1. `bash: rg -n 'iteration.*file|iteration-NNN|write.once|iterations/|reconstruction|reconstruct|redundant|backup' .opencode/skills/deep-review/references/state_format.md .opencode/skills/deep-review/references/loop_protocol.md`
+1. `bash: rg -n 'iteration.*file|iteration-NNN|write.once|iterations/|reconstruction|reconstruct|redundant|backup' .opencode/skills/deep-review/references/state/state_format.md .opencode/skills/deep-review/references/protocol/loop_protocol.md`
 2. `bash: rg -n 'iteration.*file|write_once|iterations/|iteration-NNN|reconstruct' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
-3. `bash: rg -n 'iteration.*file|write-once|iterations/|iteration-NNN|reconstruct|recovery|backup' .opencode/skills/deep-review/references/quick_reference.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md`
+3. `bash: rg -n 'iteration.*file|write-once|iterations/|iteration-NNN|reconstruct|recovery|backup' .opencode/skills/deep-review/references/protocol/quick_reference.md .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md`
 ### Expected
 Iteration files contain JSONL-compatible metadata, reconstruction path documented, reconstructed JSONL allows resume, and iteration files are write-once.
 ### Evidence
@@ -70,11 +70,11 @@ Privilege the state format reference for both JSONL and iteration file schemas. 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/state_format.md` | JSONL schema and iteration file schema, use the state log and findings registry sections |
-| `.opencode/skills/deep-review/references/loop_protocol.md` | Iteration file write-once contract and recovery guidance, use the iteration loop section |
+| `.opencode/skills/deep-review/references/state/state_format.md` | JSONL schema and iteration file schema, use the state log and findings registry sections |
+| `.opencode/skills/deep-review/references/protocol/loop_protocol.md` | Iteration file write-once contract and recovery guidance, use the iteration loop section |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Iteration file creation and state append steps |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Iteration file creation and state append steps |
-| `.opencode/skills/deep-review/references/quick_reference.md` | State file listing showing iterations/ directory, use `ANCHOR:state-files` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | State file listing showing iterations/ directory, use `ANCHOR:state-files` |
 | `.opencode/skills/deep-review/SKILL.md` | Rules for externalized state, use `ANCHOR:rules` Rule 3 |
 
 ---

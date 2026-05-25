@@ -74,7 +74,7 @@ Check both YAML variants, verify the JSONL init step writes a config record, con
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Confirm init steps, inspect `phase_init` |
 | `.opencode/skills/deep-review/assets/deep_review_config.json` | Config template |
 | `.opencode/skills/deep-review/assets/deep_review_strategy.md` | Strategy template |
-| `.opencode/skills/deep-review/references/quick_reference.md` | State files table, use `ANCHOR:state-files` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | State files table, use `ANCHOR:state-files` |
 
 ---
 

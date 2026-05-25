@@ -44,7 +44,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review verdict routing for FAIL, CONDITIONAL, and PASS post-review workflows.
 ### Commands
-1. `bash: rg -n 'FAIL|CONDITIONAL|PASS|verdict|hasAdvisories|spec_kit:plan|create:changelog|Next Command|routing' .opencode/skills/deep-review/references/quick_reference.md`
+1. `bash: rg -n 'FAIL|CONDITIONAL|PASS|verdict|hasAdvisories|spec_kit:plan|create:changelog|Next Command|routing' .opencode/skills/deep-review/references/protocol/quick_reference.md`
 2. `bash: rg -n 'verdict|FAIL|CONDITIONAL|PASS|hasAdvisories|routing|next_command|post_review|planning_trigger' .opencode/commands/deep/assets/deep_start-review-loop_auto.yaml .opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml`
 3. `bash: rg -n 'verdict|FAIL|CONDITIONAL|PASS|hasAdvisories|routing|post.review|Planning Trigger|Executive Summary' .opencode/skills/deep-review/SKILL.md .opencode/skills/deep-review/README.md .opencode/commands/deep/start-review-loop.md`
 ### Expected
@@ -70,7 +70,7 @@ Privilege the quick reference verdict table as the canonical routing contract an
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-review/references/quick_reference.md` | Canonical verdict table, use `ANCHOR:verdicts` |
+| `.opencode/skills/deep-review/references/protocol/quick_reference.md` | Canonical verdict table, use `ANCHOR:verdicts` |
 | `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` | Synthesis step with verdict routing logic |
 | `.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml` | Synthesis step with verdict routing logic |
 | `.opencode/commands/deep/start-review-loop.md` | Command entrypoint, verdict and output format documentation |

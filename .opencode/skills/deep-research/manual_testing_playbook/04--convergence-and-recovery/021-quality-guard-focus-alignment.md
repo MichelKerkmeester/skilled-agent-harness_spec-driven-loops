@@ -44,10 +44,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate focus-alignment guards override STOP when answered questions drift from the original key questions.
 ### Commands
-1. `bash: sed -n '104,139p' .opencode/skills/deep-research/references/convergence.md`
-2. `bash: rg -n 'focus_alignment\|originalKeyQuestions\|guard_violation' .opencode/skills/deep-research/references/convergence.md`
-3. `bash: sed -n '97,107p' .opencode/skills/deep-research/references/loop_protocol.md`
-4. `bash: rg -n 'guard_violation\|focus_alignment' .opencode/skills/deep-research/references/state_format.md`
+1. `bash: sed -n '104,139p' .opencode/skills/deep-research/references/convergence/convergence.md`
+2. `bash: rg -n 'focus_alignment\|originalKeyQuestions\|guard_violation' .opencode/skills/deep-research/references/convergence/convergence.md`
+3. `bash: sed -n '97,107p' .opencode/skills/deep-research/references/protocol/loop_protocol.md`
+4. `bash: rg -n 'guard_violation\|focus_alignment' .opencode/skills/deep-research/references/state/state_format.md`
 5. `bash: sed -n '236,243p' .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 ### Expected
 guard_violation event logged with guard="focus_alignment", STOP decision overridden to CONTINUE, misaligned question flagged in violation detail.
@@ -72,9 +72,9 @@ Privilege convergence.md §2.4 for the canonical guard definition; use loop_prot
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Canonical quality guard definitions; use §2.4 Quality Guard Protocol |
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check |
-| `.opencode/skills/deep-research/references/state_format.md` | JSONL event schema; use guard_violation event definition and supported guard values |
+| `.opencode/skills/deep-research/references/convergence/convergence.md` | Canonical quality guard definitions; use §2.4 Quality Guard Protocol |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check |
+| `.opencode/skills/deep-research/references/state/state_format.md` | JSONL event schema; use guard_violation event definition and supported guard values |
 | `.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml` | Workflow algorithm; inspect `step_check_convergence` guard override logic |
 
 ---

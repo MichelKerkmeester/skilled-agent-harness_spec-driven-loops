@@ -1,0 +1,335 @@
+# resource-map.yaml — artifact inventory + per-skill delta for the 008 deep-skill doc-evolution cluster.
+#
+# This file is the single source of truth that phases 002-009 read from.
+# Row schema for each artifact entry:
+#   path            repo-relative path or glob
+#   lines           current line count (live state, 2026-05-25)
+#   template        key into the `templates` map below
+#   delta           one of delta_status_enum
+#   note            optional context
+#
+# Source of truth is the live skill state under .opencode/skills/<skill>/, NOT the
+# 000-release-cleanup frontmatter (which carries a known completion_pct contradiction).
+
+meta:
+  cluster: skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution
+  generated: "2026-05-25"
+  source_of_truth: ".opencode/skills/<skill>/ (live filesystem)"
+  delta_status_enum:
+    - done-by-000          # already shipped by 000-release-cleanup, verified in live state
+    - needs-subfolder      # flat references/ to group into thematic subfolders
+    - needs-split          # oversized file to split, original deleted after
+    - needs-conformance    # exists but not 1:1 with sk-doc template / content drift
+    - needs-rewrite        # full rewrite to template (e.g. README to 9-section)
+    - needs-create         # artifact missing, must be created
+    - no-change            # conforms already; leave as-is
+  house_rules:
+    skill_md_max_lines: 500   # house rule, NOT enforced by sk-doc package_skill.py (which gates words)
+  concurrency_ceiling: 3      # max parallel CLI dispatches
+
+# Verified sk-doc template paths (the conformance contract).
+templates:
+  skill_md: ".opencode/skills/sk-doc/assets/skill/skill_md_template.md"
+  readme: ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md"
+  reference: ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md"
+  asset: ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md"
+  smart_router: ".opencode/skills/sk-doc/assets/skill/skill_smart_router.md"
+  feature_catalog: ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md"
+  feature_catalog_snippet: ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md"
+  manual_testing_playbook: ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md"
+  manual_testing_playbook_snippet: ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md"
+  changelog: ".opencode/skills/sk-doc/assets/changelog_template.md"
+
+# Standards every per-skill phase enforces.
+standards:
+  hvr: ".opencode/skills/sk-doc/references/global/hvr_rules.md"     # pass >= 85
+  dqi: ".opencode/skills/sk-doc/references/global/validation.md"    # pass >= 75
+  validators:
+    - ".opencode/skills/sk-doc/scripts/quick_validate.py"
+    - ".opencode/skills/sk-doc/scripts/extract_structure.py"
+    - ".opencode/skills/sk-doc/scripts/package_skill.py"
+  present_tense_discipline: "SKILL.md / references / README state current behavior only; spec/phase/test citations live ONLY in changelog/"
+
+skills:
+
+  deep-loop-runtime:
+    phase: "003-deep-loop-runtime-docs"
+    role: "shared read-only runtime library; light touch"
+    skill_md:    { path: ".opencode/skills/deep-loop-runtime/SKILL.md", lines: 265, template: skill_md, delta: needs-conformance }
+    readme:      { path: ".opencode/skills/deep-loop-runtime/README.md", lines: 467, template: readme, delta: needs-conformance }
+    references:
+      layout: flat
+      files: 4
+      proposed_subfolders: none   # 4 files, 4 consumers — kept flat by design
+      delta: no-change
+      consumers_to_recheck: 4
+    feature_catalog: { path: ".opencode/skills/deep-loop-runtime/feature_catalog/", entries: 22, template: feature_catalog, delta: needs-conformance }
+    manual_testing_playbook: { path: ".opencode/skills/deep-loop-runtime/manual_testing_playbook/", suites: 8, template: manual_testing_playbook, delta: needs-conformance }
+    changelog:   { path: ".opencode/skills/deep-loop-runtime/changelog/", latest: "1.3.0", template: changelog, delta: needs-create }
+    assets: none
+
+  deep-research:
+    phase: "004-deep-research-docs"
+    skill_md:    { path: ".opencode/skills/deep-research/SKILL.md", lines: 499, template: skill_md, delta: needs-conformance, note: "at house cap; trim for headroom decided in 004" }
+    readme:      { path: ".opencode/skills/deep-research/README.md", lines: 353, template: readme, delta: needs-conformance }
+    references:
+      layout: flat
+      files: 13
+      note: "monoliths already split by 000-release-cleanup/002-deep-research/001-reference-split (Complete); subfoldering is the net-new delta"
+      delta: needs-subfolder
+      proposed_subfolders:
+        convergence: [convergence.md, convergence_graph.md, convergence_recovery.md, convergence_reference_only.md, convergence_signals.md]
+        state: [state_format.md, state_jsonl.md, state_outputs.md, state_reducer_registry.md]
+        protocol: [loop_protocol.md, spec_check_protocol.md]
+        reference: [capability_matrix.md, quick_reference.md]
+      oversized_to_split:
+        - { file: loop_protocol.md, lines: 608, decision: "evaluate in 002; split only if a clean contract boundary exists" }
+    feature_catalog: { path: ".opencode/skills/deep-research/feature_catalog/", entries: 15, template: feature_catalog, delta: needs-conformance }
+    manual_testing_playbook: { path: ".opencode/skills/deep-research/manual_testing_playbook/", suites: 7, template: manual_testing_playbook, delta: needs-conformance }
+    changelog:   { path: ".opencode/skills/deep-research/changelog/", latest: "1.13.0.0", template: changelog, delta: needs-create }
+    smart_router: { in: skill_md, template: smart_router, delta: needs-conformance, note: "refresh REFERENCES + router to subfolder paths" }
+
+  deep-review:
+    phase: "005-deep-review-docs"
+    skill_md:    { path: ".opencode/skills/deep-review/SKILL.md", lines: 548, template: skill_md, delta: needs-split, note: "OVER 500 house cap; relocate SUCCESS CRITERIA / INTEGRATION POINTS H2s into references/" }
+    readme:      { path: ".opencode/skills/deep-review/README.md", lines: 514, template: readme, delta: needs-conformance }
+    references:
+      layout: flat
+      files: 7
+      delta: needs-split-and-subfolder
+      oversized_to_split:
+        - { file: convergence.md, lines: 769 }
+        - { file: loop_protocol.md, lines: 829 }
+        - { file: state_format.md, lines: 948 }
+      proposed_subfolders:
+        convergence: [convergence.md, convergence_signals.md]
+        state: [state_format.md, state_outputs.md, state_reducer_registry.md]
+        protocol: [loop_protocol.md, quick_reference.md]
+      hardcoded_test_paths:
+        - test: ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts"
+          status: ACTIVE
+          lines: "108-110"
+          reads: [state_format.md, loop_protocol.md, convergence.md]
+          action: "update the 3 readWorkspaceFile paths in lockstep with the move; keep asserted tokens in the read file"
+          asserted_tokens:
+            state_format.md: ["deep-review-findings-registry.json", "releaseReadinessState", "convergenceScore", "review-report-v*.md", "latestJSONLDelta", "dashboardMetrics", "strategyUpdates"]
+            loop_protocol.md: ["completed-continue"]
+            convergence.md: ["release-blocking", "converged", "in-progress"]
+        - test: "deep-review-contract-parity.vitest.ts + deep-research-contract-parity.vitest.ts"
+          status: SKIPPED-INERT
+          reason: "guarded by describe.skip on sk-deep-* runtime-capabilities module that does not exist; reference stale sk-deep-* paths; do NOT run; out of scope (pre-existing rename artifact)"
+    feature_catalog: { path: ".opencode/skills/deep-review/feature_catalog/", entries: 26, template: feature_catalog, delta: needs-conformance }
+    manual_testing_playbook: { path: ".opencode/skills/deep-review/manual_testing_playbook/", suites: 8, template: manual_testing_playbook, delta: needs-conformance }
+    changelog:   { path: ".opencode/skills/deep-review/changelog/", latest: "1.10.1.0", template: changelog, delta: needs-create }
+    smart_router: { in: skill_md, template: smart_router, delta: needs-conformance }
+
+  deep-ai-council:
+    phase: "006-deep-ai-council-docs"
+    skill_md:    { path: ".opencode/skills/deep-ai-council/SKILL.md", lines: 491, template: skill_md, delta: needs-conformance }
+    readme:      { path: ".opencode/skills/deep-ai-council/README.md", lines: 388, template: readme, delta: needs-conformance }
+    references:
+      layout: flat
+      files: 15
+      delta: needs-subfolder
+      proposed_subfolders:
+        convergence: [convergence_signals.md, depth_dispatch.md, deep_mode.md, failure_handling.md]
+        scoring: [scoring_rubric.md, findings_registry.md]
+        structure: [output_schema.md, state_format.md, folder_layout.md]
+        patterns: [seat_diversity_patterns.md, anti_patterns.md, command_wiring.md]
+        integration: [graph_support.md, loop_protocol.md, quick_reference.md]
+      oversized_to_split:
+        - { file: scoring_rubric.md, lines: 343, decision: "borderline; split only if clean boundary" }
+        - { file: depth_dispatch.md, lines: 302, decision: "borderline; likely leave intact" }
+    feature_catalog: { path: ".opencode/skills/deep-ai-council/feature_catalog/", entries: 32, template: feature_catalog, delta: needs-conformance }
+    manual_testing_playbook: { path: ".opencode/skills/deep-ai-council/manual_testing_playbook/", suites: 9, template: manual_testing_playbook, delta: needs-conformance }
+    changelog:   { path: ".opencode/skills/deep-ai-council/changelog/", latest: "2.2.0.0", template: changelog, delta: needs-create }
+    smart_router: { in: skill_md, template: smart_router, delta: needs-conformance }
+
+  deep-agent-improvement:
+    phase: "007-deep-agent-improvement-docs"
+    skill_md:    { path: ".opencode/skills/deep-agent-improvement/SKILL.md", lines: 494, template: skill_md, delta: needs-conformance }
+    readme:      { path: ".opencode/skills/deep-agent-improvement/README.md", lines: 386, template: readme, delta: needs-conformance }
+    references:
+      layout: subfoldered
+      files: 15
+      delta: done-008   # pilot executed 2026-05-25: 0 flat / 0 dangling; 15 renames + 14 relinks
+      executed_subfolders:
+        scoring: [score_dimensions.md, evaluator_contract.md, mixed_executor_methodology.md]
+        promotion-gates: [promotion_gate_contract.md, promotion_rules.md, rollback_runbook.md, no_go_conditions.md]
+        integration: [integration_scanning.md, mirror_drift_policy.md, profiling_audit_log.md]
+        workflow: [loop_protocol.md, quick_reference.md, candidate_proposal_format.md, benchmark_operator_guide.md, target_onboarding.md]
+      post_move_todo: "skill graph-metadata.json has 2 stale derived paths; clears on reindex (final phase)"
+      oversized_to_split:
+        - { file: candidate_proposal_format.md, lines: 389, decision: "left intact; no clean split boundary" }
+    feature_catalog: { path: ".opencode/skills/deep-agent-improvement/feature_catalog/", entries: 13, template: feature_catalog, delta: needs-conformance }
+    manual_testing_playbook: { path: ".opencode/skills/deep-agent-improvement/manual_testing_playbook/", suites: 8, template: manual_testing_playbook, delta: needs-conformance }
+    changelog:   { path: ".opencode/skills/deep-agent-improvement/changelog/", latest: "1.7.0.0", template: changelog, delta: needs-create }
+    assets:      { path: ".opencode/skills/deep-agent-improvement/assets/", note: "rich (improvement_charter.md, config_reference.md, etc.)", template: asset, delta: needs-conformance }
+    smart_router: { in: skill_md, template: smart_router, delta: needs-conformance }
+
+# What 000-release-cleanup verifiably shipped vs the remaining 008 delta.
+# Confirmed entries are from read evidence; "confirm-in-audit" rows are filled by the
+# per-skill audits in 003-007 (cli-opencode deepseek-v4-pro).
+delta_reconciliation:
+  universal_net_new:
+    - "references/ subfoldering: ALL four reference-heavy skills are still flat in live state — net-new for 008"
+    - "feature_catalog + manual_testing_playbook 1:1 conformance: expanded scope, not done by 000"
+    - "per-skill changelog entry for this doc-evolution work"
+  deep-loop-runtime: { shipped_by_000: "doc-remediation + reference-asset-alignment (Phase 8 of its bucket)", remaining: "conformance pass + README; references stay flat", confidence: medium }
+  deep-research: { shipped_by_000: "reference-split COMPLETE (monoliths split, router aligned, weights corrected to 0.30/0.35/0.35)", remaining: "subfolder the now-split files + catalog/playbook conformance", confidence: high }
+  deep-review: { shipped_by_000: "gate-model-reconciliation + phase5-backlog doc/reducer remediation", remaining: "SKILL 548->under-500 + split 3 big refs + subfolder + catalog/playbook", confidence: high }
+  deep-ai-council: { shipped_by_000: "deep-mode docs and tests (bucket marked Complete)", remaining: "subfolder + conformance + catalog/playbook; confirm in audit", confidence: low }
+  deep-agent-improvement: { shipped_by_000: "benchmark-threshold + deep-research-followon (bucket marked Complete)", remaining: "subfolder + conformance + catalog/playbook; confirm in audit", confidence: low }
+
+# Deferred backlog. Seeded from 000 deferrals; phase 009 (deep-research backstop) appends here.
+# Items here are NOT implemented in 008; they are recorded for a follow-on.
+phase5_backlog:
+  carried_forward_from_000:
+    - "deep-review phase-5 augmentation backlog (24 gaps recorded in 000-release-cleanup/003-deep-review resource-map) — re-confirm relevance during 005"
+  discovered_in_008: []   # populated by phase 009
+
+# ============================================================================
+# 002a findings (inbound-link inventory + verification baseline) — 2026-05-25
+# ============================================================================
+
+# Which inbound references phase 002 rewrites vs leaves alone.
+# Inbound counts (live state): research 486, review 388, council 219, agent-improvement 54, loop-runtime 27.
+# The counts are dominated by specs/ (historical), which are LEFT ALONE.
+relink_scope:
+  rewrite:
+    - "agents: .opencode/agents/deep-*.md + .claude/.gemini/.codex mirrors (1 link-set per skill)"
+    - "commands: .opencode/commands/deep/** (research 11, review 3, agent-improvement 1)"
+    - "cross-skill references: other deep-* skills citing the moved skill (research 6, review 3)"
+    - "self-skill live docs: SKILL.md, README.md, feature_catalog/**, manual_testing_playbook/** (handled inside per-skill children 003-007)"
+    - "active test: deep-review-reducer-schema.vitest.ts paths (see hardcoded_test_paths)"
+  leave_alone:
+    - "specs/** historical docs (research 405, review 335, etc.) including the untracked 116 arc and z_archive — rewriting would falsify point-in-time history and violates scope"
+    - "changelog/** in every skill — present-tense discipline: changelogs record point-in-time state"
+    - "skipped/inert contract-parity tests referencing stale sk-deep-* paths"
+
+# How phase 002/008 verify, given the environment cannot run vitest.
+verification_gates:
+  vitest:
+    status: "UNAVAILABLE — root vitest segfaults (EXIT 139) on this machine regardless of pool (threads/forks); pre-existing documented limitation, not caused by 008"
+    substitute: "content-assertion equivalence check — replicate the active test's assertions with direct file reads (node/grep) at the NEW reference paths"
+  content_assertion_gate_002:
+    - "after deep-review references move/split: the file the test reads for each of state_format/loop_protocol/convergence still contains its asserted_tokens (see hardcoded_test_paths)"
+    - "deep-review-reducer-schema.vitest.ts readWorkspaceFile paths updated to the new locations"
+    - "grep: zero LIVE inbound refs (agents/commands/cross-skill/active-test) point at an old references/<file> path; specs/changelog excluded"
+  skill_gate_008:
+    - "quick_validate.py + extract_structure.py (DQI>=75) + package_skill.py per skill"
+    - "HVR self-score >=85 against hvr_rules.md checklist"
+    - "wc -l SKILL.md < 500 (house rule) per skill"
+
+# ============================================================================
+# 002b completion record (references restructure) — 2026-05-25
+# ============================================================================
+phase_002b_completion:
+  status: "subfoldering COMPLETE for all 4 reference-heavy skills; deep-loop-runtime left flat by design"
+  verification: "0 residual flat / 0 true in-skill dangling / 0 live stale refs (agents+commands+mirrors+cross-skill+active-test); historical specs/ + changelog/ untouched"
+  executed_taxonomy:
+    deep-agent-improvement: { subfolders: [scoring, promotion-gates, integration, workflow], files: 15 }
+    deep-research: { subfolders: [convergence, state, protocol, guides], files: 13 }
+    deep-ai-council: { subfolders: [convergence, scoring, structure, patterns, integration], files: 15 }
+    deep-review: { subfolders: [convergence, state, protocol], files: 7 }
+    deep-loop-runtime: { subfolders: [], files: 4, note: "flat by design (4 files, few consumers)" }
+  relink_method: "zsh-safe map-driven git mv + perl path rewrite across SKILL.md/README/references/feature_catalog/manual_testing_playbook (NOT changelog) + external agents/commands/mirrors/cross-skill"
+  gotchas_resolved:
+    - "zsh does not word-split unquoted vars -> switched to newline-delimited map read by `read sub f`"
+    - "intra-references sibling path mentions (table cells, inline code) are NOT markdown links -> first pass missed them; fixed by re-running relink across references/ itself"
+    - "sk-deep-review substring collision with deep-review -> used negative-lookbehind (?<![\\w-]) so skipped contract-parity tests stay untouched"
+  active_test_updated: "deep-review-reducer-schema.vitest.ts lines 108-110 -> state/, protocol/, convergence/ subfolders; all asserted tokens verified present at new paths"
+  deferred_to_005:
+    - "deep-review file SPLITS: convergence.md (769), loop_protocol.md (829), state_format.md (948) -> content-judgment splits done alongside the SKILL.md 548->under-500 reduction in phase 005; sk-doc allows up to 3000 lines so these are house-rule improvements, not conformance blockers"
+  post_move_todo: "per-skill graph-metadata.json (skill advisor) has stale derived reference paths for all 4 skills -> regenerate at the reindex step (final phase), not hand-edited"
+
+# ============================================================================
+# 003-007 per-skill conformance (surgical delta) — 2026-05-25
+# ============================================================================
+phase_003_007_completion:
+  approach: "surgical delta — docs already valid + DQI 87-99; main-agent-direct; NO heavy per-skill child folders (tracked here + per-skill changelogs, mirroring 002b)"
+  status: "4 of 5 DONE (deep-loop-runtime, deep-research, deep-ai-council, deep-agent-improvement); deep-review (005) PENDING"
+  per_skill:
+    deep-loop-runtime: { skill_dqi: 96, readme_dqi: 93, changelog: "v1.4.0.0", work: "added SUCCESS CRITERIA + REFERENCES AND RELATED RESOURCES sections; references flat (unchanged by design)" }
+    deep-research: { skill_dqi: 95, readme_dqi: 99, changelog: "v1.14.0.0", work: "README structure tree reflects convergence/state/protocol/guides; all links current" }
+    deep-ai-council: { skill_dqi: 99, readme_dqi: 98, changelog: "v2.3.0.0", work: "README tree reflects 5 subfolders; SKILL §6 renamed REFERENCES AND RELATED RESOURCES (cleared warning)" }
+    deep-agent-improvement: { readme_dqi: 87, changelog: "v1.8.0.0", work: "README tree reflects scoring/promotion-gates/integration/workflow; README good-band passes (checklist 80, non-blocking)" }
+    deep-review: { status: DONE, skill_dqi: 94, changelog: "v1.11.0.0", work: "SKILL 548->489 lines (under cap) by relocating Executor Selection Contract -> references/protocol/executor_selection.md + Finding Deduplication -> references/state/finding_deduplication.md (pointers kept); README tree reflects convergence/state/protocol; word count 3185 (soft warning accepted, consistent with siblings)" }
+    deep-review_splits_deferred: "convergence.md(769)/loop_protocol.md(829)/state_format.md(948) NOT split: all under the sk-doc 3000-line cap (navigation-only, not a conformance gap), and all three are test-read files holding the 11 asserted tokens (split = token-relocation risk). Deferred to phase5_backlog; 009 backstop can re-evaluate value-vs-risk."
+  catalog_playbook: "verified conformant to sk-doc snippet templates (catalog: Overview/Current Reality/Source Files/Source Metadata; playbook: scenario contract); reference paths current post-002b; verify-only, no rewrites needed"
+  out_of_scope_findings:   # follow-on recommendations; NOT fixed in 008 (would require editing sk-doc, not the deep-* skills)
+    - "package_skill.py VALID_SCRIPT_EXTENSIONS lacks .cjs/.mjs -> every deep-* skill warns on its CommonJS scripts. Recommend adding .cjs/.mjs to the sk-doc allowlist."
+    - "package_skill.py flags prompt_pack_*.md.tmpl as non-snake_case (double-extension false-positive); .md.tmpl is the deep-* prompt-pack convention; renaming breaks template loading."
+    - "deep-research (3059w) + deep-agent-improvement (3269w) SKILL.md slightly over the 3000-word SOFT cap; both valid; left intact to preserve excellent (DQI 95) content."
+
+# Smart-router + references + assets alignment verification (operator-requested) — 2026-05-25
+router_reference_asset_alignment:
+  smart_router:
+    tool: "check-smart-router.sh PASSED for all 5 deep-* skills (resource paths resolve, no ALWAYS-tier bloat); the 1 repo failure is system-skill-advisor references/file.md (pre-existing, out of scope)"
+    pattern: "all 5 implement the sk-doc resilient pattern (guard -> discover -> intent-classify -> load-if-available -> fallback)"
+    variants_kept:
+      - "deep-review + deep-ai-council use get_routing_key (single key)"
+      - "deep-research + deep-agent-improvement use score_intents/select_intents (richer multi-intent); valid per template spirit; NOT downgraded to get_routing_key (would lose capability)"
+      - "deep-loop-runtime uses a documented bash intent-router that routes to lib/ code, not references (it is a YAML-invoked read-only library, SKILL.md line 49); canonical references-discovery router does not apply"
+    fix_applied: "deep-agent-improvement UNKNOWN_FALLBACK -> UNKNOWN_FALLBACK_CHECKLIST (SKILL.md pseudocode only; naming consistency with template + siblings)"
+    follow_on_option: "if strictly identical router function names are wanted family-wide, converting score_intents->get_routing_key is a larger router refactor (deferred; not a conformance blocker)"
+  references: "all reference files across 5 skills: frontmatter present (title+description) + snake_case names + sk-doc reference-doc structure; 0 missing-frontmatter / 0 non-snake-case"
+  assets: "all asset .md docs snake_case; .json/.yaml conform; only the prompt_pack_*.md.tmpl double-extension false-positive remains (deep-* convention, out of scope)"
+
+# ============================================================================
+# 008 alignment validation gate — 2026-05-25  ->  OVERALL: PASS
+# ============================================================================
+phase_008_gate:
+  overall: PASS
+  spec_validate: { folder: "008-deep-skill-doc-evolution", strict: true, recursive: true, exit_code: 0 }
+  skills:   # all package_skill valid=true; DQI pass>=75; SKILL.md under 500-line house cap
+    deep-loop-runtime:       { valid: true, skill_dqi: 96, readme_dqi: 93, skill_lines: 280, deviations: none }
+    deep-research:           { valid: true, skill_dqi: 95, readme_dqi: 99, skill_lines: 499, deviations: "word soft-cap 3059 (accepted)" }
+    deep-review:             { valid: true, skill_dqi: 94, readme_dqi: 93, skill_lines: 489, deviations: "word soft-cap 3185 (accepted); 11 test tokens verified present" }
+    deep-ai-council:         { valid: true, skill_dqi: 99, readme_dqi: 98, skill_lines: 491, deviations: none }
+    deep-agent-improvement:  { valid: true, skill_dqi: 94, readme_dqi: 87, skill_lines: 494, deviations: "README good-band (>=75 pass); word soft-cap 3269 (accepted)" }
+  hvr: "0 hard-blocker words across all 5 SKILL.md + README (grep-verified); full numeric HVR scorer not run"
+  smart_router: "check-smart-router.sh: all 5 deep-* clean (paths resolve, no bloat)"
+  out_of_scope_deviations: ".cjs/.mjs script-extension warnings + prompt_pack_*.md.tmpl naming = sk-doc allowlist gaps (follow-on); deep-review big-file splits deferred (under sk-doc cap, token-risk)"
+
+# ============================================================================
+# Reference consolidation + dead-link pass (operator refinement) — 2026-05-25
+# ============================================================================
+phase_consolidation:
+  status: DONE
+  merged_thin_refs:   # too-short standalone refs folded into a same-subfolder sibling, then deleted
+    - "deep-review state/finding_deduplication.md (12 body) -> state/state_reducer_registry.md §6 FINDING DEDUPLICATION"
+    - "deep-review protocol/executor_selection.md (19 body) -> protocol/loop_protocol.md §Executor Selection Contract"
+    - "deep-agent-improvement promotion-gates/no_go_conditions.md (23 body) -> promotion-gates/promotion_rules.md §6 NO-GO CONDITIONS"
+  kept_deliberately: "deep-ai-council convergence/convergence_signals.md (16 body) — router-targeted, load-bearing 0.20 threshold semantics"
+  inbound_relinked: "SKILL.md pointers/router (both skills), README trees, feature_catalog (3), evaluator_contract, improvement_charter/strategy/config_reference assets — 0 live refs to the 3 deleted files remain"
+  dead_links_fixed:
+    - "target_onboarding.md -> second_target_evaluation.md (non-existent) removed; evaluator_contract pointer tightened to ../scoring/"
+  assets_relink_gap_002b: "002b PASS-2 skipped assets/; found+fixed 9 stale FLAT reference paths across all 4 subfoldered skills, including FUNCTIONAL JSON docPath fields (deep-research runtime_capabilities.json + deep_research_config.json -> capability_matrix; deep-review runtime_capabilities.json -> quick_reference) that runtime code reads; all now resolve"
+  verification: "all 5 package_skill valid=true; check-smart-router deep-* clean; 008 validate --strict --recursive PASSED 0/0; affected JSON configs parse + docPath fields resolve"
+  deferred:
+    - "imprecise cross-subfolder bare RELATED-RESOURCES pointers — RESOLVED in phase_fixes_4_6_3 below"
+
+# ============================================================================
+# Operator-directed fixes 4/6/3 — 2026-05-25
+# ============================================================================
+phase_fixes_4_6_3:
+  fix_4_validator:
+    status: DONE
+    change: "sk-doc package_skill.py: VALID_SCRIPT_EXTENSIONS += .cjs/.mjs; README.md allowed in scripts/; asset snake_case check uses name.split('.')[0] so .md.tmpl templates pass"
+    result: "deep-loop-runtime + deep-ai-council now 0 warnings; others down to only the word-soft-cap; no sk-doc self-test references these checks; file parses"
+    changelog: "sk-doc v1.7.0.0"
+    note: "edits sk-doc (outside the 5 deep-* skills) — operator-authorized"
+  fix_6_pointers:
+    status: DONE
+    change: "52 cross-subfolder bare `name.md` RELATED-RESOURCES pointers across 23 reference files rewritten to relative-precise ../<subfolder>/<name>.md; 0 cross-subfolder bare pointers remain"
+  fix_3_splits:
+    status: DONE
+    splits:
+      - "state/state_format.md 948 -> 534 + new state/state_jsonl.md (431, DQI 94)"
+      - "convergence/convergence.md 769 -> 576 + new convergence/convergence_recovery.md (210, DQI 97)"
+      - "protocol/loop_protocol.md 871 -> 756 + new protocol/loop_state_and_gates.md (126, DQI 97)"
+    token_safety: "all 11 test-asserted tokens verified still present in the hub files the active test reads"
+    relink: "README structure tree updated; hub pointer stubs (same-subfolder bare names resolve); 0 true dangling (the 4 flagged were 2 changelog-historical + 2 cross-skill false-positives)"
+    note: "loop_protocol hub DQI 71 (acceptable) — inherently large core lifecycle doc (5114 words); not further split to keep the lifecycle narrative intact; under sk-doc cap, not gated"
+  verification: "all 5 skills package_skill valid=true; check-smart-router deep-* clean; 008 validate --strict --recursive PASSED 0/0"

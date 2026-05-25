@@ -136,6 +136,6 @@ Copy this file into the runtime area, fill the operator-owned fields before the 
 ## 4. RELATED RESOURCES
 
 - `improvement_charter.md`
-- `../references/loop_protocol.md`
+- `../references/workflow/loop_protocol.md`
 - `target_manifest.jsonc`
 

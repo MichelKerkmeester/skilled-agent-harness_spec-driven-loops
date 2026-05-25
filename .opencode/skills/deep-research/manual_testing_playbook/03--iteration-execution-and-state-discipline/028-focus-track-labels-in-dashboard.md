@@ -44,7 +44,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate focusTrack labels appear in JSONL iteration records and the dashboard Progress table.
 ### Commands
-1. `bash: rg -n 'focusTrack' .opencode/skills/deep-research/references/state_format.md`
+1. `bash: rg -n 'focusTrack' .opencode/skills/deep-research/references/state/state_format.md`
 2. `bash: rg -n 'Track\|focusTrack' .opencode/skills/deep-research/assets/deep_research_dashboard.md`
 3. `bash: rg -n 'focusTrack' .opencode/skills/deep-research/README.md`
 ### Expected
@@ -70,7 +70,7 @@ Privilege state_format.md as the canonical schema; use the dashboard asset and R
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-research/references/state_format.md` | Canonical JSONL schema; focusTrack field definition on iteration records |
+| `.opencode/skills/deep-research/references/state/state_format.md` | Canonical JSONL schema; focusTrack field definition on iteration records |
 | `.opencode/skills/deep-research/assets/deep_research_dashboard.md` | Dashboard template; Progress table with Track column |
 | `.opencode/skills/deep-research/README.md` | Feature summary; focusTrack mention under observability or iteration fields |
 

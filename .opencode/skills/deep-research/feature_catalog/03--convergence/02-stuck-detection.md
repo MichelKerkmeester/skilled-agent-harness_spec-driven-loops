@@ -27,8 +27,8 @@ When the counter reaches the configured threshold, the recovery protocol classif
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/references/convergence.md` | Reference | Defines stuck counting, failure-mode classification, and recovery strategy selection. |
-| `.opencode/skills/deep-research/references/loop_protocol.md` | Reference | Places stuck recovery in the live loop state machine. |
+| `.opencode/skills/deep-research/references/convergence/convergence.md` | Reference | Defines stuck counting, failure-mode classification, and recovery strategy selection. |
+| `.opencode/skills/deep-research/references/protocol/loop_protocol.md` | Reference | Places stuck recovery in the live loop state machine. |
 | `.opencode/agents/deep-research.md` | Agent | Defines recovery-mode behavior for the iteration agent when the dispatcher marks a run as recovery. |
 
 ### Validation And Tests

@@ -99,7 +99,7 @@ If wrong nodes appear in top-3, inspect `lib/council/council-graph-query.ts` `ge
 |---|---|
 | `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | runtime CLI script |
 | `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | `getHotNodes` ranking helper |
-| `.opencode/skills/deep-ai-council/references/graph_support.md` §3 | Documents edge kinds counted toward hotness |
+| `.opencode/skills/deep-ai-council/references/integration/graph_support.md` §3 | Documents edge kinds counted toward hotness |
 
 ---
 

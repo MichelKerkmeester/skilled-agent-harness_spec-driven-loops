@@ -25,8 +25,8 @@ When no resource map was present at init, the section is omitted entirely and th
 
 | File | Layer | Role |
 |---|---|---|
-| `references/loop_protocol.md` | Protocol | Defines the conditional insert of section 8 during synthesis and the three-part content rule. |
-| `references/state_format.md` | Schema | Documents the review-report section list and the `resource_map_present` condition. |
+| `references/protocol/loop_protocol.md` | Protocol | Defines the conditional insert of section 8 during synthesis and the three-part content rule. |
+| `references/state/state_format.md` | Schema | Documents the review-report section list and the `resource_map_present` condition. |
 | `assets/review_mode_contract.yaml` | Contract | Declares the `outputs.reviewReport` section set the synthesis step renders. |
 | `feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | Catalog | Companion feature that emits the resource-map coverage data this gate reports on. |
 
@@ -44,4 +44,4 @@ When no resource map was present at init, the section is omitted entirely and th
 - Group: Loop lifecycle
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `01--loop-lifecycle/07-resource-map-coverage-gate.md`
-- Primary sources: `references/loop_protocol.md`, `references/state_format.md`, `assets/review_mode_contract.yaml`
+- Primary sources: `references/protocol/loop_protocol.md`, `references/state/state_format.md`, `assets/review_mode_contract.yaml`

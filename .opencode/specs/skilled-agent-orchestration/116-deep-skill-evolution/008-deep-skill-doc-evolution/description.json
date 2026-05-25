@@ -1,0 +1,40 @@
+{
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution",
+  "description": "Phase parent for the documentation-evolution delta across the five deep-* skills: references subfoldering, oversized-file splits, sk-doc 1:1 conforman",
+  "keywords": [
+    "phase",
+    "parent",
+    "documentation-evolution",
+    "delta",
+    "across",
+    "five",
+    "deep",
+    "skills",
+    "references",
+    "subfoldering",
+    "oversized-file",
+    "splits",
+    "sk-doc",
+    "conformance",
+    "hvr",
+    "readme",
+    "rewrites",
+    "feature-catalog",
+    "testing-playbook",
+    "alignment",
+    "gate",
+    "deep-research",
+    "gap",
+    "backstop"
+  ],
+  "lastUpdated": "2026-05-25T14:19:51.151Z",
+  "specId": "008",
+  "folderSlug": "deep-skill-doc-evolution",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
