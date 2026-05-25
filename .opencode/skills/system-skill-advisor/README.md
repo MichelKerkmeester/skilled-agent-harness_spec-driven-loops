@@ -232,9 +232,9 @@ The `semantic_shadow` lane (lowest live weight at `0.05`) runs against a pluggab
 
 The persisted default is the `'auto'` sentinel. On daemon startup, `ensureActiveEmbedder()` invokes the shared cascade (Ollama → hf-local → OpenAI → Voyage) and persists the winner. In local-only environments the cascade picks `nomic-embed-text-v1.5` at 768 dim. Manual `setActiveEmbedder()` calls pin the pointer and skip the cascade on subsequent restarts. There is no environment variable for embedder selection and no `embedder_set` MCP tool — the surface is one database helper plus the cascade sentinel.
 
-CocoIndex uses a separate code-tuned embedder cascade in Python (out of scope here). The TS shared cascade is text-only by design; a `contentType: 'text' \| 'code'` parameter on the shared cascade preserves the conceptual split for any future TS code consumer.
+The TS shared cascade is text-tuned by design; a `contentType: 'text' \| 'code'` parameter on the shared cascade preserves the conceptual split for any future code-oriented consumer.
 
-See [INSTALL_GUIDE.md §12 "Choosing an embedder"](./INSTALL_GUIDE.md#12--choosing-an-embedder) for the cascade tier table, swap workflow, and content-type rationale. See [`embedder_pluggability.md`](../system-spec-kit/references/memory/embedder_pluggability.md) for the canonical multi-MCP narrative covering mk-spec-memory and CocoIndex alongside skill-advisor.
+See [INSTALL_GUIDE.md §12 "Choosing an embedder"](./INSTALL_GUIDE.md#12--choosing-an-embedder) for the cascade tier table, swap workflow, and content-type rationale. See [`embedder_pluggability.md`](../system-spec-kit/references/memory/embedder_pluggability.md) for the canonical shared-embedder narrative covering mk-spec-memory alongside skill-advisor.
 
 <!-- /ANCHOR:configuration -->
 
@@ -356,6 +356,6 @@ A: See [references/hooks/skill_advisor_hook.md](./references/hooks/skill_advisor
 | [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md) | Current feature inventory. |
 | [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenario index. |
 | [changelog/v0.2.0.md](./changelog/v0.2.0.md) | v0.2.0 production isolation from system-spec-kit. |
-| [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder_pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference shared with mk-spec-memory and CocoIndex. |
+| [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder_pluggability.md) | Canonical shared-embedder reference used by mk-spec-memory and skill-advisor. |
 
 <!-- /ANCHOR:related-documents -->

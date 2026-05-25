@@ -15,7 +15,6 @@ else
   printf '%s\n' ''
   printf '%s\n' '- Memory: startup summary only (resume on demand)'
   printf '%s\n' '- Code Graph: unavailable'
-  printf '%s\n' '- CocoIndex: unknown'
   printf '%s\n' ''
   printf '%s\n' 'Note: this is a startup snapshot; later structural reads may differ if the repo state changed.'
 fi

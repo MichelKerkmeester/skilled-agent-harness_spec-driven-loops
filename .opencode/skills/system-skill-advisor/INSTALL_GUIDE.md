@@ -353,7 +353,7 @@ Source of truth: [`@spec-kit/shared/embeddings/registry.ts`](../system-spec-kit/
 | `bge-m3` | 1024 | `ollama` | `bge-m3:latest` | 8000 | Multilingual hybrid (dense + sparse + colbert). |
 | `snowflake-arctic-embed-l-v2.0` | 1024 | `ollama` | `snowflake-arctic-embed2:latest` | 8000 | Snowflake late-2024 flagship. 8192 context, multilingual, top MTEB retrieval scores. |
 
-> **Content-type split.** The TS shared registry is text-tuned by design. CocoIndex's code-tuned cascade lives in Python at `cocoindex_code/embedders/registered_embedders.py` (separate registry) and is intentionally not part of this list. The `contentType: 'text' \| 'code'` parameter on the shared cascade preserves the conceptual split for any future TS code consumer. The previous skill-advisor-specific `jina-embeddings-v2-base-code` entry was removed (it was code-tuned, did not belong in a text-only registry).
+> **Content-type split.** The TS shared registry is text-tuned by design. The `contentType: 'text' \| 'code'` parameter on the shared cascade preserves the conceptual split for any future TS code consumer. The previous skill-advisor-specific `jina-embeddings-v2-base-code` entry was removed because it was code-tuned and did not belong in a text-only registry.
 
 Adding a new candidate is a single registry row in the shared package plus, if the backend is new, a single adapter under `shared/embeddings/adapters/`. No call sites change. The adapter contract (`EmbedderAdapter` in `@spec-kit/shared/embeddings/adapter.ts`) is small — `embed()` plus `ready()`.
 
@@ -405,11 +405,11 @@ Skill-advisor does not ship an explicit `_resolve_device()` shim. Device selecti
 | `sentence-transformers` (hf-local fallback tier 2) | The Python sidecar uses its own MPS / CUDA / CPU resolution chain. |
 | `api` (OpenAI or Voyage fallback) | Remote inference; device handling is the provider's concern. |
 
-If you need MPS-style auto-detect for a local model, the Ollama backend already provides it on Apple Silicon by default — install Ollama, pull a manifest, the cascade picks it. CocoIndex's separate code-tuned device selection (`_resolve_device` in Python) is documented at [embedder_pluggability.md §3](../system-spec-kit/references/memory/embedder_pluggability.md) and is not mirrored to skill-advisor by design.
+If you need MPS-style auto-detect for a local model, the Ollama backend already provides it on Apple Silicon by default — install Ollama, pull a manifest, the cascade picks it.
 
 ### 12.6 Cross-references
 
-- Canonical multi-MCP narrative: [`embedder_pluggability.md`](../system-spec-kit/references/memory/embedder_pluggability.md) — covers `mk-spec-memory`, `mcp-coco-index`, and shared design rationale.
+- Canonical shared-embedder narrative: [`embedder_pluggability.md`](../system-spec-kit/references/memory/embedder_pluggability.md) — covers `mk-spec-memory`, skill-advisor and shared design rationale.
 - Shared contract surface: [`@spec-kit/shared/embeddings/`](../system-spec-kit/shared/embeddings/) — the canonical adapter, types, registry and Ollama adapter.
 - Shared cascade: [`@spec-kit/shared/embeddings/auto-select.ts`](../system-spec-kit/shared/embeddings/auto-select.ts) — file-locked Ollama → hf-local → OpenAI → Voyage probe chain (ADR-014 local-first). Accepts optional `contentType: 'text' \| 'code'` parameter (default `'text'`).
 - Memory-side analog (full MCP tool surface): [`system-spec-kit/mcp_server/INSTALL_GUIDE.md`](../system-spec-kit/mcp_server/INSTALL_GUIDE.md).

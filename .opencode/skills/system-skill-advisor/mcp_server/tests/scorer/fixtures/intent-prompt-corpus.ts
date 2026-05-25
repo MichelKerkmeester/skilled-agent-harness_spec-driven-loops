@@ -40,8 +40,8 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
     category: 'today-correct',
   },
   {
-    prompt: 'Use mcp-coco-index for semantic code search across the repository.',
-    expectedSkill: 'mcp-coco-index',
+    prompt: 'Use system-code-graph for structural code search across the repository.',
+    expectedSkill: 'system-code-graph',
     category: 'today-correct',
   },
   {
@@ -101,7 +101,7 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
   },
   {
     prompt: 'I need to locate where this behavior is implemented without knowing the symbol names.',
-    expectedSkill: 'mcp-coco-index',
+    expectedSkill: 'system-code-graph',
     category: 'intent-described',
   },
   {

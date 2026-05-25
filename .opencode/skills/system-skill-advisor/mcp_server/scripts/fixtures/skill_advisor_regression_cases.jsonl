@@ -12,8 +12,8 @@
 {"id":"P0-ABSTAIN-001","priority":"P0","prompt":"find where this function is defined","confidence_only":false,"expect_result":false,"expected_top_any":[],"allow_command_bridge":false}
 {"id":"P1-MCP-001","priority":"P1","prompt":"update notion page using code mode toolchain","confidence_only":false,"expect_result":true,"expected_top_any":["mcp-code-mode"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-MCP-002","priority":"P1","prompt":"fetch webflow cms collection","confidence_only":false,"expect_result":true,"expected_top_any":["mcp-code-mode"],"expect_kind":"skill","allow_command_bridge":false}
-{"id":"P1-SEARCH-001","priority":"P1","prompt":"find code that handles auth","confidence_only":false,"expect_result":true,"expected_top_any":["mcp-coco-index"],"expect_kind":"skill","allow_command_bridge":false}
-{"id":"P1-SEARCH-002","priority":"P1","prompt":"semantic code search for rate limiting","confidence_only":false,"expect_result":true,"expected_top_any":["mcp-coco-index"],"expect_kind":"skill","allow_command_bridge":false}
+{"id":"P1-SEARCH-001","priority":"P1","prompt":"find code that handles auth","confidence_only":false,"expect_result":true,"expected_top_any":["system-code-graph"],"expect_kind":"skill","allow_command_bridge":false}
+{"id":"P1-SEARCH-002","priority":"P1","prompt":"code graph search for rate limiting","confidence_only":false,"expect_result":true,"expected_top_any":["system-code-graph"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-RESEARCH-001","priority":"P1","prompt":"autoresearch this repository architecture","confidence_only":false,"expect_result":true,"expected_top_any":["sk-deep-research"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-RESEARCH-002","priority":"P1","prompt":"/autoresearch auth subsystem","confidence_only":false,"expect_result":true,"expected_top_any":["sk-deep-research"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-REVIEW-001","priority":"P1","prompt":"perform a security code review for regressions","confidence_only":false,"expect_result":true,"expected_top_any":["sk-code-review"],"expect_kind":"skill","allow_command_bridge":false}
@@ -43,6 +43,6 @@
 {"id":"P1-PHRASE-003","priority":"P1","prompt":"5-dimension agent scoring","confidence_only":false,"expect_result":true,"expected_top_any":["sk-deep-agent-improvement"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-PHRASE-004","priority":"P1","prompt":"integration scan","confidence_only":false,"expect_result":true,"expected_top_any":["sk-deep-agent-improvement"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-PHRASE-005","priority":"P1","prompt":"dynamic profile","confidence_only":false,"expect_result":true,"expected_top_any":["sk-deep-agent-improvement"],"expect_kind":"skill","allow_command_bridge":false}
-{"id":"P1-PHRASE-006","priority":"P1","prompt":"vector search","confidence_only":false,"expect_result":true,"expected_top_any":["mcp-coco-index"],"expect_kind":"skill","allow_command_bridge":false}
-{"id":"P1-PHRASE-007","priority":"P1","prompt":"concept search","confidence_only":false,"expect_result":true,"expected_top_any":["mcp-coco-index"],"expect_kind":"skill","allow_command_bridge":false}
+{"id":"P1-PHRASE-006","priority":"P1","prompt":"code graph search","confidence_only":false,"expect_result":true,"expected_top_any":["system-code-graph"],"expect_kind":"skill","allow_command_bridge":false}
+{"id":"P1-PHRASE-007","priority":"P1","prompt":"structural search","confidence_only":false,"expect_result":true,"expected_top_any":["system-code-graph"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-PHRASE-008","priority":"P1","prompt":"browser verification checklist","confidence_only":false,"expect_result":true,"expected_top_any":["sk-code"],"expect_kind":"skill","allow_command_bridge":false}

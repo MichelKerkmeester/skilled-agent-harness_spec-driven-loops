@@ -127,7 +127,7 @@ if check_command_exists python3; then
   _log log_pass "$local_py_version"
   record_pass "prerequisites" "python3" "$local_py_version"
 else
-  _log log_warn "Python3 not found — CocoIndex Code checks will be skipped"
+  _log log_warn "Python3 not found"
   record_warn "prerequisites" "python3" "not found"
 fi
 

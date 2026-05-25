@@ -105,7 +105,7 @@ export interface UncertaintyCalibration {
  */
 export interface RoutingCalibration {
   // semantic search intent
-  readonly semanticSearchCocoIndexBonus: number;
+  readonly semanticSearchCodeGraphBonus: number;
   readonly semanticSearchDeepResearchPenalty: number;
   // deep-review intent
   readonly deepReviewSkDeepReviewBonus: number;
@@ -184,7 +184,7 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     hardCeiling: 0.95,
   }),
   routing: Object.freeze({
-    semanticSearchCocoIndexBonus: 0.5,
+    semanticSearchCodeGraphBonus: 0.5,
     semanticSearchDeepResearchPenalty: -0.2,
     deepReviewSkDeepReviewBonus: 0.35,
     deepReviewSkCodeReviewPenalty: -0.25,

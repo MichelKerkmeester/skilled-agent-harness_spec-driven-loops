@@ -190,15 +190,6 @@ classify_command() {
     *"mcp-code-mode/mcp_server/dist/index.js"*) printf '%s\n' "mcp-code-mode"; return 0 ;;
     *"npm exec @taazkareem/clickup-mcp-server"*) printf '%s\n' "clickup-mcp-wrapper"; return 0 ;;
     *"clickup-mcp-server"*) printf '%s\n' "clickup-mcp-server"; return 0 ;;
-    *"ccc mcp"*) printf '%s\n' "ccc-mcp"; return 0 ;;
-    *"ccc run-daemon"*) printf '%s\n' "ccc-run-daemon"; return 0 ;;
-    *"rerank_sidecar:app"*)
-      if [ "${ORPHAN_PRESERVE_RERANK_SIDECAR:-0}" = "1" ]; then
-        return 1
-      fi
-      printf '%s\n' "rerank-sidecar"
-      return 0
-      ;;
     *"npm exec @modelcontextprotocol/server-sequential-thinking"*)
       printf '%s\n' "sequential-thinking-wrapper"
       return 0
@@ -300,10 +291,7 @@ has_non_mcp_listener() {
   while read -r line; do
     case "$line" in
       *LISTEN*)
-        case "$line" in
-          *:8765\ *|*:8765\(*|*:8765-\>*) ;;
-          *) return 0 ;;
-        esac
+        return 0
         ;;
     esac
   done <<EOF

@@ -60,13 +60,13 @@ export const HARDER_INTENT_PROMPT_CORPUS: ReadonlyArray<HarderIntentEntry> = [
   },
   {
     prompt: 'I only know the behavior in plain language; locate the implementation without relying on symbol names.',
-    expectedSkill: 'mcp-coco-index',
+    expectedSkill: 'system-code-graph',
     category: 'lexical-mis-route',
-    reason: 'Semantic code discovery intent avoids code-search/Coco terms and may be pulled by implementation/code words.',
+    reason: 'Code discovery intent avoids code-graph terms and may be pulled by implementation/code words.',
   },
   {
     prompt: 'Find modules that behave like this description even if their filenames and exported functions say something else.',
-    expectedSkill: 'mcp-coco-index',
+    expectedSkill: 'system-code-graph',
     category: 'lexical-mis-route',
     reason: 'Natural-language retrieval is implied, but find/modules/functions can strengthen sk-code lexical matching.',
   },

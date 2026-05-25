@@ -253,7 +253,7 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   const R = SCORING_CALIBRATION.routing;
   if (/\bsemantic (code )?search\b/.test(promptLower)) {
     const activeDeepResearch = /\/deep:start-research-loop|\b(resume|continue|run|launch|start|iteration|convergence)\b.*\bdeep[- ]research\b/.test(promptLower);
-    if (recommendation.skill === 'mcp-coco-index') return R.semanticSearchCocoIndexBonus;
+    if (recommendation.skill === 'system-code-graph') return R.semanticSearchCodeGraphBonus;
     if (!activeDeepResearch && recommendation.skill === 'sk-deep-research') return R.semanticSearchDeepResearchPenalty;
   }
   if (/\bdeep[- ]review\b/.test(promptLower)) {

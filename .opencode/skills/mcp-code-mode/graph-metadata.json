@@ -20,7 +20,6 @@
     "depends_on": [],
     "related_to": [
       "mcp-chrome-devtools",
-      "mcp-coco-index",
       "cli-opencode"
     ]
   },

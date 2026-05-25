@@ -45,11 +45,11 @@ const projection = createFixtureProjection([
     intentSignals: ['review pull request regressions', 'audit code changes'],
   }),
   skill({
-    id: 'mcp-coco-index',
-    description: 'Semantic code search and vector search for locating implementation patterns.',
-    keywords: ['semantic search', 'vector search', 'find code'],
+    id: 'system-code-graph',
+    description: 'Structural code search, code graph context, and impact analysis for locating implementation patterns.',
+    keywords: ['code graph', 'structural search', 'find code'],
     domains: ['search', 'code discovery'],
-    intentSignals: ['semantic code search', 'find implementation patterns'],
+    intentSignals: ['code search', 'find implementation patterns'],
   }),
   skill({
     id: 'system-spec-kit',
@@ -83,7 +83,7 @@ describe('semantic lane promotion', () => {
     ['implement a new code-graph scan feature with tests', 'sk-code'],
     ['save context for the next session', 'memory:save'],
     ['review this pull request for regressions', 'sk-code-review'],
-    ['use semantic code search to find implementation patterns', 'mcp-coco-index'],
+    ['use code search to find implementation patterns', 'system-code-graph'],
     ['update the packet implementation-summary docs', 'system-spec-kit'],
   ])('keeps pre-promotion routing stable for %s', (prompt, expectedSkill) => {
     const result = scoreAdvisorPrompt(prompt, {

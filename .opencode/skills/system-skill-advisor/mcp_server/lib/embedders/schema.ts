@@ -216,9 +216,9 @@ function backendToProvider(backend: BackendKind | undefined): AutoSelectedEmbedd
  *
  * The shared cascade probes (in order): Ollama → hf-local → OpenAI → Voyage,
  * landing on `nomic-embed-text-v1.5` in local-only environments. The
- * `contentType` parameter is currently informational (the TS shared cascade
- * is text-tuned by design; CocoIndex's code cascade lives in Python and is
- * out of scope) but is plumbed through for future-proofing.
+ * `contentType` parameter is currently informational because the TS shared
+ * cascade is text-tuned by design, but it is plumbed through for future
+ * code-oriented consumers.
  */
 export async function ensureActiveEmbedder(
   db: Database.Database,

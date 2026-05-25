@@ -120,12 +120,12 @@ describe('skill_advisor.py compat shim', () => {
     ]));
   });
 
-  it('tries native mode when --force-native is combined with semantic flags', () => {
+  it('tries native mode when --force-native is set', () => {
     if (!nativeAdvisorReachable) {
-      console.warn('[shim.vitest] native advisor probe returned unavailable in this env; skipping --force-native --semantic case');
+      console.warn('[shim.vitest] native advisor probe returned unavailable in this env; skipping --force-native case');
       return;
     }
-    const result = runShim(['--force-native', '--semantic', 'save this conversation context to memory']);
+    const result = runShim(['--force-native', 'save this conversation context to memory']);
     expect(result.status).toBe(0);
     expect(parseJson(result.stdout)).toEqual(expect.arrayContaining([
       expect.objectContaining({
@@ -172,33 +172,6 @@ describe('skill_advisor.py compat shim', () => {
     expect(parseJson(result.stdout)).toEqual({
       PATH: '/bin',
       SPECKIT_RUNTIME: 'codex',
-    });
-  });
-
-  it('filters parent environment before spawning built-in CocoIndex search', () => {
-    const probe = [
-      'import importlib.util, json',
-      `path = ${JSON.stringify(shimPath)}`,
-      'spec = importlib.util.spec_from_file_location("skill_advisor_for_coco_env_test", path)',
-      'module = importlib.util.module_from_spec(spec)',
-      'spec.loader.exec_module(module)',
-      'print(json.dumps(module._cocoindex_env("/repo", {',
-      '  "PATH": "/bin",',
-      '  "HOME": "/tmp/home",',
-      '  "SECRET_TOKEN": "should-not-leak"',
-      '}), sort_keys=True))',
-    ].join('\n');
-
-    const result = spawnSync('python3', ['-c', probe], {
-      cwd: repoRoot,
-      encoding: 'utf8',
-    });
-
-    expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
-    expect(parseJson(result.stdout)).toEqual({
-      COCOINDEX_CODE_ROOT_PATH: '/repo',
-      HOME: '/tmp/home',
-      PATH: '/bin',
     });
   });
 });

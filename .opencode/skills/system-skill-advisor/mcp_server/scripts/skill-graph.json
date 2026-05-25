@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-24T06:32:16.105504+00:00",
-  "skill_count": 23,
+  "generated_at": "2026-05-25T10:59:34.433736+00:00",
+  "skill_count": 21,
   "families": {
     "cli": [
       "cli-claude-code",
@@ -17,7 +17,6 @@
     ],
     "mcp": [
       "mcp-chrome-devtools",
-      "mcp-coco-index",
       "mcp-code-mode"
     ],
     "sk-code": [
@@ -34,7 +33,6 @@
     ],
     "system": [
       "system-code-graph",
-      "system-rerank-sidecar",
       "system-skill-advisor",
       "system-spec-kit"
     ]
@@ -136,17 +134,6 @@
         "sk-code": 0.5
       }
     },
-    "mcp-coco-index": {
-      "enhances": {
-        "system-spec-kit": 0.3
-      },
-      "siblings": {
-        "system-rerank-sidecar": 0.4
-      },
-      "prerequisite_for": {
-        "system-skill-advisor": 0.7
-      }
-    },
     "mcp-code-mode": {
       "prerequisite_for": {
         "mcp-chrome-devtools": 0.7
@@ -211,32 +198,19 @@
         "system-spec-kit": 0.8
       },
       "enhances": {
-        "system-spec-kit": 0.6,
-        "mcp-coco-index": 0.4
+        "system-spec-kit": 0.6
       },
       "siblings": {
         "system-spec-kit": 0.5
       }
     },
-    "system-rerank-sidecar": {
-      "enhances": {
-        "system-spec-kit": 0.5,
-        "mcp-coco-index": 0.5
-      },
-      "siblings": {
-        "mcp-coco-index": 0.4
-      }
-    },
     "system-skill-advisor": {
-      "depends_on": {
-        "mcp-coco-index": 0.7
-      },
       "enhances": {
         "cli-claude-code": 0.7,
         "cli-codex": 0.7,
         "cli-gemini": 0.7,
         "mcp-chrome-devtools": 0.7,
-        "mcp-coco-index": 0.7,
+        "system-code-graph": 0.7,
         "mcp-code-mode": 0.7,
         "sk-code": 0.7,
         "sk-code-review": 0.7,
@@ -352,12 +326,6 @@
       "browser debug",
       "dom inspect",
       "lighthouse"
-    ],
-    "mcp-coco-index": [
-      "semantic search",
-      "code search",
-      "find code",
-      "coco index"
     ],
     "mcp-code-mode": [
       "code mode",
@@ -490,12 +458,6 @@
       "impact analysis",
       "detect changes"
     ],
-    "system-rerank-sidecar": [
-      "rerank sidecar",
-      "cross encoder sidecar",
-      "qwen reranker",
-      "localhost 8765 rerank"
-    ],
     "system-skill-advisor": [
       "skill routing",
       "gate 2",
@@ -519,7 +481,6 @@
     "cli-opencode",
     "deep-research",
     "deep-review",
-    "mcp-coco-index",
     "sk-code",
     "sk-code-review",
     "system-spec-kit"

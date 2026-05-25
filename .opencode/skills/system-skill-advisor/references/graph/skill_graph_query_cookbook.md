@@ -77,13 +77,11 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 {
   "queryType": "depends_on",
   "skillId": "system-skill-advisor",
-  "relationships": [
-    { "target": "mcp-coco-index", "weight": 0.7, "context": "semantic search routing and discovery signals" }
-  ]
+  "relationships": []
 }
 ```
 
-**Worked example**: `system-skill-advisor` declares one dependency on `mcp-coco-index` for semantic discovery signals. Query returns the single edge with its weight and context string from the source graph-metadata.json.
+**Worked example**: `system-skill-advisor` currently has no hard dependencies. Query returns an empty edge list from the source graph-metadata.json.
 
 **Gotcha**: An empty `relationships[]` does not mean the skill has no upstream needs. Many skills rely on `system-spec-kit` implicitly through the validate workflow without declaring it as a hard dependency. Cross-reference with the manual_testing_playbook for the runtime dependency story.
 
@@ -363,11 +361,11 @@ Query examples should reflect live MCP semantics and remain tied to the package-
   "graph": {
     "nodes": [
       { "skillId": "system-skill-advisor", "depth": 0 },
-      { "skillId": "mcp-coco-index", "depth": 1 },
+      { "skillId": "system-code-graph", "depth": 1 },
       { "skillId": "cli-claude-code", "depth": 1 }
     ],
     "edges": [
-      { "source": "system-skill-advisor", "target": "mcp-coco-index", "type": "depends_on" },
+      { "source": "system-skill-advisor", "target": "system-code-graph", "type": "enhances" },
       { "source": "system-skill-advisor", "target": "cli-claude-code", "type": "enhances" }
     ]
   }

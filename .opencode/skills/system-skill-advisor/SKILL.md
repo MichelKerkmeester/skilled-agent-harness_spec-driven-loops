@@ -414,7 +414,7 @@ Related skills:
 - `sk-doc` owns skill documentation, feature catalogs, install guides and playbooks.
 - `sk-code` owns implementation once routing selects a code surface.
 - `mcp-code-mode` owns external MCP orchestration workflows.
-- `mcp-coco-index` is a peer semantic-search route for code discovery, not a replacement for advisor routing.
+- `system-code-graph` owns structural code indexing, graph readiness and impact-analysis workflows.
 
 The advisor should recommend these skills. It should not absorb their implementation rules.
 

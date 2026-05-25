@@ -25,7 +25,6 @@ import importlib.util
 import json
 import os
 import re
-import shutil
 import sqlite3
 import subprocess
 import sys
@@ -42,15 +41,6 @@ from typing import Any, Dict, List, Optional, Set
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 SKILLS_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", ".."))
 REPO_ROOT = os.path.dirname(os.path.dirname(SKILLS_DIR))
-LOCAL_CCC_BIN = os.path.join(
-    SKILLS_DIR,
-    "mcp-coco-index",
-    "mcp_server",
-    ".venv",
-    "bin",
-    "ccc",
-)
-DISABLE_BUILTIN_SEMANTIC_ENV = "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC"
 DISABLE_ADVISOR_ENV = "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED"
 FORCE_LOCAL_ENV = "SPECKIT_SKILL_ADVISOR_FORCE_LOCAL"
 NATIVE_TIMEOUT_SECONDS = 2.5
@@ -202,7 +192,6 @@ NATIVE_BRIDGE_ENV_ALLOWLIST = {
     "SPECKIT_ADVISOR_FRESHNESS",
     "SPECKIT_SKILL_ADVISOR_FORCE_LOCAL",
     "SPECKIT_CODEX_HOOK_TIMEOUT_MS",
-    "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC",
     "SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST",
     "SPECKIT_ADVISOR_SHADOW_DELTA_PATH",
     "SPECKIT_METRICS_ENABLED",
@@ -308,13 +297,6 @@ def _native_bridge_env(source_env: Optional[Dict[str, str]] = None) -> Dict[str,
         for key, value in source.items()
         if key in NATIVE_BRIDGE_ENV_ALLOWLIST and isinstance(value, str)
     }
-
-
-def _cocoindex_env(project_root: str, source_env: Optional[Dict[str, str]] = None) -> Dict[str, str]:
-    """Return the explicit environment passed to the optional ccc subprocess."""
-    env = _native_bridge_env(source_env)
-    env["COCOINDEX_CODE_ROOT_PATH"] = project_root
-    return env
 
 
 def _sanitize_native_label(value: Any) -> Optional[str]:
@@ -1471,15 +1453,9 @@ INTENT_BOOSTERS = {
     "ricce": ("sk-prompt", 1.5),
     "scoring": ("sk-prompt", 0.8),
 
-    # ─────────────────────────────────────────────────────────────────
-    # MCP-COCO-INDEX: Semantic code search via vector embeddings
-    # ─────────────────────────────────────────────────────────────────
-    "cocoindex": ("mcp-coco-index", 2.5),
-    "coco": ("mcp-coco-index", 1.5),
-    "ccc": ("mcp-coco-index", 2.0),
-    "semantic": ("mcp-coco-index", 1.5),
-    "discover": ("mcp-coco-index", 0.6),
-    "implementation": ("mcp-coco-index", 0.5),
+    "semantic": ("system-code-graph", 0.8),
+    "discover": ("system-code-graph", 0.5),
+    "implementation": ("sk-code", 0.5),
 }
 
 # Ambiguous keywords that should boost MULTIPLE skills
@@ -1489,7 +1465,7 @@ MULTI_SKILL_BOOSTERS = {
     "audit": [("sk-code-review", 0.6), ("system-spec-kit", 0.3), ("mcp-chrome-devtools", 0.3), ("sk-code", 0.2)],
     "chain": [("mcp-code-mode", 0.3)],
     "changes": [("sk-git", 0.4), ("system-spec-kit", 0.2)],
-    "discover": [("mcp-coco-index", 0.5)],
+    "discover": [("system-code-graph", 0.5)],
     "css": [("sk-code", 0.6), ("mcp-chrome-devtools", 0.3)],
     "code": [("sk-code", 0.3)],
     "context": [("system-spec-kit", 0.4)],
@@ -1624,28 +1600,23 @@ PHRASE_INTENT_BOOSTERS = {
     "score agent": [("deep-agent-improvement", 2.6)],
     "evaluate agent": [("deep-agent-improvement", 2.6)],
     "agent evaluation": [("deep-agent-improvement", 2.6)],
-    # --- CocoIndex semantic code search ---
-    "semantic search": [("mcp-coco-index", 2.5)],
-    "code search": [("mcp-coco-index", 2.0)],
-    "vector search": [("mcp-coco-index", 2.0)],
-    "concept search": [("mcp-coco-index", 2.0)],
-    "cocoindex search": [("mcp-coco-index", 2.8)],
-    "coco index": [("mcp-coco-index", 2.5)],
-    "find implementation": [("mcp-coco-index", 1.5)],
-    "find usage": [("mcp-coco-index", 1.2)],
-    "find code that": [("mcp-coco-index", 1.8)],
-    "similar code": [("mcp-coco-index", 2.0)],
-    "where is the logic": [("mcp-coco-index", 1.5)],
-    "search codebase": [("mcp-coco-index", 2.2)],
-    "code that handles": [("mcp-coco-index", 1.5)],
-    "find implementations": [("mcp-coco-index", 2.0)],
-    "find similar": [("mcp-coco-index", 1.8)],
-    "semantic code search": [("mcp-coco-index", 2.5)],
-    "how is.*implemented": [("mcp-coco-index", 1.2)],
-    "how does.*work": [("mcp-coco-index", 1.0)],
-    "mcp-coco-index": [("mcp-coco-index", 2.8)],
-    "/mcp-coco-index": [("mcp-coco-index", 2.8)],
-    ".opencode/skills/mcp-coco-index": [("mcp-coco-index", 3.0)],
+    # --- Code discovery and structural search ---
+    "semantic search": [("system-code-graph", 1.5)],
+    "code search": [("system-code-graph", 2.0)],
+    "vector search": [("system-code-graph", 1.2)],
+    "concept search": [("system-code-graph", 1.2)],
+    "find implementation": [("system-code-graph", 1.5)],
+    "find usage": [("system-code-graph", 1.2)],
+    "find code that": [("system-code-graph", 1.8)],
+    "similar code": [("system-code-graph", 1.4)],
+    "where is the logic": [("system-code-graph", 1.5)],
+    "search codebase": [("system-code-graph", 2.2)],
+    "code that handles": [("system-code-graph", 1.5)],
+    "find implementations": [("system-code-graph", 2.0)],
+    "find similar": [("system-code-graph", 1.4)],
+    "semantic code search": [("system-code-graph", 1.5)],
+    "how is.*implemented": [("system-code-graph", 1.2)],
+    "how does.*work": [("system-code-graph", 1.0)],
     "convergence detection": [("deep-research", 2.0)],
     # --- Deep review mode (iterative code audit) ---
     "deep review": [("deep-review", 2.5)],
@@ -1886,79 +1857,6 @@ COMMAND_WORKFLOW_INVOCATION_MARKERS = (
     "use",
 )
 
-# ───────────────────────────────────────────────────────────────
-# 1b. COCOINDEX SEMANTIC SEARCH CONFIGURATION
-# ───────────────────────────────────────────────────────────────
-
-# Multiplier applied to CocoIndex relevance score (0-1) to produce an advisor boost.
-# With score=0.95 and multiplier=3.0 → boost=2.85 (enough for intent-boosted 0.80+ confidence).
-SEMANTIC_BOOST_MULTIPLIER = 3.0
-
-# Rank-decay factor: earlier results get more weight. Position 0 → 1.0, position 4 → 0.4.
-SEMANTIC_RANK_DECAY = 0.15
-
-# Subprocess timeout for built-in ccc search (seconds).
-COCOINDEX_TIMEOUT = 5
-
-# Max results from CocoIndex when using built-in search.
-COCOINDEX_LIMIT = 5
-
-AUTO_SEMANTIC_PHRASES = (
-    "find code that",
-    "search the codebase",
-    "search the code base",
-    "search semantically",
-    "how does",
-    "how is",
-    "where is the logic",
-    "where is",
-    "implementation of",
-    "implemented across",
-    "patterns for",
-    "graceful error",
-)
-
-AUTO_SEMANTIC_DISCOVERY_TOKENS = {
-    "auth",
-    "authentication",
-    "authorization",
-    "code",
-    "codebase",
-    "feature",
-    "graceful",
-    "implementation",
-    "implemented",
-    "logic",
-    "middleware",
-    "pattern",
-    "patterns",
-    "recovery",
-    "retry",
-}
-
-AUTO_SEMANTIC_TRIGGER_TOKENS = {
-    "find",
-    "how",
-    "search",
-    "semantic",
-    "where",
-}
-
-EXACT_MATCH_PHRASES = (
-    "exact string",
-    "exact text",
-    "literal string",
-    "regular expression",
-    "regex pattern",
-    "todo comments",
-    "import statements",
-    "find usages of",
-    "find references to",
-)
-
-# Pattern to extract skill folder name from file paths within the skill directory.
-_SKILL_PATH_RE = re.compile(r'\.opencode/skills/([^/]+)/')
-
 INTENT_NORMALIZATION_RULES = {
     "review": {
         "phrases": ["code review", "pr review", "security review", "quality gate", "request changes"],
@@ -2097,196 +1995,6 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
         )
 
     return skills
-
-
-# ───────────────────────────────────────────────────────────────
-# 2b. COCOINDEX SEMANTIC SEARCH
-# ───────────────────────────────────────────────────────────────
-
-def _resolve_skill_from_path(
-    file_path: str,
-    skills: Dict[str, Dict[str, Any]],
-) -> Optional[str]:
-    """Map a CocoIndex result file path to a known skill name.
-
-    Extracts the skill folder name from paths like
-    ``.opencode/skills/sk-git/SKILL.md`` and matches against loaded skills.
-    """
-    match = _SKILL_PATH_RE.search(file_path)
-    if not match:
-        return None
-    folder_name = match.group(1)
-
-    # Direct match (most common — folder name equals skill name)
-    if folder_name in skills:
-        return folder_name
-
-    # Fallback: check if a skill's source path contains this folder
-    for name, config in skills.items():
-        skill_path = config.get("path", "")
-        if skill_path and folder_name in skill_path:
-            return name
-
-    return None
-
-
-def _cocoindex_search_builtin(
-    query: str,
-    project_root: str,
-    limit: int = COCOINDEX_LIMIT,
-) -> List[Dict[str, Any]]:
-    """Run semantic search via ``ccc search`` and return parsed hits.
-
-    Returns a list of ``{"path": str, "score": float}`` dicts.
-    Falls back to an empty list on any error (binary missing, daemon down,
-    timeout, unexpected output).
-
-    Searches the entire codebase (no path filter) because skill SKILL.md
-    files may not be indexed, but other files reference them.
-    """
-    ccc_bin = resolve_cocoindex_binary()
-    if not ccc_bin:
-        return []
-
-    try:
-        result = subprocess.run(
-            [ccc_bin, "search", query, "--limit", str(limit * 2)],
-            capture_output=True,
-            text=True,
-            timeout=COCOINDEX_TIMEOUT,
-            cwd=project_root,
-            env=_cocoindex_env(project_root),
-        )
-        if result.returncode != 0:
-            return []
-        return _parse_ccc_output(result.stdout, limit)
-    except (FileNotFoundError, subprocess.TimeoutExpired, OSError):
-        return []
-
-
-# Pattern for ``--- Result N (score: X.XXX) ---`` header lines.
-_CCC_RESULT_RE = re.compile(r'---\s*Result\s+\d+\s*\(score:\s*([0-9.]+)\)\s*---')
-# Pattern for ``File: path:lines [language]`` lines.
-_CCC_FILE_RE = re.compile(r'^File:\s*(\S+)')
-
-
-def _parse_ccc_output(stdout: str, limit: int = COCOINDEX_LIMIT) -> List[Dict[str, Any]]:
-    """Extract skill references from ``ccc search`` text output.
-
-    Output format per result::
-
-        --- Result N (score: X.XXX) ---
-        File: path/to/file.ext:start-end [language]
-        <content snippet>
-
-    We scan both the ``File:`` path AND the content snippet for
-    ``.opencode/skills/<name>/`` references, mapping each to a skill hit.
-    """
-    hits: List[Dict[str, Any]] = []
-    seen_folders: set = set()
-    current_score: float = 0.5
-
-    for line in stdout.splitlines():
-        # Check for result header with score
-        score_match = _CCC_RESULT_RE.match(line)
-        if score_match:
-            current_score = float(score_match.group(1))
-            continue
-
-        # Check for File: line — the file path itself might be a skill file
-        file_match = _CCC_FILE_RE.match(line)
-        if file_match:
-            file_path = file_match.group(1)
-            skill_match = _SKILL_PATH_RE.search(file_path)
-            if skill_match:
-                folder = skill_match.group(1)
-                if folder not in seen_folders:
-                    seen_folders.add(folder)
-                    hits.append({"path": f".opencode/skills/{folder}/SKILL.md", "score": min(current_score, 1.0)})
-            continue
-
-        # Scan content lines for skill path references
-        for skill_ref in _SKILL_PATH_RE.finditer(line):
-            folder = skill_ref.group(1)
-            if folder not in seen_folders:
-                seen_folders.add(folder)
-                hits.append({"path": f".opencode/skills/{folder}/SKILL.md", "score": min(current_score, 1.0)})
-
-        if len(hits) >= limit:
-            break
-
-    return hits[:limit]
-
-
-def _apply_semantic_boosts(
-    semantic_hits: List[Dict[str, Any]],
-    skills: Dict[str, Dict[str, Any]],
-    skill_boosts: Dict[str, float],
-    boost_reasons: Dict[str, List[str]],
-) -> None:
-    """Blend CocoIndex semantic search results into keyword scoring.
-
-    Each hit contributes a boost proportional to its relevance score and
-    inversely proportional to its rank position (earlier = more boost).
-    Semantic hits are treated as intent evidence (``has_intent_boost=True``).
-    """
-    for rank, hit in enumerate(semantic_hits):
-        path = hit.get("path", "")
-        score = float(hit.get("score", 0.5))
-        skill_name = _resolve_skill_from_path(path, skills)
-        if not skill_name:
-            continue
-
-        # Rank decay: position 0 → 1.0, position 4 → 0.4
-        rank_factor = max(0.3, 1.0 - rank * SEMANTIC_RANK_DECAY)
-        boost = score * SEMANTIC_BOOST_MULTIPLIER * rank_factor
-
-        skill_boosts[skill_name] = skill_boosts.get(skill_name, 0) + boost
-        boost_reasons.setdefault(skill_name, []).append(
-            f"!semantic(rank={rank + 1},score={score:.2f})"
-        )
-
-
-def resolve_cocoindex_binary() -> Optional[str]:
-    """Return the preferred CocoIndex binary path, favoring the repo-local install."""
-    if os.path.isfile(LOCAL_CCC_BIN) and os.access(LOCAL_CCC_BIN, os.X_OK):
-        return LOCAL_CCC_BIN
-    return shutil.which("ccc")
-
-
-def built_in_semantic_search_disabled() -> bool:
-    """Return True when external CocoIndex lookup is disabled via environment."""
-    value = os.environ.get(DISABLE_BUILTIN_SEMANTIC_ENV, "").strip().lower()
-    return value in {"1", "true", "yes", "on"}
-
-
-def is_exact_match_prompt(prompt_lower: str, tokens: List[str]) -> bool:
-    """Return True when the prompt is explicitly asking for exact-text search."""
-    if any(phrase in prompt_lower for phrase in EXACT_MATCH_PHRASES):
-        return True
-    exact_tokens = {"exact", "identifier", "identifiers", "literal", "regex", "regexp", "symbol", "symbols"}
-    return bool(exact_tokens.intersection(tokens))
-
-
-def should_auto_use_semantic_search(prompt: str) -> bool:
-    """Decide whether semantic search should run automatically for this prompt."""
-    prompt_lower = prompt.lower()
-    tokens = re.findall(r'\b\w+\b', prompt_lower)
-
-    if not prompt.strip():
-        return False
-    if is_exact_match_prompt(prompt_lower, tokens):
-        return False
-    if not resolve_cocoindex_binary():
-        return False
-
-    if any(phrase in prompt_lower for phrase in AUTO_SEMANTIC_PHRASES):
-        return True
-
-    token_set = set(tokens)
-    return bool(AUTO_SEMANTIC_TRIGGER_TOKENS.intersection(token_set)) and bool(
-        AUTO_SEMANTIC_DISCOVERY_TOKENS.intersection(token_set)
-    )
 
 
 def expand_query(prompt_tokens: List[str]) -> List[str]:
@@ -3122,17 +2830,11 @@ def _apply_iteration_loop_tiebreaker(
 # 4. ANALYSIS
 # ───────────────────────────────────────────────────────────────
 
-def analyze_request(
-    prompt: str,
-    semantic_hits: Optional[List[Dict[str, Any]]] = None,
-) -> List[Dict[str, Any]]:
+def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     """Analyze user request and return ranked skill recommendations.
 
     Args:
         prompt: The user request text.
-        semantic_hits: Optional CocoIndex search results as a list of
-            ``{"path": str, "score": float}`` dicts. When provided, these
-            are blended into keyword scoring as additional intent evidence.
     """
     if not prompt:
         return []
@@ -3153,14 +2855,6 @@ def analyze_request(
         skill_boosts=skill_boosts,
         boost_reasons=boost_reasons,
     )
-
-    if should_auto_use_semantic_search(prompt):
-        skill_boosts["mcp-coco-index"] = skill_boosts.get("mcp-coco-index", 0.0) + 1.8
-        boost_reasons.setdefault("mcp-coco-index", []).append("!intent:semantic-code-search")
-
-    # Blend CocoIndex semantic search results when available
-    if semantic_hits:
-        _apply_semantic_boosts(semantic_hits, skills, skill_boosts, boost_reasons)
 
     for token in all_tokens:
         if token in INTENT_BOOSTERS:
@@ -3544,10 +3238,9 @@ def analyze_prompt(
     uncertainty_threshold: float = DEFAULT_UNCERTAINTY_THRESHOLD,
     confidence_only: bool = False,
     show_rejections: bool = False,
-    semantic_hits: Optional[List[Dict[str, Any]]] = None,
 ) -> List[Dict[str, Any]]:
     """Analyze one prompt and apply requested filtering mode."""
-    recommendations = analyze_request(prompt, semantic_hits=semantic_hits)
+    recommendations = analyze_request(prompt)
     return filter_recommendations(
         recommendations=recommendations,
         confidence_threshold=confidence_threshold,
@@ -3563,7 +3256,6 @@ def analyze_batch(
     uncertainty_threshold: float,
     confidence_only: bool,
     show_rejections: bool,
-    semantic_mode: bool = False,
 ) -> List[Dict[str, Any]]:
     """Analyze multiple prompts in a single process for lower overhead."""
     results = []
@@ -3571,12 +3263,6 @@ def analyze_batch(
         trimmed = prompt.strip()
         if not trimmed:
             continue
-
-        hits = None
-        if semantic_mode and not built_in_semantic_search_disabled():
-            hits = _cocoindex_search_builtin(trimmed, REPO_ROOT)
-        elif should_auto_use_semantic_search(trimmed) and not built_in_semantic_search_disabled():
-            hits = _cocoindex_search_builtin(trimmed, REPO_ROOT)
 
         results.append({
             "prompt": trimmed,
@@ -3586,7 +3272,6 @@ def analyze_batch(
                 uncertainty_threshold=uncertainty_threshold,
                 confidence_only=confidence_only,
                 show_rejections=show_rejections,
-                semantic_hits=hits,
             ),
         })
     return results
@@ -3623,14 +3308,6 @@ Examples:
   cat prompts.txt | python skill_advisor.py --batch-stdin
   python skill_advisor.py --health
   python skill_advisor.py --validate-only
-
-  # CocoIndex semantic search (built-in, requires ccc daemon):
-  python skill_advisor.py "deploy to production" --semantic
-  python skill_advisor.py "deploy to production" --cocoindex
-
-  # CocoIndex semantic search (pre-computed MCP results):
-  python skill_advisor.py "deploy to production" --semantic-hits '[{"path":".opencode/skills/sk-git/SKILL.md","score":0.92}]'
-  python skill_advisor.py "deploy to production" --cocoindex-hits '[{"path":".opencode/skills/sk-git/SKILL.md","score":0.92}]'
         '''
     )
     parser.add_argument('prompt', nargs='?', default='',
@@ -3663,10 +3340,6 @@ Examples:
                         help='Analyze prompts from stdin (one prompt per line) in one process.')
     parser.add_argument('--force-refresh', action='store_true',
                         help='Force refresh of skill discovery cache before analysis.')
-    parser.add_argument('--semantic', '--cocoindex', dest='semantic', action='store_true',
-                         help='Run CocoIndex semantic search (via ccc CLI) to supplement keyword matching.')
-    parser.add_argument('--semantic-hits', '--cocoindex-hits', dest='semantic_hits', type=str, default='',
-                         help='Pre-computed CocoIndex results as JSON array of {"path": str, "score": float} objects.')
 
     args = parser.parse_args()
 
@@ -3695,10 +3368,7 @@ Examples:
         return 0
 
     if args.health:
-        cocoindex_binary = resolve_cocoindex_binary()
         health = health_check()
-        health["cocoindex_available"] = cocoindex_binary is not None
-        health["cocoindex_binary"] = cocoindex_binary or ""
         print(json.dumps(health, indent=2))
         return 0
 
@@ -3708,18 +3378,6 @@ Examples:
     if sum(bool(value) for value in [args.batch_file, args.batch_stdin, args.stdin]) > 1:
         print(json.dumps({"error": "Use only one of --batch-file, --batch-stdin, or --stdin."}, indent=2))
         return 2
-
-    # Parse pre-computed semantic hits (JSON array from MCP search results)
-    pre_computed_hits = None
-    if args.semantic_hits:
-        try:
-            pre_computed_hits = json.loads(args.semantic_hits)
-            if not isinstance(pre_computed_hits, list):
-                print(json.dumps({"error": "--semantic-hits/--cocoindex-hits must be a JSON array"}), file=sys.stderr)
-                return 2
-        except json.JSONDecodeError as exc:
-            print(json.dumps({"error": f"Invalid --semantic-hits/--cocoindex-hits JSON: {exc}"}), file=sys.stderr)
-            return 2
 
     if args.batch_file:
         try:
@@ -3735,7 +3393,6 @@ Examples:
             uncertainty_threshold=args.uncertainty,
             confidence_only=args.confidence_only,
             show_rejections=args.show_rejections,
-            semantic_mode=args.semantic,
         ), indent=2))
         return 0
 
@@ -3747,7 +3404,6 @@ Examples:
             uncertainty_threshold=args.uncertainty,
             confidence_only=args.confidence_only,
             show_rejections=args.show_rejections,
-            semantic_mode=args.semantic,
         ), indent=2))
         return 0
 
@@ -3761,10 +3417,7 @@ Examples:
         print(json.dumps([]))
         return 0
 
-    should_try_native = (
-        not args.force_local
-        and (args.force_native or (pre_computed_hits is None and not args.semantic))
-    )
+    should_try_native = not args.force_local
 
     if should_try_native:
         probe = probe_native_advisor()
@@ -3790,20 +3443,12 @@ Examples:
         print(json.dumps({"error": "Native advisor unavailable", "reason": "NATIVE_CALL_FAILED"}, indent=2))
         return 2
 
-    # Resolve semantic hits: pre-computed > built-in search > none
-    semantic_hits = pre_computed_hits
-    if semantic_hits is None and args.semantic and not built_in_semantic_search_disabled():
-        semantic_hits = _cocoindex_search_builtin(args.prompt, REPO_ROOT)
-    elif semantic_hits is None and should_auto_use_semantic_search(args.prompt) and not built_in_semantic_search_disabled():
-        semantic_hits = _cocoindex_search_builtin(args.prompt, REPO_ROOT)
-
     results = analyze_prompt(
         prompt=args.prompt,
         confidence_threshold=args.threshold,
         uncertainty_threshold=args.uncertainty,
         confidence_only=args.confidence_only,
         show_rejections=args.show_rejections,
-        semantic_hits=semantic_hits,
     )
 
     print(json.dumps(results, indent=2))
