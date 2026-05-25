@@ -63,7 +63,7 @@
 
 **MANDATORY TOOLS:**
 - **Spec Kit Memory MCP** - research, context recovery, saves. See Memory Save Rule below for save mechanics.
-- **CocoIndex Code MCP** - semantic code search. MUST use when exploring unfamiliar code, finding implementations by concept/intent, or when Grep/Glob exact matching is insufficient. Skill: `.opencode/skills/mcp-coco-index/`
+- **System Code Graph MCP** - structural code search, impact analysis, and relationship queries. Use with Grep for concept discovery; `memory_search` indexes spec docs and saved memory, not arbitrary code.
 - **Git (sk-git)** - worktree setup, conventional commits, PR creation. Full details: `.opencode/skills/sk-git/`. Trigger keywords: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes
 
 **CODE SEARCH DECISION TREE:**
@@ -78,22 +78,23 @@ Need to find code?
   |     YES --> Glob (pattern match)
   |
   +-- Searching by concept, intent, or "how does X work"?
-  |     YES --> CocoIndex search (semantic)
+  |     YES --> Code Graph structural query + Grep pattern search
   |             +-- Verify hits with Read
-  |             +-- Confirm with Grep if needed
+  |             +-- Iterate Grep terms from likely symbols, filenames, domain words, and errors
   |
   +-- Exploring unfamiliar code?
-        YES --> CocoIndex search FIRST, then Grep/Glob to fill gaps
+        YES --> Code Graph overview/structure FIRST, then Grep/Glob and Read to fill gaps
 ```
 
-CocoIndex triggers: "find code that does X", "how is X implemented", "where is the logic for X", "similar code", "find patterns", exploring unfamiliar modules, any intent-based query where exact tokens are unknown.
+Hybrid code discovery triggers: "find code that does X", "how is X implemented", "where is the logic for X", "similar code", "find patterns", exploring unfamiliar modules, and any intent-based query where exact tokens are unknown.
 
-| Approach     | Command                                                       | When                 |
-| ------------ | ------------------------------------------------------------- | -------------------- |
-| **MCP tool** | `search(query, languages, paths, num_results, refresh_index)` | AI agent integration |
-| **CLI**      | `ccc search "query" --lang X --path Y --limit N`              | Direct terminal use  |
+| Approach | Command | When |
+| -------- | ------- | ---- |
+| **Code Graph** | `code_graph_query`, `code_graph_context`, `detect_changes` | Structural discovery: callers, imports, symbols, outlines, impact |
+| **Grep** | `rg -n "<pattern>" <path>` | Concept discovery via likely tokens, domain terms, filenames, and errors |
+| **Glob** | `rg --files <path> \| rg "<path-pattern>"` | File/path discovery |
 
-Set `refresh_index=false` after the first search in a session unless the codebase changed.
+Use `memory_search` only for spec docs, saved decisions, and memory context. It does not index arbitrary project code.
 
 ---
 
@@ -105,7 +106,7 @@ Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup conte
 
 1. `/spec_kit:resume` is the canonical surface; rebuild context in order: `handover.md` → `_memory.continuity` → canonical spec docs (`implementation-summary.md` → `tasks.md` → `plan.md` → `spec.md`).
 2. **Phase parent** (target has `[0-9]{3}-name/` children with their own spec/description): honor `graph-metadata.json.derived.last_active_child_id`, else list children with statuses. Lean trio policy — only `spec.md`, `description.json`, `graph-metadata.json` live at parent; read the chosen child's continuity ladder, NOT the parent's plan/tasks/implementation-summary.
-3. Stale or missing structural context: run `session_bootstrap()`, then `code_graph_scan` if needed. Graph unavailable: use CocoIndex + direct reads, but keep the packet-local continuity ladder as source-of-truth. Code-graph implementation/docs are owned by `.opencode/skills/system-code-graph/`; tool names stay stable.
+3. Stale or missing structural context: run `session_bootstrap()`, then `code_graph_scan` if needed. Graph unavailable: use Grep/Glob + direct reads, but keep the packet-local continuity ladder as source-of-truth. Code-graph implementation/docs are owned by `.opencode/skills/system-code-graph/`; tool names stay stable.
 4. Re-anchor on spec folder, current task, blockers, and next steps before making changes.
 
 ---
@@ -150,7 +151,7 @@ Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup conte
 | **New spec folder**                  | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                                                                                                                                                                                                                                    |
 | **Code work**                        | sk-code skill → smart router (auto-detects the active stack from CWD + library markers; unsupported surfaces ask for disambiguation); Phase 1-3 (Implement → Quality Gate → Debug → Verify)                                                                                                                                                                |
 | **File modification**                | Gate 3 (ask spec folder) → Gate 1 → Gate 2 → Load memory context → Execute                                                                                                                                                                                                                                                                                 |
-| **Code search**                      | CocoIndex for semantic/intent → Grep for exact text → Glob for file paths → Read for contents                                                                                                                                                                                                                                                              |
+| **Code search**                      | Code Graph for structure + Grep for concept/token discovery → Glob for file paths → Read for contents                                                                                                                                                                                                                                                      |
 | **Research/exploration**             | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                                                                                                                                                                                                                                               |
 | **Git workflow**                     | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                                                                                                                                                                                                                                       |
 | **Prompt improvement**    | Prompt engineering via `sk-prompt`. Dispatched by `/prompt`                                                                                                                                                                                                                                                                                                |
@@ -163,10 +164,10 @@ Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup conte
 | **Claim completion**                 | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` → Load `checklist.md` → Verify ALL items → Mark with evidence                                                                                                                                                                                                  |
 | **Save context**                     | `/memory:save` OR compose JSON → `generate-context.js --json '<data>' [spec-folder]` → Auto-indexed                                                                                                                                                                                                                                                        |
 | **End session**                      | `/memory:save` → `handover_state` routing updates `handover.md` → Provide continuation prompt                                                                                                                                                                                                                                                              |
-| **Memory DB admin**                  | `/memory:manage` → stats, health, cleanup, retention, validate, checkpoint, ingest, CCC operations                                                                                                                                                                                                                                                         |
+| **Memory DB admin**                  | `/memory:manage` → stats, health, cleanup, retention, validate, checkpoint, ingest, routing diagnostics                                                                                                                                                                                                                                                    |
 | **Analysis/evaluation**              | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history; inspect `memory_health.data.routing` for graph/degree channel utilization                                                                                                                                                                                            |
 | **Constitutional memory**            | `/memory:learn` → create, list, edit, remove, budget                                                                                                                                                                                                                                                                                                     |
-| **Doctor command surface**           | `/doctor <target>` argv-positional router for subsystem diagnostics/repairs (memory, causal-graph, code-graph, deep-loop, cocoindex, skill-advisor, skill-budget); `/doctor:mcp install\|debug` for MCP infra; `/doctor:update` for dependency-ordered cross-subsystem alignment with snapshot/validate/rollback/run log. Do not route to deleted legacy `/doctor:<name>` colon-form commands                                                                                                                                                                                |
+| **Doctor command surface**           | `/doctor <target>` argv-positional router for subsystem diagnostics/repairs (memory, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget); `/doctor:mcp install\|debug` for MCP infra; `/doctor:update` for dependency-ordered cross-subsystem alignment with snapshot/validate/rollback/run log. Do not route to deleted legacy `/doctor:<name>` colon-form commands                                                                                                                                                                                           |
 
 ---
 
@@ -328,7 +329,7 @@ Use the agent directory that matches the active runtime/provider profile:
 
 - **`@orchestrate`** - Multi-agent coordination, complex workflows
 - **`@code`** - Application-code implementation specialist (LEAF, write-capable). Stack-aware via `sk-code` skill delegation; fail-closed verification. Dispatched ONLY by `@orchestrate` (orchestrator-only convention).
-- **`@context`** - LEAF-only retrieval agent for codebase search, pattern discovery, and context loading. Uses memory triggers/context, memory search, CocoIndex, and direct code evidence. LEAF: no sub-agent dispatch, no Task tool, no writes.
+- **`@context`** - LEAF-only retrieval agent for codebase search, pattern discovery, and context loading. Uses memory triggers/context, memory search for spec docs, Code Graph + Grep for code discovery, and direct code evidence. LEAF: no sub-agent dispatch, no Task tool, no writes.
 - **`@review`** - Code review, PRs, quality gates (READ-ONLY)
 - **`@debug`** - Fresh perspective debugging (5-phase root-cause). Dispatched via Task tool; retains exclusive write access for `debug-delegation.md`
 - **`@markdown`** - Template-first markdown/documentation executor (LEAF, write-capable). Handles `/create:*` commands, orchestrator-scoped spec-doc authoring, and any explicitly scoped markdown writing task with a resolved output path. Loads `sk-doc` on every invocation, reads the command-mapped or document-appropriate template before writing, and refuses only unscoped writes, path-ambiguous targets, or nested delegation. The Phase 0 gate is scope-based, not `/create:*`-only. Gate 3 still applies to writes unless the user or command contract has already supplied the answer.
@@ -351,12 +352,11 @@ Use the agent directory that matches the active runtime/provider profile:
 
 **Two systems:**
 
-1. **Native MCP** (`opencode.json`) - Direct tools, called natively. **6 servers registered:**
+1. **Native MCP** (`opencode.json`) - Direct tools, called natively. **5 servers registered:**
    - Sequential Thinking
    - Spec Kit Memory (`mk-spec-memory`, 39 tools)
    - Skill Advisor (`mk_skill_advisor`, 9 tools — 8 public + 1 internal)
-   - Code Graph (`mk_code_index`, 11 tools)
-   - CocoIndex Code
+   - Code Graph (`mk_code_index`, 8 tools)
    - Code Mode
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`

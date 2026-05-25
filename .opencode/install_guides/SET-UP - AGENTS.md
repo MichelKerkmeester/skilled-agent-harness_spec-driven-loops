@@ -498,7 +498,7 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 
 #### Complete Skills Reference
 
-**Current Installation (17 skills):**
+**Current Installation (16 skills):**
 
 | Skill                  | Version  | Primary Triggers                                          | Purpose                                          |
 | ---------------------- | -------- | --------------------------------------------------------- | ------------------------------------------------ |
@@ -507,7 +507,6 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 | `cli-gemini`           | v1.2.5.0 | "gemini", "research", "web search"                        | Gemini CLI orchestration                         |
 | `cli-opencode`         | v1.3.0.0 | "opencode", "parallel", "handoff"                         | OpenCode CLI orchestration                       |
 | `mcp-chrome-devtools`  | v1.0.7.0 | "screenshot", "bdg", "browser debug", "DOM"               | Chrome DevTools Protocol debugging               |
-| `mcp-coco-index`       | v1.0.0   | "semantic search", "find code", "similar code"            | Semantic code search via CocoIndex               |
 | `mcp-code-mode`        | v1.0.7.0 | "Webflow", "external tool"                                | MCP orchestration for external tools             |
 | `sk-code`              | v2.0.0   | "implement", "debug", "verify", "opencode", "webflow"    | Webflow frontend and OpenCode system code router |
 | `sk-code-review`       | v1.2.0.0 | "review", "audit", "PR"                                   | Findings-first code review                       |
@@ -958,7 +957,7 @@ User Message
 #### Example: Frontend Project (Webflow/CSS/JS)
 
 **Before (Universal Template):**
-- All 17 skills installed
+- All 16 skills installed
 - All 3 MCP servers configured
 - All 19 commands available
 
@@ -983,7 +982,7 @@ User Message
 #### Example: Backend API Project
 
 **Before (Universal Template):**
-- All 17 skills installed
+- All 16 skills installed
 - All 3 MCP servers configured
 
 **After (Backend-Optimized):**
@@ -1200,7 +1199,7 @@ Update AGENTS.md to reference only the commands that exist in your `.opencode/co
 
 | Category          | Count  | Items                                                                                                                       |
 | ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**        | 15     | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, system-spec-kit, cli-codex, cli-claude-code, cli-gemini, sk-code, sk-code-review, deep-research, sk-doc, sk-git, sk-prompt |
+| **Skills**        | 14     | mcp-chrome-devtools, mcp-code-mode, system-spec-kit, cli-codex, cli-claude-code, cli-gemini, sk-code, sk-code-review, deep-research, sk-doc, sk-git, sk-prompt |
 | **MCP Servers**   | 3      | sequential-thinking, mk-spec-memory, code-mode                                                                             |
 | **Commands**      | 22     | /create:* (7), /memory:* (6), /speckit:* (8), agent_router (1)                                                             |
 | **Gates + Rules** | 3 + 3  | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification) |

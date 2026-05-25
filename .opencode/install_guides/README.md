@@ -57,7 +57,7 @@ The `install_guides/` directory is the central hub for all OpenCode setup and in
 |----------|-------|---------|
 | Guide files | 13 | 6 MCP guides + 2 skill-package install guides, 4 SET-UP guides, 1 index guide (this README) |
 | Install scripts | 8 | 3 real + 5 symlinks in `install_scripts/` |
-| MCP servers covered | 7 | Code Mode, Spec Kit Memory, Skill Advisor, Sequential Thinking, Chrome DevTools, CocoIndex Code, System Code Graph |
+| MCP servers covered | 6 | Code Mode, Spec Kit Memory, Skill Advisor, Sequential Thinking, Chrome DevTools, System Code Graph |
 | Platforms supported | 3 | macOS, Linux, Windows WSL |
 
 ### What this guide covers
@@ -77,7 +77,6 @@ All `.md` guide files in this directory (5 real + 7 symlinks), grouped by type:
 | **[README.md](./README.md)** (this file) | Real | Main installation walkthrough and directory index |
 | **MCP Guides** | | |
 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) | Symlink | Chrome DevTools MCP server (bdg CLI) |
-| [MCP - CocoIndex Code.md](./MCP%20-%20CocoIndex%20Code.md) | Symlink | CocoIndex semantic code search MCP |
 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) | Symlink | Code Mode orchestration MCP |
 | [MCP - Sequential Thinking.md](./MCP%20-%20Sequential%20Thinking.md) | Real | Sequential Thinking MCP server |
 | [MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md) | Symlink | Spec Kit Memory MCP server |
@@ -322,9 +321,8 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | Code Mode                          | MCP Server | External tool orchestration (GitHub, your CMS, etc.)                       | Node.js 18+                             |
 | Spec Kit Memory (`mk-spec-memory`) | MCP Server | Conversation context preservation                                          | Node.js 20.11+                          |
 | Skill Advisor (`mk_skill_advisor`) | MCP Server | Native advisor_recommend + skill_graph_* (8 tools)                         | Node.js 20.11+                          |
-| System Code Graph (`mk_code_index`)| MCP Server | Structural AST + blast-radius + neighborhood context (10 tools)            | Node.js 20.11+                          |
+| System Code Graph (`mk_code_index`)| MCP Server | Structural AST + blast-radius + neighborhood context (8 tools)             | Node.js 20.11+                          |
 | Sequential Thinking                | MCP Server | Complex reasoning chains                                                    | npx (Node.js 18+)                       |
-| CocoIndex Code (`cocoindex_code`)  | MCP Server | Semantic code search via embeddings                                         | Python 3.11+                            |
 | Native Skills                      | Built-in   | Skill discovery from .opencode/skills/                                      | None (OpenCode v1.0.190+)               |
 | Chrome DevTools CLI                | CLI Tool   | Browser debugging & automation                                              | Node.js 18+                             |
 | Antigravity Auth                   | Plugin     | Google OAuth for Claude                                                     | Node.js 18+                             |
@@ -347,7 +345,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
          │                            │                            │
          ▼                            ▼                            ▼
     ┌─────────────────────────────────────────────────────────────────────┐
-    │                     6 NATIVE MCP SERVERS                            │
+    │                     5 NATIVE MCP SERVERS                            │
     │                   (configured in opencode.json)                      │
     └─────────────────────────────────────────────────────────────────────┘
                                        │
@@ -705,7 +703,7 @@ grep -q '"sequential_thinking"' opencode.json && echo "✅ PASS" || echo "❌ FA
 
 ### 10.4 System Code Graph (`mk_code_index` — Structural Code Intelligence)
 
-The standalone `mk_code_index` MCP server registers 11 tools for structural AST indexing, blast-radius analysis, neighborhood context, query classification and change detection (`code_graph_scan/query/context/status/verify/apply/classify_query_intent`, `detect_changes`, `ccc_status/reindex/feedback`).
+The standalone `mk_code_index` MCP server registers 8 tools for structural AST indexing, blast-radius analysis, neighborhood context, query classification and change detection (`code_graph_scan/query/context/status/verify/apply/classify_query_intent`, `detect_changes`).
 
 > **Detailed Guide:** See [system-code-graph/INSTALL_GUIDE.md](../skills/system-code-graph/INSTALL_GUIDE.md) for full installation, configuration, verification, and troubleshooting.
 > **Runtime Diagnostics:** See [SET-UP - Code Graph.md](./SET-UP%20-%20Code%20Graph.md) for `/doctor code-graph` post-install audit.
@@ -733,7 +731,7 @@ npm --prefix .opencode/skills/system-code-graph run build
       "command": ["node", ".opencode/bin/mk-code-index-launcher.cjs"],
       "environment": {
         "_NOTE_1_DB": "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
-        "_NOTE_2_TOOLS": "Registers 11 tools: code_graph_scan/query/context/status/verify/apply/classify_query_intent, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*",
+        "_NOTE_2_TOOLS": "Registers 8 tools: code_graph_scan/query/context/status/verify/apply/classify_query_intent, detect_changes. MCP namespace: mcp__mk_code_index__*",
         "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_AGENTS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "false",
@@ -1051,7 +1049,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 ### Checklist
 
 - [ ] Prerequisites: Node.js 18+, Python 3.10+, uv
-- [ ] All 3 native MCP servers configured in opencode.json
+- [ ] All native MCP servers configured in opencode.json
 - [ ] Skills directory exists with native skills
 - [ ] Configuration files exist and are valid JSON
 
@@ -1086,9 +1084,9 @@ After the static checks above pass, run the interactive doctor surface to verify
 
 - `/doctor` opens an 11-option menu. **Option 1** is "Update everything to match latest spec-kit release" — the right pick after a fresh install (runs `/doctor:update --migrate`).
 - `/doctor:update` rebuilds every database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
-- `/doctor:mcp debug` checks all 6 MCP servers (Spec Kit Memory, Skill Advisor, System Code Graph, CocoIndex Code, Code Mode, Sequential Thinking) and offers guided repair with `--fix`.
+- `/doctor:mcp debug` checks the native MCP servers (Spec Kit Memory, Skill Advisor, System Code Graph, Code Mode, Sequential Thinking) and offers guided repair with `--fix`.
 
-Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical 7 subsystem targets: memory, causal-graph, code-graph, deep-loop, cocoindex, skill-advisor, skill-budget.
+Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget.
 
 ---
 
@@ -1208,7 +1206,7 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 
 After installing OpenCode components, customize the AI agent configuration for your project.
 
-> **🎯 This is a public repo template.** Of the shipped skills, `sk-code` is the one that carries stack-specific patterns — start there when adapting to your project. The other shipped skills (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project regardless of frontend stack, animation library, CMS, or backend language. Many teams will also add their own skills on top of the shipped set — that's expected. See §15.5 below for the customization map.
+> **🎯 This is a public repo template.** Of the shipped skills, `sk-code` is the one that carries stack-specific patterns — start there when adapting to your project. The other shipped skills (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project regardless of frontend stack, animation library, CMS, or backend language. Many teams will also add their own skills on top of the shipped set — that's expected. See §15.5 below for the customization map.
 
 ### 15.1 AGENTS.md Customization
 
@@ -1288,7 +1286,7 @@ This template ships with `sk-code` configured for Webflow + OpenCode + cross-sta
 | Skill / Surface | Out-of-the-box | Notes |
 |---|---|---|
 | **`sk-code`** | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace shipped surfaces with your own (e.g., Next.js + Tailwind + Postgres, React Native + Reanimated, Go + sqlc). |
-| Every other shipped skill | ✅ Codebase-agnostic | `sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`, `mcp-code-mode`, `deep-research`, `deep-review`, `sk-prompt`, `deep-agent-improvement`, `cli-*`, `mcp-chrome-devtools` all work for any project unmodified. |
+| Every other shipped skill | ✅ Codebase-agnostic | `sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-code-mode`, `deep-research`, `deep-review`, `sk-prompt`, `deep-agent-improvement`, `cli-*`, `mcp-chrome-devtools` all work for any project unmodified. |
 
 **What "adapting `sk-code`" looks like:**
 1. Replace `references/{webflow,opencode,motion_dev}/` with your stack's references (e.g., `references/nextjs/`, `references/postgres/`).
@@ -1523,7 +1521,7 @@ Instead of manual troubleshooting, use the built-in diagnostic commands that che
 /doctor:mcp install
 
 # Diagnose or install a single server
-/doctor:mcp debug --server cocoindex_code
+/doctor:mcp debug --server mk_code_index
 /doctor:mcp install --server mk-spec-memory
 ```
 
@@ -1560,7 +1558,7 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | --------------------------- | --------------------------------------------- |
 | `opencode.json`             | OpenCode MCP server config (4 native servers) |
 | `.utcp_config.json`         | Code Mode external tools config               |
-| `.opencode/skills/`          | Skill definitions (17 skills)                 |
+| `.opencode/skills/`          | Skill definitions (16 skills)                 |
 | `.opencode/agents/`          | Base agent source definitions                 |
 | `.opencode/install_guides/` | Installation documentation                    |
 | `~/.opencode-backup/`       | Configuration backups                         |
@@ -1570,8 +1568,8 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 
 | Category           | Count | Items                                                                                                                    |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
-| Native MCP Servers | 6     | code_mode, mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, sequential_thinking                          |
-| Skills             | 17    | cli-claude-code, cli-codex, cli-gemini, cli-opencode, mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, sk-code, sk-code-review, deep-research, deep-review, sk-doc, sk-git, deep-agent-improvement, sk-prompt, system-spec-kit |
+| Native MCP Servers | 5     | code_mode, mk-spec-memory, mk_skill_advisor, mk_code_index, sequential_thinking                                          |
+| Skills             | 16    | cli-claude-code, cli-codex, cli-gemini, cli-opencode, mcp-chrome-devtools, mcp-code-mode, sk-code, sk-code-review, deep-research, deep-review, sk-doc, sk-git, deep-agent-improvement, sk-prompt, system-spec-kit |
 | Commands           | 22    | /create:* (7), /memory:* (6), /speckit:* (8), agent_router (1)                                                         |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                      |

@@ -327,7 +327,7 @@ context_loading:
 workflow:
   step_1_review_plan_and_spec:
     code_search_guidance:
-      note: "Use CocoIndex (mcp__cocoindex_code__search) for semantic discovery when verifying plan references to codebase patterns. Use Grep only for exact known tokens."
+      note: "Use Code Graph structural queries (code_graph_query) + Grep to verify plan references against codebase patterns; verify hits with Read. memory_search is for spec docs/memory, not arbitrary code."
       example_queries: ["project structure entry points", "similar feature implementation", "existing utility patterns"]
     purpose: Review spec and planning artifacts
     activities:

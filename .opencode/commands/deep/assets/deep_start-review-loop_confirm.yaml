@@ -73,8 +73,8 @@ agent_config:
   mode: subagent
   model: opus
   leaf_only: true
-  tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__cocoindex_code__search]
-  mcp_servers: [mk-spec-memory, cocoindex_code]
+  tools: [Read, Write, Edit, Bash, Grep, Glob]
+  mcp_servers: [mk-spec-memory]
   tool_call_budget: { target: 9, soft_max: 12, hard_max: 13 }
 
 # ─────────────────────────────────────────────────────────────────

@@ -5,7 +5,7 @@
 | 📋 **Spec Kit Framework** | Structured plans, task tracking, validation gates, and handover docs |
 | 🧠 **Cognitive Memory** | Local-first project memory for decisions, context, and continuity |
 | ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context |
-| 🔍 **Code Graph** | Callers, imports, impact paths, and concept-based code discovery |
+| 🔍 **Code Graph** | Callers, imports, impact paths, and Code Graph + Grep code discovery |
 | 🤖 **11 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
 | 🎯 **21 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
 
@@ -646,7 +646,7 @@ Safety is non-negotiable: the tool checks the graph is fresh before parsing the 
 
 Under the hood the scan runner is split into four declared phases (`find-candidates` → `parse-candidates` → `finalize` → `emit-metrics`) for clearer instrumentation, with no SQLite schema changes.
 
-The code graph runtime has its own feature catalog and operator playbook under [system-code-graph/feature_catalog](.opencode/skills/system-code-graph/feature_catalog/) and [system-code-graph/manual_testing_playbook](.opencode/skills/system-code-graph/manual_testing_playbook/). They document runtime features and manual scenarios for freshness, scan/verify/status, `detect_changes`, context retrieval, coverage graph, CCC and doctor-code-graph behavior.
+The code graph runtime has its own feature catalog and operator playbook under [system-code-graph/feature_catalog](.opencode/skills/system-code-graph/feature_catalog/) and [system-code-graph/manual_testing_playbook](.opencode/skills/system-code-graph/manual_testing_playbook/). They document runtime features and manual scenarios for freshness, scan/verify/status, `detect_changes`, context retrieval, coverage graph, and doctor-code-graph behavior.
 
 &nbsp;
 #### What Each System Does

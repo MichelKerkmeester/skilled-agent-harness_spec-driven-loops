@@ -67,7 +67,7 @@ confidence_framework:
 # REQUEST ANALYSIS FRAMEWORK
 # ─────────────────────────────────────────────────────────────────
 request_analysis_framework:
-  code_search_note: "Use CocoIndex (mcp__cocoindex_code__search) for discovering existing patterns before creating. Use Grep only for exact known tokens."
+  code_search_note: "Use Code Graph structural queries (code_graph_query) + Grep for concept discovery; verify hits with Read. memory_search is for spec docs/memory, not arbitrary code."
   solution_flow:
     - "Parse command arguments and normalize execution mode"
     - "Verify create/update semantics against the real target path"

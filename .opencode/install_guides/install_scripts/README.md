@@ -85,7 +85,7 @@ chmod +x .opencode/install_guides/install_scripts/*.sh
 
 ### Installation
 
-The recommended installation path is to enable the three core MCP surfaces first, then layer on optional provider-specific installers such as Chrome DevTools or CocoIndex Code.
+The recommended installation path is to enable the three core MCP surfaces first, then layer on optional provider-specific installers such as Chrome DevTools.
 
 ### Verify Installation
 
@@ -126,7 +126,6 @@ install_scripts/
 ├── install-mk-spec-memory.sh     # Spec Kit Memory MCP
 ├── install-code-mode.sh           # Code Mode MCP
 ├── install-chrome-devtools.sh     # Chrome DevTools MCP (bdg CLI)
-├── install-cocoindex-code.sh      # CocoIndex Code MCP (symlink)
 ├── install-all.sh                 # Master installer with --skip/--only flags
 ├── logs/                          # Installation logs
 └── README.md                      # This file
@@ -154,7 +153,6 @@ install_scripts/
 | `install-mk-spec-memory.sh` | Spec Kit Memory MCP | Semantic vector search for conversation context | Node.js 18+, npm |
 | `install-code-mode.sh` | Code Mode MCP | MCP orchestration via TypeScript execution | Node.js 18+ |
 | `install-chrome-devtools.sh` | Chrome DevTools CLI | Browser debugging via CDP (bdg CLI) | Node.js 18+, Chrome |
-| `install-cocoindex-code.sh` | CocoIndex Code MCP | Semantic code search via vector embeddings | Node.js 18+, Python 3.10+ |
 
 ### Shared Utilities (_utils.sh)
 

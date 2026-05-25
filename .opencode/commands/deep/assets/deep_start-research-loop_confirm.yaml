@@ -70,8 +70,8 @@ agent_config:
   # Runtime-agnostic: resolve agent from active runtime directory (see AGENTS.md). Default shown is Claude runtime.
   model: opus
   leaf_only: true
-  tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch, mcp__cocoindex_code__search]
-  mcp_servers: [mk-spec-memory, cocoindex_code]
+  tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
+  mcp_servers: [mk-spec-memory]
   tool_call_budget: { target: 8, max: 12 }
 
 # ─────────────────────────────────────────────────────────────────

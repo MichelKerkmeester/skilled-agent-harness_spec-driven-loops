@@ -301,7 +301,6 @@ workflow:
       | Spec Kit Memory | {before} | {after} | {status} |
       | Skill Advisor | {before} | {after} | {status} |
       | System Code Graph | {before} | {after} | {status} |
-      | CocoIndex Code | {before} | {after} | {status} |
       | Code Mode | {before} | {after} | {status} |
       | Sequential Thinking | {before} | {after} | {status} |
 
