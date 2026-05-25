@@ -72,7 +72,7 @@ Ollama (tier 1, local)  ->  hf-local (tier 2, local Python)  ->  OpenAI (tier 3,
 
 ADR-014 (2026-05-19) supersedes the cascade clause of ADR-013 — earlier cascade was cloud-first (`voyage > openai > ollama > hf-local`); the new order keeps embeddings local by default unless the operator explicitly chooses a cloud tier (`EMBEDDINGS_PROVIDER=openai|voyage`).
 
-Within tier 1 (Ollama), the priority order is ADR-013: `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`. Within tier 2 (hf-local), the default fallback model is `nomic-ai/CodeRankEmbed` (same family as the Ollama default — ADR-014).
+Within tier 1 (Ollama), the priority order is ADR-013: `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`. Within tier 2 (hf-local), the default fallback model is `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default — ADR-014).
 
 ### Current default: nomic-embed-text-v1.5 (768d via Ollama; ADR-013)
 
@@ -186,7 +186,9 @@ Per-row empirical results live in `evidence/embedder-comparison-with-rescue.json
 
 ## 3. CODE_GRAPH SIDE
 
-### Current default: sbert/nomic-ai/CodeRankEmbed (768d code-tuned)
+> **⚠️ Obsolete as of the 014 CocoIndex deprecation.** system-code-graph no longer has a pluggable embedder or a CocoIndex/`ccc` vector layer — it is now a structural **tree-sitter** indexer (nodes/edges only), with no embeddings, no `ccc` CLI, and no `.venv`. The CocoIndex semantic/vector layer this section (and the "system-code-graph" columns in §4–§6 below) describes was removed in 014 (the `mcp-coco-index` skill was deleted; the `ccc_*` bridge was severed in 002). **The `ccc`-based commands and `.venv/bin/ccc` paths below no longer exist.** This material is retained only as a record of the pre-014 architecture; embedder pluggability now applies to **mk-spec-memory only (§2)**.
+
+### Current default: sbert/nomic-ai/CodeRankEmbed (768d code-tuned) — pre-014 record
 
 Production default per packet 018 ADR-001 (commit `8f909d229`):
 
