@@ -1,6 +1,6 @@
 ---
-description: Manage indexed-continuity DB: stats, scan, cleanup, retention, validate, checkpoint, ingest, CCC.
-argument-hint: "[scan [--force]] | [cleanup] | [retention-sweep [--dry-run]] | [bulk-delete <tier> [--older-than <days>] [--folder <spec>]] | [tier <id> <tier>] | [triggers <id>] | [validate <id> <useful|not>] | [delete <id>] | [health] | [checkpoint <subcommand>] | [ingest <subcommand>] | [ccc <status|reindex|feedback>]"
+description: Manage indexed-continuity DB: stats, scan, cleanup, retention, validate, checkpoint, ingest.
+argument-hint: "[scan [--force]] | [cleanup] | [retention-sweep [--dry-run]] | [bulk-delete <tier> [--older-than <days>] [--folder <spec>]] | [tier <id> <tier>] | [triggers <id>] | [validate <id> <useful|not>] | [delete <id>] | [health] | [checkpoint <subcommand>] | [ingest <subcommand>]"
 allowed-tools: Read, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_list, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_validate, mcp__mk_spec_memory__memory_update, mcp__mk_spec_memory__memory_delete, mcp__mk_spec_memory__memory_bulk_delete, mcp__mk_spec_memory__memory_retention_sweep, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__checkpoint_create, mcp__mk_spec_memory__checkpoint_restore, mcp__mk_spec_memory__checkpoint_list, mcp__mk_spec_memory__checkpoint_delete, mcp__mk_spec_memory__memory_ingest_start, mcp__mk_spec_memory__memory_ingest_status, mcp__mk_spec_memory__memory_ingest_cancel
 ---
 
@@ -16,13 +16,13 @@ allowed-tools: Read, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__mem
 BEFORE executing ANY workflow:
 
 1. PARSE $ARGUMENTS to determine mode
-2. VALIDATE mode is recognized (stats, scan, cleanup, retention-sweep, bulk-delete, tier, triggers, validate, delete, health, checkpoint, ingest, ccc)
+2. VALIDATE mode is recognized (stats, scan, cleanup, retention-sweep, bulk-delete, tier, triggers, validate, delete, health, checkpoint, ingest)
    - IF $ARGUMENTS is empty → mode = "stats" (default)
 3. For modes requiring <id>: VERIFY id is provided and numeric
 4. For modes requiring <name>: VERIFY name is provided
 
 IF mode unrecognized:
-  → STATUS=FAIL ERROR="Unknown mode: <mode>. Valid: scan, cleanup, retention-sweep, bulk-delete, tier, triggers, validate, delete, health, checkpoint, ingest, ccc"
+  → STATUS=FAIL ERROR="Unknown mode: <mode>. Valid: scan, cleanup, retention-sweep, bulk-delete, tier, triggers, validate, delete, health, checkpoint, ingest"
 
 IF required parameter missing:
   → STATUS=FAIL ERROR="Missing required parameter for <mode>"
@@ -32,12 +32,12 @@ IF required parameter missing:
 
 # Memory Management Command
 
-Unified management interface for the indexed-continuity database: scan for new files, cleanup old spec-doc records, bulk-delete by tier, change tiers, edit triggers, validate usefulness, delete entries, check health, manage checkpoints, run async ingest jobs, and route Code Graph CCC lifecycle calls.
+Unified management interface for the indexed-continuity database: scan for new files, cleanup old spec-doc records, bulk-delete by tier, change tiers, edit triggers, validate usefulness, delete entries, check health, manage checkpoints, run async ingest jobs.
 
 ```yaml
 role: Memory Database Administrator
 purpose: Unified management interface for indexed-continuity database maintenance, checkpoint operations, and async ingest management
-action: Route through scan, cleanup, retention-sweep, bulk-delete, tier, triggers, validate, delete, health, checkpoint, ingest, or ccc based on arguments
+action: Route through scan, cleanup, retention-sweep, bulk-delete, tier, triggers, validate, delete, health, checkpoint, or ingest based on arguments
 operating_mode:
   workflow: interactive_management
   approvals: cleanup_delete_restore_require_confirmation
@@ -51,7 +51,7 @@ operating-mode block and markdown workflow steps.
 
 ## 0. INSTRUCTIONS
 
-Parse the requested mode first, then execute only the matching management workflow. Canonical spec docs are the only active continuity source; the retired `spec-doc/*.md` surface is no longer accepted by the runtime. Retention cleanup uses `memory_retention_sweep` (`tool-schemas.ts:330`) and CCC routing is explicit operator-triggered management, not background Code Graph automation.
+Parse the requested mode first, then execute only the matching management workflow. Canonical spec docs are the only active continuity source; the retired `spec-doc/*.md` surface is no longer accepted by the runtime. Retention cleanup uses `memory_retention_sweep` (`tool-schemas.ts:330`)
 
 ---
 
@@ -165,10 +165,6 @@ $ARGUMENTS
     │   ├─ "start <paths>"   → Start async job
     │   ├─ "status <jobId>"  → Check progress
     │   └─ "cancel <jobId>"  → Cancel running job
-    ├─ "ccc <sub>"          → CCC MODE (Section 16)
-        ├─ "status"         → Check Code Graph availability
-        ├─ "reindex [--full]" → Re-index Code Graph
-        └─ "feedback <query> <rating>" → Submit result feedback
 ```
 
 ---
@@ -894,38 +890,7 @@ STATUS=OK ACTION=ingest JOB=<jobId>
 
 ---
 
-## 17. CCC MODE
-
-
-
-
-
-```javascript
-```
-
-Reports Code Graph binary availability and index status.
-
-
-
-```javascript
-```
-
-Runs Code Graph incremental re-indexing by default. Use `--full` only when the semantic index is missing, stale, or explicitly requested by an operator.
-
-
-
-```javascript
-  query: "<query>",
-  rating: "helpful",
-  comment: "<optional comment>"
-})
-```
-
-`rating` must match the MCP handler contract (`helpful`, `not_helpful`, or `partial`).
-
----
-
-## 18. ERROR HANDLING
+## 17. ERROR HANDLING
 
 | Condition                | Response                                                                                                                         |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -941,11 +906,10 @@ Runs Code Graph incremental re-indexing by default. Use `--full` only when the s
 | Database not initialized | `STATUS=FAIL ERROR="Database not initialized. Run memory_index_scan() to create schema, or restart the MCP server."`             |
 | Ingest job not found     | `STATUS=FAIL ERROR="Job '<jobId>' not found"`                                                                                    |
 | Too many ingest paths    | `STATUS=FAIL ERROR="Maximum 50 paths per job"`                                                                                   |
-| CCC subcommand invalid   | `STATUS=FAIL ERROR="Unknown ccc subcommand. Valid: status, reindex, feedback"`                                                   |
 
 ---
 
-## 19. RELATED COMMANDS
+## 18. RELATED COMMANDS
 
 - `/memory:search`: Intent-aware context retrieval and analysis tools
 - `/memory:save`: Save conversation context

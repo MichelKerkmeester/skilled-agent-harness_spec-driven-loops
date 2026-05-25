@@ -14,7 +14,6 @@ export type ProcessClassification =
   | 'expected-warm-daemon'
   | 'external-mcp-stdio'
   | 'browser-session'
-  | 'ccc-daemon'
   | 'zombie'
   | 'stale-pid-lock'
   | 'eperm-alive-unowned'
@@ -88,18 +87,6 @@ export type Inventory = HarnessSnapshot;
 
 export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
   {
-    id: 'cocoindex-daemon',
-    pattern: /(?:^|[\s/])ccc\s+run-daemon(?:\s|$)/,
-    role: 'project-daemon',
-    reason: 'CocoIndex daemon process',
-  },
-  {
-    id: 'cocoindex-mcp',
-    pattern: /(?:^|[\s/])ccc\s+mcp(?:\s|$)/,
-    role: 'project-daemon',
-    reason: 'CocoIndex MCP process',
-  },
-  {
     id: 'code-graph-launcher',
     pattern: /mk-code-index-launcher\.cjs/,
     role: 'project-daemon',
@@ -124,12 +111,6 @@ export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
     reason: 'Spec Kit Memory MCP server process',
   },
   {
-    id: 'rerank-sidecar',
-    pattern: /(?:rerank_sidecar|system-rerank-sidecar.*uvicorn|uvicorn.*rerank)/,
-    role: 'expected-daemon',
-    reason: 'Shared rerank sidecar; termination requires owner and port-ledger proof',
-  },
-  {
     id: 'ollama-serve',
     pattern: /\/ollama\s+serve(?:\s|$)/,
     role: 'expected-daemon',
@@ -139,9 +120,7 @@ export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
 
 const KNOWN_PROJECT_OWNER_MARKERS = [
   '.opencode/skills/system-spec-kit',
-  '.opencode/skills/mcp-coco-index',
   '.opencode/skills/system-code-graph',
-  '.opencode/skills/system-rerank-sidecar',
   'mk-spec-memory-launcher.cjs',
   'mk-code-index-launcher.cjs',
   'SPECKIT_OWNER_TOKEN=',
@@ -160,7 +139,7 @@ function hasOwnerToken(command: string): boolean {
 export function redactSensitiveCommand(command: string): string {
   return command
     .replace(
-      /\b([A-Za-z_][A-Za-z0-9_]*(?:API_KEY|TOKEN|SECRET)|SPECKIT_OWNER_TOKEN|RERANK_SIDECAR_OWNER_TOKEN|owner_token|ownerToken)=([^\s]+)/g,
+      /\b([A-Za-z_][A-Za-z0-9_]*(?:API_KEY|TOKEN|SECRET)|SPECKIT_OWNER_TOKEN|owner_token|ownerToken)=([^\s]+)/g,
       '$1=<redacted>',
     )
     .replace(/(^|\s)(--owner-token|--ownerToken)=([^\s]+)/g, '$1$2=<redacted>')
@@ -169,10 +148,6 @@ export function redactSensitiveCommand(command: string): string {
 
 export function hasKnownProjectOwnerMarker(command: string): boolean {
   return KNOWN_PROJECT_OWNER_MARKERS.some((marker) => command.includes(marker));
-}
-
-function isCccProcess(command: string): boolean {
-  return /(?:^|[\s/])ccc(?:\s|$)/.test(command);
 }
 
 function isExternalMcpProcess(command: string): boolean {
@@ -398,21 +373,6 @@ export function classifyProcesses(
       };
     }
 
-    if (isCccProcess(row.command) && !hasOwnerToken(row.command)) {
-      return {
-        ...row,
-        role: 'external-tool',
-        classification: 'ccc-daemon',
-        ruleId: 'ccc-daemon',
-        rssMb: toMb(row.rssKb),
-        isAncestorOfCurrent,
-        isDescendantOfCurrent,
-        isOrphanedProjectDaemon: false,
-        terminationCandidate: false,
-        reason: 'CocoIndex CLI process without an owner token; preserve until exact owner policy exists',
-      };
-    }
-
     if (isExternalMcpProcess(row.command)) {
       return {
         ...row,
@@ -526,11 +486,8 @@ export function syntheticFixtureSnapshot(): HarnessSnapshot {
  1000     1 S     5000 opencode
  1001  1000 S     4000 node synthetic-child.js
  1002  1001 S     3000 node synthetic-grandchild.js
- 2000     1 S    96000 /opt/homebrew/bin/python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc run-daemon
- 2001     1 S    44000 /opt/homebrew/bin/python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp
  2002     1 S    32000 /opt/homebrew/bin/node /repo/.opencode/skills/system-code-graph/mcp_server/dist/index.js
  2003     1 S    12000 /opt/homebrew/bin/node .opencode/bin/mk-spec-memory-launcher.cjs
- 3000     1 S   120000 uvicorn rerank_sidecar:app --host 127.0.0.1
  4000     1 S    24000 /opt/homebrew/opt/ollama/bin/ollama serve
  5000   918 Z        0 <defunct>
 `;
@@ -548,7 +505,7 @@ Pages occupied by compressor: 50.
     sysctlOutput: 'hw.memsize: 68719476736',
     currentPid: 1000,
     lockContents: {
-      '.opencode/skills/system-spec-kit/run/live.pid': '2000',
+      '.opencode/skills/system-spec-kit/run/live.pid': '2002',
       '.opencode/skills/system-spec-kit/run/stale.pid': '9999',
       '.opencode/skills/system-spec-kit/run/invalid.pid': 'not-a-pid',
       '.opencode/skills/system-spec-kit/run/zombie.pid': '5000',
@@ -596,7 +553,7 @@ USAGE:
 
 COMMANDS:
   snapshot   Capture ps/vm_stat/sysctl evidence and classify project daemons.
-  fixture    Emit deterministic synthetic child/grandchild, stale lock, sidecar, and vm_stat fixture evidence.
+  fixture    Emit deterministic synthetic child/grandchild, stale lock, and vm_stat fixture evidence.
 
 NOTES:
   This harness never sends signals and never kills processes. terminationCandidate means exact-match inventory only.

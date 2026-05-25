@@ -17,10 +17,7 @@ const PS_FIXTURE = `  PID  PPID STAT    RSS COMMAND
  1000     1 S     5000 opencode
  1001  1000 S     4000 node synthetic-child.js
  1002  1001 S     3000 node synthetic-grandchild.js
- 2000     1 S    96000 /opt/homebrew/bin/python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc run-daemon
- 2001     1 S    44000 /opt/homebrew/bin/python .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc mcp
  2002     1 S    32000 /opt/homebrew/bin/node /repo/.opencode/skills/system-code-graph/mcp_server/dist/index.js
- 3000     1 S   120000 uvicorn rerank_sidecar:app --host 127.0.0.1
  4000     1 S    24000 /opt/homebrew/opt/ollama/bin/ollama serve
  5000   918 Z        0 <defunct>
 `;
@@ -29,13 +26,13 @@ describe('process memory harness', () => {
   it('parses ps rows with full commands intact', () => {
     const rows = parsePsOutput(PS_FIXTURE);
 
-    expect(rows).toHaveLength(9);
+    expect(rows).toHaveLength(6);
     expect(rows[3]).toMatchObject({
-      pid: 2000,
+      pid: 2002,
       ppid: 1,
       stat: 'S',
-      rssKb: 96000,
-      command: expect.stringContaining('ccc run-daemon'),
+      rssKb: 32000,
+      command: expect.stringContaining('system-code-graph'),
     });
   });
 
@@ -66,17 +63,11 @@ describe('process memory harness', () => {
   it('classifies project daemons, expected daemons, and zombies without marking expected daemons killable', () => {
     const classified = classifyProcesses(parsePsOutput(PS_FIXTURE), { currentPid: 1000 });
 
-    expect(classified.find((row) => row.pid === 2000)).toMatchObject({
-      role: 'external-tool',
-      classification: 'ccc-daemon',
-      ruleId: 'ccc-daemon',
-      terminationCandidate: false,
-    });
-    expect(classified.find((row) => row.pid === 3000)).toMatchObject({
-      role: 'expected-daemon',
-      classification: 'expected-warm-daemon',
-      ruleId: 'rerank-sidecar',
-      terminationCandidate: false,
+    expect(classified.find((row) => row.pid === 2002)).toMatchObject({
+      role: 'project-daemon',
+      classification: 'orphaned-project-daemon',
+      ruleId: 'code-graph-server',
+      terminationCandidate: true,
     });
     expect(classified.find((row) => row.pid === 4000)).toMatchObject({
       role: 'expected-daemon',
@@ -108,7 +99,7 @@ describe('process memory harness', () => {
   it('classifies stale, live, invalid, empty, and zombie PID locks', () => {
     const rows = parsePsOutput(PS_FIXTURE);
 
-    expect(classifyPidLock('live.pid', '2000', rows).state).toBe('live');
+    expect(classifyPidLock('live.pid', '2002', rows).state).toBe('live');
     expect(classifyPidLock('stale.pid', '9999', rows).state).toBe('stale');
     expect(classifyPidLock('invalid.pid', 'abc', rows).state).toBe('invalid');
     expect(classifyPidLock('empty.pid', '   ', rows).state).toBe('empty');
@@ -121,7 +112,7 @@ describe('process memory harness', () => {
     expect(snapshot.status).toBe('ok');
     expect(snapshot.processCount).toBeGreaterThan(0);
     expect(snapshot.projectDaemonCount).toBeGreaterThanOrEqual(2);
-    expect(snapshot.expectedDaemonCount).toBeGreaterThanOrEqual(2);
+    expect(snapshot.expectedDaemonCount).toBeGreaterThanOrEqual(1);
     expect(snapshot.zombieCount).toBe(1);
     expect(snapshot.orphanedProjectDaemonCount).toBeGreaterThanOrEqual(2);
     expect(snapshot.pidLocks.map((lock) => lock.state).sort()).toEqual([

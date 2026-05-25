@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/015-remediate-cross-surface-residue",
+  "description": "Feature Specification: Remove remaining post-014-deprecation coco/ccc/rerank residue across non-code-graph surfaces",
+  "keywords": [
+    "feature",
+    "specification",
+    "remove",
+    "remaining",
+    "post-014-deprecation",
+    "coco",
+    "ccc",
+    "rerank",
+    "residue",
+    "across",
+    "non-code-graph",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-05-25T16:28:58.649Z",
+  "specId": "015",
+  "folderSlug": "remediate-cross-surface-residue",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-deprecate-coco-index"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

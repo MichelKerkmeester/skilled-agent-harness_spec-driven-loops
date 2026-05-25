@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/015-remediate-cross-surface-residue",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/015-remediate-cross-surface-residue",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/013-post-deprecation-deep-review"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/014-remediate-codegraph-naming"
+    ]
+  },
+    "derived": {
+    "trigger_phrases": ["remaining coco residue remediation","cross-surface ccc cleanup","process-harness coco daemon kill removal"],
+    "key_topics": ["cross-surface-residue","gemini-routing-p0","memory-manage-ccc","rm8-process-harness","013-followup","cocoindex-deprecation"],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": ["spec.md","implementation-summary.md",".gemini/GEMINI.md",".opencode/commands/memory/manage.md"],
+    "entities": [],
+    "causal_summary": "Closed the 013 deep-review's remaining non-code-graph coco/ccc/rerank residue across 6 surfaces + a 7th found mid-work. Fixed: GEMINI.md coco routing (P0) -> canonical HYBRID; /memory:manage ccc subcommand + CCC MODE removed (was unwired) + sections renumbered; advisor scripts/skill-graph.json confirmed clean + gitignored database/ copy synced; .gitignore .cocoindex_code/ removed; sidecar-env-allowlist RERANK_ prefix removed (file kept, live embedder allowlist); 250-session-start .venv/bin/ccc -> code-graph readiness; process-memory-harness.ts RM-8 daemon-kill rules for cocoindex/rerank + ccc-daemon class + deleted-skill paths + fixtures removed (operator-approved, live-daemon rules kept). Gates: 7/7 per-target grep 0; tsc 0 errors; process-memory-harness + process-sweep vitests 20/20. 8 tracked files (gitignored database/skill-graph.json synced locally).",
+    "created_at": "2026-05-25T15:51:38Z",
+    "last_save_at": "2026-05-25T16:12:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","implementation-summary.md"]
+  }
+}

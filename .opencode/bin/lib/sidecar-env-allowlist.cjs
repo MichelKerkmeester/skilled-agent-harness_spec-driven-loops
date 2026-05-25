@@ -14,7 +14,6 @@ const SIDECAR_ENV_ALLOWLIST = Object.freeze({
   prefixes: Object.freeze([
     'HF_',
     'LC_',
-    'RERANK_',
     'SPECKIT_',
   ]),
 });

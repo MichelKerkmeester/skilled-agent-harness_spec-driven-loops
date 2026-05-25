@@ -120,7 +120,6 @@ __pycache__/
 # ───────────────────────────────────────────
 # Runtime artifacts (skill-advisor / system-spec-kit)
 # ───────────────────────────────────────────
-.cocoindex_code/
 .opencode/skills/system-spec-kit/mcp_server/.opencode/
 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/out/*.json
 .opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl

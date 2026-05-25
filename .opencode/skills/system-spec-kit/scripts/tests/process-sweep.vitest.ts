@@ -119,12 +119,12 @@ describe('process sweep', () => {
     });
   });
 
-  it('preserves sidecar fixtures even with active port and owner-token evidence', () => {
+  it('preserves expected warm daemons even with active port and owner-token evidence', () => {
     const processes = classifyRows([
       {
         pid: 4000,
         ppid: 1,
-        command: 'uvicorn rerank_sidecar:app --host 127.0.0.1 --port 8791 --owner-token abcdef0123456789abcdef0123456789',
+        command: '/opt/homebrew/opt/ollama/bin/ollama serve --port 8791 --owner-token abcdef0123456789abcdef0123456789',
       },
     ]);
 
@@ -135,24 +135,6 @@ describe('process sweep', () => {
       classification: 'expected-warm-daemon',
       eligibleForTermination: false,
       rationale: 'expected-warm-preserved',
-    });
-  });
-
-  it('preserves ccc daemons without owner tokens', () => {
-    const processes = classifyRows([
-      {
-        pid: 5000,
-        ppid: 1,
-        command: '/repo/.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc run-daemon',
-      },
-    ]);
-
-    const plan = planSweep(inventory(processes), { selfPid: 1000 });
-
-    expect(plan.rows[0]).toMatchObject({
-      classification: 'ccc-daemon',
-      eligibleForTermination: false,
-      rationale: 'default-preserve',
     });
   });
 
