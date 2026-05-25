@@ -167,11 +167,9 @@ The MCP server now starts with a thin bootstrap: tool schemas, validation, runti
 
 The trade-off is first-call latency: the first `memory_search`, `memory_context`, `memory_save`, embedder, checkpoint, ingest, eval, causal, or session-learning call pays the runtime initialization cost. Idle startup stays smaller because SQLite, BM25, retry jobs, startup scans, and local model sidecars remain cold until memory is actually used.
 
-### Stage 3 Reranking
+### Stage 3 Reranking (removed)
 
-Stage 3 can rerank fused search candidates through the HTTP cross-encoder provider in `mcp_server/lib/search/cross-encoder.ts:local`. The Qwen sidecar path is opt-in: set `SPECKIT_CROSS_ENCODER=true` to route rerank requests to `http://localhost:8765/rerank`, served by the `system-rerank-sidecar` skill with `Qwen/Qwen3-Reranker-0.6B`.
-
-Phase 004's A/B benchmark kept this path out of the default configuration. The report at `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md` found only `hit_rate_delta_pp = +0.4` and `MRR_delta = +0.004`, while p95 latency regressed by `+9832.7ms` and every Arm B row fell back after sidecar timeout under sustained load. Until CPU-to-MPS device tuning is re-benchmarked, Qwen-backed Stage 3 reranking is for development and single-query opt-in use, not the shipped default.
+Stage 3 cross-encoder reranking was REMOVED in the 014 deprecation: the local rerank path in `mcp_server/lib/search/cross-encoder.ts` was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were already removed in 022/013). Memory search now returns fused vector/BM25/FTS/graph/degree results with no rerank stage. The retired A/B benchmark (`mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/`) had already kept reranking out of the default config (negligible hit-rate gain, large p95 latency regression) and is retained only as a historical record.
 
 ### Lexical Search Engine
 

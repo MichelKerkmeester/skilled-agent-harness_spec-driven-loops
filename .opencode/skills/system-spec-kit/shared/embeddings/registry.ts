@@ -224,12 +224,11 @@ export function getCanonicalFallback(provider: CanonicalProvider): string {
 // eliminates the hardcoded "cross-encoder/ms-marco-MiniLM-L-6-v2"
 // string duplicated from PROVIDER_CONFIG.local.model.
 //
-// Only the local reranker is supported. Cloud reranker providers were
-// removed in 022/013 because their auto-resolution from API-key presence
-// (`VOYAGE_API_KEY`, `COHERE_API_KEY`) created a silent re-routing footgun
-// when those keys were set for unrelated purposes (e.g. embeddings).
-// The local reranker is served by the system-rerank-sidecar
-// (`Qwen/Qwen3-Reranker-0.6B` on http://localhost:8765/rerank).
+// Reranking is REMOVED as of the 014 deprecation: the mk-spec-memory local
+// cross-encoder path was removed in 003 and the local rerank sidecar skill was
+// deleted in 004 (cloud rerankers voyage/cohere were already removed in 022/013).
+// These canonical names are now dead config defaults with no live importers —
+// retained only as a reference should a reranker ever be re-introduced.
 
 export type RerankerProvider = 'local';
 

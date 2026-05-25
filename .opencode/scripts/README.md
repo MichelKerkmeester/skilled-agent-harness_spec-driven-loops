@@ -63,7 +63,6 @@ Dry-run mode logs the same kill and remove decisions the real sweep would make, 
 | `ORPHAN_TMP_AGE_HOURS` | `24` | Minimum age before matching `/tmp` artifacts can be removed. |
 | `ORPHAN_SWEEPER_LOG_PATH` | `~/.local/share/orphan-sweeper.log` | Default log path when stdout is a terminal or `--log-path` is provided. |
 | `ORPHAN_SWEEPER_LOG_MAX_BYTES` | `10485760` | Log rotation cap. Keeps `.1`, `.2`, and `.3`. |
-| `ORPHAN_PRESERVE_RERANK_SIDECAR` | `0` | Set to `1` to exclude `rerank_sidecar:app` from sweeper matching. |
 
 ### Preserved process classes
 
@@ -75,7 +74,7 @@ The sweeper preserves:
 - The freshest young instance per matched MCP class
 - Processes with active non-MCP TCP listeners
 
-It targets stale launcher/server classes such as `mk-*-launcher.cjs`, Spec Kit Memory, Skill Advisor, Code Graph, Code Mode, ClickUp MCP, `ccc mcp`, `ccc run-daemon`, sequential-thinking MCP, and rerank sidecar when not explicitly preserved.
+It targets stale launcher/server classes such as `mk-*-launcher.cjs`, Spec Kit Memory, Skill Advisor, Code Graph, Code Mode, ClickUp MCP, and sequential-thinking MCP when not explicitly preserved.
 
 ### Temporary files
 

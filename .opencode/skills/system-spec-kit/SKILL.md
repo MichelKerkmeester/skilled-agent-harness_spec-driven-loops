@@ -417,15 +417,13 @@ def route_speckit_resources(task):
 
 Spec Kit Memory provides context retrieval, search, save, checkpoint, health, and indexing surfaces. Use `memory_context()` or `/speckit:resume` for recovery; use `memory_search()` for targeted retrieval; use `generate-context.js` for canonical saves. Detailed behavior, flags, scoring, and MCP tool reference live in `references/memory/memory_system.md`, `references/memory/save_workflow.md`, and `mcp_server/ENV_REFERENCE.md`.
 
-### Reranking (opt-in)
+### Reranking (removed)
 
-Cross-encoder reranking is opt-in. Default is OFF based on the 011 decision arc (evidence: 011/001 OFF baseline + 011/002 bge-v2-m3 trial). To enable, set `SPECKIT_CROSS_ENCODER=true` (or `RERANKER_LOCAL=true`) and ensure the system-rerank-sidecar is running at `http://localhost:8765`. Code Graph consumes the sidecar by default; spec-memory consumes it opt-in only.
+Cross-encoder reranking was removed in the 014 deprecation: the spec-memory local rerank path was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were removed earlier in 022/013). Memory search returns fused vector/BM25/FTS/graph/degree results with no rerank stage; the `SPECKIT_CROSS_ENCODER`/`RERANKER_LOCAL` flags are no longer wired.
 
 ## Security
 
 - `VOYAGE_API_KEY` and `COHERE_API_KEY` are read from the process environment only. They must never be logged, written into spec docs, or persisted to disk by Spec Kit. Operators should set them in shell init files owned by the operator with mode `600`.
-- The opt-in model trusts that only the operator can write to the MCP process environment. A co-located malicious process with env-set access can flip reranking gates. Mitigate by running the MCP server under a dedicated user and restricting shell access.
-- When the local sidecar is enabled, it binds to `127.0.0.1` only. See `system-rerank-sidecar/SKILL.md` Security for the full endpoint trust model.
 - Tests may mutate env vars, but must restore them in `afterEach`. Production code paths should not treat mutable process env as request-time configuration.
 
 ### Validation and Recovery

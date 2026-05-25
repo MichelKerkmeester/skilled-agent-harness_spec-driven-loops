@@ -18,7 +18,7 @@ This feature turns manual orphan MCP cleanup into a documented operator workflow
 
 ## 2. CURRENT REALITY
 
-`.opencode/scripts/orphan-mcp-sweeper.sh` scans the live process table for stale MCP helper classes and stale `/tmp` dispatch artifacts. It supports `--dry-run`, `--verbose`, `--log-path`, `ORPHAN_AGE_MIN_SEC`, `ORPHAN_TMP_AGE_HOURS`, `ORPHAN_SWEEPER_LOG_MAX_BYTES`, and `ORPHAN_PRESERVE_RERANK_SIDECAR`.
+`.opencode/scripts/orphan-mcp-sweeper.sh` scans the live process table for stale MCP helper classes and stale `/tmp` dispatch artifacts. It supports `--dry-run`, `--verbose`, `--log-path`, `ORPHAN_AGE_MIN_SEC`, `ORPHAN_TMP_AGE_HOURS`, and `ORPHAN_SWEEPER_LOG_MAX_BYTES`.
 
 Dry-run is the expected first operator path:
 
