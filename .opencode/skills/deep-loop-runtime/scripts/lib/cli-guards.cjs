@@ -15,6 +15,8 @@ const path = require('node:path');
 // ─────────────────────────────────────────────────────────────────────────────
 
 let signalHandlersInstalled = false;
+const DEFAULT_WRITER_LOCK_MAX_WAIT_MS = 1_000;
+const DEFAULT_WRITER_LOCK_RETRY_INTERVAL_MS = 25;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -148,28 +150,46 @@ function sleepSync(ms) {
   Atomics.wait(view, 0, 0, ms);
 }
 
+function readNonNegativeEnvNumber(name, fallback) {
+  const raw = process.env[name];
+  if (raw === undefined || raw === '') return fallback;
+  const value = Number(raw);
+  return Number.isFinite(value) && value >= 0 ? value : fallback;
+}
+
 /**
  * Acquire an exclusive writer lock via `wx` file open on the given path.
  * Returns a release function that closes the file descriptor and removes
- * the lock file.
+ * the lock file. Retries briefly on contention so parallel test files and
+ * near-simultaneous runtime callers do not fail on transient writer overlap.
  *
  * @param {string} lockPath - Path to the lock file to create.
  * @returns {Function} Release function (call to unlock and clean up).
- * @throws {Error} With code DB_ERROR if the lock file already exists.
+ * @throws {Error} With code DB_ERROR if the lock remains held after retry.
  */
 function acquireWriterLock(lockPath) {
   fs.mkdirSync(path.dirname(lockPath), { recursive: true });
+  const maxWaitMs = readNonNegativeEnvNumber('DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS', DEFAULT_WRITER_LOCK_MAX_WAIT_MS);
+  const retryIntervalMs = readNonNegativeEnvNumber('DEEP_LOOP_WRITER_LOCK_RETRY_INTERVAL_MS', DEFAULT_WRITER_LOCK_RETRY_INTERVAL_MS);
+  const deadline = Date.now() + maxWaitMs;
   let fd;
-  try {
-    fd = fs.openSync(lockPath, 'wx');
-  } catch (err) {
-    const code = err && typeof err === 'object' && 'code' in err ? err.code : undefined;
-    if (code === 'EEXIST') {
-      const lockErr = new Error('coverage graph writer lock is held by another process');
-      lockErr.code = 'DB_ERROR';
-      throw lockErr;
+
+  while (true) {
+    try {
+      fd = fs.openSync(lockPath, 'wx');
+      break;
+    } catch (err) {
+      const code = err && typeof err === 'object' && 'code' in err ? err.code : undefined;
+      if (code !== 'EEXIST') throw err;
+
+      const remainingMs = deadline - Date.now();
+      if (maxWaitMs <= 0 || remainingMs <= 0) {
+        const lockErr = new Error('deep-loop graph writer lock is held by another process');
+        lockErr.code = 'DB_ERROR';
+        throw lockErr;
+      }
+      sleepSync(Math.min(retryIntervalMs, remainingMs));
     }
-    throw err;
   }
 
   return () => {

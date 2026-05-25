@@ -75,7 +75,9 @@ describe('deep-loop graph script DB lifecycle', () => {
     });
 
     await waitForLockFile();
-    const secondRun = await spawnCjs(scriptPath, [...namespaceArgs(second), '--nodes', nodes]);
+    const secondRun = await spawnCjs(scriptPath, [...namespaceArgs(second), '--nodes', nodes], {
+      env: { ...process.env, DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS: '0' },
+    });
     const firstResult = await firstRun;
 
     expect(firstResult.exitCode).toBe(0);

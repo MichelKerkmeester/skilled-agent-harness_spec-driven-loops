@@ -19,6 +19,7 @@ export interface PromptSafeNode {
   kind: string;
   name: string;
   artifactPath?: string;
+  contentHash?: string;
   roundId?: string;
   metadata?: Record<string, unknown>;
 }
@@ -83,6 +84,7 @@ export function toPromptSafeNode(node: CouncilNode): PromptSafeNode {
     kind: node.kind,
     name: node.name,
     ...(node.artifactPath ? { artifactPath: node.artifactPath } : {}),
+    ...(node.contentHash ? { contentHash: node.contentHash } : {}),
     ...(node.roundId ? { roundId: node.roundId } : {}),
     ...(metadata ? { metadata } : {}),
   };

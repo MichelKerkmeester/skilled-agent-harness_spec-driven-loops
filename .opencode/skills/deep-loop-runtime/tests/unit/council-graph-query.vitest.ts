@@ -36,6 +36,7 @@ afterEach(() => {
 
 describe('council-graph-db and council-graph-query', () => {
   it('preserves council-only taxonomy validation helpers', () => {
+    expect(dbModule.getDbPath()).toBe(path.join(tempDir, dbModule.DB_FILENAME));
     expect(dbModule.VALID_KINDS).toEqual([
       'SESSION',
       'ROUND',
@@ -99,6 +100,19 @@ describe('council-graph-db and council-graph-query', () => {
     expect(dbModule.getStats(namespace.specFolder, first.sessionId).totalNodes).toBe(1);
   });
 
+  it('keeps identical node IDs isolated by spec folder namespace', () => {
+    const first = { specFolder: 'specs/council-spec-a', sessionId: 'shared-session' };
+    const second = { specFolder: 'specs/council-spec-b', sessionId: 'shared-session' };
+
+    dbModule.upsertNode({ ...first, id: 'decision-1', kind: 'DECISION', name: 'First spec decision' });
+    dbModule.upsertNode({ ...second, id: 'decision-1', kind: 'DECISION', name: 'Second spec decision' });
+
+    expect(dbModule.getNode(first, 'decision-1')?.name).toBe('First spec decision');
+    expect(dbModule.getNode(second, 'decision-1')?.name).toBe('Second spec decision');
+    expect(dbModule.getStats(first.specFolder, first.sessionId).totalNodes).toBe(1);
+    expect(dbModule.getStats(second.specFolder, second.sessionId).totalNodes).toBe(1);
+  });
+
   it('returns prompt-safe metadata only', () => {
     const longStatus = 'x'.repeat(120);
     dbModule.upsertNode({
@@ -107,6 +121,7 @@ describe('council-graph-db and council-graph-query', () => {
       kind: 'DECISION',
       name: 'Metadata safety decision',
       artifactPath: 'ai-council/round-001/report.md',
+      contentHash: 'sha256:metadata-safe',
       roundId: 'round-001',
       metadata: {
         confidence: 0.91,
@@ -120,6 +135,7 @@ describe('council-graph-db and council-graph-query', () => {
     expect(support.node.metadata?.confidence).toBe(0.91);
     expect(String(support.node.metadata?.status).length).toBeLessThanOrEqual(83);
     expect(support.node.artifactPath).toBe('ai-council/round-001/report.md');
+    expect(support.node.contentHash).toBe('sha256:metadata-safe');
     expect(support.node.roundId).toBe('round-001');
     expect(JSON.stringify(support.node)).not.toContain('should-not-surface');
     expect(JSON.stringify(support.node)).not.toContain('artifact text');

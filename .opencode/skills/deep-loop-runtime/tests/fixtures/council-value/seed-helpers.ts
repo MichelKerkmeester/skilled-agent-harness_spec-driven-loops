@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
@@ -79,7 +80,8 @@ const { getScenarioData } = require('./data/scenarios.cjs') as {
 };
 
 const helperDir = path.dirname(fileURLToPath(import.meta.url));
-const reportPath = path.resolve(helperDir, '../../council-graph-value-report.json');
+const repoRoot = findRepoRoot(helperDir);
+const reportPath = resolveReportPath();
 
 export function seedArtifactTree(rootDir: string, files: Record<string, string>): void {
   const root = path.resolve(rootDir);
@@ -115,11 +117,31 @@ export function appendMetricsReport(
     graphPromptBytes?: number;
   },
 ): void {
+  fs.mkdirSync(path.dirname(reportPath), { recursive: true });
   const existing = fs.existsSync(reportPath)
     ? JSON.parse(fs.readFileSync(reportPath, 'utf8')) as Record<string, unknown>
     : {};
   existing[scenarioId] = metrics;
   fs.writeFileSync(reportPath, `${JSON.stringify(existing, null, 2)}\n`, 'utf8');
+}
+
+function resolveReportPath(): string {
+  const override = process.env.COUNCIL_VALUE_REPORT_PATH;
+  if (override && override.trim()) {
+    return path.isAbsolute(override) ? override : path.resolve(repoRoot, override);
+  }
+  return path.join(os.tmpdir(), `council-graph-value-report-${process.pid}.json`);
+}
+
+function findRepoRoot(startDir: string): string {
+  let current = path.resolve(startDir);
+  while (current !== path.dirname(current)) {
+    if (fs.existsSync(path.join(current, '.opencode'))) {
+      return current;
+    }
+    current = path.dirname(current);
+  }
+  return path.resolve(helperDir, '../../../..');
 }
 
 export async function upsertFixtureGraph(

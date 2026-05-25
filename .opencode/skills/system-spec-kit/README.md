@@ -67,7 +67,7 @@ Context survives across sessions through persistent semantic memory and session 
 
 - **Spec Folder Workflow**. Creates mandatory documentation for every file-modifying conversation, scaled to 4 levels based on scope and risk, with packet-local changelog closeout for packet roots and child phases.
 - **Level Contract Templates**. Manifest template architecture where each level resolves the files and sections it needs.
-- **Spec Kit Memory MCP**. 54-tool MCP server providing persistent semantic memory, causal and degree retrieval, and session orchestration across sessions, models and tools.
+- **Spec Kit Memory MCP**. 35-tool MCP server providing persistent semantic memory, causal and degree retrieval, and session orchestration across sessions, models and tools.
 - **Startup and Recovery Surfaces**. `/speckit:resume` is the canonical operator-facing recovery surface. Under the hood, startup and recovery rebuild active context from `handover.md`, then `_memory.continuity`, then canonical spec docs.
 - **Session Continuity**. `generate-context.js` updates canonical continuity surfaces and refreshes packet metadata on every `/memory:save` invocation so `/speckit:resume` can rebuild the next session from packet-local sources.
 - **Validation Scripts**. 20-rule validation, continuity freshness checks, and strict EVIDENCE-marker linting for spec folders.
@@ -286,7 +286,7 @@ The indexed-continuity store lives in an MCP server that gives AI assistants per
 
 Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task. Switch from Claude to GPT to Gemini and back -- the spec-doc record stays the same because it lives on your machine, not inside any AI's context window.
 
-For full architecture details, the 54-tool API reference, search pipeline internals and configuration, see [`mcp_server/README.md`](./mcp_server/README.md).
+For full architecture details, the 35-tool API reference, search pipeline internals and configuration, see [`mcp_server/README.md`](./mcp_server/README.md).
 
 #### Hybrid Search
 
@@ -569,7 +569,7 @@ Template changes flow through the manifest source, Level contract resolver, and 
 | [`SKILL.md`](./SKILL.md)                                                     | AI agent instructions: routing rules, gates, validation procedures, template application             |
 | [`README.md`](./README.md)                                                   | This file -- what Spec Kit does, how to use it, where to find things                                 |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                       | API boundary contract between `scripts/` and `mcp_server/`                                           |
-| [`mcp_server/README.md`](./mcp_server/README.md)                             | Full MCP architecture: 54-tool API reference, search pipeline, graph intelligence, and configuration |
+| [`mcp_server/README.md`](./mcp_server/README.md)                             | Full MCP architecture: 35-tool API reference, search pipeline, graph intelligence, and configuration |
 | [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md)               | Step-by-step installation with embedding providers and environment                                   |
 | [`scripts/spec/create.sh`](./scripts/spec/create.sh)                         | Create spec folders with level-appropriate template files                                            |
 | [`scripts/spec/validate.sh`](./scripts/spec/validate.sh)                     | Run 20-rule validation on any spec folder                                                            |
@@ -968,7 +968,7 @@ A: The indexed-continuity store can index any markdown file, beyond spec folder 
 
 **Q: What is the difference between this README and the MCP server README?**
 
-A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 54-tool API reference, 5 core retrieval channels, session lifecycle tooling, canonical resume and bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure.
+A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 35-tool API reference, 5 core retrieval channels, session lifecycle tooling, canonical resume and bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure.
 
 ---
 
@@ -1009,7 +1009,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
 | [`SKILL.md`](./SKILL.md)                                                                         | AI agent instructions: routing, gates, validation, template application                              |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                                           | API boundary contract between `scripts/` and `mcp_server/`                                           |
-| [`mcp_server/README.md`](./mcp_server/README.md)                                                 | Full MCP architecture: 54-tool API reference, search pipeline, graph intelligence, and configuration |
+| [`mcp_server/README.md`](./mcp_server/README.md)                                                 | Full MCP architecture: 35-tool API reference, search pipeline, graph intelligence, and configuration |
 | [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md)                                   | Step-by-step installation with embedding providers and environment variables                         |
 | [`references/memory/memory_system.md`](./references/memory/memory_system.md)                     | Detailed memory system reference                                                                     |
 | [`references/memory/embedder_architecture.md`](./references/memory/embedder_architecture.md)     | Active embedder pointer, vector shard, dim-table, and swap architecture                              |

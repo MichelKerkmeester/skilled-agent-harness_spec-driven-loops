@@ -32,4 +32,4 @@ Related lifecycle helpers live outside this folder:
 - Code Graph: `system-code-graph/mcp_server/lib/owner-lease.ts`, `canonical-db-dir.ts`, `close-db-assertion.ts`.
 - Spec Kit runtime: `system-spec-kit/mcp_server/lib/memory/bounded-cache.ts`, `audit-rotation.ts`, `lib/runtime/timer-registry.ts`, `shutdown-hooks.ts`, `lib/embedders/sidecar-client.ts`.
 - Ops: `system-spec-kit/scripts/ops/process-memory-harness.ts`, `process-sweep.ts`.
-- Rerank sidecar: `system-rerank-sidecar/scripts/sidecar_ledger.py`.
+- Rerank sidecar: `positional-scoring fallback/scripts/sidecar_ledger.py`.

@@ -122,7 +122,7 @@ Recent work also tightened the public surface without turning this README into a
 
 ### Embedder Architecture
 
-The memory MCP is pluggable out of the box, no code change to swap. **mk-spec-memory** defaults to `sbert/nomic-ai/CodeRankEmbed` (768 dim, MIT) through the Ollama -> hf-local Nomic cascade. `SPECKIT_CROSS_ENCODER` stays default-off, with the configured opt-in reranker `cross-encoder/ms-marco-MiniLM-L-6-v2`. See the canonical narrative at [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md).
+The memory MCP is pluggable out of the box, no code change to swap. **mk-spec-memory** defaults to `sbert/nomic-ai/CodeRankEmbed` (768 dim, MIT) through the Ollama -> hf-local Nomic cascade. `SPECKIT_POSITIONAL_SCORING` stays default-off, with the configured opt-in reranker `cross-encoder/ms-marco-MiniLM-L-6-v2`. See the canonical narrative at [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/embedder-pluggability.md).
 
 <!-- /ANCHOR:overview -->
 
@@ -1450,7 +1450,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 &nbsp;
 **Q: How many MCP tools are there and where are they defined?**
 
-A: 67 total across 5 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 39 `mk-spec-memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 9 `mk_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 11 `mk_code_index` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools and 1 sequential thinking tool. Canonical advisor/skill-graph docs use `mk_skill_advisor` / `mcp__mk_skill_advisor__*`. Canonical code-graph docs use `mk_code_index` / `mcp__mk_code_index__*`.
+A: 60 total across 5 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 35 `mk-spec-memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 9 `mk_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 8 `mk_code_index` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools and 1 sequential thinking tool. Canonical advisor/skill-graph docs use `mk_skill_advisor` / `mcp__mk_skill_advisor__*`. Canonical code-graph docs use `mk_code_index` / `mcp__mk_code_index__*`.
 &nbsp;
 
 **Q: What is the feature catalog?**
@@ -1495,4 +1495,4 @@ A: The feature catalog is the current technical reference documenting the memory
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.13 | Last updated: 2026-05-24 | Framework: 11 agents, 21 skills, 24 commands, 67 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 11 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.13 | Last updated: 2026-05-24 | Framework: 11 agents, 21 skills, 24 commands, 60 MCP tools (35 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
