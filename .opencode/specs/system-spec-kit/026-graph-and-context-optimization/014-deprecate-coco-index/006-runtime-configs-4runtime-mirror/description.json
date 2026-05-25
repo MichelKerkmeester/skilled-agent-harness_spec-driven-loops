@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/006-runtime-configs-4runtime-mirror",
+  "description": "Feature Specification: Remove coco from runtime configs + 4-runtime mirror",
+  "keywords": [
+    "feature",
+    "specification",
+    "remove",
+    "coco",
+    "runtime",
+    "configs",
+    "4-runtime",
+    "mirror"
+  ],
+  "lastUpdated": "2026-05-25T07:55:13.427Z",
+  "specId": "006",
+  "folderSlug": "runtime-configs-4runtime-mirror",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-deprecate-coco-index"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

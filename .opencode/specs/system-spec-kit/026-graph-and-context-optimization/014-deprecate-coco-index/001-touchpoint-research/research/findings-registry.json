@@ -1,0 +1,78 @@
+{
+  "sessionId": "dr-014-001-touchpoint-20260525",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-rq1-exhaustive-deduplicated-inventory-of-every-live-file-referencing-coco-cocoin",
+      "text": "RQ1: Exhaustive, deduplicated inventory of every LIVE file referencing coco / cocoindex / cocoindex_code / ccc CLI, with a per-file mutation class (DELETE / EDIT-decouple / EDIT-remove-ref / LEAVE-historical). Dedup across all spellings.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-rq2-all-consumers-of-system-rerank-sidecar-confirm-deny-mk-spec-memory-is-the-on",
+      "text": "RQ2: All consumers of `system-rerank-sidecar`. Confirm/deny mk-spec-memory is the only non-coco consumer; trace `cross-encoder.ts` local branch, `ensure-rerank-sidecar.cjs`, launcher wiring, `SPECKIT_CROSS_ENCODER` / `RERANKER_LOCAL` flags, reaper/telemetry. Define exactly what mk-spec-memory loses and the safe fallback.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-rq3-precise-edit-set-to-decouple-system-code-graph-from-cocoindex-sever-ccc-stat",
+      "text": "RQ3: Precise edit-set to decouple `system-code-graph` from CocoIndex — sever `ccc_status`/`ccc_reindex`/`ccc_feedback` tools, the `code_graph_classify_query_intent` semantic/hybrid routing, `ccc_bridge_integration` doc, glossary/router refs — while keeping the structural skill green (tests, tool-schemas, code-graph-boundary.ts).",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-rq4-semantic-search-vacuum-every-agent-command-claude-md-agents-md-route-that-se",
+      "text": "RQ4: Semantic-search vacuum. Every agent/command/CLAUDE.md/AGENTS.md route that sends \"find code by concept\" to CocoIndex; the replacement policy options (drop / repoint to memory_search / grep + code-graph) + a recommendation.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-rq5-4-runtime-mirror-configs-every-opencode-json-vscode-mcp-json-gemini-claude-c",
+      "text": "RQ5: 4-runtime mirror + configs. Every opencode.json / .vscode/mcp.json / .gemini / .claude / .codex + mirrored agent/command + MCP registration edit. The x4 multiplier.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-rq6-dependency-correct-phase-dag-ordering-decouple-before-delete-rollback-points",
+      "text": "RQ6: Dependency-correct phase DAG + ordering (decouple before delete), rollback points, per-phase verify gates, risk register, and the NEGATIVE-knowledge list (things that look related but are NOT in scope).",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-rq7-deletion-completeness-venv-daemon-sockets-pids-cocoindex-code-gitignored-ind",
+      "text": "RQ7: Deletion completeness — venv, daemon sockets/pids (~/.cocoindex_code/), gitignored index dirs (.cocoindex_code/), HuggingFace model cache, install/doctor scripts, git hooks, benchmarks.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "RQ1: Exhaustive, deduplicated inventory of every LIVE file referencing coco / cocoindex / cocoindex_code / ccc CLI, with a per-file mutation class (DELETE / EDIT-decouple / EDIT-remove-ref / LEAVE-historical). Dedup across all spellings.",
+    "RQ2: All consumers of `system-rerank-sidecar`. Confirm/deny mk-spec-memory is the only non-coco consumer; trace `cross-encoder.ts` local branch, `ensure-rerank-sidecar.cjs`, launcher wiring, `SPECKIT_CROSS_ENCODER` / `RERANKER_LOCAL` flags, reaper/telemetry. Define exactly what mk-spec-memory loses and the safe fallback.",
+    "RQ3: Precise edit-set to decouple `system-code-graph` from CocoIndex — sever `ccc_status`/`ccc_reindex`/`ccc_feedback` tools, the `code_graph_classify_query_intent` semantic/hybrid routing, `ccc_bridge_integration` doc, glossary/router refs — while keeping the structural skill green (tests, tool-schemas, code-graph-boundary.ts).",
+    "RQ4: Semantic-search vacuum. Every agent/command/CLAUDE.md/AGENTS.md route that sends \"find code by concept\" to CocoIndex; the replacement policy options (drop / repoint to memory_search / grep + code-graph) + a recommendation.",
+    "RQ5: 4-runtime mirror + configs. Every opencode.json / .vscode/mcp.json / .gemini / .claude / .codex + mirrored agent/command + MCP registration edit. The x4 multiplier.",
+    "RQ6: Dependency-correct phase DAG + ordering (decouple before delete), rollback points, per-phase verify gates, risk register, and the NEGATIVE-knowledge list (things that look related but are NOT in scope).",
+    "RQ7: Deletion completeness — venv, daemon sockets/pids (~/.cocoindex_code/), gitignored index dirs (.cocoindex_code/), HuggingFace model cache, install/doctor scripts, git hooks, benchmarks."
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 12,
+    "openQuestions": 7,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0.62,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}

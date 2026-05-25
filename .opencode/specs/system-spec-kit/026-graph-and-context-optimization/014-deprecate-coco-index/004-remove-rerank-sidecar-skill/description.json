@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/004-remove-rerank-sidecar-skill",
+  "description": "Feature Specification: Remove the system-rerank-sidecar skill",
+  "keywords": [
+    "feature",
+    "specification",
+    "remove",
+    "system-rerank-sidecar",
+    "skill"
+  ],
+  "lastUpdated": "2026-05-25T07:55:12.902Z",
+  "specId": "004",
+  "folderSlug": "remove-rerank-sidecar-skill",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-deprecate-coco-index"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

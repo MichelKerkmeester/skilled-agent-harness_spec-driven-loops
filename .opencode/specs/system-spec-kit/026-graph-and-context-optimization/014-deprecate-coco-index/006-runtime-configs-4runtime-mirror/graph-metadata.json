@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/006-runtime-configs-4runtime-mirror",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/006-runtime-configs-4runtime-mirror",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime-configs-4runtime-mirror",
+      "deprecate cocoindex phase 006",
+      "runtime config cleanup"
+    ],
+    "key_topics": [
+      "runtime-configs-4runtime-mirror",
+      "deprecate",
+      "cocoindex",
+      "phase",
+      "006",
+      "runtime",
+      "config",
+      "cleanup",
+      "part",
+      "rerank-sidecar",
+      "deprecation",
+      "arc"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Part",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Approx",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Part of the CocoIndex / rerank-sidecar deprecation arc (014). Remove the cocoindex_code MCP registration from opencode.json/.vscode/.gemini/.codex + RERANK env notes + coco from agent/command frontmatter across all 4 runtimes; doctor_update.yaml + Gemini update.toml coco refs.",
+    "created_at": "2026-05-25T07:55:14.206Z",
+    "last_save_at": "2026-05-25T07:56:46.118Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}

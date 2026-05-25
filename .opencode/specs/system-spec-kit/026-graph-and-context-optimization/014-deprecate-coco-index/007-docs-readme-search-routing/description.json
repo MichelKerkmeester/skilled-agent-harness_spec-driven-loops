@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/007-docs-readme-search-routing",
+  "description": "Feature Specification: Rewrite docs + 27 YAML assets to HYBRID search policy",
+  "keywords": [
+    "feature",
+    "specification",
+    "rewrite",
+    "docs",
+    "yaml",
+    "assets",
+    "hybrid",
+    "search",
+    "policy"
+  ],
+  "lastUpdated": "2026-05-25T07:55:13.685Z",
+  "specId": "007",
+  "folderSlug": "docs-readme-search-routing",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-deprecate-coco-index"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

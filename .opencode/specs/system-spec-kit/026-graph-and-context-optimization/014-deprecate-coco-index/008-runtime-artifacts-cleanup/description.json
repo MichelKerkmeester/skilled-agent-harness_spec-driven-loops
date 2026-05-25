@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/008-runtime-artifacts-cleanup",
+  "description": "Feature Specification: Clean runtime artifacts, hooks, sweeper",
+  "keywords": [
+    "feature",
+    "specification",
+    "clean",
+    "runtime",
+    "artifacts",
+    "hooks",
+    "sweeper"
+  ],
+  "lastUpdated": "2026-05-25T07:55:13.940Z",
+  "specId": "008",
+  "folderSlug": "runtime-artifacts-cleanup",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "014-deprecate-coco-index"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

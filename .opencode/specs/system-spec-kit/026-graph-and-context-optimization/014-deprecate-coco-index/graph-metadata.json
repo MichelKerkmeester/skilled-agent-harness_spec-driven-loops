@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/001-touchpoint-research",
+    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/002-decouple-code-graph",
+    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/003-remove-memory-rerank-path",
+    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/004-remove-rerank-sidecar-skill",
+    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/005-remove-coco-index-skill",
+    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/006-runtime-configs-4runtime-mirror",
+    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/007-docs-readme-search-routing",
+    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/008-runtime-artifacts-cleanup"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deprecate cocoindex",
+      "remove mcp-coco-index",
+      "deprecate rerank sidecar",
+      "decouple code-graph from cocoindex",
+      "remove ccc bridge"
+    ],
+    "key_topics": [
+      "deprecate",
+      "cocoindex",
+      "remove",
+      "mcp-coco-index",
+      "rerank",
+      "sidecar",
+      "decouple",
+      "code-graph",
+      "ccc",
+      "bridge",
+      "repo",
+      "carries"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "resource-map.md",
+      "scripts/README.md",
+      "001-touchpoint-research/research/research.md",
+      "001-touchpoint-research/research/iterations/iteration-001.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "001-touchpoint-research/research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decouple Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary Three",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Touchpoint Inventory",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deprecation Phase",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo carries a semantic code-search stack that is being retired: the `mcp-coco-index` skill (a soft-fork of cocoindex-code + the `ccc` CLI + the `cocoindex_code` MCP server) and the `system-rerank-sidecar` cross-encoder HTTP service. Two couplings make removal non-trivial: `system-code-graph` (structural indexing) is bound to CocoIndex through the `ccc_*` bridge tools and the semantic/hybrid query-intent routing, and `system-rerank-sidecar` is consumed by **both** CocoIndex and `mk-spec-memory` (opt-in cross-encoder rerank). Removing these cleanly requires mapping every live touchpoint first.",
+    "created_at": "2026-05-25T06:48:03.559Z",
+    "last_save_at": "2026-05-25T07:56:46.110Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "resource-map.md"
+    ],
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/001-touchpoint-research"
+  }
+}
