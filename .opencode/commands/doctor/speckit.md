@@ -1,7 +1,7 @@
 ---
 description: Router for /doctor <target>; dispatches per-subsystem diagnostic to the right YAML via the _routes.yaml manifest.
 argument-hint: "<target> [flags] | list | ?"
-allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__cocoindex_code__search, mcp__mk_code_index__code_graph_status, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_scan, mcp__mk_code_index__code_graph_apply, mcp__mk_code_index__detect_changes, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_link, mcp__mk_code_index__ccc_status, mcp__mk_code_index__ccc_reindex, mcp__mk_code_index__ccc_feedback, mcp__mk_skill_advisor__advisor_recommend, mcp__mk_skill_advisor__advisor_status, mcp__mk_skill_advisor__advisor_validate, mcp__mk_skill_advisor__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status
+allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__mk_code_index__code_graph_status, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_scan, mcp__mk_code_index__code_graph_apply, mcp__mk_code_index__detect_changes, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_link, mcp__mk_skill_advisor__advisor_recommend, mcp__mk_skill_advisor__advisor_status, mcp__mk_skill_advisor__advisor_validate, mcp__mk_skill_advisor__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status
 ---
 <!-- skill_agent: system-spec-kit -->
 
@@ -46,7 +46,7 @@ This router never modifies authored spec packet docs. Each routed target has its
 | `causal-graph`  | `mcp_server/database/context-index__*.sqlite` causal_edges table                          | **add-only**   | Edges are evidence; existing rows never deleted or updated        | Phase 3 validator + snapshot; halts if upsert detected       |
 | `code-graph`    | `.opencode/code-graph.config.json` + `.opencode/skills/system-code-graph/database/code-graph.sqlite` | **mutates**    | Runtime config + index; not packet docs                           | Phase 3 validator + gold-battery + auto-rollback             |
 | `deep-loop`     | `.opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite`                       | **mutates**    | Coverage graph DB; not packet docs                                | Phase 3 validator + `VACUUM INTO` snapshot                   |
-| `cocoindex`     | `.opencode/skills/mcp-coco-index/mcp_server/database/`                                    | **mutates**    | CocoIndex runtime stores; not packet docs                         | Phase 2/3 validator + pre-reindex snapshots                  |
+| `retired-search`     | `.opencode/skills/mcp-coco-index/mcp_server/database/`                                    | **mutates**    | CocoIndex runtime stores; not packet docs                         | Phase 2/3 validator + pre-reindex snapshots                  |
 | `skill-advisor` | `lib/scorer/lanes/*.ts` + `.opencode/skills/*/graph-metadata.json`                        | **mutates**    | Runtime scorer config + graph metadata; not packet docs           | Phase 3 validator + per-run rollback script                  |
 | `skill-budget`  | n/a (read-only audit)                                                                     | **read-only**  | No mutations; report-only                                         | Diagnostic output only                                       |
 
@@ -60,7 +60,7 @@ This router never modifies authored spec packet docs. Each routed target has its
 | `causal-graph`  | `doctor_causal-graph.yaml`      | execution_mode, intent, confidence_threshold, no_snapshot, dry_run      | add-only       | Diagnose causal-edge integrity; add new high-confidence edges only        |
 | `code-graph`    | `doctor_code-graph.yaml`        | execution_mode, scope                                                   | mutates        | Diagnose / rescan code-graph index; prune stale excludes                  |
 | `deep-loop`     | `doctor_deep-loop.yaml`         | execution_mode, intent, scope, no_snapshot, dry_run                     | mutates        | Diagnose deep-loop coverage graphs (research / review)                    |
-| `cocoindex`     | `doctor_cocoindex.yaml`         | execution_mode, intent, no_snapshot, dry_run                            | mutates        | Diagnose CocoIndex semantic-search daemon health; reindex on demand       |
+| `retired-search`     | `doctor_retired-search.yaml`         | execution_mode, intent, no_snapshot, dry_run                            | mutates        | Diagnose CocoIndex semantic-search daemon health; reindex on demand       |
 | `skill-advisor` | `doctor_skill-advisor.yaml`     | execution_mode, scope, skip_tests, dry_run                              | mutates        | Audit & re-tune skill advisor scoring lanes                               |
 | `skill-budget`  | `doctor_skill-budget.yaml`      | execution_mode, json_output, top_n, fail_over, project_ceiling          | read-only      | Audit skill/command/agent description budgets                             |
 
@@ -104,7 +104,7 @@ What do you want to do?
    6) Debug CocoIndex                    (semantic search daemon)
    7) Re-tune Skill Advisor              (which skill gets recommended)
    8) Audit Skill Description budget     (char counts, CI-friendly)
-   9) Install/repair MCP servers         (mk-spec-memory, cocoindex-code, etc.)
+   9) Install/repair MCP servers         (mk-spec-memory, retired-search-code, etc.)
    0) Full sweep — rebuild everything    (no migration, current schema)
    H) Help me decide
    X) Cancel
@@ -116,7 +116,7 @@ What do you want to do?
      - 3 → target = "causal-graph"
      - 4 → target = "code-graph"
      - 5 → target = "deep-loop"
-     - 6 → target = "cocoindex"
+     - 6 → target = "retired-search"
      - 7 → target = "skill-advisor"
      - 8 → target = "skill-budget"
      - 9 → ABORT, EMIT: "Switch to `/doctor:mcp debug --fix` (or `/doctor:mcp install`). Exiting /doctor."
@@ -134,10 +134,10 @@ Pick by symptom:
    "context-index__*.sqlite missing" warning          → 2  Memory
    memory_drift_why returns nothing                   → 3  Causal-Graph
    "causal coverage <60%" warning                     → 3  Causal-Graph
-   cocoindex search returns 0 hits for known code     → 4  Code-Graph (structural)
+   retired-search search returns 0 hits for known code     → 4  Code-Graph (structural)
    "code-graph stale/missed/bloat" warning            → 4  Code-Graph
    Semantic search slow or wrong                      → 6  CocoIndex (semantic)
-   "CocoIndex daemon died" or "ccc_status: unhealthy" → 6  CocoIndex
+   "CocoIndex daemon died" or "code_graph_status: unhealthy" → 6  CocoIndex
    deep-research/deep-review iteration graph empty    → 5  Deep-Loop
    Convergence not detected between iterations        → 5  Deep-Loop
    Skill Advisor recommends the wrong skill           → 7  Skill Advisor
@@ -156,9 +156,9 @@ Press 1-9, 0, or X.
    - After printing HELP, RE-EMIT the Tier 1 question above and WAIT again.
 
 3. VALIDATE target against the canonical list in _routes.yaml:
-   - If target is NOT one of: memory | causal-graph | code-graph | deep-loop | cocoindex | skill-advisor | skill-budget
+   - If target is NOT one of: memory | causal-graph | code-graph | deep-loop | retired-search | skill-advisor | skill-budget
    - THEN EMIT:
-     "Unknown target '<target>'. Valid targets: memory, causal-graph, code-graph, deep-loop, cocoindex, skill-advisor, skill-budget. Try `/doctor list` for descriptions."
+     "Unknown target '<target>'. Valid targets: memory, causal-graph, code-graph, deep-loop, retired-search, skill-advisor, skill-budget. Try `/doctor list` for descriptions."
    - EXIT with STATUS=FAIL ERROR=unknown_target.
 
 4. LOOK UP the resolved target in `.opencode/commands/doctor/_routes.yaml`:
@@ -206,12 +206,12 @@ TIER 2 — PER-TARGET FLAG PARSING (case block)
        intent = "DIAGNOSE"
        SET yaml_asset = "doctor_deep-loop.yaml"
        ;;
-     cocoindex)
+     retired-search)
        # allowed: --no-snapshot, --dry-run
        --no-snapshot            → no_snapshot = true       (default: false)
        --dry-run                → dry_run = true           (default: false)
        intent = "DIAGNOSE"
-       SET yaml_asset = "doctor_cocoindex.yaml"
+       SET yaml_asset = "doctor_retired-search.yaml"
        ;;
      skill-advisor)
        # allowed: --skip-tests, --dry-run, --scope=all|explicit|derived|lexical
@@ -257,7 +257,7 @@ TIER 2 — PER-TARGET FLAG PARSING (case block)
    ```
    Accept: 1-5 → scope=<value>; empty → scope=all.
 
-   **For other targets** (causal-graph, deep-loop, cocoindex, skill-advisor, skill-budget):
+   **For other targets** (causal-graph, deep-loop, retired-search, skill-advisor, skill-budget):
    No prompt needed — defaults apply (causal-graph confidence_threshold=0.7, deep-loop scope=both, others have no required vars).
 
 9. STORE: execution_mode, target, yaml_asset, AND every setup_var for that target.
@@ -271,7 +271,7 @@ TIER 2 — PER-TARGET FLAG PARSING (case block)
 
 ## 1. PURPOSE
 
-`/doctor` is the single entry point for per-subsystem diagnostics in the spec-kit ecosystem. It replaces 7 previously-separate `/doctor:*` commands (`/doctor:memory`, `/doctor:causal-graph`, `/doctor:code-graph`, `/doctor:deep-loop`, `/doctor:cocoindex`, `/doctor:skill-advisor`, `/doctor:skill-budget`) with one router that dispatches via `_routes.yaml`. The router preserves every previous behavior — same setup variables, same YAML workflows, same mutation boundaries — while collapsing the markdown surface area by ~75%.
+`/doctor` is the single entry point for per-subsystem diagnostics in the spec-kit ecosystem. It replaces 7 previously-separate `/doctor:*` commands (`/doctor:memory`, `/doctor:causal-graph`, `/doctor:code-graph`, `/doctor:deep-loop`, `/doctor:retired-search`, `/doctor:skill-advisor`, `/doctor:skill-budget`) with one router that dispatches via `_routes.yaml`. The router preserves every previous behavior — same setup variables, same YAML workflows, same mutation boundaries — while collapsing the markdown surface area by ~75%.
 
 Use `/doctor` when you need to diagnose or rebuild ONE subsystem. Use `/doctor:update` when you want a dependency-safe rebuild across all subsystems with one lock, snapshot set, and rollback policy. Use `/doctor:mcp` when the MCP servers themselves (not the databases they populate) are broken.
 
@@ -305,7 +305,7 @@ Use `/doctor` when you need to diagnose or rebuild ONE subsystem. Use `/doctor:u
 /doctor causal-graph --confidence-threshold=0.8       # Stricter candidate floor
 /doctor code-graph --scope=stale --operation=rescan   # Rescan stale code-graph nodes
 /doctor deep-loop --scope=both --dry-run              # Diagnose research + review coverage graphs
-/doctor cocoindex --dry-run                           # Daemon health + propose reindex
+/doctor retired-search --dry-run                           # Daemon health + propose reindex
 /doctor skill-advisor --skip-tests --dry-run          # Tune advisor scoring without gold tests
 /doctor skill-budget --json --fail-over=5600          # CI-friendly description budget audit
 

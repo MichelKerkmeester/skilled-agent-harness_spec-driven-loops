@@ -1,6 +1,6 @@
 ---
 title: "Code Graph: Manual Testing Playbook"
-description: "Operator validation package for the system-code-graph skill and mk-code-index MCP server, covering readiness, structural queries, detect_changes, context retrieval, coverage graph references, CCC bridge tools and doctor-code-graph policy."
+description: "Operator validation package for the system-code-graph skill and mk-code-index MCP server, covering readiness, structural queries, detect_changes, context retrieval, coverage graph references, structural tool tools and doctor-code-graph policy."
 trigger_phrases:
   - "system-code-graph manual testing playbook"
   - "mk-code-index manual testing playbook"
@@ -10,7 +10,7 @@ importance_tier: "important"
 ---
 # Code Graph: Manual Testing Playbook
 
-This playbook validates the code graph runtime at `.opencode/skills/system-code-graph/mcp_server/`. Live MCP examples use the `mk-code-index` namespace as `mcp__mk_code_index__*`, while the stable tool IDs remain `code_graph_*`, `detect_changes` and `ccc_*`.
+This playbook validates the code graph runtime at `.opencode/skills/system-code-graph/mcp_server/`. Live MCP examples use the `mk-code-index` namespace as `mcp__mk_code_index__*`, while the stable tool IDs remain `code_graph_*`, `detect_changes` and `code_graph_* and detect_changes`.
 
 ---
 
@@ -28,7 +28,7 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 - [10. CONTEXT RETRIEVAL](#10--context-retrieval)
 - [11. COVERAGE GRAPH](#11--coverage-graph)
 - [12. MCP TOOL SURFACE](#12--mcp-tool-surface)
-- [13. CCC INTEGRATION](#13--ccc-integration)
+- [13. structural INTEGRATION](#13--ccc-integration)
 - [14. DOCTOR CODE GRAPH](#14--doctor-code-graph)
 - [15. POST-RENAME INFRASTRUCTURE](#15--post-rename-infrastructure)
 - [16. DEVIN HOOKS](#16--devin-hooks)
@@ -39,7 +39,7 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 
 ## 1. OVERVIEW
 
-The playbook contains 22 scenarios across 10 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, CCC tools are manual and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes. Group 10 adds the Devin CLI SessionStart hook scenario shipped in packet 036-cli-devin-code-graph-hook.
+The playbook contains 19 scenarios across 9 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, structural tools are manual and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes. Group 10 adds the Devin CLI SessionStart hook scenario shipped in packet 036-cli-devin-code-graph-hook.
 
 | Group | Scenario Files |
 | --- | --- |
@@ -49,7 +49,7 @@ The playbook contains 22 scenarios across 10 groups. It targets the current real
 | Context retrieval | [04--context-retrieval](./04--context-retrieval/) |
 | Coverage graph | [05--coverage-graph](./05--coverage-graph/) |
 | MCP tool surface | [06--mcp-tool-surface](./06--mcp-tool-surface/) |
-| CCC integration | [07--ccc-integration](./07--ccc-integration/) |
+| retired tool integration | [07--ccc-integration](./07--ccc-integration/) |
 | Doctor code graph | [08--doctor-code-graph](./08--doctor-code-graph/) |
 | Post-rename infrastructure | [09--post-rename-infrastructure](./09--post-rename-infrastructure/) |
 | Devin hooks | [10--devin-hooks](./10--devin-hooks/) |
@@ -141,13 +141,13 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 ---
 
-## 13. CCC INTEGRATION
+## 13. structural INTEGRATION
 
 | ID | Scenario | File |
 | --- | --- | --- |
-| 012 | ccc_reindex binary shell out | [012-ccc-reindex-binary-shell-out.md](./07--ccc-integration/012-ccc-reindex-binary-shell-out.md) |
-| 013 | ccc_feedback jsonl append | [013-ccc-feedback-jsonl-append.md](./07--ccc-integration/013-ccc-feedback-jsonl-append.md) |
-| 014 | ccc_status availability probe | [014-ccc-status-availability-probe.md](./07--ccc-integration/014-ccc-status-availability-probe.md) |
+| 012 | code_graph_scan binary shell out | [012-ccc-reindex-binary-shell-out.md](./07--ccc-integration/012-ccc-reindex-binary-shell-out.md) |
+| 013 | code_graph_verify jsonl append | [013-ccc-feedback-jsonl-append.md](./07--ccc-integration/013-ccc-feedback-jsonl-append.md) |
+| 014 | code_graph_status availability probe | [014-ccc-status-availability-probe.md](./07--ccc-integration/014-ccc-status-availability-probe.md) |
 
 ---
 

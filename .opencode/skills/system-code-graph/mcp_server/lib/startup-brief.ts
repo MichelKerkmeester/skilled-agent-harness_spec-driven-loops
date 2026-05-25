@@ -7,7 +7,6 @@
 import { getStats, queryStartupHighlights, type StartupHighlight } from './code-graph-db.js';
 import { getGraphReadinessSnapshot } from './ensure-ready.js';
 import { loadMostRecentState, type HookStateScope } from './shared/hook-state.js';
-import { isCocoIndexAvailable } from './shared/cocoindex-path.js';
 import {
   createSharedPayloadEnvelope,
   trustStateFromGraphState,
@@ -43,7 +42,6 @@ export interface StartupBriefResult {
   graphQualitySummary: StartupGraphQualitySummary | null;
   graphState: 'ready' | 'stale' | 'empty' | 'missing';
   graphTrustState: SharedPayloadTrustState;
-  cocoIndexAvailable: boolean;
   startupSurface: string;
   sharedPayload: SharedPayloadEnvelope | null;
   sharedPayloadTransport: string | null;
@@ -104,7 +102,6 @@ function buildStartupSurface(args: {
   sessionContinuity: string | null;
   graphSummary: StartupGraphSummary | null;
   graphState: StartupBriefResult['graphState'];
-  cocoIndexAvailable: boolean;
 }): string {
   const memoryLine = args.sessionContinuity
     ? 'session continuity available'
@@ -138,7 +135,6 @@ function buildStartupSurface(args: {
     // 005/REQ-017: this startup label refers to the structural code graph,
     // distinct from the memory causal graph surfaced by memory_causal_stats.
     `- Code Graph: ${codeGraphLine}`,
-    `- CocoIndex: ${args.cocoIndexAvailable ? 'available' : 'missing'}`,
     '- Note: this is a startup snapshot; later structural reads may differ if the repo state changed.',
     '',
     'What would you like to work on?',
@@ -243,7 +239,7 @@ function buildGraphOutline(highlightCount: number = 5): Pick<StartupBriefResult,
       lines.push(`Graph quality: ${qualityLine}`);
     }
     if (highlights.length > 0) {
-      lines.push('Orientation: use code graph highlights for structural entry points and call paths; use CocoIndex for semantic discovery when the symbol or file is still unknown.');
+      lines.push('Orientation: use code graph highlights for structural entry points and call paths.');
       lines.push('Highlights:');
       lines.push(...highlights.map(formatHighlight));
     }
@@ -306,7 +302,6 @@ function buildSessionContinuity(stateScope?: HookStateScope): string | null {
 export function buildStartupBrief(highlightCount?: number, stateScope?: HookStateScope): StartupBriefResult {
   const graph = buildGraphOutline(highlightCount);
   const sessionContinuity = buildSessionContinuity(stateScope);
-  const cocoIndexAvailable = isCocoIndexAvailable();
   const sections: SharedPayloadSection[] = [];
   if (graph.graphOutline) {
     sections.push({
@@ -329,7 +324,6 @@ export function buildStartupBrief(highlightCount?: number, stateScope?: HookStat
     sessionContinuity,
     graphSummary: graph.graphSummary,
     graphState: graph.graphState,
-    cocoIndexAvailable,
   });
 
   const sharedPayload = sections.length > 0
@@ -358,7 +352,6 @@ export function buildStartupBrief(highlightCount?: number, stateScope?: HookStat
     graphQualitySummary: graph.graphQualitySummary,
     graphState: graph.graphState,
     graphTrustState: graph.graphTrustState,
-    cocoIndexAvailable,
     startupSurface,
     sharedPayload,
     sharedPayloadTransport,

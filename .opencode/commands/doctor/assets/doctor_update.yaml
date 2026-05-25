@@ -294,17 +294,6 @@ workflow:
           sed -i.bak 's|\.opencode/skill/|.opencode/skills/|g' .mcp.json opencode.json 2>/dev/null
           # Then manually verify .mcp.json and opencode.json are correct.
       idempotency: "if .opencode/skill is already a symlink to skills, skip"
-    cocoindex_venv_check:
-      probe: |
-        VENV_PYTHON=.opencode/skills/mcp-coco-index/mcp_server/.venv/bin/python3
-        [ -x "$VENV_PYTHON" ] && "$VENV_PYTHON" -c "import sys; print(sys.prefix)" 2>/dev/null
-      on_broken_or_missing:
-        action: "recreate venv at canonical plural path"
-        commands: |
-          python3 -m venv .opencode/skills/mcp-coco-index/mcp_server/.venv
-          .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/pip install --quiet -e .opencode/skills/mcp-coco-index/mcp_server
-        on_failure: "warn (CocoIndex is supplemental, not gating); record in state log"
-      idempotency: "skip if probe returns a sys.prefix path under the workspace"
     spec_metadata_backfill:
       precondition: "signal_d positive (spec folders exist but lack description.json) OR signal_c positive (legacy memory/ folders detected)"
       rationale: "v3.3 spec packets lack the description.json + graph-metadata.json files that v3.4 requires for memory_index_scan visibility. Without backfill, Phase 5.2 silently skips all v3.3 packets — see Issue 11 in council Round 2 backlog."
@@ -390,7 +379,7 @@ workflow:
     council_line: 4
     approval: "prompt after rendering dashboard and before selecting actions"
     cross_subsystem_dashboard:
-      rows: ["code-graph", "context-index", "causal-edges", "skill-graph", "advisor", "deep-loop", "cocoindex", "eval"]
+      rows: ["code-graph", "context-index", "causal-edges", "skill-graph", "advisor", "deep-loop", "eval"]
       columns: ["status", "age", "coverage", "recommended action"]
       coverage_column_rationale: "context-index row populated by FIX-10 post_run_count_skipped output; other rows show n/a unless their tool surfaces a coverage metric"
 
@@ -477,7 +466,6 @@ workflow:
     post.run.validation:
       - "existence + schema-version + row-count delta within bounds"
       - "gold-battery sanity check per DB"
-      - "cocoindex smoke test: invoke `ccc search 'orchestrator' --limit 1` via the workspace's venv binary; warn (do not regress) on failure"
     regression: "prompt"
 
   phase_9_legacy_cleanup:

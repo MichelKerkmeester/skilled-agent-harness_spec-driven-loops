@@ -10,9 +10,6 @@ import {
   handleClassifyQueryIntent,
   handleCodeGraphVerify,
   handleCodeGraphApply,
-  handleCccStatus,
-  handleCccReindex,
-  handleCccFeedback,
   handleDetectChanges,
   // PHASE-002-IMPORT-SLOT: handleCodeGraphHldLld (027/002)
   // PHASE-003-IMPORT-SLOT: handleCodeGraphTrace (027/003)
@@ -32,9 +29,6 @@ export const TOOL_NAMES = new Set([
   'code_graph_verify',
   'code_graph_apply',
   'detect_changes',
-  'ccc_status',
-  'ccc_reindex',
-  'ccc_feedback',
   // PHASE-002-TOOLNAME-SLOT: 'code_graph_hld_lld' (027/002)
   // PHASE-003-TOOLNAME-SLOT: 'code_graph_trace' (027/003)
   // PHASE-004-TOOLNAME-SLOT: 'code_graph_impact_analysis' (027/004)
@@ -101,18 +95,6 @@ export async function handleTool(name: string, args: Record<string, unknown>): P
         return validationError(name, missingKeys);
       }
       return toMCP(await handleDetectChanges(parseArgs<Parameters<typeof handleDetectChanges>[0]>(args)));
-    }
-    case 'ccc_status':
-      parseArgs<Record<string, never>>(args);
-      return toMCP(await handleCccStatus());
-    case 'ccc_reindex':
-      return toMCP(await handleCccReindex(parseArgs<Parameters<typeof handleCccReindex>[0]>(args)));
-    case 'ccc_feedback': {
-      const missingKeys = getMissingRequiredStringArgs(args, ['query', 'rating']);
-      if (missingKeys.length > 0) {
-        return validationError(name, missingKeys);
-      }
-      return toMCP(await handleCccFeedback(parseArgs<Parameters<typeof handleCccFeedback>[0]>(args)));
     }
     // PHASE-002-DISPATCH-SLOT: case 'code_graph_hld_lld' (027/002)
     // PHASE-003-DISPATCH-SLOT: case 'code_graph_trace' (027/003)

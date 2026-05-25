@@ -1,11 +1,11 @@
 ---
 name: system-code-graph
-description: "Structural code indexing and mk-code-index MCP workflows for graph readiness, impact queries, context retrieval and CCC checks."
+description: "Structural code indexing and mk-code-index MCP workflows for graph readiness, impact queries, context retrieval and structural checks."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.0.3.2
 ---
 
-<!-- Keywords: code-graph, code graph, structural code indexing, mk-code-index, impact analysis, code_graph_scan, code_graph_query, code_graph_context, code_graph_status, ccc_status, detect_changes -->
+<!-- Keywords: code-graph, code graph, structural code indexing, mk-code-index, impact analysis, code_graph_scan, code_graph_query, code_graph_context, code_graph_status, code_graph_status, detect_changes -->
 
 # System Code Graph - Structural Code Indexing and MCP Workflows
 
@@ -20,7 +20,7 @@ This skill ships the structural half: a tree-sitter parser, a SQLite graph, a re
 ## Glossary
 
 - **Structural indexing.** AST-derived graph of files, symbols, calls, imports, and definitions. Distinct from text matching and from embedding-based semantic search.
-- **Semantic search.** Vector-embedding lookup over code (CocoIndex). Surfaces conceptually related code without requiring known names.
+- **Semantic search.** Vector-embedding lookup over code (structural search). Surfaces conceptually related code without requiring known names.
 - **Blast radius.** Reverse impact set of a symbol or file. Answers "what depends on this if I change it."
 - **Readiness.** Whether the graph reflects current workspace state. States are `fresh`, `stale`, `empty`, `error`, `absent`. Read paths refuse to answer on non-fresh states.
 - **Trust state.** Companion signal to readiness. Marks whether the graph passed its gold-query battery recently.
@@ -43,7 +43,7 @@ Use this skill for:
 - Blast-radius and impact preflight before risky code changes.
 - Code-graph health, readiness, freshness and doctor checks.
 - Gold-query verification and graph quality validation.
-- MCP tool workflows using `code_graph_*`, `ccc_*` or `detect_changes`.
+- MCP tool workflows using `code_graph_*`, `code_graph_* and detect_changes` or `detect_changes`.
 
 ### When NOT to use
 
@@ -56,14 +56,14 @@ Use this skill for:
 <!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
-This package is mandatory context for structural code-graph maintenance, readiness checks, impact queries, context retrieval, and CCC bridge coordination. The live tool schemas stay in `mcp_server/tool-schemas.ts`; this router controls which local documentation resources an agent should load.
+This package is mandatory context for structural code-graph maintenance, readiness checks, impact queries, context retrieval, and structural tool coordination. The live tool schemas stay in `mcp_server/tool-schemas.ts`; this router controls which local documentation resources an agent should load.
 
 Routing model:
 
 ```text
 user prompt
   |
-  +-- named code_graph_*, detect_changes, or ccc_* tool -> named tool wins
+  +-- named code_graph_*, detect_changes, or code_graph_* and detect_changes tool -> named tool wins
   |
   +-- natural-language code-intelligence request
         |
@@ -73,7 +73,7 @@ user prompt
         |
         +-- semantic -> mcp-coco-index resources
         |
-        +-- hybrid -> CocoIndex seeds, then code_graph_context
+        +-- hybrid -> structural search seeds, then code_graph_context
 ```
 
 Resource domains:
@@ -81,9 +81,9 @@ Resource domains:
 - `references/runtime/` documents the tool surface, naming conventions, ownership boundary, and launcher lease.
 - `references/readiness/` documents `ensureCodeGraphReady()`, readiness states, trust state, and scope fingerprints.
 - `references/config/` documents database path and workspace containment policy.
-- `references/integrations/` documents CCC bridge coordination with CocoIndex.
+- `references/integrations/` documents structural tool coordination with structural search.
 - `feature_catalog/` documents current tool features and source-of-truth behavior slices.
-- `manual_testing_playbook/` documents deterministic operator scenarios for status, scan, verify, query, context, change detection, CCC, doctor, and launcher flows.
+- `manual_testing_playbook/` documents deterministic operator scenarios for status, scan, verify, query, context, change detection, structural, doctor, and launcher flows.
 - `mcp_server/` owns handlers, schemas, tool registration, tests, parser, storage, readiness logic, and the SQLite-backed runtime.
 
 ### Resource Loading Levels
@@ -120,7 +120,7 @@ INTENT_SIGNALS = {
     "SCAN_VERIFY": {"weight": 4, "keywords": ["scan", "verify", "gold query", "rescan", "index", "refresh"]},
     "CHANGE_DETECTION": {"weight": 3, "keywords": ["detect changes", "diff", "affected symbols", "preflight"]},
     "CONFIG": {"weight": 3, "keywords": ["database", "sqlite", "db path", "storage", "speckit_code_graph_db_dir"]},
-    "CCC": {"weight": 3, "keywords": ["ccc", "cocoindex", "semantic", "hybrid", "feedback", "reindex"]},
+    "structural": {"weight": 3, "keywords": ["ccc", "retired-search", "semantic", "hybrid", "feedback", "reindex"]},
     "NAMING": {"weight": 3, "keywords": ["name", "mk-code-index", "mk_code_index", "namespace", "launcher", "plugin"]},
     "OWNERSHIP": {"weight": 3, "keywords": ["ownership", "boundary", "spec-kit", "deep-loop", "coverage graph"]},
     "LAUNCHER": {"weight": 3, "keywords": ["launcher", "lease", "pid", "single writer", "lease_held_by"]},
@@ -156,7 +156,7 @@ RESOURCE_MAP = {
     "CONFIG": [
         "references/config/database_path_policy.md",
     ],
-    "CCC": [
+    "structural": [
         "references/integrations/ccc_bridge_integration.md",
         "feature_catalog/07--ccc-integration/01-ccc-reindex.md",
         "feature_catalog/07--ccc-integration/02-ccc-feedback.md",
@@ -181,7 +181,7 @@ RESOURCE_MAP = {
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether the request is about tool surface, readiness, query, scan/verify, change detection, config, CCC, naming, ownership, launcher, features or playbooks",
+    "Confirm whether the request is about tool surface, readiness, query, scan/verify, change detection, config, structural, naming, ownership, launcher, features or playbooks",
     "Confirm whether the task changes documentation only or executable code-graph behavior",
     "Provide the failing tool id, status payload, reference path, diff, or validation command",
     "Confirm the verification command set before completion",
@@ -288,10 +288,10 @@ The router selects from these tool intents. `mcp_server/tool-schemas.ts` `CODE_G
 | Validate graph quality with gold queries | `mcp__mk_code_index__code_graph_verify` | `feature_catalog/02--manual-scan-verify-status/02-code-graph-verify.md` |
 | Inspect changed symbols from a diff | `mcp__mk_code_index__detect_changes` | `feature_catalog/03--detect-changes/01-detect-changes-preflight.md` |
 | Execute verification-gated apply-mode recovery operations | `mcp__mk_code_index__code_graph_apply` | `feature_catalog/08--doctor-code-graph/01-doctor-apply-mode.md` |
-| Bridge CocoIndex status, reindexing and feedback | `mcp__mk_code_index__ccc_status`, `mcp__mk_code_index__ccc_reindex`, `mcp__mk_code_index__ccc_feedback` | `references/integrations/ccc_bridge_integration.md` |
+| Bridge structural search status, reindexing and feedback | ``, ``, `` | `references/integrations/ccc_bridge_integration.md` |
 | Review doctor code-graph apply policy | `/doctor code-graph` | `feature_catalog/08--doctor-code-graph/01-doctor-apply-mode.md` |
 
-The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code_graph_*`, `detect_changes`, and `ccc_*`.
+The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code_graph_*`, `detect_changes`, and `code_graph_* and detect_changes`.
 
 ### Fallback Contract
 
@@ -321,7 +321,7 @@ The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code
 
 Runtime source lives under `mcp_server/{lib,handlers,tools,tests}/`. The package docs live under `feature_catalog/` and `manual_testing_playbook/`.
 
-Read paths call `ensureCodeGraphReady()` before answering any structural query. The check enforces the false-safe contract: stale, empty, or scope-mismatched graphs return `blocked` with an explicit `requiredAction` rather than empty results. Manual maintenance tools run explicit scans, verification, status checks, and CCC bridge operations against the same readiness gate.
+Read paths call `ensureCodeGraphReady()` before answering any structural query. The check enforces the false-safe contract: stale, empty, or scope-mismatched graphs return `blocked` with an explicit `requiredAction` rather than empty results. Manual maintenance tools run explicit scans, verification, status checks, and structural tool operations against the same readiness gate.
 
 The deep-loop coverage graph tools remain in `system-spec-kit` because the research and review loop owns its state machine and the lifecycle of iteration packets. Code-graph stays focused on the structural index for everything else.
 <!-- /ANCHOR:how-it-works -->
@@ -333,7 +333,7 @@ The deep-loop coverage graph tools remain in `system-spec-kit` because the resea
 
 ### ALWAYS
 
-1. **ALWAYS register MCP tools under the standalone `mk-code-index` server.** Tool IDs (`code_graph_*`, `detect_changes`, `ccc_*`) are the stable surface contract.
+1. **ALWAYS register MCP tools under the standalone `mk-code-index` server.** Tool IDs (`code_graph_*`, `detect_changes`, `code_graph_* and detect_changes`) are the stable surface contract.
 2. **ALWAYS use the `mcp__mk_code_index__*` namespace** for MCP-side tool calls. Direct library consumers in `system-spec-kit` handlers and hooks use in-process imports through `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`.
 3. **ALWAYS check readiness before answering structural questions.** `code_graph_status` first; if `readiness !== "fresh"`, return the `blocked` payload from the tool rather than a stale result.
 4. **ALWAYS treat `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` as the authoritative tool list.** Docs are documentation; the schema array is canonical.
@@ -359,7 +359,7 @@ The deep-loop coverage graph tools remain in `system-spec-kit` because the resea
 
 - `feature_catalog/feature_catalog.md` is the current runtime feature inventory.
 - `manual_testing_playbook/manual_testing_playbook.md` is the operator validation package.
-- `mcp_server/tool-schemas.ts` defines the `mk-code-index` code graph, detect-changes and CCC schemas.
+- `mcp_server/tool-schemas.ts` defines the `mk-code-index` code graph, detect-changes and structural schemas.
 - `mcp_server/tools/code-graph-tools.ts` registers and dispatches the standalone tool IDs.
 <!-- /ANCHOR:references -->
 
@@ -384,7 +384,7 @@ Cross-subsystem consumers use two intentional paths:
 | Consumer Type | Integration |
 |---------------|-------------|
 | `system-spec-kit` handlers / hooks / session surfaces | Direct in-process imports from `system-code-graph/mcp_server/lib/*` for shared readiness, startup, and context helpers via `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`. |
-| MCP callers (agents, commands, runtimes) | Standalone `mk-code-index` MCP namespace: `mcp__mk_code_index__code_graph_*`, `mcp__mk_code_index__ccc_*`, and `mcp__mk_code_index__detect_changes`. |
+| MCP callers (agents, commands, runtimes) | Standalone `mk-code-index` MCP namespace: `mcp__mk_code_index__code_graph_*`, `mcp__mk_code_index__code_graph_* and detect_changes`, and `mcp__mk_code_index__detect_changes`. |
 
 The shared SQLite file at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` remains the coordination boundary. The scan loop is the single writer.
 
@@ -398,10 +398,10 @@ The shared SQLite file at `.opencode/.spec-kit/code-graph/database/code-graph.sq
 
 ### Core references (this skill)
 
-- [`references/runtime/tool_surface.md`](references/runtime/tool_surface.md) — 11 MCP tools mapped to handler files, primary purpose, and preconditions.
+- [`references/runtime/tool_surface.md`](references/runtime/tool_surface.md) — 8 MCP tools mapped to handler files, primary purpose, and preconditions.
 - [`references/readiness/readiness_and_scope_fingerprint.md`](references/readiness/readiness_and_scope_fingerprint.md) — readiness state machine (`fresh`/`stale`/`blocked`/`empty`/`absent`) and the scan-scope fingerprint contract.
 - [`references/readiness/code_graph_readiness_check.md`](references/readiness/code_graph_readiness_check.md) — `ensureCodeGraphReady()` gates, preconditions, recovery procedures.
-- [`references/integrations/ccc_bridge_integration.md`](references/integrations/ccc_bridge_integration.md) — when to use `ccc_status` / `ccc_reindex` / `ccc_feedback` and how they coordinate with CocoIndex.
+- [`references/integrations/ccc_bridge_integration.md`](references/integrations/ccc_bridge_integration.md) — when to use `code_graph_status` / `code_graph_scan` / `code_graph_verify` and how they coordinate with structural search.
 - [`references/config/database_path_policy.md`](references/config/database_path_policy.md) — canonical database path policy and override rules.
 - [`references/runtime/naming_conventions.md`](references/runtime/naming_conventions.md) — name map across skill folder, MCP server, launcher, plugin bridge, and hook location.
 - [`references/runtime/ownership_boundary.md`](references/runtime/ownership_boundary.md) — what stays in `system-spec-kit` vs `system-code-graph` after extraction.

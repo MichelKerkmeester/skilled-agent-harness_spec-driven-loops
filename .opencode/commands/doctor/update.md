@@ -1,7 +1,7 @@
 ---
 description: Rebuild spec-kit runtime databases in dependency-safe order through the interactive confirm workflow.
 argument-hint: "[--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap]"
-allowed-tools: Read, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__mk_code_index__code_graph_status, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_scan, mcp__mk_code_index__code_graph_apply, mcp__mk_code_index__detect_changes, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_link, mcp__mk_code_index__ccc_status, mcp__mk_code_index__ccc_reindex, mcp__mk_code_index__ccc_feedback, mcp__mk_spec_memory__advisor_recommend, mcp__mk_spec_memory__advisor_status, mcp__mk_spec_memory__advisor_validate, mcp__mk_spec_memory__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status, mcp__mk_spec_memory__eval_run_ablation, mcp__mk_spec_memory__session_health
+allowed-tools: Read, Bash, Grep, Glob, mcp__mk_code_index__code_graph_status, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_scan, mcp__mk_code_index__code_graph_apply, mcp__mk_code_index__detect_changes, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_link, mcp__mk_spec_memory__advisor_recommend, mcp__mk_spec_memory__advisor_status, mcp__mk_spec_memory__advisor_validate, mcp__mk_spec_memory__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status, mcp__mk_spec_memory__eval_run_ablation, mcp__mk_spec_memory__session_health
 ---
 <!-- skill_agent: system-spec-kit -->
 
@@ -218,7 +218,7 @@ Use it after upgrading spec-kit, after large packet moves, after a stale startup
 | skill-graph   | `mk_skill_advisor` skill graph DB                               | `mk_skill_advisor.skill_graph_status` | `mk_skill_advisor.skill_graph_scan` | skill count/freshness + query          |
 | advisor       | skill graph + advisor tables                                       | `advisor_status`, `advisor_validate` | `advisor_rebuild`                      | validation suite                       |
 | deep-loop     | `.opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite` | `node .opencode/skills/deep-loop-runtime/scripts/status.cjs --spec-folder "<spec-folder>" --loop-type "<research\|review>" --session-id "<session-id>"` | `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "<spec-folder>" --loop-type "<research\|review>" --session-id "<session-id>" --nodes '<nodes-json>' --edges '<edges-json>'` | `node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "<spec-folder>" --loop-type "<research\|review>" --session-id "<session-id>"` |
-| cocoindex     | CocoIndex semantic store                                           | `ccc_status`                         | `ccc_reindex`                          | semantic search sample                 |
+| retired-search     | CocoIndex semantic store                                           | `code_graph_status`                         | `code_graph_scan`                          | semantic search sample                 |
 | eval          | `mcp_server/database/speckit-eval.db`                              | `session_health`, eval probes        | `eval_run_ablation`                    | ablation run completes                 |
 
 ## DEPENDENCY DAG
@@ -291,7 +291,7 @@ Forbidden targets include all spec folder docs, authored skill source, all agent
 | 5.5   | Optional post-dependency checkpoint for DBs created during Phase 5 (fresh-install rollback target) | `phase_5_5_post_dependency_checkpoint`        |
 | 6     | On SIGINT: set cancel flag, settle current tx, restore in-flight DB, exit 130          | `phase_6_sigint_cancel_contract`                                |
 | 7     | Post-run validation with gold battery per DB; rollback on regression                   | `phase_7_post_run_validation`                                   |
-| 8     | Migration Phase 0: file-signal auto-detect, directory bridge, mcp_server build, cocoindex venv, spec metadata backfill (FIX-08), legacy memory.md report (FIX-09) | `phase_8_migration_phase_0`                                     |
+| 8     | Migration Phase 0: file-signal auto-detect, directory bridge, mcp_server build, retired-search venv, spec metadata backfill (FIX-08), legacy memory.md report (FIX-09) | `phase_8_migration_phase_0`                                     |
 | 9     | Legacy cleanup only with `--cleanup-legacy`, prompt-delete each                        | `phase_9_legacy_cleanup`                                        |
 | 10    | Write `.doctor-update.last-run.json`; release flock; cleanup old snapshots unless kept | `phase_10_state_log_unlock_cleanup`                             |
 
@@ -334,7 +334,7 @@ Forbidden targets include all spec folder docs, authored skill source, all agent
 | skill-graph   | OK     | STALE        | MISSING            | <age>     | scan         | skip       |
 | advisor       | OK     | INVALID      | STALE              | <age>     | rebuild      | validate   |
 | deep-loop     | OK     | EMPTY        | STALE              | <age>     | upsert       | skip       |
-| cocoindex     | OK     | UNHEALTHY    | STALE              | <age>     | reindex      | fix-daemon |
+| retired-search     | OK     | UNHEALTHY    | STALE              | <age>     | reindex      | fix-daemon |
 | eval          | OK     | STALE        | SKIPPED            | <age>     | run-ablation | skip       |
 
 Final status: STATUS=<OK|FAIL|ROLLED_BACK|CANCELLED|RESTART_REQUIRED>
@@ -357,7 +357,7 @@ When `STATUS=RESTART_REQUIRED`, no database rebuild has started yet. Start a fre
 - `/doctor memory` - isolated context-index/vector-index health and rebuild.
 - `/doctor causal-graph` - isolated causal edge coverage and add-only repair.
 - `/doctor deep-loop` - isolated research/review coverage graph rebuild.
-- `/doctor cocoindex` - isolated CocoIndex semantic reindex.
+- `/doctor retired-search` - isolated CocoIndex semantic reindex.
 - `/doctor code-graph` - isolated structural graph diagnosis and confirm workflow.
 - `/doctor skill-advisor` - advisor and skill-graph optimization pass.
 - `/doctor skill-budget` - advisor budget/status helper.
@@ -368,7 +368,7 @@ When `STATUS=RESTART_REQUIRED`, no database rebuild has started yet. Start a fre
 2. Load the selected `assets/doctor_update.yaml` file and execute it as the source of truth.
 3. Enforce Phase 1 flock before any status probe that could lead to mutation. If held, refuse with holding PID and start timestamp.
 4. In Phase 2, probe active MCP clients. If active clients exist and `--force` is absent, ask for explicit proceed/cancel.
-5. In Phase 8, when `--migrate` is set OR auto-detected via 4 file-system signals (≥2 positive), execute the migration sub-actions in order: directory_layout_bridge → mcp_server_build → cocoindex_venv_check → spec_metadata_backfill (FIX-08, invokes sanctioned scripts) → legacy_memory_md_detection (FIX-09, report-only). Read `migration-manifest.json` for migration definitions; refuse if missing or gapped; Track C does not author it.
+5. In Phase 8, when `--migrate` is set OR auto-detected via 4 file-system signals (≥2 positive), execute the migration sub-actions in order: directory_layout_bridge → mcp_server_build → retired-search_venv_check → spec_metadata_backfill (FIX-08, invokes sanctioned scripts) → legacy_memory_md_detection (FIX-09, report-only). Read `migration-manifest.json` for migration definitions; refuse if missing or gapped; Track C does not author it.
 6. In Phase 3, snapshot every allowed SQLite database with `VACUUM INTO` unless `--no-snapshot` is explicitly true. Disk free must be at least 2x DB total.
 7. In Phase 4, render the cross-subsystem dashboard before deciding which dependency steps to run. skips this decision and runs the full chain.
 8. In Phase 5, execute in dependency order: code-graph -> context-index -> causal-edges-init -> skill-graph -> advisor -> deep-loop-graph -> speckit-eval.

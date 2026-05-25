@@ -72,7 +72,7 @@ const codeGraphStatus: ToolDefinition = {
 
 const codeGraphContext: ToolDefinition = {
   name: 'code_graph_context',
-  description: '[L6:Analysis] Get LLM-oriented compact graph neighborhoods. Accepts CocoIndex search results as seeds — use CocoIndex (mcp__cocoindex_code__search) for semantic search first, then pass results here for structural expansion. Supports manual seeds (provider: manual) and graph seeds (provider: graph). Modes: neighborhood (1-hop calls+imports), outline (file symbols), impact (reverse callers). When readiness requires a full scan, returns an explicit blocked payload with requiredAction `code_graph_scan`, readiness metadata, and lastPersistedAt instead of degraded graph answers. Successful responses include metadata.partialOutput for deadline/budget truncation details (reasons, omittedSections, omittedAnchors, truncatedText). Token Budget: 1200.',
+  description: '[L6:Analysis] Get LLM-oriented compact graph neighborhoods from manual or graph seeds. Modes: neighborhood (1-hop calls+imports), outline (file symbols), impact (reverse callers). When readiness requires a full scan, returns an explicit blocked payload with requiredAction `code_graph_scan`, readiness metadata, and lastPersistedAt instead of degraded graph answers. Successful responses include metadata.partialOutput for deadline/budget truncation details (reasons, omittedSections, omittedAnchors, truncatedText). Token Budget: 1200.',
   inputSchema: {
     type: 'object', additionalProperties: false,
     properties: {
@@ -88,24 +88,15 @@ const codeGraphContext: ToolDefinition = {
             startLine: { type: 'number' },
             endLine: { type: 'number' },
             query: { type: 'string' },
-            provider: { type: 'string', enum: ['cocoindex', 'manual', 'graph'], description: 'Seed provider type' },
+            provider: { type: 'string', enum: ['manual', 'graph'], description: 'Seed provider type' },
             source: { type: 'string', description: 'Optional provenance label surfaced on resolved anchors' },
-            file: { type: 'string', description: 'CocoIndex file path (provider: cocoindex)' },
-            range: { type: 'object', properties: { start: { type: 'number' }, end: { type: 'number' } }, description: 'CocoIndex line range' },
-            score: { type: 'number', description: 'CocoIndex relevance score' },
-            raw_score: { type: 'number', description: 'CocoIndex raw score telemetry (snake_case wire field)' },
-            rawScore: { type: 'number', description: 'CocoIndex raw score telemetry (camelCase internal field)' },
-            path_class: { type: 'string', description: 'CocoIndex path-class telemetry (snake_case wire field)' },
-            pathClass: { type: 'string', description: 'CocoIndex path-class telemetry (camelCase internal field)' },
-            rankingSignals: { type: 'array', items: { type: 'string' }, description: 'CocoIndex ranking-signal telemetry' },
-            snippet: { type: 'string', description: 'CocoIndex snippet text preserved with the seed' },
             symbolName: { type: 'string', description: 'Manual seed symbol name' },
             kind: { type: 'string', description: 'Manual seed kind metadata' },
             nodeId: { type: 'string', description: 'Graph seed node identifier' },
             symbolId: { type: 'string', description: 'Graph seed symbol ID' },
           },
         },
-        description: 'Seeds from CocoIndex, manual input, or graph lookups',
+        description: 'Seeds from manual input or graph lookups',
       },
       budgetTokens: { type: 'number', minimum: 100, maximum: 4000, default: 1200, description: 'Token budget for response' },
       profile: { type: 'string', enum: ['quick', 'research', 'debug'], description: 'Output density profile' },
@@ -118,7 +109,7 @@ const codeGraphContext: ToolDefinition = {
 
 const codeGraphClassifyQueryIntent: ToolDefinition = {
   name: 'code_graph_classify_query_intent',
-  description: 'Classify a natural-language query into structural code-graph intent categories (structural, semantic, hybrid) for graph-aware routing. Token Budget: 300.',
+  description: 'Classify a natural-language query for structural code-graph routing. Token Budget: 300.',
   inputSchema: {
     type: 'object', additionalProperties: false,
     properties: {
@@ -192,42 +183,6 @@ const detectChanges: ToolDefinition = {
 };
 
 
-const cccStatus: ToolDefinition = {
-  name: 'ccc_status',
-  description: '[L7:Maintenance] Check CocoIndex availability. Returns available, binaryPath, indexExists, indexSize, and recommendation.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
-};
-
-
-const cccReindex: ToolDefinition = {
-  name: 'ccc_reindex',
-  description: '[L7:Maintenance] Trigger CocoIndex incremental (or full) re-indexing of the workspace.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      full: { type: 'boolean', default: false, description: 'Full re-index (slower) vs incremental' },
-    },
-    required: [],
-  },
-};
-
-
-const cccFeedback: ToolDefinition = {
-  name: 'ccc_feedback',
-  description: '[L7:Maintenance] Submit quality feedback on CocoIndex search results to improve future searches.',
-  inputSchema: {
-    type: 'object', additionalProperties: false,
-    properties: {
-      query: { type: 'string', description: 'The search query that was executed' },
-      resultFile: { type: 'string', description: 'File path from the result being rated' },
-      rating: { type: 'string', enum: ['helpful', 'not_helpful', 'partial'], description: 'Quality rating' },
-      comment: { type: 'string', description: 'Optional free-form feedback' },
-    },
-    required: ['query', 'rating'],
-  },
-};
-
-
 export const CODE_GRAPH_TOOL_SCHEMAS: ToolDefinition[] = [
   codeGraphScan,
   codeGraphQuery,
@@ -237,9 +192,6 @@ export const CODE_GRAPH_TOOL_SCHEMAS: ToolDefinition[] = [
   codeGraphVerify,
   codeGraphApply,
   detectChanges,
-  cccStatus,
-  cccReindex,
-  cccFeedback,
 ];
 
 // Compatibility alias for moved tests and local schema smoke checks.

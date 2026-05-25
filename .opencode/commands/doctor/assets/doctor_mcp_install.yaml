@@ -2,8 +2,8 @@
 # MCP DOCTOR: INSTALL WORKFLOW
 # ─────────────────────────────────────────────────────────────────
 role: MCP Installation Specialist
-purpose: Fresh install or reinstall all 6 MCP servers from install guides
-action: Run 6-step guided installation with verification
+purpose: Fresh install or reinstall all supported MCP servers from install guides
+action: Run guided installation with verification
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
@@ -23,7 +23,7 @@ operating_mode:
 # MCP-INSTALL DOCTOR INVARIANT
 # ─────────────────────────────────────────────────────────────────
 mcp_install_doctor_invariant: |
-  MCP install workflows perform fresh install (or reinstall) of the 6 MCP
+  MCP install workflows perform fresh install (or reinstall) of the supported MCP
   servers based on their install guides. Each server's install runs only after
   prerequisite check passes (Node >= 20.11.0, Python >= 3.11, npm, npx) and
   the user approves the install plan. No silent overwrite of existing installs:
@@ -43,7 +43,6 @@ upstream_assets:
     mk-spec-memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
     mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md"
     mk_code_index: ".opencode/skills/system-code-graph/INSTALL_GUIDE.md"
-    cocoindex_code: ".opencode/install_guides/MCP - CocoIndex Code.md"
     code_mode: ".opencode/install_guides/MCP - Code Mode.md"
     sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
   scripts:
@@ -68,7 +67,7 @@ field_handling:
     server_filter_empty: null  # install all 6 when unset
     runtime_filter_empty: null  # auto-detect active runtime when unset
   server_filter_policy:
-    null: "install all 6 MCP servers"
+    null: "install all supported MCP servers"
     set: "install only the named server"
   runtime_filter_policy:
     null: "wire MCP config into the detected active runtime"
@@ -81,7 +80,7 @@ arguments:
   server_filter:
     flag: "--server"
     value: "<name>"
-    valid_values: [mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode, sequential_thinking]
+    valid_values: [mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode, sequential_thinking]
     default: null
     effect: "Only install the specified server"
   runtime_filter:
@@ -98,7 +97,6 @@ install_guides:
   mk-spec-memory: .opencode/install_guides/MCP - Spec Kit Memory.md
   mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL_GUIDE.md
   mk_code_index: .opencode/skills/system-code-graph/INSTALL_GUIDE.md
-  cocoindex_code: .opencode/install_guides/MCP - CocoIndex Code.md
   code_mode: .opencode/install_guides/MCP - Code Mode.md
   sequential_thinking: .opencode/install_guides/MCP - Sequential Thinking.md
 
@@ -155,24 +153,6 @@ servers:
       - "cd {skill_dir} && npm install"
       - "cd {skill_dir} && npm run clean && npm run build"
     fallback_build: "cd {skill_dir} && npm install && npm run clean && ./node_modules/.bin/tsc --build ./tsconfig.json"
-
-  cocoindex_code:
-    label: "CocoIndex Code"
-    runtime: python
-    skill_dir: ".opencode/skills/mcp-coco-index"
-    entry_point: "mcp_server/.venv/bin/ccc"
-    install_script: "scripts/install.sh"
-    health_checks:
-      - { path: "mcp_server/.venv/bin/ccc", type: "file_executable" }
-      - { probe: "{skill_dir}/mcp_server/.venv/bin/ccc --help", type: "command_succeeds" }
-    install_steps:
-      - "bash {skill_dir}/scripts/install.sh"
-    post_install:
-      - "{skill_dir}/mcp_server/.venv/bin/ccc init"
-      - "{skill_dir}/mcp_server/.venv/bin/ccc index"
-    clean_reinstall:
-      - "rm -rf {skill_dir}/mcp_server/.venv"
-      - "bash {skill_dir}/scripts/install.sh"
 
   code_mode:
     label: "Code Mode"
@@ -241,7 +221,6 @@ workflow:
     purpose: "Check system prerequisites before any install"
     activities:
       - "Check Node.js version: node --version (must be >=20.11.0)"
-      - "Check Python version: python3 --version (must be 3.11+ for CocoIndex)"
       - "Check npm: npm --version"
       - "Check npx: npx --version"
       - "Report which servers can be installed based on available prerequisites"
@@ -249,7 +228,6 @@ workflow:
       - "If --runtime flag provided, validate runtime name"
     prerequisite_matrix:
       node_20_11: { required_for: [mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode, sequential_thinking], check: "node --version" }
-      python_311: { required_for: [cocoindex_code], check: "python3 --version" }
       npm: { required_for: [mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode], check: "npm --version" }
       npx: { required_for: [sequential_thinking], check: "npx --version" }
     on_missing_prereq:
@@ -275,7 +253,6 @@ workflow:
       | Spec Kit Memory | {status} | {detail} |
       | Skill Advisor | {status} | {detail} |
       | System Code Graph | {status} | {detail} |
-      | CocoIndex Code | {status} | {detail} |
       | Code Mode | {status} | {detail} |
       | Sequential Thinking | {status} | {detail} |
     checkpoint:
@@ -370,7 +347,6 @@ workflow:
       | Spec Kit Memory | {before} | {after} | {action} |
       | Skill Advisor | {before} | {after} | {action} |
       | System Code Graph | {before} | {after} | {action} |
-      | CocoIndex Code | {before} | {after} | {action} |
       | Code Mode | {before} | {after} | {action} |
       | Sequential Thinking | {before} | {after} | {action} |
 
@@ -390,9 +366,6 @@ error_handling:
   node_too_old:
     check: "node version < 20.11.0"
     action: "FAIL for Node-based servers, suggest upgrade"
-  python_too_old:
-    check: "python3 minor version < 11"
-    action: "WARN for CocoIndex, skip it, continue with others"
   npm_install_fails:
     action: "Clear npm cache (npm cache clean --force), retry once"
   pip_install_fails:

@@ -12,8 +12,8 @@ function parseFirstText(response: { content: Array<{ type: string; text: string 
 }
 
 describe('code_graph_classify_query_intent MCP dispatch', () => {
-  it('registers the classifier as the 11th mk-code-index tool', () => {
-    expect(CODE_GRAPH_TOOL_SCHEMAS).toHaveLength(11);
+  it('registers the classifier in the 8-tool mk-code-index surface', () => {
+    expect(CODE_GRAPH_TOOL_SCHEMAS).toHaveLength(8);
     expect(CODE_GRAPH_TOOL_SCHEMAS.map((tool) => tool.name)).toContain('code_graph_classify_query_intent');
   });
 

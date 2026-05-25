@@ -39,7 +39,7 @@ Current state:
 
 - Shared payload and code-graph contract types are local copies owned by this package.
 - `metrics-stub.ts` provides no-op `spec_kit.*` instrumentation hooks so production code does not import `system-skill-advisor`.
-- Path helpers guard operator-controlled locations such as CocoIndex binary paths and canonical file paths.
+- Path helpers guard operator-controlled locations such as structural search binary paths and canonical file paths.
 - Hook policy and state helpers expose read-only runtime state to startup and detection modules.
 
 <!-- /ANCHOR:overview -->
@@ -53,7 +53,7 @@ Current state:
 shared/
 +-- assert-never.ts             # Exhaustiveness guard
 +-- canonical-path.ts           # File path canonicalization helper
-+-- cocoindex-path.ts           # CocoIndex binary path resolution
++-- retired-search-path.ts           # structural search binary path resolution
 +-- code-graph-contracts.ts     # Local readiness and ops contracts
 +-- codex-hook-policy.ts        # Codex hook policy detection
 +-- hook-state.ts               # Hook state reads
@@ -93,7 +93,7 @@ lib/shared -> system-spec-kit or system-skill-advisor source files
 shared/
 +-- assert-never.ts
 +-- canonical-path.ts
-+-- cocoindex-path.ts
++-- retired-search-path.ts
 +-- code-graph-contracts.ts
 +-- codex-hook-policy.ts
 +-- hook-state.ts
@@ -119,7 +119,7 @@ shared/
 | `index-scope.ts` | Applies default excludes and `.opencode/*` opt-in policy for scans. |
 | `mcp-types.ts` | Provides typed MCP response and argument parsing helpers. |
 | `metrics-stub.ts` | Exposes no-op metric helpers used by code-graph call sites. |
-| `cocoindex-path.ts` | Resolves the `ccc` binary path while keeping overrides inside the workspace. |
+| `retired-search-path.ts` | Resolves the `ccc` binary path while keeping overrides inside the workspace. |
 | `canonical-path.ts` | Resolves canonical filesystem paths for graph records and safety checks. |
 | `codex-hook-policy.ts` | Detects whether Codex hook behavior should be enabled. |
 | `hook-state.ts` | Reads persisted hook state for startup and readiness surfaces. |
@@ -162,7 +162,7 @@ handler or library module
 | `attachStructuralTrustFields` | Function | Adds parser, evidence and freshness trust fields to payload objects. |
 | `attachGraphEdgeEnrichment` | Function | Adds edge evidence class and numeric confidence fields. |
 | `shouldIndexForCodeGraph` | Function | Applies scan include and exclude policy for candidate paths. |
-| `getCocoIndexBinaryPath` | Function | Resolves the CocoIndex CLI binary path under workspace containment. |
+| `getstructural searchBinaryPath` | Function | Resolves the structural search CLI binary path under workspace containment. |
 | `parseArgs` | Function | Parses MCP tool args into object payloads. |
 | `isSpeckitMetricsEnabled` | Function | Returns whether local code-graph metrics should emit. Currently always `false`. |
 

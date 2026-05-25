@@ -17,7 +17,7 @@ const { spawn, spawnSync } = require('child_process');
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
 const BLOCKED_CHILD_ENV_RE = /^(NODE_|npm_|NPM_)/;
-const DOTENV_ALLOW_RE = /^(SPECKIT_CODE_GRAPH_|SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN$|MK_CODE_INDEX_|COCOINDEX_BIN_PATH$)/;
+const DOTENV_ALLOW_RE = /^(SPECKIT_CODE_GRAPH_|SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN$|MK_CODE_INDEX_)/;
 
 // Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).

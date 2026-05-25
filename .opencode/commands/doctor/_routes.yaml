@@ -17,7 +17,7 @@
 #   trigger_phrases:  list   — advisor lexical-routing phrases for this target
 #
 # Code-graph implementation/docs are owned by .opencode/skills/system-code-graph/;
-# stable code_graph/detect_changes/ccc MCP tools are registered through mk-code-index.
+# stable code_graph/detect_changes MCP tools are registered through mk-code-index.
 # Skill-advisor recommendation tools are registered through mk-skill-advisor.
 # To add a new target: append a route here, then re-run route-validate.sh.
 # To remove a target: delete the route AND its corresponding assets/doctor_<target>.yaml.
@@ -70,7 +70,6 @@ routes:
     mutating: mutates
     gate3_location: ".opencode/code-graph.config.json + .opencode/skills/system-code-graph/database/code-graph.sqlite"
     mcp_tools:
-      - mcp__cocoindex_code__search
       - mcp__mk_code_index__code_graph_status
       - mcp__mk_code_index__code_graph_query
       - mcp__mk_code_index__code_graph_context
@@ -103,22 +102,6 @@ routes:
       - "deep-research convergence drift"
       - "deep-review iteration graph"
 
-  - target: cocoindex
-    yaml: doctor_cocoindex.yaml
-    setup_vars: [execution_mode, intent, no_snapshot, dry_run]
-    allowed_flags: ["--no-snapshot", "--dry-run"]
-    mutating: mutates
-    gate3_location: ".opencode/skills/mcp-coco-index/mcp_server/database/ (SQLite + vector stores)"
-    mcp_tools:
-      - mcp__mk_code_index__ccc_status
-      - mcp__mk_code_index__ccc_reindex
-      - mcp__mk_code_index__ccc_feedback
-    trigger_phrases:
-      - "cocoindex daemon hung"
-      - "cocoindex reindex"
-      - "cocoindex semantic search health"
-      - "ccc status"
-
   - target: skill-advisor
     yaml: doctor_skill-advisor.yaml
     setup_vars: [execution_mode, scope, skip_tests, dry_run]
@@ -126,7 +109,6 @@ routes:
     mutating: mutates
     gate3_location: "lib/scorer/lanes/*.ts + .opencode/skills/*/graph-metadata.json"
     mcp_tools:
-      - mcp__cocoindex_code__search
       - mcp__mk_skill_advisor__advisor_recommend
       - mcp__mk_skill_advisor__advisor_status
       - mcp__mk_skill_advisor__advisor_validate

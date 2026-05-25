@@ -14,7 +14,7 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_reference_install_guide -->
 
-This is the canonical bootstrap guide for the standalone System Code Graph MCP server. The server runs as `mk_code_index` (filesystem key `mk-code-index`), separate from `mk-spec-memory` and `mk_skill_advisor`, while exposing the public tool ids `code_graph_scan`, `code_graph_query`, `code_graph_classify_query_intent`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, `detect_changes`, `ccc_status`, `ccc_reindex`, and `ccc_feedback`.
+This is the canonical bootstrap guide for the standalone System Code Graph MCP server. The server runs as `mk_code_index` (filesystem key `mk-code-index`), separate from `mk-spec-memory` and `mk_skill_advisor`, while exposing the public tool ids `code_graph_scan`, `code_graph_query`, `code_graph_classify_query_intent`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, `detect_changes`, `code_graph_status`, `code_graph_scan`, and `code_graph_verify`.
 
 ---
 
@@ -53,7 +53,7 @@ Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become
 | Launcher | `.opencode/bin/mk-code-index-launcher.cjs` |
 | Entry point | `.opencode/skills/system-code-graph/mcp_server/dist/index.js` |
 | Database (default) | `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` |
-| MCP tools | 11 (see [README.md](./README.md) §3.2) |
+| MCP tools | 8 (see [README.md](./README.md) §3.2) |
 
 <!-- /ANCHOR:1-overview -->
 
@@ -108,7 +108,7 @@ Each runtime expects an MCP server entry with the same launcher invocation. The 
       "command": ["node", ".opencode/bin/mk-code-index-launcher.cjs"],
       "environment": {
         "_NOTE_1_DB": "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
-        "_NOTE_2_TOOLS": "Registers 11 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*",
+        "_NOTE_2_TOOLS": "Registers 8 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes. MCP namespace: mcp__mk_code_index__*",
         "_NOTE_3_INDEX_DEFAULTS": "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup.",
         "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_AGENTS": "false",
@@ -130,7 +130,7 @@ args = [".opencode/bin/mk-code-index-launcher.cjs"]
 
 [mcp_servers.mk_code_index.env]
 _NOTE_1_DB = "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides."
-_NOTE_2_TOOLS = "Registers 11 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes, ccc_status/reindex/feedback. MCP namespace: mcp__mk_code_index__*"
+_NOTE_2_TOOLS = "Registers 8 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes. MCP namespace: mcp__mk_code_index__*"
 SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
 SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
 SPECKIT_CODE_GRAPH_INDEX_COMMANDS = "false"
@@ -194,7 +194,7 @@ Current code-graph baseline:
 
 | Metric | Expected |
 | --- | --- |
-| Active MCP tools | 11 |
+| Active MCP tools | 8 |
 | TypeScript build | Exit 0 from `tsc --build` |
 | Vitest focused run | Pass on the `code-graph` suite (runtime-detection + structural-contract + handler suites) |
 | Standalone-storage guard | Launcher rejects DB paths outside the workspace |

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Compact Merger
 // ───────────────────────────────────────────────────────────────
-// Merges context from multiple sources (Memory, Code Graph, CocoIndex, Session)
+// Merges context from multiple sources (Memory, Code Graph, Session)
 // into a unified compact brief for compaction injection.
 
 import { allocateBudget, createDefaultSources, type AllocationResult } from './budget-allocator.js';
@@ -15,7 +15,6 @@ import {
 export interface MergeInput {
   constitutional: string;    // Constitutional rules (from Memory)
   codeGraph: string;         // Structural context (from Code Graph)
-  cocoIndex: string;         // Semantic neighbors (from CocoIndex)
   triggered: string;         // Triggered memories (from Memory)
   sessionState: string;      // Active task / next steps
 }
@@ -129,14 +128,13 @@ export function mergeCompactBrief(
 
   const constitutionalSize = estimateTokens(input.constitutional);
   const codeGraphSize = estimateTokens(input.codeGraph);
-  const cocoIndexSize = estimateTokens(input.cocoIndex);
   const triggeredSize = estimateTokens(input.triggered);
   const sessionStateSize = estimateTokens(input.sessionState);
 
   const sources = createDefaultSources(
     constitutionalSize,
     codeGraphSize,
-    cocoIndexSize,
+    0,
     triggeredSize,
     sessionStateSize,
   );
@@ -169,7 +167,6 @@ export function mergeCompactBrief(
 
   pushSection(input.constitutional, 'constitutional', 'Constitutional Rules', 'memory');
   pushSection(input.codeGraph, 'codeGraph', 'Active Files & Structural Context', 'code-graph');
-  pushSection(input.cocoIndex, 'cocoIndex', 'Semantic Neighbors', 'cocoindex');
   pushSection(input.sessionState, 'sessionState', 'Session State / Next Steps', 'session');
   pushSection(input.triggered, 'triggered', 'Triggered Memories', 'memory');
 
@@ -196,9 +193,7 @@ export function mergeCompactBrief(
         content: section.content,
         source: section.source === 'code-graph'
           ? 'code-graph'
-          : section.source === 'cocoindex'
-            ? 'semantic'
-            : section.source === 'session'
+          : section.source === 'session'
               ? 'session'
               : 'memory',
       })),
@@ -222,7 +217,6 @@ export function mergeCompactBrief(
       freshness: freshness ?? [
         { source: 'constitutional', lastUpdated: null, staleness: 'unknown' },
         { source: 'codeGraph', lastUpdated: null, staleness: 'unknown' },
-        { source: 'cocoIndex', lastUpdated: null, staleness: 'unknown' },
         { source: 'triggered', lastUpdated: null, staleness: 'unknown' },
       ],
       ...(selection ? { selection } : {}),

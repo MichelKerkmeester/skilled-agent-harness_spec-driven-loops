@@ -4,7 +4,6 @@
 import { describe, it, expect } from 'vitest';
 import {
   classifyQueryIntent,
-  type QueryIntent,
   type ClassificationResult,
 } from '../lib/query-intent-classifier.js';
 
@@ -33,36 +32,37 @@ describe('query-intent-classifier', () => {
     });
   });
 
-  describe('semantic queries', () => {
-    it('classifies "find similar patterns to caching" as semantic', () => {
+  describe('concept discovery queries', () => {
+    it('falls back to structural intent for "find similar patterns to caching"', () => {
       const result = classifyQueryIntent('find similar patterns to caching');
-      expect(result.intent).toBe('semantic');
-      expect(result.semanticScore).toBeGreaterThan(result.structuralScore);
+      expect(result.intent).toBe('structural');
+      expect(result.semanticScore).toBe(0);
     });
 
-    it('classifies "examples of error handling approaches" as semantic', () => {
+    it('falls back to low-confidence structural for "examples of error handling approaches"', () => {
       const result = classifyQueryIntent('examples of error handling approaches');
-      expect(result.intent).toBe('semantic');
+      expect(result.intent).toBe('structural');
+      expect(result.confidence).toBe(0.5);
     });
   });
 
-  describe('hybrid queries', () => {
-    it('returns hybrid for empty string', () => {
+  describe('low-signal queries', () => {
+    it('returns structural for empty string', () => {
       const result = classifyQueryIntent('');
-      expect(result.intent).toBe('hybrid');
+      expect(result.intent).toBe('structural');
       expect(result.confidence).toBe(0.5);
     });
 
-    it('returns hybrid for ambiguous queries', () => {
+    it('returns structural for ambiguous queries', () => {
       const result = classifyQueryIntent('tell me about the system');
-      expect(result.intent).toBe('hybrid');
+      expect(result.intent).toBe('structural');
     });
   });
 
   describe('result shape', () => {
     it('returns a valid ClassificationResult', () => {
       const result: ClassificationResult = classifyQueryIntent('test query');
-      expect(['structural', 'semantic', 'hybrid']).toContain(result.intent);
+      expect(result.intent).toBe('structural');
       expect(result.confidence).toBeGreaterThanOrEqual(0);
       expect(result.confidence).toBeLessThanOrEqual(1);
       expect(typeof result.structuralScore).toBe('number');
@@ -81,7 +81,7 @@ describe('query-intent-classifier', () => {
   describe('edge cases', () => {
     it('handles whitespace-only input', () => {
       const result = classifyQueryIntent('   ');
-      expect(result.intent).toBe('hybrid');
+      expect(result.intent).toBe('structural');
       expect(result.confidence).toBe(0.5);
     });
 

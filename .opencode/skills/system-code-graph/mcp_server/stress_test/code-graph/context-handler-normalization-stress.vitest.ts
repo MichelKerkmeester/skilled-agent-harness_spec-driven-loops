@@ -102,34 +102,6 @@ describe('cg-008 — Context handler', () => {
     recordCandidateManifest([fixtureFile]);
   }
 
-  it('normalizes CocoIndex snake_case telemetry into public anchor metadata', async () => {
-    writeGraph();
-
-    const response = parseResponse(await handleCodeGraphContext({
-      queryMode: 'neighborhood',
-      seeds: [{
-        provider: 'cocoindex',
-        file: fixtureFile,
-        range: { start: 1, end: 1 },
-        score: 0.87,
-        raw_score: 12.4,
-        path_class: 'exact-symbol',
-        rankingSignals: ['bm25', 'vector'],
-        source: 'stress-cocoindex',
-      }],
-    }));
-
-    expect(response.status).toBe('ok');
-    expect(response.data?.anchors?.[0]).toEqual(expect.objectContaining({
-      file: fixtureFile,
-      provider: 'cocoindex',
-      source: 'stress-cocoindex',
-      rawScore: 12.4,
-      pathClass: 'exact-symbol',
-      rankingSignals: ['bm25', 'vector'],
-    }));
-  });
-
   it('blocks adversarial edge reason and step strings from context output', async () => {
     writeGraph([{
       sourceId: 'cg-008-root',

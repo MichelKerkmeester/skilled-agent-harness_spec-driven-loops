@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Context
 // ───────────────────────────────────────────────────────────────
-// LLM-oriented compact graph neighborhoods with CocoIndex seed support.
+// LLM-oriented compact graph neighborhoods from structural seeds.
 // Provides the code_graph_context MCP tool implementation.
 
 import { performance } from 'node:perf_hooks';
@@ -264,7 +264,6 @@ function suggestNextActions(anchors: ArtifactRef[], sections: GraphContextSectio
   if (sections.some(s => s.nodes.length >= 15)) {
     actions.push('Narrow with `seeds[]` for more specific context');
   }
-  actions.push('Use `mcp__cocoindex_code__search` for semantic discovery of related code');
   return actions.slice(0, 4);
 }
 

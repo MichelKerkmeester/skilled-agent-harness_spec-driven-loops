@@ -1,6 +1,6 @@
 ---
 title: "Code Graph: Feature Catalog"
-description: "Current feature inventory for the system-code-graph skill and mk-code-index MCP server, with source anchors for graph readiness, structural queries, CCC bridge tools, coverage graph references and doctor-code-graph policy."
+description: "Current feature inventory for the system-code-graph skill and mk-code-index MCP server, with source anchors for graph readiness, structural queries, structural tool tools, coverage graph references and doctor-code-graph policy."
 trigger_phrases:
   - "system-code-graph feature catalog"
   - "mk-code-index feature catalog"
@@ -13,7 +13,7 @@ importance_tier: "important"
 
 <!-- Filename: lowercase per project convention; sk-doc template suggests FEATURE_CATALOG.md but lowercase is intentional. -->
 
-This catalog is the current feature inventory for `.opencode/skills/system-code-graph/mcp_server/`. Live MCP callers use the standalone `mk-code-index` namespace, exposed as `mcp__mk_code_index__*`. The stable tool IDs remain `code_graph_*`, `detect_changes` and `ccc_*`.
+This catalog is the current feature inventory for `.opencode/skills/system-code-graph/mcp_server/`. Live MCP callers use the standalone `mk-code-index` namespace, exposed as `mcp__mk_code_index__*`. The stable tool IDs remain `code_graph_*`, `detect_changes` and `code_graph_* and detect_changes`.
 
 ---
 
@@ -26,7 +26,7 @@ This catalog is the current feature inventory for `.opencode/skills/system-code-
 - [5. CONTEXT RETRIEVAL](#5--context-retrieval)
 - [6. COVERAGE GRAPH](#6--coverage-graph)
 - [7. MCP TOOL SURFACE](#7--mcp-tool-surface)
-- [8. CCC INTEGRATION](#8--ccc-integration)
+- [8. structural INTEGRATION](#8--ccc-integration)
 - [9. DOCTOR CODE GRAPH](#9--doctor-code-graph)
 
 ---
@@ -45,10 +45,10 @@ The catalog covers 17 runtime features across 8 groups. Per-feature files carry 
 | [04--context-retrieval](./04--context-retrieval/) | 2 | Context retrieval |
 | [05--coverage-graph](./05--coverage-graph/) | 4 | Coverage graph |
 | [06--mcp-tool-surface](./06--mcp-tool-surface/) | 1 | MCP tool surface |
-| [07--ccc-integration](./07--ccc-integration/) | 3 | CCC integration |
+| [07--ccc-integration](./07--ccc-integration/) | 3 | retired tool integration |
 | [08--doctor-code-graph](./08--doctor-code-graph/) | 1 | Doctor code graph |
 
-Reality classification source: read-path freshness is half-auto because requested reads can run bounded repair, full scan/verify/status are manual, CCC tools are manual, deep-loop convergence runs automatically inside command YAML, deep-loop upsert is conditional and deep-loop query/status are manual.
+Reality classification source: read-path freshness is half-auto because requested reads can run bounded repair, full scan/verify/status are manual, structural tools are manual, deep-loop convergence runs automatically inside command YAML, deep-loop upsert is conditional and deep-loop query/status are manual.
 
 ---
 
@@ -160,7 +160,7 @@ See [`03--detect-changes/01-detect-changes-preflight.md`](03--detect-changes/01-
 
 #### Description
 
-LLM-oriented context retrieval surface that expands seeds (manual, graph, CocoIndex) into compact graph neighborhoods with neighborhood, outline and impact modes while preserving readiness and partial-output metadata.
+LLM-oriented context retrieval surface that expands seeds (manual, graph, structural search) into compact graph neighborhoods with neighborhood, outline and impact modes while preserving readiness and partial-output metadata.
 
 #### Current Reality
 
@@ -176,7 +176,7 @@ See [`04--context-retrieval/01-code-graph-context.md`](04--context-retrieval/01-
 
 #### Description
 
-Handler-level context assembly that normalizes CocoIndex/manual/graph seeds, picks a query mode, enforces deadlines and routes blocked readiness before building compact graph context.
+Handler-level context assembly that normalizes structural search/manual/graph seeds, picks a query mode, enforces deadlines and routes blocked readiness before building compact graph context.
 
 #### Current Reality
 
@@ -262,7 +262,7 @@ See [`05--coverage-graph/04-deep-loop-graph-convergence.md`](05--coverage-graph/
 
 #### Description
 
-MCP registration and dispatch surface for the `mk-code-index` runtime. Exposes `code_graph_*`, `detect_changes` and `ccc_*` names through the code graph dispatcher. Deep-loop coverage graph tools dispatch through the `mk-spec-memory` server.
+MCP registration and dispatch surface for the `mk-code-index` runtime. Exposes `code_graph_*`, `detect_changes` and `code_graph_* and detect_changes` names through the code graph dispatcher. Deep-loop coverage graph tools dispatch through the `mk-spec-memory` server.
 
 #### Current Reality
 
@@ -274,13 +274,13 @@ See [`06--mcp-tool-surface/01-tool-registrations.md`](06--mcp-tool-surface/01-to
 
 ---
 
-## 8. CCC INTEGRATION
+## 8. structural INTEGRATION
 
-### ccc_reindex
+### code_graph_scan
 
 #### Description
 
-Direct bridge to the CocoIndex CLI for incremental or full reindexing. Does not refresh the structural code graph.
+Direct bridge to the structural search CLI for incremental or full reindexing. Does not refresh the structural code graph.
 
 #### Current Reality
 
@@ -292,11 +292,11 @@ See [`07--ccc-integration/01-ccc-reindex.md`](07--ccc-integration/01-ccc-reindex
 
 ---
 
-### ccc_feedback
+### code_graph_verify
 
 #### Description
 
-Appends operator search-feedback JSONL for CocoIndex search results. Does not alter ranking immediately.
+Appends operator search-feedback JSONL for structural search search results. Does not alter ranking immediately.
 
 #### Current Reality
 
@@ -308,15 +308,15 @@ See [`07--ccc-integration/02-ccc-feedback.md`](07--ccc-integration/02-ccc-feedba
 
 ---
 
-### ccc_status
+### code_graph_status
 
 #### Description
 
-CocoIndex bridge status probe reporting binary availability, index presence and next-operator-action recommendation text.
+structural search bridge status probe reporting binary availability, index presence and next-operator-action recommendation text.
 
 #### Current Reality
 
-Manual (class: manual). Direct MCP call only. Availability does not prove search quality. Pair with an actual CocoIndex search or reindex run.
+Manual (class: manual). Direct MCP call only. Availability does not prove search quality. Pair with an actual structural search search or reindex run.
 
 #### Source Files
 

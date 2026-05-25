@@ -18,11 +18,6 @@
         "target": "system-spec-kit",
         "weight": 0.6,
         "context": "structural context, startup readiness, and impact analysis"
-      },
-      {
-        "target": "mcp-coco-index",
-        "weight": 0.4,
-        "context": "structural follow-up for semantic code discovery"
       }
     ],
     "siblings": [
@@ -40,7 +35,6 @@
       "system-spec-kit"
     ],
     "related_to": [
-      "mcp-coco-index",
       "sk-code"
     ]
   },
@@ -79,7 +73,6 @@
       "structural AST indexing",
       "SQLite-backed graph storage",
       "code_graph MCP tools",
-      "ccc bridge tools",
       "graph readiness",
       "impact analysis"
     ],
@@ -108,7 +101,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Code-graph subsystem skill for structural AST indexing, SQLite-backed graph storage, and 11 MCP tools used for impact analysis, graph context retrieval, readiness reporting, query-intent classification, and change detection. Extracted from system-spec-kit per ADR-001 (packet 014) and finalized as a standalone mk-code-index MCP server in v1.0.3.0 (packet 040 three-way isolation).",
+    "causal_summary": "Code-graph subsystem skill for structural AST indexing, SQLite-backed graph storage, and 8 MCP tools used for impact analysis, graph context retrieval, readiness reporting, query-intent classification, and change detection. Extracted from system-spec-kit per ADR-001 (packet 014) and finalized as a standalone mk-code-index MCP server in v1.0.3.0 (packet 040 three-way isolation).",
     "source_docs": [
       "SKILL.md",
       "README.md"

@@ -2,7 +2,7 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: MCP Doctor — Unified MCP Diagnostic Command
 # ───────────────────────────────────────────────────────────────
-# Diagnoses all 6 OpenCode MCP servers and checks config wiring
+# Diagnoses supported OpenCode MCP servers and checks config wiring
 # across all detected runtimes.
 #
 # Usage:
@@ -13,7 +13,7 @@
 #   --json              Output machine-readable JSON
 #   --fix               Attempt auto-repair for failures
 #   --server <name>     Diagnose a single server only
-#                       Names: mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode, sequential_thinking
+#                       Names: mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode, sequential_thinking
 #   --root <path>       Override project root
 #
 # Exit Codes:
@@ -47,7 +47,7 @@ Options:
   --json              Output machine-readable JSON
   --fix               Attempt auto-repair for failures
   --server <name>     Diagnose a single server only
-                      Names: mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode, sequential_thinking
+                      Names: mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode, sequential_thinking
   --root <path>       Override project root
 
 Exit Codes:
@@ -59,7 +59,6 @@ Servers Checked:
   mk-spec-memory       Spec Kit Memory (Node.js MCP, SQLite + embeddings)
   mk_skill_advisor      Skill Advisor (Node.js MCP, advisor_recommend + skill_graph_*)
   mk_code_index         System Code Graph (Node.js MCP, structural AST + 11 graph tools)
-  cocoindex_code        CocoIndex Code (Python MCP, semantic search)
   code_mode             Code Mode (Node.js MCP, TypeScript tool orchestration)
   sequential_thinking   Sequential Thinking (npx MCP, structured reasoning)
 
@@ -283,93 +282,6 @@ diagnose_mk_spec_memory() {
       (cd "$skill_dir" && npm install 2>&1 | tail -3 && npm run build 2>&1 | tail -3) || true
       record_pass "$srv" "fix_npm" "npm install + build attempted"
       _log log_info "Ran npm install + build"
-    fi
-  fi
-}
-
-# ── CocoIndex Code ────────────────────────────────────────────
-diagnose_cocoindex_code() {
-  local srv="cocoindex_code"
-  local skill_dir="$PROJECT_ROOT/.opencode/skills/mcp-coco-index"
-  local ccc_bin="$skill_dir/mcp_server/.venv/bin/ccc"
-  local index_dir="$PROJECT_ROOT/.cocoindex_code"
-  local needs_fix=false
-
-  _log log_header "CocoIndex Code"
-
-  # Check 1: Binary exists
-  if [[ -x "$ccc_bin" ]]; then
-    record_pass "$srv" "binary_exists" "$ccc_bin"
-    _log log_pass "ccc binary exists and is executable"
-  elif [[ -f "$ccc_bin" ]]; then
-    record_warn "$srv" "binary_exists" "Exists but not executable"
-    _log log_warn "ccc binary exists but is not executable (chmod +x needed)"
-    needs_fix=true
-  else
-    record_fail "$srv" "binary_exists" "Binary missing: $ccc_bin"
-    _log log_fail "ccc binary not found — needs install"
-    needs_fix=true
-  fi
-
-  # Check 2: ccc --help works
-  if [[ -x "$ccc_bin" ]]; then
-    if "$ccc_bin" --help >/dev/null 2>&1; then
-      record_pass "$srv" "binary_works" "ccc --help succeeds"
-      _log log_pass "ccc --help succeeds"
-    else
-      record_fail "$srv" "binary_works" "ccc --help failed"
-      _log log_fail "ccc --help failed — venv may be corrupted"
-      needs_fix=true
-    fi
-  fi
-
-  # Check 3: Index directory
-  if [[ -d "$index_dir" ]]; then
-    local file_count
-    file_count="$(find "$index_dir" -type f 2>/dev/null | wc -l | tr -d ' ')"
-    if [[ "$file_count" -gt 0 ]]; then
-      record_pass "$srv" "index_exists" "$file_count files in .cocoindex_code/"
-      _log log_pass "Index exists ($file_count files)"
-    else
-      record_warn "$srv" "index_exists" "Directory exists but empty"
-      _log log_warn "Index directory exists but is empty — run ccc index"
-    fi
-  else
-    record_warn "$srv" "index_exists" "No .cocoindex_code/ directory"
-    _log log_warn "No .cocoindex_code/ directory — run ccc init && ccc index"
-  fi
-
-  # Check 4: ccc status (if binary works)
-  if [[ -x "$ccc_bin" ]] && "$ccc_bin" --help >/dev/null 2>&1; then
-    local status_output
-    status_output="$("$ccc_bin" status 2>&1)" || true
-    if [[ -n "$status_output" ]] && ! echo "$status_output" | grep -qi "error"; then
-      record_pass "$srv" "status" "ccc status reports healthy"
-      _log log_pass "ccc status reports healthy"
-    else
-      record_warn "$srv" "status" "ccc status returned errors or empty"
-      _log log_warn "ccc status returned errors — index may need rebuild"
-    fi
-  fi
-
-  # Fix mode
-  if [[ "$FIX_MODE" == true ]] && [[ "$needs_fix" == true ]]; then
-    _log printf '\n  %sAttempting auto-repair...%s\n' "$CYAN" "$NC"
-    local install_script="$skill_dir/scripts/install.sh"
-    if [[ -f "$install_script" ]]; then
-      if bash "$install_script" 2>&1 | tail -5; then
-        record_pass "$srv" "fix_install" "Install script completed"
-        _log log_pass "CocoIndex reinstalled"
-      else
-        record_fail "$srv" "fix_install" "Install script failed"
-        _log log_fail "Install script failed — check output above"
-      fi
-    fi
-    # Fix permissions if binary exists but not executable
-    if [[ -f "$ccc_bin" ]] && [[ ! -x "$ccc_bin" ]]; then
-      chmod +x "$ccc_bin"
-      record_pass "$srv" "fix_chmod" "Made binary executable"
-      _log log_pass "Made ccc binary executable"
     fi
   fi
 }
@@ -792,7 +704,7 @@ detect_and_check_configs() {
     ".vscode/mcp.json|json-vscode-mcp|VS Code / Copilot"
   )
 
-  local -a servers=("mk-spec-memory" "mk_skill_advisor" "mk_code_index" "cocoindex_code" "code_mode" "sequential_thinking")
+  local -a servers=("mk-spec-memory" "mk_skill_advisor" "mk_code_index" "code_mode" "sequential_thinking")
 
   for cfg_entry in "${config_files[@]}"; do
     IFS='|' read -r cfg_path cfg_format cfg_label <<< "$cfg_entry"
@@ -827,7 +739,6 @@ detect_and_check_configs() {
 should_run "mk-spec-memory"      && diagnose_mk_spec_memory
 should_run "mk_skill_advisor"    && diagnose_mk_skill_advisor
 should_run "mk_code_index"       && diagnose_mk_code_index
-should_run "cocoindex_code"       && diagnose_cocoindex_code
 should_run "code_mode"            && diagnose_code_mode
 should_run "sequential_thinking"  && diagnose_sequential_thinking
 

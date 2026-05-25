@@ -1,37 +1,19 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Seed Resolver
 // ───────────────────────────────────────────────────────────────
-// Resolves CocoIndex search results (file:line) to code graph nodes.
+// Resolves file, manual, and graph seeds to code graph nodes.
 // Resolution chain: exact symbol → near-exact symbol → enclosing symbol → file anchor.
 
 import * as graphDb from './code-graph-db.js';
 import type { SymbolKind } from './indexer-types.js';
 
-/** A seed from CocoIndex or other providers */
+/** A file seed from a caller-provided path and optional line range. */
 export interface CodeGraphSeed {
   filePath: string;
   startLine?: number;
   endLine?: number;
   query?: string;
   source?: string;
-}
-
-/** Native CocoIndex search result as a seed */
-export interface CocoIndexSeed {
-  provider: 'cocoindex';
-  file: string;
-  range: { start: number; end: number };
-  score: number;
-  snippet?: string;
-  source?: string;
-  // ── Q-OPP / packet 015 — CocoIndex fork telemetry passthrough ──
-  // These fields are ADDITIVE METADATA only. They are preserved from the
-  // CocoIndex fork (cocoindex_code v0.2.3+spec-kit-fork.0.2.0) for audit
-  // and explanation purposes. They MUST NOT influence anchor scoring,
-  // confidence, resolution, or ordering. See research.md §6.
-  rawScore?: number;
-  pathClass?: string;
-  rankingSignals?: string[];
 }
 
 /** Manual seed with symbol name (no file path required) */
@@ -52,7 +34,7 @@ export interface GraphSeed {
 }
 
 /** Union type for all seed kinds */
-export type AnySeed = CodeGraphSeed | CocoIndexSeed | ManualSeed | GraphSeed;
+export type AnySeed = CodeGraphSeed | ManualSeed | GraphSeed;
 
 /** A resolved reference into the code graph */
 export interface ArtifactRef {
@@ -67,15 +49,8 @@ export interface ArtifactRef {
   score: number | null;
   snippet: string | null;
   range: { start: number; end: number } | null;
-  provider: 'graph' | 'manual' | 'cocoindex' | 'code_graph';
+  provider: 'graph' | 'manual' | 'code_graph';
   source?: string;
-  // ── Q-OPP / packet 015 — CocoIndex fork telemetry passthrough ──
-  // Optional. Populated only when the upstream seed (typically a
-  // CocoIndexSeed) carried fork telemetry. Never derived. Never used to
-  // alter score / confidence / resolution / ordering. Pure audit data.
-  rawScore?: number;
-  pathClass?: string;
-  rankingSignals?: string[];
 }
 
 // ── Type guards ──────────────────────────────────────────────
@@ -85,10 +60,6 @@ function hasProvider(seed: unknown, provider: string): boolean {
     return false;
   }
   return (seed as { provider?: unknown }).provider === provider;
-}
-
-function isCocoIndexSeed(seed: unknown): seed is CocoIndexSeed {
-  return hasProvider(seed, 'cocoindex');
 }
 
 function isManualSeed(seed: unknown): seed is ManualSeed {
@@ -106,33 +77,6 @@ function throwResolutionError(operation: string, seed: unknown, err: unknown): n
 }
 
 // ── Seed resolvers ───────────────────────────────────────────
-
-/** Resolve a CocoIndex seed by converting to CodeGraphSeed and delegating */
-export function resolveCocoIndexSeed(seed: CocoIndexSeed): ArtifactRef {
-  const resolved = resolveSeed({
-    filePath: seed.file,
-    startLine: seed.range.start,
-    endLine: seed.range.end,
-    source: seed.source,
-  });
-  const ref: ArtifactRef = {
-    ...resolved,
-    score: seed.score,
-    snippet: seed.snippet ?? null,
-    range: seed.range,
-    provider: 'cocoindex',
-    source: seed.source,
-  };
-  // ── Q-OPP / packet 015 — preserve fork telemetry as additive metadata ──
-  // Only emit fields that were actually carried on the seed. Do NOT emit
-  // null / undefined placeholders — the JSON envelope must omit absent
-  // fields entirely (backward compatibility for callers that never sent
-  // telemetry). No score / ordering / confidence change.
-  if (typeof seed.rawScore === 'number') ref.rawScore = seed.rawScore;
-  if (typeof seed.pathClass === 'string' && seed.pathClass.length > 0) ref.pathClass = seed.pathClass;
-  if (Array.isArray(seed.rankingSignals)) ref.rankingSignals = seed.rankingSignals;
-  return ref;
-}
 
 /** Resolve a ManualSeed by looking up the symbol name in the DB */
 export function resolveManualSeed(seed: ManualSeed): ArtifactRef {
@@ -355,7 +299,6 @@ export function resolveSeed(seed: CodeGraphSeed): ArtifactRef {
 
 /** Resolve any seed variant to an ArtifactRef */
 function resolveAnySeed(seed: AnySeed): ArtifactRef {
-  if (isCocoIndexSeed(seed)) return resolveCocoIndexSeed(seed);
   if (isManualSeed(seed)) return resolveManualSeed(seed);
   if (isGraphSeed(seed)) return resolveGraphSeed(seed);
   return resolveSeed(seed as CodeGraphSeed);

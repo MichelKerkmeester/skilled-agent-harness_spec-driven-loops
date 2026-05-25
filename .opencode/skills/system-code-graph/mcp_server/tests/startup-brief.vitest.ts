@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-const { mockLoadMostRecentState, mockIsCocoIndexAvailable } = vi.hoisted(() => ({
+const { mockLoadMostRecentState } = vi.hoisted(() => ({
   mockLoadMostRecentState: vi.fn(() => ({
     ok: true,
     state: {
@@ -22,7 +22,6 @@ const { mockLoadMostRecentState, mockIsCocoIndexAvailable } = vi.hoisted(() => (
     path: '/tmp/mock-state-file.json',
     errors: [],
   })),
-  mockIsCocoIndexAvailable: vi.fn(() => false),
 }));
 
 vi.mock('../lib/code-graph-db.js', () => ({
@@ -54,10 +53,6 @@ vi.mock('../lib/shared/hook-state.js', () => ({
   loadMostRecentState: mockLoadMostRecentState,
 }));
 
-vi.mock('../lib/shared/cocoindex-path.js', () => ({
-  isCocoIndexAvailable: mockIsCocoIndexAvailable,
-}));
-
 import { buildStartupBrief } from '../lib/startup-brief.js';
 import * as graphDb from '../lib/code-graph-db.js';
 import { getGraphReadinessSnapshot } from '../lib/ensure-ready.js';
@@ -77,11 +72,9 @@ describe('startup-brief', () => {
     expect(brief.graphOutline).toContain('handleSessionBootstrap (function)');
     expect(brief.sessionContinuity).toContain('Last session worked on');
     expect(brief.sessionContinuity).toContain('Summary:');
-    expect(brief.cocoIndexAvailable).toBe(false);
     expect(brief.startupSurface).toContain('Session context received. Current state:');
     expect(brief.startupSurface).toContain('- Memory: session continuity available');
     expect(brief.startupSurface).toContain('- Code Graph: healthy');
-    expect(brief.startupSurface).toContain('- CocoIndex: missing');
     expect(brief.startupSurface).toContain('- Note: this is a startup snapshot; later structural reads may differ if the repo state changed.');
     expect(brief.sharedPayload?.kind).toBe('startup');
     expect(brief.sharedPayload?.provenance.producer).toBe('startup_brief');
@@ -142,18 +135,10 @@ describe('startup-brief', () => {
     expect(brief.sharedPayload?.provenance.trustState).toBe('stale');
   });
 
-  it('reports cocoindex as available when the binary exists', () => {
-    vi.mocked(mockIsCocoIndexAvailable).mockReturnValueOnce(true);
-    const brief = buildStartupBrief();
-    expect(brief.cocoIndexAvailable).toBe(true);
-    expect(brief.startupSurface).toContain('- CocoIndex: available');
-  });
-
   // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
   it('includes orientation note when highlights are present', () => {
     const brief = buildStartupBrief();
     expect(brief.graphOutline).toContain('Orientation:');
-    expect(brief.graphOutline).toContain('CocoIndex');
   });
 
   // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H

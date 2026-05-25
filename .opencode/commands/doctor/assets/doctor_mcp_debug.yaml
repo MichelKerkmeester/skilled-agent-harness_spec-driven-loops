@@ -23,8 +23,8 @@ operating_mode:
 # MCP-DEBUG DOCTOR INVARIANT
 # ─────────────────────────────────────────────────────────────────
 mcp_debug_doctor_invariant: |
-  MCP debug workflows run the mcp-doctor.sh diagnostic script against all 6
-  MCP servers (mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex-code,
+  MCP debug workflows run the mcp-doctor.sh diagnostic script against all
+  supported MCP servers (mk-spec-memory, mk_skill_advisor, mk_code_index,
   code-mode, sequential-thinking), cross-reference each failure with its
   install guide, and apply guided repairs ONLY when --fix is passed AND the
   user approves the proposed repair. No silent mutation: every config edit,
@@ -43,7 +43,6 @@ upstream_assets:
     mk-spec-memory: ".opencode/install_guides/MCP - Spec Kit Memory.md"
     mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md"
     mk_code_index: ".opencode/skills/system-code-graph/INSTALL_GUIDE.md"
-    cocoindex_code: ".opencode/install_guides/MCP - CocoIndex Code.md"
     code_mode: ".opencode/install_guides/MCP - Code Mode.md"
     sequential_thinking: ".opencode/install_guides/MCP - Sequential Thinking.md"
   scripts:
@@ -66,7 +65,7 @@ user_inputs:
 field_handling:
   defaults:
     fix_empty: "false"
-    server_filter_empty: null  # diagnose all 6 servers when unset
+    server_filter_empty: null  # diagnose all supported servers when unset
   fix_policy:
     true: "after diagnostic, prompt per failed server for guided repair"
     false: "diagnostic only; emit recommendations without writes"
@@ -85,7 +84,7 @@ arguments:
   server_filter:
     flag: "--server"
     value: "<name>"
-    valid_values: [mk-spec-memory, mk_skill_advisor, mk_code_index, cocoindex_code, code_mode, sequential_thinking]
+    valid_values: [mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode, sequential_thinking]
     default: null
     effect: "Only diagnose the specified server"
 
@@ -96,7 +95,6 @@ install_guides:
   mk-spec-memory: .opencode/install_guides/MCP - Spec Kit Memory.md
   mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL_GUIDE.md
   mk_code_index: .opencode/skills/system-code-graph/INSTALL_GUIDE.md
-  cocoindex_code: .opencode/install_guides/MCP - CocoIndex Code.md
   code_mode: .opencode/install_guides/MCP - Code Mode.md
   sequential_thinking: .opencode/install_guides/MCP - Sequential Thinking.md
 
@@ -153,19 +151,6 @@ repair_actions:
     db_dir_missing:
       command: "mkdir -p .opencode/.spec-kit/code-graph/database"
       description: "Create canonical code-graph database directory"
-  cocoindex_code:
-    binary_missing:
-      command: "bash .opencode/skills/mcp-coco-index/scripts/install.sh"
-      description: "Install CocoIndex Code from PyPI into venv"
-    not_executable:
-      command: "chmod +x .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc"
-      description: "Make ccc binary executable"
-    index_empty:
-      command: ".opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc init && .opencode/skills/mcp-coco-index/mcp_server/.venv/bin/ccc index"
-      description: "Initialize and build semantic index"
-    venv_corrupted:
-      command: "rm -rf .opencode/skills/mcp-coco-index/mcp_server/.venv && bash .opencode/skills/mcp-coco-index/scripts/install.sh"
-      description: "Remove corrupted venv and reinstall"
   code_mode:
     dist_missing:
       command: "cd .opencode/skills/mcp-code-mode/mcp_server && npm install && npm run build"

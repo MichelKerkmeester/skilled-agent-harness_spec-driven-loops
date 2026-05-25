@@ -114,7 +114,7 @@ Run from the repository root.
 
 ```bash
 .opencode/skills/system-code-graph/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-code-graph/tsconfig.json
-.opencode/skills/system-code-graph/node_modules/.bin/vitest --config .opencode/skills/system-code-graph/vitest.config.ts --run code-graph-context-cocoindex-telemetry-passthrough code-graph-query-handler detect-changes
+.opencode/skills/system-code-graph/node_modules/.bin/vitest --config .opencode/skills/system-code-graph/vitest.config.ts --run code-graph-context-retired-search-telemetry-passthrough code-graph-query-handler detect-changes
 ```
 
 Expected result: TypeScript exits `0`, and dispatch-adjacent handler tests pass.

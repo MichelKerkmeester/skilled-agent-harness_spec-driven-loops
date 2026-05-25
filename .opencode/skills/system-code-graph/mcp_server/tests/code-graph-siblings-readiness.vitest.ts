@@ -31,14 +31,6 @@ const mocks = vi.hoisted(() => ({
   getStoredCodeGraphScope: vi.fn(),
   getTrackedFiles: vi.fn(),
   getSkipListSummary: vi.fn(),
-  probeCocoIndexReadiness: vi.fn(async () => ({
-    freshness: 'error',
-    action: 'none',
-    inlineIndexPerformed: false,
-    reason: 'cocoindex_binary_missing',
-    canonicalReadiness: 'missing',
-    trustState: 'unavailable',
-  })),
   getParserHealth: vi.fn(),
   countStaleButValidParseDiagnostics: vi.fn(),
   countTrackedSkillFiles: vi.fn(),
@@ -129,10 +121,6 @@ vi.mock('../lib/parser-skip-list.js', () => ({
   getSkipListSummary: mocks.getSkipListSummary,
 }));
 
-vi.mock('../lib/ccc-readiness-probe.js', () => ({
-  probeCocoIndexReadiness: mocks.probeCocoIndexReadiness,
-}));
-
 vi.mock('../lib/tree-sitter-parser.js', () => ({
   getParserHealth: mocks.getParserHealth,
 }));
@@ -141,9 +129,6 @@ import { handleCodeGraphQuery } from '../handlers/query.js';
 import { handleCodeGraphScan } from '../handlers/scan.js';
 import { handleCodeGraphStatus } from '../handlers/status.js';
 import { handleCodeGraphContext } from '../handlers/context.js';
-import { handleCccStatus } from '../handlers/ccc-status.js';
-import { handleCccReindex } from '../handlers/ccc-reindex.js';
-import { handleCccFeedback } from '../handlers/ccc-feedback.js';
 
 type GraphStats = {
   totalFiles: number;
@@ -267,14 +252,6 @@ describe('code-graph sibling readiness emission', () => {
       lastSeenAt: null,
       sample: [],
     });
-    mocks.probeCocoIndexReadiness.mockResolvedValue({
-      freshness: 'error',
-      action: 'none',
-      inlineIndexPerformed: false,
-      reason: 'cocoindex_binary_missing',
-      canonicalReadiness: 'missing',
-      trustState: 'unavailable',
-    });
     mocks.getParserHealth.mockReturnValue('ok');
     mocks.countStaleButValidParseDiagnostics.mockReturnValue(0);
     mocks.countTrackedSkillFiles.mockReturnValue(0);
@@ -341,24 +318,6 @@ describe('code-graph sibling readiness emission', () => {
       invoke: () => handleCodeGraphContext({ subject: 'SomeSymbol', queryMode: 'neighborhood' }),
       expectedCanonicalReadiness: 'ready',
       expectedTrustState: 'live',
-    },
-    {
-      name: 'ccc-status',
-      invoke: () => handleCccStatus(),
-      expectedCanonicalReadiness: 'missing',
-      expectedTrustState: 'unavailable',
-    },
-    {
-      name: 'ccc-reindex',
-      invoke: () => handleCccReindex({ full: false }),
-      expectedCanonicalReadiness: 'missing',
-      expectedTrustState: 'unavailable',
-    },
-    {
-      name: 'ccc-feedback',
-      invoke: () => handleCccFeedback({ query: 'readiness parity', rating: 'helpful' }),
-      expectedCanonicalReadiness: 'missing',
-      expectedTrustState: 'unavailable',
     },
   ])('emits canonical readiness fields for $name', async ({
     invoke,

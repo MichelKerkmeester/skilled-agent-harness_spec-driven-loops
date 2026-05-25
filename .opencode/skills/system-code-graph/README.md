@@ -1,6 +1,6 @@
 ---
 title: "System Code Graph"
-description: "Structural code intelligence for AI agents. A tree-sitter AST graph, a false-safe readiness contract, and 11 MCP tools that answer 'what depends on this' without lying when the index is stale."
+description: "Structural code intelligence for AI agents. A tree-sitter AST graph, a false-safe readiness contract, and 8 MCP tools that answer 'what depends on this' without lying when the index is stale."
 trigger_phrases:
   - "system code graph"
   - "mk-code-index"
@@ -27,7 +27,7 @@ trigger_phrases:
   - [3.2 GRAPH-AWARE QUERIES](#32--graph-aware-queries)
   - [3.3 IMPACT ANALYSIS](#33--impact-analysis)
   - [3.4 RECOVERY OPERATIONS](#34--recovery-operations)
-  - [3.5 COCOINDEX BRIDGE](#35--cocoindex-bridge)
+  - [3.5 COCOINDEX BRIDGE](#35--retired-search-bridge)
 - [4. STRUCTURE](#4--structure)
 - [5. CONFIGURATION](#5--configuration)
 - [6. USAGE EXAMPLES](#6--usage-examples)
@@ -64,7 +64,7 @@ System Code Graph resolves symbols exactly through tree-sitter AST parsing. Call
 System Code Graph owns the structural index. It deliberately leaves four surfaces to siblings:
 
 - **Spec folders, memory, resume, hooks**. Owned by the spec-kit runtime. The `/speckit:resume` flow, `_memory.continuity` blocks, and lifecycle hooks live there.
-- **Semantic code search**. Owned by a separate semantic-index runtime. `code_graph_context` can accept its seeds to mix semantic and structural lookups, exposed here as `ccc_*` bridge tools.
+- **Semantic code search**. Owned by a separate semantic-index runtime. `code_graph_context` can accept its seeds to mix semantic and structural lookups, exposed here as `code_graph_* and detect_changes` bridge tools.
 - **Skill routing**. Owned by a separate routing runtime that picks the right skill for a prompt.
 - **Deep-loop research and review tools**. Owned by the spec-kit runtime where the iteration state machine lives, not by this skill.
 
@@ -137,7 +137,7 @@ The skill is strongest when structure matters. It answers "what imports this fil
 |---|---|---|
 | `code_graph_query` | Read outlines, calls (`calls_from`, `calls_to`), imports (`imports_from`, `imports_to`), and blast radius. Supports multi-subject union. | `mcp_server/handlers/query.ts`, `mcp_server/lib/code-graph-db.ts` |
 | `code_graph_classify_query_intent` | Classify natural-language queries into structural, semantic, or hybrid intent before routing. | `mcp_server/handlers/classify-query-intent.ts`, `mcp_server/lib/query-intent-classifier.ts` |
-| `code_graph_context` | Build compact LLM-ready graph neighborhoods around seeds. Accepts seeds from CocoIndex, manual input, or graph lookups. | `mcp_server/handlers/context.ts`, `mcp_server/lib/code-graph-context.ts` |
+| `code_graph_context` | Build compact LLM-ready graph neighborhoods around seeds. Accepts seeds from structural search, manual input, or graph lookups. | `mcp_server/handlers/context.ts`, `mcp_server/lib/code-graph-context.ts` |
 
 ### 3.3 Impact Analysis
 
@@ -152,13 +152,13 @@ The skill is strongest when structure matters. It answers "what imports this fil
 |---|---|---|
 | `code_graph_apply` | Verification-gated recovery: rescan, prune-excludes, repair-nodes, recover-sqlite-corruption, rollback-bad-apply. Every operation runs the gold-query battery before AND after. | `mcp_server/handlers/apply.ts`, `mcp_server/lib/apply-orchestrator.ts` |
 
-### 3.5 CocoIndex Bridge
+### 3.5 structural search Bridge
 
 | Tool | Purpose | Primary files |
 |---|---|---|
-| `ccc_status` | Check CocoIndex availability and binary path. | `mcp_server/handlers/ccc-status.ts` |
-| `ccc_reindex` | Trigger CocoIndex incremental or full reindex of the workspace. | `mcp_server/handlers/ccc-reindex.ts` |
-| `ccc_feedback` | Submit search-quality feedback for future CocoIndex improvements. | `mcp_server/handlers/ccc-feedback.ts` |
+| `code_graph_status` | Check structural search availability and binary path. | `mcp_server/handlers/ccc-status.ts` |
+| `code_graph_scan` | Trigger structural search incremental or full reindex of the workspace. | `mcp_server/handlers/ccc-reindex.ts` |
+| `code_graph_verify` | Submit search-quality feedback for future structural search improvements. | `mcp_server/handlers/ccc-feedback.ts` |
 
 <!-- /ANCHOR:features -->
 
@@ -177,12 +177,12 @@ system-code-graph/
 +-- package.json                     # Private runtime package metadata
 +-- tsconfig.json                    # TypeScript build config
 +-- vitest.config.ts                 # Focused test config
-+-- feature_catalog/                 # Current feature inventory (17 entries, 8 groups)
++-- feature_catalog/                 # Current feature inventory (14 entries, 7 groups)
 +-- manual_testing_playbook/         # Operator validation scenarios (22 scenarios, 10 groups)
 +-- references/                      # Ownership, readiness, database-path-policy primers
 +-- mcp_server/
 |   +-- index.ts                     # Standalone mk-code-index MCP entrypoint
-|   +-- tool-schemas.ts              # Public MCP tool schemas (source of truth for the 11)
+|   +-- tool-schemas.ts              # Public MCP tool schemas (source of truth for the 8)
 |   +-- handlers/                    # Tool request adapters
 |   +-- lib/                         # Graph implementation, readiness logic, recovery
 |   +-- tools/                       # Tool dispatch and export surface
@@ -259,8 +259,8 @@ Expected:     affected symbols and files, or a blocked response when the graph i
 
 ```text
 User request: "Find the scan readiness path and give me nearby code."
-Workflow:     CocoIndex semantic search for candidate files, then pass selected seeds to code_graph_context
-Tool chain:   mcp__cocoindex_code__search -> mcp__mk_code_index__code_graph_context
+Workflow:     structural search semantic search for candidate files, then pass selected seeds to code_graph_context
+Tool chain:    -> mcp__mk_code_index__code_graph_context
 Expected:     compact graph neighborhood around the selected files or symbols
 ```
 
@@ -304,7 +304,7 @@ The skill package owns documentation and source layout. The MCP server identity 
 
 **Q: Does this replace `grep`?**
 
-No. Use `grep` for exact text matching. Use code graph tools when relationships, symbols, freshness, or impact matter. The 11 tools answer different questions than text search ever can.
+No. Use `grep` for exact text matching. Use code graph tools when relationships, symbols, freshness, or impact matter. The 8 tools answer different questions than text search ever can.
 
 **Q: Why does the readiness contract refuse to answer on stale state?**
 
@@ -337,10 +337,10 @@ No. Those files belong to third-party packages. Keep sk-doc template alignment t
 | [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) | Native bootstrap and per-runtime configuration. |
 | [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md) | Current feature inventory. |
 | [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation scenario index. |
-| [references/runtime/tool_surface.md](./references/runtime/tool_surface.md) | All 11 MCP tools mapped to handler, purpose, preconditions, token budget. |
+| [references/runtime/tool_surface.md](./references/runtime/tool_surface.md) | All 8 MCP tools mapped to handler, purpose, preconditions, token budget. |
 | [references/readiness/readiness_and_scope_fingerprint.md](./references/readiness/readiness_and_scope_fingerprint.md) | Readiness state machine, trust state, and scope-fingerprint contract. |
 | [references/readiness/code_graph_readiness_check.md](./references/readiness/code_graph_readiness_check.md) | Readiness contract primer. |
-| [references/integrations/ccc_bridge_integration.md](./references/integrations/ccc_bridge_integration.md) | When to use `ccc_status` / `ccc_reindex` / `ccc_feedback` with CocoIndex. |
+| [references/integrations/ccc_bridge_integration.md](./references/integrations/ccc_bridge_integration.md) | When to use `code_graph_status` / `code_graph_scan` / `code_graph_verify` with structural search. |
 | [references/runtime/naming_conventions.md](./references/runtime/naming_conventions.md) | Name map across skill folder, MCP server, launcher, plugin bridge, hook location. |
 | [references/runtime/ownership_boundary.md](./references/runtime/ownership_boundary.md) | Why some graph-related code stayed in `system-spec-kit`. |
 | [references/config/database_path_policy.md](./references/config/database_path_policy.md) | Canonical database path and override rules. |

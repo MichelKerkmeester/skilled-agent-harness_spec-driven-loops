@@ -70,7 +70,7 @@ Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state d
 │  │  │ tree-    │ │scan      │ │ readiness contract       │   │  │
 │  │  │ sitter   │ │query     │ │ apply-mode recovery      │   │  │
 │  │  │ WASM     │ │context   │ │ gold-query verifier      │   │  │
-│  │  │ grammars │ │status    │ │ CocoIndex bridge facade  │   │  │
+│  │  │ grammars │ │status    │ │ structural search bridge facade  │   │  │
 │  │  │          │ │verify    │ │                          │   │  │
 │  │  └──────────┘ └──────────┘ └──────────────────────────┘   │  │
 │  │  plugin_bridges/         tests/                           │  │
@@ -104,7 +104,7 @@ system-code-graph/
 │   ├── tool-schemas.ts     # Public tool schema registry (source of truth)
 │   ├── handlers/           # MCP tool handlers
 │   ├── tools/              # Tool dispatcher and group helpers
-│   ├── lib/                # Parser, readiness, apply-mode, CocoIndex bridge
+│   ├── lib/                # Parser, readiness, apply-mode, structural search bridge
 │   ├── database/           # Local SQLite code-graph storage
 │   ├── tests/              # Vitest + integration coverage
 │   ├── stress_test/        # Pressure and degraded-mode coverage
@@ -155,13 +155,13 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Parser.** Tree-sitter via `web-tree-sitter` and `tree-sitter-wasms` multi-language WASM grammars. Extracts files, symbols, and edges. Maintains a parser-skip list for files that fail parsing, surfaced through status metadata.
 
-**Storage.** Primary store is SQLite via `better-sqlite3` at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`. Optional `sqlite-vec` extension provides vector similarity when CocoIndex seeds inject embeddings; the runtime gracefully degrades when the extension fails to load. The launcher's standalone-storage guard refuses to point the database outside the workspace.
+**Storage.** Primary store is SQLite via `better-sqlite3` at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`. Optional `sqlite-vec` extension provides vector similarity when structural search seeds inject embeddings; the runtime gracefully degrades when the extension fails to load. The launcher's standalone-storage guard refuses to point the database outside the workspace.
 
 **Readiness contract.** A hard refuse, not a soft degrade. States are `fresh`, `stale`, `empty`, `error`, `absent`. Read paths gate on the state machine and return blocked payloads with required actions; the contract avoids serving incorrect structural answers. Detail per state lives in `references/readiness/code_graph_readiness_check.md`.
 
 **Apply-mode recovery.** Gated recovery operations (rescan, prune-excludes, repair-nodes, recover-sqlite-corruption, rollback-bad-apply) run the gold-query verification battery before AND after each operation. Audit log writes to JSONL. Rollback restores the last known-good baseline.
 
-**CocoIndex bridge.** Thin pass-through facade for `ccc_status`, `ccc_reindex`, and `ccc_feedback`. The bridge does not implement semantic search; it coordinates with a separate semantic-index runtime.
+**structural search bridge.** Thin pass-through facade for `code_graph_status`, `code_graph_scan`, and `code_graph_verify`. The bridge does not implement semantic search; it coordinates with a separate semantic-index runtime.
 
 <!-- /ANCHOR:runtime-subsystems -->
 

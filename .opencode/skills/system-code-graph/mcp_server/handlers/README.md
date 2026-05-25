@@ -1,6 +1,6 @@
 ---
 title: "Code Graph Handlers: MCP Request Adapters"
-description: "MCP handler entrypoints for structural code-graph tools, recovery operations, change detection and CocoIndex bridge tools."
+description: "MCP handler entrypoints for structural code-graph tools, recovery operations, change detection and structural search bridge tools."
 trigger_phrases:
   - "code graph handlers"
   - "code_graph handlers"
@@ -41,7 +41,7 @@ Current state:
 
 - Structural handlers cover scan, query, status, context, verify and apply-mode recovery.
 - `detect_changes` maps unified diffs to affected indexed symbols and refuses stale graph reads.
-- CocoIndex bridge handlers cover status, reindex and feedback for the `ccc_*` tools.
+- structural search bridge handlers cover status, reindex and feedback for the `code_graph_* and detect_changes` tools.
 - Read handlers use shared readiness contracts instead of returning silent empty answers.
 - Parser quarantine state surfaces through `parserHealth` and `parserSkipList` fields.
 
@@ -86,9 +86,9 @@ handlers/
 +-- verify.ts            # Gold-query verification battery
 +-- apply.ts             # Verification-gated recovery operations
 +-- detect-changes.ts    # Unified-diff affected-symbol preflight
-+-- ccc-status.ts        # CocoIndex bridge status
-+-- ccc-reindex.ts       # CocoIndex bridge reindex trigger
-+-- ccc-feedback.ts      # CocoIndex bridge feedback sink
++-- ccc-status.ts        # structural search bridge status
++-- ccc-reindex.ts       # structural search bridge reindex trigger
++-- ccc-feedback.ts      # structural search bridge feedback sink
 `-- README.md
 ```
 
@@ -143,13 +143,13 @@ handlers/
 | `scan.ts` | Handles `code_graph_scan`, resolves scan scope and updates the SQLite graph through the indexer. |
 | `query.ts` | Handles `code_graph_query` structural reads such as outline, calls, imports and blast radius. |
 | `status.ts` | Handles `code_graph_status` health probes with freshness, readiness, parse health and graph-quality fields. |
-| `context.ts` | Handles `code_graph_context` neighborhoods from manual, graph or CocoIndex seeds. |
+| `context.ts` | Handles `code_graph_context` neighborhoods from manual, graph or structural search seeds. |
 | `verify.ts` | Handles `code_graph_verify` checks against the current index. |
 | `apply.ts` | Handles `code_graph_apply` verification-gated recovery operations and audit output. |
 | `detect-changes.ts` | Handles `detect_changes` by mapping unified diffs to indexed symbols only when graph readiness is fresh. |
-| `ccc-status.ts` | Handles `ccc_status` availability and index-state checks for CocoIndex Code. |
-| `ccc-reindex.ts` | Handles `ccc_reindex` incremental or full CocoIndex reindex requests. |
-| `ccc-feedback.ts` | Handles `ccc_feedback` quality feedback for CocoIndex search results. |
+| `ccc-status.ts` | Handles `code_graph_status` availability and index-state checks for structural search Code. |
+| `ccc-reindex.ts` | Handles `code_graph_scan` incremental or full structural search reindex requests. |
+| `ccc-feedback.ts` | Handles `code_graph_verify` quality feedback for structural search search results. |
 | `index.ts` | Re-exports handler modules for the tool registry. |
 
 <!-- /ANCHOR:key-files -->
@@ -169,7 +169,7 @@ handlers/
 Main flow:
 
 ```text
-MCP client calls code_graph_*, detect_changes or ccc_*
+MCP client calls code_graph_*, detect_changes or code_graph_* and detect_changes
   -> tools/code-graph-tools.ts validates required arguments
   -> handler adapts args and readiness checks
   -> ../lib executes graph, recovery, bridge or DB work
@@ -193,7 +193,7 @@ MCP client calls code_graph_*, detect_changes or ccc_*
 | `code_graph_verify` | MCP tool | Runs graph verification checks. |
 | `code_graph_apply` | MCP tool | Runs guarded graph recovery operations. |
 | `detect_changes` | MCP tool | Maps a unified diff to affected graph symbols. |
-| `ccc_status`, `ccc_reindex`, `ccc_feedback` | MCP tools | Bridge to CocoIndex Code status, indexing and feedback. |
+| `code_graph_status`, `code_graph_scan`, `code_graph_verify` | MCP tools | Bridge to structural search Code status, indexing and feedback. |
 
 <!-- /ANCHOR:entrypoints -->
 

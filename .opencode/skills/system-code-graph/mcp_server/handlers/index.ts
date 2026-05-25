@@ -8,7 +8,4 @@ export { handleCodeGraphContext } from './context.js';
 export { handleClassifyQueryIntent } from './classify-query-intent.js';
 export { handleCodeGraphVerify } from './verify.js';
 export { handleCodeGraphApply } from './apply.js';
-export { handleCccStatus } from './ccc-status.js';
-export { handleCccReindex } from './ccc-reindex.js';
-export { handleCccFeedback } from './ccc-feedback.js';
 export { handleDetectChanges } from './detect-changes.js';

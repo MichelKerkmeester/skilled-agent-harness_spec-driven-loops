@@ -36,7 +36,7 @@ trigger_phrases:
 Current state:
 
 - Tests create temporary directories and clean them up after each case.
-- Files under test live in `../lib/`, including `canonical-db-dir.ts`, `close-db-assertion.ts`, `owner-lease.ts` and `shared/cocoindex-path.ts`.
+- Files under test live in `../lib/`, including `canonical-db-dir.ts`, `close-db-assertion.ts`, `owner-lease.ts` and `shared/retired-search-path.ts`.
 - Security hardening coverage exercises `lib/ipc/socket-server.ts` and workspace containment helpers.
 
 <!-- /ANCHOR:overview -->

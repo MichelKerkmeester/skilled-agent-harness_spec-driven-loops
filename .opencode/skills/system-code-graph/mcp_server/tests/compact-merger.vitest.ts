@@ -17,10 +17,9 @@ describe('compact merger', () => {
   describe('mergeCompactBrief', () => {
     it('includes all non-empty sections', () => {
       const result = mergeCompactBrief(createInput());
-      expect(result.sections.length).toBe(5);
+      expect(result.sections.length).toBe(4);
       expect(result.text).toContain('Constitutional Rules');
       expect(result.text).toContain('Active Files');
-      expect(result.text).toContain('Semantic Neighbors');
       expect(result.text).toContain('Session State');
       expect(result.text).toContain('Triggered Memories');
     });
