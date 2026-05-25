@@ -1,7 +1,0 @@
-lane_id,run,hits,hit_rate,p50_ms,p95_ms,p99_ms,mean_ms,fixture,embedder,reranker,completed_at
-reranker-jina-v3,1,14,0.191781,2281,4957,15360,2911.86,code-retrieval-fixture-expanded-v2.json,sbert/nomic-ai/CodeRankEmbed,jinaai/jina-reranker-v3,2026-05-20T11:02:51.706876+00:00
-reranker-jina-v3,2,29,0.39726,1544,2899,3544,1874.32,code-retrieval-fixture-expanded-v2.json,sbert/nomic-ai/CodeRankEmbed,jinaai/jina-reranker-v3,2026-05-20T07:57:57.649598+00:00
-reranker-jina-v3,3,29,0.39726,1533,2877,3499,1874.15,code-retrieval-fixture-expanded-v2.json,sbert/nomic-ai/CodeRankEmbed,jinaai/jina-reranker-v3,2026-05-20T08:02:20.854213+00:00
-reranker-qwen3-0p6b,1,30,0.410959,1458,1957,2111,1920.58,code-retrieval-fixture-expanded-v2.json,sbert/nomic-ai/CodeRankEmbed,Qwen/Qwen3-Reranker-0.6B,2026-05-20T07:55:39.034824+00:00
-reranker-qwen3-0p6b,2,30,0.410959,1416,2055,2123,1679.03,code-retrieval-fixture-expanded-v2.json,sbert/nomic-ai/CodeRankEmbed,Qwen/Qwen3-Reranker-0.6B,2026-05-20T08:00:02.256210+00:00
-reranker-qwen3-0p6b,3,30,0.410959,1428,1941,2088,1676.99,code-retrieval-fixture-expanded-v2.json,sbert/nomic-ai/CodeRankEmbed,Qwen/Qwen3-Reranker-0.6B,2026-05-20T08:04:25.190846+00:00

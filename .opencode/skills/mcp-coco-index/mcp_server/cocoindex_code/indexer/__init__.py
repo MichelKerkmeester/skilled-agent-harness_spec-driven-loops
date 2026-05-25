@@ -1,1 +1,0 @@
-"""Indexing components and schema."""

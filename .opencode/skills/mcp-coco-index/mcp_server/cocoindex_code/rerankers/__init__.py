@@ -1,1 +1,0 @@
-"""Reranker adapters and implementations."""

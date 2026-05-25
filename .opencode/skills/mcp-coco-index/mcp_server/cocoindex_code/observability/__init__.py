@@ -1,1 +1,0 @@
-"""Observability: diagnostics, index metadata."""
