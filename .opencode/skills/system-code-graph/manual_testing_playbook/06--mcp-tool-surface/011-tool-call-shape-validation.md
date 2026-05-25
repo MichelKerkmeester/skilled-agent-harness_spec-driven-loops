@@ -1,6 +1,6 @@
 ---
 title: "011 tool call shape validation"
-description: "Verify dispatcher/schema validation catches malformed code_graph and CCC tool calls."
+description: "Verify dispatcher/schema validation catches malformed code_graph tool calls."
 trigger_phrases:
   - "011"
   - "tool call shape validation"
@@ -11,15 +11,15 @@ importance_tier: "normal"
 
 ## 1. OVERVIEW
 
-Verify dispatcher/schema validation catches malformed code_graph and CCC tool calls.
+Verify dispatcher/schema validation catches malformed code_graph tool calls.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Verify dispatcher/schema validation catches malformed code_graph and CCC tool calls.
-- Real user request: `Send malformed code_graph and CCC MCP calls and confirm schema validation reports the missing fields.`
-- Operator prompt: `Send malformed code_graph, detect_changes and CCC calls. Show field-specific validation errors and one valid routing case, then return PASS/FAIL with payload excerpts.`
+- Objective: Verify dispatcher/schema validation catches malformed code_graph tool calls.
+- Real user request: `Send malformed code_graph MCP calls and confirm schema validation reports the missing fields.`
+- Operator prompt: `Send malformed code_graph and detect_changes calls. Show field-specific validation errors and one valid routing case, then return PASS/FAIL with payload excerpts.`
 - Expected execution process: Call `code_graph_query` with missing `subject`, call `detect_changes` with missing `diff` and call `code_graph_verify` with missing `rating`.
 - Expected signals: Each malformed call returns `status:"error"` or a schema validation error naming missing fields. Valid shape reaches the handler.
 - Desired user-visible outcome: A concise verdict explaining whether malformed MCP calls are rejected with useful validation errors.
