@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/013-post-deprecation-deep-review",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/013-post-deprecation-deep-review",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/010-remove-memory-coco-integration"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post-deprecation deep review",
+      "014 deep review 30 surfaces",
+      "cli-devin deep review coco"
+    ],
+    "key_topics": [
+      "post-deprecation",
+      "deep-review",
+      "cli-devin",
+      "swe-1.6",
+      "30-surfaces",
+      "review-report",
+      "FAIL",
+      "gemini-routing",
+      "remediation",
+      "exec-verify"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "review/review-report.md"
+    ],
+    "entities": [
+      { "name": "spec.md", "kind": "doc", "path": "spec.md", "source": "derived" },
+      { "name": "review-report.md", "kind": "doc", "path": "review/review-report.md", "source": "derived" }
+    ],
+    "causal_summary": "Independent deep-review of the completed 014 CocoIndex/rerank deprecation across 30 surfaces using cli-devin/SWE-1.6 (4 read-only iters, one dimension each) + an orchestrator exec-verify pass. Found 7 residual items the executor's own greps missed (P0: GEMINI.md routes to the deleted mcp__cocoindex_code__search; P1: /memory:manage ccc subcommand, 014 phase-map accuracy; P2: advisor database/skill-graph.json stale [not active mis-route], .gitignore, embedder_pluggability §3, doctor_deep-loop coco glob) + remediated 2 config-note items (SPECKIT_RERANK_LAYER flag, .devin/config.local.json dupe). Verdict FAIL (active P0) routes to remediation. No behavioral regressions (memory typecheck 0, code-graph 562 pass, advisor no mis-route, on-disk clean).",
+    "created_at": "2026-05-25T00:00:00.000Z",
+    "last_save_at": "2026-05-25T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "review/review-report.md"]
+  }
+}

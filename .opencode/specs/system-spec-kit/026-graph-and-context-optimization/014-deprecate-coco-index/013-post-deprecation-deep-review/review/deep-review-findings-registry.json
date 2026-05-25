@@ -1,0 +1,240 @@
+{
+  "sessionId": "2026-05-25T00-00-00Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P0",
+      "title": "GEMINI.md routes to the deleted CocoIndex MCP tool",
+      "file": ".gemini/GEMINI.md",
+      "line": 5,
+      "description": "Replace the SEARCH ROUTING line (`use CocoIndex semantic search (mcp__cocoindex_code__search)`) with the HYBRID policy (Code Graph + Grep) to match the other four runtime routing docs. A Gemini session would be told to call a non-existent MCP tool.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "advisor database/skill-graph.json carries 8 stale system-rerank-sidecar / mcp-coco-index / 8765 references",
+      "file": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json",
+      "line": 37,
+      "description": "Lines 37/144/221-228/232/239/493-497/522 (system list, siblings, adjacency block, depends_on, enhances, keywords incl localhost 8765 rerank, hub_skills). Regenerate the database/ copy from the recompiled scripts/ skill-graph.json so the advisor never routes to deleted skills.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "/memory:manage declares the removed ccc subcommand + CCC MODE section",
+      "file": ".opencode/commands/memory/manage.md",
+      "line": 3,
+      "description": "Lines 3/19/25/40/168/944 (argument-hint, mode list, error message, action routing, router, CCC MODE §16). Remove the ccc subcommand + CCC MODE §16-17 (the ccc_* tools were removed in phase 002).",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "title": "spec.md phase-map claims phases 002-012 complete despite residue",
+      "file": "spec.md",
+      "line": 101,
+      "description": "The phase-map table marks all phases 002-012 as \"Complete\", but iter-1 found 4 misses (F001-F004: GEMINI.md routing, .gitignore, skill-graph.json, /memory:manage) and iter-2 found 2 P2s (F005-F006: embedder_pluggability obsolete commands, doctor_deep-loop.yaml vestigial glob) that should have been cleaned in those phases. Either update the phase-map to reflect residue status or add a \"complete with known residue\" qualifier to maintain traceability accuracy.",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": ".gitignore has a stale .cocoindex_code/ ignore entry",
+      "file": ".gitignore",
+      "line": 123,
+      "description": "Remove the ignore entry for the deleted directory.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "embedder_pluggability.md §3 has obsolete ccc run-daemon command with obsolescence banner",
+      "file": ".opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md",
+      "line": 239,
+      "description": "The section carries a clear \"⚠️ Obsolete as of the 014 CocoIndex deprecation\" banner, but the ccc-based commands and .venv/bin/ccc paths no longer exist. While this is a documented exception, the commands are misleading if someone tries to follow them. Consider removing or collapsing the obsolete system-code-graph columns entirely.",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "doctor_deep-loop.yaml has forbidden target glob for coco databases",
+      "file": ".opencode/commands/doctor/assets/doctor_deep-loop.yaml",
+      "line": 97,
+      "description": "Line 97 includes `\"mcp_server/database/*coco*\"` in forbidden_targets. This is defensive (prevents writes to non-existent coco databases), but the glob is vestigial since coco databases no longer exist. Remove the glob pattern as cleanup.",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 3,
+    "P2": 3
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": [
+    {
+      "line": 3,
+      "raw": "{\"type\":\"iteration\",\"iteration\":2,\"mode\":\"review\",\"dimensions\":[\"security\"],\"filesReviewed\":[\".vscode/mcp.json:1-67\",\".gemini/settings.json:1-169\",\".codex/config.toml:1-118\",\".mcp.json:1-69\",\".devin/c...",
+      "error": "Unexpected non-whitespace character after JSON at position 2004 (line 1 column 2005)"
+    }
+  ]
+}
