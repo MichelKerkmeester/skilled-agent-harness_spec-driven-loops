@@ -4734,10 +4734,10 @@ This category tracks the compact-code-graph rollout: hook lifecycle capture, hoo
 
 ### Current Reality
 
-The active package includes a dedicated category folder with feature records for compact-code-graph context preservation, code graph readiness, Skill Graph tools, and deep-loop coverage-graph reads.
+The active package includes a dedicated category folder with feature records for compact-code-graph context preservation, code graph readiness, and Skill Graph tools.
 
 ### Source Files
 
 - Category overview: [`22--context-preservation/01-category-overview.md`](22--context-preservation/01-category-overview.md)
-- Latest feature: [`22--context-preservation/30-coverage-graph-query.md`](22--context-preservation/30-coverage-graph-query.md)
+- Latest feature: [`22--context-preservation/25-resource-map-template.md`](22--context-preservation/25-resource-map-template.md)
 - Playbook counterpart: [`../manual_testing_playbook/22--context-preservation/`](../manual_testing_playbook/22--context-preservation/)

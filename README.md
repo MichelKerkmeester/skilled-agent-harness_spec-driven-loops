@@ -391,12 +391,12 @@ The `mk-spec-memory` tools are organized into a layered architecture. Code graph
 | **L3** | Discovery       | 4      | 800          | List, stats, health checks and session readiness                             |
 | **L4** | Mutation        | 5      | 500          | Delete, update, validate, bulk cleanup, retention sweep                      |
 | **L5** | Lifecycle       | 4      | 600          | Checkpoints and lifecycle state                                              |
-| **L6** | Analysis        | 7      | 1,200        | Causal graph (link/stats/drift_why), epistemic baselines, evaluations, dashboards |
+| **L6** | Analysis        | 6      | 1,200        | Causal graph (link/stats/drift_why), quick search, evaluations and dashboards |
 | **L7** | Maintenance     | 5      | 1,000        | Memory index scans, async ingest and learning history                        |
-| **L8** | Moved Surfaces  | 0      | -            | Code graph lives in `mk_code_index`. Advisor and skill graph live in `mk_skill_advisor` |
-| **L9** | Coverage Graph  | 4      | 700          | Deep-loop coverage graph operations                                          |
-| **L9** | Council Graph   | 4      | 700          | AI Council graph operations                                             |
-|        | **Total**       | **39** | **~10,180**  |                                                                              |
+| **L8** | Embedder        | 3      | 400          | Embedder list, set and status                                                |
+| **L9** | Task            | 2      | 300          | Task preflight and postflight                                                |
+| **—**  | Moved Surfaces  | 0      | -            | Code graph → `mk_code_index`; advisor + skill graph → `mk_skill_advisor`; coverage + council graph → `deep-loop-runtime` CLI scripts (not MCP tools) |
+|        | **Total**       | **35** | **~8,300**   |                                                                              |
 
 Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used.
 
@@ -636,7 +636,7 @@ Safety is non-negotiable: the tool checks the graph is fresh before parsing the 
 
 Under the hood the scan runner is split into four declared phases (`find-candidates` → `parse-candidates` → `finalize` → `emit-metrics`) for clearer instrumentation, with no SQLite schema changes.
 
-The code graph runtime has its own feature catalog and operator playbook under [system-code-graph/feature_catalog](.opencode/skills/system-code-graph/feature_catalog/) and [system-code-graph/manual_testing_playbook](.opencode/skills/system-code-graph/manual_testing_playbook/). They document runtime features and manual scenarios for freshness, scan/verify/status, `detect_changes`, context retrieval, coverage graph, and doctor-code-graph behavior.
+The code graph runtime has its own feature catalog and operator playbook under [system-code-graph/feature_catalog](.opencode/skills/system-code-graph/feature_catalog/) and [system-code-graph/manual_testing_playbook](.opencode/skills/system-code-graph/manual_testing_playbook/). They document runtime features and manual scenarios for freshness, scan/verify/status, `detect_changes`, context retrieval, and doctor-code-graph behavior.
 
 &nbsp;
 #### What Each System Does

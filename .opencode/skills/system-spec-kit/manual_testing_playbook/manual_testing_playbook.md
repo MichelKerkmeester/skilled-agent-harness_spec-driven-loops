@@ -3892,7 +3892,6 @@ This split playbook keeps automated coverage references in three places:
 | 283 | Context Preservation | Skill graph status | [283](22--context-preservation/283-skill-graph-status.md) | [22--context-preservation/28-skill-graph-status.md](../feature_catalog/22--context-preservation/28-skill-graph-status.md) |
 | 284 | Context Preservation | Skill graph query | [284](22--context-preservation/284-skill-graph-query.md) | [22--context-preservation/27-skill-graph-query.md](../feature_catalog/22--context-preservation/27-skill-graph-query.md) |
 | 285 | Context Preservation | Skill graph validate | [285](22--context-preservation/285-skill-graph-validate.md) | [22--context-preservation/29-skill-graph-validate.md](../feature_catalog/22--context-preservation/29-skill-graph-validate.md) |
-| 286 | Context Preservation | Coverage graph query | [286](22--context-preservation/286-coverage-graph-query.md) | [22--context-preservation/30-coverage-graph-query.md](../feature_catalog/22--context-preservation/30-coverage-graph-query.md) |
 
 ---
 | 323 | Doctor Commands | /doctor memory fresh-install bootstrap | [323](23--doctor-commands/323-doctor-memory-fresh-install.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
