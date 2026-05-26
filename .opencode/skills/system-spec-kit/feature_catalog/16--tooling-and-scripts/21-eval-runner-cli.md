@@ -7,13 +7,6 @@ description: "CLI entry point for running ablation studies against the productio
 
 This document captures the implemented behavior, source references, and remediation metadata for the ablation-study CLI entry point.
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 `scripts/evals/run-ablation.ts` is the operator-facing CLI for controlled channel ablation studies. It runs the production hybrid search stack with one or more retrieval channels disabled, compares the degraded runs against the full-pipeline baseline, prints a formatted markdown report, stores snapshot rows in the eval database, and writes the complete JSON payload to `/tmp/ablation-result.json`.

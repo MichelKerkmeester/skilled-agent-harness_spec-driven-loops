@@ -10,23 +10,8 @@ importance_tier: "normal"
 
 # Matrix Runners
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `matrix_runners/` turns the F1-F14 x CLI-executor matrix into executable cells for `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`.
@@ -38,11 +23,8 @@ Current state:
 - Adapters return `PASS`, `FAIL`, `TIMEOUT_CELL`, `NA`, or `BLOCKED`.
 - Native and inline cells are covered by focused local runners, not this folder.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -71,11 +53,8 @@ Current state:
 Dependency direction: runner ───▶ manifest and templates ───▶ adapters ───▶ CLI process.
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -92,11 +71,8 @@ mcp_server/matrix_runners/
 └── README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Responsibility |
@@ -107,11 +83,8 @@ mcp_server/matrix_runners/
 | `*-adapter.ts` | Maps one executor to its CLI argv and stdout matching contract. |
 | `templates/` | Stores prompt payloads referenced by manifest cells. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -154,11 +127,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -178,11 +148,8 @@ npx tsx mcp_server/matrix_runners/run-matrix.ts \
   --executors cli-gemini,cli-claude-code
 ```
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from `.opencode/skills/system-spec-kit/mcp_server` unless noted.
@@ -193,15 +160,10 @@ npx vitest run matrix-adapter
 
 Expected result: the smoke suite mocks `spawn` and exits with Vitest success without invoking real CLIs.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../stress_test/README.md`](../stress_test/README.md)
 - [`../tools/README.md`](../tools/README.md)
 - [`../README.md`](../README.md)
-
-<!-- /ANCHOR:related -->

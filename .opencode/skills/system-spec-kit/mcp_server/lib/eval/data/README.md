@@ -8,17 +8,6 @@ trigger_phrases:
 
 # Eval Data: Ground-Truth Fixtures
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
 ## 1. OVERVIEW
 
 `lib/eval/data/` stores static fixtures for evaluation tooling. The directory is data-only and provides labeled query cases for ablation, reporting and retrieval-quality checks.

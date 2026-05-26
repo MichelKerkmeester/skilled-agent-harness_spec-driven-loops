@@ -5,13 +5,6 @@ description: "Current-state reference for compatibility flags and runtime shims 
 
 # Retired runtime shims and inert compatibility flags
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 This entry documents a narrow compatibility surface that still exists in the codebase after remediation work retired older runtime toggles.

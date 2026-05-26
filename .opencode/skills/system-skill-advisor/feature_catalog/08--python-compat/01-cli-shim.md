@@ -12,14 +12,10 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Keep pre-Phase-027 Python consumers working while moving routing to the native advisor. The shim probes the native daemon first, translates native output into the legacy JSON-array shape and falls back to the local Python scorer when native routing is unavailable or explicitly bypassed.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `scripts/skill_advisor.py` is the CLI surface. `scripts/skill_advisor_runtime.py` implements the local Python scorer used by `--force-local` and the fallback path. Control flags:
@@ -33,9 +29,6 @@ Keep pre-Phase-027 Python consumers working while moving routing to the native a
 | `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Disable advisor invocation entirely. |
 | `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` | Env-level force-local toggle for plugin/script diagnostics. |
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -54,9 +47,7 @@ Keep pre-Phase-027 Python consumers working while moving routing to the native a
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/python/` | Automated test | Python unit test |
 | `Playbook scenarios [PC-001](../../manual_testing_playbook/10--python-compat/001-stdin-mode.md), [PC-002](../../manual_testing_playbook/10--python-compat/002-force-native-force-local.md), [PC-003](../../manual_testing_playbook/10--python-compat/003-threshold-flag.md) and [CP-001..CP-004](../../manual_testing_playbook/03--compat-and-disable/).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Python compat
@@ -68,4 +59,3 @@ Related references:
 - [02-regression-suite.md](./02-regression-suite.md).
 - [03-bench-runner.md](./03-bench-runner.md).
 - [`06--mcp-surface/04-compat-entrypoint.md`](../06--mcp-surface/04-compat-entrypoint.md).
-<!-- /ANCHOR:source-metadata -->

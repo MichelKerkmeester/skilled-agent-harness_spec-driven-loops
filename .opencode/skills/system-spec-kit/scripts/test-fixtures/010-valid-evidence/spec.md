@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature Spec
@@ -28,4 +27,3 @@ This fixture tests evidence citation validation.
 ### Out of Scope
 
 - Priority tag testing
-<!-- /ANCHOR:overview -->

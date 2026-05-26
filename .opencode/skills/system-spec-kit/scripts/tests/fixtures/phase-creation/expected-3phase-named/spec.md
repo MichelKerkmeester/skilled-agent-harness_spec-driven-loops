@@ -54,11 +54,9 @@ DO NOT use Level 3 if:
 | **Status** | [Draft/In Progress/Review/Complete] |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | `[###-feature-name]` |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -66,11 +64,9 @@ DO NOT use Level 3 if:
 
 ### Purpose
 [One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -87,11 +83,9 @@ DO NOT use Level 3 if:
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -105,31 +99,24 @@ DO NOT use Level 3 if:
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-002 | [Requirement description] | [How to verify it's done] |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: [Primary measurable outcome]
 - **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | [System/API] | [What if blocked] | [Fallback plan] |
 | Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
 
 ---
-
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -201,7 +188,6 @@ DO NOT use Level 3 if:
 
 - [Question 1 requiring clarification]
 - [Question 2 requiring clarification]
-<!-- /ANCHOR:questions -->
 
 ---
 
@@ -238,7 +224,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
 > This spec uses phased decomposition. Each phase is an independently executable child spec folder.
@@ -262,4 +247,3 @@ contextType: "general"
 |------|-----|----------|--------------|
 | 001-design | 002-build | [Criteria TBD] | [Verification TBD] |
 | 002-build | 003-verify | [Criteria TBD] | [Verification TBD] |
-<!-- /ANCHOR:phase-map -->

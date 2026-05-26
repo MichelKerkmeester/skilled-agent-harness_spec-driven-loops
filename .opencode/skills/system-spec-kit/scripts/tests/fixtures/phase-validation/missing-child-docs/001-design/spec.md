@@ -13,7 +13,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -29,11 +28,9 @@ contextType: "general"
 | **Predecessor** | N/A |
 | **Successor** | N/A |
 | **Handoff Criteria** | Design review approved |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:phase-context -->
 ### Phase Context
 
 This is **Phase 1** of the Missing Child Docs Fixture specification.
@@ -45,11 +42,9 @@ This is **Phase 1** of the Missing Child Docs Fixture specification.
 
 **Deliverables**:
 - Design documentation
-<!-- /ANCHOR:phase-context -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -57,11 +52,9 @@ Design phase child that is intentionally missing plan.md.
 
 ### Purpose
 Test that validate.sh --recursive detects the missing file.
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -75,11 +68,9 @@ Test that validate.sh --recursive detects the missing file.
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | N/A | N/A | Test fixture |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -87,30 +78,23 @@ Test that validate.sh --recursive detects the missing file.
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Design complete | Design doc reviewed |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: This child intentionally fails file-exists validation
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | N/A | N/A | N/A | N/A |
-<!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None
-<!-- /ANCHOR:questions -->

@@ -15,7 +15,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -25,11 +24,9 @@ contextType: "general"
 | **Status** | In Progress |
 | **Created** | 2026-03-08 |
 | **Branch** | `001-valid-phase-fixture` |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -37,11 +34,9 @@ Test fixture representing a correctly structured phase parent.
 
 ### Purpose
 Validate that check-phase-links.sh and validate.sh --recursive pass on well-formed input.
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -56,11 +51,9 @@ Validate that check-phase-links.sh and validate.sh --recursive pass on well-form
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | N/A | N/A | Test fixture only |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
 > This spec uses phased decomposition. Each phase is an independently executable child spec folder.
@@ -80,11 +73,9 @@ Validate that check-phase-links.sh and validate.sh --recursive pass on well-form
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-design | 002-implement | Design approved | Review complete |
-<!-- /ANCHOR:phase-map -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -92,30 +83,23 @@ Validate that check-phase-links.sh and validate.sh --recursive pass on well-form
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Valid phase structure | validate.sh --recursive exits 0 |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: All phase links resolve correctly
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | N/A | N/A | N/A | N/A |
-<!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None
-<!-- /ANCHOR:questions -->

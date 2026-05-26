@@ -12,20 +12,8 @@ trigger_phrases:
 
 > Fixture-only directory that provides mock `description.json` payloads for testing the description repair and merge system against real-world spec folder metadata structures.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. KEY FILES](#2--key-files)
-- [3. ENTRYPOINTS](#3--entrypoints)
-- [4. VALIDATION](#4--validation)
-- [5. RELATED](#5--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `tests/description/fixtures/` owns mock `description.json` payloads for the description repair and merge system. The fixtures represent real spec folder descriptions from Phase 017 of the system-spec-kit project, enabling comprehensive testing of `mergePreserveRepair` logic.
@@ -40,11 +28,8 @@ Current state:
 - The consumer test `tests/description/repair-specimens.vitest.ts` loads fixtures through a `readFixture()` helper to validate discriminated loading, schema validation, merge safety and edge cases.
 - Fixture filenames follow the pattern `{phase}-{specId}-{folderSlug}.description.json`.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 2. KEY FILES
 
 | File | Responsibility |
@@ -53,11 +38,8 @@ Current state:
 | `017-002-cluster-consumers.description.json` | Wave B child packet description with parallel lane execution and wave scope metadata. |
 | `017-review-findings-remediation.description.json` | Parent-level review findings remediation charter with parent chain and remediation task organization. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 3. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -66,11 +48,8 @@ Current state:
 | `017-002-cluster-consumers.description.json` | Fixture | Child packet description loaded by `tests/description/repair-specimens.vitest.ts` for merge and repair testing. |
 | `017-review-findings-remediation.description.json` | Fixture | Parent packet description loaded by `tests/description/repair-specimens.vitest.ts` for parent-level structure testing. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 4. VALIDATION
 
 Run from the repository root.
@@ -81,15 +60,10 @@ cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/descripti
 
 Expected result: exit code 0, all 6 tests pass.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 5. RELATED
 
 - [Parent: Description Tests](../README.md)
 - [Tests: tests/](../../README.md)
 - [Skill README](../../../README.md)
-
-<!-- /ANCHOR:related -->

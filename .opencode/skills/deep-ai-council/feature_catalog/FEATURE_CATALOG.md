@@ -9,21 +9,6 @@ Canonical inventory of what the `deep-ai-council` planning skill does today, gro
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. RUNTIME ROUTING AND RENAME](#2-runtime-routing-and-rename)
-- [3. COUNCIL DELIBERATION AND SEAT DIVERSITY](#3-council-deliberation-and-seat-diversity)
-- [4. ARTIFACT PERSISTENCE AND STATE FORMAT](#4-artifact-persistence-and-state-format)
-- [5. CONVERGENCE AND ROLLBACK](#5-convergence-and-rollback)
-- [6. SCOPE BOUNDARIES](#6-scope-boundaries)
-- [7. DEPTH AND FAILURE HANDLING](#7-depth-and-failure-handling)
-- [8. WRITER LIBRARY CONTRACT](#8-writer-library-contract)
-- [9. COUNCIL GRAPH INTEGRATION](#9-council-graph-integration)
-- [10. COUNCIL GRAPH VALUE COMPARISON](#10-council-graph-value-comparison)
-
----
-
 ## 1. OVERVIEW
 
 `deep-ai-council` runs planning-only councils with two or three distinct reasoning seats, forces cross-seat critique, checks convergence, and persists packet-local `ai-council/**` artifacts. This catalog lists the 32 shipped features across 9 categories. Each row links to its per-feature file, and each per-feature file carries the implementation anchors, the manual-testing scenario, and the source metadata.

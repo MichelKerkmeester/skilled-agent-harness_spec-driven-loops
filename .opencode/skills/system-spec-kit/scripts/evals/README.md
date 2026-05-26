@@ -12,22 +12,8 @@ trigger_phrases:
 
 > CLI utilities for measuring memory quality, benchmark behavior and scripts-to-runtime boundaries.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. KEY FILES](#3--key-files)
-- [4. COMMANDS](#4--commands)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scripts/evals/` contains evaluation runners and policy checks for Spec Kit memory behavior. The tools cover search baselines, channel ablation, performance checks, redaction calibration, import boundaries and evaluation dataset mapping.
@@ -38,11 +24,8 @@ Current state:
 - Import policy checks prefer public MCP server API modules over internal runtime paths.
 - Allowlisted exceptions are tracked in `import-policy-allowlist.json`.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -71,11 +54,8 @@ Restricted import surfaces:
 - `@spec-kit/mcp-server/handlers*`
 - Relative imports into `../../mcp_server/{lib,core,handlers}`
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -90,11 +70,8 @@ Restricted import surfaces:
 | `check-architecture-boundaries.ts` | Checks shared neutrality and wrapper-only boundaries. |
 | `import-policy-allowlist.json` | Stores temporary approved exceptions with owner and expiry metadata. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:commands -->
 ## 4. COMMANDS
 
 Run from `.opencode/skills/system-spec-kit/scripts` unless a command uses a repository-root path.
@@ -123,11 +100,8 @@ npx tsx evals/run-ablation.ts
 
 Expected result: prints channel ablation results when evaluation prerequisites are available.
 
-<!-- /ANCHOR:commands -->
-
 ---
 
-<!-- ANCHOR:boundaries -->
 ## 5. BOUNDARIES
 
 | Boundary | Rule |
@@ -137,11 +111,8 @@ Expected result: prints channel ablation results when evaluation prerequisites a
 | Data | Benchmark scripts may read evaluation databases and fixtures but should not rewrite production memory stores unless a command documents that behavior. |
 | Reporting | Evaluation output should state when prerequisites are missing or results are investigation-only. |
 
-<!-- /ANCHOR:boundaries -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 6. VALIDATION
 
 Run the README validator after editing this file:
@@ -160,16 +131,11 @@ npx tsx evals/check-allowlist-expiry.ts
 
 Expected result: both policy checks exit zero or report a documented exception that needs review.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 7. RELATED
 
 - [`../README.md`](../README.md)
 - [`../core/README.md`](../core/README.md)
 - [`../../ARCHITECTURE.md`](../../ARCHITECTURE.md)
 - [`import-policy-allowlist.json`](./import-policy-allowlist.json)
-
-<!-- /ANCHOR:related -->

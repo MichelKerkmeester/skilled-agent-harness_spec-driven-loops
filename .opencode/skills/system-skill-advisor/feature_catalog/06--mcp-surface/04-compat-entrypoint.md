@@ -12,26 +12,12 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CURRENT REALITY](#2--current-reality)
-- [3. SOURCE FILES](#3--source-files)
-- [4. SOURCE METADATA](#4--source-metadata)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Give plugins and the Python shim a stable, versioned public surface to import from the advisor package. No consumer should pin to compiled-handler paths that can move between releases.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `compat/index.ts` re-exports the curated public API:
@@ -46,9 +32,6 @@ export { renderAdvisorBrief } from '../lib/render.js';
 
 The OpenCode plugin bridge imports the compiled equivalent at `dist/mcp_server/compat/index.js`. The Python shim probes the same entrypoint through the daemon-probe helper. Pinning to private paths in `dist/handlers/` is explicitly disallowed.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -65,9 +48,7 @@ The OpenCode plugin bridge imports the compiled equivalent at `dist/mcp_server/c
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/plugin-bridge.vitest.ts` | Automated test | Validation reference |
 | `Playbook scenarios [CL-005](../../manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md) and [CP-001..CP-004](../../manual_testing_playbook/03--compat-and-disable/).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: MCP surface
@@ -79,4 +60,3 @@ Related references:
 - [01-advisor-recommend.md](./01-advisor-recommend.md).
 - [`07--hooks-and-plugin/05-opencode-plugin-bridge.md`](../07--hooks-and-plugin/05-opencode-plugin-bridge.md).
 - [`08--python-compat/01-cli-shim.md`](../08--python-compat/01-cli-shim.md).
-<!-- /ANCHOR:source-metadata -->

@@ -5,13 +5,6 @@ description: "Level contract and inline rendering pipeline that generates Spec K
 
 # Template Composition System
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 The Template Composition System is the current Spec Kit document-generation path. It resolves a public Level value, selects the required packet documents, renders inline Level gates, and writes the resulting `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, and any Level-specific verification or decision files directly into a target spec folder.

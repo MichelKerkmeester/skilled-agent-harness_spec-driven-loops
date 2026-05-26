@@ -9,25 +9,10 @@ trigger_phrases:
 
 # Data Extractors
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. SCRIPT IO](#2-script-io)
-- [3. ENTRYPOINTS](#3-entrypoints)
-- [4. VALIDATION FROM REPO ROOT](#4-validation-from-repo-root)
-- [5. KEY FILES](#5-key-files)
-- [6. BOUNDARIES](#6-boundaries)
-- [7. RELATED](#7-related)
-
-<!-- /ANCHOR:table-of-contents -->
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scripts/extractors/` converts normalized session input into structured conversation, decision, file, implementation, git, and spec-folder data used by template rendering and indexing workflows.
 
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:script-io -->
 ## 2. SCRIPT IO
 
 | Flow | Input | Output |
@@ -37,8 +22,6 @@ trigger_phrases:
 | Enrichment | Git and spec-folder context | Additional context for generated artifacts |
 | Quality scoring | Extracted data | Quality score and validation signals |
 
-<!-- /ANCHOR:script-io -->
-<!-- ANCHOR:entrypoints -->
 ## 3. ENTRYPOINTS
 
 - `collectSessionData()` coordinates loader output, extraction modules, enrichment, and scoring.
@@ -47,8 +30,6 @@ trigger_phrases:
 - `scoreExtractionQuality()` evaluates extracted data before downstream rendering.
 - `index.ts` re-exports the extractor surface used by compiled scripts.
 
-<!-- /ANCHOR:entrypoints -->
-<!-- ANCHOR:validation-from-repo-root -->
 ## 4. VALIDATION FROM REPO ROOT
 
 Run extractor validation from the repository root:
@@ -59,8 +40,6 @@ node -e "const extractors=require('./.opencode/skills/system-spec-kit/scripts/di
 python3 .opencode/skills/sk-code/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts/extractors
 ```
 
-<!-- /ANCHOR:validation-from-repo-root -->
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Purpose |
@@ -79,20 +58,14 @@ python3 .opencode/skills/sk-code/scripts/verify_alignment_drift.py --root .openc
 | `spec-folder-extractor.ts` | Reads spec-folder context for capture enrichment |
 | `index.ts` | Barrel export for extractor modules |
 
-<!-- /ANCHOR:key-files -->
-<!-- ANCHOR:boundaries -->
 ## 6. BOUNDARIES
 
 - Extractors consume normalized data; source selection and path validation belong to loaders.
 - Extractors do not render markdown, write files, or persist index rows.
 - Runtime imports should use compiled modules under `scripts/dist/extractors/`.
 
-<!-- /ANCHOR:boundaries -->
-<!-- ANCHOR:related -->
 ## 7. RELATED
 
 - `../loaders/README.md`
 - `../renderers/README.md`
 - `../utils/README.md`
-
-<!-- /ANCHOR:related -->

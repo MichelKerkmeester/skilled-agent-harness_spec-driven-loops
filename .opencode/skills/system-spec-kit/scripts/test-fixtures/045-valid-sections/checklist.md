@@ -1,4 +1,3 @@
-<!-- ANCHOR:checklist -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
@@ -14,4 +13,3 @@
 ## P2 - Optional
 
 - [ ] Additional documentation
-<!-- /ANCHOR:checklist -->

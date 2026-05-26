@@ -12,20 +12,8 @@ trigger_phrases:
 
 > Layered fixture directory that provides scenario fixtures and shared seeding utilities for validating runtime council graph query performance against baseline file reading operations.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. KEY FILES](#2--key-files)
-- [3. ENTRYPOINTS](#3--entrypoints)
-- [4. VALIDATION](#4--validation)
-- [5. RELATED](#5--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `tests/fixtures/council-value/` owns scenario fixtures and helper utilities for the council graph value demonstration system. Each scenario measures the performance improvement of runtime CLI council graph queries over baseline file reading approaches. The fixtures cover six council graph query types: unresolved disagreements, decision support, convergence, convergence blockers, hot nodes and status queries.
@@ -40,11 +28,8 @@ Current state:
 - The consumer test `tests/integration/council-graph-value-scenarios.vitest.ts` compares `graph.runtimeCalls` against `baseline.fileReads` and writes its performance metrics report to a temp path by default. Set `COUNCIL_VALUE_REPORT_PATH=.opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json` only when intentionally refreshing the tracked report.
 - External imports include `node:fs`, `node:path`, `node:url` and `node:module` for filesystem and CommonJS interop operations.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 2. KEY FILES
 
 | File | Responsibility |
@@ -57,11 +42,8 @@ Current state:
 | `dac-032.ts` | Scenario fixture for council graph status performance. |
 | `seed-helpers.ts` | Shared utilities for artifact tree seeding, runtime CLI graph upsert and scenario fixture construction. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 3. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -74,11 +56,8 @@ Current state:
 | `dac-032.ts` | Fixture | Exports the DAC-032 scenario fixture consumed by `tests/council-graph-value-scenarios.vitest.ts`. |
 | `seed-helpers.ts` | Utility | Shared module providing `seedArtifactTree`, `upsertFixtureGraph` and `buildScenarioFixture`. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 4. VALIDATION
 
 Run from the repository root.
@@ -96,16 +75,11 @@ COUNCIL_VALUE_REPORT_PATH=.opencode/skills/deep-loop-runtime/tests/council-graph
   npm run --prefix .opencode/skills/system-spec-kit/mcp_server test:council
 ```
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 5. RELATED
 
 - [Data Subdirectory: data/](./data/README.md)
 - [Parent: Fixtures](../README.md)
 - [Tests: tests/](../../README.md)
 - [Council Runtime Lib: lib/council/](../../../lib/council/README.md)
-
-<!-- /ANCHOR:related -->

@@ -18,24 +18,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -59,11 +41,8 @@ The advisor is the canonical Gate 2 routing surface. Call `advisor_recommend` to
 - **Python compatibility shim**. `skill_advisor.py` keeps scripts and hooks working when the native MCP path is not reachable.
 - **Standalone process boundary**. Runs as its own MCP server so you can stop, restart or roll back routing without touching adjacent runtimes.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1: Check advisor health.**
@@ -101,11 +80,8 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 
 Expected result: TypeScript exits `0` and the package builds cleanly.
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -127,7 +103,6 @@ Routing is fail-open. When the native MCP path is unreachable the Python `skill_
 | `skill_graph_status` | Report skill graph health, counts plus staleness. | `mcp_server/handlers/skill-graph/status.ts` |
 | `skill_graph_validate` | Validate the live skill graph for schema drift, broken edges, reciprocal symmetry, dependency cycles. | `mcp_server/handlers/skill-graph/validate.ts` |
 | `skill_graph_propagate_enhances` (internal) | Detect, propose, optionally apply missing inbound `enhances` edges across skills. Trusted-caller gated. | `mcp_server/handlers/skill-graph/propagate-enhances.ts` |
-
 
 ### 3.3 SCORER LANES
 
@@ -152,11 +127,8 @@ Weights live in `mcp_server/lib/scorer/lane-registry.ts`. Changes require measur
 
 A daemon watches `.opencode/skills/*/SKILL.md` and `graph-metadata.json` files and bumps generation when sources change. The cache invalidates on generation bump.
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -205,11 +177,8 @@ system-skill-advisor/
 | [references/scoring/advisor_scorer.md](./references/scoring/advisor_scorer.md) | Lane attribution model and fusion rules. |
 | [references/hooks/skill_advisor_hook.md](./references/hooks/skill_advisor_hook.md) | Runtime hook contract for Claude, Codex, Gemini, Devin, OpenCode. |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 | Setting | Default | Purpose |
@@ -236,11 +205,8 @@ The TS shared cascade is text-tuned by design; a `contentType: 'text' \| 'code'`
 
 See [INSTALL_GUIDE.md §12 "Choosing an embedder"](./INSTALL_GUIDE.md#12--choosing-an-embedder) for the cascade tier table, swap workflow, and content-type rationale. See [`embedder_pluggability.md`](../system-spec-kit/references/memory/embedder_pluggability.md) for the canonical shared-embedder narrative covering mk-spec-memory alongside skill-advisor.
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 **Pick a skill for a non-trivial prompt**
@@ -279,11 +245,8 @@ Arguments: { "mode": "report", "minConfidence": 0.6 }
 Expected output: candidates.detected[] with proposed inbound enhances edges, confidenceScores, dryRun=true.
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 | What You See | Cause | Fix |
@@ -296,11 +259,8 @@ Expected output: candidates.detected[] with proposed inbound enhances edges, con
 | Recommendations omit a newly-added skill | The advisor reads metadata at every call, but the daemon may not have observed the new file yet. | Call `advisor_rebuild` or wait for the watcher to fire. |
 | Devin hook does not disable with `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Devin hook checks `MK_SKILL_ADVISOR_HOOK_DISABLED` first. | Set `MK_SKILL_ADVISOR_HOOK_DISABLED=1` for Devin or set both variables. |
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: Why is the advisor a separate MCP server instead of part of `mk-spec-memory`?**
@@ -323,11 +283,8 @@ A: Memory, spec folders, continuity stay in `system-spec-kit`. The advisor depen
 
 A: See [references/hooks/skill_advisor_hook.md](./references/hooks/skill_advisor_hook.md) for the advisor hook contract across Claude, Codex, Gemini, Devin plus the OpenCode plugin.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
@@ -357,5 +314,3 @@ A: See [references/hooks/skill_advisor_hook.md](./references/hooks/skill_advisor
 | [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenario index. |
 | [changelog/v0.2.0.md](./changelog/v0.2.0.md) | v0.2.0 production isolation from system-spec-kit. |
 | [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder_pluggability.md) | Canonical shared-embedder reference used by mk-spec-memory and skill-advisor. |
-
-<!-- /ANCHOR:related-documents -->

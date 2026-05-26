@@ -13,7 +13,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -23,11 +22,9 @@ contextType: "general"
 | **Status** | Complete |
 | **Created** | 2026-03-16 |
 | **Branch** | `codex/template-fixture` |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -35,11 +32,9 @@ This fixture intentionally reorders required H2 sections.
 
 ### Purpose
 `TEMPLATE_HEADERS` should fail when required headers drift out of sequence.
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -47,11 +42,9 @@ This fixture intentionally reorders required H2 sections.
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Reordered header fails | `validate.sh` returns exit code 2 |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -65,30 +58,23 @@ This fixture intentionally reorders required H2 sections.
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `spec.md` | Modify | Swap required section order |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The validator reports an out-of-order required section.
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Header order drift goes unnoticed | Medium | Compare against the live template sequence |
-<!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None.
-<!-- /ANCHOR:questions -->

@@ -43,16 +43,16 @@ TEST_CASES: List[Dict[str, Any]] = [
     {
         "file": "missing_toc.md",
         "doc_type": "readme",
-        "expected_exit": 1,
-        "expected_errors": ["missing_toc"],
-        "description": "README missing TABLE OF CONTENTS section"
+        "expected_exit": 0,
+        "expected_errors": [],
+        "description": "README without a TOC is valid (TOCs are no longer used in skill docs)"
     },
     {
         "file": "single_dash_anchors.md",
         "doc_type": "readme",
-        "expected_exit": 1,
-        "expected_errors": ["toc_single_dash_anchor"],
-        "description": "README with single-dash TOC anchors instead of double-dash"
+        "expected_exit": 0,
+        "expected_errors": [],
+        "description": "TOC anchor format is no longer validated (TOCs are not used; format check is moot)"
     },
     {
         "file": "missing_emojis.md",

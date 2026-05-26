@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Missing Tasks
@@ -26,4 +25,3 @@ Tests L1 folder missing tasks.md fails validation.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

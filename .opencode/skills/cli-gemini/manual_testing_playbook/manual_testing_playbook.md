@@ -26,25 +26,6 @@ The numeric gap at `05` is intentional. cli-gemini has no first-class session-co
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. CLI INVOCATION](#7--cli-invocation)
-- [8. AUTO-APPROVE / YOLO](#8--auto-approve--yolo)
-- [9. BUILT-IN TOOLS](#9--built-in-tools)
-- [10. AGENT ROUTING](#10--agent-routing)
-- [11. INTEGRATION PATTERNS](#11--integration-patterns)
-- [12. PROMPT TEMPLATES](#12--prompt-templates)
-- [13. AUTOMATED TEST CROSS-REFERENCE](#13--automated-test-cross-reference)
-- [14. FEATURE CATALOG CROSS-REFERENCE INDEX](#14--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 19 deterministic scenarios across 6 categories validating the `cli-gemini` skill surface. Each feature keeps its stable `CG-NNN` ID and links to a dedicated feature file with the full execution contract.
@@ -413,7 +394,6 @@ Desired user-visible outcome: PASS verdict + a 2-3 sentence comparison + the cit
 
 #### Test Execution
 > **Feature File:** [CG-012](04--agent-routing/003-deep-research-agent-grounding.md)
-
 
 ### CG-019 | @debug agent fresh-perspective root cause
 

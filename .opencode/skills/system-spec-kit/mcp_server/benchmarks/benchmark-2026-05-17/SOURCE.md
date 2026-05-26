@@ -16,22 +16,6 @@ contextType: "reference"
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. SPEC PACKET LOCATION](#2--spec-packet-location)
-- [3. PACKET STRUCTURE AT A GLANCE](#3--packet-structure-at-a-glance)
-- [4. WHEN TO READ WHAT](#4--when-to-read-what)
-- [5. EVIDENCE FILE MAP](#5--evidence-file-map)
-- [6. FOLLOW-ON PACKETS](#6--follow-on-packets)
-- [7. WHEN TO UPDATE THIS FILE](#7--when-to-update-this-file)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What this file is
@@ -54,20 +38,14 @@ A wayfinding doc. It does not duplicate the spec packet content. It tells you wh
 - `per-probe-with-rescue.jsonl` — final three rows with rescue ON.
 - `SOURCE.md` — this file.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:source-summary -->
 ## 2. SOURCE SUMMARY
 
 This benchmark captures a six-embedder bake-off on the spec-memory dataset alongside retrieval-stage work. The dataset and configuration are fully described by the artifacts in this folder; the benchmark is self-contained and reproducible from the captured fixtures, manifests, and scripts.
 
-<!-- /ANCHOR:source-summary -->
-
 ---
 
-<!-- ANCHOR:packet-structure-at-a-glance -->
 ## 3. PACKET STRUCTURE AT A GLANCE
 
 ```text
@@ -106,11 +84,8 @@ This benchmark captures a six-embedder bake-off on the spec-memory dataset along
 
 The packet is Level 3 by content (twelve ADRs, multi-day execution, fixture surgery), but the navigation entry point is `evidence/INDEX.md`.
 
-<!-- /ANCHOR:packet-structure-at-a-glance -->
-
 ---
 
-<!-- ANCHOR:when-to-read-what -->
 ## 4. WHEN TO READ WHAT
 
 Match the question you have to the file that answers it. Start at the top.
@@ -150,11 +125,8 @@ Match the question you have to the file that answers it. Start at the top.
 | What does Jina cost at runtime? | `runtime-measurements.md` (this folder) | `evidence/jina-runtime-measurements.md` |
 | How long does a re-index take? | `evidence/swap-benchmark.csv` | `decision-record.md` ADR-012 tradeoffs |
 
-<!-- /ANCHOR:when-to-read-what -->
-
 ---
 
-<!-- ANCHOR:evidence-file-map -->
 ## 5. EVIDENCE FILE MAP
 
 This mirrors the spec packet's `evidence/INDEX.md` for skill-local convenience. Use this column when you are inside the skill tree and do not want to leave it.
@@ -195,20 +167,14 @@ This mirrors the spec packet's `evidence/INDEX.md` for skill-local convenience. 
 | `evidence/mxbai-swap-status.json` | First-swap snapshot, mxbai 2/10 FAIL (ADR-001 ROLLBACK). |
 | `evidence/mcp-notes-drift-audit.md` | MCP-config JSON sweep, tool count 39 to 42 plus embedder layer. |
 
-<!-- /ANCHOR:evidence-file-map -->
-
 ---
 
-<!-- ANCHOR:follow-on-narrative -->
 ## 6. FOLLOW-ON NARRATIVE
 
 Adversarial review, promotion to production, and CocoIndex-side activation evidence are captured in their respective benchmark folders and in the cross-cutting embedder-pluggability narrative at `.opencode/skills/system-spec-kit/references/embedder-pluggability.md`.
 
-<!-- /ANCHOR:follow-on-narrative -->
-
 ---
 
-<!-- ANCHOR:when-to-update-this-file -->
 ## 7. WHEN TO UPDATE THIS FILE
 
 - The spec packet gets renamed or moved. Update `Spec packet location` and the file map.
@@ -219,5 +185,3 @@ Adversarial review, promotion to production, and CocoIndex-side activation evide
 ### Last updated
 
 May 18, 2026, after the `004-mxbai-swap-and-008-closure` to `004-spec-memory-embedder-bake-off` rename and the `013` to `007` follow-on renumber.
-
-<!-- /ANCHOR:when-to-update-this-file -->

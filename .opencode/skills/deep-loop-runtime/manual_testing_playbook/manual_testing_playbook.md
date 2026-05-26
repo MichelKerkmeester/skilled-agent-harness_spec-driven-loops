@@ -23,26 +23,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. EXECUTOR](#6--executor)
-- [7. PROMPT RENDERING](#7--prompt-rendering)
-- [8. VALIDATION](#8--validation)
-- [9. STATE SAFETY](#9--state-safety)
-- [10. SCORING](#10--scoring)
-- [11. COVERAGE GRAPH](#11--coverage-graph)
-- [12. SCRIPT ENTRY POINTS](#12--script-entry-points)
-- [13. COUNCIL](#13--council)
-- [14. AUTOMATED TEST CROSS-REFERENCE](#14--automated-test-cross-reference)
-- [15. FEATURE CATALOG CROSS-REFERENCE INDEX](#15--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 22 deterministic scenarios across 8 categories validating the current `deep-loop-runtime` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
@@ -470,4 +450,3 @@ Creates and validates the ADR-002 session->topic->round state shape, including s
 | DLR-020 | [F020 Adjudicator verdict scoring](../feature_catalog/08--council/03-adjudicator-verdict-scoring.md) | [08--council/020-adjudicator-verdict-scoring.md](08--council/020-adjudicator-verdict-scoring.md) |
 | DLR-021 | [F021 Cost guards](../feature_catalog/08--council/04-cost-guards.md) | [08--council/021-cost-guards.md](08--council/021-cost-guards.md) |
 | DLR-022 | [F022 Session state hierarchy](../feature_catalog/08--council/05-session-state-hierarchy.md) | [08--council/022-session-state-hierarchy.md](08--council/022-session-state-hierarchy.md) |
-

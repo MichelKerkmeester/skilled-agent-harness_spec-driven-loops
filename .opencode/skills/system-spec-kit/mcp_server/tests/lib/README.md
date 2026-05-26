@@ -9,15 +9,6 @@ trigger_phrases:
 
 # Library Helper Tests
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. OWNERSHIP](#2--ownership)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-
 ## 1. OVERVIEW
 
 `tests/lib/` groups focused tests for helper modules under `mcp_server/lib/`.

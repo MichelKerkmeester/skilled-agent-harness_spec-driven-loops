@@ -11,22 +11,8 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_readme -->
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES AND FLOW](#4--boundaries-and-flow)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 `skill_advisor/handlers/` contains MCP tool handlers for advisor operations. The handlers are thin entrypoints that delegate recommendation, status, rebuild and validation behavior to library modules.
@@ -39,9 +25,6 @@ Current state:
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -56,9 +39,6 @@ handlers/
 
 ---
 
-<!-- /ANCHOR:2-directory-tree -->
-
-<!-- ANCHOR:3-key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -71,9 +51,6 @@ handlers/
 
 ---
 
-<!-- /ANCHOR:3-key-files -->
-
-<!-- ANCHOR:4-boundaries-and-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -93,9 +70,6 @@ MCP tool request
 
 ---
 
-<!-- /ANCHOR:4-boundaries-and-flow -->
-
-<!-- ANCHOR:5-entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -108,9 +82,6 @@ MCP tool request
 
 ---
 
-<!-- /ANCHOR:5-entrypoints -->
-
-<!-- ANCHOR:6-validation -->
 ## 6. VALIDATION
 
 Run from the repository root.
@@ -123,13 +94,8 @@ Expected result: exit code `0`.
 
 ---
 
-<!-- /ANCHOR:6-validation -->
-
-<!-- ANCHOR:7-related -->
 ## 7. RELATED
 
 - [`../README.md`](../README.md)
 - [`../lib/README.md`](../lib/README.md)
 - [`../schemas/README.md`](../schemas/README.md)
-
-<!-- /ANCHOR:7-related -->

@@ -7,7 +7,6 @@ description: "Operator-facing validation package for the deep-agent-improvement 
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-
 This document provides the root manual-validation contract for `deep-agent-improvement`. The root playbook keeps the package-level expectations concise while the linked per-feature files carry the exact prompt, command, verification, and triage details.
 
 ---
@@ -21,26 +20,6 @@ Canonical package artifacts:
 - `05--reducer-dimensions/`
 - `06--end-to-end-loop/`
 - `07--runtime-truth/`
-
----
-
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. INTEGRATION SCANNER](#7--integration-scanner)
-- [8. PROFILE GENERATOR](#8--profile-generator)
-- [9. 5-DIMENSION SCORER](#9-5-dimension-scorer)
-- [10. BENCHMARK INTEGRATION](#10--benchmark-integration)
-- [11. REDUCER DIMENSIONS](#11--reducer-dimensions)
-- [12. END-TO-END LOOP](#12--end-to-end-loop)
-- [13. RUNTIME TRUTH](#13--runtime-truth)
-- [14. AUTOMATED TEST CROSS-REFERENCE](#14--automated-test-cross-reference)
-- [16. FEATURE CATALOG CROSS-REFERENCE INDEX](#16--feature-catalog-cross-reference-index)
 
 ---
 
@@ -194,7 +173,6 @@ Expected signals: File `/tmp/test-scan-output.json` is created after the command
 #### Test Execution
 > **Feature File:** [IS-004](01--integration-scanner/004-json-output-file.md)
 
-
 ---
 
 ## 8. PROFILE GENERATOR
@@ -253,7 +231,6 @@ Expected signals: File `/tmp/test-profile.json` is created after the command com
 #### Test Execution
 > **Feature File:** [PG-008](02--profile-generator/008-file-output.md)
 
-
 ---
 
 ## 9. 5-DIMENSION SCORER
@@ -299,7 +276,6 @@ Expected signals: Exit code is 1 (not 0); Output is valid JSON (no stack trace);
 #### Test Execution
 > **Feature File:** [5D-013](03--5d-scorer/013-missing-candidate.md)
 
-
 ---
 
 ## 10. BENCHMARK INTEGRATION
@@ -331,7 +307,6 @@ Expected signals: Benchmark output at `/tmp/bench-with-integration.json` include
 
 #### Test Execution
 > **Feature File:** [BI-015](04--benchmark-integration/015-with-integration.md)
-
 
 ---
 
@@ -377,7 +352,6 @@ Expected signals: Reducer completes without errors, exit code 0; Dashboard gener
 
 #### Test Execution
 > **Feature File:** [RD-019](05--reducer-dimensions/019-plateau-detection.md)
-
 
 ---
 
@@ -449,7 +423,6 @@ Expected signals: Candidate lineage graph created with per-session node entries;
 
 #### Test Execution
 > **Feature File:** [E2E-024](06--end-to-end-loop/024-candidate-lineage.md)
-
 
 ---
 
@@ -589,9 +562,6 @@ Expected signals: `experiment-registry.json` contains:
 
 ---
 
-
----
-
 ## 14. AGENT DISCIPLINE STRESS TESTS (CP-040..CP-045)
 
 This section is the stress-test campaign for `@deep-agent-improvement`. The 6 scenarios test the agent + command discipline using `/deep:start-agent-improvement-loop` (CP-040/043/044/045) and `@deep-agent-improvement` body (CP-041/042). Final composite score: **PASS 6 / PARTIAL 0 / FAIL 0** (after R3 CRITIC PASS verbatim emission requirement). See the local stress-test campaign notes for the full narrative.
@@ -697,7 +667,6 @@ Desired user-visible outcome: PASS verdict showing benchmark completion has a re
 
 #### Test Execution
 > **Feature File:** [CP-045](../08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md)
-
 
 ## 15. AUTOMATED TEST CROSS-REFERENCE
 

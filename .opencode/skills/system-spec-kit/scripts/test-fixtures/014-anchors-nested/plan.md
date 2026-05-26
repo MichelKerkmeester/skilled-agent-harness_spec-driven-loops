@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -28,4 +27,3 @@ L1 with memory/ and nested anchors.
 ### Phase 1: Setup
 
 Create memory file with nested anchors.
-<!-- /ANCHOR:implementation-plan -->

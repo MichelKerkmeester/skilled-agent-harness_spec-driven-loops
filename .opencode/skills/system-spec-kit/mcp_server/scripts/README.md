@@ -20,32 +20,15 @@ This directory contains **only** compatibility wrappers that delegate to canonic
 
 ---
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
-
-- [1. OVERVIEW](#1-overview)
-- [2. STRUCTURE](#2-structure)
-- [3. IMPLEMENTED STATE](#3-implemented-state)
-- [4. USAGE](#4-usage)
-- [5. RELATED](#5-related)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
 ## 1. OVERVIEW
-<!-- ANCHOR:overview -->
 
 `mcp_server/scripts/` contains wrapper source files for legacy entry points. The source-of-truth implementations live under the workspace-level `scripts/` package.
 
 Those wrappers now sit behind the Gate E continuity model where `/spec_kit:resume` restores packet context from `handover.md` -> `_memory.continuity` -> spec docs. Generated memory artifacts remain supporting only.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
 ## 2. STRUCTURE
-<!-- ANCHOR:structure -->
 
 ```
 scripts/
@@ -66,12 +49,9 @@ Build outputs are split across packages:
 | ------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------ | -------- |
 | `reindex-embeddings.ts`   | Backward-compatible entry point for legacy `mcp_server/scripts` path         | Delegates to `scripts/dist/memory/reindex-embeddings.js` | Spec 138 |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
 ## 3. IMPLEMENTED STATE
-<!-- ANCHOR:implemented-state -->
 
 - Reindex implementation lives in `scripts/memory/reindex-embeddings.ts` and runs through current handlers.
 - Indexed scope follows current scan behavior, including memory, constitutional and spec-doc discovery defaults.
@@ -79,12 +59,9 @@ Build outputs are split across packages:
 - Startup initializes DB state through `initDbState`; embedding/provider dependencies are loaded lazily by the current handler and search-provider path instead of a public readiness setter.
 - Wrapper TypeScript in this directory compiles into `mcp_server/dist/scripts/`, then delegates to the canonical built JavaScript in `scripts/dist/`.
 
-<!-- /ANCHOR:implemented-state -->
-
 ---
 
 ## 4. USAGE
-<!-- ANCHOR:usage -->
 
 ```bash
 # From .opencode/skills/system-spec-kit/
@@ -101,16 +78,11 @@ Prefer the canonical `scripts/dist/` entry point in new automation. The legacy `
 
 The script exits 0 on success. Any fatal startup error (missing DB, failed embedding warm-up) exits non-zero with an error message on stderr.
 
-<!-- /ANCHOR:usage -->
-
 ---
 
 ## 5. RELATED
-<!-- ANCHOR:related -->
 
 - `../../scripts/memory/reindex-embeddings.ts`
 - `../handlers/memory-index.ts`
 - `../handlers/memory-save.ts`
 - `../core/README.md`
-
-<!-- /ANCHOR:related -->

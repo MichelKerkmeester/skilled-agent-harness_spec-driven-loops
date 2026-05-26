@@ -9,23 +9,8 @@ trigger_phrases:
 
 # Learning: Correction Tracking
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/learning/` records corrections between memory rows and updates stability scores. It owns the `memory_corrections` table, relation enablement checks and graph cache invalidation after correction edge changes.
@@ -36,11 +21,8 @@ Current state:
 - `index.ts` is the public barrel for snake_case and camelCase exports.
 - The module imports graph cache clearers so relation updates do not leave stale graph signals.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -68,11 +50,8 @@ Current state:
 └──────────────────────┘  └────────────────────┘
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -82,11 +61,8 @@ learning/
 └── README.md               # Developer orientation
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Role |
@@ -102,11 +78,8 @@ Imports used by this folder:
 | `../graph/graph-signals.js` | `corrections.ts` | Clears graph signal cache after relation changes |
 | `../search/graph-search-fn.js` | `corrections.ts` | Clears graph degree cache after relation changes |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 Allowed imports:
@@ -140,11 +113,8 @@ Clear graph degree and signal caches
 Return correction result
 ```
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 Public import path:
@@ -189,11 +159,8 @@ Public constants and types:
 | `REPLACEMENT_STABILITY_BOOST` | Stability multiplier for replacement rows |
 | `CorrectionTypes`, `CorrectionRecord`, `CorrectionResult`, `CorrectionChain`, `CorrectionStats` | Public result and record shapes |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root after editing this README:
@@ -204,11 +171,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Use the package TypeScript checks for runtime changes in `corrections.ts` or `index.ts`.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 | Resource | Relationship |
@@ -217,5 +181,3 @@ Use the package TypeScript checks for runtime changes in `corrections.ts` or `in
 | `../graph/README.md` | Graph signal cache consumer |
 | `../search/README.md` | Graph degree cache consumer |
 | `../storage/README.md` | Memory row persistence context |
-
-<!-- /ANCHOR:related -->

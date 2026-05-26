@@ -5,16 +5,12 @@ description: "Covers the postflight tool that computes a Learning Index by compa
 
 # Post-task learning measurement (task_postflight)
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Covers the postflight tool that computes a Learning Index by comparing post-task epistemic state against the preflight baseline.
 
 After finishing a task, this tool takes the "after" measurement and compares it against the "before" baseline. It calculates a score that tells you how much you learned. A high score means you gained real new understanding. A low score means you mostly applied what you already knew. A negative score means you discovered that what you thought was true turned out to be wrong.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 After completing implementation work, this tool captures the post-task epistemic state and computes a Learning Index by comparing against the preflight baseline. The formula weights three deltas: `LI = (KnowledgeDelta * 0.4) + (UncertaintyReduction * 0.35) + (ContextImprovement * 0.25)`.
@@ -27,9 +23,6 @@ You can track gaps closed during the task and new gaps discovered. Both are stor
 
 The handler also supports re-correction runs. It accepts both "preflight" and already-"complete" records, so you can call `task_postflight` again for the same task to recompute the deltas and overwrite the stored postflight values after refining your assessment.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -51,9 +44,6 @@ The handler also supports re-correction runs. It accepts both "preflight" and al
 | `mcp_server/tests/handler-session-learning.vitest.ts` | Session learning handler validation |
 | `mcp_server/tests/corrections.vitest.ts` | Learning corrections tests |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 - Group: Analysis
 - Canonical catalog source: `feature_catalog.md`
@@ -64,5 +54,3 @@ The handler also supports re-correction runs. It accepts both "preflight" and al
 | Scenario | Role |
 |----------|------|
 | `EX-024` | Direct manual validation for postflight closeout and Learning Index persistence |
-
-<!-- /ANCHOR:source-metadata -->

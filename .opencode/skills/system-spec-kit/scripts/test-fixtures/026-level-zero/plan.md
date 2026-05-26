@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -29,4 +28,3 @@ L1 files with invalid level.
 ### Phase 1: Setup
 
 Create fixture with level 0.
-<!-- /ANCHOR:implementation-plan -->

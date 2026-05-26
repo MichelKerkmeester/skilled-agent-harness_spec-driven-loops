@@ -9,23 +9,8 @@ trigger_phrases:
 
 # Cache: Tool and Embedding Caches
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/cache/` owns two cache surfaces for MCP server retrieval paths. `tool-cache.ts` caches tool results in memory with TTL, key hashing, invalidation and in-flight request coalescing. `embedding-cache.ts` stores content embeddings in SQLite with content-hash keys and LRU eviction.
@@ -36,11 +21,8 @@ Current state:
 - Embedding cache rows are keyed by `content_hash`, `model_id` and `dimensions`.
 - `cache/scoring/` is a documentation-only re-export namespace. Import scoring code from `lib/scoring/`.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -63,11 +45,8 @@ Current state:
 └──────────────────────┘  └──────────────────────┘
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -79,11 +58,8 @@ cache/
 └── README.md                 # Developer orientation
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Role |
@@ -100,11 +76,8 @@ Imports used by this folder:
 | `crypto` `createHash` | `embedding-cache.ts` | SHA-256 content hashing |
 | `better-sqlite3` | `embedding-cache.ts` | SQLite table access |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 Allowed imports:
@@ -150,11 +123,8 @@ Lookup by content hash, model ID and dimensions
 Return cached buffer or store new embedding
 ```
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 Tool cache imports:
@@ -192,11 +162,8 @@ Public surfaces:
 | `embedding-cache.ts` | Table setup, lookup, store, eviction, stats, clear, delete-by-content-hash and content hashing |
 | `embedding-cache.ts` | `EmbeddingCacheEntry`, `EmbeddingCacheStats`, `EmbeddingCacheHitStats` types |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root after editing this README:
@@ -207,11 +174,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Use package TypeScript checks when changing `tool-cache.ts` or `embedding-cache.ts`.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 | Resource | Relationship |
@@ -220,5 +184,3 @@ Use package TypeScript checks when changing `tool-cache.ts` or `embedding-cache.
 | `../response/README.md` | Response payload consumers |
 | `../scoring/README.md` | Scoring source modules |
 | `../storage/README.md` | Database context for embedding cache callers |
-
-<!-- /ANCHOR:related -->

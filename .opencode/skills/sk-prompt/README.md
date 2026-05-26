@@ -16,25 +16,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 FEATURE HIGHLIGHTS](#31--feature-highlights)
-  - [3.2 FEATURE REFERENCE](#32--feature-reference)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What This Skill Does
@@ -68,11 +49,8 @@ When prompt work feeds back into a Spec Kit packet, `/speckit:resume` is the can
 - Smart Routing: Command prefix detection with keyword-weighted fallback and disambiguation checklist
 - Framework Fusion: Supports advanced combinations (RCAF + CoT, COSTAR + ReAct, TIDD-EC + Few-Shot)
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1.** Invoke the skill. The skill loads automatically via Gate 2 routing when prompt engineering intent is detected. You can also invoke it directly by reading `SKILL.md`.
@@ -92,11 +70,8 @@ $raw Restate this prompt exactly as given
 
 **Step 4.** Review the output. The skill delivers the enhanced prompt followed by a transparency report showing the framework selected, the number of DEPTH rounds applied, and the CLEAR score per dimension. If the score is below 40, the skill flags this and offers three options: additional refinement, a framework switch, or accepting the current output.
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -167,11 +142,8 @@ The transparency report at the end of every delivery is intentional. It shows th
 | RACE + Tree of Thought | Quick decisions with branching options |
 | CRAFT + All techniques | Maximum power for complex, multi-audience projects |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```
@@ -194,11 +166,8 @@ sk-prompt/
 | `references/patterns_evaluation.md` | Framework library, selection algorithm, CLEAR scoring rubrics, recovery protocols |
 | `assets/format_guide_*.md` | Format-specific deep-dives loaded on demand for JSON, YAML, and Markdown outputs |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 No configuration is required. The skill detects the operating mode from the command prefix in your message. If no prefix is present, it falls back to keyword-weighted intent scoring. If intent scoring produces no match, the skill defaults to interactive mode and presents a disambiguation checklist.
@@ -216,11 +185,8 @@ No configuration is required. The skill detects the operating mode from the comm
 
 Resource loading is controlled by the smart router in `SKILL.md` Section 2. `depth_framework.md` and `patterns_evaluation.md` load conditionally based on detected intent. The format guide assets (`format_guide_*.md`) load only when a format-specific mode is active, keeping context usage proportional to the task.
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 ### Example 1: Standard Prompt Improvement
@@ -260,11 +226,8 @@ The `$short` prefix activates Quick energy level: phases run as Discover, Protot
 
 **Output includes:** Structured RCAF prompt with Role, Context, Action, and Format fields. CLEAR score reported. Total turnaround is significantly faster than standard mode.
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 **CLEAR score below 40 after DEPTH processing**
@@ -315,11 +278,8 @@ Common causes: Standard and Improve modes default to 10 rounds regardless of pro
 
 Fix: Use `$short` (3 rounds) for simple or time-sensitive tasks. Use `$raw` to skip all processing entirely. Both modes still deliver structured output, but with lower processing depth.
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: When should I use `$refine` instead of `$improve`?**
@@ -344,11 +304,8 @@ A: After three improvement iterations, the skill stops cycling and delivers the 
 
 A: No. The DEPTH Prototype and Test phases both include an intent preservation check. If any enhancement changes the core meaning of your request, the skill rolls back that change and flags it in the transparency report. The goal is structural improvement, not reinterpretation.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 | Resource | Path | Purpose |
@@ -360,5 +317,3 @@ A: No. The DEPTH Prototype and Test phases both include an intent preservation c
 | JSON Format Guide | `./assets/format_guide_json.md` | JSON data types, nested structures, CLEAR validation for API outputs |
 | YAML Format Guide | `./assets/format_guide_yaml.md` | YAML templates, validation, best practices for config-style prompts |
 | sk-doc | `.opencode/skills/sk-doc/` | Documentation quality enforcement (use when output needs doc structure) |
-
-<!-- /ANCHOR:related-documents -->

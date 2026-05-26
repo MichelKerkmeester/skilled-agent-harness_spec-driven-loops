@@ -13,23 +13,6 @@ A thin sentinel skill that gives operators one discoverable entry point for smal
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. QUICK START](#2-quick-start)
-- [3. FEATURES](#3-features)
-- [4. STRUCTURE](#4-structure)
-- [5. CONFIGURATION](#5-configuration)
-- [6. USAGE EXAMPLES](#6-usage-examples)
-- [7. TROUBLESHOOTING](#7-troubleshooting)
-- [8. FAQ](#8-faq)
-- [9. RELATED DOCUMENTS](#9-related-documents)
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -74,11 +57,9 @@ This README explains how to discover, navigate, and contribute to the small-mode
 | Trigger phrases | Lexical-lane matches for small-model keywords (`swe-1.6`, `kimi`, `deepseek`, `qwen`, etc.) |
 | Adoption checklist | Step-by-step protocol for adding Haiku, Gemini Flash, or other small-model providers |
 | Ownership boundary table | Clarifies which executor owns which pattern, preventing drift |
-<!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1: Invoke the skill.**
@@ -104,11 +85,9 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.p
 ```
 
 Expected result: `sk-prompt-small-model` appears in the top-3 with confidence ≥ 0.8.
-<!-- /ANCHOR:quick-start -->
 
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -127,11 +106,9 @@ The sentinel deliberately ships with zero runtime logic. Everything operators ne
 | Routing co-surfacing | Operator prompt with small-model signals | `sk-prompt-small-model` in advisor top-3 | [`graph-metadata.json`](./graph-metadata.json) |
 | Provider adoption | New provider name + quota-pool category | Updated registry + index | [`references/pattern-index.md`](./references/pattern-index.md) § 4 |
 | Ownership boundary | Pattern type | Which CLI / shared skill owns it | [`references/pattern-index.md`](./references/pattern-index.md) § 3 |
-<!-- /ANCHOR:features -->
 
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -151,11 +128,9 @@ sk-prompt-small-model/
 | `description.json` | Memory-system metadata for spec-kit indexing |
 | `graph-metadata.json` | Defines `enhances` edges (cli-devin, cli-opencode at weight 0.5) and lexical trigger phrases |
 | `references/pattern-index.md` | The only reference; maps every small-model pattern to its executor-owned location |
-<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 This skill has no configurable settings. Routing weights are encoded directly in `graph-metadata.json`:
@@ -177,11 +152,9 @@ Non-configurable invariants:
 - `SKILL.md` must remain ≤ 200 LOC.
 - `references/pattern-index.md` must remain ≤ 100 LOC.
 - No `assets/` directory; no `scripts/` directory.
-<!-- /ANCHOR:configuration -->
 
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 **Operator asks about a specific pattern**
@@ -219,11 +192,9 @@ Skill routing: lexical-lane match on "context-budget"
 Resources loaded: sk-prompt-small-model/references/pattern-index.md § 5 (Staleness Policy)
 Expected output: update the row's path; if file removed instead, replace path with "(deprecated)" + one-line reason
 ```
-<!-- /ANCHOR:usage-examples -->
 
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 | What You See | Cause | Fix |
@@ -234,11 +205,9 @@ Expected output: update the row's path; if file removed instead, replace path wi
 | Operator can't find a pattern they expect to exist | Phase has not shipped yet | Check the "Shipped In" column in the index; if missing, the phase is still pending |
 | `SKILL.md` exceeds 200 LOC after an edit | Real pattern logic crept in | Move the logic to the executor skill; revert this skill to link-only content |
 | Advisor confidence < 0.8 on clear small-model prompts | Edge weights or trigger weights too low | Inspect `graph-metadata.json` weights; raise from 0.5 to 0.6 if needed |
-<!-- /ANCHOR:troubleshooting -->
 
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: Why is this skill so thin?**
@@ -268,11 +237,9 @@ A: Ship the body in the primary executor and add a sentinel-style mirror (link-o
 **Q: Where's the CI check that catches stale index rows?**
 
 A: There isn't one. Phase 007 (hardening CI) was deleted 2026-05-18 per user direction. Staleness is caught via PR review when patterns move; see `pattern-index.md` § 5 for the policy.
-<!-- /ANCHOR:faq -->
 
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
@@ -287,4 +254,3 @@ A: There isn't one. Phase 007 (hardening CI) was deleted 2026-05-18 per user dir
 | [`../cli-opencode/SKILL.md`](../cli-opencode/SKILL.md) | DeepSeek / Kimi / Qwen dispatch surface — owns permissions matrix, budget propagation |
 | [`../sk-prompt/SKILL.md`](../sk-prompt/SKILL.md) | Cross-CLI prompt quality + model registry owner |
 | [`../system-spec-kit/SKILL.md`](../system-spec-kit/SKILL.md) | Runtime helpers (bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts) |
-<!-- /ANCHOR:related-documents -->

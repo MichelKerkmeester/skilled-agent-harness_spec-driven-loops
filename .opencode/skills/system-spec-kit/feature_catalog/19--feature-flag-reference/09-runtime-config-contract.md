@@ -7,13 +7,6 @@ description: "JSONC contract for the script runtime loader, including the active
 
 This document captures the implemented behavior, source references, and remediation metadata for the runtime configuration contract centered on `config/config.jsonc`.
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 `config/config.jsonc` is the editable JSONC surface for the script-side runtime configuration loader in `scripts/core/config.ts`. The file documents a much broader system shape than the current loader actually consumes, so the live contract is split into two layers: active top-level workflow keys that are merged into `WorkflowConfig`, and documentation-only sections that remain in the file as reference material for hardcoded MCP/runtime behavior elsewhere.

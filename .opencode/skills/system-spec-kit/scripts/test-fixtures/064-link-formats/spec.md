@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Link Formats Fixture
@@ -25,5 +24,3 @@ Absolute URLs (must be ignored): [home](https://example.com).
 ## Out of Scope
 
 Reference link USE syntax `[label][ref]` is not a target itself; the target lives in the matching reference definition.
-
-<!-- /ANCHOR:overview -->

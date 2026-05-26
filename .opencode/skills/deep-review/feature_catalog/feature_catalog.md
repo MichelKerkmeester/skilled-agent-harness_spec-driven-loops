@@ -9,16 +9,6 @@ This document combines the current feature inventory for the `deep-review` syste
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. LOOP LIFECYCLE](#2--loop-lifecycle)
-- [3. STATE MANAGEMENT](#3--state-management)
-- [4. REVIEW DIMENSIONS](#4--review-dimensions)
-- [5. SEVERITY SYSTEM](#5--severity-system)
-
----
-
 ## 1. OVERVIEW
 
 Use this catalog as the canonical inventory for the live `deep-review` feature surface. The numbered sections below group the system by lifecycle, packet state, review coverage, and finding controls so readers can move from a top-level summary into per-feature reference files without losing the contract behind each review phase.

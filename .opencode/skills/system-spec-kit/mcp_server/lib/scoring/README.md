@@ -9,24 +9,8 @@ trigger_phrases:
 
 # Scoring: Retrieval Ranking
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scoring/` owns retrieval ranking helpers for memory search, folder ranking and validation feedback. It turns raw retrieval signals into bounded scores that callers can sort, explain and compare.
@@ -37,11 +21,8 @@ Current state:
 - Tier helpers keep constitutional, critical, important, normal, temporary and deprecated behavior consistent.
 - Folder scoring is re-exported from `@spec-kit/shared/scoring/folder-scoring` for one shared implementation.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -69,11 +50,8 @@ Current state:
 Dependency direction: callers ───▶ scoring helpers ───▶ shared scoring or local math
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -98,11 +76,8 @@ scoring/*.ts → generated dist files
 scoring/*.ts → direct CLI process control
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -117,11 +92,8 @@ scoring/
 └── README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Role |
@@ -134,11 +106,8 @@ scoring/
 | `mpab-aggregation.ts` | Aggregates chunk-level retrieval scores back to parent memory records after fusion. |
 | `negative-feedback.ts` | Applies negative feedback with time-based recovery to reduce repeated low-value results. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 Boundaries:
@@ -176,11 +145,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | File | Used For |
@@ -193,11 +159,8 @@ Main flow:
 | `recordValidation` | `confidence-tracker.ts` | Persist positive or negative user validation. |
 | `aggregateChunkScores` | `mpab-aggregation.ts` | Collapse chunk scores into memory-level results. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root:
@@ -207,11 +170,8 @@ pnpm --dir .opencode/skills/system-spec-kit typecheck
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md
 ```
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 | Resource | Relationship |
@@ -220,5 +180,3 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 | [../storage/README.md](../storage/README.md) | Memory rows, feedback columns and persistence helpers. |
 | [../cognitive/README.md](../cognitive/README.md) | Decay and attention concepts used by scoring. |
 | [../README.md](../README.md) | Parent library map. |
-
-<!-- /ANCHOR:related -->

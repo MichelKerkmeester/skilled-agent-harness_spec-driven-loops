@@ -5,14 +5,6 @@ description: "This scenario validates the JSON-primary deprecation posture: rout
 
 # 154 -- JSON-primary deprecation posture
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. SCENARIO CONTRACT](#2-scenario-contract)
-- [3. TEST EXECUTION](#3-test-execution)
-- [4. SOURCE FILES](#4-source-files)
-- [5. SOURCE METADATA](#5-source-metadata)
-
 ## 1. OVERVIEW
 
 This scenario validates the phase 017 JSON-primary deprecation posture. It confirms that structured JSON is the preferred routine-save path, while direct positional JSON file input remains supported on the same structured loader path.
@@ -20,7 +12,6 @@ This scenario validates the phase 017 JSON-primary deprecation posture. It confi
 ---
 
 ## 2. SCENARIO CONTRACT
-
 
 - Objective: Verify JSON-primary preference without removing positional file input support.
 - Real user request: `Please validate JSON-primary deprecation posture against the documented validation surface and tell me whether the expected signals are present: Path 1 exits 0, Path 2 exits 0, Path 3 exits 0.`

@@ -15,20 +15,7 @@ trigger_phrases:
 
 ---
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
-
-- [1. OVERVIEW](#1-overview)
-- [2. STRUCTURE](#2-structure)
-- [3. KEY CONCEPTS](#3-key-concepts)
-- [4. RELATED DOCUMENTS](#4-related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
 ## 1. OVERVIEW
-<!-- ANCHOR:overview -->
 
 The graph module operates on the `causal_edges` and `memory_index` tables to detect communities, compute scoring signals, manage temporal edge validity, detect contradictions, track usage, and generate community summaries. All features are independently gated behind `SPECKIT_*` feature flags.
 
@@ -55,12 +42,9 @@ In Gate E, these graph signals support retrieval after `/spec_kit:resume` restor
 | Debounce via edge fingerprint | Community detection skips re-computation when edge count, max ID and checksum are unchanged. |
 | Co-retrieval boost capped at 3 | Prevents community members from overwhelming primary search results. Boost factor of 0.3x was chosen empirically. |
 
-<!-- /ANCHOR:overview -->
-
 ---
 
 ## 2. STRUCTURE
-<!-- ANCHOR:structure -->
 
 ```
 graph/
@@ -129,12 +113,9 @@ graph/
 | `getAccessCount` | usage-tracking.ts | Returns access count for a spec-doc record |
 | `computeUsageBoost` | usage-ranking-signal.ts | Log-scale boost (0.0-0.10) from access count |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
 ## 3. KEY CONCEPTS
-<!-- ANCHOR:key-concepts -->
 
 ### Score Adjustments
 
@@ -154,12 +135,9 @@ graph/
 | `degree_snapshots` | graph-signals.ts | Historical degree counts per snapshot date |
 | `memory_index` | usage-tracking.ts, community-detection.ts | access_count column, stale assignment cleanup |
 
-<!-- /ANCHOR:key-concepts -->
-
 ---
 
 ## 4. RELATED DOCUMENTS
-<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -175,8 +153,6 @@ graph/
 |----------|-------------|
 | [../README.md](../README.md) | Library module overview |
 | [../../../SKILL.md](../../../SKILL.md) | System Spec Kit skill documentation |
-
-<!-- /ANCHOR:related -->
 
 ---
 

@@ -9,18 +9,6 @@ trigger_phrases:
 
 # Skill Advisor Stress Tests: Routing And Daemon Pressure
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
 ---
 
 ## 1. OVERVIEW

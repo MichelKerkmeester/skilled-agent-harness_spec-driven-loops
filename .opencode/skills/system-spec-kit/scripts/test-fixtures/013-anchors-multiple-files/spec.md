@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Multiple Memory Files
@@ -26,4 +25,3 @@ Tests multiple memory files, one with anchor error.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

@@ -5,13 +5,6 @@ description: "Schema, queries, and Bayesian signals for deep-loop convergence de
 
 # Coverage Graph
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CONTENTS](#2--contents)
-- [3. CONSUMERS](#3--consumers)
-- [4. RELATED RESOURCES](#4--related-resources)
-
 ---
 
 ## 1. OVERVIEW

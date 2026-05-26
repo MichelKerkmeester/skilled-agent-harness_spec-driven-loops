@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Empty Memory
@@ -26,4 +25,3 @@ Tests empty memory/ directory is skipped.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

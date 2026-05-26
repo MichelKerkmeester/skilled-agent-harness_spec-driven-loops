@@ -13,7 +13,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -23,11 +22,9 @@ contextType: "general"
 | **Status** | Complete |
 | **Created** | 2026-03-16 |
 | **Branch** | `codex/template-fixture` |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -35,11 +32,9 @@ Validation fixtures used minimal headers and did not exercise live template comp
 
 ### Purpose
 Provide a structurally compliant Level 2 folder that the validator should accept without warnings.
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -56,11 +51,9 @@ Provide a structurally compliant Level 2 folder that the validator should accept
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header/spec.md` | Modify | Add an extra custom section |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -77,11 +70,9 @@ Provide a structurally compliant Level 2 folder that the validator should accept
 |----|-------------|---------------------|
 | REQ-004 | Extra custom sections warn without failing | `TEMPLATE_HEADERS` reports a warning only |
 | REQ-005 | Strict mode escalates the warning to failure | `validate.sh --strict` returns exit code 2 |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The fixture warns about one extra custom section.
@@ -89,25 +80,20 @@ Provide a structurally compliant Level 2 folder that the validator should accept
 - **SC-003**: **Given** strict mode, **Then** the validator fails.
 - **SC-004**: **Given** live template comparison is active, **Then** optional template anchors are allowed.
 - **SC-005**: **Given** one extra custom section exists, **Then** only the template-header rule warns.
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Extra sections become blocking | Low | Keep required sections intact |
-<!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None.
-<!-- /ANCHOR:questions -->
 
 ---
 

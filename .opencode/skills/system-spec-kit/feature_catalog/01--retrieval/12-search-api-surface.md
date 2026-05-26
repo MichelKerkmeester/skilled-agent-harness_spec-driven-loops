@@ -3,11 +3,6 @@ title: "Search API surface"
 description: "Covers the stable public search barrel that re-exports hybrid search, SQLite FTS helpers, and the vector index namespace."
 ---
 # Search API surface
-## TABLE OF CONTENTS
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
 ## 1. OVERVIEW
 `mcp_server/api/search.ts` is the stable script-facing entrypoint for retrieval code. It does not implement search itself. Instead, it freezes a supported API boundary so scripts can import search features from one place without reaching into `lib/search/*` internals, which is consistent with the file header comments marking it as the public ARCH-1 surface.
 

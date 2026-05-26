@@ -13,22 +13,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES AND FLOW](#4--boundaries-and-flow)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `mcp_server/tools/` owns the MCP tool dispatch surface for code graph operations. It maps incoming tool names to handler functions, performs shallow required-argument checks and keeps the server export small.
@@ -40,11 +24,8 @@ Current state:
 - Converts handler text payloads into the shared `MCPResponse` shape.
 - Returns an `Unknown mk-code-index tool` error for unregistered names.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -54,11 +35,8 @@ tools/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -66,11 +44,8 @@ tools/
 | `code-graph-tools.ts` | Defines handled tool names, argument checks, handler dispatch and MCP response conversion. |
 | `index.ts` | Re-exports the tool dispatch module and provides `dispatch()` for `mcp_server/index.ts`. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -90,11 +65,8 @@ mcp_server/index.ts
   -> MCPResponse payload
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -103,11 +75,8 @@ mcp_server/index.ts
 | `handleTool(name, args)` | Function | Internal dispatcher that returns `null` for unknown tool names. |
 | `TOOL_NAMES` | Set | Active tool-name registry for the dispatch switch. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 6. VALIDATION
 
 Run from the repository root.
@@ -119,11 +88,8 @@ Run from the repository root.
 
 Expected result: TypeScript exits `0`, and dispatch-adjacent handler tests pass.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 7. RELATED
 
 | Document | Purpose |
@@ -131,5 +97,3 @@ Expected result: TypeScript exits `0`, and dispatch-adjacent handler tests pass.
 | [../../README.md](../../README.md) | Skill-level overview and operator guide. |
 | [../handlers/README.md](../handlers/README.md) | Handler implementations reached by dispatch. |
 | [../tool-schemas.ts](../tool-schemas.ts) | Tool schema definitions exported to MCP clients. |
-
-<!-- /ANCHOR:related -->

@@ -26,27 +26,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. CLI INVOCATION](#7--cli-invocation)
-- [8. PERMISSION MODES](#8--permission-modes)
-- [9. REASONING AND MODELS](#9--reasoning-and-models)
-- [10. AGENT ROUTING](#10--agent-routing)
-- [11. SESSION CONTINUITY](#11--session-continuity)
-- [12. INTEGRATION PATTERNS](#12--integration-patterns)
-- [13. PROMPT TEMPLATES](#13--prompt-templates)
-- [14. COST AND BACKGROUND](#14--cost-and-background)
-- [15. AUTOMATED TEST CROSS-REFERENCE](#15--automated-test-cross-reference)
-- [16. FEATURE CATALOG CROSS-REFERENCE INDEX](#16--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 27 deterministic scenarios across 8 categories validating the `cli-claude-code` cross-AI delegation skill. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals and feature-file reference.
@@ -500,13 +479,13 @@ Expected signals: Response names a documentation level explicitly. Lists at leas
 
 #### Description
 
-Verify `--agent write` writes a sk-doc template-driven README to a temp path with a TABLE OF CONTENTS and at least 3 emoji-prefixed H2 headers.
+Verify `--agent write` writes a sk-doc template-driven README to a temp path with at least 3 emoji-prefixed H2 headers and no table of contents.
 
 #### Scenario Contract
 
-Prompt: As an external-AI conductor wanting a template-driven README for a small skill, dispatch `claude -p --agent write` to generate `/tmp/cc-025-readme/README.md` for a fictional skill. Verify the file is written, contains a TABLE OF CONTENTS section, and has at least 3 emoji-prefixed H2 headers. Return a verdict naming the file path and the H2 emoji count.
+Prompt: As an external-AI conductor wanting a template-driven README for a small skill, dispatch `claude -p --agent write` to generate `/tmp/cc-025-readme/README.md` for a fictional skill. Verify the file is written, has at least 3 emoji-prefixed H2 headers, and contains no table of contents. Return a verdict naming the file path and the H2 emoji count.
 
-Expected signals: Dispatch exits 0. README file exists at the requested path. README contains a TABLE OF CONTENTS section. H2 headers include emojis (per sk-doc template enforcement).
+Expected signals: Dispatch exits 0. README file exists at the requested path. README contains no table of contents section. H2 headers include emojis (per sk-doc template enforcement).
 
 #### Test Execution
 

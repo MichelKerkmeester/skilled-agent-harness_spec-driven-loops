@@ -9,13 +9,10 @@ importance_tier: "important"
 
 # deep_loop_graph_upsert
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `deep_loop_graph_upsert` stores coverage graph nodes and edges for deep research/review loops. The command workflows call it only when a reducer exposes graph events.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -29,9 +26,7 @@ half. Command workflows can call it conditionally and direct MCP calls remain ex
 ### Caveats / Fallback
 
 No `graphEvents` means no upsert. The workflow skip is intentional and should not be described as a failed write.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -49,9 +44,6 @@ No `graphEvents` means no upsert. The workflow skip is intentional and should no
 |---|---|---|
 | `../../manual_testing_playbook/05--coverage-graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Coverage graph
@@ -62,4 +54,3 @@ Related references:
 
 - [04-deep-loop-graph-convergence.md](./04-deep-loop-graph-convergence.md)
 - [../../manual_testing_playbook/05--coverage-graph/010-deep-loop-graph-upsert-conditional.md](../../manual_testing_playbook/05--coverage-graph/010-deep-loop-graph-upsert-conditional.md)
-<!-- /ANCHOR:source-metadata -->

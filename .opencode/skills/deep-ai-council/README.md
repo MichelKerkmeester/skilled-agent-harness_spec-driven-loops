@@ -16,28 +16,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 HOW IT WORKS](#31--how-it-works)
-  - [3.2 FEATURE REFERENCE](#32--feature-reference)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
-
 ## 1. OVERVIEW
 
 ### What deep-ai-council Does
@@ -77,11 +55,7 @@ A plain single-model plan gives you one lens and no record of what it ruled out.
 | Derived council graph | Optional `deep-loop-runtime` CLI projection that ranks unresolved disagreements and rebuilds from artifacts. |
 | Council resource family | Quick reference, loop protocol, config, strategy, dashboard, prompt-pack, and runtime capability assets shaped like the other deep skills but written for council planning. |
 
-<!-- /ANCHOR:overview -->
-
 ---
-
-<!-- ANCHOR:quick-start -->
 
 ## 2. QUICK START
 
@@ -113,11 +87,7 @@ node .opencode/skills/deep-ai-council/scripts/advise-council-completion.cjs <pac
 
 Expected result: confirmation that `ai-council-state.jsonl` ends with a `council_complete` event.
 
-<!-- /ANCHOR:quick-start -->
-
 ---
-
-<!-- ANCHOR:features -->
 
 ## 3. FEATURES
 
@@ -155,11 +125,7 @@ The 32 features group into 9 categories. The feature catalog carries the full in
 
 Full inventory: [`feature_catalog/FEATURE_CATALOG.md`](feature_catalog/FEATURE_CATALOG.md).
 
-<!-- /ANCHOR:features -->
-
 ---
-
-<!-- ANCHOR:structure -->
 
 ## 4. STRUCTURE
 
@@ -218,11 +184,7 @@ The council agent ships across four runtimes under its established `ai-council` 
 | Codex | `.codex/agents/ai-council.toml` |
 | Gemini | `.gemini/agents/ai-council.md` |
 
-<!-- /ANCHOR:structure -->
-
 ---
-
-<!-- ANCHOR:configuration -->
 
 ## 5. CONFIGURATION
 
@@ -245,11 +207,7 @@ node .opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs <packet> \
   --input-file <report> --strict-output
 ```
 
-<!-- /ANCHOR:configuration -->
-
 ---
-
-<!-- ANCHOR:usage-examples -->
 
 ## 6. USAGE EXAMPLES
 
@@ -280,11 +238,7 @@ Resources loaded: references/patterns/command_wiring.md, references/structure/fo
 Expected output: persisted artifacts only when the external runtime actually produced the report. Simulated vantages stay labeled simulated.
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
-
-<!-- ANCHOR:troubleshooting -->
 
 ## 7. TROUBLESHOOTING
 
@@ -324,11 +278,7 @@ Expected output: persisted artifacts only when the external runtime actually pro
 | Advisor does not route council prompts | Run the targeted skill advisor scorer test for `deep-ai-council` |
 | A caller wants code changes from the council | Return the plan and hand implementation to the caller or implementation agent |
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
-
-<!-- ANCHOR:faq -->
 
 ## 8. FAQ
 
@@ -360,11 +310,7 @@ A: Yes, when the caller actually runs them. Otherwise the vantage must be labele
 
 A: Preserve the failed artifacts under `failed/round-NNN-<timestamp>/` and append rollback or audit events. Never rewrite prior state rows.
 
-<!-- /ANCHOR:faq -->
-
 ---
-
-<!-- ANCHOR:related-documents -->
 
 ## 9. RELATED DOCUMENTS
 
@@ -389,5 +335,3 @@ A: Preserve the failed artifacts under `failed/round-NNN-<timestamp>/` and appen
 | [`changelog/`](./changelog/) | Per-release notes (v1.0.0.0 through v2.2.0.0) |
 
 Related skills: [`deep-research`](../deep-research/SKILL.md) for evidence-first investigation vantages and [`system-spec-kit`](../system-spec-kit/SKILL.md) for packet documentation, validation, resume and continuity.
-
-<!-- /ANCHOR:related-documents -->

@@ -18,7 +18,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -28,11 +27,9 @@ contextType: "general"
 | **Status** | [Draft/In Progress/Review/Complete] |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | `[###-feature-name]` |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -40,11 +37,9 @@ contextType: "general"
 
 ### Purpose
 [One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -61,11 +56,9 @@ contextType: "general"
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -79,35 +72,25 @@ contextType: "general"
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-002 | [Requirement description] | [How to verify it's done] |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: [Primary measurable outcome]
 - **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | [System/API] | [What if blocked] | [Fallback plan] |
 | Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
-
----
-
-<!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -121,11 +104,9 @@ contextType: "general"
 ### Reliability
 - **NFR-R01**: [Uptime target - e.g., 99.9%]
 - **NFR-R02**: [Error rate - e.g., <1%]
-<!-- /ANCHOR:nfr -->
 
 ---
 
-<!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
 ### Data Boundaries
@@ -141,11 +122,9 @@ contextType: "general"
 ### State Transitions
 - Partial completion: [Recovery behavior]
 - Session expiry: [User experience]
-<!-- /ANCHOR:edge-cases -->
 
 ---
 
-<!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Notes |
@@ -154,7 +133,6 @@ contextType: "general"
 | Risk | [/25] | [Auth, API, breaking changes] |
 | Research | [/20] | [Investigation needs] |
 | **Total** | **[/70]** | **Level 2** |
-<!-- /ANCHOR:complexity -->
 
 ---
 
@@ -162,7 +140,6 @@ contextType: "general"
 
 - [Question 1 requiring clarification]
 - [Question 2 requiring clarification]
-<!-- /ANCHOR:questions -->
 
 ---
 
@@ -190,7 +167,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
 > This spec uses phased decomposition. Each phase is an independently executable child spec folder.
@@ -212,4 +188,3 @@ contextType: "general"
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-phase-1 | 002-phase-2 | [Criteria TBD] | [Verification TBD] |
-<!-- /ANCHOR:phase-map -->

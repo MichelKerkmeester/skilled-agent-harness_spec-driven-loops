@@ -13,7 +13,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -29,11 +28,9 @@ contextType: "general"
 | **Predecessor** | N/A |
 | **Successor** | 002-implement |
 | **Handoff Criteria** | Design review approved |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:phase-context -->
 ### Phase Context
 
 This is **Phase 1** of the Valid Phase Fixture specification.
@@ -45,11 +42,9 @@ This is **Phase 1** of the Valid Phase Fixture specification.
 
 **Deliverables**:
 - Design documentation
-<!-- /ANCHOR:phase-context -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -57,11 +52,9 @@ Design phase for the valid phase fixture.
 
 ### Purpose
 Produce design artifacts for the implementation phase.
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -75,11 +68,9 @@ Produce design artifacts for the implementation phase.
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | N/A | N/A | Test fixture |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -87,30 +78,23 @@ Produce design artifacts for the implementation phase.
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Design complete | Design doc reviewed |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Design phase passes validation
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | N/A | N/A | N/A | N/A |
-<!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None
-<!-- /ANCHOR:questions -->

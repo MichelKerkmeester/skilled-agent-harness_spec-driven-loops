@@ -24,22 +24,6 @@ Standards and workflow guidance for creating skill-local MCP benchmark folders. 
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. WHEN TO CREATE A BENCHMARK FOLDER](#2--when-to-create-a-benchmark-folder)
-- [3. WHEN NOT TO CREATE ONE](#3--when-not-to-create-one)
-- [4. CANONICAL FOLDER SHAPE](#4--canonical-folder-shape)
-- [5. BENCHMARK REPORT STRUCTURE](#5--benchmark-report-structure)
-- [6. AUTHORING WORKFLOW](#6--authoring-workflow)
-- [7. DATE AND NAMING CONVENTION](#7--date-and-naming-convention)
-- [8. AUTHORITY HIERARCHY](#8--authority-hierarchy)
-- [9. CASE STUDIES AND COMMON MISTAKES](#9--case-studies-and-common-mistakes)
-- [10. RELATED RESOURCES](#10--related-resources)
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Skill-local benchmark folders are curated entry points. The full audit trail (ADRs, fixture surgery, rollback history) stays in the spec packet under `.opencode/specs/`. The skill-local folder gives a future engineer a fast answer plus a pointer back to the packet.
@@ -56,11 +40,8 @@ Skill-local benchmark folders are curated entry points. The full audit trail (AD
 - Each sibling skill maintains its own `README.md` index and `benchmark-<YYYY-MM-DD>/` dated subfolders.
 - The canonical mechanics document is this file. Sibling skill READMEs reference it by path: `.opencode/skills/sk-doc/references/benchmark_creation.md`.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:when-to-create -->
 ## 2. WHEN TO CREATE A BENCHMARK FOLDER
 
 Create a skill-local benchmark folder when all of the following hold:
@@ -86,11 +67,8 @@ Measurable retrieval surface + shipped spec packet with accepted ADRs + stable f
   NO  -> Keep results in the spec packet's evidence/ directory
 ```
 
-<!-- /ANCHOR:when-to-create -->
-
 ---
 
-<!-- ANCHOR:when-not-to-create -->
 ## 3. WHEN NOT TO CREATE ONE
 
 Skip the format when any of the following hold:
@@ -105,11 +83,8 @@ Skip the format when any of the following hold:
 
 If you are unsure, default to "not yet." The promotion workflow stays cheap when triggered after rigor. Rolling back a folder that should have stayed in `evidence/` costs more.
 
-<!-- /ANCHOR:when-not-to-create -->
-
 ---
 
-<!-- ANCHOR:canonical-folder-shape -->
 ## 4. CANONICAL FOLDER SHAPE
 
 ```text
@@ -146,11 +121,8 @@ SOURCE.md is a wayfinding pointer file, not a duplicate of the spec packet. It c
 
 Use the `source_template.md` scaffold in `assets/benchmark/` to author SOURCE.md. This keeps the skill-local view lean while the spec packet preserves the audit trail.
 
-<!-- /ANCHOR:canonical-folder-shape -->
-
 ---
 
-<!-- ANCHOR:benchmark-report-structure -->
 ## 5. BENCHMARK REPORT STRUCTURE
 
 `benchmark_report.md` is the structured report written to sk-doc standards. The ten sections are fixed. Do not reorder, merge or skip.
@@ -191,19 +163,6 @@ contextType: "reference"
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. HEADLINE](#1--headline)
-- [2. AGGREGATE RESULTS](#2--aggregate-results)
-- [3. METHODOLOGY](#3--methodology)
-... (sections 4 through 10)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:headline -->
 ## 1. HEADLINE
 
 `<winner>` + <pipeline-config> wins by <primary-metric> and <secondary-metric>.
@@ -217,11 +176,9 @@ contextType: "reference"
 | Spec packet | `<packet-id>` |
 | Decision | <ADR-id> |
 
-<!-- /ANCHOR:headline -->
 
 ---
 
-<!-- ANCHOR:aggregate-results -->
 ## 2. AGGREGATE RESULTS
 
 | Candidate | Dim | <primary-metric> | Median ms | p95 ms | Verdict |
@@ -231,11 +188,9 @@ contextType: "reference"
 | `<candidate-3>` | <dim> | <numeric-result> | <numeric-result> | <numeric-result> | BASELINE |
 | `<candidate-4>` | <dim> | <numeric-result> | -- | -- | ROLLBACK |
 
-<!-- /ANCHOR:aggregate-results -->
 
 ---
 
-<!-- ANCHOR:methodology -->
 ## 3. METHODOLOGY
 
 ### Fixture
@@ -252,16 +207,12 @@ Retrieval pipeline = <pipeline-description>. Toggle via `<config-flag>=true|fals
 
 <runtime-environment-description>. Corpus size after orphan prune: <corpus-size> active memory rows.
 
-<!-- /ANCHOR:methodology -->
 ```
 
 Subsequent sections (4 through 10) follow the same pattern: H2 numbered headers, ALL CAPS section names, ANCHOR comment pairs, tables for data, code blocks for verbatim commands. Each section gets its own slug. Keep slugs stable across revisions so deep links keep working.
 
-<!-- /ANCHOR:benchmark-report-structure -->
-
 ---
 
-<!-- ANCHOR:authoring-workflow -->
 ## 6. AUTHORING WORKFLOW
 
 Complete these steps in order. The spec packet must have shipped before you promote.
@@ -290,11 +241,8 @@ Complete these steps in order. The spec packet must have shipped before you prom
 | `runtime-measurements.md` | Curated rewrite of `evidence/*-runtime-measurements.md` when present |
 | `SOURCE.md` | Authored fresh; points back to the spec packet |
 
-<!-- /ANCHOR:authoring-workflow -->
-
 ---
 
-<!-- ANCHOR:date-and-naming-convention -->
 ## 7. DATE AND NAMING CONVENTION
 
 ### Date formats
@@ -317,11 +265,8 @@ Use lowercase, hyphen-separated, no underscores in folder names. Keep slugs shor
 
 **Renamed or renumbered spec packet**: update the path in `SOURCE.md`. Update any cross-link tables in `benchmark_report.md` and `README.md`. Add a "rename note" line under `SOURCE.md` stating the old slug, the new slug and the date. Do not rename the skill-local dated folder. The folder is named by bench execution date, not by spec-packet slug.
 
-<!-- /ANCHOR:date-and-naming-convention -->
-
 ---
 
-<!-- ANCHOR:authority-hierarchy -->
 ## 8. AUTHORITY HIERARCHY
 
 When a skill-local doc and the spec packet disagree:
@@ -332,11 +277,8 @@ When a skill-local doc and the spec packet disagree:
 
 The spec packet has the full audit trail. The skill-local view is the look-here-first entry point for someone in the MCP code. The two layers serve different readers and stay in sync via `SOURCE.md` pointers and the promotion workflow.
 
-<!-- /ANCHOR:authority-hierarchy -->
-
 ---
 
-<!-- ANCHOR:case-studies-and-mistakes -->
 ## 9. CASE STUDIES AND COMMON MISTAKES
 
 ### Case study 1: text-embedder bake-off (mk-spec-memory, May 17, 2026)
@@ -380,11 +322,8 @@ The bake-off compared five code-tuned embedders against an 18-pair paraphrased f
 | Creating a new dated folder for a re-run that confirms the winner | Pollutes the index with redundant folders | Update the existing `benchmark_report.md` with a "Re-run YYYY-MM-DD" section |
 | Writing a ten-section report without a SOURCE.md | Readers cannot find the audit trail | Always author SOURCE.md; use the `source_template.md` scaffold |
 
-<!-- /ANCHOR:case-studies-and-mistakes -->
-
 ---
 
-<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Templates
@@ -410,5 +349,3 @@ The bake-off compared five code-tuned embedders against an 18-pair paraphrased f
 - [`readme_creation.md`](./readme_creation.md): README authoring conventions used by `benchmarks/README.md`
 - [`global/core_standards.md`](./global/core_standards.md): cross-document standards including ANCHOR conventions
 - [`global/evergreen_packet_id_rule.md`](./global/evergreen_packet_id_rule.md): evergreen rule for runtime docs; benchmark reports follow it via `SOURCE.md` cross-link rather than inline packet IDs
-
-<!-- /ANCHOR:related-resources -->

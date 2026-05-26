@@ -11,24 +11,8 @@ trigger_phrases:
 
 > TypeScript modules for context-save orchestration, scoring, file output and indexing hooks.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scripts/core/` contains the TypeScript workflow modules used by `scripts/dist/memory/generate-context.js`. The folder owns context-save orchestration, quality scoring, metadata extraction, file writing, indexing hooks and spec-folder path handling.
@@ -39,11 +23,8 @@ Current state:
 - Compiled runtime output is `scripts/dist/core/*.js`.
 - `workflow.ts` composes the save flow and imports focused helpers from this folder.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -73,11 +54,8 @@ workflow.ts -> focused core helpers -> scripts/lib utilities
 index.ts -> public exports only
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -111,11 +89,8 @@ scripts/lib utilities -> workflow.ts
 runtime callers -> private helper assumptions not exported by index.ts
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -142,11 +117,8 @@ scripts/core/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -162,11 +134,8 @@ scripts/core/
 | `quality-gates.ts` | Decides whether save and indexing quality gates pass or abort. |
 | `index.ts` | Exposes the modules that callers can import from `core`. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -208,11 +177,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -222,11 +188,8 @@ Main flow:
 | `scripts/dist/core` | Compiled output | Runtime location consumed after `npm run build`. |
 | `scripts/dist/memory/generate-context.js` | CLI script | Primary caller for core workflow behavior. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root unless noted.
@@ -243,15 +206,10 @@ node -e "const core=require('./.opencode/skills/system-spec-kit/scripts/dist/cor
 
 Expected result: Node prints the exported core module names.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [`../README.md`](../README.md)
 - [`../memory/README.md`](../memory/README.md)
 - [`../../README.md`](../../README.md)
-
-<!-- /ANCHOR:related -->

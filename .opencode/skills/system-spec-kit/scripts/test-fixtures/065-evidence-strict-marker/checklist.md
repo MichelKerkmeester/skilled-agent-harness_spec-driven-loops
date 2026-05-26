@@ -1,4 +1,3 @@
-<!-- ANCHOR:checklist -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Verification Checklist
 
@@ -11,4 +10,3 @@
 
 - [x] CHK-003 [P1] Item with [EVIDENCE: cited]
 - [x] CHK-004 [P1] Item with bare [x] [x] but no marker
-<!-- /ANCHOR:checklist -->

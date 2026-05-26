@@ -64,9 +64,9 @@ The playbook workflow assumes a root directory playbook plus required per-featur
 **Pre-Delivery Format Validation** (MANDATORY for READMEs):
 - **When**: Before claiming completion on any README
 - **Script**: `python scripts/validate_document.py <file>`
-- **Action**: Check TOC, H2 format, anchor format, required sections
+- **Action**: Check H2 format and required sections
 - **Blocking**: Yes - exit code 1 blocks delivery
-- **Auto-fix**: Use `--fix` for safe issues (single-dash anchors)
+- **Auto-fix**: Use `--fix` for safe issues
 
 **Post-Write Validation Pattern** (manual):
 - **When**: After Write/Edit operations on `.md` files

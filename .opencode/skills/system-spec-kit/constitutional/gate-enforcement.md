@@ -53,8 +53,6 @@ triggerPhrases:
 > Lean constitutional memory. Full gate definitions live in **AGENTS.md Section 2**.
 > This file adds: compaction recovery, continuation validation, and trigger-based surfacing.
 
-<!-- ANCHOR:gate-cross-reference -->
-
 ## Gate Cross-Reference
 
 Full definitions: **AGENTS.md § 2 — MANDATORY GATES**
@@ -68,10 +66,6 @@ Full definitions: **AGENTS.md § 2 — MANDATORY GATES**
 
 **Critical:** Gate 3 overrides Gates 1-2. If file modification detected → ask spec folder FIRST, analyze after.
 **Critical:** Gate 4 enforces canonical command surfaces for deep-research/deep-review loops; cannot be bypassed via direct agent dispatch or `/tmp` state.
-
-<!-- /ANCHOR:gate-cross-reference -->
-
-<!-- ANCHOR:compaction-recovery -->
 
 ## Compaction Recovery
 
@@ -97,10 +91,6 @@ Full definitions: **AGENTS.md § 2 — MANDATORY GATES**
 
 After 2+ compactions in one session, recommend `/clear` and a fresh start.
 
-<!-- /ANCHOR:compaction-recovery -->
-
-<!-- ANCHOR:continuation-validation -->
-
 ## Continuation Validation
 
 **TRIGGER:** User message contains "CONTINUATION - Attempt" pattern.
@@ -116,10 +106,6 @@ After 2+ compactions in one session, recommend `/clear` and a fresh start.
 
 **RATIONALE:** Handoff messages may be stale or from a different branch. Always cross-check against the packet's canonical continuity surfaces before continuing.
 
-<!-- /ANCHOR:continuation-validation -->
-
-<!-- ANCHOR:gate-quick-reference -->
-
 ## Quick Reference
 
 | Rule                    | Trigger                                | Source            |
@@ -130,7 +116,5 @@ After 2+ compactions in one session, recommend `/clear` and a fresh start.
 | Violation Recovery      | About to skip gates / gates skipped    | AGENTS.md § 2     |
 | Compaction Recovery     | Context loss / compaction              | **This file**     |
 | Continuation Validation | "CONTINUATION - Attempt"               | **This file**     |
-
-<!-- /ANCHOR:gate-quick-reference -->
 
 *Constitutional Memory — Always surfaces at top of search results*

@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate graceful boot, health reporting, SIGTERM-based shutdown and launcher idle-timeout discoverability for the advisor daemon in `lib/daemon/lifecycle.ts`.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy or isolated MCP server process.
@@ -34,9 +30,6 @@ Validate graceful boot, health reporting, SIGTERM-based shutdown and launcher id
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred_decisions.md` §F34 for rationale.
@@ -77,9 +70,6 @@ kill -TERM <daemon_pid>
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [AU-002](./002-lease-single-writer.md), single-writer lease reclaim.
@@ -90,14 +80,9 @@ kill -TERM <daemon_pid>
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Auto Update Daemon
 - Playbook ID: AU-003
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 05--auto-update-daemon/003-daemon-lifecycle-shutdown.md
-
-<!-- /ANCHOR:5-source-metadata -->

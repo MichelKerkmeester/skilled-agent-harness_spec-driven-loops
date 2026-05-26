@@ -14,29 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. SCENARIO CONTRACT](#2--scenario-contract)
-- [3. TEST EXECUTION](#3--test-execution)
-- [4. SOURCE FILES](#4--source-files)
-- [5. SOURCE METADATA](#5--source-metadata)
-
----
-
-<!-- /ANCHOR:table-of-contents -->
-
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate the OpenCode plugin path that delegates through the stable native compat entrypoint, then falls back to Python brief production when needed.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - MCP server build is current.
@@ -45,9 +28,6 @@ Validate the OpenCode plugin path that delegates through the stable native compa
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Build:
@@ -86,9 +66,6 @@ spec_kit_skill_advisor_status({})
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/plugins/mk-skill-advisor.js`
@@ -97,14 +74,9 @@ spec_kit_skill_advisor_status({})
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: CLI Hooks And Plugin
 - Playbook ID: CL-005
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md
-
-<!-- /ANCHOR:5-source-metadata -->

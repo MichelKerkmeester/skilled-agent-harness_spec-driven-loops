@@ -12,20 +12,8 @@ trigger_phrases:
 
 > Fixture-only directory that provides mock skill-advisor hook responses for testing the Copilot user-prompt-submit hook under various advisor scenarios.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. KEY FILES](#2--key-files)
-- [3. ENTRYPOINTS](#3--entrypoints)
-- [4. VALIDATION](#4--validation)
-- [5. RELATED](#5--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `tests/advisor-fixtures/` owns mock advisor response fixtures for the Copilot skill-advisor hook integration. These fixtures simulate the advisor MCP response shape under different conditions so that the user-prompt-submit hook can be tested without live MCP calls.
@@ -40,11 +28,8 @@ Current state:
 - The consumer test is `tests/copilot-user-prompt-submit-hook.vitest.ts`, which loads fixtures through a `fixture()` helper function.
 - The test suite is gated behind `copilotHooksAvailable` and is currently skipped when compiled Copilot hook fixtures are not available.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 2. KEY FILES
 
 | File | Responsibility |
@@ -60,22 +45,16 @@ Current state:
 | `promptPoisoningAdversarial.json` | Fixture testing security and sanitization of adversarial advisor responses. |
 | `unicodeInstructionalSkillLabel.json` | Fixture with unicode characters in skill labels, testing unicode handling. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 3. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `livePassingSkill.json` through `unicodeInstructionalSkillLabel.json` | Fixture | Mock advisor hook responses loaded by `tests/copilot-user-prompt-submit-hook.vitest.ts` for hook behavior testing. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 4. VALIDATION
 
 Run from the repository root.
@@ -86,15 +65,10 @@ cd .opencode/skills/system-spec-kit/mcp_server && npm test -- tests/copilot-user
 
 The consumer test is gated behind `copilotHooksAvailable` and is currently skipped in this environment when compiled Copilot hook fixtures are not available. The test structure and fixture loading logic are valid.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 5. RELATED
 
 - [Parent: Tests](../README.md)
 - [Skill README](../../README.md)
 - [Copilot Hook Wiring Test](../copilot-hook-wiring.vitest.ts)
-
-<!-- /ANCHOR:related -->

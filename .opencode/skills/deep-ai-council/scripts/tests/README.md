@@ -5,13 +5,6 @@ description: "Integration + parity vitests for deep-ai-council orchestration: or
 
 # deep-ai-council Tests
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. TEST INVENTORY](#2--test-inventory)
-- [3. HOW TO RUN](#3--how-to-run)
-- [4. RELATED RESOURCES](#4--related-resources)
-
 ---
 
 ## 1. OVERVIEW

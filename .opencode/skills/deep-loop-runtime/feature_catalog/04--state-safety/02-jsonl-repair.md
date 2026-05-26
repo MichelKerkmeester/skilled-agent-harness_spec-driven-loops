@@ -5,13 +5,6 @@ description: "Repairs corrupted JSONL tails and appends valid records without pr
 
 # JSONL repair
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CURRENT REALITY](#2--current-reality)
-- [3. SOURCE FILES](#3--source-files)
-- [4. SOURCE METADATA](#4--source-metadata)
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +37,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 |---|---|---|
 | `tests/unit/jsonl-repair.vitest.ts` | Test | Primary regression coverage for JSONL repair. |
 
-
 ---
 
 ## 4. SOURCE METADATA
@@ -54,4 +46,3 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Feature ID: F007
 - Feature file path: `04--state-safety/02-jsonl-repair.md`
 - Primary sources: `lib/deep-loop/jsonl-repair.ts`, `tests/unit/jsonl-repair.vitest.ts`
-

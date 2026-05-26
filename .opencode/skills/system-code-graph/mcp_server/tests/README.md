@@ -14,21 +14,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. KEY TEST AREAS](#3--key-test-areas)
-- [4. BOUNDARIES AND FLOW](#4--boundaries-and-flow)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED](#6--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `mcp_server/tests/` contains Vitest coverage for the code graph package. The suite checks structural indexing, SQLite persistence behavior, readiness gates, query and context handlers, seed resolution, verification, apply-mode recovery and diff-to-symbol attribution.
@@ -40,11 +25,8 @@ Current state:
 - `assets/code-graph-gold-queries.json` stores the gold-query battery fixture used by verification coverage.
 - Stress and degraded-mode coverage lives in `../stress_test/code-graph/`.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -67,11 +49,8 @@ tests -> ../handlers
 tests -> assets
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:key-test-areas -->
 ## 3. KEY TEST AREAS
 
 | Area | Representative Files | Coverage |
@@ -87,11 +66,8 @@ tests -> assets
 | Graph quality | `edge-drift.vitest.ts`, `edge-metadata-sanitize.test.ts`, `code-graph-gold-battery.vitest.ts` | Drift checks, metadata sanitization and gold-query verification. |
 | Phase execution | `phase-runner.test.ts` | Topological ordering, duplicate output rejection, missing dependencies and cycle errors. |
 
-<!-- /ANCHOR:key-test-areas -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -101,11 +77,8 @@ tests -> assets
 | Runtime | Keep pressure tests in `../stress_test/code-graph/`; keep ordinary unit and integration coverage here. |
 | Fixtures | Shared verification fixtures live under `assets/`. |
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 5. VALIDATION
 
 Run from the repository root.
@@ -122,11 +95,8 @@ For focused change-detection coverage:
 
 Expected result: the selected Vitest suite exits `0`.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 6. RELATED
 
 | Document | Purpose |
@@ -139,5 +109,3 @@ Expected result: the selected Vitest suite exits `0`.
 | [__fixtures__/README.md](./__fixtures__/README.md) | Reusable TypeScript test fixtures. |
 | [../stress_test/code-graph/README.md](../stress_test/code-graph/README.md) | Stress and degraded-mode coverage map. |
 | [assets/code-graph-gold-queries.json](./assets/code-graph-gold-queries.json) | Gold-query battery fixture. |
-
-<!-- /ANCHOR:related -->

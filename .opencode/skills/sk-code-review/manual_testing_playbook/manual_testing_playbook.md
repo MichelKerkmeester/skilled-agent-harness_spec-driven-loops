@@ -24,25 +24,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. BASELINE REVIEW FLOW (CR-001..CR-003)](#7--baseline-review-flow-cr-001cr-003)
-- [8. SECURITY AND CORRECTNESS MINIMUMS (CR-004..CR-006)](#8--security-and-correctness-minimums-cr-004cr-006)
-- [9. SEVERITY AND EVIDENCE DISCIPLINE (CR-007..CR-009)](#9--severity-and-evidence-discipline-cr-007cr-009)
-- [10. SCOPE AND PRECEDENCE (CR-010..CR-012)](#10--scope-and-precedence-cr-010cr-012)
-- [11. RE-REVIEW AND STALE CONTEXT (CR-013..CR-015)](#11--re-review-and-stale-context-cr-013cr-015)
-- [12. CROSS-CLI ORCHESTRATION (CR-016..CR-018)](#12--cross-cli-orchestration-cr-016cr-018)
-- [13. AUTOMATED TEST CROSS-REFERENCE](#13--automated-test-cross-reference)
-- [14. FEATURE CATALOG CROSS-REFERENCE INDEX](#14--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 18 deterministic scenarios across 6 categories validating the `sk-code-review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.

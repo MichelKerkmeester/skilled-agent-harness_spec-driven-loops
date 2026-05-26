@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `lib/derived/provenance.ts` writes provenance fingerprints for each derived entry and that `lib/derived/trust-lanes.ts` assigns the correct lane among `author`, `frontmatter`, `body`, `examples`, `local_docs` and `derived_local`.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy or read-only inspection against the live repo.
@@ -32,9 +28,6 @@ Validate that `lib/derived/provenance.ts` writes provenance fingerprints for eac
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred_decisions.md` §F34 for rationale.
@@ -67,9 +60,6 @@ touch .opencode/skills/sk-doc/SKILL.md
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [AI-001](./001-derived-extraction.md), deterministic extraction.
@@ -79,14 +69,9 @@ touch .opencode/skills/sk-doc/SKILL.md
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Auto Indexing
 - Playbook ID: AI-003
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 06--auto-indexing/003-provenance-and-trust-lanes.md
-
-<!-- /ANCHOR:5-source-metadata -->

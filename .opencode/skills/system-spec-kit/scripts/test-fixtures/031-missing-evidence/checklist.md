@@ -1,4 +1,3 @@
-<!-- ANCHOR:checklist -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
@@ -9,4 +8,3 @@
 ## P1 - Required
 
 - [x] Completed P1 item also missing evidence
-<!-- /ANCHOR:checklist -->

@@ -9,13 +9,10 @@ importance_tier: "important"
 
 # deep_loop_graph_convergence
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `deep_loop_graph_convergence` computes typed convergence decisions and signals for deep research/review coverage graphs.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -29,9 +26,7 @@ auto inside the deep-loop command workflows. Direct MCP calls remain explicit.
 ### Caveats / Fallback
 
 Auto means "inside the command YAML workflow," not globally scheduled. Empty graphs return CONTINUE.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -49,9 +44,6 @@ Auto means "inside the command YAML workflow," not globally scheduled. Empty gra
 |---|---|---|
 | `../../manual_testing_playbook/05--coverage-graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Coverage graph
@@ -62,4 +54,3 @@ Related references:
 
 - [03-deep-loop-graph-upsert.md](./03-deep-loop-graph-upsert.md)
 - [../../manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md](../../manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md)
-<!-- /ANCHOR:source-metadata -->

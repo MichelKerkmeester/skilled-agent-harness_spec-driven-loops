@@ -5,13 +5,6 @@ description: "Covers the full constitutional memory path from `/memory:learn` au
 
 # Constitutional Memory end-to-end lifecycle
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 Covers the end-to-end lifecycle for constitutional memories: the always-surface rules managed by `/memory:learn`, stored in `.opencode/skills/system-spec-kit/constitutional/`, indexed into `memory_index`, injected into Stage 1 retrieval, surfaced through hook-driven context assembly, enriched with retrieval directives, and kept coherent through layered caches plus post-mutation invalidation.

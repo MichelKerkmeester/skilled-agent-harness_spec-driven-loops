@@ -1,6 +1,5 @@
 # Valid Memory
 
-<!-- ANCHOR: valid -->
 ## Valid Section
 
 This anchor is properly closed.

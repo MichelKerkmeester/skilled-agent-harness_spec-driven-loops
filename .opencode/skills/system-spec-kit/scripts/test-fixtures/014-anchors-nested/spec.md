@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Nested Anchors
@@ -26,4 +25,3 @@ Tests nested anchors are valid.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

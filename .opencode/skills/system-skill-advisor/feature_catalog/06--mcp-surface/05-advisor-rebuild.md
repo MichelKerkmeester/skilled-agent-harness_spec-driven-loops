@@ -12,14 +12,10 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Give operators an explicit repair path for stale, absent or unavailable advisor state without hiding rebuild side effects inside `advisor_status`.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `advisor_rebuild` is the explicit MCP repair tool that keeps rebuild behavior out of `advisor_status`. The handler reads the current status first. If status is `live` and `force` is not true, it skips the rebuild and returns a diagnostic telling the caller to pass `force:true` when a live rebuild is intentional.
@@ -28,9 +24,6 @@ When rebuild proceeds, it indexes `.opencode/skills/`, publishes a fresh skill-g
 
 The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor_recommend`, `advisor_status` and `advisor_validate`. The standalone advisor server currently exposes eight public tools: four `advisor_*` tools and four `skill_graph_*` tools.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -59,9 +52,7 @@ The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor
 |---|---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/tests/advisor-rebuild.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts` | Automated test | Validation reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: MCP surface
@@ -73,4 +64,3 @@ Related references:
 - [02-advisor-status.md](./02-advisor-status.md).
 - [`01--daemon-and-freshness/06-rebuild-from-source.md`](../01--daemon-and-freshness/06-rebuild-from-source.md).
 - [`02--auto-indexing/04-sync.md`](../02--auto-indexing/04-sync.md).
-<!-- /ANCHOR:source-metadata -->

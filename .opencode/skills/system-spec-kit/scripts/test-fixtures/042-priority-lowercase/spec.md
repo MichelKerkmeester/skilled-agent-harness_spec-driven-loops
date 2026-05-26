@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Lowercase Priority
@@ -26,4 +25,3 @@ Tests lowercase priority headers generate warnings.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

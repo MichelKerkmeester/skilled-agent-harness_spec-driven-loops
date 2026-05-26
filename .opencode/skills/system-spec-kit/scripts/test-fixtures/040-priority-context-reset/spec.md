@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Priority Context Reset
@@ -26,4 +25,3 @@ Tests items after non-priority headers inherit context.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

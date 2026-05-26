@@ -15,7 +15,7 @@ Templates for creating feature catalogs that combine top-level capability invent
 
 **Key Characteristics**:
 - **Inventory-first**: The root catalog acts as the system-level directory and summary surface.
-- **Feature-catalog shaped**: The root file uses frontmatter, an H1 intro paragraph, an unnumbered `TABLE OF CONTENTS`, and numbered all-caps H2 section headers.
+- **Feature-catalog shaped**: The root file uses frontmatter, an H1 intro paragraph, and numbered all-caps H2 section headers.
 - **Per-feature files**: Each catalog entry maps to exactly one per-feature file in a numbered category directory.
 - **Current-reality focused**: The root and per-feature files describe shipped behavior, not speculative roadmaps unless clearly marked.
 - **Reference-rich**: Per-feature files carry source-file tables, implementation anchors, and metadata.
@@ -93,15 +93,6 @@ description: "Unified reference combining the complete feature inventory and cur
 # {SYSTEM_NAME}: Feature Catalog
 
 This document combines the current feature inventory for the `{SYSTEM_SLUG}` system into a single reference. The root catalog acts as the system-level directory: it summarizes each capability area, describes what the system does today, and points to the per-feature files that carry the deeper implementation and validation anchors.
-
----
-
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. {CAT1_HEADING}](#2--{CAT1_ANCHOR})
-- [3. {CAT2_HEADING}](#3--{CAT2_ANCHOR})
-- [4. {CAT3_HEADING}](#4--{CAT3_ANCHOR})
 
 ---
 
@@ -223,7 +214,7 @@ description: "{OVERVIEW_ONE_LINE}"
 - Keep the root catalog readable by summarizing behavior instead of dumping raw source-file tables there.
 - Put implementation and test anchor detail in the per-feature files.
 - Preserve stable file paths once other docs start linking to them.
-- Use numbered all-caps H2 section headers in the root catalog, with `TABLE OF CONTENTS` as the one intentional unnumbered H2.
+- Use numbered all-caps H2 section headers in the root catalog. Do not add a Table of Contents.
 - Do not write packet-history references such as "added in packet 033" or "Phase 017 update". Rewrite them as current behavior plus a source file, test, or reference-doc link.
 
 ---
@@ -235,8 +226,7 @@ Before publishing a feature catalog, verify:
 ```markdown
 Structure:
 - [ ] `feature_catalog.md` exists with frontmatter and H1 intro paragraph
-- [ ] Root catalog has `## TABLE OF CONTENTS`
-- [ ] Root catalog uses numbered all-caps H2 section headers after the TOC
+- [ ] Root catalog uses numbered all-caps H2 section headers (no Table of Contents)
 - [ ] Category directories use `NN--category-name`
 - [ ] Every root catalog entry links to exactly one per-feature file
 - [ ] Every per-feature file includes frontmatter with `title` and `description`

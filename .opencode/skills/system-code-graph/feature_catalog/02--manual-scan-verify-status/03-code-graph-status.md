@@ -9,13 +9,10 @@ importance_tier: "important"
 
 # code_graph_status
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `code_graph_status` reports graph health and readiness. It uses a read-only readiness snapshot so status calls do not repair stale state.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -29,9 +26,7 @@ manual diagnostic. Diagnostic freshness tools detect state. Explicit repair path
 ### Caveats / Fallback
 
 Status can recommend `rg` or `code_graph_scan`. It does not perform either. Treat stale status as an operator prompt, not repair proof.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -49,9 +44,6 @@ Status can recommend `rg` or `code_graph_scan`. It does not perform either. Trea
 |---|---|---|
 | `../../manual_testing_playbook/02--manual-scan-verify-status/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Manual scan verify status
@@ -63,4 +55,3 @@ Related references:
 - [01-code-graph-scan.md](./01-code-graph-scan.md)
 - [../01--read-path-freshness/01-ensure-code-graph-ready.md](../01--read-path-freshness/01-ensure-code-graph-ready.md)
 - [../../manual_testing_playbook/02--manual-scan-verify-status/006-code-graph-status-readonly.md](../../manual_testing_playbook/02--manual-scan-verify-status/006-code-graph-status-readonly.md)
-<!-- /ANCHOR:source-metadata -->

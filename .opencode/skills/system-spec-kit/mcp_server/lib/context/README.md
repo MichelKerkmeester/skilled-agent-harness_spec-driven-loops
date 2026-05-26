@@ -10,24 +10,8 @@ trigger_phrases:
 
 # Context Lib: Shared Runtime Context Contracts
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `mcp_server/lib/context/` owns the typed context contracts shared by MCP startup, resume, health, bootstrap, compaction, and OpenCode hook delivery paths. It keeps payload shape, trust metadata, transport rendering, caller identity, and publishability checks in one small package.
@@ -39,11 +23,8 @@ Current state:
 - `caller-context.ts` carries MCP caller metadata through async handler execution.
 - `publication-gate.ts` rejects metric rows that do not have enough certainty, methodology, schema, and provenance data for publication.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -68,11 +49,8 @@ transport rendering ───▶ shared payload validation
 publication checks ───▶ shared payload metric helpers
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -102,11 +80,8 @@ lib/context/ → database or filesystem mutation paths
 transport adapters → retrieval policy ownership
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -118,11 +93,8 @@ mcp_server/lib/context/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -132,11 +104,8 @@ mcp_server/lib/context/
 | `caller-context.ts` | Exposes `runWithCallerContext`, `getCallerContext`, and `requireCallerContext` for MCP transport metadata propagation. |
 | `publication-gate.ts` | Evaluates whether a row can be published by checking certainty, methodology status, schema version, provenance, and multiplier authority fields. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -178,11 +147,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -195,11 +161,8 @@ Main flow:
 | `requireCallerContext` | Function | Throws when a handler expects caller context but none is bound. |
 | `evaluatePublicationGate` | Function | Returns whether a metric row is publishable or gives the exclusion reason. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root.
@@ -211,15 +174,10 @@ node .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/syste
 
 Expected result: the structure extractor reports README type with no critical issues, and document validation exits `0`.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [`../resume/README.md`](../resume/README.md)
 - [`../../hooks/README.md`](../../hooks/README.md)
 - [`../../tools/README.md`](../../tools/README.md)
-
-<!-- /ANCHOR:related -->

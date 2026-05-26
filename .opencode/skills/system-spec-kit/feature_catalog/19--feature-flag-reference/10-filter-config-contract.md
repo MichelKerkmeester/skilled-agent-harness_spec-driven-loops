@@ -7,13 +7,6 @@ description: "JSONC contract for the content-filter pipeline, covering stage ord
 
 This document captures the implemented behavior, source references, and remediation metadata for the content-filter configuration contract centered on `config/filters.jsonc`.
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 `config/filters.jsonc` is the file-backed contract for the content-filter pipeline used by `scripts/lib/content-filter.ts`. It controls whether the pipeline runs, the ordered stage list, and the threshold values for noise rejection, deduplication, and quality scoring.

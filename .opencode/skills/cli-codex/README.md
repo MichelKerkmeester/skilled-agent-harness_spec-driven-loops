@@ -15,28 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 FEATURE HIGHLIGHTS](#31--feature-highlights)
-  - [3.2 FEATURE REFERENCE](#32--feature-reference)
-  - [3.3 CLI COMPARISON](#33--cli-comparison)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-  - [5.1 KEY STATISTICS](#51--key-statistics)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What This Skill Does
@@ -64,11 +42,8 @@ The skill includes a self-invocation guard: if you are already running inside Co
 
 The CLI requires `@openai/codex`, which can be installed via `npm i -g @openai/codex` or `brew install --cask codex`. Authentication uses either `OPENAI_API_KEY` for programmatic use or ChatGPT OAuth via `codex login` for interactive sessions. Node.js 18+ is required for npm installation.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 ### 1. Verify Installation
@@ -126,11 +101,8 @@ codex exec "List all exported functions in src/" \
   --sandbox read-only 2>&1
 ```
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -204,11 +176,8 @@ The reasoning effort system adds another dimension. GPT-5.5 supports six effort 
 | **Spec Kit handoff** | Packet docs via `/speckit:resume` | Canonical packet continuity | Supporting artifacts only | `handover.md -> _memory.continuity -> spec docs` |
 | **Cloud execution** | No | No | Cloud delegation | `codex cloud` subcommand |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -228,11 +197,8 @@ cli-codex/
 
 > **Voice guidance lives outside this skill**: user-level voice/tone/reasoning instructions for Codex CLI are installed at `<repo>/.codex/AGENTS.md` (symlinked to `~/.codex/AGENTS.md`). That file governs how Codex talks in the user's own sessions and is **not** used by this skill when an AI delegates work to Codex. See §8 FAQ for the full rationale.
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 ### Authentication
@@ -295,11 +261,8 @@ stdin/stdout schema, exit semantics, and smoke checks.
 | **References** | 4 | cli_reference, codex_tools, agent_delegation, integration_patterns |
 | **Version** | 1.4.0.0 | |
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 ### Code Generation with Sandbox Control
@@ -332,11 +295,8 @@ codex exec "Generate tests for src/api/" -m gpt-5.5 --full-auto 2>&1 &
 wait
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 ### Codex CLI Not Found
@@ -363,11 +323,8 @@ wait
 **Common causes**: The project has a `CLAUDE.md` with mandatory gate checks that intercept Codex agents.
 **Fix**: This is a known issue when using Codex agents in projects with Claude Code gate systems. Consider running the task from outside the project directory or handling the task directly.
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 ### General
@@ -410,11 +367,8 @@ A: **No.** The global voice file is for the user's own Codex CLI sessions. When 
 **Q: Does this conflict with the project-level `AGENTS.md` framework?**
 A: No. They're complementary. The project `AGENTS.md` is authoritative for gates, scope, and memory; the global voice file only shapes how responses sound. The global file's header explicitly defers to the project file for anything framework-level.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 ### Skill Resources

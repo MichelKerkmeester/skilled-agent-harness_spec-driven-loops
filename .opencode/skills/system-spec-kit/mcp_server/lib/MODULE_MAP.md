@@ -14,21 +14,7 @@ trigger_phrases:
 
 ---
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
-
-- [1. OVERVIEW](#1-overview)
-- [2. MODULE INVENTORY](#2-module-inventory)
-- [3. FEATURE CATALOG MAPPING](#3-feature-catalog-mapping)
-- [4. DEPENDENCY DIRECTIONS (T139)](#4-dependency-directions-t139)
-- [5. CANONICAL LOCATIONS](#5-canonical-locations)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
 ## 1. OVERVIEW
-<!-- ANCHOR:overview -->
 
 This document is the internal ownership and dependency map for the `mcp_server/lib/` surface. It exists to answer three practical questions:
 
@@ -44,12 +30,9 @@ Notes:
 - Several modules are intentionally small today (`collab/`, `governance/`, `manage/`, `session/`, `response/`).
 - Dependency enforcement is not automatic yet. Section 4 records the target direction model for future AST-based checking.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
 ## 2. MODULE INVENTORY
-<!-- ANCHOR:module-inventory -->
 
 ### `architecture/`
 
@@ -391,12 +374,9 @@ Notes:
 - Primary consumers:
   - `handlers/memory-save.ts`
 
-<!-- /ANCHOR:module-inventory -->
-
 ---
 
 ## 3. FEATURE CATALOG MAPPING
-<!-- ANCHOR:feature-catalog-mapping -->
 
 Feature-catalog categories referenced here are the 19 top-level directories under `feature_catalog/`:
 
@@ -477,12 +457,9 @@ Feature-catalog categories referenced here are the 19 top-level directories unde
 | `18--ux-hooks` | `errors`, `response`, `telemetry`, `utils` |
 | `19--feature-flag-reference` | `cognitive`, `config`, `feedback`, `search` |
 
-<!-- /ANCHOR:feature-catalog-mapping -->
-
 ---
 
 ## 4. DEPENDENCY DIRECTIONS (T139)
-<!-- ANCHOR:dependency-directions -->
 
 Status: **DEFERRED**
 
@@ -650,12 +627,9 @@ The current tree still contains a few legacy reverse dependencies that do not ma
 
 Those should be treated as refactor targets, not new precedent.
 
-<!-- /ANCHOR:dependency-directions -->
-
 ---
 
 ## 5. CANONICAL LOCATIONS
-<!-- ANCHOR:canonical-locations -->
 
 ### Checkpoints
 
@@ -673,5 +647,3 @@ Those should be treated as refactor targets, not new precedent.
 
 - `lib/contracts/` is documentation/proxy only; canonical retrieval contracts live in `shared/contracts/`.
 - `lib/interfaces/` is partly proxy/compatibility surface; canonical shared TypeScript interfaces live in `@spec-kit/shared`.
-
-<!-- /ANCHOR:canonical-locations -->

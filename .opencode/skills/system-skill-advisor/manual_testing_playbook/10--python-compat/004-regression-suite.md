@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `scripts/skill_advisor_regression.py` runs the P0 regression dataset at `scripts/fixtures/skill_advisor_regression_cases.jsonl` and reports pass/fail totals against the Python scorer.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root. Python 3 available.
@@ -32,9 +28,6 @@ Validate that `scripts/skill_advisor_regression.py` runs the P0 regression datas
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Run the suite:
@@ -65,9 +58,6 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [PC-005](./005-bench-runner.md), bench runner.
@@ -77,14 +67,9 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Python Compat
 - Playbook ID: PC-004
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 10--python-compat/004-regression-suite.md
-
-<!-- /ANCHOR:5-source-metadata -->

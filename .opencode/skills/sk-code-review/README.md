@@ -20,23 +20,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 sk-code-review is the findings-first code review baseline. Every review starts with findings rather than summaries. Findings carry severity labels (`P0` critical / `P1` high / `P2` advisory), file:line evidence, a risk statement, a user-impact statement, and a recommended fix. The format is designed for reviewers who need to know what blocks shipping immediately, with detail available on demand.
@@ -56,11 +39,9 @@ This replaces the old `sk-code-*` per-stack overlay model. There is no longer a 
 - **Single-pass UX**: One review pass produces the full findings list (no incremental drip)
 - **Removal plan support**: Findings can include code-removal recommendations with dependency analysis
 - **Output contract**: Standardized markdown structure with Review Context footer
-<!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1: Activate the skill.**
@@ -102,11 +83,9 @@ Every review follows the canonical output contract:
 **Baseline used**: sk-code-review
 **Surface evidence used**: sk-code:<surface> (or "baseline-only" if unclear)
 ```
-<!-- /ANCHOR:quick-start -->
 
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -200,11 +179,9 @@ Removal plan support handles the special case of "this code should not exist" fi
 | Code implementation | No | Yes | No |
 | Documentation quality | No | No | Yes |
 | Old per-stack overlay model | Replaced | n/a | n/a |
-<!-- /ANCHOR:features -->
 
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -222,11 +199,9 @@ sk-code-review/
     ├── removal_plan.md                   # Code-removal dependency analysis
     └── fix-completeness-checklist.md     # Verifies fix completeness
 ```
-<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 No configuration is required. The findings-first format and mandatory minimums are hardcoded.
@@ -240,11 +215,9 @@ No configuration is required. The findings-first format and mandatory minimums a
 **Mandatory minimums** apply to every review. Skipping security or correctness checks to produce a faster review is a violation. The minimums apply even when surface evidence is unavailable (`baseline-only` mode).
 
 **Surface evidence** is delegated to sk-code. sk-code-review does not detect surfaces itself. It consumes whatever surface sk-code has resolved. When sk-code is not loaded or the surface is UNKNOWN, the review proceeds in `baseline-only` mode and discloses the uncertainty in the Review Context footer.
-<!-- /ANCHOR:configuration -->
 
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 **Review a PR with WEBFLOW surface evidence**
@@ -306,11 +279,9 @@ sk-code-review:
     Migration order: update tests/auth.test.js first (no production impact),
                      then api/login.js + api/register.js together (atomic).
 ```
-<!-- /ANCHOR:usage-examples -->
 
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 **Review missing P0/P1/P2 sections**
@@ -350,11 +321,9 @@ What you see: The Review Context footer says `sk-code:webflow` but sk-code wasn'
 Common causes: The agent assumed surface evidence based on prompt vocabulary rather than sk-code's detection output, or sk-code was loaded but resolved to UNKNOWN and the agent claimed a surface anyway.
 
 Fix: Use `baseline-only` in the Review Context footer when sk-code is not loaded or resolved to UNKNOWN. Never fabricate surface evidence. The Review Context is part of the audit trail, and false claims undermine reviewer trust.
-<!-- /ANCHOR:troubleshooting -->
 
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: Why is the review findings-first instead of summary-first?**
@@ -376,11 +345,9 @@ A: No. P0/P1/P2 are fixed. Adding tiers (e.g., "P3", "blocker", "nit") fragments
 **Q: Are the security and correctness minimums really mandatory?**
 
 A: Yes. The `security_checklist.md` and `code_quality_checklist.md` reference files apply to every review. Skipping them produces a review that may miss high-impact issues. The minimums apply even in baseline-only mode. They are the universal rules that don't depend on surface knowledge.
-<!-- /ANCHOR:faq -->
 
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 | Resource | Path | Purpose |
@@ -399,4 +366,3 @@ A: Yes. The `security_checklist.md` and `code_quality_checklist.md` reference fi
 | sk-doc | `.opencode/skills/sk-doc/` | Documentation quality enforcement |
 | sk-git | `.opencode/skills/sk-git/` | Git workflow orchestration |
 | system-spec-kit | `.opencode/skills/system-spec-kit/` | Spec folder lifecycle |
-<!-- /ANCHOR:related-documents -->

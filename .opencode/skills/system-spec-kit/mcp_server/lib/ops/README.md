@@ -14,16 +14,6 @@ trigger_phrases:
 
 `lib/ops/` contains background primitives for file-change indexing and queued ingestion. Runtime request handlers do not execute long-running work here directly. They start, inspect, or cancel jobs through handler surfaces.
 
-## Table of Contents
-
-- [1. OVERVIEW](#1--overview)
-- [2. TOPOLOGY](#2--topology)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
 ## 1. OVERVIEW
 
 This folder keeps indexing work away from the main MCP request path. The watcher reacts to file changes. The queue processes explicit multi-file ingest jobs with a single worker.

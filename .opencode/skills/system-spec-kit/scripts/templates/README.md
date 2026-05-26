@@ -9,15 +9,6 @@ trigger_phrases:
 
 # Template Scripts: Inline Gate Rendering
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. USAGE NOTES](#4--usage-notes)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED](#6--related)
-
 ## 1. OVERVIEW
 
 `scripts/templates/` owns the inline gate renderer used to produce Level-specific markdown from shared templates. It evaluates `<!-- IF ... -->` blocks and emits only the content that applies to the requested Level.

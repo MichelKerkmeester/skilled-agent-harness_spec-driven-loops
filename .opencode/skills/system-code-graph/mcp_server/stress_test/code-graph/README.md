@@ -14,22 +14,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES AND FLOW](#4--boundaries-and-flow)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `stress_test/code-graph/` contains Vitest stress coverage for scan breadth, context generation, degraded-mode behavior, change detection, manual diagnostics and denial-of-service caps. These tests exercise paths that are broader or more adversarial than normal unit tests.
@@ -41,11 +25,8 @@ Current state:
 - Exercises walker caps and doctor apply-mode policy in disposable temp workspaces.
 - Exports no runtime code.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -64,11 +45,8 @@ code-graph/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -82,11 +60,8 @@ code-graph/
 | `manual-diagnostics-stress.vitest.ts` | Stresses manual diagnostics output. |
 | `walker-dos-caps.vitest.ts` | Verifies traversal cap behavior under pressure. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -105,11 +80,8 @@ large, stale or adversarial fixture
   -> assertion on safety and behavior
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -120,11 +92,8 @@ large, stale or adversarial fixture
 | `doctor-apply-mode-stress.vitest.ts` | Test file | Doctor apply-mode policy coverage. |
 | `walker-dos-caps.vitest.ts` | Test file | Traversal cap coverage. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 6. VALIDATION
 
 Run from the repository root.
@@ -136,11 +105,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py --type readme .open
 
 Expected result: stress tests pass or explicitly skipped cases remain documented, and the README validator reports no blocking errors.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 7. RELATED
 
 | Document | Purpose |
@@ -149,5 +115,3 @@ Expected result: stress tests pass or explicitly skipped cases remain documented
 | [../../tests/README.md](../../tests/README.md) | Unit and integration test map. |
 | [../../lib/README.md](../../lib/README.md) | Runtime modules under stress coverage. |
 | [../../../manual_testing_playbook/manual_testing_playbook.md](../../../manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenario index. |
-
-<!-- /ANCHOR:related -->

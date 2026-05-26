@@ -9,15 +9,6 @@ This document captures the implemented behavior, source references, and validati
 
 ---
 
-## TABLE OF CONTENTS
-
-- [OVERVIEW](#1-overview)
-- [CURRENT REALITY](#2-current-reality)
-- [SOURCE FILES](#3-source-files)
-- [SOURCE METADATA](#4-source-metadata)
-
----
-
 ## 1. OVERVIEW
 
 This feature-reference file mirrors the feature-catalog snippet pattern: a short explanation of the flag family, the full current-reality table, and the source metadata needed to keep docs, implementation, and validation aligned.

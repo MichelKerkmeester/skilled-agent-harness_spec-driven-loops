@@ -13,7 +13,6 @@ Internal MCP tool for detecting and optionally applying missing inbound enhances
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -35,12 +34,8 @@ Enhance-edge propagation is a high-trust authoring helper: report first, write o
 - `mcp_server/handlers/skill-graph/propagate-enhances.ts`
 - [`tool_ids_reference.md`](../runtime/tool_ids_reference.md)
 
-
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-detection-rules -->
 ## 2. DETECTION RULES
 
 Three rules contribute to the composite confidence score with capped maximum contributions:
@@ -55,9 +50,6 @@ Family-inference is the strongest signal and requires at least three existing `e
 
 ---
 
-<!-- /ANCHOR:2-detection-rules -->
-
-<!-- ANCHOR:3-operation-modes -->
 ## 3. OPERATION MODES
 
 Three modes control read-write behavior:
@@ -70,9 +62,6 @@ Three modes control read-write behavior:
 
 ---
 
-<!-- /ANCHOR:3-operation-modes -->
-
-<!-- ANCHOR:4-invariants -->
 ## 4. INVARIANTS
 
 The tool enforces several invariants on every call:
@@ -85,9 +74,6 @@ The tool enforces several invariants on every call:
 
 ---
 
-<!-- /ANCHOR:4-invariants -->
-
-<!-- ANCHOR:5-when-it-runs -->
 ## 5. WHEN IT RUNS
 
 The tool is invoked manually through MCP with a trusted caller context. It is not triggered automatically by other handlers or hooks.
@@ -99,5 +85,3 @@ Typical use cases:
 - Validation runs that report candidate edges without writing, so operators can review the proposal before applying.
 
 The tool sits beside the eight other skill-graph tools as a low-frequency, high-trust authoring helper.
-
-<!-- /ANCHOR:5-when-it-runs -->

@@ -5,16 +5,12 @@ description: "The router preserves the graph (and degree) channel for find_decis
 
 # Graph channel preservation
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The router preserves the graph (and degree) channel for find_decision/find_spec intents and entity-rich short queries even at simple/moderate complexity tier, so causal-edge data is no longer ignored on natural queries.
 
 The complexity router used to gate the graph channel behind the >8-term complex tier, which natural user queries (1-5 terms) almost never hit. With 1,328 stored causal edges sitting unused on those queries, this feature adds a routing-layer override that fires graph based on intent and entity-density signals — turning previously-dormant traversal data into recall improvements without bloating the simple-tier latency budget. The override mirrors the existing `shouldPreserveBm25` precedent so the pattern stays consistent and feature-flag-revertible.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `shouldPreserveGraph(query, db)` lives next to `shouldPreserveBm25` in `query-router.ts` and returns a `{ preserved, reasons, includeDegree }` decision. Two gates fire it:
@@ -30,9 +26,6 @@ A 200-decision rolling ring in `routing-telemetry.ts` records every routing deci
 
 The `SPECKIT_GRAPH_CHANNEL_PRESERVATION` flag is **enabled by default** (`isGraphChannelPreservationEnabled()` returns true unless `SPECKIT_GRAPH_CHANNEL_PRESERVATION=false`). When disabled, the override no-ops and the channel set reverts to byte-for-byte pre-012 behavior — clean rollback path.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -68,12 +61,8 @@ The `SPECKIT_GRAPH_CHANNEL_PRESERVATION` flag is **enabled by default** (`isGrap
 | Default-on flag (`raw !== 'false'`) | `query-router.ts:isGraphChannelPreservationEnabled` | 182-198 |
 | Spec REQ-001..REQ-008 | `specs/.../009-causal-graph-channel-routing/spec.md` | 136-155 |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 - Group: Query Intelligence
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `12--query-intelligence/12-graph-channel-preservation.md`
 - Related entries: `12--query-intelligence/01-query-complexity-router.md` (tier classifier — unchanged here, override sits above it), `12--query-intelligence/11-graph-concept-routing.md` (graph traversal algorithm — unchanged here), `03--discovery/03-health-diagnostics-memoryhealth.md` (surfaces the new `data.routing` block)
-<!-- /ANCHOR:source-metadata -->

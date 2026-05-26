@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `advisor_validate` runs the real native validation bundle and surfaces the full 014 public contract rather than returning hard-coded pass values.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root is the working directory.
@@ -32,9 +28,6 @@ Validate that `advisor_validate` runs the real native validation bundle and surf
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Call:
@@ -90,9 +83,6 @@ advisor_validate({
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts`
@@ -101,14 +91,9 @@ advisor_validate({
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Native MCP Tools
 - Playbook ID: NC-003
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 01--native-mcp-tools/003-native-validate-slices.md
-
-<!-- /ANCHOR:5-source-metadata -->

@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -35,4 +34,3 @@ const config = {
 ### Phase 1: Setup
 
 Create files with placeholders in code blocks.
-<!-- /ANCHOR:implementation-plan -->

@@ -5,13 +5,6 @@ description: "Maps the live runtime safety surface for remediation: preflight ch
 
 # Runtime remediation, revalidation, and auto-repair workflows
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 This category captures the runtime remediation surface that now exists across the MCP server rather than inside one isolated "repair" module. In practice, remediation happens in several layers: `memory_save` can preview failures in `dryRun`, reject hard validation problems before mutation, auto-fix some recoverable formatting issues, and stop or downgrade later indexing when stronger validation says the spec-doc record is unsafe. Save-time revalidation is split across `preflight.ts`, the V-rule bridge, the quality loop, and the pre-storage quality gate.

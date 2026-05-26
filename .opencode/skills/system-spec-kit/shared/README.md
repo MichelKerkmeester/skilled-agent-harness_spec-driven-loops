@@ -13,23 +13,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. STRUCTURE](#3--structure)
-- [4. FEATURES](#4--features)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. RELATED DOCUMENTS](#8--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What is the shared/ Directory?
@@ -104,8 +87,6 @@ These modules support packet-doc-first continuity: `/spec_kit:resume` rebuilds a
 | Node.js              | 18+     | 20+         |
 | @huggingface/transformers | 2.0+    | Latest      |
 
-<!-- /ANCHOR:overview -->
-
 ---
 
 ## 1B. BOUNDARY AND IMPORT POLICY
@@ -119,7 +100,6 @@ These modules support packet-doc-first continuity: `/spec_kit:resume` rebuilds a
 
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 ### 30-Second Setup
@@ -162,11 +142,8 @@ const embedding: Float32Array = await generateDocumentEmbedding('How does authen
 console.log(`Embedding dimensions: ${embedding.length}`)
 ```
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 3. STRUCTURE
 
 ```
@@ -243,11 +220,8 @@ shared/
 | `utils/token-estimate.ts` | Shared token count estimation (chars/4 heuristic) |
 | `parsing/quality-extractors.ts` | Quality score and flags extraction from frontmatter |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 4. FEATURES
 
 ### Multi-Provider Embeddings (embeddings.ts)
@@ -324,11 +298,8 @@ The canonical source is the `shared/` package. `shared/embeddings.ts` is the pub
 | Offline    | Yes       | Yes      | No         | No        |
 | Default    | Auto when GGUF runtime is installed | Final fallback | Opt-in | Opt-in |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 ### Environment Variables
@@ -364,11 +335,8 @@ database/
 └── context-index__*.sqlite  # Active profile-keyed SQLite database files
 ```
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 ### Example 1: CLI Script Usage
@@ -460,11 +428,8 @@ console.log(result)
 | Extract triggers   | `extractTriggerPhrases(text)`     | Memory indexing     |
 | Pre-warm model     | `preWarmModel()`                  | Application startup |
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 ### Common Issues
@@ -545,11 +510,8 @@ node --input-type=module -e "const { extractTriggerPhrases } = await import('./d
 console.log(extractTriggerPhrases('memory search trigger extraction'))"
 ```
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED DOCUMENTS
 
 ### Internal Documentation
@@ -570,5 +532,3 @@ console.log(extractTriggerPhrases('memory search trigger extraction'))"
 | [BGE local fallback ONNX](https://huggingface.co/onnx-community/bge-base-en-v1.5-ONNX) | Fallback HF Local embedding model |
 | [Voyage AI](https://www.voyageai.com/)                                    | Cloud embedding provider (opt-in)  |
 | [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings)   | OpenAI embedding API docs          |
-
-<!-- /ANCHOR:related -->

@@ -9,14 +9,6 @@ trigger_phrases:
 
 # Plugin Bridges: Skill Advisor
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. FILE INVENTORY](#2--file-inventory)
-- [3. BOUNDARIES](#3--boundaries)
-- [4. VALIDATION](#4--validation)
-- [5. RELATED](#5--related)
-
 ---
 
 ## 1. OVERVIEW

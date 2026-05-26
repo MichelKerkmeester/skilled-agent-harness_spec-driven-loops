@@ -9,25 +9,10 @@ trigger_phrases:
 
 # Validation
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DATA FLOW](#2--data-flow)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
-<!-- /ANCHOR:table-of-contents -->
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/validation/` checks content before memory operations proceed. It catches malformed anchors, duplicate content, token-budget issues, content-size problems, and low-signal save payloads before the storage path runs.
 
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:data-flow -->
 ## 2. DATA FLOW
 
 ```text
@@ -41,8 +26,6 @@ content and save metadata
 
 The output is a typed result that callers can return in an envelope or use to stop a write before embedding and storage work starts.
 
-<!-- /ANCHOR:data-flow -->
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Purpose |
@@ -50,14 +33,10 @@ The output is a typed result that callers can return in an envelope or use to st
 | `preflight.ts` | Runs anchor, duplicate, token, and content-size checks |
 | `save-quality-gate.ts` | Scores save payloads with structural, content-quality, and semantic-dedup layers |
 
-<!-- /ANCHOR:key-files -->
-<!-- ANCHOR:boundaries -->
 ## 4. BOUNDARIES
 
 This module reports whether content is safe to continue. It does not write memory records, create embeddings, rewrite markdown, or format MCP responses.
 
-<!-- /ANCHOR:boundaries -->
-<!-- ANCHOR:entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Use |
@@ -71,8 +50,6 @@ This module reports whether content is safe to continue. It does not write memor
 | `runQualityGate()` | Run save quality layers when enabled |
 | `isQualityGateEnabled()` | Read the save-quality feature flag state |
 
-<!-- /ANCHOR:entrypoints -->
-<!-- ANCHOR:validation -->
 ## 6. VALIDATION
 
 - Anchor failures use `PF001` through `PF003`.
@@ -82,13 +59,9 @@ This module reports whether content is safe to continue. It does not write memor
 - Save quality checks return layer-specific reasons and a final `pass` value.
 - Thresholds are environment-configurable through the `MCP_*` and `SPECKIT_SAVE_QUALITY_GATE` settings.
 
-<!-- /ANCHOR:validation -->
-<!-- ANCHOR:related -->
 ## 7. RELATED
 
 - `../errors/README.md`
 - `../search/README.md`
 - `../storage/README.md`
 - `../../context-server.ts`
-
-<!-- /ANCHOR:related -->

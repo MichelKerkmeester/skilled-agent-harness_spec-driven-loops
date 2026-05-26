@@ -9,15 +9,6 @@ trigger_phrases:
 
 # Ranking Helpers: Learned Stage 2 Scoring
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. USAGE NOTES](#4--usage-notes)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED](#6--related)
-
 ## 1. OVERVIEW
 
 `shared/ranking/` owns local ranking math for Stage 2 scoring experiments. It keeps the learned score combiner and its numeric helpers outside runtime tool code so ranking behavior can be tested as pure TypeScript.

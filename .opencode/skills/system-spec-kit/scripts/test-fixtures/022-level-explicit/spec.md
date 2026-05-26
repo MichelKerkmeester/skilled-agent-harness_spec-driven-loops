@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Explicit Level
@@ -26,4 +25,3 @@ Tests explicit level declaration with bold format.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

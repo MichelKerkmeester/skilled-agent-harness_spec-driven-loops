@@ -13,7 +13,6 @@ Current state and roadmap for lib/skill-graph/ ownership inside system-skill-adv
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -35,12 +34,8 @@ Extraction is complete; future work here is documentation alignment unless a new
 - `mcp_server/lib/skill-graph/`
 - [SKILL.md](../../SKILL.md)
 
-
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-current-location -->
 ## 2. CURRENT LOCATION
 
 The `lib/skill-graph/` library resides inside the advisor skill package:
@@ -59,9 +54,6 @@ The library owns the SQLite schema, indexing logic and relationship query helper
 
 ---
 
-<!-- /ANCHOR:2-current-location -->
-
-<!-- ANCHOR:3-documentation-drift -->
 ## 3. DOCUMENTATION DRIFT
 
 Before the realignment, [SKILL.md](../../SKILL.md) stated that `lib/skill-graph/` database and query logic remained in `system-spec-kit` until a pending cleanup. That historical claim sat near the bottom of SKILL.md before the realignment delta corrected it.
@@ -70,9 +62,6 @@ That statement is outdated. The extraction completed earlier and no `skill-graph
 
 ---
 
-<!-- /ANCHOR:3-documentation-drift -->
-
-<!-- ANCHOR:4-extraction-status -->
 ## 4. EXTRACTION STATUS
 
 Extraction is complete. `lib/skill-graph/` is fully migrated to `system-skill-advisor/mcp_server/lib/skill-graph/`.
@@ -81,9 +70,6 @@ No pending extraction work remains. The old cleanup reference is obsolete and SK
 
 ---
 
-<!-- /ANCHOR:4-extraction-status -->
-
-<!-- ANCHOR:5-roadmap -->
 ## 5. ROADMAP
 
 The remaining work is purely documentation alignment, not code movement:
@@ -93,5 +79,3 @@ The remaining work is purely documentation alignment, not code movement:
 - Preserve a migration note where helpful so operators reading historical context understand the prior location.
 
 No further refactor is planned for `lib/skill-graph/` itself. Future ownership changes would be tracked as a separate packet with its own ADR and migration plan.
-
-<!-- /ANCHOR:5-roadmap -->

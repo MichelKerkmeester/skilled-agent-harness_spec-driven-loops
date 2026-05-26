@@ -14,7 +14,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate the Claude Code `UserPromptSubmit` adapter returns `hookSpecificOutput.additionalContext` and fails open.
@@ -23,9 +22,6 @@ Validate the Claude Code `UserPromptSubmit` adapter returns `hookSpecificOutput.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - MCP server build is current.
@@ -34,9 +30,6 @@ Validate the Claude Code `UserPromptSubmit` adapter returns `hookSpecificOutput.
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Build:
@@ -76,23 +69,15 @@ printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: CLI Hooks And Plugin
 - Playbook ID: CL-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 02--cli-hooks-and-plugin/001-claude-user-prompt-submit.md
-
-<!-- /ANCHOR:5-source-metadata -->

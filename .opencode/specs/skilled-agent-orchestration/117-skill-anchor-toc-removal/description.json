@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/117-skill-anchor-toc-removal",
+  "description": "Feature Specification: Skill Anchor + TOC Removal",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "anchor",
+    "toc",
+    "removal"
+  ],
+  "lastUpdated": "2026-05-26T09:39:34.285Z",
+  "specId": "117",
+  "folderSlug": "skill-anchor-toc-removal",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

@@ -43,8 +43,6 @@ Guide me through each step with the exact commands and configuration needed.
 
 ---
 
-## Table of Contents
-
 0. [AI-First Install Guide](#0-ai-first-install-guide)
 1. [Overview](#1-overview)
 2. [Prerequisites](#2-prerequisites)

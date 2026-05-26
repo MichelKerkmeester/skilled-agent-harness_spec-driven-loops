@@ -9,23 +9,8 @@ trigger_phrases:
 
 # Core Modules: Runtime Config and Database State
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `core/` is the shared runtime foundation for MCP server modules. It exposes configuration constants, database path resolution, input limits, scan cooldown settings, and database dependency rebinding.
@@ -37,11 +22,8 @@ Current responsibilities:
 - Initialize and rebind database-backed consumers when the vector index connection changes.
 - Track persistent index-scan timing and constitutional cache state.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -66,11 +48,8 @@ Current responsibilities:
 Dependency direction: callers ───▶ core/index.ts ───▶ config.ts and db-state.ts
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -81,11 +60,8 @@ core/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Responsibility |
@@ -94,11 +70,8 @@ core/
 | `db-state.ts` | Coordinates vector index initialization, database consumer rebinding, persistent scan timing, and constitutional cache access. |
 | `index.ts` | Re-exports the public core surface for server modules. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -136,11 +109,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -151,11 +121,8 @@ Main flow:
 | `reinitializeDatabase()` | Function | Reopens the vector index and rebinds DB consumers. |
 | `registerDatabaseRebindListener()` | Function | Lets modules react after the shared DB handle changes. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from `.opencode/skills/system-spec-kit/mcp_server`.
@@ -166,16 +133,11 @@ npx vitest run tests/unit-path-security.vitest.ts tests/symlink-realpath-hardeni
 
 Expected result: path security, symlink hardening, and database rebind paths pass.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../database/README.md`](../database/README.md)
 - [`../handlers/README.md`](../handlers/README.md)
 - [`../configs/README.md`](../configs/README.md)
 - [`../tests/README.md`](../tests/README.md)
-
-<!-- /ANCHOR:related -->

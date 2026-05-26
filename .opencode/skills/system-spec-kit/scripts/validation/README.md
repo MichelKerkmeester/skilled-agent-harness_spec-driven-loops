@@ -9,15 +9,6 @@ trigger_phrases:
 
 # Validation Scripts: Spec Packet Checks
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. USAGE NOTES](#4--usage-notes)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED](#6--related)
-
 ## 1. OVERVIEW
 
 `scripts/validation/` contains focused validators used by the Spec Kit validation flow. The scripts produce structured pass, warn or fail output that can be consumed by shell wrappers and strict validation gates.

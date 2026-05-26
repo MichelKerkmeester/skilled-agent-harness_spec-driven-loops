@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -28,4 +27,3 @@ L2 with case variations.
 ### Phase 1: Setup
 
 Create checklist with case variations.
-<!-- /ANCHOR:implementation-plan -->

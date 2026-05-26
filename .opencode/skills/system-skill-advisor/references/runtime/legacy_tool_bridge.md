@@ -13,7 +13,6 @@ Compatibility policy for stable advisor_* tool ids during the standalone System 
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -35,10 +34,8 @@ Server boundaries may move; public `advisor_*` and `skill_graph_*` tool ids stay
 - [`standalone_mcp_shape.md`](./standalone_mcp_shape.md)
 - [`tool_ids_reference.md`](./tool_ids_reference.md)
 
-
 ---
 
-<!-- ANCHOR:2-policy -->
 ## 2. POLICY
 
 Keep these public tool ids stable:
@@ -50,11 +47,8 @@ Keep these public tool ids stable:
 
 The MCP server namespace changes to `mk_skill_advisor`. The tool ids do not change.
 
-<!-- /ANCHOR:2-policy -->
-
 ---
 
-<!-- ANCHOR:3-why -->
 ## 3. WHY
 
 Live consumers already call `advisor_*` ids from:
@@ -68,15 +62,10 @@ Live consumers already call `advisor_*` ids from:
 
 A public rename would force broad consumer churn at the same time as the process move. ADR-001 chooses compatibility first.
 
-<!-- /ANCHOR:3-why -->
-
 ---
 
-<!-- ANCHOR:4-bridge-window -->
 ## 4. BRIDGE WINDOW
 
 During migration, `mk-spec-memory` may keep deprecated proxy tools or fail fast with a migration hint. That bridge exists only to protect callers while runtime configs and hooks move.
 
 After child 006, advisor tool ownership belongs to the standalone server.
-
-<!-- /ANCHOR:4-bridge-window -->

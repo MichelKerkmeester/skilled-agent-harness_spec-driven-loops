@@ -13,17 +13,6 @@ trigger_phrases:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. OWNERSHIP](#2--ownership)
-- [3. TREE AND KEY FILES](#3--tree-and-key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED](#6--related)
-
----
-
 ## 1. OVERVIEW
 
 `config/` owns JSONC settings read by Spec Kit memory, search and filtering code. These files are operator-editable configuration, not source modules.

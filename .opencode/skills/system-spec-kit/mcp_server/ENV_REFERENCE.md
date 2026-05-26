@@ -9,7 +9,6 @@ description: All SPECKIT_* environment variables used by the Spec Kit Memory MCP
 
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 All variables are optional. The server runs with sensible defaults when none are set. Variables use **graduated semantics** unless noted: they default to ON and you disable them by setting `=false`.
@@ -138,12 +137,8 @@ the publication guard helpers used by the evaluation dashboard.
 - Rows that fail the publication contract must surface one exclusion reason: `missing_methodology`, `missing_schema_version`, `missing_provenance`, or `unsupported_certainty`.
 - There is no environment variable that bypasses the row gate. Reporting toggles can add supporting evidence, but they cannot upgrade unsupported certainty values or fill in missing provenance.
 - The current dashboard reader remains aggregate-only. Future export or publication surfaces should import the shared gate helper instead of re-encoding eligibility logic in handler-local code.
-<!-- /ANCHOR:overview -->
 
 ---
-
-<!-- ANCHOR:toc -->
-## Table of Contents
 
 2. [Infrastructure](#2-infrastructure)
 3. [Search Pipeline: Core](#3-search-pipeline-core)
@@ -162,11 +157,9 @@ the publication guard helpers used by the evaluation dashboard.
 16. [Roadmap Phase Control](#16-roadmap-phase-control)
 17. [Deprecated](#17-deprecated)
 18. [Quick Start Examples](#18-quick-start-examples)
-<!-- /ANCHOR:toc -->
 
 ---
 
-<!-- ANCHOR:infrastructure -->
 ## 2. INFRASTRUCTURE
 
 | Variable | Default | Type | Description | Source |
@@ -192,11 +185,9 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED` | `false` | boolean | Opt-in save-time post-insert enrichment bundle for planner-first flows. Disabled by default on saves. | `lib/search/search-flags.ts` |
 | `SPECKIT_QUALITY_AUTO_FIX` | `false` | boolean | Opt-in save-time quality auto-fix retries for planner-first flows. Disabled by default on saves. | `lib/search/search-flags.ts` |
 | `SPECKIT_CODEX_HOOK_TIMEOUT_MS` | `3000` | number | Timeout (ms) for the Codex `UserPromptSubmit` hook and the skill-advisor subprocess execution when invoked from Codex. On timeout, the Codex hook returns a stale advisory brief instead of empty output, so operators who raise this value trade responsiveness for fresher advisor data. Set via environment variable before launching Codex. [026/009/012, flagged by 03] | `hooks/codex/user-prompt-submit.ts`, `skill-advisor/lib/subprocess.ts` |
-<!-- /ANCHOR:infrastructure -->
 
 ---
 
-<!-- ANCHOR:search-pipeline-core -->
 ## 3. SEARCH PIPELINE: CORE
 
 | Variable | Default | Type | Description | Source |
@@ -215,11 +206,9 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_DYNAMIC_TOKEN_BUDGET` | `true` | boolean | Dynamic token budget allocation by query complexity. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_TRM` | `true` | boolean | Transparent Reasoning Module: evidence-gap detection. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_ADAPTIVE_FUSION` | `true` | boolean | Intent-aware adaptive fusion with document-type weight shifting. Graduated ON. | `shared/algorithms/adaptive-fusion.ts` |
-<!-- /ANCHOR:search-pipeline-core -->
 
 ---
 
-<!-- ANCHOR:search-pipeline-fusion -->
 ## 4. SEARCH PIPELINE: FUSION AND SCORING
 
 | Variable | Default | Type | Description | Source |
@@ -240,11 +229,9 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_FOLDER_BOOST_FACTOR` | `1.3` | number | Multiplier applied to results matching the discovered spec folder. | `handlers/memory-context.ts` |
 | `SPECKIT_FOLDER_TOP_K` | `5` | number | Number of top folder-scored results to inject. | `lib/search/hybrid-search.ts` |
 | `SPECKIT_FOLDER_DISCOVERY` | `true` | boolean | Automatic spec folder discovery via description cache (PI-B3). Graduated ON. | `lib/search/search-flags.ts` |
-<!-- /ANCHOR:search-pipeline-fusion -->
 
 ---
 
-<!-- ANCHOR:search-pipeline-query -->
 ## 5. SEARCH PIPELINE: QUERY INTELLIGENCE
 
 | Variable | Default | Type | Description | Source |
@@ -258,11 +245,9 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_HYDE_LOG` | `false` | boolean | Enable verbose HyDE generation logging. Opt-in. | `lib/search/hyde.ts` |
 | `SPECKIT_INTENT_CONFIDENCE_FLOOR` | `0.25` | number | Minimum confidence for auto-detected intent. Below this, overrides to "understand". | `handlers/memory-search.ts` |
 | `SPECKIT_INTENT_AUTO_PROFILE` | `true` | boolean | Intent-to-profile auto-routing: auto-selects response profile from classifyIntent() results. Graduated ON. | `lib/search/search-flags.ts` |
-<!-- /ANCHOR:search-pipeline-query -->
 
 ---
 
-<!-- ANCHOR:graph -->
 ## 6. GRAPH
 
 | Variable | Default | Type | Description | Source |
@@ -295,7 +280,6 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_ENTITY_LINKING_MAX_DENSITY` | `1.0` | number | Density guard threshold: skip entity linking when projected graph density exceeds this value. | `lib/search/entity-linker.ts` |
 | `SPECKIT_AUTO_ENTITIES` | `true` | boolean | Auto entity extraction: rule-based noun-phrase extraction at save time (R10). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_RESULT_PROVENANCE` | `true` | boolean | Include graph evidence metadata (edges, communities, boost factors) in search results (Phase C T027). Graduated ON. | `lib/search/search-flags.ts` |
-<!-- /ANCHOR:graph -->
 
 ---
 
@@ -321,7 +305,6 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 
 ---
 
-<!-- ANCHOR:graph-calibration -->
 ## 7. GRAPH: CALIBRATION
 
 | Variable | Default | Type | Description | Source |
@@ -331,11 +314,9 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_N2B_CAP` | (profile) | number | N2b cap for RRF fusion overflow prevention. Overrides the active calibration profile value. | `lib/search/graph-calibration.ts` |
 | `SPECKIT_LOUVAIN_MIN_DENSITY` | (profile) | number | Minimum graph density required to activate Louvain community detection. | `lib/search/graph-calibration.ts` |
 | `SPECKIT_LOUVAIN_MIN_SIZE` | (profile) | number | Minimum component node count required to activate Louvain. | `lib/search/graph-calibration.ts` |
-<!-- /ANCHOR:graph-calibration -->
 
 ---
 
-<!-- ANCHOR:cognitive -->
 ## 8. COGNITIVE
 
 | Variable | Default | Type | Description | Source |
@@ -355,11 +336,9 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_MEMORY_ADAPTIVE_MODE` | `shadow` | string | Adaptive ranking mode: `shadow` (evaluation-only, do not apply) or `promoted` (apply to ranking). | `lib/cognitive/adaptive-ranking.ts` |
 | `SPECKIT_RECENCY_DECAY_DAYS` | (internal) | number | Number of days for recency decay calculation in access tracking. | `lib/storage/access-tracker.ts` |
 | `SPECKIT_EVENT_DECAY` | `true` | boolean | Event decay processing in working memory. Graduated ON. | `lib/cognitive/working-memory.ts` (via tests) |
-<!-- /ANCHOR:cognitive -->
 
 ---
 
-<!-- ANCHOR:feedback-learning -->
 ## 9. FEEDBACK AND LEARNING
 
 | Variable | Default | Type | Description | Source |
@@ -377,11 +356,9 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_SAVE_QUALITY_GATE` | `true` | boolean | Pre-storage quality gate for memory saves. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS` | `true` | boolean | Short-critical quality gate exception for decision context types (REQ-D4-003). Graduated ON. | `lib/search/search-flags.ts`, `lib/validation/save-quality-gate.ts` |
 | `SPECKIT_QUALITY_LOOP` | `true` | boolean | Verify-fix-verify memory quality loop (T008). Graduated ON. | `lib/search/search-flags.ts` |
-<!-- /ANCHOR:feedback-learning -->
 
 ---
 
-<!-- ANCHOR:governance-scope -->
 ## 10. GOVERNANCE AND SCOPE
 
 | Variable | Default | Type | Description | Source |
@@ -392,11 +369,9 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_MEMORY_ADAPTIVE_RANKING` | `false` | boolean | Adaptive ranking capability. **Default OFF**: opt-in. | `lib/config/capability-flags.ts` |
 | `SPECKIT_RETENTION_SWEEP` | `true` | boolean | Governed memory retention sweep. Graduated ON; set `false` to disable the background interval. Manual `memory_retention_sweep` remains available. | `lib/session/session-manager.ts` |
 | `SPECKIT_RETENTION_SWEEP_INTERVAL_MS` | `3600000` | number | Background retention sweep interval in milliseconds. Values must be positive integers; invalid values fall back to one hour. | `lib/session/session-manager.ts` |
-<!-- /ANCHOR:governance-scope -->
 
 ---
 
-<!-- ANCHOR:ux-formatting -->
 ## 11. UX AND RESPONSE FORMATTING
 
 | Variable | Default | Type | Description | Source |
@@ -410,11 +385,9 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_RESULT_EXPLAIN_DEBUG` | `false` | boolean | Detailed debug-level result explainability. Opt-in: set `true` to enable. | `formatters/search-results.ts` |
 | `SPECKIT_RESPONSE_PROFILE_V1` | `true` | boolean | Mode-aware response profile formatting (REQ-D5-003). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_RESPONSE_TRACE` | `false` | boolean | Include full retrieval trace in search responses. Opt-in: set `true` to enable. | `handlers/memory-search.ts` |
-<!-- /ANCHOR:ux-formatting -->
 
 ---
 
-<!-- ANCHOR:eval-telemetry -->
 ## 12. EVALUATION AND TELEMETRY
 
 | Variable | Default | Type | Description | Source |
@@ -431,11 +404,9 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 - Default: `false`
 - Rollout gate: only enable after the frozen corpus benchmark shows combined configuration dominates baseline and component-only variants on lower cost with equal-or-better pass rate.
 - Design context: local configuration contract
-<!-- /ANCHOR:eval-telemetry -->
 
 ---
 
-<!-- ANCHOR:indexing -->
 ## 13. INDEXING
 
 | Variable | Default | Type | Description | Source |
@@ -447,11 +418,9 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_ONTOLOGY_SCHEMA` | (built-in) | string | Custom JSON ontology schema for extraction validation. | `lib/extraction/ontology-hooks.ts` |
 | `SPECKIT_EXTRACTION` | `true` | boolean | Entity/relation extraction pipeline. Graduated ON. | `lib/search/search-flags.ts` (via tests) |
 | `SPECKIT_FILE_WATCHER` | `false` | boolean | Real-time file watcher for markdown reindexing. **Default OFF**: opt-in. Honors ROLLOUT_PERCENT. | `lib/search/search-flags.ts` |
-<!-- /ANCHOR:indexing -->
 
 ---
 
-<!-- ANCHOR:embedding -->
 ## 15. EMBEDDING
 
 Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDDINGS_PROVIDER=auto`, the runtime probes this **local-first** sequence (ADR-014, 2026-05-19): (1) Ollama — first pulled model in ADR-013 priority order (`nomic-embed-text-v1.5` 768d, then `jina-embeddings-v3` 1024d, `bge-m3` 1024d, `mxbai-embed-large-v1` 1024d); (2) hf-local — `sentence-transformers` importable, default `nomic-ai/nomic-embed-text-v1.5` (768d, same family as the Ollama default); (3) OpenAI — `OPENAI_API_KEY` set, `text-embedding-3-small` (1536d); (4) Voyage — `VOYAGE_API_KEY` set, `voyage-code-3` (1024d). If you override only `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR`, the sqlite filename is derived automatically from that active profile.
@@ -470,11 +439,9 @@ For the simplest local-first new-user setup, install [Ollama](https://ollama.com
 | `SPECKIT_EMBED_CACHE_PROFILE_MAX_BYTES` | `52428800` | number | Per-profile cap for persistent embedding cache rows. Defaults to 50 MB per active embedder profile. | `lib/cache/embedding-cache.ts` |
 | `SPECKIT_QUERY_EMBED_CACHE_MAX_BYTES` | `26214400` | number | Separate cap for cached query embeddings (`input_kind='query'`). Defaults to 25 MB. | `lib/cache/embedding-cache.ts` |
 | `SPECKIT_EMBED_CACHE_MAX_ENTRIES_PER_PROFILE` | `50000` | number | Secondary safety cap on embedding cache row count per profile after byte limits are applied. | `lib/cache/embedding-cache.ts` |
-<!-- /ANCHOR:embedding -->
 
 ---
 
-<!-- ANCHOR:roadmap-phase-control -->
 ## 16. ROADMAP PHASE CONTROL
 
 These variables control the live memory roadmap snapshot.
@@ -485,11 +452,9 @@ These variables control the live memory roadmap snapshot.
 | `SPECKIT_MEMORY_LINEAGE_STATE` | `true` | boolean | Lineage tracking. |
 | `SPECKIT_MEMORY_GRAPH_UNIFIED` | `true` | boolean | Graph unified mode. |
 | `SPECKIT_MEMORY_ADAPTIVE_RANKING` | `false` | boolean | Adaptive ranking (opt-in). |
-<!-- /ANCHOR:roadmap-phase-control -->
 
 ---
 
-<!-- ANCHOR:deprecated -->
 ## 17. DEPRECATED
 
 These variables are no longer active but may still appear in compatibility code.
@@ -500,11 +465,9 @@ These variables are no longer active but may still appear in compatibility code.
 | `SPECKIT_LAZY_LOADING` | **Deprecated** | (removed) | Lazy loading is always enabled. Compatibility flag. |
 | `SPECKIT_SHADOW_SCORING` | **Deprecated** | `SPECKIT_SHADOW_FEEDBACK` | Shadow scoring flag removed. Shadow evaluation uses SHADOW_FEEDBACK. |
 | `SPECKIT_RSF_FUSION` | **Deprecated** | `SPECKIT_RRF` | Referenced in tests only. Legacy alias. |
-<!-- /ANCHOR:deprecated -->
 
 ---
 
-<!-- ANCHOR:skill-advisor -->
 ## SKILL ADVISOR
 
 Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer and prompt-policy engine at runtime without code changes.
@@ -522,7 +485,6 @@ Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer a
 | `SPECKIT_ADVISOR_PROMPT_POLICY_LONG_NON_CASUAL_CHARS` | `50` | number | The visible-character threshold for the long-non-casual-prompt fire rule. | `mcp_server/lib/prompt-policy.ts` |
 | `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` | `{"explicit_author":0.42,"lexical":0.28,"graph_causal":0.13,"derived_generated":0.12,"semantic_shadow":0.05}` | JSON string (partial merge) | Override live-lane weights for the 5-lane fusion scorer. JSON object with any subset of `explicit_author`, `lexical`, `graph_causal`, `derived_generated`, `semantic_shadow` (all numbers in `[0, 1]`). Missing keys retain defaults; invalid JSON, non-object values, out-of-range numbers, and unknown lane ids fall back to defaults. | `mcp_server/lib/scorer/lane-registry.ts` |
 | `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` | `{"explicit_author":0.40,"lexical":0.25,"graph_causal":0.20,"derived_generated":0.10,"semantic_shadow":0.05}` | JSON string (partial merge) | Override shadow-mode lane weights for the 5-lane fusion scorer's `weightedScore` calculation in `advisor-recommend.ts`. Same shape, merge semantics, and validation rules as `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`. | `mcp_server/lib/scorer/lane-registry.ts` |
-<!-- /ANCHOR:skill-advisor -->
 
 ---
 
@@ -538,7 +500,6 @@ Cascade-probe timing overrides for the embedder auto-selection cascade. Defaults
 
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 18. QUICK START EXAMPLES
 
 ### Disable a Graduated Feature
@@ -591,7 +552,6 @@ export SPECKIT_ENTITY_LINKING=false
 export SPECKIT_HYDE=false
 export SPECKIT_LLM_REFORMULATION=false
 ```
-<!-- /ANCHOR:quick-start -->
 
 ---
 

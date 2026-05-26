@@ -15,26 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 FEATURE HIGHLIGHTS](#31--feature-highlights)
-  - [3.2 FEATURE REFERENCE](#32--feature-reference)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What This Skill Does
@@ -67,11 +47,8 @@ The skill supports 3 models (Opus 4.6, Sonnet 4.6, Haiku 4.5), 9 specialized age
 
 Requirements include the `@anthropic-ai/claude-code` CLI (install via `npm install -g @anthropic-ai/claude-code`), authentication via `ANTHROPIC_API_KEY` or OAuth (API key for programmatic use, OAuth for interactive), and Node.js 18+ (required for npm installation).
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 ### 1. Verify Installation
@@ -99,11 +76,8 @@ claude -p "Explain the architecture of src/auth/" --output-format text 2>&1
 claude -p "Review this module for security issues" --agent review --permission-mode plan --output-format text 2>&1
 ```
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -168,11 +142,8 @@ The agent system adds specialization on top of these foundations. Nine agents co
 | `ai-council` | Multi-strategy planning | `--agent ai-council --permission-mode plan` |
 | `write` | Documentation generation | `--agent write` |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -188,11 +159,8 @@ cli-claude-code/
     integration_patterns.md             # Cross-AI orchestration patterns
 ```
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 ### Authentication
@@ -219,11 +187,8 @@ claude -p "prompt" --model claude-opus-4-6 --output-format text 2>&1
 | (default) | Asks before each operation | Standard interactive use |
 | `bypassPermissions` | Auto-approves everything | Automation (requires user consent) |
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 ### Deep Reasoning with Extended Thinking
@@ -256,11 +221,8 @@ claude -p "Generate full test coverage for src/utils/" \
   --model claude-sonnet-4-6 --max-budget-usd 2.00 --output-format text 2>&1 &
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 ### Claude Code CLI Not Found
@@ -287,11 +249,8 @@ claude -p "Generate full test coverage for src/utils/" \
 **Common causes**: `--max-budget-usd` set too low for the task complexity.
 **Fix**: Increase the budget or use a cheaper model (Haiku for batch operations, Sonnet for general tasks).
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 ### General
@@ -318,11 +277,8 @@ A: Match the task type to the agent roster in Section 3.2. For read-only explora
 **Q: Can I create custom agents?**
 A: Yes. Add markdown files to `.claude/agents/` for Claude Code agent definitions. See `agent_delegation.md` for the agent definition format.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 ### Skill Resources
@@ -336,5 +292,3 @@ A: Yes. Add markdown files to `.claude/agents/` for Claude Code agent definition
 ### Related Skills
 - [cli-codex](../cli-codex/): OpenAI Codex CLI orchestrator
 - [cli-gemini](../cli-gemini/): Google Gemini CLI orchestrator
-
-<!-- /ANCHOR:related-documents -->

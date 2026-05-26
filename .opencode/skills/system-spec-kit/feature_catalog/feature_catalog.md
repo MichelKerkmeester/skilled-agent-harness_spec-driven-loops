@@ -10,33 +10,6 @@ This document is the current feature inventory for the Spec Kit Memory system. I
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. RETRIEVAL](#2--retrieval)
-- [3. MUTATION](#3--mutation)
-- [4. DISCOVERY](#4--discovery)
-- [5. MAINTENANCE](#5--maintenance)
-- [6. LIFECYCLE](#6--lifecycle)
-- [7. ANALYSIS](#7--analysis)
-- [8. EVALUATION](#8--evaluation)
-- [9. BUG FIXES AND DATA INTEGRITY](#9--bug-fixes-and-data-integrity)
-- [10. EVALUATION AND MEASUREMENT](#10--evaluation-and-measurement)
-- [11. GRAPH SIGNAL ACTIVATION](#11--graph-signal-activation)
-- [12. SCORING AND CALIBRATION](#12--scoring-and-calibration)
-- [13. QUERY INTELLIGENCE](#13--query-intelligence)
-- [14. MEMORY QUALITY AND INDEXING](#14--memory-quality-and-indexing)
-- [15. PIPELINE ARCHITECTURE](#15--pipeline-architecture)
-- [16. RETRIEVAL ENHANCEMENTS](#16--retrieval-enhancements)
-- [17. TOOLING AND SCRIPTS](#17--tooling-and-scripts)
-- [18. GOVERNANCE](#18--governance)
-- [19. FEATURE FLAG REFERENCE](#19--feature-flag-reference)
-- [20. REMEDIATION REVALIDATION](#20--remediation-revalidation)
-- [21. IMPLEMENT AND REMOVE DEPRECATED FEATURES](#21--implement-and-remove-deprecated-features)
-- [22. CONTEXT PRESERVATION AND CODE GRAPH](#22--context-preservation)
-
----
-
 ## 1. OVERVIEW
 
 Use this catalog as the canonical inventory for both current behavior and delivered refinements. The numbered sections below group the live system by feature area so operators can move from the top-level reference into the per-feature files without losing implementation, validation, or rollout context.
@@ -4722,7 +4695,6 @@ These variables are read at runtime to annotate checkpoint and evaluation record
 Source file references are included in the flag table above.
 
 See [`19--feature-flag-reference/07-7-ci-and-build-informational.md`](19--feature-flag-reference/07-7-ci-and-build-informational.md) for full flag reference details.
-<!-- /ANCHOR:state -->
 
 ---
 

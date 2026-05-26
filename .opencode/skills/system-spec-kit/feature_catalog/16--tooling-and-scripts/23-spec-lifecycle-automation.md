@@ -5,13 +5,6 @@ description: "Coordinated shell-script lifecycle for recommending spec depth, cr
 
 # Spec Lifecycle Automation
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 Spec Lifecycle Automation is the shell-script toolchain that moves Spec Kit work through its operational lifecycle instead of treating spec folders as static templates.

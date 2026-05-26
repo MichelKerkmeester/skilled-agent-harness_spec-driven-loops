@@ -14,16 +14,6 @@ trigger_phrases:
 
 `lib/telemetry/` defines safe observability shapes for retrieval and scoring. Runtime code records bounded telemetry for active requests. Maintenance code samples traces, audits scoring signals, and reviews stored channel contribution data.
 
-## Table of Contents
-
-- [1. OVERVIEW](#1--overview)
-- [2. TOPOLOGY](#2--topology)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
 ## 1. OVERVIEW
 
 Telemetry is an observation layer. It must not decide ranking, mutate memory records, or make recovery choices. Retrieval handlers can rely on stable data shapes even when extended telemetry is disabled.

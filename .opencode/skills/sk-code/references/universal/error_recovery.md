@@ -116,8 +116,6 @@ State: what failed (verbatim), what you tried, what you suspect, and what you pr
 
 ---
 
----
-
 ## 5. RELATED RESOURCES
 
 - `assets/universal/checklists/debugging_checklist.md` - 4-phase debugging workflow that wraps this recovery flow.

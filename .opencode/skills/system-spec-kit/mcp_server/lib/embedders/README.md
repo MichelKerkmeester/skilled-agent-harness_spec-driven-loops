@@ -9,15 +9,6 @@ trigger_phrases:
 
 # MCP Embedders Library
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. OWNERSHIP](#2--ownership)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-
 ## 1. OVERVIEW
 
 `lib/embedders/` owns mk-spec-memory runtime embedding orchestration. It adapts the shared embedder registry into MCP server behavior, routes local versus sidecar execution, and coordinates reindex workflows.

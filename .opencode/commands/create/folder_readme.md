@@ -466,15 +466,15 @@ README STEP 2 (Discovery) REQUIREMENTS:
 
 README STEP 4 (Generation) REQUIREMENTS:
 ├─ MUST include title + tagline
-├─ MUST include TABLE OF CONTENTS
 ├─ MUST use numbered sections
 ├─ MUST include tables for structured data
+├─ MUST NOT include a Table of Contents or <!-- ANCHOR --> comments
 └─ MUST NOT leave placeholder content
 
 README STEP 5 (Validation) REQUIREMENTS:
-├─ MUST verify all sections are linked in TOC
 ├─ MUST check no placeholders remain
 ├─ MUST validate horizontal rules present
+├─ MUST confirm no Table of Contents was added
 └─ MUST NOT claim "complete" without structure check
 
 INSTALL GUIDE REQUIREMENTS:
@@ -491,7 +491,7 @@ INSTALL GUIDE REQUIREMENTS:
 
 Create comprehensive documentation following sk-doc quality standards:
 
-- **README operation**: AI-optimized README.md with proper structure, table of contents, and comprehensive documentation following the patterns from SpecKit, Memory System, and Code Environment READMEs.
+- **README operation**: AI-optimized README.md with proper structure and comprehensive documentation following the patterns from SpecKit, Memory System, and Code Environment READMEs.
 - **Install guide operation**: AI-first installation guide with clear prerequisites, step-by-step instructions, copy-paste AI prompt, and thorough troubleshooting.
 
 ---
@@ -622,7 +622,7 @@ After documentation creation completes, suggest relevant next steps:
 
 | Condition               | Suggested Command                  | Reason                         |
 | ----------------------- | ---------------------------------- | ------------------------------ |
-| README created          | Review and verify links work       | Confirm TOC links correctly    |
+| README created          | Review and verify links work       | Confirm internal links resolve |
 | Install guide created   | Test AI-First prompt               | Verify installation works      |
 | Need the other type     | `/create:folder_readme [op] ...`   | Create companion documentation |
 | Create another document | `/create:folder_readme [op] ...`   | Document related component     |

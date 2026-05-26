@@ -13,16 +13,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate the recovery path when the native advisor graph state is unavailable because SQLite is corrupt or unreadable.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Run corruption simulation only in a disposable copy.
@@ -31,9 +27,6 @@ Validate the recovery path when the native advisor graph state is unavailable be
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. In a disposable copy, replace the copied `skill-graph.sqlite` with invalid bytes.
@@ -71,9 +64,6 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/freshness/rebuild-from-source.ts`
@@ -81,14 +71,9 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Operator H5
 - Playbook ID: OP-003
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 04--operator-h5/003-unavailable-daemon.md
-
-<!-- /ANCHOR:5-source-metadata -->

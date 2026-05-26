@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Memory Placeholders
@@ -26,4 +25,3 @@ Tests placeholders in memory/ directory are skipped.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

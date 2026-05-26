@@ -12,20 +12,8 @@ trigger_phrases:
 
 # KPI Scripts
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. PACKAGE TOPOLOGY](#2-package-topology)
-- [3. ENTRYPOINTS](#3-entrypoints)
-- [4. VALIDATION](#4-validation)
-- [5. RELATED](#5-related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scripts/kpi/` reports defect rates for generated continuity support
@@ -39,11 +27,8 @@ Boundary:
 - Generated memory artifacts are supporting evidence only.
 - Defect rates are reported, not enforced; callers decide thresholds.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -67,11 +52,8 @@ Metrics:
 | Contamination rate | AI process leakage such as "Let me analyze" |
 | Empty trigger phrase rate | Frontmatter with no `trigger_phrases` entries |
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 3. ENTRYPOINTS
 
 Run from the repository root:
@@ -84,11 +66,8 @@ bash .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh \
 
 The optional argument is a spec-folder path relative to `.opencode/specs/`.
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 4. VALIDATION
 
 Use repository-root commands:
@@ -103,16 +82,11 @@ console.log('valid json')"
 Expected behavior: the first command exits `0`, writes JSON to stdout and
 prints a `KPI Summary:` line to stderr.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 5. RELATED
 
 - [`../README.md`](../README.md)
 - [`../memory/README.md`](../memory/README.md)
 - [`../evals/README.md`](../evals/README.md)
 - [`../tests/README.md`](../tests/README.md)
-
-<!-- /ANCHOR:related -->

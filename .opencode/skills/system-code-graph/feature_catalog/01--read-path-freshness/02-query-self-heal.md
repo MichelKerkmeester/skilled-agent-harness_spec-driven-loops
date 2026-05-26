@@ -10,13 +10,10 @@ importance_tier: "important"
 
 # Query self-heal
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `code_graph_query` is a structural read surface for outline, call, import and blast-radius queries. Before answering, it asks the readiness helper for a bounded repair opportunity.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -30,9 +27,7 @@ half. Code graph freshness checks are half-auto. `code_graph_query` has conditio
 ### Caveats / Fallback
 
 When stale files exceed the selective threshold or Git HEAD changed, query blocks and tells the operator to run `code_graph_scan`. Use `rg` when readiness crashes or the graph is unavailable.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -50,9 +45,6 @@ When stale files exceed the selective threshold or Git HEAD changed, query block
 |---|---|---|
 | `../../manual_testing_playbook/01--read-path-freshness/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Read path freshness
@@ -64,4 +56,3 @@ Related references:
 - [01-ensure-code-graph-ready.md](./01-ensure-code-graph-ready.md)
 - [../06--mcp-tool-surface/01-tool-registrations.md](../06--mcp-tool-surface/01-tool-registrations.md)
 - [../../manual_testing_playbook/01--read-path-freshness/002-query-self-heal-stale-file.md](../../manual_testing_playbook/01--read-path-freshness/002-query-self-heal-stale-file.md)
-<!-- /ANCHOR:source-metadata -->

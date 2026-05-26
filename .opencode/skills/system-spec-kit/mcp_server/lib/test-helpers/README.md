@@ -8,13 +8,6 @@ trigger_phrases:
 
 # Test Helpers: Shared Test Utilities
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. KEY FILES](#2--key-files)
-- [3. USAGE NOTES](#3--usage-notes)
-- [4. RELATED RESOURCES](#4--related-resources)
-
 ## 1. OVERVIEW
 
 `lib/test-helpers/` contains small helpers used by MCP server tests. These modules are test support only and should not become product runtime dependencies.

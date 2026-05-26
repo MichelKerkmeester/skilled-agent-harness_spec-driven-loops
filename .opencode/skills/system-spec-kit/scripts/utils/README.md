@@ -11,21 +11,8 @@ trigger_phrases:
 
 # Script Utilities
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. PACKAGE TOPOLOGY](#2-package-topology)
-- [3. BOUNDARIES](#3-boundaries)
-- [4. ENTRYPOINTS](#4-entrypoints)
-- [5. VALIDATION](#5-validation)
-- [6. RELATED](#6-related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scripts/utils/` contains reusable helpers for the system-spec-kit script
@@ -40,11 +27,8 @@ Current responsibilities:
 - Script logging, messages and prompt utilities.
 - Tool, source and workspace identity detection.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -80,11 +64,8 @@ scripts/dist/utils/*.d.ts
 scripts/dist/utils/*.js.map
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:boundaries -->
 ## 3. BOUNDARIES
 
 Allowed direction:
@@ -99,11 +80,8 @@ Disallowed direction:
 - Utilities should not call CLI entrypoints.
 - Path helpers must not relax containment checks without explicit caller bases.
 
-<!-- /ANCHOR:boundaries -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 4. ENTRYPOINTS
 
 This folder has no standalone CLI. Consumers import specific helpers after the
@@ -117,11 +95,8 @@ node -e "import('./.opencode/skills/system-spec-kit/scripts/dist/utils/index.js'
 .then(m => console.log(Object.keys(m).length))"
 ```
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 5. VALIDATION
 
 Use repository-root commands:
@@ -137,16 +112,11 @@ node -e "import('./.opencode/skills/system-spec-kit/scripts/dist/utils/index.js'
 Expected behavior: the build succeeds, `sanitizePath` resolves as a function
 and the aggregate utility module imports without throwing.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 6. RELATED
 
 - [`../README.md`](../README.md)
 - [`../lib/README.md`](../lib/README.md)
 - [`../core/README.md`](../core/README.md)
 - [`../../references/validation/path_scoped_rules.md`](../../references/validation/path_scoped_rules.md)
-
-<!-- /ANCHOR:related -->

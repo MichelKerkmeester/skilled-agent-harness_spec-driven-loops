@@ -84,7 +84,7 @@ manual_testing_playbook/
 The root playbook is the directory and review surface for the whole package.
 
 It should own:
-- frontmatter, H1 intro, and `TABLE OF CONTENTS`
+- frontmatter and H1 intro
 - global overview and coverage note
 - global preconditions
 - global evidence requirements

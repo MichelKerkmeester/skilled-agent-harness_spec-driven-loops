@@ -12,14 +12,10 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Stop a skill from gaming routing by spamming trigger phrases or crafting adversarial content designed to dominate the derived lane. Caps and density checks keep derived evidence honest.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `lib/derived/anti-stuffing.ts` enforces:
@@ -30,9 +26,6 @@ Stop a skill from gaming routing by spamming trigger phrases or crafting adversa
 
 Demoted or rejected entries never reach the scorer, so stuffed fixtures cannot outrank honest candidates.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -47,9 +40,7 @@ Demoted or rejected entries never reach the scorer, so stuffed fixtures cannot o
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | derived-lane boundary behavior |
 | `Playbook scenario [AI-005](../../manual_testing_playbook/06--auto-indexing/005-anti-stuffing.md).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Auto indexing
@@ -60,4 +51,3 @@ Related references:
 
 - [01-derived-extraction.md](./01-derived-extraction.md).
 - [02-sanitizer.md](./02-sanitizer.md).
-<!-- /ANCHOR:source-metadata -->

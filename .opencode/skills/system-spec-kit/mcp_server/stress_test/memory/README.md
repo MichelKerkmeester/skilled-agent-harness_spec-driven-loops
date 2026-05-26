@@ -9,16 +9,6 @@ trigger_phrases:
 
 # Memory Stress Tests: Gate D Benchmarks
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES AND FLOW](#4--boundaries-and-flow)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
 ---
 
 ## 1. OVERVIEW

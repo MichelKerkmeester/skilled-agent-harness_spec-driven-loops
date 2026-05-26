@@ -5,16 +5,12 @@ description: "The query complexity router classifies incoming queries by term co
 
 # Query complexity router
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The query complexity router classifies incoming queries by term count and trigger match to select how many search channels run.
 
 Not every question needs the same amount of effort to answer. This feature sizes up your question first, like a triage nurse, and routes simple lookups through a fast path while sending complex research questions through a deeper search. Without it, every question would get the full heavy-duty treatment, wasting time and resources on things that could be answered in seconds.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 Not all queries need the full 5-channel pipeline. A short trigger-phrase lookup like "memory save rules" is wasted on graph traversal and BM25 scoring.
@@ -25,9 +21,6 @@ The `SPECKIT_COMPLEXITY_ROUTER` flag is **enabled by default** (graduated Sprint
 
 The router's classification tier (`routeResult.tier`) is propagated into `traceMetadata.queryComplexity` in hybrid search (CHK-038), making it available in response envelopes when `includeTrace: true`. The formatter reads this via a fallback path from `traceMetadata` when stage metadata is unavailable.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -59,11 +52,7 @@ The router's classification tier (`routeResult.tier`) is propagated into `traceM
 | Tier propagated to `traceMetadata.queryComplexity` | `hybrid-search.ts` | CHK-038 |
 | Classification accuracy tests | `query-classifier.vitest.ts` | — |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 - Group: Query Intelligence
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `12--query-intelligence/01-query-complexity-router.md`
-<!-- /ANCHOR:source-metadata -->

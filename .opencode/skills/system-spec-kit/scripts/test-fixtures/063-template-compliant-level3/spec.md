@@ -23,7 +23,6 @@ This fixture provides a structurally compliant Level 3 spec folder for validator
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -33,11 +32,9 @@ This fixture provides a structurally compliant Level 3 spec folder for validator
 | **Status** | Complete |
 | **Created** | 2026-03-16 |
 | **Branch** | `063-level3-fixture` |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -45,11 +42,9 @@ Validation test fixtures lacked a Level 3 compliant folder. This prevents testin
 
 ### Purpose
 Provide a structurally compliant Level 3 folder that the validator should accept without errors or warnings in strict mode.
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -67,11 +62,9 @@ Provide a structurally compliant Level 3 folder that the validator should accept
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `test-fixtures/063-template-compliant-level3/*` | Create | Level 3 compliance fixtures |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -91,11 +84,9 @@ Provide a structurally compliant Level 3 folder that the validator should accept
 | REQ-006 | Strict validation passes cleanly | `validate.sh --strict` exit code 0 |
 | REQ-007 | Section counts meet Level 3 minimums | SECTION_COUNTS passes |
 | REQ-008 | Level consistent across all files | LEVEL_MATCH passes |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: **Given** strict mode is enabled, **Then** the fixture passes with 0 errors and 0 warnings.
@@ -104,11 +95,9 @@ Provide a structurally compliant Level 3 folder that the validator should accept
 - **SC-004**: **Given** the checklist uses CHK identifiers, **Then** the checklist format validation passes.
 - **SC-005**: **Given** the decision record uses ADR-001 format, **Then** the dynamic header check passes.
 - **SC-006**: **Given** section counts are evaluated, **Then** the fixture meets Level 3 minimums for all metrics.
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
@@ -116,11 +105,8 @@ Provide a structurally compliant Level 3 folder that the validator should accept
 | Risk | Fixture drift from template | Medium | Keep structure aligned with live templates |
 | Dependency | Live Level 3 templates | High if templates change | Refresh fixture against current templates |
 | Risk | Section count thresholds change | Low | Update fixture content to meet new thresholds |
-<!-- /ANCHOR:risks -->
 
 ---
-
-<!-- ANCHOR:questions -->
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
@@ -192,7 +178,6 @@ Provide a structurally compliant Level 3 folder that the validator should accept
 ## 12. OPEN QUESTIONS
 
 - None.
-<!-- /ANCHOR:questions -->
 
 ---
 

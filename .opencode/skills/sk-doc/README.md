@@ -20,23 +20,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 sk-doc is the central documentation engine for OpenCode projects. It operates in six modes: Document Quality (structure enforcement, DQI scoring, content optimization), Component Creation (skills, agents, and commands with templates and full validation), Flowchart Creation (ASCII diagrams for workflows and decision trees), Install Guide Creation (phase-based setup documentation), Catalog/Playbook Creation (feature catalogs and manual testing playbooks for inventory and validation packages), and Benchmark Folder Creation (curated `mcp_server/benchmarks/benchmark-<YYYY-MM-DD>/` folders that promote bake-off results from a spec packet into the consuming skill).
@@ -64,11 +47,8 @@ The skill runs version 1.6.0.0 with six operating modes. It includes six automat
 - Feature catalogs: Rooted inventory with numbered categories and per-feature files
 - Manual testing playbooks: 9-column scenario tables, deterministic prompts, cross-reference index
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1: Invoke the skill.**
@@ -96,11 +76,8 @@ For README files, `validate_document.py` checks TOC format, anchor syntax, H2 em
 python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md
 ```
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -197,11 +174,8 @@ Benchmark Folder Creation produces skill-local `mcp_server/benchmarks/benchmark-
 ||| Skill-local benchmark folder creation | Yes | No | No |
 ||| Git workflow orchestration | No | No | Yes |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -260,11 +234,8 @@ sk-doc/
     └── audit_readmes.py                             # Batch README audit across directories
 ```
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 No configuration is required to use this skill. Document type detection is automatic and drives the enforcement level applied.
@@ -284,11 +255,8 @@ Template enforcement rules are defined in `assets/template_rules.json`. This fil
 
 **HVR enforcement** applies to all output from all modes. There is no opt-out. Violations against HVR (banned words, em dashes, semicolons, Oxford commas, passive voice) count against the Style component of the DQI score and appear in the checklist output of `extract_structure.py`.
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 **Score a document and review recommendations**
@@ -339,11 +307,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md
 |# 2 = file read or parse error (check path and input)
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 **DQI score below 60**
@@ -384,11 +349,8 @@ Common causes: Writing that uses prohibited words (robust, seamless, utilize, de
 
 Fix: Read `references/global/hvr_rules.md` for the complete banned word list and prohibited punctuation patterns. Search the document for each violation type using Grep, then rewrite affected sentences. Replace em dashes with commas or parentheses. Replace semicolons with periods or commas. Replace banned words with plain alternatives.
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: When should I use sk-doc vs. system-spec-kit?**
@@ -403,11 +365,8 @@ A: No. They serve different purposes. `validate_document.py` is a fast format va
 
 A: A feature catalog documents current behavior. It inventories what a skill or system can do, organized by numbered categories, with source-file anchors and stable slugs. A testing playbook defines how to test that behavior manually. It contains deterministic prompts (exact text to type), expected signals, failure triage steps, and evidence requirements. The two are complementary: the catalog provides the stable capability reference, and the playbook links back to catalog entries via a Cross-Reference Index. Build the catalog first, then use it as the source of truth when writing playbook scenarios.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 ||| Resource | Path | Purpose |
@@ -429,5 +388,3 @@ A: A feature catalog documents current behavior. It inventories what a skill or 
 ||| sk-git | `.opencode/skills/sk-git/SKILL.md` | Git workflow orchestration |
 ||| CommonMark spec | https://spec.commonmark.org/ | Markdown rendering standard |
 ||| llms.txt spec | https://llmstxt.org/ | LLM navigation format |
-
-<!-- /ANCHOR:related-documents -->

@@ -9,13 +9,10 @@ importance_tier: "important"
 
 # Context handler
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The context handler is the boundary between external seeds and internal graph context assembly. It normalizes Code Graph/manual/graph seeds, picks a query mode and refuses unsafe readiness before `buildContext()`.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -29,9 +26,7 @@ half. The handler performs readiness checks after a manual/requested tool call, 
 ### Caveats / Fallback
 
 The handler can return partial output under deadline or budget pressure. Check `metadata.partialOutput` before treating a context response as complete.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -49,9 +44,6 @@ The handler can return partial output under deadline or budget pressure. Check `
 |---|---|---|
 | `../../manual_testing_playbook/04--context-retrieval/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Context retrieval
@@ -62,4 +54,3 @@ Related references:
 
 - [01-code-graph-context.md](./01-code-graph-context.md)
 - [../06--mcp-tool-surface/01-tool-registrations.md](../06--mcp-tool-surface/01-tool-registrations.md)
-<!-- /ANCHOR:source-metadata -->

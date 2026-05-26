@@ -15,7 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate the Devin CLI `UserPromptSubmit` hook returns `hookSpecificOutput.additionalContext` for substantive prompts, returns `{}` for advisor-skipped prompts, fails open on errors and is correctly registered in `.devin/hooks.v1.json`.
@@ -24,9 +23,6 @@ Architecturally Devin invokes the advisor implementation directly at `.opencode/
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - `devin` binary is installed and authenticated (`devin auth status` shows "Logged in").
@@ -38,9 +34,6 @@ Architecturally Devin invokes the advisor implementation directly at `.opencode/
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Verify dist artifacts exist:
@@ -122,9 +115,6 @@ devin --permission-mode auto
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-skill-advisor/hooks/devin/user-prompt-submit.ts` (advisor implementation source)
@@ -134,14 +124,9 @@ devin --permission-mode auto
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: CLI Hooks And Plugin
 - Playbook ID: CL-006
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 02--cli-hooks-and-plugin/006-devin-user-prompt-submit.md
-
-<!-- /ANCHOR:5-source-metadata -->

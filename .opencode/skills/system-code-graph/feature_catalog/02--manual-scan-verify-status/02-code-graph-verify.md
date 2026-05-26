@@ -9,13 +9,10 @@ importance_tier: "important"
 
 # code_graph_verify
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `code_graph_verify` runs the gold-query battery against the current graph. It is a diagnostic verification gate, not a repair path.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -29,9 +26,7 @@ manual. `code_graph_scan / verify` has conditional local/native coverage, not am
 ### Caveats / Fallback
 
 The handler refuses stale graphs. Run `code_graph_scan({ incremental:false })` before verification when blocked.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -49,9 +44,6 @@ The handler refuses stale graphs. Run `code_graph_scan({ incremental:false })` b
 |---|---|---|
 | `../../manual_testing_playbook/02--manual-scan-verify-status/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Manual scan verify status
@@ -63,4 +55,3 @@ Related references:
 - [01-code-graph-scan.md](./01-code-graph-scan.md)
 - [../08--doctor-code-graph/01-doctor-apply-mode.md](../08--doctor-code-graph/01-doctor-apply-mode.md)
 - [../../manual_testing_playbook/02--manual-scan-verify-status/005-code-graph-verify-blocked-on-stale.md](../../manual_testing_playbook/02--manual-scan-verify-status/005-code-graph-verify-blocked-on-stale.md)
-<!-- /ANCHOR:source-metadata -->

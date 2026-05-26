@@ -16,23 +16,6 @@ contextType: "reference"
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. RESOURCE SNAPSHOT](#2--resource-snapshot)
-- [3. INFERENCE LATENCY](#3--inference-latency)
-- [4. END-TO-END LATENCY WITH RESCUE](#4--end-to-end-latency-with-rescue)
-- [5. METAL ACCELERATION AND CPU](#5--metal-acceleration-and-cpu)
-- [6. DECISION ARTIFACT](#6--decision-artifact)
-- [7. REPRODUCIBILITY](#7--reproducibility)
-- [8. CROSS-REFERENCES](#8--cross-references)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Captured headlines
@@ -50,11 +33,8 @@ contextType: "reference"
 - Runtime: Ollama with Metal backend, PyTorch 2.11.0 with MPS available (CocoIndex venv probe).
 - All three models resident simultaneously during the latency probes.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:resource-snapshot -->
 ## 2. RESOURCE SNAPSHOT
 
 All three loaded simultaneously, Metal backend.
@@ -69,11 +49,8 @@ All three loaded simultaneously, Metal backend.
 
 Jina v3 uses **less RAM than Nomic** despite four times more params, because Q4 quantization is roughly one quarter byte-per-param of F16. The two effects roughly cancel out, and the larger model lands at lower memory cost than the smaller F16 model.
 
-<!-- /ANCHOR:resource-snapshot -->
-
 ---
 
-<!-- ANCHOR:inference-latency -->
 ## 3. INFERENCE LATENCY
 
 Warm, both models resident, raw `/api/embed` round-trip.
@@ -91,11 +68,8 @@ Warm, both models resident, raw `/api/embed` round-trip.
 
 Nomic is about five times faster per query because of param count (137M vs 558M). Both run on Metal GPU at roughly zero percent CPU steady-state.
 
-<!-- /ANCHOR:inference-latency -->
-
 ---
 
-<!-- ANCHOR:end-to-end-latency-with-rescue -->
 ## 4. END-TO-END LATENCY WITH RESCUE
 
 End-to-end `memory_search` latency under the rescue layer, measured against the 30-scenario stratified sample. Sources: `evidence/d-rescue-layer-cost-benefit.md`, decision-record ADR-011, ADR-012.
@@ -110,11 +84,8 @@ End-to-end `memory_search` latency under the rescue layer, measured against the 
 
 End-to-end is dominated by **rescue-layer overhead**, not raw embedder latency. The raw-embedder delta (`60 ms` vs `12 ms`) is invisible at full-query scale. The rescue layer adds roughly a 2.16x median multiplier over OFF for all three candidates; see ADR-011 for the OFF baseline (`426.5 ms` overall median, `1411 ms` overall p95) and the rationale for keeping the rescue layer default-on despite the cost.
 
-<!-- /ANCHOR:end-to-end-latency-with-rescue -->
-
 ---
 
-<!-- ANCHOR:metal-acceleration-and-cpu -->
 ## 5. METAL ACCELERATION AND CPU
 
 ### Metal residency confirmed
@@ -129,11 +100,8 @@ End-to-end is dominated by **rescue-layer overhead**, not raw embedder latency. 
 | Cold-load (first model load) | ~20% (one to two second spike) |
 | Active embed query | Spike under 1% (Metal does the work) |
 
-<!-- /ANCHOR:metal-acceleration-and-cpu -->
-
 ---
 
-<!-- ANCHOR:decision-artifact -->
 ## 6. DECISION ARTIFACT
 
 Per `decision-record.md` ADR-012: **`jina-embeddings-v3` plus rescue layer is the production default for `mk-spec-memory`.** Jina beats Nomic on both quality (9 vs 8 cat-24/409 top-3 hits) and latency (`893 ms` vs `922 ms` median, `1465 ms` vs `3045 ms` p95). Baseline Gemma is the fastest but reaches only 7/10 cat-24/409 even with rescue, so the no-swap path is rejected.
@@ -144,11 +112,8 @@ Per `decision-record.md` ADR-012: **`jina-embeddings-v3` plus rescue layer is th
 - Re-index time was materially slower than the original estimate; measured 7738-row Jina jobs took tens of minutes in this environment.
 - The rescue layer kill switch is available: `SPECKIT_RERANK_LAYER=false` disables the layer at runtime.
 
-<!-- /ANCHOR:decision-artifact -->
-
 ---
 
-<!-- ANCHOR:reproducibility -->
 ## 7. REPRODUCIBILITY
 
 ### Probe commands
@@ -175,11 +140,8 @@ ps -eo pid,etime,rss,pcpu,command | grep -E 'ollama runner'
 
 The `/api/embed` probe returns a JSON body with an `embedding` array. The `time` prefix captures wall-clock to the curl exit; this is the wire latency, not the model latency alone.
 
-<!-- /ANCHOR:reproducibility -->
-
 ---
 
-<!-- ANCHOR:cross-references -->
 ## 8. CROSS-REFERENCES
 
 ### Spec packet ADRs
@@ -209,5 +171,3 @@ The `/api/embed` probe returns a JSON body with an `embedding` array. The `time`
 ### Pointer doc
 
 `./SOURCE.md` — wayfinding pointer with the full spec-packet structure and the "when to read what" map.
-
-<!-- /ANCHOR:cross-references -->

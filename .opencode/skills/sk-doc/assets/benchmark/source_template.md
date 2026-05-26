@@ -27,21 +27,6 @@ Creation reference: .opencode/skills/sk-doc/references/benchmark_creation.md
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. SPEC PACKET LOCATION](#2--spec-packet-location)
-- [3. WHEN TO READ WHAT](#3--when-to-read-what)
-- [4. EVIDENCE FILE MAP](#4--evidence-file-map)
-- [5. FOLLOW-ON PACKETS](#5--follow-on-packets)
-- [6. WHEN TO UPDATE THIS FILE](#6--when-to-update-this-file)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What this file is
@@ -63,11 +48,8 @@ A wayfinding doc. It does not duplicate the spec packet content. It tells you wh
 - `runtime-measurements.md`: runtime profile for finalists (when applicable).
 - `SOURCE.md`: this file.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:spec-packet-location -->
 ## 2. SPEC PACKET LOCATION
 
 ```text
@@ -76,11 +58,8 @@ A wayfinding doc. It does not duplicate the spec packet content. It tells you wh
 
 [OPTIONAL_RENAME_NOTE: e.g., "Renamed from [OLD_SLUG] to [NEW_SLUG] on [DATE_ISO]."]
 
-<!-- /ANCHOR:spec-packet-location -->
-
 ---
 
-<!-- ANCHOR:when-to-read-what -->
 ## 3. WHEN TO READ WHAT
 
 Match the question you have to the file that answers it.
@@ -93,11 +72,8 @@ Match the question you have to the file that answers it.
 | How was the sample picked? | [SAMPLE_EVIDENCE_FILE] | [DECISION_RECORD_FILE] |
 | [ADDITIONAL_QUESTION] | [ADDITIONAL_ANSWER_FILE] | [ADDITIONAL_BACKUP_FILE] |
 
-<!-- /ANCHOR:when-to-read-what -->
-
 ---
 
-<!-- ANCHOR:evidence-file-map -->
 ## 4. EVIDENCE FILE MAP
 
 | File | What |
@@ -107,20 +83,14 @@ Match the question you have to the file that answers it.
 | [EVIDENCE_FILE_3] | [EVIDENCE_FILE_3_DESCRIPTION] |
 | [EVIDENCE_FILE_N] | [EVIDENCE_FILE_N_DESCRIPTION] |
 
-<!-- /ANCHOR:evidence-file-map -->
-
 ---
 
-<!-- ANCHOR:follow-on-packets -->
 ## 5. FOLLOW-ON PACKETS
 
 [DESCRIBE_EACH_FOLLOW_ON_PACKET_OR_WRITE: "No follow-on packets at time of promotion."]
 
-<!-- /ANCHOR:follow-on-packets -->
-
 ---
 
-<!-- ANCHOR:when-to-update -->
 ## 6. WHEN TO UPDATE THIS FILE
 
 - The spec packet gets renamed or moved: update §2 and any path references in §4 and §5.
@@ -131,5 +101,3 @@ Match the question you have to the file that answers it.
 ### Last updated
 
 [PROMOTION_DATE_ISO], initial SOURCE.md for the [BENCHMARK_TOPIC] promotion.
-
-<!-- /ANCHOR:when-to-update -->

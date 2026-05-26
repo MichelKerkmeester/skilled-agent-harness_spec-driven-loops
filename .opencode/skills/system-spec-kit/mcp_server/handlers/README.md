@@ -8,23 +8,8 @@ trigger_phrases:
 
 # Handlers
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `handlers/` is the MCP-facing handler layer. `handlers/index.ts` lazily imports handler modules and re-exports public functions used by the tool dispatch layer.
@@ -36,11 +21,8 @@ Current state:
 - `mutation-hooks.ts` coordinates post-mutation cache invalidation for index and update flows.
 - Packet continuity remains owned by resume tools and spec docs rather than handler-local state.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -68,11 +50,8 @@ Current state:
 Dependency direction: tool dispatch ───▶ handler registry ───▶ focused handlers ───▶ lib and storage.
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -104,11 +83,8 @@ mcp_server/handlers/
 └── README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File or directory | Responsibility |
@@ -124,11 +100,8 @@ mcp_server/handlers/
 | `mutation-hooks.ts` | Clears trigger, constitutional, graph, co-activation, tool, and degree caches after mutations. |
 | `save/` | Contains the decomposed save pipeline modules. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -172,11 +145,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -188,11 +158,8 @@ Main flow:
 | `handleMemorySave` | Function | Saves and indexes spec or constitutional documents. |
 | `runPostMutationHooks` | Function | Clears affected caches after mutation handlers. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from `.opencode/skills/system-spec-kit/mcp_server` unless noted.
@@ -203,15 +170,10 @@ npx vitest run handlers
 
 Expected result: handler suites exit with Vitest success.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../tools/README.md`](../tools/README.md)
 - [`../core/README.md`](../core/README.md)
 - [`../hooks/README.md`](../hooks/README.md)
-
-<!-- /ANCHOR:related -->

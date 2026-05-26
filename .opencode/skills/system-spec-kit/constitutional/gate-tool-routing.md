@@ -32,8 +32,6 @@ triggerPhrases:
 
 > Lean constitutional rule. Always-surface guidance for picking the right retrieval tool by query shape.
 
-<!-- ANCHOR:code-search-tree -->
-
 ## Code Search Decision Tree (MANDATORY)
 
 Route code search queries using this priority order:
@@ -44,20 +42,12 @@ Route code search queries using this priority order:
 | **Structural** (callers, imports, deps) | `code_graph_query` (Code Graph) | `Grep` / `Glob` |
 | **Exact text/regex** (string literal) | `Grep` | `Glob` |
 
-<!-- /ANCHOR:code-search-tree -->
-
-<!-- ANCHOR:context-search -->
-
 ## Memory & Context Search
 
 | Query Type | Primary Tool | Fallback |
 |-----------|-------------|----------|
 | **Spec-doc continuity** (prior work, decisions) | `memory_search` / `memory_context` | `memory_match_triggers` |
 | **Broad topic** (thematic overview) | `memory_search` with `retrievalLevel: "global"` | community search fallback |
-
-<!-- /ANCHOR:context-search -->
-
-<!-- ANCHOR:fts-fallback -->
 
 ## FTS 3-Tier Fallback Chain
 
@@ -69,19 +59,11 @@ When both graph and semantic search miss or return weak results, apply the 3-tie
 
 This ensures no query goes unanswered even when embeddings or the graph index are unavailable.
 
-<!-- /ANCHOR:fts-fallback -->
-
-<!-- ANCHOR:retrieval-levels -->
-
 ## Memory Search Retrieval Levels
 
 - **`local`** (default): Entity-level matching against individual spec-doc records
 - **`global`**: Community-level matching against topic clusters
 - **`auto`**: Local first; if weak results (<3), falls back to community search
-
-<!-- /ANCHOR:retrieval-levels -->
-
-<!-- ANCHOR:graph-features -->
 
 ## Graph Retrieval Features
 
@@ -90,10 +72,6 @@ This ensures no query goes unanswered even when embeddings or the graph index ar
 - **Query concept expansion**: Expands query with alias terms (SPECKIT_QUERY_CONCEPT_EXPANSION)
 - **Graph-expanded fallback**: Walks causal edges for expanded terms (SPECKIT_GRAPH_FALLBACK)
 - **Result provenance**: graphEvidence field shows contributing edges and communities (SPECKIT_RESULT_PROVENANCE)
-
-<!-- /ANCHOR:graph-features -->
-
-<!-- ANCHOR:code-references -->
 
 ## Code References
 
@@ -111,7 +89,5 @@ Implementation surfaces backing this routing contract:
 | BM25 reranker | `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts` | Relevance-ranked keyword channel |
 
 Decision tables in this file are derived from these handlers. When a handler signature or routing contract changes, update both the handler docstrings and this rule together.
-
-<!-- /ANCHOR:code-references -->
 
 *Constitutional rule — always surfaces at top of search results*

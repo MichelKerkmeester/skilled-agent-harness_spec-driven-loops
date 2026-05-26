@@ -50,4 +50,3 @@ This is a pure annotation step wired into Stage 2 as step 8. It never modifies a
 - Group: Pipeline Architecture
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `14--pipeline-architecture/04-template-anchor-optimization.md`
-<!-- /ANCHOR:state -->

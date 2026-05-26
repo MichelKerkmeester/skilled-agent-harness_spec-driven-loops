@@ -50,8 +50,6 @@ Not working? Go to [Troubleshooting](#9-troubleshooting).
 
 ---
 
-## Table of Contents
-
 0. [AI-First Install Guide](#0-ai-first-install-guide)
 1. [Overview](#1-overview)
 2. [Prerequisites](#2-prerequisites)

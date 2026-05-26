@@ -11,24 +11,8 @@ trigger_phrases:
 
 > Runtime session state, deduplication, checkpoint metadata, and cleanup helpers for the MCP server.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/session/` owns runtime session state for the Spec Kit Memory MCP server. It tracks which spec-doc records were already sent to a caller, persists active session metadata, marks interrupted sessions after restarts, and clears stale session data from SQLite-backed tables.
@@ -40,11 +24,8 @@ Current state:
 - Session deduplication writes to `session_sent_memories` and session recovery state writes to `session_state`.
 - Cleanup also touches `working_memory` through `../cognitive/working-memory.js` and governed retention through `../governance/memory-retention-sweep.js`.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -69,11 +50,8 @@ session_state → /spec_kit:resume → handover.md → _memory.continuity → sp
 
 Dependency direction: callers → `session-manager.ts` → SQLite, working memory, retention sweep.
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -99,11 +77,8 @@ lib/session/ → resume ladder ownership
 lib/session/ → continuity record schema ownership
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -112,22 +87,16 @@ session/
 `-- README.md           # This file
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
 |---|---|
 | `session-manager.ts` | Initializes session tables, filters duplicate search results, records sent memories, saves and recovers session state, writes `CONTINUE_SESSION.md`, and runs cleanup intervals. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -181,11 +150,8 @@ session_state row
         └──▶ checkpointSession() for optional CONTINUE_SESSION.md output
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -205,11 +171,8 @@ session_state row
 | `completeSession(sessionId)` | Function | Marks a session complete and clears matching working memory. |
 | `shutdown()` | Function | Clears background cleanup intervals. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root unless noted.
@@ -228,16 +191,11 @@ Expected result: the extracted structure reports README sections and no critical
 
 For code changes in this folder, run the TypeScript or package-level checks used by the MCP server before claiming runtime behavior changed.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [`../README.md`](../README.md)
 - [`../resume/README.md`](../resume/README.md)
 - [`../continuity/README.md`](../continuity/README.md)
 - [`../storage/README.md`](../storage/README.md)
-
-<!-- /ANCHOR:related -->

@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate two fallback paths: the Python shim routes to local scoring when native daemon probing is unavailable and native `advisor_recommend` fails open with empty recommendations when freshness is absent.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Use a disposable copy or controlled environment override to simulate absent native generation/artifact state.
@@ -31,9 +27,6 @@ Validate two fallback paths: the Python shim routes to local scoring when native
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Python local fallback:
@@ -66,9 +59,6 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"topK":1,"inc
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts`
@@ -76,14 +66,9 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"topK":1,"inc
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Compat And Disable
 - Playbook ID: CP-004
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 03--compat-and-disable/004-daemon-absent-fallback.md
-
-<!-- /ANCHOR:5-source-metadata -->

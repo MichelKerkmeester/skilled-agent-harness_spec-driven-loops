@@ -7,7 +7,6 @@ description: "Operator-facing reference combining the manual testing directory, 
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-
 This document combines the manual testing contract for the `deep-research` skill into a single reference. The root playbook acts as the directory, review protocol, and orchestration guide while the per-feature files carry the scenario-specific execution truth.
 
 ---
@@ -20,25 +19,6 @@ Canonical package artifacts:
 - `04--convergence-and-recovery/`
 - `05--pause-resume-and-fault-tolerance/`
 - `06--synthesis-save-and-guardrails/`
-
----
-
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. ENTRY POINTS AND MODES](#7--entry-points-and-modes)
-- [8. INITIALIZATION AND STATE SETUP](#8--initialization-and-state-setup)
-- [9. ITERATION EXECUTION AND STATE DISCIPLINE](#9--iteration-execution-and-state-discipline)
-- [10. CONVERGENCE AND RECOVERY](#10--convergence-and-recovery)
-- [11. PAUSE, RESUME, AND FAULT TOLERANCE](#11--pause-resume-and-fault-tolerance)
-- [12. SYNTHESIS, SAVE, AND GUARDRAILS](#12--synthesis-save-and-guardrails)
-- [13. AUTOMATED TEST CROSS-REFERENCE](#13--automated-test-cross-reference)
-- [14. FEATURE CATALOG CROSS-REFERENCE INDEX](#14--feature-catalog-cross-reference-index)
 
 ---
 
@@ -141,7 +121,6 @@ Expected signals: The command explicitly names topic, spec folder, execution mod
 #### Test Execution
 > **Feature File:** [DR-003](01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md)
 
-
 ---
 
 ## 8. INITIALIZATION AND STATE SETUP
@@ -199,7 +178,6 @@ Expected signals: strategy.md has a "## 4. Non-Goals" section (may be empty but 
 
 #### Test Execution
 > **Feature File:** [DR-027](02--initialization-and-state-setup/027-research-charter-validation.md)
-
 
 ---
 
@@ -310,7 +288,6 @@ Expected signals: `graphEvents` documented as iteration-record input for graph-a
 
 #### Test Execution
 > **Feature File:** [DR-029](03--iteration-execution-and-state-discipline/029-graph-events-emission.md)
-
 
 ---
 
@@ -487,7 +464,6 @@ Expected signals: `graphConvergenceScore`, `graphDecision`, and `graphBlockers` 
 #### Test Execution
 > **Feature File:** [DR-033](04--convergence-and-recovery/033-graph-aware-stop-gate.md)
 
-
 ---
 
 ## 11. PAUSE, RESUME, AND FAULT TOLERANCE
@@ -546,12 +522,9 @@ Expected signals: The reconstruction algorithm scans iteration files, extracts a
 #### Test Execution
 > **Feature File:** [DR-018](05--pause-resume-and-fault-tolerance/018-jsonl-reconstruction-from-iteration-files.md)
 
-
 ---
 
 ## 12. SYNTHESIS, SAVE, AND GUARDRAILS
-
-
 
 This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
 

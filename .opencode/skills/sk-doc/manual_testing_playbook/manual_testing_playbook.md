@@ -13,17 +13,6 @@ Source of truth for routing behavior: `.opencode/skills/sk-doc/SKILL.md` §2 Sma
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [CATEGORIES](#categories)
-- [SCENARIO INDEX](#scenario-index)
-- [GLOBAL PRECONDITIONS](#global-preconditions)
-- [PASS / FAIL GRADING](#pass--fail-grading)
-- [EVIDENCE CAPTURE](#evidence-capture)
-
----
-
 ## 1. OVERVIEW
 
 The sk-doc manual testing playbook validates smart-router behavior through deterministic routing scenarios, cross-CLI dispatch probes, and token-cost baselines.

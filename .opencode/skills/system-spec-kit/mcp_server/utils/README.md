@@ -12,21 +12,6 @@ trigger_phrases:
 
 > Shared validation, JSON, batch, database guard and tool schema helpers for MCP server code.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. SURFACE](#2--surface)
-- [3. EXPORTS](#3--exports)
-- [4. ALLOWED IMPORTS](#4--allowed-imports)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES](#6--boundaries)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `mcp_server/utils/` contains small shared helpers used by handlers, tools and support modules. Keep this folder focused on pure validation, JSON handling, retry loops and error conversion.
@@ -35,8 +20,6 @@ Runtime features should live in their owning handler, tool, search, storage, or 
 
 Use this folder for stable helper contracts that reduce repeated guard code. Prefer local helpers inside a feature folder when the behavior has one owner or depends on feature-specific state.
 
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:surface -->
 ## 2. SURFACE
 
 | Surface | Purpose |
@@ -47,8 +30,6 @@ Use this folder for stable helper contracts that reduce repeated guard code. Pre
 | DB helpers | Database presence checks and error-message normalization. |
 | Tool input schema | Runtime checks for required tool arguments, types, enums and constraints. |
 
-<!-- /ANCHOR:surface -->
-<!-- ANCHOR:exports -->
 ## 3. EXPORTS
 
 `index.ts` exports:
@@ -57,8 +38,6 @@ Use this folder for stable helper contracts that reduce repeated guard code. Pre
 - Constants: `INPUT_LIMITS`, `MAX_QUERY_LENGTH`, `BATCH_SIZE`, `BATCH_DELAY_MS`, `DEFAULT_RETRY_OPTIONS`
 - Functions: `validateQuery`, `validateInputLengths`, `createFilePathValidator`, `getDefaultAllowedPaths`, `safeJsonParse`, `safeJsonStringify`, `safeJsonParseTyped`, `processWithRetry`, `processBatches`, `processSequentially`, `requireDb`, `toErrorMessage`, `validateToolInputSchema`
 
-<!-- /ANCHOR:exports -->
-<!-- ANCHOR:allowed-imports -->
 ## 4. ALLOWED IMPORTS
 
 | Import | Rule |
@@ -69,8 +48,6 @@ Use this folder for stable helper contracts that reduce repeated guard code. Pre
 | Feature handlers | Do not import handlers from this folder. |
 | Search and storage flows | Do not place feature orchestration in utilities. |
 
-<!-- /ANCHOR:allowed-imports -->
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -82,8 +59,6 @@ Use this folder for stable helper contracts that reduce repeated guard code. Pre
 | `tool-input-schema.ts` | Runtime schema checks for MCP tool input. |
 | `index.ts` | Public barrel for utility imports. |
 
-<!-- /ANCHOR:key-files -->
-<!-- ANCHOR:boundaries -->
 ## 6. BOUNDARIES
 
 | Boundary | Rule |
@@ -93,8 +68,6 @@ Use this folder for stable helper contracts that reduce repeated guard code. Pre
 | Input handling | Validate limits, schemas and paths before handlers perform work. |
 | Error handling | Convert unknown errors to safe messages without hiding caller context. |
 
-<!-- /ANCHOR:boundaries -->
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 - Import from `index.ts` for shared utility access from MCP server code.
@@ -102,8 +75,6 @@ Use this folder for stable helper contracts that reduce repeated guard code. Pre
 - Use `createFilePathValidator()` when a handler needs workspace-safe path checks.
 - Use `processBatches()` or `processSequentially()` for bounded item processing with retry behavior.
 
-<!-- /ANCHOR:entrypoints -->
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root:
@@ -115,13 +86,9 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Expected result: utility-related tests pass and README validation exits `0` with no HVR issues.
 
-<!-- /ANCHOR:validation -->
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [MCP server core](../core/README.md)
 - [MCP server handlers](../handlers/README.md)
 - [MCP server schemas](../schemas/README.md)
 - [MCP server tests](../tests/README.md)
-
-<!-- /ANCHOR:related -->

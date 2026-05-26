@@ -162,8 +162,7 @@ quality_standards:
   root_requirements:
     - integrated review protocol in root playbook
     - integrated orchestration guidance in root playbook
-    - unnumbered TABLE OF CONTENTS
-    - numbered all-caps H2 sections
+    - numbered all-caps H2 sections (no Table of Contents)
   feature_file_requirements:
     - frontmatter
     - OVERVIEW

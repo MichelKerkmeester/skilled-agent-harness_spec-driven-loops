@@ -9,23 +9,8 @@ trigger_phrases:
 
 # Validation Rules
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scripts/rules/` owns the shell modules used by `scripts/spec/validate.sh`. Each rule reports through the shared `run_check()` interface and sets `RULE_*` variables that the validator reads.
@@ -37,11 +22,8 @@ Current state:
 - Runtime rules validate generated artifacts, save contracts, link scans and continuity support files.
 - Shell modules stay small and defer shared logic to `scripts/lib/` when possible.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -66,11 +48,8 @@ Current state:
 Dependency direction: validate.sh ───▶ registry ───▶ rules ───▶ scripts/lib
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -91,11 +70,8 @@ rules/
 
 The full rule list is the set of `check-*.sh` files in this directory plus `check-canonical-save-helper.cjs` for canonical-save support.
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Responsibility |
@@ -108,11 +84,8 @@ The full rule list is the set of `check-*.sh` files in this directory plus `chec
 | `check-links.sh` | Runs optional markdown link validation when enabled. |
 | `check-phase-parent-content.sh` | Checks phase-parent content boundaries. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -150,11 +123,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -163,11 +133,8 @@ Main flow:
 | `run_check()` | Shell function | Executes one rule module against a target packet. |
 | `scripts/lib/validator-registry.json` | Registry | Defines rule aliases, severity and dispatch metadata. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root:
@@ -179,16 +146,11 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Expected result: spec validation passes or reports only accepted packet warnings, and README validation exits `0` with no HVR violations.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [Validator command](../spec/validate.sh)
 - [Validator registry](../lib/validator-registry.json)
 - [System Spec Kit skill](../../SKILL.md)
 - [Spec templates](../../templates/README.md)
-
-<!-- /ANCHOR:related -->

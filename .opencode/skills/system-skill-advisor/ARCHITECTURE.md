@@ -14,23 +14,8 @@ importance_tier: "important"
 
 > Current-reality architecture for the `system-skill-advisor` package. The advisor scores prompts against indexed skill metadata, exposes recommendations through a standalone MCP server, and rebuilds state through a file watcher.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. CANONICAL CONTINUITY FLOWS](#3--canonical-continuity-flows)
-- [4. RUNTIME SUBSYSTEMS](#4--runtime-subsystems)
-- [5. HOOK AND PLUGIN INTEGRATION](#5--hook-and-plugin-integration)
-- [6. ENFORCEMENT AND VERIFICATION](#6--enforcement-and-verification)
-- [7. DECISION RECORDS](#7--decision-records)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `system-skill-advisor` is the standalone routing runtime that picks the right skill for a non-trivial prompt. It runs as its own MCP server (`mk_skill_advisor`) and persists state to a local SQLite skill graph.
@@ -83,11 +68,8 @@ The recommendation surface is `advisor_recommend`. The trust surface is `advisor
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -120,11 +102,8 @@ Allowed dependency direction:
 
 Reverse imports are blocked by lint and CI.
 
-<!-- /ANCHOR:topology -->
-
 ---
 
-<!-- ANCHOR:continuity-flows -->
 ## 3. CANONICAL CONTINUITY FLOWS
 
 The advisor treats its SQLite skill graph as the durable record. Recommendations are read-only over that record; the daemon refreshes it from authored skill metadata.
@@ -139,11 +118,8 @@ The advisor treats its SQLite skill graph as the durable record. Recommendations
 - `mcp_server/lib/skill-graph/rebuild.ts` owns the write path.
 - `mcp_server/daemon/watcher.ts` owns the file-change loop.
 
-<!-- /ANCHOR:continuity-flows -->
-
 ---
 
-<!-- ANCHOR:runtime-subsystems -->
 ## 4. RUNTIME SUBSYSTEMS
 
 The MCP server is composed of focused subsystems that share the transport layer and the SQLite skill graph.
@@ -156,20 +132,14 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Compatibility shim.** `compat/skill_advisor.py` keeps scripts and hooks working when the native MCP path is not reachable. The shim wraps the same recommendation logic with a Python entrypoint.
 
-<!-- /ANCHOR:runtime-subsystems -->
-
 ---
 
-<!-- ANCHOR:hook-integration -->
 ## 5. HOOK AND PLUGIN INTEGRATION
 
 The advisor ships matching prompt-submit hooks for Claude Code, Codex, Gemini, and Devin CLI, plus an OpenCode plugin bridge. The hook payload is the same compact attribution-safe JSON across runtimes so callers can rely on consistent fields regardless of transport. The plugin bridge under `.opencode/plugins/` calls into `mcp_server/lib/hooks/` and emits the payload back to the runtime.
 
-<!-- /ANCHOR:hook-integration -->
-
 ---
 
-<!-- ANCHOR:enforcement -->
 ## 6. ENFORCEMENT AND VERIFICATION
 
 Validation runs at two layers.
@@ -178,11 +148,8 @@ Validation runs at two layers.
 
 **Test surfaces.** Default `npm test` runs unit and integration suites under `mcp_server/tests/`. Scorer benchmarks run through `npm run bench`. Operator playbook scenarios live in `manual_testing_playbook/`.
 
-<!-- /ANCHOR:enforcement -->
-
 ---
 
-<!-- ANCHOR:decision-records -->
 ## 7. DECISION RECORDS
 
 | ADR | Subject | Status |
@@ -193,11 +160,8 @@ Validation runs at two layers.
 | ADR-004 | Python compatibility shim preserves legacy callers without native MCP transport | Accepted |
 | ADR-005 | Standalone MCP server boundary so routing can roll back independently | Accepted |
 
-<!-- /ANCHOR:decision-records -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [README.md](./README.md): Human-facing package overview
@@ -206,5 +170,3 @@ Validation runs at two layers.
 - [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md): Current feature inventory and per-tool detail
 - [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md): Operator validation scenarios
 - [references/](./references/): Operator references including the hook reference manual
-
-<!-- /ANCHOR:related -->

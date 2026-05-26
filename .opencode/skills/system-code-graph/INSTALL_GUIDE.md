@@ -18,24 +18,6 @@ This is the canonical bootstrap guide for the standalone System Code Graph MCP s
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PREREQUISITES](#2--prerequisites)
-- [3. INSTALLATION](#3--installation)
-- [4. CONFIGURATION](#4--configuration)
-- [5. VERIFICATION](#5--verification)
-- [6. NATIVE PACKAGE CHECKS](#6--native-package-checks)
-- [7. DATABASE AND MAINTAINER MODE](#7--database-and-maintainer-mode)
-- [8. TROUBLESHOOTING](#8--troubleshooting)
-- [9. RELATED RESOURCES](#9--related-resources)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 System Code Graph is a TypeScript MCP server under `.opencode/skills/system-code-graph/mcp_server/` that registers the `mk-code-index` server identity. The runtime package is published privately as `@spec-kit/system-code-graph` and ships a Node launcher at `.opencode/bin/mk-code-index-launcher.cjs`. The launcher boots the compiled entrypoint at `mcp_server/dist/index.js` after loading `.env.local` overrides, applying the optional maintainer-mode flag, and guarding the database path against external locations.
@@ -55,11 +37,8 @@ Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become
 | Database (default) | `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` |
 | MCP tools | 8 (see [README.md](./README.md) §3.2) |
 
-<!-- /ANCHOR:1-overview -->
-
 ---
 
-<!-- ANCHOR:2-prerequisites -->
 ## 2. PREREQUISITES
 
 - Node.js >= 20.11.0 (matches `mcp-doctor.sh` minimum threshold; check with `node --version`).
@@ -69,11 +48,8 @@ Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become
 
 `mk-spec-memory` is NOT a prerequisite. Code Graph does not need the memory MCP server to be running first. The TypeScript build emits only this package's runtime files under `mcp_server/dist/`.
 
-<!-- /ANCHOR:2-prerequisites -->
-
 ---
 
-<!-- ANCHOR:3-installation -->
 ## 3. INSTALLATION
 
 Install dependencies and build the standalone TypeScript MCP server:
@@ -91,11 +67,8 @@ test -f .opencode/skills/system-code-graph/mcp_server/dist/index.js && echo "Ins
 
 The launcher is already committed at `.opencode/bin/mk-code-index-launcher.cjs` and does not need a separate install step. Start or refresh the `mk_code_index` MCP server in the active runtime after build.
 
-<!-- /ANCHOR:3-installation -->
-
 ---
 
-<!-- ANCHOR:4-configuration -->
 ## 4. CONFIGURATION
 
 Each runtime expects an MCP server entry with the same launcher invocation. The canonical block (from `opencode.json`) is:
@@ -151,11 +124,8 @@ Runtime-config locations:
 
 The five `SPECKIT_CODE_GRAPH_INDEX_*` flags ship as `false` so end users get a quiet, low-disk index. Maintainers who need full structural coverage enable them via maintainer mode (see [§7](#7-database-and-maintainer-mode)).
 
-<!-- /ANCHOR:4-configuration -->
-
 ---
 
-<!-- ANCHOR:5-verification -->
 ## 5. VERIFICATION
 
 Verify native tool registration through `mk_code_index`:
@@ -174,11 +144,8 @@ Expected:
 
 Also verify the active runtime lists `mk_code_index` alongside `mk-spec-memory` and `mk_skill_advisor` (the three core native MCP servers shipped by this repository).
 
-<!-- /ANCHOR:5-verification -->
-
 ---
 
-<!-- ANCHOR:6-native-package-checks -->
 ## 6. NATIVE PACKAGE CHECKS
 
 Run before declaring bootstrap complete:
@@ -201,11 +168,8 @@ Current code-graph baseline:
 | Dist boundary | Root-level `dist/` is absent. Build output lives under `mcp_server/dist/`. |
 | Production sibling imports | 0 relative imports from `system-spec-kit` or `system-skill-advisor` production source. Test fixtures may still model integration boundaries. |
 
-<!-- /ANCHOR:6-native-package-checks -->
-
 ---
 
-<!-- ANCHOR:7-database-and-maintainer-mode -->
 ## 7. DATABASE AND MAINTAINER MODE
 
 ### Database location
@@ -240,11 +204,8 @@ echo 'SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true' >> .env.local
 
 `.env.local` is gitignored. The launcher reads it on startup, and when the flag is `true` it forces all 5 `SPECKIT_CODE_GRAPH_INDEX_*` flags to `true` before spawning the server, overriding any committed `false` values from the runtime config. Per-call scan args still override.
 
-<!-- /ANCHOR:7-database-and-maintainer-mode -->
-
 ---
 
-<!-- ANCHOR:8-troubleshooting -->
 ## 8. TROUBLESHOOTING
 
 | What You See | Cause | Fix |
@@ -262,11 +223,8 @@ echo 'SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true' >> .env.local
 
 Runtime diagnostics are available via the `/doctor code-graph` slash-command surface (read-only Phase A by default). See `.opencode/install_guides/SET-UP - Code Graph.md` for the full diagnostic walkthrough.
 
-<!-- /ANCHOR:8-troubleshooting -->
-
 ---
 
-<!-- ANCHOR:9-related-resources -->
 ## 9. RELATED RESOURCES
 
 | Document | Purpose |
@@ -278,5 +236,3 @@ Runtime diagnostics are available via the `/doctor code-graph` slash-command sur
 | [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation scenarios. |
 | [`SET-UP - Code Graph.md`](../../install_guides/SET-UP%20-%20Code%20Graph.md) | Runtime diagnostics via `/doctor code-graph` (Phase A read-only). |
 | [`.opencode/install_guides/README.md`](../../install_guides/README.md) | Master install guide, Phase 3 §10.4 mk-code-index subsection. |
-
-<!-- /ANCHOR:9-related-resources -->

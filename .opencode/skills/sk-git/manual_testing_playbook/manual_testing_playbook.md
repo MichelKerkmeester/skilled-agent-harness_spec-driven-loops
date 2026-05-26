@@ -20,25 +20,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. WORKTREE SETUP (`GIT-001..GIT-003`)](#7--worktree-setup-git001git003)
-- [8. COMMIT FORMATION (`GIT-004..GIT-007`)](#8--commit-formation-git004git007)
-- [9. SAFETY REFUSALS (`GIT-008..GIT-011`)](#9--safety-refusals-git008git011)
-- [10. INTEGRATION AND PR (`GIT-012..GIT-015`)](#10--integration-and-pr-git012git015)
-- [11. RECOVERY AND EDGE CASES (`GIT-016..GIT-019`)](#11--recovery-and-edge-cases-git016git019)
-- [12. CROSS-CLI ORCHESTRATION (`GIT-020..GIT-022`)](#12--cross-cli-orchestration-git020git022)
-- [13. AUTOMATED TEST CROSS-REFERENCE](#13--automated-test-cross-reference)
-- [14. FEATURE CATALOG CROSS-REFERENCE INDEX](#14--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 22 deterministic scenarios across 6 categories validating the `sk-git` skill surface. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file with the full execution contract.

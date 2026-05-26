@@ -11,24 +11,8 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_readme -->
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 `skill_advisor/lib/` owns the TypeScript helper layer behind advisor recommendation, prompt-safe rendering, daemon freshness checks, lifecycle metadata, compatibility probes and scorer behavior. Handlers and scripts call these modules instead of duplicating advisor logic.
@@ -41,9 +25,6 @@ Current state:
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -72,9 +53,6 @@ Dependency direction: handlers/scripts -> lib -> schemas and shared helpers
 
 ---
 
-<!-- /ANCHOR:2-architecture -->
-
-<!-- ANCHOR:3-package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -118,9 +96,6 @@ subfolders -> handlers for runtime behavior
 
 ---
 
-<!-- /ANCHOR:3-package-topology -->
-
-<!-- ANCHOR:4-directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -148,9 +123,6 @@ lib/
 
 ---
 
-<!-- /ANCHOR:4-directory-tree -->
-
-<!-- ANCHOR:5-key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -169,9 +141,6 @@ lib/
 
 ---
 
-<!-- /ANCHOR:5-key-files -->
-
-<!-- ANCHOR:6-boundaries-and-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -191,9 +160,6 @@ prompt or status request
 
 ---
 
-<!-- /ANCHOR:6-boundaries-and-flow -->
-
-<!-- ANCHOR:7-entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -210,9 +176,6 @@ prompt or status request
 
 ---
 
-<!-- /ANCHOR:7-entrypoints -->
-
-<!-- ANCHOR:8-validation -->
 ## 8. VALIDATION
 
 Run from the repository root.
@@ -225,9 +188,6 @@ Expected result: exit code `0`.
 
 ---
 
-<!-- /ANCHOR:8-validation -->
-
-<!-- ANCHOR:9-related -->
 ## 9. RELATED
 
 - [`../README.md`](../README.md)
@@ -237,5 +197,3 @@ Expected result: exit code `0`.
 - [`embedders/README.md`](embedders/README.md)
 - [`ipc/README.md`](ipc/README.md)
 - [`shared/README.md`](shared/README.md)
-
-<!-- /ANCHOR:9-related -->

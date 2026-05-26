@@ -14,7 +14,6 @@ Boundary map for workflow-state ownership in `system-spec-kit` and structural-in
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -39,9 +38,6 @@ The split keeps two concerns separate: deep-loop research and review workflows a
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-what-lives-in-system-spec-kit -->
 ## 2. WHAT LIVES IN SYSTEM-SPEC-KIT
 
 `system-spec-kit` retains two library trees that own workflow state:
@@ -53,9 +49,6 @@ Both libraries own research and review loop state, iteration logs and convergenc
 
 ---
 
-<!-- /ANCHOR:2-what-lives-in-system-spec-kit -->
-
-<!-- ANCHOR:3-what-lives-in-system-code-graph -->
 ## 3. WHAT LIVES IN SYSTEM-CODE-GRAPH
 
 `system-code-graph` owns four areas of pure structural code data:
@@ -69,9 +62,6 @@ The package is a pure code-structure service with no workflow dependencies. Inde
 
 ---
 
-<!-- /ANCHOR:3-what-lives-in-system-code-graph -->
-
-<!-- ANCHOR:4-integration-points -->
 ## 4. INTEGRATION POINTS
 
 Four contracts cross the boundary:
@@ -85,9 +75,6 @@ The contract boundary is the readiness marker, the MCP tool interface and the sh
 
 ---
 
-<!-- /ANCHOR:4-integration-points -->
-
-<!-- ANCHOR:5-extraction-history -->
 ## 5. EXTRACTION HISTORY
 
 The boundary emerged from the code-graph extraction migration. That migration covered the initial split, follow-on hardening, and ownership cleanup work without requiring operators to inspect the original spec folders.
@@ -96,9 +83,6 @@ ADR-001 locked the early decisions: stable tool IDs, database move and sibling i
 
 ---
 
-<!-- /ANCHOR:5-extraction-history -->
-
-<!-- ANCHOR:6-decision-rationale -->
 ## 6. DECISION RATIONALE
 
 The split reflects two different ownership models:
@@ -111,9 +95,6 @@ Separation lets graph algorithms iterate independently of workflow orchestration
 
 ---
 
-<!-- /ANCHOR:6-decision-rationale -->
-
-<!-- ANCHOR:7-future-considerations -->
 ## 7. FUTURE CONSIDERATIONS
 
 There are no current plans to migrate deep-loop or coverage-graph to a standalone package. Roadmap notes:
@@ -123,5 +104,3 @@ There are no current plans to migrate deep-loop or coverage-graph to a standalon
 - Any change would need its own ADR, packet and migration plan with explicit before-and-after ownership tables.
 
 Planned status: stable. The boundary is treated as settled until a future packet proposes otherwise.
-
-<!-- /ANCHOR:7-future-considerations -->

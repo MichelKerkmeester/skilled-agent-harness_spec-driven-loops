@@ -53,7 +53,6 @@ Use this skill for:
 
 ---
 
-<!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
 This package is mandatory context for structural code-graph maintenance, readiness checks, impact queries, context retrieval, and structural tool coordination. The live tool schemas stay in `mcp_server/tool-schemas.ts`; this router controls which local documentation resources an agent should load.
@@ -303,11 +302,8 @@ The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code
 - Using `code_graph_query` for unclassified queries. Classify intent first so the right tool runs.
 - Treating `detect_changes` as a general query tool. It is diff-driven impact analysis with a fixed schema, not a query surface.
 
-<!-- /ANCHOR:smart-routing -->
-
 ---
 
-<!-- ANCHOR:how-it-works -->
 ## 3. HOW IT WORKS
 
 Runtime source lives under `mcp_server/{lib,handlers,tools,tests}/`. The package docs live under `feature_catalog/` and `manual_testing_playbook/`.
@@ -315,11 +311,9 @@ Runtime source lives under `mcp_server/{lib,handlers,tools,tests}/`. The package
 Read paths call `ensureCodeGraphReady()` before answering any structural query. The check enforces the false-safe contract: stale, empty, or scope-mismatched graphs return `blocked` with an explicit `requiredAction` rather than empty results. Manual maintenance tools run explicit scans, verification, status checks, and structural tool operations against the same readiness gate.
 
 The deep-loop coverage graph tools remain in `system-spec-kit` because the research and review loop owns its state machine and the lifecycle of iteration packets. Code-graph stays focused on the structural index for everything else.
-<!-- /ANCHOR:how-it-works -->
 
 ---
 
-<!-- ANCHOR:rules -->
 ## 4. RULES
 
 ### ALWAYS
@@ -341,33 +335,27 @@ The deep-loop coverage graph tools remain in `system-spec-kit` because the resea
 1. **ESCALATE IF the scope fingerprint differs from the stored baseline** and the requested scan would replace an established graph without operator opt-in. Surface the fingerprint delta and ask for confirmation (`forceScopeChange: true`).
 2. **ESCALATE IF readiness is `blocked` and the required action is destructive** (zero-node reset, full re-scan on a populated graph). Ask before issuing the destructive flag.
 3. **ESCALATE IF the classifier returns low-confidence intent** on a high-stakes query (refactor preflight, blast-radius audit). Request one concrete file path, symbol, or error message before guessing.
-<!-- /ANCHOR:rules -->
 
 ---
 
-<!-- ANCHOR:references -->
 ## 5. REFERENCES
 
 - `feature_catalog/feature_catalog.md` is the current runtime feature inventory.
 - `manual_testing_playbook/manual_testing_playbook.md` is the operator validation package.
 - `mcp_server/tool-schemas.ts` defines the `mk-code-index` code graph, detect-changes and structural schemas.
 - `mcp_server/tools/code-graph-tools.ts` registers and dispatches the standalone tool IDs.
-<!-- /ANCHOR:references -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 6. SUCCESS CRITERIA
 
 - `code_graph_scan` can refresh the graph and report readiness metadata.
 - `code_graph_query`, `code_graph_context` and `detect_changes` refuse unsafe stale states instead of returning false-safe answers.
 - `code_graph_verify` runs only against fresh graph state.
 - Docs reference `mk-code-index` for live MCP namespace examples.
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:integration-points -->
 ## 7. INTEGRATION POINTS
 
 Cross-subsystem consumers use two intentional paths:
@@ -380,11 +368,9 @@ Cross-subsystem consumers use two intentional paths:
 The shared SQLite file at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` remains the coordination boundary. The scan loop is the single writer.
 
 **Naming asymmetries.** Five identifiers refer to this skill across runtime layers — skill folder slug (`system-code-graph`), MCP server name (`mk-code-index`), MCP config key (`mk_code_index`), launcher / plugin file names, and the shared data directory. Each is correct in its own scope. See [`references/runtime/naming_conventions.md`](references/runtime/naming_conventions.md) for the full map plus the rationale for the hook-location asymmetry (hooks remain under `system-spec-kit/mcp_server/hooks/`).
-<!-- /ANCHOR:integration-points -->
 
 ---
 
-<!-- ANCHOR:related-resources -->
 ## 8. REFERENCES AND RELATED RESOURCES
 
 ### Core references (this skill)
@@ -402,4 +388,3 @@ The shared SQLite file at `.opencode/.spec-kit/code-graph/database/code-graph.sq
 - Shared lifecycle and context docs that stayed in `system-spec-kit`: `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/`
 - Extraction history: internal migration notes
 - Latest uplift context: internal implementation notes
-<!-- /ANCHOR:related-resources -->

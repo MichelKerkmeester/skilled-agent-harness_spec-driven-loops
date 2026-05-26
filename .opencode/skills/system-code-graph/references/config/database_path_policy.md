@@ -13,7 +13,6 @@ Policy for the package-local code-graph SQLite database path and supported overr
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -38,9 +37,6 @@ All runtimes coordinate through one workspace-contained SQLite triplet owned by 
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-policy -->
 ## 2. POLICY
 
 The code graph database lives in the shared spec-kit data directory:
@@ -74,9 +70,6 @@ The override path `SPECKIT_CODE_GRAPH_DB_DIR` is allowed for tests and disposabl
 
 ---
 
-<!-- /ANCHOR:2-policy -->
-
-<!-- ANCHOR:3-rationale -->
 ## 3. RATIONALE
 
 ADR-002 extraction constraint required DB-local ownership for the extracted code graph skill, but cross-runtime sharing surfaced a second constraint: every runtime (OpenCode, Claude Code, Codex, Gemini, Devin, VSCode) must read and write a single graph instead of fragmenting state per-runtime. The shared `.opencode/.spec-kit/code-graph/` location satisfies both: the standalone `mk-code-index` MCP server owns the runtime state, and all runtimes coordinate through one SQLite triplet.
@@ -92,9 +85,6 @@ The shared SQLite file remains the coordination boundary between in-process impo
 
 ---
 
-<!-- /ANCHOR:3-rationale -->
-
-<!-- ANCHOR:4-test-and-ci-override -->
 ## 4. TEST AND CI OVERRIDE
 
 `SPECKIT_CODE_GRAPH_DB_DIR` is allowed for tests and disposable CI runs only. Tests typically use temporary directories via `mkdtempSync` and pass `dbDir` as a function parameter rather than relying on the environment variable.
@@ -103,9 +93,6 @@ The launcher enforces a standalone-storage guard so the override path must resol
 
 ---
 
-<!-- /ANCHOR:4-test-and-ci-override -->
-
-<!-- ANCHOR:5-migration-notes -->
 ## 5. MIGRATION NOTES
 
 The code graph database has moved twice:
@@ -114,5 +101,3 @@ The code graph database has moved twice:
 2. **Skill-local → shared spec-kit data dir (packet 019/020 + cross-runtime consolidation).** `system-code-graph/mcp_server/database/` → `.opencode/.spec-kit/code-graph/database/`. The launcher auto-migrates legacy installs on first startup: the SQLite triplet, readiness marker, and launcher state file are **copied** (not moved) so the prior location is preserved as a backup. Configs that still reference the `system_code_graph` MCP server name should be renamed to `mk_code_index`.
 
 Cross-skill consumers reach the data through two paths: in-process imports from `system-spec-kit` handlers and hooks, and the standalone MCP namespace used by agents and commands. SessionStart hooks remain under `system-spec-kit/mcp_server/hooks/` due to 110-plus file references. This asymmetry is intentional and any future move is planned as a separate packet with build and config redesign scope.
-
-<!-- /ANCHOR:5-migration-notes -->

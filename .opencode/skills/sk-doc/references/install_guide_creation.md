@@ -9,21 +9,6 @@ Standards and workflow for clear, reliable install guides with validation checkp
 
 ---
 
-## TABLE OF CONTENTS
-
-- [OVERVIEW](#1--overview)
-- [CORE PRINCIPLES](#2--core-principles)
-- [REQUIRED SECTIONS](#3--required-sections)
-- [PHASE VALIDATION PATTERN](#4--phase-validation-pattern)
-- [PLATFORM CONFIGURATION](#5--platform-configuration)
-- [TROUBLESHOOTING STANDARDS](#6--troubleshooting-standards)
-- [QUALITY CRITERIA](#7--quality-criteria)
-- [CROSS-REFERENCES](#8--cross-references)
-- [INSTALLATION](#9--installation)
-- [VERIFICATION](#10--verification)
-
----
-
 ## 1. OVERVIEW
 
 This reference defines standards for install guide documentation. Install guides require special consideration: unclear instructions lead to failed setups, wasted time, and frustrated users.

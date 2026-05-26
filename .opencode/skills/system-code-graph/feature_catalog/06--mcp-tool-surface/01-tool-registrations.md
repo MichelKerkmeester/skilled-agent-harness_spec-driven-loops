@@ -9,13 +9,10 @@ importance_tier: "important"
 
 # Tool registrations
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The `mk-code-index` runtime exposes code graph, detect_changes and structural tools through the code graph dispatcher. Deep-loop coverage graph tools still dispatch through the system-spec-kit MCP server.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -29,9 +26,7 @@ manual. Tool registration is availability, not automation.
 ### Caveats / Fallback
 
 Schema validation rejects malformed tool calls before handler execution for registered names.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -50,9 +45,6 @@ Schema validation rejects malformed tool calls before handler execution for regi
 |---|---|---|
 | `../../manual_testing_playbook/06--mcp-tool-surface/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: MCP tool surface
@@ -63,4 +55,3 @@ Related references:
 
 - [../01--read-path-freshness/02-query-self-heal.md](../01--read-path-freshness/02-query-self-heal.md)
 - [../../manual_testing_playbook/06--mcp-tool-surface/011-tool-call-shape-validation.md](../../manual_testing_playbook/06--mcp-tool-surface/011-tool-call-shape-validation.md)
-<!-- /ANCHOR:source-metadata -->

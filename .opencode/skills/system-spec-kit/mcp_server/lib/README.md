@@ -10,24 +10,8 @@ trigger_phrases:
 
 # MCP Server Library
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `mcp_server/lib/` contains the shared TypeScript implementation used by MCP handlers and scripts. It owns retrieval pipelines, cognitive state, continuity parsing, scoring, persistence helpers, governance checks, response envelopes and evaluation support.
@@ -38,11 +22,8 @@ Current state:
 - Storage and search logic stay behind typed helper modules.
 - Cross-cutting folders provide telemetry, validation, policy and response contracts.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -73,11 +54,8 @@ lib modules → shared contracts and validation
 storage and providers do not import handlers
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 | Zone | Folders | Import role |
@@ -89,11 +67,8 @@ storage and providers do not import handlers
 | Observability | `telemetry/`, `eval/`, `feedback/` | Record quality signals and evaluation data. |
 | Formatting | `response/`, `errors/`, `utils/` | Shape tool output and shared helpers. |
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -117,11 +92,8 @@ lib/
 └── errors.ts        # Legacy error surface
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Role |
@@ -135,11 +107,8 @@ lib/
 | `validation/preflight.ts` | Guards inputs before storage or retrieval work. |
 | `response/envelope.ts` | Shapes consistent MCP response payloads. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 Boundaries:
@@ -173,11 +142,8 @@ Retrieval flow:
 └────────────────────┘
 ```
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 There is no single stable `lib/` barrel for external callers. Use concrete module imports from source or compiled output.
@@ -190,11 +156,8 @@ import { calculateRetrievabilityDecay } from './cognitive/attention-decay';
 import { getCanonicalPathKey } from './utils/canonical-path';
 ```
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root:
@@ -207,11 +170,8 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 
 Use targeted vitest paths when changing one subsystem under `lib/`.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 | Document | Role |
@@ -220,5 +180,3 @@ Use targeted vitest paths when changing one subsystem under `lib/`.
 | [Handlers README](../handlers/README.md) | Tool handler layer that calls `lib/`. |
 | [Search README](./search/README.md) | Retrieval subsystem details. |
 | [Storage README](./storage/README.md) | Persistence subsystem details. |
-
-<!-- /ANCHOR:related -->

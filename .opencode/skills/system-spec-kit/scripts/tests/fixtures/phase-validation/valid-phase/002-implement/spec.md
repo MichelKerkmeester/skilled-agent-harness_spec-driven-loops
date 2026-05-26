@@ -13,7 +13,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -29,11 +28,9 @@ contextType: "general"
 | **Predecessor** | 001-design |
 | **Successor** | N/A |
 | **Handoff Criteria** | Implementation complete |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:phase-context -->
 ### Phase Context
 
 This is **Phase 2** of the Valid Phase Fixture specification.
@@ -45,11 +42,9 @@ This is **Phase 2** of the Valid Phase Fixture specification.
 
 **Deliverables**:
 - Working implementation
-<!-- /ANCHOR:phase-context -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -57,11 +52,9 @@ Implementation phase for the valid phase fixture.
 
 ### Purpose
 Implement the design produced in phase 1.
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -75,11 +68,9 @@ Implement the design produced in phase 1.
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | N/A | N/A | Test fixture |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -87,30 +78,23 @@ Implement the design produced in phase 1.
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Implementation complete | Tests passing |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Implementation phase passes validation
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | 001-design | Blocked if incomplete | Complete design first |
-<!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None
-<!-- /ANCHOR:questions -->

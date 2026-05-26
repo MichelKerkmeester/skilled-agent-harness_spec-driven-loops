@@ -5,12 +5,6 @@ description: "Stable top-level import surface re-exporting evaluation, indexing,
 
 # MCP Server Public API Barrel
 
-## TABLE OF CONTENTS
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 The `mcp_server/api/index.ts` file is the public barrel for the MCP server runtime. Its file header explicitly marks it as the single public entry point, and the README reinforces that external consumers such as scripts, eval tooling, and automation should import from `api/` instead of reaching into `lib/`, `core/`, or `handlers/` directly. In practice, that makes the barrel the stable top-level boundary that shields downstream code from internal path churn.

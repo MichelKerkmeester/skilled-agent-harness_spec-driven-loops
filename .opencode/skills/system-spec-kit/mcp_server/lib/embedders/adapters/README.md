@@ -9,15 +9,6 @@ trigger_phrases:
 
 # Embedder Adapter Compatibility
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. OWNERSHIP](#2--ownership)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-
 ## 1. OVERVIEW
 
 `lib/embedders/adapters/` keeps server-local adapter import paths stable while canonical adapter code lives in `@spec-kit/shared`.

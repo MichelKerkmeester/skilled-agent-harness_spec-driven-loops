@@ -11,37 +11,12 @@ This is the canonical install + setup guide for the standalone Skill Advisor MCP
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PREREQUISITES](#2--prerequisites)
-- [3. INSTALLATION](#3--installation)
-- [4. VERIFICATION](#4--verification)
-- [5. NATIVE PACKAGE CHECKS](#5--native-package-checks)
-- [6. RUNTIME HOOKS AND PLUGIN](#6--runtime-hooks-and-plugin)
-- [7. COMPAT SHIMS](#7--compat-shims)
-- [8. ROLLBACK](#8--rollback)
-- [9. OPERATOR CHECKS](#9--operator-checks)
-- [10. TROUBLESHOOTING](#10--troubleshooting)
-- [11. REFERENCE COMMANDS](#11--reference-commands)
-- [12. CHOOSING AN EMBEDDER](#12--choosing-an-embedder)
-- [13. RELATED RESOURCES](#13--related-resources)
-
----
-
-<!-- /ANCHOR:table-of-contents -->
-
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 The native advisor is a TypeScript package under `.opencode/skills/system-skill-advisor/mcp_server/`. It exposes 8 public MCP tools (`advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`) plus 1 internal trusted-caller tool (`skill_graph_propagate_enhances`, gated behind auth). The standalone MCP server owns the advisor handlers, schemas, launcher, plus the package-local SQLite DB at `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite`. The Python `skill_advisor.py` shim remains as the compatibility surface for scripts and prompt hooks.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-prerequisites -->
 ## 2. PREREQUISITES
 
 - Node.js and npm available for the standalone system-skill-advisor MCP server.
@@ -52,9 +27,6 @@ The native advisor is a TypeScript package under `.opencode/skills/system-skill-
 
 ---
 
-<!-- /ANCHOR:2-prerequisites -->
-
-<!-- ANCHOR:3-installation -->
 ## 3. INSTALLATION
 
 Install dependencies and build the advisor MCP server:
@@ -78,9 +50,6 @@ node .opencode/bin/mk-skill-advisor-launcher.cjs
 
 ---
 
-<!-- /ANCHOR:3-installation -->
-
-<!-- ANCHOR:4-verification -->
 ## 4. VERIFICATION
 
 Verify native tool registration through `mk_skill_advisor`:
@@ -102,9 +71,6 @@ Expected:
 
 ---
 
-<!-- /ANCHOR:4-verification -->
-
-<!-- ANCHOR:5-native-package-checks -->
 ## 5. NATIVE PACKAGE CHECKS
 
 Run before declaring bootstrap complete:
@@ -129,9 +95,6 @@ Current native advisor baseline:
 
 ---
 
-<!-- /ANCHOR:5-native-package-checks -->
-
-<!-- ANCHOR:6-runtime-hooks-and-plugin -->
 ## 6. RUNTIME HOOKS AND PLUGIN
 
 Prompt-time routing is available across runtime adapters:
@@ -158,9 +121,6 @@ After build, plugin consumers load:
 
 ---
 
-<!-- /ANCHOR:6-runtime-hooks-and-plugin -->
-
-<!-- ANCHOR:7-compat-shims -->
 ## 7. COMPAT SHIMS
 
 `skill_advisor.py` remains the CLI compatibility surface. In one-shot mode it probes the native advisor first and translates `advisor_recommend` output back to the legacy JSON-array shape. If the native probe is unavailable, it falls back to the local Python scorer.
@@ -200,9 +160,6 @@ If a package-level import is needed inside a subprocess fallback, it must target
 
 ---
 
-<!-- /ANCHOR:7-compat-shims -->
-
-<!-- ANCHOR:8-rollback -->
 ## 8. ROLLBACK
 
 Use rollback only long enough to diagnose or recover the native path.
@@ -235,9 +192,6 @@ unset SPECKIT_SKILL_ADVISOR_FORCE_LOCAL
 
 ---
 
-<!-- /ANCHOR:8-rollback -->
-
-<!-- ANCHOR:9-operator-checks -->
 ## 9. OPERATOR CHECKS
 
 `skill_graph_*` tools are owned by the `mk_skill_advisor` MCP server as of `013/009/008`. Public tool ids remain unchanged.
@@ -273,9 +227,6 @@ H5 operator scenarios live in the manual playbook under `04--operator-h5/`.
 
 ---
 
-<!-- /ANCHOR:9-operator-checks -->
-
-<!-- ANCHOR:10-troubleshooting -->
 ## 10. TROUBLESHOOTING
 
 | What You See | Cause | Fix |
@@ -285,9 +236,6 @@ H5 operator scenarios live in the manual playbook under `04--operator-h5/`.
 
 ---
 
-<!-- /ANCHOR:10-troubleshooting -->
-
-<!-- ANCHOR:11-reference-commands -->
 ## 11. REFERENCE COMMANDS
 
 ```bash
@@ -317,9 +265,6 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 
 ---
 
-<!-- /ANCHOR:11-reference-commands -->
-
-<!-- ANCHOR:12-choosing-an-embedder -->
 ## 12. CHOOSING AN EMBEDDER
 
 The skill-advisor `semantic_shadow` lane runs against a pluggable embedder layer. As of phase `003/006` the contract surface (adapter interface, types, manifest registry, Ollama adapter) lives in `@spec-kit/shared/embeddings/` and is shared with `mk-spec-memory`. Skill-advisor's local `mcp_server/lib/embedders/` files are thin re-export shims plus a skill-advisor-specific `schema.ts` integration that targets the package-local SQLite database at `mcp_server/database/skill-graph.sqlite`. This section is the new-user onboarding view; the canonical multi-MCP narrative lives at [embedder_pluggability.md](../system-spec-kit/references/memory/embedder_pluggability.md).
@@ -416,9 +361,6 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 - Skill-advisor schema helpers: [`mcp_server/lib/embedders/schema.ts`](./mcp_server/lib/embedders/schema.ts).
 - Architecture-gap follow-on: packet `003/006-shared-embedder-logic-with-spec-memory` (shipped phase 003/006).
 
-<!-- /ANCHOR:12-choosing-an-embedder -->
-
-<!-- ANCHOR:13-related-resources -->
 ## 13. RELATED RESOURCES
 
 | Document | Purpose |
@@ -428,5 +370,3 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 | [Hook reference](./references/hooks/skill_advisor_hook.md) | Claude, Copilot, Gemini, Codex, Devin and OpenCode plugin hook contract. |
 | [Manual testing playbook](./manual_testing_playbook/manual_testing_playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
 | [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder_pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference. |
-
-<!-- /ANCHOR:13-related-resources -->

@@ -5,12 +5,6 @@ description: "Shared test-fixture utilities reused across deep-loop-runtime test
 
 # Test Helpers
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CONTENTS](#2--contents)
-- [3. RELATED RESOURCES](#3--related-resources)
-
 ---
 
 ## 1. OVERVIEW

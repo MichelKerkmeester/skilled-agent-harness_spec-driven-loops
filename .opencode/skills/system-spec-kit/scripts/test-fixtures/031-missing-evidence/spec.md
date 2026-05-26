@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Missing Evidence
@@ -27,4 +26,3 @@ Tests that P0/P1 completed items without evidence generate warnings.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

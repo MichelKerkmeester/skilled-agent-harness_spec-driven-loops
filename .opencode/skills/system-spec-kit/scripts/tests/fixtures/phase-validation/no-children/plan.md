@@ -14,7 +14,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -28,11 +27,9 @@ contextType: "general"
 
 ### Overview
 Minimal valid plan for a non-phased spec folder test fixture.
-<!-- /ANCHOR:summary -->
 
 ---
 
-<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -40,11 +37,9 @@ Minimal valid plan for a non-phased spec folder test fixture.
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-<!-- /ANCHOR:quality-gates -->
 
 ---
 
-<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -54,42 +49,33 @@ Simple - no architecture needed
 - **spec.md**: Feature specification
 - **plan.md**: Implementation plan
 - **tasks.md**: Task tracking
-<!-- /ANCHOR:architecture -->
 
 ---
 
-<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Implementation
 - [ ] Implement feature
-<!-- /ANCHOR:phases -->
 
 ---
 
-<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | Validation | validate.sh |
-<!-- /ANCHOR:testing -->
 
 ---
 
-<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | N/A | N/A | Green | N/A |
-<!-- /ANCHOR:dependencies -->
 
 ---
 
-<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: N/A (test fixture)
 - **Procedure**: N/A
-<!-- /ANCHOR:rollback -->

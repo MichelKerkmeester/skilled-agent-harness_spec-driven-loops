@@ -13,21 +13,6 @@ trigger_phrases:
 
 > Configuration inputs for memory search ranking and cognitive co-activation parsing.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. SURFACE](#2--surface)
-- [3. EXPORTS](#3--exports)
-- [4. ALLOWED IMPORTS](#4--allowed-imports)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES](#6--boundaries)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `mcp_server/configs/` stores configuration used by memory search and cognitive matching. JSON files hold data-only settings. TypeScript files validate environment-backed runtime settings before handlers and search modules consume them.
@@ -36,8 +21,6 @@ Runtime scoring rules still live in the modules that execute scoring. This folde
 
 Use this folder when changing static ranking defaults, trigger weight inputs, or cognitive regex environment parsing. Do not add runtime branching here unless the config file is the stable boundary and the caller owns behavior.
 
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:surface -->
 ## 2. SURFACE
 
 | Surface | Purpose |
@@ -46,8 +29,6 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 | `cognitive.ts` | Environment-backed regex config for cognitive co-activation matching. |
 | Environment variables | `SPECKIT_COGNITIVE_COACTIVATION_PATTERN` and `SPECKIT_COGNITIVE_COACTIVATION_FLAGS`. |
 
-<!-- /ANCHOR:surface -->
-<!-- ANCHOR:exports -->
 ## 3. EXPORTS
 
 `cognitive.ts` exports:
@@ -59,8 +40,6 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 
 `search-weights.json` exports data through normal JSON imports or file reads. Keep the file valid JSON.
 
-<!-- /ANCHOR:exports -->
-<!-- ANCHOR:allowed-imports -->
 ## 4. ALLOWED IMPORTS
 
 | Import | Rule |
@@ -70,8 +49,6 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 | Runtime constants | Keep runtime scoring constants in their owning search or scoring modules. |
 | Side effects | Do not add DB, file write, network, or handler execution side effects to this folder. |
 
-<!-- /ANCHOR:allowed-imports -->
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -80,8 +57,6 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 | `cognitive.ts` | Regex config parsing, default values, validation errors and safety checks. |
 | `README.md` | Folder contract for config shape and import rules. |
 
-<!-- /ANCHOR:key-files -->
-<!-- ANCHOR:boundaries -->
 ## 6. BOUNDARIES
 
 | Boundary | Rule |
@@ -91,8 +66,6 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 | Runtime safety | Validate environment regex values before exposing them to callers. |
 | Side effects | Keep config loading free of writes, network calls and handler dispatch. |
 
-<!-- /ANCHOR:boundaries -->
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 - Import `COGNITIVE_CONFIG` when a caller needs validated default cognitive matching settings.
@@ -100,8 +73,6 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 - Use `safeParseCognitiveConfigFromEnv()` when invalid regex input should return an error object instead of throwing.
 - Read `search-weights.json` from search-ranking code that needs stable scoring inputs.
 
-<!-- /ANCHOR:entrypoints -->
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root:
@@ -114,13 +85,9 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Expected result: JSON parsing succeeds, cognitive config tests pass and README validation exits `0` with no HVR issues.
 
-<!-- /ANCHOR:validation -->
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [Scoring modules](../lib/scoring/README.md)
 - [Cognitive modules](../lib/cognitive/README.md)
 - [Search handlers](../handlers/README.md)
 - [Memory search reference](../../references/memory/memory_system.md)
-
-<!-- /ANCHOR:related -->

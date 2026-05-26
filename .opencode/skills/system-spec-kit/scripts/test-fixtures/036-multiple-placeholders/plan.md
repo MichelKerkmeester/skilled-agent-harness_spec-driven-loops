@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Implementation Plan
 
@@ -27,4 +26,3 @@ L1 with placeholders.
 ### Phase 1: Setup
 
 Create files with multiple placeholders.
-<!-- /ANCHOR:implementation-plan -->

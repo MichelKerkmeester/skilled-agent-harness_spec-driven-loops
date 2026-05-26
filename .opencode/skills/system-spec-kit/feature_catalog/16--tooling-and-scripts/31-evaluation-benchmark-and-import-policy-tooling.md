@@ -5,13 +5,6 @@ description: "Operator-facing eval runners and policy checks that measure retrie
 
 # Evaluation, benchmark, and import-policy tooling
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 `scripts/evals/` is the tooling surface for measuring retrieval quality, benchmarking memory-system latency, and enforcing script-side import and boundary policy.

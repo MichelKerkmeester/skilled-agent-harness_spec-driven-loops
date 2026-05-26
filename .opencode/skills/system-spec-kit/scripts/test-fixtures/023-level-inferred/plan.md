@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -30,4 +29,3 @@ L1 structure only.
 ### Phase 1: Setup
 
 Create L1 fixture without level field.
-<!-- /ANCHOR:implementation-plan -->

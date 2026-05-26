@@ -12,21 +12,14 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Feed the lexical lane with corpus-aware statistics so common tokens are discounted and skill-distinctive tokens dominate scoring. The corpus is restricted to active skills to avoid polluting routing with archived or future content.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `lib/corpus/df-idf.ts` computes DF/IDF over the active corpus only (excluding `z_archive/` and `z_future/`). Recomputation is debounced: multiple reindex events within the debounce window collapse into one recompute. The resulting statistics are consumed by the lexical lane in `lib/scorer/lanes/lexical.ts`.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -42,9 +35,7 @@ Feed the lexical lane with corpus-aware statistics so common tokens are discount
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | lexical lane scoring against IDF |
 | `Playbook scenario [AI-004](../../manual_testing_playbook/06--auto-indexing/004-corpus-df-idf.md).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Auto indexing
@@ -56,4 +47,3 @@ Related references:
 - [`03--lifecycle-routing/03-archive-handling.md`](../03--lifecycle-routing/03-archive-handling.md), archive exclusion.
 - [`04--scorer-fusion/01-five-lane-fusion.md`](../04--scorer-fusion/01-five-lane-fusion.md).
 - [01-derived-extraction.md](./01-derived-extraction.md).
-<!-- /ANCHOR:source-metadata -->

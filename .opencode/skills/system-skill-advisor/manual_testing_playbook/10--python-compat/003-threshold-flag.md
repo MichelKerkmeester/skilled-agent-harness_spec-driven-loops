@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `--threshold <value>` adjusts the confidence cutoff applied by the shim (default 0.8) and that lower thresholds surface additional candidates while higher thresholds filter aggressively.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root. Python 3 available.
@@ -32,9 +28,6 @@ Validate that `--threshold <value>` adjusts the confidence cutoff applied by the
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Run at the default threshold:
@@ -74,9 +67,6 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.p
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [PC-002](./002-force-native-force-local.md), force toggles.
@@ -86,14 +76,9 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.p
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Python Compat
 - Playbook ID: PC-003
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 10--python-compat/003-threshold-flag.md
-
-<!-- /ANCHOR:5-source-metadata -->

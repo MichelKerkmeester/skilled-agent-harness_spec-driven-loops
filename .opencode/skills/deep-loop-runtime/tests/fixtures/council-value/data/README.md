@@ -12,20 +12,8 @@ trigger_phrases:
 
 > Data-only directory that provides a CommonJS module defining builder functions for all six council graph value demonstration scenarios.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. KEY FILES](#2--key-files)
-- [3. ENTRYPOINTS](#3--entrypoints)
-- [4. VALIDATION](#4--validation)
-- [5. RELATED](#5--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `tests/fixtures/council-value/data/` owns the `scenarios.cjs` CommonJS module that defines builder functions for the six council graph value scenarios (DAC-027 through DAC-032). Each builder produces complete test data including graph seeds, artifact trees and expected answers for both baseline file-read and runtime CLI council graph approaches.
@@ -40,22 +28,16 @@ Current state:
 - The module is consumed by `seed-helpers.ts` in the parent directory via CommonJS `require()`, which uses the scenario data to build `ScenarioFixture` objects.
 - The file uses strict mode and has no executable test logic.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 2. KEY FILES
 
 | File | Responsibility |
 |---|---|
 | `scenarios.cjs` | Exports `getScenarioData(scenarioId)` and `listScenarioIds()`. Contains the `BUILDERS` object with builder functions for all six DAC scenarios that generate graph seeds, artifact trees and expected answers. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 3. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -63,11 +45,8 @@ Current state:
 | `getScenarioData` | Function | Takes a scenario ID (DAC-027 through DAC-032) and returns the complete `ScenarioData` object including graph seed, artifact tree and expected answers. |
 | `listScenarioIds` | Function | Returns an array of all available scenario ID strings for enumeration and validation. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 4. VALIDATION
 
 Run from the repository root.
@@ -78,15 +57,10 @@ cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop
 
 Expected result: exit code 0, all 6 tests pass.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 5. RELATED
 
 - [Parent: Council Value Fixtures](../README.md)
 - [Seed Helpers: ../seed-helpers.ts](../seed-helpers.ts)
 - [Tests: tests/](../../../README.md)
-
-<!-- /ANCHOR:related -->

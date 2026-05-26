@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Duplicate Anchor IDs
@@ -26,4 +25,3 @@ Tests duplicate anchor IDs, each properly closed.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

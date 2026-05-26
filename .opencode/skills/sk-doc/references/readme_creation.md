@@ -24,7 +24,7 @@ This reference defines standards for README documentation. READMEs are the entry
 **Goals**:
 - **Orientation** -- Users understand what this is within 10 seconds
 - **Self-service** -- Users can get started without asking anyone
-- **AI-friendly** -- Parseable structure with stable anchors
+- **AI-friendly** -- Parseable structure with a consistent heading hierarchy
 - **Consistency** -- Same format across all project documentation
 
 **Requirements**:
@@ -185,21 +185,9 @@ Numbered subsections appear inside Feature sections (3.1, 3.2 at H3 and 3.1.1, 3
 ---
 ```
 
-**TOC format**: Entries use double-dash anchors and ALL CAPS text matching the H2 heading.
+**Table of Contents**: Do not add a Table of Contents. READMEs rely on their numbered H2 heading hierarchy for navigation; no TOC block and no `<!-- ANCHOR -->` navigation comments are used.
 
-```markdown
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 HOW IT WORKS](#31-how-it-works)
-  - [3.2 TOOL REFERENCE](#32-tool-reference)
-```
-
-Note the double-dash after the number in H2 anchors (`#1--overview`) and no dash for subsection anchors (`#31-how-it-works`).
-
-**Section dividers**: Use `---` horizontal rules between H2 sections. Place the rule after the closing anchor marker of the previous section and before the opening anchor marker of the next section.
+**Section dividers**: Use `---` horizontal rules between H2 sections.
 
 ### Analogy Patterns
 
@@ -299,7 +287,7 @@ Use `[PLACEHOLDER]` format with descriptive names:
 
 | Component | Weight | What It Measures |
 |-----------|--------|------------------|
-| **Structure** | 40% | Section organization, heading hierarchy, TOC accuracy, anchor markers, dividers |
+| **Structure** | 40% | Section organization, heading hierarchy, dividers |
 | **Content** | 35% | Commands tested, expected outputs shown, examples provided, completeness |
 | **Style** | 25% | HVR compliance, consistent formatting, code blocks with language tags |
 
@@ -324,11 +312,10 @@ Use `[PLACEHOLDER]` format with descriptive names:
 ### Structure
 
 - [ ] Title with one-line blockquote tagline
-- [ ] Table of contents with working anchor links (double-dash format)
+- [ ] No Table of Contents and no `<!-- ANCHOR -->` navigation comments
 - [ ] All included sections have content (no empty sections)
 - [ ] Section numbers are sequential
 - [ ] Horizontal rules between H2 sections
-- [ ] TOC entries match actual H2 headings
 
 ### Content
 
@@ -353,7 +340,6 @@ Use `[PLACEHOLDER]` format with descriptive names:
 - [ ] H2 headings use numbered ALL CAPS format
 - [ ] Numbered H3/H4 subsections use ALL CAPS (e.g., `### 3.1 HYBRID SEARCH`)
 - [ ] Unnumbered H3/H4 use Title Case (e.g., `### Configuration`)
-- [ ] TOC links match section headers
 - [ ] File paths in backticks
 - [ ] Commands in fenced code blocks
 - [ ] Key terms bolded consistently

@@ -5,13 +5,6 @@ description: "Documents the `memory_validate` feedback loop, including confidenc
 
 # Feedback-driven revalidation
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 Documents the `memory_validate` feedback loop, including confidence updates, adaptive signals, auto-promotion, negative-feedback persistence, and learned feedback.

@@ -14,7 +14,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -23,30 +22,23 @@ contextType: "general"
 | `[x]` | Completed |
 
 **Task Format**: `T### [P?] Description (file path)`
-<!-- /ANCHOR:notation -->
 
 ---
 
-<!-- ANCHOR:phase-1 -->
 ## Phase 1: Implementation
 
 - [ ] T001 Implement feature
 - [ ] T002 Write tests
-<!-- /ANCHOR:phase-1 -->
 
 ---
 
-<!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-<!-- /ANCHOR:completion -->
 
 ---
 
-<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-<!-- /ANCHOR:cross-refs -->

@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -22,4 +21,3 @@ Standard file structure.
 ## Implementation
 
 Standard implementation approach.
-<!-- /ANCHOR:implementation-plan -->

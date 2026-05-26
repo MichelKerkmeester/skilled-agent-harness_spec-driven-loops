@@ -13,16 +13,6 @@ trigger_phrases:
 
 `lib/eval/` contains measurement and analysis code for retrieval quality. Runtime callers use the fail-safe logger and pure scoring helpers. Maintenance callers use baseline, ablation, ground-truth, and dashboard utilities.
 
-## Table of Contents
-
-- [1. OVERVIEW](#1--overview)
-- [2. TOPOLOGY](#2--topology)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
 ## 1. OVERVIEW
 
 This folder answers whether retrieval changes improve results, regress quality, or affect channel contribution. It does not own live retrieval. The live path may call into logging and pure metrics, while heavier eval work stays behind explicit tools, flags, or offline scripts.

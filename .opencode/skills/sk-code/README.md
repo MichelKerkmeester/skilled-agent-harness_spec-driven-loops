@@ -18,23 +18,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 sk-code is the single code-work skill in this template repo. It runs a surface-aware smart router that decides which code surface is in front of it before loading any standards or running any verification. The supported shipped surfaces are **WEBFLOW** (frontend HTML/CSS/JS, Webflow Designer, animation libraries), **OPENCODE** (system code under `.opencode/` (skills, agents, commands, scripts, MCP servers, JSON/JSONC config)), and **MOTION_DEV** (cross-stack motion.dev API as an intent route, not a primary surface). When neither WEBFLOW nor OPENCODE matches, the router asks the user which surface and what verification commands to run rather than guessing.
@@ -53,11 +36,9 @@ This is also **the template customization surface** for end users adopting this 
 - Cross-stack motion.dev: MOTION_DEV is a peer intent route, not a primary surface (bare imports do not redirect a workspace)
 - Iron Law verification: Surface-appropriate evidence required before any "done" claim
 - Template customization surface: The only skill end-users edit when adopting this repo for their stack
-<!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1: Invoke the skill.**
@@ -89,11 +70,9 @@ python3 assets/scripts/verify_alignment_drift.py --root <changed-scope>
 
 **Step 4: Document evidence in the spec folder.**
 Surface-appropriate evidence (browser screenshot, alignment-drift exit 0, test runner output) goes into the spec folder's `checklist.md` items as `[x]` with a path or output snippet.
-<!-- /ANCHOR:quick-start -->
 
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -161,11 +140,9 @@ sk-code is at version 3.3.0.0 with a SKILL.md contract of 252 LOC. The skill shi
 | `universal/style.md` | Cross-surface style conventions |
 | `universal/research.md` | When to research vs assume |
 | `universal/error_recovery.md` | Failure handling and root-cause discipline |
-<!-- /ANCHOR:features -->
 
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -203,11 +180,9 @@ sk-code/
         ├── verify_alignment_drift.py
         └── test_verify_alignment_drift.py
 ```
-<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 No configuration is required. The smart router handles surface detection automatically.
@@ -221,11 +196,9 @@ No configuration is required. The smart router handles surface detection automat
 **Iron Law enforcement** applies to all surfaces. There is no opt-out. The skill carries forbidden phrases (`should work`, `looks good`, `seems fine`) that the AI must not emit before per-surface verification has run cleanly.
 
 **Template customization** for repo adopters: replace `references/{webflow,opencode,motion_dev}/` and `assets/{webflow,opencode,motion_dev}/` with your stack's references and assets. Update `STACK_FOLDERS` and `RESOURCE_MAP` in SKILL.md §2. Keep every other skill in the repo unchanged so upstream pulls stay clean.
-<!-- /ANCHOR:configuration -->
 
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 **Implement a Webflow component**
@@ -276,11 +249,9 @@ mkdir -p references/{your-stack-1,your-stack-2}
 # Author your stack's references
 # Update SKILL.md §2 STACK_FOLDERS and RESOURCE_MAP to match
 ```
-<!-- /ANCHOR:usage-examples -->
 
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 **Router resolves to UNKNOWN repeatedly**
@@ -320,11 +291,9 @@ What you see: A motion.dev-related task doesn't load `references/motion_dev/`; t
 Common causes: MOTION_DEV is an intent, not a primary surface (it activates after WEBFLOW or OPENCODE is selected and only when the task touches motion.dev API). If the prompt mentions "motion" generically (without API names like `Motion.animate`, `Motion.timeline`, package import) MOTION_DEV doesn't trigger.
 
 Fix: Reference a specific motion.dev API or import in the prompt to activate MOTION_DEV. The intent route is conservative by design (generic mentions of "animation" or "motion" don't route to motion.dev because they could mean any animation library).
-<!-- /ANCHOR:troubleshooting -->
 
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: Why is sk-code the only skill I should edit when forking this repo?**
@@ -346,11 +315,9 @@ A: Yes (that's the template customization workflow). Add a new directory under `
 **Q: Why does the Iron Law forbid "should work" claims?**
 
 A: Verification before completion is the safety check that distinguishes confident code from plausible-looking code. AI assistants frequently emit code that looks correct but breaks under specific inputs, or that compiles but doesn't pass tests. The Iron Law makes verification a hard gate: surface-appropriate evidence (browser screenshot, alignment-drift exit 0, test runner pass) must exist before any "done" claim. The pattern eliminates a whole class of credibility failures where the AI claims success on unverified code.
-<!-- /ANCHOR:faq -->
 
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 | Resource | Path | Purpose |
@@ -370,4 +337,3 @@ A: Verification before completion is the safety check that distinguishes confide
 | system-spec-kit | `.opencode/skills/system-spec-kit/` | Spec folder lifecycle and Gate 3 |
 | mcp-chrome-devtools | `.opencode/skills/mcp-chrome-devtools/` | Browser evidence for Webflow/frontend work |
 | Root README §4 | `../../README.md#customizing-for-your-stack` | Template customization workflow |
-<!-- /ANCHOR:related-documents -->

@@ -14,7 +14,6 @@ Implementation-level reference for `ensureCodeGraphReady()` gates, recovery path
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -37,9 +36,6 @@ A 10-second timeout guard ensures auto-indexing never blocks queries forever (`m
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-preconditions-checked -->
 ## 2. PRECONDITIONS CHECKED
 
 The readiness check evaluates six preconditions before deciding whether to serve, repair, or block:
@@ -53,9 +49,6 @@ The readiness check evaluates six preconditions before deciding whether to serve
 
 ---
 
-<!-- /ANCHOR:2-preconditions-checked -->
-
-<!-- ANCHOR:3-readiness-gates -->
 ## 3. READINESS GATES
 
 Five gates determine whether the system promotes, repairs, or blocks:
@@ -68,9 +61,6 @@ Five gates determine whether the system promotes, repairs, or blocks:
 
 ---
 
-<!-- /ANCHOR:3-readiness-gates -->
-
-<!-- ANCHOR:4-failure-modes -->
 ## 4. FAILURE MODES
 
 The readiness check exposes six failure surfaces:
@@ -84,9 +74,6 @@ The readiness check exposes six failure surfaces:
 
 ---
 
-<!-- /ANCHOR:4-failure-modes -->
-
-<!-- ANCHOR:5-recovery-procedures -->
 ## 5. RECOVERY PROCEDURES
 
 Three recovery procedures handle the most severe failures:
@@ -99,9 +86,6 @@ Self-heal tracking adds `selfHealAttempted`, `selfHealResult` (`ok`, `failed`, `
 
 ---
 
-<!-- /ANCHOR:5-recovery-procedures -->
-
-<!-- ANCHOR:6-handler-integration -->
 ## 6. HANDLER INTEGRATION
 
 Five handlers integrate the readiness check:
@@ -114,9 +98,6 @@ Five handlers integrate the readiness check:
 
 ---
 
-<!-- /ANCHOR:6-handler-integration -->
-
-<!-- ANCHOR:7-diagnostics-payload -->
 ## 7. DIAGNOSTICS PAYLOAD
 
 The readiness diagnostics payload assembles in four steps:
@@ -125,5 +106,3 @@ The readiness diagnostics payload assembles in four steps:
 - **Readiness block composition** - `buildReadinessBlock()` in `mcp_server/lib/readiness-contract.ts:241-249` augments the `ReadyResult` with `canonicalReadiness` and `trustState`.
 - **Canonical readiness mapping** - `canonicalReadinessFromFreshness()` in `mcp_server/lib/readiness-contract.ts:73-88` maps `fresh` to `ready`, `stale` to `stale`, `empty` to `missing` and `error` to `missing`.
 - **Trust state derivation** - `queryTrustStateFromFreshness()` in `mcp_server/lib/readiness-contract.ts:109-124` maps `fresh` to `live`, `stale` to `stale`, `empty` to `absent` and `error` to `unavailable`.
-
-<!-- /ANCHOR:7-diagnostics-payload -->

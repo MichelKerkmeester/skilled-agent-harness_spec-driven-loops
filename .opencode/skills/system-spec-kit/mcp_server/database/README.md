@@ -9,23 +9,8 @@ trigger_phrases:
 
 # MCP Server Database Storage
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `mcp_server/database/` is the default runtime storage directory for MCP server SQLite files. It is a data directory, not a TypeScript source module folder.
@@ -42,11 +27,8 @@ The default path is resolved through shared path and config helpers. Runtime var
 
 Two subdirectories live alongside the SQLite databases. `vectors/` holds per-embedder shard files split out by ADR-012, with one shard per provider, model and dimension. `migrations/` is reserved infrastructure for future per-server schema migrations and is empty today. See [`./vectors/README.md`](./vectors/README.md) and [`./migrations/README.md`](./migrations/README.md) for the rules that govern each folder.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -63,11 +45,8 @@ mcp_server/database/
         `--> generated SQLite sidecar files
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -81,11 +60,8 @@ database/
 
 Generated database files are runtime artifacts. They are not source modules and should not be listed as key source files.
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -105,11 +81,8 @@ database/
     `-- .gitkeep                   # Keeps the reserved folder present
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -122,11 +95,8 @@ database/
 
 Runtime artifacts include `context-index*.sqlite`, `code-graph.sqlite`, `speckit-eval.db`, `*-wal` and `*-shm` files. Vector shards live in `vectors/` as `context-vectors__<provider>__<model>__<dim>[__<quant>].sqlite`. The active production shard today is `context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite` at about 15 MB. Treat all of these as generated data, not source files.
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 This directory owns storage location only. Schema creation, indexing, code graph scans and health checks live in MCP server code and scripts outside this folder. Vector shard schemas under `vectors/` are created lazily on first attach by `mcp_server/dist/lib/search/vector-index-store.js` through `ensure_vector_shard_schema()`, which derives the dim-tagged virtual table name from `vector_table_name_for_profile()`. The `migrations/` folder stays empty until a true breaking schema change ships. The runtime uses `CREATE TABLE IF NOT EXISTS` for normal schema evolution.
@@ -139,11 +109,8 @@ runtime config -> database path resolution -> SQLite read or write -> .db-update
 
 Do not commit generated SQLite databases, vector shards or sidecar files. The existing `.gitignore` for this folder already covers `*.sqlite`, `*.sqlite-shm` and `*.sqlite-wal` patterns. Test fixtures that need a real database belong outside this runtime directory.
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root:
@@ -154,11 +121,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Use MCP memory and code graph health tools to validate live database state.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - `./vectors/README.md`
@@ -167,5 +131,3 @@ Use MCP memory and code graph health tools to validate live database state.
 - `../handlers/README.md`
 - `../../references/memory/memory_system.md`
 - `../../scripts/memory/README.md`
-
-<!-- /ANCHOR:related -->

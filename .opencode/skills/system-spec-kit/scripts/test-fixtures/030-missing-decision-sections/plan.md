@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -28,4 +27,3 @@ L3 structure.
 ### Phase 1: Setup
 
 Create decision-record without Consequences.
-<!-- /ANCHOR:implementation-plan -->

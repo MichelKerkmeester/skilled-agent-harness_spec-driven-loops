@@ -9,25 +9,10 @@ trigger_phrases:
 
 # Extraction
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DATA FLOW](#2--data-flow)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
-<!-- /ANCHOR:table-of-contents -->
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/extraction/` turns selected tool output into memory-adjacent signals. It resolves target memory IDs, summarizes matched output, applies redaction, extracts entities, and optionally checks entity or relation pairs against an ontology schema.
 
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:data-flow -->
 ## 2. DATA FLOW
 
 ```text
@@ -43,8 +28,6 @@ tool result
 
 The extraction adapter fails closed when it cannot resolve a valid memory ID. Redaction runs before extracted content can reach downstream insert paths.
 
-<!-- /ANCHOR:data-flow -->
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Purpose |
@@ -55,14 +38,10 @@ The extraction adapter fails closed when it cannot resolve a valid memory ID. Re
 | `entity-denylist.ts` | Filters low-signal entity terms |
 | `ontology-hooks.ts` | Loads schema data and validates entity or relation pairs when enabled |
 
-<!-- /ANCHOR:key-files -->
-<!-- ANCHOR:boundaries -->
 ## 4. BOUNDARIES
 
 This module prepares extraction data and safety checks. It does not own canonical memory saves, response envelopes, search ranking, or graph traversal.
 
-<!-- /ANCHOR:boundaries -->
-<!-- ANCHOR:entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Use |
@@ -78,8 +57,6 @@ This module prepares extraction data and safety checks. It does not own canonica
 | `loadOntologySchema()` | Load the default or configured ontology schema |
 | `validateExtraction()` | Check an entity and relation pair against the schema |
 
-<!-- /ANCHOR:entrypoints -->
-<!-- ANCHOR:validation -->
 ## 6. VALIDATION
 
 - Extraction rules reject unsafe regex patterns at startup.
@@ -88,13 +65,9 @@ This module prepares extraction data and safety checks. It does not own canonica
 - Entity extraction deduplicates by normalized name and filters denylisted terms.
 - Ontology hooks fail open when disabled and validate against configured allowed types when enabled.
 
-<!-- /ANCHOR:validation -->
-<!-- ANCHOR:related -->
 ## 7. RELATED
 
 - `../cognitive/README.md`
 - `../search/README.md`
 - `../storage/README.md`
 - `../../context-server.ts`
-
-<!-- /ANCHOR:related -->

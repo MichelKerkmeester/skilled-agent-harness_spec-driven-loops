@@ -1,4 +1,3 @@
-<!-- ANCHOR:checklist -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
@@ -10,4 +9,3 @@
 ## Notes
 
 No P0 or P1 sections present.
-<!-- /ANCHOR:checklist -->

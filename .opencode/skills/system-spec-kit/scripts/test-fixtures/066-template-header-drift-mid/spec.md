@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Mid-Doc Header Drift Fixture
 
@@ -19,4 +18,3 @@ This header appears between two required sections and should surface as a warnin
 ## Out of Scope
 
 This is the trailing required-shape section.
-<!-- /ANCHOR:overview -->

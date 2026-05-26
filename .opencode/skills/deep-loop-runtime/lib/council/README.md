@@ -5,13 +5,6 @@ description: "Multi-seat dispatch, adjudicator-verdict stability, and cost guard
 
 # Council Primitives
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CONTENTS](#2--contents)
-- [3. CONSUMERS](#3--consumers)
-- [4. TESTS](#4--tests)
-
 ---
 
 ## 1. OVERVIEW

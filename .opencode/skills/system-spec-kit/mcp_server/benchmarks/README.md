@@ -16,22 +16,6 @@ contextType: "reference"
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ACTIVE BENCHMARKS](#2--active-benchmarks)
-- [3. WHAT THIS FOLDER IS AND IS NOT](#3--what-this-folder-is-and-is-not)
-- [4. SIBLING SKILL BENCHMARKS](#4--sibling-skill-benchmarks)
-- [5. ADDING A NEW BENCHMARK](#5--adding-a-new-benchmark)
-- [6. RE-RUNNING AN EXISTING BENCHMARK](#6--re-running-an-existing-benchmark)
-- [7. RELATED RESOURCES](#7--related-resources)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Skill identification
@@ -49,11 +33,8 @@ This folder is the skill-local entry point for "which embedder, retrieval policy
 
 The folder is curated, not raw. Drafts and in-progress evidence live in the originating spec packet's `evidence/` directory until they ship. See Sections 3, 5, and 6 for the boundary rules and promotion flow.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:active-benchmarks -->
 ## 2. ACTIVE BENCHMARKS
 
 One row per dated folder. Sorted newest first.
@@ -65,11 +46,8 @@ One row per dated folder. Sorted newest first.
 
 Open each folder's `benchmark_report.md` for the full headline, methodology, per-candidate profile, and reproducibility instructions. Open `SOURCE.md` for the spec-packet pointer.
 
-<!-- /ANCHOR:active-benchmarks -->
-
 ---
 
-<!-- ANCHOR:what-this-folder-is-and-is-not -->
 ## 3. WHAT THIS FOLDER IS AND IS NOT
 
 ### What this folder IS
@@ -94,11 +72,8 @@ When skill-local doc and spec packet disagree:
 2. Skill-local `benchmark_report.md` is a curated summary that tracks the spec packet's headline.
 3. `results.csv` and `per-probe-*.jsonl` files are direct copies and carry the same authority as the spec-packet originals.
 
-<!-- /ANCHOR:what-this-folder-is-and-is-not -->
-
 ---
 
-<!-- ANCHOR:sibling-skill-benchmarks -->
 ## 4. SIBLING SKILL BENCHMARKS
 
 Other MCP servers in this repo maintain their own skill-local benchmark folders. The convention is identical; the data is not interchangeable.
@@ -109,11 +84,8 @@ Other MCP servers in this repo maintain their own skill-local benchmark folders.
 
 Do not cross-reference latency or recall numbers between `mk-spec-memory` and `mcp-coco-index` runs. The quantization, runtime, fixture, and corpus shape differ. Each skill's benchmark report calls this out in its own Caveats section.
 
-<!-- /ANCHOR:sibling-skill-benchmarks -->
-
 ---
 
-<!-- ANCHOR:adding-a-new-benchmark -->
 ## 5. ADDING A NEW BENCHMARK
 
 The flow assumes the bench has already completed inside a spec packet.
@@ -140,11 +112,8 @@ The flow assumes the bench has already completed inside a spec packet.
 7. **Validate** with `python3 .opencode/skills/sk-doc/scripts/validate_document.py <file>` for the report and this README. Fix any blocking issues.
 8. **Disambiguate same-day runs** by suffixing a topic slug: `benchmark-<YYYY-MM-DD>-<slug>/`. Otherwise keep the pure-date name.
 
-<!-- /ANCHOR:adding-a-new-benchmark -->
-
 ---
 
-<!-- ANCHOR:re-running-an-existing-benchmark -->
 ## 6. RE-RUNNING AN EXISTING BENCHMARK
 
 A re-run that does not change the headline does not need a new dated folder. Update the existing `benchmark_report.md` instead.
@@ -156,11 +125,8 @@ A re-run that does not change the headline does not need a new dated folder. Upd
 
 The bake-off promotion flow is documented in Section 6 of `.opencode/skills/sk-doc/references/benchmark_creation.md`.
 
-<!-- /ANCHOR:re-running-an-existing-benchmark -->
-
 ---
 
-<!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 
 ### Skill-local
@@ -183,5 +149,3 @@ The bake-off promotion flow is documented in Section 6 of `.opencode/skills/sk-d
 | Path | Stack |
 |---|---|
 | `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/` | Code-side bake-offs for the `mcp-coco-index` MCP server. Same format, different stack, non-comparable numbers. |
-
-<!-- /ANCHOR:related-resources -->

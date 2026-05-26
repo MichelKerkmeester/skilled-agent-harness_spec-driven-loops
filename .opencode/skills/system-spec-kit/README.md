@@ -18,31 +18,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 SPEC FOLDER WORKFLOWS](#31--spec-folder-workflows)
-  - [3.2 MEMORY SYSTEM](#32--memory-system)
-  - [3.3 COMMANDS](#33--commands)
-  - [3.4 TEMPLATES](#34--templates)
-  - [3.5 SCRIPTS AND VALIDATION](#35--scripts-and-validation)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
-
 ## 1. OVERVIEW
 
 ### What System Spec Kit Does
@@ -86,11 +61,7 @@ Workspace module profile:
 - `shared/` and `mcp_server/` are ESM packages (`"type": "module"`) using NodeNext TypeScript settings.
 - `scripts/` is also ESM (`"type": "module"`), with built CLI entrypoints under `dist/` for shell workflows and cross-package loading.
 
-<!-- /ANCHOR:overview -->
-
 ---
-
-<!-- ANCHOR:quick-start -->
 
 ## 2. QUICK START
 
@@ -174,11 +145,7 @@ The response should return `status: "ok"` and database table counts. If it retur
 
 Codex CLI note: if the MCP server runs in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a writable directory such as one under your home folder or `/tmp`. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
 
-<!-- /ANCHOR:quick-start -->
-
 ---
-
-<!-- ANCHOR:features -->
 
 ## 3. FEATURES
 
@@ -518,11 +485,7 @@ The `scripts/validation/` directory contains focused helpers that support `valid
 
 Template changes flow through the manifest source, Level contract resolver, and inline renderer. Use `create.sh` for generated packet fixtures and `validate.sh` for explicit validation.
 
-<!-- /ANCHOR:features -->
-
 ---
-
-<!-- ANCHOR:structure -->
 
 ## 4. STRUCTURE
 
@@ -610,11 +573,7 @@ Session starts
        └─► AI resumes with context + health + structural readiness
 ```
 
-<!-- /ANCHOR:structure -->
-
 ---
-
-<!-- ANCHOR:configuration -->
 
 ## 5. CONFIGURATION
 
@@ -690,11 +649,7 @@ The indexed-continuity store adjusts token budgets per tier to control how much 
 | Core           | 3,500 tokens |
 | Constitutional | 4,000 tokens |
 
-<!-- /ANCHOR:configuration -->
-
 ---
-
-<!-- ANCHOR:usage-examples -->
 
 ## 6. USAGE EXAMPLES
 
@@ -798,11 +753,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 | Upgrade documentation level   | `upgrade-level.sh [folder] [level]` | Scope grew beyond original level  |
 | Create always-surface rule    | `/memory:learn`                     | Team standards, workflow rules    |
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
-
-<!-- ANCHOR:troubleshooting -->
 
 ## 7. TROUBLESHOOTING
 
@@ -928,11 +879,7 @@ bash .opencode/skills/system-spec-kit/check-api-boundary.sh
 # memory_health({ reportMode: "full" })
 ```
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
-
-<!-- ANCHOR:faq -->
 
 ## 8. FAQ
 
@@ -995,12 +942,6 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 
 ---
 
-<!-- /ANCHOR:faq -->
-
----
-
-<!-- ANCHOR:related-documents -->
-
 ## 9. RELATED DOCUMENTS
 
 ### Internal Documentation
@@ -1053,8 +994,6 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | [Model Context Protocol](https://modelcontextprotocol.io/)            | MCP specification                                     |
 | [FSRS algorithm](https://github.com/open-spaced-repetition/fsrs4anki) | Free Spaced Repetition Scheduler (memory decay model) |
 | [sqlite-vec](https://github.com/asg017/sqlite-vec)                    | SQLite vector search extension                        |
-
-<!-- /ANCHOR:related-documents -->
 
 ---
 

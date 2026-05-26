@@ -12,21 +12,8 @@ trigger_phrases:
 
 > CLI bridge that initializes the code-graph runtime, calls session resume and outputs a transport payload for spec-kit plugin injection.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. KEY FILES](#2--key-files)
-- [3. BOUNDARIES AND FLOW](#3--boundaries-and-flow)
-- [4. ENTRYPOINTS](#4--entrypoints)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED](#6--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `mcp_server/plugin_bridges/` owns the CLI bridge that connects spec-kit session resume operations to the code-graph MCP server runtime. It lives outside the `.opencode/plugins/` directory to avoid automatic OpenCode plugin discovery while still enabling targeted plugin injection during context compaction.
@@ -48,22 +35,16 @@ Current state:
 
 The session-resume + context-compaction handlers stayed in `system-spec-kit` (per ADR-001 ownership boundary). The bridge needs either a cross-skill import rewrite (with the appropriate compile-time and runtime guarantees) or full retirement. Until then, the bridge is non-functional. Active callers should route through `system-spec-kit` handlers directly. Follow-on packet TBD.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 2. KEY FILES
 
 | File | Responsibility |
 |---|---|
 | `mk-code-graph-bridge.mjs` | CLI entrypoint that initializes code-graph runtime, calls session resume and outputs the transport payload. Supports `--minimal` and `--spec-folder` flags. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 3. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -107,22 +88,16 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 4. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `mk-code-graph-bridge.mjs` | CLI | Bridges spec-kit session resume to code-graph runtime. Supports `--minimal` and `--spec-folder` flags. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 5. VALIDATION
 
 Build the MCP server first, then exercise the bridge against a spec folder. Run from the repository root.
@@ -134,11 +109,8 @@ node .opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-
 
 Expected result: a single JSON document on stdout with the resume payload. Exit code 0. Any runtime initialization error exits 1 with a message on stderr.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 6. RELATED
 
 - [Parent: mcp_server](../README.md)
@@ -146,5 +118,3 @@ Expected result: a single JSON document on stdout with the resume payload. Exit 
 - [Handlers: handlers/](../handlers/README.md)
 
 **Naming note:** The bridge file `mk-code-graph-bridge.mjs` matches the plugin name `mk-code-graph` and the skill folder `system-code-graph`. The underlying MCP server name is `mk-code-index` (tool prefix `mcp__mk_code_index__*`), intentionally kept stable. See ADR-002 in the 036 packet.
-
-<!-- /ANCHOR:related -->

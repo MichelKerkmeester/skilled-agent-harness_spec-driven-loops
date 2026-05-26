@@ -11,20 +11,8 @@ trigger_phrases:
 
 > Test fixture folder providing intent prompt corpora and skill embedding seeding utilities for advisor scorer accuracy experiments.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. KEY FILES](#2--key-files)
-- [3. ENTRYPOINTS](#3--entrypoints)
-- [4. VALIDATION](#4--validation)
-- [5. RELATED](#5--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `tests/scorer/fixtures/` provides test data and utilities for the advisor scorer system. It contains two intent prompt corpora for measuring routing accuracy and an embedding seeding module for lane weight sweep experiments.
@@ -39,11 +27,8 @@ Current state:
 - One test file consumes all fixtures: `lane-weight-sweep.vitest.ts` in the parent scorer directory.
 - External imports are `node:crypto` for SHA256 hashing, `node:fs`, `node:path` and `node:url` for cache file operations and `@spec-kit/shared/embeddings/factory` for embedding provider creation.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 2. KEY FILES
 
 | File | Responsibility |
@@ -52,11 +37,8 @@ Current state:
 | `harder-intent-prompt-corpus.ts` | Exports `HARDER_INTENT_PROMPT_CORPUS` for lexical mis-route testing and the `HarderIntentEntry` interface. |
 | `seed-skill-embeddings.ts` | Exports `seedSkillEmbeddings` function with caching semantics and `SeededSkill` / `SeedResult` interfaces. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 3. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -69,11 +51,8 @@ Current state:
 | `SeededSkill` | interface | Interface for skill metadata used in embedding seeding operations. |
 | `SeedResult` | interface | Interface for seeding operation results including vectors, cache stats and skip status. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 4. VALIDATION
 
 Run from the repository root.
@@ -84,15 +63,10 @@ cd .opencode/skills/system-skill-advisor/mcp_server && npm test -- tests/scorer/
 
 Expected result: exit code 0.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 5. RELATED
 
 - [Parent: Scorer](../README.md)
 - [Tests: tests/](../../README.md)
 - [Lifecycle Fixtures](../../fixtures/lifecycle/README.md)
-
-<!-- /ANCHOR:related -->

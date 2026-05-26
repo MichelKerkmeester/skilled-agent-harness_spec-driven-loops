@@ -19,7 +19,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:adr-001 -->
 ## ADR-001: [Decision Title]
 
 ### Metadata
@@ -32,7 +31,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:adr-001-context -->
 ### Context
 
 <!-- Voice guide: State the problem directly. "We needed to choose between X and Y because Z"
@@ -45,21 +43,17 @@ Write in direct, active voice.]
 
 - [Technical constraint with specifics]
 - [Business constraint with specifics]
-<!-- /ANCHOR:adr-001-context -->
 
 ---
 
-<!-- ANCHOR:adr-001-decision -->
 ### Decision
 
 **We chose**: [One-sentence description of the decision, in active voice]
 
 **How it works**: [Implementation approach in 2-3 direct sentences]
-<!-- /ANCHOR:adr-001-decision -->
 
 ---
 
-<!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
 | Option | Pros | Cons | Score |
@@ -68,11 +62,9 @@ Write in direct, active voice.]
 | [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
 
 **Why this one**: [Rationale in 1-2 sentences, direct and specific]
-<!-- /ANCHOR:adr-001-alternatives -->
 
 ---
 
-<!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
 **What improves**:
@@ -87,11 +79,9 @@ Write in direct, active voice.]
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | [Risk with specifics] | [H/M/L] | [Concrete strategy] |
-<!-- /ANCHOR:adr-001-consequences -->
 
 ---
 
-<!-- ANCHOR:adr-001-five-checks -->
 ### Five Checks Evaluation
 
 | # | Check | Result | Evidence |
@@ -103,11 +93,9 @@ Write in direct, active voice.]
 | 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
 
 **Checks Summary**: [X/5 PASS]
-<!-- /ANCHOR:adr-001-five-checks -->
 
 ---
 
-<!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
 **What changes**:
@@ -115,8 +103,6 @@ Write in direct, active voice.]
 - [System/Component with specific change]
 
 **How to roll back**: [Concrete revert steps, not "revert if needed"]
-<!-- /ANCHOR:adr-001-impl -->
-<!-- /ANCHOR:adr-001 -->
 
 ---
 

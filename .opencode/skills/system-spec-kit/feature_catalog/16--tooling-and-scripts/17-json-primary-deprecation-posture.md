@@ -5,16 +5,12 @@ description: "Routine saves prefer --json or --stdin structured input, while pos
 
 # JSON-primary deprecation posture
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The JSON-primary deprecation posture for `generate-context.js` is now established. Runtime-derived capture for routine saves proved unreliable: wrong-session selection, contamination, and thin-evidence failures persisted across multiple research and fix rounds. The resolution: AI-composed JSON via `--json` or `--stdin` is the preferred routine-save contract, while positional JSON file input remains functional on the same structured-input path.
 
 The obsolete follow-up workstreams now live in the archived branch for this area.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 The shipped posture enforces the following behavior:
@@ -24,9 +20,6 @@ The shipped posture enforces the following behavior:
 3. Operator-facing guidance in SKILL.md and the save command documents JSON mode as the preferred routine-save contract, not an exclusive removal of positional file input.
 4. The obsolete session-source-validation, outsourced-agent-handback, and multi-cli-parity follow-up workstreams are archived under the retired branch for this area.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -73,9 +66,6 @@ The shipped posture enforces the following behavior:
 | `scripts/tests/generate-context-cli-authority.vitest.ts` | `--stdin` / `--json` structured-input precedence, explicit CLI target authority, and positional JSON file support |
 | `scripts/tests/generate-context-cli-authority.vitest.ts` | Invalid inline JSON and missing-target failures for structured-input modes |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts
 - Canonical catalog source: `feature_catalog.md`
@@ -89,4 +79,3 @@ The shipped posture enforces the following behavior:
 ---
 
 ### SOURCE METADATA
-<!-- /ANCHOR:source-metadata -->

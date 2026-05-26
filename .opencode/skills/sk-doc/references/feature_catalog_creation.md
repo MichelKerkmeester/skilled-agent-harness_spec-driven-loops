@@ -22,7 +22,7 @@ Feature catalogs are the canonical inventory for what a system does today. They 
 
 **Current Reality Highlights**:
 - feature catalogs use frontmatter and a short H1 intro
-- `TABLE OF CONTENTS` is unnumbered
+- no Table of Contents and no `<!-- ANCHOR -->` navigation comments
 - numbered H2 sections begin with `## 1. OVERVIEW`
 - per-feature files live in numbered root-level category folders
 - per-feature files describe shipped or current-reality behavior, not vague aspirations
@@ -81,7 +81,6 @@ The root catalog is the top-level inventory and navigation layer.
 
 It should own:
 - frontmatter and H1 intro
-- unnumbered `TABLE OF CONTENTS`
 - `## 1. OVERVIEW`
 - numbered capability sections by category
 - short per-feature summaries

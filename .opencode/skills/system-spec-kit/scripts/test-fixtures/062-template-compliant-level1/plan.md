@@ -13,7 +13,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -27,11 +26,9 @@ contextType: "general"
 
 ### Overview
 This fixture keeps the live Level 1 plan structure intact so the validator can compare real headers and anchors against the Level 1 template contract.
-<!-- /ANCHOR:summary -->
 
 ---
 
-<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -43,11 +40,9 @@ This fixture keeps the live Level 1 plan structure intact so the validator can c
 - [x] All acceptance criteria met
 - [x] Tests passing
 - [x] Docs updated
-<!-- /ANCHOR:quality-gates -->
 
 ---
 
-<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -59,11 +54,9 @@ Fixture-based validation
 
 ### Data Flow
 The validator reads fixture docs, derives the active template contract, and compares ordered headers and anchors.
-<!-- /ANCHOR:architecture -->
 
 ---
 
-<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
@@ -74,11 +67,9 @@ The validator reads fixture docs, derives the active template contract, and comp
 
 ### Phase 3: Verification
 - [x] Run strict validation and confirm zero errors and warnings
-<!-- /ANCHOR:phases -->
 
 ---
 
-<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -86,26 +77,21 @@ The validator reads fixture docs, derives the active template contract, and comp
 | Unit | Template comparator | Vitest |
 | Integration | Validator end to end | Shell |
 | Manual | Targeted smoke checks | Bash |
-<!-- /ANCHOR:testing -->
 
 ---
 
-<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Live Level 1 templates | Internal | Green | Comparator cannot derive contract |
-<!-- /ANCHOR:dependencies -->
 
 ---
 
-<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Fixture structure no longer matches the live templates.
 - **Procedure**: Refresh the fixture against the current template files.
-<!-- /ANCHOR:rollback -->
 
 ---
 

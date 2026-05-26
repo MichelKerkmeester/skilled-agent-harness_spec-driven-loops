@@ -1,0 +1,23 @@
+{
+  "specFolder": "skilled-agent-orchestration/117-skill-anchor-toc-removal/001-standards-templates-config",
+  "description": "Feature Specification: Standards, Templates & Config (Regression Prevention)",
+  "keywords": [
+    "feature",
+    "specification",
+    "standards",
+    "templates",
+    "config",
+    "regression",
+    "prevention"
+  ],
+  "lastUpdated": "2026-05-26T09:40:14.889Z",
+  "specId": "001",
+  "folderSlug": "standards-templates-config",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "117-skill-anchor-toc-removal"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

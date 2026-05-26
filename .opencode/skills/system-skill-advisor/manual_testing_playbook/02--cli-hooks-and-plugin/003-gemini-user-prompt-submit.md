@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate Gemini's prompt-equivalent hook adapter and its fail-open behavior.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - MCP server build is current.
@@ -32,9 +28,6 @@ Validate Gemini's prompt-equivalent hook adapter and its fail-open behavior.
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Build:
@@ -68,23 +61,15 @@ printf '%s' '{"request":{"prompt":"create a flowchart for the auth process","cwd
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts`
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: CLI Hooks And Plugin
 - Playbook ID: CL-003
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 02--cli-hooks-and-plugin/003-gemini-user-prompt-submit.md
-
-<!-- /ANCHOR:5-source-metadata -->

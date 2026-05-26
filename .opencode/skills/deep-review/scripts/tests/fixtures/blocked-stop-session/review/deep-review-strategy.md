@@ -7,7 +7,6 @@ description: Runtime template copied to review/ during initialization to track r
 
 Runtime template copied to `review/` during initialization. Tracks review progress across iterations.
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -24,66 +23,48 @@ Serves as the persistent brain for this blocked-stop review fixture. Records whi
 
 ---
 
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:topic -->
 ## 2. TOPIC
 Blocked-stop fixture that exercises legal-stop gating, registry lineage, and dashboard surfacing for review mode.
 
 ---
 
-<!-- /ANCHOR:topic -->
-<!-- ANCHOR:review-dimensions -->
 ## 3. REVIEW DIMENSIONS (remaining)
 - [ ] traceability
 - [ ] maintainability
 
-<!-- /ANCHOR:review-dimensions -->
-<!-- ANCHOR:non-goals -->
 ## 4. NON-GOALS
 - This fixture does not model synthesis completion.
 - This fixture does not attempt to resolve any finding.
 
 ---
 
-<!-- /ANCHOR:non-goals -->
-<!-- ANCHOR:stop-conditions -->
 ## 5. STOP CONDITIONS
 - Stop only after all required dimensions are covered and no active P0 remains.
 - Preserve blocked-stop evidence when legal-stop gates fail.
 
 ---
 
-<!-- /ANCHOR:stop-conditions -->
-<!-- ANCHOR:completed-dimensions -->
 ## 4. COMPLETED DIMENSIONS
 - [x] correctness
 - [x] security
 
-<!-- /ANCHOR:completed-dimensions -->
-<!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 1
 - P1 (Required): 2
 - P2 (Suggestions): 0
 - Resolved: 0
 
-<!-- /ANCHOR:running-findings -->
-<!-- ANCHOR:what-worked -->
 ## 8. WHAT WORKED
 - Iteration files keep the finding lineage explicit across severity changes.
 - The blocked-stop bundle preserves the legal-stop veto reasons in one event.
 
 ---
 
-<!-- /ANCHOR:what-worked -->
-<!-- ANCHOR:what-failed -->
 ## 9. WHAT FAILED
 - Convergence alone is insufficient when dimension coverage and P0 resolution gates still fail.
 
 ---
 
-<!-- /ANCHOR:what-failed -->
-<!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
 ### A serializer-only defect was ruled out once the unauthorized export path reproduced with live fixture data. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: A serializer-only defect was ruled out once the unauthorized export path reproduced with live fixture data.
@@ -115,30 +96,22 @@ Blocked-stop fixture that exercises legal-stop gating, registry lineage, and das
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Token-only request mutation did not suppress the export leak because the reviewerId trust boundary stayed intact.
 
-<!-- /ANCHOR:exhausted-approaches -->
-<!-- ANCHOR:ruled-out-directions -->
 ## 11. RULED OUT DIRECTIONS
 - Serializer-only causes were ruled out once the export authorization path reproduced.
 
 ---
 
-<!-- /ANCHOR:ruled-out-directions -->
-<!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
 BLOCKED on: dimensionCoverageGate, p0ResolutionGate
 Recovery: Resolve active P0 (F001) and cover traceability + maintainability dimensions before next iteration.
 Address the blocking gates before the next iteration.
 
-<!-- /ANCHOR:next-focus -->
-<!-- ANCHOR:known-context -->
 ## 13. KNOWN CONTEXT
 - This fixture is intentionally incomplete on traceability and maintainability coverage.
 - F002 is expected to show a severity transition from P2 to P1.
 
 ---
 
-<!-- /ANCHOR:known-context -->
-<!-- ANCHOR:cross-reference-status -->
 ## 14. CROSS-REFERENCE STATUS
 <!-- MACHINE-OWNED: START -->
 [Alignment checks completed across core and overlay protocols]
@@ -155,8 +128,6 @@ Address the blocking gates before the next iteration.
 
 ---
 
-<!-- /ANCHOR:cross-reference-status -->
-<!-- ANCHOR:files-under-review -->
 ## 15. FILES UNDER REVIEW
 <!-- MACHINE-OWNED: START -->
 [Per-file coverage state table -- populated during initialization from scope discovery]
@@ -168,8 +139,6 @@ Address the blocking gates before the next iteration.
 
 ---
 
-<!-- /ANCHOR:files-under-review -->
-<!-- ANCHOR:review-boundaries -->
 ## 16. REVIEW BOUNDARIES
 <!-- MACHINE-OWNED: START -->
 - Max iterations: 7
@@ -186,4 +155,3 @@ Address the blocking gates before the next iteration.
 - Cross-reference checks: core=spec_code,checklist_evidence; overlay=skill_agent,agent_cross_runtime,feature_catalog_code,playbook_capability
 - Started: 2026-04-11T12:00:00Z
 <!-- MACHINE-OWNED: END -->
-<!-- /ANCHOR:review-boundaries -->

@@ -14,8 +14,6 @@ Test fixture implementation complete.
 - Validated structure
 ---
 
-<!-- ANCHOR:limitations -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->

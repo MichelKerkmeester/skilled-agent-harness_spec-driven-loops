@@ -65,7 +65,6 @@ Use this profile for OpenCode skills, package roots and project-level READMEs th
 | Profile Block | Good For | Keep It Short By |
 |---|---|---|
 | `trigger_phrases` | Search, memory and skill routing | 3-8 concrete phrases |
-| Table of contents | READMEs longer than 150 lines | Link only top-level sections |
 | Key Statistics | Skill counts, tool counts, version facts | Use one compact table |
 | How This Compares | Neighboring skills or tools | Compare only reader-relevant differences |
 | Key Features | Current capability inventory | Group related features |
@@ -77,12 +76,10 @@ Use this profile for OpenCode skills, package roots and project-level READMEs th
 Optional HTML anchors help memory and extraction tools find stable sections. Use them only around long-lived sections.
 
 ```markdown
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 [Section content]
 
-<!-- /ANCHOR:overview -->
 ```
 
 ---
@@ -157,25 +154,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. QUICK START](#2-quick-start)
-- [3. FEATURES](#3-features)
-- [4. REQUIREMENTS](#4-requirements)
-- [5. STRUCTURE](#5-structure)
-- [6. CONFIGURATION](#6-configuration)
-- [7. USAGE EXAMPLES](#7-usage-examples)
-- [8. TROUBLESHOOTING](#8-troubleshooting)
-- [9. FAQ](#9-faq)
-- [10. RELATED RESOURCES](#10-related-resources)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 [Explain what this is, who it is for and why it exists.]
@@ -195,11 +173,9 @@ trigger_phrases:
 |---|---|---|
 | [Capability] | [Current behavior] | [Difference] |
 
-<!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 ```bash
@@ -212,11 +188,9 @@ trigger_phrases:
 
 Expected result: [what success looks like].
 
-<!-- /ANCHOR:quick-start -->
 
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### Key Features
@@ -225,22 +199,18 @@ Expected result: [what success looks like].
 |---|---|
 | [Feature] | [Current behavior] |
 
-<!-- /ANCHOR:features -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 | Requirement | Minimum | Notes |
 |---|---|---|
 | [Runtime or tool] | [Version] | [Why it is needed] |
 
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:structure -->
 ## 5. STRUCTURE
 
 ```text
@@ -253,22 +223,18 @@ Expected result: [what success looks like].
 |---|---|
 | `[path]` | [Role] |
 
-<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- ANCHOR:configuration -->
 ## 6. CONFIGURATION
 
 | Option | Default | Purpose |
 |---|---|---|
 | `[OPTION]` | `[value]` | [What it controls] |
 
-<!-- /ANCHOR:configuration -->
 
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 7. USAGE EXAMPLES
 
 ```bash
@@ -277,33 +243,27 @@ Expected result: [what success looks like].
 
 Result: [expected output or behavior].
 
-<!-- /ANCHOR:usage-examples -->
 
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 8. TROUBLESHOOTING
 
 | What You See | Cause | Fix |
 |---|---|---|
 | [Symptom] | [Cause] | [Action] |
 
-<!-- /ANCHOR:troubleshooting -->
 
 ---
 
-<!-- ANCHOR:faq -->
 ## 9. FAQ
 
 **Q: [Question readers ask often]?**
 
 A: [Short answer with a link when useful.]
 
-<!-- /ANCHOR:faq -->
 
 ---
 
-<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Related Skills
@@ -318,7 +278,6 @@ A: [Short answer with a link when useful.]
 |---|---|
 | [`[Document]`](./path/to/doc.md) | [Why it matters] |
 
-<!-- /ANCHOR:related-resources -->
 ````
 
 ---

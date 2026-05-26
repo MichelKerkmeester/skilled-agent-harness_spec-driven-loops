@@ -13,14 +13,10 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Avoid silently picking a single winner when two candidates are tied or near-tied. Expose the ambiguity to callers so routing decisions stay honest under the 5-lane fusion.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `lib/scorer/ambiguity.ts` evaluates a **dual-margin OR** predicate against the top-1 candidate. A candidate joins the ambiguity cluster when the gap on EITHER axis is within 0.05:
@@ -30,9 +26,6 @@ Avoid silently picking a single winner when two candidates are tied or near-tied
 
 If either gap is within margin, the response carries an ambiguity signal that the render path surfaces as an ambiguous brief. A candidate is unambiguously ranked only when **both** gaps exceed margin.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -48,9 +41,7 @@ If either gap is within margin, the response carries an ambiguity signal that th
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | ambiguity window behavior |
 | `Playbook scenarios [SC-003](../../manual_testing_playbook/08--scorer-fusion/003-ambiguity.md) and [NC-004](../../manual_testing_playbook/01--native-mcp-tools/004-ambiguous-brief-rendering.md).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Scorer fusion
@@ -62,4 +53,3 @@ Related references:
 - [01-five-lane-fusion.md](./01-five-lane-fusion.md).
 - [04-attribution.md](./04-attribution.md).
 - [`06--mcp-surface/01-advisor-recommend.md`](../06--mcp-surface/01-advisor-recommend.md).
-<!-- /ANCHOR:source-metadata -->

@@ -15,7 +15,6 @@ A reference for the multiple names that refer to this skill across different run
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -40,9 +39,6 @@ Names are stable per layer; do not normalize them across layers unless a packet 
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-name-map -->
 ## 2. NAME MAP
 
 | Layer | Identifier | Source-of-truth | Reason |
@@ -58,9 +54,6 @@ Names are stable per layer; do not normalize them across layers unless a packet 
 
 ---
 
-<!-- /ANCHOR:2-name-map -->
-
-<!-- ANCHOR:3-mcp-server-name-stability -->
 ## 3. MCP SERVER NAME STABILITY (`mk-code-index` vs `system-code-graph`)
 
 The MCP server name `mk-code-index` is a stable tool contract. Renaming the server to match the skill folder slug (`system-code-graph`) would invalidate every config entry across all six runtimes (OpenCode, Claude Code, Codex, Gemini, Devin, VSCode) and would break every saved tool call ID (`mcp__mk_code_index__*`) in agent transcripts, memory records, and dispatched task logs.
@@ -75,9 +68,6 @@ ADR-002 settled this: the **skill folder slug** describes what the skill is for;
 
 ---
 
-<!-- /ANCHOR:3-mcp-server-name-stability -->
-
-<!-- ANCHOR:4-hook-location-asymmetry -->
 ## 4. HOOK LOCATION ASYMMETRY (vs skill-advisor)
 
 SessionStart hooks for code-graph (`session-prime.ts`, `session-start.ts`, and their downstream helpers) live under `.opencode/skills/system-spec-kit/mcp_server/hooks/`, NOT under `.opencode/skills/system-code-graph/hooks/`. This is an intentional asymmetry vs the `system-skill-advisor` pattern where hooks are skill-owned (ADR-001 for skill-advisor).
@@ -94,9 +84,6 @@ When editing SessionStart-related code that needs to read or write code-graph st
 
 ---
 
-<!-- /ANCHOR:4-hook-location-asymmetry -->
-
-<!-- ANCHOR:5-database-location -->
 ## 5. DATABASE LOCATION
 
 The code-graph SQLite triplet (`code-graph.sqlite`, `.sqlite-wal`, `.sqlite-shm`), readiness marker (`.code-graph-readiness.json`), and launcher state (`.mk-code-index-launcher.json`) all live in the shared spec-kit data directory:
@@ -109,14 +96,9 @@ This shared location replaced an earlier skill-local location (`.opencode/skills
 
 ---
 
-<!-- /ANCHOR:5-database-location -->
-
-<!-- ANCHOR:6-related-resources -->
 ## 6. RELATED RESOURCES
 
 - [`../config/database_path_policy.md`](../config/database_path_policy.md) — full policy + override rules for the database path.
 - [`ownership_boundary.md`](ownership_boundary.md) — what stays in `system-spec-kit` vs `system-code-graph` after extraction.
 - [`../readiness/code_graph_readiness_check.md`](../readiness/code_graph_readiness_check.md) — readiness contract that the launcher and read-path tools enforce.
 - [`../../INSTALL_GUIDE.md`](../../INSTALL_GUIDE.md) — canonical configuration and verification steps for `mk_code_index` setup.
-
-<!-- /ANCHOR:6-related-resources -->

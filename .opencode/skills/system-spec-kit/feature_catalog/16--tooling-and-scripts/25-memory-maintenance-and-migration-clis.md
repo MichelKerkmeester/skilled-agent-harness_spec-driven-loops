@@ -5,13 +5,6 @@ description: "Operator-facing maintenance and migration command surface for norm
 
 # Memory Maintenance and Migration CLIs
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 Memory Maintenance and Migration CLIs is the operator-facing toolbox for repairing, normalizing, validating, and re-ranking the persisted memory corpus.

@@ -29,28 +29,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. CLI INVOCATION (`CO-001..CO-005`)](#7--cli-invocation-co-001co-005)
-- [8. EXTERNAL DISPATCH (`CO-006..CO-008`)](#8--external-dispatch-co-006co-008)
-- [9. MULTI-PROVIDER (`CO-009..CO-012`)](#9--multi-provider-co-009co-012)
-- [10. AGENT ROUTING (`CO-013..CO-017`, `CO-032..CO-034`)](#10--agent-routing-co-013co-017-co-032co-034)
-- [11. SESSION CONTINUITY (`CO-018..CO-020`)](#11--session-continuity-co-018co-020)
-- [12. INTEGRATION PATTERNS (`CO-021..CO-022`)](#12--integration-patterns-co-021co-022)
-- [13. PROMPT TEMPLATES (`CO-023..CO-025`, `CO-035..CO-036`)](#13--prompt-templates-co-023co-025-co-035co-036)
-- [14. PARALLEL DETACHED (`CO-026..CO-028`)](#14--parallel-detached-co-026co-028)
-- [15. CROSS-REPO AND CROSS-SERVER (`CO-029..CO-031`)](#15--cross-repo-and-cross-server-co-029co-031)
-- [16. AUTOMATED TEST CROSS-REFERENCE](#16--automated-test-cross-reference)
-- [17. FEATURE CATALOG CROSS-REFERENCE INDEX](#17--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 34 deterministic scenarios across 9 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID and links to a dedicated feature file with the full execution contract.
@@ -438,9 +416,9 @@ Verify `--agent write` loads the sk-doc skill, applies the appropriate template 
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor wanting a template-driven README for a small documentation skill, dispatch --agent write to generate /tmp/co-016-readme/README.md for a fictional skill called Demo Skill. Verify the dispatch loads sk-doc, applies readme_template.md, writes the README file and the file contains a TABLE OF CONTENTS plus emoji-prefixed H2 sections.
+Prompt summary: As an external-AI conductor wanting a template-driven README for a small documentation skill, dispatch --agent write to generate /tmp/co-016-readme/README.md for a fictional skill called Demo Skill. Verify the dispatch loads sk-doc, applies readme_template.md, writes the README file with emoji-prefixed H2 sections and no table of contents.
 
-Expected signals: Exit 0. Write tool.call for the README path. README file exists with TOC and >= 3 emoji-prefixed H2 headers.
+Expected signals: Exit 0. Write tool.call for the README path. README file exists with >= 3 emoji-prefixed H2 headers and no TOC.
 
 #### Test Execution
 

@@ -5,14 +5,6 @@ description: "This scenario validates the structured JSON summary contract for g
 
 # 153 -- JSON mode structured summary hardening
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. SCENARIO CONTRACT](#2-scenario-contract)
-- [3. TEST EXECUTION](#3-test-execution)
-- [4. SOURCE FILES](#4-source-files)
-- [5. SOURCE METADATA](#5-source-metadata)
-
 ## 1. OVERVIEW
 
 This scenario validates the phase 016 structured JSON summary contract for `generate-context.js`. It covers acceptance of `toolCalls` and `exchanges` fields, file-backed JSON authority preservation, snake_case field compatibility, and Wave 2 hardening for decision confidence, truncated titles, `git_changed_file_count` stability, and template count preservation.
@@ -20,7 +12,6 @@ This scenario validates the phase 016 structured JSON summary contract for `gene
 ---
 
 ## 2. SCENARIO CONTRACT
-
 
 - Objective: Verify structured JSON summary contract and Wave 2 hardening.
 - Real user request: `Please validate JSON mode structured summary hardening against toolCalls and tell me whether the expected signals are present: Structured fields preserved in rendered output, counts match explicit input, file-backed JSON stays on the structured path.`

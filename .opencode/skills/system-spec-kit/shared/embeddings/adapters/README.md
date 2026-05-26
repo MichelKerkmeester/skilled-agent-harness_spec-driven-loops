@@ -9,15 +9,6 @@ trigger_phrases:
 
 # Shared Embedder Adapters
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. OWNERSHIP](#2--ownership)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-
 ## 1. OVERVIEW
 
 `shared/embeddings/adapters/` contains canonical embedder adapter implementations that can be consumed by multiple packages.

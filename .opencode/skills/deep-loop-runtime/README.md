@@ -26,30 +26,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:toc -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 EXECUTOR AND PROMPT](#31--executor-and-prompt)
-  - [3.2 STATE SAFETY](#32--state-safety)
-  - [3.3 SCORING AND ROUTING](#33--scoring-and-routing)
-  - [3.4 COVERAGE GRAPH](#34--coverage-graph)
-  - [3.5 COUNCIL PRIMITIVES](#35--council-primitives)
-  - [3.6 SCRIPT ENTRY POINTS](#36--script-entry-points)
-  - [3.7 STORAGE](#37--storage)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-<!-- /ANCHOR:toc -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What Deep Loop Runtime Does
@@ -89,11 +65,9 @@ The FULL_ISOLATE_NO_MCP consolidation (a user-directive override of an earlier A
 - SQLite available through `better-sqlite3` (installed at the workspace root via `pnpm`).
 - Vitest configured in the consuming workspace (`system-spec-kit/mcp_server/vitest.config.ts` globs this skill's `tests/`).
 - Workflow YAMLs that call this skill use `bash:` blocks. No MCP tool dependency.
-<!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 ### Invoke from a workflow YAML (the canonical path)
@@ -135,11 +109,9 @@ pnpm vitest run .opencode/skills/deep-loop-runtime/tests
 ```
 
 The `system-spec-kit/mcp_server/vitest.config.ts` glob picks these up alongside the spec-kit suite.
-<!-- /ANCHOR:quick-start -->
 
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 This section catalogues the runtime surface. Each subsection lists the modules in that domain, what each module does and which consumer skill relies on it.
@@ -227,11 +199,9 @@ Common argv (`--spec-folder`, `--loop-type review|research`, `--session-id`) plu
 Runtime-owned SQLite database at `database/deep-loop-graph.sqlite`. Schema version 2. Owned exclusively by `lib/coverage-graph/coverage-graph-db.ts` (per the ALWAYS rule in SKILL.md §4 RULES). No other module opens this connection.
 
 The database is session-scoped through node and edge tagging, not through per-session files. One database holds graphs for every active session.
-<!-- /ANCHOR:features -->
 
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -275,11 +245,9 @@ The database is session-scoped through node and edge tagging, not through per-se
 ```
 
 Total: 79 files, 15,645 lines across runtime + tests + docs.
-<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 ### Environment variables
@@ -315,11 +283,9 @@ The SQLite schema enforces an allow-list of node kinds. Adding a new kind requir
 ### Where there is no config knob
 
 Atomic-state semantics, loop-lock behavior, permissions-gate checks and Bayesian-scorer weights are not user-configurable through env vars. They are runtime invariants. Changing them requires a new packet with an ADR.
-<!-- /ANCHOR:configuration -->
 
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 ### Workflow YAML call (deep-review convergence check)
@@ -367,11 +333,9 @@ try {
   await releaseLoopLock(lock);
 }
 ```
-<!-- /ANCHOR:usage-examples -->
 
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 ### Script exits with code 2 (DB error)
@@ -393,11 +357,9 @@ The novelty signal is not dropping. Check `lib/deep-loop/bayesian-scorer.ts` for
 ### Tests fail with "table coverage_nodes not found"
 
 The runtime test runner expects a fresh per-test SQLite database. Confirm the test imports `coverage-graph-db.ts` and calls the init helper before asserting on tables. If running against a real DB by mistake, set `DEEP_LOOP_DB_PATH` to a tmp path in the test setup.
-<!-- /ANCHOR:troubleshooting -->
 
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: Does this skill expose MCP tools?**
@@ -427,11 +389,9 @@ Removed. The only retained test in the old location is `mcp_server/tests/deep-lo
 **Q: Why does the SKILL.md exist alongside this README?**
 
 The SKILL.md is the operational contract loaded by AI agents at routing time (smart routing, rules, runtime architecture). This README is the human-facing introduction. The two are complementary, not duplicative. SKILL.md §1 redirects readers here for layout and history.
-<!-- /ANCHOR:faq -->
 
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED DOCUMENTS
 
 ### Within this skill
@@ -470,4 +430,3 @@ Release history and the consolidation rationale (including the superseded AI Cou
 | [`.opencode/skills/README.md`](../README.md) | Skills library index (deep-loop-runtime listed as peer in the deep-loop-skills family) |
 | [`.opencode/skills/system-spec-kit/README.md`](../system-spec-kit/README.md) | System spec-kit (consumes deep-loop-runtime through cross-package vitest glob) |
 | [`Public/README.md`](../../../README.md) | Project root README (tone anchor for skill READMEs) |
-<!-- /ANCHOR:related -->

@@ -1,4 +1,3 @@
-<!-- ANCHOR:checklist -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
@@ -14,4 +13,3 @@
 
 - [x] P2 completed item without evidence tag
 - [x] Another P2 item without evidence
-<!-- /ANCHOR:checklist -->

@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `scripts/skill_advisor_bench.py` runs the performance bench, measures latency for shim-driven calls and emits results within the documented envelope (cache-hit p95 <= 50 ms, uncached p95 <= 60 ms at the native level).
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root. Python 3 available.
@@ -32,9 +28,6 @@ Validate that `scripts/skill_advisor_bench.py` runs the performance bench, measu
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Run the bench:
@@ -64,9 +57,6 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_b
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [PC-004](./004-regression-suite.md), regression suite.
@@ -76,14 +66,9 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_b
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Python Compat
 - Playbook ID: PC-005
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 10--python-compat/005-bench-runner.md
-
-<!-- /ANCHOR:5-source-metadata -->

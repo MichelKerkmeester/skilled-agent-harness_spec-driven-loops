@@ -14,16 +14,6 @@ trigger_phrases:
 
 Four-stage retrieval pipeline behind `memory_search`. It turns a query and pipeline config into ranked memory results with metadata, annotations, and optional trace output.
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
-- [3. FLOW](#3--flow)
-- [4. ALLOWED DEPENDENCY DIRECTION](#4--allowed-dependency-direction)
-- [5. STAGE RULES](#5--stage-rules)
-- [6. KEY INVARIANTS](#6--key-invariants)
-- [7. RELATED FILES](#7--related-files)
-
 ## 1. OVERVIEW
 
 Use this folder for retrieval flow changes that need a clear stage boundary. The public entry point is `executePipeline(config)` from `index.ts`.

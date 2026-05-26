@@ -13,7 +13,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -23,11 +22,9 @@ contextType: "general"
 | **Status** | Complete |
 | **Created** | 2026-03-16 |
 | **Branch** | `codex/template-fixture` |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -35,11 +32,9 @@ This fixture intentionally omits a required anchor pair.
 
 ### Purpose
 `ANCHORS_VALID` should fail even when the header text still exists.
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -53,11 +48,9 @@ This fixture intentionally omits a required anchor pair.
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `spec.md` | Modify | Remove a required anchor |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -65,7 +58,6 @@ This fixture intentionally omits a required anchor pair.
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Missing required anchor fails | `validate.sh` returns exit code 2 |
-<!-- /ANCHOR:requirements -->
 
 ---
 
@@ -75,18 +67,14 @@ This fixture intentionally omits a required anchor pair.
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Missing anchors break retrieval | High | Compare required anchor IDs against the live template |
-<!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None.
-<!-- /ANCHOR:questions -->

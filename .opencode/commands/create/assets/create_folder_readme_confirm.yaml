@@ -14,7 +14,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: Expert Documentation Creator using sk-doc skill
 purpose: Create comprehensive README files and AI-first installation guides with proper structure and optimization
-action: Generate scannable, well-organized documentation (README or Install Guide) with table of contents
+action: Generate scannable, well-organized documentation (README or Install Guide) with proper structure
 
 # ─────────────────────────────────────────────────────────────────
 # PREREQUISITE: @markdown AGENT VERIFICATION
@@ -177,7 +177,7 @@ workflow_enforcement:
       enforcement: "MUST gather project information before writing"
       verification: "Cannot proceed without identified features"
     step_4_generation:
-      enforcement: "MUST use template structure with TOC, sections, tables"
+      enforcement: "MUST use template structure with sections, tables"
       verification: "All sections written, no placeholder content"
     step_5_validation:
       enforcement: "MUST verify structure and completeness"
@@ -233,7 +233,7 @@ quality_standards:
   dqi_minimum: 70
   dqi_enforcement: FLEXIBLE
   validation_pipeline:
-    stage_1: "Structural check (title, TOC, sections, separators)"
+    stage_1: "Structural check (title, sections, separators)"
     stage_2: "Content check (code blocks, tables, no placeholders)"
   template_adherence: required
   core_standards_reference: ".opencode/skills/sk-doc/references/global/core_standards.md"
@@ -400,7 +400,6 @@ readme_template_references:
   anchor_rules: "readme_template.md S12 (Anchor Templates)"
   writing_patterns: "readme_template.md S6 (Writing Patterns)"
   style_guide: "readme_template.md S7 (Style Reference)"
-  toc_format: "readme_template.md S5.1 (Table of Contents)"
   badge_shields: "readme_template.md S8 (Badge Shields)"
   before_after_patterns: "readme_template.md S6.4 (Before/After)"
   architecture_diagrams: "readme_template.md S6.5 (Architecture Diagrams)"
@@ -492,7 +491,6 @@ readme_workflow:
     core_pattern:
       all_types:
       - "Title + Tagline (one-liner description)"
-      - "TABLE OF CONTENTS (numbered, linked)"
       - "Numbered sections"
       - "Tables for structured data"
       - "Code blocks with language tags"
@@ -521,7 +519,6 @@ readme_workflow:
     purpose: Write comprehensive README following selected structure
     activities:
     - Write Title + Tagline (concise, clear value proposition)
-    - Generate TABLE OF CONTENTS (numbered, linked to sections)
     - Write each section
     - Create tables for structured data (features, commands, config)
     - Add code blocks with language tags
@@ -530,7 +527,6 @@ readme_workflow:
     - Write to target_path
     quality_requirements:
       title: "Clear, concise value proposition"
-      toc: "Numbered, linked to actual sections"
       sections: "Numbered sections"
       tables: "For structured data (features, commands, config)"
       code_blocks: "Always specify language"
@@ -546,22 +542,19 @@ readme_workflow:
       options:
       - label: "A) Show full content"
         description: "Display complete README"
-      - label: "B) Show TABLE OF CONTENTS"
-        description: "Display section structure"
-      - label: "C) Proceed"
+      - label: "B) Proceed"
         description: "Continue to validation"
 
   step_5_validation:
     purpose: Verify README quality and completeness
     activities:
-    - Structure check (title, TOC, sections, separators)
+    - Structure check (title, sections, separators)
     - Content check (code blocks, tables, no placeholders, valid links)
     - Completeness check (Quick Start, Troubleshooting, FAQ for component/skill)
     - DQI check if script available
     validation_checklist:
       structure:
       - "Title + one-liner tagline present"
-      - "TABLE OF CONTENTS present and linked"
       - "All sections numbered"
       - "Horizontal rules between sections"
       content:
@@ -746,7 +739,6 @@ readme_completion_report:
 
     Structure:
     - Title + Tagline: OK
-    - TABLE OF CONTENTS: OK
     - Sections: [N] numbered
     - Tables: [N]
     - Code blocks: [N]
@@ -772,7 +764,6 @@ readme_rules:
   - "Load readme_template.md before creating content"
   - "Pause at checkpoints for user approval"
   - "Include Quick Start section with clear examples"
-  - "Create table of contents with proper anchor links"
   - "Use numbered H2 sections"
   - "Validate structure before claiming complete"
   NEVER:
@@ -1067,7 +1058,6 @@ install_guide_workflow:
     activities:
     - Write AI-First prompt section (copy-paste prompt)
     - Write title and overview with architecture diagram
-    - Create TABLE OF CONTENTS with links
     - Write all 11 sections (9 required + 2 optional)
     - Add platform-specific configuration (Claude Code, OpenCode)
     - Create Quick Reference at end
@@ -1098,7 +1088,7 @@ install_guide_workflow:
     purpose: Verify guide quality and completeness
     activities:
     - AI-First section check (prompt complete, placeholders marked, AI actions listed)
-    - Structure check (all 11 sections, TOC links, ASCII diagram, comparison table)
+    - Structure check (all 11 sections, ASCII diagram, comparison table)
     - Command verification (syntax correct, versions accurate, platform-specific)
     - Completeness check (all platforms covered, 5+ troubleshooting issues, practical examples)
     - DQI check if script available
@@ -1110,7 +1100,6 @@ install_guide_workflow:
       - "Expected setup time is realistic"
       structure:
       - "All 11 sections present (0-10) numbered"
-      - "TABLE OF CONTENTS links work"
       - "ASCII diagram in Overview"
       - "Comparison table included"
       commands:
@@ -1304,21 +1293,6 @@ install_guide_templates:
     ## AI-FIRST INSTALL GUIDE
 
     [AI-First section from template above]
-
-    ---
-
-    #### TABLE OF CONTENTS
-
-    1. [OVERVIEW](#1--overview)
-    2. [PREREQUISITES](#2--prerequisites)
-    3. [INSTALLATION](#3--installation)
-    4. [CONFIGURATION](#4--configuration)
-    5. [VERIFICATION](#5--verification)
-    6. [USAGE](#6--usage)
-    7. [FEATURES](#7--features)
-    8. [EXAMPLES](#8--examples)
-    9. [TROUBLESHOOTING](#9--troubleshooting)
-    10. [RESOURCES](#10--resources)
 
     ---
 

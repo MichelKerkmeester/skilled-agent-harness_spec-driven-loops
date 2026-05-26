@@ -12,24 +12,8 @@ trigger_phrases:
 
 > Persistence helpers for checkpoints, lineage, history, incremental indexing metadata, audit rows and maintenance state.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. ARCHITECTURE](#2-architecture)
-- [3. PACKAGE TOPOLOGY](#3-package-topology)
-- [4. DIRECTORY TREE](#4-directory-tree)
-- [5. KEY FILES](#5-key-files)
-- [6. BOUNDARIES AND FLOW](#6-boundaries-and-flow)
-- [7. ENTRYPOINTS](#7-entrypoints)
-- [8. VALIDATION](#8-validation)
-- [9. RELATED](#9-related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/storage/` contains persistence helpers that sit below MCP handlers and above the raw SQLite-backed memory/search schema. The folder owns durable state that is not a search algorithm by itself: checkpoints, incremental index metadata, lineage transitions, mutation history, causal edges, consolidation state and guarded post-insert metadata updates.
@@ -44,11 +28,8 @@ Current responsibilities:
 
 The primary memory schema is defined in `../search/vector-index-schema.ts`. Storage helpers assume the current schema includes document type, spec level, governance scope, lineage and embedding-status columns.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -77,11 +58,8 @@ handlers ───▶ lib/storage ───▶ lib/search schema and database ha
 lib/storage does not import handler modules.
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -119,11 +97,8 @@ lib/storage → MCP transport response builders
 lib/storage → spec packet files
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -145,11 +120,8 @@ lib/storage/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -169,11 +141,8 @@ lib/storage/
 | `schema-downgrade.ts` | Provides targeted downgrade support for older schema rollback workflows. |
 | `transaction-manager.ts` | Manages pending-file paths and crash-recovery support for atomic save flows. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -217,11 +186,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -235,11 +201,8 @@ Main flow:
 | `runReconsolidation()` | Function | Evaluates similarity-based merge or conflict decisions when reconsolidation is enabled. |
 | `getPendingPath()` | Function | Builds pending-file paths used by atomic save promotion. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root unless noted.
@@ -252,11 +215,8 @@ Expected result: the document is detected as a README and the extracted structur
 
 Focused code checks for this folder normally run through the package test suite that covers storage helpers and memory-index behavior.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [`../README.md`](../README.md)
@@ -264,5 +224,3 @@ Focused code checks for this folder normally run through the package test suite 
 - [`../../handlers/README.md`](../../handlers/README.md)
 - [`../../database/README.md`](../../database/README.md)
 - [`../../handlers/save/README.md`](../../handlers/save/README.md)
-
-<!-- /ANCHOR:related -->

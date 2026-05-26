@@ -14,7 +14,6 @@ Worked examples for all 10 query types of skill_graph_query: depends_on, depende
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -37,10 +36,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 - [`db_path_policy.md`](../config/db_path_policy.md)
 - [`skill_graph_drift.md`](./skill_graph_drift.md)
 
-
 ---
 
-<!-- ANCHOR:2-query-type-index -->
 ## 2. QUERY TYPE INDEX
 
 | Query Type | Purpose | Worked Section |
@@ -56,11 +53,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 | `orphans` | Skills with no edges in either direction | §11 |
 | `subgraph` | Local neighborhood around a skill | §12 |
 
-<!-- /ANCHOR:2-query-type-index -->
-
 ---
 
-<!-- ANCHOR:3-depends-on -->
 ## 3. `depends_on`
 
 **Purpose**: Returns the outbound `depends_on` edges declared in a skill graph-metadata.json `edges.depends_on[]` array.
@@ -85,11 +79,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 
 **Gotcha**: An empty `relationships[]` does not mean the skill has no upstream needs. Many skills rely on `system-spec-kit` implicitly through the validate workflow without declaring it as a hard dependency. Cross-reference with the manual_testing_playbook for the runtime dependency story.
 
-<!-- /ANCHOR:3-depends-on -->
-
 ---
 
-<!-- ANCHOR:4-dependents -->
 ## 4. `dependents`
 
 **Purpose**: Reverse query. Returns skills that declare `depends_on` pointing to the queried skill.
@@ -117,11 +108,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 
 **Gotcha**: A high inbound count signals a hub. If you plan to change `system-spec-kit` public surface, run `dependents` first to size the blast radius before any commit.
 
-<!-- /ANCHOR:4-dependents -->
-
 ---
 
-<!-- ANCHOR:5-enhances -->
 ## 5. `enhances`
 
 **Purpose**: Returns outbound `enhances` edges from the queried skill's graph-metadata.json `edges.enhances[]` array.
@@ -149,11 +137,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 
 **Gotcha**: Asymmetric `enhances` declarations are common. A skill can declare it enhances another without that other declaring `enhanced_by`. The propagate-enhances internal tool (see [`propagate_enhances.md`](./propagate_enhances.md)) detects and proposes the missing reciprocals.
 
-<!-- /ANCHOR:5-enhances -->
-
 ---
 
-<!-- ANCHOR:6-enhanced-by -->
 ## 6. `enhanced_by`
 
 **Purpose**: Inverse of `enhances`. Returns skills that declare they enhance the queried skill.
@@ -180,11 +165,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 
 **Gotcha**: The result reflects only declared inbound edges. Run `skill_graph_propagate_enhances` in `report` mode to find skills that should be enhancing this one but have not declared the edge yet.
 
-<!-- /ANCHOR:6-enhanced-by -->
-
 ---
 
-<!-- ANCHOR:7-family-members -->
 ## 7. `family_members`
 
 **Purpose**: Returns all skills sharing the same `family` field in graph-metadata.json.
@@ -213,11 +195,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 
 **Gotcha**: `family` is a soft grouping for navigation. It does not imply runtime dependencies. Use `depends_on` or `enhances` for the real causal edges.
 
-<!-- /ANCHOR:7-family-members -->
-
 ---
 
-<!-- ANCHOR:8-conflicts -->
 ## 8. `conflicts`
 
 **Purpose**: Returns skills marked as mutually exclusive via `edges.conflicts[]` in graph-metadata.json.
@@ -242,11 +221,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 
 **Gotcha**: A non-empty `conflicts[]` signals a skill-level invariant. The advisor will refuse to surface both skills in the same recommendation set when conflicts are declared.
 
-<!-- /ANCHOR:8-conflicts -->
-
 ---
 
-<!-- ANCHOR:9-transitive-path -->
 ## 9. `transitive_path`
 
 **Purpose**: Finds a path between two skills through any combination of edge types.
@@ -275,11 +251,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 
 **Gotcha**: If no path exists the response returns `path: []`. BFS depth is capped at the runtime configured limit (typically 4 hops). Beyond that the query returns `path: []` even when a longer chain exists.
 
-<!-- /ANCHOR:9-transitive-path -->
-
 ---
 
-<!-- ANCHOR:10-hub-skills -->
 ## 10. `hub_skills`
 
 **Purpose**: Returns skills with the highest combined in plus out degree across all edge types.
@@ -308,11 +281,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 
 **Gotcha**: A high degree count does not mean a skill is high-quality. It just means many other skills point at it. Cross-reference with `advisor_validate` accuracy slices to see whether routing TO this skill is actually high-precision.
 
-<!-- /ANCHOR:10-hub-skills -->
-
 ---
 
-<!-- ANCHOR:11-orphans -->
 ## 11. `orphans`
 
 **Purpose**: Returns skills with zero edges in either direction.
@@ -336,11 +306,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 
 **Gotcha**: An orphan skill will still surface in `advisor_recommend` if its explicit_author or lexical lanes score high enough. But the graph_causal lane contribution will be zero. Orphans are a signal to add at least one edge in the skill graph-metadata.json.
 
-<!-- /ANCHOR:11-orphans -->
-
 ---
 
-<!-- ANCHOR:12-subgraph -->
 ## 12. `subgraph`
 
 **Purpose**: Returns the local neighborhood around a skill (default radius 1, configurable).
@@ -376,11 +343,8 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 
 **Gotcha**: At radius 3 or higher the response can grow large for hub skills. The runtime caps the result at a configurable node count (default 100). Trim radius before requesting unless you need the full transitive closure.
 
-<!-- /ANCHOR:12-subgraph -->
-
 ---
 
-<!-- ANCHOR:13-related -->
 ## 13. RELATED
 
 - [`tool_ids_reference.md`](../runtime/tool_ids_reference.md) §3, full `skill_graph_query` schema
@@ -388,5 +352,3 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 - [`propagate_enhances.md`](./propagate_enhances.md), internal tool that detects missing reciprocal enhances edges
 - [`skill_graph_drift.md`](./skill_graph_drift.md), what to do when SQL graph diverges from graph-metadata.json source files
 - `mcp_server/handlers/skill-graph/query.ts`, handler source
-
-<!-- /ANCHOR:13-related -->

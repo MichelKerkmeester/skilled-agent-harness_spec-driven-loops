@@ -14,7 +14,6 @@ The 8 MCP tools registered by `mk-code-index` with the handler file, primary pur
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -42,9 +41,6 @@ The authoritative tool list lives in `mcp_server/tool-schemas.ts` as `CODE_GRAPH
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-tool-table -->
 ## 2. TOOL TABLE
 
 | # | Tool | Family | Purpose | Key Preconditions | Token Budget |
@@ -60,9 +56,6 @@ The authoritative tool list lives in `mcp_server/tool-schemas.ts` as `CODE_GRAPH
 
 ---
 
-<!-- /ANCHOR:2-tool-table -->
-
-<!-- ANCHOR:3-handler-map -->
 ## 3. HANDLER MAP
 
 Each tool's runtime handler lives under `mcp_server/`:
@@ -82,9 +75,6 @@ Library paths (`lib/scan/`, `lib/query/`, etc.) are approximate — see `mcp_ser
 
 ---
 
-<!-- /ANCHOR:3-handler-map -->
-
-<!-- ANCHOR:4-namespacing -->
 ## 4. NAMESPACING
 
 All tools are invoked through the MCP namespace `mcp__mk_code_index__*`. MCP converts hyphens in the server name (`mk-code-index`) to underscores in the namespace prefix. Examples:
@@ -99,14 +89,9 @@ Direct library consumers in `system-spec-kit` handlers and hooks bypass MCP and 
 
 ---
 
-<!-- /ANCHOR:4-namespacing -->
-
-<!-- ANCHOR:5-related-resources -->
 ## 5. RELATED RESOURCES
 
 - [`../readiness/readiness_and_scope_fingerprint.md`](../readiness/readiness_and_scope_fingerprint.md) — read-path readiness contract that gates tools 2, 4, 6, 8.
 - [`../config/database_path_policy.md`](../config/database_path_policy.md) — canonical database path for all 8 tools.
 - [`naming_conventions.md`](naming_conventions.md) — name map across skill folder, MCP server, launcher, and config key.
 - [`../../mcp_server/tool-schemas.ts`](../../mcp_server/tool-schemas.ts) — schema array; canonical source.
-
-<!-- /ANCHOR:5-related-resources -->

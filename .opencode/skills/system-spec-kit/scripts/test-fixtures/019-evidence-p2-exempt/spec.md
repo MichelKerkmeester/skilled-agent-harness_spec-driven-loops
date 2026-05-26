@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - P2 Evidence Exempt
@@ -26,4 +25,3 @@ Tests P2 items exempt from evidence requirement.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

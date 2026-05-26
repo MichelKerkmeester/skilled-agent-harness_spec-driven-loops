@@ -13,16 +13,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate the operator path for a degraded advisor daemon, usually caused by stale graph generation or a newer source file.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Use a disposable copy when simulating stale source timestamps.
@@ -31,9 +27,6 @@ Validate the operator path for a degraded advisor daemon, usually caused by stal
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Detect:
@@ -67,9 +60,6 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/`
@@ -77,14 +67,9 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Operator H5
 - Playbook ID: OP-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 04--operator-h5/001-degraded-daemon.md
-
-<!-- /ANCHOR:5-source-metadata -->

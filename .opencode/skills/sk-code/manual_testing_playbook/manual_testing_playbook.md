@@ -25,26 +25,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. SURFACE DETECTION (`SD-001..SD-003`)](#7--surface-detection-sd-001sd-003)
-- [8. LANGUAGE SUB-DETECTION (`LS-001..LS-004`)](#8--language-sub-detection-ls-001ls-004)
-- [9. ROUTING DISAMBIGUATION (`RD-001..RD-002`)](#9--routing-disambiguation-rd-001rd-002)
-- [10. SKILL ADVISOR INTEGRATION (`SA-001`)](#10--skill-advisor-integration-sa-001)
-- [11. MOTION.DEV AND ANIMATION REGRESSION (`MR-001..MR-004`)](#11--motiondev-and-animation-regression-mr-001mr-004)
-- [12. CROSS-BROWSER AND PERFORMANCE GATES (`CB-001..CB-003`)](#12--cross-browser-and-performance-gates-cb-001cb-003)
-- [13. CROSS-STACK ROUTING (`CS-001..CS-007`)](#13--cross-stack-routing-cs-001cs-007)
-- [14. AUTOMATED TEST CROSS-REFERENCE](#14--automated-test-cross-reference)
-- [15. FEATURE CATALOG CROSS-REFERENCE INDEX](#15--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 24 deterministic scenarios across 7 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.

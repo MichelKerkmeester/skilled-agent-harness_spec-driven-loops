@@ -23,26 +23,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. CORE TOOLS](#7--core-tools)
-- [8. MANUAL NAMESPACE CONTRACT](#8--manual-namespace-contract)
-- [9. ENV VAR PREFIXING](#9--env-var-prefixing)
-- [10. MULTI-TOOL WORKFLOWS](#10--multi-tool-workflows)
-- [11. CLICKUP AND CHROME VIA CM](#11--clickup-and-chrome-via-cm)
-- [12. THIRD-PARTY VIA CM](#12--third-party-via-cm)
-- [13. RECOVERY AND CONFIG](#13--recovery-and-config)
-- [14. AUTOMATED TEST CROSS-REFERENCE](#14--automated-test-cross-reference)
-- [15. FEATURE CATALOG CROSS-REFERENCE INDEX](#15--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 26 deterministic scenarios across 7 categories validating the `mcp-code-mode` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.

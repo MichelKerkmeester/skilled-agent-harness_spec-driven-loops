@@ -1,4 +1,3 @@
-<!-- ANCHOR:checklist -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
@@ -17,4 +16,3 @@ Some notes here.
 ## Summary
 
 Items after non-priority header tracked correctly.
-<!-- /ANCHOR:checklist -->

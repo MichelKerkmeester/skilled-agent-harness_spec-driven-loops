@@ -17,25 +17,6 @@ contextType: "implementation"
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW AND HEADLINE](#1--overview-and-headline)
-- [2. AGGREGATE RESULTS](#2--aggregate-results)
-- [3. METHODOLOGY](#3--methodology)
-- [4. PER-PROBE RESULTS](#4--per-probe-results)
-- [5. PROCESS NOTES](#5--process-notes)
-- [6. FINDINGS](#6--findings)
-- [7. CAVEATS](#7--caveats)
-- [8. RECOMMENDATIONS](#8--recommendations)
-- [9. REPRODUCIBILITY](#9--reproducibility)
-- [10. RELATED RESOURCES](#10--related-resources)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview-and-headline -->
 ## 1. OVERVIEW AND HEADLINE
 
 Final state for the May 20, 2026 re-bench of `mk-spec-memory` under `nomic-embed-text-v1.5` (ollama Q4_K_M, 768-dim). The bench validates the 016/002/016-019 fix arc (vec_memories KNN dual-write, factory shard fallback, constitutional gate exemption, graph-metadata plus lineage repair runner) plus four follow-on tuning actions taken during this run:
@@ -60,11 +41,8 @@ Final state for the May 20, 2026 re-bench of `mk-spec-memory` under `nomic-embed
 | Evidence-gap Z threshold | **1.3** (tuned) | 1.5 (default) |
 | Evidence-gap detector outcome | passes for all 10 probes | passes for all 10 probes |
 
-<!-- /ANCHOR:overview-and-headline -->
-
 ---
 
-<!-- ANCHOR:aggregate-results -->
 ## 2. AGGREGATE RESULTS
 
 | Candidate | Embedder | Dim | Top-1 hits | Median ms | p95 ms | Verdict |
@@ -74,11 +52,8 @@ Final state for the May 20, 2026 re-bench of `mk-spec-memory` under `nomic-embed
 
 The 1/10 mismatch (Q1) is a boundary effect: the query targets "documentation verification checklist for the CocoIndex complete-fork author docs phase" and the system returns `id=1990` (`Verification Checklist: Adapt Lifecycle Scripts`) instead of the fixture-pinned `id=2000` (`Verification Checklist: Author Fork Documentation`). Both are semantically related verification checklists in the same CocoIndex docs cluster; the regenerated fixture pinned 2000 because that was the top-1 in the regeneration pass, but a parallel run flipped to 1990. Treating this as a genuine retrieval boundary rather than a defect.
 
-<!-- /ANCHOR:aggregate-results -->
-
 ---
 
-<!-- ANCHOR:methodology -->
 ## 3. METHODOLOGY
 
 ### Fixture
@@ -102,11 +77,8 @@ ID-match top-1: pass if `expected_source_memory_id` equals the `results[0].id` r
 - Retrieval-rescue layer (ADR-010/011): default-on via `SPECKIT_RERANK_LAYER` (not explicit false)
 - `embedding_cache` cleared at run start (4434 stale rows removed)
 
-<!-- /ANCHOR:methodology -->
-
 ---
 
-<!-- ANCHOR:per-probe-results -->
 ## 4. PER-PROBE RESULTS
 
 | # | Query (truncated) | Expected ID | Top-1 ID | Latency (ms) | Match |
@@ -122,11 +94,8 @@ ID-match top-1: pass if `expected_source_memory_id` equals the `results[0].id` r
 | 9 | "stress-test task list tracking cat-14 pipeline gaps, cat-16 tooling fixes" | 908 | 908 | 939 | ✅ |
 | 10 | "task checklist for the mxbai swap that planned a 20-scenario PASS sample" | 1096 | 1096 | 667 | ✅ |
 
-<!-- /ANCHOR:per-probe-results -->
-
 ---
 
-<!-- ANCHOR:process-notes -->
 ## 5. PROCESS NOTES
 
 ### Embedding-cache UNIQUE constraint failure (mid-run)
@@ -145,11 +114,8 @@ Z_SCORE_THRESHOLD was 1.5 when the May 17 baseline ran with jina-v3 plus the ret
 
 The long-term fix is enabling a real reranker (VOYAGE_API_KEY, COHERE_API_KEY, or RERANKER_LOCAL=true with a working sentence-transformers sidecar). Once the rerank lift is restored, Z will move above 1.5 again and the threshold can be raised back to the conservative default.
 
-<!-- /ANCHOR:process-notes -->
-
 ---
 
-<!-- ANCHOR:findings -->
 ## 6. FINDINGS
 
 ### Retrieval works end-to-end
@@ -168,11 +134,8 @@ Median 1071 ms (this run) vs 1826 ms (per-query launcher harness from the same s
 
 The 4434 stale rows with three distinct profile_key values were enough to break the daemon entirely. Future packet should add an embedding_cache health check at startup and either auto-migrate the profile_key or refuse-to-start with a clear remediation step.
 
-<!-- /ANCHOR:findings -->
-
 ---
 
-<!-- ANCHOR:caveats -->
 ## 7. CAVEATS
 
 - This re-bench scores top-1, not top-3. The May 17 9/10 was top-3 under retrieval-rescue. Raw comparison at the same cut would need a top-3 score from this run, which is trivially better than top-1 and would likely land at 10/10.
@@ -180,11 +143,8 @@ The 4434 stale rows with three distinct profile_key values were enough to break 
 - The `embedding_cache` reset is a one-shot operational fix. The underlying root cause (which init-time write hits the constraint) is not addressed by this packet.
 - Q1's NEAR-MISS reflects retrieval boundary noise, not a quality regression. Both candidates are valid hits in the CocoIndex docs cluster; the fixture was authored against a snapshot where the top-1 happened to be 2000 in one regeneration pass.
 
-<!-- /ANCHOR:caveats -->
-
 ---
 
-<!-- ANCHOR:recommendations -->
 ## 8. RECOMMENDATIONS
 
 1. **Investigate the embedding_cache init-time INSERT** — find the code path that bypasses `INSERT OR REPLACE` / `ON CONFLICT` and either add conflict handling or run a migration that consolidates duplicate profile_key values.
@@ -192,11 +152,8 @@ The 4434 stale rows with three distinct profile_key values were enough to break 
 3. **Track Z threshold per profile** — instead of one global constant, make Z_SCORE_THRESHOLD a per-embedder calibration loaded from `vec_metadata` or a profile config. nomic-768 needs 1.3, jina-1024 plus rescue tolerated 1.5.
 4. **Re-pin the fixture annually** or after any large corpus rebuild — add a CI check that verifies `expected_title_substring` matches the top-1 result for each fixture row.
 
-<!-- /ANCHOR:recommendations -->
-
 ---
 
-<!-- ANCHOR:reproducibility -->
 ## 9. REPRODUCIBILITY
 
 ### Run the shared-connection harness
@@ -231,11 +188,8 @@ node -e "const D=require('better-sqlite3'); const db=new D('.opencode/skills/sys
 # Cache repopulates organically on the next batch of saves and searches.
 ```
 
-<!-- /ANCHOR:reproducibility -->
-
 ---
 
-<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Skill-local files
@@ -263,5 +217,3 @@ node -e "const D=require('better-sqlite3'); const db=new D('.opencode/skills/sys
 |---|---|
 | `mcp_server/lib/search/evidence-gap-detector.ts` | `Z_SCORE_THRESHOLD: 1.5 → 1.3` with calibration history comment |
 | `manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json` | All 10 `expected_source_memory_id` values regenerated against current corpus; `expected_title_substring` added for future-proof identity checks |
-
-<!-- /ANCHOR:related-resources -->

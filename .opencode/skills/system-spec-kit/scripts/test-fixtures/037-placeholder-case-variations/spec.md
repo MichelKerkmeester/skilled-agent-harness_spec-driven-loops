@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Test Feature - Placeholder Case Variations
 
@@ -26,4 +25,3 @@ Tests placeholder case variations are detected.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

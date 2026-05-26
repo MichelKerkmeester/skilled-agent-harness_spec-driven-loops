@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Evidence Case Variations
@@ -26,4 +25,3 @@ Tests case-insensitive evidence tags.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

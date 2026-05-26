@@ -12,21 +12,14 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Prevent stale cache reads after a graph reindex. Every cache entry is tagged with the generation under which it was computed. A generation bump atomically invalidates affected entries without blowing away the whole cache.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `lib/freshness/cache-invalidation.ts` bumps an internal invalidation epoch whenever the generation advances. Prompt cache entries (`lib/prompt-cache.ts`) carry the generation as part of their key so post-bump hits miss cleanly. The 5-minute TTL still applies, but generation-based invalidation fires earlier when source truly changed. Lane-attribution scoring caches rebuild alongside the next recommendation call.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -42,9 +35,7 @@ Prevent stale cache reads after a graph reindex. Every cache entry is tagged wit
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-prompt-cache.vitest.ts` | Automated test | prompt cache TTL and invalidation |
 | `Playbook scenario [AU-004](../../manual_testing_playbook/05--auto-update-daemon/004-generation-publication.md).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Daemon and freshness
@@ -56,4 +47,3 @@ Related references:
 - [04-generation.md](./04-generation.md).
 - [05-trust-state.md](./05-trust-state.md).
 - [`06--mcp-surface/01-advisor-recommend.md`](../06--mcp-surface/01-advisor-recommend.md).
-<!-- /ANCHOR:source-metadata -->

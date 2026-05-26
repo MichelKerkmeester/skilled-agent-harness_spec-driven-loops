@@ -9,15 +9,6 @@ trigger_phrases:
 
 # Observability Scripts: Smart Router Measurement
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED](#6--related)
-
 ## 1. OVERVIEW
 
 `scripts/observability/` contains observe-only helpers for measuring skill smart-router behavior. The scripts predict expected resource reads, record live wrapper observations, and turn JSONL telemetry into reports.

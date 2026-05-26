@@ -9,13 +9,10 @@ importance_tier: "important"
 
 # code_graph_context
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `code_graph_context` returns compact structural neighborhoods for LLM use. It accepts manual, graph and Code Graph seeds and embeds readiness metadata in both success and blocked responses.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -29,9 +26,7 @@ half. The tool self-checks readiness on invocation. No ambient hook calls it aut
 ### Caveats / Fallback
 
 Blocked responses omit graph answers. Follow `requiredAction:"code_graph_scan"` or use semantic search plus `rg`.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -49,9 +44,6 @@ Blocked responses omit graph answers. Follow `requiredAction:"code_graph_scan"` 
 |---|---|---|
 | `../../manual_testing_playbook/04--context-retrieval/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Context retrieval
@@ -63,4 +55,3 @@ Related references:
 - [02-context-handler.md](./02-context-handler.md)
 - [../01--read-path-freshness/01-ensure-code-graph-ready.md](../01--read-path-freshness/01-ensure-code-graph-ready.md)
 - [../../manual_testing_playbook/04--context-retrieval/008-code-graph-context-readiness-block.md](../../manual_testing_playbook/04--context-retrieval/008-code-graph-context-readiness-block.md)
-<!-- /ANCHOR:source-metadata -->

@@ -15,7 +15,6 @@ Process, measurement methodology, decision framework, approval gates plus rollba
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -38,10 +37,8 @@ Lane weights change only with measured evidence and synchronized documentation u
 - [`validation_baselines.md`](./validation_baselines.md)
 - `mcp_server/lib/scorer/lane-registry.ts`
 
-
 ---
 
-<!-- ANCHOR:2-when-to-tune -->
 ## 2. WHEN TO TUNE
 
 Tune lane weights only when at least one of these triggers fires:
@@ -58,11 +55,8 @@ Do not tune weights for these reasons:
 - "We just added this skill." Single-skill tuning belongs in the explicit_author lane's curated boosts (`mcp_server/lib/scorer/lanes/explicit.ts`), not in global lane weights.
 - "The semantic lane scored higher than expected." The semantic_shadow lane carries `shadowOnly=true` so it does not affect live ranking. Adjust the shadow_weight if you want to tune shadow mode, not the live weight.
 
-<!-- /ANCHOR:2-when-to-tune -->
-
 ---
 
-<!-- ANCHOR:3-measurement-methodology -->
 ## 3. MEASUREMENT METHODOLOGY
 
 Every weight change requires a baseline plus a comparison run. The measurement chain has 4 steps:
@@ -94,11 +88,8 @@ Edit `mcp_server/lib/scorer/lane-registry.ts:7-19` (live weights) or `lane-regis
 
 Re-run Step 1 plus Step 2. The diff between baseline plus comparison is the measured evidence required for approval.
 
-<!-- /ANCHOR:3-measurement-methodology -->
-
 ---
 
-<!-- ANCHOR:4-decision-framework -->
 ## 4. DECISION FRAMEWORK
 
 Use this rubric to decide whether to ship a weight change:
@@ -114,11 +105,8 @@ Use this rubric to decide whether to ship a weight change:
 
 Any "Defer" condition blocks the change. If improvements on some axes come with regressions on others, document the tradeoff in `advisor_scorer.md` plus get explicit sign-off before shipping.
 
-<!-- /ANCHOR:4-decision-framework -->
-
 ---
 
-<!-- ANCHOR:5-approval-process -->
 ## 5. APPROVAL PROCESS
 
 Lane weight changes are governed work. The checklist:
@@ -134,11 +122,8 @@ Lane weight changes are governed work. The checklist:
    - [ARCHITECTURE.md](../../ARCHITECTURE.md) lane weights section
 5. Run `advisor_validate` post-change to confirm the comparison numbers reproduce in the deployed config.
 
-<!-- /ANCHOR:5-approval-process -->
-
 ---
 
-<!-- ANCHOR:6-rollback-criteria -->
 ## 6. ROLLBACK CRITERIA
 
 Roll back a weight change when ANY of these fires within 24 hours of deploy:
@@ -159,11 +144,8 @@ mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
 
 Confirm the baseline numbers return. Document the rollback rationale in the original packet's `implementation-summary.md`.
 
-<!-- /ANCHOR:6-rollback-criteria -->
-
 ---
 
-<!-- ANCHOR:7-related -->
 ## 7. RELATED
 
 - [`advisor_scorer.md`](./advisor_scorer.md), lane attribution model + fusion + 16 confidence calibration constants.
@@ -172,5 +154,3 @@ Confirm the baseline numbers return. Document the rollback rationale in the orig
 - `mcp_server/tests/scorer/lane-weight-sweep.vitest.ts`, sweep harness.
 - `mcp_server/lib/scorer/lane-registry.ts:7-19,32-38`, live + shadow weight source-of-truth.
 - `mcp_server/lib/scorer/scoring-constants.ts:141-170`, confidence calibration constants.
-
-<!-- /ANCHOR:7-related -->

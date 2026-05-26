@@ -15,23 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/ipc/` owns the local IPC socket server used by the launcher bridge. It creates a workspace-contained Unix socket or explicit TCP listener, accepts bounded secondary clients and connects each client to a fresh MCP `Server` over `StdioServerTransport`.
@@ -45,11 +28,8 @@ Current state:
 - Secondary clients are capped by `SPECKIT_MAX_SECONDARY_CLIENTS`, defaulting to `8`.
 - `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the idle monitor.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -69,11 +49,8 @@ socket-server.ts -> ../utils/workspace-path.ts
 socket-server.ts -> @modelcontextprotocol/sdk
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -83,11 +60,8 @@ ipc/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Responsibility |
@@ -95,11 +69,8 @@ ipc/
 | `launcher-idle-timeout.ts` | Parses `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` and runs the idle shutdown timer. |
 | `socket-server.ts` | Resolves socket paths, starts the socket server, tracks active secondary clients and exposes bridge stats. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -111,11 +82,8 @@ ipc/
 | Transport | Each secondary socket gets its own `StdioServerTransport` and MCP server instance. |
 | Database | This folder does not own SQLite state. It may use the DB directory only as a safe default socket location. |
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -127,11 +95,8 @@ ipc/
 | `parseLauncherIdleTimeoutMs` | Function | Parses the idle timeout env value. |
 | `parseMaxClients` | Function | Parses `SPECKIT_MAX_SECONDARY_CLIENTS` with a safe fallback. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root.
@@ -144,11 +109,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py --type readme .open
 
 Expected result: Vitest exits `0`, and the README validator reports no blocking errors.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 | Document | Purpose |
@@ -157,5 +119,3 @@ Expected result: Vitest exits `0`, and the README validator reports no blocking 
 | [../utils/README.md](../utils/README.md) | Workspace containment helper used by the IPC path guard. |
 | [../../../README.md](../../../README.md) | MCP server package overview. |
 | [../../tests/lib/README.md](../../tests/lib/README.md) | Focused tests covering socket hardening. |
-
-<!-- /ANCHOR:related -->

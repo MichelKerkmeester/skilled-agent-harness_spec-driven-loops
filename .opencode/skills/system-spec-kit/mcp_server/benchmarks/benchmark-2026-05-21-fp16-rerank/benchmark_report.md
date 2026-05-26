@@ -17,19 +17,6 @@ Three orthogonal MPS unblock attempts tested. All three HOLD. This packet docume
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. AGGREGATE RESULTS](#2--aggregate-results)
-- [3. METHODOLOGY](#3--methodology)
-- [4. WHY THE SMOKE SUCCEEDED BUT THE BENCH FAILED](#4--why-the-smoke-succeeded-but-the-bench-failed)
-- [5. SYNTHESIS — THREE LEVERS, THREE HOLDS](#5--synthesis--three-levers-three-holds)
-- [6. CAVEATS](#6--caveats)
-- [7. RECOMMENDATIONS](#7--recommendations)
-- [8. REPRODUCIBILITY](#8--reproducibility)
-
----
-
 ## 1. OVERVIEW
 
 Packet 007 showed Qwen3-Reranker-0.6B on MPS OOMs at the 50-doc batch shape (76 GiB MTLBuffer allocation request). Packet 008 ruled out batch size as the binding constraint (cap=10 still OOMs at 76 + 135 GiB). This packet tests the third orthogonal lever: cut the model's memory footprint via fp16 weights and keep the production batch shape.

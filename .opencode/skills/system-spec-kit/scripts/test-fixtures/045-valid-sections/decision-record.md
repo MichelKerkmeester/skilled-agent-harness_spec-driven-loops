@@ -1,4 +1,3 @@
-<!-- ANCHOR:decision-record -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Decision Record
 
@@ -15,4 +14,3 @@ Include all required sections in all files.
 - Validation passes
 - Documentation is complete
 - Future sessions have full context
-<!-- /ANCHOR:decision-record -->

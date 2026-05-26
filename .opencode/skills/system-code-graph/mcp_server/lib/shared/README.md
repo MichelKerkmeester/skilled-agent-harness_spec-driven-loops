@@ -14,23 +14,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/shared/` contains the small contracts and runtime helpers that must be reused across code-graph handlers, library modules and tools. The folder keeps code-graph ownership local, including payload trust fields, MCP response helpers, path canonicalization, hook-state reads and scan-scope filtering.
@@ -42,11 +25,8 @@ Current state:
 - Path helpers guard operator-controlled locations such as canonical file paths.
 - Hook policy and state helpers expose read-only runtime state to startup and detection modules.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -81,11 +61,8 @@ lib/shared -> database adapters unless the contract explicitly owns storage
 lib/shared -> system-spec-kit or system-skill-advisor source files
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -103,11 +80,8 @@ shared/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Responsibility |
@@ -123,11 +97,8 @@ shared/
 | `assert-never.ts` | Throws on impossible discriminated-union branches. |
 | `logger.ts` | Centralizes small logger behavior used by library modules. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -146,11 +117,8 @@ handler or library module
   -> caller shapes the final MCP payload
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -162,11 +130,8 @@ handler or library module
 | `parseArgs` | Function | Parses MCP tool args into object payloads. |
 | `isSpeckitMetricsEnabled` | Function | Returns whether local code-graph metrics should emit. Currently always `false`. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root.
@@ -178,11 +143,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py --type readme .open
 
 Expected result: TypeScript exits `0`, and the README validator reports no blocking errors.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 | Document | Purpose |
@@ -191,5 +153,3 @@ Expected result: TypeScript exits `0`, and the README validator reports no block
 | [../utils/README.md](../utils/README.md) | Workspace path safety helpers used beside shared contracts. |
 | [../../handlers/README.md](../../handlers/README.md) | Handler modules that consume shared payload helpers. |
 | [../../../README.md](../../../README.md) | MCP server package overview. |
-
-<!-- /ANCHOR:related -->

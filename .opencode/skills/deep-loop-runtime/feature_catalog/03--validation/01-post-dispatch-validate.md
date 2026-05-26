@@ -5,13 +5,6 @@ description: "Validates iteration artifacts after dispatch: checks iteration fil
 
 # Post-dispatch validate
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CURRENT REALITY](#2--current-reality)
-- [3. SOURCE FILES](#3--source-files)
-- [4. SOURCE METADATA](#4--source-metadata)
-
 ---
 
 ## 1. OVERVIEW
@@ -55,4 +48,3 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Feature ID: F005
 - Feature file path: `03--validation/01-post-dispatch-validate.md`
 - Primary sources: `lib/deep-loop/post-dispatch-validate.ts`, `tests/unit/post-dispatch-validate.vitest.ts`
-

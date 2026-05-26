@@ -9,15 +9,6 @@ trigger_phrases:
 
 # Runtime Safety Helpers
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. OWNERSHIP](#2--ownership)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-
 ## 1. OVERVIEW
 
 `lib/runtime/` owns process-lifetime helpers for mk-spec-memory. These modules keep shutdown paths deterministic and prevent long-lived timers from leaking across tests or daemon sessions.

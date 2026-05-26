@@ -13,8 +13,6 @@ trigger_phrases:
 
 ---
 
-#### TABLE OF CONTENTS
-
 1. [OVERVIEW](#1--overview)
 2. [PREREQUISITES](#2--prerequisites)
 3. [AVAILABLE SCRIPTS](#3--available-scripts)
@@ -30,7 +28,6 @@ trigger_phrases:
 ---
 
 ## 1. OVERVIEW
-<!-- ANCHOR:overview -->
 
 This directory contains production-ready bash scripts demonstrating practical browser debugging, automation, performance testing and visual regression workflows using the browser-debugger-cli (bdg) tool.
 
@@ -53,12 +50,9 @@ When these scripts support a Spec Kit packet, route packet recovery back through
 - Configurable thresholds for automated validation
 - Timestamped output for historical comparison
 
-<!-- /ANCHOR:overview -->
-
 ---
 
 ## 2. PREREQUISITES
-<!-- ANCHOR:prerequisites -->
 
 ```bash
 # Install browser-debugger-cli
@@ -72,12 +66,9 @@ command -v jq >/dev/null || echo "Install jq for JSON parsing"
 command -v bc >/dev/null || echo "Install bc for calculations"
 ```
 
-<!-- /ANCHOR:prerequisites -->
-
 ---
 
 ## 3. AVAILABLE SCRIPTS
-<!-- ANCHOR:available-scripts -->
 
 ### 3.1 performance-baseline.sh
 
@@ -209,12 +200,9 @@ viewport-tests/20241127-143022/
 - Mobile-specific issue detection
 - Visual regression across viewports
 
-<!-- /ANCHOR:available-scripts -->
-
 ---
 
 ## 4. COMMON PATTERNS
-<!-- ANCHOR:common-patterns -->
 
 ### Chaining Scripts in CI/CD
 
@@ -267,12 +255,9 @@ mv viewport-tests/*/desktop-initial.png current-desktop.png
 compare baseline-desktop.png current-desktop.png diff.png
 ```
 
-<!-- /ANCHOR:common-patterns -->
-
 ---
 
 ## 5. CUSTOMIZATION TIPS
-<!-- ANCHOR:customization -->
 
 ### Adjusting Performance Thresholds
 
@@ -311,12 +296,9 @@ sleep 0.3
 sleep 2
 ```
 
-<!-- /ANCHOR:customization -->
-
 ---
 
 ## 6. TROUBLESHOOTING
-<!-- ANCHOR:troubleshooting -->
 
 ### Script fails immediately
 
@@ -360,12 +342,9 @@ bdg dom screenshot ./<test-output>/test.png 2>&1
 bdg stop 2>&1
 ```
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
 ## 7. SEE ALSO
-<!-- ANCHOR:related -->
 
 ### Skill Documentation
 
@@ -387,12 +366,9 @@ bdg stop 2>&1
 - **sk-code** - Development workflow orchestration
 - **sk-doc** - Documentation creation and validation
 
-<!-- /ANCHOR:related -->
-
 ---
 
 ## 8. CONTRIBUTING
-<!-- ANCHOR:contributing -->
 
 To add new example scripts:
 
@@ -401,8 +377,6 @@ To add new example scripts:
 3. Add comprehensive help text in script header
 4. Update this README with usage examples
 5. Reference relevant workflow documentation
-
-<!-- /ANCHOR:contributing -->
 
 ---
 

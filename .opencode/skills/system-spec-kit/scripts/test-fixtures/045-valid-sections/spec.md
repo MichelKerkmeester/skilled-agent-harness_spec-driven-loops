@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Valid Sections
@@ -29,4 +28,3 @@ Tests that all required sections are present in L3 files.
 ### Out of Scope
 
 - Content validation
-<!-- /ANCHOR:overview -->

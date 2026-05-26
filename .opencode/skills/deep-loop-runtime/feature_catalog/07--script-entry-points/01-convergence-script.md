@@ -5,13 +5,6 @@ description: "Computes graph-aware CONTINUE, STOP_ALLOWED, or STOP_BLOCKED decis
 
 # convergence.cjs
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CURRENT REALITY](#2--current-reality)
-- [3. SOURCE FILES](#3--source-files)
-- [4. SOURCE METADATA](#4--source-metadata)
-
 ---
 
 ## 1. OVERVIEW
@@ -54,4 +47,3 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Feature ID: F014
 - Feature file path: `07--script-entry-points/01-convergence-script.md`
 - Primary sources: `scripts/convergence.cjs`, `tests/integration/convergence-script.vitest.ts`
-

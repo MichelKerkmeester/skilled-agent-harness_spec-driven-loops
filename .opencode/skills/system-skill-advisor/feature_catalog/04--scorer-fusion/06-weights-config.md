@@ -12,21 +12,14 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Keep the canonical lane weights in exactly one place and expose them to callers so routing behavior remains auditable.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `lib/scorer/weights-config.ts` defines the canonical weights from `lib/scorer/lane-registry.ts`: `explicit_author: 0.42`, `lexical: 0.28`, `graph_causal: 0.13`, `derived_generated: 0.12`, `semantic_shadow: 0.05`. These values are surfaced through `advisor_status.laneWeights` and consumed by `lib/scorer/fusion.ts`.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -45,9 +38,7 @@ Keep the canonical lane weights in exactly one place and expose them to callers 
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | weight consumption |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-status.vitest.ts` | Automated test | weight exposure |
 | `Playbook scenario [SC-001](../../manual_testing_playbook/08--scorer-fusion/001-five-lane-fusion.md).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Scorer fusion
@@ -57,4 +48,3 @@ Keep the canonical lane weights in exactly one place and expose them to callers 
 Related references:
 
 - [01-five-lane-fusion.md](./01-five-lane-fusion.md).
-<!-- /ANCHOR:source-metadata -->

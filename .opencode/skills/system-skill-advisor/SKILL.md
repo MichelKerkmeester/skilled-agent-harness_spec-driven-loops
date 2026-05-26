@@ -36,7 +36,6 @@ Routes non-trivial user requests to the right skill through the standalone Skill
 
 ---
 
-<!-- ANCHOR:1-when-to-use -->
 ## 1. WHEN TO USE
 
 Use this skill when the work is about skill selection, Gate 2 routing, advisor MCP tools, prompt-time skill-advisor hooks, skill graph freshness or the standalone advisor package.
@@ -53,9 +52,6 @@ Do not use this skill as a replacement for the recommended target skill. For exa
 
 ---
 
-<!-- /ANCHOR:1-when-to-use -->
-
-<!-- ANCHOR:2-smart-routing -->
 ## 2. SMART ROUTING
 
 This package is mandatory context for non-trivial Gate 2 routing. The live advisor scores prompts through `mk_skill_advisor`; this smart router controls which local documentation resources an agent should load while maintaining the advisor package.
@@ -275,9 +271,6 @@ return {
 
 ---
 
-<!-- /ANCHOR:2-smart-routing -->
-
-<!-- ANCHOR:3-how-it-works -->
 ## 3. HOW IT WORKS
 
 ADR-001 locks the target shape as **Standalone Advisor MCP With Legacy Tool Bridge**.
@@ -305,9 +298,6 @@ The advisor implementation, skill-graph library and package-local database now l
 
 ---
 
-<!-- /ANCHOR:3-how-it-works -->
-
-<!-- ANCHOR:4-rules -->
 ## 4. RULES
 
 Always:
@@ -333,9 +323,6 @@ Escalate if:
 
 ---
 
-<!-- /ANCHOR:4-rules -->
-
-<!-- ANCHOR:5-references -->
 ## 5. REFERENCES
 
 Primary contract:
@@ -367,9 +354,6 @@ Package references:
 
 ---
 
-<!-- /ANCHOR:5-references -->
-
-<!-- ANCHOR:6-success-criteria -->
 ## 6. SUCCESS CRITERIA
 
 This skill is healthy when:
@@ -382,9 +366,6 @@ This skill is healthy when:
 
 ---
 
-<!-- /ANCHOR:6-success-criteria -->
-
-<!-- ANCHOR:7-integration-points -->
 ## 7. INTEGRATION POINTS
 
 Current package state:
@@ -403,9 +384,6 @@ Expected consumers:
 
 ---
 
-<!-- /ANCHOR:7-integration-points -->
-
-<!-- ANCHOR:8-references-and-related-resources -->
 ## 8. REFERENCES AND RELATED RESOURCES
 
 Related skills:
@@ -417,5 +395,3 @@ Related skills:
 - `system-code-graph` owns structural code indexing, graph readiness and impact-analysis workflows.
 
 The advisor should recommend these skills. It should not absorb their implementation rules.
-
-<!-- /ANCHOR:8-references-and-related-resources -->

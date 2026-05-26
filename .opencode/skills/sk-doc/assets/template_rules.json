@@ -51,7 +51,7 @@
         "readme checklist": "checklist",
         "readme maintenance": "maintenance"
       },
-      "tocRequired": true,
+      "tocRequired": false,
       "tocAnchorFormat": "double_dash",
       "tocUppercaseRequired": true,
       "h2EmojiRequired": false,
@@ -242,7 +242,7 @@
         "related resources": "related_resources",
         "phase validation": "phase_validation"
       },
-      "tocRequired": true,
+      "tocRequired": false,
       "tocAnchorFormat": "double_dash",
       "tocUppercaseRequired": true,
       "h2EmojiRequired": false,
@@ -437,7 +437,7 @@
         "feature catalog cross reference": "feature_catalog_cross_reference",
         "coverage notes": "coverage_notes"
       },
-      "tocRequired": true,
+      "tocRequired": false,
       "h2EmojiRequired": false,
       "h2UppercaseRequired": true
     },

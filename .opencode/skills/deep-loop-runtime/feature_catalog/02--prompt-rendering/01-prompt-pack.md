@@ -5,13 +5,6 @@ description: "Renders prompt-pack templates with checked placeholder variables."
 
 # Prompt pack
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CURRENT REALITY](#2--current-reality)
-- [3. SOURCE FILES](#3--source-files)
-- [4. SOURCE METADATA](#4--source-metadata)
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +37,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 |---|---|---|
 | `tests/unit/prompt-pack.vitest.ts` | Test | Primary regression coverage for Prompt pack. |
 
-
 ---
 
 ## 4. SOURCE METADATA
@@ -54,4 +46,3 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Feature ID: F004
 - Feature file path: `02--prompt-rendering/01-prompt-pack.md`
 - Primary sources: `lib/deep-loop/prompt-pack.ts`, `tests/unit/prompt-pack.vitest.ts`
-

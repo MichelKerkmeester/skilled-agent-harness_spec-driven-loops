@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/117-skill-anchor-toc-removal/002-toc-removal",
+  "description": "Feature Specification: Bulk TOC Block Removal",
+  "keywords": [
+    "feature",
+    "specification",
+    "bulk",
+    "toc",
+    "block",
+    "removal"
+  ],
+  "lastUpdated": "2026-05-26T09:40:15.262Z",
+  "specId": "002",
+  "folderSlug": "toc-removal",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "117-skill-anchor-toc-removal"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -10,14 +10,6 @@ trigger_phrases:
 
 This folder is a compatibility boundary. Scoring logic lives in `lib/scoring/`, not under `lib/cache/scoring/`.
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
-- [3. FLOW](#3--flow)
-- [4. ALLOWED DEPENDENCY DIRECTION](#4--allowed-dependency-direction)
-- [5. RELATED FILES](#5--related-files)
-
 ## 1. OVERVIEW
 
 Use this README to route maintainers away from adding cache-local scoring logic. Cache code may consume scoring decisions, but the scoring modules own ranking formulas and weights.

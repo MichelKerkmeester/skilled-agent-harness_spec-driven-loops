@@ -9,23 +9,8 @@ trigger_phrases:
 
 # Algorithms
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. KEY FILES](#3--key-files)
-- [4. STABLE API](#4--stable-api)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `algorithms/` owns ranking logic used after retrieval candidates are available. The folder combines ranked lists, applies intent-aware weights and can rerank embedding-backed candidates for diversity.
@@ -37,11 +22,8 @@ Current state:
 - `mmr-reranker.ts` applies Maximal Marginal Relevance to reduce duplicate candidate content.
 - `index.ts` is the public barrel for algorithm consumers.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -71,11 +53,8 @@ algorithm modules -> embedding providers
 rrf-fusion.ts -> adaptive-fusion.ts
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -85,11 +64,8 @@ rrf-fusion.ts -> adaptive-fusion.ts
 | `adaptive-fusion.ts` | Builds weighted fusion from query intent and runtime flags, with standard fallback. |
 | `mmr-reranker.ts` | Computes cosine similarity and selects diverse results from embedding candidates. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:stable-api -->
 ## 4. STABLE API
 
 | Export | File | Contract |
@@ -107,11 +83,8 @@ rrf-fusion.ts -> adaptive-fusion.ts
 
 Use `index.ts` for normal imports. Import a module directly only for tests or when a caller needs a module-specific type.
 
-<!-- /ANCHOR:stable-api -->
-
 ---
 
-<!-- ANCHOR:boundaries -->
 ## 5. BOUNDARIES
 
 | Boundary | Rule |
@@ -132,11 +105,8 @@ retrieval channels
   -> scored candidates for response assembly
 ```
 
-<!-- /ANCHOR:boundaries -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -146,11 +116,8 @@ retrieval channels
 | `fuseResultsMulti` | Function | Main RRF path when callers already have ranked lists. |
 | `applyMMR` | Function | Optional diversity pass after fusion. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root:
@@ -161,15 +128,10 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Expected result: the validator exits with code `0`.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../README.md`](../README.md)
 - [`../contracts/README.md`](../contracts/README.md)
 - [`../embeddings/README.md`](../embeddings/README.md)
-
-<!-- /ANCHOR:related -->

@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -35,4 +34,3 @@ Create required files with minimal valid content.
 ### Phase 2: Validation
 
 Run validation scripts to verify structure.
-<!-- /ANCHOR:implementation-plan -->

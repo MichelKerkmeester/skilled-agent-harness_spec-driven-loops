@@ -14,23 +14,8 @@ importance_tier: "important"
 
 > Current-reality architecture for the `system-code-graph` package. The skill scans source into a SQLite graph, answers structural relationship queries through a standalone MCP server, and refuses to answer on stale state.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. CANONICAL CONTINUITY FLOWS](#3--canonical-continuity-flows)
-- [4. RUNTIME SUBSYSTEMS](#4--runtime-subsystems)
-- [5. HOOK AND PLUGIN INTEGRATION](#5--hook-and-plugin-integration)
-- [6. ENFORCEMENT AND VERIFICATION](#6--enforcement-and-verification)
-- [7. DECISION RECORDS](#7--decision-records)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `system-code-graph` is the standalone structural code intelligence runtime. It parses source files into a SQLite graph, exposes structural relationship queries through a standalone MCP server, and refuses to answer on stale state.
@@ -90,11 +75,8 @@ Detail per tool lives in `feature_catalog/feature_catalog.md`. Readiness state d
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -125,11 +107,8 @@ Allowed dependency direction:
 
 Reverse imports are blocked by lint and CI.
 
-<!-- /ANCHOR:topology -->
-
 ---
 
-<!-- ANCHOR:continuity-flows -->
 ## 3. CANONICAL CONTINUITY FLOWS
 
 The code-graph treats its SQLite store as the durable record. Reads are gated by a readiness contract; the scan loop is the single writer.
@@ -144,11 +123,8 @@ The code-graph treats its SQLite store as the durable record. Reads are gated by
 - `mcp_server/lib/structural-indexer.ts` owns the scan loop.
 - `mcp_server/lib/readiness-contract.ts` owns the state machine.
 
-<!-- /ANCHOR:continuity-flows -->
-
 ---
 
-<!-- ANCHOR:runtime-subsystems -->
 ## 4. RUNTIME SUBSYSTEMS
 
 The MCP server is composed of focused subsystems that share the transport layer and the SQLite store.
@@ -163,20 +139,14 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Index lifecycle.** `code_graph_status` reports graph health and readiness, `code_graph_scan` runs the tree-sitter (re)index, and `code_graph_verify` runs the gold-query battery. All operate in-process against the local SQLite graph — there is no external search binary or separate semantic-index runtime.
 
-<!-- /ANCHOR:runtime-subsystems -->
-
 ---
 
-<!-- ANCHOR:hook-integration -->
 ## 5. HOOK AND PLUGIN INTEGRATION
 
 The code-graph does not own its own SessionStart hook surface. The hook runtime lives in a sibling spec-kit package and reaches code-graph data through a stable boundary import. This asymmetry vs the advisor pattern is intentional and documented as ADR-001 below. Plugin bridges under `plugin_bridges/` provide CLI entrypoints for context-compaction callers; current status is documented inside the per-folder README.
 
-<!-- /ANCHOR:hook-integration -->
-
 ---
 
-<!-- ANCHOR:enforcement -->
 ## 6. ENFORCEMENT AND VERIFICATION
 
 Verification runs at two layers.
@@ -185,11 +155,8 @@ Verification runs at two layers.
 
 **Test surfaces.** Default vitest run covers unit and integration suites under `mcp_server/tests/`. Stress and degraded-mode coverage lives under `mcp_server/stress_test/`. Operator playbook scenarios live in `manual_testing_playbook/`.
 
-<!-- /ANCHOR:enforcement -->
-
 ---
 
-<!-- ANCHOR:decision-records -->
 ## 7. DECISION RECORDS
 
 | ADR | Subject | Status |
@@ -200,11 +167,8 @@ Verification runs at two layers.
 | ADR-004 | Standalone-storage guard refuses to point the database outside the workspace | Accepted |
 | ADR-005 | Three-way isolation finalize: code-graph runs as a standalone MCP server with no required runtime dependency on adjacent skills | Accepted |
 
-<!-- /ANCHOR:decision-records -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [README.md](./README.md): Human-facing package overview
@@ -215,5 +179,3 @@ Verification runs at two layers.
 - [references/readiness/code_graph_readiness_check.md](./references/readiness/code_graph_readiness_check.md): Readiness contract primer with state-machine detail
 - [references/runtime/ownership_boundary.md](./references/runtime/ownership_boundary.md): Boundary rules for adjacent runtimes
 - [references/config/database_path_policy.md](./references/config/database_path_policy.md): Workspace containment policy
-
-<!-- /ANCHOR:related -->

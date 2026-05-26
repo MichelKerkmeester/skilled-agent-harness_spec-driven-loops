@@ -8,7 +8,6 @@ last_updated: "2026-05-20"
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked and not stubbed. AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. Valid scenario classifications are `PASS`, `FAIL`, `SKIP` (with a specific sandbox or runtime blocker documented), or `UNAUTOMATABLE` (with the concrete reason the scenario cannot be truthfully executed through the direct-handler runner). Packet-level summaries may additionally use `PARTIAL` when core behavior was observed but supporting evidence remained incomplete.
 
-
 This document combines the full manual-validation contract for the Spec Kit Memory MCP server into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide: it explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded, and where each per-feature validation file lives. The per-feature files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors, and validation criteria.
 
 ---
@@ -40,23 +39,6 @@ Canonical source artifacts:
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/` — local-LLM memory substrate (query intelligence + causal graph + drift detection + cross-AI handoff + concurrent multi-AI safety)
-
----
-
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. EXISTING FEATURES](#7--existing-features)
-- [8. FEATURES](#8--features)
-- [9. PHASE SYSTEM FEATURES](#9--phase-system-features)
-- [10. DEDICATED MEMORY/SPEC-KIT SCENARIOS](#10--dedicated-memoryspec-kit-scenarios-required)
-- [11. AUTOMATED TEST CROSS-REFERENCE](#11--automated-test-cross-reference)
-- [12. FEATURE CATALOG CROSS-REFERENCE INDEX](#12--feature-catalog-cross-reference-index)
 
 ---
 
@@ -3502,7 +3484,6 @@ Context save plus immediate index visibility.
 Prompt: `Validate Context Save + Index Update against generate-context.js and memory_index_scan.`
 
 Expected signals: saved context artifacts are discoverable.
-
 
 #### Test Execution
 > **Feature File:** [M-003](13--memory-quality-and-indexing/003-context-save-index-update.md)

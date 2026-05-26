@@ -12,21 +12,14 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Guarantee the Python compatibility surface does not regress on hand-curated P0 cases that have been stable since pre-027.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `scripts/skill_advisor_regression.py` reads the JSONL dataset at `scripts/fixtures/skill_advisor_regression_cases.jsonl` and exercises the Python scorer against each case. The current baseline is the checked-in cases passing with zero regressions under the ADR-007 parity rules. Exit code is 0 only when every case passes.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -42,9 +35,7 @@ Guarantee the Python compatibility surface does not regress on hand-curated P0 c
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/parity/` | Automated test | Python/TS parity harness consuming the same corpus |
 | `Playbook scenario [PC-004](../../manual_testing_playbook/10--python-compat/004-regression-suite.md).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Python compat
@@ -56,4 +47,3 @@ Related references:
 - [01-cli-shim.md](./01-cli-shim.md).
 - [03-bench-runner.md](./03-bench-runner.md).
 - [`06--mcp-surface/03-advisor-validate.md`](../06--mcp-surface/03-advisor-validate.md).
-<!-- /ANCHOR:source-metadata -->

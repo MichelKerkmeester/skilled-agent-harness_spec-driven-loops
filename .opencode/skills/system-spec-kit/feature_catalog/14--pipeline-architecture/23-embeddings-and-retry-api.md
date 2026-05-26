@@ -5,12 +5,6 @@ description: "The embeddings and retry API exposes a stable provider-facing surf
 
 # Embeddings and Retry API
 
-## TABLE OF CONTENTS
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 The Embeddings and Retry API defines the provider-facing boundary for embedding work in this codebase. At the API layer, `mcp_server/api/providers.ts` deliberately exposes only a small stable surface: direct embedding generation, query embedding generation, embedding profile inspection, and a namespaced retry manager for recovery operations. That keeps scripts and callers insulated from internal provider module churn.
 

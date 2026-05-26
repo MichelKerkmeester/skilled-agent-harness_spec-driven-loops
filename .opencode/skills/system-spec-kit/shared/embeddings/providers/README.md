@@ -15,21 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
-- [3. STABLE API](#3--stable-api)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED DOCUMENTS](#6--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 This folder contains provider adapters for the `IEmbeddingProvider` interface from `../../types.ts`. Providers hide backend-specific calls, model dimensions and task hints behind one embedding surface.
@@ -40,11 +25,8 @@ Ollama closes the 016/002 dual-path migration: the MCP registry/re-index path wr
 
 > **Auto-migration on first startup.** When the active provider resolves to `ollama` and a pre-existing `context-index__hf-local__*.sqlite` store is present, the Memory MCP server re-embeds the rows into the new ollama store and deletes the source. The logic lives in the MCP server startup path, not in this folder. See the MCP server README and packet 018 for the full lifecycle.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 2. STRUCTURE
 
 ```text
@@ -65,11 +47,8 @@ providers/
 | `openai.ts` | OpenAI | `text-embedding-3-small` | 1536 | Cloud provider with OpenAI usage tracking and retry handling |
 | `voyage.ts` | Voyage AI | `voyage-4` | 1024 | Cloud provider using Voyage `input_type` for document and query embeddings |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:stable-api -->
 ## 3. STABLE API
 
 Each provider implements the same public contract:
@@ -86,11 +65,8 @@ Each provider implements the same public contract:
 
 Cloud providers also expose usage data for logging and diagnostics. Do not call provider internals from outside `shared/embeddings`. Use the interface or factory entry points.
 
-<!-- /ANCHOR:stable-api -->
-
 ---
 
-<!-- ANCHOR:boundaries -->
 ## 4. BOUNDARIES
 
 Import direction is inward from provider implementations to shared contracts and helpers:
@@ -103,11 +79,8 @@ Import direction is inward from provider implementations to shared contracts and
 
 Keep backend-specific behavior in the provider file that owns it. Put provider-neutral selection logic in `../factory.ts` and profile path logic in `../profile.ts`.
 
-<!-- /ANCHOR:boundaries -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 5. VALIDATION
 
 Run targeted provider tests or TypeScript checks after changing provider logic:
@@ -120,11 +93,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 For README-only edits, `validate_document.py` is the required file-level check.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 6. RELATED DOCUMENTS
 
 | Document | Purpose |
@@ -137,7 +107,5 @@ For README-only edits, `validate_document.py` is the required file-level check.
 | [shared/utils/retry.ts](../../utils/retry.ts) | Retry helper used by cloud providers |
 | [mcp_server/README.md](../../../mcp_server/README.md) | Memory MCP server entry point, auto-migration lifecycle, env vars |
 | packet 018 | hf-local to ollama auto-migration spec |
-
-<!-- /ANCHOR:related -->
 
 ---

@@ -14,28 +14,6 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. READ-PATH FRESHNESS](#7--read-path-freshness)
-- [8. MANUAL SCAN / VERIFY / STATUS](#8--manual-scan-verify-status)
-- [9. DETECT CHANGES](#9--detect-changes)
-- [10. CONTEXT RETRIEVAL](#10--context-retrieval)
-- [11. COVERAGE GRAPH](#11--coverage-graph)
-- [12. MCP TOOL SURFACE](#12--mcp-tool-surface)
-- [13. DOCTOR CODE GRAPH](#13--doctor-code-graph)
-- [14. POST-RENAME INFRASTRUCTURE](#14--post-rename-infrastructure)
-- [15. DEVIN HOOKS](#15--devin-hooks)
-- [16. AUTOMATED TEST CROSS-REFERENCE](#16--automated-test-cross-reference)
-- [17. FEATURE CATALOG CROSS-REFERENCE INDEX](#17--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 The playbook contains 16 scenarios across 9 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes. Group 10 adds the Devin CLI SessionStart hook scenario shipped in packet 036-cli-devin-code-graph-hook.

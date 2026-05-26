@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Invalid Priority Tags
@@ -27,4 +26,3 @@ Tests that invalid priority tags generate warnings.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

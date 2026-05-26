@@ -15,7 +15,6 @@ Formal contract for advisor freshness: trust states, transition rules, consumer 
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -38,10 +37,8 @@ Callers must treat freshness as part of the routing contract, not as diagnostic 
 - [`daemon_lease_contract.md`](./daemon_lease_contract.md)
 - [`tool_ids_reference.md`](./tool_ids_reference.md)
 
-
 ---
 
-<!-- ANCHOR:2-trust-state-vocabulary -->
 ## 2. TRUST STATE VOCABULARY
 
 The advisor reports one of four trust states in every response that touches the skill graph:
@@ -55,11 +52,8 @@ The advisor reports one of four trust states in every response that touches the 
 
 State source-of-truth: `mcp_server/lib/freshness/trust-state.ts` plus `mcp_server/lib/freshness/freshness-detector.ts`.
 
-<!-- /ANCHOR:2-trust-state-vocabulary -->
-
 ---
 
-<!-- ANCHOR:3-state-transitions -->
 ## 3. STATE TRANSITIONS
 
 Trust states transition based on three signals: a generation counter, a source-file hash check, plus daemon health.
@@ -99,11 +93,8 @@ Trigger details:
 - `* → unavailable`: MCP server connection refused, daemon process not running or unrecoverable internal error.
 - `unavailable → *`: subsystem recovers, fresh `advisor_status` call returns a real state.
 
-<!-- /ANCHOR:3-state-transitions -->
-
 ---
 
-<!-- ANCHOR:4-consumer-obligations -->
 ## 4. CONSUMER OBLIGATIONS
 
 Every caller that uses an advisor response must inspect `trustState` plus act accordingly:
@@ -122,11 +113,8 @@ The caller must NOT:
 - Treat `absent` as "no skill matches" and route to default. Always call `advisor_rebuild`.
 - Retry `unavailable` aggressively. Wait at least 5 seconds between retries.
 
-<!-- /ANCHOR:4-consumer-obligations -->
-
 ---
 
-<!-- ANCHOR:5-daemon-responsibilities -->
 ## 5. DAEMON RESPONSIBILITIES
 
 The freshness daemon (`mcp_server/lib/daemon/`) is responsible for:
@@ -144,11 +132,8 @@ The daemon is NOT responsible for:
 - Validating skill content. Only `skill_graph_validate` checks edge integrity.
 - Caching MCP responses across processes. Each MCP server process maintains its own cache.
 
-<!-- /ANCHOR:5-daemon-responsibilities -->
-
 ---
 
-<!-- ANCHOR:6-failure-modes -->
 ## 6. FAILURE MODES
 
 | Failure | Symptom | Recovery |
@@ -160,11 +145,8 @@ The daemon is NOT responsible for:
 | Cache poisoning (stale entry survives generation bump) | Recommendations return outdated skill names | Run `advisor_rebuild --force` to invalidate caches |
 | Source-hash regression (rebuild succeeds but state stays stale) | trustState stays `stale` after `advisor_rebuild` | File a bug. The hash computation is broken |
 
-<!-- /ANCHOR:6-failure-modes -->
-
 ---
 
-<!-- ANCHOR:7-related -->
 ## 7. RELATED
 
 - [`tool_ids_reference.md`](./tool_ids_reference.md), `advisor_status` returns trustState, `advisor_rebuild` transitions stale → live.
@@ -174,5 +156,3 @@ The daemon is NOT responsible for:
 - [`manual_testing_playbook/05--auto-update-daemon/`](../manual_testing_playbook/05--auto-update-daemon/), operator scenarios for daemon validation.
 - `mcp_server/lib/freshness/`, trust-state source-of-truth.
 - `mcp_server/lib/daemon/`, daemon implementation.
-
-<!-- /ANCHOR:7-related -->

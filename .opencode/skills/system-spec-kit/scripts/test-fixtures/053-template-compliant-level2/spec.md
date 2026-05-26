@@ -20,7 +20,6 @@ _memory:
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -30,11 +29,9 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-03-16 |
 | **Branch** | `codex/template-fixture` |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -42,11 +39,9 @@ Validation fixtures used minimal headers and did not exercise live template comp
 
 ### Purpose
 Provide a structurally compliant Level 2 folder that the validator should accept without warnings.
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -63,11 +58,9 @@ Provide a structurally compliant Level 2 folder that the validator should accept
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/*` | Create | Template compliance fixtures |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -84,11 +77,9 @@ Provide a structurally compliant Level 2 folder that the validator should accept
 |----|-------------|---------------------|
 | REQ-004 | Checklist formatting matches the live template | `TEMPLATE_HEADERS` passes |
 | REQ-005 | Strict validation has no residual warnings | `validate.sh --strict` returns exit code 0 |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The fixture passes `validate.sh` with no warnings.
@@ -97,25 +88,17 @@ Provide a structurally compliant Level 2 folder that the validator should accept
 - **SC-004**: **Given** live template comparison is active, **Then** optional template anchors are allowed.
 - **SC-005**: **Given** the checklist uses CHK identifiers, **Then** the checklist format passes.
 - **SC-006**: **Given** the live Level 2 templates are active, **Then** header order remains compliant.
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Fixture drift from template | Medium | Keep structure aligned with live templates |
-<!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
-
----
-
-<!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -126,11 +109,9 @@ Provide a structurally compliant Level 2 folder that the validator should accept
 
 ### Reliability
 - **NFR-R01**: The fixture is deterministic across runs.
-<!-- /ANCHOR:nfr -->
 
 ---
 
-<!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
 ### Data Boundaries
@@ -141,11 +122,9 @@ Provide a structurally compliant Level 2 folder that the validator should accept
 
 ### State Transitions
 - Strict mode: covered by CLI tests.
-<!-- /ANCHOR:edge-cases -->
 
 ---
 
-<!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Notes |
@@ -154,11 +133,9 @@ Provide a structurally compliant Level 2 folder that the validator should accept
 | Risk | 8/25 | Validator behavior only |
 | Research | 6/20 | Uses current templates |
 | **Total** | **24/70** | **Level 2** |
-<!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
 - None.
-<!-- /ANCHOR:questions -->

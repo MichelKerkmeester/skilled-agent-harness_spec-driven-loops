@@ -5,13 +5,6 @@ description: "Builds coverage-gap, contradiction, provenance-chain, unverified-c
 
 # Coverage graph query
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CURRENT REALITY](#2--current-reality)
-- [3. SOURCE FILES](#3--source-files)
-- [4. SOURCE METADATA](#4--source-metadata)
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +37,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 |---|---|---|
 | `tests/integration/query-script.vitest.ts` | Test | Primary regression coverage for Coverage graph query. |
 
-
 ---
 
 ## 4. SOURCE METADATA
@@ -54,4 +46,3 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Feature ID: F012
 - Feature file path: `06--coverage-graph/02-coverage-graph-query.md`
 - Primary sources: `lib/coverage-graph/coverage-graph-query.ts`, `tests/integration/query-script.vitest.ts`
-

@@ -15,17 +15,6 @@ Quick re-run of the phase 004 benchmark on the same 50-probe fixture, asking whe
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. AGGREGATE RESULTS](#2--aggregate-results)
-- [3. METHODOLOGY](#3--methodology)
-- [4. INTERPRETATION](#4--interpretation)
-- [5. RECOMMENDATIONS](#5--recommendations)
-- [6. REPRODUCIBILITY](#6--reproducibility)
-
----
-
 ## 1. OVERVIEW
 
 The user asked: "Why not make default on for spec memory — show me results with it enabled vs off." This is a fresh A/B on spec-memory's own corpus + fixture, run today against the current sidecar (post arc 008 phase 006 ship — same Qwen3-Reranker-0.6B, same `cross-encoder.ts:local` provider).

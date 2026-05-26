@@ -12,21 +12,14 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Evolve graph metadata without breaking existing snapshots. Additive-only migration means v1 fields are preserved and rollback to v1 is safe.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `lib/lifecycle/schema-migration.ts` upgrades v1 graph-metadata to v2 by adding new fields (such as lifecycle lanes and derived provenance) while leaving v1 fields byte-identical. Rollback restores the pre-migration state cleanly so downgrades do not leak v2 residue. The migration runs internally during daemon bring-up. Errors fail open without exposing stack traces to MCP consumers.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -42,9 +35,7 @@ Evolve graph metadata without breaking existing snapshots. Additive-only migrati
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | migration and rollback invariants |
 | `Playbook scenario [LC-004](../../manual_testing_playbook/07--lifecycle-routing/004-schema-migration.md).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Lifecycle routing
@@ -56,4 +47,3 @@ Related references:
 - [05-rollback.md](./05-rollback.md).
 - [`01--daemon-and-freshness/06-rebuild-from-source.md`](../01--daemon-and-freshness/06-rebuild-from-source.md).
 - [`02--auto-indexing/04-sync.md`](../02--auto-indexing/04-sync.md).
-<!-- /ANCHOR:source-metadata -->

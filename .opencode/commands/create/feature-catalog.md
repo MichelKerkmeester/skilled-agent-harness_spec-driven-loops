@@ -342,7 +342,6 @@ The generated catalog must match the current shipped `sk-doc` contract:
 - Root structure:
   - frontmatter
   - H1 + short intro paragraph
-  - unnumbered `TABLE OF CONTENTS`
   - `## 1. OVERVIEW`
   - numbered all-caps category sections
 - Per-feature structure:

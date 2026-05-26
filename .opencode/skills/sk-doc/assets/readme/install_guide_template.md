@@ -444,7 +444,6 @@ Structure:
 □ H1 description is 2-4 sentences with features list (see H1 Description Standards)
 □ AI-First Install Guide section at top
 □ All 11 sections present (9 required + 2 optional)
-□ Table of contents with anchor links
 □ Horizontal rules (---) between major sections
 
 Content:
@@ -624,22 +623,6 @@ Guide me through each step with the exact commands I need to run.
 - Test [VERIFICATION_TYPE] with a sample [TEST_ITEM]
 
 **Expected setup time:** [N-M] minutes
-
----
-
-## TABLE OF CONTENTS
-
-0. [AI-FIRST INSTALL GUIDE](#-ai-first-install-guide)
-1. [OVERVIEW](#1--overview)
-2. [PREREQUISITES](#2--prerequisites)
-3. [INSTALLATION](#3--installation)
-4. [CONFIGURATION](#4--configuration)
-5. [VERIFICATION](#5--verification)
-6. [USAGE](#6--usage)
-7. [FEATURES](#7--features) *(optional)*
-8. [EXAMPLES](#8--examples) *(optional)*
-9. [TROUBLESHOOTING](#9--troubleshooting)
-10. [RESOURCES](#10--resources)
 
 ---
 

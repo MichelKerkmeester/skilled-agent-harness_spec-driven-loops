@@ -1,4 +1,3 @@
-<!-- ANCHOR:decision-record -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Decision Record
 
@@ -44,4 +43,3 @@ Shell scripts work on any Unix-like system without additional dependencies.
 ### Neutral
 
 - Requires Bash 3.2+ compatibility for macOS
-<!-- /ANCHOR:decision-record -->

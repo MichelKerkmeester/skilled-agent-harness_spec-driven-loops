@@ -11,22 +11,8 @@ trigger_phrases:
 
 > TypeScript utilities that resolve spec folders, score folder alignment and generate packet metadata.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. KEY FILES](#3--key-files)
-- [4. COMMANDS](#4--commands)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scripts/spec-folder/` contains source modules used by memory save and spec-maintenance workflows. The utilities detect active spec folders, validate content-to-folder alignment, create required packet directories, generate `description.json`, and build nested changelog data for root specs or phase children.
@@ -37,11 +23,8 @@ Current state:
 - Compiled runtime output is `scripts/dist/spec-folder/*.js`.
 - Explicit CLI targets are authoritative when save workflows pass a spec-folder argument.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -79,11 +62,8 @@ Disallowed direction:
 - Detection logic should not override an explicit CLI target.
 - Spec-folder utilities should not own memory indexing or MCP server persistence.
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -95,11 +75,8 @@ Disallowed direction:
 | `generate-description.ts` | Builds per-folder `description.json` metadata. |
 | `nested-changelog.ts` | Builds nested changelog payloads for root packets and phase children. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:commands -->
 ## 4. COMMANDS
 
 Run from the repository root unless noted.
@@ -122,11 +99,8 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /t
 
 Expected result: memory save workflow uses the explicit spec-folder target and supporting utilities from this folder.
 
-<!-- /ANCHOR:commands -->
-
 ---
 
-<!-- ANCHOR:boundaries -->
 ## 5. BOUNDARIES
 
 | Boundary | Rule |
@@ -136,11 +110,8 @@ Expected result: memory save workflow uses the explicit spec-folder target and s
 | Metadata | `generate-description.ts` owns `description.json`. Graph metadata belongs to graph-specific tooling. |
 | Persistence | These utilities prepare paths and metadata. Memory indexing stays in memory and MCP modules. |
 
-<!-- /ANCHOR:boundaries -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 6. VALIDATION
 
 Run the README validator after editing this file:
@@ -158,16 +129,11 @@ node -e "import('./.opencode/skills/system-spec-kit/scripts/dist/spec-folder/ind
 
 Expected result: build passes and the compiled public barrel exports module members.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 7. RELATED
 
 - [`../memory/README.md`](../memory/README.md)
 - [`../core/README.md`](../core/README.md)
 - [`../spec/README.md`](../spec/README.md)
 - [`../../README.md`](../../README.md)
-
-<!-- /ANCHOR:related -->

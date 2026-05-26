@@ -68,7 +68,7 @@ This reference provides deep-dive technical guidance on structure validation, do
 
 | Type | Enforcement | Frontmatter | H1 Subtitle | TOC Policy | Blocks |
 |------|-------------|-------------|-------------|------------|--------|
-| README | Flexible | None | Optional | ✅ Allowed | No |
+| README | Flexible | None | Optional | ❌ Never | No |
 | SKILL | Strict | Required | Required | ❌ Never | Yes |
 | llms.txt | Strict | Forbidden | N/A | ❌ Never | Yes |
 | Knowledge | Moderate | Forbidden | Required | ❌ Never | Yes |
@@ -77,8 +77,7 @@ This reference provides deep-dive technical guidance on structure validation, do
 | Generic | Flexible | Optional | Optional | ❌ Never | No |
 
 **TOC Policy Summary**:
-- ❌ **NEVER** add TOC: SKILL, llms.txt, Knowledge, Command, Spec, Generic
-- ✅ **ALLOWED** (optional): README only
+- ❌ **NEVER** add a Table of Contents to any document type. Tables of Contents and `<!-- ANCHOR -->` navigation comments are not used in skill documentation.
 
 **Manual override**: Use `--type=` flag with validation scripts (e.g., `scripts/quick_validate.py --type=skill document.md`)
 
@@ -282,7 +281,7 @@ Frontmatter: None
 H1 format: Flexible
 Sections: Flexible
 Quality target: High clarity (AI-friendly)
-TOC: Allowed (optional)
+TOC: Never
 Emojis: Allowed
 ```
 

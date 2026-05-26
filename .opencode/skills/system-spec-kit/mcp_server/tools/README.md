@@ -9,23 +9,8 @@ trigger_phrases:
 
 # MCP Server Tools
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `mcp_server/tools/` is the typed dispatch layer for MCP tool calls. It maps public tool names to domain dispatch modules, validates arguments through schemas and forwards accepted requests to handler code.
@@ -36,11 +21,8 @@ Current state:
 - Domain modules group memory, context, causal graph, checkpoint and lifecycle tools.
 - `types.ts` keeps parsed argument shapes and shared MCP response aliases close to dispatch code.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -68,11 +50,8 @@ Current state:
 Dependency direction: tools ───▶ schemas ───▶ handlers
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -99,11 +78,8 @@ Disallowed direction:
 - Tool modules should not parse raw MCP payloads outside the schema boundary.
 - Dispatch modules should not own storage, retrieval or scoring logic.
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Role |
@@ -116,11 +92,8 @@ Disallowed direction:
 | `lifecycle-tools.ts` | Routes async ingest start, status and cancel calls. |
 | `types.ts` | Defines shared response and typed argument contracts. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 Dispatch flow:
@@ -154,11 +127,8 @@ Dispatch flow:
 
 This folder owns dispatch and argument boundaries. Handler modules own behavior, schema modules own accepted input shape and lower layers own storage or retrieval details.
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 Public TypeScript entrypoints:
@@ -169,11 +139,8 @@ Public TypeScript entrypoints:
 
 Runtime tool names are owned by the MCP server registry and routed through this folder before handlers run.
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Use repository-root commands:
@@ -185,16 +152,11 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server test
 
 Run targeted tests for changed dispatch behavior when editing a single tool module.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../handlers/README.md`](../handlers/README.md)
 - [`../schemas/README.md`](../schemas/README.md)
 - [`../core/README.md`](../core/README.md)
 - [`../README.md`](../README.md)
-
-<!-- /ANCHOR:related -->

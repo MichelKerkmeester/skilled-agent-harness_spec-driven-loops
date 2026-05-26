@@ -11,16 +11,6 @@ trigger_phrases:
 
 Shared error-handling code for the Spec Kit Memory MCP server. This folder converts internal failures into typed errors, user-facing messages, retry decisions, and recovery hints.
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
-- [3. FLOW](#3--flow)
-- [4. ALLOWED DEPENDENCY DIRECTION](#4--allowed-dependency-direction)
-- [5. ERROR CATEGORIES](#5--error-categories)
-- [6. USAGE](#6--usage)
-- [7. RELATED FILES](#7--related-files)
-
 ## 1. OVERVIEW
 
 Use this folder when MCP tools need consistent failure responses. Recovery hints should be actionable and should re-anchor packet-scoped work on `/spec_kit:resume` when continuity context is missing.

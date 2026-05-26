@@ -9,23 +9,8 @@ trigger_phrases:
 
 # Scripts Library
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scripts/lib/` contains shared helpers for the script package. TypeScript modules compile to `scripts/dist/lib/`, while shell helpers are sourced directly by shell entrypoints.
@@ -36,11 +21,8 @@ Current state:
 - Shell helpers centralize branch detection, template operations and shared validation utilities.
 - Runtime JavaScript output is generated from TypeScript sources and should not be edited by hand.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -67,11 +49,8 @@ Current state:
 Dependency direction: callers ───▶ lib source ───▶ shared package or shell primitives
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -111,11 +90,8 @@ Disallowed direction:
 - Shell helpers should not mutate files without the caller passing an explicit target path.
 - Source files should not import generated `dist/` files.
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Role |
@@ -128,11 +104,8 @@ Disallowed direction:
 | `shell-common.sh` | Provides common shell functions for spec and rule scripts. |
 | `template-utils.sh` | Provides shell helpers for template-based writes. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 TypeScript helper flow:
@@ -173,11 +146,8 @@ Shell helper flow:
 └──────────────────────────────┘
 ```
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 This folder has no standalone CLI entrypoint. Consumers import or source specific helpers.
@@ -188,11 +158,8 @@ Example import after build:
 node -e "import('./.opencode/skills/system-spec-kit/scripts/dist/lib/anchor-generator.js').then(m => console.log(typeof m.generateAnchorId))"
 ```
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Use repository-root commands:
@@ -204,16 +171,11 @@ node -e "import('./.opencode/skills/system-spec-kit/scripts/dist/lib/anchor-gene
 
 Shell helper behavior is covered through the spec and rule validation scripts that source it.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../README.md`](../README.md)
 - [`../spec/README.md`](../spec/README.md)
 - [`../rules/README.md`](../rules/README.md)
 - [`../../ARCHITECTURE.md`](../../ARCHITECTURE.md)
-
-<!-- /ANCHOR:related -->

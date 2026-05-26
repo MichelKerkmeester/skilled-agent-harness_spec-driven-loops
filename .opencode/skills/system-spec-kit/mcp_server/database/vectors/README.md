@@ -9,23 +9,8 @@ trigger_phrases:
 
 # Vectors: Per-Embedder Vector Shard Storage
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. SHARD FILENAME CONVENTION](#4--shard-filename-convention)
-- [5. SHARD SCHEMA](#5--shard-schema)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `vectors/` holds per-embedder vector shards split out from the metadata DB under the canonical vector shard split rule. Each shard is an independent SQLite file scoped to one embedder profile (provider, model, dimension and optional quantisation).
@@ -38,11 +23,8 @@ Current state:
 - Legacy and experimental shards get deleted once they fall out of the active rotation. This folder is not an archive.
 - The `.gitkeep` file keeps the directory tracked. The `.sqlite`, `.sqlite-shm` and `.sqlite-wal` files are runtime artifacts and stay ignored by git under the same rule the parent `database/README.md` documents.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -73,11 +55,8 @@ Attach is one shard at a time. Schema creation is lazy on first attach
 when a new embedder profile is selected.
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -92,11 +71,8 @@ vectors/
 `-- context-vectors__hf-local__baai_bge-base-en-v1.5__768__q8.sqlite-wal
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:shard-filename-convention -->
 ## 4. SHARD FILENAME CONVENTION
 
 Shard files follow this fixed pattern:
@@ -119,11 +95,8 @@ Examples that exist today:
 
 The double-underscore separator is load-bearing. Single underscores inside a token (such as `baai_bge-base-en-v1.5`) survive because the parser splits on `__`.
 
-<!-- /ANCHOR:shard-filename-convention -->
-
 ---
 
-<!-- ANCHOR:shard-schema -->
 ## 5. SHARD SCHEMA
 
 Every shard contains three logical sections, created lazily on first attach:
@@ -136,11 +109,8 @@ Every shard contains three logical sections, created lazily on first attach:
 
 The virtual-table name is derived from the profile's `dim` by `vector_table_name_for_profile` in `dist/lib/search/vector-index-store.js`. Queries read through the `active_vec` schema alias, so handler code refers to `active_vec.vec_768` rather than the physical shard filename.
 
-<!-- /ANCHOR:shard-schema -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 This folder owns storage location only. Schema creation, attach and detach, lazy table initialisation, and index population live in MCP server code outside this directory.
@@ -180,11 +150,8 @@ Main flow:
 └──────────────────────────────────────────┘
 ```
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root:
@@ -197,16 +164,11 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py \
 
 Use MCP memory tools to inspect live shard state. Use the SQLite CLI on a copy if you need to inspect schema. Never open the active shard with a writer process while the daemon is running.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../README.md`](../README.md) - Parent database directory contract.
 - [`../../dist/lib/search/vector-index-store.js`](../../dist/lib/search/vector-index-store.js) - Canonical write path, `ACTIVE_VECTOR_SCHEMA` constant, attach and lazy schema creation.
 - [`../../scripts/reindex-embeddings.ts`](../../scripts/reindex-embeddings.ts) - Reindex entrypoint that populates `vec_<dim>` from the metadata DB.
 - [`../../../../specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/`](../../../../specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/) - Embedder testing and architecture umbrella spec packet (ADR-012 canonical vector shard split).
-
-<!-- /ANCHOR:related -->

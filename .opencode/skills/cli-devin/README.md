@@ -15,28 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 FEATURE HIGHLIGHTS](#31--feature-highlights)
-  - [3.2 FEATURE REFERENCE](#32--feature-reference)
-  - [3.3 CLI COMPARISON](#33--cli-comparison)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-  - [5.1 KEY STATISTICS](#51--key-statistics)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What This Skill Does
@@ -56,11 +34,9 @@ The skill includes a self-invocation guard, if the calling AI is itself a local 
 - **ACP server**: Run Devin as an Agent Client Protocol server, embeddable in other tools
 - **Session continuity**: `devin --continue` / `--resume <id>` / `devin list`
 - **Self-invocation guard**: Refuses to load when the calling AI is itself a local `devin` session (cloud handoff is the documented exception)
-<!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 ### Prerequisites
@@ -92,11 +68,9 @@ devin --prompt-file /tmp/devin-smoke.md --model swe-1.6 --permission-mode auto 2
 ```
 
 If `devin auth status` succeeds and the smoke test returns a coherent response, the skill is ready for dispatch.
-<!-- /ANCHOR:quick-start -->
 
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -141,11 +115,9 @@ See [references/cli_reference.md](./references/cli_reference.md) for the complet
 | **MCP support** | Native | `codex mcp` | No | Native | `devin mcp add` + OAuth login |
 | **ACP (Agent Client Protocol)** | No | No | No | `acp` mode | `devin acp` |
 | **Custom skills / rules** | Skills surface | Profiles | GEMINI.md | Project skills | `devin skills` + `devin rules` |
-<!-- /ANCHOR:features -->
 
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```
@@ -178,11 +150,9 @@ cli-devin/
 ```
 
 Family parity, this 7-entry directory shape matches `cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`. Per-version changelog files (`v{MAJOR}.{MINOR}.{PATCH}.{BUILD}.md`) and the root `manual_testing_playbook.md` follow the family canonical shape.
-<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 ### 5.1 KEY STATISTICS
@@ -212,11 +182,9 @@ Devin stores profiles at `~/.config/devin/config.json`. Each profile holds the A
 
 ### Skill Configuration
 This skill itself reads no configuration from disk, it composes invocations from operator phrasing + the §3 SKILL.md routing table. No per-skill config file is required.
-<!-- /ANCHOR:configuration -->
 
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 ### Example 1: Default coding dispatch (from cli-codex session)
@@ -255,11 +223,9 @@ echo "Dispatched: PID=$!"
 ```
 
 More patterns in [references/integration_patterns.md](./references/integration_patterns.md) and [assets/prompt_templates.md](./assets/prompt_templates.md).
-<!-- /ANCHOR:usage-examples -->
 
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 | Symptom | Likely Cause | Fix |
@@ -273,11 +239,9 @@ More patterns in [references/integration_patterns.md](./references/integration_p
 | Cloud handoff refused | Account lacks cloud entitlement, or operator did not confirm | See `references/cloud_handoff.md` |
 | Auth pre-flight passes but dispatch errors with auth message | Token rotated mid-session | Invalidate cache, rerun `devin auth status`, re-dispatch |
 | Unexpected output format | Output-format flag drift; official `--json` flag is unverified | Treat Devin output as free-form text until `--json` is confirmed on the installed version |
-<!-- /ANCHOR:troubleshooting -->
 
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 ### General
@@ -317,11 +281,8 @@ A: Yes, that's the family pattern. The self-invocation guard only refuses when t
 **Q: Does the unofficial PyPI `devin-cli` work with this skill?**
 A: No. The skill targets only the official Cognition Rust `devin` binary (installed from `cli.devin.ai/install.sh`). The unofficial PyPI package is noted in `references/cli_reference.md` for completeness but is explicitly out of scope.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 ### Skill Resources
@@ -342,5 +303,3 @@ A: No. The skill targets only the official Cognition Rust `devin` binary (instal
 - [sk-code](../sk-code/): Surface-aware code quality contracts
 - [mcp-code-mode](../mcp-code-mode/): External MCP work
 - [system-spec-kit](../system-spec-kit/): Spec folder workflow + Spec Kit Memory
-
-<!-- /ANCHOR:related-documents -->

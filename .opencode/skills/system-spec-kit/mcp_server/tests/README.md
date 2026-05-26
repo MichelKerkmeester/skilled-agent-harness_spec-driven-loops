@@ -9,23 +9,8 @@ trigger_phrases:
 
 # MCP Server Tests: Vitest Coverage
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `tests/` is the default Vitest coverage surface for the MCP server. It covers unit logic, integration paths, MCP handler contracts, retrieval behavior, governance, eval metrics, startup checks, and regression cases.
@@ -37,11 +22,8 @@ Current responsibilities:
 - Verify save, index, checkpoint, governance, lineage, hook, and startup regressions.
 - Keep stress and load validation separate in sibling `../stress_test/`.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -66,11 +48,8 @@ mcp_server source modules ───▶ tests
 tests ───▶ shared temp state without explicit setup and cleanup
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -93,11 +72,8 @@ tests/
 
 Use `rg --files tests -g '*.vitest.ts'` for the full live inventory.
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | Area | Representative Files | Responsibility |
@@ -110,11 +86,8 @@ Use `rg --files tests -g '*.vitest.ts'` for the full live inventory.
 | Governance and scope | `governance-e2e.vitest.ts`, `memory-governance.vitest.ts`, `scope-governance-normalizer-parity.vitest.ts` | Scope enforcement and governed lifecycle behavior. |
 | Public API and docs parity | `api-public-surfaces.vitest.ts`, `feature-flag-reference-docs.vitest.ts` | Export and documentation alignment. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -152,11 +125,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -166,11 +136,8 @@ Main flow:
 | `rg --files tests -g '*.vitest.ts'` | CLI | Lists the current Vitest inventory. |
 | `fixtures/` | Directory | Shared fixture inputs for targeted suites. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from `.opencode/skills/system-spec-kit/mcp_server`.
@@ -189,11 +156,8 @@ npx vitest run tests/handler-memory-search.vitest.ts tests/hybrid-search.vitest.
 
 Expected result: selected suites pass with isolated database and temp state.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../README.md`](../README.md)
@@ -201,5 +165,3 @@ Expected result: selected suites pass with isolated database and temp state.
 - [`../api/README.md`](../api/README.md)
 - [`../lib/README.md`](../lib/README.md)
 - [`../stress_test/README.md`](../stress_test/README.md)
-
-<!-- /ANCHOR:related -->

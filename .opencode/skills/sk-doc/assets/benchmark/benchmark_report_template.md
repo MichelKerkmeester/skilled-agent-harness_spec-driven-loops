@@ -33,25 +33,6 @@ Canonical reference: .opencode/skills/sk-doc/references/benchmark_creation.md
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. HEADLINE / OVERVIEW](#1--headline--overview)
-- [2. AGGREGATE RESULTS](#2--aggregate-results)
-- [3. METHODOLOGY](#3--methodology)
-- [4. PER-CANDIDATE PROFILES](#4--per-candidate-profiles)
-- [5. PROCESS NOTES](#5--process-notes)
-- [6. FINDINGS](#6--findings)
-- [7. CAVEATS](#7--caveats)
-- [8. RECOMMENDATIONS](#8--recommendations)
-- [9. REPRODUCIBILITY](#9--reproducibility)
-- [10. RELATED RESOURCES](#10--related-resources)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:headline-overview -->
 ## 1. HEADLINE / OVERVIEW
 
 <!-- One-line winner + key metric, prominently at top, then orientation paragraphs. Cite the spec packet via SOURCE.md. -->
@@ -87,11 +68,8 @@ Key numbers on the {{FIXTURE_NAME}} fixture:
 - Sections 7 through 9 cover honest limits, what to apply now, and how to replay.
 - Section 10 links the spec packet and any sibling benchmarks.
 
-<!-- /ANCHOR:headline-overview -->
-
 ---
 
-<!-- ANCHOR:aggregate-results -->
 ## 2. AGGREGATE RESULTS
 
 <!-- One row per candidate. Cite results.csv. Use bold for the winner row. Verdict column is required. -->
@@ -105,11 +83,8 @@ Key numbers on the {{FIXTURE_NAME}} fixture:
 
 Raw aggregate data lives in [`results.csv`](./results.csv). Per-probe rows live in [`per-probe.jsonl`](./per-probe.jsonl).
 
-<!-- /ANCHOR:aggregate-results -->
-
 ---
 
-<!-- ANCHOR:methodology -->
 ## 3. METHODOLOGY
 
 <!-- Fixture, sample size, pipeline (rescue / rerank / hybrid?), environment. Be specific enough that a reader can reproduce. -->
@@ -143,11 +118,8 @@ Each measurement window ran:
 - Versions: {{VERSION_LIST}}.
 - Stack distinction: {{STACK_DISTINCTION_NOTE_OR_NONE}}.
 
-<!-- /ANCHOR:methodology -->
-
 ---
 
-<!-- ANCHOR:per-candidate-profiles -->
 ## 4. PER-CANDIDATE PROFILES
 
 <!-- One block per candidate. Cover dim, params, quantization, RAM, disk, context, release date, category, strengths, weaknesses. -->
@@ -203,11 +175,8 @@ Each measurement window ran:
 
 Live runtime measurements (RAM, residency, raw inference latency) for the final candidates are in [`runtime-measurements.md`](./runtime-measurements.md).
 
-<!-- /ANCHOR:per-candidate-profiles -->
-
 ---
 
-<!-- ANCHOR:process-notes -->
 ## 5. PROCESS NOTES
 
 <!-- The elimination narrative. What you tried, what failed, what worked. Cite ADRs in order. -->
@@ -235,11 +204,8 @@ The elimination journey {{PROCESS_NARRATIVE_OPENING}}.
 - **{{WORKED_ITEM_2}}** -- {{WORKED_ITEM_2_DETAIL}}.
 - **{{WORKED_ITEM_N}}** -- {{WORKED_ITEM_N_DETAIL}}.
 
-<!-- /ANCHOR:process-notes -->
-
 ---
 
-<!-- ANCHOR:findings -->
 ## 6. FINDINGS
 
 <!-- Unique wins, universal floor and ceiling, mismatch analysis, load-bearing insight. Number each finding. -->
@@ -265,11 +231,8 @@ The elimination journey {{PROCESS_NARRATIVE_OPENING}}.
 
 {{FINDING_N_NARRATIVE}}
 
-<!-- /ANCHOR:findings -->
-
 ---
 
-<!-- ANCHOR:caveats -->
 ## 7. CAVEATS
 
 <!-- Single-run signal, fixture limits, stack-level confounds, schema migration cost. Be honest. -->
@@ -280,11 +243,8 @@ The elimination journey {{PROCESS_NARRATIVE_OPENING}}.
 - **Stack distinction.** {{STACK_DISTINCTION_CAVEAT}}. **Do not cross-reference performance numbers** between this report and benchmarks from a different stack.
 - **{{CAVEAT_N_TITLE}}.** {{CAVEAT_N_DETAIL}}
 
-<!-- /ANCHOR:caveats -->
-
 ---
 
-<!-- ANCHOR:recommendations -->
 ## 8. RECOMMENDATIONS
 
 <!-- Tier 1: apply now. Tier 2: validate first. Tier 3: future. Each tier is actionable. -->
@@ -305,11 +265,8 @@ The elimination journey {{PROCESS_NARRATIVE_OPENING}}.
 - **{{TIER3_REC_1}}** -- {{TIER3_REC_1_DETAIL}}.
 - **{{TIER3_REC_2}}** -- {{TIER3_REC_2_DETAIL}}.
 
-<!-- /ANCHOR:recommendations -->
-
 ---
 
-<!-- ANCHOR:reproducibility -->
 ## 9. REPRODUCIBILITY
 
 <!-- Exact replay commands + expected wall-clock. Make this copy-paste-runnable. -->
@@ -351,11 +308,8 @@ Expected outcome: {{EXPECTED_OUTCOME_LINE}}.
 {{KILL_SWITCH_COMMANDS_OR_NONE}}
 ```
 
-<!-- /ANCHOR:reproducibility -->
-
 ---
 
-<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 <!-- Skill-local files, authoritative spec packet, sibling and follow-on. -->
@@ -386,5 +340,3 @@ Expected outcome: {{EXPECTED_OUTCOME_LINE}}.
 |---|---|
 | {{SIBLING_BENCHMARK_PATH_OR_NONE}} | {{SIBLING_BENCHMARK_RELATIONSHIP_OR_NONE}} |
 | {{FOLLOWON_PACKET_PATH_OR_NONE}} | {{FOLLOWON_PACKET_RELATIONSHIP_OR_NONE}} |
-
-<!-- /ANCHOR:related-resources -->

@@ -5,16 +5,12 @@ description: "Structured JSON summary support for generate-context.js, including
 
 # JSON mode structured summary hardening
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The structured JSON summary path added support to the session capturing pipeline. The shipped implementation accepts richer caller-authored session data via `--json` and `--stdin` inputs, including fields like `toolCalls` and `exchanges`. It also preserves file-backed JSON authority and ships Wave 2 hardening fixes for decision confidence, truncated outcome titles, `git_changed_file_count` stability, and template count preservation.
 
 The original phase design described a broader file-backed enrichment path, but only the narrower structured-summary contract and hardening fixes shipped.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 The session capturing pipeline now handles structured JSON summaries as follows:
@@ -29,9 +25,6 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 8. After the spec-doc record file is written (Step 10.5), a post-save quality review validates that JSON payload fields propagated correctly to the saved memory, using both frontmatter and the `## MEMORY METADATA` YAML block before indexing begins.
 9. JSON payload fields `sessionSummary`, `triggerPhrases`, `keyDecisions`, and `contextType` now properly flow through to rendered frontmatter via RC1–RC5 fixes (see §3.4).
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -159,9 +152,6 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 | `mcp_server/tests/embedding-retry-stats.vitest.ts` | `embeddingRetry` type and zero-state contract |
 | `mcp_server/tests/retry-manager-health.vitest.ts` | Zero-DB `embeddingRetry` snapshot accessor coverage |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts
 - Canonical catalog source: `feature_catalog.md`
@@ -176,4 +166,3 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 ---
 
 ### SOURCE METADATA
-<!-- /ANCHOR:source-metadata -->

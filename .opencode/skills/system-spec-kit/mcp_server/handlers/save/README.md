@@ -12,24 +12,8 @@ trigger_phrases:
 
 > Runtime stages for validating, arbitrating, persisting, enriching and formatting `memory_save` requests.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. ARCHITECTURE](#2-architecture)
-- [3. PACKAGE TOPOLOGY](#3-package-topology)
-- [4. DIRECTORY TREE](#4-directory-tree)
-- [5. KEY FILES](#5-key-files)
-- [6. BOUNDARIES AND FLOW](#6-boundaries-and-flow)
-- [7. ENTRYPOINTS](#7-entrypoints)
-- [8. VALIDATION](#8-validation)
-- [9. RELATED](#9-related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `handlers/save/` owns the decomposed runtime path behind the `memory_save` MCP handler. The folder keeps save orchestration split into small stages for validation, duplicate detection, embedding, prediction-error arbitration, record creation, enrichment, atomic file promotion and response formatting.
@@ -41,11 +25,8 @@ Current responsibilities:
 - Build rejection, dry-run, planner and success responses without leaking storage internals into callers.
 - Route persistence through `createMemoryRecord()` and storage/search helpers rather than direct SQL scattered across the handler.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -74,11 +55,8 @@ MCP tool handler ───▶ handlers/save ───▶ lib/storage + lib/searc
 handlers/save does not import from MCP transport or spec-folder docs.
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -118,11 +96,8 @@ handlers/save → spec packet files
 handlers/save → MCP transport internals
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -144,11 +119,8 @@ handlers/save/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -168,11 +140,8 @@ handlers/save/
 | `spec-folder-mutex.ts` | Serializes saves per spec folder across local async chains and temporary interprocess lock directories. |
 | `validation-responses.ts` | Builds insufficiency rejections, template-contract rejections, dry-run summaries and planner diagnostics. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -221,11 +190,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -238,11 +204,8 @@ Main flow:
 | `withSpecFolderLock()` | Function | Wraps critical save sections with a per-spec-folder mutex. |
 | `atomicIndexMemory()` | Function | Coordinates pending file promotion and indexing for atomic file-save callers. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root unless noted.
@@ -255,16 +218,11 @@ Expected result: the document is detected as a README and the extracted structur
 
 Focused code checks for this folder normally run through the package test suite that covers `handlers/save/*` exports.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [`../README.md`](../README.md)
 - [`../../lib/storage/README.md`](../../lib/storage/README.md)
 - [`../../lib/search/README.md`](../../lib/search/README.md)
 - [`../../database/README.md`](../../database/README.md)
-
-<!-- /ANCHOR:related -->

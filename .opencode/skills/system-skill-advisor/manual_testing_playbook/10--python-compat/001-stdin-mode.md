@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `scripts/skill_advisor.py --stdin` reads exactly one prompt from stdin, delegates to the native advisor when available and emits the legacy JSON-array shape that pre-027 consumers expect.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root. Python 3 available.
@@ -32,9 +28,6 @@ Validate that `scripts/skill_advisor.py --stdin` reads exactly one prompt from s
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Run the shim with a prompt piped into stdin:
@@ -63,9 +56,6 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [CP-001](../03--compat-and-disable/001-python-shim-stdin.md), original shim stdin scenario.
@@ -75,14 +65,9 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Python Compat
 - Playbook ID: PC-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 10--python-compat/001-stdin-mode.md
-
-<!-- /ANCHOR:5-source-metadata -->

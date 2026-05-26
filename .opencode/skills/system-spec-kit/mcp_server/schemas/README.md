@@ -11,23 +11,8 @@ trigger_phrases:
 
 # MCP Server Schemas
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `mcp_server/schemas/` owns the Zod schema registry used to validate MCP tool arguments. Tool handlers call this layer before executing user-provided input.
@@ -39,11 +24,8 @@ Current state:
 - Strict mode is on unless `SPECKIT_STRICT_SCHEMAS=false`.
 - Validation errors include tool name, issue summaries and unknown-parameter lists.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -68,11 +50,8 @@ Current state:
 Dependency direction: tool handlers ───▶ schema registry ───▶ shared validators
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -83,22 +62,16 @@ schemas/
 
 No subfolders exist in this directory.
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Responsibility |
 |---|---|
 | `tool-input-schemas.ts` | Defines tool input schemas, shared validators, `validateToolArgs()`, `getToolSchema()`, `formatZodError()`, `getSchema()` and `ToolSchemaValidationError`. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -136,11 +109,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -151,11 +121,8 @@ Main flow:
 | `getSchema()` | Function | Applies strict or passthrough object behavior. |
 | `ToolSchemaValidationError` | Class | Carries validation failure details to callers. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root:
@@ -167,16 +134,11 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Expected result: schema tests pass and README validation exits `0` with no HVR violations.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [Tool schema barrel](../tool-schemas.ts)
 - [Tool handlers](../tools/README.md)
 - [MCP server core](../core/README.md)
 - [Schema validation tests](../tests/review-fixes.vitest.ts)
-
-<!-- /ANCHOR:related -->

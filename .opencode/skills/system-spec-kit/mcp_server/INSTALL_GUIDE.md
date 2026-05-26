@@ -39,8 +39,6 @@ Your AI assistant will:
 
 ---
 
-## TABLE OF CONTENTS
-
 1. [AI-FIRST INSTALL GUIDE](#1-ai-first-install-guide)
 2. [OVERVIEW](#2-overview)
 3. [PREREQUISITES](#3-prerequisites)

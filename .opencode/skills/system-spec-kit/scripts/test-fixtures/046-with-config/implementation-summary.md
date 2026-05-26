@@ -15,8 +15,6 @@ Test fixture implementation complete.
 - Verified with validate-spec.sh
 ---
 
-<!-- ANCHOR:limitations -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->

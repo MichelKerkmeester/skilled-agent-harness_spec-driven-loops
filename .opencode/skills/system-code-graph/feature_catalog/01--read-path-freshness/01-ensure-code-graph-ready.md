@@ -9,13 +9,10 @@ importance_tier: "important"
 
 # Ensure code graph ready
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `ensureCodeGraphReady()` is the read-path gate used by query, context and verification surfaces. It detects graph readiness without a watcher, cleans deleted tracked files and performs the minimum allowed inline repair.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -29,9 +26,7 @@ half. Code graph freshness checks are half-auto because selective repair happens
 ### Caveats / Fallback
 
 Full-scan states are refused by query/context when inline full scans are disabled. The fallback is `code_graph_scan({ incremental:false })` or plain `rg` if readiness crashes.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -49,9 +44,6 @@ Full-scan states are refused by query/context when inline full scans are disable
 |---|---|---|
 | `../../manual_testing_playbook/01--read-path-freshness/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Read path freshness
@@ -63,4 +55,3 @@ Related references:
 - [02-query-self-heal.md](./02-query-self-heal.md)
 - [../02--manual-scan-verify-status/01-code-graph-scan.md](../02--manual-scan-verify-status/01-code-graph-scan.md)
 - [../../manual_testing_playbook/01--read-path-freshness/001-ensure-ready-selective-reindex.md](../../manual_testing_playbook/01--read-path-freshness/001-ensure-ready-selective-reindex.md)
-<!-- /ANCHOR:source-metadata -->

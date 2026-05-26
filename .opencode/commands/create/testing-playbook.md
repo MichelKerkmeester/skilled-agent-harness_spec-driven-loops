@@ -348,7 +348,6 @@ The generated playbook must match the current shipped `sk-doc` contract:
 - Root structure:
   - frontmatter
   - H1 + short intro paragraph
-  - unnumbered `TABLE OF CONTENTS`
   - `## 1. OVERVIEW`
   - numbered all-caps H2 sections
   - integrated review/readiness and orchestration sections

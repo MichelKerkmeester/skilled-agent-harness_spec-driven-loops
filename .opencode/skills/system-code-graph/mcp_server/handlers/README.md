@@ -14,24 +14,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `handlers/` owns the MCP request adapters for the standalone code graph package. Each handler accepts parsed tool arguments, calls lower-level behavior in `../lib/` and returns a typed payload with readiness, trust and recovery metadata.
@@ -44,11 +26,8 @@ Current state:
 - Read handlers use shared readiness contracts instead of returning silent empty answers.
 - Parser quarantine state surfaces through `parserHealth` and `parserSkipList` fields.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -68,11 +47,8 @@ handlers -> shared schemas and response types
 handlers do not import sibling handler internals
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -105,11 +81,8 @@ handler file -> another handler file for shared logic
 handler file -> graph or index internals without a library adapter
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -126,11 +99,8 @@ handlers/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -145,11 +115,8 @@ handlers/
 | `classify-query-intent.ts` | Classifies a query into a structural intent to shape downstream graph reads. |
 | `index.ts` | Re-exports handler modules for the tool registry. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -169,11 +136,8 @@ MCP client calls code_graph_* or detect_changes
   -> handler returns typed MCP payload
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -187,11 +151,8 @@ MCP client calls code_graph_* or detect_changes
 | `code_graph_apply` | MCP tool | Runs guarded graph recovery operations. |
 | `detect_changes` | MCP tool | Maps a unified diff to affected graph symbols. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root.
@@ -202,11 +163,8 @@ Run from the repository root.
 
 Expected result: handler, readiness and apply-mode suites pass.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 | Document | Purpose |
@@ -215,5 +173,3 @@ Expected result: handler, readiness and apply-mode suites pass.
 | [../lib/README.md](../lib/README.md) | Core graph library README. |
 | [../tools/README.md](../tools/README.md) | MCP dispatch README. |
 | [../tests/README.md](../tests/README.md) | Automated test map for handler behavior. |
-
-<!-- /ANCHOR:related -->

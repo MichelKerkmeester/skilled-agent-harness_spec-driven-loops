@@ -15,27 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 FEATURE HIGHLIGHTS](#31--feature-highlights)
-  - [3.2 FEATURE REFERENCE](#32--feature-reference)
-  - [3.3 CLI COMPARISON](#33--cli-comparison)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What This Skill Does
@@ -68,11 +47,8 @@ Gemini CLI supports one model (gemini-3.1-pro-preview) and provides three built-
 
 Install the `@google/gemini-cli` package via npm. Authentication uses Google OAuth for free tier access, or `GEMINI_API_KEY` and Vertex AI for enterprise use. Node.js 18 or higher is required for npm installation.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 ### 1. Verify Installation
@@ -100,11 +76,8 @@ gemini "Explain the architecture of this project" -o text 2>&1
 gemini "What's new in React 19? Use Google Search." -o text 2>&1
 ```
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -173,11 +146,8 @@ The free tier removes the cost barrier for exploratory use. Google OAuth gives y
 | **Open source** | No | No | No | Yes (Apache 2.0) |
 | **Models** | 3 (Anthropic) | 2 (OpenAI) | 5 (3 providers) | 1 (Google) |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -193,11 +163,8 @@ cli-gemini/
     integration_patterns.md             # Cross-AI orchestration workflows
 ```
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 ### Authentication
@@ -236,11 +203,8 @@ dist/
 | `GEMINI_API_KEY` | API key authentication | `export GEMINI_API_KEY=key` |
 | `GEMINI_MODEL` | Default model override | `gemini-3.1-pro-preview` |
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 ### Web Research with Google Search
@@ -271,11 +235,8 @@ gemini "Generate JSDoc for all exported functions in src/utils/" --yolo -o text 
 wait
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 ### Gemini CLI Not Found
@@ -302,11 +263,8 @@ wait
 **Common causes**: Too many files loaded via `@` references.
 **Fix**: Use `.geminiignore` to exclude large directories (node_modules, dist). Specify files explicitly rather than using broad directory references.
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 ### General
@@ -333,11 +291,8 @@ A: Codex `--search` opens a browsing session where the agent navigates web pages
 **Q: Can I disable built-in tools?**
 A: The tools activate based on prompt content. If you do not mention web search or codebase analysis, the tools do not run. There is no explicit disable flag.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 ### Skill Resources
@@ -351,5 +306,3 @@ A: The tools activate based on prompt content. If you do not mention web search 
 ### Related Skills
 - [cli-claude-code](../cli-claude-code/): Anthropic Claude Code CLI orchestrator
 - [cli-codex](../cli-codex/): OpenAI Codex CLI orchestrator
-
-<!-- /ANCHOR:related-documents -->

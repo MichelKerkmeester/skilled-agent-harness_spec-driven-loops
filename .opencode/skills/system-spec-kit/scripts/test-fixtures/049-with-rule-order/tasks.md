@@ -2,11 +2,9 @@
 
 # Tasks
 
-<!-- ANCHOR:active -->
 ## Active
 
 - [x] Create fixture
-<!-- /ANCHOR:active -->
 
 ## Completed
 

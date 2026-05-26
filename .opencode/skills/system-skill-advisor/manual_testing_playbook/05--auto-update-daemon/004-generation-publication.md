@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that generation counter increments are atomic, persisted through temp-file rename and that post-commit snapshot publication exposes the new generation to `advisor_status` readers without partial-write leakage.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root as working directory.
@@ -33,9 +29,6 @@ Validate that generation counter increments are atomic, persisted through temp-f
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred_decisions.md` §F34 for rationale.
@@ -79,9 +72,6 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [AU-001](./001-watcher-narrow-scope.md), watcher scope.
@@ -91,14 +81,9 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Auto Update Daemon
 - Playbook ID: AU-004
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 05--auto-update-daemon/004-generation-publication.md
-
-<!-- /ANCHOR:5-source-metadata -->

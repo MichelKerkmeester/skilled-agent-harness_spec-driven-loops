@@ -16,23 +16,6 @@ This catalog is the current inventory for the skill advisor. The package source 
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DAEMON AND FRESHNESS](#2--daemon-and-freshness)
-- [3. AUTO-INDEXING](#3--auto-indexing)
-- [4. LIFECYCLE ROUTING](#4--lifecycle-routing)
-- [5. SCORER FUSION](#5--scorer-fusion)
-- [6. MCP SURFACE](#6--mcp-surface)
-- [7. HOOKS AND PLUGIN](#7--hooks-and-plugin)
-- [8. PYTHON COMPAT](#8--python-compat)
-
----
-
-<!-- /ANCHOR:table-of-contents -->
-
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 The catalog covers 37 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 exposes the MCP tools. Groups 07-08 cover runtime integrations plus Python compatibility.
@@ -64,9 +47,6 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-daemon-and-freshness -->
 ## 2. DAEMON AND FRESHNESS
 
 | Feature | File |
@@ -81,9 +61,6 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
-<!-- /ANCHOR:2-daemon-and-freshness -->
-
-<!-- ANCHOR:3-auto-indexing -->
 ## 3. AUTO-INDEXING
 
 | Feature | File |
@@ -97,9 +74,6 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
-<!-- /ANCHOR:3-auto-indexing -->
-
-<!-- ANCHOR:4-lifecycle-routing -->
 ## 4. LIFECYCLE ROUTING
 
 | Feature | File |
@@ -112,9 +86,6 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
-<!-- /ANCHOR:4-lifecycle-routing -->
-
-<!-- ANCHOR:5-scorer-fusion -->
 ## 5. SCORER FUSION
 
 | Feature | File |
@@ -128,9 +99,6 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
-<!-- /ANCHOR:5-scorer-fusion -->
-
-<!-- ANCHOR:6-mcp-surface -->
 ## 6. MCP SURFACE
 
 | Feature | File |
@@ -147,9 +115,6 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
-<!-- /ANCHOR:6-mcp-surface -->
-
-<!-- ANCHOR:7-hooks-and-plugin -->
 ## 7. HOOKS AND PLUGIN
 
 | Feature | File |
@@ -161,9 +126,6 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
-<!-- /ANCHOR:7-hooks-and-plugin -->
-
-<!-- ANCHOR:8-python-compat -->
 ## 8. PYTHON COMPAT
 
 | Feature | File |
@@ -171,5 +133,3 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Python CLI shim (`skill_advisor.py`) | [08--python-compat/01-cli-shim.md](./08--python-compat/01-cli-shim.md) |
 | Python regression dataset | [08--python-compat/02-regression-suite.md](./08--python-compat/02-regression-suite.md) |
 | Python bench runner (`skill_advisor_bench.py`) | [08--python-compat/03-bench-runner.md](./08--python-compat/03-bench-runner.md) |
-
-<!-- /ANCHOR:8-python-compat -->

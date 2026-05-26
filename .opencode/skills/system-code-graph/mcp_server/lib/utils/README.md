@@ -14,32 +14,14 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. STABLE API](#3--stable-api)
-- [4. BOUNDARIES AND FLOW](#4--boundaries-and-flow)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED](#6--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `utils/` provides one module: `workspace-path.ts`. It canonicalizes workspace and candidate paths, then checks that caller-supplied roots stay inside the active workspace before any scan, verify or diff preflight proceeds.
 
 Use this package when a code-graph handler accepts untrusted path input. Keep the workspace-boundary contract here so handlers enforce the same rule.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -48,11 +30,8 @@ utils/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:stable-api -->
 ## 3. STABLE API
 
 | Export | Kind | Purpose |
@@ -64,11 +43,8 @@ utils/
 
 These helpers operate on string paths only. Callers must canonicalize both inputs before calling `isWithinWorkspace` or `assertWithinWorkspace`.
 
-<!-- /ANCHOR:stable-api -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -85,11 +61,8 @@ Active production callers:
 | `mcp_server/handlers/verify.ts` | `canonicalizeWorkspacePaths`, `isWithinWorkspace`, `assertWithinWorkspace` |
 | `mcp_server/handlers/detect-changes.ts` | `canonicalizeWorkspacePaths`, `isWithinWorkspace` |
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 5. VALIDATION
 
 Run from the repository root.
@@ -101,11 +74,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py --type readme .open
 
 Expected result: TypeScript exits `0`, and the README validator reports no blocking errors.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 6. RELATED
 
 | Document | Purpose |
@@ -113,5 +83,3 @@ Expected result: TypeScript exits `0`, and the README validator reports no block
 | [../README.md](../README.md) | Parent code-graph library overview. |
 | [../../handlers/README.md](../../handlers/README.md) | Code-graph MCP handlers that consume these helpers. |
 | [../../../README.md](../../../README.md) | Skill-level overview and operator guide. |
-
-<!-- /ANCHOR:related -->

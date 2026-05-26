@@ -12,23 +12,16 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Give operators and runtimes a single diagnostic read that summarizes whether advisor state is healthy enough to trust for routing.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `handlers/advisor-status.ts` returns `freshness`, `generation`, `trustState` (with `state` and optional `reason`), `skillCount`, `lastScanAt` and `laneWeights` (the canonical 5-lane configuration). Freshness vocabulary is `live / stale / absent / unavailable`. The call is fail-open: even when the daemon is absent, status returns a well-formed envelope describing the shortfall.
 
 `readAdvisorStatus()` is strictly diagnostic. It reports stale, absent or unavailable advisor state and does not repair it. Operators should call `advisor_rebuild` when status reports stale state or when a forced rebuild is needed.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -46,9 +39,7 @@ Give operators and runtimes a single diagnostic read that summarizes whether adv
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-status.vitest.ts` | Automated test | Validation reference |
 | `Playbook scenario [NC-002](../../manual_testing_playbook/01--native-mcp-tools/002-native-status-transitions.md).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: MCP surface
@@ -61,4 +52,3 @@ Related references:
 - [05-advisor-rebuild.md](./05-advisor-rebuild.md).
 - [`01--daemon-and-freshness/05-trust-state.md`](../01--daemon-and-freshness/05-trust-state.md).
 - [`04--scorer-fusion/06-weights-config.md`](../04--scorer-fusion/06-weights-config.md).
-<!-- /ANCHOR:source-metadata -->

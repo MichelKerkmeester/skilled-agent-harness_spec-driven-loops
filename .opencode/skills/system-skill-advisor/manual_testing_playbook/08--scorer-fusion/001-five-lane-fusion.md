@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical weights `explicit_author: 0.42`, `lexical: 0.28`, `graph_causal: 0.13`, `derived_generated: 0.12`, `semantic_shadow: 0.05` and that the weight configuration is discoverable via `advisor_status.laneWeights`.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root working directory.
@@ -32,9 +28,6 @@ Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical 
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred_decisions.md` §F34 for rationale.
@@ -72,9 +65,6 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [SC-004](./004-lane-attribution.md), lane attribution metadata.
@@ -83,14 +73,9 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Scorer Fusion
 - Playbook ID: SC-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 08--scorer-fusion/001-five-lane-fusion.md
-
-<!-- /ANCHOR:5-source-metadata -->

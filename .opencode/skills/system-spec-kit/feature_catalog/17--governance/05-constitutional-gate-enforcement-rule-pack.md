@@ -5,13 +5,6 @@ description: "Always-surface constitutional rule pack that keeps Spec Kit gate b
 
 # Constitutional Gate-Enforcement Rule Pack
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 Constitutional Gate-Enforcement Rule Pack is the always-surface governance bundle that keeps Spec Kit gate behavior visible during memory retrieval and continuation workflows.

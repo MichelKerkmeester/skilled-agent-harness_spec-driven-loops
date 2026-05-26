@@ -15,9 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
 1. [OVERVIEW](#1--overview)
 2. [QUICK START](#2--quick-start)
 3. [FEATURES](#3--features)
@@ -27,11 +24,9 @@ trigger_phrases:
 7. [TROUBLESHOOTING](#7--troubleshooting)
 8. [FAQ](#8--faq)
 9. [RELATED DOCUMENTS](#9--related-documents)
-<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What This Skill Does
@@ -77,11 +72,8 @@ When a git workflow needs packet context, `/speckit:resume` is still the canonic
 - Session persistence: Remembers workspace preference for the duration of the session
 - Smart routing: Loads only the references relevant to the detected phase
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1: Invoke the skill.** Gate 2 routing triggers automatically on keyword detection. You can also invoke it directly by reading SKILL.md.
@@ -107,11 +99,8 @@ Read(".opencode/skills/sk-git/SKILL.md")
 
 **Step 4: Follow the phase workflow.** Each phase has a documented step sequence. The skill loads the relevant reference document for your phase (worktree, commit, or finish workflow).
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -181,11 +170,8 @@ GitHub MCP integration covers the full remote workflow without requiring the use
 | Pre-PR | Description complete, CI passing | Yes |
 | Post-merge | Worktree removed, local and remote branches deleted | No |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```
@@ -219,11 +205,8 @@ GitHub MCP integration covers the full remote workflow without requiring the use
 | `references/github_mcp_integration.md` | GitHub MCP tool usage | When working with remote PRs, issues, or CI |
 | `assets/pr_template.md` | PR description structure | Before submitting any pull request |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 ### Allowed Tools
@@ -268,11 +251,8 @@ All worktree-created branches follow `type/short-description`:
 
 Worktrees are created under `.worktrees/` in the repository root by default. The directory name matches the branch short-description: `.worktrees/add-oauth2-login`.
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 ### Example 1: Full Workflow for a New Feature
@@ -335,11 +315,8 @@ git push -u origin feat/feature-a && gh pr create --title "feat(payments): add s
 git push -u origin feat/feature-b && gh pr create --title "feat(notifications): add email on order"
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 | What you see | Common causes | Fix |
@@ -352,11 +329,8 @@ git push -u origin feat/feature-b && gh pr create --title "feat(notifications): 
 | Submodule conflicts appear during merge | Submodule pointer changed in both branches | Escalate. Submodule conflicts require coordinated decisions across repositories. |
 | Commit subject is not deterministic across runs | Type or scope inference matched different conditions in different sessions | Review the type and scope tables in SKILL.md Section 4 and apply the first-match rule explicitly |
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: Why does the skill always ask before creating a branch?**
@@ -374,11 +348,8 @@ A: Use `gh` CLI for simple PR creation and listing. Use GitHub MCP for operation
 **Q: How do I handle a PR that was merged but the worktree cleanup was skipped?**
 A: Run `git worktree list` to see all active worktrees. Remove the stale one with `git worktree remove .worktrees/branch-name`. Then delete the local branch with `git branch -d branch-name` and the remote tracking branch with `git push origin --delete branch-name`. Run `git worktree prune` to clean up any metadata.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 ### Skill References
@@ -413,5 +384,3 @@ A: Run `git worktree list` to see all active worktrees. Remove the stale one wit
 |----------|---------|
 | `AGENTS.md` (or `CLAUDE.md`) | Gate 2 (skill routing) and Gate 3 (file modification) behavioral framework |
 | Spec Kit Memory MCP | Context preservation with `memory_search()` for recovering prior git session context |
-
-<!-- /ANCHOR:related-documents -->

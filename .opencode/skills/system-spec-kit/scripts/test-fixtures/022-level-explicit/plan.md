@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -29,4 +28,3 @@ L2 structure with checklist.
 ### Phase 1: Setup
 
 Create L2 fixture with explicit level.
-<!-- /ANCHOR:implementation-plan -->

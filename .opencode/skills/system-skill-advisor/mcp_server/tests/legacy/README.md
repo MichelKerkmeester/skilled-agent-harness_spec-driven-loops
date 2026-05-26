@@ -10,20 +10,8 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_readme -->
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. VALIDATION](#4--validation)
-- [5. RELATED](#5--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `tests/legacy/` keeps broad regression coverage for the skill advisor surfaces that predate the newer focused test folders.
@@ -34,11 +22,8 @@ Current state:
 - Stores small scenario fixtures in `advisor-fixtures/` for prompt-cache and policy tests.
 - Uses Vitest plus direct Python subprocess checks for parity-sensitive paths.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -52,11 +37,8 @@ legacy/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -66,11 +48,8 @@ legacy/
 | `advisor-renderer.vitest.ts` | Guards rendered advisor brief shape. |
 | `advisor-fixtures/` | Contains JSON cases for stale, ambiguous, skipped and adversarial advisor inputs. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 4. VALIDATION
 
 Run from the repository root.
@@ -81,16 +60,11 @@ cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run skill_advisor/t
 
 Expected result: all legacy advisor regression tests pass.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 5. RELATED
 
 - [`../compat/README.md`](../compat/README.md)
 - [`advisor-fixtures/README.md`](advisor-fixtures/README.md)
 - [`../handlers/README.md`](../handlers/README.md)
 - [`../../README.md`](../../README.md)
-
-<!-- /ANCHOR:related -->

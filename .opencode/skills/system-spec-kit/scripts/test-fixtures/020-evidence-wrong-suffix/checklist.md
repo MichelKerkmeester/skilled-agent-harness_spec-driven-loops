@@ -1,4 +1,3 @@
-<!-- ANCHOR:checklist -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
@@ -10,4 +9,3 @@
 ## P1 - Required
 
 - [x] Item with finished [finished]
-<!-- /ANCHOR:checklist -->

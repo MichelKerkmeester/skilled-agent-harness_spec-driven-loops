@@ -5,14 +5,6 @@ description: "This scenario validates the no-symlinks policy by confirming zero 
 
 # 152 -- No symlinks in lib/ tree
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. SCENARIO CONTRACT](#2-scenario-contract)
-- [3. TEST EXECUTION](#3-test-execution)
-- [4. SOURCE FILES](#4-source-files)
-- [5. SOURCE METADATA](#5-source-metadata)
-
 ## 1. OVERVIEW
 
 This scenario validates the no-symlinks-in-lib policy for `152`. It focuses on confirming that `find mcp_server/lib -type l` returns zero results, enforcing the ARCHITECTURE.md policy.
@@ -20,7 +12,6 @@ This scenario validates the no-symlinks-in-lib policy for `152`. It focuses on c
 ---
 
 ## 2. SCENARIO CONTRACT
-
 
 - Objective: Verify zero symlinks exist under mcp_server/lib/.
 - Real user request: `Please validate No symlinks in lib/ tree against cd .opencode/skills/system-spec-kit and tell me whether the expected signals are present: Zero symlinks found.`

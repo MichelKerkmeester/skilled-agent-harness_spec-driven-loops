@@ -14,7 +14,6 @@ Rationale plus recommendations for deferred findings that require explicit human
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -36,10 +35,8 @@ Deferred decisions stay visible until they are explicitly resolved, superseded o
 - Packet `008-tier-d-execution` notes referenced in this document.
 - Active hook and playbook docs that cite these deferrals.
 
-
 ---
 
-<!-- ANCHOR:2-f4-devin-hooks -->
 ## 2. F4: `.devin/hooks.v1.json` migration
 
 ### Status: DONE as of 2026-05-16 in packet `008-tier-d-execution`
@@ -79,11 +76,8 @@ A complete migration of both hooks requires building `session-start.js` at the N
 - `.devin/hooks.v1.json` is runtime config consumed by Devin. A wrong path produces silent hook failure plus the operator may not notice until skill-advisor surface stops appearing in Devin output.
 - The disable-flag interaction (per `INSTALL_GUIDE.md` §8): Devin hook checks `MK_SKILL_ADVISOR_HOOK_DISABLED` first plus falls back to `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`. Migration does not change this contract.
 
-<!-- /ANCHOR:2-f4-devin-hooks -->
-
 ---
 
-<!-- ANCHOR:3-f6-dual-hook-locations -->
 ## 3. F6: dual hook location resolution
 
 ### Status: DEPRECATION BANNERS IN PLACE as of 2026-05-16 in packet `008-tier-d-execution`
@@ -167,11 +161,8 @@ Mark OLD as deprecated with a 90-day migration window. Concrete steps:
 - Forgetting to update one runtime's config leaves it silently using the OLD location.
 - The OLD `system-spec-kit/mcp_server/hooks/` directory may have other consumers (test harnesses, internal scripts) beyond the visible runtime configs. Verify before delete.
 
-<!-- /ANCHOR:3-f6-dual-hook-locations -->
-
 ---
 
-<!-- ANCHOR:4-f34-playbook-structure -->
 ## 4. F34: playbook TEST EXECUTION structure deviation
 
 ### Current state
@@ -195,11 +186,8 @@ The deviation is intentional and shipped with the documentation note.
 
 None. Status quo. If a future sk-doc template revision broadens the canonical structure to include the current shape, the deviation notes can be removed in a single sweep.
 
-<!-- /ANCHOR:4-f34-playbook-structure -->
-
 ---
 
-<!-- ANCHOR:5-f35-catalog-toc -->
 ## 5. F35: catalog TOC numbering mismatch
 
 ### Current state
@@ -219,11 +207,8 @@ None. Status quo. Renumbering would either:
 
 Both options are worse than the current explanatory-note approach. Leave as-is.
 
-<!-- /ANCHOR:5-f35-catalog-toc -->
-
 ---
 
-<!-- ANCHOR:6-f36-hooks-and-plugin-numbering -->
 ## 6. F36: 07--hooks-and-plugin file numbering gap
 
 ### Current state
@@ -240,11 +225,8 @@ Low-impact. Two options:
 
 Pick A unless a maintainer reports operator confusion from the gap.
 
-<!-- /ANCHOR:6-f36-hooks-and-plugin-numbering -->
-
 ---
 
-<!-- ANCHOR:7-f37-coverage-asymmetry -->
 ## 7. F37: catalog/playbook coverage asymmetry
 
 ### Status: DONE as of 2026-05-16 in packet `008-tier-d-execution`
@@ -267,11 +249,8 @@ Concrete: add a §17.5 cross-reference table to `manual_testing_playbook.md` sho
 
 Status: documentation update planned for a future packet. Low urgency.
 
-<!-- /ANCHOR:7-f37-coverage-asymmetry -->
-
 ---
 
-<!-- ANCHOR:8-related -->
 ## 8. RELATED
 
 - `001-audit-and-research/research/research.md` §4 Open Questions, original Tier D items
@@ -279,5 +258,3 @@ Status: documentation update planned for a future packet. Low urgency.
 - `004-sk-doc-1to1-alignment/implementation-summary.md` Known Limitations, F35/F36/F37 first deferred
 - `006-deferred-cleanup/implementation-summary.md` Known Limitations, full deferred catalog as of pre-007 state
 - `007-deferred-final/implementation-summary.md`, what 007 actually shipped plus what stays here
-
-<!-- /ANCHOR:8-related -->

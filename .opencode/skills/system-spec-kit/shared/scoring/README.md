@@ -14,21 +14,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
-- [3. STABLE API](#3--stable-api)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED DOCUMENTS](#6--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The scoring package computes composite relevance scores for spec folders. It is used by memory statistics and ranking surfaces that need a deterministic way to compare folders from memory records.
@@ -39,11 +24,8 @@ The main formula combines recency, importance, activity and validation, then app
 score = (recency * 0.40 + importance * 0.30 + activity * 0.20 + validation * 0.10) * archiveMultiplier
 ```
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 2. STRUCTURE
 
 ```text
@@ -56,11 +38,8 @@ scoring/
 | ---- | ------- |
 | `folder-scoring.ts` | Folder scoring constants, archive detection and score calculators |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:stable-api -->
 ## 3. STABLE API
 
 | Export | Kind | Purpose |
@@ -78,11 +57,8 @@ scoring/
 | `SCORE_WEIGHTS` | Constant | Composite score weights that sum to `1.0` |
 | `FolderMemoryInput` | Type | Loose input type for camelCase, snake_case and enriched memory records |
 
-<!-- /ANCHOR:stable-api -->
-
 ---
 
-<!-- ANCHOR:boundaries -->
 ## 4. BOUNDARIES
 
 Import direction should flow from ranking consumers into `shared/scoring`:
@@ -94,11 +70,8 @@ Import direction should flow from ranking consumers into `shared/scoring`:
 
 This package returns scores and metadata. Callers decide how to display, filter or combine those results with retrieval evidence.
 
-<!-- /ANCHOR:boundaries -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 5. VALIDATION
 
 Run scoring tests or TypeScript checks after behavior changes:
@@ -111,11 +84,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 For README-only edits, `validate_document.py` is the required file-level check.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 6. RELATED DOCUMENTS
 
 | Document | Purpose |
@@ -123,7 +93,5 @@ For README-only edits, `validate_document.py` is the required file-level check.
 | [shared/README.md](../README.md) | Parent shared library overview |
 | [shared/types.ts](../types.ts) | `ArchivePattern`, `FolderScore`, `Memory`, `ScoreWeights` and `TierWeights` |
 | [shared/algorithms/README.md](../algorithms/README.md) | Retrieval ranking algorithms separate from folder scoring |
-
-<!-- /ANCHOR:related -->
 
 ---

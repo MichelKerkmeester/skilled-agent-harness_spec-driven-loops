@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -22,4 +21,3 @@ Incomplete file structure.
 ## Implementation
 
 This file exists but spec.md is intentionally missing.
-<!-- /ANCHOR:implementation-plan -->

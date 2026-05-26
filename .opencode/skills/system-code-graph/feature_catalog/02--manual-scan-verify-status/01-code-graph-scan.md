@@ -9,13 +9,10 @@ importance_tier: "important"
 
 # code_graph_scan
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `code_graph_scan` is the explicit refresh path for the structural graph. It supports incremental scans, full scans, Git HEAD full-reindex promotion, detector provenance summaries, edge enrichment summaries and optional gold-battery verification.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -29,9 +26,7 @@ manual. `code_graph_scan`, verify, status and doctor commands remain the manual 
 ### Caveats / Fallback
 
 Run full scans in a disposable workspace for destructive exclude/prune checks. `verify:true` only runs after `incremental:false`.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -49,9 +44,6 @@ Run full scans in a disposable workspace for destructive exclude/prune checks. `
 |---|---|---|
 | `../../manual_testing_playbook/02--manual-scan-verify-status/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Manual scan verify status
@@ -63,4 +55,3 @@ Related references:
 - [02-code-graph-verify.md](./02-code-graph-verify.md)
 - [03-code-graph-status.md](./03-code-graph-status.md)
 - [../../manual_testing_playbook/02--manual-scan-verify-status/003-code-graph-scan-incremental.md](../../manual_testing_playbook/02--manual-scan-verify-status/003-code-graph-scan-incremental.md)
-<!-- /ANCHOR:source-metadata -->

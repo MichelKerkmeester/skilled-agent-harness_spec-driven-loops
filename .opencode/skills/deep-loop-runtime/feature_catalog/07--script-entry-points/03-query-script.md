@@ -5,13 +5,6 @@ description: "Reads session-scoped coverage graph views through a direct JSON st
 
 # query.cjs
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CURRENT REALITY](#2--current-reality)
-- [3. SOURCE FILES](#3--source-files)
-- [4. SOURCE METADATA](#4--source-metadata)
-
 ---
 
 ## 1. OVERVIEW
@@ -44,7 +37,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 |---|---|---|
 | `tests/integration/query-script.vitest.ts` | Test | Primary regression coverage for query.cjs. |
 
-
 ---
 
 ## 4. SOURCE METADATA
@@ -54,4 +46,3 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Feature ID: F016
 - Feature file path: `07--script-entry-points/03-query-script.md`
 - Primary sources: `scripts/query.cjs`, `tests/integration/query-script.vitest.ts`
-

@@ -5,13 +5,6 @@ description: "Spec-folder detection, alignment validation, memory-directory setu
 
 # Spec-Folder Detection and Description Metadata
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 Spec-Folder Detection and Description Metadata is the script surface that decides which spec folder a session belongs to, validates that choice against conversation content, prepares the target spec-doc record directory, and maintains the per-folder description metadata used elsewhere in the system.

@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -28,4 +27,3 @@ L2 with mixed formats.
 ### Phase 1: Setup
 
 Create checklist with mixed formats.
-<!-- /ANCHOR:implementation-plan -->

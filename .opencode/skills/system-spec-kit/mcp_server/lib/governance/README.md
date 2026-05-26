@@ -8,23 +8,8 @@ trigger_phrases:
 
 # Governance: Scope, Audit, and Retention
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/governance/` owns MCP server governance helpers. It normalizes request scope, validates governed-ingest metadata, records audit entries, and deletes expired governed memory rows.
@@ -36,11 +21,8 @@ Current responsibilities:
 - Persist governance audit records for allow, deny, delete, and conflict decisions.
 - Sweep `memory_index.delete_after` rows when governed retention expires.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -65,11 +47,8 @@ Current responsibilities:
 Dependency direction: handlers ───▶ governance ───▶ search/storage tables
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -79,11 +58,8 @@ lib/governance/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Responsibility |
@@ -92,11 +68,8 @@ lib/governance/
 | `memory-retention-sweep.ts` | Selects expired `memory_index` rows, supports dry runs, deletes expired rows, and records retention metadata. |
 | `README.md` | Describes governance ownership and safe edit boundaries. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -134,11 +107,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -148,11 +118,8 @@ Main flow:
 | `runMemoryRetentionSweep()` | Function | Runs dry-run or destructive expiration sweeps over `memory_index`. |
 | `MemoryRetentionSweepResult` | Type | Returned sweep summary, candidates, deleted IDs, and ledger state. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from `.opencode/skills/system-spec-kit/mcp_server`.
@@ -163,15 +130,10 @@ npx vitest run tests/governance-e2e.vitest.ts tests/memory-governance.vitest.ts 
 
 Expected result: governed scope, ingest, audit, and retention behavior pass.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../storage/README.md`](../storage/README.md)
 - [`../../handlers/README.md`](../../handlers/README.md)
 - [`../../tests/README.md`](../../tests/README.md)
-
-<!-- /ANCHOR:related -->

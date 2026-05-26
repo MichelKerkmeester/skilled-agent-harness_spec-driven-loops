@@ -9,23 +9,8 @@ trigger_phrases:
 
 # Contracts
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. KEY FILES](#3--key-files)
-- [4. STABLE API](#4--stable-api)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `contracts/` owns typed data shapes for retrieval tracing and degraded-mode reporting. The folder is intentionally small so retrieval code can share trace metadata without importing handlers or response adapters.
@@ -37,11 +22,8 @@ Current state:
 - `ContextEnvelope<T>` wraps data with trace, metadata and optional degraded-mode details.
 - Factory functions create and update these shapes with predictable defaults.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -66,22 +48,16 @@ contracts/* -> algorithm modules
 contracts/* -> storage modules
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
 |---|---|
 | `retrieval-trace.ts` | Defines trace stages, trace entries, envelopes, degraded-mode data and factory functions. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:stable-api -->
 ## 4. STABLE API
 
 | Export | Kind | Contract |
@@ -98,11 +74,8 @@ contracts/* -> storage modules
 
 Treat these shapes as shared contracts. Add fields only when every caller can tolerate the extra data.
 
-<!-- /ANCHOR:stable-api -->
-
 ---
 
-<!-- ANCHOR:boundaries -->
 ## 5. BOUNDARIES
 
 | Boundary | Rule |
@@ -123,11 +96,8 @@ retrieval caller
   -> createEnvelope for typed transport
 ```
 
-<!-- /ANCHOR:boundaries -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -138,11 +108,8 @@ retrieval caller
 | `createEnvelope` | Function | Produces a typed envelope for callers. |
 | `createDegradedContract` | Function | Records fallback behavior. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root:
@@ -153,15 +120,10 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Expected result: the validator exits with code `0`.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../README.md`](../README.md)
 - [`../algorithms/README.md`](../algorithms/README.md)
 - [`../types.ts`](../types.ts)
-
-<!-- /ANCHOR:related -->

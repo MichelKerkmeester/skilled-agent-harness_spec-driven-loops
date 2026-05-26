@@ -14,25 +14,8 @@ importance_tier: "important"
 
 > The local MCP runtime behind Spec Kit's memory. Every save, every search, every session-resume payload flows through this package.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. RUNTIME LIFECYCLE GUARDRAILS](#8--runtime-lifecycle-guardrails)
-- [9. VALIDATION](#9--validation)
-- [10. RELATED](#10--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What This Runtime Does
@@ -67,11 +50,8 @@ Pin one tier explicitly with `EMBEDDINGS_PROVIDER=ollama|hf-local|openai|voyage`
 
 **Recommended new-user setup:** install [Ollama](https://ollama.com) and run `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects and persists it as the active embedder — no API keys required.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -102,11 +82,8 @@ handlers ───▶ database and filesystem adapters
 hooks ───▶ shared payload builders and read-only status helpers
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -148,11 +125,8 @@ database/ → runtime modules
 dist/ → source imports
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -179,11 +153,8 @@ mcp_server/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -199,11 +170,8 @@ mcp_server/
 | `ENV_REFERENCE.md` | Documents runtime environment variables. |
 | `INSTALL_GUIDE.md` | Documents package setup and MCP client registration. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -248,11 +216,8 @@ Main tool flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -265,11 +230,8 @@ Main tool flow:
 | `npm run build` | Command | Builds TypeScript into `dist/`. |
 | `npm test` | Command | Runs package tests through the configured test runner. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:runtime-lifecycle-guardrails -->
 ## 8. RUNTIME LIFECYCLE GUARDRAILS
 
 The Spec Kit Memory MCP process participates in the shared native MCP lifecycle guardrails introduced by the orphan MCP leak prevention packet.
@@ -287,11 +249,8 @@ Canonical operator references:
 - [Environment reference](./ENV_REFERENCE.md)
 - [Orphan MCP leak prevention implementation summary](../../../specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
 
-<!-- /ANCHOR:runtime-lifecycle-guardrails -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 9. VALIDATION
 
 Run from `mcp_server/` unless noted.
@@ -310,11 +269,8 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/sy
 
 Expected result: build and tests exit 0, README validation reports no blocking issues, and structure extraction returns a README document profile.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 10. RELATED
 
 - [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md)
@@ -323,5 +279,3 @@ Expected result: build and tests exit 0, README validation reports no blocking i
 - [`configs/README.md`](./configs/README.md)
 - [`hooks/README.md`](./hooks/README.md)
 - [`lib/search/README.md`](./lib/search/README.md)
-
-<!-- /ANCHOR:related -->

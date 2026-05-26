@@ -8,16 +8,6 @@ trigger_phrases:
 
 # RAG Library: Trust Tree
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. ENTRYPOINTS](#4--entrypoints)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
 ## 1. OVERVIEW
 
 This folder contains answer-level trust composition for retrieval-augmented responses. It converts independent provenance signals into a single decision with citations, reasons and grouped causal edges.

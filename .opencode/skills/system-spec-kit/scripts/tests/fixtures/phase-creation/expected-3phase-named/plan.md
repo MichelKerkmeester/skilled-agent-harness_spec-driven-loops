@@ -18,7 +18,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -32,11 +31,9 @@ contextType: "general"
 
 ### Overview
 [2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
 ---
 
-<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -48,11 +45,9 @@ contextType: "general"
 - [ ] All acceptance criteria met
 - [ ] Tests passing (if applicable)
 - [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
 ---
 
-<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -64,11 +59,9 @@ contextType: "general"
 
 ### Data Flow
 [Brief description of how data moves through the system]
-<!-- /ANCHOR:architecture -->
 
 ---
 
-<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
@@ -85,11 +78,9 @@ contextType: "general"
 - [ ] Manual testing complete
 - [ ] Edge cases handled
 - [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
 ---
 
-<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -97,33 +88,24 @@ contextType: "general"
 | Unit | [Components/functions] | [Jest/pytest/etc.] |
 | Integration | [API endpoints/flows] | [Tools] |
 | Manual | [User journeys] | Browser |
-<!-- /ANCHOR:testing -->
 
 ---
 
-<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
-<!-- /ANCHOR:dependencies -->
 
 ---
 
-<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: [Conditions requiring rollback]
 - **Procedure**: [How to revert changes]
-<!-- /ANCHOR:rollback -->
 
 ---
 
-
----
-
-<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -138,11 +120,9 @@ Phase 1.5 (Config) ───┘
 | Config | Setup | Core |
 | Core | Setup, Config | Verify |
 | Verify | Core | None |
-<!-- /ANCHOR:phase-deps -->
 
 ---
 
-<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -151,11 +131,9 @@ Phase 1.5 (Config) ───┘
 | Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
 | Verification | [Low/Med/High] | [e.g., 1-2 hours] |
 | **Total** | | **[e.g., 6-12 hours]** |
-<!-- /ANCHOR:effort -->
 
 ---
 
-<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -172,14 +150,9 @@ Phase 1.5 (Config) ───┘
 ### Data Reversal
 - **Has data migrations?** [Yes/No]
 - **Reversal procedure**: [Steps or "N/A"]
-<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 
-
----
-
-<!-- ANCHOR:dependency-graph -->
 ## L3: DEPENDENCY GRAPH
 
 ```
@@ -202,11 +175,9 @@ Phase 1.5 (Config) ───┘
 | [Component B] | A | [Output] | D |
 | [Component C] | A | [Output] | D |
 | [Component D] | B, C | [Final] | None |
-<!-- /ANCHOR:dependency-graph -->
 
 ---
 
-<!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
 1. **[Phase/Task]** - [Duration estimate] - CRITICAL
@@ -218,11 +189,9 @@ Phase 1.5 (Config) ───┘
 **Parallel Opportunities**:
 - [Task A] and [Task B] can run simultaneously
 - [Task C] and [Task D] can run after Phase 1
-<!-- /ANCHOR:critical-path -->
 
 ---
 
-<!-- ANCHOR:milestones -->
 ## L3: MILESTONES
 
 | Milestone | Description | Success Criteria | Target |
@@ -230,7 +199,6 @@ Phase 1.5 (Config) ───┘
 | M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
 | M2 | [Core Done] | [Main features working] | [Date/Phase] |
 | M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
-<!-- /ANCHOR:milestones -->
 
 ---
 

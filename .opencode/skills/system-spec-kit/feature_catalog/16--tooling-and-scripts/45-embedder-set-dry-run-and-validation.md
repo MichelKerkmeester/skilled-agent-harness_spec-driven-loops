@@ -5,13 +5,6 @@ description: "embedder_set plans an embedder swap in dry-run mode without starti
 
 # Embedder set dry-run and validation
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CURRENT REALITY](#2--current-reality)
-- [3. SOURCE FILES](#3--source-files)
-- [4. SOURCE METADATA](#4--source-metadata)
-
 ---
 
 ## 1. OVERVIEW

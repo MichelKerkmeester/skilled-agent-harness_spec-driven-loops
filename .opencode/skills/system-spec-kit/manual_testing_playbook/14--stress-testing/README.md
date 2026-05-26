@@ -8,19 +8,6 @@ audited_post_018: true
 
 > Package map for the stress-test manual playbook, execution file, template pack and catalog cross-reference.
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. ENTRIES](#3--entries)
-- [4. KEY FILES](#4--key-files)
-- [5. SCENARIO CONTRACT](#5--scenario-contract)
-- [6. TEST EXECUTION](#6--test-execution)
-- [7. BOUNDARIES](#7--boundaries)
-- [8. SOURCE METADATA](#8--source-metadata)
-- [9. VALIDATION](#9--validation)
-- [10. RELATED](#10--related)
-
 ---
 
 ## 1. OVERVIEW

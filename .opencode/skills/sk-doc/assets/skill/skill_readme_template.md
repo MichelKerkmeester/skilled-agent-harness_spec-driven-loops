@@ -49,7 +49,6 @@ Existing skill READMEs in this workspace commonly use this structure:
 |---|---|---|
 | Frontmatter | Search and routing metadata | Usually, for discoverable skills |
 | H1 and tagline | Fast human orientation | Always |
-| Table of contents | Navigation for longer READMEs | README exceeds about 150 lines |
 | Overview | Purpose, audience and operating model | Always |
 | Key Statistics | Counts, version and scope facts | Skill has measurable resources |
 | How This Compares | Boundary with nearby skills | Readers may confuse responsibilities |
@@ -101,24 +100,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -151,11 +132,9 @@ trigger_phrases:
 |---|---|
 | [Feature] | [Current behavior] |
 
-<!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1: Invoke the skill.**
@@ -178,11 +157,9 @@ Expected result: [what success looks like].
 
 Expected result: [exit code or output].
 
-<!-- /ANCHOR:quick-start -->
 
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -195,11 +172,9 @@ Expected result: [exit code or output].
 |---|---|---|---|
 | [Feature] | [Inputs] | [Output] | `[path]` |
 
-<!-- /ANCHOR:features -->
 
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -218,11 +193,9 @@ Expected result: [exit code or output].
 | `assets/[name].md` | [How used] |
 | `scripts/[name]` | [What it automates] |
 
-<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 | Setting | Default | Purpose |
@@ -231,11 +204,9 @@ Expected result: [exit code or output].
 
 If no configuration is required, state that clearly and list non-configurable invariants such as required validation commands.
 
-<!-- /ANCHOR:configuration -->
 
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 **[Scenario name]**
@@ -247,33 +218,27 @@ Resources loaded: [paths]
 Expected output: [summary]
 ```
 
-<!-- /ANCHOR:usage-examples -->
 
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 | What You See | Cause | Fix |
 |---|---|---|
 | [Symptom] | [Likely cause] | [Action] |
 
-<!-- /ANCHOR:troubleshooting -->
 
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: [Question readers ask often]?**
 
 A: [Short answer with a stable link when useful.]
 
-<!-- /ANCHOR:faq -->
 
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
@@ -282,7 +247,6 @@ A: [Short answer with a stable link when useful.]
 | [`references/[name].md`](./references/[name].md) | [Why it matters] |
 | [`assets/[name].md`](./assets/[name].md) | [How it is used] |
 
-<!-- /ANCHOR:related-documents -->
 ````
 
 ---

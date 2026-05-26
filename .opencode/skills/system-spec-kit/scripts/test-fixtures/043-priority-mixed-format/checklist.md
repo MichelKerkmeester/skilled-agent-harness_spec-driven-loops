@@ -1,4 +1,3 @@
-<!-- ANCHOR:checklist -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
@@ -14,4 +13,3 @@
 
 - [x] [P0] Inline P0 item (confirmed)
 - [ ] [P2] Inline P2 item
-<!-- /ANCHOR:checklist -->

@@ -5,13 +5,6 @@ description: "Persistent SQLite state for deep-loop execution history and conver
 
 # deep-loop-runtime Database
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. FILES](#2--files)
-- [3. LIFECYCLE](#3--lifecycle)
-- [4. RELATED RESOURCES](#4--related-resources)
-
 ---
 
 ## 1. OVERVIEW

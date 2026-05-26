@@ -5,16 +5,12 @@ description: "After canonical packet continuity is written, a post-save quality 
 
 # Post-save quality review
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The post-save quality review runs after canonical packet continuity is written (Step 10.5 in the save workflow) and before indexing starts (Step 11). It compares the saved frontmatter and continuity metadata against the original JSON payload to detect propagation failures and field-level quality issues.
 
 This is a verification step that catches cases where the rendering pipeline silently dropped or degraded caller-supplied fields — generic titles, path-fragment trigger phrases, missing decisions, wrong contextType — before those problems become permanent in the index. Think of it as a proof-reader who checks the printed form against the original application to make sure nothing was lost in transcription.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 The post-save quality review runs as Step 10.5 in the save workflow, between file write and indexing. It is always active.
@@ -36,9 +32,6 @@ Each finding is emitted with a severity level:
 
 The review output is machine-readable so callers and downstream quality monitors can surface actionable per-field failures without parsing prose.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -91,11 +84,7 @@ The review output is machine-readable so callers and downstream quality monitors
 | `scripts/tests/post-save-review.vitest.ts` | Severity classification, detection checks, machine-readable output shape, score-penalty computation |
 | `scripts/tests/workflow-e2e.vitest.ts` | End-to-end coverage of Step 10.5 placement within the save workflow |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 - Group: Memory Quality And Indexing
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `13--memory-quality-and-indexing/19-post-save-quality-review.md`
-<!-- /ANCHOR:source-metadata -->

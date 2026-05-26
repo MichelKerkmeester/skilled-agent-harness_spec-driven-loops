@@ -5,14 +5,6 @@ description: "CLI entry points for deep-loop runtime operations: convergence det
 
 # deep-loop-runtime Scripts
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. SCRIPTS](#2--scripts)
-- [3. INTERNAL LIBRARY](#3--internal-library)
-- [4. USAGE](#4--usage)
-- [5. RELATED RESOURCES](#5--related-resources)
-
 ---
 
 ## 1. OVERVIEW

@@ -13,20 +13,6 @@ This document combines the current feature inventory for the `deep-loop-runtime`
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. EXECUTOR](#2--executor)
-- [3. PROMPT RENDERING](#3--prompt-rendering)
-- [4. VALIDATION](#4--validation)
-- [5. STATE SAFETY](#5--state-safety)
-- [6. SCORING](#6--scoring)
-- [7. COVERAGE GRAPH](#7--coverage-graph)
-- [8. SCRIPT ENTRY POINTS](#8--script-entry-points)
-- [9. COUNCIL](#9--council)
-
----
-
 ## 1. OVERVIEW
 
 Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 22 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
@@ -96,8 +82,6 @@ See [`01--executor/03-fallback-router.md`](01--executor/03-fallback-router.md) f
 
 ---
 
----
-
 ## 3. PROMPT RENDERING
 
 This entry covers prompt-pack template rendering and placeholder validation before iteration dispatch.
@@ -118,8 +102,6 @@ See [`02--prompt-rendering/01-prompt-pack.md`](02--prompt-rendering/01-prompt-pa
 
 ---
 
----
-
 ## 4. VALIDATION
 
 This entry covers post-dispatch artifact validation, optional verification confidence, and review-depth advisory enforcement.
@@ -137,8 +119,6 @@ Iteration markdown, JSONL, delta validation, review-depth v2 enforcement, and ve
 #### Source Files
 
 See [`03--validation/01-post-dispatch-validate.md`](03--validation/01-post-dispatch-validate.md) for full implementation and validation file listings.
-
----
 
 ---
 
@@ -210,8 +190,6 @@ See [`04--state-safety/04-permissions-gate.md`](04--state-safety/04-permissions-
 
 ---
 
----
-
 ## 6. SCORING
 
 This entry covers the compact Bayesian scoring primitive used by runtime routing decisions.
@@ -229,8 +207,6 @@ Smoothed success scoring and demotion threshold checks.
 #### Source Files
 
 See [`05--scoring/01-bayesian-scorer.md`](05--scoring/01-bayesian-scorer.md) for full implementation and validation file listings.
-
----
 
 ---
 
@@ -283,8 +259,6 @@ Node degree/depth, research signals, review signals, snapshots, and momentum.
 #### Source Files
 
 See [`06--coverage-graph/03-coverage-graph-signals.md`](06--coverage-graph/03-coverage-graph-signals.md) for full implementation and validation file listings.
-
----
 
 ---
 
@@ -419,4 +393,3 @@ Creates and validates the ADR-002 session->topic->round state shape, including s
 See [`08--council/05-session-state-hierarchy.md`](08--council/05-session-state-hierarchy.md) for full implementation and validation file listings.
 
 ---
-

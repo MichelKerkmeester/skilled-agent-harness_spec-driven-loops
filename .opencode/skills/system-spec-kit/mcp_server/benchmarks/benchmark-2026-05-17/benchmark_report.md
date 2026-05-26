@@ -19,25 +19,6 @@ contextType: "implementation"
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW & HEADLINE](#1--overview--headline)
-- [2. AGGREGATE RESULTS](#2--aggregate-results)
-- [3. METHODOLOGY](#3--methodology)
-- [4. PER-CANDIDATE PROFILES](#4--per-candidate-profiles)
-- [5. PROCESS NOTES](#5--process-notes)
-- [6. FINDINGS](#6--findings)
-- [7. CAVEATS](#7--caveats)
-- [8. RECOMMENDATIONS](#8--recommendations)
-- [9. REPRODUCIBILITY](#9--reproducibility)
-- [10. RELATED RESOURCES](#10--related-resources)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview-headline -->
 ## 1. OVERVIEW & HEADLINE
 
 This is the skill-local curated record of the 6-candidate text-embedder bake-off run for `mk-spec-memory` on May 17, 2026. The authoritative audit trail lives in the spec packet (see [`SOURCE.md`](./SOURCE.md) and Section 10). This report exists so a future operator inside the MCP code can answer "which embedder won and why" without leaving the skill.
@@ -69,11 +50,8 @@ The retrieval-rescue layer (sibling/backfill rescue plus trigger-lane re-weighti
 - Sections 7 through 9 cover honest limits, what to apply now, and how to replay.
 - Section 10 links the spec packet, the sibling code-side bake-off, and the tracking sub-phase.
 
-<!-- /ANCHOR:overview-headline -->
-
 ---
 
-<!-- ANCHOR:aggregate-results -->
 ## 2. AGGREGATE RESULTS
 
 One row per candidate. Latency is end-to-end `memory_search` round-trip with the rescue layer enabled, matching production. `cat-24/409 top-3` is the gate metric (PASS at >= 8/10).
@@ -89,11 +67,8 @@ One row per candidate. Latency is end-to-end `memory_search` round-trip with the
 
 Raw aggregate data lives in [`results.csv`](./results.csv). Per-probe rows for the final three candidates live in [`per-probe-with-rescue.jsonl`](./per-probe-with-rescue.jsonl).
 
-<!-- /ANCHOR:aggregate-results -->
-
 ---
 
-<!-- ANCHOR:methodology -->
 ## 3. METHODOLOGY
 
 ### Fixture
@@ -132,11 +107,8 @@ The single-shot 10-query fixture is the headline measurement. The 30-scenario st
 - ollama for the `bge-base-en-v1.5` baseline.
 - `mk-spec-memory` MCP server (TypeScript and Node). This is a completely different stack from the code-side bake-off (Python and `sentence-transformers`). Do not cross-reference latency or recall numbers across the two stacks.
 
-<!-- /ANCHOR:methodology -->
-
 ---
 
-<!-- ANCHOR:per-candidate-profiles -->
 ## 4. PER-CANDIDATE PROFILES
 
 ### 4.1 `jinaai/jina-embeddings-v3` — production winner
@@ -225,11 +197,8 @@ The single-shot 10-query fixture is the headline measurement. The 30-scenario st
 
 Live runtime measurements (RAM, Metal residency, raw inference latency) for the final three are in [`runtime-measurements.md`](./runtime-measurements.md).
 
-<!-- /ANCHOR:per-candidate-profiles -->
-
 ---
 
-<!-- ANCHOR:process-notes -->
 ## 5. PROCESS NOTES
 
 The elimination journey was not a single sweep. It tracked through twelve ADRs across the day and pivoted once from "swap dense embedders" to "add a retrieval-rescue layer." This section condenses the path.
@@ -265,11 +234,8 @@ The elimination journey was not a single sweep. It tracked through twelve ADRs a
 - **Fixture surgery** made repeat measurement reliable. The previous random sampler hid both improvements and regressions.
 - **Sibling and backfill rescue** is the closure path. It is also stack-cheap to disable through `SPECKIT_RERANK_LAYER=false`.
 
-<!-- /ANCHOR:process-notes -->
-
 ---
 
-<!-- ANCHOR:findings -->
 ## 6. FINDINGS
 
 ### Finding 1 — The retrieval-rescue layer is the load-bearing piece
@@ -304,11 +270,8 @@ bge-m3 was measured on its dense lane only because `mk-spec-memory` is dense-onl
 
 cat-24/402 (synonymy) and cat-24/408 (compound concept) did not close under any candidate, with or without rescue. These are not gate scenarios for this bake-off but they are open work. The next retrieval-quality arc should target 402 and 408 directly, not another dense swap.
 
-<!-- /ANCHOR:findings -->
-
 ---
 
-<!-- ANCHOR:caveats -->
 ## 7. CAVEATS
 
 - **Single fixture closure.** Only cat-24/409 was closed in this bake-off. 402 and 408 remained FAIL across every candidate. Treat 9/10 as a strong cat-24/409 result, not as a general "retrieval is solved" claim.
@@ -319,11 +282,8 @@ cat-24/402 (synonymy) and cat-24/408 (compound concept) did not close under any 
 - **Per-probe row reuse for nomic.** The 8/10 nomic-with-rescue figure cited in Section 2 is a D-RETRY measurement reused from the ADR-011 sweep, not a fresh 10-row rerun. A one-row post-restore sanity check missed expected `4460` in top-3 with rerank timing still present. The row is preserved as historical baseline evidence rather than as a fresh measurement.
 - **nomic prefix discipline.** `nomic-embed-text-v1.5` requires `search_query: ` and `search_document: ` prefix tokens. The manifest in the registry already declares them. Any future swap path must preserve them.
 
-<!-- /ANCHOR:caveats -->
-
 ---
 
-<!-- ANCHOR:recommendations -->
 ## 8. RECOMMENDATIONS
 
 ### Tier 1 — apply now
@@ -346,11 +306,8 @@ cat-24/402 (synonymy) and cat-24/408 (compound concept) did not close under any 
 - **Optimize the rescue layer stage-3 cost.** p95 is dominated by rerank time; a 30 to 50% speedup there benefits every candidate.
 - **Survey newer text embedders.** The follow-on sub-phase `016/007/004-newer-text-embedders-survey` is the right home for that work. bge-m3 specifically is not a re-bench candidate without hybrid retrieval first.
 
-<!-- /ANCHOR:recommendations -->
-
 ---
 
-<!-- ANCHOR:reproducibility -->
 ## 9. REPRODUCIBILITY
 
 The artifacts in this folder support exact replay of the headline numbers.
@@ -413,11 +370,8 @@ SPECKIT_RERANK_LAYER=false ...
 unset SPECKIT_RERANK_LAYER
 ```
 
-<!-- /ANCHOR:reproducibility -->
-
 ---
 
-<!-- ANCHOR:related-resources -->
 ## 10. RELATED RESOURCES
 
 ### Skill-local files
@@ -447,5 +401,3 @@ unset SPECKIT_RERANK_LAYER
 | `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-18/` | Code-side bake-off (different stack, different fixture, different conclusions). Do not cross-reference numbers. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format/` | Tracking sub-phase for this skill-local benchmarks format convention. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/007-ollama-and-bge-promotion-arc/004-newer-text-embedders-survey/` | Follow-on sub-phase rescoped to survey newer text embedders rather than re-bench bge-m3. |
-
-<!-- /ANCHOR:related-resources -->

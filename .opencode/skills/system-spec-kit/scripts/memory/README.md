@@ -11,24 +11,8 @@ trigger_phrases:
 
 # Memory Scripts: Context Save and Index Maintenance CLIs
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scripts/memory/` contains the source TypeScript and Node CLI entrypoints for Spec Kit memory save, ranking, metadata, quality, and index maintenance tasks. These files compile to `scripts/dist/memory/` for runtime use.
@@ -40,11 +24,8 @@ Current state:
 - Quality scripts parse markdown structure, rank candidate memories, and check rendered memory output before indexing.
 - One-shot migration scripts remain in this folder only when they still need a documented invocation path.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -74,11 +55,8 @@ compiled CLIs ───▶ scripts/dist/memory/*.js
 MCP tools may invoke compiled CLIs or equivalent library workflows
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -116,11 +94,8 @@ scripts/memory/ → prompt text or agent-only session state without structured J
 maintenance CLIs → silent mutation without an explicit command mode or target
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -140,11 +115,8 @@ scripts/memory/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -162,11 +134,8 @@ scripts/memory/
 | `migrate-trigger-phrase-residual.ts` | Cleans residual trigger phrase metadata that no longer matches the current schema. |
 | `fix-memory-h1.mjs` | Repairs H1 formatting in older generated memory artifacts. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -213,11 +182,8 @@ Canonical save flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 Run compiled commands from the repository root after the TypeScript build has produced `scripts/dist/memory/`.
@@ -235,11 +201,8 @@ Run compiled commands from the repository root after the TypeScript build has pr
 | `node .opencode/skills/system-spec-kit/scripts/dist/memory/cleanup-index-scope-violations.js` | CLI | Remove out-of-scope memory index records. |
 | `node .opencode/skills/system-spec-kit/scripts/dist/memory/rebuild-auto-entities.js` | CLI | Rebuild auto-entity metadata. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root.
@@ -258,16 +221,11 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --
 node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json
 ```
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [`../README.md`](../README.md)
 - [`../../mcp_server/scripts/README.md`](../../mcp_server/scripts/README.md)
 - [`../../mcp_server/database/README.md`](../../mcp_server/database/README.md)
 - [`../core/README.md`](../core/README.md)
-
-<!-- /ANCHOR:related -->

@@ -15,20 +15,6 @@ Same 50-probe fixture, 3 runs × 50 probes, same harness as phase 004 and the 20
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. AGGREGATE RESULTS](#2--aggregate-results)
-- [3. METHODOLOGY](#3--methodology)
-- [4. PHASE A SMOKE — MPS WORKS ON SMALL BATCHES](#4--phase-a-smoke--mps-works-on-small-batches)
-- [5. PHASE C BENCH — MPS OOMS ON REAL BATCHES](#5--phase-c-bench--mps-ooms-on-real-batches)
-- [6. FINDINGS](#6--findings)
-- [7. CAVEATS](#7--caveats)
-- [8. RECOMMENDATIONS](#8--recommendations)
-- [9. REPRODUCIBILITY](#9--reproducibility)
-
----
-
 ## 1. OVERVIEW
 
 Today's question: does Qwen3-Reranker-0.6B on Apple Silicon MPS clear spec-memory's promotion gates (≥+3 hits AND p95 Δ ≤ +500 ms AND ≥95 percent sidecar reach)?

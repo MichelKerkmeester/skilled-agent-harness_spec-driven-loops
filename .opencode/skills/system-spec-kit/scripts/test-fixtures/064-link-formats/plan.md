@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -8,4 +7,3 @@ This fixture validates that all four markdown link formats are extracted by `che
 ## Architecture
 
 The fixture intentionally references existing files in this folder via every supported format so missing-file detection stays clean.
-<!-- /ANCHOR:implementation-plan -->

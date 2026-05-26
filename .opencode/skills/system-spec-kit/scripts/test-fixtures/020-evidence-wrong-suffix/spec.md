@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Wrong Evidence Suffix
@@ -26,4 +25,3 @@ Tests wrong suffixes generate warnings.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

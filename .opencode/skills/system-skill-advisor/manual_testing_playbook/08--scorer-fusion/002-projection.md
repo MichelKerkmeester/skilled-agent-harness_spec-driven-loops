@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges` into the scoring shape required by lanes such as `graph_causal` and that the projection path never leaks prompt text into node or edge metadata.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Read-only inspection against the live repo or disposable copy.
@@ -32,9 +28,6 @@ Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred_decisions.md` §F34 for rationale.
@@ -66,9 +59,6 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttri
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [SC-001](./001-five-lane-fusion.md), fusion weights.
@@ -78,14 +68,9 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttri
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Scorer Fusion
 - Playbook ID: SC-002
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 08--scorer-fusion/002-projection.md
-
-<!-- /ANCHOR:5-source-metadata -->

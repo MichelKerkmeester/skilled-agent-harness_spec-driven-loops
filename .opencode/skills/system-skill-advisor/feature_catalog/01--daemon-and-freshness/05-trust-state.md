@@ -12,14 +12,10 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Give every consumer (native MCP tools, CLI hooks, plugin bridge, Python shim) a single shared vocabulary for describing whether advisor state is current, aged, missing or unreadable, without ever blocking the reader.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `lib/freshness/trust-state.ts` classifies state into `live`, `stale`, `absent` or `unavailable`. The semantics are:
@@ -33,9 +29,6 @@ Give every consumer (native MCP tools, CLI hooks, plugin bridge, Python shim) a 
 
 All consumers fail open: a `stale`, `absent` or `unavailable` state never crashes. The caller gets an explicit state and can decide whether to proceed.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -51,9 +44,7 @@ All consumers fail open: a `stale`, `absent` or `unavailable` state never crashe
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-freshness.vitest.ts` | Automated test | state transitions |
 | `Playbook scenarios [NC-002](../../manual_testing_playbook/01--native-mcp-tools/002-native-status-transitions.md) and [OP-001..OP-003](../../manual_testing_playbook/04--operator-h5/).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Daemon and freshness
@@ -65,4 +56,3 @@ Related references:
 - [04-generation.md](./04-generation.md).
 - [06-rebuild-from-source.md](./06-rebuild-from-source.md).
 - [07-cache-invalidation.md](./07-cache-invalidation.md).
-<!-- /ANCHOR:source-metadata -->

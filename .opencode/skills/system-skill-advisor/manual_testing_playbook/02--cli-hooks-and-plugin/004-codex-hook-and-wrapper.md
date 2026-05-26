@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate native Codex `SessionStart` startup-context injection, native `UserPromptSubmit` advisor brief injection, stdin-over-argv parsing and the wrapper fallback used only when native hooks are unavailable.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - MCP server build is current.
@@ -35,9 +31,6 @@ Validate native Codex `SessionStart` startup-context injection, native `UserProm
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 1. Build:
@@ -92,9 +85,6 @@ codex features list | rg 'codex_hooks'
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts`
@@ -103,14 +93,9 @@ codex features list | rg 'codex_hooks'
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: CLI Hooks And Plugin
 - Playbook ID: CL-004
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 02--cli-hooks-and-plugin/004-codex-hook-and-wrapper.md
-
-<!-- /ANCHOR:5-source-metadata -->

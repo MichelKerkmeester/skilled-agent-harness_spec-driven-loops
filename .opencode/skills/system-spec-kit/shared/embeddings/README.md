@@ -9,23 +9,8 @@ trigger_phrases:
 
 # Embeddings
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. KEY FILES](#3--key-files)
-- [4. STABLE API](#4--stable-api)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `embeddings/` owns provider selection and profile naming for embedding generation. It chooses an embedding provider from configuration, validates supported dimensions and returns provider instances that implement the shared `IEmbeddingProvider` contract.
@@ -37,11 +22,8 @@ Current state:
 - Profiles derive provider, model, dimension, optional base URL and database filename.
 - Provider modules isolate external API and local model behavior from the factory.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -76,11 +58,8 @@ providers/* -> database adapters
 profile.ts -> providers/*
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -93,11 +72,8 @@ profile.ts -> providers/*
 | `providers/voyage.ts` | Implements Voyage embedding requests, model dimensions and base URL resolution. |
 | `providers/README.md` | Documents provider-specific contracts and behavior. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:stable-api -->
 ## 4. STABLE API
 
 | Export | File | Contract |
@@ -119,11 +95,8 @@ profile.ts -> providers/*
 
 Keep this API provider-neutral. Provider-specific settings belong in `providers/*` or environment variables read by `factory.ts`.
 
-<!-- /ANCHOR:stable-api -->
-
 ---
 
-<!-- ANCHOR:boundaries -->
 ## 5. BOUNDARIES
 
 | Boundary | Rule |
@@ -144,11 +117,8 @@ caller
   -> caller stores or searches with the vector
 ```
 
-<!-- /ANCHOR:boundaries -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -159,11 +129,8 @@ caller
 | `getProviderInfo` | Function | Report active provider metadata. |
 | `EmbeddingProfile` | Class | Derive display strings, JSON data and database paths. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root:
@@ -174,16 +141,11 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Expected result: the validator exits with code `0`.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../README.md`](../README.md)
 - [`../types.ts`](../types.ts)
 - [`../algorithms/README.md`](../algorithms/README.md)
 - [`providers/README.md`](providers/README.md)
-
-<!-- /ANCHOR:related -->

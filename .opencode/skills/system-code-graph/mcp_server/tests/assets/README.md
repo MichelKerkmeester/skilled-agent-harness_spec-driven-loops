@@ -13,21 +13,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES AND FLOW](#4--boundaries-and-flow)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED](#6--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `tests/assets/` stores static data fixtures that need to be loaded from disk by tests. The files here are intentionally small and deterministic so verification coverage can exercise file loading without relying on the live code graph database.
@@ -38,11 +23,8 @@ Current state:
 - The asset schema mirrors the verification battery contract used by `gold-query-verifier.ts`.
 - Tests should treat these files as read-only fixtures.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -51,22 +33,16 @@ assets/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Purpose |
 |---|---|
 | `code-graph-gold-queries.json` | Provides a schema-versioned verification battery with pass policy and expected symbols. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -75,11 +51,8 @@ assets/
 | Scope | Keep only static fixtures here. Test helper code belongs in `../__fixtures__/` or `../lib/`. |
 | Size | Keep assets small enough to inspect in review. Large generated batteries belong in spec assets or external test data. |
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 5. VALIDATION
 
 Run from the repository root.
@@ -91,11 +64,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py --type readme .open
 
 Expected result: JSON parsing exits `0`, and the README validator reports no blocking errors.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 6. RELATED
 
 | Document | Purpose |
@@ -103,5 +73,3 @@ Expected result: JSON parsing exits `0`, and the README validator reports no blo
 | [../README.md](../README.md) | Parent test-suite overview. |
 | [../../lib/README.md](../../lib/README.md) | Library modules that consume verification fixtures. |
 | [../../lib/gold-query-verifier.ts](../../lib/gold-query-verifier.ts) | Verification module that reads gold-query batteries. |
-
-<!-- /ANCHOR:related -->

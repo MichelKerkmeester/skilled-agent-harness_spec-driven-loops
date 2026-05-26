@@ -9,15 +9,6 @@ trigger_phrases:
 
 # Graph Scripts: Metadata Backfill
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. ENTRYPOINTS](#4--entrypoints)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. RELATED](#6--related)
-
 ## 1. OVERVIEW
 
 `scripts/graph/` contains the CLI entrypoint that refreshes `graph-metadata.json` files for spec folders. It discovers packet folders, derives current metadata, and reports low-confidence fields that may need review.

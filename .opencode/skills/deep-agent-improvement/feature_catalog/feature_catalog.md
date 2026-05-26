@@ -9,15 +9,6 @@ This document combines the current feature inventory for the `deep-agent-improve
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. EVALUATION LOOP](#2--evaluation-loop)
-- [3. INTEGRATION SCANNING](#3--integration-scanning)
-- [4. SCORING SYSTEM](#4--scoring-system)
-
----
-
 ## 1. OVERVIEW
 
 Use this catalog as the canonical inventory for the live `deep-agent-improvement` feature surface. The numbered sections below group the skill by runtime responsibility so readers can move from a top-level summary into per-feature reference files without losing the current code and operator-contract context behind each claim.

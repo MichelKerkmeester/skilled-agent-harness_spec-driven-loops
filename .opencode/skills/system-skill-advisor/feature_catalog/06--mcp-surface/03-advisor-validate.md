@@ -12,14 +12,10 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Drive release-readiness decisions from real measurements. Consolidate corpus, holdout, parity, safety and latency slices behind one tool call, while also exposing the threshold contract and prompt-safe telemetry summaries operators need to interpret the run.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `handlers/advisor-validate.ts` runs the bundled validation slices and returns the landed public contract:
@@ -60,9 +56,6 @@ Telemetry is published as prompt-safe rollups rather than raw prompt content:
 
 `telemetry.outcomes.totals` reports durable outcome counts and `recordedThisRun` reflects any `outcomeEvents` supplied on the validating call.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -79,9 +72,7 @@ Telemetry is published as prompt-safe rollups rather than raw prompt content:
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-validate.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/parity/` | Automated test | Python/TS parity harness |
 | `Playbook scenario [NC-003](../../manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: MCP surface
@@ -92,4 +83,3 @@ Related references:
 
 - [01-advisor-recommend.md](./01-advisor-recommend.md).
 - [`04--scorer-fusion/05-ablation.md`](../04--scorer-fusion/05-ablation.md).
-<!-- /ANCHOR:source-metadata -->

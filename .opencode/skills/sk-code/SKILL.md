@@ -64,8 +64,6 @@ Authoring-time load is the contract documented in `system-spec-kit/SKILL.md §16
 
 ---
 
-<!-- /ANCHOR:when-to-use -->
-<!-- ANCHOR:smart-routing -->
 ## 2. SMART ROUTING
 
 ### Surface Detection (FIRST)
@@ -197,8 +195,6 @@ Top intent always loads. A close second intent also loads when scores are within
 ### Smart Router Pseudocode
 
 Smart Router pseudocode (full implementation): see [`references/smart_routing.md`](./references/smart_routing.md) for the authoritative `INTENT_MODEL`, `RESOURCE_MAP`, load tiers, and surface→intent routing logic.
-
-<!-- /ANCHOR:smart-routing -->
 
 ---
 

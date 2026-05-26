@@ -9,13 +9,10 @@ importance_tier: "important"
 
 # deep_loop_graph_query
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `deep_loop_graph_query` is the read side of the deep-loop coverage graph. It inspects research/review graph state but does not run from command YAML automatically.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -29,9 +26,7 @@ manual. The tool runs only when an operator calls it explicitly.
 ### Caveats / Fallback
 
 Requires `specFolder`, `loopType` and `sessionId`. Reads are session-scoped.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -48,9 +43,6 @@ Requires `specFolder`, `loopType` and `sessionId`. Reads are session-scoped.
 |---|---|---|
 | `../../manual_testing_playbook/05--coverage-graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Coverage graph
@@ -61,4 +53,3 @@ Related references:
 
 - [02-deep-loop-graph-status.md](./02-deep-loop-graph-status.md)
 - [03-deep-loop-graph-upsert.md](./03-deep-loop-graph-upsert.md)
-<!-- /ANCHOR:source-metadata -->

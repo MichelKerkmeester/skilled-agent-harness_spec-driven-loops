@@ -5,12 +5,6 @@ description: "Domain logic library consumed by scripts and tests across three su
 
 # deep-loop-runtime Library
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. LIBRARY DOMAINS](#2--library-domains)
-- [3. RELATED RESOURCES](#3--related-resources)
-
 ---
 
 ## 1. OVERVIEW

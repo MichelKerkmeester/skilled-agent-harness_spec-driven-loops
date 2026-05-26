@@ -11,24 +11,8 @@ trigger_phrases:
 
 > Standalone MCP runtime for skill recommendation routing, freshness tracking and skill graph relationship queries.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `mcp_server/` owns the standalone `mk_skill_advisor` MCP server. It exposes 9 public tools across two surfaces: advisor routing (`advisor_*`) and skill graph queries (`skill_graph_*`).
@@ -44,11 +28,8 @@ Current state:
 
 This package is local-first. It reads repository-local skill metadata, writes package-local SQLite state and communicates with MCP clients via stdio transport.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -79,11 +60,8 @@ handlers/ ───▶ schemas/ for contract validation
 lib/ ───▶ database/skill-graph.sqlite through lib/skill-graph/ adapters
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -122,11 +100,8 @@ database/ → runtime modules
 schemas/ → handlers/ (schemas are contracts, not orchestration)
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -220,11 +195,8 @@ mcp_server/
 `-- vitest.config.ts
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -239,11 +211,8 @@ mcp_server/
 | `lib/daemon/lifecycle.ts` | Advisor daemon startup, shutdown and lifecycle orchestration. |
 | `database/skill-graph.sqlite` | Local SQLite database for skill metadata and relationships. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -294,11 +263,8 @@ Tool invocation flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 The server registers 9 public tools (4 advisor + 5 skill_graph) defined in `tools/index.ts:37-43` and `tools/skill-graph-tools.ts:22,35,55,61,67`. The MCP server identifier is `mk_skill_advisor`.
@@ -318,11 +284,8 @@ The server registers 9 public tools (4 advisor + 5 skill_graph) defined in `tool
 | `npm run build` | Command | Builds TypeScript into `dist/`. |
 | `npm test` | Command | Runs Vitest and Python test coverage. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from `mcp_server/` unless noted.
@@ -341,11 +304,8 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/sy
 
 Expected result: build and tests exit 0, README validation reports no blocking issues and structure extraction returns a README document profile.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [Skill README](../README.md)
@@ -357,5 +317,3 @@ Expected result: build and tests exit 0, README validation reports no blocking i
 - [Database](database/README.md)
 - [Tests](tests/README.md)
 - [Bench](bench/README.md)
-
-<!-- /ANCHOR:related -->

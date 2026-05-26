@@ -13,7 +13,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -23,11 +22,9 @@ contextType: "general"
 | **Status** | Complete |
 | **Created** | 2026-03-16 |
 | **Branch** | `codex/template-fixture` |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -35,11 +32,9 @@ This fixture intentionally removes a required H2 section.
 
 ### Purpose
 `TEMPLATE_HEADERS` should fail when a required header is missing.
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -53,11 +48,9 @@ This fixture intentionally removes a required H2 section.
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `spec.md` | Modify | Remove a required header |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -65,22 +58,17 @@ This fixture intentionally removes a required H2 section.
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Missing header fails | `validate.sh` returns exit code 2 |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Missing section goes unnoticed | High | Fail on required header drift |
-<!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - None.
-<!-- /ANCHOR:questions -->

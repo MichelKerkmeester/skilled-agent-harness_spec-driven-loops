@@ -14,7 +14,6 @@ Reference for all 9 public and 1 internal system-skill-advisor MCP tool IDs with
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -37,12 +36,8 @@ The standalone server namespace may frame calls, but the per-tool ids are the co
 - `mcp_server/tools/skill-graph-tools.ts`
 - [`legacy_tool_bridge.md`](./legacy_tool_bridge.md)
 
-
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-advisor-tools -->
 ## 2. ADVISOR TOOLS
 
 | Tool | Purpose | Key Input | Output Shape Signal |
@@ -54,9 +49,6 @@ The standalone server namespace may frame calls, but the per-tool ids are the co
 
 ---
 
-<!-- /ANCHOR:2-advisor-tools -->
-
-<!-- ANCHOR:3-skill-graph-tools -->
 ## 3. SKILL GRAPH TOOLS
 
 | Tool | Purpose | Key Input | Output Shape Signal |
@@ -69,9 +61,6 @@ The standalone server namespace may frame calls, but the per-tool ids are the co
 
 ---
 
-<!-- /ANCHOR:3-skill-graph-tools -->
-
-<!-- ANCHOR:4-internal-tools -->
 ## 4. INTERNAL TOOLS
 
 | Tool | Purpose | Access Gate |
@@ -82,9 +71,6 @@ The tool ships in the skill-graph tool set and appears in Section 3 for complete
 
 ---
 
-<!-- /ANCHOR:4-internal-tools -->
-
-<!-- ANCHOR:5-mcp-namespace-convention -->
 ## 5. MCP NAMESPACE CONVENTION
 
 All tools follow the pattern `mcp__mk_skill_advisor__<tool_name>` where `<tool_name>` matches the descriptor's `name` field in snake_case.
@@ -99,9 +85,6 @@ Stable IDs survive migrations. The MCP server namespace may rename across packet
 
 ---
 
-<!-- /ANCHOR:5-mcp-namespace-convention -->
-
-<!-- ANCHOR:6-schema-index -->
 ## 6. SCHEMA INDEX
 
 | Tool | Input Schema | Output Shape |
@@ -117,5 +100,3 @@ Stable IDs survive migrations. The MCP server namespace may rename across packet
 | `skill_graph_propagate_enhances` | `PropagateEnhancesArgs` (inline interface) | `HandlerResponse` envelope |
 
 Advisor tools use Zod schemas under `mcp_server/schemas/`. Skill-graph tools use inline TypeScript interfaces and wrap responses in the shared `HandlerResponse` envelope.
-
-<!-- /ANCHOR:6-schema-index -->

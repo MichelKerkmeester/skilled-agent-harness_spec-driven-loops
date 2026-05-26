@@ -1,4 +1,3 @@
-<!-- ANCHOR:checklist -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
@@ -18,4 +17,3 @@
 
 - [ ] Nice-to-have item one
 - [ ] [P2] Optional feature with inline tag
-<!-- /ANCHOR:checklist -->

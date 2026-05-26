@@ -12,20 +12,8 @@ trigger_phrases:
 
 > Template-only directory that provides standardized prompt payloads for the system-spec-kit matrix runner, enabling systematic cross-CLI feature validation across 14 key features and 4 CLI executors.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. KEY FILES](#2--key-files)
-- [3. ENTRYPOINTS](#3--entrypoints)
-- [4. VALIDATION](#4--validation)
-- [5. RELATED](#5--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `matrix_runners/templates/` owns the 14 prompt template files that define standardized test payloads for the matrix runner system. Each template corresponds to a feature cell (F1 through F14) and is loaded by `matrix-manifest.json` and executed by `run-matrix.ts` through executor-specific adapters.
@@ -39,11 +27,8 @@ Current state:
 - Features covered: spec folder workflow (F1), skill advisor (F2), memory search (F3), memory context (F4), code graph query (F5), code graph scan (F6), causal graph (F7), Code Graph (F8), continuity (F9), deep loop (F10), hooks (F11), validators (F12), stress cycle (F13), search W3-W13 (F14).
 - Each template is self-contained and loaded independently by the matrix runner.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 2. KEY FILES
 
 | File | Responsibility |
@@ -63,22 +48,16 @@ Current state:
 | `F13-stress-cycle.md` | Prompt template for testing stress-test cycle patterns. |
 | `F14-search-w3-w13.md` | Prompt template for testing search W3-W13 features. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 3. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `F1-spec-folder.md` through `F14-search-w3-w13.md` | Template | Standardized prompt payloads loaded by `matrix-manifest.json` and executed by `run-matrix.ts` for cross-CLI feature validation. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 4. VALIDATION
 
 Run from the repository root.
@@ -89,16 +68,11 @@ cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/matrix-ad
 
 Expected result: exit code 0, all 8 tests pass.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 5. RELATED
 
 - [Parent: Matrix Runners](../README.md)
 - [Matrix Manifest](../matrix-manifest.json)
 - [Skill README](../../README.md)
 - [Tests: tests/](../../tests/README.md)
-
-<!-- /ANCHOR:related -->

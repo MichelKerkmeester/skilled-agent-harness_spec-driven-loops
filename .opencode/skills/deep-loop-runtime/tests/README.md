@@ -5,14 +5,6 @@ description: "Test harnesses for deep-loop-runtime primitives. Grouped by librar
 
 # deep-loop-runtime Tests
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. TEST SUITES](#2--test-suites)
-- [3. TEST HELPERS](#3--test-helpers)
-- [4. HOW TO RUN](#4--how-to-run)
-- [5. RELATED RESOURCES](#5--related-resources)
-
 ---
 
 ## 1. OVERVIEW

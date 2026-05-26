@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Level Zero
@@ -26,4 +25,3 @@ Tests invalid level 0 falls back to inferred level.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

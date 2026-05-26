@@ -160,8 +160,7 @@ quality_standards:
   template_first: required
   frontmatter_required: true
   root_requirements:
-    - unnumbered TABLE OF CONTENTS
-    - numbered all-caps H2 sections
+    - numbered all-caps H2 sections (no Table of Contents)
     - section 1 is OVERVIEW
   feature_file_requirements:
     - frontmatter

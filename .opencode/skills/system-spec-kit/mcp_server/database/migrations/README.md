@@ -14,44 +14,22 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. STATUS](#2--status)
-- [3. STRUCTURE](#3--structure)
-- [4. CURRENT SCHEMA EVOLUTION MODEL](#4--current-schema-evolution-model)
-- [5. ACTIVATION CRITERION](#5--activation-criterion)
-- [6. NAMING CONVENTION](#6--naming-convention)
-- [7. RELATED RESOURCES](#7--related-resources)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 This folder holds future per-server schema migration scripts that target `context-index.sqlite` (the canonical metadata database) and the per-embedder vector shards under `../vectors/`. It is reserved infrastructure. The folder exists with a `.gitkeep` placeholder so that the path is committed and discoverable before any migration scripts land.
 
 Today's schema-evolution model is lazy and idempotent. `CREATE TABLE IF NOT EXISTS` statements live inside the runtime source and run on attach. Migration scripts will only land here when that model is no longer sufficient. See [Section 4](#4-current-schema-evolution-model) and [Section 5](#5-activation-criterion).
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:status -->
 ## 2. STATUS
 
 **Reserved Infrastructure.** As of writing, no MCP server code reads from this directory and no migration runner exists. A grep of the source tree (`mcp_server/lib/`, `mcp_server/handlers/`, `mcp_server/scripts/`) returns no references to `database/migrations` or any `MIGRATIONS_DIR` constant.
 
 The folder is committed empty (only `.gitkeep`) so that future authored migrations have a stable home and so this README can document the contract before the first migration script lands.
 
-<!-- /ANCHOR:status -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 3. STRUCTURE
 
 ```text
@@ -71,11 +49,8 @@ migrations/
 `-- ...
 ```
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:current-schema-evolution-model -->
 ## 4. CURRENT SCHEMA EVOLUTION MODEL
 
 Today the MCP daemon evolves schema lazily. On daemon startup or shard attach, runtime code issues `CREATE TABLE IF NOT EXISTS` statements that bring missing tables into existence without touching existing data. The current call sites are:
@@ -98,11 +73,8 @@ They do not handle:
 
 When any of those cases lands, an authored migration script belongs in this folder.
 
-<!-- /ANCHOR:current-schema-evolution-model -->
-
 ---
 
-<!-- ANCHOR:activation-criterion -->
 ## 5. ACTIVATION CRITERION
 
 A migration script lands here when at least one of the following is true:
@@ -121,11 +93,8 @@ When the first migration lands, the script author also lands the runner. The run
 
 The first authored migration chooses one and documents it in this README.
 
-<!-- /ANCHOR:activation-criterion -->
-
 ---
 
-<!-- ANCHOR:naming-convention -->
 ## 6. NAMING CONVENTION
 
 Authors follow this pattern when the folder activates:
@@ -146,11 +115,8 @@ Worked example:
 
 This name reads as "migration number one, add the provenance column to the `vec_metadata` table". The verb is first. The target table is named. The shape (SQL) signals pure DDL.
 
-<!-- /ANCHOR:naming-convention -->
-
 ---
 
-<!-- ANCHOR:related-resources -->
 ## 7. RELATED RESOURCES
 
 ### Parent Documentation
@@ -177,5 +143,3 @@ These ADRs set the architecture future migrations must preserve. All three live 
 | Canonical vector shard split | [`002-spec-memory-stack/012-canonical-vector-shard-split/spec.md`](../../../../../specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split/spec.md) | One canonical `context-index.sqlite` plus per-profile shards under `vectors/context-vectors__<slug>.sqlite` |
 | ADR-013 (nomic default) | [`002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md`](../../../../../specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md) | Switch production default to `nomic-embed-text-v1.5` (768d, Ollama) |
 | ADR-014 (local-first cascade) | [`002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md`](../../../../../specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/decision-record.md) | Reorder cascade to local-first and align hf-local fallback to nomic |
-
-<!-- /ANCHOR:related-resources -->

@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Implementation Plan
 
@@ -19,4 +18,3 @@ Config file detected (parsing TODO).
 ### Phase 1: Setup
 
 Create fixture with config file.
-<!-- /ANCHOR:implementation-plan -->

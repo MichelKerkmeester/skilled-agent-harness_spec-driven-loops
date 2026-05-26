@@ -17,19 +17,6 @@ Same 50-probe fixture as packets 004 / 007. Same harness. Same MPS sidecar. The 
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. AGGREGATE RESULTS](#2--aggregate-results)
-- [3. METHODOLOGY](#3--methodology)
-- [4. WHY THE CAP DIDN'T HELP](#4--why-the-cap-didnt-help)
-- [5. FINDINGS](#5--findings)
-- [6. CAVEATS](#6--caveats)
-- [7. RECOMMENDATIONS](#7--recommendations)
-- [8. REPRODUCIBILITY](#8--reproducibility)
-
----
-
 ## 1. OVERVIEW
 
 Packet 007 found MPS-Qwen OOMs at spec-memory's default 50-doc batch. Hypothesis: smaller batches should fit the Apple Silicon GPU memory ceiling. This packet adds a `SPECKIT_RERANK_LOCAL_MAX_DOCS` env override at `cross-encoder.ts:478` and re-runs the same 50-probe A/B with the local provider capped at 10 docs per `/rerank` call.

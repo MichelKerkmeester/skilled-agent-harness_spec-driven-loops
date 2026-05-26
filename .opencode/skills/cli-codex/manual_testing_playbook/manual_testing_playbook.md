@@ -29,28 +29,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. CLI INVOCATION (`CX-001..CX-004`)](#7--cli-invocation-cx-001cx-004)
-- [8. SANDBOX MODES (`CX-005..CX-008`)](#8--sandbox-modes-cx-005cx-008)
-- [9. REASONING EFFORT (`CX-009..CX-011`)](#9--reasoning-effort-cx-009cx-011)
-- [10. AGENT ROUTING (`CX-012..CX-015`, `CX-026..CX-027`)](#10--agent-routing-cx-012cx-015-cx-026cx-027)
-- [11. SESSION CONTINUITY (`CX-016..CX-017`)](#11--session-continuity-cx-016cx-017)
-- [12. INTEGRATION PATTERNS (`CX-018..CX-020`)](#12--integration-patterns-cx-018cx-020)
-- [13. PROMPT TEMPLATES (`CX-021..CX-022`)](#13--prompt-templates-cx-021cx-022)
-- [14. BUILT-IN TOOLS (`CX-023..CX-025`)](#14--built-in-tools-cx-023cx-025)
-- [15. CODEX CLOUD (`CX-028`)](#15--codex-cloud-cx-028)
-- [16. AUTOMATED TEST CROSS-REFERENCE](#16--automated-test-cross-reference)
-- [17. FEATURE CATALOG CROSS-REFERENCE INDEX](#17--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 28 deterministic scenarios across 9 categories validating the `cli-codex` skill surface. Each feature keeps its global `CX-NNN` ID and links to a dedicated feature file with the full execution contract.
@@ -505,7 +483,6 @@ Desired user-visible outcome: A citation-backed comparison brief the operator ca
 #### Test Execution
 
 > **Feature File:** [CX-026](04--agent-routing/005-research-profile.md)
-
 
 ## 11. SESSION CONTINUITY (`CX-016..CX-017`)
 

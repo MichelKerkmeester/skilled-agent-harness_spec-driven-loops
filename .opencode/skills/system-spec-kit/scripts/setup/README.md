@@ -11,22 +11,8 @@ trigger_phrases:
 
 > Shell and Node.js utilities for checking spec-folder readiness and local runtime prerequisites.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. KEY FILES](#3--key-files)
-- [4. COMMANDS](#4--commands)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scripts/setup/` contains preflight utilities for Spec Kit workflows. These scripts check whether a target spec folder has the required documents, whether native Node.js modules are loadable, and whether the recorded Node.js runtime has changed.
@@ -37,11 +23,8 @@ Current state:
 - Node.js helpers run from the scripts workspace.
 - Full spec-folder validation delegates to `scripts/spec/validate.sh` when requested.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -65,11 +48,8 @@ Disallowed direction:
 - Setup scripts should not import generated `dist/` modules unless a command explicitly checks built output.
 - Runtime callers should not depend on human-readable output when a machine flag exists.
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -79,11 +59,8 @@ Disallowed direction:
 | `rebuild-native-modules.sh` | Rebuilds native modules after Node.js or dependency changes. |
 | `record-node-version.js` | Records the active Node.js version for rebuild checks. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:commands -->
 ## 4. COMMANDS
 
 Run from the repository root unless noted.
@@ -112,11 +89,8 @@ Expected result: exits zero when native dependencies load in the current Node.js
 
 Expected result: rebuilds native modules for the current Node.js runtime.
 
-<!-- /ANCHOR:commands -->
-
 ---
 
-<!-- ANCHOR:boundaries -->
 ## 5. BOUNDARIES
 
 | Boundary | Rule |
@@ -126,11 +100,8 @@ Expected result: rebuilds native modules for the current Node.js runtime.
 | Validation | `--validate` and `--validate-strict` delegate to the spec validator instead of duplicating its rules. |
 | Dependencies | Native-module checks stay limited to package health and rebuild guidance. |
 
-<!-- /ANCHOR:boundaries -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 6. VALIDATION
 
 Run the README validator after editing this file:
@@ -148,16 +119,11 @@ Run command checks after changing setup scripts:
 
 Expected result: each command exits zero in a configured workspace.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 7. RELATED
 
 - [`../README.md`](../README.md)
 - [`../spec/README.md`](../spec/README.md)
 - [`../rules/README.md`](../rules/README.md)
 - [`../../README.md`](../../README.md)
-
-<!-- /ANCHOR:related -->

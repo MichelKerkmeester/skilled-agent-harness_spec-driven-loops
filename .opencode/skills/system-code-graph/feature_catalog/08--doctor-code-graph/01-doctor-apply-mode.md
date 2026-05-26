@@ -10,13 +10,10 @@ importance_tier: "important"
 
 # Doctor code-graph route policy
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `/doctor code-graph` is a command-owned diagnostic and repair policy surface. The route manifest exposes future apply flags and `mk-code-index` tool grants. The current YAML keeps Phase A diagnostic-only and writes only packet-local scratch reports.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -30,9 +27,7 @@ manual. Code-graph doctor diagnostics are operator-triggered. The current YAML r
 ### Caveats / Fallback
 
 The route manifest is marked `mutates` because it grants apply flags and future repair operations. The current YAML states Phase A is diagnostic-only at `.opencode/commands/doctor/assets/doctor_code-graph.yaml:20-23`.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -51,9 +46,6 @@ The route manifest is marked `mutates` because it grants apply flags and future 
 |---|---|---|
 | `../../manual_testing_playbook/08--doctor-code-graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Doctor code graph
@@ -64,4 +56,3 @@ Related references:
 
 - [../02--manual-scan-verify-status/02-code-graph-verify.md](../02--manual-scan-verify-status/02-code-graph-verify.md)
 - [../../manual_testing_playbook/08--doctor-code-graph/015-doctor-apply-mode-policy.md](../../manual_testing_playbook/08--doctor-code-graph/015-doctor-apply-mode-policy.md)
-<!-- /ANCHOR:source-metadata -->

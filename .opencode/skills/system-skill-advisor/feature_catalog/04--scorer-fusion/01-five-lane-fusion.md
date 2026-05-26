@@ -12,14 +12,10 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Combine evidence from five independent lanes into a single routing score with documented, auditable weights.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 `lib/scorer/fusion.ts` fuses five lanes using the canonical weights below. Each lane runs independently and writes `{ lane, rawScore, weight, weightedScore, shadowOnly }` metadata that the attribution path consumes.
@@ -34,9 +30,6 @@ Combine evidence from five independent lanes into a single routing score with do
 
 Weight configuration is exposed via `advisor_status.laneWeights`.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -58,9 +51,7 @@ Weight configuration is exposed via `advisor_status.laneWeights`.
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | fusion arithmetic and lane weights |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-status.vitest.ts` | Automated test | `laneWeights` exposure |
 | `Playbook scenario [SC-001](../../manual_testing_playbook/08--scorer-fusion/001-five-lane-fusion.md).` | Manual playbook | Source reference |
-<!-- /ANCHOR:source-files -->
 
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Scorer fusion
@@ -71,4 +62,3 @@ Related references:
 
 - [02-projection.md](./02-projection.md).
 - [04-attribution.md](./04-attribution.md).
-<!-- /ANCHOR:source-metadata -->

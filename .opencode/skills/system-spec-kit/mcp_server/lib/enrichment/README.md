@@ -8,23 +8,8 @@ trigger_phrases:
 
 # Enrichment: Passive Response Hints
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/enrichment/` owns passive response enrichment for MCP tool output. It appends optional hints after the primary response is available.
@@ -36,11 +21,8 @@ Current responsibilities:
 - Add session-continuity warnings when context quality is degraded or critical.
 - Stay within the configured latency deadline, token budget, and recursion guard.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -62,11 +44,8 @@ Current responsibilities:
 Dependency direction: enrichment ───▶ code_graph/lib and lib/session only through dynamic imports
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -75,11 +54,8 @@ lib/enrichment/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Responsibility |
@@ -87,11 +63,8 @@ lib/enrichment/
 | `passive-enrichment.ts` | Extracts mentioned paths, builds bounded hints, imports optional providers, and returns `EnrichmentResult`. |
 | `README.md` | Explains the folder contract for developers changing enrichment behavior. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -134,11 +107,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -147,11 +117,8 @@ Main flow:
 | `extractMentionedPaths()` | Function | Test-facing path extractor used by the enrichment pipeline. |
 | `EnrichmentResult` | Type | Response contract for hints, token count, latency, and skip state. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from `.opencode/skills/system-spec-kit/mcp_server`.
@@ -162,15 +129,10 @@ npx vitest run tests/stage2b-enrichment-extended.vitest.ts
 
 Expected result: the enrichment suite passes without deadline, recursion, or path extraction regressions.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../../code_graph/README.md`](../../code_graph/README.md)
 - [`../response/README.md`](../response/README.md)
 - [`../session/README.md`](../session/README.md)
-
-<!-- /ANCHOR:related -->

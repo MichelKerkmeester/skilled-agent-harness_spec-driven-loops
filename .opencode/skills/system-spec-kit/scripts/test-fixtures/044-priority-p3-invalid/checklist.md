@@ -1,4 +1,3 @@
-<!-- ANCHOR:checklist -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
@@ -13,4 +12,3 @@
 ## P4 - Backlog
 
 - [ ] Invalid P4 item
-<!-- /ANCHOR:checklist -->

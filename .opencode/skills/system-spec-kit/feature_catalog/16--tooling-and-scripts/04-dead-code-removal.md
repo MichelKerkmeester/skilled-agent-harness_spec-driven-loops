@@ -5,14 +5,10 @@ description: "Completed remediation record for removed dead branches, feature fl
 
 # Dead code removal
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 This entry records the completed dead-code cleanup rather than a live runtime feature. Approximately 360 lines of dead code across four categories have been verified absent from the source tree.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 The codebase is clean across four dead-code categories:
@@ -27,9 +23,6 @@ The codebase is clean across four dead-code categories:
 
 **Preserved but not part of the removal set:** `computeStructuralFreshness` and `computeGraphCentrality` still exist as exported utilities in `fsrs.ts`. They remain in the source tree, but this entry does not treat them as active runtime search features or pending activations.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 Cross-cutting evidence is distributed across:
@@ -131,11 +124,7 @@ Cross-cutting evidence is distributed across:
     - `rg -n "computeCausalDepth\\b|computeCausalDepthScores" mcp_server/lib/graph/graph-signals.ts` => only `computeCausalDepthScores` is present and used.
 - **Approx LOC removed:** `~118` (`graph-signals -65`, `graph-search-fn -16`, `negative-feedback -5`, `co-activation -20`, `causal-edges -12`, commit `b4f85e327`).
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `16--tooling-and-scripts/04-dead-code-removal.md`
-<!-- /ANCHOR:source-metadata -->

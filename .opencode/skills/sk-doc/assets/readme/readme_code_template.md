@@ -180,24 +180,8 @@ trigger_phrases:
 
 # [Folder Name]: [Responsibility]
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. ARCHITECTURE](#2-architecture)
-- [3. PACKAGE TOPOLOGY](#3-package-topology)
-- [4. DIRECTORY TREE](#4-directory-tree)
-- [5. KEY FILES](#5-key-files)
-- [6. BOUNDARIES AND FLOW](#6-boundaries-and-flow)
-- [7. ENTRYPOINTS](#7-entrypoints)
-- [8. VALIDATION](#8-validation)
-- [9. RELATED](#9-related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `[folder]/` [describes what this directory owns]. It [maps input to output, groups related modules or provides a package boundary].
@@ -208,11 +192,9 @@ Current state:
 - [Important invariant or constraint]
 - [Runtime relationship to parent package]
 
-<!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 Include this section when a diagram explains the folder faster than prose.
@@ -239,11 +221,9 @@ Include this section when a diagram explains the folder faster than prose.
 Dependency direction: [zone-a] ───▶ [zone-b] ───▶ [zone-c]
 ```
 
-<!-- /ANCHOR:architecture -->
 
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 Use this section when imports, layers or ownership boundaries matter.
@@ -276,11 +256,9 @@ adapters/ → handlers/
 private modules → public API barrels when this creates a cycle
 ```
 
-<!-- /ANCHOR:package-topology -->
 
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -291,11 +269,9 @@ private modules → public API barrels when this creates a cycle
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
 
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -303,11 +279,9 @@ private modules → public API barrels when this creates a cycle
 | `[file-a.ts]` | [What it owns] |
 | `[file-b.ts]` | [What it owns] |
 
-<!-- /ANCHOR:key-files -->
 
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 Include this section when the folder has important import rules, ownership boundaries or runtime paths.
@@ -351,11 +325,9 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
 
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -364,11 +336,9 @@ Main flow:
 | `[command]` | CLI | [What it runs] |
 | `[file.ts]` | Module | [Why readers open it first] |
 
-<!-- /ANCHOR:entrypoints -->
 
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root unless noted.
@@ -379,18 +349,15 @@ Run from the repository root unless noted.
 
 Expected result: [success signal].
 
-<!-- /ANCHOR:validation -->
 
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [`[Parent README]`](../README.md)
 - [`[Architecture Doc]`](../../ARCHITECTURE.md)
 - [`[Sibling Folder]`](../sibling/README.md)
 
-<!-- /ANCHOR:related -->
 ````
 
 ---

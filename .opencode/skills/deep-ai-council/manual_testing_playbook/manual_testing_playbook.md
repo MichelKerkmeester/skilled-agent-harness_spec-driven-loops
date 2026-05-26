@@ -21,28 +21,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. RUNTIME ROUTING AND RENAME (DAC-001..DAC-002)](#7--runtime-routing-and-rename-dac-001dac-002)
-- [8. COUNCIL DELIBERATION AND SEAT DIVERSITY (DAC-003..DAC-004)](#8--council-deliberation-and-seat-diversity-dac-003dac-004)
-- [9. ARTIFACT PERSISTENCE AND STATE FORMAT (DAC-005..DAC-007)](#9--artifact-persistence-and-state-format-dac-005dac-007)
-- [10. CONVERGENCE AND ROLLBACK (DAC-008..DAC-010)](#10--convergence-and-rollback-dac-008dac-010)
-- [11. SCOPE BOUNDARIES (DAC-011..DAC-012)](#11--scope-boundaries-dac-011dac-012)
-- [12. DEPTH AND FAILURE HANDLING (DAC-014, DAC-018)](#12--depth-and-failure-handling-dac-014-dac-018)
-- [13. WRITER LIBRARY CONTRACT (DAC-013, DAC-015..DAC-017)](#13--writer-library-contract-dac-013-dac-015dac-017)
-- [14. COUNCIL GRAPH INTEGRATION (DAC-019..DAC-026)](#14--council-graph-integration-dac-019dac-026)
-- [15. COUNCIL GRAPH VALUE COMPARISON (DAC-027..DAC-032)](#15--council-graph-value-comparison-dac-027dac-032)
-- [16. AUTOMATED TEST CROSS-REFERENCE](#16--automated-test-cross-reference)
-- [17. FEATURE CATALOG CROSS-REFERENCE INDEX](#17--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 32 deterministic scenarios across 9 categories validating the `deep-ai-council` skill surface. Each feature keeps a `DAC-NNN` ID and links to a dedicated feature file with the full execution contract.

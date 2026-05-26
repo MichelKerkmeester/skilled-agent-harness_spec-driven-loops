@@ -5,13 +5,6 @@ description: "Shared workflow modules that load configuration, gate indexing, sc
 
 # Core Workflow Infrastructure
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 Core Workflow Infrastructure is the shared execution layer that turns captured session data into governed memory files and searchable index rows.

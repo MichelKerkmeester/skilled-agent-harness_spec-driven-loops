@@ -22,25 +22,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. CLI BDG LIFECYCLE](#7--cli-bdg-lifecycle)
-- [8. PROTOCOL DISCOVERY](#8--protocol-discovery)
-- [9. DOM AND SCREENSHOT](#9--dom-and-screenshot)
-- [10. CONSOLE AND NETWORK](#10--console-and-network)
-- [11. MCP PARALLEL INSTANCES](#11--mcp-parallel-instances)
-- [12. RECOVERY AND FAILURE](#12--recovery-and-failure)
-- [13. AUTOMATED TEST CROSS-REFERENCE](#13--automated-test-cross-reference)
-- [14. FEATURE CATALOG CROSS-REFERENCE INDEX](#14--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 22 deterministic scenarios across 6 categories validating the `mcp-chrome-devtools` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.

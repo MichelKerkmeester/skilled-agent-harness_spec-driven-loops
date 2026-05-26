@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `lib/lifecycle/supersession.ts` implements asymmetric routing: a superseded skill redirects queries forward via `redirect_to` and the successor exposes `redirect_from` metadata without overriding the successor's own recommendations.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - A workspace containing a known superseded-successor pair in skill metadata (or a disposable copy with a synthetic pair).
@@ -32,9 +28,6 @@ Validate that `lib/lifecycle/supersession.ts` implements asymmetric routing: a s
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred_decisions.md` §F34 for rationale.
@@ -66,9 +59,6 @@ advisor_recommend({"prompt":"<prompt mapping to superseded skill>","options":{"t
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [NC-005](../01--native-mcp-tools/005-lifecycle-redirect-metadata.md), native MCP redirect metadata.
@@ -78,14 +68,9 @@ advisor_recommend({"prompt":"<prompt mapping to superseded skill>","options":{"t
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Lifecycle Routing
 - Playbook ID: LC-002
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 07--lifecycle-routing/002-supersession.md
-
-<!-- /ANCHOR:5-source-metadata -->

@@ -9,16 +9,6 @@ This document combines the current feature inventory for the `deep-research` sys
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. LOOP LIFECYCLE](#2--loop-lifecycle)
-- [3. STATE MANAGEMENT](#3--state-management)
-- [4. CONVERGENCE](#4--convergence)
-- [5. RESEARCH OUTPUT](#5--research-output)
-
----
-
 ## 1. OVERVIEW
 
 Use this catalog as the canonical inventory for the live `deep-research` feature surface. The numbered sections below group the system by capability area so readers can move from a top-level summary into per-feature reference files without losing the implementation and validation context behind each loop behavior.

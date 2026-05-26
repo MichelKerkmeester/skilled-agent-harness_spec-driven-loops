@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Checkmark Formats
@@ -26,4 +25,3 @@ Tests both checkmark formats are recognized.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

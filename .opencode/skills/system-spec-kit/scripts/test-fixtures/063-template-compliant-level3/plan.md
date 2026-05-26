@@ -13,7 +13,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -27,11 +26,9 @@ contextType: "general"
 
 ### Overview
 This fixture keeps the live Level 3 plan structure intact so the validator can compare real headers and anchors against the Level 3 template contract, including L2 and L3 optional sections.
-<!-- /ANCHOR:summary -->
 
 ---
 
-<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -43,11 +40,9 @@ This fixture keeps the live Level 3 plan structure intact so the validator can c
 - [x] All acceptance criteria met
 - [x] Tests passing
 - [x] Docs updated
-<!-- /ANCHOR:quality-gates -->
 
 ---
 
-<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -60,11 +55,9 @@ Fixture-based validation
 
 ### Data Flow
 The validator reads fixture docs, derives the active template contract for Level 3, and compares ordered headers and anchors including optional L2/L3 sections.
-<!-- /ANCHOR:architecture -->
 
 ---
 
-<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
@@ -77,11 +70,9 @@ The validator reads fixture docs, derives the active template contract for Level
 
 ### Phase 3: Verification
 - [x] Run strict validation and confirm zero errors and warnings
-<!-- /ANCHOR:phases -->
 
 ---
 
-<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -89,31 +80,25 @@ The validator reads fixture docs, derives the active template contract for Level
 | Unit | Template comparator | Vitest |
 | Integration | Validator end to end | Shell |
 | Manual | Targeted smoke checks | Bash |
-<!-- /ANCHOR:testing -->
 
 ---
 
-<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Live Level 3 templates | Internal | Green | Comparator cannot derive contract |
 | Level 2 fixture (053) | Internal | Green | Reference pattern for fixture structure |
-<!-- /ANCHOR:dependencies -->
 
 ---
 
-<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Fixture structure no longer matches the live templates.
 - **Procedure**: Refresh the fixture against the current template files.
-<!-- /ANCHOR:rollback -->
 
 ---
 
-<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 | Phase | Depends On | Blocks |
@@ -121,11 +106,9 @@ The validator reads fixture docs, derives the active template contract for Level
 | Setup | None | Core |
 | Core | Setup | Verify |
 | Verify | Core | None |
-<!-- /ANCHOR:phase-deps -->
 
 ---
 
-<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -134,11 +117,9 @@ The validator reads fixture docs, derives the active template contract for Level
 | Core Implementation | Medium | 30 minutes |
 | Verification | Low | 15 minutes |
 | **Total** | | **60 minutes** |
-<!-- /ANCHOR:effort -->
 
 ---
 
-<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -151,11 +132,9 @@ The validator reads fixture docs, derives the active template contract for Level
 ### Data Reversal
 - **Has data migrations?** No
 - **Reversal procedure**: N/A
-<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 
-<!-- ANCHOR:dependency-graph -->
 ## L3: DEPENDENCY GRAPH
 
 ```
@@ -171,11 +150,9 @@ The validator reads fixture docs, derives the active template contract for Level
 |-----------|------------|----------|--------|
 | Fixture files | Templates | Compliant documents | Validation |
 | Validation | Fixture files | Test results | None |
-<!-- /ANCHOR:dependency-graph -->
 
 ---
 
-<!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
 1. **Setup** - 15 minutes - CRITICAL
@@ -186,11 +163,9 @@ The validator reads fixture docs, derives the active template contract for Level
 
 **Parallel Opportunities**:
 - Individual fixture files can be created in parallel
-<!-- /ANCHOR:critical-path -->
 
 ---
 
-<!-- ANCHOR:milestones -->
 ## L3: MILESTONES
 
 | Milestone | Description | Success Criteria | Target |
@@ -198,7 +173,6 @@ The validator reads fixture docs, derives the active template contract for Level
 | M1 | Setup Complete | All six files created | Phase 1 |
 | M2 | Core Done | All headers and anchors match templates | Phase 2 |
 | M3 | Release Ready | Strict validation passes | Phase 3 |
-<!-- /ANCHOR:milestones -->
 
 ---
 

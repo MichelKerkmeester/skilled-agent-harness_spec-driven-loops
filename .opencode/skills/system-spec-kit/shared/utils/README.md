@@ -9,23 +9,8 @@ trigger_phrases:
 
 # Shared Utilities
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. KEY FILES](#3--key-files)
-- [4. STABLE API](#4--stable-api)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `utils/` owns small shared helpers used by scripts, MCP server code and shared package modules. Keep this folder focused on dependency-light functions that can run without database, network or MCP request context.
@@ -37,11 +22,8 @@ Current state:
 - JSONC stripping preserves string content while removing comments.
 - Token estimation uses one chars-per-token approximation.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -72,11 +54,8 @@ utils/* -> database modules
 utils/* -> network clients
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -86,11 +65,8 @@ utils/* -> network clients
 | `jsonc-strip.ts` | Removes block and line comments from JSONC text while keeping comment-like text inside strings. |
 | `token-estimate.ts` | Estimates token count with `Math.ceil(text.length / 4)` and returns `0` for empty input. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:stable-api -->
 ## 4. STABLE API
 
 | Export | File | Contract |
@@ -106,11 +82,8 @@ utils/* -> network clients
 
 Keep these exports pure where possible. Add new shared helpers only when two or more package areas need the same behavior.
 
-<!-- /ANCHOR:stable-api -->
-
 ---
 
-<!-- ANCHOR:boundaries -->
 ## 5. BOUNDARIES
 
 | Boundary | Rule |
@@ -130,11 +103,8 @@ caller
   -> typed return value or thrown error
 ```
 
-<!-- /ANCHOR:boundaries -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -144,11 +114,8 @@ caller
 | `jsonc-strip.ts` | Module | Config parsing support for JSONC input. |
 | `token-estimate.ts` | Module | Shared token budget estimates. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root:
@@ -159,15 +126,10 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Expected result: the validator exits with code `0`.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../README.md`](../README.md)
 - [`../types.ts`](../types.ts)
 - [`../algorithms/README.md`](../algorithms/README.md)
-
-<!-- /ANCHOR:related -->

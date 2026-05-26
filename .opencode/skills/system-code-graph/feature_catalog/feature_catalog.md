@@ -17,19 +17,6 @@ This catalog is the current feature inventory for `.opencode/skills/system-code-
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. READ-PATH FRESHNESS](#2--read-path-freshness)
-- [3. MANUAL SCAN / VERIFY / STATUS](#3--manual-scan-verify-status)
-- [4. DETECT-CHANGES PREFLIGHT](#4--detect-changes-preflight)
-- [5. CONTEXT RETRIEVAL](#5--context-retrieval)
-- [6. COVERAGE GRAPH](#6--coverage-graph)
-- [7. MCP TOOL SURFACE](#7--mcp-tool-surface)
-- [8. DOCTOR CODE GRAPH](#8--doctor-code-graph)
-
----
-
 ## 1. OVERVIEW
 
 The catalog covers 14 runtime features across 7 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.

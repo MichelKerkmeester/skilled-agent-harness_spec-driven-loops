@@ -14,23 +14,8 @@ importance_tier: "important"
 
 > Current-reality architecture for the `system-spec-kit` package. Authored code lives in `scripts/`, `mcp_server/`, and `shared/`. Continuity is rebuilt through `/spec_kit:resume` and canonical spec documents.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PACKAGE TOPOLOGY](#2--package-topology)
-- [3. CANONICAL CONTINUITY FLOWS](#3--canonical-continuity-flows)
-- [4. RUNTIME SUBSYSTEMS](#4--runtime-subsystems)
-- [5. HOOK AND PLUGIN INTEGRATION](#5--hook-and-plugin-integration)
-- [6. ENFORCEMENT AND VERIFICATION](#6--enforcement-and-verification)
-- [7. DECISION RECORDS](#7--decision-records)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `system-spec-kit` is split into three authored zones plus generated build output:
@@ -83,11 +68,8 @@ The package's operator-facing recovery surface is `/spec_kit:resume`. The recove
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:topology -->
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -123,11 +105,8 @@ Allowed dependency direction:
 
 Reverse imports are blocked by lint and CI.
 
-<!-- /ANCHOR:topology -->
-
 ---
 
-<!-- ANCHOR:continuity-flows -->
 ## 3. CANONICAL CONTINUITY FLOWS
 
 Spec-kit treats canonical spec documents as the durable continuity record. Generated memory indexes are search/recall surfaces over that record, not the record itself.
@@ -151,11 +130,8 @@ Spec-kit treats canonical spec documents as the durable continuity record. Gener
 - `scripts/dist/memory/generate-context.js` owns the write path.
 - `mcp_server/lib/continuity/` owns the indexing layer.
 
-<!-- /ANCHOR:continuity-flows -->
-
 ---
 
-<!-- ANCHOR:runtime-subsystems -->
 ## 4. RUNTIME SUBSYSTEMS
 
 The MCP server is composed of focused subsystems that share the transport layer and the SQLite store.
@@ -172,11 +148,8 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Stress tests.** `stress_test/` carries opt-in load + degraded-state suites, excluded from default `npm test` and run through `npm run stress`.
 
-<!-- /ANCHOR:runtime-subsystems -->
-
 ---
 
-<!-- ANCHOR:hook-integration -->
 ## 5. HOOK AND PLUGIN INTEGRATION
 
 Spec-kit ships a runtime hook surface that wires into each AI client's session lifecycle. The hooks emit compact context payloads at `SessionStart`, `UserPromptSubmit`, and (where supported) `Compact`.
@@ -187,11 +160,8 @@ Spec-kit ships a runtime hook surface that wires into each AI client's session l
 
 **Payload shape.** Hooks share the same compact JSON payload (`bootstrap.json` style) across runtimes so callers can rely on consistent fields regardless of transport.
 
-<!-- /ANCHOR:hook-integration -->
-
 ---
 
-<!-- ANCHOR:enforcement -->
 ## 6. ENFORCEMENT AND VERIFICATION
 
 Spec-kit's quality gates run at three layers.
@@ -202,11 +172,8 @@ Spec-kit's quality gates run at three layers.
 
 **Test surfaces.** Default `npm test` runs unit + integration suites under `mcp_server/tests/` and `scripts/tests/`. Stress suites are opt-in via `npm run stress`. Matrix runner evaluation is opt-in via the runner-specific commands under `matrix_runners/`.
 
-<!-- /ANCHOR:enforcement -->
-
 ---
 
-<!-- ANCHOR:decision-records -->
 ## 7. DECISION RECORDS
 
 | ADR | Subject | Status |
@@ -219,11 +186,8 @@ Spec-kit's quality gates run at three layers.
 | ADR-006 | Save gate runs 3 layers (intake, router, quality review) on every save | Accepted |
 | ADR-007 | Embedding provider auto-cascade: Voyage → OpenAI → ollama → hf-local | Accepted |
 
-<!-- /ANCHOR:decision-records -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [README.md](./README.md): Human-facing package overview
@@ -233,5 +197,3 @@ Spec-kit's quality gates run at three layers.
 - [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md): Operator validation scenarios
 - [mcp_server/README.md](./mcp_server/README.md): MCP server package details
 - [references/](./references/): Workflow contracts, hook references, validation playbooks
-
-<!-- /ANCHOR:related -->

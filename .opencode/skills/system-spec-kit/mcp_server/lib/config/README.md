@@ -9,23 +9,8 @@ trigger_phrases:
 
 # Config: Memory and Spec Document Classification
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/config/` owns memory type configuration, spec document path detection, document type inference and memory roadmap capability flags. These modules convert file paths, frontmatter, tiers and runtime environment variables into typed configuration values used by indexing and retrieval.
@@ -37,11 +22,8 @@ Current state:
 - `spec-doc-paths.ts` filters canonical spec documents and graph metadata paths.
 - `capability-flags.ts` resolves memory roadmap rollout state and parser environment names.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -74,11 +56,8 @@ Current state:
 └──────────────────────────────────────────────┘
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -90,11 +69,8 @@ config/
 └── README.md                 # Developer orientation
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File | Role |
@@ -112,11 +88,8 @@ Imports used by this folder:
 | `../utils/index-scope.js` | `spec-doc-paths.ts` | Memory indexing scope gate |
 | `../cognitive/rollout-policy.js` | `capability-flags.ts` | Feature flag rollout check |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 Allowed imports:
@@ -147,11 +120,8 @@ Apply explicit frontmatter, tier, path or keyword inference
 Return memory type, document type and confidence
 ```
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 Memory type imports:
@@ -203,11 +173,8 @@ Public surfaces:
 
 There is no source `index.ts` in this folder. Import from the file that owns the needed surface.
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from the repository root after editing this README:
@@ -218,11 +185,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 Use package TypeScript checks when changing any `.ts` module in this folder.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 | Resource | Relationship |
@@ -231,5 +195,3 @@ Use package TypeScript checks when changing any `.ts` module in this folder.
 | `../cognitive/README.md` | Rollout policy and decay consumers |
 | `../scoring/README.md` | Scoring consumers for type and tier data |
 | `../../configs/search-weights.json` | Runtime search weight configuration |
-
-<!-- /ANCHOR:related -->

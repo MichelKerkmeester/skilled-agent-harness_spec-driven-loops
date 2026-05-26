@@ -15,9 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
 1. [OVERVIEW](#1--overview)
 2. [QUICK START](#2--quick-start)
 3. [FEATURES](#3--features)
@@ -29,11 +26,9 @@ trigger_phrases:
 9. [TROUBLESHOOTING](#9--troubleshooting)
 10. [FAQ](#10--faq)
 11. [RELATED DOCUMENTS](#11--related-documents)
-<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -86,11 +81,9 @@ During SYNTHESIS the same contract replaces exactly one `<!-- BEGIN GENERATED: d
 Outside the research loop itself, `/speckit:resume` remains the canonical recovery surface for packet work. Continuity still rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts stay supporting only.
 
 For iterative code review, use `deep-review`.
-<!-- /ANCHOR:overview -->
 
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 ```bash
@@ -110,11 +103,9 @@ What the workflow creates under the resolved `{artifact_dir}`:
 - `research.md`
 
 The artifact directory always lives under the target spec's local `research/` folder. First runs with an empty local folder use `{spec_folder}/research/` directly, including child-phase and sub-phase targets. A `{spec_folder}/research/{ownerSlug}-pt-NN/` packet is allocated only when prior local content already exists for a different target. Pause a running loop by creating `.deep-research-pause` inside the resolved `{artifact_dir}`, then delete it to let the workflow continue from the next lifecycle check.
-<!-- /ANCHOR:quick-start -->
 
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 - Fresh context per iteration: Each iteration uses a fresh LEAF agent dispatch.
@@ -136,11 +127,9 @@ The artifact directory always lives under the target spec's local `research/` fo
 - Fail-closed corruption handling: The reducer throws a structured error before writing any derived files when JSONL corruption is detected in non-lenient mode.
 - Graph convergence fallback: When `blendedScore` is absent from `graph_convergence` events, the reducer uses a numeric fallback instead of collapsing to zero.
 - Terminal stop metadata: The reducer parses `synthesis_complete` events to derive authoritative dashboard status rather than relying on stale config.
-<!-- /ANCHOR:features -->
 
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -204,11 +193,9 @@ Ownership model:
 - Reducer-owned writes: `deep-research-strategy.md` machine-owned sections, `findings-registry.json`, `deep-research-dashboard.md`.
 - Workflow-owned output: `research.md` and lifecycle snapshot files such as `synthesis-v{generation}.md`.
 - Protocol-owned packet mutations: bounded `spec.md` seeding, context append, advisory lock lifecycle, and generated-fence replacement defined in `references/protocol/spec_check_protocol.md`.
-<!-- /ANCHOR:structure -->
 
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 | Setting | Default | Purpose |
@@ -220,11 +207,9 @@ Ownership model:
 | `executor.kind` | `native` | Selects native LEAF agent or workflow-routed CLI executor |
 
 Non-configurable invariants: the command YAML owns dispatch, `reduce-state.cjs` owns reducer writes, and `@deep-research` remains LEAF-only.
-<!-- /ANCHOR:configuration -->
 
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 **Autonomous investigation**
@@ -253,11 +238,9 @@ Skill routing: CONVERGENCE + RECOVERY
 Resources loaded: convergence, convergence_signals, convergence_recovery, convergence_graph
 Expected output: gate/blocker explanation and next focus
 ```
-<!-- /ANCHOR:usage-examples -->
 
 ---
 
-<!-- ANCHOR:lifecycle-modes -->
 ## 7. LIFECYCLE MODES
 
 | Mode | Meaning |
@@ -269,11 +252,9 @@ Expected output: gate/blocker explanation and next focus
 | `completed-continue` (deferred) | Reserved. Earlier drafts described snapshotting the prior synthesis as immutable `synthesis-v{generation}.md`. the runtime does not emit lineage events for `completed-continue` today. |
 
 See the Lifecycle Branches section in `references/protocol/loop_protocol.md` for the canonical event contract. Legacy artifact names remain read-only migration aliases for a 4-week window. The workflow writes only canonical `deep-research-*` names and emits migration events when it consumes a legacy alias.
-<!-- /ANCHOR:lifecycle-modes -->
 
 ---
 
-<!-- ANCHOR:runtime-parity -->
 ## 8. RUNTIME PARITY
 
 The workflow resolves the runtime mirror from the active CLI, but every mirror must preserve the same packet contract:
@@ -286,11 +267,9 @@ The workflow resolves the runtime mirror from the active CLI, but every mirror m
 | Gemini | `.gemini/agents/deep-research.md` |
 
 Read `.opencode/skills/deep-research/references/guides/capability_matrix.md` for the parity checklist and `.opencode/skills/deep-research/assets/runtime_capabilities.json` plus `.opencode/skills/deep-research/scripts/runtime-capabilities.cjs` for the machine-readable lookup path.
-<!-- /ANCHOR:runtime-parity -->
 
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 9. TROUBLESHOOTING
 
 | Problem | Check |
@@ -301,11 +280,9 @@ Read `.opencode/skills/deep-research/references/guides/capability_matrix.md` for
 | Runtime mirror behaves differently | Compare the mirror against `references/guides/capability_matrix.md`. |
 | Loop will not continue after pause | Remove `research/.deep-research-pause` and restart the command so the lifecycle check can emit `resumed`. |
 | `spec.md` write is blocked | Inspect `folder_state`, `research/.deep-research.lock`, and the conflict details defined in `references/protocol/spec_check_protocol.md`. |
-<!-- /ANCHOR:troubleshooting -->
 
 ---
 
-<!-- ANCHOR:faq -->
 ## 10. FAQ
 
 **Q: Does the agent still edit `deep-research-strategy.md` directly?**
@@ -325,11 +302,9 @@ A: Only the bounded mutations in `references/protocol/spec_check_protocol.md`. s
 
 **Q: Where should review work go now?**
 A: Use `deep-review` and `/deep:start-review-loop`.
-<!-- /ANCHOR:faq -->
 
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 11. RELATED DOCUMENTS
 
 ### Dependencies
@@ -354,4 +329,3 @@ A: Use `deep-review` and `/deep:start-review-loop`.
 | `references/guides/capability_matrix.md` | Runtime parity source of truth |
 | `feature_catalog/feature_catalog.md` | Canonical feature inventory across loop lifecycle, state management, convergence, and research output |
 | `deep-review` | Dedicated iterative code review skill |
-<!-- /ANCHOR:related-documents -->

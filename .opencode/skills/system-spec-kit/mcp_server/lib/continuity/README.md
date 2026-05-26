@@ -11,24 +11,8 @@ trigger_phrases:
 
 > Thin `_memory.continuity` parsing, validation, serialization, and markdown frontmatter update helpers.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/continuity/` owns the thin `_memory.continuity` record contract used in spec-folder markdown frontmatter. It parses frontmatter, validates compact recovery fields, normalizes the record, enforces the byte budget, and writes the record back into markdown without taking over resume orchestration.
@@ -40,11 +24,8 @@ Current state:
 - The byte budget is `THIN_CONTINUITY_MAX_BYTES`, currently `2048` bytes for the serialized `_memory.continuity` envelope.
 - The canonical recovery ladder remains `handover.md` → `_memory.continuity` → spec docs. This folder owns the middle record format only.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -75,11 +56,8 @@ handover.md → _memory.continuity → spec docs
 
 Dependency direction: resume or save surfaces → `thin-continuity-record.ts` → markdown frontmatter parsing and serialization.
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -103,11 +81,8 @@ lib/continuity/ → resume ladder selection
 lib/continuity/ → spec document indexing
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -116,22 +91,16 @@ continuity/
 `-- README.md                  # This file
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
 |---|---|
 | `thin-continuity-record.ts` | Defines `ThinContinuityRecord`, validates compact fields, serializes the `_memory.continuity` envelope, reads records from markdown or objects, and upserts records into markdown frontmatter. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -193,11 +162,8 @@ mergeFrontmatterWithContinuity()
 markdown with updated _memory.continuity
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -210,11 +176,8 @@ markdown with updated _memory.continuity
 | `writeThinContinuityRecord(frontmatter, input, options)` | Function | Validates input and returns updated frontmatter with the continuity record merged in. |
 | `upsertThinContinuityInMarkdown(markdown, input, options)` | Function | Validates input and returns markdown with updated frontmatter. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root unless noted.
@@ -233,16 +196,11 @@ Expected result: the extracted structure reports README sections and no critical
 
 For code changes in this folder, run the TypeScript or package-level checks used by the MCP server before claiming runtime behavior changed.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [`../README.md`](../README.md)
 - [`../resume/README.md`](../resume/README.md)
 - [`../session/README.md`](../session/README.md)
 - [`../routing/README.md`](../routing/README.md)
-
-<!-- /ANCHOR:related -->

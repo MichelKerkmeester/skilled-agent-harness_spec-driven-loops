@@ -21,24 +21,6 @@ Across this skill tree, `/speckit:resume` is the canonical recovery surface for 
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `.opencode/skills/` holds 22 skill folders. Skills are not passive references. Each skill contains executable guidance that an AI agent loads on demand through Gate 2 routing or explicit invocation. Skills carry their own references, assets, scripts, and graph metadata so domain knowledge stays close to the code that uses it.
@@ -76,11 +58,8 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 | Auto-discovery | New skills are found through graph metadata and SKILL.md discovery |
 | Dual-threshold filtering | Confidence and uncertainty both gate routing to reduce false positives |
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 Three ways to use this library:
@@ -121,11 +100,8 @@ Loading sequence:
 Request -> advisor_recommend -> top match + confidence -> load SKILL.md -> follow instructions
 ```
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -189,11 +165,8 @@ The skill system covers four distinct workflow domains.
 | `system-skill-advisor` | 0.1.0 | Standalone Gate 2 routing package and skill graph MCP server |
 | `system-spec-kit` | 2.2.27.0 | Spec folder workflow, template architecture, validation, and Spec Kit Memory |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -271,11 +244,8 @@ For the full system-spec-kit script inventory, see `system-spec-kit/scripts/scri
 | `system-skill-advisor` | Yes | No | No |
 | `system-spec-kit` | Yes | Yes | Yes |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 ### Skill Routing Policy
@@ -330,11 +300,8 @@ advisor_validate({"skillSlug":null})
 | `--uncertainty` | `0.35` | Maximum uncertainty allowed by default |
 | `--confidence-only` | Off | Bypasses uncertainty check when set |
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 ### Route a request through Gate 2
@@ -401,11 +368,8 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_b
   --out .opencode/skills/system-skill-advisor/mcp_server/scripts/out/benchmark-report.json
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 ### Skill advisor returns empty array
@@ -467,11 +431,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md
 python3 -c "import yaml; print('ok')"
 ```
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: Do I need to register a new skill anywhere after creating it?**
@@ -490,11 +451,8 @@ The native routing package lives in `.opencode/skills/system-skill-advisor/mcp_s
 
 The cap preserves a margin of uncertainty so the calling AI retains judgment on edge cases. A 0.95 score means the advisor is highly confident, not certain. Absolute certainty from a heuristic scorer would be misleading.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
@@ -508,5 +466,3 @@ The cap preserves a margin of uncertainty so the calling AI retains judgment on 
 | [sk-code-review SKILL.md](sk-code-review/SKILL.md) | Code review baseline |
 | [sk-code SKILL.md](sk-code/SKILL.md) | project-specific frontend and system-code workflows |
 | [cli-opencode SKILL.md](cli-opencode/SKILL.md) | OpenCode CLI orchestrator for full runtime dispatch and parallel detached sessions |
-
-<!-- /ANCHOR:related-documents -->

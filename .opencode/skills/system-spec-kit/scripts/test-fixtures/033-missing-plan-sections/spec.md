@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Missing Plan Sections
@@ -26,4 +25,3 @@ Tests missing Architecture section in plan.md.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

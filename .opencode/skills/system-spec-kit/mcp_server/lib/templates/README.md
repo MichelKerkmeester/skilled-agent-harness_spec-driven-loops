@@ -8,16 +8,6 @@ trigger_phrases:
 
 # Templates Library: Level Contract Resolution
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. ENTRYPOINTS](#4--entrypoints)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
 ## 1. OVERVIEW
 
 This folder owns runtime helpers that read template contract metadata for Spec Kit documentation levels. The current implementation resolves the checked-in manifest into typed contract objects used by validators and documentation tooling.

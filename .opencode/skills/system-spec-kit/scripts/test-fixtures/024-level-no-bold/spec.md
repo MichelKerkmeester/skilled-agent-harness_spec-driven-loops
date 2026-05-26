@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Test Feature - Level No Bold
 
@@ -25,4 +24,3 @@ Tests level without bold formatting (should still be recognized).
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

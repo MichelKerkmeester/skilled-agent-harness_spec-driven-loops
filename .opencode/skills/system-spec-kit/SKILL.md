@@ -11,7 +11,6 @@ version: 3.4.1.0
 
 Orchestrates mandatory spec folder creation for all conversations involving file modifications. Ensures proper documentation level selection (1-3+), template usage, and context preservation through AGENTS.md-enforced workflows.
 
-<!-- ANCHOR:1-when-to-use -->
 ## 1. WHEN TO USE
 
 ### What is a Spec Folder?
@@ -74,11 +73,8 @@ Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `
 
 **Rule:** When detected, proactively suggest the appropriate action.
 
-<!-- /ANCHOR:1-when-to-use -->
-
 ---
 
-<!-- ANCHOR:2-smart-routing -->
 ## 2. SMART ROUTING
 
 ### Resource Domains
@@ -398,11 +394,8 @@ def route_speckit_resources(task):
     return result
 ```
 
-<!-- /ANCHOR:2-smart-routing -->
-
 ---
 
-<!-- ANCHOR:3-how-it-works -->
 ## 3. HOW IT WORKS
 
 ### Core Workflow
@@ -434,11 +427,8 @@ Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --s
 
 Use Code Graph for semantic discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`, and `detect_changes` (under MCP namespace `mcp__mk_code_index__*`, owned by the standalone `system-code-graph` skill) share the readiness contract and return blocked/degraded payloads rather than silent empty answers when graph state is stale.
 
-<!-- /ANCHOR:3-how-it-works -->
-
 ---
 
-<!-- ANCHOR:4-rules -->
 ## 4. RULES
 
 ### ALWAYS
@@ -490,20 +480,14 @@ Use Code Graph for semantic discovery, Code Graph for structural relationships, 
 4. **User requests skip (Option D)** - Warn about tech debt, explain debugging challenges, confirm consent
 5. **Validation fails with errors** - Report specific failures, provide fix guidance, re-run after fixes
 
-<!-- /ANCHOR:4-rules -->
-
 ---
 
-<!-- ANCHOR:5-success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 Success means the selected spec folder uses the right template set, placeholders and sample content are removed, links between packet docs work, continuity is saved or updated, Level 2+ checklist P0/P1 items are verified with evidence, and `validate.sh --strict` has no blocking errors.
 
-<!-- /ANCHOR:5-success-criteria -->
-
 ---
 
-<!-- ANCHOR:6-integration-points -->
 ## 6. INTEGRATION POINTS
 
 P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code updates route through `sk-code`; documentation updates route through `sk-doc`; git handoff routes through `sk-git`.
@@ -525,11 +509,8 @@ Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repair
 
 **Remember**: This skill is the foundational documentation orchestrator. It enforces structure, template usage, context preservation, and workflow-required validation for all file modifications. Every conversation that modifies files MUST have a spec folder.
 
-<!-- /ANCHOR:6-integration-points -->
-
 ---
 
-<!-- ANCHOR:7-references-and-related-resources -->
 ## 7. REFERENCES AND RELATED RESOURCES
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/workflows/quick_reference.md`, `references/templates/template_guide.md`, `references/validation/validation_rules.md`, `references/memory/save_workflow.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
@@ -537,5 +518,3 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 Scripts: `scripts/spec/validate.sh`, `scripts/spec/create.sh`, `scripts/dist/memory/generate-context.js`, `scripts/spec/check-completion.sh`.
 
 Related skills: `sk-doc` for authored documentation quality, `sk-code` for code changes, `sk-git` for git handoff, `deep-research` for iterative research, and `deep-review` for iterative audit workflows.
-
-<!-- /ANCHOR:7-references-and-related-resources -->

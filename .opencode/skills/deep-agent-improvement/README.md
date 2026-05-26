@@ -16,29 +16,6 @@ Improve an agent the way you ship code: change a copy, measure it, and promote o
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 EVALUATION LOOP](#31-evaluation-loop)
-  - [3.2 INTEGRATION SCANNING](#32-integration-scanning)
-  - [3.3 FIVE-DIMENSION SCORING](#33-five-dimension-scoring)
-  - [3.4 RUNTIME-TRUTH CONTRACTS](#34-runtime-truth-contracts)
-  - [3.5 MULTI-ITER METHODOLOGY](#35-multi-iter-methodology)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What This Skill Does
@@ -82,11 +59,8 @@ The `@deep-agent-improvement` agent (under `.opencode/agents/`) is the mutator t
 - A target agent file in `.opencode/agents/`
 - Packet-local runtime write access
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1: Pick a target and a spec folder.**
@@ -116,11 +90,8 @@ node .opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs --candi
 
 Expected result: a JSON artifact with a five-dimension breakdown and a `candidate-acceptable` or `needs-improvement` recommendation.
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 EVALUATION LOOP
@@ -177,11 +148,8 @@ For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 - **Mixed-executor dispatch.** Runs breadth iterations on cli-devin SWE-1.6 and synthesis iterations on cli-codex gpt-5.5 in an 8+2 split, which balances exploration cost against synthesis quality.
 - **Adjudication-iter filter.** Adds a false-positive filter pass before synthesis, typically at the iteration-7 mark, so only confirmed findings reach the synthesis iterations. See `references/scoring/mixed_executor_methodology.md` for the split mechanics and adjudication details.
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -251,11 +219,8 @@ For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 | `assets/benchmark-profiles/default.json` | Default benchmark profile |
 | `feature_catalog/feature_catalog.md` | Current-state feature inventory with source anchors |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 | Setting | Default | Effect |
@@ -280,11 +245,8 @@ The `/deep:start-agent-improvement-loop` command and the `@deep-agent-improvemen
 | Codex | `.codex/agents/` | uses agent mirror |
 | Gemini | `.gemini/agents/` | uses agent mirror |
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 **Evaluate any agent (dynamic mode)**
@@ -312,11 +274,8 @@ Expected output: mirror sync status, command coverage, and skill references for 
 {spec_folder}/improvement/integration-report.json           # integration surface inventory
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 | What You See | Likely Cause | Fix |
@@ -329,11 +288,8 @@ Expected output: mirror sync status, command coverage, and skill references for 
 | All dimensions plateaued | The current hypothesis is exhausted | Reassess the hypothesis in `improvement_strategy.md` |
 | Scorer reports `infra_failure` | Agent file not found or unreadable | Verify the `--candidate` path is a valid agent `.md` |
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: Why not edit the canonical agent directly?**
@@ -356,11 +312,8 @@ A: Dynamic mode is the only path. The profile generator derives scoring checks f
 
 A: When all five dimensions repeat their scores across the plateau window, the reducer triggers `stopOnDimensionPlateau`. The current improvement hypothesis is exhausted, so update the strategy before continuing.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 ### Core References
@@ -385,5 +338,3 @@ A: When all five dimensions repeat their scores across the plateau window, the r
 | [`deep-research`](../deep-research/SKILL.md), [`deep-review`](../deep-review/SKILL.md) | Share the runtime-truth contract (stop reasons, legal-stop gates, journal) |
 | `cli-devin`, `cli-codex` | Executors for the mixed-executor multi-iter methodology |
 | `system-skill-advisor` | Routes requests to this skill and is checked by the integration scanner |
-
-<!-- /ANCHOR:related-documents -->

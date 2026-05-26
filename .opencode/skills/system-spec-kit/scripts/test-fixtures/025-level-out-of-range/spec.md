@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - Level Out of Range
@@ -26,4 +25,3 @@ Tests level 5 (out of range 1-3) falls back to inferred.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

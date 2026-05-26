@@ -5,14 +5,6 @@ description: "This scenario validates the check-source-dist-alignment.ts script 
 
 # 150 -- Source-dist alignment validation
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. SCENARIO CONTRACT](#2-scenario-contract)
-- [3. TEST EXECUTION](#3-test-execution)
-- [4. SOURCE FILES](#4-source-files)
-- [5. SOURCE METADATA](#5-source-metadata)
-
 ## 1. OVERVIEW
 
 This scenario validates the check-source-dist-alignment.ts script for `150`. It focuses on verifying every `.js` file in `mcp_server/dist/lib/` has a corresponding `.ts` source file.
@@ -20,7 +12,6 @@ This scenario validates the check-source-dist-alignment.ts script for `150`. It 
 ---
 
 ## 2. SCENARIO CONTRACT
-
 
 - Objective: Verify source-dist alignment passes with 0 violations.
 - Real user request: `Please validate Source-dist alignment validation against cd .opencode/skills/system-spec-kit and tell me whether the expected signals are present: 0 violations, all dist files aligned.`

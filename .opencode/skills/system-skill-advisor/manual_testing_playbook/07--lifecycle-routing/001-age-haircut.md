@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `lib/lifecycle/age-haircut.ts` applies age-based decay only to the derived lane and leaves author, lexical, graph_causal and semantic_shadow lanes unchanged.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root with at least one older skill (modification timestamp >30 days) and one recently modified skill.
@@ -32,9 +28,6 @@ Validate that `lib/lifecycle/age-haircut.ts` applies age-based decay only to the
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred_decisions.md` §F34 for rationale.
@@ -67,9 +60,6 @@ advisor_recommend({"prompt":"<prompt matching recent skill>","options":{"include
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [LC-002](./002-supersession.md), supersession redirects.
@@ -79,14 +69,9 @@ advisor_recommend({"prompt":"<prompt matching recent skill>","options":{"include
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Lifecycle Routing
 - Playbook ID: LC-001
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 07--lifecycle-routing/001-age-haircut.md
-
-<!-- /ANCHOR:5-source-metadata -->

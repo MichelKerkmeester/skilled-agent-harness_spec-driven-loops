@@ -10,25 +10,10 @@ trigger_phrases:
 
 # Ops Self-Healing Scripts
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. SCRIPT IO](#2-script-io)
-- [3. ENTRYPOINTS](#3-entrypoints)
-- [4. VALIDATION FROM REPO ROOT](#4-validation-from-repo-root)
-- [5. KEY FILES](#5-key-files)
-- [6. BOUNDARIES](#6-boundaries)
-- [7. RELATED](#7-related)
-
-<!-- /ANCHOR:table-of-contents -->
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `scripts/ops/` contains deterministic shell runbooks for known spec-kit operational failure classes. Each healer runs detect, repair, and verify steps with bounded retry behavior and emits a structured escalation payload when retry budget is exhausted.
 
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:script-io -->
 ## 2. SCRIPT IO
 
 | Flow | Input | Output |
@@ -40,8 +25,6 @@ trigger_phrases:
 
 Supported classes are `index-drift`, `session-ambiguity`, `ledger-mismatch`, and `telemetry-drift`.
 
-<!-- /ANCHOR:script-io -->
-<!-- ANCHOR:entrypoints -->
 ## 3. ENTRYPOINTS
 
 - `runbook.sh list` prints supported failure classes.
@@ -52,8 +35,6 @@ Supported classes are `index-drift`, `session-ambiguity`, `ledger-mismatch`, and
 - `process-memory-harness.ts` captures process/RSS/swap/wired snapshots used by arc 009 memory evidence.
 - `process-sweep.ts` emits non-destructive termination plans from exact ownership evidence; no live apply command exists.
 
-<!-- /ANCHOR:entrypoints -->
-<!-- ANCHOR:validation-from-repo-root -->
 ## 4. VALIDATION FROM REPO ROOT
 
 Run ops validation from the repository root:
@@ -65,8 +46,6 @@ bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill all --scenari
 python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts/ops
 ```
 
-<!-- /ANCHOR:validation-from-repo-root -->
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Purpose |
@@ -89,20 +68,14 @@ Arc 009 lifecycle helper map:
 | Spec Kit runtime | `mcp_server/lib/memory/bounded-cache.ts`, `audit-rotation.ts`, `mcp_server/lib/runtime/timer-registry.ts`, `shutdown-hooks.ts`, `mcp_server/lib/embedders/sidecar-client.ts` |
 | Ops | `scripts/ops/process-memory-harness.ts`, `scripts/ops/process-sweep.ts` |
 
-<!-- /ANCHOR:key-files -->
-<!-- ANCHOR:boundaries -->
 ## 6. BOUNDARIES
 
 - Ops scripts model known failure classes; they are not a general incident-management system.
 - Healers must keep bounded retries and emit one escalation JSON line on retry exhaustion.
 - Scripts should remain deterministic so drills and release gates are repeatable.
 
-<!-- /ANCHOR:boundaries -->
-<!-- ANCHOR:related -->
 ## 7. RELATED
 
 - `../README.md`
 - `../spec/README.md`
 - `../../mcp_server/README.md`
-
-<!-- /ANCHOR:related -->

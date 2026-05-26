@@ -10,23 +10,8 @@ trigger_phrases:
 
 # System-Spec-Kit Scripts
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `.opencode/skills/system-spec-kit/scripts/` contains the shell and TypeScript tooling for spec lifecycle work, memory saves, metadata refresh, evaluations, setup checks and script regression coverage.
@@ -37,11 +22,8 @@ Current state:
 - TypeScript source folders compile to `dist/` for runtime use.
 - `scripts-registry.json` describes script inventory and package-level entrypoints.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -69,11 +51,8 @@ Current state:
 Dependency direction: entrypoints ───▶ source modules ───▶ lib and utils
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -113,11 +92,8 @@ Disallowed direction:
 - Shared helpers should not own spec folder policy that belongs in `spec/` or `rules/`.
 - Temporary artifacts should stay under `scratch/` or OS temp paths.
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File or Folder | Role |
@@ -130,11 +106,8 @@ Disallowed direction:
 | `scripts-registry.json` | Lists package scripts and known entrypoints. |
 | `package.json` | Defines ESM runtime settings and build scripts. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 Build flow:
@@ -181,11 +154,8 @@ Validation flow:
 
 This package owns local automation. Long-lived product behavior belongs in the skill docs, MCP server code or shared package code.
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 ```bash
@@ -197,11 +167,8 @@ node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata
 
 Use structured JSON input with `generate-context.js`. Do not pass free-form positional save text.
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Use repository-root commands:
@@ -214,11 +181,8 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/<name> --st
 
 Run targeted shell or Vitest checks when editing one script zone. Use the parent package build after TypeScript changes.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`spec/README.md`](spec/README.md)
@@ -228,5 +192,3 @@ Run targeted shell or Vitest checks when editing one script zone. Use the parent
 - [`evals/README.md`](evals/README.md)
 - [`setup/README.md`](setup/README.md)
 - [`ops/README.md`](ops/README.md)
-
-<!-- /ANCHOR:related -->

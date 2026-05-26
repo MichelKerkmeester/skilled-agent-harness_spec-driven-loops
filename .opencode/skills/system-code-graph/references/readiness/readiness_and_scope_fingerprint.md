@@ -15,7 +15,6 @@ The state machine that gates every read-path tool plus the fingerprint that dete
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -47,9 +46,6 @@ Both must be acceptable before a tool returns authoritative output. A graph can 
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-readiness-states -->
 ## 2. READINESS STATES
 
 | State | Meaning | Read-path Behavior |
@@ -63,9 +59,6 @@ Both must be acceptable before a tool returns authoritative output. A graph can 
 
 ---
 
-<!-- /ANCHOR:2-readiness-states -->
-
-<!-- ANCHOR:3-trust-state -->
 ## 3. TRUST STATE
 
 Companion signal that marks whether the gold-query verification battery passed recently.
@@ -80,9 +73,6 @@ Companion signal that marks whether the gold-query verification battery passed r
 
 ---
 
-<!-- /ANCHOR:3-trust-state -->
-
-<!-- ANCHOR:4-scope-fingerprint -->
 ## 4. SCOPE FINGERPRINT
 
 ### What it is
@@ -110,9 +100,6 @@ Fingerprint mismatch means: "this graph was indexed under a different scope, so 
 
 ---
 
-<!-- /ANCHOR:4-scope-fingerprint -->
-
-<!-- ANCHOR:5-typical-flows -->
 ## 5. TYPICAL FLOWS
 
 ### Cold start
@@ -152,13 +139,8 @@ code_graph_verify         → re-establishes trust
 
 ---
 
-<!-- /ANCHOR:5-typical-flows -->
-
-<!-- ANCHOR:6-related-resources -->
 ## 6. RELATED RESOURCES
 
 - [`code_graph_readiness_check.md`](code_graph_readiness_check.md) — `ensureCodeGraphReady()` implementation contract used by handlers.
 - [`../runtime/tool_surface.md`](../runtime/tool_surface.md) — which of the 11 tools are gated by readiness.
 - [`../config/database_path_policy.md`](../config/database_path_policy.md) — where the readiness marker and graph DB live.
-
-<!-- /ANCHOR:6-related-resources -->

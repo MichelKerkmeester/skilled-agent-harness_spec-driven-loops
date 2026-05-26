@@ -15,28 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 Feature Highlights](#31-feature-highlights)
-  - [3.2 Feature Reference](#32-feature-reference)
-  - [3.3 Performance Statistics](#33-performance-statistics)
-  - [3.4 Approach Comparison](#34-approach-comparison)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What This Skill Does
@@ -51,11 +29,8 @@ When Code Mode work hands back into a Spec Kit packet, `/speckit:resume` remains
 
 Key features include progressive discovery (tools loaded on demand with zero upfront cost), state persistence (variables flow naturally between tool calls in a single execution), type safety (full TypeScript support with autocomplete via tool_info), built-in observability (console.log output captured automatically and returned), configurable timeouts (30s default, extendable to 120s+ for complex workflows), parallel execution (Promise.all and Promise.allSettled supported natively), and error isolation (try/catch prevents one failing tool from crashing the workflow).
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1: Discover available tools.** Before calling any external tool, use `search_tools` to find what is registered and confirm the exact name. Never guess tool names.
@@ -105,11 +80,8 @@ call_tool_chain({
 });
 ```
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -191,11 +163,8 @@ Environment variable handling has one non-obvious rule. Code Mode prefixes all e
 | Code Mode | Minimal (1.6k tokens) | Full (variables persist) | Progressive via search_tools |
 | Native MCP tools | Low (per-tool) | N/A (single tool calls) | Not applicable |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```
@@ -211,11 +180,8 @@ mcp-code-mode/
     architecture.md              # Token economics and system internals
 ```
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 Code Mode uses two separate configuration systems. Understanding the boundary between them prevents the most common setup errors.
@@ -271,11 +237,8 @@ Code Mode uses two separate configuration systems. Understanding the boundary be
 
 For full setup instructions including installing the MCP server package and validating configuration, see [INSTALL_GUIDE.md](INSTALL_GUIDE.md).
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 **Example 1: Single external tool call**
@@ -349,11 +312,8 @@ call_tool_chain({
 });
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 **"Tool is not a function" or "Cannot read properties of undefined"**
@@ -394,11 +354,8 @@ Common causes: The `UTCP_CONFIG_FILE` environment variable in `opencode.json` po
 
 Fix: Use an absolute path in the `UTCP_CONFIG_FILE` value, verify the active runtime config, and confirm the file exists with `ls -la /absolute/path/to/.utcp_config.json`. Validate JSON with `python3 -m json.tool /absolute/path/to/.utcp_config.json`.
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: When should I NOT use call_tool_chain?**
@@ -417,11 +374,8 @@ A: Yes. Use `register_manual` with the full UTCP call template to register a new
 
 A: Without error handling, an unhandled exception stops the entire `call_tool_chain` execution. Wrap critical sections in `try/catch` and return structured results with a `success` boolean. For workflows where partial success is acceptable, use `Promise.allSettled()` instead of `Promise.all()` so one failure does not cancel the rest.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 **This skill**
@@ -448,5 +402,3 @@ A: Without error handling, an unhandled exception stops the entire `call_tool_ch
 |-------|-------------|
 | [mcp-chrome-devtools](../mcp-chrome-devtools/SKILL.md) | Browser automation via Code Mode |
 | [system-spec-kit](../system-spec-kit/README.md) | Context preservation (native MCP, not via Code Mode) |
-
-<!-- /ANCHOR:related-documents -->

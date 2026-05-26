@@ -14,7 +14,6 @@ Workspace single-writer lease semantics for the freshness daemon: lifecycle, con
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -37,10 +36,8 @@ Only one advisor daemon may hold the workspace lease for a resolved database dir
 - [`freshness_contract.md`](./freshness_contract.md)
 - [`db_path_policy.md`](../config/db_path_policy.md)
 
-
 ---
 
-<!-- ANCHOR:2-lease-lifecycle -->
 ## 2. LEASE LIFECYCLE
 
 ### Launcher-Boundary Enforcement
@@ -78,22 +75,16 @@ On clean shutdown (SIGTERM, MCP server stop) the daemon releases the lease by de
 
 Every skill-graph database open sets `PRAGMA journal_mode=WAL` and `PRAGMA busy_timeout=5000` to improve concurrency safety and handle short-term lock contention. If the filesystem is read-only (EACCES), WAL mode falls back to `journal_mode=DELETE` with a logged warning.
 
-<!-- /ANCHOR:2-lease-lifecycle -->
-
 ---
 
-<!-- ANCHOR:3-contention-recovery -->
 ## 3. CONTENTION RECOVERY
 
 When two daemons start within the heartbeat window, both attempt acquisition. The lease database enforces a single row per canonical database-directory `workspace_key`, so only one owner can hold the lease for a given SQLite directory. The loser logs `lease-busy holder=<pid>` plus retries with exponential backoff: 1s, 2s, 4s, 8s, 16s, capped at 30s.
 
 If the lease holder responds with an MCP `advisor_status` call showing `live` trust state, the waiter accepts the holder as canonical plus exits without competing. If the holder is unresponsive past 3 retry cycles, the waiter inspects the heartbeat timestamp. If stale (>2x heartbeat interval), the waiter triggers stale-lease recovery (see §4).
 
-<!-- /ANCHOR:3-contention-recovery -->
-
 ---
 
-<!-- ANCHOR:4-stale-lease-handling -->
 ## 4. STALE LEASE HANDLING
 
 A lease is stale when:
@@ -116,11 +107,8 @@ The lease row deletion is guarded by owner ID. If two daemons race on stale-leas
 
 During the Phase 006 compatibility window, launcher startup also probes the old lease database at `.opencode/skills/.advisor-state/skill-graph-daemon-lease.sqlite`. If that legacy database contains a live owner, the launcher exits `0` with `LEASE_HELD_BY:<pid> ... (legacy path)` and does not open the skill graph DB. If the legacy owner is stale or dead, startup logs the stale legacy observation and proceeds with the canonical lease beside the resolved DB directory. The launcher observes but does not migrate the legacy database.
 
-<!-- /ANCHOR:4-stale-lease-handling -->
-
 ---
 
-<!-- ANCHOR:5-failure-modes -->
 ## 5. FAILURE MODES
 
 | Failure | Symptom | Recovery |
@@ -132,11 +120,8 @@ During the Phase 006 compatibility window, launcher startup also probes the old 
 | Heartbeat thread dies but main daemon continues | Lease ages out, waiter triggers stale-lease recovery, kills the lease | Restart the daemon (MCP server restart). Investigate why heartbeat thread crashed |
 | Lease database corruption | Daemon refuses to read the lease | Delete `skill-graph-daemon-lease.sqlite`. Re-acquire. The lease format is non-critical state |
 
-<!-- /ANCHOR:5-failure-modes -->
-
 ---
 
-<!-- ANCHOR:6-db-dir-override -->
 ## 6. DATABASE DIRECTORY OVERRIDE CONSTRAINT
 
 `MK_SKILL_ADVISOR_DB_DIR` and `SYSTEM_SKILL_ADVISOR_DB_DIR` override the skill graph database directory. The daemon lease database is co-located with that canonical directory, so two workspaces pointing at the same SQLite directory through different symlinks or path aliases share the same single-writer boundary.
@@ -148,20 +133,14 @@ This keeps "same SQLite file" and "same lease owner" aligned:
 
 Recommended operator practice: keep strict single-writer mode enabled unless the intent is an isolated test run against separate DB directories.
 
-<!-- /ANCHOR:6-db-dir-override -->
-
 ---
 
-<!-- ANCHOR:7-cleanup-ordering -->
 ## 7. CLEANUP ORDERING INVARIANT
 
 The launcher keeps `process.on('exit', clearLeaseFile)` as a normal-exit backstop, but signal mirroring cannot rely on it. If a child exits due to `SIGKILL`, Node cannot run parent `exit` handlers after `process.kill(process.pid, 'SIGKILL')`. The launcher therefore calls `clearLeaseFile()` synchronously before mirroring any child exit signal, and parent signal handlers clear the lease before exiting after the 5s SIGKILL backstop.
 
-<!-- /ANCHOR:7-cleanup-ordering -->
-
 ---
 
-<!-- ANCHOR:8-related -->
 ## 8. RELATED
 
 - [`freshness_contract.md`](./freshness_contract.md), daemon responsibilities plus trust state vocabulary
@@ -170,5 +149,3 @@ The launcher keeps `process.on('exit', clearLeaseFile)` as a normal-exit backsto
 - `feature_catalog/01--daemon-and-freshness/02-lease.md`, feature inventory entry
 - `manual_testing_playbook/05--auto-update-daemon/002-lease-single-writer.md`, operator scenario
 - `mcp_server/lib/daemon/lease.ts`, source-of-truth implementation
-
-<!-- /ANCHOR:8-related -->

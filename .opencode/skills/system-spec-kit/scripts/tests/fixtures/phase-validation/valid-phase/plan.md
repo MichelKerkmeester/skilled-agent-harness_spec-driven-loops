@@ -14,7 +14,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -28,11 +27,9 @@ contextType: "general"
 
 ### Overview
 Minimal valid plan for testing phase validation.
-<!-- /ANCHOR:summary -->
 
 ---
 
-<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -40,11 +37,9 @@ Minimal valid plan for testing phase validation.
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-<!-- /ANCHOR:quality-gates -->
 
 ---
 
-<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -53,11 +48,9 @@ Test fixture - no architecture
 ### Key Components
 - **Parent**: Phase parent folder
 - **Children**: 001-design, 002-implement
-<!-- /ANCHOR:architecture -->
 
 ---
 
-<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Design
@@ -65,33 +58,26 @@ Test fixture - no architecture
 
 ### Phase 2: Implementation
 - [ ] Implement design
-<!-- /ANCHOR:phases -->
 
 ---
 
-<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Integration | Phase links | validate.sh |
-<!-- /ANCHOR:testing -->
 
 ---
 
-<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | N/A | N/A | Green | N/A |
-<!-- /ANCHOR:dependencies -->
 
 ---
 
-<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: N/A (test fixture)
 - **Procedure**: N/A
-<!-- /ANCHOR:rollback -->

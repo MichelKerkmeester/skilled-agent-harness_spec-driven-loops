@@ -1,4 +1,3 @@
-<!-- ANCHOR:overview -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Test Feature - L3 Missing Decision
@@ -26,4 +25,3 @@ Tests L3 folder missing decision-record.md fails validation.
 ### Out of Scope
 
 - N/A
-<!-- /ANCHOR:overview -->

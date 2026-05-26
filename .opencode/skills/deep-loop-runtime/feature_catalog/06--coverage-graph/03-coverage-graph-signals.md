@@ -5,13 +5,6 @@ description: "Computes convergence signals, node centrality signals, snapshots, 
 
 # Coverage graph signals
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. CURRENT REALITY](#2--current-reality)
-- [3. SOURCE FILES](#3--source-files)
-- [4. SOURCE METADATA](#4--source-metadata)
-
 ---
 
 ## 1. OVERVIEW
@@ -55,4 +48,3 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Feature ID: F013
 - Feature file path: `06--coverage-graph/03-coverage-graph-signals.md`
 - Primary sources: `lib/coverage-graph/coverage-graph-signals.ts`, `tests/integration/convergence-script.vitest.ts`
-

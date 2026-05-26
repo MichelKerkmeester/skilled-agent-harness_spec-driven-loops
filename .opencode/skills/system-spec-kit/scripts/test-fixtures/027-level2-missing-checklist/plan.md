@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -31,4 +30,3 @@ L2 without checklist.md.
 ### Phase 1: Setup
 
 Create L2 fixture without checklist.md.
-<!-- /ANCHOR:implementation-plan -->

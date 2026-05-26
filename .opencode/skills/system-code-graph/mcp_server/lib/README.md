@@ -15,24 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/` owns the implementation behind the code graph handlers. It indexes source files, stores graph records in SQLite, resolves seeds, builds compact context payloads, runs recovery workflows and reports readiness metadata for callers that need false-safe graph reads.
@@ -45,11 +27,8 @@ Current state:
 - Context builders merge structural graph, Spec Kit memory and Code Graph inputs under token budgets.
 - Apply-mode recovery runs pre and post verification before committing graph repair operations.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -71,11 +50,8 @@ apply paths -> apply-orchestrator -> recovery procedures and verification
 database does not import handlers
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -133,11 +109,8 @@ database layer -> MCP transport layer
 parser layer -> startup or compaction surfaces
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -180,11 +153,8 @@ lib/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -216,11 +186,8 @@ lib/
 | `shared/` | Local contracts for payloads, metrics stubs, path helpers and MCP types. |
 | `ipc/` | Socket bridge used by launcher-managed secondary clients. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -250,11 +217,8 @@ code_graph_apply handler
   -> audit metadata records the outcome
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -273,11 +237,8 @@ code_graph_apply handler
 | `lookupSkipList()` / `addToSkipList()` / `getSkipListSummary()` / `seedFromProduction()` / `recordSuccess()` | Functions | Skip-list reads, writes, summary and seed backfill. |
 | `getParserHealth()` / `classifyError()` | Functions | Parser-health getter and parser-error classifier. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root.
@@ -289,11 +250,8 @@ Run from the repository root.
 
 Expected result: TypeScript exits `0`, and parser, indexer, context, readiness, recovery and database suites pass.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 | Document | Purpose |
@@ -304,5 +262,3 @@ Expected result: TypeScript exits `0`, and parser, indexer, context, readiness, 
 | [shared/README.md](./shared/README.md) | Local contracts and shared helper modules. |
 | [ipc/README.md](./ipc/README.md) | Launcher IPC socket bridge. |
 | [utils/README.md](./utils/README.md) | Workspace path helper contract. |
-
-<!-- /ANCHOR:related -->

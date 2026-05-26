@@ -17,9 +17,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
 1. [OVERVIEW](#1-overview)
 2. [QUICK START](#2-quick-start)
 3. [FEATURES](#3-features)
@@ -31,11 +28,9 @@ trigger_phrases:
 7. [TROUBLESHOOTING](#7-troubleshooting)
 8. [FAQ](#8-faq)
 9. [RELATED DOCUMENTS](#9-related-documents)
-<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 This skill orchestrates Chrome browser access through two distinct approaches. The primary path is the `browser-debugger-cli` (bdg) tool, a lightweight npm-installable CLI that connects directly to Chrome's DevTools Protocol. bdg gives terminal users immediate access to 300+ CDP methods across 53 domains without any framework overhead. The fallback path is the MCP approach via Code Mode, which registers Chrome DevTools as an external MCP server and calls it through `call_tool_chain()`. The MCP path trades some speed for the ability to chain browser operations with other Code Mode tools in a single TypeScript block.
@@ -50,11 +45,8 @@ For browser work tied back to a Spec Kit packet, `/speckit:resume` remains the c
 
 The current version is 1.0.7.0. The bdg CLI covers 53 CDP domains with access to 300+ CDP methods. The MCP path supports unlimited parallel isolated browser instances. Performance targets include session startup in under 5 seconds, screenshot capture in under 2 seconds, and console log retrieval in under 1 second. The CLI supports macOS, Linux, and WSL (Windows).
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1: Install bdg (CLI path)**
@@ -97,11 +89,8 @@ For unattended scripts, register a trap so cleanup runs even on errors:
 trap "bdg stop 2>&1" EXIT INT TERM
 ```
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -201,11 +190,8 @@ The three example scripts in `examples/` represent production patterns for CI/CD
 | Set viewport size | `bdg cdp Emulation.setDeviceMetricsOverride` | `resize_page` |
 | Close session | `bdg stop` | `close_page` |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```
@@ -226,11 +212,8 @@ mcp-chrome-devtools/
     install.sh                   # Automated installation script for bdg
 ```
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 **CLI (bdg): No configuration file required.** Install the package globally and use the `bdg` command directly.
@@ -287,11 +270,8 @@ Tool invocation pattern inside `call_tool_chain()`:
 
 Example: `chrome_devtools_1.chrome_devtools_1_take_screenshot({})`
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 **Example 1: Console error audit with CLI**
@@ -369,11 +349,8 @@ bdg dom screenshot dashboard-auth.png 2>&1
 echo "Screenshot saved: dashboard-auth.png"
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 Run these five diagnostic checks before investigating further:
@@ -483,11 +460,8 @@ bdg status 2>errors.log 1>status.json
 jq '.state' status.json
 ```
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: When should I use the CLI path versus the MCP path?**
@@ -506,11 +480,8 @@ A: Yes. Set `CHROME_HEADLESS=true` in the environment before running bdg. On Lin
 
 A: Never hardcode method names in scripts. Use `bdg cdp --search <keyword>` to find the current name each time you add a new method to a script. bdg normalizes method name casing, so the lookup is case-insensitive. Method signatures can also change, so run `bdg cdp --describe <Domain.Method>` to confirm the expected parameters before executing.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 **This skill**
@@ -544,5 +515,3 @@ A: Never hardcode method names in scripts. Use `bdg cdp --search <keyword>` to f
 | Chrome DevTools Protocol | https://chromedevtools.github.io/devtools-protocol/ |
 | browser-debugger-cli (GitHub) | https://github.com/szymdzum/browser-debugger-cli |
 | Node.js (required runtime, 14.x+) | https://nodejs.org/ |
-
-<!-- /ANCHOR:related-documents -->

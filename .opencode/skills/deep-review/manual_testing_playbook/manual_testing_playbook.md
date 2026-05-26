@@ -7,7 +7,6 @@ description: "Operator-facing reference combining the manual testing directory, 
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real, not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-
 This document combines the operator-facing manual testing contract for the `deep-review` skill into a single reference. The root playbook acts as the directory, review protocol, and orchestration guide while the per-feature files carry the scenario-specific execution truth.
 
 ---
@@ -22,27 +21,6 @@ Canonical package artifacts:
 - `06--synthesis-save-and-guardrails/`
 - `07--command-flow-stress-tests/`
 - `08--review-depth-v2-rollout/`
-
----
-
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. ENTRY POINTS AND MODES](#7--entry-points-and-modes)
-- [8. INITIALIZATION AND STATE SETUP](#8--initialization-and-state-setup)
-- [9. ITERATION EXECUTION AND STATE DISCIPLINE](#9--iteration-execution-and-state-discipline)
-- [10. CONVERGENCE AND RECOVERY](#10--convergence-and-recovery)
-- [11. PAUSE, RESUME, AND FAULT TOLERANCE](#11--pause-resume-and-fault-tolerance)
-- [12. SYNTHESIS, SAVE, AND GUARDRAILS](#12--synthesis-save-and-guardrails)
-- [13. AUTOMATED TEST CROSS-REFERENCE](#13--automated-test-cross-reference)
-- [14. FEATURE CATALOG CROSS-REFERENCE INDEX](#14--feature-catalog-cross-reference-index)
-- [15. COMMAND FLOW STRESS TESTS](#15--command-flow-stress-tests)
-- [16. REVIEW DEPTH V2 ROLLOUT](#16--review-depth-v2-rollout)
 
 ---
 
@@ -188,7 +166,6 @@ Expected signals: Default values of 7 and 0.10 appear consistently across all so
 #### Test Execution
 > **Feature File:** [DRV-003](01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md)
 
-
 ---
 
 ## 8. INITIALIZATION AND STATE SETUP
@@ -246,7 +223,6 @@ Expected signals: The scope discovery step has resolution rules for each target 
 
 #### Test Execution
 > **Feature File:** [DRV-007](02--initialization-and-state-setup/007-scope-discovery-and-dimension-ordering.md)
-
 
 ---
 
@@ -357,7 +333,6 @@ Expected signals: `graphEvents` referenced as iteration-record input for graph-a
 
 #### Test Execution
 > **Feature File:** [DRV-015](03--iteration-execution-and-state-discipline/015-graph-events-review.md)
-
 
 ---
 
@@ -482,7 +457,6 @@ Expected signals: corrupt JSONL exits `2` without `--lenient`. `corruptionWarnin
 #### Test Execution
 > **Feature File:** [DRV-034](04--convergence-and-recovery/034-fail-closed-reducer.md)
 
-
 ---
 
 ## 11. PAUSE, RESUME, AND FAULT TOLERANCE
@@ -540,7 +514,6 @@ Expected signals: Iteration files contain metadata matching JSONL fields, recons
 
 #### Test Execution
 > **Feature File:** [DRV-024](05--pause-resume-and-fault-tolerance/024-jsonl-reconstruction-from-review-iteration-files.md)
-
 
 ---
 

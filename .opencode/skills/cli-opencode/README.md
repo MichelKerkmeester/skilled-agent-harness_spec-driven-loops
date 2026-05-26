@@ -15,26 +15,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 FEATURE HIGHLIGHTS](#31--feature-highlights)
-  - [3.2 FEATURE REFERENCE](#32--feature-reference)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What This Skill Does
@@ -67,11 +47,8 @@ The skill documents three orthogonal use cases: external runtime to OpenCode, in
 
 Requirements include OpenCode v1.3.17 or later, installable via brew install opencode (macOS) or curl -fsSL https://opencode.ai/install | bash. Authentication is per-provider via opencode providers login <provider>, supporting opencode-go (api), deepseek (api), and openai (api). Node.js 18+ is required for the npm install path.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 ### 1. Verify Installation
@@ -133,11 +110,8 @@ timeout 720 opencode run \
 
 See `references/integration_patterns.md` §6 for the full failure-mode + fix matrix and `CHANGELOG-2026-05-08-tool-name-regex-fix.md` §Fix 4 for discovery context.
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -222,11 +196,8 @@ The skill ships with three providers: `opencode-go` (DEFAULT), `deepseek`, and `
 | `ai-council` | Multi-strategy planning | PLANNING-ONLY |
 | `deep-agent-improvement` | Agent improvement proposals | Proposal-only |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ```text
@@ -244,11 +215,8 @@ cli-opencode/
     agent_delegation.md                 # Agent routing matrix, leaf-agent constraints
 ```
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 ### Authentication
@@ -302,11 +270,8 @@ opencode run \
 | `--fork` | Branch from a continued session | Diverge from a known prior state |
 | `--share --port N` | Detached session with publishable URL | Use case 2 (parallel research) |
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 ### External Runtime to OpenCode (Use Case 1)
@@ -374,11 +339,8 @@ done
 wait
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 ### OpenCode CLI Not Found
@@ -417,11 +379,8 @@ wait
 **Common causes**: Binary is older than the v1.3.17 baseline.
 **Fix**: Run `opencode --version` and `opencode run --help`. Compare against `references/cli_reference.md` §9 (Version Drift). Either upgrade the binary or fall back to the closest analogue flag.
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 ### General
@@ -462,11 +421,8 @@ A: Match the task type to the agent roster in Section 3.2. For routine work, use
 **Q: Can the dispatched session spawn its own sub-agents?**
 A: Yes via the dispatched session's native Task tool, but NOT via nested `opencode run` invocations. Nested CLI calls break the orchestration tree. Use `--agent orchestrate` for the entry-point dispatch and let the orchestrator handle sub-agent dispatch internally.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 ### Skill Resources
@@ -483,5 +439,3 @@ A: Yes via the dispatched session's native Task tool, but NOT via nested `openco
 - [cli-codex](../cli-codex/): OpenAI Codex CLI orchestrator
 - [cli-gemini](../cli-gemini/): Google Gemini CLI orchestrator
 - [system-spec-kit](../system-spec-kit/): Spec folder workflow + Spec Kit Memory (cross-AI handback target)
-
-<!-- /ANCHOR:related-documents -->

@@ -14,7 +14,6 @@ Baseline metrics for advisor_validate (corpus, holdout, UNKNOWN, daemon, cache l
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -37,10 +36,8 @@ Validation baselines are the promotion gate for routing behavior changes, not af
 - [`advisor_scorer.md`](./advisor_scorer.md)
 - [`tool_ids_reference.md`](../runtime/tool_ids_reference.md)
 
-
 ---
 
-<!-- ANCHOR:2-current-baselines -->
 ## 2. CURRENT BASELINES
 
 Baseline numbers as of remediation SHA `97a318d83`:
@@ -59,11 +56,8 @@ Baseline numbers as of remediation SHA `97a318d83`:
 
 Drift threshold: top-1 accuracy below 80.5% on full corpus OR below 77.5% on holdout is a hard regression that blocks ship.
 
-<!-- /ANCHOR:2-current-baselines -->
-
 ---
 
-<!-- ANCHOR:3-running-validate -->
 ## 3. RUNNING VALIDATE
 
 `advisor_validate` is a heavy operation. It runs the full corpus plus holdout plus parity plus safety plus latency slices in one pass. Require `confirmHeavyRun=true` to invoke.
@@ -91,11 +85,8 @@ Response fields to retain for baseline tracking:
 - `perSkill[]` (array of per-skill results)
 - `generatedAt` (ISO timestamp)
 
-<!-- /ANCHOR:3-running-validate -->
-
 ---
 
-<!-- ANCHOR:4-interpreting-slices -->
 ## 4. INTERPRETING SLICES
 
 ### Corpus slice
@@ -128,11 +119,8 @@ Reports cache-hit p95 plus uncached p95. Baselines: ~6.989 ms cache-hit, ~11.45 
 
 Drift signal: cache-hit > 15 ms or uncached > 25 ms. Likely causes are SQLite contention, daemon lease starvation or scoring algorithm changes.
 
-<!-- /ANCHOR:4-interpreting-slices -->
-
 ---
 
-<!-- ANCHOR:5-troubleshooting -->
 ## 5. TROUBLESHOOTING
 
 | Symptom | Likely Cause | Remediation |
@@ -147,11 +135,8 @@ Drift signal: cache-hit > 15 ms or uncached > 25 ms. Likely causes are SQLite co
 | `advisor_validate` errors with `confirmHeavyRun is required` | Caller did not opt in | Pass `confirmHeavyRun: true` |
 | `advisor_validate` hangs > 5 min | Daemon lock OR test-corpus growth | Check process via `ps`. If hung, kill the MCP server plus restart. If completion exceeds 5 min routinely, trim test corpus or split into incremental runs |
 
-<!-- /ANCHOR:5-troubleshooting -->
-
 ---
 
-<!-- ANCHOR:6-related -->
 ## 6. RELATED
 
 - [`tool_ids_reference.md`](../runtime/tool_ids_reference.md) §2, `advisor_validate` input plus output schema
@@ -161,5 +146,3 @@ Drift signal: cache-hit > 15 ms or uncached > 25 ms. Likely causes are SQLite co
 - `feature_catalog/feature_catalog.md` §1, canonical baseline source
 - `mcp_server/handlers/advisor-validate.ts`, handler implementation
 - `mcp_server/bench/`, latency benchmark harnesses
-
-<!-- /ANCHOR:6-related -->

@@ -5,13 +5,6 @@ description: "Checklist completion verifier for spec folders that enforces P0/P1
 
 # Completion Verification Workflow
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 Completion Verification Workflow is the spec-kit completion gate that decides whether a spec folder is ready to be claimed as finished. It audits `checklist.md` inside a target spec folder, counts checkbox items by priority, and blocks completion when critical or required work is missing.

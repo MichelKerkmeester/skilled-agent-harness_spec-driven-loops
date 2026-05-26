@@ -13,24 +13,8 @@ trigger_phrases:
 
 > Hybrid memory search package for vector storage, lexical retrieval, graph signals, reranking, and query routing.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. PACKAGE TOPOLOGY](#3--package-topology)
-- [4. DIRECTORY TREE](#4--directory-tree)
-- [5. KEY FILES](#5--key-files)
-- [6. BOUNDARIES AND FLOW](#6--boundaries-and-flow)
-- [7. ENTRYPOINTS](#7--entrypoints)
-- [8. VALIDATION](#8--validation)
-- [9. RELATED](#9--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `lib/search/` owns memory retrieval for the MCP server. It turns a plain-language query into ranked spec-doc records using vector search, lexical search, graph signals, query routing, scoring, optional reranking, and response metadata.
@@ -46,11 +30,8 @@ Current state:
 
 This folder is a domain package. It does not expose MCP tools directly. Handlers call into it through stable exports and receive ranked results, diagnostics, and metadata.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -81,11 +62,8 @@ pipeline ───▶ vector, lexical, graph, scoring, and metadata helpers
 retrieval helpers ───▶ shared types and database adapters
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -125,11 +103,8 @@ graph scoring helpers → MCP transport modules
 tests or fixtures → production modules through private build output
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -168,11 +143,8 @@ lib/search/
 `-- README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -201,11 +173,8 @@ lib/search/
 
 `query-router.ts` can preserve graph and BM25 channels even when the complexity tier would otherwise skip them. The graph path is guarded by `SPECKIT_GRAPH_CHANNEL_PRESERVATION`, intent signals, and the cached entity-density score from `entity-density.ts`; entity-rich queries stay eligible for causal graph retrieval because they are more likely to benefit from high-fanout memory rows. `routing-telemetry.ts` records the resulting channel choices in a rolling 200-decision window so maintainers can inspect graph invocation rates through health telemetry. The full design lives in the local implementation notes.
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -250,11 +219,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -268,11 +234,8 @@ Main flow:
 | `bm25-index.ts` | Module | Provides direct lexical search helpers. |
 | `sqlite-fts.ts` | Module | Provides FTS5-backed lexical helpers. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run package checks from `mcp_server/`.
@@ -291,11 +254,8 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/sy
 
 Expected result: build and focused tests exit 0, README validation reports no blocking issues, and structure extraction returns a README document profile.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [`../../README.md`](../../README.md)
@@ -305,5 +265,3 @@ Expected result: build and focused tests exit 0, README validation reports no bl
 - [`../parsing/README.md`](../parsing/README.md)
 - [`../extraction/README.md`](../extraction/README.md)
 - [`../../ENV_REFERENCE.md`](../../ENV_REFERENCE.md)
-
-<!-- /ANCHOR:related -->

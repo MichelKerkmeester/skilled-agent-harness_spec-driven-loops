@@ -15,32 +15,14 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
-- [3. STABLE API](#3--stable-api)
-- [4. BOUNDARIES](#4--boundaries)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED DOCUMENTS](#6--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The parsing package centralizes small, deterministic document analyzers used by memory save, indexing and health reporting code. It handles frontmatter extraction, template contract checks, spec document health scoring and memory sufficiency checks.
 
 Use this package when code needs the same parsing result in more than one runtime path. Keep endpoint behavior, file discovery and workflow orchestration outside this folder.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 2. STRUCTURE
 
 ```text
@@ -62,11 +44,8 @@ parsing/
 | `spec-doc-health.ts` | Computes lightweight spec folder health metadata for pipeline annotations |
 | `*.test.ts` | Edge-case coverage for frontmatter parsing and spec document health rules |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:stable-api -->
 ## 3. STABLE API
 
 | Export | Source | Purpose |
@@ -79,11 +58,8 @@ parsing/
 
 These functions return typed result objects instead of throwing for normal validation failures. Callers should treat thrown errors as infrastructure failures, not document-quality failures.
 
-<!-- /ANCHOR:stable-api -->
-
 ---
 
-<!-- ANCHOR:boundaries -->
 ## 4. BOUNDARIES
 
 Import direction should flow from consumers into `shared/parsing`:
@@ -96,11 +72,8 @@ Import direction should flow from consumers into `shared/parsing`:
 
 This package owns parser rules. It does not own source-of-truth decisions about which spec folder or memory file should be processed.
 
-<!-- /ANCHOR:boundaries -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 5. VALIDATION
 
 Run parser tests and TypeScript checks after behavior changes:
@@ -113,11 +86,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 For README-only edits, `validate_document.py` is the required file-level check.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 6. RELATED DOCUMENTS
 
 | Document | Purpose |
@@ -125,7 +95,5 @@ For README-only edits, `validate_document.py` is the required file-level check.
 | [shared/README.md](../README.md) | Parent shared library overview |
 | [shared/types.ts](../types.ts) | Shared types consumed by parser callers |
 | [shared/utils/README.md](../utils/README.md) | Utility helpers used by nearby shared packages |
-
-<!-- /ANCHOR:related -->
 
 ---

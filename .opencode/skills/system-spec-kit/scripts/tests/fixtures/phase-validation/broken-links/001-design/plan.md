@@ -13,18 +13,14 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Overview
 Plan for the design phase of the broken links fixture.
-<!-- /ANCHOR:summary -->
 
 ---
 
-<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Design
 - [ ] Produce design artifacts
-<!-- /ANCHOR:phases -->

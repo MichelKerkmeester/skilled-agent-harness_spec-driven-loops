@@ -5,13 +5,6 @@ description: "Documents retired scoring-flag behavior and shim layers that remai
 
 # Inert scoring flags and compatibility shims
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 This entry documents scoring-era flag surfaces and shim modules that remain visible after remediation work simplified the live runtime.

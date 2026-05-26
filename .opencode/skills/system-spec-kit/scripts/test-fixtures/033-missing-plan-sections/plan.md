@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -20,4 +19,3 @@ Warning for missing section.
 ### Phase 1: Setup
 
 Create plan without Architecture.
-<!-- /ANCHOR:implementation-plan -->

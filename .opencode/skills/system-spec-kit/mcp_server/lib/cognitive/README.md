@@ -12,15 +12,6 @@ trigger_phrases:
 
 Memory lifecycle and attention logic for Spec Kit Memory. This folder turns memory metadata, session activity, and temporal signals into bounded retrieval state.
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
-- [3. FLOW](#3--flow)
-- [4. ALLOWED DEPENDENCY DIRECTION](#4--allowed-dependency-direction)
-- [5. KEY CONTRACTS](#5--key-contracts)
-- [6. RELATED FILES](#6--related-files)
-
 ## 1. OVERVIEW
 
 Use this folder when code needs to classify memories, decay attention, spread activation, track session working memory, or monitor context pressure. It supports retrieval decisions, but canonical recovery still starts with `/spec_kit:resume` and the continuity chain in spec documents.

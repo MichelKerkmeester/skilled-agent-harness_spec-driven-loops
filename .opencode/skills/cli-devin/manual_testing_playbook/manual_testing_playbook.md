@@ -29,28 +29,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. CLI INVOCATION (`DV-001..DV-004`)](#7--cli-invocation-dv-001dv-004)
-- [8. PERMISSION MODES (`DV-005..DV-007`)](#8--permission-modes-dv-005dv-007)
-- [9. MODEL PRESETS (`DV-008..DV-010`, `DV-026`, `DV-028..DV-029`)](#9--model-presets-dv-008dv-010-dv-026-dv-028dv-029)
-- [10. DEVIN SURFACES (`DV-011..DV-013`)](#10--devin-surfaces-dv-011dv-013)
-- [11. SESSION CONTINUITY (`DV-014..DV-016`)](#11--session-continuity-dv-014dv-016)
-- [12. CLOUD HANDOFF (`DV-017..DV-018`, `DV-027`)](#12--cloud-handoff-dv-017dv-018-dv-027)
-- [13. SELF-INVOCATION GUARD (`DV-019..DV-020`)](#13--self-invocation-guard-dv-019dv-020)
-- [14. CROSS-AI DISPATCH (`DV-021..DV-024`)](#14--cross-ai-dispatch-dv-021dv-024)
-- [15. ACP BRIDGE (`DV-025`)](#15--acp-bridge-dv-025)
-- [16. AUTOMATED TEST CROSS-REFERENCE](#16--automated-test-cross-reference)
-- [17. FEATURE CATALOG CROSS-REFERENCE INDEX](#17--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 27 deterministic scenarios across 9 categories validating the `cli-devin` skill surface. Each feature keeps its global `DV-NNN` ID and links to a dedicated feature file with the full execution contract. v1.0.2.0: wave-2 run promoted 8 SKIPs to PASS, split DV-018 into shell-runnable (new DV-027 cloud surface) + manual round-trip (DV-018), and reaffirmed 3 calling-AI orchestrator-layer SKIPs (DV-017 / DV-019 / DV-020).

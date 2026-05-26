@@ -20,7 +20,6 @@ _memory:
 
 ---
 
-<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -34,11 +33,9 @@ _memory:
 
 ### Overview
 This fixture keeps the live Level 2 plan structure intact so the validator can compare real headers and anchors.
-<!-- /ANCHOR:summary -->
 
 ---
 
-<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -50,11 +47,9 @@ This fixture keeps the live Level 2 plan structure intact so the validator can c
 - [x] Validator passes
 - [x] Anchors stay ordered
 - [x] Docs stay synchronized
-<!-- /ANCHOR:quality-gates -->
 
 ---
 
-<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -66,11 +61,9 @@ Fixture-based validation
 
 ### Data Flow
 The validator reads fixture docs, derives the active template contract, and compares ordered headers and anchors.
-<!-- /ANCHOR:architecture -->
 
 ---
 
-<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
@@ -81,11 +74,9 @@ The validator reads fixture docs, derives the active template contract, and comp
 
 ### Phase 3: Verification
 - [x] Run shell and Vitest coverage
-<!-- /ANCHOR:phases -->
 
 ---
 
-<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -93,30 +84,24 @@ The validator reads fixture docs, derives the active template contract, and comp
 | Unit | Template comparator | Vitest |
 | Integration | Validator end to end | Shell |
 | Manual | Targeted smoke checks | Bash |
-<!-- /ANCHOR:testing -->
 
 ---
 
-<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Live Level 2 templates | Internal | Green | Comparator cannot derive contract |
-<!-- /ANCHOR:dependencies -->
 
 ---
 
-<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Fixture structure no longer matches the live templates.
 - **Procedure**: Refresh the fixture against the current template files.
-<!-- /ANCHOR:rollback -->
 
 ---
 
-<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 | Phase | Depends On | Blocks |
@@ -124,11 +109,9 @@ The validator reads fixture docs, derives the active template contract, and comp
 | Setup | None | Core |
 | Core | Setup | Verify |
 | Verify | Core | None |
-<!-- /ANCHOR:phase-deps -->
 
 ---
 
-<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -137,11 +120,9 @@ The validator reads fixture docs, derives the active template contract, and comp
 | Core Implementation | Low | 20 minutes |
 | Verification | Low | 15 minutes |
 | **Total** | | **50 minutes** |
-<!-- /ANCHOR:effort -->
 
 ---
 
-<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -154,4 +135,3 @@ The validator reads fixture docs, derives the active template contract, and comp
 ### Data Reversal
 - **Has data migrations?** No
 - **Reversal procedure**: N/A
-<!-- /ANCHOR:enhanced-rollback -->

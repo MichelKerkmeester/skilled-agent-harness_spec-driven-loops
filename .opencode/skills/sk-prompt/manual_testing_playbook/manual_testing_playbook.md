@@ -26,26 +26,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. MODE DETECTION (`SP-001..SP-004`)](#7--mode-detection-sp-001sp-004)
-- [8. SMART ROUTING (`SP-005..SP-008`)](#8--smart-routing-sp-005sp-008)
-- [9. DEPTH+CLEAR LOOP (`SP-009..SP-014`)](#9--depthclear-loop-sp-009sp-014)
-- [10. CLEAR SCORING (`SP-015..SP-018`)](#10--clear-scoring-sp-015sp-018)
-- [11. FRAMEWORK SELECTION (`SP-019..SP-022`)](#11--framework-selection-sp-019sp-022)
-- [12. ESCALATION TIERS (`SP-023..SP-026`)](#12--escalation-tiers-sp-023sp-026)
-- [13. FORMAT MODES (`SP-027..SP-028`)](#13--format-modes-sp-027sp-028)
-- [14. AUTOMATED TEST CROSS-REFERENCE](#14--automated-test-cross-reference)
-- [15. FEATURE CROSS-REFERENCE INDEX](#15--feature-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides 28 deterministic scenarios across 7 categories validating the `sk-prompt` skill surface and its escalation agent `@prompt-improver`. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.

@@ -1,13 +1,10 @@
-
 <!-- SPECKIT_TEMPLATE_SOURCE: level_1/plan.md | v2.2 -->
 
 # Implementation Plan
 
-<!-- ANCHOR:technical-context -->
 ## Technical Context
 
 Rule order test.
-<!-- /ANCHOR:technical-context -->
 
 ### Current State
 

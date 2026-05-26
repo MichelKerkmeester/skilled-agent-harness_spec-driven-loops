@@ -14,16 +14,13 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Overview
 Plan for the broken links phase fixture.
-<!-- /ANCHOR:summary -->
 
 ---
 
-<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Design
@@ -31,4 +28,3 @@ Plan for the broken links phase fixture.
 
 ### Phase 2: Implementation
 - [ ] Implement design
-<!-- /ANCHOR:phases -->

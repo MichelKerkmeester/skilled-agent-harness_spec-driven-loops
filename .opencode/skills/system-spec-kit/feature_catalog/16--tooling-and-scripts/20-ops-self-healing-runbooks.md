@@ -5,13 +5,6 @@ description: "Deterministic shell runbooks for listing, inspecting, and drilling
 
 # Ops Self-Healing Runbooks
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1-overview)
-- [2. CURRENT REALITY](#2-current-reality)
-- [3. SOURCE FILES](#3-source-files)
-- [4. SOURCE METADATA](#4-source-metadata)
-
 ## 1. OVERVIEW
 
 Ops Self-Healing Runbooks provide a small shell-based operational control surface for rehearsing and executing deterministic remediation flows. The package exposes a single `runbook.sh` entrypoint that can list supported failure classes, show ownership and escalation details, or drill one remediation workflow or all workflows together.

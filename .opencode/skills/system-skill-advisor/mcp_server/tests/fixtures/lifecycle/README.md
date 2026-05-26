@@ -11,20 +11,8 @@ trigger_phrases:
 
 > Single-file fixture module that exports lifecycle metadata shapes for advisor routing and lifecycle test coverage.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. KEY FILES](#2--key-files)
-- [3. ENTRYPOINTS](#3--entrypoints)
-- [4. VALIDATION](#4--validation)
-- [5. RELATED](#5--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `tests/fixtures/lifecycle/` owns the `lifecycleFixtures` const that provides test data for lifecycle metadata handling in the skill-advisor codebase. The fixtures cover skill states that affect routing decisions: deprecated skills with redirect metadata, active successors, archived skills, future skills, rolled back schema versions and mixed schema version arrays.
@@ -37,33 +25,24 @@ Current state:
 - Two test suites consume these fixtures: `lifecycle-derived-metadata.vitest.ts` in the parent tests directory and `native-scorer.vitest.ts` in the scorer directory.
 - The fixture module has no imports beyond its own definition. It exports static data only.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 2. KEY FILES
 
 | File | Responsibility |
 |---|---|
 | `index.ts` | Exports `lifecycleFixtures` with superseded, successor, archived, future, rolled back and mixed version fixture groups. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 3. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `lifecycleFixtures` | const | Readonly object with lifecycle metadata fixtures for deprecation, archival, future state and version mixing scenarios. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 4. VALIDATION
 
 Run from the repository root.
@@ -74,15 +53,10 @@ cd .opencode/skills/system-skill-advisor/mcp_server && npm test -- tests/lifecyc
 
 Expected result: exit code 0.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 5. RELATED
 
 - [Parent: Fixtures](../README.md)
 - [Tests: tests/](../../README.md)
 - [Scorer Fixtures](../../scorer/fixtures/README.md)
-
-<!-- /ANCHOR:related -->

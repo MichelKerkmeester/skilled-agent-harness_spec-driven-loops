@@ -18,24 +18,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. PURPOSE](#2--purpose)
-- [3. COMMANDS](#3--commands)
-- [4. STRUCTURE](#4--structure)
-- [5. INSTRUCTIONS](#5--instructions)
-- [6. EXECUTION MODES](#6--execution-modes)
-- [7. USAGE EXAMPLES](#7--usage-examples)
-- [8. FAQ](#8--faq)
-- [9. TROUBLESHOOTING](#9--troubleshooting)
-- [10. RELATED DOCUMENTS](#10--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

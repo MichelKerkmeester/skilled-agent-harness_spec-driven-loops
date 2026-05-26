@@ -18,7 +18,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -32,11 +31,9 @@ contextType: "general"
 
 ### Overview
 [2-3 sentences: what this implements and the technical approach]
-<!-- /ANCHOR:summary -->
 
 ---
 
-<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -48,11 +45,9 @@ contextType: "general"
 - [ ] All acceptance criteria met
 - [ ] Tests passing (if applicable)
 - [ ] Docs updated (spec/plan/tasks)
-<!-- /ANCHOR:quality-gates -->
 
 ---
 
-<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -64,11 +59,9 @@ contextType: "general"
 
 ### Data Flow
 [Brief description of how data moves through the system]
-<!-- /ANCHOR:architecture -->
 
 ---
 
-<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
@@ -85,11 +78,9 @@ contextType: "general"
 - [ ] Manual testing complete
 - [ ] Edge cases handled
 - [ ] Documentation updated
-<!-- /ANCHOR:phases -->
 
 ---
 
-<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -97,26 +88,21 @@ contextType: "general"
 | Unit | [Components/functions] | [Jest/pytest/etc.] |
 | Integration | [API endpoints/flows] | [Tools] |
 | Manual | [User journeys] | Browser |
-<!-- /ANCHOR:testing -->
 
 ---
 
-<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
-<!-- /ANCHOR:dependencies -->
 
 ---
 
-<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: [Conditions requiring rollback]
 - **Procedure**: [How to revert changes]
-<!-- /ANCHOR:rollback -->
 
 ---
 

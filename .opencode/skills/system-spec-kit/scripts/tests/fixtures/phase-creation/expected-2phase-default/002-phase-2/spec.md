@@ -24,7 +24,6 @@ contextType: "general"
 | **Successor** | None |
 | **Handoff Criteria** | [To be defined during planning] |
 
-<!-- ANCHOR:phase-context -->
 ### Phase Context
 
 This is **Phase 2** of the Test Feature specification.
@@ -36,7 +35,6 @@ This is **Phase 2** of the Test Feature specification.
 
 **Deliverables**:
 - [To be defined during planning]
-<!-- /ANCHOR:phase-context -->
 
 ---
 title: "Feature Specification: [NAME] [template:level_1/spec.md]"
@@ -57,7 +55,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -67,11 +64,9 @@ contextType: "general"
 | **Status** | [Draft/In Progress/Review/Complete] |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | `[###-feature-name]` |
-<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -79,11 +74,9 @@ contextType: "general"
 
 ### Purpose
 [One-sentence outcome statement. What does success look like?]
-<!-- /ANCHOR:problem -->
 
 ---
 
-<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -100,11 +93,9 @@ contextType: "general"
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-<!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
@@ -118,36 +109,29 @@ contextType: "general"
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-002 | [Requirement description] | [How to verify it's done] |
-<!-- /ANCHOR:requirements -->
 
 ---
 
-<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: [Primary measurable outcome]
 - **SC-002**: [Secondary measurable outcome]
-<!-- /ANCHOR:success-criteria -->
 
 ---
 
-<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | [System/API] | [What if blocked] | [Fallback plan] |
 | Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-<!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]
 - [Question 2 requiring clarification]
-<!-- /ANCHOR:questions -->
 
 ---
 

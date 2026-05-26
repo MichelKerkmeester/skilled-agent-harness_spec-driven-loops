@@ -14,16 +14,12 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 Validate that `lib/scorer/ambiguity.ts` returns an ambiguous brief when the top two candidates are within a 0.05 confidence window and that downstream rendering reflects ambiguity rather than arbitrarily selecting one winner.
 
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-scenario-contract -->
 ## 2. SCENARIO CONTRACT
 
 - Repo root. MCP server built.
@@ -32,9 +28,6 @@ Validate that `lib/scorer/ambiguity.ts` returns an ambiguous brief when the top 
 
 ---
 
-<!-- /ANCHOR:2-scenario-contract -->
-
-<!-- ANCHOR:3-test-execution -->
 ## 3. TEST EXECUTION
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred_decisions.md` §F34 for rationale.
@@ -66,9 +59,6 @@ advisor_recommend({"prompt":"<ambiguous prompt from corpus>","options":{"topK":2
 
 ---
 
-<!-- /ANCHOR:3-test-execution -->
-
-<!-- ANCHOR:4-source-files -->
 ## 4. SOURCE FILES
 
 - Scenario [NC-004](../01--native-mcp-tools/004-ambiguous-brief-rendering.md), ambiguous brief rendering.
@@ -78,14 +68,9 @@ advisor_recommend({"prompt":"<ambiguous prompt from corpus>","options":{"topK":2
 
 ---
 
-<!-- /ANCHOR:4-source-files -->
-
-<!-- ANCHOR:5-source-metadata -->
 ## 5. SOURCE METADATA
 
 - Group: Scorer Fusion
 - Playbook ID: SC-003
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: 08--scorer-fusion/003-ambiguity.md
-
-<!-- /ANCHOR:5-source-metadata -->

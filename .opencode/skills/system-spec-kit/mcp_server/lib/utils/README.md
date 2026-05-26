@@ -15,19 +15,7 @@ trigger_phrases:
 
 ---
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
-
-- [1. OVERVIEW](#1-overview)
-- [2. STRUCTURE](#2-structure)
-- [3. FEATURES](#3-features)
-- [4. USAGE EXAMPLES](#4-usage-examples)
-- [5. RELATED RESOURCES](#5-related-resources)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ## 1. OVERVIEW
-<!-- ANCHOR:overview -->
 
 The utils module provides foundational utilities used throughout the MCP server. These include date formatting and path traversal security (re-exported from `@spec-kit/shared`).
 
@@ -47,10 +35,7 @@ Those utilities support the Gate E continuity model where `/spec_kit:resume` res
 | Utility modules | 4 |
 | Source | `format-helpers.ts`, `canonical-path.ts` and `logger.ts` are local. `path-security.ts` re-exports from `@spec-kit/shared` |
 
-<!-- /ANCHOR:overview -->
-
 ## 2. STRUCTURE
-<!-- ANCHOR:structure -->
 
 ```
 utils/
@@ -71,10 +56,7 @@ utils/
 | `path-security.ts` | Re-exports path validation and regex escaping from `@spec-kit/shared/utils/path-security` |
 | `index-scope.ts` | Shared path-policy module (Packet 026/010/002). Exports `shouldIndexForMemory`, `shouldIndexForCodeGraph`, `resolveCanonicalPath`, `GOVERNANCE_AUDIT_ACTIONS`, `recordTierDowngradeAudit`, `buildGovernanceLogicalKey`. Single source of truth for `z_future/` + `/external/` exclusions and constitutional-tier normalization |
 
-<!-- /ANCHOR:structure -->
-
 ## 3. FEATURES
-<!-- ANCHOR:features -->
 
 ### Format Helpers (`format-helpers.ts`)
 
@@ -140,10 +122,7 @@ Re-exports from `@spec-kit/shared/utils/path-security`:
 |----------|---------|
 | Structured logging | Consistent log output for MCP server operations |
 
-<!-- /ANCHOR:features -->
-
 ## 4. USAGE EXAMPLES
-<!-- ANCHOR:usage-examples -->
 
 ### Format Helpers
 
@@ -169,10 +148,7 @@ const escaped = escapeRegex('file.name (1)');
 // Returns: "file\\.name \\(1\\)"
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ## 5. RELATED RESOURCES
-<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -187,8 +163,6 @@ const escaped = escapeRegex('file.name (1)');
 | Topic | Reference |
 |-------|-----------|
 | Path Traversal | CWE-22: Improper Limitation of Pathname |
-
-<!-- /ANCHOR:related -->
 
 ---
 

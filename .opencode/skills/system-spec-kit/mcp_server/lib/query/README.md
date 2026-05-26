@@ -8,16 +8,6 @@ trigger_phrases:
 
 # Query Library: Query Plan Telemetry
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. ENTRYPOINTS](#4--entrypoints)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
 ## 1. OVERVIEW
 
 This folder contains query-plan builders for explaining how query intelligence surfaces interpreted a request. Plans describe intent, complexity, artifact class, authority need, selected channels, skipped channels and fallback policy.

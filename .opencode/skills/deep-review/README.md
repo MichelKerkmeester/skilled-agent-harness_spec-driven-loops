@@ -18,24 +18,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -91,11 +73,8 @@ Read this README to learn what the skill does, how to invoke it, how to read its
 - **Auto-resume** detects existing state on re-invocation and continues from the last completed iteration.
 - **Pause sentinel** halts between iterations when the operator creates `.deep-review-pause`.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 **Step 1: Invoke the loop.**
@@ -141,11 +120,8 @@ grep -E "^Release Readiness Verdict|^## " {spec_folder}/review/review-report.md
 
 Expected result: nine section headers plus a verdict line of `PASS`, `CONDITIONAL`, or `FAIL`.
 
-<!-- /ANCHOR:quick-start -->
-
 ---
 
-<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### 3.1 FEATURE HIGHLIGHTS
@@ -200,11 +176,8 @@ Twenty features grouped by the four catalog categories. Full per-feature detail 
 | Verdicts | Active findings + gate state drive the call: unresolved P0 or failed required gates → FAIL, active P1 without P0 → CONDITIONAL, clean → PASS with `hasAdvisories=true` when P2 remains | [`feature_catalog/04--severity-system/04-verdicts.md`](./feature_catalog/04--severity-system/04-verdicts.md) |
 | Quality gates | Legal-stop bundle: evidence + scope + coverage + P0 resolution + evidence density + hotspot saturation + claim adjudication, failed votes persist a `blocked_stop` event and continue with a recovery hint | [`feature_catalog/04--severity-system/05-quality-gates.md`](./feature_catalog/04--severity-system/05-quality-gates.md) |
 
-<!-- /ANCHOR:features -->
-
 ---
 
-<!-- ANCHOR:structure -->
 ## 4. STRUCTURE
 
 ### Skill Package
@@ -272,11 +245,8 @@ Created under the resolved `{artifact_dir}` during initialization. First runs wi
 | Codex | `.codex/agents/deep-review.toml` |
 | Gemini | `.gemini/agents/deep-review.md` |
 
-<!-- /ANCHOR:structure -->
-
 ---
 
-<!-- ANCHOR:configuration -->
 ## 5. CONFIGURATION
 
 ### Command Parameters
@@ -341,11 +311,8 @@ Runs that target security, path handling, env precedence, schema boundaries, per
 
 Create a file at `{spec_folder}/review/.deep-review-pause` during a running loop to halt between iterations. Delete the file to resume. Auto-resume detects existing JSONL state on re-invocation and continues from the last completed iteration without re-running prior work.
 
-<!-- /ANCHOR:configuration -->
-
 ---
 
-<!-- ANCHOR:usage-examples -->
 ## 6. USAGE EXAMPLES
 
 **Skill audit**
@@ -378,11 +345,8 @@ Command: /deep:start-review-loop:auto "track skilled-agent-orchestration"
 Expected output: one review-report.md per child spec folder. Any FAIL verdict on a child rolls up to a track-level FAIL. Coverage + finding summaries aggregated into a track-level summary.
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
 
-<!-- ANCHOR:troubleshooting -->
 ## 7. TROUBLESHOOTING
 
 | What you see | Likely cause | Fix |
@@ -396,11 +360,8 @@ Expected output: one review-report.md per child spec folder. Any FAIL verdict on
 | Reducer refuses to write derived state | JSONL corruption detected by `reduce-state.cjs` | Read the corruption-warning output. Repair the JSONL line, or re-run with `--lenient` to skip the corrupt entry, `corruptionWarnings` stays visible in reducer state. |
 | `resource-map.md` not produced at convergence | `--no-resource-map` was passed, or `config.resource_map.emit == false` | Re-run without `--no-resource-map`, or flip the config flag and re-run synthesis. |
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
 
-<!-- ANCHOR:faq -->
 ## 8. FAQ
 
 **Q: How is `deep-review` different from `sk-code-review`?**
@@ -439,11 +400,8 @@ A: Raise `--max-iterations` above the number of completed iterations and re-invo
 
 A: Each iteration appends `graphEvents` to its JSONL record. The coverage-graph reducer at [`.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts`](../deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts) ingests them under `loop_type='review'`, keyed by `(spec_folder, session_id, iteration)`. Convergence can then cross-check the graph for unresolved coverage gaps before allowing STOP.
 
-<!-- /ANCHOR:faq -->
-
 ---
 
-<!-- ANCHOR:related-documents -->
 ## 9. RELATED DOCUMENTS
 
 ### Dependencies
@@ -516,5 +474,3 @@ A: Each iteration appends `graphEvents` to its JSONL record. The coverage-graph 
 | Iterations | `{spec_folder}/review/iterations/iteration-NNN.md` |
 | Lifecycle modes | Active: `new`, `resume`, `restart`. Reserved: `fork`, `completed-continue` |
 | Release readiness | `in-progress`, `converged`, `release-blocking` |
-
-<!-- /ANCHOR:related-documents -->

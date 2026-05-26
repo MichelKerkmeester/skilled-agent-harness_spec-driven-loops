@@ -16,31 +16,6 @@ trigger_phrases:
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. FEATURES](#3--features)
-  - [3.1 STRUCTURAL INDEX](#31--structural-index)
-  - [3.2 GRAPH-AWARE QUERIES](#32--graph-aware-queries)
-  - [3.3 IMPACT ANALYSIS](#33--impact-analysis)
-  - [3.4 RECOVERY OPERATIONS](#34--recovery-operations)
-  - [3.5 INDEX LIFECYCLE](#35--index-lifecycle)
-- [4. STRUCTURE](#4--structure)
-- [5. CONFIGURATION](#5--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
----
-
-<!-- ANCHOR:overview -->
-
 ## 1. OVERVIEW
 
 ### What System Code Graph Does
@@ -70,11 +45,7 @@ System Code Graph owns the structural index. It deliberately leaves four surface
 
 The shared SQLite file is the coordination boundary between in-process imports from adjacent runtimes and external MCP callers. The single-writer invariant prevents corruption.
 
-<!-- /ANCHOR:overview -->
-
 ---
-
-<!-- ANCHOR:quick-start -->
 
 ## 2. QUICK START
 
@@ -114,11 +85,7 @@ Returns the reverse impact set: every file that imports the subject, transitivel
 
 TypeScript exits 0. The focused code-graph Vitest suite passes.
 
-<!-- /ANCHOR:quick-start -->
-
 ---
-
-<!-- ANCHOR:features -->
 
 ## 3. FEATURES
 
@@ -160,11 +127,7 @@ The skill is strongest when structure matters. It answers "what imports this fil
 | `code_graph_scan` | Trigger incremental or full reindex of the workspace graph. | `mcp_server/handlers/scan.ts` |
 | `code_graph_verify` | Run gold-query verification and record quality feedback for the graph. | `mcp_server/handlers/verify.ts` |
 
-<!-- /ANCHOR:features -->
-
 ---
-
-<!-- ANCHOR:structure -->
 
 ## 4. STRUCTURE
 
@@ -205,11 +168,7 @@ system-code-graph/
 | [mcp_server/lib/README.md](./mcp_server/lib/README.md) | Library-layer code README. |
 | [mcp_server/tools/README.md](./mcp_server/tools/README.md) | MCP dispatch code README. |
 
-<!-- /ANCHOR:structure -->
-
 ---
-
-<!-- ANCHOR:configuration -->
 
 ## 5. CONFIGURATION
 
@@ -229,11 +188,7 @@ The 5 `INDEX_*` flags ship as `false` so end users get a quiet, low-disk index b
 
 `mk_code_index` participates in the shared native MCP lifecycle guardrails. The server refreshes idle activity from primary stdio and secondary IPC socket connect/data/write events. Orphan cleanup and LaunchAgent rollout are documented centrally in the [repo scripts runbook](../../scripts/README.md); the LaunchAgent remains a template until explicitly installed by an operator.
 
-<!-- /ANCHOR:configuration -->
-
 ---
-
-<!-- ANCHOR:usage-examples -->
 
 ## 6. USAGE EXAMPLES
 
@@ -273,11 +228,7 @@ Arguments:    { "operation": "outline", "subject": ".opencode/skills/system-code
 Expected:     ordered list of top-level symbols with line ranges
 ```
 
-<!-- /ANCHOR:usage-examples -->
-
 ---
-
-<!-- ANCHOR:troubleshooting -->
 
 ## 7. TROUBLESHOOTING
 
@@ -290,11 +241,7 @@ Expected:     ordered list of top-level symbols with line ranges
 | Local docs mention `system_code_graph` (old underscore name) | Outdated reference predating the standalone server rename. | Use `mk-code-index`, `mk_code_index`, and `mcp__mk_code_index__*` for current runtime docs. |
 | Plugin bridge fails on startup with missing `dist/handlers/session-resume.js` | The bridge's imports point at modules that moved to `system-spec-kit` post-extraction. | See `mcp_server/plugin_bridges/README.md` §1 for the broken-import table. Bridge runtime fix is a follow-on packet. |
 
-<!-- /ANCHOR:troubleshooting -->
-
 ---
-
-<!-- ANCHOR:faq -->
 
 ## 8. FAQ
 
@@ -322,11 +269,7 @@ Yes. The standalone MCP server boots independently. Code-graph production source
 
 No. Those files belong to third-party packages. Keep sk-doc template alignment to authored system-code-graph docs.
 
-<!-- /ANCHOR:faq -->
-
 ---
-
-<!-- ANCHOR:related-documents -->
 
 ## 9. RELATED DOCUMENTS
 
@@ -350,5 +293,3 @@ No. Those files belong to third-party packages. Keep sk-doc template alignment t
 | [mcp_server/lib/README.md](./mcp_server/lib/README.md) | Core graph implementation topology. |
 | [mcp_server/tools/README.md](./mcp_server/tools/README.md) | MCP dispatch surface. |
 | [mcp_server/tests/README.md](./mcp_server/tests/README.md) | Automated test coverage map. |
-
-<!-- /ANCHOR:related-documents -->

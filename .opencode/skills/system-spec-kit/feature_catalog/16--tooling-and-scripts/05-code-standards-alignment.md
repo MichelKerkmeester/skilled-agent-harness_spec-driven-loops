@@ -5,23 +5,16 @@ description: "Code standards alignment brought comments, MODULE/COMPONENT header
 
 # Code standards alignment
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Code standards alignment brought comments, MODULE/COMPONENT headers, import ordering, and constant naming into line with sk-code OPENCODE route standards.
 
 This was a cleanup pass that made the code follow a consistent style across the project. It fixed 45 places where comments, file headers, naming patterns or import ordering did not match the agreed-upon rules. Think of it like an editor going through a document to make sure every chapter uses the same formatting and citation style.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 All modified files were reviewed against sk-code OPENCODE route standards. At HEAD, the live codebase uses MODULE/COMPONENT headers plus purposeful inline comments where explanation adds value. Legacy AI-intent prefixes (`AI-WHY`, `AI-TRACE`, `AI-GUARD`) are no longer part of the active convention, and `rg "AI-(WHY|TRACE|GUARD):" .opencode/skills/system-spec-kit/mcp_server` returns no matches.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### SOURCE EVIDENCE
@@ -105,9 +98,6 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
   - `mcp_server/package.json` (`lint`, `check`)
   - `package.json` at `system-spec-kit` root (`typecheck`)
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts
 - Canonical catalog source: `feature_catalog.md`
@@ -124,4 +114,3 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
 ---
 
 ### SOURCE METADATA
-<!-- /ANCHOR:source-metadata -->

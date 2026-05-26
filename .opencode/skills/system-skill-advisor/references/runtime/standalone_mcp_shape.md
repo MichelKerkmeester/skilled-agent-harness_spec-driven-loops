@@ -13,7 +13,6 @@ Summary of ADR-001 standalone System Skill Advisor MCP topology and migration bo
 
 ---
 
-<!-- ANCHOR:1-overview -->
 ## 1. OVERVIEW
 
 ### Purpose
@@ -36,12 +35,8 @@ Advisor routing is a standalone MCP process boundary; documentation can point ac
 - [`legacy_tool_bridge.md`](./legacy_tool_bridge.md)
 - [`tool_ids_reference.md`](./tool_ids_reference.md)
 
-
 ---
 
-<!-- /ANCHOR:1-overview -->
-
-<!-- ANCHOR:2-decision -->
 ## 2. DECISION
 
 ADR-001 chooses a standalone MCP server named `mk_skill_advisor`.
@@ -57,9 +52,6 @@ The server owns:
 
 ---
 
-<!-- /ANCHOR:2-decision -->
-
-<!-- ANCHOR:3-boundary -->
 ## 3. BOUNDARY
 
 The standalone boundary is a process boundary, not only a folder move.
@@ -73,9 +65,6 @@ The memory MCP server may keep a temporary bridge for legacy `advisor_*` calls d
 
 ---
 
-<!-- /ANCHOR:3-boundary -->
-
-<!-- ANCHOR:4-child-packet-ownership -->
 ## 4. CHILD PACKET OWNERSHIP
 
 | Packet | Responsibility |
@@ -85,5 +74,3 @@ The memory MCP server may keep a temporary bridge for legacy `advisor_*` calls d
 | 004 | Launcher and runtime config |
 | 005 | Hooks and consumer cutover |
 | 006 | Cleanup and bridge removal |
-
-<!-- /ANCHOR:4-child-packet-ownership -->

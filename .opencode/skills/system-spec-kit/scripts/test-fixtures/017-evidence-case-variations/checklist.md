@@ -1,4 +1,3 @@
-<!-- ANCHOR:checklist -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 # Validation Checklist
 
@@ -12,4 +11,3 @@
 
 - [x] Item with TESTED (TESTED)
 - [x] Item with Confirmed (Confirmed)
-<!-- /ANCHOR:checklist -->

@@ -9,23 +9,8 @@ trigger_phrases:
 
 # MCP Server Stress Tests
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. ARCHITECTURE](#2--architecture)
-- [3. DIRECTORY TREE](#3--directory-tree)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES AND FLOW](#5--boundaries-and-flow)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `stress_test/` holds MCP server checks that are intentionally outside the default `tests/` suite. Use it for load checks, high-volume read and write behavior, matrix-cell remediation, degraded-state sweeps, and performance or capacity validation that operators run by choice.
@@ -36,11 +21,8 @@ Current state:
 - Default `npm test` uses `vitest.config.ts`, which excludes `mcp_server/stress_test/**`.
 - Stress suites should use temp directories or in-memory databases and must not mutate live DB files.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -69,11 +51,8 @@ Current state:
 Execution boundary: default tests do not import or run stress suites.
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 3. DIRECTORY TREE
 
 ```text
@@ -89,11 +68,8 @@ mcp_server/stress_test/
 └── README.md
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 4. KEY FILES
 
 | File or directory | Responsibility |
@@ -106,11 +82,8 @@ mcp_server/stress_test/
 | `matrix/` | Runs synthetic matrix routing and latency comparisons. |
 | `substrate/` | Promotes the 045 shared-daemon substrate runner and covers query expansion, token-budget edges, and V-rule save floods. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
@@ -148,11 +121,8 @@ Main flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 6. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
@@ -163,11 +133,8 @@ Main flow:
 | `npm run stress:substrate` | npm script | Runs the substrate stress gate from `mcp_server/stress_test/substrate/`. |
 | `vitest.stress.config.ts` | Vitest config | Defines the stress-only test discovery boundary. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 7. VALIDATION
 
 Run from `.opencode/skills/system-spec-kit/mcp_server` unless noted.
@@ -182,15 +149,10 @@ npx vitest run --config vitest.stress.config.ts stress_test/session/session-mana
 
 Expected result: the selected stress slice exits with Vitest success or a clear benchmark failure.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 8. RELATED
 
 - [`../tests/README.md`](../tests/README.md)
 - [`../matrix_runners/README.md`](../matrix_runners/README.md)
 - [`../README.md`](../README.md)
-
-<!-- /ANCHOR:related -->

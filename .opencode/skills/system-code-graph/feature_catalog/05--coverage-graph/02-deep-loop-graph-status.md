@@ -9,13 +9,10 @@ importance_tier: "important"
 
 # deep_loop_graph_status
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `deep_loop_graph_status` reports deep-loop graph health for a session namespace. It is useful for dashboards and synthesis checks.
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 ### Trigger / Auto-Fire Path
@@ -29,9 +26,7 @@ manual. The tool runs only when an operator calls it explicitly.
 ### Caveats / Fallback
 
 Empty graphs return zero counts and null signals. Use upsert-enabled deep loops to populate graphEvents first.
-<!-- /ANCHOR:current-reality -->
 
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -48,9 +43,6 @@ Empty graphs return zero counts and null signals. Use upsert-enabled deep loops 
 |---|---|---|
 | `../../manual_testing_playbook/05--coverage-graph/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 
 - Group: Coverage graph
@@ -61,4 +53,3 @@ Related references:
 
 - [01-deep-loop-graph-query.md](./01-deep-loop-graph-query.md)
 - [04-deep-loop-graph-convergence.md](./04-deep-loop-graph-convergence.md)
-<!-- /ANCHOR:source-metadata -->

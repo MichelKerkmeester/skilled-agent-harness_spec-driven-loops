@@ -1,4 +1,3 @@
-<!-- ANCHOR:implementation-plan -->
 <!-- SPECKIT_TEMPLATE_SOURCE: test-fixture -->
 
 # Implementation Plan
@@ -28,4 +27,3 @@ L1 with empty memory/.
 ### Phase 1: Setup
 
 Create fixture with empty memory/.
-<!-- /ANCHOR:implementation-plan -->

@@ -7,13 +7,6 @@ description: "CommonJS library helpers shared by deep-agent-improvement CLI scri
 
 CommonJS helpers shared by sibling deep-agent-improvement CLI scripts.
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. LIBRARY CONTENTS](#2--library-contents)
-- [3. USAGE](#3--usage)
-- [4. RELATED RESOURCES](#4--related-resources)
-
 ## 1. OVERVIEW
 
 This directory holds reusable helper modules for `.opencode/skills/deep-agent-improvement/scripts/*.cjs`.

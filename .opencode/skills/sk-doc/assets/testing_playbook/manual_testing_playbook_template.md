@@ -159,21 +159,6 @@ Canonical package artifacts:
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. GLOBAL PRECONDITIONS](#2--global-preconditions)
-- [3. GLOBAL EVIDENCE REQUIREMENTS](#3--global-evidence-requirements)
-- [4. DETERMINISTIC COMMAND NOTATION](#4--deterministic-command-notation)
-- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5--review-protocol-and-release-readiness)
-- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6--sub-agent-orchestration-and-wave-planning)
-- [7. {CAT1_HEADING} (`{CAT1}-001..{CAT1}-NNN`)](#7--{CAT1_ANCHOR})
-- [8. {CAT2_HEADING} (`{CAT2}-001..{CAT2}-NNN`)](#8--{CAT2_ANCHOR})
-- [9. AUTOMATED TEST CROSS-REFERENCE](#9--automated-test-cross-reference)
-- [10. FEATURE CATALOG CROSS-REFERENCE INDEX](#10--feature-catalog-cross-reference-index)
-
----
-
 ## 1. OVERVIEW
 
 This playbook provides {SCENARIO_COUNT} deterministic scenarios across {CATEGORY_COUNT} categories validating the `{SKILL_SLUG}` skill surface. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
@@ -494,7 +479,7 @@ Before publishing a playbook, verify:
 Structure:
 - [ ] Canonical playbook package exists in `manual_testing_playbook/`
 - [ ] Root-level category directories exist and use Feature Catalog-style names
-- [ ] Main playbook has frontmatter, H1 intro, and TOC
+- [ ] Main playbook has frontmatter and H1 intro (no Table of Contents)
 - [ ] Main playbook has Global Preconditions, Evidence Requirements, and Deterministic Command Notation
 - [ ] Main playbook has integrated review and release-readiness guidance
 - [ ] Main playbook has integrated orchestration and wave-planning guidance

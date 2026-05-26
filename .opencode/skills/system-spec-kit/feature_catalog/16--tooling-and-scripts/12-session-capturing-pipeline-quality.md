@@ -5,7 +5,6 @@ description: "Session capturing pipeline quality is the current reality-alignmen
 
 # Session Capturing Pipeline Quality
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 Session capturing pipeline quality is the current reality-alignment feature for the session-capturing workstream. It covers the full shipped session-capture path for `generate-context.js`:
@@ -19,9 +18,6 @@ Session capturing pipeline quality is the current reality-alignment feature for 
 7. One shared rendered-memory template contract so malformed ANCHOR/frontmatter output fails before write/index, while successful flows stay free of template-data warning noise.
 8. A refreshed canonical verification, remediation, and manual-testing record that separates automated parity from retained live CLI proof.
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
 The shipped session-capture pipeline enforces the following behavior:
@@ -77,9 +73,6 @@ The shipped session-capture pipeline enforces the following behavior:
 
 Status: Implemented and strongly verified for the shared runtime contract. The automated scripts lane covers rule metadata, profile-driven contamination handling, structured-input parity, V10 write-and-index behavior, write-only indexing policy, same-minute filename stability, renderer-noise suppression, and the currently supported legacy JS compatibility suites.
 
-<!-- /ANCHOR:current-reality -->
-
-<!-- ANCHOR:source-files -->
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -211,9 +204,6 @@ The closure feature consists of these distinct shipped behaviors:
 | `scripts/tests/workflow-e2e.vitest.ts` | Real save-pipeline E2E coverage with temp-repo factory and the failed-embedding harness regression |
 | `scripts/tests/test-memory-quality-lane.js` | **[LEGACY]** v2 diagnostic quality and insufficiency regression suite (kept for regression coverage only) |
 
-<!-- /ANCHOR:source-files -->
-
-<!-- ANCHOR:source-metadata -->
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts
 - Canonical catalog source: `feature_catalog.md`
@@ -263,5 +253,3 @@ Manual coverage lives in `M-007` and is expected to explicitly cover:
 11. Claude `tool title with path` downgrade proof, paired with the unchanged non-Claude capped path.
 12. Output-quality hardening for decision deduplication, completion-status recovery, blocker filtering, trigger cleanup, separator parsing, tree-thinning safeguards, and structured-data conversation synthesis.
 13. Positional JSON file input that remains on the structured file-backed path alongside `--stdin` and `--json`.
-
-<!-- /ANCHOR:source-metadata -->

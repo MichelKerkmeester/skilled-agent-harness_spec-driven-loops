@@ -13,7 +13,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:adr-001 -->
 ## ADR-001: Use Level 3 for Maximum Template Coverage
 
 ### Metadata
@@ -26,7 +25,6 @@ contextType: "general"
 
 ---
 
-<!-- ANCHOR:adr-001-context -->
 ### Context
 
 We needed a fixture that exercises the most template features without requiring governance workflows. Level 3 covers decision records, user stories, complexity assessments, and all L2/L3 optional plan sections.
@@ -35,21 +33,17 @@ We needed a fixture that exercises the most template features without requiring 
 
 - Must pass strict validation with zero errors and zero warnings
 - Must include all six required Level 3 files
-<!-- /ANCHOR:adr-001-context -->
 
 ---
 
-<!-- ANCHOR:adr-001-decision -->
 ### Decision
 
 **We chose**: Level 3 as the fixture documentation level because it covers the maximum number of template features without requiring Level 3+ governance sections.
 
 **How it works**: Each file follows the exact header and anchor order from the Level 3 templates, with placeholder content replaced by fixture-appropriate text.
-<!-- /ANCHOR:adr-001-decision -->
 
 ---
 
-<!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
 | Option | Pros | Cons | Score |
@@ -59,11 +53,9 @@ We needed a fixture that exercises the most template features without requiring 
 | Level 2 | Already exists as fixture 053 | Misses decision-record testing | 4/10 |
 
 **Why this one**: Level 3 covers the most template features while staying within standard documentation practices.
-<!-- /ANCHOR:adr-001-alternatives -->
 
 ---
 
-<!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
 **What improves**:
@@ -78,11 +70,9 @@ We needed a fixture that exercises the most template features without requiring 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | Template changes break fixture | M | Track template version in SPECKIT_TEMPLATE_SOURCE comments |
-<!-- /ANCHOR:adr-001-consequences -->
 
 ---
 
-<!-- ANCHOR:adr-001-five-checks -->
 ### Five Checks Evaluation
 
 | # | Check | Result | Evidence |
@@ -94,11 +84,9 @@ We needed a fixture that exercises the most template features without requiring 
 | 5 | **Open Horizons?** | PASS | Does not preclude adding Level 3+ fixture later |
 
 **Checks Summary**: 5/5 PASS
-<!-- /ANCHOR:adr-001-five-checks -->
 
 ---
 
-<!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
 **What changes**:
@@ -106,8 +94,6 @@ We needed a fixture that exercises the most template features without requiring 
 - Six new markdown files matching Level 3 template contracts
 
 **How to roll back**: Delete the fixture directory and remove any test references to it.
-<!-- /ANCHOR:adr-001-impl -->
-<!-- /ANCHOR:adr-001 -->
 
 ---
 
