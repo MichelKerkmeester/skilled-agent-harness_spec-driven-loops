@@ -1,0 +1,1 @@
+{"type":"iteration","run":4,"dimension":"traceability","p0":0,"p1":1,"p2":0,"newFindingsRatio":0.25,"verdict":"CONDITIONAL","gates":{"carveouts_intact":true,"under_removal":0,"security":"clean"},"timestamp":"2026-05-26T10:56:32Z"}

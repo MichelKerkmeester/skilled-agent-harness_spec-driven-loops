@@ -39,20 +39,6 @@ Your AI assistant will:
 
 ---
 
-1. [AI-FIRST INSTALL GUIDE](#1-ai-first-install-guide)
-2. [OVERVIEW](#2-overview)
-3. [PREREQUISITES](#3-prerequisites)
-4. [INSTALLATION](#4-installation)
-5. [CONFIGURATION](#5-configuration)
-6. [VERIFICATION](#6-verification)
-7. [USAGE](#7-usage)
-8. [FEATURES](#8-features)
-9. [EXAMPLES](#9-examples)
-10. [TROUBLESHOOTING](#10-troubleshooting)
-11. [RESOURCES](#11-resources)
-
----
-
 ## 2. OVERVIEW
 
 Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistants semantic memory and context retrieval. It indexes markdown documentation and conversation memories to surface relevant information during AI interactions.

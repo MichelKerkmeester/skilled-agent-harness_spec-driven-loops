@@ -95,4 +95,5 @@ Layered verification: residual greps, full-diff per-file classification, validat
 ## Known Limitations
 
 1. Independent CLI-Devin verification was inconclusive due to its non-interactive permission model; the deterministic full-coverage check supersedes it.
+2. **CORRECTION (found by the gpt-5.5 deep-review, fixed):** the "0 unclassified removals" claim only inspected *removed* diff lines, so it could not detect *retained* orphaned content — it missed 8 files where a numbered TOC's heading was removed but its link list survived. The deep-review (commit `1e58d845af`, 6 passes, verdict CONDITIONAL) caught this; it was remediated (orphaned lists removed) and re-verified (0 remaining; validator 11/11). See `review/review-report.md`.
 <!-- /ANCHOR:limitations -->

@@ -73,7 +73,7 @@ Use this profile for OpenCode skills, package roots and project-level READMEs th
 | Related Documents | Operator or developer references | Link stable docs, not packet history |
 | FAQ | Repeated questions | 3-6 high-value Q&A pairs |
 
-Optional HTML anchors help memory and extraction tools find stable sections. Use them only around long-lived sections.
+Sections use plain numbered H2 headings. Do not add `<!-- ANCHOR -->` comments or a Table of Contents.
 
 ```markdown
 ## 1. OVERVIEW
@@ -290,7 +290,7 @@ A: [Short answer with a link when useful.]
 - [ ] Commands were tested or marked as examples.
 - [ ] Links use correct relative paths.
 - [ ] Frontmatter is valid if present.
-- [ ] Optional anchors wrap only stable sections.
+- [ ] No Table of Contents and no `<!-- ANCHOR -->` comments.
 - [ ] HVR passes: no em dashes, semicolons, banned words or setup phrases.
 
 ---

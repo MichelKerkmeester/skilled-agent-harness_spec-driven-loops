@@ -140,26 +140,6 @@ the publication guard helpers used by the evaluation dashboard.
 
 ---
 
-2. [Infrastructure](#2-infrastructure)
-3. [Search Pipeline: Core](#3-search-pipeline-core)
-4. [Search Pipeline: Fusion and Scoring](#4-search-pipeline-fusion-and-scoring)
-5. [Search Pipeline: Query Intelligence](#5-search-pipeline-query-intelligence)
-6. [Graph](#6-graph)
-7. [Graph: Calibration](#7-graph-calibration)
-8. [Cognitive](#8-cognitive)
-9. [Feedback and Learning](#9-feedback-and-learning)
-10. [Governance and Scope](#10-governance-and-scope)
-11. [UX and Response Formatting](#11-ux-and-response-formatting)
-12. [Evaluation and Telemetry](#12-evaluation-and-telemetry)
-13. [Indexing](#13-indexing)
-14. [Reranker](#14-reranker)
-15. [Embedding](#15-embedding)
-16. [Roadmap Phase Control](#16-roadmap-phase-control)
-17. [Deprecated](#17-deprecated)
-18. [Quick Start Examples](#18-quick-start-examples)
-
----
-
 ## 2. INFRASTRUCTURE
 
 | Variable | Default | Type | Description | Source |

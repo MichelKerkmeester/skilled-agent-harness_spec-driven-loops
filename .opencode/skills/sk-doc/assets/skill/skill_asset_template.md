@@ -580,7 +580,6 @@ tool_configuration:
       optional_for: ["README.md"]
 
     sections:
-      require_toc_when: "lines > 100"
       numbering: "sequential"  # sequential | hierarchical | none
 ```
 

@@ -13,17 +13,9 @@ trigger_phrases:
 
 ---
 
-1. [OVERVIEW](#1--overview)
-2. [PREREQUISITES](#2--prerequisites)
-3. [AVAILABLE SCRIPTS](#3--available-scripts)
    - 3.1 [performance-baseline.sh](#31-performance-baselinesh)
    - 3.2 [animation-testing.sh](#32-animation-testingsh)
    - 3.3 [multi-viewport-test.sh](#33-multi-viewport-testsh)
-4. [COMMON PATTERNS](#4--common-patterns)
-5. [CUSTOMIZATION TIPS](#5--customization-tips)
-6. [TROUBLESHOOTING](#6--troubleshooting)
-7. [SEE ALSO](#7--see-also)
-8. [CONTRIBUTING](#8--contributing)
 
 ---
 

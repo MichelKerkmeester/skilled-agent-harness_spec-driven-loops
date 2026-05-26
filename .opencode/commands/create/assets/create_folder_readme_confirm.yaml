@@ -9,7 +9,7 @@
 # Routing: The setup phase in folder_readme.md determines which
 #          operation to execute. See operation_routing below.
 #
-# Note: Documents should include clear section anchors and concise metadata.
+# Note: Documents should include concise metadata (no Table of Contents, no <!-- ANCHOR --> comments).
 # Use YAML frontmatter (title, description, trigger_phrases) for consistency.
 # ─────────────────────────────────────────────────────────────────
 role: Expert Documentation Creator using sk-doc skill
@@ -397,7 +397,6 @@ readme_reference_templates:
 # The canonical template is the single source of truth for all README structure.
 readme_template_references:
   canonical_structure: "readme_template.md S13 (Complete Template)"
-  anchor_rules: "readme_template.md S12 (Anchor Templates)"
   writing_patterns: "readme_template.md S6 (Writing Patterns)"
   style_guide: "readme_template.md S7 (Style Reference)"
   badge_shields: "readme_template.md S8 (Badge Shields)"

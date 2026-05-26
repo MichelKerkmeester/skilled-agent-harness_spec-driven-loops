@@ -1,0 +1,23 @@
+{
+  "sessionId": "review-117",
+  "generation": 1,
+  "stopReason": "converged",
+  "iterationsRun": 6,
+  "maxIterations": 10,
+  "findingsBySeverity": {"P0": 0, "P1": 3, "P2": 6},
+  "dimensionCoverage": {"correctness": true, "security": true, "traceability": true, "maintainability": true},
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": true,
+  "openFindings": [
+    {"id": "F-001", "severity": "P1", "dimension": "correctness", "class": "orphaned-numbered-toc", "files": 8, "summary": "TOC heading removed but numbered link list left behind in 8 files (install guides + READMEs); body matcher only handled '-' bullets, not 'N.' entries"},
+    {"id": "F-002", "severity": "P1", "dimension": "maintainability", "files": 1, "summary": "readme_template.md:76,293 still recommends optional anchors, contradicting new no-anchor policy"},
+    {"id": "F-003", "severity": "P1", "dimension": "traceability", "files": 2, "summary": "117 verification docs (002,004 impl-summaries) over-claim full TOC cleanup / 0 unclassified, contradicted by F-001"},
+    {"id": "F-004", "severity": "P2", "dimension": "maintainability", "summary": "validation.md:50-51 still lists missing-TOC/single-dash-anchor as blocking"},
+    {"id": "F-005", "severity": "P2", "dimension": "maintainability", "summary": "sk-doc/README.md:301,328-330 still says validate_document.py checks TOC anchors"},
+    {"id": "F-006", "severity": "P2", "dimension": "maintainability", "summary": "skill_asset_template.md:583 example config require_toc_when can reintroduce TOC requirement"},
+    {"id": "F-007", "severity": "P2", "dimension": "maintainability", "summary": "create_folder_readme_auto.yaml:9,447 still steers README gen toward section anchors / Anchor Templates ref"},
+    {"id": "F-008", "severity": "P2", "dimension": "maintainability", "summary": "create_folder_readme_confirm.yaml:12,400 same stale section-anchor guidance"},
+    {"id": "F-009", "severity": "P2", "dimension": "maintainability", "summary": "create/README.txt still carries standalone <!-- ANCHOR --> section comments (only TOC block was removed)"}
+  ],
+  "greenGates": ["template_rules.json valid + tocRequired:false x3", "validator suite 11/11", "all 6 create YAMLs valid", "spec-kit template anchors preserved (26 files)", "sk-doc test fixtures preserved (5)", "0 under-removal (0 TOC headings, 0 standalone anchors in scope)", "security clean (20 non-md files)", "0 content loss across iter1/2/6 sampling + deterministic full-diff"]
+}

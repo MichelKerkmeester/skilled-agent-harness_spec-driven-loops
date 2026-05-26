@@ -47,8 +47,6 @@ python scripts/validate_document.py document.md
 **Checks:**
 | Check | Severity | Auto-Fixable |
 |-------|----------|--------------|
-| Missing TOC section | blocking | No |
-| TOC anchor single-dash (should be `#1--`) | blocking | Yes |
 | Missing required section | blocking | No |
 | Non-sequential numbering | warning | No |
 

@@ -50,20 +50,6 @@ Not working? Go to [Troubleshooting](#9-troubleshooting).
 
 ---
 
-0. [AI-First Install Guide](#0-ai-first-install-guide)
-1. [Overview](#1-overview)
-2. [Prerequisites](#2-prerequisites)
-3. [Installation](#3-installation)
-4. [Configuration](#4-configuration)
-5. [Verification](#5-verification)
-6. [Usage](#6-usage)
-7. [Features](#7-features)
-8. [Examples](#8-examples)
-9. [Troubleshooting](#9-troubleshooting)
-10. [Resources](#10-resources)
-
----
-
 ## 1. OVERVIEW
 
 Chrome DevTools gives AI assistants browser debugging capabilities through two approaches. The CLI (`bdg`) is the primary method: direct, fast and token-efficient. The MCP fallback runs through Code Mode and suits multi-tool orchestration or parallel browser testing.

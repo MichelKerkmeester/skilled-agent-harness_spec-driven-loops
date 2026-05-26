@@ -94,6 +94,6 @@ Ran a deterministic Python transform, verified zero residual TOC headings and id
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. TOC anchor *link* lines died with their TOC blocks (intended) — no in-body cross-references used them.
-2. Numbered TOC entries in fenced install-guide examples were handled in phase 001 template edits.
+1. **CORRECTION (found by deep-review, fixed):** the original transform's TOC-body matcher recognized only `-`/`*`/`+` bullets, so TOCs that used **numbered** entries (`N. [..](#..)`) had their heading removed but the numbered link list left orphaned in 8 files (install guides + a few READMEs). The earlier "removed every TOC block" claim was therefore inaccurate. Fixed via the transform's new `--orphan-toc` mode; 0 orphaned numbered-TOC lists now remain in scope.
+2. Bullet-style TOC anchor link lines died with their TOC blocks (intended) — no in-body cross-references used them.
 <!-- /ANCHOR:limitations -->

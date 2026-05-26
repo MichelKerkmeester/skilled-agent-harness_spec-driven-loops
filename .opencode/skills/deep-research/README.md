@@ -15,20 +15,6 @@ trigger_phrases:
 
 ---
 
-1. [OVERVIEW](#1--overview)
-2. [QUICK START](#2--quick-start)
-3. [FEATURES](#3--features)
-4. [STRUCTURE](#4--structure)
-5. [CONFIGURATION](#5--configuration)
-6. [USAGE EXAMPLES](#6--usage-examples)
-7. [LIFECYCLE MODES](#7--lifecycle-modes)
-8. [RUNTIME PARITY](#8--runtime-parity)
-9. [TROUBLESHOOTING](#9--troubleshooting)
-10. [FAQ](#10--faq)
-11. [RELATED DOCUMENTS](#11--related-documents)
-
----
-
 ## 1. OVERVIEW
 
 ### Purpose

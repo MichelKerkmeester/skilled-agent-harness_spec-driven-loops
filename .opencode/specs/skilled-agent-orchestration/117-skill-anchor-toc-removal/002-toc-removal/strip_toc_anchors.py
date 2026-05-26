@@ -77,6 +77,38 @@ def strip_anchors(lines):
     return [ln for ln in lines if not ANCHOR_LINE_RE.match(ln)]
 
 
+# A numbered TOC link line: "N. [TEXT](#anchor)" (in-page anchor), optional indent.
+NUM_TOC_LINK_RE = re.compile(r'^\s*\d+\.\s+\[[^\]]+\]\(#[^)]*\)\s*$')
+
+
+def strip_orphan_numbered_toc(lines, min_run=3):
+    """Remove contiguous runs (>= min_run) of numbered in-page-anchor links that the
+    bullet-only TOC matcher left orphaned when it removed the heading. Fence-aware.
+    A numbered list where every item links to an in-page #anchor is, by definition,
+    a TOC; requiring >= min_run consecutive avoids touching incidental numbered links."""
+    out = []
+    in_fence = False
+    i = 0
+    n = len(lines)
+    while i < n:
+        line = lines[i]
+        if FENCE_RE.match(line):
+            in_fence = not in_fence
+            out.append(line)
+            i += 1
+            continue
+        if not in_fence and NUM_TOC_LINK_RE.match(line):
+            j = i
+            while j < n and NUM_TOC_LINK_RE.match(lines[j]):
+                j += 1
+            if (j - i) >= min_run:
+                i = j  # drop the whole run
+                continue
+        out.append(line)
+        i += 1
+    return out
+
+
 RULE_RE = re.compile(r'^---\s*$')
 
 
@@ -147,11 +179,15 @@ def collapse_blanks(lines):
     return out
 
 
-def process(text: str, do_toc: bool, do_anchors: bool, do_rules: bool = False) -> str:
+def process(text: str, do_toc: bool, do_anchors: bool, do_rules: bool = False, do_orphan: bool = False) -> str:
     lines = text.split('\n')
     removed = False
     if do_toc:
         new = strip_toc(lines)
+        removed = removed or (len(new) != len(lines))
+        lines = new
+    if do_orphan:
+        new = strip_orphan_numbered_toc(lines)
         removed = removed or (len(new) != len(lines))
         lines = new
     if do_anchors:
@@ -178,11 +214,13 @@ def main():
     ap.add_argument('--anchors', action='store_true', help='Remove <!-- ANCHOR --> comment lines')
     ap.add_argument('--collapse-rules', action='store_true',
                     help='Collapse consecutive horizontal rules (cleanup of TOC-removal artifacts)')
+    ap.add_argument('--orphan-toc', action='store_true',
+                    help='Remove orphaned numbered-TOC link runs left when the bullet-only matcher kept numbered entries')
     ap.add_argument('--dry-run', action='store_true', help='Report files that would change; do not write')
     ap.add_argument('paths', nargs='*', help='Files to process (else read newline-separated from stdin)')
     args = ap.parse_args()
-    if not (args.toc or args.anchors or args.collapse_rules):
-        ap.error('specify at least one of --toc / --anchors / --collapse-rules')
+    if not (args.toc or args.anchors or args.collapse_rules or args.orphan_toc):
+        ap.error('specify at least one of --toc / --anchors / --collapse-rules / --orphan-toc')
 
     paths = args.paths or [p.strip() for p in sys.stdin if p.strip()]
     changed = 0
@@ -195,7 +233,7 @@ def main():
             print(f'SKIP {path}: {e}', file=sys.stderr)
             continue
         scanned += 1
-        new = process(original, args.toc, args.anchors, args.collapse_rules)
+        new = process(original, args.toc, args.anchors, args.collapse_rules, args.orphan_toc)
         if new != original:
             changed += 1
             if args.dry_run:

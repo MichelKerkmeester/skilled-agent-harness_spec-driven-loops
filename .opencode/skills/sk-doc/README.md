@@ -298,7 +298,7 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/my
 **Validate a README before delivery**
 
 ```bash
-|# validate_document.py checks TOC anchors, H2 emojis, required sections
+|# validate_document.py checks H2 emojis, required sections
 python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md
 
 |# Exit codes:
@@ -325,9 +325,9 @@ Fix: Review the `checklist` array in the JSON output. Address failed items in pr
 
 What you see: The script reports blocking errors and refuses to pass the document.
 
-Common causes: TOC missing or using single-dash anchor format instead of double-dash (e.g., `#1-overview` instead of `#1--overview`), H2 headers missing emojis, required sections absent, or section numbering is non-sequential.
+Common causes: H2 headers missing emojis, required sections absent, or section numbering is non-sequential.
 
-Fix: Read the error output line by line. The most common fix is correcting TOC anchor format to use double dashes. Check that every H2 has the correct emoji from the template, that sections are numbered 1, 2, 3 (not 1, 2.5, 3), and that no required section is absent. Re-run after each correction.
+Fix: Read the error output line by line. Check that every H2 has the correct emoji from the template, that sections are numbered 1, 2, 3 (not 1, 2.5, 3), and that no required section is absent. Re-run after each correction.
 
 ---
 
