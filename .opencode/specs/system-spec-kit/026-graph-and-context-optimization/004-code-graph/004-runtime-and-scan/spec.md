@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Code-Graph Runtime and Scan [system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-runtime-and-scan/spec]"
+title: "Feature Specification: Code-Graph Runtime and Scan [system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/spec]"
 description: "The code-graph runtime and scan-correctness track: runtime upgrades, scan scope and correctness, resolver and hook improvements, and exclude tuning."
 trigger_phrases:
   - "code graph runtime and scan"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-runtime-and-scan"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan"
     last_updated_at: "2026-05-26T17:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored phase-parent map during the 026 wave-4 phase work."

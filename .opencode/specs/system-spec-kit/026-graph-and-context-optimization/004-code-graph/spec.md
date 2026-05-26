@@ -73,7 +73,7 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `001-mcp-shared-dependency-startup-fix/` … `015-system-code-graph-uplift-phase-parent/` | Modify | children | Per-child work lives in the child phase folders |
+| `001-mcp-shared-dependency-startup-fix/` … `009-system-code-graph-uplift-phase-parent/` | Modify | children | Per-child work lives in the child phase folders |
 | `spec.md`, `graph-metadata.json`, `description.json` | Modify | this | Theme navigation and metadata |
 <!-- /ANCHOR:scope -->
 
@@ -89,12 +89,12 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 | 001 | `001-mcp-shared-dependency-startup-fix/` | Fix @spec-kit/shared dependency declaration for mk_code_index MCP startup | complete |
 | 002 | `002-deprecate-coco-index/` | Remove mcp-coco-index and rerank-sidecar; stand code-graph alone as structural-only | in progress (95%) |
 | 003 | `003-code-graph-workspace-root-fix/` | Fix workspace-root and socket-dir resolution for code-index MCP reconnection | complete |
-| 010 | `010-runtime-and-scan/` | Code-graph runtime upgrades, scan scope and correctness, resolver and hooks, excludes | complete |
-| 011 | `011-resilience-and-advisor/` | Advisor refinement, backend resilience research and implementation, iteration-quality, doctor apply-mode | complete |
-| 012 | `012-extraction-and-isolation/` | system-code-graph extraction, decision record, standalone-MCP pivot, three-way isolation | complete |
-| 013 | `013-docs-and-readmes/` | Doctor diagnostic phase-a, READMEs, doc-drift alignment, cross-skill and reference-template polish | complete |
-| 014 | `014-real-world-usefulness-test-planning/` | Real-world usefulness test planning (nested phase parent) | complete |
-| 015 | `015-system-code-graph-uplift-phase-parent/` | system-code-graph uplift (nested phase parent) | complete |
+| 004 | `004-runtime-and-scan/` | Code-graph runtime upgrades, scan scope and correctness, resolver and hooks, excludes | complete |
+| 005 | `005-resilience-and-advisor/` | Advisor refinement, backend resilience research and implementation, iteration-quality, doctor apply-mode | complete |
+| 006 | `006-extraction-and-isolation/` | system-code-graph extraction, decision record, standalone-MCP pivot, three-way isolation | complete |
+| 007 | `007-docs-and-readmes/` | Doctor diagnostic phase-a, READMEs, doc-drift alignment, cross-skill and reference-template polish | complete |
+| 008 | `008-real-world-usefulness-test-planning/` | Real-world usefulness test planning (nested phase parent) | complete |
+| 009 | `009-system-code-graph-uplift-phase-parent/` | system-code-graph uplift (nested phase parent) | complete |
 
 ### Phase Transition Rules
 
@@ -108,7 +108,7 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| `001-mcp-shared-dependency-startup-fix` | `015-system-code-graph-uplift-phase-parent` | Earlier children stable before later children build on them | Each child validates independently |
+| `001-mcp-shared-dependency-startup-fix` | `009-system-code-graph-uplift-phase-parent` | Earlier children stable before later children build on them | Each child validates independently |
 <!-- /ANCHOR:phase-map -->
 
 ---

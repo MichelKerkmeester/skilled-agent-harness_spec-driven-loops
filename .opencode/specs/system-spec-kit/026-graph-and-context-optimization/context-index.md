@@ -57,28 +57,28 @@ each pre-wave-4 top-level phase to its current home.
 
 | Original (under 005-code-graph) | New Home (under 004-code-graph) |
 |----------------|----------|
-| `001-code-graph-runtime-upgrades` | `010-runtime-and-scan/001-code-graph-runtime-upgrades` |
-| `002-fix-stale-highlights-and-scan-scope` | `010-runtime-and-scan/002-fix-stale-highlights-and-scan-scope` |
-| `003-resolver-and-hook-improvements` | `010-runtime-and-scan/003-resolver-and-hook-improvements` |
-| `008-end-user-scope-default-and-opt-in` | `010-runtime-and-scan/004-end-user-scope-default-and-opt-in` |
-| `010-broader-excludes-and-granular-skills` | `010-runtime-and-scan/005-broader-excludes-and-granular-skills` |
-| `004-research-and-fix-code-graph-advisor-refinement` | `011-resilience-and-advisor/001-code-graph-advisor-refinement` |
-| `006-code-graph-resilience-research` | `011-resilience-and-advisor/002-code-graph-resilience-research` |
-| `007-code-graph-backend-resilience-implementation` | `011-resilience-and-advisor/003-code-graph-backend-resilience-implementation` |
-| `009-fix-iteration-quality-meta-research` | `011-resilience-and-advisor/004-iteration-quality-meta-research` |
-| `012-doctor-apply-mode-implementation` | `011-resilience-and-advisor/005-doctor-apply-mode-implementation` |
-| `013-system-code-graph-extraction` | `012-extraction-and-isolation/001-system-code-graph-extraction` |
-| `014-extraction-design-and-decision-record` | `012-extraction-and-isolation/002-extraction-design-and-decision-record` |
-| `015-standalone-mcp-topology-pivot` | `012-extraction-and-isolation/003-standalone-mcp-topology-pivot` |
-| `018-three-way-isolation-finalize` | `012-extraction-and-isolation/004-three-way-isolation-finalize` |
-| `005-doctor-diagnostic-command-phase-a` | `013-docs-and-readmes/001-doctor-diagnostic-command-phase-a` |
-| `016-system-code-graph-readmes-update` | `013-docs-and-readmes/002-system-code-graph-readmes-update` |
-| `017-code-folder-readmes-poc` | `013-docs-and-readmes/003-code-folder-readmes-poc` |
-| `020-doc-drift-alignment` | `013-docs-and-readmes/004-doc-drift-alignment` |
-| `021-cross-skill-doc-polish` | `013-docs-and-readmes/005-cross-skill-doc-polish` |
-| `022-reference-template-alignment` | `013-docs-and-readmes/006-reference-template-alignment` |
-| `011-real-world-usefulness-test-planning` | `014-real-world-usefulness-test-planning` (kept as direct child) |
-| `019-system-code-graph-uplift-phase-parent` | `015-system-code-graph-uplift-phase-parent` (kept as direct child) |
+| `001-code-graph-runtime-upgrades` | `004-runtime-and-scan/001-code-graph-runtime-upgrades` |
+| `002-fix-stale-highlights-and-scan-scope` | `004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope` |
+| `003-resolver-and-hook-improvements` | `004-runtime-and-scan/003-resolver-and-hook-improvements` |
+| `008-end-user-scope-default-and-opt-in` | `004-runtime-and-scan/004-end-user-scope-default-and-opt-in` |
+| `010-broader-excludes-and-granular-skills` | `004-runtime-and-scan/005-broader-excludes-and-granular-skills` |
+| `004-research-and-fix-code-graph-advisor-refinement` | `005-resilience-and-advisor/001-code-graph-advisor-refinement` |
+| `006-code-graph-resilience-research` | `005-resilience-and-advisor/002-code-graph-resilience-research` |
+| `007-code-graph-backend-resilience-implementation` | `005-resilience-and-advisor/003-code-graph-backend-resilience-implementation` |
+| `009-fix-iteration-quality-meta-research` | `005-resilience-and-advisor/004-iteration-quality-meta-research` |
+| `012-doctor-apply-mode-implementation` | `005-resilience-and-advisor/005-doctor-apply-mode-implementation` |
+| `013-system-code-graph-extraction` | `006-extraction-and-isolation/001-system-code-graph-extraction` |
+| `014-extraction-design-and-decision-record` | `006-extraction-and-isolation/002-extraction-design-and-decision-record` |
+| `015-standalone-mcp-topology-pivot` | `006-extraction-and-isolation/003-standalone-mcp-topology-pivot` |
+| `018-three-way-isolation-finalize` | `006-extraction-and-isolation/004-three-way-isolation-finalize` |
+| `005-doctor-diagnostic-command-phase-a` | `007-docs-and-readmes/001-doctor-diagnostic-command-phase-a` |
+| `016-system-code-graph-readmes-update` | `007-docs-and-readmes/002-system-code-graph-readmes-update` |
+| `017-code-folder-readmes-poc` | `007-docs-and-readmes/003-code-folder-readmes-poc` |
+| `020-doc-drift-alignment` | `007-docs-and-readmes/004-doc-drift-alignment` |
+| `021-cross-skill-doc-polish` | `007-docs-and-readmes/005-cross-skill-doc-polish` |
+| `022-reference-template-alignment` | `007-docs-and-readmes/006-reference-template-alignment` |
+| `011-real-world-usefulness-test-planning` | `008-real-world-usefulness-test-planning` (kept as direct child) |
+| `019-system-code-graph-uplift-phase-parent` | `009-system-code-graph-uplift-phase-parent` (kept as direct child) |
 
 ### Sub-bridge — former `004-external-project-adoption/` 8 children → split by theme
 

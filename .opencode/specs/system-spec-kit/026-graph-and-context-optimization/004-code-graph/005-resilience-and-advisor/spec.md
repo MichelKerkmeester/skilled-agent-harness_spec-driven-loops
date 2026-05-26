@@ -1,15 +1,15 @@
 ---
-title: "Feature Specification: Code-Graph Docs and READMEs [system-spec-kit/026-graph-and-context-optimization/004-code-graph/013-docs-and-readmes/spec]"
-description: "The code-graph documentation track: doctor diagnostic command phase-a, system-code-graph READMEs, code-folder READMEs, doc-drift alignment, cross-skill doc polish, and reference-template alignment."
+title: "Feature Specification: Code-Graph Resilience and Advisor [system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/spec]"
+description: "The code-graph resilience and advisor-integration track: advisor refinement, backend resilience research and implementation, iteration-quality meta research, and doctor apply-mode."
 trigger_phrases:
-  - "code graph docs and readmes"
-  - "system-code-graph readmes"
-  - "code graph doc drift"
+  - "code graph resilience and advisor"
+  - "code graph backend resilience"
+  - "code graph advisor refinement"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/013-docs-and-readmes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor"
     last_updated_at: "2026-05-26T17:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored phase-parent map during the 026 wave-4 phase work."
@@ -22,7 +22,7 @@ _memory:
     answered_questions: []
 ---
 
-# Feature Specification: Code-Graph Docs and READMEs
+# Feature Specification: Code-Graph Resilience and Advisor
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -49,7 +49,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The code-graph documentation track: doctor diagnostic command phase-a, system-code-graph READMEs, code-folder READMEs, doc-drift alignment, cross-skill doc polish, and reference-template alignment.
+The code-graph resilience and advisor-integration track: advisor refinement, backend resilience research and implementation, iteration-quality meta research, and doctor apply-mode.
 
 ### Purpose
 Own navigation, the child-phase map, and aggregate status for this theme. Each child phase folder owns its own planning, execution, and verification.
@@ -74,7 +74,7 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `001-doctor-diagnostic-command-phase-a/` … `006-reference-template-alignment/` | Modify | children | Per-child work lives in the child phase folders |
+| `001-code-graph-advisor-refinement/` … `005-doctor-apply-mode-implementation/` | Modify | children | Per-child work lives in the child phase folders |
 | `spec.md`, `graph-metadata.json`, `description.json` | Modify | this | Theme navigation and metadata |
 <!-- /ANCHOR:scope -->
 
@@ -87,12 +87,11 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-doctor-diagnostic-command-phase-a/` | Doctor diagnostic command phase-a | complete |
-| 002 | `002-system-code-graph-readmes-update/` | system-code-graph READMEs update | complete |
-| 003 | `003-code-folder-readmes-poc/` | Code-folder READMEs proof-of-concept | complete |
-| 004 | `004-doc-drift-alignment/` | Doc-drift alignment | complete |
-| 005 | `005-cross-skill-doc-polish/` | Cross-skill doc polish | complete |
-| 006 | `006-reference-template-alignment/` | Reference-template alignment | complete |
+| 001 | `001-code-graph-advisor-refinement/` | Advisor refinement | complete |
+| 002 | `002-code-graph-resilience-research/` | Resilience research | complete |
+| 003 | `003-code-graph-backend-resilience-implementation/` | Backend resilience implementation | complete |
+| 004 | `004-iteration-quality-meta-research/` | Iteration-quality meta research | complete |
+| 005 | `005-doctor-apply-mode-implementation/` | Doctor apply-mode implementation | complete |
 
 ### Phase Transition Rules
 
@@ -106,7 +105,7 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| `001-doctor-diagnostic-command-phase-a` | `006-reference-template-alignment` | Earlier children stable before later children build on them | Each child validates independently |
+| `001-code-graph-advisor-refinement` | `005-doctor-apply-mode-implementation` | Earlier children stable before later children build on them | Each child validates independently |
 <!-- /ANCHOR:phase-map -->
 
 ---

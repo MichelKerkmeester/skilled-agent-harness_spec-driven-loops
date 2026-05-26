@@ -17,7 +17,7 @@ const logger = createLogger('GoldQueryVerifier');
 
 /** Path inside the workspace, anchored at the project root, to the v1 gold battery. */
 const GOLD_BATTERY_RELATIVE_PATH =
-  '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-resilience-and-advisor/002-code-graph-resilience-research/assets/code-graph-gold-queries.json';
+  '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research/assets/code-graph-gold-queries.json';
 
 /**
  * Resolve the project root by walking up from this module's directory until
