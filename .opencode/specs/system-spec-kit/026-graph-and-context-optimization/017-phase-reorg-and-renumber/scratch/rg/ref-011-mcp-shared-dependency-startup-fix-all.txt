@@ -1,0 +1,8 @@
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix/spec.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix/plan.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix/checklist.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix/tasks.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix/implementation-summary.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-shared-dependency-startup-fix/graph-metadata.json
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json
+./.opencode/specs/descriptions.json

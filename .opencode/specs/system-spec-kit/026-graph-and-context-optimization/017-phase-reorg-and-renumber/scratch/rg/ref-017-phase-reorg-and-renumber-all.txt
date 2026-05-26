@@ -1,0 +1,7 @@
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/017-phase-reorg-and-renumber/scratch/rg/ref-004-external-project-adoption-all.txt
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/017-phase-reorg-and-renumber/scratch/rg/ref-005-code-graph-all.txt
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/017-phase-reorg-and-renumber/scratch/rg/ref-007-hook-parity-all.txt
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/017-phase-reorg-and-renumber/scratch/rg/ref-013-embedder-testing-and-architecture-all.txt
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/017-phase-reorg-and-renumber/scratch/rg/ref-003-continuity-memory-runtime-all.txt
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/017-phase-reorg-and-renumber/scratch/rg/ref-006-skill-advisor-all.txt
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/017-phase-reorg-and-renumber/scratch/rg/ref-010-doctor-update-orchestrator-all.txt

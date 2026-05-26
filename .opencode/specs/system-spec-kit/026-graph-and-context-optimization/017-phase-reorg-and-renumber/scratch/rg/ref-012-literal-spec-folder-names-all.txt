@@ -1,0 +1,11 @@
+./.opencode/specs/descriptions.json
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names/spec.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names/plan.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names/tasks.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names/implementation-summary.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names/graph-metadata.json
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/implementation-summary.md
+./.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/008-spec-folder-literal-naming-cli-driven-slug.md
+./.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/006-spec-folder-literal-naming-create-sh-fallback.md
+./.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/009-spec-folder-literal-naming-remediation-rule.md
