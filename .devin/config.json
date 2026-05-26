@@ -15,6 +15,7 @@
         "SPECKIT_RETRY_QUEUE_MAX_PENDING": "300000",
         "SPECKIT_RETRY_BATCH_SIZE": "100",
         "SPECKIT_RETRY_INTERVAL_MS": "5000",
+        "_NOTE_RETRY_TUNING": "Bulk re-embed retry tuning: raised pending cap (default 1000 parks excess pending rows as failed) + faster batch/interval than the default 5-per-5min drain.",
         "EMBEDDINGS_PROVIDER": "auto",
         "_NOTE_1_DB": "Default DB: context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite (auto-derived from provider+model+dim+dtype; hf-local ONNX q8 is the fallback).",
         "_NOTE_2_TOOLS": "Registers 35 tools across families (verified against mcp_server/tool-schemas.ts): memory_save/search/context/match_triggers/index_scan/stats/health/validate/update/delete/bulk_delete/list/drift_why/retention_sweep/get_learning_history/quick_search (16 memory), memory_causal_link/causal_stats (2 causal), memory_ingest_start/status/cancel (3 async ingest), embedder_list/set/status (3 embedder), session_bootstrap/resume/health (3 session), checkpoint_create/list/restore/delete (4 checkpoint), task_preflight/postflight (2 task), eval_run_ablation/reporting_dashboard (2 eval). MCP namespace: mcp__mk_spec_memory__*. Note: coverage-graph and council graph operations are owned by deep-loop-runtime CLI modules and are NOT exposed as MCP tools.",

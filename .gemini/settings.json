@@ -32,6 +32,7 @@
         "SPECKIT_RETRY_QUEUE_MAX_PENDING": "300000",
         "SPECKIT_RETRY_BATCH_SIZE": "100",
         "SPECKIT_RETRY_INTERVAL_MS": "5000",
+        "_NOTE_RETRY_TUNING": "Bulk re-embed retry tuning: raised pending cap (default 1000 parks excess pending rows as failed) + faster batch/interval than the default 5-per-5min drain.",
         "EMBEDDINGS_PROVIDER": "auto",
         "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory",
         "_NOTE_SOCKET": "macOS sun_path limit (104 chars): the default bridge socket path under database/daemon-ipc.sock exceeds the limit and the launcher fails with EINVAL. Pin to a short /tmp path so the multi-client bridge can bind.",
