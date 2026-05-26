@@ -1,0 +1,16 @@
+{"type":"iteration","iteration":5,"newInfoRatio":0.10,"status":"insight","focus":"Q5 final doc sweep + command-mirror closure. 1 new finding (P3: 5x cli-* ccc search pkill), 6 sibling commands ruled clean, 7 doc surfaces ruled INTENTIONAL-HISTORICAL, completeness check finalized.","graphEvents":[]}
+{"type":"finding","iteration":5,"id":"F26","severity":"P3","classification":"REPAIRABLE-STALE","file":".opencode/skills/cli-*/SKILL.md","lines":"cli-codex:357, cli-claude-code:350, cli-devin:372, cli-opencode:296, cli-gemini:309","summary":"All 5 cli-* SKILL.md files reference pkill -9 -f \"ccc search\" in single-dispatch discipline cleanup — stale reference to removed CocoIndex/CodeRankEmbed CLI. Harmless at runtime (no-op on nonexistent process) but stale. Also contains gtimeout and positional_scoring_fallback:app which may still be relevant.","evidence":"Each file's single-dispatch discipline block: 'pkill -9 -f \"ccc search\" / gtimeout / positional_scoring_fallback:app cleanup' — ccc CLI was part of CocoIndex, removed in 014."}
+{"type":"ruled_out","iteration":5,"file":".gemini/commands/memory/manage.toml","reason":"CLEAN — no cross-encoder/cocoindex/getRerankerStatus/rerank-2.5/CodeRankEmbed references"}
+{"type":"ruled_out","iteration":5,"file":".gemini/commands/memory/save.toml","reason":"CLEAN"}
+{"type":"ruled_out","iteration":5,"file":".gemini/commands/memory/learn.toml","reason":"CLEAN"}
+{"type":"ruled_out","iteration":5,"file":".opencode/commands/memory/manage.md","reason":"CLEAN"}
+{"type":"ruled_out","iteration":5,"file":".opencode/commands/memory/save.md","reason":"CLEAN"}
+{"type":"ruled_out","iteration":5,"file":".opencode/commands/memory/learn.md","reason":"CLEAN"}
+{"type":"ruled_out","iteration":5,"file":".codex/commands/memory/","reason":"CLEAN — no memory command files exist in this runtime"}
+{"type":"ruled_out","iteration":5,"file":".claude/commands/memory/","reason":"CLEAN — no memory command files exist in this runtime"}
+{"type":"ruled_out","iteration":5,"file":".opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md","reason":"INTENTIONAL-HISTORICAL — documents Path A rejection and CocoIndex removal"}
+{"type":"ruled_out","iteration":5,"file":".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md","reason":"INTENTIONAL-HISTORICAL — documents Stage 3 removal"}
+{"type":"ruled_out","iteration":5,"file":".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/04-dead-code-removal.md","reason":"INTENTIONAL-HISTORICAL — documents what was removed in dead-code sweep"}
+{"type":"ruled_out","iteration":5,"file":".opencode/skills/system-spec-kit/constitutional/","reason":"CLEAN — zero cross-encoder/cocoindex references in constitutional rules"}
+{"type":"ruled_out","iteration":5,"file":"root *.md (README.md)","reason":"CLEAN"}
+{"type":"completeness","iteration":5,"total_catalogue":{"P1":4,"P2":8,"P3":1,"INFO_KEPT":6,"NO_REGRESSION":4,"REAL_GAP":1,"COVERED":1,"INTENTIONAL_HISTORICAL":12},"notes":"Complete catalogue for remediation packet finalized across all 5 iterations"}

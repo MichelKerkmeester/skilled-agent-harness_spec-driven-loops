@@ -1,0 +1,1091 @@
+{
+  "sessionId": "27ca9e78-0ad4-4691-b2be-9cfba2a410dc",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-are-there-hidden-live-runtime-couplings-to-the-removed-cocoindex-cross-encode",
+      "text": "Q1: Are there hidden LIVE runtime couplings to the removed CocoIndex / cross-encoder / rerank-sidecar still in code (dangling imports, dead conditional branches, env-driven paths, `cocoIndexAvailable`-style flags, vector-channel warnings)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-are-there-residual-references-in-non-obvious-surfaces-the-doc-code-sweeps-und",
+      "text": "Q2: Are there residual references in non-obvious surfaces the doc/code sweeps under-covered — the 4-runtime mirrors (.gemini/.codex/.claude), MCP configs (opencode.json/.vscode/.mcp/.codex), runtime/DB JSON artifacts (skill-graph.json, advisor state), CI/hooks, `.gitignore`?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-did-removing-semantic-code-search-cocoindex-the-llm-reranker-leave-a-real-use",
+      "text": "Q3: Did removing semantic code search (CocoIndex) + the LLM reranker leave a real user-facing capability gap vs the replacements (HYBRID code-graph+Grep; algorithmic MMR), or strand a feature/flag/doc that promised the removed capability?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-are-there-behavioral-regressions-introduced-by-the-vestige-removal-memory-sea",
+      "text": "Q4: Are there behavioral regressions introduced by the vestige removal — memory-search scoring/fusion, the 3-factor confidence (was the 0.20 truly inert?), result-explainability signals, the council test/CI story after the hook purge?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-do-docs-incl-the-just-aligned-readme-embedder-pluggability-feature-catalog-pl",
+      "text": "Q5: Do docs (incl the just-aligned README/embedder_pluggability/feature_catalog/playbook AND the 4-runtime routing mirrors) still carry stale or contradictory claims about the removed features (cross-encoder, CodeRankEmbed default, ccc, sidecar, tool counts)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Q1: Are there hidden LIVE runtime couplings to the removed CocoIndex / cross-encoder / rerank-sidecar still in code (dangling imports, dead conditional branches, env-driven paths, `cocoIndexAvailable`-style flags, vector-channel warnings)?",
+    "Q2: Are there residual references in non-obvious surfaces the doc/code sweeps under-covered — the 4-runtime mirrors (.gemini/.codex/.claude), MCP configs (opencode.json/.vscode/.mcp/.codex), runtime/DB JSON artifacts (skill-graph.json, advisor state), CI/hooks, `.gitignore`?",
+    "Q3: Did removing semantic code search (CocoIndex) + the LLM reranker leave a real user-facing capability gap vs the replacements (HYBRID code-graph+Grep; algorithmic MMR), or strand a feature/flag/doc that promised the removed capability?",
+    "Q4: Are there behavioral regressions introduced by the vestige removal — memory-search scoring/fusion, the 3-factor confidence (was the 0.20 truly inert?), result-explainability signals, the council test/CI story after the hook purge?",
+    "Q5: Do docs (incl the just-aligned README/embedder_pluggability/feature_catalog/playbook AND the 4-runtime routing mirrors) still carry stale or contradictory claims about the removed features (cross-encoder, CodeRankEmbed default, ccc, sidecar, tool counts)?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-29-classification-dead-historical-log-file-from-a-previous-doctor-update-run-not-li",
+      "text": "**Classification:** **DEAD** — Historical log file from a previous `/doctor:update` run. Not live code. The entry references the cocoindex daemon from before its removal.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-24-classification-dead-setting-an-env-var-that-nothing-reads-is-harmless-the-v1-hyb",
+      "text": "**Classification:** **DEAD** — Setting an env var that nothing reads is harmless. The V1 hybrid-search pipeline is being phased out. These test lines are noise but do not break anything.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-39-classification-dead-test-corpus-data-referencing-a-removed-feature-concept-the-t",
+      "text": "**Classification:** **DEAD** — Test corpus data referencing a removed feature concept. The test case (line 107-117) is a fixture in a static corpus, not live production code. It references a W4 \"conditional rerank\" workstream that was deferred/removed.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-14-classification-dead-the-type-variant-is-dead-code-never-used-and-the-jsdoc-is-st",
+      "text": "**Classification:** **DEAD** — The type variant is dead code (never used) and the JSDoc is stale. The actual behavior at line 117-118 (`const rerankApplied = false; const rerankProvider: RerankProvider = 'none'`) correctly reflects the removed feature. The type variant and JSDoc are cosmetic/confusing but do not cause runtime misbehavior.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-34-classification-dead-these-are-historical-evaluation-queries-that-test-whether-th",
+      "text": "**Classification:** **DEAD** — These are historical evaluation queries that test whether the search system can find documentation about the deprecation decision. The queries are valid — they test knowledge retrieval about a real historical event. Not live couplings to removed code.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-19-classification-dead-documented-kept-exception-the-field-is-always-null-but-the-r",
+      "text": "**Classification:** **DEAD** (documented kept exception) — The field is always null but the response shape is preserved to avoid breaking API consumers. This was a known kept exception in the 017 cleanup. Removing it would be a breaking API change. Consistent with the documented \"harmless-unused\" exception for `PipelineRow.rerankerScore`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-classification-live-stranded-this-is-the-public-mcp-tool-schema-for-memory-searc",
+      "text": "**Classification:** **LIVE-STRANDED** — This is the public MCP tool schema for `memory_search`, exposed to all MCP callers (AI models, agents, etc.). The `rerank` parameter still exists and defaults to `true`, but it now controls MMR diversity reranking (`stage3-rerank.ts:124`), not cross-encoder reranking. The description is materially wrong — it promises a removed feature. All callers reading the schema will be misled about what this parameter does.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-classification-live-stranded-this-test-will-fail-when-executed-it-s-a-stale-asse",
+      "text": "**Classification:** **LIVE-STRANDED** — This test will FAIL when executed. It's a stale assertion that expects a removed env var to still be present in the recognized-vars constant.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-28-evidence-name-cocoindex-phase-5-exit-0-rows-daemon-respawned-via-shell-mcp-32000",
+      "text": "**Evidence:** `{\"name\": \"cocoindex\", \"phase\": 5, \"exit\": 0, \"rows\": \"daemon respawned via shell (MCP -32000 prevented MCP-driven reindex); native ccc index in flight\"}`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-18-evidence-rerank-tonullablenumber-rawresult-rerankerscore-the-rerankerscore-prope",
+      "text": "**Evidence:** `rerank: toNullableNumber(rawResult.rerankerScore)` — The `rerankerScore` property is never set by the pipeline (confirmed: no `rerankerScore` anywhere in `lib/search/`). This field in the `MemoryResultScores` interface (line 119) will always resolve to `null` via `toNullableNumber`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-13-evidence-type-rerankprovider-cross-encoder-fallback-sort-none-the-cross-encoder-",
+      "text": "**Evidence:** `type RerankProvider = 'cross-encoder' | 'fallback-sort' | 'none';` — The `'cross-encoder'` variant is never assigned in production code (line 118 always sets `'none'`). The JSDoc at lines 96-98 says \"Applies cross-encoder reranking (if enabled)\" and \"cross-encoder scores are computed on the raw chunks\" — both statements are false.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-23-evidence-tests-t316-line-1303-and-t024-line-1390-set-process-env-speckit-cross-e",
+      "text": "**Evidence:** Tests T316 (line 1303) and T024 (line 1390) set `process.env.SPECKIT_CROSS_ENCODER = 'false'` and preserve/restore it. The env var is no longer read by any production code.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-evidence-the-rerank-parameter-description-reads-enable-cross-encoder-reranking-o",
+      "text": "**Evidence:** The `rerank` parameter description reads: `\"Enable cross-encoder reranking of results. Improves relevance at the cost of additional computation.\"`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-38-evidence-the-searchqualitycase-source-type-union-includes-rerank-gate-and-a-w4-t",
+      "text": "**Evidence:** The `SearchQualityCase.source` type union includes `'rerank-gate'` and a W4 test case uses `source: 'rerank-gate'` with notes mentioning \"conditional rerank.\" The rerank-gate feature was removed.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-evidence-the-test-asserts-expect-recognized-speckit-env-vars-tocontain-speckit-c",
+      "text": "**Evidence:** The test asserts `expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_CROSS_ENCODER')` but `RECOGNIZED_SPECKIT_ENV_VARS` (at `sidecar-client.ts:191-200`) no longer includes this entry — it was correctly removed as part of the cross-encoder deprecation. The test assertion was NOT updated.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-33-evidence-two-eval-queries-ask-about-cross-encoder-decisions-what-was-decided-abo",
+      "text": "**Evidence:** Two eval queries ask about cross-encoder decisions: \"what was decided about removing the cross-encoder configuration from search-weights.json\" (line 155) and \"was there ever a decision to deprecate the cross-encoder reranker\" (line 795).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-27-file-opencode-skills-system-spec-kit-mcp-server-database-doctor-update-last-run-",
+      "text": "**File:** `.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.last-run.json:12`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-17-file-opencode-skills-system-spec-kit-mcp-server-formatters-search-results-ts-872",
+      "text": "**File:** `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:872`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-32-file-opencode-skills-system-spec-kit-mcp-server-lib-eval-data-ground-truth-json-",
+      "text": "**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:155,795`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-12-file-opencode-skills-system-spec-kit-mcp-server-lib-search-pipeline-stage3-reran",
+      "text": "**File:** `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:89`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-37-file-opencode-skills-system-spec-kit-mcp-server-stress-test-search-quality-corpu",
+      "text": "**File:** `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts:24,109`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-file-opencode-skills-system-spec-kit-mcp-server-tests-embedders-sidecar-hardenin",
+      "text": "**File:** `.opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts:545`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-22-file-opencode-skills-system-spec-kit-mcp-server-tests-hybrid-search-vitest-ts-13",
+      "text": "**File:** `.opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts:1301-1390`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-file-opencode-skills-system-spec-kit-mcp-server-tool-schemas-ts-132-136",
+      "text": "**File:** `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:132-136`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-impact-broken-test-in-the-sidecar-hardening-suite-the-test-should-be-updated-to-",
+      "text": "**Impact:** Broken test in the sidecar hardening suite. The test should be updated to remove the `SPECKIT_CROSS_ENCODER` assertion since it was intentionally removed from the recognized vars.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-impact-external-callers-inspecting-the-tool-schema-see-a-description-that-refere",
+      "text": "**Impact:** External callers inspecting the tool schema see a description that references a non-existent feature. The actual behavior (MMR diversity reranking when `rerank=true`) is correct but undocumented in the schema.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-15-impact-low-a-developer-reading-this-code-could-be-confused-about-what-features-a",
+      "text": "**Impact:** Low. A developer reading this code could be confused about what features are still active. The JSDoc should be updated and the dead type variant pruned.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-20-impact-negligible-always-null-field-in-the-trace-scores-sub-object-could-be-clea",
+      "text": "**Impact:** Negligible. Always-null field in the trace scores sub-object. Could be cleaned up in a future API version bump.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-25-impact-negligible-dead-env-var-manipulation-in-tests-could-be-cleaned-up-as-part",
+      "text": "**Impact:** Negligible. Dead env var manipulation in tests. Could be cleaned up as part of V1 pipeline removal.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-40-impact-negligible-dead-test-fixture-could-be-cleaned-up-if-the-w4-workstream-is-",
+      "text": "**Impact:** Negligible. Dead test fixture. Could be cleaned up if the W4 workstream is formally closed.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-35-impact-none-these-are-correct-eval-queries-about-historical-system-knowledge",
+      "text": "**Impact:** None. These are correct eval queries about historical system knowledge.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-30-impact-none-this-is-a-historical-artifact-not-a-live-coupling",
+      "text": "**Impact:** None. This is a historical artifact, not a live coupling.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-21-severity-info",
+      "text": "**Severity:** INFO",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-26-severity-info",
+      "text": "**Severity:** INFO",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-31-severity-info",
+      "text": "**Severity:** INFO",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-36-severity-info",
+      "text": "**Severity:** INFO",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-severity-p1",
+      "text": "**Severity:** P1",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-severity-p1",
+      "text": "**Severity:** P1",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-16-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-applylengthpenalty-boolean-true-compatibility-only-reranker-option-current-runti",
+      "text": "\"`applyLengthPenalty` | boolean | true | Compatibility-only reranker option. Current runtime keeps it on the surface, but the length multiplier is always `1.0` so no documents are penalized for size\" (APPENDIX B)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-getrerankerstatus-exposes-reranker-latency-plus-cache-hits-misses-stalehits-and-",
+      "text": "\"`getRerankerStatus()` exposes reranker latency plus cache `hits`, `misses`, `staleHits`, and `evictions`\" (used TWICE: once in Hybrid Retrieval Runtime, once in APPENDIX A)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-rerank-boolean-true-enable-cross-encoder-reranking-appendix-b-parameter-table-fo",
+      "text": "\"`rerank` | boolean | true | Enable cross-encoder reranking\" (APPENDIX B parameter table for `memory_search`)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-cross-encoder-reranking-only-runs-when-at-least-4-candidates-reach-stage-3-apply",
+      "text": "\"Cross-encoder reranking only runs when at least 4 candidates reach Stage 3; `applyLengthPenalty` remains on the API surface for compatibility but currently resolves to a neutral `1.0` multiplier for every document\" (Hybrid Retrieval Runtime section)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-23-classification-live-stranded-devin-config-json-is-the-mcp-configuration-for-the-",
+      "text": "**Classification:** **LIVE-STRANDED** — `.devin/config.json` is the MCP configuration for the Devin runtime. Same class of issue as Finding 10.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-16-classification-live-stranded-vscode-mcp-json-is-the-mcp-configuration-for-vs-cod",
+      "text": "**Classification:** **LIVE-STRANDED** — `.vscode/mcp.json` is the MCP configuration for VS Code's MCP extension. While tool counts in comments are informational, the Voyage rerank-2.5 reference is a stale claim about cloud reranker support. The correct opencode.json note says \"Voyage is embeddings-only here.\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-classification-live-stranded-this-file-is-the-gemini-cli-s-command-definition-fo",
+      "text": "**Classification:** **LIVE-STRANDED** — This file is the Gemini CLI's command definition for `/memory:search`. It is loaded and sent as a system prompt/instruction to Gemini models every time a user invokes `/memory:search`. The model is being told that cross-encoder reranking is an active feature, that `getRerankerStatus()` exposes reranker cache stats, and that the `rerank` parameter enables \"cross-encoder reranking.\" All of these claims are false — the cross-encoder was removed. The `rerank` parameter now controls MMR diversity reranking.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-28-classification-live-stranded-confirmed-static-code-inspection-is-sufficient-to-c",
+      "text": "**Classification:** **LIVE-STRANDED** (confirmed). Static code inspection is sufficient to confirm the test failure without running vitest.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-cross-reference-this-is-the-gemini-mirror-equivalent-of-iter-1-finding-1-tool-sc",
+      "text": "**Cross-reference:** This is the Gemini-mirror equivalent of iter-1 Finding 1 (tool-schemas.ts:132-136). Both contain the same stale \"Enable cross-encoder reranking\" text, but this one is in model instructions, not just a tool schema.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-27-evidence-static-confirmed-recognized-speckit-env-vars-at-sidecar-client-ts-191-2",
+      "text": "**Evidence (static-confirmed):** `RECOGNIZED_SPECKIT_ENV_VARS` at sidecar-client.ts:191-200 contains 8 entries (`SPECKIT_EMBEDDER_SIDECAR_IDLE_MS`, `SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS`, `SPECKIT_EMBEDDER_SIDECAR_REQUEST_TIMEOUT_MS`, `SPECKIT_EMBEDDER_EXECUTION`, `SPECKIT_EMBEDDER_SIDECAR_PROVIDER`, `SPECKIT_EMBEDDER_SIDECAR_MODEL`, `SPECKIT_EMBEDDER_SIDECAR_DIMENSIONS`, `SPECKIT_EMBEDDER_SIDECAR_PARENT_PID`). `SPECKIT_CROSS_ENCODER` is NOT present. The test at line 545 asserts `expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_CROSS_ENCODER')` — this assertion will throw.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-20-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-evidence-the-gemini-runtime-s-memory-search-command-prompt-sent-as-instructions-",
+      "text": "**Evidence:** The Gemini runtime's `/memory:search` command prompt — sent as instructions to Gemini models at runtime — contains at least 4 separate claims that the cross-encoder reranker is active:",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-19-file-devin-config-json-17-20",
+      "text": "**File:** `.devin/config.json:17,20`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-file-gemini-commands-memory-search-toml-2-entire-prompt-body-multiple-locations",
+      "text": "**File:** `.gemini/commands/memory/search.toml:2` (entire prompt body, multiple locations)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-file-vscode-mcp-json-18-21",
+      "text": "**File:** `.vscode/mcp.json:18,21`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-26-file-sidecar-hardening-vitest-ts-545-vs-sidecar-client-ts-191-200",
+      "text": "**File:** `sidecar-hardening.vitest.ts:545` vs `sidecar-client.ts:191-200`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-29-impact-broken-test-the-fix-is-trivial-remove-line-545-or-update-the-assertion-to",
+      "text": "**Impact:** Broken test. The fix is trivial: remove line 545 or update the assertion to not expect the removed env var.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-impact-gemini-models-using-this-command-will-make-decisions-based-on-false-infor",
+      "text": "**Impact:** Gemini models using this command will make decisions based on false information about the retrieval pipeline's capabilities. This is a more impactful version of Finding 1 (tool-schemas.ts) — it's the same class of bug but in a model-facing instruction document, not a tool schema. The Gemini model may select different query strategies or interpret `rerank` parameter behavior incorrectly.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-24-impact-low-medium-same-as-finding-10-but-for-devin-s-mcp-configuration",
+      "text": "**Impact:** Low-medium. Same as Finding 10, but for Devin's MCP configuration.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-17-impact-low-medium-tool-count-documentation-is-wrong-but-informational-the-voyage",
+      "text": "**Impact:** Low-medium. Tool count documentation is wrong but informational. The Voyage rerank-2.5 claim could mislead a developer reading the VS Code MCP config into thinking cloud reranking is supported.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-severity-p1",
+      "text": "**Severity:** P1",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-25-severity-p1-verified-from-iter-1",
+      "text": "**Severity:** P1 (verified from iter-1)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-18-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-21-line-17-note-2-tools-registers-39-tools-same-stale-39-tool-count-as-vscode-mcp-j",
+      "text": "Line 17: `\"_NOTE_2_TOOLS\": \"Registers 39 tools: ...\"` — Same stale 39-tool count as `.vscode/mcp.json`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-14-line-18-note-2-tools-registers-39-tools-memory-save-search-context-council-graph",
+      "text": "Line 18: `\"_NOTE_2_TOOLS\": \"Registers 39 tools: memory_save/search/context/...council_graph_query/status/upsert/convergence (4 council), deep_loop_graph_query/status/upsert/convergence (4 deep-loop)...` — This references 39 tools including council/deep-loop graph tools (4+4=8 extras). The correct post-017 count is 35 (council/deep-loop tools were moved to the deep-loop-runtime CLI, not exposed as MCP tools).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-22-line-20-note-5-cloud-providers-for-cloud-add-voyage-api-key-or-openai-api-key-vo",
+      "text": "Line 20: `\"_NOTE_5_CLOUD_PROVIDERS\": \"For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY; Voyage uses rerank-2.5 and auto-selects the matching DB profile\"` — Same stale Voyage reranker reference.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-15-line-21-note-5-cloud-providers-for-cloud-add-voyage-api-key-or-openai-api-key-vo",
+      "text": "Line 21: `\"_NOTE_5_CLOUD_PROVIDERS\": \"For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY; Voyage uses rerank-2.5 and auto-selects the matching DB profile\"` — References Voyage's rerank-2.5 cloud reranker, which was removed per `opencode.json` line 33: \"cloud rerankers (voyage/cohere) were removed in 022/013.\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-56-classification-covered-mmr-provides-diversity-improvement-over-the-old-default-w",
+      "text": "**Classification:** **COVERED** — MMR provides diversity improvement over the old default (which had no reranker). The rescue layer provides the quality safety net that cross-encoder (opt-in) would have provided. Opt-in cross-encoder relevance reranking is genuinely lost, but it was optional and the documented quality metrics are maintained. No documented quality regression exists.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-classification-live-stranded-this-is-the-opencode-runtime-s-memory-search-comman",
+      "text": "**Classification:** **LIVE-STRANDED** — This is the OpenCode runtime's `/memory:search` command prompt (~1037 lines), sent as system instructions to OpenCode AIs. It falsely claims cross-encoder reranking is active, that `getRerankerStatus()` exposes reranker cache stats, and that the `rerank` parameter enables \"cross-encoder reranking.\" The actual behavior: `rerank=true` controls MMR diversity reranking (stage3-rerank.ts:124), not cross-encoder reranking.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-39-classification-partially-stranded-the-removal-is-documented-in-the-comment-but-t",
+      "text": "**Classification:** **Partially STRANDED** — The removal is documented in the comment, but the model mapping itself is dead. The comment is accurate and helpful, but the mapping entry should be removed or wrapped in a conditional. Low priority because the comment provides full context.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-46-classification-real-gap-intentional-embedding-based-code-search-is-no-longer-ava",
+      "text": "**Classification:** **REAL-GAP (intentional)** — Embedding-based code search is no longer available. The iterative lexical/structural replacement covers the use case but is qualitatively different (requires domain knowledge, misses conceptually-related code using different terminology). This gap was accepted as part of the HYBRID deprecation decision (D2). It is NOT a regression — it's a deliberate trade-off.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-24-classification-stranded-promise-a-comment-referencing-a-deleted-file-as-the-orig",
+      "text": "**Classification:** **STRANDED-PROMISE** — A comment referencing a deleted file as the origin of a pattern. The pattern itself is live (embedding circuit breaker) but the provenance reference is wrong. Cosmetic but misleading for code archeology.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-34-classification-stranded-promise-a-documentation-reference-that-still-shows-a-del",
+      "text": "**Classification:** **STRANDED-PROMISE** — A documentation reference that still shows a deleted file as part of the codebase structure. This could mislead developers about the current code organization.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-14-classification-stranded-promise-system-code-graph-is-structural-only-tree-sitter",
+      "text": "**Classification:** **STRANDED-PROMISE** — system-code-graph is structural only (tree-sitter: callers, imports, symbols, outlines). It cannot do semantic/embedding concept search. Line 52 implies it can, or at minimum provides contradictory routing advice. The correct replacement for the old cocoindex semantic code search is \"Grep for domain terms + code-graph structural queries for iterative discovery,\" not \"use system-code-graph for semantic concept search.\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-29-classification-stranded-promise-the-doc-validation-infrastructure-still-knows-ab",
+      "text": "**Classification:** **STRANDED-PROMISE** — The doc validation infrastructure still knows about a removed model family. If a doc references a cross-encoder model, the validator would accept it as valid instead of flagging it as stale/dead. This is the mirror of the filesystem-side cleanup — the validation side was not cleaned.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-19-classification-stranded-promise-the-type-system-still-accepts-cross-encoder-as-a",
+      "text": "**Classification:** **STRANDED-PROMISE** — The type system still accepts `'cross-encoder'` as a valid scoring method. Consumers reading this type definition could build logic expecting cross-encoder scores to appear. Related to iter-1 Finding 3 (RerankProvider type in stage3-rerank.ts:89) but in a different type definition file.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-cross-reference-sister-finding-to-iter-1-finding-1-tool-schemas-ts-132-136-and-i",
+      "text": "**Cross-reference:** Sister finding to iter-1 Finding 1 (tool-schemas.ts:132-136) and iter-2 Finding 9 (.gemini/commands/memory/search.toml). All three contain the same class of stale cross-encoder claims, but in different runtime surfaces (MCP schema, Gemini command, OpenCode command).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-42-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-49-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-23-evidence-comment-mirrors-the-cross-encoder-circuit-breaker-pattern-cross-encoder",
+      "text": "**Evidence:** Comment: \"Mirrors the cross-encoder circuit breaker pattern (cross-encoder.ts).\" The file `cross-encoder.ts` was deleted in phase 003. The circuit breaker pattern still exists but its origin reference is stale.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-28-evidence-line-144-cross-encoder-ms-marco-minilm-l-6-v2-in-model-path-list-line-1",
+      "text": "**Evidence:** Line 144: `'cross-encoder/ms-marco-MiniLM-L-6-v2'` in model path list. Line 160: `'cross-encoder/'` as a path prefix. The validation script still considers cross-encoder model references as valid model paths, even though no cross-encoder models exist in the system.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-33-evidence-line-492-shows-cross-encoder-ts-re-ranking-in-a-directory-tree-the-file",
+      "text": "**Evidence:** Line 492 shows `cross-encoder.ts # Re-ranking` in a directory tree. The file was deleted in phase 003.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-38-evidence-lines-223-228-contain-a-detailed-comment-documenting-the-cross-encoder-",
+      "text": "**Evidence:** Lines 223-228 contain a detailed comment documenting the cross-encoder removal (\"cross-encoder path was removed in 003 and the local rerank sidecar skill was deleted\"), but line 236 still maps `local: 'cross-encoder/ms-marco-MiniLM-L-6-v2'` in the LOCAL_EMBEDDING_MODELS object.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-18-evidence-the-memoryresultscores-scoringmethod-type-union-includes-cross-encoder-",
+      "text": "**Evidence:** The `MemoryResultScores.scoringMethod` type union includes `'cross-encoder'` and the JSDoc at line 216 says \"`'cross-encoder'` — reranker model relevance.\" The cross-encoder scoring method is never assigned in the current pipeline.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-evidence-under-when-not-to-use-items-describing-what-not-to-use-system-code-grap",
+      "text": "**Evidence:** Under \"### When NOT to use\" (items describing what NOT to use system-code-graph for): \"Semantic concept search without known structure: use `system-code-graph`.\" This is a self-contradiction — the section says \"don't use system-code-graph for this\" but then says \"use system-code-graph.\" The preceding items follow the correct pattern (\"Text-only exact searches: use Grep\" = don't use this skill, use Grep), but line 52 incorrectly routes back to itself.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-file-opencode-commands-memory-search-md-120-121-872-986-987",
+      "text": "**File:** `.opencode/commands/memory/search.md:120-121,872,986-987`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-32-file-opencode-skills-sk-code-references-opencode-shared-code-organization-md-492",
+      "text": "**File:** `.opencode/skills/sk-code/references/opencode/shared/code_organization.md:492`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-27-file-opencode-skills-sk-doc-scripts-validate-doc-model-refs-js-144-160",
+      "text": "**File:** `.opencode/skills/sk-doc/scripts/validate-doc-model-refs.js:144,160`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-file-opencode-skills-system-code-graph-skill-md-52",
+      "text": "**File:** `.opencode/skills/system-code-graph/SKILL.md:52`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-22-file-opencode-skills-system-spec-kit-shared-embeddings-ts-43",
+      "text": "**File:** `.opencode/skills/system-spec-kit/shared/embeddings.ts:43`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-37-file-opencode-skills-system-spec-kit-shared-embeddings-registry-ts-223-236",
+      "text": "**File:** `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts:223-236`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-17-file-opencode-skills-system-spec-kit-shared-types-ts-216-225",
+      "text": "**File:** `.opencode/skills/system-spec-kit/shared/types.ts:216-225`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-15-impact-a-developer-or-agent-reading-this-doc-could-believe-system-code-graph-han",
+      "text": "**Impact:** A developer or agent reading this doc could believe system-code-graph handles semantic concept search, which it does not. This is the only routing doc that misrepresents what system-code-graph can do.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-30-impact-low-medium-the-validator-would-silently-accept-cross-encoder-model-refere",
+      "text": "**Impact:** Low-medium. The validator would silently accept cross-encoder model references in docs, allowing stale documentation to persist without detection.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-25-impact-low-harmless-comment-pointing-to-a-dead-file",
+      "text": "**Impact:** Low. Harmless comment pointing to a dead file.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-20-impact-low-no-runtime-misbehavior-but-the-type-definition-misleads-developers-sh",
+      "text": "**Impact:** Low. No runtime misbehavior, but the type definition misleads developers. Should be pruned or marked `@deprecated`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-35-impact-low-outdated-documentation-reference-a-developer-reading-this-would-expec",
+      "text": "**Impact:** Low. Outdated documentation reference. A developer reading this would expect to find `cross-encoder.ts` in the tree.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-57-impact-minimal-default-path-quality-is-preserved-opt-in-cross-encoder-users-lose",
+      "text": "**Impact:** Minimal. Default path quality is preserved. Opt-in cross-encoder users lose the feature but had to explicitly enable it.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-40-impact-negligible-the-mapping-is-dead-but-the-comment-explains-why",
+      "text": "**Impact:** Negligible. The mapping is dead but the comment explains why.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-impact-opencode-ais-using-memory-search-receive-false-information-about-the-retr",
+      "text": "**Impact:** OpenCode AIs using `/memory:search` receive false information about the retrieval pipeline. This is the OpenCode-runtime equivalent of iter-2 Finding 9 (Gemini's `memory/search.toml`). Both were missed by the prior remediation sweeps.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-47-impact-users-agents-conducting-find-code-that-handles-x-without-knowing-the-exac",
+      "text": "**Impact:** Users/agents conducting \"find code that handles X\" without knowing the exact domain terms must iterate through Grep guesses rather than getting semantic matches in one query. This was the explicit cost of removing CocoIndex.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-48-severity-covered",
+      "text": "**Severity:** COVERED",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-36-severity-info",
+      "text": "**Severity:** INFO",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-41-severity-info-intentional-design-decision",
+      "text": "**Severity:** INFO (intentional design decision)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-severity-p1",
+      "text": "**Severity:** P1",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-16-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-21-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-26-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-31-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-51-adr-011-retrieval-rescue-layer-measured-1-quality-improvement-27-30-28-30-pass-o",
+      "text": "ADR-011 retrieval-rescue layer: measured +1 quality improvement (27/30 → 28/30 PASS) on 30-scenario stratified sample. Default-on with `SPECKIT_RERANK_LAYER` kill switch.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-43-agents-md-code-search-decision-tree-concept-intent-code-graph-structural-query-g",
+      "text": "AGENTS.md code-search decision tree: \"concept/intent\" → \"Code Graph structural query + Grep pattern search + Iterate Grep terms from likely symbols, filenames, domain words, and errors\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-52-benchmark-2026-05-17-jina-v3-rescue-layer-achieves-9-10-cat-24-409-top-3",
+      "text": "benchmark-2026-05-17: jina-v3 + rescue layer achieves 9/10 cat-24/409 top-3.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-50-cross-encoder-was-opt-in-only-not-the-default-path-mmr-is-default-on-diversity-r",
+      "text": "Cross-encoder was opt-in only (not the default path). MMR is default-on diversity reranking (stage3-rerank.ts:124, `isMMREnabled()` returns true by default).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-54-embedder-architecture-md-172-correctly-documents-the-removal-with-historical-con",
+      "text": "embedder_architecture.md:172 correctly documents the removal with historical context.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-line-120-cross-encoder-reranking-only-runs-when-at-least-4-candidates-reach-stag",
+      "text": "Line 120: \"Cross-encoder reranking only runs when at least 4 candidates reach Stage 3; `applyLengthPenalty` remains on the API surface for compatibility but currently resolves to a neutral `1.0` multiplier for every document\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-line-121-getrerankerstatus-exposes-reranker-latency-plus-cache-hits-misses-stale",
+      "text": "Line 121: \"`getRerankerStatus()` exposes reranker latency plus cache `hits`, `misses`, `staleHits`, and `evictions`\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-line-872-when-speckit-extended-telemetry-is-enabled-extended-telemetry-is-captur",
+      "text": "Line 872: \"when `SPECKIT_EXTENDED_TELEMETRY` is enabled, extended telemetry is captured ... while `getRerankerStatus()` reports reranker latency and cache `hits` / `misses` / `staleHits` / `evictions`\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-line-986-rerank-boolean-true-enable-cross-encoder-reranking",
+      "text": "Line 986: \"`rerank` | boolean | true | Enable cross-encoder reranking\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-44-system-code-graph-skill-md-3-this-skill-ships-the-structural-half-semantic-searc",
+      "text": "system-code-graph SKILL.md §3: \"This skill ships the structural half. ... Semantic search answers 'what does this code mean.' Structural indexing answers 'what does this code touch.'\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-53-system-spec-kit-skill-md-420-422-correctly-documents-the-deprecation-cross-encod",
+      "text": "system-spec-kit SKILL.md:420-422 correctly documents the deprecation: \"Cross-encoder reranking was removed in the 014 deprecation...\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-55-the-rerank-parameter-in-memory-search-now-controls-mmr-diversity-not-cross-encod",
+      "text": "The `rerank` parameter in `memory_search` now controls MMR diversity, not cross-encoder relevance. Schema description is stale (Finding 1) but behavior is correct.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-45-the-hybrid-replacement-code-graph-structural-grep-lexical-requires-the-user-to-g",
+      "text": "The HYBRID replacement (code-graph structural + Grep lexical) requires the user to guess domain terms and iteratively refine, vs. the old CocoIndex which accepted natural-language queries and returned semantically relevant code via embeddings.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-classification-broken-test-the-source-array-recognized-speckit-env-vars-sidecar-",
+      "text": "**Classification: BROKEN-TEST** — The source array `RECOGNIZED_SPECKIT_ENV_VARS` (sidecar-client.ts:191-200) was correctly updated to remove `SPECKIT_CROSS_ENCODER` (now 8 items). The test assertion at line 545 was NOT updated — it still expects the removed env var. This is exclusively a test maintenance gap, not a production behavior regression. The env var was removed intentionally and the source array is correct; the test is stale.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-21-classification-no-regression-no-runtime-command-or-council-workflow-still-attemp",
+      "text": "**Classification: NO-REGRESSION** — No runtime command or council workflow still attempts to health-check or invoke a removed cocoindex daemon or cross-encoder path. The cleanup is complete at the command/workflow surface.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-31-classification-no-regression-the-confidence-scoring-system-is-mathematically-unc",
+      "text": "**Classification: NO-REGRESSION** — The confidence scoring system is mathematically unchanged. The reranker weight was genuinely inert (always multiplied by 0). No scores changed.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-13-classification-no-regression-the-core-memory-search-pipeline-stage-3-mmr-rerank-",
+      "text": "**Classification: NO-REGRESSION** — The core memory-search pipeline (Stage 3 MMR rerank, confidence scoring, result explainability, and retrieval rescue layer) has zero behavioral regressions. This is strong empirical evidence that the deprecation cleanup did not break the default search path.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-35-classification-p3-info-stale-test-setup-referencing-a-removed-env-var-does-not-c",
+      "text": "**Classification:** P3/INFO — Stale test setup referencing a removed env var. Does not cause test failure but is dead code.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-16-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-25-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-34-evidence-the-test-reads-process-env-speckit-cross-encoder-at-line-1301-sets-it-t",
+      "text": "**Evidence:** The test reads `process.env.SPECKIT_CROSS_ENCODER` at line 1301, sets it to `'false'` at lines 1303/1390, reads it at 1369. This is test setup code that references a removed env var but does NOT assert its presence in a recognized list — it would silently work (the var would be `undefined` or `'false'`). Not a test failure, but stale test code that references a removed feature flag.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-24-file-mcp-server-lib-search-confidence-scoring-ts-35-42-240-249",
+      "text": "**File:** `mcp_server/lib/search/confidence-scoring.ts:35-42,240-249`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-file-mcp-server-tests-embedders-sidecar-hardening-vitest-ts-545",
+      "text": "**File:** `mcp_server/tests/embedders/sidecar-hardening.vitest.ts:545`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-33-file-mcp-server-tests-hybrid-search-vitest-ts-1301-1390",
+      "text": "**File:** `mcp_server/tests/hybrid-search.vitest.ts:1301-1390`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-impact-ci-failure-only-no-user-facing-impact-this-confirms-iter-1-finding-2-and-",
+      "text": "**Impact:** CI failure only. No user-facing impact. This confirms iter-1 Finding 2 and iter-2 Finding 11 with live test-run evidence (not just code reading).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-14-impact-none-verified-clean",
+      "text": "**Impact:** None. Verified clean.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-22-impact-none-verified-clean",
+      "text": "**Impact:** None. Verified clean.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-32-impact-none-verified-correct",
+      "text": "**Impact:** None. Verified correct.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-severity-no-regression",
+      "text": "**Severity:** NO-REGRESSION",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-15-severity-no-regression",
+      "text": "**Severity:** NO-REGRESSION",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-23-severity-no-regression-verified-claim",
+      "text": "**Severity:** NO-REGRESSION (verified claim)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-severity-p2-stale-test-not-a-production-regression",
+      "text": "**Severity:** P2 (stale test, not a production regression)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-17-opencode-commands-doctor-zero-matches-for-cocoindex-coco-daemon-ccc-cross-encode",
+      "text": "`/opencode/commands/doctor/`: zero matches for `cocoindex|coco-daemon|ccc|cross-encoder`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-18-opencode-commands-speckit-zero-matches",
+      "text": "`/opencode/commands/speckit/`: zero matches",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-19-opencode-skills-deep-ai-council-zero-matches",
+      "text": "`/opencode/skills/deep-ai-council/`: zero matches",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-3-tests-failed-26-passed-1-file",
+      "text": "3 tests failed, 26 passed (1 file)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-26-active-weights-weight-margin-0-35-weight-channel-agreement-0-30-weight-anchor-de",
+      "text": "Active weights: `WEIGHT_MARGIN` (0.35) + `WEIGHT_CHANNEL_AGREEMENT` (0.30) + `WEIGHT_ANCHOR_DENSITY` (0.15) = **0.80 cap**",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-confidence-scoring-all-passed",
+      "text": "confidence-scoring: all passed",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-29-line-35-38-comment-explicitly-states-the-former-reranker-weight-0-20-was-removed",
+      "text": "Line 35-38 comment explicitly states: \"The former reranker weight (0.20) was removed with the LLM reranker; its term was already inert (always 0), so rawValue stays capped at 0.80 exactly as before — behavior-neutral. The 0.20 is intentionally NOT redistributed\"",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-28-rawvalue-computation-line-240-243-weight-margin-marginfactor-weight-channel-agre",
+      "text": "rawValue computation (line 240-243): `WEIGHT_MARGIN * marginFactor + WEIGHT_CHANNEL_AGREEMENT * channelFactor + WEIGHT_ANCHOR_DENSITY * anchorFactor` — each factor ∈ [0, 1], so max rawValue = 0.80",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-27-removed-weight-reranker-0-20-zero-references-anywhere-in-codebase-grep-confirmed",
+      "text": "Removed `WEIGHT_RERANKER` (0.20): zero references anywhere in codebase (grep confirmed)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-12-rescue-all-passed",
+      "text": "rescue: all passed",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-11-result-explainability-all-passed",
+      "text": "result-explainability: all passed",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-stage3-rerank-all-passed",
+      "text": "stage3-rerank: all passed",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-30-the-claim-that-the-removed-reranker-weight-is-behavior-neutral-is-verified-true-",
+      "text": "The claim that the removed reranker weight is behavior-neutral is **VERIFIED TRUE**. The rawValue cap was 0.80 both before and after removal. Confidence scores are mathematically identical to the pre-removal state (since the reranker term was always 0).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-20-the-only-doctor-cocoindex-reference-is-in-changelog-v3-4-1-0-md-361-482-historic",
+      "text": "The only `/doctor:cocoindex` reference is in `changelog/v3.4.1.0.md:361,482` — historical changelog documenting the transition from colon-form to argv-positional routing. This is NOT a live workflow.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-9-classification-repairable-stale-the-pkill-9-f-ccc-search-gtimeout-positional-sco",
+      "text": "**Classification:** **REPAIRABLE-STALE** — The `pkill -9 -f \"ccc search\"` / `gtimeout` / `positional_scoring_fallback:app` cleanup triple was inherited from the pre-014 era when CocoIndex (`ccc`) and positional-scoring-fallback were separate processes that could leak across dispatches. The `ccc` portion is stale. The `positional_scoring_fallback:app` portion may still be relevant (the positional fallback path still exists in stage3-rerank.ts). The remediation should remove `pkill -9 -f \"ccc search\"` but retain `gtimeout` and the `positional_scoring_fallback:app` pkill unless separately verified stale.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-evidence-each-file-s-single-dispatch-discipline-section-includes-pkill-9-f-ccc-s",
+      "text": "**Evidence:** Each file's \"Single-dispatch discipline\" section includes `pkill -9 -f \"ccc search\"` in the orphan-child cleanup command list. The `ccc` CLI was part of the removed CocoIndex/CodeRankEmbed infrastructure. No `ccc` binary exists in the current system. The pkill on a nonexistent process is harmless at runtime but the instruction is stale.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-files",
+      "text": "**Files:**",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-10-impact-low-harmless-at-runtime-pkill-on-missing-process-is-no-op-cosmetic-mainte",
+      "text": "**Impact:** Low — harmless at runtime (pkill on missing process is no-op). Cosmetic maintenance gap: these are operator-facing instructions, not model instructions, so they don't affect AI behavior.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-severity-p3-harmless-stale-reference-killing-nonexistent-process",
+      "text": "**Severity:** P3 (harmless stale reference — killing nonexistent process)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-opencode-skills-cli-claude-code-skill-md-350",
+      "text": "`.opencode/skills/cli-claude-code/SKILL.md:350`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-opencode-skills-cli-codex-skill-md-357",
+      "text": "`.opencode/skills/cli-codex/SKILL.md:357`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-opencode-skills-cli-devin-skill-md-372",
+      "text": "`.opencode/skills/cli-devin/SKILL.md:372`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-opencode-skills-cli-gemini-skill-md-309",
+      "text": "`.opencode/skills/cli-gemini/SKILL.md:309`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-opencode-skills-cli-opencode-skill-md-296",
+      "text": "`.opencode/skills/cli-opencode/SKILL.md:296`",
+      "addedAtIteration": 5,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "keyFindings": 171,
+    "convergenceScore": 0.1,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}
