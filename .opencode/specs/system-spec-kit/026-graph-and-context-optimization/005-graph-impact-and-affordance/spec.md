@@ -1,15 +1,15 @@
 ---
-title: "Feature Specification: Code Graph [system-spec-kit/026-graph-and-context-optimization/004-code-graph/spec]"
-description: "Build and harden the code-graph structural-indexing surface: the standalone package, CocoIndex decoupling, startup fixes, and the code-graph runtime, resilience, extraction, and documentation sub-themes."
+title: "Feature Specification: Graph Impact and Affordance [system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/spec]"
+description: "Deliver the external-project adoption uplift: a code-graph phase runner, edge-explanation and impact display, skill-advisor affordance evidence, and memory causal-trust display."
 trigger_phrases:
-  - "026 code graph"
-  - "code graph structural indexing"
-  - "coco-index decoupling"
+  - "026 graph impact and affordance"
+  - "external project adoption uplift"
+  - "affordance evidence display"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance"
     last_updated_at: "2026-05-26T17:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored phase-parent map during the 026 wave-4 phase work."
@@ -17,12 +17,12 @@ _memory:
     blockers: []
     key_files:
       - "spec.md"
-    completion_pct: 90
+    completion_pct: 5
     open_questions: []
     answered_questions: []
 ---
 
-# Feature Specification: Code Graph
+# Feature Specification: Graph Impact and Affordance
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -36,7 +36,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Deferred |
 | **Created** | 2026-05-26 |
 | **Branch** | `026-graph-and-context-optimization` |
 | **Parent Spec** | `../spec.md` |
@@ -48,7 +48,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Build and harden the code-graph structural-indexing surface: the standalone package, CocoIndex decoupling, startup fixes, and the code-graph runtime, resilience, extraction, and documentation sub-themes. Code graph is a structural surface distinct from the memory store and cross-links to it.
+Deliver the external-project adoption uplift: a code-graph phase runner, edge-explanation and impact display, skill-advisor affordance evidence, and memory causal-trust display. Most of this track is planned and deferred in place.
 
 ### Purpose
 Own navigation, the child-phase map, and aggregate status for this theme. Each child phase folder owns its own planning, execution, and verification.
@@ -73,7 +73,7 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `001-mcp-shared-dependency-startup-fix/` … `015-system-code-graph-uplift-phase-parent/` | Modify | children | Per-child work lives in the child phase folders |
+| `001-code-graph-phase-runner/` … `006-deep-research-review/` | Modify | children | Per-child work lives in the child phase folders |
 | `spec.md`, `graph-metadata.json`, `description.json` | Modify | this | Theme navigation and metadata |
 <!-- /ANCHOR:scope -->
 
@@ -86,15 +86,12 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-mcp-shared-dependency-startup-fix/` | Fix @spec-kit/shared dependency declaration for mk_code_index MCP startup | complete |
-| 002 | `002-deprecate-coco-index/` | Remove mcp-coco-index and rerank-sidecar; stand code-graph alone as structural-only | in progress (95%) |
-| 003 | `003-code-graph-workspace-root-fix/` | Fix workspace-root and socket-dir resolution for code-index MCP reconnection | complete |
-| 010 | `010-runtime-and-scan/` | Code-graph runtime upgrades, scan scope and correctness, resolver and hooks, excludes | complete |
-| 011 | `011-resilience-and-advisor/` | Advisor refinement, backend resilience research and implementation, iteration-quality, doctor apply-mode | complete |
-| 012 | `012-extraction-and-isolation/` | system-code-graph extraction, decision record, standalone-MCP pivot, three-way isolation | complete |
-| 013 | `013-docs-and-readmes/` | Doctor diagnostic phase-a, READMEs, doc-drift alignment, cross-skill and reference-template polish | complete |
-| 014 | `014-real-world-usefulness-test-planning/` | Real-world usefulness test planning (nested phase parent) | complete |
-| 015 | `015-system-code-graph-uplift-phase-parent/` | system-code-graph uplift (nested phase parent) | complete |
+| 001 | `001-code-graph-phase-runner/` | Code-graph phase runner and detect-changes | deferred |
+| 002 | `002-edge-explanation-impact-uplift/` | Edge explanation and impact uplift | deferred |
+| 003 | `003-skill-advisor-affordance-evidence/` | Skill-advisor affordance evidence display | deferred |
+| 004 | `004-memory-causal-trust-display/` | Memory causal-trust display layer | deferred |
+| 005 | `005-deep-review-findings/` | Deep-review findings for the adoption track | abandoned |
+| 006 | `006-deep-research-review/` | Deep research and review spike for adoption | abandoned |
 
 ### Phase Transition Rules
 
@@ -108,7 +105,7 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| `001-mcp-shared-dependency-startup-fix` | `015-system-code-graph-uplift-phase-parent` | Earlier children stable before later children build on them | Each child validates independently |
+| `001-code-graph-phase-runner` | `006-deep-research-review` | Earlier children stable before later children build on them | Each child validates independently |
 <!-- /ANCHOR:phase-map -->
 
 ---

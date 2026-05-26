@@ -1,41 +1,33 @@
 ---
-title: "Feature Specification: 000 Release Cleanup"
-template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-description: "Keep this phase-parent packet validator-compliant as a lean manifest that preserves the original purpose, lists the child phases, and leaves detailed planning, execution, and ve..."
+title: "Feature Specification: Release and Program Cleanup [system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/spec]"
+description: "Coordinate release readiness, system audits, cross-cutting cleanup, stress testing, and program-level adoption follow-ups for the graph-and-context program."
 trigger_phrases:
-  - "000-release-cleanup"
-  - "000 release cleanup"
-  - "001-memory-terminology"
-  - "002-sk-code-opencode-alignment"
-  - "003-dead-code-audit"
-  - "004-dead-code-pruning"
+  - "026 release and program cleanup"
+  - "release readiness 026"
+  - "program cleanup audits"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup"
-    last_updated_at: "2026-04-29T11:10:00Z"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup"
+    last_updated_at: "2026-05-26T17:00:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "Backfill _memory.continuity per Tier 4 sk-doc template alignment"
-    next_safe_action: "Refresh on next packet edit"
+    recent_action: "Authored phase-parent map during the 026 wave-4 phase work."
+    next_safe_action: "Resume or plan a child phase folder listed in the Phase Documentation Map."
     blockers: []
+    key_files:
+      - "spec.md"
     completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
+
+# Feature Specification: Release and Program Cleanup
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- CONTENT DISCIPLINE: PHASE PARENT
-  FORBIDDEN content (do NOT author at phase-parent level):
-    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
-    - migrated from, ported from, originally in
-    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
-  REQUIRED content (MUST author at phase-parent level):
-    - Root purpose: what problem does this entire phased decomposition solve?
-    - Sub-phase manifest: which child phase folders exist and what each one does
-    - What needs done: the high-level outcome the phases work toward
--->
 
-# Feature Specification: 000 Release Cleanup
+---
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -44,14 +36,10 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
-| **Created** | 2026-04-27 |
-| **Branch** | `main` |
+| **Status** | Complete |
+| **Created** | 2026-05-26 |
+| **Branch** | `026-graph-and-context-optimization` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `026-graph-and-context-optimization` |
-| **Predecessor** | `See child ordering above` |
-| **Successor** | None |
-| **Handoff Criteria** | Parent manifest, `description.json`, and `graph-metadata.json` stay aligned with the current child phase folders and pass tolerant phase-parent validation. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -60,26 +48,13 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This parent packet coordinates the phased work under `000 Release Cleanup` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level. The current child surface includes 001-memory-terminology, 002-sk-code-opencode-alignment, 003-dead-code-audit, 004-dead-code-pruning.
+Coordinate release readiness, system audits, cross-cutting cleanup, stress testing, and program-level adoption follow-ups for the graph-and-context program. Acts as the final release gate.
 
 ### Purpose
-Keep this phase-parent packet validator-compliant as a lean manifest that preserves the original purpose, lists the child phases, and leaves detailed planning, execution, and verification in the child folders.
+Own navigation, the child-phase map, and aggregate status for this theme. Each child phase folder owns its own planning, execution, and verification.
 
-> **Phase-parent note:** This `spec.md` is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, decisions, and implementation summaries live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
-
----
-
-## 2. PHASE CHILDREN
-
-| ID | Slug | Summary |
-|----|------|---------|
-| 001 | release-readiness | Release readiness validation across 6 children: deep review, synthesis, P1/P2 remediation |
-| 002 | audit | System audits, validation sweeps, and compliance checks across 8 children |
-| 003 | cleanup | General cleanup and technical debt remediation across 31 children |
-| 004 | followup-post-program | Post-program cleanup and followup quality work across 4 children |
-| 005 | stress-test | Stress testing and coverage validation across 7 children |
-| 006 | research | Deep research charters covering automation and system improvements across 4 children |
 
 ---
 
@@ -87,17 +62,19 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 ## 3. SCOPE
 
 ### In Scope
-- Preserve the root purpose for `000-release-cleanup` without rewriting child-phase intent.
-- Keep the parent packet discoverable as a lean manifest over the current child phase folders.
-- Refresh parent discovery metadata and graph rollup so resume and validation surfaces point at the correct child packets.
+- Coordinate the child phase folders for this theme and their aggregate status.
+- Provide the navigation map from this theme to each child phase folder.
 
 ### Out of Scope
-- Editing any child packet content under `000-release-cleanup/[0-9][0-9][0-9]-*/`.
-- Deleting or archiving legacy heavy parent docs that already exist beside the lean trio.
-- Reconstructing missing historical detail beyond what is needed for the parent manifest.
+- Per-child implementation detail (lives in each child phase folder).
+- Phase history narration (lives in the root `context-index.md`).
 
 ### Files to Change
-[Parent-level scope is limited to `spec.md`, `description.json`, and `graph-metadata.json`. Detailed execution, planning, and verification remain inside the child phase folders.]
+
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `001-release-readiness/` … `008-docs-and-catalogs-rollup/` | Modify | children | Per-child work lives in the child phase folders |
+| `spec.md`, `graph-metadata.json`, `description.json` | Modify | this | Theme navigation and metadata |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -105,39 +82,32 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children. Status is derived from each child `graph-metadata.json` `derived.status` when present.
+> Each child below is an independently executable phase folder owning its own plan, tasks, checklist, decisions, and continuity. The Status column reports child state.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-memory-terminology/` | Memory→Behavioral Phrasing Audit | planned |
-| 2 | `002-sk-code-opencode-alignment/` | Align `sk-code-opencode` standards, checklists, verifier guidance, and metadata with current system-spec-kit runtime behavior. | draft |
-| 3 | `003-dead-code-audit/` | Dead-code & disconnected-code audit across `system-spec-kit` + `mcp_server/`. Inventory findings; deletions deferred to a downstream remediation packet. | complete |
-| 4 | `004-dead-code-pruning/` | Apply 13 high-confidence dead-code deletes from 003-audit; cascade-orphan cleanup; verify by tsc + vitest. | complete |
-| 5 | `005-review-remediation/` | Coordinated remediation for 026 release-readiness deep-review findings, including post-program cleanup. | in_progress |
+| 001 | `001-release-readiness/` | Release-readiness deep-review and P1/P2 remediation train | complete |
+| 002 | `002-audit/` | System audits: dependency, security, supply-chain, runtime-matrix validation | complete |
+| 003 | `003-cross-cutting-cleanup-pass/` | Cross-cutting dead-code pruning and doc/runtime cleanup sweep | complete |
+| 004 | `004-followup-post-program/` | Post-program follow-up items | complete |
+| 005 | `005-stress-test/` | Stress-test cycles and pattern documentation | complete |
+| 006 | `006-research/` | Release-phase research spikes | complete |
+| 007 | `007-clean-room-license-audit/` | Clean-room license audit for external-project adoption | deferred |
+| 008 | `008-docs-and-catalogs-rollup/` | Documentation and catalogs rollup for adoption uplift | deferred |
 
-| 52 | `027-missing-code-readme-resource-map/` | Implement exact missing code README manifest: 65 target README files created and validated from B01-B17. | complete |
-| 53 | 028-documentation-alignment-readme-fill-in/ | [Phase 53 scope] | Pending |
-| 54 | 004-runtime-root-memory-cleanup-followup-fixes/ | [Phase 54 scope] | Pending |
-| 55 | 029-autoclean-orphan-file-removal/ | [Phase 55 scope] | Pending |
 ### Phase Transition Rules
 
-- Each phase MUST pass `validate.sh` independently before the next phase begins.
-- Parent spec tracks aggregate progress via this map plus `graph-metadata.json` child rollup.
-- Use `/spec_kit:resume system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/[NNN-phase]/` to resume a specific child phase.
-- Run `validate.sh --recursive` on the parent when validating the integrated phase train.
+- Each child MUST pass `validate.sh` independently.
+- This parent tracks aggregate progress via the map; per-child detail stays in the children.
+- Deferred and abandoned children remain in place with explicit status; they are not removed.
+- Use `/spec_kit:resume` on a child folder to resume it.
+- Run `validate.sh --recursive` on this folder to validate all children as a unit.
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| `001-memory-terminology` | `002-sk-code-opencode-alignment` | `001-memory-terminology` remains discoverable and the standards-alignment successor is explicit in the parent manifest | Parent phase map and graph metadata child list both include `002-sk-code-opencode-alignment` |
-| `002-sk-code-opencode-alignment` | `003-dead-code-audit` | `sk-code-opencode` standards alignment is planned before later cleanup packets rely on those standards | Parent phase map and graph metadata child list both include `003-dead-code-audit` |
-| `003-dead-code-audit` | `004-dead-code-pruning` | `003-dead-code-audit` ships the audit report with 13 high-confidence deletes; pruning packet applies them | Parent phase map and graph metadata child list both include `004-dead-code-pruning` |
-| `004-dead-code-pruning` | `005-review-remediation` | Release-readiness review remediation follows cleanup/pruning so source-packet findings can be closed against current topology | Parent phase map and graph metadata child list both include `005-review-remediation` |
-| `026-readme-code-template-governance` | `027-missing-code-readme-resource-map` | README template guidance exists before implementing remaining code-folder README coverage | Phase 052 strict validation exits 0 and the exact 65 target README files validate cleanly |
-| 027-missing-code-readme-resource-map | 028-documentation-alignment-readme-fill-in | [Criteria TBD] | [Verification TBD] |
-| 028-documentation-alignment-readme-fill-in | 004-runtime-root-memory-cleanup-followup-fixes | [Criteria TBD] | [Verification TBD] |
-| 004-runtime-root-memory-cleanup-followup-fixes | 029-autoclean-orphan-file-removal | [Criteria TBD] | [Verification TBD] |
+| `001-release-readiness` | `008-docs-and-catalogs-rollup` | Earlier children stable before later children build on them | Each child validates independently |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -145,12 +115,13 @@ Keep this phase-parent packet validator-compliant as a lean manifest that preser
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- No additional parent-level open questions are required here. Phase-specific unknowns live in the child folders.
+- None blocking. Deferred children are tracked in place and resumed via their folders when prioritized.
 <!-- /ANCHOR:questions -->
 
 ---
 
 ## RELATED DOCUMENTS
 
-- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec, plan, task, and verification docs.
-- **Graph metadata**: See `graph-metadata.json` for the current child rollup and derived status.
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
+- **Parent Spec**: See `../spec.md`
+- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
