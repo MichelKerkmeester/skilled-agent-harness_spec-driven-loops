@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-25T11:53:23.078Z",
+  "generated": "2026-05-25T19:32:21.662Z",
   "folders": [
     {
       "specFolder": "anobel.com/001-button-text-link-disabled-state",
@@ -1488,7 +1488,7 @@
         "closeout",
         "verification"
       ],
-      "lastUpdated": "2026-05-25T11:00:44.129Z"
+      "lastUpdated": "2026-05-25T13:19:42.745Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research",
@@ -1686,6 +1686,79 @@
         "relocation"
       ],
       "lastUpdated": "2026-05-24T08:08:00.180Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution",
+      "description": "Phase parent for the documentation-evolution delta across the five deep-* skills: references subfoldering, oversized-file splits, sk-doc 1:1 conforman",
+      "keywords": [
+        "phase",
+        "parent",
+        "documentation-evolution",
+        "delta",
+        "across",
+        "five",
+        "deep",
+        "skills",
+        "references",
+        "subfoldering",
+        "oversized-file",
+        "splits",
+        "sk-doc",
+        "conformance",
+        "hvr",
+        "readme",
+        "rewrites",
+        "feature-catalog",
+        "testing-playbook",
+        "alignment",
+        "gate",
+        "deep-research",
+        "gap",
+        "backstop"
+      ],
+      "lastUpdated": "2026-05-25T14:19:51.151Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/001-spec-and-resource-map",
+      "description": "Feature Specification: spec and resource-map for deep-skill doc evolution",
+      "keywords": [
+        "feature",
+        "specification",
+        "spec",
+        "resource-map",
+        "deep-skill",
+        "doc",
+        "evolution"
+      ],
+      "lastUpdated": "2026-05-25T17:52:17.417Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/009-deep-research-gap-backstop",
+      "description": "Feature Specification: deep-research gap backstop for 008 doc-evolution",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep-research",
+        "gap",
+        "backstop",
+        "008",
+        "doc-evolution"
+      ],
+      "lastUpdated": "2026-05-25T18:54:47.119Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/010-post-impl-deep-review",
+      "description": "Feature Specification: post-implementation deep-review of the 008 doc-evolution ship",
+      "keywords": [
+        "feature",
+        "specification",
+        "post-implementation",
+        "deep-review",
+        "008",
+        "doc-evolution",
+        "ship"
+      ],
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
@@ -2511,7 +2584,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-05-25T11:53:23.078Z"
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -5180,7 +5253,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-05-25T11:53:23.078Z"
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -5206,7 +5279,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-05-25T11:53:23.078Z"
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -6959,7 +7032,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-05-25T11:53:23.078Z"
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent",
@@ -7484,7 +7557,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-05-25T11:53:23.078Z"
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -8006,7 +8079,7 @@
         "template",
         "alignment"
       ],
-      "lastUpdated": "2026-05-25T11:53:23.078Z"
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity",
@@ -9416,7 +9489,7 @@
         "audit",
         "deep-research"
       ],
-      "lastUpdated": "2026-05-25T11:53:23.078Z"
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
@@ -11441,7 +11514,7 @@
         "decouple",
         "code-graph"
       ],
-      "lastUpdated": "2026-05-25T11:53:22.529Z"
+      "lastUpdated": "2026-05-25T17:52:17.513Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/001-touchpoint-research",
@@ -11564,6 +11637,97 @@
         "scope-gap"
       ],
       "lastUpdated": "2026-05-25T00:00:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/013-post-deprecation-deep-review",
+      "description": "Feature Specification: Post-Deprecation Deep Review (014 CocoIndex/Rerank Arc)",
+      "keywords": [
+        "post-deprecation",
+        "deep-review",
+        "cli-devin",
+        "swe-1.6",
+        "30-surfaces"
+      ],
+      "lastUpdated": "2026-05-25T00:00:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/014-remediate-codegraph-naming",
+      "description": "Feature Specification: Remove residual ccc references from system-code-graph docs and align doc names to code-graph's own current naming",
+      "keywords": [
+        "feature",
+        "specification",
+        "remove",
+        "residual",
+        "ccc",
+        "references",
+        "system-code-graph",
+        "docs",
+        "align",
+        "doc",
+        "names",
+        "code-graph",
+        "own",
+        "current",
+        "naming"
+      ],
+      "lastUpdated": "2026-05-25T15:33:23.552Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/015-remediate-cross-surface-residue",
+      "description": "Feature Specification: Remove remaining post-014-deprecation coco/ccc/rerank residue across non-code-graph surfaces",
+      "keywords": [
+        "feature",
+        "specification",
+        "remove",
+        "remaining",
+        "post-014-deprecation",
+        "coco",
+        "ccc",
+        "rerank",
+        "residue",
+        "across",
+        "non-code-graph",
+        "surfaces"
+      ],
+      "lastUpdated": "2026-05-25T16:28:58.649Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/016-remediate-residue-tail",
+      "description": "Feature Specification: Close the CocoIndex/rerank deprecation residue tail + record the completeness verdict",
+      "keywords": [
+        "feature",
+        "specification",
+        "close",
+        "cocoindex",
+        "rerank",
+        "deprecation",
+        "residue",
+        "tail",
+        "record",
+        "completeness",
+        "verdict"
+      ],
+      "lastUpdated": "2026-05-25T16:48:54.634Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
+      "description": "Feature Specification: Delete the inactive LLM-model reranking (cross-encoder + local GGUF reranker + reranker interface + conditional-rerank gate + 7",
+      "keywords": [
+        "feature",
+        "specification",
+        "delete",
+        "inactive",
+        "llm-model",
+        "reranking",
+        "cross-encoder",
+        "local",
+        "gguf",
+        "reranker",
+        "interface",
+        "conditional-rerank",
+        "gate"
+      ],
+      "lastUpdated": "2026-05-25T19:29:50.960Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening",
@@ -11986,7 +12150,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-05-25T11:53:23.078Z"
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -12599,7 +12763,7 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-05-25T11:53:23.078Z"
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -16858,7 +17022,7 @@
         "obsidian-export",
         "specification"
       ],
-      "lastUpdated": "2026-05-25T11:53:23.078Z"
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/openspec/specs/obsidian-plugin",
@@ -16867,7 +17031,7 @@
         "obsidian-plugin",
         "specification"
       ],
-      "lastUpdated": "2026-05-25T11:53:23.078Z"
+      "lastUpdated": "2026-05-25T19:32:21.662Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption",

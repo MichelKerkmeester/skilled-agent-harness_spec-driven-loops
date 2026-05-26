@@ -60,7 +60,6 @@ Closed the six residual 101/007 gaps without changing council graph runtime hand
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modified | Added `test:council` and `test:council:full` scripts |
 | `.opencode/skills/system-spec-kit/scripts/test-council-matrix.sh` | Created | Runs vitest, sk-doc validation, and strict parent spec validation |
-| `.github/hooks/scripts/pre-push-council.sh` | Created | Opt-in pre-push template for council-touching diffs |
 | `.opencode/skills/deep-ai-council/CONTRIBUTING.md` | Created | Documents the three local gate invocation paths |
 | `.opencode/skills/deep-ai-council/feature_catalog/**/*.md` | Created | 32 catalog entries across 9 playbook-mirrored categories |
 | `.opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md` | Modified | Replaced catalog placeholders and corrected the persist-artifacts test path |

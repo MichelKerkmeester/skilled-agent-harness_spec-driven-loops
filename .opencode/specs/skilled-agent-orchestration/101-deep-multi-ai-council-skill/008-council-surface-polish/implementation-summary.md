@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 101/008 Council Surface Polish"
-description: "Surfaced 101/007 artifacts via SKILL.md, published v1.1.0.0 series changelog covering 101/001..008, and added a 3-test smoke vitest covering the replay helper plus the bash runner plus the pre-push hook."
+description: "Surfaced 101/007 artifacts via SKILL.md, published v1.1.0.0 series changelog covering 101/001..008, and added a smoke vitest covering the replay helper plus the bash runner."
 trigger_phrases:
   - "101/008 summary"
   - "deep-ai-council surface polish summary"
@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Three additive deliverables close the last follow-ups from 101's seven-phase work. New consumers reading `SKILL.md` now discover the 101/007 artifacts (`feature_catalog/` and the replay helper) directly from the skill entry point. A new `changelog/v1.1.0.0.md` summarizes the 101/001..008 series in one place using the existing v1.0.0.0 format. A new `council-helpers-smoke.vitest.ts` covers the three helper scripts that previously had no regression coverage.
+Three additive deliverables close the last follow-ups from 101's seven-phase work. New consumers reading `SKILL.md` now discover the 101/007 artifacts (`feature_catalog/` and the replay helper) directly from the skill entry point. A new `changelog/v1.1.0.0.md` summarizes the 101/001..008 series in one place using the existing v1.0.0.0 format. A new `council-helpers-smoke.vitest.ts` covers the helper scripts that previously had no regression coverage.
 
 ### SKILL.md surface
 
@@ -63,14 +63,12 @@ The Resource Domains section under §6 grew two new mentions: `feature_catalog/`
 
 The new changelog entry follows v1.0.0.0's structure (header + New Features sections + Architecture + Verification + Commands + Upgrade). It covers all six phases shipped after v1.0.0.0: 003 council graph, 004 playbook graph coverage, 005 fix-ups + value scenarios, 006 value-scenario automation, 007 infrastructure hardening, 008 surface polish. Measured value ratios from `council-graph-value-report.json` appear inline. Two new helper scripts are documented under Commands.
 
-### 3-test smoke vitest
+### Smoke vitest
 
-The new `tests/council-helpers-smoke.vitest.ts` runs three scenarios:
+The new `tests/council-helpers-smoke.vitest.ts` runs two scenarios:
 
 1. **Replay helper end-to-end** — seeds a synthetic `ai-council-state.jsonl` with 5 events in a temp `.opencode/` scaffold, spawns `replay-graph-from-artifacts.cjs --spec-folder ... --session-id ...`, asserts the emitted upsert payload contains SESSION + ROUND + SEAT nodes plus at least one of CLAIM/EVIDENCE/DECISION derived from the events.
 2. **`test-council-matrix.sh` shape** — file exists, owner-execute bit set, body contains `set -euo pipefail`, invokes `test:council`, runs `quick_validate.py`, runs `validate.sh --strict`.
-3. **`pre-push-council.sh` shape** — file exists, owner-execute bit set, body matches `git diff`, matches council path patterns, invokes the matrix runner.
-
 The matrix script's `test:council` now invokes 10 vitest files (was 9 after 101/007).
 
 ### Files Changed
@@ -82,7 +80,7 @@ The matrix script's `test:council` now invokes 10 vitest files (was 9 after 101/
 | `.opencode/skills/sk-doc/assets/llmstxt_templates.md` | Modified | Removed 3 CONTRIBUTING.md mentions (one inventory bullet, two sample-output DEVELOPMENT section entries) to match the cross-skill de-emphasis directive |
 | `.opencode/skills/sk-doc/references/global/optimization.md` | Modified | Rephrased "Project governance (move to CONTRIBUTING.md)" → "Project governance (move to a separate governance doc)" to drop the CONTRIBUTING.md destination pattern |
 | `.opencode/skills/deep-ai-council/changelog/v1.1.0.0.md` | Created | Series changelog covering 101/001..008 |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/council-helpers-smoke.vitest.ts` | Created | 3-test smoke coverage for replay helper + bash runner + pre-push hook |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/council-helpers-smoke.vitest.ts` | Created | Smoke coverage for replay helper + bash runner |
 | `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modified | Appended `tests/council-helpers-smoke.vitest.ts` to `test:council` |
 | Parent 101 `spec.md` + `graph-metadata.json` | Modified | Added phase 008 + bumped `last_active_child_id` |
 <!-- /ANCHOR:what-built -->
@@ -129,7 +127,7 @@ Direct main-agent Edit/Write throughout — no cli-codex dispatch. The work is s
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Shell-script tests are shape-asserts, not end-to-end runs.** The matrix runner and pre-push hook would be slow to exercise end-to-end (they spawn the full council vitest inside a vitest); the shape tests catch the regression class that's actually likely (rename, command-chain drift) without the runtime cost.
+1. **Shell-script tests are shape-asserts, not end-to-end runs.** The matrix runner would be slow to exercise end-to-end (it spawns the full council vitest inside a vitest); the shape test catches the regression class that's actually likely (rename, command-chain drift) without the runtime cost.
 2. **SKILL.md does not add new routing intents for the surfaced artifacts.** `feature_catalog/` and the replay helper are documentation/tooling — they don't have user prompts that should trigger them via intent scoring. The bullets surface them via the Resource Domains description only.
 3. **CONTRIBUTING.md is removed across the skill ecosystem.** Initial direction was "no need to reference CONTRIBUTING.md" (deep-ai-council/SKILL.md). Escalated direction was "remove that from every skill reference across all skills" — the deep-ai-council CONTRIBUTING.md file is now deleted, and three CONTRIBUTING.md mentions in sk-doc templates/references are removed. A "CONTRIBUTING" section heading inside `mcp-chrome-devtools/examples/README.md` remains because it's a section name, not a reference to a CONTRIBUTING.md file.
 <!-- /ANCHOR:limitations -->

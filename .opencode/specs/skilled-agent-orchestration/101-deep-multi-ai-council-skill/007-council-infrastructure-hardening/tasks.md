@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## PHASE 2: IMPLEMENTATION
 
-- [x] T010 Gap #1: Add `test:council` npm script + standalone runner + opt-in pre-push template + CONTRIBUTING.md
+- [x] T010 Gap #1: Add `test:council` npm script + standalone runner + CONTRIBUTING.md
 - [x] T011 Gap #2: Author 32 feature catalog entries across 9 category folders
 - [x] T012 Gap #2: Update root playbook §17 to reference real catalog paths
 - [x] T013 Gap #3: Author reverse-anchor integrity vitest

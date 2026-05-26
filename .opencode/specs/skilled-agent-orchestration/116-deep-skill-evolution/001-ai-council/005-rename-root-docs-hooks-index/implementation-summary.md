@@ -12,7 +12,7 @@ _memory:
     recent_action: "4 root surfaces updated"
     next_safe_action: "dispatch 006 reindex+validate"
     blockers: []
-    key_files: ["README.md", "AGENTS.md", ".github/hooks/scripts/pre-push-council.sh", ".opencode/skills/README.md"]
+    key_files: ["README.md", "AGENTS.md", ".opencode/skills/README.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000115005"
       session_id: "115-005-impl-init"
@@ -26,7 +26,7 @@ _memory:
 
 # Implementation Summary: 115/005
 
-Root documentation, the council pre-push hook, and the skills index now use the `deep-ai-council` identity for packet 115/005.
+Root documentation and the skills index now use the `deep-ai-council` identity for packet 115/005.
 
 ---
 
@@ -46,7 +46,6 @@ Root documentation, the council pre-push hook, and the skills index now use the 
 Updated packet 115/005 root surfaces:
 - `README.md` skill catalog heading now uses `deep-ai-council`.
 - `AGENTS.md` already had zero `sk-ai-council` occurrences and already named Deep AI Council.
-- `.github/hooks/scripts/pre-push-council.sh` now matches `.opencode/skills/deep-ai-council/` and supports an explicit `CHANGED_FILES` smoke input.
 - `.opencode/skills/README.md` skills index, tree entry, and compatibility row now use `deep-ai-council`.
 <!-- /ANCHOR:what-built -->
 
@@ -71,7 +70,6 @@ Applied scoped textual updates across the 4 root surfaces named by `001-prefligh
 ## Verification
 Verification commands:
 - `grep -c "sk-ai-council"` across the 4 root surfaces: expected 0 for each file.
-- `CHANGED_FILES=".opencode/skills/deep-ai-council/SKILL.md" bash .github/hooks/scripts/pre-push-council.sh && echo "Hook OK"`.
 - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index --strict`.
 <!-- /ANCHOR:verification -->
 
@@ -89,7 +87,6 @@ Suggested commit: `feat(115/005): root docs + hooks + skills-index (sk → deep)
 Explicit paths for `git add`:
 - `README.md`
 - `AGENTS.md`
-- `.github/hooks/scripts/pre-push-council.sh`
 - `.opencode/skills/README.md`
 - `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index/spec.md`
 - `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index/plan.md`

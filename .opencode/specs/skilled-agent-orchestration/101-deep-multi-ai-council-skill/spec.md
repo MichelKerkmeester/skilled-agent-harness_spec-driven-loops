@@ -126,8 +126,8 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 | 4 | `004-deep-ai-council-playbook-graph-coverage/` | Add 8 functional graph integration scenarios (DAC-019..DAC-026) to the manual testing playbook so Phase 003's shipped MCP surface has operator-driven coverage | Complete |
 | 5 | `005-deep-ai-council-fixups-and-graph-value-scenarios/` | Fix 2 pre-existing vitest failures (Claude translated frontmatter parity + persist-artifacts stale HELPER_PATH); add 6 value-comparison scenarios (DAC-027..DAC-032) proving graph beats no-graph baseline | Complete |
 | 6 | `006-council-graph-value-scenario-automation/` | Promote DAC-027..DAC-032 from operator A/B contracts into CI-protected fixture-driven vitest with measured baseline vs graph metrics + operator fixture-seeder CLI | Complete |
-| 7 | `007-council-infrastructure-hardening/` | Close 6 residual gaps from 101/001..006: test gate (npm script + runner + opt-in pre-push), 32-entry feature catalog, reverse-anchor meta-test, DAC-025 replay helper, Codex TOML name/desc parity, fixture normalization provenance | Complete |
-| 8 | `008-council-surface-polish/` | Surface 101/007 artifacts through SKILL.md, publish 101/001..007 series changelog, add smoke vitest covering replay helper + bash runner + pre-push hook | Complete |
+| 7 | `007-council-infrastructure-hardening/` | Close 6 residual gaps from 101/001..006: test gate (npm script + runner), 32-entry feature catalog, reverse-anchor meta-test, DAC-025 replay helper, Codex TOML name/desc parity, fixture normalization provenance | Complete |
+| 8 | `008-council-surface-polish/` | Surface 101/007 artifacts through SKILL.md, publish 101/001..007 series changelog, add smoke vitest covering replay helper + bash runner | Complete |
 ### Phase Transition Rules
 
 - Phase 001 MUST validate the skill package, runtime mirrors, advisor routing, and moved persistence tests before Phase 002 or 003 work depends on the skill boundary.

@@ -42,7 +42,7 @@ _memory:
 | **Testing** | New vitest + sk-doc + spec validate.sh --strict + manual smoke for runner and replay helper |
 
 ### Overview
-Single cli-codex dispatch closes six residual gaps in parallel: runnable test gate (npm script + standalone runner + opt-in pre-push template + docs), 32-entry feature catalog matching system-spec-kit convention, reverse-anchor meta-test for playbook ↔ vitest integrity, DAC-025 derived-projection replay helper, Codex TOML name/description parity broadening, and inline normalization provenance comments for DAC-030/DAC-032 fixtures.
+Single cli-codex dispatch closes six residual gaps in parallel: runnable test gate (npm script + standalone runner + docs), 32-entry feature catalog matching system-spec-kit convention, reverse-anchor meta-test for playbook ↔ vitest integrity, DAC-025 derived-projection replay helper, Codex TOML name/description parity broadening, and inline normalization provenance comments for DAC-030/DAC-032 fixtures.
 <!-- /ANCHOR:summary -->
 
 ---

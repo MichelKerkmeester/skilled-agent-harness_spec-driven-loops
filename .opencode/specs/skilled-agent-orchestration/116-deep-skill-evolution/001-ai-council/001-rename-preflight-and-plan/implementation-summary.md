@@ -56,7 +56,7 @@ The preflight contract now matches the actual Wave 1 A1 direction: rename the sk
 
 ### Scan And Classification
 
-The rg baseline command found 201 files containing `sk-ai-council` after excluding `z_archive`. The plan classified 205 total paths after adding explicit handoff paths that the rg roots cannot see or that have no current hit: `README.md`, `AGENTS.md`, `.github/hooks/scripts/pre-push-council.sh`, and `multi-ai-council-runtime-parity.vitest.ts`.
+The rg baseline command found 201 files containing `sk-ai-council` after excluding `z_archive`. The plan classified 204 total paths after adding explicit handoff paths that the rg roots cannot see or that have no current hit: `README.md`, `AGENTS.md`, and `multi-ai-council-runtime-parity.vitest.ts`.
 
 Operation counts:
 
@@ -64,7 +64,7 @@ Operation counts:
 |-----------|-------|-------|
 | 002 skill rename | 80 | `.opencode/skills/sk-ai-council/**` only |
 | 004 sibling edges and TypeScript | 6 | Four graph metadata files, current `lib/scorer/lanes/explicit.ts`, and runtime parity vitest |
-| 005 root docs, hooks, index | 4 | `README.md`, `AGENTS.md`, hook script, skills README |
+| 005 root docs and index | 3 | `README.md`, `AGENTS.md`, skills README |
 | Unsorted/manual triage | 115 | Agent no-op files, historical/spec surfaces, generated advisor assets, and related tests not assigned to 002/004/005 |
 
 ### Agent Phase Skipped

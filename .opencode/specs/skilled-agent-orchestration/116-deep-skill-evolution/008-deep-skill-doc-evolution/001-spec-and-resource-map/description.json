@@ -1,26 +1,17 @@
 {
+  "level": "2",
   "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/001-spec-and-resource-map",
-  "description": "Phase 1 of the 008 cluster: author JSON schemas and resource-map.yaml driving phases 002-009, and reconcile per-skill doc delta against 000-release-cl",
+  "description": "Feature Specification: spec and resource-map for deep-skill doc evolution",
   "keywords": [
-    "phase",
-    "008",
-    "cluster",
-    "author",
-    "json",
-    "schemas",
+    "feature",
+    "specification",
+    "spec",
     "resource-map",
-    "yaml",
-    "driving",
-    "phases",
-    "002-009",
-    "reconcile",
-    "per-skill",
+    "deep-skill",
     "doc",
-    "delta",
-    "against",
-    "000-release-cleanup"
+    "evolution"
   ],
-  "lastUpdated": "2026-05-25T14:26:37.074Z",
+  "lastUpdated": "2026-05-25T17:52:17.417Z",
   "specId": "001",
   "folderSlug": "spec-and-resource-map",
   "parentChain": [
@@ -29,6 +20,5 @@
     "008-deep-skill-doc-evolution"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

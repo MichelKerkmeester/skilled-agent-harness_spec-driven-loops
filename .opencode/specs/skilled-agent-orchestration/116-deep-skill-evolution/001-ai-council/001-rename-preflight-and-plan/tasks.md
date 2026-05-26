@@ -56,7 +56,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T010 [P] Author `scratch/cli-devin/job-1-prompt.md` — live skill body + 4 sibling skill graph metadata files
-- [ ] T011 [P] Author `scratch/cli-devin/job-2-prompt.md` — root docs (AGENTS/CLAUDE/README) + .github/hooks/scripts/pre-push-council.sh + 4 runtime agent files + 4 agent README.txt + skills index README
+- [ ] T011 [P] Author `scratch/cli-devin/job-2-prompt.md` — root docs (AGENTS/CLAUDE/README) + 4 runtime agent files + 4 agent README.txt + skills index README
 - [ ] T012 [P] Author `scratch/cli-devin/job-3-prompt.md` — TypeScript code (explicit.ts + multi-ai-council-runtime-parity.vitest.ts)
 - [ ] T013 [D:T010..T012] Dispatch 3 cli-devin SWE-1.6 jobs in parallel (capped at 3 concurrent — note iter-1 of 007 deep-review may also be running; coordinate to stay ≤ 3 total)
 - [ ] T014 [D:T013] Bundle-gate verification (grep + smoke-run) per [[feedback_cli_devin_bundle_verification]] + [[feedback_bundle_gate_smoke_run]]

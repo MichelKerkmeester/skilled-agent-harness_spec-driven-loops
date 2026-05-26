@@ -42,7 +42,6 @@
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/package.json",
       ".opencode/skills/system-spec-kit/scripts/test-council-matrix.sh",
-      ".github/hooks/scripts/pre-push-council.sh",
       ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts",
       ".opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
@@ -70,12 +69,6 @@
         "name": "test-council-matrix.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/test-council-matrix.sh",
-        "source": "derived"
-      },
-      {
-        "name": "pre-push-council.sh",
-        "kind": "script",
-        "path": ".github/hooks/scripts/pre-push-council.sh",
         "source": "derived"
       },
       {

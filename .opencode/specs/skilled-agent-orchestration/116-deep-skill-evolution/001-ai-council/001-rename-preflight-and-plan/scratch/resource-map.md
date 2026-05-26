@@ -54,17 +54,16 @@ Source data: `scratch/rg/rg-baseline-before-files.txt` (per-file list), `scratch
 
 **Phase 004 file scope**: 6 files (4 graph metadata + 2 TS).
 
-### Phase 005 — Root docs + git hook + skills index
+### Phase 005 — Root docs + skills index
 
 | File | Action |
 |---|---|
 | `README.md` (line 935 skill catalog) | `**deep-ai-council**` → `**sk-ai-council**` + agent listing if present |
 | `AGENTS.md` (line 162 Quick Reference; line 336 Agent Definition) | `@deep-ai-council` → `@ai-council`; "deep-ai-council" → "sk-ai-council" for skill refs |
 | `CLAUDE.md` | Symlink to AGENTS.md — automatic |
-| `.github/hooks/scripts/pre-push-council.sh` | Update `CHANGED_FILES` glob to match `sk-ai-council` + `ai-council` paths |
 | `.opencode/skills/README.md` (skills index) | Update skill listing |
 
-**Phase 005 file scope**: 4 files (AGENTS.md/README.md/hook/skills-README) — CLAUDE.md is a symlink.
+**Phase 005 file scope**: 3 files (AGENTS.md/README.md/skills-README) — CLAUDE.md is a symlink.
 
 ### Mention-only minor refs (which phase?)
 
@@ -99,7 +98,7 @@ Files in 113/103/110/108/102/027/099/114 spec folders + sk-code-review/sk-doc/cl
 3 parallel jobs to verify the rename plan against each surface group:
 
 1. **Job-1**: Skill body + sibling skill graph metadata (Phase 002 + 004's graph subset)
-2. **Job-2**: 4 runtime agent files + root docs + hook + skills-index (Phase 003 + 005)
+2. **Job-2**: 4 runtime agent files + root docs + skills-index (Phase 003 + 005)
 3. **Job-3**: TypeScript code/tests (Phase 004's TS subset)
 
 Each job follows cli-devin/SKILL.md contract: RCAF framework via sk-prompt; medium-density pre-planning (3-4 ordered steps with acceptance); bundle-gate "standard"; `--model swe-1.6 --permission-mode auto -p --prompt-file ... </dev/null`. Returns JSON of `{file_path, edit_recipe, verification_command}` per in-scope file.
@@ -163,7 +162,6 @@ Bundle gate verification per [[feedback_cli_devin_bundle_verification]] + [[feed
       "file_scope": [
         "README.md",
         "AGENTS.md",
-        ".github/hooks/scripts/pre-push-council.sh",
         ".opencode/skills/README.md"
       ],
       "literal_substitution": {
@@ -195,6 +193,4 @@ Bundle gate verification per [[feedback_cli_devin_bundle_verification]] + [[feed
 
 3. **Vitest parity test**: `multi-ai-council-runtime-parity.vitest.ts` asserts that all 4 runtime agent files have the same content (or specific matching properties). After rename, the parity test must be updated to assert against the new filename + frontmatter `name`.
 
-4. **Git hook glob**: `pre-push-council.sh` uses `CHANGED_FILES` for change detection. Need to read the exact glob pattern; literal-substitution may not be enough if the pattern uses wildcards.
-
-5. **Historical slug vs body**: The feature_catalog/manual_testing_playbook slugs `01-runtime-agent-renamed-to-deep-ai-council.md` document the PRIOR rename event from 2026-05-10. Slug PRESERVED; body content edited to use new skill/agent names where they describe current state.
+4. **Historical slug vs body**: The feature_catalog/manual_testing_playbook slugs `01-runtime-agent-renamed-to-deep-ai-council.md` document the PRIOR rename event from 2026-05-10. Slug PRESERVED; body content edited to use new skill/agent names where they describe current state.

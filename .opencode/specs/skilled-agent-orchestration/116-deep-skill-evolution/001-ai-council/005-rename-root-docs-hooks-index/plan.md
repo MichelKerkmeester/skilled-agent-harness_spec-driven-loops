@@ -33,7 +33,7 @@ _memory:
 ### Technical Context
 | Aspect | Value |
 |--------|-------|
-| Language/Stack | shell (sed) + bash hook |
+| Language/Stack | shell (sed) |
 | Framework | spec-kit |
 | Testing | rg + validate |
 
@@ -46,7 +46,7 @@ Mechanical edit of 4 root-level surfaces. CLAUDE.md handled via AGENTS.md symlin
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 ### DoR: 001+002+003 landed
-### DoD: rg=0; validate exit 0; hook smoke-test
+### DoD: rg=0; validate exit 0
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -60,9 +60,9 @@ Direct-edit pattern, 4 disjoint files.
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-### Phase 1: Setup — read pre-push-council.sh glob
-### Phase 2: Implementation — sed 4 files
-### Phase 3: Verification — rg + smoke-run hook + strict validate
+### Phase 1: Setup — read target docs
+### Phase 2: Implementation — sed 3 files
+### Phase 3: Verification — rg + strict validate
 <!-- /ANCHOR:phases -->
 
 ---
@@ -72,7 +72,6 @@ Direct-edit pattern, 4 disjoint files.
 | Test | Tool |
 |------|------|
 | rg | `rg -c "sk-ai-council"` |
-| Hook smoke | bash hook with test commit |
 | Strict validate | validate.sh --strict |
 <!-- /ANCHOR:testing -->
 

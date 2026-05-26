@@ -42,7 +42,6 @@
     "status": "complete",
     "key_files": [
       "scratch/rename-plan.json",
-      ".github/hooks/scripts/pre-push-council.sh",
       ".opencode/agents/ai-council.md",
       ".claude/agents/ai-council.md",
       ".codex/agents/ai-council.toml",
@@ -60,12 +59,6 @@
         "name": "rename-plan.json",
         "kind": "config",
         "path": "scratch/rename-plan.json",
-        "source": "derived"
-      },
-      {
-        "name": "pre-push-council.sh",
-        "kind": "script",
-        "path": ".github/hooks/scripts/pre-push-council.sh",
         "source": "derived"
       },
       {

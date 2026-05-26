@@ -17,10 +17,6 @@ const TEST_COUNCIL_MATRIX = join(
   WORKSPACE_ROOT,
   '.opencode/skills/system-spec-kit/scripts/test-council-matrix.sh',
 );
-const PRE_PUSH_HOOK = join(
-  WORKSPACE_ROOT,
-  '.github/hooks/scripts/pre-push-council.sh',
-);
 
 const tempDirs: string[] = [];
 
@@ -95,15 +91,4 @@ describe('council helper script smoke coverage', () => {
     expect(body, 'invokes strict spec validate').toMatch(/validate\.sh.*--strict/);
   });
 
-  it('pre-push-council.sh exists, is executable, and gates the matrix on council-touching files', () => {
-    expect(existsSync(PRE_PUSH_HOOK), PRE_PUSH_HOOK).toBe(true);
-    const mode = statSync(PRE_PUSH_HOOK).mode;
-    expect(mode & 0o100, 'owner-execute bit on pre-push-council.sh').not.toBe(0);
-
-    const body = readFileSync(PRE_PUSH_HOOK, 'utf8');
-    // The hook must (a) detect council-relevant diffs, (b) invoke the matrix runner.
-    expect(body, 'inspects git diff for the pushed range').toMatch(/git diff/);
-    expect(body, 'matches council-touching paths').toMatch(/ai-council|council-graph|101-deep-multi-ai-council-skill/);
-    expect(body, 'invokes the matrix runner').toContain('test-council-matrix.sh');
-  });
 });

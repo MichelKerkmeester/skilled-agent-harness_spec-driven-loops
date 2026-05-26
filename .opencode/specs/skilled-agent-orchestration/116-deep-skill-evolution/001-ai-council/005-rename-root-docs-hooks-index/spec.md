@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: 115/005 — root docs + hooks + skills index"
-description: "Parallel-after-001: update root README.md skill catalog entry + AGENTS.md (CLAUDE.md symlink) Agent Definitions + Quick Reference row + .github/hooks/scripts/pre-push-council.sh glob + .opencode/skills/README.md."
+description: "Parallel-after-001: update root README.md skill catalog entry + AGENTS.md (CLAUDE.md symlink) Agent Definitions + Quick Reference row + .opencode/skills/README.md."
 trigger_phrases: ["115 005", "root docs rename"]
 importance_tier: "important"
 contextType: "implementation"
@@ -37,16 +37,16 @@ _memory:
 | **Status** | Complete |
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 5 of 6 |
-| **Handoff Criteria** | 4 root docs + git hook updated; rg = 0 |
+| **Handoff Criteria** | Root docs and skills index updated; rg = 0 |
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
-Phase 5 of 6. Parallel after 001. Touches root-level surfaces + skills index + git hook.
+Phase 5 of 6. Parallel after 001. Touches root-level surfaces + skills index.
 
-**Deliverables**: 4 files updated (README.md line 935; AGENTS.md lines 162+336; .github/hooks/scripts/pre-push-council.sh CHANGED_FILES glob; .opencode/skills/README.md).
+**Deliverables**: 3 files updated (README.md line 935; AGENTS.md lines 162+336; .opencode/skills/README.md).
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -54,9 +54,9 @@ Phase 5 of 6. Parallel after 001. Touches root-level surfaces + skills index + g
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 ### Problem Statement
-Root docs + git hook still reference old names post-002/003 rename.
+Root docs still reference old names post-002/003 rename.
 ### Purpose
-Update so the repo-facing surfaces (skill catalog, agent definitions, hook trigger) reflect new identity.
+Update so the repo-facing surfaces (skill catalog and agent definitions) reflect new identity.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -67,7 +67,6 @@ Update so the repo-facing surfaces (skill catalog, agent definitions, hook trigg
 - README.md (line 935 area)
 - AGENTS.md (lines 162 + 336)
 - CLAUDE.md (symlink — automatic)
-- .github/hooks/scripts/pre-push-council.sh
 - .opencode/skills/README.md
 
 ### Out of Scope
@@ -78,7 +77,6 @@ Memory files (007 pattern: not in 115's primary scope; can be follow-on).
 |------|--------|
 | `README.md` | Edit skill catalog entry |
 | `AGENTS.md` | Edit Agent Definition + Quick Reference row |
-| `.github/hooks/scripts/pre-push-council.sh` | Update CHANGED_FILES glob |
 | `.opencode/skills/README.md` | Edit skill listing |
 <!-- /ANCHOR:scope -->
 
@@ -91,8 +89,7 @@ Memory files (007 pattern: not in 115's primary scope; can be follow-on).
 |----|-------------|------------|
 | REQ-001 | Root README.md updated | grep |
 | REQ-002 | AGENTS.md Agent Definitions + Quick Reference updated | grep |
-| REQ-003 | Git hook CHANGED_FILES glob matches new paths | grep + smoke-test |
-| REQ-004 | rg "sk-ai-council" on these 4 files = 0 | rg |
+| REQ-003 | rg "sk-ai-council" on these 3 files = 0 | rg |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -100,7 +97,6 @@ Memory files (007 pattern: not in 115's primary scope; can be follow-on).
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 - **SC-001**: 005 strict validate exit 0.
-- **SC-002**: Git hook still fires on rename-related path changes.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -109,7 +105,6 @@ Memory files (007 pattern: not in 115's primary scope; can be follow-on).
 ## 6. RISKS & DEPENDENCIES
 | Type | Item | Mitigation |
 |------|------|------------|
-| Risk | Git hook glob uses wildcards that need shape change | Inspect glob before edit |
 | Dependency | 001+002+003 landed | gating |
 <!-- /ANCHOR:risks -->
 

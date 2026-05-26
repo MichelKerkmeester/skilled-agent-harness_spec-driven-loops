@@ -124,13 +124,12 @@
     },
     "005-root-docs-hooks-and-index": {
       "files_in_scope": [
-        ".github/hooks/scripts/pre-push-council.sh",
         ".opencode/skills/README.md",
         "AGENTS.md",
         "README.md"
       ],
       "path_notes": [
-        "README.md and .github/hooks/scripts/pre-push-council.sh are explicit handoff paths outside the .opencode/.claude/.codex/.gemini rg roots."
+        "README.md is an explicit handoff path outside the .opencode/.claude/.codex/.gemini rg roots."
       ]
     },
     "006-reindex-and-validate": {

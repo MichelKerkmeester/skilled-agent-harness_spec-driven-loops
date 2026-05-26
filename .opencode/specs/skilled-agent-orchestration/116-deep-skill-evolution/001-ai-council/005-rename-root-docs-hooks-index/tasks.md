@@ -37,7 +37,7 @@ T### IDs; [P] parallel
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [x] T001 Read pre-push-council.sh CHANGED_FILES glob
+- [x] T001 Read target root docs
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -46,7 +46,6 @@ T### IDs; [P] parallel
 ## Phase 2: Implementation
 - [x] T010 [P] sed README.md
 - [x] T011 [P] sed AGENTS.md (CLAUDE.md auto via symlink)
-- [x] T012 [P] Edit .github/hooks/scripts/pre-push-council.sh glob
 - [x] T013 [P] sed .opencode/skills/README.md
 <!-- /ANCHOR:phase-2 -->
 

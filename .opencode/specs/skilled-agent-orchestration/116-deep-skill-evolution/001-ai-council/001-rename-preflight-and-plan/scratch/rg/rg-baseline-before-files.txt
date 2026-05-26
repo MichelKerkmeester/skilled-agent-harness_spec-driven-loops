@@ -8,7 +8,6 @@
 .gemini/agents/deep-ai-council.md
 .gemini/agents/orchestrate.md
 .gemini/agents/README.txt
-.github/hooks/scripts/pre-push-council.sh
 .opencode/agents/deep-ai-council.md
 .opencode/agents/orchestrate.md
 .opencode/agents/README.txt

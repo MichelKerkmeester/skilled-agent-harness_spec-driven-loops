@@ -30,7 +30,7 @@ _memory:
     completion_pct: 10
     open_questions: []
     answered_questions:
-      - "CI gate: not GitHub Actions (none exist) — npm script + standalone runner + opt-in pre-push template + docs."
+      - "CI gate: not GitHub Actions (none exist) — npm script + standalone runner + docs."
       - "Feature catalog format follows system-spec-kit/feature_catalog convention (4 sections, category folders)."
       - "Dispatched as a single cli-codex gpt-5.5 high fast job per user direction."
 ---
@@ -79,7 +79,7 @@ Close all six gaps in one packet so 101's deep-ai-council skill ships with a com
 
 | Gap | Deliverable |
 |-----|-------------|
-| #1 CI gate | `mcp_server/package.json` `test:council` script; `scripts/test-council-matrix.sh` standalone runner (vitest + sk-doc + strict spec validate); `.github/hooks/scripts/pre-push-council.sh` opt-in template; short docs at `deep-ai-council/CONTRIBUTING.md` |
+| #1 CI gate | `mcp_server/package.json` `test:council` script; `scripts/test-council-matrix.sh` standalone runner (vitest + sk-doc + strict spec validate); short docs at `deep-ai-council/CONTRIBUTING.md` |
 | #2 Feature catalog | `.opencode/skills/deep-ai-council/feature_catalog/{01..09}--<category>/<NN>-<scenario-slug>.md` — one entry per DAC-NNN scenario (32 total), 4-section format matching `system-spec-kit/feature_catalog/` convention; root playbook §17 updated to point at the new catalog paths |
 | #3 Reverse-anchor meta-test | `mcp_server/tests/council-playbook-anchor-integrity.vitest.ts` — scans playbook + scenario files, extracts DAC-NNN references and vitest test-name strings, asserts each maps to an actual test name in the council-related vitest files |
 | #4 DAC-025 replay helper | `.opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs` — Node script that reads `ai-council-state.jsonl` from a session and replays derived rows via `council_graph_upsert`; updates DAC-025 scenario file to reference the new script |
@@ -89,7 +89,6 @@ Close all six gaps in one packet so 101's deep-ai-council skill ships with a com
 ### Out of Scope
 - Modifying `council_graph_*` MCP tool code or schemas.
 - Touching 101/001..006 spec packets except parent 101 phase map.
-- Wiring the pre-push hook into the user's local `.git/hooks/` automatically (opt-in template only).
 - Authoring catalog entries beyond the 32 DAC scenarios.
 
 ### Files to Change
@@ -98,8 +97,7 @@ Close all six gaps in one packet so 101's deep-ai-council skill ships with a com
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modify | Add `test:council` script + `test:council:full` (vitest + sk-doc + spec validate) |
 | `.opencode/skills/system-spec-kit/scripts/test-council-matrix.sh` | Create | Standalone runner (cwd-agnostic, exits non-zero on any failure) |
-| `.github/hooks/scripts/pre-push-council.sh` | Create | Opt-in pre-push hook template invoking the runner |
-| `.opencode/skills/deep-ai-council/CONTRIBUTING.md` | Create | Document the 3 invocation paths + how to wire the pre-push hook |
+| `.opencode/skills/deep-ai-council/CONTRIBUTING.md` | Create | Document the local gate invocation paths |
 | `.opencode/skills/deep-ai-council/feature_catalog/` | Create | 9 category folders, 32 entry files |
 | `.opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md` | Modify | §17 catalog rows: replace 32 "No feature catalog exists yet" with real paths |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts` | Create | Reverse-anchor integrity check |

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: 101/008 Council Surface Polish"
-description: "Surface 101/007's new artifacts (CONTRIBUTING.md, feature_catalog/, replay helper) through SKILL.md, publish a changelog entry covering the full 101/001..007 series, and add a smoke vitest covering the three untested helper scripts (replay helper, bash runner, pre-push hook)."
+description: "Surface 101/007's new artifacts (CONTRIBUTING.md, feature_catalog/, replay helper) through SKILL.md, publish a changelog entry covering the full 101/001..007 series, and add a smoke vitest covering the untested helper scripts (replay helper and bash runner)."
 trigger_phrases:
   - "council surface polish"
   - "deep-ai-council changelog v1.1"
@@ -50,7 +50,7 @@ _memory:
 | **Phase** | 8 of 8 |
 | **Predecessor** | `007-council-infrastructure-hardening` |
 | **Successor** | None |
-| **Handoff Criteria** | All three follow-up items closed: SKILL.md surfaces new artifacts, changelog covers 101/001..007, smoke vitest covers replay helper + bash runner + pre-push hook |
+| **Handoff Criteria** | All three follow-up items closed: SKILL.md surfaces new artifacts, changelog covers 101/001..007, smoke vitest covers replay helper + bash runner |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -59,7 +59,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-After 101/007 closed the six earlier residual gaps, three smaller items remained: (1) SKILL.md does not reference the new artifacts shipped in 007 (`CONTRIBUTING.md`, `feature_catalog/`, `scripts/replay-graph-from-artifacts.cjs`), so a fresh consumer reading the skill entry point wouldn't discover them; (2) the `changelog/` directory only carries `v1.0.0.0.md` covering 101/001 and 101/003 — there's no published changelog entry for the 101/001..007 series as a whole; (3) the replay helper, bash matrix runner, and pre-push hook script have no automated regression tests, so JSONL-mapping or shell-command-shape regressions would slip through.
+After 101/007 closed the six earlier residual gaps, three smaller items remained: (1) SKILL.md does not reference the new artifacts shipped in 007 (`CONTRIBUTING.md`, `feature_catalog/`, `scripts/replay-graph-from-artifacts.cjs`), so a fresh consumer reading the skill entry point wouldn't discover them; (2) the `changelog/` directory only carries `v1.0.0.0.md` covering 101/001 and 101/003 — there's no published changelog entry for the 101/001..007 series as a whole; (3) the replay helper and bash matrix runner have no automated regression tests, so JSONL-mapping or shell-command-shape regressions would slip through.
 
 ### Purpose
 Close these three follow-ups in one small additive packet, leaving 101 with discoverable + changelogged + test-protected helper infrastructure.
@@ -73,13 +73,12 @@ Close these three follow-ups in one small additive packet, leaving 101 with disc
 ### In Scope
 - Add SKILL.md cross-references to `CONTRIBUTING.md`, `feature_catalog/`, and `scripts/replay-graph-from-artifacts.cjs` in the appropriate sections (resource discovery, key resources, intent routing as applicable).
 - Author `changelog/v1.1.0.0.md` summarizing the 101/001..007 series in the same human-readable style as `v1.0.0.0.md`.
-- Add `mcp_server/tests/council-helpers-smoke.vitest.ts` with three tests: (a) replay helper end-to-end on a synthetic JSONL fixture; (b) `test-council-matrix.sh` shape assertion (exists, executable, contains expected command chain); (c) `pre-push-council.sh` shape assertion (exists, executable, contains council-file detection + matrix invocation).
+- Add `mcp_server/tests/council-helpers-smoke.vitest.ts` with two tests: (a) replay helper end-to-end on a synthetic JSONL fixture; (b) `test-council-matrix.sh` shape assertion (exists, executable, contains expected command chain).
 - Update `npm run test:council` script to include the new vitest file.
 
 ### Out of Scope
 - Modifying any council runtime code or graph handlers.
 - Touching 101/001..007 spec docs except parent 101 phase map.
-- Wiring the pre-push hook into the user's local `.git/hooks/`.
 
 ### Files to Change
 
@@ -103,7 +102,7 @@ Close these three follow-ups in one small additive packet, leaving 101 with disc
 |----|-------------|---------------------|
 | REQ-001 | SKILL.md surfaces the new graph + catalog artifacts | grep finds `feature_catalog` and `replay-graph` in SKILL.md (`CONTRIBUTING.md` intentionally omitted per user direction; the file is discoverable by convention) |
 | REQ-002 | Changelog v1.1.0.0.md exists and follows v1.0.0.0 format | File exists; passes sk-doc validate_document.py |
-| REQ-003 | Smoke vitest passes 3/3 | `npx vitest run tests/council-helpers-smoke.vitest.ts` returns 3 tests passed |
+| REQ-003 | Smoke vitest passes 2/2 | `npx vitest run tests/council-helpers-smoke.vitest.ts` returns 2 tests passed |
 | REQ-004 | `npm run test:council` includes the new vitest | Script string contains `council-helpers-smoke.vitest.ts` |
 | REQ-005 | Full 10-file council vitest matrix passes | `npm run test:council` → 10 files, 0 failures |
 

@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-Target artifacts (per spec.md §3 + 001/scratch/resource-map.md §1 Phase 005): - README.md line 935 skill catalog entry - AGENTS.md line 162 Quick Reference Workflow row + line 336 Agent Definition (CLAUDE.md is symlink — automatic propagation) - .github/hooks/scripts/pre-push-council.sh CHANGED_FILES glob pattern update - .opencode/skills/README.md skill listing entry
+Target artifacts (per spec.md §3 + 001/scratch/resource-map.md §1 Phase 005): - README.md line 935 skill catalog entry - AGENTS.md line 162 Quick Reference Workflow row + line 336 Agent Definition (CLAUDE.md is symlink — automatic propagation) - .opencode/skills/README.md skill listing entry
 
 ### Added
 
@@ -27,7 +27,7 @@ Target artifacts (per spec.md §3 + 001/scratch/resource-map.md §1 Phase 005): 
 
 ### Changed
 
-- Target artifacts (per spec.md §3 + 001/scratch/resource-map.md §1 Phase 005): - README.md line 935 skill catalog entry - AGENTS.md line 162 Quick Reference Workflow row + line 336 Agent Definition (CLAUDE.md is symlink — automatic propagation) - .github/hooks/scripts/pre-push-council.sh CHANGED_FILES glob pattern update - .opencode/skills/README.md skill listing entry
+- Target artifacts (per spec.md §3 + 001/scratch/resource-map.md §1 Phase 005): - README.md line 935 skill catalog entry - AGENTS.md line 162 Quick Reference Workflow row + line 336 Agent Definition (CLAUDE.md is symlink — automatic propagation) - .opencode/skills/README.md skill listing entry
 
 ### Fixed
 
@@ -43,9 +43,7 @@ _No file-level detail recorded._
 
 ### Follow-Ups
 
-- Read pre-push-council.sh CHANGED_FILES glob
 - [P] sed README.md
 - [P] sed AGENTS.md (CLAUDE.md auto via symlink)
-- [P] Edit .github/hooks/scripts/pre-push-council.sh glob
 - [P] sed .opencode/skills/README.md
 - rg "deep-ai-council" on 4 files = 0
