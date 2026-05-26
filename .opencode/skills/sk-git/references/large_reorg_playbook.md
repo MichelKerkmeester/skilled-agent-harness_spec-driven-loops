@@ -5,20 +5,13 @@ description: Step-ordered runbook for executing a large rename/reorg (hundreds-t
 
 # Large Reorg Playbook - Rename/Renumber in a Worktree
 
-Step-ordered runbook for a LARGE rename/reorg (hundreds-to-thousands of `git mv`)
-executed in a worktree and merged to `main`. Driven by a real incident: the 026 wave-4
-spec-folder reorganization (17 phases → 7 themed parents, ~9000 renames) hit avoidable
-failure modes this runbook closes.
-
-**Core split:** The worktree does file/rename ops ONLY. The spec-kit toolchain
-(strict validate, generators, metadata regen) and the global memory/vector DBs both run
-on `main` AFTER merge — never inside the bare worktree. See
-[worktree_workflows.md §8b](./worktree_workflows.md#8b-large-reorg-in-a-worktree---caveats)
-for the why behind each caveat.
+Step-ordered runbook for a LARGE rename/reorg (hundreds-to-thousands of `git mv`) executed in a worktree and merged to `main` without the known failure modes.
 
 ---
 
-## WHEN TO USE
+## 1. OVERVIEW
+
+### When to Use
 
 - A rename/renumber/reorg touching dozens+ of paths (folder restructure, phase
   consolidation, mass renumber).
@@ -28,9 +21,24 @@ for the why behind each caveat.
 For a handful of renames on the current branch, the standard
 [commit_workflows.md](./commit_workflows.md) flow is enough — skip this runbook.
 
+### Core Split
+
+The worktree does file/rename ops ONLY. The spec-kit toolchain (strict validate,
+generators, metadata regen) and the global memory/vector DBs both run on `main` AFTER
+merge — never inside the bare worktree. See
+[worktree_workflows.md §8b](./worktree_workflows.md#8b-large-reorg-in-a-worktree---caveats)
+for the why behind each caveat.
+
+### Origin
+
+Driven by a real incident: the 026 wave-4 spec-folder reorganization (17 phases → 7 themed
+parents, ~9000 renames) hit avoidable failure modes this runbook closes.
+
 ---
 
-## STEP 0: Snapshot the gitignored DBs (BEFORE touching anything)
+## 2. WORKFLOW
+
+### Step 0: Snapshot the gitignored DBs (BEFORE touching anything)
 
 `git revert` / `git reset` cannot restore gitignored files. The memory + vector DBs under
 `.opencode/skills/system-spec-kit/mcp_server/database/` are gitignored and are a SINGLE
@@ -46,9 +54,7 @@ echo "Snapshot: ${db}.bak-${ts}"
 Keep the snapshot until the reorg is verified on `main`. Restore by swapping the dir back
 if reindex goes wrong.
 
----
-
-## STEP 1: Worktree from a clean HEAD
+### Step 1: Worktree from a clean HEAD
 
 Start from a clean, up-to-date base so the diff is pure rename signal.
 
@@ -62,9 +68,7 @@ cd .worktrees/reorg
 Do NOT install deps or run the toolchain here — this worktree is for renames only
 (deps/toolchain run on `main` in steps 4-5).
 
----
-
-## STEP 2: File/rename ops in the worktree + verify R-status
+### Step 2: File/rename ops in the worktree + verify R-status
 
 Perform the renames with `git mv` (preserves history; raw `mv` + `git add` can register as
 delete+add and lose blame continuity).
@@ -87,9 +91,7 @@ large content changes in the same commit). Keep renames and content edits in **s
 commits** so rename detection stays clean. Commit the rename wave with a clear message
 (see [commit_workflows.md](./commit_workflows.md)).
 
----
-
-## STEP 3: Merge to main
+### Step 3: Merge to main
 
 Bring the rename commit(s) back to `main`. Rename-heavy merge-conflict handling (rename/edit,
 rename/rename) is covered in [shared_patterns.md](./shared_patterns.md).
@@ -109,14 +111,12 @@ git ls-files | sed 's#/[^/]*$##' | sort -u | grep -i '<old-prefix>' || echo "no 
 
 Zero tracked files under the old prefix = the rename landed cleanly.
 
----
-
-## STEP 4: Post-merge on MAIN — leftover cleanup + toolchain + DB
+### Step 4: Post-merge on MAIN — leftover cleanup + toolchain + DB
 
 Everything in this step runs on `main` (the merged tree is the source of truth). The
 worktree may still be removed at the end.
 
-### 4a. Remove gitignored leftover folders
+#### 4a. Remove gitignored leftover folders
 
 `git mv` left ignored cruft (`.DS_Store`, `*.log`, `*.pyc`, `__pycache__/`) behind in old
 source dirs, which now show as confusing empty/"double" folders. Detect dirs with disk
@@ -133,7 +133,7 @@ done < <(find . -type d -not -path './.git/*' -mindepth 1 | sort)
 Review the list, then `rm -rf` the confirmed leftovers. Each holds only ignored cruft, so
 the commit/tree stays correct.
 
-### 4b. Run the spec-kit toolchain ON MAIN
+#### 4b. Run the spec-kit toolchain ON MAIN
 
 `main` has the real `node_modules`/`dist`, so generators and strict validate actually
 work (a bare worktree silently no-ops — see §8b Caveat 1). Run, in order:
@@ -147,7 +147,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --s
 
 NEVER reuse a strict-validate result from inside the worktree — treat it as meaningless.
 
-### 4c. Reindex / re-embed memory ON MAIN
+#### 4c. Reindex / re-embed memory ON MAIN
 
 The global DB now needs to reflect the final tree exactly once:
 
@@ -159,9 +159,7 @@ The global DB now needs to reflect the final tree exactly once:
 Because the DB is a single global instance, running this on `main` post-merge indexes the
 real paths once — running it from the worktree would index paths that did not yet exist.
 
----
-
-## STEP 5: Verify
+### Step 5: Verify
 
 - [ ] Renames recorded as `R`-status (step 2) — history preserved.
 - [ ] Tree has NO old+new duplicate folders (step 3 grep returns "no old paths tracked").
@@ -174,7 +172,7 @@ real paths once — running it from the worktree would index paths that did not 
 
 ---
 
-## FAILURE-MODE QUICK MAP
+## 3. FAILURE-MODE QUICK MAP
 
 | Symptom | Cause | Fix (step) |
 |---------|-------|------------|
@@ -186,7 +184,7 @@ real paths once — running it from the worktree would index paths that did not 
 
 ---
 
-## RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 - [worktree_workflows.md](./worktree_workflows.md) - §8b caveats behind this runbook
 - [commit_workflows.md](./commit_workflows.md) - scoped staging + rename commit hygiene
