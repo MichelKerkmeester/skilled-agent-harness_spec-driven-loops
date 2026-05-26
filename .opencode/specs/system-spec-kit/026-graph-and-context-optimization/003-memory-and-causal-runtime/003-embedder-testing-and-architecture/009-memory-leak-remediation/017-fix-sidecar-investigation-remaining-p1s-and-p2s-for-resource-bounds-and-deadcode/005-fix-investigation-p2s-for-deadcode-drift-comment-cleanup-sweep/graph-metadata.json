@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,7 +43,6 @@
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
-      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts",
@@ -68,12 +67,6 @@
         "name": "sidecar-client.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ensure-rerank-sidecar.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Process",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Arc 010/001 recorded 68 P2 cleanup findings across embedder module surfaces. The findings mix safe cleanup with behavior-changing hardening requests, so the packet needs a surgical sweep that closes dead exports, stale comments, helper noise, and type drift while deferring runtime-policy changes.",
     "created_at": "2026-05-23T06:55:12Z",
-    "last_save_at": "2026-05-23T07:05:49.363Z",
+    "last_save_at": "2026-05-26T16:51:06.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

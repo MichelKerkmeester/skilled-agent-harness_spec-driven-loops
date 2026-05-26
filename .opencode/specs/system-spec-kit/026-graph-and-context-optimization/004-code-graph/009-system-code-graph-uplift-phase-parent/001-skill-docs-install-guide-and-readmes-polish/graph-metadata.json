@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -44,8 +44,6 @@
       ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
       ".opencode/skills/system-code-graph/ARCHITECTURE.md",
       ".opencode/skills/system-code-graph/README.md",
-      ".opencode/skills/system-code-graph/references/ownership-boundary.md",
-      ".opencode/skills/system-code-graph/references/database-path-policy.md",
       ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
       ".opencode/skills/system-code-graph/mcp_server/README.md",
       ".opencode/skills/system-code-graph/mcp_server/tests/handlers/README.md",
@@ -84,18 +82,6 @@
         "name": "ARCHITECTURE.md",
         "kind": "doc",
         "path": ".opencode/skills/system-code-graph/ARCHITECTURE.md",
-        "source": "derived"
-      },
-      {
-        "name": "ownership-boundary.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/references/ownership-boundary.md",
-        "source": "derived"
-      },
-      {
-        "name": "database-path-policy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/references/database-path-policy.md",
         "source": "derived"
       },
       {
@@ -199,11 +185,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Research §10 enumerated 10 priority items spanning SKILL.md, INSTALL_GUIDE.md, ARCHITECTURE.md, references, feature_catalog, and per-folder mcp_server READMEs. Verified findings include drift (INSTALL_GUIDE version + tool count, ARCHITECTURE launcher reference, stale SKILL.md continuity), HVR violations (87+ across core docs), and useful-content gaps (no \"why\" primers, no glossaries, no situational triggers). All accumulated since packet 028 closed tool-count and topology drift.",
     "created_at": "2026-05-16T10:35:00Z",
-    "last_save_at": "2026-05-24T05:40:25.832Z",
+    "last_save_at": "2026-05-26T16:51:06.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

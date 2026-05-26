@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/004-code-graph-watcher-claim-retraction",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/004-code-graph-watcher-claim-retraction",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/004-code-graph-watcher-claim-retraction",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/004-code-graph-watcher-claim-retraction",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Retract the structural watcher claim and document the real freshness model: `ensureCodeGraphReady()` can selectively reindex changed tracked files during query/context reads, `code_graph_scan` performs manual full repair, `code_graph_status` diagnoses without mutating, and `code_graph_query` blocks with required action when a full scan is needed.",
     "created_at": "2026-04-29T13:55:04Z",
-    "last_save_at": "2026-05-24T05:40:25.581Z",
+    "last_save_at": "2026-05-26T16:51:05.252Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

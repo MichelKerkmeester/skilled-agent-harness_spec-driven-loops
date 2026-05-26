@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -54,8 +54,7 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation/resource-map.md"
+      "spec.md"
     ],
     "entities": [
       {
@@ -97,7 +96,7 @@
       {
         "name": "resource-map.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation/resource-map.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -205,7 +204,7 @@
     ],
     "causal_summary": "Substrate flap incidents are difficult to diagnose when the only visible signal is a degraded `memory_health` response. The council identified RSS pressure and circuit instability as key signals, but the Memory MCP daemon did not expose process RSS or recent circuit-breaker transition state.",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-05-24T05:40:25.987Z",
+    "last_save_at": "2026-05-26T16:51:05.754Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:25:36Z",
     "source_docs": [

@@ -1,27 +1,100 @@
 {
-  "spec_id": "020",
-  "folder_slug": "fix-investigation-deferred-p2s-for-behavior-and-api-changes",
-  "parent_chain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
-    "009-memory-leak-remediation"
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/002-fix-deferred-p2s-for-env-and-config-behavior",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/003-fix-deferred-p2s-for-filesystem-durability",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/004-fix-deferred-p2s-for-api-response-shape",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/005-fix-deferred-p2s-for-runtime-process-lifecycle",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/006-fix-deferred-p2s-for-provider-adapter-redesign"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
-    ],
+    "depends_on": [],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "status": "draft",
+    "trigger_phrases": [
+      "020 deferred p2 remediation",
+      "fix deferred sidecar p2",
+      "sidecar behavior change p2",
+      "sidecar api change p2"
+    ],
+    "key_topics": [
+      "020",
+      "deferred",
+      "remediation",
+      "fix",
+      "sidecar",
+      "behavior",
+      "change",
+      "api",
+      "close",
+      "findings",
+      "bucket",
+      "children"
+    ],
     "importance_tier": "important",
-    "is_phase_parent": true,
-    "last_active_child_id": "001-fix-deferred-p2s-for-test-only-and-shared-exports",
-    "last_active_at": "2026-05-23T12:00:00Z",
-    "child_phase_count": 0,
-    "completed_child_phase_count": 0,
-    "parent_id": "009-memory-leak-remediation"
-  },
-  "lastUpdated": "2026-05-23T12:00:00Z"
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Investigation Deferred",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Close 34 deferred P2 findings in 6 bucket children, one cli-codex dispatch per bucket, sequential (NOT parallel). Each bucket emits ≥ 1 ADR per behavior change and either a passing regression fixture OR an explicit \"no regression test possible; manual smoke confirms\" note + the smoke procedure.",
+    "created_at": "2026-05-26T16:49:55.585Z",
+    "last_save_at": "2026-05-26T16:51:06.082Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
 }

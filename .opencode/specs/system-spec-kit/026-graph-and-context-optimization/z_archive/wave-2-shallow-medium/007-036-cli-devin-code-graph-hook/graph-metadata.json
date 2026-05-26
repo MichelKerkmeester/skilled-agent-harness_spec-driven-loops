@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/036-cli-devin-code-graph-hook",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/007-036-cli-devin-code-graph-hook",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/007-036-cli-devin-code-graph-hook",
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -19,10 +19,10 @@
       "mk-code-graph",
       "post-extraction audit",
       "036-cli-devin-code-graph-hook",
-      "phase 0",
+      "phase b",
       "code graph plan",
       "tasks",
-      "verification"
+      "checklist"
     ],
     "key_topics": [
       "cli-devin",
@@ -41,41 +41,56 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "decision-record.md",
-      ".claude/settings.local.json",
-      ".opencode/plugins/spec-kit-compact-code-graph.js",
-      ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/devin/session-start.ts",
+      ".opencode/plugins/README.md",
+      ".devin/hooks.v1.json",
+      "feature_catalog/feature_catalog.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "plugin_bridges/README.md",
       "research/research.md",
-      "checklist.md",
+      ".claude/settings.local.json",
+      "decision-record.md",
+      ".opencode/plugins/mk-code-graph.js",
       "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/devin/session-start.js",
+      ".devin/config.json",
+      "checklist.md",
       "plan.md",
       "tasks.md",
+      "resource-map.md",
+      "research/findings.json",
       "spec.md",
-      "handover.md"
+      ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs"
     ],
     "entities": [
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec-kit-compact-code-graph.js",
+        "name": "session-start.ts",
         "kind": "code",
-        "path": ".opencode/plugins/spec-kit-compact-code-graph.js",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/devin/session-start.ts",
         "source": "derived"
       },
       {
-        "name": "spec-kit-compact-code-graph-bridge.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/spec-kit-compact-code-graph-bridge.mjs",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -85,15 +100,45 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-graph.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-code-graph.js",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/devin/session-start.js",
+        "source": "derived"
+      },
+      {
+        "name": "config.json",
+        "kind": "config",
+        "path": ".devin/config.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -109,15 +154,27 @@
         "source": "derived"
       },
       {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.json",
+        "kind": "config",
+        "path": "research/findings.json",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
+        "name": "mk-code-graph-bridge.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs",
         "source": "derived"
       },
       {
@@ -149,59 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Devin Code Graph Hook",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "full",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. SUMMARY",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "This packet prepares the code-graph skill for Devin CLI SessionStart parity, plugin rename, and a post-extraction ownership audit. The highest-risk decision is whether current SessionStart hook sources should move from `system-spec-kit/mcp_server/hooks/` into `system-code-graph/hooks/` before the Devin variant is added.",
+    "causal_summary": "Phase A research resolved the code-graph packet with one deliberate asymmetry: unlike advisor hooks, code-graph SessionStart hook sources stay under `.opencode/skills/system-spec-kit/mcp_server/hooks/`. Moving them to `system-code-graph/hooks/` would touch 110+ references, `.claude/settings.local.json` registrations, and build/finalize paths; ADR-001 accepts keeping the current source location and adding Devin beside the existing Claude/Gemini/Codex variants (F002/Q2).",
     "created_at": "2026-05-15T13:06:00.454Z",
-    "last_save_at": "2026-05-15T13:06:00.454Z",
+    "last_save_at": "2026-05-26T16:51:06.335Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +221,8 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
-      "handover.md"
+      "handover.md",
+      "resource-map.md"
     ]
   }
 }

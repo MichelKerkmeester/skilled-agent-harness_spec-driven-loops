@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/018-matrix-runner-snake-case-rename",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/018-matrix-runner-snake-case-rename",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/018-matrix-runner-snake-case-rename",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/018-matrix-runner-snake-case-rename",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,7 +43,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "logs/iter-001.log",
       "research/prompts/iteration-001.md",
       "mcp_server/matrix_runners/README.md",
       "resource-map.md"
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "iter-001.log",
-        "kind": "file",
-        "path": "logs/iter-001.log",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The CLI matrix runner folder used kebab-case while adjacent MCP server support directories use snake_case. That naming mismatch made the runtime tree inconsistent and left imports, docs, tests, feature catalog entries, and prior packet evidence pointing at the outlier path.",
     "created_at": "2026-05-18T08:15:53.134Z",
-    "last_save_at": "2026-05-24T05:40:25.638Z",
+    "last_save_at": "2026-05-26T16:51:05.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

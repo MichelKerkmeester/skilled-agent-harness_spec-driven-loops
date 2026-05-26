@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "This is **Phase 16** under `002-spec-memory-stack`. The packet closes a latent regression that surfaced after ADR-012 (canonical vector shard split) and ADR-013 (nomic default) shipped: the runtime KNN search path was reading an empty `vec_memories` table because reindex only wrote the canonical `vec_<dim>` table, and the factory was scanning the wrong file for the dim-tagged pointer table.",
     "created_at": "2026-05-19T18:51:11Z",
-    "last_save_at": "2026-05-24T05:40:26.026Z",
+    "last_save_at": "2026-05-26T16:51:05.810Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

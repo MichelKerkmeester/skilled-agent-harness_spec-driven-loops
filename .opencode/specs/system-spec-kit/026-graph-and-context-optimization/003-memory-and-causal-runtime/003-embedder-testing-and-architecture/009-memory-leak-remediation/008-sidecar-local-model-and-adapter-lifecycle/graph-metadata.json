@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/008-sidecar-local-model-and-adapter-lifecycle",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -33,61 +33,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py",
-      ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/adapter_lifecycle.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/rerankers_jina_v3.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/project.py",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "sidecar_ledger.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py",
-        "source": "derived"
-      },
-      {
-        "name": "ensure_rerank_sidecar.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py",
-        "source": "derived"
-      },
-      {
-        "name": "adapter_lifecycle.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/adapter_lifecycle.py",
-        "source": "derived"
-      },
-      {
-        "name": "reranker.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py",
-        "source": "derived"
-      },
-      {
-        "name": "rerankers_jina_v3.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/rerankers_jina_v3.py",
-        "source": "derived"
-      },
-      {
-        "name": "daemon.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
-        "source": "derived"
-      },
-      {
-        "name": "project.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/core/project.py",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -189,11 +140,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is phase 8 of the memory leak remediation arc. It is scoped from source evidence in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research` and `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`.",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-24T05:40:26.142Z",
+    "last_save_at": "2026-05-26T16:51:06.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

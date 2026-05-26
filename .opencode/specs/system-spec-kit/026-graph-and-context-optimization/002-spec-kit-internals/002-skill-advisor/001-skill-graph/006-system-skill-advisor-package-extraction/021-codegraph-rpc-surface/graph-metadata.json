@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/021-codegraph-rpc-surface",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/021-codegraph-rpc-surface",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/021-codegraph-rpc-surface",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/021-codegraph-rpc-surface",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Packet 020 removed direct source imports from system-spec-kit to system-code-graph, but `classifyQueryIntent()` had no MCP surface to call. The workaround was a local heuristic shim inside `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`, which kept functional behavior but left one duplicated classifier implementation outside code-graph ownership.",
     "created_at": "2026-05-15T09:15:19Z",
-    "last_save_at": "2026-05-24T05:40:25.864Z",
+    "last_save_at": "2026-05-26T16:51:05.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-15T09:20:31Z",
     "source_docs": [

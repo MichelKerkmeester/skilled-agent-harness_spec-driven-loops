@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,7 +43,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
       "scratch/verify-direct.py",
       "scratch/blocker.md",
       "scratch/repro-temp-project-after-patch.txt",
@@ -53,12 +52,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "daemon.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
-        "source": "derived"
-      },
       {
         "name": "verify-direct.py",
         "kind": "file",
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Under Setup A (EmbeddingGemma-300m / sentence-transformers / 768-dim), the cocoindex daemon writes valid embeddings to `target_sqlite.db` (proven via direct sqlite-vec KNN returning relevant results at distance 0.97-1.03 on packet-local queries), but every search call through cocoindex's own MCP/CLI path returns `msgspec.DecodeError: Input data was truncated`. Separately, daemon indexes only 1335 markdown chunks then idles at 0% CPU despite `include_patterns` covering .py/.ts/.js/.go/.rs/.md.",
     "created_at": "2026-05-12T21:35:00Z",
-    "last_save_at": "2026-05-24T05:40:25.962Z",
+    "last_save_at": "2026-05-26T16:51:05.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

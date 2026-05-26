@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/003-remove-memory-rerank-path",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/003-remove-memory-rerank-path",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/003-remove-memory-rerank-path",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/003-remove-memory-rerank-path",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -80,7 +80,7 @@
     ],
     "causal_summary": "Part of the CocoIndex / rerank-sidecar deprecation arc (014). Remove mk-spec-memory local cross-encoder provider + ensure helper integration + SPECKIT_CROSS_ENCODER/RERANKER_LOCAL flags. Memory falls back to positional scoring (default path unaffected; cross-encoder is opt-in).",
     "created_at": "2026-05-25T07:55:14.205Z",
-    "last_save_at": "2026-05-25T07:56:46.116Z",
+    "last_save_at": "2026-05-26T16:51:06.136Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

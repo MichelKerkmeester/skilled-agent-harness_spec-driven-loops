@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Packet 013 recommended Option B: stop warming the resident JavaScript BM25 index by default and use SQLite FTS5 as the lexical BM25 rank provider, but only with guardrails. The risk is not RRF itself; the risk is losing shared synonym expansion, stemming visibility, identifier fixtures, and tests that distinguish implementation detail from retrieval quality.",
     "created_at": "2026-05-19T19:25:52.541Z",
-    "last_save_at": "2026-05-24T05:40:26.024Z",
+    "last_save_at": "2026-05-26T16:51:05.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

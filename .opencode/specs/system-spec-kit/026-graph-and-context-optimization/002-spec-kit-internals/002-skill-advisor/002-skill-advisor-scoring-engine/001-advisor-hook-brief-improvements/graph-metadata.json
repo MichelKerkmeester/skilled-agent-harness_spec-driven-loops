@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The skill-advisor system has already passed through sibling sub-phases `001`, `008`, and `009`, plus targeted parity closure in `007/006-integrity-parity-closure/`. That earlier work established the end-to-end hook surfaces, but packet-02 research still identified a bounded implementation set across OpenCode threshold parity, shared brief rendering, MCP surface symmetry, validator threshold semantics, and durable prompt-safe telemetry.",
     "created_at": "2026-04-24T01:10:00Z",
-    "last_save_at": "2026-05-24T05:40:25.874Z",
+    "last_save_at": "2026-05-26T16:51:05.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

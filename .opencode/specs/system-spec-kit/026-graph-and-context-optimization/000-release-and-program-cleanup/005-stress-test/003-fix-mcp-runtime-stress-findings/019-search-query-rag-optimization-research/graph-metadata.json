@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The v1.0.2 stress rerun showed strong remediation progress, but the next optimization frontier is cross-system search quality rather than single-cell closure. The memory, code graph, skill advisor, CocoIndex, causal graph, and RAG composition paths each expose useful signals, but the system lacks a unified optimization plan for precision, recall, p95 latency, citation trust, degraded readiness, and learned fusion.",
     "created_at": "2026-04-28T20:42:26Z",
-    "last_save_at": "2026-05-24T05:40:25.699Z",
+    "last_save_at": "2026-05-26T16:51:05.417Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,64 +1,209 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/017-physical-move-and-database",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/017-physical-move-and-database",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-017-physical-move-and-database",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-017-physical-move-and-database",
+  "parent_id": null,
   "children_ids": [],
   "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/016-scaffold-skill"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/014-design-and-decision-record"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "003 physical move code graph",
       "code graph database copy",
-      "system-code-graph source move"
+      "system-code-graph source move",
+      "003 physical move plan",
+      "003 physical move tasks",
+      "003 physical move checklist",
+      "code graph extraction 003-physical-move-and-database summary"
     ],
     "key_topics": [
-      "code-graph-source-move",
-      "database-copy",
+      "003",
+      "physical",
+      "move",
+      "code",
+      "graph",
+      "database",
+      "copy",
       "system-code-graph",
-      "speckit-code-graph-db-dir"
+      "source",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "complete",
-    "last_active_child_id": null,
     "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
+      "mcp_server/core/config.ts",
+      "implementation-summary.md",
+      ".opencode/plugins/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
       {
-        "name": "system-code-graph",
+        "name": "config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "SPECKIT_CODE_GRAPH_DB_DIR",
+        "name": "Use Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Physically",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remove Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Safety The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "env",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Phase 003 performs the physical code-graph source move and DB copy into system-code-graph. The source DB remains available as a fallback and consumer rewiring is completed by atomic sibling Phase 004.",
+    "causal_summary": "ADR-001 accepted `.opencode/skills/system-code-graph/` as the new owner of the code-graph source tree and database. Phase 002 created the empty skill scaffold. The live implementation still resides under `.opencode/skills/system-spec-kit/mcp_server/code_graph/`, which prevents the new skill from owning its runtime source.",
     "created_at": "2026-05-14T08:06:12Z",
-    "last_save_at": "2026-05-14T09:13:21Z",
+    "last_save_at": "2026-05-26T16:51:06.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:06:12Z",
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ]
-  },
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/003-physical-move-and-database"
+  }
 }

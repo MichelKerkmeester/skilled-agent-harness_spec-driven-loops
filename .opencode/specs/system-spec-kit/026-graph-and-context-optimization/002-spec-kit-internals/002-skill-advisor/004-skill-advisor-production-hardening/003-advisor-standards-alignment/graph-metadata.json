@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/004-skill-advisor-production-hardening",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening/003-advisor-standards-alignment",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -178,7 +178,7 @@
     ],
     "causal_summary": "Packet 008 audit surfaced one standards gap and three plugin alignment items. This packet addresses both in one focused pass. No behavior change; documentation + code-cosmetic only.",
     "created_at": "2026-04-23T10:30:00.000Z",
-    "last_save_at": "2026-05-24T05:40:25.893Z",
+    "last_save_at": "2026-05-26T16:51:05.620Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

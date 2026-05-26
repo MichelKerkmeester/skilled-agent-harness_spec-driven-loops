@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,71 +11,158 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
+      "remove llm reranking",
+      "keep mmr",
+      "cross-encoder removal",
+      "reranker sidecar removal",
+      "confidence reranker weight",
+      "implementation plan",
+      "reranker cleanup",
+      "stage 3 mmr",
       "tasks",
-      "tasks core",
-      "verification",
-      "checklist"
+      "verification checklist",
+      "implementation summary",
+      "packet 017"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
-      "verification",
-      "checklist",
-      "broken"
+      "remove",
+      "llm",
+      "reranking",
+      "keep",
+      "mmr",
+      "cross-encoder",
+      "removal",
+      "reranker",
+      "sidecar",
+      "confidence",
+      "weight",
+      "implementation"
     ],
-    "importance_tier": "normal",
-    "status": "in_progress",
+    "importance_tier": "high",
+    "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "references/memory/embedder_pluggability.md",
+      "scripts/tests/memory-pipeline-regressions.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/README.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/10-fast-delegated-search-memory-quick-search.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/12-stage-3-effectivescore-fallback-chain.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/01-4-stage-pipeline-refactor.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/14-result-explainability.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/19-result-confidence.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "embedder_pluggability.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "references/memory/embedder_pluggability.md",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "memory-pipeline-regressions.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/memory-pipeline-regressions.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "confidence-scoring.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "result-explainability.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/result-explainability.ts",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "decision-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/decision-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "environment_variables.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "02-semantic-and-lexical-search-memorysearch.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md",
+        "source": "derived"
+      },
+      {
+        "name": "04-hybrid-search-pipeline.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md",
+        "source": "derived"
+      },
+      {
+        "name": "05-4-stage-pipeline-architecture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "10-fast-delegated-search-memory-quick-search.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/10-fast-delegated-search-memory-quick-search.md",
+        "source": "derived"
+      },
+      {
+        "name": "12-stage-3-effectivescore-fallback-chain.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/12-stage-3-effectivescore-fallback-chain.md",
+        "source": "derived"
+      },
+      {
+        "name": "01-4-stage-pipeline-refactor.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/01-4-stage-pipeline-refactor.md",
+        "source": "derived"
+      },
+      {
+        "name": "14-result-explainability.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/14-result-explainability.md",
+        "source": "derived"
+      },
+      {
+        "name": "19-result-confidence.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/19-result-confidence.md",
         "source": "derived"
       },
       {
@@ -85,19 +172,25 @@
         "source": "derived"
       },
       {
-        "name": "Initialized Level",
+        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Problem Statement Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Purpose Permanently",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Directive",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,93 +202,15 @@
         "source": "derived"
       },
       {
-        "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Packet 014/003 already removed the core inactive LLM-model reranking path: cross-encoder modules, local GGUF reranker sidecar coupling, the conditional rerank gate, Stage 3 Step 1 cross-encoder reranking, and related tests. Residual confidence, explainability, audit, documentation, and test references still described or exercised dead reranker plumbing even though the live pipeline no longer assigned `rerankerScore`.",
     "created_at": "2026-05-25T17:30:45Z",
-    "last_save_at": "2026-05-25T19:29:50.960Z",
+    "last_save_at": "2026-05-26T16:51:06.150Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,7 +218,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ]
   }
 }

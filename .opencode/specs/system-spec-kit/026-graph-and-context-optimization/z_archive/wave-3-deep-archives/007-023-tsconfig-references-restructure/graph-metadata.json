@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-023-tsconfig-references-restructure",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-023-tsconfig-references-restructure",
+  "parent_id": null,
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -28,23 +28,22 @@
       "009",
       "tsconfig",
       "references",
+      "restructure",
       "system",
       "code",
       "graph",
       "shared",
       "dist",
       "emit",
-      "unicode",
-      "normalization",
-      "launcher"
+      "gap",
+      "unicode"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-code-graph/tsconfig.json",
-      ".opencode/skills/system-code-graph/dist/system-spec-kit/shared/unicode-normalization.js",
-      ".opencode/bin/system-code-graph-launcher.cjs",
       "spec.md",
+      ".opencode/skills/system-spec-kit/tsconfig.json",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
@@ -54,18 +53,6 @@
         "name": "tsconfig.json",
         "kind": "config",
         "path": ".opencode/skills/system-code-graph/tsconfig.json",
-        "source": "derived"
-      },
-      {
-        "name": "unicode-normalization.js",
-        "kind": "file",
-        "path": ".opencode/skills/system-code-graph/dist/system-spec-kit/shared/unicode-normalization.js",
-        "source": "derived"
-      },
-      {
-        "name": "system-code-graph-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/system-code-graph-launcher.cjs",
         "source": "derived"
       },
       {
@@ -91,12 +78,126 @@
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "References Restructure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Option",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Build Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Packet 014 kept both an include for system-spec-kit shared TypeScript sources and a project reference to that shared project in the extracted system-code-graph tsconfig. TypeScript typechecked shared files but deferred their emit to the referenced project, leaving dist/system-spec-kit/shared/unicode-normalization.js absent from fresh extracted builds.",
+    "causal_summary": "Packet 014 extracted code-graph ownership into `.opencode/skills/system-code-graph/`, but its TypeScript config kept both an `include` for `../system-spec-kit/shared/**/*.ts` and a project `references` entry for `../system-spec-kit/shared`. With project references active, TypeScript treated the shared project as owning its own emitted output, so a clean system-code-graph build typechecked those files without placing `shared/*.js` under `dist/system-spec-kit/shared/`.",
     "created_at": "2026-05-14T16:26:51Z",
-    "last_save_at": "2026-05-14T16:26:51Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-26T16:51:06.345Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -104,7 +205,5 @@
       "tasks.md",
       "implementation-summary.md"
     ]
-  },
-  "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/009-tsconfig-references-restructure"
+  }
 }

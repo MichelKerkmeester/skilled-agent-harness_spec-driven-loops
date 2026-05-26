@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -45,7 +45,6 @@
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md",
-      ".opencode/skills/mcp-coco-index/references/tool_reference.md",
       "hooks/gemini/README.md",
       "tests/context-server.vitest.ts",
       "implementation-summary.md",
@@ -66,12 +65,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "tool_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-coco-index/references/tool_reference.md",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Phase 012 deep research identified 12 remaining P1 findings after the P0 remediation packets. These findings affect read-path operator diagnostics, guarded freshness recovery, verify scope evidence, hook documentation parity, advisor staleness repair, CocoIndex seed interop, and scope fingerprints for scan glob arguments.",
     "created_at": "2026-05-18T08:15:53.451Z",
-    "last_save_at": "2026-05-24T05:40:25.818Z",
+    "last_save_at": "2026-05-26T16:51:06.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

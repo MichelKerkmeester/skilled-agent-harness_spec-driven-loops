@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,8 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
-      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_settings_patterns.py",
       "research/upstream-sweep.md",
       "research/delta-classification.md",
       "research/dimensions-knob-removal-impact.md",
@@ -55,18 +53,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "pyproject.toml",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
-        "source": "derived"
-      },
-      {
-        "name": "test_settings_patterns.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_settings_patterns.py",
-        "source": "derived"
-      },
       {
         "name": "upstream-sweep.md",
         "kind": "doc",
@@ -198,11 +184,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The local `cocoindex-code` soft fork reports `0.2.3+spec-kit-fork.0.2.0` while upstream `cocoindex-code` has reached `v0.2.33`. The drift includes upstream embedder parameter APIs, a deliberate dimensions-knob removal, Svelte/Vue language coverage, daemon/client refactors, and dependency movement from prerelease CocoIndex SDK builds to stable `1.0.x`.",
     "created_at": "2026-05-19T20:22:26Z",
-    "last_save_at": "2026-05-24T05:40:26.078Z",
+    "last_save_at": "2026-05-26T16:51:05.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

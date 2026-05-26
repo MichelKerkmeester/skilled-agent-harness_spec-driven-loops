@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/002-system-code-graph-readmes-update",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/003-code-folder-readmes-poc",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/004-doc-drift-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/005-cross-skill-doc-polish",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/006-reference-template-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph docs and readmes",
+      "system-code-graph readmes",
+      "code graph doc drift"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "docs",
+      "readmes",
+      "system-code-graph",
+      "doc",
+      "drift",
+      "code-graph",
+      "documentation",
+      "track",
+      "doctor",
+      "diagnostic"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Docs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code-graph documentation track: doctor diagnostic command phase-a, system-code-graph READMEs, code-folder READMEs, doc-drift alignment, cross-skill doc polish, and reference-template alignment.",
+    "created_at": "2026-05-26T16:51:06.201Z",
+    "last_save_at": "2026-05-26T16:51:06.201Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}

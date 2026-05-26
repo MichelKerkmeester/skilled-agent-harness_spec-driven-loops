@@ -1,30 +1,217 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/015-remediate-cross-surface-residue",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/015-remediate-cross-surface-residue",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/015-remediate-cross-surface-residue",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/015-remediate-cross-surface-residue",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/013-post-deprecation-deep-review"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/014-remediate-codegraph-naming"
-    ]
+    "related_to": []
   },
-    "derived": {
-    "trigger_phrases": ["remaining coco residue remediation","cross-surface ccc cleanup","process-harness coco daemon kill removal"],
-    "key_topics": ["cross-surface-residue","gemini-routing-p0","memory-manage-ccc","rm8-process-harness","013-followup","cocoindex-deprecation"],
-    "importance_tier": "important",
+  "derived": {
+    "trigger_phrases": [
+      "remaining coco residue remediation",
+      "cross-surface ccc cleanup",
+      "013 deep-review residue followup",
+      "process-harness coco daemon kill removal",
+      "cross-surface residue plan",
+      "ccc cleanup plan",
+      "cross-surface residue tasks",
+      "cross-surface residue checklist",
+      "cross-surface residue summary",
+      "013 residue followup summary"
+    ],
+    "key_topics": [
+      "remaining",
+      "coco",
+      "residue",
+      "remediation",
+      "cross-surface",
+      "ccc",
+      "cleanup",
+      "013",
+      "deep-review",
+      "followup",
+      "process-harness",
+      "daemon"
+    ],
+    "importance_tier": "normal",
     "status": "complete",
-    "key_files": ["spec.md","implementation-summary.md",".gemini/GEMINI.md",".opencode/commands/memory/manage.md"],
-    "entities": [],
-    "causal_summary": "Closed the 013 deep-review's remaining non-code-graph coco/ccc/rerank residue across 6 surfaces + a 7th found mid-work. Fixed: GEMINI.md coco routing (P0) -> canonical HYBRID; /memory:manage ccc subcommand + CCC MODE removed (was unwired) + sections renumbered; advisor scripts/skill-graph.json confirmed clean + gitignored database/ copy synced; .gitignore .cocoindex_code/ removed; sidecar-env-allowlist RERANK_ prefix removed (file kept, live embedder allowlist); 250-session-start .venv/bin/ccc -> code-graph readiness; process-memory-harness.ts RM-8 daemon-kill rules for cocoindex/rerank + ccc-daemon class + deleted-skill paths + fixtures removed (operator-approved, live-daemon rules kept). Gates: 7/7 per-target grep 0; tsc 0 errors; process-memory-harness + process-sweep vitests 20/20. 8 tracked files (gitignored database/skill-graph.json synced locally).",
+    "key_files": [
+      ".gemini/GEMINI.md",
+      ".claude/CLAUDE.md",
+      ".opencode/commands/memory/manage.md",
+      ".opencode/bin/lib/sidecar-env-allowlist.cjs",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/250-session-start-startup.md",
+      ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/process-sweep.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "GEMINI.md",
+        "kind": "doc",
+        "path": ".gemini/GEMINI.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": ".claude/CLAUDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "manage.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/manage.md",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-env-allowlist.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/sidecar-env-allowlist.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "250-session-start-startup.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/250-session-start-startup.md",
+        "source": "derived"
+      },
+      {
+        "name": "process-memory-harness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "process-memory-harness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "process-sweep.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/process-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Cross",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 014 CocoIndex + rerank-sidecar deprecation deleted the code, and `014-remediate-codegraph-naming` cleaned the code-graph docs, but six non-code-graph surfaces still carried residue that the 013 deep-review confirmed: `.gemini/GEMINI.md` still routed Gemini to the deleted `mcp__cocoindex_code__search` (**P0** — the only routing doc that did); `/memory:manage` still declared a `ccc <status|reindex|feedback>` subcommand + a CCC MODE section calling removed `ccc_*` tools; the advisor's runtime `database/skill-graph.json` carried stale `system-rerank-sidecar`/`8765` refs; `.gitignore` kept `.cocoindex_code/`; the embedder sidecar's env allowlist kept a dead `RERANK_` prefix; and the `250-session-start` playbook asserted a Code Graph status based on a `.venv/bin/ccc` binary the hook no longer checks. A seventh surface was found during this work: the RM-8 process-classification harness still carried cocoindex-daemon / cocoindex-mcp / rerank-sidecar kill rules + a `ccc-daemon` classification for daemons that can no longer spawn (skills deleted).",
     "created_at": "2026-05-25T15:51:38Z",
-    "last_save_at": "2026-05-25T16:12:00Z",
+    "last_save_at": "2026-05-26T16:51:06.146Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
   }
 }

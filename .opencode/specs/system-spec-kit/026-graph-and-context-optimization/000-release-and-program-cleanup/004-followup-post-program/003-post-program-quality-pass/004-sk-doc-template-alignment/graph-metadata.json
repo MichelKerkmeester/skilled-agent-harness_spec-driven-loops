@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -48,7 +48,6 @@
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
       ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
       ".opencode/skills/sk-doc/SKILL.md",
-      "logs/iter-001.log",
       "implementation-summary.md",
       "resource-map.md"
     ],
@@ -105,12 +104,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "iter-001.log",
-        "kind": "file",
-        "path": "logs/iter-001.log",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 031 through 036 changed operator documentation, runtime references, matrix-runner README files, matrix prompt templates and packet-local spec docs. Those documents needed a sk-doc template pass so README anchors, reference frontmatter, section anchors and DQI-sensitive structure stayed aligned before later quality packets built on them.",
     "created_at": "2026-04-29T15:41:50.000Z",
-    "last_save_at": "2026-05-24T05:40:25.663Z",
+    "last_save_at": "2026-05-26T16:51:05.367Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 015/004 seeded sweep proved that the cosine lane cannot flip routing decisions on the current 24-prompt corpus regardless of weight (V0–V6, including V6-cosine-dominant at semantic=0.30). One plausible explanation: the per-skill embeddings (computed from SKILL.md descriptions) are not discriminating enough. If two skills carry generic, overlapping descriptions, their embeddings will be near each other in vector space and cosine similarity will not pick the correct one. Same problem exists for the lexical and derived lanes when `trigger_phrases` and `key_topics` are too generic or duplicative.",
     "created_at": "2026-05-14T00:30:00Z",
-    "last_save_at": "2026-05-24T05:40:25.840Z",
+    "last_save_at": "2026-05-26T16:51:05.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:30:00Z",
     "source_docs": [

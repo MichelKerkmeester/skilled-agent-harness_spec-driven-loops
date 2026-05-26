@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -39,77 +39,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-rerank-sidecar/SKILL.md",
-      ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py",
-      ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
-      ".opencode/skills/system-rerank-sidecar/pyproject.toml",
-      ".opencode/skills/system-rerank-sidecar/.env.example",
-      ".opencode/skills/system-rerank-sidecar/README.md",
-      ".opencode/skills/system-rerank-sidecar/scripts/install.sh",
-      ".opencode/skills/system-rerank-sidecar/tests/test_rerank_sidecar.py",
-      ".opencode/skills/system-rerank-sidecar/graph-metadata.json",
       "spec.md",
       "plan.md",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py",
-      ".opencode/skills/mcp-coco-index/scripts/install.sh",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-rerank-sidecar/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "rerank_sidecar.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py",
-        "source": "derived"
-      },
-      {
-        "name": "start.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
-        "source": "derived"
-      },
-      {
-        "name": "pyproject.toml",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/pyproject.toml",
-        "source": "derived"
-      },
-      {
-        "name": ".env.example",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/.env.example",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-rerank-sidecar/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "install.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/install.sh",
-        "source": "derived"
-      },
-      {
-        "name": "test_rerank_sidecar.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/tests/test_rerank_sidecar.py",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-rerank-sidecar/graph-metadata.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -120,12 +55,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "reranker.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/rerankers/reranker.py",
         "source": "derived"
       },
       {
@@ -199,11 +128,71 @@
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "RERANK_SIDECAR_PORT",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 002 of the 008 rerank-sidecar arc. Build the shared HTTP cross-encoder service that lives in its own skill, with neither MCP owning it.",
     "created_at": "2026-05-23T11:55:15.604Z",
-    "last_save_at": "2026-05-24T05:40:26.118Z",
+    "last_save_at": "2026-05-26T16:51:05.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,30 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/001-code-graph-runtime-upgrades",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/002-fix-stale-highlights-and-scan-scope",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/003-resolver-and-hook-improvements",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-research-and-fix-code-graph-advisor-refinement",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-doctor-diagnostic-command-phase-a",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/007-code-graph-backend-resilience-implementation",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/008-end-user-scope-default-and-opt-in",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/010-broader-excludes-and-granular-skills",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/012-doctor-apply-mode-implementation",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/014-extraction-design-and-decision-record",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/015-standalone-mcp-topology-pivot",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/016-system-code-graph-readmes-update",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/017-code-folder-readmes-poc",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/018-three-way-isolation-finalize",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-doc-drift-alignment",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/021-cross-skill-doc-polish"
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/001-mcp-shared-dependency-startup-fix",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/003-code-graph-workspace-root-fix",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -35,31 +23,26 @@
   },
   "derived": {
     "trigger_phrases": [
-      "003-code-graph-package",
-      "code graph upgrades and self-contained package migration",
-      "001-code-graph-runtime-upgrades",
-      "002-code-graph-self-contained-package",
-      "002-fix-stale-highlights-and-scan-scope",
-      "005-doctor-diagnostic-command-phase-a",
-      "006-code-graph-resilience-research",
-      "/doctor:code-graph",
+      "026 code graph",
+      "code graph structural indexing",
+      "coco-index decoupling",
       "resource map",
       "005-code-graph resource map",
       "path catalog 005-code-graph"
     ],
     "key_topics": [
-      "003-code-graph-package",
+      "026",
       "code",
       "graph",
-      "upgrades",
-      "self-contained",
-      "package",
-      "migration",
-      "001-code-graph-runtime-upgrades",
-      "002-code-graph-self-contained-package",
-      "002-fix-stale-highlights-and-scan-scope",
-      "005-doctor-diagnostic-command-phase-a",
-      "006-code-graph-resilience-research"
+      "structural",
+      "indexing",
+      "coco-index",
+      "decoupling",
+      "resource",
+      "map",
+      "005-code-graph",
+      "path",
+      "catalog"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -87,7 +70,19 @@
         "source": "derived"
       },
       {
-        "name": "Code Graph Package",
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -99,19 +94,7 @@
         "source": "derived"
       },
       {
-        "name": "Parent Packet",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement This",
+        "name": "Problem Statement Build",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -153,9 +136,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This parent packet coordinates the phased work under `Code Graph Package` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level. The current child surface includes 001-code-graph-runtime-upgrades, 002-code-graph-self-contained-package, 002-fix-stale-highlights-and-scan-scope, and other child phases.",
+    "causal_summary": "Build and harden the code-graph structural-indexing surface: the standalone package, CocoIndex decoupling, startup fixes, and the code-graph runtime, resilience, extraction, and documentation sub-themes. Code graph is a structural surface distinct from the memory store and cross-links to it.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.792Z",
+    "last_save_at": "2026-05-26T16:51:06.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

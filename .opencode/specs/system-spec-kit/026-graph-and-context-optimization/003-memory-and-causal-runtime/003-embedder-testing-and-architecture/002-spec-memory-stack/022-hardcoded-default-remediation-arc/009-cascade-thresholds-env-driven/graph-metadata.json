@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/009-cascade-thresholds-env-driven",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/009-cascade-thresholds-env-driven",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/009-cascade-thresholds-env-driven",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/009-cascade-thresholds-env-driven",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Council estimated 6 thresholds based on the original plan; actual investigation found 3 (the plan referenced \"wait_ms\" / \"retry_count\" / \"hf_timeout\" that don't exist in current auto-select.ts).",
     "created_at": "2026-05-23T17:55:00.000000Z",
-    "last_save_at": "2026-05-24T05:40:26.041Z",
+    "last_save_at": "2026-05-26T16:51:05.837Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
-    "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment"
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -56,12 +56,12 @@
       ".opencode/skills/system-code-graph/mcp_server/README.md",
       ".opencode/skills/system-code-graph/mcp_server/handlers/README.md",
       ".opencode/skills/system-code-graph/mcp_server/lib/README.md",
-      ".opencode/skills/system-code-graph/references/code-graph-readiness-check.md",
-      ".opencode/skills/system-code-graph/references/database-path-policy.md",
-      ".opencode/skills/system-code-graph/references/ownership-boundary.md",
       ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       ".opencode/skills/sk-doc/assets/readme/readme_template.md",
-      ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml"
+      ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+      ".opencode/skills/system-code-graph/changelog/v1.0.0.0.md",
+      ".opencode/skills/system-code-graph/changelog/v1.0.2.0.md",
+      ".opencode/skills/system-code-graph/changelog/v1.0.3.0.md"
     ],
     "entities": [
       {
@@ -125,24 +125,6 @@
         "source": "derived"
       },
       {
-        "name": "code-graph-readiness-check.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/references/code-graph-readiness-check.md",
-        "source": "derived"
-      },
-      {
-        "name": "database-path-policy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/references/database-path-policy.md",
-        "source": "derived"
-      },
-      {
-        "name": "ownership-boundary.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/references/ownership-boundary.md",
-        "source": "derived"
-      },
-      {
         "name": "hvr_rules.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
@@ -158,6 +140,24 @@
         "name": "deep_start-research-loop_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.2.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/changelog/v1.0.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.3.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/changelog/v1.0.3.0.md",
         "source": "derived"
       },
       {
@@ -211,7 +211,7 @@
     ],
     "causal_summary": "The `system-code-graph` skill ships a runtime that works but a doc surface that under-sells it. Three gaps remain after packet 028's tool-count and topology reconciliation: `INSTALL_GUIDE.md` retained three drift lines (`:49` `1.0.0.0`, `:56` `10 tools`, `:195` `10 tools`); the README opens with implementation prose instead of a problem hook that mirrors the Public root README and system-spec-kit README; and no exhaustive 1:1 pass against sk-doc's `validate_document.py --type <type>` has been run across every authored doc. Operators reading the skill cold get a technical map without a reason to care, and per-doc-type validation drift can hide until the next packet rediscovers it.",
     "created_at": "2026-05-16T09:37:48Z",
-    "last_save_at": "2026-05-24T05:40:25.831Z",
+    "last_save_at": "2026-05-26T16:51:06.235Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

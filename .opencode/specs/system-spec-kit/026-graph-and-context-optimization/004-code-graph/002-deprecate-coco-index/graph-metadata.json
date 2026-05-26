@@ -1,18 +1,23 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/001-touchpoint-research",
-    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/002-decouple-code-graph",
-    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/003-remove-memory-rerank-path",
-    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/004-remove-rerank-sidecar-skill",
-    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/005-remove-coco-index-skill",
-    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/006-runtime-configs-4runtime-mirror",
-    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/007-docs-readme-search-routing",
-    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/008-runtime-artifacts-cleanup",
-    "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/017-remove-llm-reranking-keep-mmr"
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/001-touchpoint-research",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/002-decouple-code-graph",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/003-remove-memory-rerank-path",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/004-remove-rerank-sidecar-skill",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/005-remove-coco-index-skill",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/006-runtime-configs-4runtime-mirror",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/007-docs-readme-search-routing",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/008-runtime-artifacts-cleanup",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/010-remove-memory-coco-integration",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/015-remediate-cross-surface-residue",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr"
   ],
   "manual": {
     "depends_on": [],
@@ -88,12 +93,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -107,6 +106,12 @@
       },
       {
         "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -144,14 +149,12 @@
     ],
     "causal_summary": "The repo carries a semantic code-search stack that is being retired: the `mcp-coco-index` skill (a soft-fork of cocoindex-code + the `ccc` CLI + the `cocoindex_code` MCP server) and the `system-rerank-sidecar` cross-encoder HTTP service. Two couplings make removal non-trivial: `system-code-graph` (structural indexing) is bound to CocoIndex through the `ccc_*` bridge tools and the semantic/hybrid query-intent routing, and `system-rerank-sidecar` is consumed by **both** CocoIndex and `mk-spec-memory` (opt-in cross-encoder rerank). Removing these cleanly requires mapping every live touchpoint first.",
     "created_at": "2026-05-25T06:48:03.559Z",
-    "last_save_at": "2026-05-25T19:29:52.335Z",
+    "last_save_at": "2026-05-26T16:51:06.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
-    ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/017-remove-llm-reranking-keep-mmr",
-    "last_active_at": "2026-05-25T19:29:52.335Z"
+    ]
   }
 }

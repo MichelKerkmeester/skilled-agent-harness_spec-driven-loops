@@ -1,30 +1,208 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/016-remediate-residue-tail",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/016-remediate-residue-tail",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/015-remediate-cross-surface-residue"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/014-remediate-codegraph-naming"
-    ]
+    "related_to": []
   },
-    "derived": {
-    "trigger_phrases": ["deprecation residue completeness verdict","coco ccc rerank cleanup closed","exhaustive sweep methodology bug"],
-    "key_topics": ["residue-tail","completeness-verdict","kept-exceptions","cross-encoder-027-caveat","grep-false-negative-bug","cocoindex-deprecation"],
-    "importance_tier": "important",
+  "derived": {
+    "trigger_phrases": [
+      "deprecation residue completeness verdict",
+      "coco ccc rerank residue tail closed",
+      "exhaustive residue sweep methodology",
+      "residue tail plan",
+      "completeness verdict plan",
+      "residue tail tasks",
+      "coco ccc rerank cleanup closed",
+      "exhaustive sweep methodology bug"
+    ],
+    "key_topics": [
+      "deprecation",
+      "residue",
+      "completeness",
+      "verdict",
+      "coco",
+      "ccc",
+      "rerank",
+      "tail",
+      "closed",
+      "exhaustive",
+      "sweep",
+      "methodology"
+    ],
+    "importance_tier": "normal",
     "status": "complete",
-    "key_files": ["spec.md","implementation-summary.md"],
-    "entities": [],
-    "causal_summary": "Ended the wave-by-wave residue hunt with one exhaustive verify-first sweep. Diagnosed the recurring false-negative cause (unquoted-shell-variable -g exclude globs mangled by zsh under 2>/dev/null); corrected via inline-quoted excludes + per-token greps + --hidden. Verdict: the 014 CocoIndex/rerank-sidecar/ccc deprecation residue is closed except a 2-item live-doc tail, now fixed (deep-loop README deleted sidecar_ledger.py line removed; playbook 'CCC stubs/trio' -> code_graph status/scan/verify). Filesystem-verified every referenced artifact before fix-vs-keep. KEPT (with reasons): the LIVE in-process rerank/MMR pipeline (cross-encoder.ts/stage3 wired - NOT residue), accurate-history banners, frozen benchmarks/observability, generated scan artifacts, cli-* pkill exception, legit 'structural search' prose. DEFERRED: sidecar-client.ts:170 cross-encoder JSDoc (027-xce evolving subsystem, operator decision). Open: dead-code audit of the in-process cross-encoder is a separate scope.",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/README.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      "scripts/.folder-list.txt",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": ".folder-list.txt",
+        "kind": "file",
+        "path": "scripts/.folder-list.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Repo",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "corrected",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After packets `014-remediate-codegraph-naming` + `015-remediate-cross-surface-residue`, an exhaustive verify-first sweep was run to prove the 014 deprecation residue was fully closed (not just \"a grep returned 0\"). The sweep first exposed a recurring methodology bug — `-g '!...'` exclude globs built in an unquoted shell variable get mangled by zsh, silently breaking rg under `2>/dev/null` and producing false-negative \"0 residue\" results. With inline-quoted excludes + per-token greps, the true picture emerged: the deprecation residue is essentially closed, with only a 2-item live-doc tail referencing deleted artifacts.",
     "created_at": "2026-05-25T16:46:14Z",
-    "last_save_at": "2026-05-25T16:52:00Z",
+    "last_save_at": "2026-05-26T16:51:06.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
   }
 }

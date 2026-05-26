@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,10 +43,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_fts_index.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -56,30 +52,6 @@
       "evidence/phase2-comparison-015-vs-016-delta.md"
     ],
     "entities": [
-      {
-        "name": "test_query_expansion.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_query_expansion.py",
-        "source": "derived"
-      },
-      {
-        "name": "test_config.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py",
-        "source": "derived"
-      },
-      {
-        "name": "test_fts_index.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_fts_index.py",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/README.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -199,11 +171,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bench Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Docs And Validation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "User queries are natural language (\"filesystem walker\", \"memory save\", \"rerank adapter\"). Code corpora store identifiers in conventions:",
     "created_at": "2026-05-19T16:20:00.000Z",
-    "last_save_at": "2026-05-24T05:40:26.070Z",
+    "last_save_at": "2026-05-26T16:51:05.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

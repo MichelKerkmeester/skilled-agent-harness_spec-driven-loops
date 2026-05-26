@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -54,8 +54,7 @@
       ".claude/commands/doctor/mcp.md",
       ".opencode/commands/doctor/update.md",
       "decision-record.md",
-      ".opencode/commands/doctor/assets/doctor_causal-graph.yaml",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/spec.md"
+      ".opencode/commands/doctor/assets/doctor_causal-graph.yaml"
     ],
     "entities": [
       {
@@ -205,7 +204,7 @@
     ],
     "causal_summary": "The 10 `/doctor:*` markdown commands in `.opencode/commands/doctor/` share ~50 lines of duplicated boilerplate per file. The 10 YAML workflow assets are self-sufficient and own all execution semantics; the markdown's only real job is to parse `$ARGUMENTS`, resolve setup variables, and hand off to the right YAML. This is a routing problem that today is solved by 10 near-identical .md files instead of one router plus a manifest. Maintenance cost compounds across 4 runtime mirrors (40 total .md files) and a 23-scenario manual playbook that hard-codes the per-command surface.",
     "created_at": "2026-05-11T16:00:00.000Z",
-    "last_save_at": "2026-05-24T05:40:25.947Z",
+    "last_save_at": "2026-05-26T16:51:06.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

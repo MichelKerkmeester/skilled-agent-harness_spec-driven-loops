@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/049-substrate-stress-coverage",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,7 +48,6 @@
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/package.json",
       ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner/implementation-summary.md",
       "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
       "mcp_server/stress_test/substrate/README.md",
       "stress_test/substrate/README.md",
@@ -208,7 +207,7 @@
     ],
     "causal_summary": "The canonical Vitest stress suite in `mcp_server/stress_test/` is provider-agnostic by design. It mocks `executePipeline` and uses synthetic candidates, so substrate paths such as llama-cpp embedding generation, V-rule save behavior, CocoIndex two-client coordination, query-expansion bounds, and token-budget edges had no canonical stress gate. The only substrate-level evidence lived in `_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs` from packet 045.",
     "created_at": "2026-05-14T21:40:55.576Z",
-    "last_save_at": "2026-05-24T05:40:26.004Z",
+    "last_save_at": "2026-05-26T16:51:05.779Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,28 +1,95 @@
 {
-  "spec_id": "004",
-  "folder_slug": "rerank-sidecar-accumulation-investigation-and-reaper-design",
-  "parent_chain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
-    "009-memory-leak-remediation"
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design/001-investigate-and-design-reaper-architecture"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-deep-research-drift-and-simplification",
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/003-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
-    ],
+    "depends_on": [],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "status": "draft",
+    "trigger_phrases": [
+      "rerank sidecar accumulation",
+      "rerank sidecar reaper",
+      "sidecar idle timeout",
+      "owner liveness gc"
+    ],
+    "key_topics": [
+      "rerank",
+      "sidecar",
+      "accumulation",
+      "reaper",
+      "idle",
+      "timeout",
+      "owner",
+      "liveness",
+      "rerank-sidecar",
+      "lifecycle",
+      "leaks",
+      "workers"
+    ],
     "importance_tier": "important",
-    "is_phase_parent": true,
-    "last_active_child_id": "001-investigate-and-design-reaper-architecture",
-    "last_active_at": "2026-05-23T09:30:00Z",
-    "child_phase_count": 1,
-    "completed_child_phase_count": 0,
-    "parent_id": "009-memory-leak-remediation"
-  },
-  "lastUpdated": "2026-05-23T09:30:00Z"
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sidecar Accumulation Investigation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reaper Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The rerank-sidecar lifecycle leaks workers. Empirical evidence: on 2026-05-23 a single machine accumulated 25 stale `rerank_sidecar` uvicorn workers consuming ~16 GB RAM. Memory `project_ccc_search_orphan_root_cause` already named the architectural cause — `start_new_session=True` in `client.py:325` is an INTENTIONAL daemon detach for warm-model reuse, but no reaper exists to clean up sidecars whose owner-set has gone empty (terminal closed, ccc dispatch died, machine slept, etc.). Phase 014 (per the memory) shipped lease/cleanup; the orphan reaper is the remaining gap. Today the only cleanup is operator-driven SIGKILL — fragile and reactive.",
+    "created_at": "2026-05-26T16:49:55.586Z",
+    "last_save_at": "2026-05-26T16:51:06.070Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
 }

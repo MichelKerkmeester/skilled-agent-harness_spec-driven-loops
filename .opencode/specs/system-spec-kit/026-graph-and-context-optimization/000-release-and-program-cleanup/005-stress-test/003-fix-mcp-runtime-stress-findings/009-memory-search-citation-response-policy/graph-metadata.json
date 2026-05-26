@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Add hard `responsePolicy` and `citationPolicy` fields to `memory_search` responses so weak retrieval becomes a BINDING claim-authority refusal contract, not advisory text. When `requestQuality.label != \"good\"` AND `recovery.status` indicates degraded, the response carries `responsePolicy.noCanonicalPathClaims:true` and a `safeResponse` string that the model MUST emit instead of inventing details. Also extend `RecoveryAction` vocabulary to include `ask_disambiguation`, `refuse_without_evidence`, and `broaden_or_ask`.",
     "created_at": "2026-04-27T07:48:04.973Z",
-    "last_save_at": "2026-05-24T05:40:25.685Z",
+    "last_save_at": "2026-05-26T16:51:05.398Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

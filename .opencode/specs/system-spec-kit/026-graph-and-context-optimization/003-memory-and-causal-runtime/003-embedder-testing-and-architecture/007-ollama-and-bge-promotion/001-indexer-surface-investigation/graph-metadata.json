@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,15 +46,13 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "lib/utils/index-scope.ts",
-      ".cocoindex_code/settings.yml",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation/research.md"
+      "lib/utils/index-scope.ts"
     ],
     "entities": [
       {
         "name": "research.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation/research.md",
+        "path": "research.md",
         "source": "derived"
       },
       {
@@ -85,12 +83,6 @@
         "name": "index-scope.ts",
         "kind": "code",
         "path": "lib/utils/index-scope.ts",
-        "source": "derived"
-      },
-      {
-        "name": "settings.yml",
-        "kind": "config",
-        "path": ".cocoindex_code/settings.yml",
         "source": "derived"
       },
       {
@@ -194,11 +186,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Embedder swaps in CocoIndex don't directly affect AI council / deep-research / deep-review unless those systems retrieve from CocoIndex. We need to know **which system retrieves from which indexer** before any default-promotion decision.",
     "created_at": "2026-05-18T16:52:17.344Z",
-    "last_save_at": "2026-05-24T05:40:26.112Z",
+    "last_save_at": "2026-05-26T16:51:05.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

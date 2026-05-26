@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -53,7 +53,6 @@
       "mcp_server/handlers/memory-context.ts",
       "mcp_server/handlers/memory-search.ts",
       "mcp_server/lib/search/folder-discovery.ts",
-      "mcp_server/lib/cocoindex/daemon-probe.ts",
       "mcp_server/handlers/memory-crud-health.ts",
       "mcp_server/lib/search/query-router.ts",
       "mcp_server/lib/query/query-plan.ts",
@@ -63,10 +62,11 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/cocoindex/daemon-probe.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier-corpus.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-stats-output.vitest.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-stats-output.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-threshold.vitest.ts",
+      ".opencode/commands/memory/search.md"
     ],
     "entities": [
       {
@@ -97,12 +97,6 @@
         "name": "folder-discovery.ts",
         "kind": "code",
         "path": "mcp_server/lib/search/folder-discovery.ts",
-        "source": "derived"
-      },
-      {
-        "name": "daemon-probe.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cocoindex/daemon-probe.ts",
         "source": "derived"
       },
       {
@@ -139,6 +133,18 @@
         "name": "causal-stats-output.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-stats-output.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery-threshold.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-threshold.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -206,17 +212,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Scoped",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 005 audited `/memory:search` against the indexed-continuity runtime and catalogued 17 defects spanning retrieval, output rendering, and the causal-graph subcommand. Cluster 1 (truncation), Cluster 2 (intent classifier), and Cluster 3 (rendering vocabulary) shipped P0 fixes in-phase. The remaining 13 P1/P2 defects across Clusters 4-7 were deferred to a follow-up packet, alongside a deferred CocoIndex daemon health probe (REQ-012, contingent on the daemon being runnable) and the deferral of formalizing the 20-paraphrase stability corpus (REQ-016, currently informal at `intent-classifier.vitest.ts:T060`). The result today: memory search works, but operators see noisy causal-stats output, leaked stale state across calls, weak-signal folder bindings, missing 3-tier FTS fallback on quality drops, and silent CocoIndex daemon failures.",
     "created_at": "2026-05-08T21:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.768Z",
+    "last_save_at": "2026-05-26T16:51:05.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

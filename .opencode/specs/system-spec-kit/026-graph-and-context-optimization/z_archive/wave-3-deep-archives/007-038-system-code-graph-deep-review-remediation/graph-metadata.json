@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-038-system-code-graph-deep-review-remediation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-038-system-code-graph-deep-review-remediation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "038 system-code-graph deep-review remediation",
+      "037 P0 P1 remediation",
+      "cli-opencode deepseek-v4-pro xhigh remediation",
+      "code-graph v1.0.1.0 remediation"
+    ],
+    "key_topics": [
+      "038",
+      "system-code-graph",
+      "deep-review",
+      "remediation",
+      "037",
+      "cli-opencode",
+      "deepseek-v4-pro",
+      "xhigh",
+      "code-graph",
+      "packet",
+      "20-iter",
+      "surfaced"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/changelog/v1.0.2.0.md",
+      ".opencode/.gitignore",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/README.md",
+      ".github/workflows/isolation-check.yml",
+      ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+      ".opencode/skills/system-code-graph/changelog/v1.0.0.0.md",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-code-graph/package.json",
+      ".claude/mcp.json",
+      ".gemini/settings.json",
+      ".vscode/mcp.json",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "v1.0.2.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/changelog/v1.0.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".opencode/.gitignore",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "isolation-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/isolation-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-code-graph/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 037's 20-iter deep-review surfaced 2 P0 + 25 P1 + ~30 P2 findings on system-code-graph v1.0.0.0. The P0s contradict shipped documentation claims (isolation lie + ccc_* fake readiness). The P1s span runtime correctness, tests, build state, launcher, /doctor coverage, and cross-runtime config consistency. Without remediation, v1.0.0.0 ships in a CONDITIONAL state with a known documentation-vs-reality gap.",
+    "created_at": "2026-05-26T16:51:06.371Z",
+    "last_save_at": "2026-05-26T16:51:06.371Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "implementation-summary.md"
+    ]
+  }
+}

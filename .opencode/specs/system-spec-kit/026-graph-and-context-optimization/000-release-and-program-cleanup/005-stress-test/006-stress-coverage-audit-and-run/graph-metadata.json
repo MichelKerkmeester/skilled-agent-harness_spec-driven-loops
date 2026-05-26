@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/006-stress-coverage-audit-and-run",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/006-stress-coverage-audit-and-run",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/006-stress-coverage-audit-and-run",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/006-stress-coverage-audit-and-run",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -38,7 +38,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "logs/stress-run-20260430-181807Z.log",
       "stress_test/README.md",
       "spec.md",
       "plan.md",
@@ -48,12 +47,6 @@
       "mcp_server/package.json"
     ],
     "entities": [
-      {
-        "name": "stress-run-20260430-181807Z.log",
-        "kind": "file",
-        "path": "logs/stress-run-20260430-181807Z.log",
-        "source": "derived"
-      },
       {
         "name": "README.md",
         "kind": "doc",
@@ -191,11 +184,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `code_graph` and `skill_advisor` subsystems each maintain a feature catalog (17 + 37 = 54 features), but the stress-test directory currently holds only **3 directly-tagged code-graph tests** and **2 directly-tagged skill-advisor tests**. We don't have a written, auditable answer to: which catalog features have stress coverage, which require it, and which have a real gap. Release readiness work cannot proceed past 005-review-remediation without that answer.",
     "created_at": "2026-04-30T18:03:19Z",
-    "last_save_at": "2026-05-24T05:40:25.718Z",
+    "last_save_at": "2026-05-26T16:51:05.445Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

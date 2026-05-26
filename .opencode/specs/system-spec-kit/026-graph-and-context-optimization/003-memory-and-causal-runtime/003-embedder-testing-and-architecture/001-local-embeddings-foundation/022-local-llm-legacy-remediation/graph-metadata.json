@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -52,7 +52,6 @@
       ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/413-drift-detection-quality.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/414-cross-ai-memory-handoff.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/415-concurrent-multi-ai-safety.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic/seat-statements.md",
       ".codex/config.toml",
       ".claude/mcp.json",
       ".gemini/settings.json",
@@ -62,7 +61,8 @@
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
       ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md"
+      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md",
+      ".opencode/skills/system-spec-kit/references/config/environment_variables.md"
     ],
     "entities": [
       {
@@ -120,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "seat-statements.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic/seat-statements.md",
-        "source": "derived"
-      },
-      {
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
@@ -174,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "environment_variables.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31). The user clarified after the run that the 2 P0s and ~25 of the P1s actually describe **intended behavior** that 014's narrative misrepresented, not real bugs. The remaining ~90 findings ARE legitimate residue: stale model identifiers, stale dimension references, hardcoded legacy sqlite paths, rejected-ONNX cleanup, and generated assets that haven't been regenerated since the actual ship state landed.",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-05-24T05:40:25.977Z",
+    "last_save_at": "2026-05-26T16:51:05.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -51,18 +51,18 @@
       ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
       ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
       ".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/daemon_task_registry.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/tests/lifecycle/test_remove_project_lifecycle.py",
       ".opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/lib/memory/bounded-cache.vitest.ts",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/active_work_registry.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/__init__.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
       ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/index.ts"
+      ".opencode/skills/system-code-graph/mcp_server/lib/index.ts",
+      ".opencode/skills/system-code-graph/mcp_server/index.ts",
+      "implementation-summary.md",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
+      "core/config.ts",
+      "decision-record.md"
     ],
     "entities": [
       {
@@ -114,24 +114,6 @@
         "source": "derived"
       },
       {
-        "name": "daemon_task_registry.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/daemon_task_registry.py",
-        "source": "derived"
-      },
-      {
-        "name": "daemon.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
-        "source": "derived"
-      },
-      {
-        "name": "test_remove_project_lifecycle.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/lifecycle/test_remove_project_lifecycle.py",
-        "source": "derived"
-      },
-      {
         "name": "memory-runtime-retention.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts",
@@ -156,24 +138,6 @@
         "source": "derived"
       },
       {
-        "name": "active_work_registry.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/active_work_registry.py",
-        "source": "derived"
-      },
-      {
-        "name": "__init__.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/lifecycle/__init__.py",
-        "source": "derived"
-      },
-      {
-        "name": "server.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
-        "source": "derived"
-      },
-      {
         "name": "process-sweep.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
@@ -183,6 +147,36 @@
         "name": "index.ts",
         "kind": "code",
         "path": ".opencode/skills/system-code-graph/mcp_server/lib/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "owner-lease.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -208,11 +202,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Arc 009's deep review returned a CONDITIONAL verdict with P0=0, P1=40, and P2=20. Phase 014 converts those findings into six bounded implementation batches so later dispatches can close correctness races, cleanup gaps, local-service security boundaries, audit/data integrity failures, traceability evidence gaps, and P2 maintainability drift without reopening the review packet itself.",
     "created_at": "2026-05-22T19:00:00Z",
-    "last_save_at": "2026-05-24T05:40:26.148Z",
+    "last_save_at": "2026-05-26T16:51:06.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

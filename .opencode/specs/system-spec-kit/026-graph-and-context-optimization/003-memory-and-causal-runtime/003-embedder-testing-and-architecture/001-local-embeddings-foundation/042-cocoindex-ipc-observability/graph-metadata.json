@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/042-cocoindex-ipc-observability",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,9 +43,6 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
-      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py",
       "spec.md",
       "implementation-summary.md",
       "plan.md",
@@ -53,24 +50,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "server.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py",
-        "source": "derived"
-      },
-      {
-        "name": "daemon.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/daemon.py",
-        "source": "derived"
-      },
-      {
-        "name": "test_observability.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_observability.py",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -196,11 +175,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "writable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 035 found strong daemon-log evidence that the MCP host times out before the CocoIndex daemon finishes work, then the daemon later logs that the client disconnected before the response could be sent. The remaining gap was observability: no request correlation, no stage timings, no serialized response byte counts, and no gated msgspec payload metadata when decode fails.",
     "created_at": "2026-05-14T15:52:07Z",
-    "last_save_at": "2026-05-24T05:40:25.996Z",
+    "last_save_at": "2026-05-26T16:51:05.769Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

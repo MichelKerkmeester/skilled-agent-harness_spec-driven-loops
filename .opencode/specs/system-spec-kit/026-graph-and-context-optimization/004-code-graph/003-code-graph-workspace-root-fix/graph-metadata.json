@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/016-code-graph-workspace-root-fix",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-code-graph-workspace-root-fix",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/003-code-graph-workspace-root-fix",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/003-code-graph-workspace-root-fix",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Restore `mk_code_index` reconnection by making both the workspace-root resolution and the IPC socket-dir validation robust to the real deployment layout and the required `/tmp` socket path.",
     "created_at": "2026-05-26T08:34:36.085Z",
-    "last_save_at": "2026-05-26T08:34:36.085Z",
+    "last_save_at": "2026-05-26T16:51:06.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

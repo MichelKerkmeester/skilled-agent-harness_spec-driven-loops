@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/033-deferred-fix-followup",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "parent_id": null,
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -15,43 +15,192 @@
     "trigger_phrases": [
       "019 deferred fix followup",
       "architecture md reconstruction",
-      "launcher kitdir basename",
-      "playbook blast radius",
-      "playbook apply sub operations",
-      "playbook multi file detect changes",
-      "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "z_archive",
-      "wave-3-deep-archives",
-      "007-033-deferred-fix-followup"
+      "code graph apply scenarios",
+      "019 plan",
+      "deferred fix followup plan",
+      "019 tasks",
+      "deferred fix followup tasks",
+      "019 implementation summary",
+      "deferred fix followup results"
     ],
     "key_topics": [
       "019",
-      "deferred-fix",
-      "architecture-reconstruction",
-      "playbook-expansion",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "z_archive",
-      "wave-3-deep-archives",
-      "007-033-deferred-fix-followup",
-      "feature",
-      "specification",
-      "follow-up"
+      "deferred",
+      "fix",
+      "followup",
+      "architecture",
+      "reconstruction",
+      "code",
+      "graph",
+      "apply",
+      "scenarios",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-code-graph/architecture.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/022-code-graph-query-blast-radius.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/023-code-graph-apply-sub-operations.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/024-detect-changes-multi-file-diff.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Closes the 5 deferred findings from 018 (F001, F006/F011, F012, F017, F018) — architecture.md reconstruction, launcher kitDir-derived path, source-map verification, 3 new playbook scenarios.",
+    "entities": [
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "architecture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "022-code-graph-query-blast-radius.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/022-code-graph-query-blast-radius.md",
+        "source": "derived"
+      },
+      {
+        "name": "023-code-graph-apply-sub-operations.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/023-code-graph-apply-sub-operations.md",
+        "source": "derived"
+      },
+      {
+        "name": "024-detect-changes-multi-file-diff.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/024-detect-changes-multi-file-diff.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "documented",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "correct",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Launcher Resilience",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Expansion",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "current",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 018 fixed 14 of 17 actionable findings from the 017 deep-review, deferring 5 (F001, F006/F011, F012, F017, F018) with documented rationale. The user requested all deferred items be addressed. This packet closes them.",
     "created_at": "2026-05-14T21:35:00Z",
-    "last_save_at": "2026-05-14T21:35:00Z",
+    "last_save_at": "2026-05-26T16:51:06.366Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

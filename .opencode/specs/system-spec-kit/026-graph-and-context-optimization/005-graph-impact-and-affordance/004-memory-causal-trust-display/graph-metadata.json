@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/005-memory-causal-trust-display",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/005-memory-causal-trust-display",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-memory-causal-trust-display",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-memory-causal-trust-display",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Display-only trust badges (confidence, extraction_age, last_access_age, orphan, weight_history) on MemoryResultEnvelope. NO schema change. NO new relations. NO storage of code/process/tool facts.",
     "created_at": "2026-04-25T10:48:09.300Z",
-    "last_save_at": "2026-05-24T05:40:25.786Z",
+    "last_save_at": "2026-05-26T16:51:06.247Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,8 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
-      ".opencode/skills/mcp-coco-index/scripts/install.sh",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -51,18 +49,6 @@
       "mcp_server/README.md"
     ],
     "entities": [
-      {
-        "name": "pyproject.toml",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/pyproject.toml",
-        "source": "derived"
-      },
-      {
-        "name": "install.sh",
-        "kind": "script",
-        "path": ".opencode/skills/mcp-coco-index/scripts/install.sh",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The CocoIndex `ccc run-daemon` (PID 74669, 2d 15h uptime) was holding 2.1 GB RSS, spiking CPU to 124%, and indirectly contributing to a memory-saturated Mac (free 73 MB, compressor 26 GB, load 10+). Investigation found two independent root causes: (1) the per-user config at `~/.cocoindex_code/global_settings.yml` selected `provider: sentence-transformers` which eagerly loaded a local PyTorch model and weights despite `VOYAGE_API_KEY` being set, and (2) an indexer crash-loop on a missing `.workflow-lock` file had filled the rotated daemon log to 7.3 GB.",
     "created_at": "2026-05-10T10:45:10.601Z",
-    "last_save_at": "2026-05-24T05:40:25.654Z",
+    "last_save_at": "2026-05-26T16:51:05.353Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

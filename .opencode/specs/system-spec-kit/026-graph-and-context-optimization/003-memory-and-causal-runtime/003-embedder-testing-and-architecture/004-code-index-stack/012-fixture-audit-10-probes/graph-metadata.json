@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,11 +44,6 @@
       ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
       ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
       "evidence/code-retrieval-fixture-proposed.json",
-      ".opencode/skills/mcp-coco-index/tests/test_e2e.py",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes/research.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes/evidence/code-retrieval-fixture-proposed.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes/tasks.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes/implementation-summary.md",
       "scripts/memory/generate-context.ts",
       "spec.md",
       "plan.md",
@@ -58,14 +53,18 @@
       ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "research.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes/research.md",
+        "path": "research.md",
         "source": "derived"
       },
       {
@@ -84,24 +83,6 @@
         "name": "code-retrieval-fixture-proposed.json",
         "kind": "config",
         "path": "evidence/code-retrieval-fixture-proposed.json",
-        "source": "derived"
-      },
-      {
-        "name": "test_e2e.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/tests/test_e2e.py",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -153,15 +134,39 @@
         "source": "derived"
       },
       {
-        "name": "ccc-readiness-probe.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/lib/ccc-readiness-probe.ts",
-        "source": "derived"
-      },
-      {
         "name": "retrieval-rescue.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+        "source": "derived"
+      },
+      {
+        "name": "budget-allocator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "structural-indexer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "readiness-marker-atomic-write.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,17 +204,11 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "full",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 18-pair code-retrieval fixture at `../002-baseline-fixture/evidence/code-retrieval-fixture.json` was authored without a peer review of \"is the `expected_source_path` for each query actually the BEST answer?\". The May 18 evening instrumented bench surfaced a specific case worth scrutinizing:",
     "created_at": "2026-05-18T19:21:19.321Z",
-    "last_save_at": "2026-05-24T05:40:26.064Z",
+    "last_save_at": "2026-05-26T16:51:05.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,9 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-reference-template-alignment",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-reference-template-alignment",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/006-reference-template-alignment",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/006-reference-template-alignment",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -15,61 +17,193 @@
       "reference template alignment",
       "code graph router",
       "sk-doc reference template",
-      "smart-router"
+      "system-code-graph reference alignment",
+      "code graph docs cleanup",
+      "smart router resource map",
+      "system-code-graph reference tasks",
+      "code graph router tasks",
+      "reference template alignment tasks",
+      "system-code-graph verification",
+      "reference template alignment checklist"
     ],
     "key_topics": [
       "system-code-graph",
       "references",
+      "reference",
+      "template",
+      "alignment",
+      "code",
+      "graph",
+      "router",
       "sk-doc",
-      "smart-router",
-      "compatibility stubs",
-      "documentation validation"
+      "docs",
+      "cleanup",
+      "smart"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-code-graph/references/config/database_path_policy.md",
       ".opencode/skills/system-code-graph/SKILL.md",
       ".opencode/skills/system-code-graph/README.md",
       ".opencode/skills/system-code-graph/ARCHITECTURE.md",
-      ".opencode/skills/system-code-graph/references/runtime/tool_surface.md",
-      ".opencode/skills/system-code-graph/references/runtime/naming_conventions.md",
-      ".opencode/skills/system-code-graph/references/runtime/ownership_boundary.md",
-      ".opencode/skills/system-code-graph/references/runtime/launcher_lease.md",
-      ".opencode/skills/system-code-graph/references/readiness/code_graph_readiness_check.md",
-      ".opencode/skills/system-code-graph/references/readiness/readiness_and_scope_fingerprint.md",
-      ".opencode/skills/system-code-graph/references/config/database_path_policy.md",
-      ".opencode/skills/system-code-graph/references/integrations/ccc_bridge_integration.md",
-      "spec.md",
+      "implementation-summary.md",
+      "checklist.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "system-code-graph",
-        "kind": "skill",
-        "path": ".opencode/skills/system-code-graph",
-        "source": "manual"
+        "name": "database_path_policy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/config/database_path_policy.md",
+        "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-code-graph/SKILL.md",
-        "source": "manual"
+        "source": "derived"
       },
       {
-        "name": "references",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/references",
-        "source": "manual"
+        "path": ".opencode/skills/system-code-graph/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Code Graph Reference Template Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Aligned system-code-graph references to sk-doc template rules by moving canonical docs into focused snake_case subfolders, preserving old paths as stubs, and updating the smart router and active navigation to canonical resources.",
+    "causal_summary": "The `system-code-graph` references were still root-level kebab-case files and the skill router used static paths. This packet aligns those references with sk-doc's reference-template pattern, moves canonical docs into focused snake_case subfolders, leaves compatibility stubs at old paths, and updates active navigation to prefer the canonical files.",
     "created_at": "2026-05-24T07:58:55Z",
-    "last_save_at": "2026-05-24T08:04:41Z",
-    "save_lineage": "manual_doc_packet",
+    "last_save_at": "2026-05-26T16:51:06.213Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

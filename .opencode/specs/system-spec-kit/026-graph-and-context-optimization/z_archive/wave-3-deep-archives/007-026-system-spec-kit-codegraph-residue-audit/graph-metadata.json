@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-026-system-spec-kit-codegraph-residue-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-026-system-spec-kit-codegraph-residue-audit",
+  "parent_id": null,
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -56,20 +56,13 @@
       ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/spec.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/plan.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/tasks.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/description.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/graph-metadata.json",
       ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+      ".vscode/mcp.json",
+      "implementation-summary.md",
       ".opencode/install_guides/README.md",
       ".opencode/commands/doctor/scripts/mcp-doctor.sh",
       ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
-      ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
-      ".opencode/commands/doctor/mcp.md",
-      ".vscode/mcp.json",
-      ".gemini/commands/doctor/mcp.toml"
+      ".opencode/commands/doctor/mcp.md"
     ],
     "entities": [
       {
@@ -151,45 +144,39 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "INSTALL_GUIDE.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/spec.md",
+        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/tasks.md",
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".vscode/mcp.json",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "description.json",
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_mcp_install.yaml",
         "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/description.json",
+        "path": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL_GUIDE.md",
+        "name": "mcp.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+        "path": ".opencode/commands/doctor/mcp.md",
         "source": "derived"
       },
       {
@@ -215,12 +202,18 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 014 moved code-graph ownership out of `system-spec-kit` into the standalone `.opencode/skills/system-code-graph/` skill. User-facing system-spec-kit docs still contained a mixture of correct cross-skill runtime mentions and stale ownership/path claims, including old `mcp_server/code_graph` paths and prose describing Code Graph as a system-spec-kit subsystem.",
     "created_at": "2026-05-14T17:35:44Z",
-    "last_save_at": "2026-05-15T14:05:48.084Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-26T16:51:06.356Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

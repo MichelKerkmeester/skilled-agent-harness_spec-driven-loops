@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/012-doctor-apply-mode-implementation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/012-doctor-apply-mode-implementation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/005-doctor-apply-mode-implementation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/005-doctor-apply-mode-implementation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase A (diagnostic-only `/doctor:code-graph`) shipped in `005-code-graph/005-doctor-diagnostic-command-phase-a/`, gated Phase B behind four artifacts from research packet `006-code-graph-resilience-research`. All four artifacts are now in place: a 28-query gold battery (`assets/code-graph-gold-queries.json`), a 3-state staleness model (`assets/staleness-model.md`), three recovery procedures (`assets/recovery-playbook.md`), and 3-tier exclude-rule confidence (`assets/exclude-rule-confidence.json`). Phase B wires them into an apply-mode workflow that runs the gold battery as a pre/post-flight verification gate, executes the appropriate recovery procedure based on staleness state, and rolls back if verification fails.",
     "created_at": "2026-05-08T21:30:00Z",
-    "last_save_at": "2026-05-24T05:40:25.821Z",
+    "last_save_at": "2026-05-26T16:51:06.188Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

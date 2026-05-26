@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/004-code-graph-readiness-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/004-code-graph-readiness-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/004-code-graph-readiness-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/004-code-graph-readiness-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The release-readiness program needs a truth check for the post-032 code graph readiness contract. The system should be honest that there is no structural real-time watcher, should selectively self-heal stale tracked files on read paths, should block with required action when full repair is needed, and should keep status/verify/detect_changes behavior observable and non-surprising.",
     "created_at": "2026-04-29T20:00:00.000Z",
-    "last_save_at": "2026-05-24T05:40:25.566Z",
+    "last_save_at": "2026-05-26T16:51:05.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

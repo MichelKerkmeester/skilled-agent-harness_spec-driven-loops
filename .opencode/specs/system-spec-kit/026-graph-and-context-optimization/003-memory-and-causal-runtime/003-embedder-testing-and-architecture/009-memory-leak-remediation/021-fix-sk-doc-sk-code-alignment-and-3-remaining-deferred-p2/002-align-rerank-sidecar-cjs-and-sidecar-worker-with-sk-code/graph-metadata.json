@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,7 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts",
       "spec.md",
       "plan.md",
@@ -51,12 +50,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "ensure-rerank-sidecar.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
-        "source": "derived"
-      },
       {
         "name": "sidecar-worker.ts",
         "kind": "code",
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two sidecar files have documented sk-code drift. `.opencode/bin/lib/ensure-rerank-sidecar.cjs` lacks the required module banner, section dividers, and JSDoc for exported and non-trivial helpers. `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts` has the correct module/section structure but internal helpers lack TSDoc.",
     "created_at": "2026-05-23T11:55:36.907Z",
-    "last_save_at": "2026-05-23T12:01:22.665Z",
+    "last_save_at": "2026-05-26T16:51:06.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

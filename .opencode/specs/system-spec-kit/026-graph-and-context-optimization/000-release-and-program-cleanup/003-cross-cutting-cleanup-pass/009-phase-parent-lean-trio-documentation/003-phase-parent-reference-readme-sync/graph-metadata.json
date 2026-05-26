@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -49,7 +49,6 @@
       "references/validation/validation_rules.md",
       "templates/README.md",
       "references/validation/template_compliance_contract.md",
-      "references/intake-contract.md",
       "references/workflows/quick_reference.md",
       "assets/template_mapping.md",
       "references/structure/folder_routing.md",
@@ -60,7 +59,8 @@
       ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
       ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
       ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/templates/README.md"
+      ".opencode/skills/system-spec-kit/templates/README.md",
+      ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md"
     ],
     "entities": [
       {
@@ -109,12 +109,6 @@
         "name": "template_compliance_contract.md",
         "kind": "doc",
         "path": "references/validation/template_compliance_contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "intake-contract.md",
-        "kind": "doc",
-        "path": "references/intake-contract.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001 and 002 shipped the lean-trio policy end-to-end: validator phase-parent branches across five rules, the new content-discipline validator, the generator pointer-write and bubble-up, the resume pointer-first redirect, the lean phase-parent template, and base documentation in CLAUDE.md, AGENTS.md, AGENTS_Barter.md, AGENTS_example_fs_enterprises.md, and the system-spec-kit `SKILL.md`. But a deep audit of the rest of the skill surface (3 parallel Explore agents covering 30+ files) found 13 reference docs, READMEs, command docs, and assets still describing the pre-policy state. Three contradict shipped behavior outright: `references/structure/phase_definitions.md` shows phase parents with `plan.md`/`tasks.md`/`decision-record.md`/`memory/`; `references/memory/save_workflow.md` Output Format does not differentiate phase-parent saves; `templates/README.md` STRUCTURE table is missing rows for the new `phase_parent/` and `context-index.md` templates. The new `PHASE_PARENT_CONTENT` validator rule is not documented anywhere outside its own script and the validator-registry.",
     "created_at": "2026-04-27T13:30:00Z",
-    "last_save_at": "2026-05-24T05:40:25.623Z",
+    "last_save_at": "2026-05-26T16:51:05.307Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

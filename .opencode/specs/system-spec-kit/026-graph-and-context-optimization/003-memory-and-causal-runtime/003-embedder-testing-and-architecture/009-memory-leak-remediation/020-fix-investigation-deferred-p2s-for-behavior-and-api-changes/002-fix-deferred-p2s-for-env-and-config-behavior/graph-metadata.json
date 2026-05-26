@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/002-fix-deferred-p2s-for-env-and-config-behavior",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/002-fix-deferred-p2s-for-env-and-config-behavior",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/002-fix-deferred-p2s-for-env-and-config-behavior",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/002-fix-deferred-p2s-for-env-and-config-behavior",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,10 +41,9 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
-      ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
+      ".opencode/bin/lib/sidecar-env-allowlist.cjs",
       "checklist.md",
       "decision-record.md",
       "spec.md",
@@ -53,18 +52,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "ensure-rerank-sidecar.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "ensure-rerank-sidecar.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "sidecar-client.ts",
         "kind": "code",
@@ -75,6 +62,12 @@
         "name": "sidecar-hardening.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-env-allowlist.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/sidecar-env-allowlist.cjs",
         "source": "derived"
       },
       {
@@ -180,12 +173,6 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -196,11 +183,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Read Bucket",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Scope",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Four deferred P2 findings remain in the rerank sidecar env/config surface. F17 allows malformed config values to enter the canonical hash. F16 and F40 report env allowlist drift between launcher and in-process sidecar clients. F46 requires a documented config-prefix precedence rule where `SPECKIT_*` and `RERANK_*` can express the same sidecar intent.",
     "created_at": "2026-05-23T10:01:51Z",
-    "last_save_at": "2026-05-23T10:16:02.529Z",
+    "last_save_at": "2026-05-26T16:51:06.085Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

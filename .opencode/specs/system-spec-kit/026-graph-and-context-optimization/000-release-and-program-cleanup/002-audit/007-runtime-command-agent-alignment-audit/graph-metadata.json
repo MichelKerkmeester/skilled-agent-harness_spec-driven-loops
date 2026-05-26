@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/007-runtime-command-agent-alignment-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/007-runtime-command-agent-alignment-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Runtime command and agent docs can drift when tool names, paths, hook contracts, and MCP surfaces change quickly. This packet audits OpenCode commands, OpenCode agents, Claude agents, Codex agents, Gemini agents, and GitHub hook-only coverage for stale claims.",
     "created_at": "2026-05-18T08:15:53.029Z",
-    "last_save_at": "2026-05-24T05:40:25.588Z",
+    "last_save_at": "2026-05-26T16:51:05.262Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

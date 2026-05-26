@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Add `deltaByRelation`, `dominantRelation`, `dominantRelationShare`, `balanceStatus`, and `remediationHint` fields to `causal-stats` response per 007 §5 Q7. Add per-relation per-window auto-edge caps to prevent supersedes bursts. Zero-fill all 6 relation types in `by_relation` so missing types don't disappear. Reconcile `health` field with `meetsTarget`.",
     "created_at": "2026-04-27T07:56:25.231Z",
-    "last_save_at": "2026-05-24T05:40:25.682Z",
+    "last_save_at": "2026-05-26T16:51:05.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

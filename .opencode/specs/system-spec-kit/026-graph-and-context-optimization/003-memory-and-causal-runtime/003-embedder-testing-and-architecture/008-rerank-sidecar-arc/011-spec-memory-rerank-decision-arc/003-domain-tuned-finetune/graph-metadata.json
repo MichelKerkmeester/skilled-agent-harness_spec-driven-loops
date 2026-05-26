@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -39,18 +39,7 @@
     "status": "complete",
     "key_files": [
       "plan.md",
-      ".opencode/skills/system-rerank-sidecar/scripts/finetune/__init__.py",
-      ".opencode/skills/system-rerank-sidecar/scripts/finetune/strip_templates.py",
-      ".opencode/skills/system-rerank-sidecar/scripts/finetune/generate_triples.py",
-      ".opencode/skills/system-rerank-sidecar/scripts/finetune/verify_split.py",
-      ".opencode/skills/system-rerank-sidecar/scripts/finetune/train.py",
-      ".opencode/skills/system-rerank-sidecar/scripts/finetune/eval_on_fixture.py",
-      ".opencode/skills/system-rerank-sidecar/scripts/finetune/publish.py",
-      ".opencode/skills/system-rerank-sidecar/scripts/finetune/README.md",
       "spec.md",
-      ".opencode/skills/system-rerank-sidecar/scripts/finetune/tests/test_strip_templates.py",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune/tasks.md",
       ".opencode/skills/cli-codex/SKILL.md",
       "tasks.md",
       "implementation-summary.md"
@@ -63,81 +52,27 @@
         "source": "derived"
       },
       {
-        "name": "__init__.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/finetune/__init__.py",
-        "source": "derived"
-      },
-      {
-        "name": "strip_templates.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/finetune/strip_templates.py",
-        "source": "derived"
-      },
-      {
-        "name": "generate_triples.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/finetune/generate_triples.py",
-        "source": "derived"
-      },
-      {
-        "name": "verify_split.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/finetune/verify_split.py",
-        "source": "derived"
-      },
-      {
-        "name": "train.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/finetune/train.py",
-        "source": "derived"
-      },
-      {
-        "name": "eval_on_fixture.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/finetune/eval_on_fixture.py",
-        "source": "derived"
-      },
-      {
-        "name": "publish.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/finetune/publish.py",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/finetune/README.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "test_strip_templates.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/finetune/tests/test_strip_templates.py",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune/implementation-summary.md",
+        "path": ".opencode/skills/cli-codex/SKILL.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-codex/SKILL.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,11 +134,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plan Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sample Inspection",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Milestones",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Base Model",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Training Config",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eval Results",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "If Phases 1 and 2 both fail to land an acceptable rerank path, the remaining hypothesis is that **no off-the-shelf cross-encoder is well-aligned to the spec-memory corpus**. The corpus has properties most generic rerankers don't see in training:",
     "created_at": "2026-05-23T11:55:15.632Z",
-    "last_save_at": "2026-05-24T05:40:26.130Z",
+    "last_save_at": "2026-05-26T16:51:06.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

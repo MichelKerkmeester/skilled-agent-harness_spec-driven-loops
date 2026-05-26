@@ -1,15 +1,16 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/001-documentation-code-alignment",
-    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/002-code-folder-readme-coverage",
-    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/003-fix-documentation-config-drift",
-    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor",
-    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/005-cross-skill-documentation-decoupling",
-    "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/006-skill-readme-refinement-survey"
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/001-documentation-code-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/002-code-folder-readme-coverage",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/003-fix-documentation-config-drift",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/005-cross-skill-documentation-decoupling",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/006-skill-readme-refinement-survey",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/007-reference-template-alignment"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -89,7 +90,7 @@
     ],
     "causal_summary": "Coordinate documentation quality and alignment work across the skill-advisor system. This sub-phase binds together three children that establish baseline docs/code alignment (004), expand code-folder README coverage with sk-doc standards (024), and resolve drift issues in documentation and configuration files (025). Together they ensure skill-advisor documentation remains consistent with code structure and current configuration.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.896Z",
+    "last_save_at": "2026-05-26T16:51:05.625Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

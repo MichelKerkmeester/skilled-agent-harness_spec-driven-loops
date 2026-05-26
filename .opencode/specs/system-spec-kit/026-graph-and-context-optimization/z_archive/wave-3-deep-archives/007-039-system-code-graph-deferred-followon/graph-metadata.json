@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/039-system-code-graph-deferred-followon",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/039-system-code-graph-deferred-followon",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Packet 038 successfully closed 11 of the 24 verified P0+P1 findings from 037's 20-iter deep-review (P0-1 docs, P0-2 by parallel-agent's Path-1 real probe, P1-B1..B7 runtime cluster, P1-C1 launcher comment). A real-world parallel-agent collision pattern emerged: as 038 was dispatching, another agent shipped Path-1 isolation refactor (commit `6b6f41214` — 13 of 14 production imports removed), full SKILL.md alignment (`2b4abb3a1`, `68bce35cb`, `ec98af539`), and ccc_readiness_probe.ts real implementation. Three categories of work remained NOT-closed by either agent:",
     "created_at": "2026-05-15T18:08:38.450Z",
-    "last_save_at": "2026-05-15T18:29:45.088Z",
+    "last_save_at": "2026-05-26T16:51:06.373Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

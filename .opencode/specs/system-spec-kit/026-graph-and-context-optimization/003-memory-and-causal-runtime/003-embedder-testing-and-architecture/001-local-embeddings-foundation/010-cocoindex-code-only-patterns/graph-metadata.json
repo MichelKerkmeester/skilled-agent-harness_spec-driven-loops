@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -39,33 +39,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".cocoindex_code/settings.yml",
-      ".cocoindex_code/target_sqlite.db",
-      ".cocoindex_code/cocoindex.db/mdb/data.mdb",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "settings.yml",
-        "kind": "config",
-        "path": ".cocoindex_code/settings.yml",
-        "source": "derived"
-      },
-      {
-        "name": "target_sqlite.db",
-        "kind": "file",
-        "path": ".cocoindex_code/target_sqlite.db",
-        "source": "derived"
-      },
-      {
-        "name": "data.mdb",
-        "kind": "file",
-        "path": ".cocoindex_code/cocoindex.db/mdb/data.mdb",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +170,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Native",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Cocoindex's `DEFAULT_INCLUDED_PATTERNS` (and the project-level `.cocoindex_code/settings.yml` mirroring it) include `.md`, `.mdx`, `.txt`, `.rst`. The result on this codebase: 45% of the index is non-code content. Worse, the 4-runtime skill mirror (Public has filesystem-level copies of every skill under `.opencode/skills/`, `.gemini/skills/`, `.claude/skills/`, `.codex/skills/`) means every SKILL.md / reference / playbook gets indexed 4 times. Cocoindex code search returns near-duplicate documentation hits where actual code matches should win.",
     "created_at": "2026-05-13T06:50:00Z",
-    "last_save_at": "2026-05-24T05:40:25.963Z",
+    "last_save_at": "2026-05-26T16:51:05.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T06:55:00Z",
     "source_docs": [

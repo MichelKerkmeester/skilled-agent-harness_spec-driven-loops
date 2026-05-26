@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The 005 post-remediation verification (2026-04-26 18:49) showed that the Cluster 1 truncation fix is NOT live in the daemon: `memory_context({input:\"Semantic Search\"})` still returns `meta.tokenBudgetEnforcement.{enforced:true, truncated:true, returnedResultCount:3, originalResultCount:5}` while `actualTokens=65 / budgetTokens=3500` (1.9% utilization) and `data.content[0].text` still contains `{\"count\":0,\"results\":[]}`. The 007 research isolated the root cause as soft contracts: `actualTokens` is reported AFTER fallback (post-enforcement size), there is no `preEnforcementTokens` to distinguish overflow from returned size, and the wrapper has no payload/count invariant assertion that the metadata's `returnedResultCount` matches the actual `JSON.parse(content[0].text).data.results.length`.",
     "created_at": "2026-04-27T07:29:35.265Z",
-    "last_save_at": "2026-05-24T05:40:25.679Z",
+    "last_save_at": "2026-05-26T16:51:05.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

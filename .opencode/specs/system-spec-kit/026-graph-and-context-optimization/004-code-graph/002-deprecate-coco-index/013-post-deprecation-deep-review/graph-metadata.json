@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/013-post-deprecation-deep-review",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/013-post-deprecation-deep-review",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/010-remove-memory-coco-integration"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -19,31 +19,88 @@
     ],
     "key_topics": [
       "post-deprecation",
-      "deep-review",
+      "deep",
+      "review",
+      "014",
+      "surfaces",
       "cli-devin",
-      "swe-1.6",
-      "30-surfaces",
-      "review-report",
-      "FAIL",
-      "gemini-routing",
-      "remediation",
-      "exec-verify"
+      "coco",
+      "deprecation",
+      "declared",
+      "complete",
+      "session",
+      "repeatedly"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
-      "spec.md",
-      "review/review-report.md"
+      "review/deep-review-strategy.md",
+      "review/review-report.md",
+      "spec.md"
     ],
     "entities": [
-      { "name": "spec.md", "kind": "doc", "path": "spec.md", "source": "derived" },
-      { "name": "review-report.md", "kind": "doc", "path": "review/review-report.md", "source": "derived" }
+      {
+        "name": "deep-review-strategy.md",
+        "kind": "doc",
+        "path": "review/deep-review-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deprecation Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rerank Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Find",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Independent deep-review of the completed 014 CocoIndex/rerank deprecation across 30 surfaces using cli-devin/SWE-1.6 (4 read-only iters, one dimension each) + an orchestrator exec-verify pass. Found 7 residual items the executor's own greps missed (P0: GEMINI.md routes to the deleted mcp__cocoindex_code__search; P1: /memory:manage ccc subcommand, 014 phase-map accuracy; P2: advisor database/skill-graph.json stale [not active mis-route], .gitignore, embedder_pluggability §3, doctor_deep-loop coco glob) + remediated 2 config-note items (SPECKIT_RERANK_LAYER flag, .devin/config.local.json dupe). Verdict FAIL (active P0) routes to remediation. No behavioral regressions (memory typecheck 0, code-graph 562 pass, advisor no mis-route, on-disk clean).",
+    "causal_summary": "The 014 deprecation was declared complete, but the session repeatedly found more residual at each grep refinement (`cocoindex`→`ccc`→`ccc_*`), and a pre-review sweep confirmed 4 more misses. The executor demonstrably had pattern/scope blind spots. An independent, systematic deep-review across 30 surfaces was needed before declaring the deprecation truly done.",
     "created_at": "2026-05-25T00:00:00.000Z",
-    "last_save_at": "2026-05-25T00:00:00.000Z",
+    "last_save_at": "2026-05-26T16:51:06.142Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "review/review-report.md"]
+    "source_docs": [
+      "spec.md"
+    ]
   }
 }

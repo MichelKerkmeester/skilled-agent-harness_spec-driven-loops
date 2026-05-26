@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/003-code-graph-edge-explanation-and-impact-uplift",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/003-code-graph-edge-explanation-and-impact-uplift",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Add reason/step fields to edge metadata + display; enrich blast_radius with depth groups, risk levels, min-confidence filter, ambiguity candidates, structured failure-fallback. No SQLite migration.",
     "created_at": "2026-04-25T10:48:07.859Z",
-    "last_save_at": "2026-05-24T05:40:25.784Z",
+    "last_save_at": "2026-05-26T16:51:06.243Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

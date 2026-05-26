@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/004-stress-test-folder-completion",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/004-stress-test-folder-completion",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/004-stress-test-folder-completion",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/004-stress-test-folder-completion",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -55,9 +55,9 @@
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-fixtures.ts",
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/measurement-output.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w11-cocoindex-calibration-telemetry.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w13-decision-audit.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w3-trust-tree.vitest.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w3-trust-tree.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w5-shadow-learned-weights.vitest.ts"
     ],
     "entities": [
       {
@@ -163,12 +163,6 @@
         "source": "derived"
       },
       {
-        "name": "w11-cocoindex-calibration-telemetry.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w11-cocoindex-calibration-telemetry.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "w13-decision-audit.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w13-decision-audit.vitest.ts",
@@ -178,6 +172,12 @@
         "name": "w3-trust-tree.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w3-trust-tree.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "w5-shadow-learned-weights.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w5-shadow-learned-weights.vitest.ts",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Packet 037/005 migrated only two filename-matching stress files into the dedicated stress folder. That missed the real stress-test surface, especially the search-quality harness, W-cell matrix cases, memory benchmarks, session benchmarks, skill-advisor concurrency coverage, and code-graph degraded sweeps.",
     "created_at": "2026-04-29T18:45:00Z",
-    "last_save_at": "2026-05-24T05:40:25.712Z",
+    "last_save_at": "2026-05-26T16:51:05.437Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

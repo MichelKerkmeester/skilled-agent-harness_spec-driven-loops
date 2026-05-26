@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -38,19 +38,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".cocoindex_code/settings.yml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "settings.yml",
-        "kind": "config",
-        "path": ".cocoindex_code/settings.yml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Make CocoIndex code-first by default. Exclude runtime spec mirrors at index time. Add `source_realpath` and `content_hash` canonical identity fields. Over-fetch `limit * 4` candidates, dedup by `(source_realpath, line_range)` or `(content_hash, line_range)`, prefer canonical paths in returned rows. Add `path_class` source-role and bounded reranking that surfaces `implementation` above `spec_research` for implementation-intent queries.",
     "created_at": "2026-04-27T07:48:04.774Z",
-    "last_save_at": "2026-05-24T05:40:25.680Z",
+    "last_save_at": "2026-05-26T16:51:05.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

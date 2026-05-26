@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -45,16 +45,12 @@
       "mcp_server/stress_test/search-quality/measurement-fixtures.ts",
       "mcp_server/stress_test/search-quality/measurement-output.vitest.ts",
       "mcp_server/lib/rag/trust-tree.ts",
-      "mcp_server/lib/search/rerank-gate.ts",
-      "mcp_server/lib/search/cocoindex-calibration.ts",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/rag/trust-tree.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank-gate.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts",
       "measurements/baseline-20260429T032525Z.json"
     ],
     "entities": [
@@ -80,18 +76,6 @@
         "name": "measurement-output.vitest.ts",
         "kind": "test",
         "path": "mcp_server/stress_test/search-quality/measurement-output.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "rerank-gate.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/rerank-gate.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cocoindex-calibration.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/cocoindex-calibration.ts",
         "source": "derived"
       },
       {
@@ -201,11 +185,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase C identified five promising search/RAG optimization workstreams but deferred them until Phase D measurement infrastructure existed. Phase E must measure each candidate before deciding whether to ship, keep opt-in, or skip.",
     "created_at": "2026-04-29T03:35:49Z",
-    "last_save_at": "2026-05-24T05:40:25.604Z",
+    "last_save_at": "2026-05-26T16:51:05.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

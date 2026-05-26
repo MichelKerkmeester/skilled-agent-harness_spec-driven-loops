@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/002-manifest-driven-template-design",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/002-manifest-driven-template-design",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/008-template-levels",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Sibling packet `008-template-levels/` ran a 10-iteration deep-research loop and recommended PARTIAL consolidation with backward-compat preservation for ~868 existing spec folders. The user explicitly rejected that framing: \"We want to change the template system itself and not focus research on fixing stuff retroactively.\" Existing spec folders are immutable git history — their provenance markers are descriptive comments, nothing re-renders them. They do NOT constrain a new template system.",
     "created_at": "2026-05-01T09:15:39Z",
-    "last_save_at": "2026-05-24T05:40:25.924Z",
+    "last_save_at": "2026-05-26T16:51:05.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

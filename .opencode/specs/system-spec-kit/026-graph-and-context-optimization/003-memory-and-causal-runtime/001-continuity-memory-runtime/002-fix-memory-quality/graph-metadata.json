@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-fix-memory-quality",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-fix-memory-quality",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/002-fix-memory-quality",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/002-fix-memory-quality",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The original research packet identified eight distinct JSON-mode memory defects across content shaping, metadata consistency, lineage capture, git provenance, and template structure. Shipping only the research would have left the save pipeline unrepaired, and shipping only the narrow code fixes would have left the packet without phase-level proof, operational tail decisions, or a durable closeout surface.",
     "created_at": "2026-04-12T09:02:53.454Z",
-    "last_save_at": "2026-05-24T05:40:25.762Z",
+    "last_save_at": "2026-05-26T16:51:05.677Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

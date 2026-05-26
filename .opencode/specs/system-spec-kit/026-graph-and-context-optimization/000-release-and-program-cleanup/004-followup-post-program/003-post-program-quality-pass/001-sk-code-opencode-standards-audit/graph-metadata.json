@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Packets 033, 034, and 036 added retention-sweep, half-auto advisor, hook freshness, and matrix-runner code. The new and modified code needed a standards pass against sk-code-opencode before the larger 037 quality phase could continue.",
     "created_at": "2026-04-29T15:28:00.000Z",
-    "last_save_at": "2026-05-24T05:40:25.659Z",
+    "last_save_at": "2026-05-26T16:51:05.361Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

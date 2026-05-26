@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/013-002-sandbox-testing-playbook",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/013-002-sandbox-testing-playbook",
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -50,14 +50,13 @@
       "scripts/tests/test-validation.sh",
       "implementation-summary.md",
       "dispatch/track-d-sandbox.prompt.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md",
       "handover.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -139,13 +138,13 @@
         "source": "derived"
       },
       {
-        "name": "Handoff Criteria",
+        "name": "Superseded By",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Sibling",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +200,7 @@
     ],
     "causal_summary": "This packet adds the validation layer for sibling `001-doctor-commands`: 23 manual testing playbook scenarios for `/doctor:*` commands, a Docker-based sandbox harness, fixture-fetch scaffolding, and root playbook indexing. It gives operators a concrete upgrade and smoke-test trail for spec-kit doctor-command behavior.",
     "created_at": "2026-05-09T14:45:34.083Z",
-    "last_save_at": "2026-05-11T08:39:15.670Z",
+    "last_save_at": "2026-05-26T16:51:06.321Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

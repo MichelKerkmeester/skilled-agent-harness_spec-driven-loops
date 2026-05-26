@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/030-manual-testing-verification",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-030-manual-testing-verification",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-030-manual-testing-verification",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "parent_id": null,
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -13,45 +13,191 @@
   },
   "derived": {
     "trigger_phrases": [
-      "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-030-manual-testing-verification",
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "z_archive",
-      "wave-3-deep-archives",
-      "007-030-manual-testing-verification",
-      "feature",
-      "specification",
-      "016",
-      "manual",
-      "testing",
-      "verification"
+      "016 manual testing verification",
+      "code-graph manual testing",
+      "mk-code-index verification",
+      "016 plan",
+      "manual testing verification plan",
+      "016 tasks",
+      "manual testing verification tasks",
+      "016 implementation summary",
+      "manual testing verification results"
     ],
     "key_topics": [
-      "system-spec-kit",
-      "026-graph-and-context-optimization",
-      "z_archive",
-      "wave-3-deep-archives",
-      "007-030-manual-testing-verification",
-      "feature",
-      "specification",
       "016",
       "manual",
       "testing",
       "verification",
-      "mk-code-index"
+      "code-graph",
+      "mk-code-index",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "results",
+      "7-packet"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".claude/mcp.json",
+      ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Manual testing verification packet for the mk-code-index rename and post-014 work. Layer-1 execution of every scenario in the manual_testing_playbook plus Layer-2 smoke probes.",
+    "entities": [
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rename Smoke Probes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smoke Probe Creation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Production",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Layer",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "co-author",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Playbook Scenarios",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the 7-packet code-graph remediation campaign (010-015) shipped, the system-code-graph skill needed end-to-end manual verification: the `mk-code-index` MCP rename, sk-doc alignment work, the tsconfig fix from 009, and the architecture.md content all needed independent observation, not just unit tests. This packet executes the manual_testing_playbook scenarios plus six new post-rename smoke probes to confirm operational soundness before the campaign closes.",
     "created_at": "2026-05-18T08:15:28.162Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-26T16:51:06.361Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

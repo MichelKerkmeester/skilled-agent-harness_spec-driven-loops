@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "That left a production asymmetry. The index path can write Jina v3 vectors into `vec_1024`, while query-time `generateEmbedding()` and `generateQueryEmbedding()` can still instantiate llama-cpp and produce 768-dim EmbeddingGemma vectors. The live machine has `vec_metadata.active_embedder_name='jina-embeddings-v3'`, `active_embedder_dim=1024`, and a populated `vec_1024`, so search must encode queries with the same Ollama-backed model.",
     "created_at": "2026-05-18T19:18:20.873Z",
-    "last_save_at": "2026-05-24T05:40:26.017Z",
+    "last_save_at": "2026-05-26T16:51:05.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

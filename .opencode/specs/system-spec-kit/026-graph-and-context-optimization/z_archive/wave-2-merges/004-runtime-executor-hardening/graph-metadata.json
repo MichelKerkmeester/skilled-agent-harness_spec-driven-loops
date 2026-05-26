@@ -1,13 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
-  "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime",
-    "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution",
-    "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening"
-  ],
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening",
+  "parent_id": null,
+  "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
   "manual": {
@@ -64,136 +60,29 @@
       "graph"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/spec.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening/spec.md",
-      ".opencode/skills/sk-deep-research/SKILL.md",
-      ".opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-      ".opencode/skills/sk-deep-research/references/convergence.md",
-      ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
-      ".opencode/commands/spec_kit/deep-research.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/dispatch-failure.vitest.ts",
-      "tasks.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "research/research.md",
+      "resource-map.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/sk-deep-research/assets/prompt_pack_iteration.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-deep-research/references/convergence.md",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".opencode/commands/spec_kit/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_deep-research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_deep-research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "executor-audit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-audit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-dispatch-validate.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/executor-config.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cli-matrix.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-failure.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/dispatch-failure.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -231,19 +120,89 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Copilot",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Investigated",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Findings",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Trail",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The first consolidation preserved old packets behind an extra archive layer, which made the active phase surface harder to browse.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-04-26T09:17:15.734Z",
+    "last_save_at": "2026-05-26T16:51:06.298Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "research/research.md",
+      "resource-map.md"
     ]
   }
 }

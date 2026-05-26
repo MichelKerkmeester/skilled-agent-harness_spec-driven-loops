@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -37,19 +37,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "mcp_server/dist/lib/search/cross-encoder.js",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "cross-encoder.js",
-        "kind": "code",
-        "path": "mcp_server/dist/lib/search/cross-encoder.js",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -187,11 +180,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 007 found that Qwen3-Reranker-0.6B on Apple Silicon MPS OOMs in attention forwards when spec-memory's local provider sends its default 50-document batch to `/rerank`. The sidecar crashes mid-bench, falls back to positional, gates fail.",
     "created_at": "2026-05-23T11:55:15.621Z",
-    "last_save_at": "2026-05-24T05:40:26.125Z",
+    "last_save_at": "2026-05-26T16:51:06.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

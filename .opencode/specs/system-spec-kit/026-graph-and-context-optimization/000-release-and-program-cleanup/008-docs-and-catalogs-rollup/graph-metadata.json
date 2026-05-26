@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/006-docs-and-catalogs-rollup",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/006-docs-and-catalogs-rollup",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Update umbrella docs (root README, skill SKILL.md/README, mcp_server README/INSTALL_GUIDE) reflecting capabilities shipped by 012/002-005. Per-packet feature_catalog + manual_testing_playbook entries are written inline by 002-005; this sub-phase rolls up indexes.",
     "created_at": "2026-04-25T10:48:09.975Z",
-    "last_save_at": "2026-05-24T05:40:25.787Z",
+    "last_save_at": "2026-05-26T16:51:05.483Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

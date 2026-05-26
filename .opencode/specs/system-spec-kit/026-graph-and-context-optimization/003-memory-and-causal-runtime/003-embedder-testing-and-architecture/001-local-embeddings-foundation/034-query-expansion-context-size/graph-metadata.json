@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Packet 039 made the llama-cpp embedding worker resilient by truncating over-budget input through the model tokenizer. The query expansion consumer still builds `combinedQuery` by appending up to eight expansion terms to the original query before calling the embedder. When the combined text crosses the practical context budget, the worker truncates the tail after the fact, which silently drops lower-priority synonym signal and can degrade retrieval quality.",
     "created_at": "2026-05-14T15:40:13Z",
-    "last_save_at": "2026-05-24T05:40:25.989Z",
+    "last_save_at": "2026-05-26T16:51:05.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

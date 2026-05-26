@@ -1,18 +1,9 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
-  "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/001-clean-room-license-audit",
-    "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/002-code-graph-phase-runner-and-detect-changes",
-    "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/003-code-graph-edge-explanation-and-impact-uplift",
-    "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/004-skill-advisor-affordance-evidence",
-    "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/005-memory-causal-trust-display",
-    "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/006-docs-and-catalogs-rollup",
-    "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/007-fix-external-project-adoption-deep-review-findings",
-    "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/008-deep-research-review"
-  ],
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved",
+  "parent_id": null,
+  "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -175,7 +166,7 @@
     ],
     "causal_summary": "Implement the converged pt-01 + pt-02 External Project research recommendations as a 6-sub-phase Level 3 implementation packet. pt-02 cross-checked pt-01 with an independent executor (cli-codex gpt-5.5 high fast) and reached the same core conclusions: External Project is **architectural evidence**, not a source transplant; Code Graph / Memory / Skill Advisor stay **separately owned**; route/tool/shape work is **deferred** until Public has the substrate.",
     "created_at": "2026-04-25T10:47:55.572Z",
-    "last_save_at": "2026-05-24T05:40:25.780Z",
+    "last_save_at": "2026-05-26T16:51:06.376Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

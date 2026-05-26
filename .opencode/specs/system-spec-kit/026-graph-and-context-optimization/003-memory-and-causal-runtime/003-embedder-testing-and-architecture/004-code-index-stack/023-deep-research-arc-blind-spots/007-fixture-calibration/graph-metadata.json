@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/007-fixture-calibration",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,7 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-coco-index/mcp_server/tests/test_calibration_perturbation.py",
       "evidence/robust-verdict-gates.md",
       "evidence/calibration-recommendation.md",
       "evidence/runs/lane-sample-smoke-run-1.json",
@@ -54,12 +53,6 @@
       "research.md"
     ],
     "entities": [
-      {
-        "name": "test_calibration_perturbation.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/tests/test_calibration_perturbation.py",
-        "source": "derived"
-      },
       {
         "name": "robust-verdict-gates.md",
         "kind": "doc",
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The corrected fixture proved regression behavior, but it did not measure production retrieval coverage. It also had only one run, binary top-5 scoring, no residual miss taxonomy, and insufficient evidence for RRF, boost, top-K, and fusion choices.",
     "created_at": "2026-05-19T00:00:00Z",
-    "last_save_at": "2026-05-24T05:40:26.083Z",
+    "last_save_at": "2026-05-26T16:51:05.922Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

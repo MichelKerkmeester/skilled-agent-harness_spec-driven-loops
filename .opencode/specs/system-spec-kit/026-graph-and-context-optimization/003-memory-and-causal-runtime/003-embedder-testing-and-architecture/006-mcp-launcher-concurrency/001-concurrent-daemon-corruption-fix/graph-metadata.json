@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/001-concurrent-daemon-corruption-fix",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/001-concurrent-daemon-corruption-fix",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/001-concurrent-daemon-corruption-fix",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/001-concurrent-daemon-corruption-fix",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,7 +45,6 @@
       ".opencode/bin/mk-skill-advisor-launcher.cjs",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-bootstrap.vitest.ts",
-      ".opencode/skills/system-skill-advisor/references/daemon-lease-contract.md",
       ".opencode/skills/system-skill-advisor/mcp_server/database/.gitignore",
       "checklist.md",
       "spec.md",
@@ -76,12 +75,6 @@
         "name": "launcher-bootstrap.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-bootstrap.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "daemon-lease-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/references/daemon-lease-contract.md",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 6** of the 006-skill-advisor track. Phases 1–5 (`001-skill-graph`, `002-skill-advisor-scoring-engine`, `003-skill-advisor-routing-engine`, `004-skill-advisor-production-hardening`, `005-skill-advisor-documentation`) built the advisor. This phase hardens its concurrency boundary, which `004-skill-advisor-production-hardening` did not cover.",
     "created_at": "2026-05-18T04:46:08Z",
-    "last_save_at": "2026-05-24T05:40:26.099Z",
+    "last_save_at": "2026-05-26T16:51:05.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/005-fix-opencode-plugin-loader-bridge",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/005-fix-opencode-plugin-loader-bridge",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "User-reproduced on 2026-04-22 that running `opencode` in any directory under this repo (verified in both `/Users/michelkerkmeester/MEGA/Development/AI_Systems/Barter` and the Public root) terminates the TUI with:",
     "created_at": "2026-04-22T13:32:00.000Z",
-    "last_save_at": "2026-05-24T05:40:25.918Z",
+    "last_save_at": "2026-05-26T16:51:06.268Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

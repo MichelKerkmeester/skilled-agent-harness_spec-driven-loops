@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Live testing of the code-graph (after F-002/F-003/F-018/F-019 remediation landed) showed that broad-scope scans (`agents+commands+specs+plugins=all`) crash the tree-sitter parser with `memory access out of bounds` on roughly 1,640 of 9,349 candidate files (~17.5%). Skills-only scope is parser-clean. Crashes happen on valid TypeScript files, including test files and runtime modules. The F-003 preservation guard prevents data loss, but parsed coverage is incomplete and the failure is loud enough to obscure real signal.",
     "created_at": "2026-05-06T13:34:53Z",
-    "last_save_at": "2026-05-24T05:40:25.819Z",
+    "last_save_at": "2026-05-26T16:51:06.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

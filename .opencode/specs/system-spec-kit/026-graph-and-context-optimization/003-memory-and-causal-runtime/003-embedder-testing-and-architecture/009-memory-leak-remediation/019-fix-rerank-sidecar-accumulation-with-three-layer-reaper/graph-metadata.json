@@ -1,27 +1,97 @@
 {
-  "spec_id": "005",
-  "folder_slug": "fix-rerank-sidecar-accumulation-with-three-layer-reaper",
-  "parent_chain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
-    "009-memory-leak-remediation"
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/001-implement-ledger-v2-schema-and-identity-verified-pid",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/002-implement-layer-b-sidecar-self-check-and-in-flight-gate",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/004-rerank-sidecar-accumulation-investigation-and-reaper-design"
-    ],
+    "depends_on": [],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "status": "draft",
+    "trigger_phrases": [
+      "fix rerank sidecar reaper",
+      "implement three-layer reaper",
+      "rerank sidecar gc implementation"
+    ],
+    "key_topics": [
+      "fix",
+      "rerank",
+      "sidecar",
+      "reaper",
+      "implement",
+      "three-layer",
+      "implementation",
+      "rerank-sidecar",
+      "uvicorn",
+      "workers",
+      "accumulate",
+      "without"
+    ],
     "importance_tier": "critical",
-    "is_phase_parent": true,
-    "last_active_child_id": "001-implement-ledger-v2-schema-and-identity-verified-pid",
-    "last_active_at": "2026-05-23T10:00:00Z",
-    "child_phase_count": 1,
-    "completed_child_phase_count": 0,
-    "parent_id": "009-memory-leak-remediation"
-  },
-  "lastUpdated": "2026-05-23T10:00:00Z"
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Rerank",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sidecar Accumulation With Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Layer Reaper",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Rerank-sidecar uvicorn workers accumulate without bound: 25 stale processes consuming ~16 GB RAM observed on 2026-05-23. Investigation packet 010/004/001 confirmed the architectural cause (intentional warm-model detach with no reaper) and produced a binding three-layer design + 7 ADRs + Files-to-Change contract for 11 files. This packet implements that design.",
+    "created_at": "2026-05-26T16:49:55.586Z",
+    "last_save_at": "2026-05-26T16:51:06.073Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
 }

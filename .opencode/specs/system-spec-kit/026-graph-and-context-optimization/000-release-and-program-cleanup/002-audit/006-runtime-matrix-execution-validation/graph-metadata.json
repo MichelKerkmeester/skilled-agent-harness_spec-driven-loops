@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/006-runtime-matrix-execution-validation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/006-runtime-matrix-execution-validation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -45,10 +45,6 @@
       "checklist.md",
       "implementation-summary.md",
       "research/iterations/iteration-001.md",
-      "logs/feature-runs/F1-gate3-classifier.log",
-      "logs/feature-runs/F11-hooks.log",
-      "logs/feature-runs/F12-validators.log",
-      "logs/feature-runs/F12-normalizer-lint.log",
       "logs/feature-runs/summary.tsv",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json",
@@ -89,30 +85,6 @@
         "name": "iteration-001.md",
         "kind": "doc",
         "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "F1-gate3-classifier.log",
-        "kind": "file",
-        "path": "logs/feature-runs/F1-gate3-classifier.log",
-        "source": "derived"
-      },
-      {
-        "name": "F11-hooks.log",
-        "kind": "file",
-        "path": "logs/feature-runs/F11-hooks.log",
-        "source": "derived"
-      },
-      {
-        "name": "F12-validators.log",
-        "kind": "file",
-        "path": "logs/feature-runs/F12-validators.log",
-        "source": "derived"
-      },
-      {
-        "name": "F12-normalizer-lint.log",
-        "kind": "file",
-        "path": "logs/feature-runs/F12-normalizer-lint.log",
         "source": "derived"
       },
       {
@@ -198,11 +170,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Runner Policy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 030 designed a full v1.0.4 matrix but intentionally did not execute it. It chose per-feature runners plus a meta-aggregator, and it required non-applicable cells to be first-class results. This packet executes the available runner surface, freezes the feature x executor matrix, and records honest blockers where packet 030's design is not yet backed by runner code.",
     "created_at": "2026-04-29T14:45:00Z",
-    "last_save_at": "2026-05-24T05:40:25.583Z",
+    "last_save_at": "2026-05-26T16:51:05.255Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

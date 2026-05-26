@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/008-deep-research-review",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/008-deep-research-review",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/006-deep-research-review",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/006-deep-research-review",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -56,13 +56,13 @@
       "research/008-deep-research-review-pt-01/iterations/iteration-010.md",
       "research/008-deep-research-review-pt-01/prompts/iteration-010.md",
       "research/008-deep-research-review-pt-01/deltas/iteration-010.jsonl",
-      "research/008-deep-research-review-pt-01/logs/iteration-010.log",
       "tests/memory/trust-badges.test.ts",
       "mcp_server/formatters/search-results.ts",
       "mcp_server/lib/storage/causal-edges.ts",
       "mcp_server/lib/search/search-utils.ts",
       "mcp_server/handlers/memory-search.ts",
-      "mcp_server/tests/causal-edges-unit.vitest.ts"
+      "mcp_server/tests/causal-edges-unit.vitest.ts",
+      "mcp_server/tests/memory/trust-badges.test.ts"
     ],
     "entities": [
       {
@@ -129,12 +129,6 @@
         "name": "iteration-010.jsonl",
         "kind": "file",
         "path": "research/008-deep-research-review-pt-01/deltas/iteration-010.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-010.log",
-        "kind": "file",
-        "path": "research/008-deep-research-review-pt-01/logs/iteration-010.log",
         "source": "derived"
       },
       {
@@ -208,11 +202,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006 and the 006/007 remediation claimed broad closure across graph-impact and affordance work, but the shipped code, tests, and playbook coverage needed independent audit. The completed research loop checked every system shipped under Phase 006, the 006/007 remediation claim set of 33 closures, and the 011 playbook coverage follow-up.",
     "created_at": "2026-04-25T23:20:00.000Z",
-    "last_save_at": "2026-05-24T05:40:25.791Z",
+    "last_save_at": "2026-05-26T16:51:06.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

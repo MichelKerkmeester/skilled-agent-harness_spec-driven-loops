@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/007-code-graph-backend-resilience-implementation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/007-code-graph-backend-resilience-implementation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -48,12 +48,10 @@
       "mcp_server/lib/architecture/layer-definitions.ts",
       "mcp_server/tests/context-server.vitest.ts",
       "scratch/codex-runner.sh",
-      "scratch/runner.log",
       "tests/context-server.vitest.ts",
       "tasks.md",
       "tests/layer-definitions.vitest.ts",
       "shared/embeddings/factory.ts",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research/research/iterations/iteration-012.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -91,12 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "runner.log",
-        "kind": "file",
-        "path": "scratch/runner.log",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -112,12 +104,6 @@
         "name": "factory.ts",
         "kind": "code",
         "path": "shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-012.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research/research/iterations/iteration-012.md",
         "source": "derived"
       },
       {
@@ -203,11 +189,23 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 007 resilience-research packet identified five concrete backend resilience gaps and produced design-ready patch plans for each (iter 8-12 markdowns). This packet (008) lands the actual TypeScript patches that make the live code-graph backend match those design targets. Without this packet the staleness predicate stays mtime-only, the resolver misses cross-file edges through path aliases / type-only imports / re-export barrels, edge weights are unconfigurable, self-healing is invisible to operators, and the gold-battery verification contract from `assets/code-graph-gold-queries.json` has no runtime to execute against.",
     "created_at": "2026-04-25T22:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.804Z",
+    "last_save_at": "2026-05-26T16:51:06.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

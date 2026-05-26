@@ -1,9 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-orphan-code-graph-db-cleanup",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-orphan-code-graph-db-cleanup",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-022-orphan-code-graph-db-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-022-orphan-code-graph-db-cleanup",
+  "parent_id": null,
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -39,9 +41,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/spec-kit-memory-launcher.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      "mcp_server/dist/system-code-graph/mcp_server/database/code-graph.sqlite",
       "schemas/tool-input-schemas.ts",
       "spec.md",
       "plan.md",
@@ -50,21 +50,9 @@
     ],
     "entities": [
       {
-        "name": "spec-kit-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/spec-kit-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
         "name": "tool-input-schemas.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph.sqlite",
-        "kind": "file",
-        "path": "mcp_server/dist/system-code-graph/mcp_server/database/code-graph.sqlite",
         "source": "derived"
       },
       {
@@ -176,7 +164,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Investigation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -192,12 +180,24 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 014 extracted code-graph ownership to `.opencode/skills/system-code-graph/`, but stale code-graph SQLite files and compiled extracted code remained under `.opencode/skills/system-spec-kit/mcp_server/`. One old `spec-kit-memory` process held the nested copied DB open from `mcp_server/dist/system-code-graph/mcp_server/database/code-graph.sqlite`, which made the tree look like it still owned code-graph storage.",
     "created_at": "2026-05-14T13:03:24Z",
-    "last_save_at": "2026-05-14T15:06:22.190317Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-26T16:51:06.343Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -205,7 +205,5 @@
       "tasks.md",
       "implementation-summary.md"
     ]
-  },
-  "migrated": true,
-  "migration_source": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/013-system-code-graph-extraction/008-orphan-code-graph-db-cleanup"
+  }
 }

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Packet 015 showed `llama-cpp` is much faster than `hf-local`, but vector-to-vector parity failed with mean cosine `0.9677582325103543` against a `0.995` target. That parity test compared corresponding vectors, not retrieval behavior. The open question is whether the cosine miss changes actual search ranking enough to block a future default flip.",
     "created_at": "2026-05-13T10:23:12Z",
-    "last_save_at": "2026-05-24T05:40:25.969Z",
+    "last_save_at": "2026-05-26T16:51:05.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T10:23:12Z",
     "source_docs": [

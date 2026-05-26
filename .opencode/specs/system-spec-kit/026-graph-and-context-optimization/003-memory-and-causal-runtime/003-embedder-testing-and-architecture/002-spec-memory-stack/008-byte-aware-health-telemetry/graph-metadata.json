@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The live context-server RSS dropped sharply after the embedder cleanup packets, but `memory_health` still cannot attribute RSS to V8 heap, external memory, ArrayBuffers, or retained caches. Without byte-aware telemetry, future memory packets can mistake SQLite/native/external residency for JavaScript heap retention.",
     "created_at": "2026-05-18T21:07:21.497Z",
-    "last_save_at": "2026-05-24T05:40:26.019Z",
+    "last_save_at": "2026-05-26T16:51:05.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

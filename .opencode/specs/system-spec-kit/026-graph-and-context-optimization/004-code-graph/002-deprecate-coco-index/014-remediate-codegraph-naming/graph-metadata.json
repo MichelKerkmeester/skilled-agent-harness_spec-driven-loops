@@ -1,28 +1,226 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/014-remediate-codegraph-naming",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/014-remediate-codegraph-naming",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/013-post-deprecation-deep-review"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": ["code-graph ccc residue","remove ccc references code-graph","code-graph naming remediation"],
-    "key_topics": ["code-graph","ccc-residue","doc-remediation","tree-sitter","structural-search-rename","013-deep-review-followup"],
-    "importance_tier": "important",
+  "derived": {
+    "trigger_phrases": [
+      "code-graph ccc residue",
+      "remove ccc references code-graph",
+      "code-graph naming remediation",
+      "ccc doc cleanup",
+      "code-graph ccc residue plan",
+      "ccc doc cleanup plan",
+      "code-graph ccc residue tasks",
+      "ccc doc cleanup tasks",
+      "code-graph ccc residue checklist",
+      "ccc doc cleanup verification",
+      "code-graph ccc residue summary",
+      "code-graph naming remediation summary"
+    ],
+    "key_topics": [
+      "code-graph",
+      "ccc",
+      "residue",
+      "remove",
+      "references",
+      "naming",
+      "remediation",
+      "doc",
+      "cleanup",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
     "status": "complete",
-    "key_files": ["spec.md","implementation-summary.md","../013-post-deprecation-deep-review/review/review-report.md"],
-    "entities": [],
-    "causal_summary": "Remediated the system-code-graph doc-residue class surfaced by the 013 deep-review (iters 5-7). Code was already renamed to its own clean names (status.ts/scan.ts/verify.ts, code_graph_* tools, tree-sitter); only docs lagged. Removed every literal ccc reference across 11 docs, then expanded to the deprecation's botched ccc->'structural search' + ccc_*->'code_graph_* and detect_changes' find-replace residue (false bridge/binary/CLI prose, phantom tool, broken getstructural searchBinaryPath, dead semantic-index runtime) across 13 docs total incl ARCHITECTURE.md. Verified code clean (docs-only), seeds are manual/graph only, no binary/sqlite-vec. Renumbered feature_catalog (9->8) + playbook (14-18->13-17) to avoid ToC gaps. Gate: rg -i ccc == 0 + full residue sweep 0; validate.sh --strict PASSED.",
+    "key_files": [
+      "mcp_server/handlers/README.md",
+      "feature_catalog/feature_catalog.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "mcp_server/tools/README.md",
+      "mcp_server/tests/README.md",
+      "mcp_server/tests/lib/README.md",
+      ".gemini/GEMINI.md",
+      ".opencode/bin/lib/sidecar-env-allowlist.cjs",
+      "mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/README.md",
+      ".opencode/skills/system-code-graph/README.md",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-code-graph/references/runtime/tool_surface.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-code-graph/mcp_server/tools/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/lib/shared/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/tests/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/tests/lib/README.md",
+      ".opencode/skills/system-code-graph/mcp_server/stress_test/code-graph/README.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp_server/handlers/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "GEMINI.md",
+        "kind": "doc",
+        "path": ".gemini/GEMINI.md",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-env-allowlist.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/sidecar-env-allowlist.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool_surface.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/runtime/tool_surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 014 deprecation renamed code-graph's handlers and tools to their own clean identifiers — handlers are `status.ts` / `scan.ts` / `verify.ts` (+ `query.ts`, `context.ts`, `apply.ts`, `detect-changes.ts`, `index.ts`), tools are `code_graph_*`, the engine is tree-sitter, and `lib/` is `{ipc,shared,utils}/`. But the skill's **documentation** was never updated: it still references the old ccc-era names — `ccc-status.ts` / `ccc-reindex.ts` / `ccc-feedback.ts`, a deleted `lib/ccc/` adapter dir, a deleted `feature_catalog/07--ccc-integration/` section, a deleted `references/integrations/ccc_bridge_integration.md`, dead `cccStatus`/`cccReindex`/`cccFeedback` schema fields, a non-existent `retired-search-path.ts` \"local `ccc` binary\", and ghost test names (`ccc-integration-stress.vitest.ts`, `code-graph-context-retired-search-telemetry-passthrough.vitest.ts`). The 013 post-deprecation deep-review (iters 5–7, cli-devin/SWE-1.6) surfaced this class; it was independently re-verified by exact grep. The 007/009 doc-sweep missed system-code-graph's own docs.",
     "created_at": "2026-05-25T14:58:18Z",
-    "last_save_at": "2026-05-25T15:35:00Z",
+    "last_save_at": "2026-05-26T16:51:06.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
   }
 }

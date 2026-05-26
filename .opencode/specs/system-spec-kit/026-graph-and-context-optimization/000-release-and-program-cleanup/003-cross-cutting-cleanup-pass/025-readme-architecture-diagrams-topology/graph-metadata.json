@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Only `shared/README.md` has both an ASCII box-art architecture diagram and a directory topology tree. The 18 other code-folders and `ARCHITECTURE.md` are missing one or both. This makes it hard for developers to orient themselves when entering a code directory.",
     "created_at": "2026-05-02T00:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.646Z",
+    "last_save_at": "2026-05-26T16:51:05.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

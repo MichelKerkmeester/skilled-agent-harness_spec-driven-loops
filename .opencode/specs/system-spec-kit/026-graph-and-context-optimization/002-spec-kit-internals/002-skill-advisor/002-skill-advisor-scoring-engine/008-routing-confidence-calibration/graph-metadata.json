@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine/008-routing-confidence-calibration",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine/008-routing-confidence-calibration",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/008-routing-confidence-calibration",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/008-routing-confidence-calibration",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 015 sub-packets 001-008 proved the cosine lane cannot flip routings on either tested corpus (24-prompt + 22-harder) at any semantic weight from 0.00 to 0.30. The 015 next-steps advisory at `scratch/next-steps-advisory.md` identified the only remaining fusion-magnitude lever: **damping explicit/lexical contributions when their evidence is weak**.",
     "created_at": "2026-05-14T02:15:00Z",
-    "last_save_at": "2026-05-24T05:40:25.882Z",
+    "last_save_at": "2026-05-26T16:51:05.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T02:15:00Z",
     "source_docs": [

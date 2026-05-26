@@ -1,27 +1,96 @@
 {
-  "spec_id": "021",
-  "folder_slug": "fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
-  "parent_chain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
-    "009-memory-leak-remediation"
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/001-identify-and-close-3-remaining-deferred-p2",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/003-align-arc-020-spec-docs-with-sk-doc"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
-    ],
+    "depends_on": [],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "status": "draft",
+    "trigger_phrases": [
+      "021 sk-doc sk-code alignment",
+      "close 3 remaining deferred p2",
+      "arc 021 sidecar cleanup"
+    ],
+    "key_topics": [
+      "021",
+      "sk-doc",
+      "sk-code",
+      "alignment",
+      "close",
+      "remaining",
+      "deferred",
+      "arc",
+      "sidecar",
+      "cleanup",
+      "three",
+      "follow-up"
+    ],
     "importance_tier": "important",
-    "is_phase_parent": true,
-    "last_active_child_id": "001-identify-and-close-3-remaining-deferred-p2",
-    "last_active_at": "2026-05-23T13:00:00Z",
-    "child_phase_count": 0,
-    "completed_child_phase_count": 0,
-    "parent_id": "009-memory-leak-remediation"
-  },
-  "lastUpdated": "2026-05-23T13:00:00Z"
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remaining Deferred",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three follow-up gaps remain after arc 020 closed 31 of 34 deferred-P2 findings:",
+    "created_at": "2026-05-26T16:49:55.586Z",
+    "last_save_at": "2026-05-26T16:51:06.106Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
 }

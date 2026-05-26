@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -38,12 +38,9 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/references/skill-graph-extraction-plan.md",
       ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/007-skill-graph-status.md",
       ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/008-skill-graph-query.md",
       ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/009-skill-graph-validate.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/graph-metadata.json",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/spec.md",
       ".devin/hooks.v1.json",
       ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
       "spec.md",
@@ -52,12 +49,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "skill-graph-extraction-plan.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/references/skill-graph-extraction-plan.md",
-        "source": "derived"
-      },
       {
         "name": "007-skill-graph-status.md",
         "kind": "doc",
@@ -74,12 +65,6 @@
         "name": "009-skill-graph-validate.md",
         "kind": "doc",
         "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/009-skill-graph-validate.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -195,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "verification",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Children 002-005 deferred a set of findings from the 001 research synthesis. Each Known Limitations section enumerated what was punted plus why. Most of those deferrals fall into 3 categories: easy mechanical (Tier A), false-positive re-verify (Tier B), bulk-safe HVR (Tier C subset). This child closes those categories. Tier C non-safe (semicolons) plus Tier D (architectural decisions plus structural sweeps) stay deferred to a future packet.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.907Z",
+    "last_save_at": "2026-05-26T16:51:05.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

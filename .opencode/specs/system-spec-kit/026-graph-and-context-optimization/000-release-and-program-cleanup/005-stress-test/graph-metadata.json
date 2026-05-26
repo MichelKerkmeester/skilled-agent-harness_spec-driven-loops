@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/002-stress-test-pattern-documentation",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/004-stress-test-folder-completion",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/005-stress-test-expansion-alignment",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/006-stress-coverage-audit-and-run",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/007-fix-stress-test-coverage-gap-followup",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-spec-memory-mcp-stress-test"
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/002-stress-test-pattern-documentation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/004-stress-test-folder-completion",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/006-stress-coverage-audit-and-run",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/007-fix-stress-test-coverage-gap-followup",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/008-spec-memory-mcp-stress-test"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -91,7 +91,7 @@
     ],
     "causal_summary": "This phase parent coordinates stress testing and coverage validation work across 7 child packets. The children collectively address test pattern documentation, MCP runtime stress remediation, stress test folder completion, expansion and alignment, coverage audit and run, and gap remediation to ensure comprehensive stress test coverage for the MCP runtime environment.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.671Z",
+    "last_save_at": "2026-05-26T16:51:05.376Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

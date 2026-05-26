@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -40,14 +40,9 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
-      ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
-      ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
       ".claude/mcp.json",
       ".gemini/settings.json",
-      ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
       ".codex/config.toml",
       ".opencode/bin/mk-code-index-launcher.cjs",
       "spec.md",
@@ -57,33 +52,9 @@
     ],
     "entities": [
       {
-        "name": "ensure-rerank-sidecar.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/ensure-rerank-sidecar.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "start.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/start.sh",
-        "source": "derived"
-      },
-      {
-        "name": "ensure_rerank_sidecar.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-rerank-sidecar/scripts/ensure_rerank_sidecar.py",
-        "source": "derived"
-      },
-      {
         "name": "mk-spec-memory-launcher.cjs",
         "kind": "file",
         "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "cli.py",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/cli.py",
         "source": "derived"
       },
       {
@@ -96,12 +67,6 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".gemini/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "ensure-rerank-sidecar.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/bin/lib/ensure-rerank-sidecar.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,11 +164,41 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 of the 008 rerank-sidecar arc. Plumb the running sidecar into both MCP launcher startup paths with self-electing-primary semantics.",
     "created_at": "2026-05-23T11:55:15.607Z",
-    "last_save_at": "2026-05-24T05:40:26.119Z",
+    "last_save_at": "2026-05-26T16:51:05.990Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
