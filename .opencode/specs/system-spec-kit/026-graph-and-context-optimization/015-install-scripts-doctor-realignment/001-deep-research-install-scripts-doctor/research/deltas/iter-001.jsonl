@@ -1,0 +1,8 @@
+{"type":"iteration","iteration":1,"newInfoRatio":0.72,"status":"insight","focus":"Q1 install-guide sweep","graphEvents":[]}
+{"type":"finding","id":"f-iter001-001","severity":"P1","label":"Spec Kit Memory install guide live feature section still says cross-encoder reranking is enabled by default despite Stage 3 marking model-based reranking removed","iteration":1}
+{"type":"finding","id":"f-iter001-002","severity":"INFO","label":"Spec Kit Memory generic graph-aware reranking architecture text is not stale because current Stage 3 still performs algorithmic MMR reranking","iteration":1}
+{"type":"finding","id":"f-iter001-003","severity":"INFO","label":"Spec Kit Memory version-history cross-encoder mention is changelog-style historical context","iteration":1}
+{"type":"finding","id":"f-iter001-004","severity":"INFO","label":"System Skill Advisor sidecar hit is hf-local embedding device handling, not the removed rerank sidecar","iteration":1}
+{"type":"finding","id":"f-iter001-005","severity":"INFO","label":"System Code Graph install guide is aligned with native structural mk_code_index reality and has no requested stale-pattern hits","iteration":1}
+{"type":"finding","id":"f-iter001-006","severity":"INFO","label":"Chrome DevTools and Code Mode install guides have no CocoIndex, ccc, reranker, or sidecar residue from the requested pattern sweep","iteration":1}
+{"type":"ruled_out","id":"r-iter001-001","label":"No INSTALL_GUIDE.md tells operators to install or run CocoIndex, ccc, coco-daemon, .venv, or .cocoindex_code","iteration":1}

@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":7,"newInfoRatio":0.1,"status":"insight","focus":"source-of-truth DB-path resolution (logic-sync)","graphEvents":[]}
+{"type":"finding","id":"f-iter007-001","severity":"P1","label":"code-graph DB canonical path is .spec-kit/code-graph/database; doctor _routes.yaml:71 system-code-graph/database value is itself stale","iteration":7}
+{"type":"finding","id":"f-iter007-002","severity":"P1","label":"deep-loop DB canonical path confirmed deep-loop-runtime/database/deep-loop-graph.sqlite; storage and mcp_server variants both stale","iteration":7}
+{"type":"finding","id":"f-iter007-003","severity":"P3","label":"adjacent-latent: system-code-graph config.ts defaultDir mcp_server/database disagrees with documented .spec-kit default","iteration":7}
+{"type":"ruled_out","id":"r-iter007-001","label":"iter5 codex-config code-graph drift retracted: .spec-kit/code-graph/database is correct not drift","iteration":7}
+{"type":"ruled_out","id":"r-iter007-002","label":"DB-path variant space fully enumerated; no further code-graph or deep-loop path variants","iteration":7}

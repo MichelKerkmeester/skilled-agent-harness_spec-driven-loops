@@ -155,7 +155,7 @@ workflow:
       - "Before stale/missed/bloat set construction, filter filesystem paths through active_scope_policy so default-excluded roots are intentionally absent unless opted in"
       - "Compute missed set: policy-included files-on-disk minus files-in-index"
       - "Compute bloat set: policy-included bloat_candidates intersected with files-in-index"
-      - "For granular includeSkills lists, include only files under the named .opencode/skills/sk-* folders; exclude all other skill folders from missed-file diagnosis"
+      - "For granular includeSkills lists, include only files under the named .opencode/skills/<name> folders (any prefix: sk-, deep-, system-, mcp-); exclude all other skill folders from missed-file diagnosis"
       - "If scope filter active: filter to scope's subset"
       - "Display analysis summary, then trigger pre_phase_2 approval gate"
     outputs:

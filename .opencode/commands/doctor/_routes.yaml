@@ -68,7 +68,7 @@ routes:
       - "--dry-run"
       - "--confirm"
     mutating: mutates
-    gate3_location: ".opencode/code-graph.config.json + .opencode/skills/system-code-graph/database/code-graph.sqlite"
+    gate3_location: ".opencode/code-graph.config.json + .opencode/.spec-kit/code-graph/database/code-graph.sqlite"
     mcp_tools:
       - mcp__mk_code_index__code_graph_status
       - mcp__mk_code_index__code_graph_query
@@ -89,7 +89,7 @@ routes:
     setup_vars: [execution_mode, intent, scope, no_snapshot, dry_run]
     allowed_flags: ["--scope=research|review|both", "--no-snapshot", "--dry-run"]
     mutating: mutates
-    gate3_location: ".opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite"
+    gate3_location: ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite"
     mcp_tools: []
     script_invocations:
       - 'node .opencode/skills/deep-loop-runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'

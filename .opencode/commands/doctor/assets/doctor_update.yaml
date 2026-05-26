@@ -97,14 +97,14 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - "mcp_server/database/code-graph.sqlite"  # structural code graph DB
-    - "mcp_server/database/code-graph.sqlite.pre-doctor-update.*.bak"
+    - ".opencode/.spec-kit/code-graph/database/code-graph.sqlite"  # structural code graph DB
+    - ".opencode/.spec-kit/code-graph/database/code-graph.sqlite.pre-doctor-update.*.bak"
     - "mcp_server/database/context-index__*.sqlite"  # active profile memory/vector DB
     - "mcp_server/database/context-index__*.sqlite.pre-doctor-update.*.bak"
     - ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"  # standalone advisor routing graph DB
     - ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite.pre-doctor-update.*.bak"
-    - "mcp_server/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
-    - "mcp_server/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
+    - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
+    - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
     - "mcp_server/database/speckit-eval.db"  # eval/ablation DB
     - "mcp_server/database/speckit-eval.db.pre-doctor-update.*.bak"
     - "mcp_server/database/.doctor-update.flock"  # single-instance lock

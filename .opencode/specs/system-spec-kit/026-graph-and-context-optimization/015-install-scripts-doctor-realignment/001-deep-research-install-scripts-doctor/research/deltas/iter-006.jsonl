@@ -1,0 +1,24 @@
+{"type":"iteration","iteration":6,"newInfoRatio":0.31,"status":"insight","focus":"long-tail sweep closeout","graphEvents":[]}
+{"type":"finding","id":"f-iter006-001","severity":"P1","label":"system-spec-kit install guide still lists mcp_server/database/code-graph.sqlite in architecture diagram","iteration":6}
+{"type":"finding","id":"f-iter006-002","severity":"P1","label":"system-spec-kit install guide canonical paths table still lists skill-local code-graph DB","iteration":6}
+{"type":"finding","id":"f-iter006-003","severity":"P1","label":"system-spec-kit install guide troubleshooting file table still lists skill-local code-graph DB","iteration":6}
+{"type":"finding","id":"f-iter006-004","severity":"P2","label":"opencode doctor_update backup boundary still allows mcp_server/database/code-graph backup files","iteration":6}
+{"type":"finding","id":"f-iter006-005","severity":"P2","label":"opencode doctor_update backup boundary still allows mcp_server/database/deep-loop backup files","iteration":6}
+{"type":"finding","id":"f-iter006-006","severity":"P1","label":"claude doctor_update mirror still allows mcp_server/database/code-graph.sqlite","iteration":6}
+{"type":"finding","id":"f-iter006-007","severity":"P2","label":"claude doctor_update mirror still allows mcp_server/database/code-graph backup files","iteration":6}
+{"type":"finding","id":"f-iter006-008","severity":"P1","label":"claude doctor_update mirror still allows mcp_server/database/deep-loop-graph.sqlite","iteration":6}
+{"type":"finding","id":"f-iter006-009","severity":"P2","label":"claude doctor_update mirror still allows mcp_server/database/deep-loop backup files","iteration":6}
+{"type":"finding","id":"f-iter006-010","severity":"P2","label":"opencode doctor_deep-loop backup boundary still allows mcp_server/database/deep-loop backup files","iteration":6}
+{"type":"finding","id":"f-iter006-011","severity":"P1","label":"claude doctor_deep-loop mirror still allows mcp_server/database/deep-loop-graph.sqlite","iteration":6}
+{"type":"finding","id":"f-iter006-012","severity":"P2","label":"claude doctor_deep-loop mirror still allows mcp_server/database/deep-loop backup files","iteration":6}
+{"type":"finding","id":"f-iter006-013","severity":"P1","label":"claude doctor_deep-loop mirror still probes mcp_server/database/deep-loop-graph.sqlite","iteration":6}
+{"type":"finding","id":"f-iter006-014","severity":"P3","label":"system-spec-kit install guide changelog retains historical cross-encoder reranking entry","iteration":6}
+{"type":"ruled_out","id":"r-iter006-001","label":"tool-count tokens had zero net-new live hits after catalog subtraction","iteration":6}
+{"type":"ruled_out","id":"r-iter006-002","label":"ccc, coco daemon, port 8765, and semantic search daemon tokens had zero net-new live hits after catalog subtraction","iteration":6}
+{"type":"ruled_out","id":"r-iter006-003","label":"sk-research, sk-review, and sk-agent-improvement tokens had zero net-new hits","iteration":6}
+{"type":"ruled_out","id":"r-iter006-004","label":"mcp__mk_spec_memory__advisor had zero net-new hits after catalog subtraction","iteration":6}
+{"type":"ruled_out","id":"r-iter006-005","label":"cocoindex net-new hits were generated inventories or memory-quality fixtures only","iteration":6}
+{"type":"ruled_out","id":"r-iter006-006","label":"rerank net-new hits outside cross-encoder stale docs were MMR, migration, detector, or historical-output references","iteration":6}
+{"type":"ruled_out","id":"r-iter006-007","label":"sidecar net-new hits referred to active embedder or skill-advisor sidecar behavior, not rerank sidecar","iteration":6}
+{"type":"ruled_out","id":"r-iter006-008","label":".spec-kit/code-graph/database matches current launcher default and was ruled correct","iteration":6}
+{"type":"ruled_out","id":"r-iter006-009","label":"codex ai-council sk-ai-council match is substring of valid /deep:ask-ai-council command","iteration":6}

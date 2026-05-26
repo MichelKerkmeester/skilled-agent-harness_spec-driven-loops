@@ -1,0 +1,492 @@
+{
+  "sessionId": "70859d71-f191-429c-96cd-6b73bb9745d8",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-do-install-guide-md-files-system-spec-kit-system-code-graph-others-still-tell",
+      "text": "Q1: Do INSTALL_GUIDE.md files (system-spec-kit, system-code-graph, others) still tell operators to install/configure the removed CocoIndex / `ccc` CLI / `.venv` / coco daemon, or carry embedder/reranker chooser tables that reference removed models (cross-encoder, CodeRankEmbed-as-default)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-do-setup-launcher-hook-copy-scripts-opencode-scripts-skill-scripts-install-gi",
+      "text": "Q2: Do setup/launcher/hook/copy scripts (`.opencode/scripts/`, skill `scripts/`, install-git-hooks.sh, launcher scripts, copy-skill-advisor) still reference / set up / health-check the removed coco daemon, `ccc`, rerank sidecar, or `.cocoindex_code`?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-do-doctor-doctor-commands-still-health-check-repair-route-to-a-removed-cocoin",
+      "text": "Q3: Do `/doctor` + `/doctor:*` commands still health-check / repair / route to a removed cocoindex daemon (a `doctor:cocoindex` route, coco/ccc reindex steps, rerank-sidecar checks)? Is the doctor route manifest internally consistent post-coco?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-did-116-deep-skill-evolution-sk-deep-skill-renames-ai-council-deep-ai-council",
+      "text": "Q4: Did 116 deep-skill-evolution (sk->deep skill renames, ai-council/deep-ai-council, deep-loop-runtime relocation from 003, hooks + skills-index rework) leave STALE references in the install/scripts/doctor surfaces — old skill names, moved script paths, renamed commands, dead skills-index entries?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-cross-surface-4-runtime-consistency-are-the-install-scripts-doctor-surfaces-i",
+      "text": "Q5: Cross-surface + 4-runtime consistency — are the install/scripts/doctor surfaces internally consistent and mirror-consistent across the 4 runtimes (.opencode/.claude/.codex/.gemini) for tool counts, skill names, and command routing post-coco + post-116?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Q1: Do INSTALL_GUIDE.md files (system-spec-kit, system-code-graph, others) still tell operators to install/configure the removed CocoIndex / `ccc` CLI / `.venv` / coco daemon, or carry embedder/reranker chooser tables that reference removed models (cross-encoder, CodeRankEmbed-as-default)?",
+    "Q2: Do setup/launcher/hook/copy scripts (`.opencode/scripts/`, skill `scripts/`, install-git-hooks.sh, launcher scripts, copy-skill-advisor) still reference / set up / health-check the removed coco daemon, `ccc`, rerank sidecar, or `.cocoindex_code`?",
+    "Q3: Do `/doctor` + `/doctor:*` commands still health-check / repair / route to a removed cocoindex daemon (a `doctor:cocoindex` route, coco/ccc reindex steps, rerank-sidecar checks)? Is the doctor route manifest internally consistent post-coco?",
+    "Q4: Did 116 deep-skill-evolution (sk->deep skill renames, ai-council/deep-ai-council, deep-loop-runtime relocation from 003, hooks + skills-index rework) leave STALE references in the install/scripts/doctor surfaces — old skill names, moved script paths, renamed commands, dead skills-index entries?",
+    "Q5: Cross-surface + 4-runtime consistency — are the install/scripts/doctor surfaces internally consistent and mirror-consistent across the 4 runtimes (.opencode/.claude/.codex/.gemini) for tool counts, skill names, and command routing post-coco + post-116?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-info-correct-mcp-chrome-devtools-install-guide-md-mcp-code-mode-install-guide-md",
+      "text": "**[INFO / CORRECT]** `mcp-chrome-devtools/INSTALL_GUIDE.md` + `mcp-code-mode/INSTALL_GUIDE.md` — install prompts cover only browser-debugger-cli / Code Mode + UTCP external MCP config; zero CocoIndex/ccc/reranker/sidecar hits.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-info-correct-system-code-graph-install-guide-md-17-43-56-65-70-aligned-with-nati",
+      "text": "**[INFO / CORRECT]** `system-code-graph/INSTALL_GUIDE.md:17,43,56,65-70` — aligned with native structural reality: identity `mk_code_index`, `MCP tools | 8`, runtime-standalone, explicitly \"mk-spec-memory is NOT a prerequisite\"; zero stale-pattern hits.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-info-correct-system-skill-advisor-install-guide-md-384-405-the-sidecar-hit-refer",
+      "text": "**[INFO / CORRECT]** `system-skill-advisor/INSTALL_GUIDE.md:384,405` — the `sidecar` hit refers to the hf-local embedding Python sidecar (its own MPS/CUDA/CPU device-resolution chain), NOT the removed rerank sidecar; the guide instructs no removed-component install.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-info-correct-system-spec-kit-mcp-server-install-guide-md-93-94-architecture-diag",
+      "text": "**[INFO / CORRECT]** `system-spec-kit/mcp_server/INSTALL_GUIDE.md:93-94` — architecture diagram's generic \"Graph-aware reranking\" is NOT stale: Stage 3 still performs algorithmic MMR diversity reranking (`stage3-rerank.ts:94`). Only the cross-encoder/default claim above is the miss; no edit needed here.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-info-historical-system-spec-kit-mcp-server-install-guide-md-1197-version-history",
+      "text": "**[INFO / HISTORICAL]** `system-spec-kit/mcp_server/INSTALL_GUIDE.md:1197` — `## VERSION HISTORY` row \"v1.7.x | 2026-02-20 | Cross-encoder reranking enabled by default\" is changelog-style history; keep as-is.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-p1-stale-live-system-spec-kit-mcp-server-install-guide-md-718-720-live-feature-s",
+      "text": "**[P1 / STALE-LIVE]** `system-spec-kit/mcp_server/INSTALL_GUIDE.md:718-720` — live feature section `### Cross-Encoder Reranking` still states \"Cross-encoder reranking is enabled by default... second-pass scoring over the top-K candidates.\" Current `lib/search/pipeline/stage3-rerank.ts:109-116` removed model-based cross-encoder/local-GGUF reranking (comment \"(removed) model-based cross-encoder reranking\", `const rerankApplied = false`, `const rerankProvider = 'none'`). An operator trusting the guide would believe a removed feature is active by default. **Fix target.**",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-p1-stale-live-q4-note-opencode-skills-system-spec-kit-scripts-test-council-matri",
+      "text": "**[P1 / STALE-LIVE / Q4-NOTE]** `.opencode/skills/system-spec-kit/scripts/test-council-matrix.sh:14` — the council matrix script runs `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/sk-ai-council`, but `.opencode/skills/sk-ai-council` is absent after the 116 rename to `deep-ai-council`; this is Q4 territory, but it is a live script command that would fail if invoked.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-p2-stale-live-opencode-skills-system-spec-kit-scripts-setup-install-sh-280-the-l",
+      "text": "**[P2 / STALE-LIVE]** `.opencode/skills/system-spec-kit/scripts/setup/install.sh:280` — the live installer help still advertises `Structural authority propagation (cross-encoder reranking)` while the current post-CocoIndex reality says the cross-encoder/rerank sidecar path was removed; this is not a launcher failure, but an operator-running `install.sh --help` still receives stale setup-surface capability text.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-p1-stale-live-opencode-commands-doctor-assets-doctor-deep-loop-yaml-78-handler-a",
+      "text": "**[P1 / STALE-LIVE]** `.opencode/commands/doctor/assets/doctor_deep-loop.yaml:78` — handler allows `mcp_server/database/deep-loop-graph.sqlite` and line 162 stats that same path, while the canonical `/doctor deep-loop` route points at `.opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite` in `.opencode/commands/doctor/_routes.yaml:92`; live `/doctor deep-loop` diagnostics can inspect or validate the removed pre-116 DB location.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-p1-stale-live-opencode-commands-doctor-assets-doctor-update-yaml-100-doctor-upda",
+      "text": "**[P1 / STALE-LIVE]** `.opencode/commands/doctor/assets/doctor_update.yaml:100` — `/doctor:update` mutation boundaries still allow `mcp_server/database/code-graph.sqlite` and line 106 still allows `mcp_server/database/deep-loop-graph.sqlite`, while the current command doc says code graph uses `.opencode/skills/system-code-graph/database/code-graph.sqlite` at `.opencode/commands/doctor/update.md:8` and deep-loop uses `.opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite` at `.opencode/commands/doctor/update.md:219`; live update validation can snapshot or validate dead runtime DB paths.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-p1-stale-live-opencode-commands-doctor-speckit-md-101-the-no-argument-doctor-men",
+      "text": "**[P1 / STALE-LIVE]** `.opencode/commands/doctor/speckit.md:101` — the no-argument `/doctor` menu still advertises `6) Debug Code Graph (semantic search daemon)` and the help maps semantic/daemon symptoms to `6` at lines 133-134, but the canonical route manifest has only `memory`, `causal-graph`, `code-graph`, `deep-loop`, `skill-advisor`, and `skill-budget`; selecting the live menu's option 6 hits no mapping and points operators at the removed CocoIndex-era semantic daemon concept.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-p1-stale-live-opencode-commands-doctor-update-md-4-doctor-update-frontmatter-all",
+      "text": "**[P1 / STALE-LIVE]** `.opencode/commands/doctor/update.md:4` — `/doctor:update` frontmatter allows `mcp__mk_spec_memory__advisor_recommend/status/validate/rebuild`, but the workflow calls `mk_skill_advisor.advisor_rebuild({ force: true }) + mk_skill_advisor.advisor_validate({})` in `.opencode/commands/doctor/assets/doctor_update.yaml:433`; live advisor rebuild/validation can be blocked by stale MCP tool ownership after advisor extraction.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-p2-stale-live-opencode-commands-doctor-assets-doctor-code-graph-yaml-158-code-gr",
+      "text": "**[P2 / STALE-LIVE]** `.opencode/commands/doctor/assets/doctor_code-graph.yaml:158` — code-graph missed-file analysis says granular includeSkills lists include only `.opencode/skills/sk-*` folders and exclude all other skill folders, but packet 116 renamed deep skills to `deep-*`; live `/doctor code-graph` diagnostics can undercount or omit renamed `deep-*` skill folders when activeScope is granular.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-p2-stale-live-opencode-commands-doctor-scripts-route-validate-sh-30-the-route-va",
+      "text": "**[P2 / STALE-LIVE]** `.opencode/commands/doctor/scripts/route-validate.sh:30` — the route validator defaults `ROUTER_FILE` to `$COMMANDS_DIR/doctor.md`, but the real router is `.opencode/commands/doctor/speckit.md`; the validation run returned `WARN: F1: could not extract allowed-tools from router frontmatter; skipping F2 subset check`, so CI currently misses stale tool-surface drift like the `/doctor:update` advisor tool ownership mismatch.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-p1-stale-live-opencode-commands-doctor-routes-yaml-92-the-canonical-doctor-deep-",
+      "text": "**[P1 / STALE-LIVE]** `.opencode/commands/doctor/_routes.yaml:92` — the canonical `/doctor deep-loop` route still sets `gate3_location` to `.opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite`, also repeated in `speckit.md:47`, `update.md:219`, and `update.md:270`, while current `deep-loop-runtime` docs and source place the DB at `database/deep-loop-graph.sqlite` (`deep-loop-runtime/SKILL.md:80`, `README.md:66`, `coverage-graph-db.ts:99-103`); live doctor routing and update docs now point at a stale post-relocation path, distinct from the already-reported `mcp_server/database/deep-loop-graph.sqlite` miss.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-p1-stale-live-opencode-skills-system-skill-advisor-mcp-server-scripts-fixtures-s",
+      "text": "**[P1 / STALE-LIVE]** `.opencode/skills/system-skill-advisor/mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl:17` — regression cases still expect `sk-deep-research` at lines 17-18, `sk-deep-review` at lines 21-23, and `sk-deep-agent-improvement` at lines 42-45, while current skill directories are `deep-research`, `deep-review`, and `deep-agent-improvement`; `advisor-validate.ts:187-192` loads this fixture as a live validation input, so advisor validation can preserve or score against renamed-away skill ids.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-p1-stale-live-opencode-skills-system-skill-advisor-mcp-server-scripts-routing-ac",
+      "text": "**[P1 / STALE-LIVE]** `.opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/labeled-prompts.jsonl:24` — the default routing-accuracy corpus uses `skill_top_1:\"sk-deep-research\"` for resume/deep-loop rows at lines 24-25, 28, 41-42, and 147-148, and `skill_top_1:\"sk-deep-review\"` at lines 26, 43-44, 46, 48, 149, 152-153; `score-routing-corpus.py:20-24` makes this file the default dataset, so live corpus scoring can mark canonical `deep-*` advisor output wrong or train reports around old labels.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-p2-stale-live-opencode-skills-system-spec-kit-scripts-optimizer-optimizer-manife",
+      "text": "**[P2 / STALE-LIVE]** `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json:15` — optimizer tunable `configPaths` still point at `.opencode/skills/sk-deep-research/assets/deep_research_config.json` and `.opencode/skills/sk-deep-review/assets/deep_review_config.json` at lines 15-16, repeated at lines 26-27 and 37-38, while current files exist under `.opencode/skills/deep-research/assets/deep_research_config.json` and `.opencode/skills/deep-review/assets/deep_review_config.json`; `optimizer/search.cjs:33-36` loads this manifest as canonical optimizer input.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-p2-stale-live-opencode-skills-system-spec-kit-scripts-tests-deep-research-contra",
+      "text": "**[P2 / STALE-LIVE]** `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts:14` — parity tests still probe `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs` and primary docs at lines 28-34, while `graph-aware-stop.vitest.ts:17` also points its reducer fixture at `../../../sk-deep-research/scripts/reduce-state.cjs`; because those paths no longer exist and the `deep-research` equivalents do, the live test surface silently skips or misses contract coverage for the current skill.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-p2-stale-live-opencode-skills-system-spec-kit-scripts-tests-deep-review-contract",
+      "text": "**[P2 / STALE-LIVE]** `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts:15` — the deep-review parity test still probes `.opencode/skills/sk-deep-review/scripts/runtime-capabilities.cjs` and reads primary docs at lines 30-35, while the current resolver and docs live under `.opencode/skills/deep-review`; the optional `describe.skip` guard means the live test suite can skip current deep-review parity instead of validating it.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-important-mirror-drift-codex-config-toml-89-opencode-commands-doctor-routes-yaml",
+      "text": "Important | MIRROR-DRIFT | `.codex/config.toml:89`, `.opencode/commands/doctor/_routes.yaml:71`, `.claude/commands/doctor/_routes.yaml:71` | Codex runtime config says the code-graph database lives at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`, while the full `.opencode` and `.claude` doctor mirrors use the current `.opencode/skills/system-code-graph/database/code-graph.sqlite` path.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-important-mirror-drift-gemini-commands-deep-start-research-loop-toml-2-opencode-",
+      "text": "Important | MIRROR-DRIFT | `.gemini/commands/deep/start-research-loop.toml:2`, `.opencode/commands/deep/start-research-loop.md:38`, `.opencode/commands/deep/start-research-loop.md:328` | Gemini's deep-research command mirror still points to `.opencode/skills/sk-deep-research/...` and says the full protocol is `.opencode/skills/sk-deep-research/SKILL.md`; the canonical OpenCode command uses `.opencode/skills/deep-research/...` and `.opencode/skills/deep-research/SKILL.md`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-important-shared-stale-opencode-commands-doctor-routes-yaml-92-claude-commands-d",
+      "text": "Important | SHARED-STALE | `.opencode/commands/doctor/_routes.yaml:92`, `.claude/commands/doctor/_routes.yaml:92`, `.opencode/commands/doctor/update.md:219`, `.claude/commands/doctor/update.md:219` | The full `.opencode` and `.claude` doctor mirrors both still name `.opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite`; current truth is `.opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite`, so this is mirror-parity staleness rather than one-runtime drift.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-important-shared-stale-opencode-commands-doctor-scripts-mcp-doctor-sh-61-claude-",
+      "text": "Important | SHARED-STALE | `.opencode/commands/doctor/scripts/mcp-doctor.sh:61`, `.claude/commands/doctor/scripts/mcp-doctor.sh:61` | Both MCP doctor scripts still describe `mk_code_index` as `structural AST + 11 graph tools`; current truth is 8 mk_code_index tools.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-important-shared-stale-opencode-commands-doctor-speckit-md-101-claude-commands-d",
+      "text": "Important | SHARED-STALE | `.opencode/commands/doctor/speckit.md:101`, `.claude/commands/doctor/speckit.md:101` | Both unresolved-target menus still show `6) Debug Code Graph (semantic search daemon)`, which preserves the deleted semantic-search-daemon concept in the live operator prompt.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-important-shared-stale-opencode-commands-doctor-update-md-4-claude-commands-doct",
+      "text": "Important | SHARED-STALE | `.opencode/commands/doctor/update.md:4`, `.claude/commands/doctor/update.md:4` | Both `/doctor:update` frontmatter allow `mcp__mk_spec_memory__advisor_recommend`, `advisor_status`, `advisor_validate`, and `advisor_rebuild`; advisor ownership has moved to `mk_skill_advisor`, while the route manifest already uses `mcp__mk_skill_advisor__advisor_*` at `.opencode/commands/doctor/_routes.yaml:112`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-info-correct-in-sync-codex-config-toml-68-codex-config-toml-90-opencode-commands",
+      "text": "Info | CORRECT/IN-SYNC | `.codex/config.toml:68`, `.codex/config.toml:90`, `.opencode/commands/doctor/_routes.yaml:112`, `.claude/commands/doctor/_routes.yaml:112` | Codex's MCP config carries current tool-count identity for `mk-spec-memory` as `Registers 35 tools` and `mk_code_index` as `Registers 8 tools`, and both full doctor route manifests put advisor tools under `mcp__mk_skill_advisor__advisor_recommend`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-13-p1-mirror-drift-claude-commands-doctor-assets-doctor-deep-loop-yaml-162-bash-sta",
+      "text": "**[P1 / MIRROR-DRIFT]** `.claude/commands/doctor/assets/doctor_deep-loop.yaml:162` — `- \"Bash: stat -f '%m %z' mcp_server/database/deep-loop-graph.sqlite when present.\"`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-p1-mirror-drift-claude-commands-doctor-assets-doctor-deep-loop-yaml-78-mcp-serve",
+      "text": "**[P1 / MIRROR-DRIFT]** `.claude/commands/doctor/assets/doctor_deep-loop.yaml:78` — `- \"mcp_server/database/deep-loop-graph.sqlite\" # coverage graph DB`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-p1-mirror-drift-claude-commands-doctor-assets-doctor-update-yaml-100-mcp-server-",
+      "text": "**[P1 / MIRROR-DRIFT]** `.claude/commands/doctor/assets/doctor_update.yaml:100` — `- \"mcp_server/database/code-graph.sqlite\" # structural code graph DB`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-p1-mirror-drift-claude-commands-doctor-assets-doctor-update-yaml-106-mcp-server-",
+      "text": "**[P1 / MIRROR-DRIFT]** `.claude/commands/doctor/assets/doctor_update.yaml:106` — `- \"mcp_server/database/deep-loop-graph.sqlite\" # research/review coverage graph DB`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-p1-stale-live-opencode-skills-system-spec-kit-mcp-server-install-guide-md-1113-o",
+      "text": "**[P1 / STALE-LIVE]** `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1113` — ``| `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` | Structural code-graph database |``.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-p1-stale-live-opencode-skills-system-spec-kit-mcp-server-install-guide-md-114-op",
+      "text": "**[P1 / STALE-LIVE]** `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:114` — ``| `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` | Default repo-local structural code-graph database used by the checked-in configs |``.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-p1-stale-live-opencode-skills-system-spec-kit-mcp-server-install-guide-md-83-mcp",
+      "text": "**[P1 / STALE-LIVE]** `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:83` — `│ mcp_server/database/code-graph.sqlite (structural graph) │`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-12-p2-mirror-drift-claude-commands-doctor-assets-doctor-deep-loop-yaml-79-mcp-serve",
+      "text": "**[P2 / MIRROR-DRIFT]** `.claude/commands/doctor/assets/doctor_deep-loop.yaml:79` — `- \"mcp_server/database/deep-loop-graph.sqlite.pre-doctor-deep-loop.*.bak\" # deep-loop snapshot files only`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-p2-mirror-drift-claude-commands-doctor-assets-doctor-update-yaml-101-mcp-server-",
+      "text": "**[P2 / MIRROR-DRIFT]** `.claude/commands/doctor/assets/doctor_update.yaml:101` — `- \"mcp_server/database/code-graph.sqlite.pre-doctor-update.*.bak\"`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-p2-mirror-drift-claude-commands-doctor-assets-doctor-update-yaml-107-mcp-server-",
+      "text": "**[P2 / MIRROR-DRIFT]** `.claude/commands/doctor/assets/doctor_update.yaml:107` — `- \"mcp_server/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak\"`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-p2-shared-stale-opencode-commands-doctor-assets-doctor-deep-loop-yaml-79-mcp-ser",
+      "text": "**[P2 / SHARED-STALE]** `.opencode/commands/doctor/assets/doctor_deep-loop.yaml:79` — `- \"mcp_server/database/deep-loop-graph.sqlite.pre-doctor-deep-loop.*.bak\" # deep-loop snapshot files only`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-p2-shared-stale-opencode-commands-doctor-assets-doctor-update-yaml-101-mcp-serve",
+      "text": "**[P2 / SHARED-STALE]** `.opencode/commands/doctor/assets/doctor_update.yaml:101` — `- \"mcp_server/database/code-graph.sqlite.pre-doctor-update.*.bak\"`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-p2-shared-stale-opencode-commands-doctor-assets-doctor-update-yaml-107-mcp-serve",
+      "text": "**[P2 / SHARED-STALE]** `.opencode/commands/doctor/assets/doctor_update.yaml:107` — `- \"mcp_server/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak\"`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-14-p3-historical-opencode-skills-system-spec-kit-mcp-server-install-guide-md-1197-v",
+      "text": "**[P3 / HISTORICAL]** `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:1197` — ``| v1.7.x | 2026-02-20 | Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Feature flag updates. `memory_context` tokenUsage parameter. 28-tool surface area. |``.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-info-correction-of-iter5-codex-config-toml-89-opencode-spec-kit-code-graph-datab",
+      "text": "**[INFO / CORRECTION-of-iter5]** `.codex/config.toml:89` (`.opencode/.spec-kit/code-graph/database/code-graph.sqlite`) is CORRECT, not MIRROR-DRIFT — iter-5 finding f-iter005-005 is RETRACTED. iter-6 r-iter006-008 was right.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-p1-confirmed-deep-loop-db-canonical-current-path-opencode-skills-deep-loop-runti",
+      "text": "**[P1 / CONFIRMED]** deep-loop DB canonical current path = `.opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite` — confirmed by `coverage-graph-db.ts` + `lib/coverage-graph/README.md:37` + `SKILL.md:80` + `README.md:66`. Both `deep-loop-runtime/storage/...` (iter-3 \"canonical\") and `mcp_server/database/deep-loop-graph.sqlite` (pre-116) are STALE. Fix-target for deep-loop DB in ALL surfaces = `database/deep-loop-graph.sqlite`.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-p1-re-classification-code-graph-db-canonical-current-path-opencode-spec-kit-code",
+      "text": "**[P1 / RE-CLASSIFICATION]** code-graph DB canonical current path = `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` — confirmed by `readiness-marker.ts:20` default + `mcp_server/README.md:173` + `.codex/config.toml:89` doc (3 concurring source/doc signals). The doctor route manifest `.opencode/commands/doctor/_routes.yaml:71` (+ `.claude` mirror) value `.opencode/skills/system-code-graph/database/code-graph.sqlite` is therefore ITSELF STALE — iters 3/5 wrongly treated it as the canonical fix-target. Fix-target for code-graph DB in ALL surfaces = `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-p3-adjacent-latent-system-code-graph-mcp-server-core-config-ts-14-computes-defau",
+      "text": "**[P3 / ADJACENT-LATENT]** `system-code-graph/mcp_server/core/config.ts:14` computes `defaultDir = resolve(__dirname, '..', 'database')` (i.e. `mcp_server/database`), which DISAGREES with the documented/readiness-marker default `.opencode/.spec-kit/code-graph/database`. Effective runtime path is the documented one only when `SPECKIT_CODE_GRAPH_DB_DIR` is set (or the canonical resolver/launcher sets it). This config.ts-vs-docs default mismatch is an ADJACENT system-code-graph concern (NOT this packet's install/scripts/doctor core), flagged for a sibling follow-up so docs and the code fallback agree.",
+      "addedAtIteration": 7,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-7f289a48cd7d",
+      "text": "No `INSTALL_GUIDE.md` across the 5 swept guides tells operators to install or run CocoIndex, the `ccc` CLI, a coco-daemon, `.venv`, or `.cocoindex_code` — install-guide CocoIndex/ccc install residue is ruled out for this surface.",
+      "contentHash": "7f289a48cd7d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-cdc59c5d5362",
+      "text": "`.opencode/scripts/copy-skill-advisor-dist-data.sh:25-44` copies JSON data from `system-skill-advisor/mcp_server/data` into the compiled dist data directory; it does not copy or build removed embedder, reranker, sidecar, CocoIndex, or `ccc` artifacts.",
+      "contentHash": "cdc59c5d5362",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-79b4dff7fe2f",
+      "text": "`.opencode/scripts/install-git-hooks.sh:21-50` installs only files from `.opencode/scripts/git-hooks`, and the current hook templates at `.opencode/scripts/git-hooks/pre-commit:22` and `.opencode/scripts/git-hooks/post-commit:43-65` reference the doc-model validator and structural code-graph DB invalidation, not CocoIndex/`ccc`/rerank sidecar paths.",
+      "contentHash": "79b4dff7fe2f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d665a1d91fd3",
+      "text": "No `*.sh` or `*.cjs` script in `.opencode/scripts`, `.github/hooks`, skill `scripts`, or skill `mcp_server/scripts` contains `cocoindex`, `ccc`, `ccc search/index/mcp/status/reindex`, `coco-daemon`-style text, `.venv`, or `.cocoindex_code`; Q2 removed CocoIndex/`ccc` runtime setup residue is ruled out for this script set.",
+      "contentHash": "d665a1d91fd3",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8cef56c5b323",
+      "text": "No requested script contains rerank-sidecar runtime wiring: no `sidecar`, `8765`, `RERANKER_LOCAL`, `SPECKIT_CROSS_ENCODER`, or `rerank_sidecar` hits were present in the targeted `*.sh`/`*.cjs` sweep.",
+      "contentHash": "8cef56c5b323",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ae0c4ab7da73",
+      "text": "No targeted script references the deleted `pre-push-council.sh`; both `.opencode/scripts/git-hooks/pre-push-council.sh` and `.github/hooks/scripts/pre-push-council.sh` are absent, so the prior council pre-push hook deletion has no installer residue in the swept script surfaces.",
+      "contentHash": "ae0c4ab7da73",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-f35440f838b2",
+      "text": "`route-validate.sh` confirmed schema version, duplicate-target checks, YAML asset existence, mutation-class validity, and trigger phrases for the six core routes; the remaining validator problem is the skipped frontmatter subset check, not missing route YAML assets.",
+      "contentHash": "f35440f838b2",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-52a7f3471dd8",
+      "text": "CocoIndex/ccc strings found under `.opencode/skills/system-code-graph/changelog/` are historical changelog content, not live `/doctor` execution paths.",
+      "contentHash": "52a7f3471dd8",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a6f493b722e1",
+      "text": "No `doctor:cocoindex`, `doctor-cocoindex-daemon`, or `cocoindex-daemon` route/playbook survived in the doctor command inventories.",
+      "contentHash": "a6f493b722e1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f6aa8858b689",
+      "text": "No live `cocoindex`, `CocoIndex`, `ccc`, `coco.?daemon`, `doctor:cocoindex`, `cocoindex-daemon`, `rerank`, `sidecar`, `8765`, `cross-encoder`, or `cocoIndexAvailable` hits were found in `.opencode/commands/doctor`, `.claude/commands/doctor`, `.gemini/commands/doctor`, or the checked doctor scripts, except a correct read-only `reindex` prohibition in `doctor_skill-budget.yaml`.",
+      "contentHash": "f6aa8858b689",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-639cd99caadb",
+      "text": "The canonical `.opencode/commands/doctor/_routes.yaml` core route list is post-Coco: it contains exactly six subsystem routes and no semantic-daemon/CocoIndex route.",
+      "contentHash": "639cd99caadb",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c4d77f64c88c",
+      "text": "**[INFO / ALREADY-REPORTED]** `.opencode/commands/doctor/assets/doctor_deep-loop.yaml:78` and `.opencode/commands/doctor/assets/doctor_update.yaml:106` — stale `mcp_server/database/deep-loop-graph.sqlite` allow-list entries remain valid, but iteration 003 already reported them; this pass only adds the newly discovered `deep-loop-runtime/storage` to `deep-loop-runtime/database` drift.",
+      "contentHash": "c4d77f64c88c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-af69531b79de",
+      "text": "**[INFO / ALREADY-REPORTED]** `.opencode/skills/system-spec-kit/scripts/test-council-matrix.sh:14` — the `sk-ai-council` script casualty remains valid, but iteration 002 already reported it as a Q4 note, so this pass does not count it as new.",
+      "contentHash": "af69531b79de",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-6f7652baec97",
+      "text": "**[INFO / CORRECT]** `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json:87` — the advisor skill graph itself uses current `deep-agent-improvement`, `deep-ai-council`, `deep-loop-runtime`, `deep-research`, and `deep-review` ids, so the stale `sk-deep-*` issue is in fixtures/corpora, not the live graph file.",
+      "contentHash": "6f7652baec97",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-421aa0e4a72f",
+      "text": "**[INFO / HISTORICAL]** `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl:164` — old `labelSkill` and `advisorTopSkill` rows are measurement output records with generated timestamps, not live routing configuration; keep as historical evidence unless a script treats them as an input corpus.",
+      "contentHash": "421aa0e4a72f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-0bc6212eb355",
+      "text": "CORRECT/IN-SYNC | `.opencode/commands/doctor` and `.claude/commands/doctor` had no `diff -qr` output, so every doctor drift observed in those two trees is shared-stale mirror parity, not `.claude`-only divergence.",
+      "contentHash": "0bc6212eb355",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-5b28bc4fc889",
+      "text": "CORRECT/IN-SYNC | The full `/doctor` tree is expected only in `.opencode` and `.claude`; discovery found `.gemini/commands/doctor/{mcp,speckit,update}.toml` as thin wrappers and no `.codex/commands/doctor` directory, so Codex does not have a doctor command mirror to compare.",
+      "contentHash": "5b28bc4fc889",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ae1fa760f7b4",
+      "text": "CORRECT/IN-SYNC | The requested doctor/install scoped skill-name grep found no `sk-deep-*`, `sk-ai-council`, `sk-research`, or `sk-review` hits under `.claude`, `.codex`, or `.gemini` doctor/install surfaces; the stale `sk-deep-research` hit is in the Gemini deep command mirror, not in `/doctor`.",
+      "contentHash": "ae1fa760f7b4",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-737e83334b8a",
+      "text": "CORRECT/IN-SYNC | The scoped grep found no `39 tools` or `64 tools` claims in `.opencode/commands/doctor`, `.claude/commands/doctor`, `.gemini/commands/doctor`, or `.codex`; the live stale count in this pass is the shared `11 graph tools` claim in `mcp-doctor.sh`.",
+      "contentHash": "737e83334b8a",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-c20640110449",
+      "text": "`.codex/agents/ai-council.toml:20` matched `sk-ai-council` only as a substring inside the valid command `/deep:ask-ai-council`. Classification: CORRECT.",
+      "contentHash": "c20640110449",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-ad7119580475",
+      "text": "`.spec-kit/code-graph/database` net-new matches were ruled CORRECT because `.opencode/bin/mk-code-index-launcher.cjs:97-99` sets that directory as the current standalone shared default.",
+      "contentHash": "ad7119580475",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-3e034a81412a",
+      "text": "`cocoindex` net-new matches were generated inventories or fixtures only: `.no-frontmatter-list.txt`, `.unscanned.txt`, `.folder-list.txt`, and memory-quality fixture expected trigger strings. Classification: HISTORICAL/CORRECT, not fix targets.",
+      "contentHash": "3e034a81412a",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-1ac4d39de4a6",
+      "text": "`rerank` net-new matches outside cataloged cross-encoder lines were MMR references, legacy model-name detectors, migration owner-map keys, generated folder inventories, or kept historical measurement outputs. Classification: CORRECT/HISTORICAL.",
+      "contentHash": "1ac4d39de4a6",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-115d5bffbef9",
+      "text": "`sidecar` net-new matches referenced the active embedder sidecar (`sidecar-client.ts`) or skill-advisor Python fallback behavior, not the deleted rerank sidecar. Classification: CORRECT.",
+      "contentHash": "115d5bffbef9",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e62577852ed9",
+      "text": "Clean after subtracting cataloged hits: `\\b11 (graph )?tools\\b`, `\\b39 tools\\b`, `\\b64 tools\\b`, `\\bccc\\b`, `coco.?daemon`, `\\b8765\\b`, `semantic search daemon`, `sk-research`, `sk-review`, `sk-agent-improvement`, and `mcp__mk_spec_memory__advisor`.",
+      "contentHash": "e62577852ed9",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-88b8e05a81a2",
+      "text": "No further DB-path variants beyond the three code-graph claims (`mcp_server/database`, `system-code-graph/database`, `.spec-kit/code-graph/database`) and three deep-loop claims (`mcp_server/database`, `storage`, `database`) — the path space is fully enumerated and each is now classified.",
+      "contentHash": "88b8e05a81a2",
+      "addedAtIteration": 7
+    }
+  ],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 7,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "keyFindings": 45,
+    "convergenceScore": 0.1,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}

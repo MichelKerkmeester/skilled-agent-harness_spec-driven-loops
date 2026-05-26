@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":3,"newInfoRatio":0.61,"status":"insight","focus":"Q3 doctor route surface","graphEvents":[]}
+{"type":"finding","id":"f-iter003-001","severity":"P1","label":"doctor deep-loop handler uses pre-116 deep-loop DB path","iteration":3}
+{"type":"finding","id":"f-iter003-002","severity":"P1","label":"doctor update mutation boundaries use stale code-graph and deep-loop DB paths","iteration":3}
+{"type":"finding","id":"f-iter003-003","severity":"P1","label":"doctor update allowed-tools keep advisor tools under mk-spec-memory","iteration":3}
+{"type":"finding","id":"f-iter003-004","severity":"P1","label":"doctor menu advertises removed semantic daemon option 6","iteration":3}
+{"type":"finding","id":"f-iter003-005","severity":"P2","label":"doctor route validator points at missing router file and skips tool subset check","iteration":3}
+{"type":"finding","id":"f-iter003-006","severity":"P2","label":"doctor code-graph handler assumes sk-* skill folders after deep-* rename","iteration":3}
+{"type":"ruled_out","id":"r-iter003-001","label":"no live cocoindex ccc daemon rerank sidecar 8765 cross-encoder hits in doctor execution paths","iteration":3}
+{"type":"ruled_out","id":"r-iter003-002","label":"no doctor:cocoindex or doctor-cocoindex-daemon route or playbook survived","iteration":3}
+{"type":"ruled_out","id":"r-iter003-003","label":"canonical doctor route manifest contains six post-coco subsystem routes with existing YAML assets","iteration":3}
+{"type":"ruled_out","id":"r-iter003-004","label":"system-code-graph coco ccc hits are changelog history rather than live doctor paths","iteration":3}

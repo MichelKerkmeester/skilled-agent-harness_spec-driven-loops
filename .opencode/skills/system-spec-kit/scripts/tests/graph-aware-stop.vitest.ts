@@ -14,7 +14,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
-const reducerPath = path.resolve(TEST_DIR, '../../../sk-deep-research/scripts/reduce-state.cjs');
+const reducerPath = path.resolve(TEST_DIR, '../../../deep-research/scripts/reduce-state.cjs');
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const reducer = fs.existsSync(reducerPath) ? require(reducerPath) as {
@@ -194,7 +194,7 @@ afterEach(() => {
   }
 });
 
-// REASON: 026/000/002-vitest-recovery-followup requires optional sk-deep-research reducer fixture
+// REASON: 026/000/002-vitest-recovery-followup requires optional deep-research reducer fixture
 (reducer ? describe : describe.skip)('graph-aware stop evaluation', () => {
   it('propagates graph STOP_BLOCKED blockers into the registry and dashboard', () => {
     const specFolder = makeFixture('blocked', [

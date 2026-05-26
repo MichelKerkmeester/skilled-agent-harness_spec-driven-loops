@@ -43,8 +43,8 @@ This router never modifies authored spec packet docs. Each routed target has its
 | --------------- | ----------------------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------- | ------------------------------------------------------------ |
 | `memory`        | `mcp_server/database/context-index__*.sqlite` active profile DB                           | **mutates**    | Runtime database files, not spec folder packets                   | Phase 3 canonical-path validator + `VACUUM INTO` snapshot    |
 | `causal-graph`  | `mcp_server/database/context-index__*.sqlite` causal_edges table                          | **add-only**   | Edges are evidence; existing rows never deleted or updated        | Phase 3 validator + snapshot; halts if upsert detected       |
-| `code-graph`    | `.opencode/code-graph.config.json` + `.opencode/skills/system-code-graph/database/code-graph.sqlite` | **mutates**    | Runtime config + index; not packet docs                           | Phase 3 validator + gold-battery + auto-rollback             |
-| `deep-loop`     | `.opencode/skills/deep-loop-runtime/storage/deep-loop-graph.sqlite`                       | **mutates**    | Coverage graph DB; not packet docs                                | Phase 3 validator + `VACUUM INTO` snapshot                   |
+| `code-graph`    | `.opencode/code-graph.config.json` + `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` | **mutates**    | Runtime config + index; not packet docs                           | Phase 3 validator + gold-battery + auto-rollback             |
+| `deep-loop`     | `.opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite`                       | **mutates**    | Coverage graph DB; not packet docs                                | Phase 3 validator + `VACUUM INTO` snapshot                   |
 | `skill-advisor` | `lib/scorer/lanes/*.ts` + `.opencode/skills/*/graph-metadata.json`                        | **mutates**    | Runtime scorer config + graph metadata; not packet docs           | Phase 3 validator + per-run rollback script                  |
 | `skill-budget`  | n/a (read-only audit)                                                                     | **read-only**  | No mutations; report-only                                         | Diagnostic output only                                       |
 
@@ -98,9 +98,8 @@ What do you want to do?
    3) Debug Causal-Graph                 (spec lineage, drift_why)
    4) Debug Code-Graph                   (structural index, stale/missed/bloat)
    5) Debug Deep-Loop history            (research/review iteration graphs)
-   6) Debug Code Graph                    (semantic search daemon)
-   7) Re-tune Skill Advisor              (which skill gets recommended)
-   8) Audit Skill Description budget     (char counts, CI-friendly)
+   6) Re-tune Skill Advisor              (which skill gets recommended)
+   7) Audit Skill Description budget     (char counts, CI-friendly)
    0) Full sweep — rebuild everything    (no migration, current schema)
    H) Help me decide
    X) Cancel
@@ -112,8 +111,8 @@ What do you want to do?
      - 3 → target = "causal-graph"
      - 4 → target = "code-graph"
      - 5 → target = "deep-loop"
-     - 7 → target = "skill-advisor"
-     - 8 → target = "skill-budget"
+     - 6 → target = "skill-advisor"
+     - 7 → target = "skill-budget"
      - 9 → ABORT, EMIT: "Switch to `/doctor:mcp debug --fix` (or `/doctor:mcp install`). Exiting /doctor."
      - 0 → ABORT, EMIT: "Switch to `/doctor:update` for full sweep. Exiting /doctor."
      - H → print the HELP block below, then re-ask Tier 1 question.
@@ -130,19 +129,17 @@ Pick by symptom:
    memory_drift_why returns nothing                   → 3  Causal-Graph
    "causal coverage <60%" warning                     → 3  Causal-Graph
    "code-graph stale/missed/bloat" warning            → 4  Code-Graph
-   Semantic search slow or wrong                      → 6  Code Graph (semantic)
-   "Code Graph daemon died" or "code_graph_status: unhealthy" → 6  Code Graph
+   "code_graph_status: unhealthy" or code-graph errors → 4  Code-Graph
    deep-research/deep-review iteration graph empty    → 5  Deep-Loop
    Convergence not detected between iterations        → 5  Deep-Loop
-   Skill Advisor recommends the wrong skill           → 7  Skill Advisor
-   New skill not appearing in advisor results         → 7  Skill Advisor
-   Description char-count over hard cap (1536)        → 8  Skill Budget
+   Skill Advisor recommends the wrong skill           → 6  Skill Advisor
+   New skill not appearing in advisor results         → 6  Skill Advisor
+   Description char-count over hard cap (1536)        → 7  Skill Budget
 
 Quick reference for confusable pairs:
    Code-Graph (4) is STRUCTURAL — functions, files, dirs, AST
-   Code Graph (6) is SEMANTIC — vector embeddings, intent search
-   Skill Advisor (7) tunes ROUTING quality (which skill gets picked)
-   Skill Budget (8) audits CHAR COUNTS (frontmatter description size)
+   Skill Advisor (6) tunes ROUTING quality (which skill gets picked)
+   Skill Budget (7) audits CHAR COUNTS (frontmatter description size)
 
 Press 1-9, 0, or X.
 ```

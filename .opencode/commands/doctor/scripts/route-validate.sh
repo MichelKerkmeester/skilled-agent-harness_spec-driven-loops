@@ -27,7 +27,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOCTOR_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 COMMANDS_DIR="$(cd "$DOCTOR_DIR/.." && pwd)"
 ROUTES_FILE="${ROUTES_FILE:-$DOCTOR_DIR/_routes.yaml}"
-ROUTER_FILE="${ROUTER_FILE:-$COMMANDS_DIR/doctor.md}"
+ROUTER_FILE="${ROUTER_FILE:-$DOCTOR_DIR/speckit.md}"
 ASSETS_DIR="${ASSETS_DIR:-$DOCTOR_DIR/assets}"
 
 # Dependency check

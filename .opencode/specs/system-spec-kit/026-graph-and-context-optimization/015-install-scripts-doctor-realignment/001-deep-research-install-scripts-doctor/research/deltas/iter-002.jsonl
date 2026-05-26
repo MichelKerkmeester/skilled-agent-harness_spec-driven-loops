@@ -1,0 +1,8 @@
+{"type":"iteration","iteration":2,"newInfoRatio":0.66,"status":"insight","focus":"Q2 scripts sweep","graphEvents":[]}
+{"type":"finding","id":"f-iter002-001","severity":"P2","label":"setup install help advertises removed cross-encoder reranking","iteration":2}
+{"type":"finding","id":"f-iter002-002","severity":"P1","label":"council matrix script still validates missing sk-ai-council path","iteration":2}
+{"type":"ruled_out","id":"r-iter002-001","label":"no CocoIndex ccc daemon venv or cocoindex code runtime setup residue in targeted scripts","iteration":2}
+{"type":"ruled_out","id":"r-iter002-002","label":"no rerank sidecar port 8765 or rerank environment wiring in targeted scripts","iteration":2}
+{"type":"ruled_out","id":"r-iter002-003","label":"install-git-hooks and current hook templates do not install deleted coco rerank or council pre-push hooks","iteration":2}
+{"type":"ruled_out","id":"r-iter002-004","label":"copy-skill-advisor-dist-data only copies advisor JSON data and no removed embedder or sidecar artifacts","iteration":2}
+{"type":"ruled_out","id":"r-iter002-005","label":"deleted pre-push-council hook has no remaining targeted script reference","iteration":2}

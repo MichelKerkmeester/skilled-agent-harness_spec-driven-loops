@@ -75,8 +75,8 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - "mcp_server/database/deep-loop-graph.sqlite"  # coverage graph DB
-    - "mcp_server/database/deep-loop-graph.sqlite.pre-doctor-deep-loop.*.bak"  # deep-loop snapshot files only
+    - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite"  # coverage graph DB
+    - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite.pre-doctor-deep-loop.*.bak"  # deep-loop snapshot files only
   forbidden_targets:
     - "<active-spec-folder>/research/iterations/*.md"  # read-only source inputs, never rewritten
     - "<active-spec-folder>/review/iterations/*.md"  # read-only source inputs, never rewritten
@@ -159,7 +159,7 @@ workflow:
     activities:
       - "Glob: <active-spec-folder>/research/iterations/*.md when scope includes research."
       - "Glob: <active-spec-folder>/review/iterations/*.md when scope includes review."
-      - "Bash: stat -f '%m %z' mcp_server/database/deep-loop-graph.sqlite when present."
+      - "Bash: stat -f '%m %z' .opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite when present."
       - "Group iteration files by specFolder, loopType, and inferred sessionId from iteration metadata or folder path."
       - "Run deep_loop_graph_status({specFolder, loopType, sessionId}) for up to 10 sampled packet/session namespaces."
       - "Set lazy_init.available=true when empty_graph=true and iteration_folder_count > 0."

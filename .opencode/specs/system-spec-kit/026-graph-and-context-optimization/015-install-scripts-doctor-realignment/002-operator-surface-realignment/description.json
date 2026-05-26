@@ -1,0 +1,17 @@
+{
+  "specFolder": "015-install-scripts-doctor-realignment/002-operator-surface-realignment",
+  "description": "Phase 1: operator-surface-realignment",
+  "keywords": [
+    "phase",
+    "operator-surface-realignment"
+  ],
+  "lastUpdated": "2026-05-26T06:48:34.385Z",
+  "specId": "002",
+  "folderSlug": "operator-surface-realignment",
+  "parentChain": [
+    "015-install-scripts-doctor-realignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

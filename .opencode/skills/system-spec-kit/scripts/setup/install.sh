@@ -277,7 +277,7 @@ Features:
     - Trigger phrase matching
     - Causal graph retrieval tools (drift tracing, causal links, causal stats, causal unlink)
     - Graph-guided MMR reranking with intent-mapped lambda values
-    - Structural authority propagation (cross-encoder reranking)
+    - Structural authority propagation (graph-based authority scoring)
     - Feature flag system (5 opt-out flags for graph, telemetry, fusion)
     - Phase system support (recursive validation, phase detection scoring)
 

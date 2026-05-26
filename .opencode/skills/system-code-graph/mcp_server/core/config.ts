@@ -11,6 +11,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const envDir = process.env.SPECKIT_CODE_GRAPH_DB_DIR;
+// NOTE (015-install-scripts-doctor-realignment): this in-tree fallback (mcp_server/database)
+// is a defensive default. The DOCUMENTED canonical default is `.opencode/.spec-kit/code-graph/database`
+// (see opencode.json `_NOTE_1_DB`, readiness-marker.ts, mcp_server/README.md), normally supplied via
+// SPECKIT_CODE_GRAPH_DB_DIR by the launcher (which also auto-migrates the legacy location on first start).
+// Latent mismatch flagged for a system-code-graph follow-up to reconcile this fallback with the docs.
 const defaultDir = resolve(__dirname, '..', 'database');
 
 function resolveWorkspaceRoot(): string {

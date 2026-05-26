@@ -80,7 +80,7 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 │  SQLite + sqlite-vec for vector storage                         │
 │  Canonical DBs:                                                 │
 │    mcp_server/database/context-index__*.sqlite (active profile) │
-│    mcp_server/database/code-graph.sqlite   (structural graph)   │
+│    .spec-kit/code-graph/database/code-graph.sqlite (structural) │
 └────────────────────┬────────────────────────────────────────────┘
                      │
           ┌──────────┼──────────┐
@@ -111,7 +111,7 @@ This guide addresses the full installation lifecycle and common failures after m
 |---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | MCP entry script |
 | `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite` | Active repo-local memory database resolved from the embedding profile |
-| `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` | Default repo-local structural code-graph database used by the checked-in configs |
+| `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` | Default structural code-graph database (the legacy `.opencode/skills/system-code-graph/mcp_server/database/` location is auto-migrated on first launcher startup; override with `SPECKIT_CODE_GRAPH_DB_DIR`) |
 
 The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/database/`. The runtime derives the active sqlite filename from the selected embedding profile. Typical filenames are `context-index__ollama__nomic-embed-text-v1.5__768.sqlite`, `context-index__hf-local__nomic-ai_nomic-embed-text-v1.5__768.sqlite`, `context-index__openai__text-embedding-3-small__1536__cloud.sqlite`, and `context-index__voyage__voyage-code-3__1024__cloud.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
 
@@ -715,9 +715,9 @@ Causal support in the current runtime is relationship-driven and runs in-process
 
 When enabled, this feature adjusts the balance between vector similarity and keyword relevance based on the detected task type. It supports 7 task types: `add_feature`, `fix_bug`, `refactor`, `understand`, `plan`, `debug` and `resume`. For example, `fix_bug` boosts exact-match keyword signals while `understand` emphasizes semantic similarity.
 
-### Cross-Encoder Reranking
+### Diversity Reranking (MMR)
 
-Cross-encoder reranking is enabled by default. The reranker applies a second-pass scoring pass over the top-K candidates returned by the initial retrieval, improving result ordering for ambiguous queries.
+Stage-3 MMR (maximal marginal relevance) diversity reranking is enabled by default (`SPECKIT_MMR`). It reduces near-duplicate results among the top-K candidates and applies MPAB chunk collapse, improving result spread for ambiguous queries. The earlier model-based cross-encoder reranker was removed during the CocoIndex deprecation.
 
 ### Evidence Gap Warnings
 
@@ -1110,7 +1110,7 @@ This calls `memory_index_scan({ force: true })` to repopulate the search index f
 |---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | MCP server entry point |
 | `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite` | Active profile database resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
-| `.opencode/skills/system-spec-kit/mcp_server/database/code-graph.sqlite` | Structural code-graph database |
+| `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` | Structural code-graph database |
 | `.opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh` | Verify Node.js version and prerequisites |
 | `.opencode/skills/system-spec-kit/scripts/setup/check-native-modules.sh` | Native module diagnostics |
 | `.opencode/skills/system-spec-kit/scripts/setup/rebuild-native-modules.sh` | Native module rebuild |

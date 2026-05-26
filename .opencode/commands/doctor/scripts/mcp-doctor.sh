@@ -58,7 +58,7 @@ Exit Codes:
 Servers Checked:
   mk-spec-memory       Spec Kit Memory (Node.js MCP, SQLite + embeddings)
   mk_skill_advisor      Skill Advisor (Node.js MCP, advisor_recommend + skill_graph_*)
-  mk_code_index         System Code Graph (Node.js MCP, structural AST + 11 graph tools)
+  mk_code_index         System Code Graph (Node.js MCP, structural AST + 8 tools)
   code_mode             Code Mode (Node.js MCP, TypeScript tool orchestration)
   sequential_thinking   Sequential Thinking (npx MCP, structured reasoning)
 

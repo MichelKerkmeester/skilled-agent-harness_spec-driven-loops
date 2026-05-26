@@ -1,0 +1,19 @@
+{
+  "level": "1",
+  "specFolder": "015-install-scripts-doctor-realignment/001-deep-research-install-scripts-doctor",
+  "description": "Phase 1: deep-research-install-scripts-doctor",
+  "keywords": [
+    "phase",
+    "deep-research-install-scripts-doctor"
+  ],
+  "lastUpdated": "2026-05-26T06:35:43.952Z",
+  "specId": "001",
+  "folderSlug": "deep-research-install-scripts-doctor",
+  "parentChain": [
+    "015-install-scripts-doctor-realignment"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_07-35__new-phased-spec.md"
+  ]
+}

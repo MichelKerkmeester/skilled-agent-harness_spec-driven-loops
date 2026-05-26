@@ -1,0 +1,17 @@
+{
+  "specFolder": "015-install-scripts-doctor-realignment/003-advisor-adjacent-116-realignment",
+  "description": "Phase 2: advisor-adjacent-116-realignment",
+  "keywords": [
+    "phase",
+    "advisor-adjacent-116-realignment"
+  ],
+  "lastUpdated": "2026-05-26T06:48:35.329Z",
+  "specId": "003",
+  "folderSlug": "advisor-adjacent-116-realignment",
+  "parentChain": [
+    "015-install-scripts-doctor-realignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

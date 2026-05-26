@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":4,"newInfoRatio":0.68,"status":"insight","focus":"Q4 systematic 116 rename/relocation sweep","graphEvents":[]}
+{"type":"finding","id":"f-iter004-001","severity":"P1","label":"advisor regression fixture still expects sk-deep skill ids","iteration":4}
+{"type":"finding","id":"f-iter004-002","severity":"P1","label":"routing accuracy corpus still labels deep-loop prompts with sk-deep skill ids","iteration":4}
+{"type":"finding","id":"f-iter004-003","severity":"P2","label":"optimizer manifest config paths still target sk-deep skill directories","iteration":4}
+{"type":"finding","id":"f-iter004-004","severity":"P2","label":"deep-research parity tests still target sk-deep-research paths","iteration":4}
+{"type":"finding","id":"f-iter004-005","severity":"P2","label":"deep-review parity tests still target sk-deep-review paths","iteration":4}
+{"type":"finding","id":"f-iter004-006","severity":"P1","label":"doctor deep-loop route and docs still target deep-loop-runtime storage path after database rename","iteration":4}
+{"type":"ruled_out","id":"r-iter004-001","label":"advisor skill graph uses current deep-* skill ids","iteration":4}
+{"type":"ruled_out","id":"r-iter004-002","label":"test-council-matrix sk-ai-council casualty already reported in iteration 2","iteration":4}
+{"type":"ruled_out","id":"r-iter004-003","label":"mcp_server deep-loop database doctor casualties already reported in iteration 3","iteration":4}
+{"type":"ruled_out","id":"r-iter004-004","label":"smart-router measurement results are historical outputs, not live routing inputs","iteration":4}
