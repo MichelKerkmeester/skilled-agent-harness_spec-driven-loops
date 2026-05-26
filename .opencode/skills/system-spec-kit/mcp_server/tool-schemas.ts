@@ -589,7 +589,7 @@ const embedderStatus: ToolDefinition = {
 
 // Code Graph - Structural code analysis tools
 // Code-graph tool schemas migrated to system-code-graph standalone MCP server per ADR-002
-// (.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/015-mcp-topology-pivot/decision-record.md)
+// (.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-extraction-and-isolation/003-standalone-mcp-topology-pivot/decision-record.md)
 // Tool IDs unchanged (ADR-001 Q4 stable); namespace changed: mcp__mk_spec_memory__code_graph_* → mcp__mk_code_index__code_graph_*
 
 

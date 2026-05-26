@@ -28,7 +28,7 @@
     "test:file-watcher": "vitest run tests/file-watcher.vitest.ts",
     "test:council": "vitest run tests/multi-ai-council-runtime-parity.vitest.ts tests/multi-ai-council-permission-scope.vitest.ts tests/multi-ai-council-audit-trail.vitest.ts tests/multi-ai-council-rollback.vitest.ts ../../deep-loop-runtime/tests/integration/council-graph-script.vitest.ts ../../deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts tests/council-playbook-anchor-integrity.vitest.ts tests/council-helpers-smoke.vitest.ts ../scripts/tests/multi-ai-council-persist-artifacts.vitest.ts skill_advisor/tests/scorer/native-scorer.vitest.ts",
     "test:council:full": "bash ../scripts/test-council-matrix.sh",
-    "hook-tests": "node --import ../scripts/node_modules/tsx/dist/loader.mjs ../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/016-hook-plugin-per-runtime-testing/runners/run-all-runtime-hooks.ts",
+    "hook-tests": "node --import ../scripts/node_modules/tsx/dist/loader.mjs ../../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing/runners/run-all-runtime-hooks.ts",
     "stress": "vitest run --config vitest.stress.config.ts",
     "stress:harness": "vitest run --config vitest.stress.config.ts mcp_server/stress_test/search-quality",
     "stress:matrix": "vitest run --config vitest.stress.config.ts mcp_server/stress_test/matrix",
