@@ -1,1 +1,1 @@
-../skill/mcp-code-mode/INSTALL_GUIDE.md
+../skills/mcp-code-mode/INSTALL_GUIDE.md

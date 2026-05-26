@@ -1,1 +1,1 @@
-../skill/system-spec-kit/mcp_server/INSTALL_GUIDE.md
+../skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md

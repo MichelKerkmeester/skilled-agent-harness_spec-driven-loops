@@ -1,1 +1,1 @@
-../skill/mcp-chrome-devtools/INSTALL_GUIDE.md
+../skills/mcp-chrome-devtools/INSTALL_GUIDE.md

@@ -1,1 +1,1 @@
-../../skill/mcp-chrome-devtools/scripts/install.sh
+../../skills/mcp-chrome-devtools/scripts/install.sh

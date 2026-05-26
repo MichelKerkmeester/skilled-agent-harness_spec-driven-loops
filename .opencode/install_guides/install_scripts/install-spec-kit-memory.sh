@@ -1,1 +1,1 @@
-../../skill/system-spec-kit/scripts/setup/install.sh
+../../skills/system-spec-kit/scripts/setup/install.sh
