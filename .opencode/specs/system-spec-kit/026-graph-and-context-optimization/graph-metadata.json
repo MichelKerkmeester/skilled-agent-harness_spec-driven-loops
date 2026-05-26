@@ -10,8 +10,7 @@
     "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
     "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
     "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
-    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling",
-    "system-spec-kit/026-graph-and-context-optimization/017-phase-reorg-and-renumber"
+    "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling"
   ],
   "migrated": true,
   "migration_source": "legacy",
