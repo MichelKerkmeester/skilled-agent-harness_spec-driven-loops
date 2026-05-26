@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals",
+  "description": "Feature Specification: Spec-Kit Internals",
+  "keywords": [
+    "feature",
+    "specification",
+    "spec-kit",
+    "internals"
+  ],
+  "lastUpdated": "2026-05-26T16:53:07.418Z",
+  "specId": "002",
+  "folderSlug": "spec-kit-internals",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

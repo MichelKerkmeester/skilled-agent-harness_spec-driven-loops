@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
+  "description": "Feature Specification: Graph Impact and Affordance",
+  "keywords": [
+    "feature",
+    "specification",
+    "graph",
+    "impact",
+    "affordance"
+  ],
+  "lastUpdated": "2026-05-26T16:53:24.976Z",
+  "specId": "005",
+  "folderSlug": "graph-impact-and-affordance",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

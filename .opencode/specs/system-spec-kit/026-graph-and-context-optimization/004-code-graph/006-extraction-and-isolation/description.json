@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation",
+  "description": "Feature Specification: Code-Graph Extraction and Isolation",
+  "keywords": [
+    "feature",
+    "specification",
+    "code-graph",
+    "extraction",
+    "isolation"
+  ],
+  "lastUpdated": "2026-05-26T16:53:26.616Z",
+  "specId": "006",
+  "folderSlug": "extraction-and-isolation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

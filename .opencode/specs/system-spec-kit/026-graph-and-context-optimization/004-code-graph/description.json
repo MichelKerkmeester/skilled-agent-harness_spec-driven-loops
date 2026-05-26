@@ -1,16 +1,15 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph",
-  "description": "Feature Specification: Code Graph Package",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
+  "description": "Feature Specification: Code Graph",
   "keywords": [
     "feature",
     "specification",
     "code",
-    "graph",
-    "package"
+    "graph"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.108Z",
-  "specId": "005",
+  "lastUpdated": "2026-05-26T16:53:25.644Z",
+  "specId": "004",
   "folderSlug": "code-graph",
   "parentChain": [
     "system-spec-kit",
