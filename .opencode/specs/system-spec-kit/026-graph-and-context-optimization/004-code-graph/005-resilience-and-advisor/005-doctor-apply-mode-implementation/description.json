@@ -28,7 +28,7 @@
     "completion_pct": 100,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/012-doctor-apply-mode-implementation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/005-doctor-apply-mode-implementation",
   "description": "Feature Specification: /doctor:code-graph apply-mode (Phase B)",
   "keywords": [
     "feature",
@@ -38,13 +38,14 @@
     "apply-mode",
     "phase"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.167Z",
-  "specId": "012",
+  "lastUpdated": "2026-05-26T17:26:26.744Z",
+  "specId": "005",
   "folderSlug": "doctor-apply-mode-implementation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph"
+    "004-code-graph",
+    "005-resilience-and-advisor"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

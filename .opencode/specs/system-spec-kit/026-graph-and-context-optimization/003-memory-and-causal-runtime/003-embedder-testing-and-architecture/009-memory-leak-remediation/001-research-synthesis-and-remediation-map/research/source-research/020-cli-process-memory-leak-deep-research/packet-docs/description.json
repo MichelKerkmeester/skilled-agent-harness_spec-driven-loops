@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/packet-docs",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/packet-docs",
   "description": "020: CLI Process Memory Leak Deep Research",
   "keywords": [
     "020",
@@ -11,13 +11,14 @@
     "deep",
     "research"
   ],
-  "lastUpdated": "2026-05-23T09:09:16.836Z",
+  "lastUpdated": "2026-05-26T17:26:25.179Z",
   "specId": "",
   "folderSlug": "packet-docs",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "009-memory-leak-remediation",
     "001-research-synthesis-and-remediation-map",
     "research",

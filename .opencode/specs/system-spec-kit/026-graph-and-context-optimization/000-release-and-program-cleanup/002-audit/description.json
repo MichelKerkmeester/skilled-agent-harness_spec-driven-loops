@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
   "description": "Phase Parent: 000-release-cleanup/002-audit",
   "keywords": [
     "phase",
@@ -8,13 +8,13 @@
     "000-release-cleanup",
     "002-audit"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.697Z",
+  "lastUpdated": "2026-05-26T17:27:32.499Z",
   "specId": "002",
   "folderSlug": "audit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-and-program-cleanup"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

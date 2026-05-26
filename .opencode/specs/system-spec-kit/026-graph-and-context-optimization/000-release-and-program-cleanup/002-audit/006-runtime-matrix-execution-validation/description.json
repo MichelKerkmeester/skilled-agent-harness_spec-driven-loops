@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/006-runtime-matrix-execution-validation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation",
   "description": "Spec: Full-Matrix Execution Validation",
   "keywords": [
     "spec",
@@ -7,13 +7,13 @@
     "execution",
     "validation"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.731Z",
+  "lastUpdated": "2026-05-26T17:27:37.986Z",
   "specId": "006",
   "folderSlug": "runtime-matrix-execution-validation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "002-audit"
   ],
   "memorySequence": 2,

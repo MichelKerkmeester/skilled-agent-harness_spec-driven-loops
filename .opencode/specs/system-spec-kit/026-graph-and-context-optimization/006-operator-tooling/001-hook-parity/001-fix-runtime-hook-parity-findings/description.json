@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/001-fix-runtime-hook-parity-findings",
   "description": "Feature Specification: 029 - Runtime Hook Parity Remediation",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "parity",
     "remediation"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.331Z",
+  "lastUpdated": "2026-05-26T17:26:21.443Z",
   "specId": "001",
   "folderSlug": "fix-runtime-hook-parity-findings",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "007-hook-parity"
+    "006-operator-tooling",
+    "001-hook-parity"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

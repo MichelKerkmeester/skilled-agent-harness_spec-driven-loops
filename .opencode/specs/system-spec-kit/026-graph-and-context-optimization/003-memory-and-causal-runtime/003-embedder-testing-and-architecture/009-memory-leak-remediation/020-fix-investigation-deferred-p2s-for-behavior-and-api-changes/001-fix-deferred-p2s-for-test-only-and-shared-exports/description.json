@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports",
   "description": "Spec: Test-Only Barrel Export Cleanup for F44 and F109",
   "keywords": [
     "spec",
@@ -11,13 +11,14 @@
     "f44",
     "f109"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.968Z",
+  "lastUpdated": "2026-05-26T17:26:27.753Z",
   "specId": "001",
   "folderSlug": "fix-deferred-p2s-for-test-only-and-shared-exports",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "009-memory-leak-remediation",
     "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
   ],

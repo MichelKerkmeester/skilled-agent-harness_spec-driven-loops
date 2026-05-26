@@ -1,7 +1,7 @@
 {
   "level": "3",
   "status": "complete",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split",
   "description": "Feature Specification: 042 CocoIndex Refresh/Search Split",
   "keywords": [
     "feature",
@@ -12,13 +12,14 @@
     "search",
     "split"
   ],
-  "lastUpdated": "2026-05-23T09:08:54.521Z",
+  "lastUpdated": "2026-05-26T17:26:43.676Z",
   "specId": "043",
   "folderSlug": "cocoindex-refresh-split",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,

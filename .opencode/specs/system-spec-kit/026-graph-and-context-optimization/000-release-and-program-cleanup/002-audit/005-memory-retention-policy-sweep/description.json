@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/005-memory-retention-policy-sweep",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/005-memory-retention-policy-sweep",
   "description": "Spec: Memory Retention Sweep",
   "keywords": [
     "spec",
@@ -7,13 +7,13 @@
     "retention",
     "sweep"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.726Z",
+  "lastUpdated": "2026-05-26T17:27:42.795Z",
   "specId": "005",
   "folderSlug": "memory-retention-policy-sweep",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "002-audit"
   ],
   "memorySequence": 2,

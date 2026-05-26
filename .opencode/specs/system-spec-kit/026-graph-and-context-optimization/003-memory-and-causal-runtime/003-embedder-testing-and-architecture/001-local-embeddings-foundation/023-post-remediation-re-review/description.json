@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/023-post-remediation-re-review",
-  "description": "Feature Specification: Post-remediation confirmatory re-review: 10-iter /deep:start-review-loop:auto against the same scope as 021 to confirm FAIL -> PA",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/023-post-remediation-re-review",
+  "description": "Feature Specification: Post-remediation confirmatory re-review: 10-iter /deep:start-review-loop:auto against the same scope as 021 to confirm FAIL -> ",
   "keywords": [
     "feature",
     "specification",
@@ -9,7 +9,8 @@
     "confirmatory",
     "re-review",
     "10-iter",
-    "deep-review",
+    "deep",
+    "start-review-loop",
     "auto",
     "against",
     "same",
@@ -18,13 +19,14 @@
     "confirm",
     "fail"
   ],
-  "lastUpdated": "2026-05-23T09:08:51.107Z",
+  "lastUpdated": "2026-05-26T17:26:41.479Z",
   "specId": "023",
   "folderSlug": "post-remediation-re-review",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,

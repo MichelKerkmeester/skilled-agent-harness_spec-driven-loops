@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/008-vec0-migration-fix-deferred",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/008-vec0-migration-fix-deferred",
   "description": "Spec: 023/008 Vec0 Migration Fix Deferred",
   "keywords": [
     "spec",
@@ -10,13 +10,14 @@
     "fix",
     "deferred"
   ],
-  "lastUpdated": "2026-05-23T09:09:07.863Z",
+  "lastUpdated": "2026-05-26T17:28:03.627Z",
   "specId": "008",
   "folderSlug": "vec0-migration-fix-deferred",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "004-code-index-stack",
     "023-deep-research-arc-blind-spots"
   ],

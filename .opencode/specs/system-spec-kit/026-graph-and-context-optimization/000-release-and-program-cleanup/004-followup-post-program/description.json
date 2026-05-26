@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program",
   "description": "Phase Parent: 000-release-cleanup/004-followup-post-program",
   "keywords": [
     "phase",
@@ -8,13 +8,13 @@
     "000-release-cleanup",
     "004-followup-post-program"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.949Z",
+  "lastUpdated": "2026-05-26T17:26:54.261Z",
   "specId": "004",
   "folderSlug": "followup-post-program",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-and-program-cleanup"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

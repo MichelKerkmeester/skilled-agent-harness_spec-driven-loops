@@ -1,6 +1,6 @@
 {
   "level": "feature",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
   "description": "016/005/004: Skill-local `benchmarks/` folder format + report promotion",
   "keywords": [
     "016",
@@ -13,13 +13,14 @@
     "report",
     "promotion"
   ],
-  "lastUpdated": "2026-05-23T09:09:03.313Z",
+  "lastUpdated": "2026-05-26T17:26:34.464Z",
   "specId": "004",
   "folderSlug": "skill-local-benchmarks-format",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "005-cross-cutting-quality"
   ],
   "memorySequence": 1,

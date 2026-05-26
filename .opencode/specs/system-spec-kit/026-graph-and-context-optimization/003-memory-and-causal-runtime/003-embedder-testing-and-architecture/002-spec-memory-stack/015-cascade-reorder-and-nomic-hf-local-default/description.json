@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default",
   "description": "Spec: 016/002/015 Local-First Cascade Reorder + Nomic hf-local Default (ADR-014)",
   "keywords": [
     "spec",
@@ -14,13 +14,14 @@
     "default",
     "adr-014"
   ],
-  "lastUpdated": "2026-05-23T09:08:27.261Z",
+  "lastUpdated": "2026-05-26T17:28:04.230Z",
   "specId": "015",
   "folderSlug": "cascade-reorder-and-nomic-hf-local-default",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "002-spec-memory-stack"
   ],
   "memorySequence": 0,

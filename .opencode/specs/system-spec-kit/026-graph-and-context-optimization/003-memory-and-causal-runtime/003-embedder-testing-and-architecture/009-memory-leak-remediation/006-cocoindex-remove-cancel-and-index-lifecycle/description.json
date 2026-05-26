@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/006-cocoindex-remove-cancel-and-index-lifecycle",
   "description": "Spec: CocoIndex Remove, Cancel, and Index Lifecycle",
   "keywords": [
     "spec",
@@ -10,13 +10,14 @@
     "index",
     "lifecycle"
   ],
-  "lastUpdated": "2026-05-23T09:08:41.215Z",
+  "lastUpdated": "2026-05-26T17:25:52.227Z",
   "specId": "006",
   "folderSlug": "cocoindex-remove-cancel-and-index-lifecycle",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "009-memory-leak-remediation"
   ],
   "memorySequence": 6,

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/004-vec-store-rebuild",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/004-vec-store-rebuild",
   "description": "Feature Specification: Phase 4 — Vec-Store Rebuild",
   "keywords": [
     "feature",
@@ -9,13 +9,14 @@
     "vec-store",
     "rebuild"
   ],
-  "lastUpdated": "2026-05-23T09:08:50.247Z",
+  "lastUpdated": "2026-05-26T17:26:50.012Z",
   "specId": "004",
   "folderSlug": "vec-store-rebuild",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 1,

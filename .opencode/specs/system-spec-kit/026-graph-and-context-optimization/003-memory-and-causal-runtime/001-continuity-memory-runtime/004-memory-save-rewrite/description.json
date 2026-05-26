@@ -29,7 +29,7 @@
       "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite",
   "description": "Feature Specification: /memory:save Planner-First Default",
   "keywords": [
     "feature",
@@ -39,13 +39,14 @@
     "planner-first",
     "default"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.597Z",
+  "lastUpdated": "2026-05-26T17:26:01.974Z",
   "specId": "004",
   "folderSlug": "memory-save-rewrite",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "003-continuity-memory-runtime"
+    "003-memory-and-causal-runtime",
+    "001-continuity-memory-runtime"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

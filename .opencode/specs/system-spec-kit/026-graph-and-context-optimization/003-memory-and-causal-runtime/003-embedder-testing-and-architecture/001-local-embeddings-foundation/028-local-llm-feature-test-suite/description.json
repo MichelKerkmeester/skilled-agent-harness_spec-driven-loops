@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite",
   "description": "Feature Specification: Local-LLM feature test suite (post-014)",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "suite",
     "post-014"
   ],
-  "lastUpdated": "2026-05-23T09:08:58.966Z",
+  "lastUpdated": "2026-05-26T17:26:40.842Z",
   "specId": "028",
   "folderSlug": "local-llm-feature-test-suite",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,

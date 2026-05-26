@@ -27,7 +27,7 @@
       "cli-copilot (fallback)"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-deep-loop-fix-creation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
   "description": "Feature Specification: Resource Map Template",
   "keywords": [
     "feature",
@@ -36,13 +36,14 @@
     "map",
     "template"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.582Z",
+  "lastUpdated": "2026-05-26T17:26:37.618Z",
   "specId": "002",
   "folderSlug": "resource-map-template-creation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "002-resource-map-deep-loop-fix"
+    "002-spec-kit-internals",
+    "001-resource-map-deep-loop-fix"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

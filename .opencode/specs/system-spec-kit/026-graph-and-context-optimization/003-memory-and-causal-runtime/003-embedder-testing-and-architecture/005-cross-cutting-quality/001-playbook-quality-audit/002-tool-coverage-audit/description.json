@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit",
   "description": "017/002: Tool-surface coverage audit",
   "keywords": [
     "017",
@@ -9,13 +9,14 @@
     "coverage",
     "audit"
   ],
-  "lastUpdated": "2026-05-23T09:09:12.735Z",
+  "lastUpdated": "2026-05-26T17:26:20.379Z",
   "specId": "002",
   "folderSlug": "tool-coverage-audit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "005-cross-cutting-quality",
     "001-playbook-quality-audit"
   ],

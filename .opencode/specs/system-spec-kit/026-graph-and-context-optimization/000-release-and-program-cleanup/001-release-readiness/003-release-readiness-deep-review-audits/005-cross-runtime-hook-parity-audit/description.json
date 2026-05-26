@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/005-cross-runtime-hook-parity-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/005-cross-runtime-hook-parity-audit",
   "description": "Feature Specification: Cross-Runtime Hook Parity Release-Readiness Audit",
   "keywords": [
     "feature",
@@ -10,13 +10,13 @@
     "release-readiness",
     "audit"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.643Z",
+  "lastUpdated": "2026-05-26T17:27:34.113Z",
   "specId": "005",
   "folderSlug": "cross-runtime-hook-parity-audit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "001-release-readiness",
     "003-release-readiness-deep-review-audits"
   ],

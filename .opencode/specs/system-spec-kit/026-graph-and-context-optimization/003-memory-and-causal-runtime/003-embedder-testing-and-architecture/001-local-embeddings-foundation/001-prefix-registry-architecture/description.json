@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture",
   "description": "Feature Specification: Phase 1 — Prefix Registry Architecture",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "registry",
     "architecture"
   ],
-  "lastUpdated": "2026-05-23T09:09:01.769Z",
+  "lastUpdated": "2026-05-26T17:26:13.723Z",
   "specId": "001",
   "folderSlug": "prefix-registry-architecture",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,

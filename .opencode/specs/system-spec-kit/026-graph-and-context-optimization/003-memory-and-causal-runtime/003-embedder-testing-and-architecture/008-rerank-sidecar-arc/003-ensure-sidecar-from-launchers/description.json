@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers",
   "description": "Feature Specification: Ensure rerank sidecar from launchers",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "sidecar",
     "launchers"
   ],
-  "lastUpdated": "2026-05-23T09:08:22.289Z",
+  "lastUpdated": "2026-05-26T17:28:19.348Z",
   "specId": "003",
   "folderSlug": "ensure-sidecar-from-launchers",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "008-rerank-sidecar-arc"
   ],
   "memorySequence": 0,

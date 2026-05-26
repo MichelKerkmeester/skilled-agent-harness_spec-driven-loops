@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-fix-deep-research-findings/005-resource-leaks-silent-errors",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/005-resource-leaks-silent-errors",
   "description": "Feature Specification: 005 Resource Leaks And Silent Errors Remediation",
   "keywords": [
     "feature",
@@ -11,13 +11,13 @@
     "errors",
     "remediation"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.290Z",
+  "lastUpdated": "2026-05-26T17:27:23.426Z",
   "specId": "005",
   "folderSlug": "resource-leaks-silent-errors",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "006-research",
     "004-fix-deep-research-findings"
   ],

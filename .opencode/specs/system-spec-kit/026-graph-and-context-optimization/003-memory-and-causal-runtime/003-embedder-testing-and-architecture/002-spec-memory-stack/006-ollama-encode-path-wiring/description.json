@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/006-ollama-encode-path-wiring",
   "description": "016/002/006: Ollama encode-path wiring",
   "keywords": [
     "016",
@@ -10,13 +10,14 @@
     "encode-path",
     "wiring"
   ],
-  "lastUpdated": "2026-05-23T09:08:30.613Z",
+  "lastUpdated": "2026-05-26T17:27:45.710Z",
   "specId": "006",
   "folderSlug": "ollama-encode-path-wiring",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "002-spec-memory-stack"
   ],
   "memorySequence": 0,

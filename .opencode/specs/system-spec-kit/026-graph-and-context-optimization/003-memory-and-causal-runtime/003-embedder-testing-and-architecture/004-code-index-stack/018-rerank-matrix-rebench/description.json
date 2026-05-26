@@ -12,7 +12,7 @@
   "status": "in-progress",
   "packet_pointer": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench",
   "updated_at": "2026-05-19T17:35:00Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/018-rerank-matrix-rebench",
   "description": "Spec: 016/004/018 Rerank Matrix Re-Bench",
   "keywords": [
     "spec",
@@ -23,13 +23,14 @@
     "matrix",
     "re-bench"
   ],
-  "lastUpdated": "2026-05-23T09:08:33.997Z",
+  "lastUpdated": "2026-05-26T17:27:55.362Z",
   "specId": "018",
   "folderSlug": "rerank-matrix-rebench",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "004-code-index-stack"
   ],
   "memorySequence": 0,

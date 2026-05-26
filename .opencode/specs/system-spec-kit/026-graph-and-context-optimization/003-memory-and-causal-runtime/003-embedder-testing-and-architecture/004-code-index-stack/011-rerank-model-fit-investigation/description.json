@@ -1,6 +1,6 @@
 {
   "level": "feature",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation",
   "description": "Spec: 016/004/011 Rerank Model Fit Investigation",
   "keywords": [
     "spec",
@@ -12,13 +12,14 @@
     "fit",
     "investigation"
   ],
-  "lastUpdated": "2026-05-23T09:08:36.276Z",
+  "lastUpdated": "2026-05-26T17:28:00.524Z",
   "specId": "011",
   "folderSlug": "rerank-model-fit-investigation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "004-code-index-stack"
   ],
   "memorySequence": 1,

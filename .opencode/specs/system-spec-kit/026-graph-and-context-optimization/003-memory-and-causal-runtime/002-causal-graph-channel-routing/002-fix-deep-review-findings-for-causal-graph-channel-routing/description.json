@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing",
   "description": "Feature Specification: 002 Deep-Review Remediation for 012 Causal Graph Channel Routing",
   "keywords": [
     "feature",
@@ -14,13 +14,14 @@
     "channel",
     "routing"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.822Z",
+  "lastUpdated": "2026-05-26T17:25:44.758Z",
   "specId": "002",
   "folderSlug": "fix-deep-review-findings-for-causal-graph-channel-routing",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "009-causal-graph-channel-routing"
+    "003-memory-and-causal-runtime",
+    "002-causal-graph-channel-routing"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

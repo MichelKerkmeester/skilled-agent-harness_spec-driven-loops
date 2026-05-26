@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/030-any-type-justification-sweep",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/030-any-type-justification-sweep",
   "description": "Feature Specification: Any Type Justification Sweep",
   "keywords": [
     "feature",
@@ -9,13 +9,14 @@
     "justification",
     "sweep"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.596Z",
+  "lastUpdated": "2026-05-26T17:27:18.510Z",
   "specId": "030",
   "folderSlug": "any-type-justification-sweep",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "006-skill-advisor",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
     "001-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

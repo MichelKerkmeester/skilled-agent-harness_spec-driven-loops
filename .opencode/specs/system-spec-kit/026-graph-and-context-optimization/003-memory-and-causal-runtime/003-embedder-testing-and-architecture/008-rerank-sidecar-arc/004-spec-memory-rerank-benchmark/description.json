@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark",
   "description": "Feature Specification: spec-memory rerank A/B benchmark",
   "keywords": [
     "feature",
@@ -9,13 +9,14 @@
     "rerank",
     "benchmark"
   ],
-  "lastUpdated": "2026-05-23T09:08:24.618Z",
+  "lastUpdated": "2026-05-26T17:27:48.968Z",
   "specId": "004",
   "folderSlug": "spec-memory-rerank-benchmark",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "008-rerank-sidecar-arc"
   ],
   "memorySequence": 0,

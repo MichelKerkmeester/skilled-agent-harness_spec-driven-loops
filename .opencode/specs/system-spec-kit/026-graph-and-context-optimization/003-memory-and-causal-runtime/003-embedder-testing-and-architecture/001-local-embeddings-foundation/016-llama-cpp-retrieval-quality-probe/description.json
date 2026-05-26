@@ -6,7 +6,7 @@
   "contextType": "implementation",
   "created_at": "2026-05-13T10:23:12Z",
   "last_updated_at": "2026-05-13T10:23:12Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/016-llama-cpp-retrieval-quality-probe",
   "description": "Feature Specification: 016 llama-cpp retrieval quality probe",
   "keywords": [
     "feature",
@@ -17,13 +17,14 @@
     "quality",
     "probe"
   ],
-  "lastUpdated": "2026-05-23T09:08:52.267Z",
+  "lastUpdated": "2026-05-26T17:26:28.724Z",
   "specId": "016",
   "folderSlug": "llama-cpp-retrieval-quality-probe",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,

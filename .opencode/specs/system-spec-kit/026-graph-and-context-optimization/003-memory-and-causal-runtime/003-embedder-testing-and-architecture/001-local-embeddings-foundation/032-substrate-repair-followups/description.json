@@ -14,7 +14,7 @@
   "is_phase_parent": true,
   "created_at": "2026-05-14T11:05:00Z",
   "updated_at": "2026-05-14T11:05:00Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
   "description": "032 — Substrate-repair Follow-ups (Phase Parent)",
   "keywords": [
     "032",
@@ -23,13 +23,14 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-05-23T09:08:53.639Z",
+  "lastUpdated": "2026-05-26T17:26:09.913Z",
   "specId": "032",
   "folderSlug": "substrate-repair-followups",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 1,

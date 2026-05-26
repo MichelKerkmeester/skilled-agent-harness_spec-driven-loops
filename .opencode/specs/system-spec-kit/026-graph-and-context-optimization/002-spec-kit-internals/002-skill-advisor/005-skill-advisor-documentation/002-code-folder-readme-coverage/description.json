@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/002-code-folder-readme-coverage",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/002-code-folder-readme-coverage",
   "description": "Phase B: sk-doc-aligned READMEs for system-skill-advisor",
   "keywords": [
     "phase",
@@ -8,13 +8,14 @@
     "readmes",
     "system-skill-advisor"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.720Z",
+  "lastUpdated": "2026-05-26T17:27:36.360Z",
   "specId": "002",
   "folderSlug": "code-folder-readme-coverage",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "006-skill-advisor",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
     "005-skill-advisor-documentation"
   ],
   "memorySequence": 0,

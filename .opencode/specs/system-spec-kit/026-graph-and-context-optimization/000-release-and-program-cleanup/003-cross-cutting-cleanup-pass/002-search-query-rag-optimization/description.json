@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/002-search-query-rag-optimization",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/002-search-query-rag-optimization",
   "description": "Feature Specification: 006 Search Query RAG Optimization",
   "keywords": [
     "feature",
@@ -10,13 +10,13 @@
     "rag",
     "optimization"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.759Z",
+  "lastUpdated": "2026-05-26T17:26:55.200Z",
   "specId": "002",
   "folderSlug": "search-query-rag-optimization",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 1,

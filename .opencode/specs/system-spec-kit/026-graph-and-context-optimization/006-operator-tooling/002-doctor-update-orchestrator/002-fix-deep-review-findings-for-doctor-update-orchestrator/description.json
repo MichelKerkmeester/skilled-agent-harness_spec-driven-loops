@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
   "description": "Feature Specification: 003 RM-8 013 Remediation — Doc Honesty + Security Hardening + Cross-Runtime Mirror",
   "keywords": [
     "feature",
@@ -16,13 +16,14 @@
     "cross-runtime",
     "mirror"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.828Z",
+  "lastUpdated": "2026-05-26T17:25:57.122Z",
   "specId": "002",
   "folderSlug": "fix-deep-review-findings-for-doctor-update-orchestrator",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "010-doctor-update-orchestrator"
+    "006-operator-tooling",
+    "002-doctor-update-orchestrator"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

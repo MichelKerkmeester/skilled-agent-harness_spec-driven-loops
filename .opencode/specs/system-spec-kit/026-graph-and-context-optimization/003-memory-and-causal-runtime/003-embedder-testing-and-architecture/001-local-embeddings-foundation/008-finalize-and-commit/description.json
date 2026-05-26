@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/008-finalize-and-commit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/008-finalize-and-commit",
   "description": "Feature Specification: Phase 8 — Finalize + Commit",
   "keywords": [
     "feature",
@@ -9,13 +9,14 @@
     "finalize",
     "commit"
   ],
-  "lastUpdated": "2026-05-23T09:08:52.542Z",
+  "lastUpdated": "2026-05-26T17:26:26.140Z",
   "specId": "008",
   "folderSlug": "finalize-and-commit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,

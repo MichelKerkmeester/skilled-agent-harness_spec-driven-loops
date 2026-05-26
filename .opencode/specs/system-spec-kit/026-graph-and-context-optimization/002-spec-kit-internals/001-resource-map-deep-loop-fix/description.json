@@ -12,7 +12,7 @@
     "extract from evidence extractor",
     "review-research-paths rollback"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
   "description": "Feature Specification: Resource Map Template",
   "keywords": [
     "feature",
@@ -21,12 +21,13 @@
     "map",
     "template"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.341Z",
-  "specId": "002",
+  "lastUpdated": "2026-05-26T17:26:38.522Z",
+  "specId": "001",
   "folderSlug": "resource-map-deep-loop-fix",
   "parentChain": [
     "system-spec-kit",
-    "026-graph-and-context-optimization"
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-fix-deep-research-findings/006-fix-architecture-cleanup-followups",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/006-fix-architecture-cleanup-followups",
   "description": "Feature Specification: 006 Architecture Cleanup Remediation",
   "keywords": [
     "feature",
@@ -9,13 +9,13 @@
     "cleanup",
     "remediation"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.296Z",
+  "lastUpdated": "2026-05-26T17:27:34.736Z",
   "specId": "006",
   "folderSlug": "fix-architecture-cleanup-followups",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "006-research",
     "004-fix-deep-research-findings"
   ],

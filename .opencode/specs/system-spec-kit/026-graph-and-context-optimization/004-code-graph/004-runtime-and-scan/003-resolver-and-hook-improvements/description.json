@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/003-resolver-and-hook-improvements",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/003-resolver-and-hook-improvements",
   "description": "Feature Specification: Code-Graph System + Hooks Improvement Investigation",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "improvement",
     "investigation"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.383Z",
+  "lastUpdated": "2026-05-26T17:27:01.649Z",
   "specId": "003",
   "folderSlug": "resolver-and-hook-improvements",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph"
+    "004-code-graph",
+    "004-runtime-and-scan"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

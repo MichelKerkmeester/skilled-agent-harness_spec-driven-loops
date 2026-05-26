@@ -26,7 +26,7 @@
       "TBD"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration",
   "description": "Feature Specification: Resource Map Integration for sk-deep-review and sk-deep-research",
   "keywords": [
     "feature",
@@ -37,13 +37,14 @@
     "sk-deep-review",
     "sk-deep-research"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.352Z",
+  "lastUpdated": "2026-05-26T17:26:31.259Z",
   "specId": "003",
   "folderSlug": "resource-map-deep-loop-integration",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "002-resource-map-deep-loop-fix"
+    "002-spec-kit-internals",
+    "001-resource-map-deep-loop-fix"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

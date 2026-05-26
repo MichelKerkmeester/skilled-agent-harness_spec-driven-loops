@@ -7,7 +7,7 @@
     "target authority preamble",
     "P0 cli-copilot remediation"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper",
   "description": "Feature Specification: Copilot Target-Authority Helper — close P0 cli-copilot Gate 3 bypass",
   "keywords": [
     "feature",
@@ -20,13 +20,13 @@
     "gate",
     "bypass"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.107Z",
+  "lastUpdated": "2026-05-26T17:27:53.468Z",
   "specId": "012",
   "folderSlug": "copilot-target-authority-gate-helper",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "005-stress-test",
     "003-fix-mcp-runtime-stress-findings"
   ],

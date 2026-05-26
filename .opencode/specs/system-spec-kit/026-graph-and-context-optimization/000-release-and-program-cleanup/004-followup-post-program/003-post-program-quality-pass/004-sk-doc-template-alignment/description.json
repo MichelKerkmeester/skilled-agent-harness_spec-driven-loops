@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment",
   "description": "Feature Specification: 037/004 sk-doc Template Alignment",
   "keywords": [
     "feature",
@@ -10,13 +10,13 @@
     "template",
     "alignment"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.988Z",
+  "lastUpdated": "2026-05-26T17:27:05.392Z",
   "specId": "004",
   "folderSlug": "sk-doc-template-alignment",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "004-followup-post-program",
     "003-post-program-quality-pass"
   ],

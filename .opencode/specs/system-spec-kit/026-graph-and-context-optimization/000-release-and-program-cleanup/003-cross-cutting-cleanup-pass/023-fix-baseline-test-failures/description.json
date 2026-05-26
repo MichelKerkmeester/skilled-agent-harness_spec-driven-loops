@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
   "description": "Feature Specification: Pre-Existing Test Failure Remediation",
   "keywords": [
     "feature",
@@ -9,13 +9,13 @@
     "failure",
     "remediation"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.895Z",
+  "lastUpdated": "2026-05-26T17:26:59.721Z",
   "specId": "023",
   "folderSlug": "fix-baseline-test-failures",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 1,

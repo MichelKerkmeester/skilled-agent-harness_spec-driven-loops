@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync",
   "description": "Feature Specification: References and READMEs Lean-Trio Sync",
   "keywords": [
     "feature",
@@ -9,13 +9,13 @@
     "lean-trio",
     "sync"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.816Z",
+  "lastUpdated": "2026-05-26T17:25:55.221Z",
   "specId": "003",
   "folderSlug": "phase-parent-reference-readme-sync",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass",
     "009-phase-parent-lean-trio-documentation"
   ],

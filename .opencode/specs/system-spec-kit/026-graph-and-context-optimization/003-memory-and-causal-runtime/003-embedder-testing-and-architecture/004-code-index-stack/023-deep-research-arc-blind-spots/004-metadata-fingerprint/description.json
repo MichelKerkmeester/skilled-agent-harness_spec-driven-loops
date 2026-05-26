@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint",
   "description": "Feature Specification: 023A1 Metadata Fingerprint",
   "keywords": [
     "feature",
@@ -9,13 +9,14 @@
     "metadata",
     "fingerprint"
   ],
-  "lastUpdated": "2026-05-23T09:09:09.080Z",
+  "lastUpdated": "2026-05-26T17:27:47.695Z",
   "specId": "004",
   "folderSlug": "metadata-fingerprint",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "004-code-index-stack",
     "023-deep-research-arc-blind-spots"
   ],

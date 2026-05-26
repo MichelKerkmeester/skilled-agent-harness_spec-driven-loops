@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine",
   "description": "Phase Parent: 006-skill-advisor/002-skill-advisor-scoring-engine",
   "keywords": [
     "phase",
@@ -8,13 +8,14 @@
     "006-skill-advisor",
     "002-skill-advisor-scoring-engine"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.606Z",
+  "lastUpdated": "2026-05-26T17:27:16.805Z",
   "specId": "002",
   "folderSlug": "skill-advisor-scoring-engine",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "006-skill-advisor"
+    "002-spec-kit-internals",
+    "002-skill-advisor"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

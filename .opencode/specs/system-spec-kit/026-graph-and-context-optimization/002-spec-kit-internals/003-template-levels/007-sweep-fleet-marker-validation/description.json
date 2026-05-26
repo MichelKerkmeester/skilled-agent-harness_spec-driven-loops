@@ -1,19 +1,20 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/007-sweep-fleet-marker-validation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/007-sweep-fleet-marker-validation",
   "description": "Feature Specification: fleet-marker-validation-sweep",
   "keywords": [
     "feature",
     "specification",
     "fleet-marker-validation-sweep"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.366Z",
+  "lastUpdated": "2026-05-26T17:26:17.632Z",
   "specId": "007",
   "folderSlug": "sweep-fleet-marker-validation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "008-template-levels"
+    "002-spec-kit-internals",
+    "003-template-levels"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

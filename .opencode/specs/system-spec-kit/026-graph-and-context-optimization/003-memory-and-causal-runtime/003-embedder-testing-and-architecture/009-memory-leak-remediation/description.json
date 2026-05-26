@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation",
   "description": "Memory Leak Remediation Arc",
   "keywords": [
     "memory",
@@ -8,13 +8,14 @@
     "remediation",
     "arc"
   ],
-  "lastUpdated": "2026-05-24T08:08:00.439Z",
+  "lastUpdated": "2026-05-26T17:26:42.413Z",
   "specId": "009",
   "folderSlug": "memory-leak-remediation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture"
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture"
   ],
   "memorySequence": 9,
   "memoryNameHistory": []

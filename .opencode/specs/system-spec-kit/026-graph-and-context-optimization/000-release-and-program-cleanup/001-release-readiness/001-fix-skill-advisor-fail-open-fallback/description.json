@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/001-fix-skill-advisor-fail-open-fallback",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-skill-advisor-fail-open-fallback",
   "description": "Feature Specification: Skill-Advisor Release Remediation",
   "keywords": [
     "feature",
@@ -8,13 +8,13 @@
     "release",
     "remediation"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.599Z",
+  "lastUpdated": "2026-05-26T17:27:33.462Z",
   "specId": "001",
   "folderSlug": "fix-skill-advisor-fail-open-fallback",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "001-release-readiness"
   ],
   "memorySequence": 1,

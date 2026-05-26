@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/005-lease-correctness-and-arc-traceability",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/005-lease-correctness-and-arc-traceability",
   "description": "Lease Correctness and Arc Traceability",
   "keywords": [
     "lease",
@@ -8,13 +8,14 @@
     "arc",
     "traceability"
   ],
-  "lastUpdated": "2026-05-23T09:08:20.615Z",
+  "lastUpdated": "2026-05-26T17:26:45.193Z",
   "specId": "005",
   "folderSlug": "lease-correctness-and-arc-traceability",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "006-mcp-launcher-concurrency"
   ],
   "memorySequence": 0,

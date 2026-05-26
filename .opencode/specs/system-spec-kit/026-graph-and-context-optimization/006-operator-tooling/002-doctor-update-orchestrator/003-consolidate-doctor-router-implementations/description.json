@@ -1,6 +1,6 @@
 {
   "childTopology": [],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations",
   "description": "Feature Specification: Doctor Router Phase 1 (Additive)",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "phase",
     "additive"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.407Z",
+  "lastUpdated": "2026-05-26T17:25:49.019Z",
   "specId": "003",
   "folderSlug": "consolidate-doctor-router-implementations",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "010-doctor-update-orchestrator"
+    "006-operator-tooling",
+    "002-doctor-update-orchestrator"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

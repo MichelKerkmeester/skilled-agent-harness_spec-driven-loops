@@ -11,7 +11,7 @@
   "status": "complete",
   "created_at": "2026-05-23T10:45:00Z",
   "updated_at": "2026-05-23T11:00:00Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/004-fix-deferred-p2s-for-api-response-shape",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/004-fix-deferred-p2s-for-api-response-shape",
   "description": "Spec: API Response Shape Closure for F9 F32 F39 F97 F99",
   "keywords": [
     "spec",
@@ -24,13 +24,14 @@
     "f97",
     "f99"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.993Z",
+  "lastUpdated": "2026-05-26T17:26:32.832Z",
   "specId": "004",
   "folderSlug": "fix-deferred-p2s-for-api-response-shape",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "009-memory-leak-remediation",
     "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
   ],

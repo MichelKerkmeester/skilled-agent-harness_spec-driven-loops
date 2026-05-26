@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal",
   "description": "Feature Specification: 055 AutoClean Orphan Files",
   "keywords": [
     "feature",
@@ -10,13 +10,13 @@
     "orphan",
     "files"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.927Z",
+  "lastUpdated": "2026-05-26T17:26:55.572Z",
   "specId": "029",
   "folderSlug": "autoclean-orphan-file-removal",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 0,

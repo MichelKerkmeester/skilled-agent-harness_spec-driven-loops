@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/001-automation-self-management-research",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/001-automation-self-management-research",
   "description": "Research Charter: Automation & Self-Management",
   "keywords": [
     "research",
@@ -7,13 +7,13 @@
     "automation",
     "self-management"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.244Z",
+  "lastUpdated": "2026-05-26T17:27:06.391Z",
   "specId": "001",
   "folderSlug": "automation-self-management-research",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "006-research"
   ],
   "memorySequence": 1,

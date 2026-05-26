@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation",
   "description": "Feature Specification: Phase Parent Documentation",
   "keywords": [
     "feature",
@@ -8,13 +8,13 @@
     "parent",
     "documentation"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.798Z",
+  "lastUpdated": "2026-05-26T17:25:56.522Z",
   "specId": "009",
   "folderSlug": "phase-parent-lean-trio-documentation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 8,

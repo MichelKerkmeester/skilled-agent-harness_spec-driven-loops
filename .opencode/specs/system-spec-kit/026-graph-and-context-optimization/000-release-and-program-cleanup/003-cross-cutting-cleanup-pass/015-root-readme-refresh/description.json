@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh",
   "description": "Feature Specification: 042 Root README Refresh",
   "keywords": [
     "feature",
@@ -9,13 +9,13 @@
     "readme",
     "refresh"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.856Z",
+  "lastUpdated": "2026-05-26T17:26:10.839Z",
   "specId": "015",
   "folderSlug": "root-readme-refresh",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 0,

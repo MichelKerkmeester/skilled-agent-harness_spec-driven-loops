@@ -1,22 +1,25 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
-  "description": "Phase 1. Research synthesized at parent 019/research/research.md \u00a710. Awaiting plan.md/tasks.md scaffold. Scope: SKILL.md problem-hook framing, references/ HVR pass, mcp_server per-folder README usefulness audit (7 validation-only + plugin_bridges targeted alignment per D2), INSTALL_GUIDE drift fixes (lines 49/56/195 + 15 additional bugs per research \u00a76.1), useful-gap primers sized to system-spec-kit siblings (per D4). Task ordering per research \u00a710: SKILL.md hook first, then batch by file-type.",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/001-skill-docs-install-guide-and-readmes-polish",
+  "description": "Feature Specification: Child 001 SKILL.md and References Polish",
   "keywords": [
-    "phase-stub",
-    "skill-md-polish",
-    "references-hvr",
-    "install-guide-drift"
+    "feature",
+    "specification",
+    "child",
+    "001",
+    "skill",
+    "references",
+    "polish"
   ],
-  "lastUpdated": "2026-05-16T09:37:48Z",
+  "lastUpdated": "2026-05-26T17:27:11.124Z",
   "specId": "001",
-  "folderSlug": "skill-md-and-references-polish",
+  "folderSlug": "skill-docs-install-guide-and-readmes-polish",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph",
-    "019-system-code-graph-uplift-phase-parent"
+    "004-code-graph",
+    "009-system-code-graph-uplift-phase-parent"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

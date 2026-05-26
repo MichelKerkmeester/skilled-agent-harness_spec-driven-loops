@@ -11,7 +11,7 @@
   "status": "complete",
   "created_at": "2026-05-23T12:30:00Z",
   "updated_at": "2026-05-23T10:31:09Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/003-fix-deferred-p2s-for-filesystem-durability",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/003-fix-deferred-p2s-for-filesystem-durability",
   "description": "Spec: Filesystem Durability Closure for F22 F28 F59 F66 F67 F72 F89 F103 F104",
   "keywords": [
     "spec",
@@ -28,13 +28,14 @@
     "f103",
     "f104"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.983Z",
+  "lastUpdated": "2026-05-26T17:26:40.197Z",
   "specId": "003",
   "folderSlug": "fix-deferred-p2s-for-filesystem-durability",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "009-memory-leak-remediation",
     "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
   ],

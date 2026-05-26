@@ -1,6 +1,6 @@
 {
   "level": "feature",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/004-newer-text-embedders-survey",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/004-newer-text-embedders-survey",
   "description": "Spec: 016/013/004 Newer Text Embedders Survey for mk-spec-memory",
   "keywords": [
     "spec",
@@ -13,13 +13,14 @@
     "survey",
     "mk-spec-memory"
   ],
-  "lastUpdated": "2026-05-23T09:08:25.785Z",
+  "lastUpdated": "2026-05-26T17:27:54.124Z",
   "specId": "004",
   "folderSlug": "newer-text-embedders-survey",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "007-ollama-and-bge-promotion"
   ],
   "memorySequence": 1,

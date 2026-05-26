@@ -1,22 +1,25 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
-  "description": "Phase 2. Research synthesized at parent 019/research/research.md \u00a711. README.md rewrite in marketing voice: mimic Public root README + system-spec-kit README problem-first arc (OVERVIEW hook -> solution -> stats -> QUICK START -> FEATURES -> CONFIGURATION -> FAQ -> RELATED). Per D1, accept resemblance to exemplars; do not enforce strict HVR pass-bar. Avoid the 3 worst-case carries per research \u00a76.4: semicolons in technical sentences, Oxford commas in lists, em dashes for emphasis. Use periods, commas, and parentheses instead.",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/002-readme-problem-first-rewrite",
+  "description": "Feature Specification: Child 002 README Marketing-Voice Rewrite",
   "keywords": [
-    "phase-stub",
-    "readme-marketing-rewrite",
-    "hvr-clean",
-    "problem-first-arc"
+    "feature",
+    "specification",
+    "child",
+    "002",
+    "readme",
+    "marketing-voice",
+    "rewrite"
   ],
-  "lastUpdated": "2026-05-16T09:37:48Z",
+  "lastUpdated": "2026-05-26T17:27:04.025Z",
   "specId": "002",
-  "folderSlug": "readme-marketing-rewrite",
+  "folderSlug": "readme-problem-first-rewrite",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph",
-    "019-system-code-graph-uplift-phase-parent"
+    "004-code-graph",
+    "009-system-code-graph-uplift-phase-parent"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -17,7 +17,7 @@
       "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/001-cache-warning-hooks",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/001-cache-warning-hooks",
   "description": "Feature Specification: Cache-Warning Hook System",
   "keywords": [
     "feature",
@@ -26,13 +26,14 @@
     "hook",
     "system"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.066Z",
+  "lastUpdated": "2026-05-26T17:25:53.599Z",
   "specId": "001",
   "folderSlug": "cache-warning-hooks",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "003-continuity-memory-runtime"
+    "003-memory-and-causal-runtime",
+    "001-continuity-memory-runtime"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/001-code-graph-runtime-upgrades",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/001-code-graph-runtime-upgrades",
   "description": "Feature Specification: Code Graph Upgrades",
   "keywords": [
     "feature",
@@ -8,13 +8,14 @@
     "graph",
     "upgrades"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.629Z",
+  "lastUpdated": "2026-05-26T17:26:58.713Z",
   "specId": "001",
-  "folderSlug": "code-graph-upgrades",
+  "folderSlug": "code-graph-runtime-upgrades",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph"
+    "004-code-graph",
+    "004-runtime-and-scan"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

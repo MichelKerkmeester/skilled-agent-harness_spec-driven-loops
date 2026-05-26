@@ -13,7 +13,7 @@
   ],
   "created_at": "2026-05-14T11:10:00Z",
   "updated_at": "2026-05-14T11:25:36Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
   "description": "Feature Specification: 005 substrate-stability-instrumentation",
   "keywords": [
     "feature",
@@ -21,13 +21,14 @@
     "005",
     "substrate-stability-instrumentation"
   ],
-  "lastUpdated": "2026-05-23T09:09:16.238Z",
+  "lastUpdated": "2026-05-26T17:26:04.792Z",
   "specId": "005",
   "folderSlug": "stability-instrumentation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation",
     "032-substrate-repair-followups"
   ],

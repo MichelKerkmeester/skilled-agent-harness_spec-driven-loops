@@ -14,7 +14,7 @@
   "is_phase_parent": false,
   "created_at": "2026-05-14T00:00:00Z",
   "updated_at": "2026-05-14T15:37:00Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach",
   "description": "Feature Specification: 040 V-rule cross-spec overreach fix",
   "keywords": [
     "feature",
@@ -25,13 +25,14 @@
     "overreach",
     "fix"
   ],
-  "lastUpdated": "2026-05-23T09:08:53.370Z",
+  "lastUpdated": "2026-05-26T17:26:15.659Z",
   "specId": "041",
   "folderSlug": "v-rule-cross-spec-overreach",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,

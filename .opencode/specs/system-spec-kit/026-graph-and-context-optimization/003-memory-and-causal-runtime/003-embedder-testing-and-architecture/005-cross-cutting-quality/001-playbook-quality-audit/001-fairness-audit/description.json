@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/001-fairness-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/001-fairness-audit",
   "description": "017/001: Playbook fairness audit",
   "keywords": [
     "017",
@@ -9,13 +9,14 @@
     "fairness",
     "audit"
   ],
-  "lastUpdated": "2026-05-23T09:09:13.408Z",
+  "lastUpdated": "2026-05-26T17:26:11.147Z",
   "specId": "001",
   "folderSlug": "fairness-audit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "005-cross-cutting-quality",
     "001-playbook-quality-audit"
   ],

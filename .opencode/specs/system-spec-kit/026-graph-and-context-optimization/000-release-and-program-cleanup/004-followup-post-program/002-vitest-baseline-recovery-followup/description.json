@@ -28,7 +28,7 @@
     "completion_pct": 100,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup",
   "description": "Feature Specification: Vitest baseline recovery followup",
   "keywords": [
     "feature",
@@ -38,13 +38,13 @@
     "recovery",
     "followup"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.961Z",
+  "lastUpdated": "2026-05-26T17:26:52.288Z",
   "specId": "002",
   "folderSlug": "vitest-baseline-recovery-followup",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "004-followup-post-program"
   ],
   "memorySequence": 0,

@@ -1,6 +1,6 @@
 {
   "level": "feature",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene",
   "description": "016/005/005: CocoIndex install hygiene",
   "keywords": [
     "016",
@@ -9,13 +9,14 @@
     "install",
     "hygiene"
   ],
-  "lastUpdated": "2026-05-23T09:09:03.936Z",
+  "lastUpdated": "2026-05-26T17:26:23.935Z",
   "specId": "005",
   "folderSlug": "cocoindex-install-hygiene",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "005-cross-cutting-quality"
   ],
   "memorySequence": 2,

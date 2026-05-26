@@ -7,7 +7,7 @@
     ],
     "related_to": []
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper",
   "description": "Feature Specification: Fix Rerank-Sidecar Accumulation With Three-Layer Reaper",
   "keywords": [
     "feature",
@@ -18,13 +18,14 @@
     "three-layer",
     "reaper"
   ],
-  "lastUpdated": "2026-05-23T09:08:40.889Z",
+  "lastUpdated": "2026-05-26T17:26:00.375Z",
   "specId": "019",
   "folderSlug": "fix-rerank-sidecar-accumulation-with-three-layer-reaper",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "009-memory-leak-remediation"
   ],
   "memorySequence": 0,

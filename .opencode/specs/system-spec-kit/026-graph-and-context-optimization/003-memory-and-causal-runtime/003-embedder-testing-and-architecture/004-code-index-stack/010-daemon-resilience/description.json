@@ -15,7 +15,7 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization",
   "importance_tier": "important",
   "created_at": "2026-05-07T07:38:00Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience",
   "description": "Feature Specification: CocoIndex daemon resilience",
   "keywords": [
     "feature",
@@ -24,13 +24,14 @@
     "daemon",
     "resilience"
   ],
-  "lastUpdated": "2026-05-23T09:08:35.211Z",
+  "lastUpdated": "2026-05-26T17:27:41.515Z",
   "specId": "010",
   "folderSlug": "daemon-resilience",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "004-code-index-stack"
   ],
   "memorySequence": 0,

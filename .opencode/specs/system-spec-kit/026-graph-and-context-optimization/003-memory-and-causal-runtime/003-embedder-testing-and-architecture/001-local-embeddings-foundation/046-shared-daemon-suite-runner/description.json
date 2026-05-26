@@ -1,7 +1,7 @@
 {
   "level": "2",
   "status": "complete",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner",
   "description": "Feature Specification: 045 Shared Daemon Suite Runner",
   "keywords": [
     "feature",
@@ -12,13 +12,14 @@
     "suite",
     "runner"
   ],
-  "lastUpdated": "2026-05-23T09:09:02.705Z",
+  "lastUpdated": "2026-05-26T17:26:03.863Z",
   "specId": "046",
   "folderSlug": "shared-daemon-suite-runner",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,

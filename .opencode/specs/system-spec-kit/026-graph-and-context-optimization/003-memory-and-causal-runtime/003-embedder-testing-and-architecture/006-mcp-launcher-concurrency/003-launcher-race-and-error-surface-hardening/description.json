@@ -1,19 +1,20 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/003-launcher-race-and-error-surface-hardening",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/003-launcher-race-and-error-surface-hardening",
   "description": "Lease Hardening From Review",
   "keywords": [
     "lease",
     "hardening",
     "review"
   ],
-  "lastUpdated": "2026-05-23T09:08:20.048Z",
+  "lastUpdated": "2026-05-26T17:26:54.878Z",
   "specId": "003",
   "folderSlug": "launcher-race-and-error-surface-hardening",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "006-mcp-launcher-concurrency"
   ],
   "memorySequence": 0,

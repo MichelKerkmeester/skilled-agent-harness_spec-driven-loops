@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/008-spec-memory-vitest-stabilization",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/008-spec-memory-vitest-stabilization",
   "description": "Spec: spec-memory vitest suite stabilization",
   "keywords": [
     "spec",
@@ -9,13 +9,14 @@
     "suite",
     "stabilization"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.950Z",
+  "lastUpdated": "2026-05-26T17:25:56.208Z",
   "specId": "008",
   "folderSlug": "spec-memory-vitest-stabilization",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "005-cross-cutting-quality"
   ],
   "memorySequence": 1,

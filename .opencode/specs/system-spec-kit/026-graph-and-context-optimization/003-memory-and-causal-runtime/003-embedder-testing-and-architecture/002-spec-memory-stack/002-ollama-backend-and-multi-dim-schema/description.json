@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema",
   "description": "016/002: Ollama backend adapter + dim-tagged vec schema",
   "keywords": [
     "016",
@@ -11,13 +11,14 @@
     "vec",
     "schema"
   ],
-  "lastUpdated": "2026-05-23T09:08:29.040Z",
+  "lastUpdated": "2026-05-26T17:28:02.114Z",
   "specId": "002",
   "folderSlug": "ollama-backend-and-multi-dim-schema",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "002-spec-memory-stack"
   ],
   "memorySequence": 1,

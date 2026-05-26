@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune",
   "description": "Spec: domain-tuned reranker fine-tune for spec-memory corpus",
   "keywords": [
     "spec",
@@ -10,13 +10,14 @@
     "spec-memory",
     "corpus"
   ],
-  "lastUpdated": "2026-05-23T09:08:21.992Z",
+  "lastUpdated": "2026-05-26T17:28:18.758Z",
   "specId": "010",
   "folderSlug": "domain-tuned-reranker-finetune",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "008-rerank-sidecar-arc"
   ],
   "memorySequence": 0,

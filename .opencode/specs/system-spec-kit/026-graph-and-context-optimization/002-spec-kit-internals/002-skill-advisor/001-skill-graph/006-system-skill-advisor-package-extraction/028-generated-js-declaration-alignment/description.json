@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/028-generated-js-declaration-alignment",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/028-generated-js-declaration-alignment",
   "description": "Feature Specification: Generated JS and Declaration Alignment",
   "keywords": [
     "feature",
@@ -9,13 +9,14 @@
     "declaration",
     "alignment"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.587Z",
+  "lastUpdated": "2026-05-26T17:27:36.030Z",
   "specId": "028",
   "folderSlug": "generated-js-declaration-alignment",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "006-skill-advisor",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
     "001-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

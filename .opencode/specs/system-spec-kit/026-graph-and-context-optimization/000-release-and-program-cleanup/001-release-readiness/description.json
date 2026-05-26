@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness",
   "description": "Phase Parent: 000-release-cleanup/001-release-readiness",
   "keywords": [
     "phase",
@@ -8,13 +8,13 @@
     "000-release-cleanup",
     "001-release-readiness"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.592Z",
+  "lastUpdated": "2026-05-26T17:27:28.598Z",
   "specId": "001",
   "folderSlug": "release-readiness",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-and-program-cleanup"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

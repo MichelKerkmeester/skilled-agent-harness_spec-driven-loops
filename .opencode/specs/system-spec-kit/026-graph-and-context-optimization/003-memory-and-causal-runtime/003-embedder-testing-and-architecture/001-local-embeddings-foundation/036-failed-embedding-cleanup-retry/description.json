@@ -14,7 +14,7 @@
   "is_phase_parent": false,
   "created_at": "2026-05-14T00:00:00Z",
   "updated_at": "2026-05-14T00:30:00Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/036-failed-embedding-cleanup-retry",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/036-failed-embedding-cleanup-retry",
   "description": "Feature Specification: 036 Failed Embedding Cleanup Retry",
   "keywords": [
     "feature",
@@ -25,13 +25,14 @@
     "cleanup",
     "retry"
   ],
-  "lastUpdated": "2026-05-23T09:08:57.364Z",
+  "lastUpdated": "2026-05-26T17:26:06.698Z",
   "specId": "036",
   "folderSlug": "failed-embedding-cleanup-retry",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 0,

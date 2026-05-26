@@ -1,6 +1,6 @@
 {
   "level": "phase-parent",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent",
   "description": "Feature Specification: system-code-graph Uplift",
   "keywords": [
     "feature",
@@ -8,13 +8,13 @@
     "system-code-graph",
     "uplift"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.189Z",
-  "specId": "019",
+  "lastUpdated": "2026-05-26T17:27:09.541Z",
+  "specId": "009",
   "folderSlug": "system-code-graph-uplift-phase-parent",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph"
+    "004-code-graph"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge",
   "description": "Multi-client stdio-socket launcher bridge",
   "keywords": [
     "multi-client",
@@ -8,13 +8,14 @@
     "launcher",
     "bridge"
   ],
-  "lastUpdated": "2026-05-23T09:08:21.449Z",
+  "lastUpdated": "2026-05-26T17:26:37.246Z",
   "specId": "010",
   "folderSlug": "multi-client-stdio-socket-bridge",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "006-mcp-launcher-concurrency"
   ],
   "memorySequence": 0,

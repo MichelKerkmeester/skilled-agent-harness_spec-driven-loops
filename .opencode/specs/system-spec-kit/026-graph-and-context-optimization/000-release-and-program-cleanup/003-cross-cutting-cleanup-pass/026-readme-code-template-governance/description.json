@@ -1,7 +1,7 @@
 {
   "level": "2",
   "status": "complete",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/026-readme-code-template-governance",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/026-readme-code-template-governance",
   "description": "Feature Specification: README code template governance",
   "keywords": [
     "feature",
@@ -11,13 +11,13 @@
     "template",
     "governance"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.908Z",
+  "lastUpdated": "2026-05-26T17:26:18.241Z",
   "specId": "026",
   "folderSlug": "readme-code-template-governance",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 0,

@@ -1,7 +1,7 @@
 {
   "level": 2,
   "name": "Real-World Usefulness Test Execution",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/001-sandbox-usefulness-trials",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-sandbox-usefulness-trials",
   "description": "Feature Specification: Real-World Usefulness Test Execution",
   "keywords": [
     "feature",
@@ -11,14 +11,14 @@
     "test",
     "execution"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.676Z",
+  "lastUpdated": "2026-05-26T17:27:33.812Z",
   "specId": "001",
-  "folderSlug": "execution",
+  "folderSlug": "sandbox-usefulness-trials",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph",
-    "011-real-world-usefulness-test-planning"
+    "004-code-graph",
+    "008-real-world-usefulness-test-planning"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

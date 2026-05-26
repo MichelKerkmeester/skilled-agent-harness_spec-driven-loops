@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/001-skill-mds-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/001-skill-mds-audit",
   "description": "Spec: 021/001 Skill MDs audit for stale 016-019 refs",
   "keywords": [
     "spec",
@@ -13,13 +13,14 @@
     "016-019",
     "refs"
   ],
-  "lastUpdated": "2026-05-23T09:09:14.139Z",
+  "lastUpdated": "2026-05-26T17:26:03.198Z",
   "specId": "001",
   "folderSlug": "skill-mds-audit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "005-cross-cutting-quality",
     "003-skill-docs-alignment"
   ],

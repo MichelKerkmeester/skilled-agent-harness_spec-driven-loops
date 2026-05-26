@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes",
   "description": "Feature Specification: 054 Runtime Cleanup Followups",
   "keywords": [
     "feature",
@@ -10,13 +10,13 @@
     "cleanup",
     "followups"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.004Z",
+  "lastUpdated": "2026-05-26T17:26:50.321Z",
   "specId": "004",
   "folderSlug": "runtime-root-memory-cleanup-followup-fixes",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "004-followup-post-program"
   ],
   "memorySequence": 1,

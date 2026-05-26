@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/008-validator-spec-document-integrity-audit",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/008-validator-spec-document-integrity-audit",
   "description": "Feature Specification: 045-008 Validator Spec Doc Integrity",
   "keywords": [
     "feature",
@@ -10,13 +10,13 @@
     "doc",
     "integrity"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.661Z",
+  "lastUpdated": "2026-05-26T17:27:17.460Z",
   "specId": "008",
   "folderSlug": "validator-spec-document-integrity-audit",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "001-release-readiness",
     "003-release-readiness-deep-review-audits"
   ],

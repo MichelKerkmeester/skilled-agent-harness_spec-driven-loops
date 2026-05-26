@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/008-end-user-scope-default-and-opt-in",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/004-end-user-scope-default-and-opt-in",
   "description": "Feature Specification: End-User Scope Default for Code Graph Indexing",
   "keywords": [
     "feature",
@@ -12,13 +12,14 @@
     "graph",
     "indexing"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.144Z",
-  "specId": "008",
+  "lastUpdated": "2026-05-26T17:26:46.448Z",
+  "specId": "004",
   "folderSlug": "end-user-scope-default-and-opt-in",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph"
+    "004-code-graph",
+    "004-runtime-and-scan"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

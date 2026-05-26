@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/015-standalone-mcp-topology-pivot",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot",
   "description": "MCP Topology Pivot: ADR-002 Supersedes ADR-001 Q3 (Co-Resident -> Standalone)",
   "keywords": [
     "mcp",
@@ -12,13 +12,14 @@
     "co-resident",
     "standalone"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.179Z",
-  "specId": "015",
+  "lastUpdated": "2026-05-26T17:26:04.493Z",
+  "specId": "003",
   "folderSlug": "standalone-mcp-topology-pivot",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph"
+    "004-code-graph",
+    "006-extraction-and-isolation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

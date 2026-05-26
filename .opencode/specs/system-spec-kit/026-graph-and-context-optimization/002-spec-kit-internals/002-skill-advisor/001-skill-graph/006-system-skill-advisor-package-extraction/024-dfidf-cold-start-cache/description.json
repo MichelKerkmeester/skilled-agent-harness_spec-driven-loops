@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/024-dfidf-cold-start-cache",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/024-dfidf-cold-start-cache",
   "description": "Feature Specification: DFIDF cold start cache",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "start",
     "cache"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.572Z",
+  "lastUpdated": "2026-05-26T17:27:20.867Z",
   "specId": "024",
   "folderSlug": "dfidf-cold-start-cache",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "006-skill-advisor",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
     "001-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

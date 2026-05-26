@@ -16,7 +16,7 @@
   "importance_tier": "important",
   "created_at": "2026-05-02T19:30:00Z",
   "last_updated_at": "2026-05-02T19:50:00Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/010-broader-excludes-and-granular-skills",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/005-broader-excludes-and-granular-skills",
   "description": "Feature Specification: Broader Default Excludes and Granular Skills",
   "keywords": [
     "feature",
@@ -27,13 +27,14 @@
     "granular",
     "skills"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.672Z",
-  "specId": "011",
-  "folderSlug": "broader-scope-excludes-and-granular-skills",
+  "lastUpdated": "2026-05-26T17:26:54.576Z",
+  "specId": "005",
+  "folderSlug": "broader-excludes-and-granular-skills",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph"
+    "004-code-graph",
+    "004-runtime-and-scan"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

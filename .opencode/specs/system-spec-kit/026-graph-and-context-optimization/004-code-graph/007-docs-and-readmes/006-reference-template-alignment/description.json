@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/022-reference-template-alignment",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/006-reference-template-alignment",
   "description": "Feature Specification: System Code Graph Reference Template Alignment",
   "keywords": [
     "feature",
@@ -12,13 +12,14 @@
     "template",
     "alignment"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.466Z",
-  "specId": "022",
+  "lastUpdated": "2026-05-26T17:25:45.375Z",
+  "specId": "006",
   "folderSlug": "reference-template-alignment",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph"
+    "004-code-graph",
+    "007-docs-and-readmes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

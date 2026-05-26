@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/002-manifest-driven-template-design",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/002-manifest-driven-template-design",
   "description": "Feature Specification: Template Backend Greenfield Redesign",
   "keywords": [
     "feature",
@@ -9,13 +9,14 @@
     "greenfield",
     "redesign"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.803Z",
+  "lastUpdated": "2026-05-26T17:26:08.303Z",
   "specId": "002",
   "folderSlug": "manifest-driven-template-design",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "008-template-levels"
+    "002-spec-kit-internals",
+    "003-template-levels"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

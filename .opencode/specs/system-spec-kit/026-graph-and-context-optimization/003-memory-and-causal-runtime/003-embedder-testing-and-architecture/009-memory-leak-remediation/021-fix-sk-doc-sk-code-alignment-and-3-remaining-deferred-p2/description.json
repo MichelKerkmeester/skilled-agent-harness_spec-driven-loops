@@ -1,25 +1,4 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
-  "description": "Phase parent for final cleanup after arc 020: close 3 still-deferred P2 findings (021/001), sk-code align ensure-rerank-sidecar.cjs + sidecar-worker.ts (021/002), sk-doc align arc 020 spec docs (021/003). Builds on arc 020 commit 793d9ce5d3.",
-  "keywords": [
-    "arc-021",
-    "sk-doc-alignment",
-    "sk-code-alignment",
-    "deferred-p2-closure",
-    "jsdoc-tsdoc-sweep",
-    "module-header-pattern"
-  ],
-  "lastUpdated": "2026-05-23T13:00:00Z",
-  "specId": "021",
-  "folderSlug": "fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
-  "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
-    "009-memory-leak-remediation"
-  ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
   "level": "2",
   "status": "draft",
   "manual": {
@@ -27,5 +6,30 @@
       "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes"
     ],
     "related_to": []
-  }
+  },
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+  "description": "Feature Specification: Fix sk-doc + sk-code Alignment + Close 3 Remaining Deferred P2",
+  "keywords": [
+    "feature",
+    "specification",
+    "fix",
+    "sk-doc",
+    "sk-code",
+    "alignment",
+    "close",
+    "remaining",
+    "deferred"
+  ],
+  "lastUpdated": "2026-05-26T17:26:47.409Z",
+  "specId": "021",
+  "folderSlug": "fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "009-memory-leak-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

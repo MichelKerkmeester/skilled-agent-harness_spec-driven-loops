@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/017-code-folder-readmes-poc",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/003-code-folder-readmes-poc",
   "description": "Phase A: sk-doc-aligned READMEs for system-code-graph",
   "keywords": [
     "phase",
@@ -8,13 +8,14 @@
     "readmes",
     "system-code-graph"
   ],
-  "lastUpdated": "2026-05-21T10:22:38.185Z",
-  "specId": "017",
+  "lastUpdated": "2026-05-26T17:25:48.331Z",
+  "specId": "003",
   "folderSlug": "code-folder-readmes-poc",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph"
+    "004-code-graph",
+    "007-docs-and-readmes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

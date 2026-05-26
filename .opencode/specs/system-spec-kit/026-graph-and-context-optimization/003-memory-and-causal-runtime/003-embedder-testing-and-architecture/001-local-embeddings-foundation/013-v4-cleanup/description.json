@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/013-v4-cleanup",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/013-v4-cleanup",
   "description": "Feature Specification: Phase 13 - v4 Cleanup",
   "keywords": [
     "feature",
@@ -8,13 +8,14 @@
     "phase",
     "cleanup"
   ],
-  "lastUpdated": "2026-05-23T09:08:56.687Z",
+  "lastUpdated": "2026-05-26T17:26:16.308Z",
   "specId": "013",
   "folderSlug": "v4-cleanup",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation"
   ],
   "memorySequence": 13,

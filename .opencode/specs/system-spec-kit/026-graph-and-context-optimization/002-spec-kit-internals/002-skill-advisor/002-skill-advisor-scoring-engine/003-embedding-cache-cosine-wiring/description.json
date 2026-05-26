@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring",
   "description": "Feature Specification: Skill embedding cache and cosine-similarity lane wiring",
   "keywords": [
     "feature",
@@ -12,13 +12,14 @@
     "lane",
     "wiring"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.620Z",
+  "lastUpdated": "2026-05-26T17:27:05.769Z",
   "specId": "003",
   "folderSlug": "embedding-cache-cosine-wiring",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "006-skill-advisor",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
     "002-skill-advisor-scoring-engine"
   ],
   "memorySequence": 0,

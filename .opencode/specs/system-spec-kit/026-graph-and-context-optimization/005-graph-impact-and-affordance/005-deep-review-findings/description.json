@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/007-fix-external-project-adoption-deep-review-findings",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-review-findings",
   "description": "Feature Specification: Review Remediation (010/007)",
   "keywords": [
     "feature",
@@ -9,13 +9,13 @@
     "010",
     "007"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.377Z",
-  "specId": "007",
-  "folderSlug": "fix-external-project-adoption-deep-review-findings",
+  "lastUpdated": "2026-05-26T17:25:47.701Z",
+  "specId": "005",
+  "folderSlug": "deep-review-findings",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "004-external-project-adoption"
+    "005-graph-impact-and-affordance"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

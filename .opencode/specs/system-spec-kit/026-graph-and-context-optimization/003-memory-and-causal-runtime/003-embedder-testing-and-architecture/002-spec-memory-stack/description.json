@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
   "description": "016/001: mk-spec-memory stack (phase parent)",
   "keywords": [
     "016",
@@ -9,13 +9,14 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-05-23T09:08:16.202Z",
+  "lastUpdated": "2026-05-26T17:28:10.303Z",
   "specId": "002",
   "folderSlug": "spec-memory-stack",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture"
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

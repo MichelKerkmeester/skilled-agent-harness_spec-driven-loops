@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks",
   "description": "Spec: Investigation P1 Fixes for Execution-Router Policy and Shutdown Hooks",
   "keywords": [
     "spec",
@@ -11,13 +11,14 @@
     "shutdown",
     "hooks"
   ],
-  "lastUpdated": "2026-05-23T09:09:10.128Z",
+  "lastUpdated": "2026-05-26T17:26:20.089Z",
   "specId": "002",
   "folderSlug": "fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "009-memory-leak-remediation",
     "017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode"
   ],

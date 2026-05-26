@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun",
   "description": "Feature Specification: Apply 015/005 metadata fixes and re-run the seeded sweep",
   "keywords": [
     "feature",
@@ -14,13 +14,14 @@
     "seeded",
     "sweep"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.442Z",
+  "lastUpdated": "2026-05-26T17:26:53.632Z",
   "specId": "004",
   "folderSlug": "metadata-fixes-and-seeded-sweep-rerun",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "006-skill-advisor",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
     "001-skill-graph"
   ],
   "memorySequence": 0,

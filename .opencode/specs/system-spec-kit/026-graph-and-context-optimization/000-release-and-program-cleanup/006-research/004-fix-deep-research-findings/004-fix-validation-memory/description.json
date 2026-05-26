@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-fix-deep-research-findings/004-fix-validation-memory",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/004-fix-validation-memory",
   "description": "Feature Specification: 004 Validation And Memory Remediation",
   "keywords": [
     "feature",
@@ -9,13 +9,13 @@
     "memory",
     "remediation"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.280Z",
+  "lastUpdated": "2026-05-26T17:27:13.344Z",
   "specId": "004",
   "folderSlug": "fix-validation-memory",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "006-research",
     "004-fix-deep-research-findings"
   ],

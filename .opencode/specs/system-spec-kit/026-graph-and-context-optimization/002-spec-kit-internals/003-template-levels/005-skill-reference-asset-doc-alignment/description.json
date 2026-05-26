@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/005-skill-reference-asset-doc-alignment",
   "description": "Feature Specification: skill references assets alignment",
   "keywords": [
     "feature",
@@ -10,13 +10,14 @@
     "assets",
     "alignment"
   ],
-  "lastUpdated": "2026-05-08T08:26:57.793Z",
+  "lastUpdated": "2026-05-26T17:26:25.828Z",
   "specId": "005",
-  "folderSlug": "skill-references-assets-alignment",
+  "folderSlug": "skill-reference-asset-doc-alignment",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "008-template-levels"
+    "002-spec-kit-internals",
+    "003-template-levels"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

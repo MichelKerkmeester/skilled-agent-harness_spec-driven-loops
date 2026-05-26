@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-research-and-fix-code-graph-advisor-refinement",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/001-code-graph-advisor-refinement",
   "description": "Feature Specification: Code Graph and Skill Advisor Refinement Research",
   "keywords": [
     "feature",
@@ -11,13 +11,14 @@
     "refinement",
     "research"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.388Z",
-  "specId": "004",
-  "folderSlug": "research-and-fix-code-graph-advisor-refinement",
+  "lastUpdated": "2026-05-26T17:26:19.139Z",
+  "specId": "001",
+  "folderSlug": "code-graph-advisor-refinement",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "005-code-graph"
+    "004-code-graph",
+    "005-resilience-and-advisor"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

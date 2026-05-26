@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
   "description": "Implementation Specification: Architecture Diagrams & Topology",
   "keywords": [
     "implementation",
@@ -8,13 +8,13 @@
     "diagrams",
     "topology"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.901Z",
+  "lastUpdated": "2026-05-26T17:26:09.230Z",
   "specId": "025",
   "folderSlug": "readme-architecture-diagrams-topology",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 0,

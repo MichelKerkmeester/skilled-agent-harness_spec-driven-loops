@@ -1,16 +1,16 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup",
-  "description": "Feature Specification: 000 Release Cleanup",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup",
+  "description": "Feature Specification: Release and Program Cleanup",
   "keywords": [
     "feature",
     "specification",
-    "000",
     "release",
+    "program",
     "cleanup"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.585Z",
+  "lastUpdated": "2026-05-26T17:26:56.205Z",
   "specId": "000",
-  "folderSlug": "release-cleanup",
+  "folderSlug": "release-and-program-cleanup",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization"

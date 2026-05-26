@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/003-documentation-truth-validation",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/003-documentation-truth-validation",
   "description": "Spec: Doc Truth Pass",
   "keywords": [
     "spec",
@@ -7,13 +7,13 @@
     "truth",
     "pass"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.714Z",
+  "lastUpdated": "2026-05-26T17:27:42.166Z",
   "specId": "003",
   "folderSlug": "documentation-truth-validation",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "002-audit"
   ],
   "memorySequence": 3,

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
   "description": "Phase Parent: 000-release-cleanup/003-cross-cutting-cleanup-pass",
   "keywords": [
     "phase",
@@ -8,13 +8,13 @@
     "000-release-cleanup",
     "003-cross-cutting-cleanup-pass"
   ],
-  "lastUpdated": "2026-05-23T15:24:59.747Z",
+  "lastUpdated": "2026-05-26T17:26:19.793Z",
   "specId": "003",
   "folderSlug": "cross-cutting-cleanup-pass",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup"
+    "000-release-and-program-cleanup"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

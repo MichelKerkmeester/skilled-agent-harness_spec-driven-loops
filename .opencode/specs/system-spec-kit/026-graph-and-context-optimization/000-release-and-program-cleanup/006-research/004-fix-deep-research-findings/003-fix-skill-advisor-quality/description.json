@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-fix-deep-research-findings/003-fix-skill-advisor-quality",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/003-fix-skill-advisor-quality",
   "description": "Feature Specification: 003 Advisor Quality",
   "keywords": [
     "feature",
@@ -8,13 +8,13 @@
     "advisor",
     "quality"
   ],
-  "lastUpdated": "2026-05-23T15:25:00.275Z",
+  "lastUpdated": "2026-05-26T17:27:19.248Z",
   "specId": "003",
   "folderSlug": "fix-skill-advisor-quality",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "000-release-cleanup",
+    "000-release-and-program-cleanup",
     "006-research",
     "004-fix-deep-research-findings"
   ],
