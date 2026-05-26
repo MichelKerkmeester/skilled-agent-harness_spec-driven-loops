@@ -9,7 +9,31 @@ The `deep-review-state.jsonl` log is the append-only source of truth for a revie
 
 ---
 
-## 1. STATE LOG (DEEP-REVIEW-STATE.JSONL)
+## 1. OVERVIEW
+
+### Purpose
+
+This reference defines the append-only JSONL records that preserve deep-review run state. It covers config, iteration, event, lineage, graph, verdict, traceability, and Review Depth Schema v2 records so reducers and validators can replay the loop deterministically.
+
+### When to Use
+
+- Validating `deep-review-state.jsonl` shape before changing reducers, dashboards, or workflow emission.
+- Debugging malformed state records, blocked-stop events, graph convergence events, or lineage fields.
+- Adding or checking Review Depth Schema v2 target selection, search coverage, and ledger fields.
+- Confirming which fields are required before writing iteration, synthesis, pause, or recovery events.
+
+### Key Sources
+
+| Source | Purpose |
+|--------|---------|
+| Config record | Establishes session identity, lineage, thresholds, and spec folder routing. |
+| Iteration record | Captures focus, reviewed files, findings, convergence ratios, and graph events. |
+| Event records | Persist synthesis, blocked-stop, graph convergence, pause, and stuck-recovery decisions. |
+| Review Depth Schema v2 | Adds target selection, search coverage, and ledger proof for deeper review iterations. |
+
+---
+
+## 2. STATE LOG (DEEP-REVIEW-STATE.JSONL)
 
 Append-only JSON Lines file. One JSON object per line.
 
@@ -310,7 +334,7 @@ When `activeP2 > 0` on PASS, set `hasAdvisories: true`.
 - `findingsSummary` and `findingsNew` must each contain `P0`, `P1`, `P2` keys
 - `findingDetails` must be an array. Each active item must include `findingClass`, `scopeProof`, and `affectedSurfaceHints`
 
-## 2. REVIEW DEPTH SCHEMA (V2)
+## 3. REVIEW DEPTH SCHEMA (V2)
 
 `reviewDepthSchemaVersion: 2` is the discriminator for the v2 search-depth contract. Absent values, `null`, or any value other than `2` mean v1 legacy: readers keep today's behavior, and validator hard enforcement applies only when the discriminator is present.
 
@@ -428,4 +452,3 @@ Representative v2 record:
 Phase E reducer/dashboard/report work must preserve and expose `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`. Until Phase E ships, these are contract obligations only. `deep-review-findings-registry.json`, `deep-review-dashboard.md`, and `review-report.md` are not expected to persist them.
 
 ---
-

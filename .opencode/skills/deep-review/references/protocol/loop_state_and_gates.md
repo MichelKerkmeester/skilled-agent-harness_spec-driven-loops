@@ -9,7 +9,32 @@ This reference defines how a review run moves between states and what must hold 
 
 ---
 
-## 1. STATE TRANSITIONS
+## 1. OVERVIEW
+
+### Purpose
+
+This reference defines the state machine that controls a deep-review run and the gates that must pass before the loop can stop. It pairs transition rules with error recovery and binary quality gates so operators can distinguish safe STOP decisions from forced continuation.
+
+### When to Use
+
+- Checking how a review run moves from initialization through iteration, synthesis, save, and completion.
+- Debugging pause, stuck-recovery, timeout, malformed state, or repeated failure behavior.
+- Verifying quality-gate requirements before accepting a convergence STOP decision.
+- Updating workflow logic that emits guard violations or recovery actions.
+
+### Key Principle
+
+STOP is only final after convergence and quality gates agree.
+
+| Gate | Requirement |
+|------|-------------|
+| Evidence | Active findings cite concrete `file:line` evidence and avoid inference-only claims. |
+| Scope | Findings stay inside the declared review target and configured boundaries. |
+| Coverage | Required dimensions and traceability protocols are complete before STOP. |
+
+---
+
+## 2. STATE TRANSITIONS
 
 ```
 [INITIALIZED] --> config + strategy + state created, scope discovered
@@ -52,7 +77,7 @@ This reference defines how a review run moves between states and what must hold 
 
 ---
 
-## 2. ERROR HANDLING
+## 3. ERROR HANDLING
 
 | Error | Phase | Action |
 |-------|-------|--------|
@@ -78,7 +103,7 @@ Five escalating tiers, attempted in order:
 
 ---
 
-## 3. REVIEW QUALITY GATES
+## 4. REVIEW QUALITY GATES
 
 Three binary gates must pass before a STOP decision is finalized. These gates are defined in `review_mode_contract.yaml` under `qualityGates` and are evaluated after the composite convergence score exceeds the `compositeStopScore` threshold.
 
@@ -129,4 +154,3 @@ When any gate fails, the STOP is overridden to CONTINUE and each violation is lo
 ```
 
 ---
-

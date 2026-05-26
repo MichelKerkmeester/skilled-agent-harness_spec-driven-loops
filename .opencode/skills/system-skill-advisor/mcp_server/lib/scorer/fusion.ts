@@ -117,7 +117,6 @@ function confidenceFor(args: {
   readOnlyExplainer: boolean;
   hasExplicitWorkflowSignal: boolean;
   hasTaskIntent: boolean;
-  hasDeepResearchCycleIntent: boolean;
   readOnlyRouteAllowed: boolean;
   derivedDominant: boolean;
   skillId: string;
@@ -132,11 +131,6 @@ function confidenceFor(args: {
   }
   if (args.derivedDominant && args.directScore < C.derivedDominantDirectScoreCeiling) {
     return C.derivedDominantConfidence;
-  }
-  if (args.hasDeepResearchCycleIntent
-    && args.skillId === 'sk-deep-research'
-    && args.liveNormalized >= C.deepResearchCycleLiveNormalizedFloor) {
-    return C.deepResearchCycleSkillConfidence;
   }
   if (args.hasTaskIntent
     && (args.directScore >= C.taskIntentDirectScoreFloor
@@ -227,9 +221,6 @@ function readOnlyRouteAllowed(promptLower: string, skillId: string): boolean {
   if (skillId === 'system-spec-kit' && /\b(packet|spec folder|save memory|phase|continuation prompts|resume handling)\b/.test(promptLower)) {
     return true;
   }
-  if (skillId === 'sk-deep-research' && /\b(deep-loop prompts|ordinary file-write prompts|research cycle|same corpus)\b/.test(promptLower)) {
-    return true;
-  }
   if (skillId === 'deep-ai-council' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
     return true;
   }
@@ -252,20 +243,15 @@ function isPlainFileSavePrompt(promptLower: string): boolean {
 function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRecommendation): number {
   const R = SCORING_CALIBRATION.routing;
   if (/\bsemantic (code )?search\b/.test(promptLower)) {
-    const activeDeepResearch = /\/deep:start-research-loop|\b(resume|continue|run|launch|start|iteration|convergence)\b.*\bdeep[- ]research\b/.test(promptLower);
     if (recommendation.skill === 'system-code-graph') return R.semanticSearchCodeGraphBonus;
-    if (!activeDeepResearch && recommendation.skill === 'sk-deep-research') return R.semanticSearchDeepResearchPenalty;
   }
   if (/\bdeep[- ]review\b/.test(promptLower)) {
-    if (recommendation.skill === 'sk-deep-review') return R.deepReviewSkDeepReviewBonus;
     if (recommendation.skill === 'sk-code-review') return R.deepReviewSkCodeReviewPenalty;
   }
   if (/\bdeep[- ]research\b/.test(promptLower)) {
-    if (recommendation.skill === 'sk-deep-research') return R.deepResearchSkDeepResearchBonus;
     if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code-review') return R.deepResearchOtherSkillsPenalty;
   }
   if (DEEP_RESEARCH_CYCLE.test(promptLower)) {
-    if (recommendation.skill === 'sk-deep-research') return R.deepResearchCycleSkDeepResearchBonus;
     if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code-review' || recommendation.skill === 'sk-code') return R.deepResearchCycleOtherSkillsPenalty;
   }
   if (/\b(compare|audit|review)\b/.test(promptLower) && /\b(classifier|vocabulary|prose|implementation|agents\.md|drift|mismatch)\b/.test(promptLower)) {
@@ -280,8 +266,6 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
     if (recommendation.skill === 'system-spec-kit') return R.speckitResumeSpecKitBonus;
     if (recommendation.skill === 'command-spec-kit') return R.speckitResumeCommandPenalty;
   }
-  if (promptLower.includes('/deep:start-research-loop') && recommendation.skill === 'sk-deep-research') return R.slashCommandDeepResearchBonus;
-  if (promptLower.includes('/deep:start-review-loop') && recommendation.skill === 'sk-deep-review') return R.slashCommandDeepReviewBonus;
   if (/\b(save context|save memory)\b/.test(promptLower)) {
     if (recommendation.skill === 'memory:save') return R.saveContextMemorySaveBonus;
     if (recommendation.skill === 'system-spec-kit') return R.saveContextMemorySpecKitPenalty;
@@ -293,11 +277,10 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   if (/\bcreate (a )?(test|testing) playbook\b/.test(promptLower) || promptLower.includes('/create:testing-playbook')) {
     if (recommendation.skill === 'create:testing-playbook' || recommendation.skill === 'command-create-testing-playbook') return R.createTestingPlaybookBonus;
     if (recommendation.skill === 'sk-doc') return R.createTestingPlaybookSkDocPenalty;
-    if (recommendation.skill === 'sk-deep-review' || recommendation.skill === 'deep-agent-improvement') return R.createTestingPlaybookOtherSkillsPenalty;
+    if (recommendation.skill === 'deep-agent-improvement') return R.createTestingPlaybookOtherSkillsPenalty;
   }
   if (/\bphase folder\b/.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.phaseFolderSpecKitBonus;
-    if (recommendation.skill === 'sk-deep-research') return R.phaseFolderDeepResearchPenalty;
   }
   return 0;
 }
@@ -323,7 +306,6 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const promptLower = prompt.toLowerCase();
   const readOnlyExplainer = isReadOnlyExplainer(promptLower);
   const hasTaskIntent = TASK_INTENT.test(promptLower);
-  const hasDeepResearchCycleIntent = DEEP_RESEARCH_CYCLE.test(promptLower);
   const recommendations: AdvisorScoredRecommendation[] = [];
 
   for (const skill of projection.skills) {
@@ -364,7 +346,6 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       readOnlyExplainer,
       hasExplicitWorkflowSignal: explicitSignal,
       hasTaskIntent,
-      hasDeepResearchCycleIntent,
       readOnlyRouteAllowed: readOnlyRouteAllowed(promptLower, skill.id),
       derivedDominant,
       skillId: skill.id,

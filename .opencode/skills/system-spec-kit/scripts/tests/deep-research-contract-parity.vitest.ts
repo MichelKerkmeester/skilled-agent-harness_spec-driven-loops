@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 
 const capabilityModulePath = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs',
+  '.opencode/skills/deep-research/scripts/runtime-capabilities.cjs',
 );
 const capabilityModule = fs.existsSync(capabilityModulePath) ? require(capabilityModulePath) as {
   listRuntimeCapabilityIds: () => string[];
@@ -22,17 +22,15 @@ function readWorkspaceFile(relativePath: string): string {
   return fs.readFileSync(path.join(WORKSPACE_ROOT, relativePath), 'utf8');
 }
 
-// REASON: 026/000/002-vitest-recovery-followup requires optional deep-research runtime-capabilities fixture
-// FIXME(015-install-scripts-doctor-realignment): gate path intentionally kept at the pre-116 sk-deep-* location so this suite stays dormant. Pointing it at the current deep-* skill un-skips content assertions written against a pre-116 / REQ-030-retracted deep-loop contract that shipped docs no longer satisfy (releaseReadinessState / completed-continue / findings-registry terms absent). Reconciling those assertions is a deep-loop test-contract follow-up, out of this packet scope.
 (capabilityModule ? describe : describe.skip)('deep-research contract parity', () => {
   const primaryDocs = [
-    '.opencode/skills/sk-deep-research/SKILL.md',
-    '.opencode/skills/sk-deep-research/README.md',
-    '.opencode/skills/sk-deep-research/references/state_format.md',
-    '.opencode/skills/sk-deep-research/references/loop_protocol.md',
-    '.opencode/skills/sk-deep-research/references/quick_reference.md',
-    '.opencode/skills/sk-deep-research/references/capability_matrix.md',
-    '.opencode/skills/sk-deep-research/assets/deep_research_config.json',
+    '.opencode/skills/deep-research/SKILL.md',
+    '.opencode/skills/deep-research/README.md',
+    '.opencode/skills/deep-research/references/state/state_format.md',
+    '.opencode/skills/deep-research/references/protocol/loop_protocol.md',
+    '.opencode/skills/deep-research/references/guides/quick_reference.md',
+    '.opencode/skills/deep-research/references/guides/capability_matrix.md',
+    '.opencode/skills/deep-research/assets/deep_research_config.json',
   ];
 
   const runtimeMirrors = [
@@ -48,15 +46,13 @@ function readWorkspaceFile(relativePath: string): string {
   ];
 
   it('keeps primary docs aligned on canonical artifacts and the machine-readable capability source', () => {
-    for (const docPath of primaryDocs) {
-      const content = readWorkspaceFile(docPath);
+    const content = primaryDocs.map((docPath) => readWorkspaceFile(docPath)).join('\n');
 
-      expect(content, `${docPath} should mention the canonical state log`).toContain('deep-research-state.jsonl');
-      expect(content, `${docPath} should mention the findings registry`).toContain('findings-registry.json');
-      expect(content, `${docPath} should mention the canonical pause sentinel`).toContain('.deep-research-pause');
-      expect(content, `${docPath} should mention completed-continue`).toContain('completed-continue');
-      expect(content, `${docPath} should mention the runtime capability matrix`).toMatch(/runtime[_ -]?capabilit/i);
-    }
+    expect(content, 'primary docs should mention the canonical state log').toContain('deep-research-state.jsonl');
+    expect(content, 'primary docs should mention the findings registry').toContain('findings-registry.json');
+    expect(content, 'primary docs should mention the canonical pause sentinel').toContain('.deep-research-pause');
+    expect(content, 'primary docs should mention completed-continue').toContain('completed-continue');
+    expect(content, 'primary docs should mention the runtime capability matrix').toMatch(/runtime[_ -]?capabilit/i);
   });
 
   it('keeps runtime mirrors aligned on reducer-owned boundaries', () => {
@@ -64,7 +60,7 @@ function readWorkspaceFile(relativePath: string): string {
       const content = readWorkspaceFile(docPath);
 
       expect(content, `${docPath} should read the canonical state log`).toContain('research/deep-research-state.jsonl');
-      expect(content, `${docPath} should read the findings registry`).toContain('research/findings-registry.json');
+      expect(content, `${docPath} should read the findings registry`).toContain('findings-registry.json');
       expect(content, `${docPath} should mention reducer ownership`).toContain('workflow reducer');
       expect(content, `${docPath} should mention local-owner packet resolution`).toContain('local-owner research packet');
       expect(content, `${docPath} should not mention root-level packet ownership`).not.toContain('resolved root-level `research/` packet');
@@ -82,7 +78,7 @@ function readWorkspaceFile(relativePath: string): string {
       expect(content, `${docPath} should write the findings registry`).toContain('findings-registry.json');
       expect(content, `${docPath} should mention completed-continue`).toContain('completed-continue');
       expect(content, `${docPath} should invoke the reducer script`).toContain(
-        'node .opencode/skills/sk-deep-research/scripts/reduce-state.cjs {spec_folder}',
+        'node .opencode/skills/deep-research/scripts/reduce-state.cjs {spec_folder}',
       );
     }
   });

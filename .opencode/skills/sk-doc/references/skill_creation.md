@@ -23,8 +23,6 @@ Level 3: Bundled resources (this document) — Loaded as needed
 
 Skills are modular packages that extend an AI agent with specialized workflows, tool integrations, domain expertise, and bundled resources (scripts, references, assets).
 
-**See also**: [SET-UP - Skill Creation.md](../../../install_guides/SET-UP - Skill Creation.md) for interactive creation workflow.
-
 ---
 
 ## 2. SKILL ANATOMY

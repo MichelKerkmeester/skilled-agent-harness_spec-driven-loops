@@ -75,8 +75,8 @@
     "key_files": [
       ".opencode/skills/deep-agent-improvement/SKILL.md",
       ".opencode/skills/deep-agent-improvement/README.md",
-      ".opencode/skills/deep-agent-improvement/references/evaluator_contract.md",
-      ".opencode/skills/deep-agent-improvement/references/promotion_rules.md",
+      ".opencode/skills/deep-agent-improvement/references/scoring/evaluator_contract.md",
+      ".opencode/skills/deep-agent-improvement/references/promotion-gates/promotion_rules.md",
       ".opencode/skills/deep-agent-improvement/assets/improvement_strategy.md",
       ".opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs",
@@ -101,13 +101,13 @@
       {
         "name": "evaluator_contract",
         "kind": "reference",
-        "path": ".opencode/skills/deep-agent-improvement/references/evaluator_contract.md",
+        "path": ".opencode/skills/deep-agent-improvement/references/scoring/evaluator_contract.md",
         "source": "derived"
       },
       {
         "name": "promotion_rules",
         "kind": "reference",
-        "path": ".opencode/skills/deep-agent-improvement/references/promotion_rules.md",
+        "path": ".opencode/skills/deep-agent-improvement/references/promotion-gates/promotion_rules.md",
         "source": "derived"
       },
       {
@@ -157,12 +157,12 @@
     "source_docs": [
       "SKILL.md",
       "README.md",
-      "references/evaluator_contract.md",
-      "references/promotion_rules.md",
-      "references/quick_reference.md",
-      "references/score_dimensions.md",
-      "references/promotion_gate_contract.md",
-      "references/candidate_proposal_format.md"
+      "references/scoring/evaluator_contract.md",
+      "references/promotion-gates/promotion_rules.md",
+      "references/workflow/quick_reference.md",
+      "references/scoring/score_dimensions.md",
+      "references/promotion-gates/promotion_gate_contract.md",
+      "references/workflow/candidate_proposal_format.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
     "last_updated_at": "2026-05-23T07:00:00Z"

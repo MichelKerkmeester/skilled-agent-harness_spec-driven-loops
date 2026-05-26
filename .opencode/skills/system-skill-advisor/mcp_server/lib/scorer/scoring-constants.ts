@@ -35,12 +35,6 @@ export interface ConfidenceCalibration {
   /** Maximum direct score still considered "low direct evidence" for the
    * derived-dominant short-circuit. */
   readonly derivedDominantDirectScoreCeiling: number;
-  /** Boosted confidence for `sk-deep-research` when the prompt carries
-   * deep-research-cycle intent and `liveNormalized` clears the floor. */
-  readonly deepResearchCycleSkillConfidence: number;
-  /** `liveNormalized` floor that the deep-research-cycle short-circuit
-   * requires before applying the boost above. */
-  readonly deepResearchCycleLiveNormalizedFloor: number;
   /** Direct-score floor that, when paired with task-intent, lifts confidence
    * to at least the task-intent floor. */
   readonly taskIntentDirectScoreFloor: number;
@@ -106,15 +100,11 @@ export interface UncertaintyCalibration {
 export interface RoutingCalibration {
   // semantic search intent
   readonly semanticSearchCodeGraphBonus: number;
-  readonly semanticSearchDeepResearchPenalty: number;
   // deep-review intent
-  readonly deepReviewSkDeepReviewBonus: number;
   readonly deepReviewSkCodeReviewPenalty: number;
   // deep-research intent (text-only)
-  readonly deepResearchSkDeepResearchBonus: number;
   readonly deepResearchOtherSkillsPenalty: number;
   // deep-research-cycle phrase intent
-  readonly deepResearchCycleSkDeepResearchBonus: number;
   readonly deepResearchCycleOtherSkillsPenalty: number;
   // compare/audit/review + classifier-vocabulary intent
   readonly compareAuditCodeReviewBonus: number;
@@ -125,11 +115,8 @@ export interface RoutingCalibration {
   // explicit slash-command bonuses
   readonly speckitResumeSpecKitBonus: number;
   readonly speckitResumeCommandPenalty: number;
-  readonly slashCommandDeepResearchBonus: number;
-  readonly slashCommandDeepReviewBonus: number;
   // phase-folder intent
   readonly phaseFolderSpecKitBonus: number;
-  readonly phaseFolderDeepResearchPenalty: number;
   // save-context / save-memory intent
   readonly saveContextMemorySaveBonus: number;
   readonly saveContextMemorySpecKitPenalty: number;
@@ -157,8 +144,6 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     readOnlyRouteAllowedFloor: 0.82,
     derivedDominantConfidence: 0.72,
     derivedDominantDirectScoreCeiling: 0.2,
-    deepResearchCycleSkillConfidence: 0.84,
-    deepResearchCycleLiveNormalizedFloor: 0.12,
     taskIntentDirectScoreFloor: 0.18,
     taskIntentLiveNormalizedFloor: 0.2,
     taskIntentFloor: 0.82,
@@ -185,12 +170,8 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
   }),
   routing: Object.freeze({
     semanticSearchCodeGraphBonus: 0.5,
-    semanticSearchDeepResearchPenalty: -0.2,
-    deepReviewSkDeepReviewBonus: 0.35,
     deepReviewSkCodeReviewPenalty: -0.25,
-    deepResearchSkDeepResearchBonus: 0.35,
     deepResearchOtherSkillsPenalty: -0.18,
-    deepResearchCycleSkDeepResearchBonus: 0.45,
     deepResearchCycleOtherSkillsPenalty: -0.18,
     compareAuditCodeReviewBonus: 0.35,
     compareAuditCodeOpenCodePenalty: -0.18,
@@ -198,10 +179,7 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     corpusStudyOtherSkillsPenalty: -0.16,
     speckitResumeSpecKitBonus: 0.16,
     speckitResumeCommandPenalty: -0.12,
-    slashCommandDeepResearchBonus: 0.45,
-    slashCommandDeepReviewBonus: 0.45,
     phaseFolderSpecKitBonus: 0.35,
-    phaseFolderDeepResearchPenalty: -0.25,
     saveContextMemorySaveBonus: 0.55,
     saveContextMemorySpecKitPenalty: -0.25,
     createAgentCreateAgentBonus: 0.55,

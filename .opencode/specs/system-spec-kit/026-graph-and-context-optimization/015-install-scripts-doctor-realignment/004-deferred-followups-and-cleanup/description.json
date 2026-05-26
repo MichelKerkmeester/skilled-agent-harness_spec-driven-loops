@@ -1,0 +1,17 @@
+{
+  "specFolder": "015-install-scripts-doctor-realignment/004-deferred-followups-and-cleanup",
+  "description": "Phase 1: deferred-followups-and-cleanup",
+  "keywords": [
+    "phase",
+    "deferred-followups-and-cleanup"
+  ],
+  "lastUpdated": "2026-05-26T08:28:23.112Z",
+  "specId": "004",
+  "folderSlug": "deferred-followups-and-cleanup",
+  "parentChain": [
+    "015-install-scripts-doctor-realignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

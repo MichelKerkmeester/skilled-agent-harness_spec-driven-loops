@@ -103,6 +103,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | 2 | 002-operator-surface-realignment/ | [Phase 2 scope] | Pending |
 | 3 | 003-advisor-adjacent-116-realignment/ | [Phase 3 scope] | Pending |
+| 4 | 004-deferred-followups-and-cleanup/ | [Phase 4 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -116,6 +117,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 |------|-----|----------|--------------|
 | 001-deep-research-install-scripts-doctor | 002-operator-surface-realignment | [Criteria TBD] | [Verification TBD] |
 | 002-operator-surface-realignment | 003-advisor-adjacent-116-realignment | [Criteria TBD] | [Verification TBD] |
+| 003-advisor-adjacent-116-realignment | 004-deferred-followups-and-cleanup | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

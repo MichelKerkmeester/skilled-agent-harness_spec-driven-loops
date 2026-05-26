@@ -12,7 +12,7 @@ const require = createRequire(import.meta.url);
 // T247: Import deep-review runtime-capabilities resolver for executable coverage
 const reviewCapabilityModulePath = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/sk-deep-review/scripts/runtime-capabilities.cjs',
+  '.opencode/skills/deep-review/scripts/runtime-capabilities.cjs',
 );
 const reviewCapabilityModule = fs.existsSync(reviewCapabilityModulePath) ? require(reviewCapabilityModulePath) as {
   listRuntimeCapabilityIds: () => string[];
@@ -24,16 +24,14 @@ function readWorkspaceFile(relativePath: string): string {
   return fs.readFileSync(path.join(WORKSPACE_ROOT, relativePath), 'utf8');
 }
 
-// REASON: 026/000/002-vitest-recovery-followup requires optional deep-review runtime-capabilities fixture
-// FIXME(015-install-scripts-doctor-realignment): gate path intentionally kept at the pre-116 sk-deep-* location so this suite stays dormant. Pointing it at the current deep-* skill un-skips content assertions written against a pre-116 / REQ-030-retracted deep-loop contract that shipped docs no longer satisfy (releaseReadinessState / completed-continue / findings-registry terms absent). Reconciling those assertions is a deep-loop test-contract follow-up, out of this packet scope.
 (reviewCapabilityModule ? describe : describe.skip)('deep-review contract parity', () => {
   const primaryDocs = [
-    '.opencode/skills/sk-deep-review/SKILL.md',
-    '.opencode/skills/sk-deep-review/README.md',
-    '.opencode/skills/sk-deep-review/references/state_format.md',
-    '.opencode/skills/sk-deep-review/references/loop_protocol.md',
-    '.opencode/skills/sk-deep-review/references/quick_reference.md',
-    '.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml',
+    '.opencode/skills/deep-review/SKILL.md',
+    '.opencode/skills/deep-review/README.md',
+    '.opencode/skills/deep-review/references/state/state_format.md',
+    '.opencode/skills/deep-review/references/protocol/loop_protocol.md',
+    '.opencode/skills/deep-review/references/protocol/quick_reference.md',
+    '.opencode/skills/deep-review/assets/review_mode_contract.yaml',
   ];
 
   const runtimeMirrors = [
@@ -49,16 +47,14 @@ function readWorkspaceFile(relativePath: string): string {
   ];
 
   it('keeps primary deep-review docs aligned on canonical artifacts and lifecycle terms', () => {
-    for (const docPath of primaryDocs) {
-      const content = readWorkspaceFile(docPath);
+    const content = primaryDocs.map((docPath) => readWorkspaceFile(docPath)).join('\n');
 
-      expect(content, `${docPath} should mention the canonical config file`).toContain('deep-review-config.json');
-      expect(content, `${docPath} should mention the canonical state log`).toContain('deep-review-state.jsonl');
-      expect(content, `${docPath} should mention the findings registry`).toContain('deep-review-findings-registry.json');
-      expect(content, `${docPath} should mention the pause sentinel`).toContain('.deep-review-pause');
-      expect(content, `${docPath} should mention completed-continue`).toContain('completed-continue');
-      expect(content, `${docPath} should mention release readiness`).toContain('releaseReadinessState');
-    }
+    expect(content, 'primary docs should mention the canonical config file').toContain('deep-review-config.json');
+    expect(content, 'primary docs should mention the canonical state log').toContain('deep-review-state.jsonl');
+    expect(content, 'primary docs should mention the findings registry').toContain('deep-review-findings-registry.json');
+    expect(content, 'primary docs should mention the pause sentinel').toContain('.deep-review-pause');
+    expect(content, 'primary docs should mention completed-continue').toContain('completed-continue');
+    expect(content, 'primary docs should mention release readiness').toContain('releaseReadinessState');
   });
 
   it('keeps all runtime mirrors aligned on lifecycle and reducer boundaries', () => {
@@ -131,7 +127,7 @@ function readWorkspaceFile(relativePath: string): string {
   });
 
   it('keeps the generated review contract aligned on artifact_dir semantics', () => {
-    const content = readWorkspaceFile('.opencode/skills/sk-deep-review/assets/review_mode_contract.yaml');
+    const content = readWorkspaceFile('.opencode/skills/deep-review/assets/review_mode_contract.yaml');
 
     expect(content).toContain('{artifact_dir}/deep-review-config.json');
     expect(content).toContain('{artifact_dir}/deep-review-state.jsonl');

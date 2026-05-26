@@ -70,7 +70,7 @@ This README serves as both the **directory index** (listing all available guides
 <!-- ANCHOR:guides-inventory -->
 ## 2. GUIDES INVENTORY
 
-All `.md` guide files in this directory (5 real + 7 symlinks), grouped by type:
+All `.md` guide files in this directory (5 real + 3 symlinks), grouped by type:
 
 | Guide | Type | Purpose |
 |-------|------|---------|
@@ -84,11 +84,9 @@ All `.md` guide files in this directory (5 real + 7 symlinks), grouped by type:
 | [System Code Graph INSTALL_GUIDE](../skills/system-code-graph/INSTALL_GUIDE.md) | Skill-local | Standalone `mk_code_index` MCP server install (10 graph tools) |
 | **SET-UP Guides** | | |
 | [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) | Real | AGENTS.md customization and AI agent behavior |
-| [SET-UP - Opencode Agents.md](./SET-UP%20-%20Opencode%20Agents.md) | Real | Agent system setup: specialized AI personas and routing |
 | [SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md) | Symlink | Skill advisor configuration |
-| [SET-UP - Skill Creation.md](./SET-UP%20-%20Skill%20Creation.md) | Real | Custom skill creation and packaging workflow |
 | **Automation** | | |
-| [install_scripts/](./install_scripts/) | Directory | Automated install scripts (9 scripts) |
+| [install_scripts/](./install_scripts/) | Directory | Automated install scripts (7 files) |
 
 ---
 
@@ -103,8 +101,6 @@ All `.md` guide files in this directory (5 real + 7 symlinks), grouped by type:
 | **Fresh install (first time)** | This README, Section 4 (Pre-Flight Check) onwards |
 | **Add a specific MCP server** | The corresponding `MCP - *.md` guide |
 | **Configure AI agent behavior** | [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) |
-| **Set up the agent system** | [SET-UP - Opencode Agents.md](./SET-UP%20-%20Opencode%20Agents.md) |
-| **Create custom skills** | [SET-UP - Skill Creation.md](./SET-UP%20-%20Skill%20Creation.md) |
 | **Something broke** | Section 14 (Disaster Recovery) or Section 17 (Troubleshooting) |
 | **Resume partial install** | Section 4 (Pre-Flight Check) to detect what is missing |
 
@@ -1252,8 +1248,6 @@ python .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/s
 python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/<my-skill>/
 ```
 
-**Detailed Guide**: [SET-UP - Skill Creation.md](./SET-UP%20-%20Skill%20Creation.md)
-
 ### 15.4 Agent System
 
 The Agent System provides specialized AI personas with defined authorities, tool permissions and behavioral rules. Unlike skills (knowledge bundles), agents have **authority** to act and **tools** to execute.
@@ -1276,8 +1270,6 @@ The Agent System provides specialized AI personas with defined authorities, tool
 ```bash
 ls .opencode/agents/*.md 2>/dev/null && echo "✅ PASS" || echo "❌ FAIL"
 ```
-
-**Detailed Guide**: [SET-UP - Opencode Agents.md](./SET-UP%20-%20Opencode%20Agents.md)
 
 ### 15.5 Customizing for Your Stack — Start with `sk-code`
 
@@ -1358,7 +1350,6 @@ For the SpecKit chain, `/speckit:plan --intake-only` is the standalone intake en
 | Code Skill    | `.opencode/skills/sk-code/SKILL.md` | Multi-stack implementation patterns |
 | Git Skill     | `.opencode/skills/sk-git/SKILL.md`   | Git workflows                 |
 | AGENTS.md     | `AGENTS.md`                                | AI agent behavior reference   |
-| Agent System  | `.opencode/install_guides/SET-UP - Opencode Agents.md` | Agent creation & usage |
 
 ### 16.5 Next Level (Week 1)
 

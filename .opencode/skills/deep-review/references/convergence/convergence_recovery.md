@@ -9,7 +9,30 @@ When a review loop stalls or finishes, these contracts take over. This reference
 
 ---
 
-## 1. RECOVERY STRATEGIES
+## 1. OVERVIEW
+
+### Purpose
+
+This reference defines what the deep-review loop does when convergence stalls or completes. It covers stuck-recovery strategy selection, the convergence report payload, and graph-aware signals that can support or block a final STOP.
+
+### When to Use
+
+- Selecting a recovery strategy after repeated low-value or no-progress review iterations.
+- Verifying the convergence report fields written into `review-report.md` and JSONL state.
+- Auditing graph-aware convergence behavior when iteration records include `graphEvents`.
+- Debugging blocked STOP decisions that need recovery before synthesis can finalize.
+
+### Key References
+
+| Reference | Purpose |
+|-----------|---------|
+| Recovery strategies | Choose granularity, protocol replay, or severity-focused review after stuck detection. |
+| Convergence report | Records stop reason, verdict, coverage, score, gates, and recovery attempts. |
+| Graph-aware convergence | Adds structural evidence signals to the legal-stop evaluation. |
+
+---
+
+## 2. RECOVERY STRATEGIES
 
 When stuck detection triggers (`stuckCount >= stuckThreshold`), the orchestrator selects a targeted recovery strategy before deciding whether to continue or exit to synthesis.
 
@@ -78,7 +101,7 @@ Focus on: {leastCoveredDimension}
 
 ---
 
-## 2. CONVERGENCE REPORT
+## 3. CONVERGENCE REPORT
 
 When the loop stops, the orchestrator generates a convergence report embedded in `review-report.md` and appended to the JSONL state file.
 
@@ -156,11 +179,11 @@ Stuck recovery attempts: N (recovered: N, failed: N)
 }
 ```
 
-When STOP is vetoed instead of finalized, the workflow emits the separate `blocked_stop` event from Section 6 rather than nesting a `legalStop` object inside `synthesis`.
+When STOP is vetoed instead of finalized, the workflow emits the separate `blocked_stop` event from Section 3 rather than nesting a `legalStop` object inside `synthesis`.
 
 ---
 
-## 3. GRAPH-AWARE REVIEW CONVERGENCE
+## 4. GRAPH-AWARE REVIEW CONVERGENCE
 
 When `graphEvents` are present in review iteration records, the reducer builds an in-memory coverage graph and derives structural convergence signals that complement the existing statistical signals.
 
@@ -188,7 +211,7 @@ When `graphEvents` are absent (no graph data), the `graphEvidence` sub-check is 
 
 ### Convergence Report Extension
 
-When graph signals are available, the convergence report (Section 9) includes an additional block:
+When graph signals are available, the convergence report (Section 3) includes an additional block:
 
 ```
 Graph Convergence Signals:
@@ -207,4 +230,3 @@ Graph Convergence Signals:
 | Graph has zero edges | `graphDimensionCoverage` = 0.0, sub-check skipped |
 
 ---
-
