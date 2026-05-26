@@ -40,7 +40,7 @@ export interface WeightedDocumentSections {
 // ---------------------------------------------------------------
 // EMBEDDING CIRCUIT BREAKER
 // ---------------------------------------------------------------
-// Mirrors the cross-encoder circuit breaker pattern (cross-encoder.ts).
+// Mirrors the embedder-sidecar circuit breaker pattern.
 // After EMBEDDING_CB_THRESHOLD consecutive failures the circuit opens
 // and embedding calls return null immediately for EMBEDDING_CB_COOLDOWN_MS,
 // letting the search pipeline fall back to keyword/BM25 channels.

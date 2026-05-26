@@ -141,7 +141,6 @@ const LEGACY_MODEL_NAMES = [
   'jina-v2-base-code',
   'jina-embeddings-v3',
   'jinaai/jina-reranker-v3',
-  'cross-encoder/ms-marco-MiniLM-L-6-v2',
   'onnx-community/embeddinggemma-300m-ONNX',
   'unsloth/embeddinggemma-300m-GGUF',
 ];
@@ -157,7 +156,6 @@ const MODEL_ORG_PREFIXES = [
   'jina/',
   'nomic-ai/',
   'Qwen/',
-  'cross-encoder/',
   'onnx-community/',
   'unsloth/',
   'gaianet/',

@@ -489,7 +489,6 @@ mcp_server/
 │   │   └── importance-tiers.ts
 │   ├── search/                 # Search engines
 │   │   ├── bm25-index.ts       # BM25 text search
-│   │   ├── cross-encoder.ts    # Re-ranking
 │   │   ├── hybrid-search.ts    # Hybrid search pipeline
 │   │   ├── intent-classifier.ts
 │   │   ├── vector-index.ts     # Vector similarity search

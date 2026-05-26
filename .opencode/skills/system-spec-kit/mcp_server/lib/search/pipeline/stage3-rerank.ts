@@ -4,9 +4,8 @@
 // 4-Stage Retrieval Pipeline: Stage 3 of 4
 //
 // Responsibilities (in execution order):
-// 1. Cross-encoder reranking   — skipped when no provider is configured
-// 2. MMR diversity pruning     — maximal marginal relevance (SPECKIT_MMR flag)
-// 3. MPAB chunk collapse        — dedup chunks, reassemble parents
+// 1. MMR diversity pruning     — maximal marginal relevance (SPECKIT_MMR flag)
+// 2. MPAB chunk collapse       — dedup chunks, reassemble parents
 //
 // Pipeline position constraint:
 // MPAB MUST remain AFTER RRF fusion (Stage 2).
@@ -20,7 +19,6 @@
 //     - Chunk rows (parent_id != null) are collapsed; only parent rows exit
 //     - contentSource is set to 'reassembled_chunks' or 'file_read_fallback'
 // Side effects:
-//     - Cross-encoder fallback scoring when a provider is configured
 //     - DB reads to fetch parent content during MPAB reassembly
 //
 // Score changes: YES
@@ -86,17 +84,17 @@ interface ChunkGroup {
   parentScore: number;
 }
 
-type RerankProvider = 'cross-encoder' | 'fallback-sort' | 'none';
+type RerankProvider = 'fallback-sort' | 'none';
 
 // -- Stage 3 Entry Point ----------------------------------------
 
 /**
  * Execute Stage 3: Rerank + Aggregate.
  *
- * Applies cross-encoder reranking (if enabled) and then collapses
- * chunked memory hits into their parent documents (MPAB). The order
- * is intentional: cross-encoder scores are computed on the raw chunks
- * (fine-grained text), then parent reassembly aggregates the results.
+ * Applies MMR diversity reranking (when enabled) and then collapses
+ * chunked memory hits into their parent documents (MPAB). Stage 3
+ * reduces near-duplicate chunks before parent reassembly aggregates
+ * the result set.
  *
  * @param input - Stage 3 input containing scored results from Stage 2
  *   and the shared pipeline configuration.
@@ -255,7 +253,7 @@ export async function executeStage3(input: Stage3Input): Promise<Stage3Output> {
  * Pipeline position constraint: this function MUST NOT be called before
  * RRF fusion (Stage 2). It is intentionally placed in Stage 3.
  *
- * @param results - Scored pipeline rows from (optionally reranked) Stage 3.
+ * @param results - Scored pipeline rows from Stage 3.
  * @returns Object with aggregated rows and chunk reassembly statistics.
  */
 async function collapseAndReassembleChunkResults(

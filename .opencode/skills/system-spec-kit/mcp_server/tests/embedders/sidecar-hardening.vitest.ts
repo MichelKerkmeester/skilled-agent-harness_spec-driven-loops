@@ -208,7 +208,7 @@ describe('sidecar hardening', () => {
       'TMPDIR',
       'TRANSFORMERS_OFFLINE',
     ]);
-    expect(SIDECAR_ENV_ALLOWLIST.prefixes).toEqual(['HF_', 'LC_', 'RERANK_', 'SPECKIT_']);
+    expect(SIDECAR_ENV_ALLOWLIST.prefixes).toEqual(['HF_', 'LC_', 'SPECKIT_']);
   });
 
   it('drops unrelated env keys with stderr warnings while forwarding allowed families (F16+F40)', () => {
@@ -229,7 +229,7 @@ describe('sidecar hardening', () => {
     stderrSpy.mockRestore();
   });
 
-  it('prefers SPECKIT_RERANK values over overlapping RERANK values with a warning (F46)', () => {
+  it('drops legacy RERANK values while forwarding SPECKIT_RERANK values (F46)', () => {
     const stderrSpy = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
     const env = buildSidecarEnv({
       SPECKIT_RERANK_MODEL_NAME: 'spec-kit-model',
@@ -237,8 +237,8 @@ describe('sidecar hardening', () => {
     });
 
     expect(env.SPECKIT_RERANK_MODEL_NAME).toBe('spec-kit-model');
-    expect(env.RERANK_MODEL_NAME).toBe('spec-kit-model');
-    expect(stderrSpy).toHaveBeenCalledWith(expect.stringContaining('SPECKIT_RERANK_MODEL_NAME overrides RERANK_MODEL_NAME'));
+    expect(env.RERANK_MODEL_NAME).toBeUndefined();
+    expect(stderrSpy).toHaveBeenCalledWith(expect.stringContaining('RERANK_MODEL_NAME'));
     stderrSpy.mockRestore();
   });
 
@@ -542,7 +542,6 @@ setInterval(() => {}, 1000);
 
   // F3: SPECKIT_ env vars are documented
   it('RECOGNIZED_SPECKIT_ENV_VARS includes all documented vars (F3)', () => {
-    expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_CROSS_ENCODER');
     expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_EMBEDDER_SIDECAR_IDLE_MS');
     expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS');
     expect(RECOGNIZED_SPECKIT_ENV_VARS).toContain('SPECKIT_EMBEDDER_SIDECAR_REQUEST_TIMEOUT_MS');

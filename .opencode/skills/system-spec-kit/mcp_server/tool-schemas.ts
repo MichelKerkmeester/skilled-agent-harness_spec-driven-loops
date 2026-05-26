@@ -132,7 +132,7 @@ const memorySearch: ToolDefinition = {
       rerank: {
         type: 'boolean',
         default: true,
-        description: 'Enable cross-encoder reranking of results. Improves relevance at the cost of additional computation.'
+        description: 'Enable Stage-3 MMR diversity reranking (reduces near-duplicate results) plus MPAB chunk collapse. Default true.'
       },
       applyLengthPenalty: {
         type: 'boolean',

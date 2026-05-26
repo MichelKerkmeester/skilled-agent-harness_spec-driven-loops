@@ -49,7 +49,7 @@ Use this skill for:
 
 - Text-only exact searches: use Grep.
 - Filename or path globbing: use Glob.
-- Semantic concept search without known structure: use `system-code-graph`.
+- Semantic concept search without known structure: use Grep for domain terms and iterate; `system-code-graph` indexes structure (callers/imports/symbols), not embeddings.
 
 ---
 

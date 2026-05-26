@@ -213,16 +213,15 @@ export interface SearchResult {
    * - `'bm25'` — BM25 term-frequency relevance (min-max normalized to 0-1)
    * - `'hybrid'` — weighted combination of vector + lexical scores
    * - `'rrf'` — Reciprocal Rank Fusion across multiple retrieval methods
-   * - `'cross-encoder'` — reranker model relevance
    * - `'fallback'` — best-effort score from degraded search path
    */
   score: number;
   /**
    * Disambiguates `.score` semantics. Indicates which scoring algorithm
    * produced the `score` value. One of: `'vector'`, `'bm25'`, `'hybrid'`,
-   * `'rrf'`, `'cross-encoder'`, `'fallback'`.
+   * `'rrf'`, `'fallback'`.
    */
-  scoringMethod?: 'vector' | 'bm25' | 'hybrid' | 'rrf' | 'cross-encoder' | 'fallback';
+  scoringMethod?: 'vector' | 'bm25' | 'hybrid' | 'rrf' | 'fallback';
   /** Memory content (when include_content is true) */
   content?: string;
   /** Memory title */
