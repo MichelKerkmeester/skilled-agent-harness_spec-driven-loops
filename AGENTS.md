@@ -354,7 +354,7 @@ Use the agent directory that matches the active runtime/provider profile:
 
 1. **Native MCP** (`opencode.json`) - Direct tools, called natively. **5 servers registered:**
    - Sequential Thinking
-   - Spec Kit Memory (`mk-spec-memory`, 39 tools)
+   - Spec Kit Memory (`mk-spec-memory`, 35 tools)
    - Skill Advisor (`mk_skill_advisor`, 9 tools — 8 public + 1 internal)
    - Code Graph (`mk_code_index`, 8 tools)
    - Code Mode

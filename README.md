@@ -84,7 +84,7 @@ The framework adds four layers on top of the base platform:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 11 specialized│          │ 22 domain skills │
+         │ 11 specialized│          │ 21 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘

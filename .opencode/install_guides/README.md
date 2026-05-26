@@ -81,7 +81,7 @@ All `.md` guide files in this directory (5 real + 3 symlinks), grouped by type:
 | [MCP - Sequential Thinking.md](./MCP%20-%20Sequential%20Thinking.md) | Real | Sequential Thinking MCP server |
 | [MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md) | Symlink | Spec Kit Memory MCP server |
 | [Skill Advisor INSTALL_GUIDE](../skills/system-skill-advisor/INSTALL_GUIDE.md) | Skill-local | Standalone `mk_skill_advisor` MCP server install |
-| [System Code Graph INSTALL_GUIDE](../skills/system-code-graph/INSTALL_GUIDE.md) | Skill-local | Standalone `mk_code_index` MCP server install (10 graph tools) |
+| [System Code Graph INSTALL_GUIDE](../skills/system-code-graph/INSTALL_GUIDE.md) | Skill-local | Standalone `mk_code_index` MCP server install (8 graph tools) |
 | **SET-UP Guides** | | |
 | [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) | Real | AGENTS.md customization and AI agent behavior |
 | [SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md) | Symlink | Skill advisor configuration |
@@ -387,7 +387,7 @@ Prerequisites → Code Mode → Spec Kit Memory
 - [ ] Code Mode (foundation for external tools)
 - [ ] Spec Kit Memory (context preservation)
 - [ ] Skill Advisor (native advisor_recommend + skill_graph_* — 8 tools)
-- [ ] System Code Graph (structural AST + blast-radius + 10 graph tools; default off for end users)
+- [ ] System Code Graph (structural AST + blast-radius + 8 graph tools; default off for end users)
 - [ ] Sequential Thinking (complex reasoning)
 - [ ] Chrome DevTools CLI (browser debugging)
 - [ ] Antigravity Auth (Google OAuth)
@@ -1579,7 +1579,7 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | [Spec Kit Framework](../skill/system-spec-kit/README.md) | Spec folder and memory system documentation |
 | [sk-doc SKILL.md](../skill/sk-doc/SKILL.md) | Document creation standards and templates |
 | [system-skill-advisor INSTALL_GUIDE.md](../skills/system-skill-advisor/INSTALL_GUIDE.md) | Standalone `mk_skill_advisor` MCP server bootstrap |
-| [system-code-graph INSTALL_GUIDE.md](../skills/system-code-graph/INSTALL_GUIDE.md) | Standalone `mk_code_index` MCP server bootstrap (10 graph tools) |
+| [system-code-graph INSTALL_GUIDE.md](../skills/system-code-graph/INSTALL_GUIDE.md) | Standalone `mk_code_index` MCP server bootstrap (8 graph tools) |
 | [SET-UP - Code Graph.md](./SET-UP%20-%20Code%20Graph.md) | Runtime diagnostics for `/doctor code-graph` |
 
 ### External Resources
