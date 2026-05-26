@@ -688,9 +688,16 @@ function installSignalHandlers() {
     if (strictSingleWriter) {
       const ownerLeaseResult = acquireOwnerLeaseFile();
       if (!ownerLeaseResult.acquired) {
-        process.stdout.write(
-          `LEASE_HELD_BY:${ownerLeaseResult.holder.ownerPid} startedAt=${ownerLeaseResult.holder.startedAtIso} classification=${ownerLeaseResult.classification}\n`
-        );
+        // A live owner already holds the single-writer lease. Bridge this
+        // client's stdio to the owner's IPC socket so additional sessions and
+        // MCP reconnects share the one daemon (matches mk-spec-memory-launcher).
+        // maybeBridgeLeaseHolder falls back to a LEASE_HELD_BY diagnostic line
+        // only when the socket is missing/refused or bridging is disabled.
+        log(`liveOwnerDetected: ownerPid=${ownerLeaseResult.holder.ownerPid} classification=${ownerLeaseResult.classification}`);
+        bridgeOrReportLeaseHeld({
+          ownerPid: ownerLeaseResult.holder.ownerPid,
+          startedAt: ownerLeaseResult.holder.startedAtIso,
+        });
         return;
       }
 
