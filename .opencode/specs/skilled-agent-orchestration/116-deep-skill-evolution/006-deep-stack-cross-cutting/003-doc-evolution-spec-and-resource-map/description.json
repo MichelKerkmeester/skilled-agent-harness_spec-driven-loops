@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/003-doc-evolution-spec-and-resource-map",
+  "description": "Feature Specification: spec and resource-map for deep-skill doc evolution",
+  "keywords": [
+    "feature",
+    "specification",
+    "spec",
+    "resource-map",
+    "deep-skill",
+    "doc",
+    "evolution"
+  ],
+  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "specId": "003",
+  "folderSlug": "doc-evolution-spec-and-resource-map",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "006-deep-stack-cross-cutting"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/001-spec-and-resource-map"
+  ]
+}

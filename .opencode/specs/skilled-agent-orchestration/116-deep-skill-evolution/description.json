@@ -1,17 +1,19 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution",
-  "description": "Feature Specification: deep-skill evolution arc (nested)",
+  "description": "Feature Specification: deep-skill evolution arc (nested phase parent)",
   "keywords": [
     "feature",
     "specification",
     "deep-skill",
     "evolution",
     "arc",
-    "nested"
+    "nested",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-05-23T15:24:58.900Z",
-  "specId": "131",
+  "lastUpdated": "2026-05-26T14:42:53.495Z",
+  "specId": "116",
   "folderSlug": "deep-skill-evolution",
   "parentChain": [
     "skilled-agent-orchestration"

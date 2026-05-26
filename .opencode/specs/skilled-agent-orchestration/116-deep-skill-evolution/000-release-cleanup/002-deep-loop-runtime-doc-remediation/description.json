@@ -1,0 +1,23 @@
+{
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/002-deep-loop-runtime-doc-remediation",
+  "description": "Feature Specification: deep-loop-runtime doc-remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-loop-runtime",
+    "doc-remediation"
+  ],
+  "lastUpdated": "2026-05-26T14:39:10.416384+00:00",
+  "specId": "002",
+  "folderSlug": "deep-loop-runtime-doc-remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "23-05-26_19-31__manual-context-save.md",
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/001-doc-remediation"
+  ]
+}

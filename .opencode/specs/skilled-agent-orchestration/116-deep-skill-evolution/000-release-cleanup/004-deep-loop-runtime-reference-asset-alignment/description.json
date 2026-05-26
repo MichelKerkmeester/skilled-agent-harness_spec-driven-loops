@@ -1,0 +1,25 @@
+{
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/004-deep-loop-runtime-reference-asset-alignment",
+  "description": "Feature Specification: Deep Skills Reference And Asset Alignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "skills",
+    "reference",
+    "asset",
+    "alignment"
+  ],
+  "lastUpdated": "2026-05-26T14:39:10.416384+00:00",
+  "specId": "004",
+  "folderSlug": "deep-loop-runtime-reference-asset-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/003-reference-asset-alignment"
+  ]
+}

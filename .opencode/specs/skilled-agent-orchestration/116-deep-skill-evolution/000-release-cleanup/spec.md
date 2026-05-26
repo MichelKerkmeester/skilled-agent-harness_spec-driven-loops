@@ -1,27 +1,26 @@
 ---
 title: "Feature Specification: deep-* skills release cleanup (000-release-cleanup phase parent)"
-description: "Phase parent grouping the per-skill release-cleanup work for the five deep-* skills. Each child bucket is itself a phase parent holding that skill's release-cleanup packet plus its follow-on remediation phases."
+description: "Phase parent holding the deep-* skill release-cleanup work as a flat list of standalone specs: one release-cleanup spec per skill plus each skill's follow-on remediation specs."
 trigger_phrases:
   - "deep skills release cleanup"
   - "000-release-cleanup"
   - "deep-* release cleanup arc"
-  - "per-skill release cleanup buckets"
+  - "deep skill release cleanup specs"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup"
-    last_updated_at: "2026-05-25T00:00:00Z"
+    last_updated_at: "2026-05-26T00:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "phase-parent-control-files-authored"
-    next_safe_action: "resume-via-active-child-bucket"
+    recent_action: "flattened to 15 standalone specs; bridge in context-index"
+    next_safe_action: "validate recursive then reindex memory graph"
     blockers: []
     key_files:
-      - "001-deep-loop-runtime/spec.md"
-      - "002-deep-research/spec.md"
-      - "003-deep-review/spec.md"
-      - "004-deep-ai-council/spec.md"
-      - "005-deep-agent-improvement/spec.md"
+      - "context-index.md"
+      - "001-deep-loop-runtime-release-cleanup/spec.md"
+      - "007-deep-review-release-cleanup/spec.md"
+      - "013-deep-agent-improvement-release-cleanup/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "116-000-release-cleanup-parent"
@@ -29,8 +28,9 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions:
-      - "Structure: phase parent with 5 per-skill buckets (one per deep-* skill)"
-      - "Each bucket is itself a phase parent: its skill release-cleanup packet plus follow-on remediation children"
+      - "Structure: flat phase parent — 15 standalone release-cleanup specs (no nested sub-parents)"
+      - "Naming: skill-prefixed; each skill's own cleanup is its '<skill>-release-cleanup' spec, followed by that skill's remediation specs"
+      - "Flatten history (old bucket/sub-paths -> new) lives in context-index.md"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -48,11 +48,11 @@ _memory:
 | **Priority** | P2 |
 | **Status** | In Progress |
 | **Created** | 2026-05-23 |
-| **Last Updated** | 2026-05-25 |
+| **Last Updated** | 2026-05-26 |
 | **Branch** | `main` |
 | **Parent Spec** | `116-deep-skill-evolution/spec.md` |
 | **Parent Packet** | skilled-agent-orchestration/116-deep-skill-evolution |
-| **Handoff Criteria** | Each bucket passes `validate.sh --strict --recursive` independently; metadata + memory index reflect the nested layout |
+| **Handoff Criteria** | Parent + each spec pass `validate.sh --strict --recursive`; metadata + memory index reflect the flat layout |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,13 +62,13 @@ _memory:
 
 ### Problem Statement
 
-The five deep-* skills (`deep-loop-runtime`, `deep-research`, `deep-review`, `deep-ai-council`, `deep-agent-improvement`) each required release-cleanup work — documentation alignment, reference splits, gate-model reconciliation, finding remediation, and citation hygiene. That work spans one release-cleanup packet per skill plus several follow-on remediation phases surfaced by the per-skill deep-research and deep-review loops.
+The five deep-* skills (`deep-loop-runtime`, `deep-research`, `deep-review`, `deep-ai-council`, `deep-agent-improvement`) each required release-cleanup work — documentation alignment, reference splits, gate-model reconciliation, finding remediation, and citation hygiene — captured as a release-cleanup spec per skill plus follow-on remediation specs surfaced by the per-skill deep-research and deep-review loops.
 
 ### Purpose
 
-Group the per-skill release-cleanup work under one phase parent so the release-cleanup arc reads as five skill buckets rather than a flat list of mixed-topic packets. Each bucket is itself a phase parent owning that skill's release-cleanup packet and its follow-on remediation children.
+Hold all of that release-cleanup work as a single flat list of standalone specs directly under this parent, so any one piece is findable without descending through per-skill sub-parents. Names are skill-prefixed so each spec's owning skill stays explicit.
 
-> **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Per-skill orientation lives in each bucket's own `spec.md`; detailed planning, tasks, checklists, decisions, and implementation summaries live in the leaf phase folders.
+> **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Detailed planning, tasks, checklists, decisions, and implementation summaries live in each child spec folder. The flatten history (old bucket/sub-paths → new) lives in `context-index.md`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -78,14 +78,13 @@ Group the per-skill release-cleanup work under one phase parent so the release-c
 
 ### In Scope
 
-- Five per-skill buckets (`001`..`005`), each a phase parent
-- Each bucket's release-cleanup packet plus its follow-on remediation children
-- The lean trio (`spec.md`, `description.json`, `graph-metadata.json`) at this parent and at each bucket
+- 15 standalone release-cleanup specs (`001`..`015`), each a leaf with its own full docs and evidence
+- The lean trio (`spec.md`, `description.json`, `graph-metadata.json`) at this parent
 
 ### Out of Scope
 
 - Modifying any deep-* skill source code from this parent level
-- Re-narrating per-skill cleanup decisions here (they live in the bucket/leaf docs)
+- Re-narrating per-spec cleanup decisions here (they live in each spec's docs)
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,21 +92,31 @@ Group the per-skill release-cleanup work under one phase parent so the release-c
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> Each row is a per-skill bucket phase parent. Drill into the bucket's own `spec.md` for its leaf phases.
+> Each row is a standalone spec (a leaf). Specs are grouped by skill; the first per skill is that skill's own release-cleanup, followed by its remediation specs.
 
-| Bucket | Folder | Skill | Children | Status |
-|--------|--------|-------|----------|--------|
-| 001 | `001-deep-loop-runtime/` | deep-loop-runtime release cleanup + cross-cutting evergreen + reference/asset alignment | 3 | In Progress |
-| 002 | `002-deep-research/` | deep-research release cleanup + reference split | 1 | In Progress |
-| 003 | `003-deep-review/` | deep-review release cleanup + gate-model reconciliation + phase-5 backlog | 2 | In Progress |
-| 004 | `004-deep-ai-council/` | deep-ai-council release cleanup + deep-mode docs/tests | 1 | In Progress |
-| 005 | `005-deep-agent-improvement/` | deep-agent-improvement release cleanup + finding remediation | 2 | In Progress |
+| # | Folder | Focus | Status |
+|---|--------|-------|--------|
+| 001 | `001-deep-loop-runtime-release-cleanup/` | deep-loop-runtime release cleanup (core) | In Progress |
+| 002 | `002-deep-loop-runtime-doc-remediation/` | deep-loop-runtime doc remediation | In Progress |
+| 003 | `003-deep-loop-runtime-evergreen-citation-sweep/` | evergreen-citation sweep across deep-* skills | In Progress |
+| 004 | `004-deep-loop-runtime-reference-asset-alignment/` | reference + asset alignment | In Progress |
+| 005 | `005-deep-research-release-cleanup/` | deep-research release cleanup (core) | In Progress |
+| 006 | `006-deep-research-reference-split/` | deep-research reference split + router alignment | In Progress |
+| 007 | `007-deep-review-release-cleanup/` | deep-review release cleanup (core) | In Progress |
+| 008 | `008-deep-review-gate-model-reconciliation/` | deep-review gate-model reconciliation | In Progress |
+| 009 | `009-deep-review-phase5-doc-cluster-remediation/` | deep-review phase-5 doc-cluster remediation | In Progress |
+| 010 | `010-deep-review-phase5-reducer-cluster-remediation/` | deep-review phase-5 reducer-cluster remediation | In Progress |
+| 011 | `011-deep-ai-council-release-cleanup/` | deep-ai-council release cleanup (core) | In Progress |
+| 012 | `012-deep-ai-council-deep-mode-docs-and-tests/` | deep-ai-council deep-mode docs + script tests | In Progress |
+| 013 | `013-deep-agent-improvement-release-cleanup/` | deep-agent-improvement release cleanup (core) | In Progress |
+| 014 | `014-deep-agent-improvement-benchmark-threshold-and-profile-path/` | benchmark-threshold + profile-path fixes | In Progress |
+| 015 | `015-deep-agent-improvement-deep-research-followon-findings/` | deep-research follow-on finding remediation | In Progress |
 
 ### Phase Transition Rules
 
-- Each bucket is independently executable; buckets carry no implicit ordering dependency
-- Run `validate.sh --recursive` on this parent or on any bucket to validate that subtree
-- Resume on this parent follows `graph-metadata.json.derived.last_active_child_id`; if absent, pick a bucket from the table above
+- Each spec is independently executable; specs carry no implicit ordering dependency.
+- Run `validate.sh --recursive` on this parent to validate all specs as a unit.
+- Resume on this parent follows `graph-metadata.json.derived.last_active_child_id`; if absent, pick a spec from the table above.
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -115,5 +124,6 @@ Group the per-skill release-cleanup work under one phase parent so the release-c
 ## RELATED DOCUMENTS
 
 - **Parent**: `116-deep-skill-evolution/spec.md`
-- **Bucket children**: 5 per-skill phase parents enumerated above
+- **Flatten history bridge**: `context-index.md`
+- **Children**: 15 standalone specs enumerated above
 - **Graph Metadata**: see `graph-metadata.json` for `children_ids` and `derived.last_active_child_id`

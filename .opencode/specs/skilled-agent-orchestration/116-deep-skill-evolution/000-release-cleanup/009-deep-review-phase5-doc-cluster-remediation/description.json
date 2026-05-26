@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/009-deep-review-phase5-doc-cluster-remediation",
+  "description": "Feature Specification: deep-review doc-cluster backlog remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-review",
+    "doc-cluster",
+    "backlog",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-26T14:39:10.416384+00:00",
+  "specId": "009",
+  "folderSlug": "deep-review-phase5-doc-cluster-remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review/002-phase5-backlog/001-doc-cluster-remediation"
+  ]
+}

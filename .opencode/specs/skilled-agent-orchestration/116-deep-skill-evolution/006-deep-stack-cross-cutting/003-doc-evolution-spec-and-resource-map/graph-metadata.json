@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/003-doc-evolution-spec-and-resource-map",
+  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/003-doc-evolution-spec-and-resource-map",
+  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [
+      "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/001-spec-and-resource-map"
+    ],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-skill doc evolution spec",
+      "deep-skill resource-map",
+      "deep-skill delta reconciliation",
+      "008 phase 1 planning",
+      "deep-skill doc evolution plan",
+      "008 resource-map plan",
+      "deep-skill schemas plan",
+      "deep-skill doc evolution tasks",
+      "008 phase 1 tasks",
+      "deep-skill doc evolution checklist",
+      "008 phase 1 checklist",
+      "deep-skill doc evolution implementation summary"
+    ],
+    "key_topics": [
+      "deep-skill",
+      "doc",
+      "evolution",
+      "spec",
+      "resource-map",
+      "delta",
+      "reconciliation",
+      "008",
+      "phase",
+      "planning",
+      "plan",
+      "schemas"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "schemas/audit-finding.schema.json",
+      "schemas/changelog-entry.schema.json",
+      "schemas/validation-report.schema.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "audit-finding.schema.json",
+        "kind": "config",
+        "path": "schemas/audit-finding.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-entry.schema.json",
+        "kind": "config",
+        "path": "schemas/changelog-entry.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.schema.json",
+        "kind": "config",
+        "path": "schemas/validation-report.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "template",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 008 cluster improves documentation across five mature deep-* skills, but a sibling cluster (`000-release-cleanup`) already shipped uneven per-skill cleanup. Without a single source of truth for what each skill still needs, phases 002-009 risk redoing finished work, missing a flat reference directory, or emitting findings in inconsistent shapes.",
+    "created_at": "2026-05-25T14:26:45.200Z",
+    "last_save_at": "2026-05-25T14:26:45.200Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

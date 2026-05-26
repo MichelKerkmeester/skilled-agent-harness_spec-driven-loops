@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting",
+  "description": "Feature Specification: deep-stack cross-cutting",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-stack",
+    "cross-cutting"
+  ],
+  "lastUpdated": "2026-05-26T13:54:36.002Z",
+  "specId": "006",
+  "folderSlug": "deep-stack-cross-cutting",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

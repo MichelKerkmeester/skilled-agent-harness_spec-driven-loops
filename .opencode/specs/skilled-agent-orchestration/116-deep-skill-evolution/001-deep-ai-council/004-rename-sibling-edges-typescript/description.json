@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/004-rename-sibling-edges-typescript",
+  "description": "Feature Specification: 115/004 \u2014 cross-skill edges + TypeScript",
+  "keywords": [
+    "feature",
+    "specification",
+    "115",
+    "004",
+    "cross-skill",
+    "edges",
+    "typescript"
+  ],
+  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "specId": "004",
+  "folderSlug": "rename-sibling-edges-typescript",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "001-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/004-rename-sibling-edges-typescript"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/005-deep-research-release-cleanup",
+  "description": "Feature Specification: deep-research skill release cleanup",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-research",
+    "skill",
+    "release",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-26T14:39:10.416384+00:00",
+  "specId": "005",
+  "folderSlug": "deep-research-release-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "23-05-26_15-11__deep-research-skill-is-mature-v1-12-0-0-412-loc.md",
+    "23-05-26_15-40__all-findings-and-deferred-operator-override-of.md",
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/002-deep-research"
+  ]
+}

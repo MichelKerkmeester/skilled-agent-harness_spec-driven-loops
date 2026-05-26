@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/011-deep-ai-council-release-cleanup",
+  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/011-deep-ai-council-release-cleanup",
+  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [
+      "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/004-deep-ai-council"
+    ],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-ai-council release cleanup",
+      "004-deep-ai-council",
+      "ai council skill audit",
+      "alignment validation gate",
+      "deep-ai-council deep-research loop",
+      "sk-doc conformance",
+      "deep-ai-council release cleanup plan",
+      "phase 1 spec creation",
+      "phase 2 skill audit",
+      "phase 3 readme rewrite",
+      "phase 4 alignment validation gate",
+      "phase 5 deep research and merge"
+    ],
+    "key_topics": [
+      "deep-ai-council",
+      "release",
+      "cleanup",
+      "004-deep-ai-council",
+      "council",
+      "skill",
+      "audit",
+      "alignment",
+      "validation",
+      "gate",
+      "deep-research",
+      "loop"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "changelog/v2.1.0.0.md",
+      "research/convergence-summary.md",
+      ".opencode/skills/deep-ai-council/README.md",
+      ".opencode/skills/deep-ai-council/SKILL.md",
+      ".opencode/skills/deep-ai-council/changelog/v2.1.0.0.md",
+      "schemas/audit-finding.schema.json",
+      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+      "scripts/spec/validate.sh",
+      "schemas/changelog-entry.schema.json",
+      "schemas/validation-report.schema.json",
+      "schemas/iteration-output.schema.json",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/cli-devin/SKILL.md",
+      ".opencode/skills/deep-ai-council/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.1.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-summary.md",
+        "kind": "doc",
+        "path": "research/convergence-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-finding.schema.json",
+        "kind": "config",
+        "path": "schemas/audit-finding.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "hvr_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-entry.schema.json",
+        "kind": "config",
+        "path": "schemas/changelog-entry.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.schema.json",
+        "kind": "config",
+        "path": "schemas/validation-report.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-output.schema.json",
+        "kind": "config",
+        "path": "schemas/iteration-output.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-ai-council/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `deep-ai-council` skill (v2.0.0.0) is a mature planning-only council capability \u2014 multi-seat deliberation, two-of-three convergence, packet-local `ai-council/**` artifact persistence, and a derived council-graph projection. It pre-dates the most recent sk-doc template revisions and has never been audited end-to-end against the current creation standards. Before downstream evolution work in the `116-deep-skill-evolution` arc continues, this sub-phase brings the skill's documentation surface to 100% sk-doc conformance, fixes latent bugs, rewrites the README in current marketing-leaning HVR voice, and seeds a deep-research loop on top of a validated baseline.",
+    "created_at": "2026-05-23T21:45:00.000Z",
+    "last_save_at": "2026-05-25T08:01:03.369Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

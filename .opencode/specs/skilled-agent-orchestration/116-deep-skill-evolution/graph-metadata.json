@@ -5,14 +5,12 @@
   "parent_id": null,
   "children_ids": [
     "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup",
-    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council",
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council",
     "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review",
     "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime",
     "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research",
     "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement",
-    "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation",
-    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-commands-relocation",
-    "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution"
+    "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -94,7 +92,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Across late 2026-04 → 2026-05, the deep-* skill family co-evolved through 17 independently-created packets (115–130 plus a duplicate 124). Each packet captured an incremental decision — rename, isolate, iterate, harden, fix, validate — about one of five interrelated skills: `sk-ai-council`, `deep-review`, `deep-loop-runtime`, `deep-research`, and `deep-agent-improvement`. Read individually the packets stand alone; read together they form a single coherent arc that the skilled-agent-orchestration track lacked a unified parent for.",
+    "causal_summary": "Across late 2026-04 \u2192 2026-05, the deep-* skill family co-evolved through 17 independently-created packets (115\u2013130 plus a duplicate 124). Each packet captured an incremental decision \u2014 rename, isolate, iterate, harden, fix, validate \u2014 about one of five interrelated skills: `sk-ai-council`, `deep-review`, `deep-loop-runtime`, `deep-research`, and `deep-agent-improvement`. Read individually the packets stand alone; read together they form a single coherent arc that the skilled-agent-orchestration track lacked a unified parent for.",
     "created_at": "2026-05-23T09:23:18.906998Z",
     "last_save_at": "2026-05-24T05:40:25.195Z",
     "save_lineage": "graph_only",

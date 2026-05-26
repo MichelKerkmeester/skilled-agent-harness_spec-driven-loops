@@ -1,0 +1,27 @@
+{
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-loop-runtime-evergreen-citation-sweep",
+  "description": "Feature Specification: full strict evergreen-citation sweep across the deep-* skills",
+  "keywords": [
+    "feature",
+    "specification",
+    "full",
+    "strict",
+    "evergreen-citation",
+    "sweep",
+    "across",
+    "deep",
+    "skills"
+  ],
+  "lastUpdated": "2026-05-26T14:39:10.416384+00:00",
+  "specId": "003",
+  "folderSlug": "deep-loop-runtime-evergreen-citation-sweep",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/002-evergreen-citation-sweep"
+  ]
+}

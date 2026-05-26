@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/014-deep-agent-improvement-benchmark-threshold-and-profile-path",
+  "description": "Feature Specification: fix deep-research LG-0004 + LG-0006",
+  "keywords": [
+    "feature",
+    "specification",
+    "fix",
+    "deep-research",
+    "lg-0004",
+    "lg-0006"
+  ],
+  "lastUpdated": "2026-05-26T14:39:10.416384+00:00",
+  "specId": "014",
+  "folderSlug": "deep-agent-improvement-benchmark-threshold-and-profile-path",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/005-deep-agent-improvement/001-benchmark-threshold-and-profile-path"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "status": "completed",
+  "decision": "HYBRID",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/007-shared-runtime-deliberation",
+  "description": "Spec: sk-ai-council Shared Runtime Deliberation",
+  "keywords": [
+    "spec",
+    "sk-ai-council",
+    "shared",
+    "runtime",
+    "deliberation"
+  ],
+  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "specId": "007",
+  "folderSlug": "shared-runtime-deliberation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "001-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation"
+  ]
+}

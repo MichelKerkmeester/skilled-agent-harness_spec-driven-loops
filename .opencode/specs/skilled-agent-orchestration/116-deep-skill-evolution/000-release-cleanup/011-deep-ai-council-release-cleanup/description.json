@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/011-deep-ai-council-release-cleanup",
+  "description": "Feature Specification: deep-ai-council skill release cleanup",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-ai-council",
+    "skill",
+    "release",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-26T14:39:10.416384+00:00",
+  "specId": "011",
+  "folderSlug": "deep-ai-council-release-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/004-deep-ai-council"
+  ]
+}

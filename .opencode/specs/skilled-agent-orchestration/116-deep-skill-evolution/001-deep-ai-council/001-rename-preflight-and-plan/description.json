@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/001-rename-preflight-and-plan",
+  "description": "Feature Specification: 115/001 \u2014 preflight scope-map",
+  "keywords": [
+    "feature",
+    "specification",
+    "115",
+    "001",
+    "preflight",
+    "scope-map"
+  ],
+  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "specId": "001",
+  "folderSlug": "rename-preflight-and-plan",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "001-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/001-rename-preflight-and-plan"
+  ]
+}
