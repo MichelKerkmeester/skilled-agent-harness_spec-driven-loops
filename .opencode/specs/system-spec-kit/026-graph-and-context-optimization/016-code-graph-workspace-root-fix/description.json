@@ -1,0 +1,26 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-code-graph-workspace-root-fix",
+  "description": "Feature Specification: Code-Graph Workspace-Root + IPC Socket Reconnect Fix",
+  "keywords": [
+    "feature",
+    "specification",
+    "code-graph",
+    "workspace-root",
+    "ipc",
+    "socket",
+    "reconnect",
+    "fix"
+  ],
+  "lastUpdated": "2026-05-26T08:34:35.687Z",
+  "specId": "016",
+  "folderSlug": "code-graph-workspace-root-fix",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -4,6 +4,7 @@
 
 import fs from 'node:fs';
 import net from 'node:net';
+import os from 'node:os';
 import path from 'node:path';
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
@@ -57,24 +58,54 @@ function parseMaxClients(rawValue = process.env.SPECKIT_MAX_SECONDARY_CLIENTS): 
   return parsed;
 }
 
+// Canonicalize a path via realpath when it exists; otherwise fall back to an
+// absolute resolve so non-existent (yet-to-be-created) dirs are still comparable.
+function canonicalizePath(target: string): string {
+  try {
+    return fs.realpathSync.native(target);
+  } catch {
+    return path.resolve(target);
+  }
+}
+
+// Allowed roots for the IPC socket directory: the workspace itself plus the
+// system temp dirs. The macOS `sun_path` limit (104 chars) forces deep
+// in-workspace socket paths (e.g. `.opencode/.spec-kit/code-graph/database`,
+// ~121 chars) into a short `/tmp` path, so a workspace-only constraint is
+// incompatible with the documented config. `os.tmpdir()` is portable
+// (Linux/CI; macOS resolves to `/var/folders/...`), and `/tmp` covers the
+// project convention (`SPECKIT_IPC_SOCKET_DIR=/tmp/<service>`). The owner check
+// in `canUnlinkExistingSocket` preserves the unlink-hardening intent.
+function allowedSocketRoots(): string[] {
+  const roots = new Set<string>();
+  roots.add(canonicalizePath(process.cwd()));
+  roots.add(canonicalizePath(os.tmpdir()));
+  roots.add(canonicalizePath('/tmp'));
+  return [...roots];
+}
+
+function isWithinAllowedSocketRoot(candidate: string): boolean {
+  return allowedSocketRoots().some((root) => isWithinWorkspace(root, candidate));
+}
+
 function resolveIpcSocketPath(dbDir: string): string {
   const rawSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR
     ? path.resolve(process.env.SPECKIT_IPC_SOCKET_DIR)
     : path.resolve(dbDir);
-  const workspaceRoot = fs.realpathSync.native(process.cwd());
   const socketDir = fs.existsSync(rawSocketDir)
     ? fs.realpathSync.native(rawSocketDir)
     : rawSocketDir;
-  if (!isWithinWorkspace(workspaceRoot, socketDir)) {
-    throw new Error(`IPC socket directory must stay within the workspace root: ${workspaceRoot}`);
+  if (!isWithinAllowedSocketRoot(socketDir)) {
+    throw new Error(
+      `IPC socket directory must stay within the workspace root or a system temp dir: ${socketDir}`,
+    );
   }
   return path.join(socketDir, SOCKET_FILE_NAME);
 }
 
 function canUnlinkExistingSocket(socketPath: string): boolean {
-  const workspaceRoot = fs.realpathSync.native(process.cwd());
   const parent = fs.realpathSync.native(path.dirname(socketPath));
-  if (!isWithinWorkspace(workspaceRoot, parent)) {
+  if (!isWithinAllowedSocketRoot(parent)) {
     return false;
   }
   const stat = fs.lstatSync(socketPath);

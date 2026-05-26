@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { existsSync, mkdirSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { basename, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolveCanonicalDbDir } from '../lib/canonical-db-dir.js';
 
@@ -19,10 +19,22 @@ const envDir = process.env.SPECKIT_CODE_GRAPH_DB_DIR;
 const defaultDir = resolve(__dirname, '..', 'database');
 
 function resolveWorkspaceRoot(): string {
+  // The server module always lives under `<workspace-root>/.opencode/...`, so
+  // the workspace root is the parent of the `.opencode` segment on THIS file's
+  // own ancestry path. Walk up looking for the directory literally named
+  // `.opencode` and return its parent.
+  //
+  // The previous implementation returned the first ancestor that *contained* a
+  // `.opencode/` child. That falsely matched stray nested `.opencode/` dirs
+  // sitting as siblings of an ancestor (e.g. an accidental
+  // `skills/system-code-graph/.opencode/` advisor-state artifact), resolving the
+  // root to the skill dir and throwing OUTSIDE_WORKSPACE because the canonical DB
+  // dir (`.opencode/.spec-kit/code-graph/database`) sits outside that skill dir.
+  // Anchoring on the on-path `.opencode` segment is immune to those strays.
   let current = __dirname;
   for (let i = 0; i < 12; i++) {
-    if (existsSync(resolve(current, '.opencode'))) {
-      return current;
+    if (basename(current) === '.opencode') {
+      return dirname(current);
     }
     const parent = dirname(current);
     if (parent === current) break;
