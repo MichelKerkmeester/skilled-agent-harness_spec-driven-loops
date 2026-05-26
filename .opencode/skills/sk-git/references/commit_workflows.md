@@ -299,6 +299,62 @@ git commit -m "type(scope): description" -m "Body explaining why"
 
 **Validation**: `commit_ready`
 
+### Step 7: Scoped-Staging Discipline (Dirty Working Tree)
+
+**Purpose**: Prevent sweeping someone else's in-flight WIP into YOUR commit when the working tree is dirty (unrelated uncommitted or already-staged changes belonging to another packet/agent).
+
+**Why this matters (real incident)**: During the 026 wave-4 reorg, an orchestrator ran a broad `git add` while the tree held unrelated WIP. 24 unrelated files (another packet plus install guides) were swept into the reorg commit and had to be backed out with `git reset --mixed HEAD~1` and re-staged precisely. See `shared_patterns.md` §11 for the rename-heavy merge half of the same incident.
+
+**Hard rules**:
+
+- **NEVER** use `git add -A`, `git add .`, or a broad `git add <folder>` when the tree contains unrelated uncommitted or staged changes. These sweep everything, including another agent's WIP and already-staged index entries.
+- Stage **explicit pathspecs for YOUR change only**. Enumerate the files; do not stage by directory unless every file under it is yours.
+- Some unrelated WIP may already be **staged** (in the index) before you start. A broad add is not required to capture it — it is already captured. You MUST inspect the index, not just the unstaged diff.
+
+**Step 7a — Snapshot the tree before staging**:
+```bash
+git status --short                 # See BOTH staged (left col) and unstaged (right col)
+git diff --cached --name-only      # Exactly what is ALREADY in the index
+```
+If `git diff --cached --name-only` is non-empty and those files are not yours, decide first: unstage them (`git reset HEAD <file>`) or stash them (see Step 7c) before building your commit.
+
+**Step 7b — Stage only your pathspecs, then ASSERT before committing**:
+```bash
+# Stage explicit files (yours only)
+git add path/to/your/file1 path/to/your/file2
+
+# Pre-commit ASSERTION: staged set must contain NONE of the known unrelated paths.
+# Maintain a deny-pattern of paths that are NOT part of this change.
+DENY='(^other-packet/|/install-guide|^docs/install/|UNRELATED_WIP)'
+if git diff --cached --name-only | grep -E "$DENY"; then
+  echo "ABORT: unrelated paths are staged — un-stage before committing"; 
+else
+  echo "OK: staged set is clean"
+fi
+```
+Adjust `DENY` to the concrete unrelated paths you identified in Step 7a. A non-empty grep means STOP and re-stage; do not commit.
+
+**Step 7c — If you must clear the tree first, use stash carefully**:
+```bash
+git stash push -k -m "unrelated WIP"   # -k/--keep-index keeps YOUR staged change, stashes the rest
+# ... build and verify your commit ...
+git stash pop
+git diff --cached --name-only          # RE-CHECK: `git stash pop` can restore entries as STAGED
+```
+> **Caveat**: `git stash pop` can restore previously-staged entries back into the index as staged. Always re-run `git diff --cached --name-only` after a pop and re-assert against your deny-pattern before the next commit.
+
+**Step 7d — Recovery if unrelated WIP already got committed**:
+```bash
+git reset --mixed HEAD~1               # Un-commit, KEEP all changes (staged → unstaged)
+git status --short                     # Confirm nothing is staged
+git add path/to/your/file1 path/to/your/file2   # Re-stage YOUR pathspecs only
+git diff --cached --name-only | grep -E "$DENY"  # Re-assert: must be empty
+git commit -m "type(scope): description"
+```
+`--mixed` (the default for `git reset`) un-commits and unstages while preserving file contents in the working tree, so unrelated WIP returns to its prior uncommitted state rather than being lost.
+
+**Validation**: `scoped_staging_verified`
+
 ---
 
 ## 4. DECISION MATRIX
@@ -345,6 +401,10 @@ git commit -m "type(scope): description" -m "Body explaining why"
 **Breaking changes without notice**:
 - **Problem**: Breaking API changes without `BREAKING CHANGE:` footer
 - **Fix**: Always document breaking changes in commit footer
+
+**Sweeping unrelated WIP into your commit (dirty tree)**:
+- **Problem**: Broad `git add -A` / `git add <folder>` on a tree holding another agent's uncommitted or already-staged work captures their files into your commit
+- **Fix**: Scoped-staging discipline (Step 7) — stage explicit pathspecs and assert the staged set against a deny-pattern before committing; recover with `git reset --mixed HEAD~1` if it already happened
 
 ---
 
@@ -516,6 +576,24 @@ git reset HEAD TASK_NOTES.md debug_output.txt
 git add src/ tests/  # Stage only specific directories
 ```
 
+### Unrelated In-Flight WIP Got Staged or Committed
+
+**Symptom**: `git diff --cached --name-only` lists files that belong to another packet/agent, or a commit already includes them. Common when the working tree was dirty (someone else's uncommitted/staged work) and a broad `git add` was used.
+
+**Solutions**:
+```bash
+# A) Still staged (not yet committed): unstage the intruders, keep yours
+git reset HEAD other-packet/ docs/install/   # unstage unrelated paths only
+git diff --cached --name-only                 # confirm only your files remain
+
+# B) Already committed: un-commit keeping all changes, then re-stage precisely
+git reset --mixed HEAD~1                       # un-commit, keep changes in tree
+git add path/to/your/file1 path/to/your/file2 # re-stage YOUR pathspecs only
+git diff --cached --name-only | grep -E '(^other-packet/|/install-guide)'  # must be empty
+git commit -m "type(scope): description"
+```
+Prevent recurrence with Step 7 (Scoped-Staging Discipline): enumerate your pathspecs and run the pre-commit deny-pattern assertion. After any `git stash pop`, re-check the index — popped entries can return staged.
+
 ### Commit Message Too Long
 
 **Symptom**: Subject line exceeds 50 characters
@@ -567,6 +645,7 @@ Clients must update to handle JSON responses.
 - ✅ No sensitive information included
 - ✅ Changes are atomic and logically grouped
 - ✅ Tests pass (or failures acknowledged)
+- ✅ On a dirty tree, staged set asserted against a deny-pattern — no unrelated WIP captured (Step 7)
 
 **Quality gates**:
 - Only files with public value are committed

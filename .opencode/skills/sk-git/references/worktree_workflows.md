@@ -470,6 +470,71 @@ Agent: "Creating a new worktree and branch from this detached HEAD state..."
 
 ---
 
+## 8b. LARGE REORG IN A WORKTREE - CAVEATS
+
+A fresh worktree is a clean checkout of tracked files only. For a large rename/reorg
+(hundreds-to-thousands of `git mv`), this creates three sharp edges. Use the worktree
+for **file/rename ops only**; defer all toolchain + DB work to `main` after merge. The
+full step-ordered runbook lives in [large_reorg_playbook.md](./large_reorg_playbook.md).
+
+### Caveat 1: Fresh worktrees lack gitignored build deps
+
+`node_modules/`, `dist/`, `build/`, and similar are gitignored, so a new worktree does
+NOT contain them. Toolchains that depend on them break **silently**:
+
+- `validate.sh --strict`, `generate-context.js`, and other spec-kit generators import
+  from `dist/` / `node_modules/`. Inside a bare worktree these either crash on a missing
+  module or — worse — no-op and report success on **zero** files.
+- **Do NOT symlink deps into the worktree.** Symlinking `node_modules`/`dist` makes Node
+  resolve paths relative to the symlink target, which silently processes nothing (the
+  generator walks the wrong root and exits 0 having touched no files). This looks like a
+  pass but did no work.
+
+**Rule:** Run the spec-kit toolchain (strict validate, generators, metadata regen) on
+`main` AFTER the merge. NEVER trust a strict-validate run executed inside a bare worktree
+— treat its exit code as meaningless.
+
+### Caveat 2: The memory / vector DBs are a SINGLE global instance
+
+The continuity DB and vector DBs live under
+`.opencode/skills/system-spec-kit/mcp_server/database/` and are **gitignored** — there is
+exactly one instance shared across the repo, NOT one per worktree. Consequences:
+
+- DB-dependent ops (`memory_index_scan`, `generate-context.js` indexing, re-embed) read
+  and write the same global DB regardless of which worktree you run them from.
+- Running them from a worktree mid-reorg indexes paths that do not yet exist on `main`,
+  producing stale/duplicate rows once the merge lands.
+
+**Rule:** The worktree is for file/rename ops only. Run ALL memory reindex / re-embed /
+indexing on `main` AFTER the merge, so the DB reflects the final tree exactly once.
+
+### Caveat 3: `git mv` leaves gitignored files behind
+
+`git mv old/ new/` moves tracked files but ignores untracked/gitignored cruft
+(`.DS_Store`, `*.log`, `*.pyc`, `__pycache__/`, editor swap files). After the rename the
+old source folder can linger on disk holding only ignored files — a confusing "double"
+folder. The commit/tree is correct (0 tracked files in the old dir) but the working
+directory is cluttered.
+
+**Detect + clean leftover dirs (0 tracked files, nothing committable):**
+
+```bash
+# List dirs that still exist on disk but have ZERO tracked files.
+# A dir is a safe-to-remove leftover when: git ls-files <dir> is empty
+# AND git status --porcelain --untracked-files=all shows nothing committable in it.
+while IFS= read -r d; do
+  [ -z "$(git ls-files -- "$d")" ] \
+    && [ -z "$(git status --porcelain --untracked-files=all -- "$d")" ] \
+    && echo "LEFTOVER (safe rm): $d"
+done < <(find . -type d -not -path './.git/*' -mindepth 1 | sort)
+```
+
+Each printed dir holds only ignored cruft and is safe to `rm -rf`. **Run this on `main`
+after the merge** (the merged tree is the source of truth), then remove the confirmed
+leftovers. See the playbook step 4 for placement in the full flow.
+
+---
+
 ## 9. TROUBLESHOOTING
 
 ### Worktree Creation Fails

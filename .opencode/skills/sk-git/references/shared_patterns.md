@@ -572,6 +572,7 @@ git worktree list
 □ Feature branch rebased if needed
 □ No merge conflicts
 □ Commit history is clean
+□ Rename-heavy branch? Run the §10 verification (disjointness, rename limits, tree-not-ls, R-status)
 ```
 
 ### Pre-PR Checklist
@@ -764,11 +765,85 @@ call_tool_chain({
 
 ---
 
-## 10. RELATED RESOURCES
+## 10. RENAME-HEAVY MERGE VERIFICATION
+
+Merging a branch that renamed thousands of files (e.g. a `git mv`-driven spec-folder reorg/renumber) into a main that has diverged is a distinct, high-risk operation. The tree can end up *correct* while the working directory and `ls` *look* broken, and git's own rename detection can silently give up at scale. This section codifies the verification the 026 wave-4 reorg needed (the scoped-staging half of that same incident lives in `commit_workflows.md` §3 Step 7).
+
+### 10.1 Before the merge — prove disjointness
+
+A rename-heavy merge is conflict-free only if the two sides changed *disjoint* sets of files since their merge base. Verify this BEFORE merging:
+
+```bash
+BASE=$(git merge-base main reorg-branch)
+
+# Files each side changed since the common ancestor
+git diff --name-only "$BASE" main          | sort -u > /tmp/changed-main.txt
+git diff --name-only "$BASE" reorg-branch  | sort -u > /tmp/changed-reorg.txt
+
+# Overlap MUST be empty for a clean, conflict-free merge
+comm -12 /tmp/changed-main.txt /tmp/changed-reorg.txt
+```
+An empty `comm -12` (intersection) means the sides are disjoint and the merge should apply cleanly. Any lines printed are files touched on both sides — expect conflicts there and resolve deliberately (a renamed-on-one-side, edited-on-other file is the classic rename/edit conflict).
+
+### 10.2 Raise rename limits for large rename sets
+
+Git's rename detection is capped. With thousands of renames it can exceed the default limit and fall back to treating renames as delete+add, producing spurious conflicts and a misleading diff. Raise the limits for the operation:
+
+```bash
+git -c merge.renameLimit=20000 -c diff.renameLimit=20000 merge reorg-branch
+```
+Watch the merge output for a `inexact rename detection was skipped due to too many files` / `you may want to set your ...renameLimit` warning — if you see it, the limit was too low; abort (`git merge --abort`) and re-run with a higher cap.
+
+### 10.3 After the merge — verify the TREE, not just `ls`
+
+Critical gotcha: `git mv` only moves *tracked* files. Any **gitignored** content (build outputs, `node_modules/`, local DBs, generated artifacts) sitting under an old folder is left physically in place. After the merge the commit tree is correct — the old folders have **0 tracked files** — yet `ls` shows BOTH old and new "double" folders because the ignored leftovers are still on disk. Do not trust `ls`; trust `git ls-files`.
+
+```bash
+# A truly-renamed-away old folder has ZERO tracked files:
+git ls-files old/path/ | wc -l        # expect 0 → folder is gone as far as git is concerned
+
+# The new location should hold the tracked files:
+git ls-files new/path/ | wc -l        # expect the moved count
+
+# Find old dirs that still exist on disk but are empty of tracked files
+# (these are gitignored-leftover "ghost" folders — safe to delete from the working tree):
+while IFS= read -r d; do
+  [ -z "$(git ls-files "$d")" ] && echo "GHOST (0 tracked): $d"
+done < <(find old-root -type d)
+```
+Ghost folders are a working-directory artifact only; they are NOT in the commit. Remove them from the working tree separately (`rm -rf <ghost>`), and confirm they are gitignored (so removal does not register as a deletion in `git status`).
+
+### 10.4 Confirm renames landed as `R` status
+
+A correct rename shows up as `R` (rename) — not as a paired `D` (delete) + `A`/`??` (add). Verify the merge commit recorded renames, not delete+add churn:
+
+```bash
+# Rename status in the merge result (-M enables rename detection in the diff)
+git -c diff.renameLimit=20000 diff -M --name-status HEAD~1 HEAD | grep -E '^R' | wc -l
+
+# Sanity: there should be (near) zero deletes paired with adds of the same content
+git -c diff.renameLimit=20000 diff -M --name-status HEAD~1 HEAD | grep -E '^[DA]'
+```
+If renames show as `D`+`A` instead of `R`, rename detection was under-resourced (re-check §10.2) — the history is harder to follow but the tree content is still correct.
+
+### 10.5 Rename-heavy merge checklist
+
+```markdown
+□ merge-base computed; comm -12 of each side's changed files is EMPTY (disjoint)  [§10.1]
+□ merge run with raised merge.renameLimit / diff.renameLimit; no "rename detection skipped" warning  [§10.2]
+□ git ls-files <old> == 0 for every renamed-away folder (not `ls`)  [§10.3]
+□ gitignored ghost folders identified and cleaned from working tree (not in commit)  [§10.3]
+□ renames recorded as R status, not D+A churn  [§10.4]
+□ scoped-staging discipline applied if the tree held unrelated WIP  [commit_workflows.md §3 Step 7]
+```
+
+---
+
+## 11. RELATED RESOURCES
 
 ### Reference Files
 - [worktree_workflows.md](./worktree_workflows.md) - Complete git-worktrees workflow documentation
-- [commit_workflows.md](./commit_workflows.md) - Complete git-commit workflow documentation
+- [commit_workflows.md](./commit_workflows.md) - Complete git-commit workflow documentation (§3 Step 7: scoped-staging discipline)
 - [finish_workflows.md](./finish_workflows.md) - Complete git-finish workflow documentation
 - [quick_reference.md](./quick_reference.md) - One-page cheat sheet for all git workflows
 

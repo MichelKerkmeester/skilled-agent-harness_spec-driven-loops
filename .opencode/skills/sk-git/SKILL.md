@@ -283,6 +283,9 @@ git-finish (feature A) → git-finish (feature B)
 5. **Reference spec folder in commits** - Include spec folder path in commit body when applicable
 6. **Clean up after merge** - Delete local and remote feature branches after successful merge
 7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
+8. **Defer toolchain + DB work to main on large reorgs** - For large rename/reorg, do file/`git mv` ops in the worktree but run the spec-kit toolchain (strict validate, generators, metadata regen) and ALL memory reindex/re-embed on `main` AFTER merge. A bare worktree lacks gitignored deps (`node_modules`/`dist`) and the memory/vector DBs are a single global instance — never per-worktree. See [large_reorg_playbook.md](references/large_reorg_playbook.md).
+9. **Scan for gitignored leftovers after a rename wave** - After `git mv` + merge, detect dirs with disk files but 0 tracked files (`git ls-files <dir>` empty and `git status --porcelain --untracked-files=all` clean) and `rm -rf` them — they are stale ignored cruft (`.DS_Store`, `*.log`, `*.pyc`) left behind by `git mv`.
+10. **Verify rename history is preserved** - After a rename wave confirm `R`-status (not delete+add) before commit, and after merge confirm the tree has no old+new duplicate folders.
 
 ### Commit Message Logic (AI-Scannable)
 
@@ -341,6 +344,7 @@ Use this logic whenever the AI writes or rewrites commit messages.
 5. **CI/CD pipeline fails repeatedly** - May indicate infrastructure issues beyond code problems
 6. **Branch divergence exceeds 50 commits** - Large divergence suggests need for incremental merging strategy
 7. **Submodule conflicts detected** - Submodule updates require careful coordination
+8. **Strict-validate run inside a bare worktree** - Its exit code is meaningless (missing gitignored deps may make it silently no-op on zero files). Re-run on `main` post-merge before trusting any result. See [large_reorg_playbook.md](references/large_reorg_playbook.md).
 
 ---
 
@@ -349,10 +353,11 @@ Use this logic whenever the AI writes or rewrites commit messages.
 ### Core Workflows
 | Document | Purpose | Key Insight |
 |----------|---------|-------------|
-| [worktree_workflows.md](references/worktree_workflows.md) | 7-step workspace creation | Directory selection, branch strategies |
-| [commit_workflows.md](references/commit_workflows.md) | 6-step commit workflow | Artifact filtering, Conventional Commits |
+| [worktree_workflows.md](references/worktree_workflows.md) | 7-step workspace creation | Directory selection, branch strategies, large-reorg caveats (§8b) |
+| [large_reorg_playbook.md](references/large_reorg_playbook.md) | Step-ordered large rename/reorg runbook | Worktree-only renames; toolchain + DB run on main post-merge |
+| [commit_workflows.md](references/commit_workflows.md) | 6-step commit workflow | Artifact filtering, Conventional Commits, scoped-staging discipline for a dirty tree / unrelated WIP (§3 Step 7) |
 | [finish_workflows.md](references/finish_workflows.md) | 5-step completion flow | PR creation, cleanup, merge |
-| [shared_patterns.md](references/shared_patterns.md) | Reusable git patterns | Error recovery, conflict resolution |
+| [shared_patterns.md](references/shared_patterns.md) | Reusable git patterns | Error recovery, conflict resolution, rename-heavy / large-reorg merge verification (§10) |
 | [quick_reference.md](references/quick_reference.md) | Command cheat sheet | Common operations |
 | [github_mcp_integration.md](references/github_mcp_integration.md) | GitHub MCP remote ops | PRs, issues, CI/CD via Code Mode |
 
