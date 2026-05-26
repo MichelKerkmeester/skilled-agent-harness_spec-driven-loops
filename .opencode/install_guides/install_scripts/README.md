@@ -7,15 +7,15 @@
 ## TABLE OF CONTENTS
 <!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1--overview)
-- [2. PREREQUISITES & QUICK START](#2--prerequisites--quick-start)
-- [3. INSTALLATION STRUCTURE](#3--installation-structure)
-- [4. FEATURES](#4--features)
-- [5. VERIFICATION & CONFIGURATION](#5--verification--configuration)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TROUBLESHOOTING](#7--troubleshooting)
-- [8. FAQ](#8--faq)
-- [9. RELATED DOCUMENTS](#9--related-documents)
+1. [OVERVIEW](#1-overview)
+2. [PREREQUISITES & QUICK START](#2-prerequisites--quick-start)
+3. [INSTALLATION STRUCTURE](#3-installation-structure)
+4. [FEATURES](#4-features)
+5. [VERIFICATION & CONFIGURATION](#5-verification--configuration)
+6. [USAGE EXAMPLES](#6-usage-examples)
+7. [TROUBLESHOOTING](#7-troubleshooting)
+8. [FAQ](#8-faq)
+9. [RELATED DOCUMENTS](#9-related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 

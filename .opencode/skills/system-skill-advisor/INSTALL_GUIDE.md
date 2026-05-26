@@ -11,6 +11,34 @@ This is the canonical install + setup guide for the standalone Skill Advisor MCP
 
 ---
 
+## 0. AI-FIRST INSTALL GUIDE
+
+Copy and paste this prompt to your AI assistant to get installation help:
+
+```
+I want to install the Skill Advisor MCP server (mk_skill_advisor) from .opencode/skills/system-skill-advisor/mcp_server
+
+Please help me:
+1. Verify Node.js and npm are installed
+2. Install dependencies and build the advisor MCP server
+3. Confirm the @spec-kit/shared package is linked (a missing link breaks startup with ERR_MODULE_NOT_FOUND)
+4. Register or refresh the mk_skill_advisor server in my runtime (I'm using: [OpenCode / Claude Code / Codex / Gemini])
+5. Verify advisor_status and advisor_recommend respond
+
+Guide me through each step with the exact commands I need to run.
+```
+
+Your AI assistant will:
+- Verify Node.js and npm are available
+- Install and build the standalone advisor MCP server
+- Check the `@spec-kit/shared` dependency link
+- Configure `mk_skill_advisor` for your runtime
+- Confirm the 8 public advisor tools register and respond
+
+**Expected setup time:** 3-5 minutes
+
+---
+
 ## 1. OVERVIEW
 
 The native advisor is a TypeScript package under `.opencode/skills/system-skill-advisor/mcp_server/`. It exposes 8 public MCP tools (`advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`) plus 1 internal trusted-caller tool (`skill_graph_propagate_enhances`, gated behind auth). The standalone MCP server owns the advisor handlers, schemas, launcher, plus the package-local SQLite DB at `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite`. The Python `skill_advisor.py` shim remains as the compatibility surface for scripts and prompt hooks.

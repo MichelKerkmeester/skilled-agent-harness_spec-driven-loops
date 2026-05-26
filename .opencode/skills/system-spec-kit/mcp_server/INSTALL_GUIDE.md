@@ -8,7 +8,7 @@ Complete installation and configuration guide for the Spec Kit Memory MCP server
 
 ---
 
-## 1. AI-FIRST INSTALL GUIDE
+## 0. AI-FIRST INSTALL GUIDE
 
 Copy and paste this prompt to your AI assistant to get installation help:
 
@@ -39,7 +39,7 @@ Your AI assistant will:
 
 ---
 
-## 2. OVERVIEW
+## 1. OVERVIEW
 
 Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistants semantic memory and context retrieval. It indexes markdown documentation and conversation memories to surface relevant information during AI interactions.
 
@@ -158,7 +158,7 @@ The repo contains checked-in MCP wiring for OpenCode, Claude Code, Codex, Gemini
 
 ---
 
-## 3. PREREQUISITES
+## 2. PREREQUISITES
 
 Phase 1 verifies the required software on your machine.
 
@@ -197,7 +197,7 @@ Checklist:
 
 ---
 
-## 4. INSTALLATION
+## 3. INSTALLATION
 
 This section covers Phase 2 (install) and Phase 3 (initialize).
 
@@ -283,7 +283,7 @@ Checklist:
 
 ---
 
-## 5. CONFIGURATION
+## 4. CONFIGURATION
 
 Phase 4 connects Spec Kit Memory to your AI assistant.
 
@@ -415,7 +415,7 @@ Checklist:
 
 ---
 
-## 6. VERIFICATION
+## 5. VERIFICATION
 
 Phase 5 verifies the end-to-end connection inside your AI assistant.
 
@@ -574,7 +574,7 @@ Checklist:
 
 ---
 
-## 7. USAGE
+## 6. USAGE
 
 ### Daily Workflow
 
@@ -629,7 +629,7 @@ The server supports phase folders for multi-phase spec work. Phase folders follo
 
 ---
 
-## 8. FEATURES
+## 7. FEATURES
 
 ### memory_context: Unified Context Retrieval
 
@@ -701,7 +701,7 @@ When enabled, this feature adjusts the balance between vector similarity and key
 
 ### Diversity Reranking (MMR)
 
-Stage-3 MMR (maximal marginal relevance) diversity reranking is enabled by default (`SPECKIT_MMR`). It reduces near-duplicate results among the top-K candidates and applies MPAB chunk collapse, improving result spread for ambiguous queries. The earlier model-based cross-encoder reranker was removed during the CocoIndex deprecation.
+Stage-3 MMR (maximal marginal relevance) diversity reranking is enabled by default (`SPECKIT_MMR`). It reduces near-duplicate results among the top-K candidates and applies MPAB chunk collapse, improving result spread for ambiguous queries. The earlier model-based cross-encoder reranker was removed during the 014 deprecation.
 
 ### Evidence Gap Warnings
 
@@ -736,7 +736,7 @@ Enforces schema contracts on retrieval inputs and outputs. Three contract types 
 
 ---
 
-## 9. EXAMPLES
+## 8. EXAMPLES
 
 ### Example 1: Fresh Install and First Search
 
@@ -882,7 +882,7 @@ bash .opencode/skills/system-spec-kit/scripts/validate.sh \
 
 ---
 
-## 10. TROUBLESHOOTING
+## 9. TROUBLESHOOTING
 
 ### Error Reference Table
 
@@ -1086,7 +1086,7 @@ This calls `memory_index_scan({ force: true })` to repopulate the search index f
 
 ---
 
-## 11. RESOURCES
+## 10. RESOURCES
 
 ### File Locations
 

@@ -18,6 +18,34 @@ This is the canonical bootstrap guide for the standalone System Code Graph MCP s
 
 ---
 
+## 0. AI-FIRST INSTALL GUIDE
+
+Copy and paste this prompt to your AI assistant to get installation help:
+
+```
+I want to install the System Code Graph MCP server (mk_code_index) from .opencode/skills/system-code-graph
+
+Please help me:
+1. Verify I have Node.js >=20.11.0 and npm installed
+2. Install dependencies and build the standalone TypeScript MCP server
+3. Confirm the compiled entrypoint exists at mcp_server/dist/index.js
+4. Add the mk_code_index server entry to my runtime config (I'm using: [OpenCode / Claude Code / Codex / Gemini])
+5. Verify code_graph_status, code_graph_scan, and code_graph_verify respond
+
+Guide me through each step with the exact commands I need to run.
+```
+
+Your AI assistant will:
+- Verify Node.js >=20.11.0 and npm are available
+- Install and build the standalone code-graph MCP server
+- Confirm the launcher and compiled entrypoint are present
+- Configure `mk_code_index` for your runtime (the five INDEX_* flags ship `false` for a quiet, low-disk index)
+- Confirm the 8 structural tools register and respond
+
+**Expected setup time:** 3-5 minutes
+
+---
+
 ## 1. OVERVIEW
 
 System Code Graph is a TypeScript MCP server under `.opencode/skills/system-code-graph/mcp_server/` that registers the `mk-code-index` server identity. The runtime package is published privately as `@spec-kit/system-code-graph` and ships a Node launcher at `.opencode/bin/mk-code-index-launcher.cjs`. The launcher boots the compiled entrypoint at `mcp_server/dist/index.js` after loading `.env.local` overrides, applying the optional maintainer-mode flag, and guarding the database path against external locations.

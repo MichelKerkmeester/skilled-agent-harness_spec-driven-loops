@@ -1,0 +1,1 @@
+../skills/system-code-graph/INSTALL_GUIDE.md

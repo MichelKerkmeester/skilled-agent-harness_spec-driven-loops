@@ -1,0 +1,1 @@
+../skills/system-skill-advisor/INSTALL_GUIDE.md

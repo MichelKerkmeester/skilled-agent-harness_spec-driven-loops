@@ -8,6 +8,19 @@ User-facing diagnostic guide for `/doctor code-graph` (Phase A — diagnostic-on
 
 ---
 
+## TABLE OF CONTENTS
+
+0. [AI-FIRST PROMPT](#0-ai-first-prompt)
+1. [PREREQUISITES](#1-prerequisites)
+2. [RUN](#2-run)
+3. [WHAT IT TOUCHES](#3-what-it-touches)
+4. [UNDERSTANDING THE REPORT](#4-understanding-the-report)
+5. [ACTING ON THE REPORT](#5-acting-on-the-report)
+6. [TROUBLESHOOTING](#6-troubleshooting)
+7. [RESOURCES](#7-resources)
+
+---
+
 ## 0. AI-FIRST PROMPT
 
 Paste this into your AI client to run a guided code-graph health diagnostic:

@@ -7,6 +7,22 @@ Complete installation and configuration guide for the Sequential Thinking MCP se
 
 ---
 
+## Table of Contents
+
+0. [AI-First Install Guide](#0-ai-first-install-guide)
+1. [Overview](#1-overview)
+2. [Prerequisites](#2-prerequisites)
+3. [Installation](#3-installation)
+4. [Configuration](#4-configuration)
+5. [Verification](#5-verification)
+6. [Usage](#6-usage)
+7. [Features](#7-features)
+8. [Examples](#8-examples)
+9. [Troubleshooting](#9-troubleshooting)
+10. [Resources](#10-resources)
+
+---
+
 ## 0. AI-First Install Guide
 
 Copy and paste this prompt to your AI assistant to get installation help:
@@ -39,22 +55,6 @@ After configuration, run this test immediately:
 3. The AI invokes `sequential_thinking_sequentialthinking` and shows structured output
 
 Not working? Go to [Troubleshooting](#9-troubleshooting).
-
----
-
-## Table of Contents
-
-0. [AI-First Install Guide](#0-ai-first-install-guide)
-1. [Overview](#1-overview)
-2. [Prerequisites](#2-prerequisites)
-3. [Installation](#3-installation)
-4. [Configuration](#4-configuration)
-5. [Verification](#5-verification)
-6. [Usage](#6-usage)
-7. [Features](#7-features)
-8. [Examples](#8-examples)
-9. [Troubleshooting](#9-troubleshooting)
-10. [Resources](#10-resources)
 
 ---
 

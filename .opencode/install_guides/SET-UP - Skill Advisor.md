@@ -10,16 +10,16 @@ Tune the OpenCode skill advisor scoring tables (TOKEN_BOOSTS, PHRASE_BOOSTS, der
 
 ## TABLE OF CONTENTS
 
-- [0. AI-FIRST PROMPT](#0--ai-first-prompt)
-- [1. OVERVIEW](#1--overview)
-- [2. PREREQUISITES & INSTALLATION](#2--prerequisites--installation)
-- [3. QUICK TUNING (NO REBUILD REQUIRED)](#3--quick-tuning-no-rebuild-required)
-- [4. RUN](#4--run)
-- [5. WHAT IT TOUCHES](#5--what-it-touches)
-- [6. VERIFICATION](#6--verification)
-- [7. ROLLBACK](#7--rollback)
-- [8. TROUBLESHOOTING](#8--troubleshooting)
-- [9. RESOURCES](#9--resources)
+0. [AI-FIRST PROMPT](#0-ai-first-prompt)
+1. [OVERVIEW](#1-overview)
+2. [PREREQUISITES & INSTALLATION](#2-prerequisites--installation)
+3. [QUICK TUNING (NO REBUILD REQUIRED) — RECOMMENDED FOR EXTERNAL CLONES](#3-quick-tuning-no-rebuild-required--recommended-for-external-clones)
+4. [RUN](#4-run)
+5. [WHAT IT TOUCHES](#5-what-it-touches)
+6. [VERIFICATION](#6-verification)
+7. [ROLLBACK](#7-rollback)
+8. [TROUBLESHOOTING](#8-troubleshooting)
+9. [RESOURCES](#9-resources)
 
 ---
 
