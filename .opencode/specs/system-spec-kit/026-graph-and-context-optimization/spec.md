@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization"
     last_updated_at: "2026-05-26T17:00:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "Root packet finalized as a seven-track phase map; full phase history recorded in context-index.md."
-    next_safe_action: "Resume an in-progress track (002 template-levels, 003 memory causal+embedder, 006 operator-tooling) or a deferred track via its child phase folder."
+    recent_action: "Finalized seven-track phase map"
+    next_safe_action: "Resume an in-progress track via its child folder"
     blockers: []
     key_files:
       - "spec.md"
