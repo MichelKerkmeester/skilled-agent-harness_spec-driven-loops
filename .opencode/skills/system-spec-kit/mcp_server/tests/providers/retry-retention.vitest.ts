@@ -60,4 +60,42 @@ describe('retry retention', () => {
     expect(result.processed).toBe(0);
     expect(result.details).toEqual([]);
   });
+
+  it('005-002: retention spares never-attempted clean pending rows (retry_count guard in all passes)', async () => {
+    const { enforceRetryRetentionLimits } = await import('../../lib/providers/retry-manager.js');
+
+    enforceRetryRetentionLimits(1, 1_000, new Date('2026-05-22T00:00:00Z'));
+
+    const guard = /embedding_status = 'retry' OR COALESCE\(retry_count, 0\) > 0/;
+    const maxAgeSql = runCalls.find((call) => call.sql.includes('Retry retention max age exceeded'))?.sql ?? '';
+    const overflowSelectSql = runCalls.find((call) => call.sql.includes('LIMIT -1 OFFSET'))?.sql ?? '';
+    const overflowUpdateSql = runCalls.find((call) => call.sql.includes('Retry retention pending cap exceeded'))?.sql ?? '';
+
+    expect(maxAgeSql).toMatch(guard);
+    expect(overflowSelectSql).toMatch(guard);
+    expect(overflowUpdateSql).toMatch(guard);
+  });
+
+  it('005-003: reads retry retention caps at call-time from env', async () => {
+    const { getMaxRetryQueuePending, getMaxRetryQueueAgeMs } = await import('../../lib/providers/retry-manager.js');
+    const origPending = process.env.SPECKIT_RETRY_QUEUE_MAX_PENDING;
+    const origAge = process.env.SPECKIT_RETRY_QUEUE_MAX_AGE_MS;
+
+    try {
+      process.env.SPECKIT_RETRY_QUEUE_MAX_PENDING = '300000';
+      process.env.SPECKIT_RETRY_QUEUE_MAX_AGE_MS = '3153600000000';
+      expect(getMaxRetryQueuePending()).toBe(300_000);
+      expect(getMaxRetryQueueAgeMs()).toBe(3_153_600_000_000);
+
+      delete process.env.SPECKIT_RETRY_QUEUE_MAX_PENDING;
+      delete process.env.SPECKIT_RETRY_QUEUE_MAX_AGE_MS;
+      expect(getMaxRetryQueuePending()).toBe(1_000);
+      expect(getMaxRetryQueueAgeMs()).toBe(24 * 60 * 60 * 1000);
+    } finally {
+      if (origPending === undefined) delete process.env.SPECKIT_RETRY_QUEUE_MAX_PENDING;
+      else process.env.SPECKIT_RETRY_QUEUE_MAX_PENDING = origPending;
+      if (origAge === undefined) delete process.env.SPECKIT_RETRY_QUEUE_MAX_AGE_MS;
+      else process.env.SPECKIT_RETRY_QUEUE_MAX_AGE_MS = origAge;
+    }
+  });
 });

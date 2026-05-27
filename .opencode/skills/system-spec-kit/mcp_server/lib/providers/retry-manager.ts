@@ -343,6 +343,17 @@ const MAX_RETRIES = 3;
 const MAX_RETRY_QUEUE_PENDING = parsePositiveIntEnv('SPECKIT_RETRY_QUEUE_MAX_PENDING', 1_000);
 const MAX_RETRY_QUEUE_AGE_MS = parsePositiveIntEnv('SPECKIT_RETRY_QUEUE_MAX_AGE_MS', 24 * 60 * 60 * 1000);
 
+// 005-003: Read retry-retention limits at call-time so tuned env (SPECKIT_RETRY_QUEUE_MAX_*)
+// applies to a long-lived daemon without depending on the exact restart sequence. The
+// module-load constants above remain the boot-time snapshot exported for diagnostics/tests.
+function getMaxRetryQueuePending(): number {
+  return parsePositiveIntEnv('SPECKIT_RETRY_QUEUE_MAX_PENDING', 1_000);
+}
+
+function getMaxRetryQueueAgeMs(): number {
+  return parsePositiveIntEnv('SPECKIT_RETRY_QUEUE_MAX_AGE_MS', 24 * 60 * 60 * 1000);
+}
+
 // Background retry job configuration (REQ-031, CHK-179)
 // Env-overrideable (post-014/022 substrate repair — see 022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic):
 //   SPECKIT_RETRY_INTERVAL_MS — interval between background batches (default 300000 = 5 min)
@@ -472,8 +483,8 @@ function refreshRetryHealthSnapshot(stats: RetryStats): void {
 }
 
 function enforceRetryRetentionLimits(
-  maxPending = MAX_RETRY_QUEUE_PENDING,
-  maxAgeMs = MAX_RETRY_QUEUE_AGE_MS,
+  maxPending = getMaxRetryQueuePending(),
+  maxAgeMs = getMaxRetryQueueAgeMs(),
   now: Date = new Date(),
 ): { expired: number; overflow: number } {
   const db = vectorIndex.getDb();
@@ -481,18 +492,24 @@ function enforceRetryRetentionLimits(
 
   const nowIso = now.toISOString();
   const oldestAllowedIso = new Date(now.getTime() - maxAgeMs).toISOString();
+  // 005-002: Retention is non-destructive for never-attempted clean `pending` rows.
+  // Only rows that have actually been attempted (status='retry' OR retry_count>0) are
+  // subject to max-age expiry and pending-cap overflow; clean `pending` work waits to be
+  // embedded instead of being parked as `failed` before the drain can claim it.
   const expired = db.prepare(`
     UPDATE memory_index
     SET embedding_status = 'failed',
         failure_reason = 'Retry retention max age exceeded',
         updated_at = ?
     WHERE embedding_status IN ('pending', 'retry')
+      AND (embedding_status = 'retry' OR COALESCE(retry_count, 0) > 0)
       AND COALESCE(last_retry_at, created_at, updated_at) < ?
   `).run(nowIso, oldestAllowedIso).changes;
 
   const rows = db.prepare(`
     SELECT id FROM memory_index
     WHERE embedding_status IN ('pending', 'retry')
+      AND (embedding_status = 'retry' OR COALESCE(retry_count, 0) > 0)
     ORDER BY COALESCE(last_retry_at, created_at, updated_at) ASC, id ASC
     LIMIT -1 OFFSET ?
   `).all(maxPending) as Array<{ id: number }>;
@@ -506,6 +523,7 @@ function enforceRetryRetentionLimits(
           updated_at = ?
       WHERE id = ?
         AND embedding_status IN ('pending', 'retry')
+        AND (embedding_status = 'retry' OR COALESCE(retry_count, 0) > 0)
     `);
     const txn = db.transaction((ids: number[]) => {
       for (const id of ids) {
@@ -1101,4 +1119,6 @@ export {
   MAX_RETRIES,
   MAX_RETRY_QUEUE_PENDING,
   MAX_RETRY_QUEUE_AGE_MS,
+  getMaxRetryQueuePending,
+  getMaxRetryQueueAgeMs,
 };

@@ -439,6 +439,21 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
 
     const complete = db.transaction(() => {
       setActiveEmbedder(db, initialJob.toName, initialJob.toDim);
+      // 005-001: Commit embedding_status for rows now backed by an active-profile vector.
+      // A vector-only reindex previously wrote vectors but left memory_index.embedding_status
+      // stale, so a "completed" bulk re-embed never raised the success count. Reconcile the
+      // status for every row present in the just-written vec_<dim> table, inside the same
+      // atomic completion transaction so vectors and status flip together.
+      const completedAt = nowIso();
+      db.prepare(`
+        UPDATE memory_index
+        SET embedding_status = 'success',
+            embedding_generated_at = COALESCE(embedding_generated_at, @ts),
+            updated_at = @ts,
+            failure_reason = NULL
+        WHERE embedding_status != 'success'
+          AND id IN (SELECT id FROM ${tableName})
+      `).run({ ts: completedAt });
       setJobStatus(db, jobId, 'completed', initialJob.total);
     });
     complete();

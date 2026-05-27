@@ -53,7 +53,12 @@ function createDatabase(): { readonly db: Database.Database; readonly dir: strin
       id INTEGER PRIMARY KEY,
       content_text TEXT,
       title TEXT,
-      file_path TEXT
+      file_path TEXT,
+      embedding_status TEXT DEFAULT 'pending',
+      embedding_generated_at TEXT,
+      failure_reason TEXT,
+      retry_count INTEGER DEFAULT 0,
+      updated_at TEXT
     )
   `);
   const insert = db.prepare('INSERT INTO memory_index (id, content_text, title, file_path) VALUES (?, ?, ?, ?)');
@@ -121,6 +126,17 @@ describe('embedder reindex orchestrator', () => {
     expect(getActiveEmbedder(db)).toEqual({ name: 'mxbai-embed-large-v1', dim: 1024 });
     const vectorCount = db.prepare('SELECT COUNT(*) AS count FROM vec_1024').get() as { count: number };
     expect(vectorCount.count).toBe(10);
+
+    // 005-001: a completed reindex commits embedding_status='success' for the rows it embedded,
+    // so a bulk re-embed actually drives the success count (the backlog-drain root-cause fix).
+    const statusCounts = db
+      .prepare("SELECT embedding_status AS s, COUNT(*) AS c FROM memory_index GROUP BY embedding_status")
+      .all() as Array<{ s: string; c: number }>;
+    expect(statusCounts).toEqual([{ s: 'success', c: 10 }]);
+    const stale = db
+      .prepare("SELECT COUNT(*) AS c FROM memory_index WHERE embedding_status != 'success' OR failure_reason IS NOT NULL")
+      .get() as { c: number };
+    expect(stale.c).toBe(0);
   });
 
   it('auto-starts production reindex jobs and gates paused starts behind testables (F43)', async () => {

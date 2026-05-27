@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
+  "description": "Feature Specification: embedding-status integrity (durable prevention fixes)",
+  "keywords": [
+    "feature",
+    "specification",
+    "embedding-status",
+    "integrity",
+    "durable",
+    "prevention",
+    "fixes"
+  ],
+  "lastUpdated": "2026-05-27T03:52:00.082Z",
+  "specId": "005",
+  "folderSlug": "embedding-status-integrity",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
