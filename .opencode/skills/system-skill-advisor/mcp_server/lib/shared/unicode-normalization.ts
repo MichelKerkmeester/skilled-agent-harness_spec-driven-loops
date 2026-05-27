@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// MODULE: Unicode Normalization (local duplicate — packet 040)
+// MODULE: Unicode Normalization (local duplicate)
 // ---------------------------------------------------------------
 // Duplicated from system-spec-kit/shared/unicode-normalization.ts for full skill isolation.
 // Drift is watched by .github/workflows/isolation-check.yml's

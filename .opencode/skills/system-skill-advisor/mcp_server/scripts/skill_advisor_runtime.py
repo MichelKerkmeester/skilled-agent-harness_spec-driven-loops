@@ -285,7 +285,7 @@ def get_cache_status() -> Dict[str, Any]:
 
 
 # ───────────────────────────────────────────────────────────────
-# 7. INVENTORY COMPARISON (T-SAR-01 / R42-002)
+# 7. INVENTORY COMPARISON
 # ───────────────────────────────────────────────────────────────
 
 def compare_inventories(

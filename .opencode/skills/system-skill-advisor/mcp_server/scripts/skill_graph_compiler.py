@@ -914,7 +914,7 @@ def compile_graph(
         data.get("skill_id", folder_name)
         for folder_name, _, data in all_metadata
     }
-    # T-SGC-03 / T-SAP-04 (R46-002): only emit `conflicts` pairs when BOTH
+    # Only emit `conflicts` pairs when BOTH
     # sides declared `conflicts_with` for each other. Unilateral declarations
     # are upstream-gated to exit 2 by `validate_edge_symmetry()`, but the
     # serialized contract makes reciprocity explicit so runtime consumers
@@ -996,7 +996,7 @@ def compile_graph(
     hub_skills = compute_hub_skills(adjacency)
 
     # Normalize and embed topology warnings so that `health_check()` can
-    # report degraded state without re-running validation (R45-003).
+    # report degraded state without re-running validation.
     serialized_warnings: Dict[str, List[str]] = {}
     if topology_warnings:
         for category, messages in topology_warnings.items():
@@ -1100,7 +1100,7 @@ def main() -> int:
     if args.validate_only:
         return 0
 
-    # T-SGC-02 (R45-003): Serialize advisory warnings into the compiled graph so
+    # Serialize advisory warnings into the compiled graph so
     # downstream `health_check()` consumers can report degraded state without
     # re-running validation. Hard-blocking categories (SYMMETRY, ZERO-EDGE,
     # DEPENDENCY CYCLE) already gate this path via the exit above; only truly

@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// MODULE: Shared Payload Contract (local duplicate — packet 040)
+// MODULE: Shared Payload Contract (local duplicate)
 // ---------------------------------------------------------------
 // Duplicated from system-spec-kit/mcp_server/lib/context/shared-payload.ts
 // for full skill isolation.
@@ -55,7 +55,7 @@ export const SHARED_PAYLOAD_KIND_VALUES = [
 export type SharedPayloadKind = (typeof SHARED_PAYLOAD_KIND_VALUES)[number];
 
 // ───────────────────────────────────────────────────────────────
-// M8 / T-SHP-01 (R9-001): Trust-state vocabulary expansion.
+// Trust-state vocabulary expansion.
 // Canonical axes keep 'live' and 'stale' for existing-but-freshness
 // semantics and add 'absent' (does not exist for this scope) and
 // 'unavailable' (should exist but inaccessible — I/O failure,

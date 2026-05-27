@@ -724,7 +724,7 @@ def _load_skill_graph_sqlite() -> Optional[Dict[str, Any]]:
             generated_at_row = connection.execute(
                 "SELECT value FROM skill_graph_metadata WHERE key = 'last_scan_timestamp'"
             ).fetchone()
-            # T-SGC-02 / R45-003: durable topology-warning payload.
+            # Durable topology-warning payload.
             topology_warnings_row = connection.execute(
                 "SELECT value FROM skill_graph_metadata WHERE key = 'topology_warnings'"
             ).fetchone()
@@ -778,7 +778,7 @@ def _load_skill_graph_sqlite() -> Optional[Dict[str, Any]]:
 
         schema_version = int(schema_row["version"]) if schema_row and schema_row["version"] is not None else 1
 
-        # T-SGC-02: decode persisted topology warnings (best-effort; missing or
+        # Decode persisted topology warnings (best-effort; missing or
         # malformed payload degrades gracefully to empty).
         topology_warnings_payload: Dict[str, List[str]] = {}
         if topology_warnings_row and topology_warnings_row["value"]:
@@ -833,7 +833,7 @@ def _load_skill_graph_json() -> Optional[Dict[str, Any]]:
 
     graph["signals"] = dict(sorted(signal_map.items()))
 
-    # T-SGC-02 (R45-003): Normalize topology_warnings (older graphs may omit).
+    # Normalize topology_warnings (older graphs may omit).
     raw_warnings = graph.get("topology_warnings")
     normalized_warnings: Dict[str, List[str]] = {}
     if isinstance(raw_warnings, dict):
@@ -1733,7 +1733,7 @@ DEFAULT_UNCERTAINTY_THRESHOLD = NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD
 
 COMMAND_BRIDGES = {
     # ─────────────────────────────────────────────────────────────────
-    # T-SAP-03 (R46-001): per-subcommand bridges for /spec_kit family.
+    # Per-subcommand bridges for /spec_kit family.
     # Previously all /speckit:* subcommands collapsed to `command-spec-kit`
     # at `kind_priority=2`, so `/deep:start-research-loop` lost its owning-skill
     # signal (should route to `deep-research`, not `command-spec-kit`).
@@ -2711,7 +2711,7 @@ ITERATION_LOOP_PHRASES = (
     "deep:start-research-loop", "deep:start-review-loop",
 )
 
-# T-SAP-02 (R45-002): Deep-research disambiguation phrases. When the prompt
+# Deep-research disambiguation phrases. When the prompt
 # contains one of these and both `deep-research` and `sk-code-review`
 # appear as candidates within a thin margin, enforce a ≥ 0.10 confidence gap
 # so `deep-research` keeps the primary slot. Wording-sensitive audit/review
@@ -3223,7 +3223,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     apply_graph_evidence_calibration(recommendations)
     _apply_memory_save_file_operation_cap(recommendations, prompt_lower)
 
-    # T-SAP-02 (R45-002): disambiguate deep-research vs code-review and
+    # Disambiguate deep-research vs code-review and
     # deep-review vs code-review before the iteration-loop tiebreaker so the
     # primary-slot selection is stable on audit/review-token prompts.
     _apply_deep_research_disambiguation(recommendations, prompt_lower)
@@ -3360,7 +3360,7 @@ def health_check() -> Dict[str, Any]:
     source_metadata = _source_metadata_health()
     cache_status = get_cache_status()
 
-    # T-SGC-02 (R45-003): surface persisted topology-warning payload (if any).
+    # Surface persisted topology-warning payload (if any).
     topology_warnings: Dict[str, List[str]] = {}
     if isinstance(graph, dict):
         raw = graph.get("topology_warnings")
@@ -3372,7 +3372,7 @@ def health_check() -> Dict[str, Any]:
                         topology_warnings[category] = cleaned
     has_topology_warnings = any(topology_warnings.values())
 
-    # T-SAR-01 (R42-002): inventory parity check between SKILL.md discovery
+    # Inventory parity check between SKILL.md discovery
     # (authoritative for analyze_request's skill records) and the compiled
     # graph (authoritative for adjacency/signal-based boosts). Any mismatch
     # downgrades health to `degraded` even when both sources loaded cleanly.
