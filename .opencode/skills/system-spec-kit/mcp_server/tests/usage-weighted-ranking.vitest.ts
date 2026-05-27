@@ -1,4 +1,4 @@
-// TEST: Phase D T038 — Usage-Weighted Ranking
+// TEST: Phase D — Usage-Weighted Ranking
 
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import Database from 'better-sqlite3';

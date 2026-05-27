@@ -43,7 +43,7 @@ const TRIGGER_PHRASES = [
 ];
 
 /* ───────────────────────────────────────────────────────────────
-   T026-01: DEFAULT ROUTING CONFIG
+   DEFAULT ROUTING CONFIG
    ──────────────────────────────────────────────────────────────── */
 
 describe('T026-01: Default Routing Config', () => {
@@ -77,7 +77,7 @@ describe('T026-01: Default Routing Config', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T026-02: getChannelSubset
+   GetChannelSubset
    ──────────────────────────────────────────────────────────────── */
 
 describe('T026-02: getChannelSubset', () => {
@@ -130,7 +130,7 @@ describe('T026-02: getChannelSubset', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T026-03: MINIMUM 2-CHANNEL INVARIANT
+   MINIMUM 2-CHANNEL INVARIANT
    ──────────────────────────────────────────────────────────────── */
 
 describe('T026-03: Minimum 2-Channel Invariant', () => {
@@ -217,7 +217,7 @@ describe('T026-03: Minimum 2-Channel Invariant', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T026-04: routeQuery CONVENIENCE FUNCTION
+   RouteQuery CONVENIENCE FUNCTION
    ──────────────────────────────────────────────────────────────── */
 
 describe('T026-04: routeQuery Convenience Function', () => {
@@ -276,7 +276,7 @@ describe('T026-04: routeQuery Convenience Function', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T026-05: FEATURE FLAG DISABLED
+   FEATURE FLAG DISABLED
    ──────────────────────────────────────────────────────────────── */
 
 describe('T026-05: Feature Flag Disabled', () => {
@@ -318,7 +318,7 @@ describe('T026-05: Feature Flag Disabled', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T026-06: EDGE CASES
+   EDGE CASES
    ──────────────────────────────────────────────────────────────── */
 
 describe('T026-06: Edge Cases', () => {
@@ -378,7 +378,7 @@ describe('T026-06: Edge Cases', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   012-T1: shouldPreserveGraph — UNIT (REQ-001)
+   012-T1:shouldPreserveGraph — UNIT
    ──────────────────────────────────────────────────────────────── */
 
 describe('012-T1: shouldPreserveGraph', () => {
@@ -431,7 +431,7 @@ describe('012-T1: shouldPreserveGraph', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   012-T2: routeQuery INTEGRATION — graph-preservation override (REQ-002)
+   012-T2:routeQuery INTEGRATION — graph-preservation override
    ──────────────────────────────────────────────────────────────── */
 
 describe('012-T2: routeQuery graph-preservation', () => {
@@ -569,7 +569,7 @@ describe('012-T2: routeQuery graph-preservation', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   012-T3: routing-telemetry — graphChannelInvocationRate (REQ-004)
+   012-T3:routing-telemetry — graphChannelInvocationRate
    ──────────────────────────────────────────────────────────────── */
 
 describe('012-T3: routing telemetry', () => {
@@ -612,7 +612,7 @@ describe('012-T3: routing telemetry', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   012-T4: ROUTING LATENCY (REQ-005)
+   012-T4:ROUTING LATENCY
    ──────────────────────────────────────────────────────────────── */
 
 describe('012-T4: routing latency', () => {
@@ -651,14 +651,14 @@ describe('012-T4: routing latency', () => {
     }
     samples.sort((a, b) => a - b);
     const p99 = samples[Math.floor(N * 0.99) - 1];
-    // 5ms budget per spec REQ-005. Generous on cold-start DB (entity-density
+    // 5ms budget per spec. Generous on cold-start DB (entity-density
     // returns 0 quickly when getDb throws).
     expect(p99).toBeLessThan(5);
   });
 });
 
 /* ───────────────────────────────────────────────────────────────
-   006-T1: quality-gap fallback engagement (REQ-007 / REQ-010)
+   006-T1:quality-gap fallback engagement
    ──────────────────────────────────────────────────────────────── */
 
 describe('006-T1: quality-gap fallback routing', () => {

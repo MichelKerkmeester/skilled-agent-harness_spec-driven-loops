@@ -1,5 +1,5 @@
 // -------------------------------------------------------------------
-// TEST: memory_embedding_reconcile core logic (026/003/006)
+// TEST: memory_embedding_reconcile core logic
 // -------------------------------------------------------------------
 // Acceptance contract: 004-embedding-backlog-drain-investigation
 //   research/iterations/iteration-008.md §F4 (seven scenarios).

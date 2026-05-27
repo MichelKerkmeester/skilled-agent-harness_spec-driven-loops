@@ -152,7 +152,7 @@ describe('Layer Definitions Tests', () => {
       }
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // Drift: vitest-recovery-followup verified against shipped behavior during Unit H
     it('every registered tool has a layer definition', () => {
       const toolNames = TOOL_DEFINITIONS
         .map((tool) => tool.name)
@@ -170,7 +170,7 @@ describe('Layer Definitions Tests', () => {
       expect(mod.TOOL_LAYER_MAP.checkpoint_create).toBe(matchingLayers[0].id);
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // Drift: vitest-recovery-followup verified against shipped behavior during Unit H
     it('tool definition prefixes stay aligned with TOOL_LAYER_MAP', () => {
       for (const tool of TOOL_DEFINITIONS) {
         const match = tool.description.match(/^\[(L\d+):([^\]]+)\]/);

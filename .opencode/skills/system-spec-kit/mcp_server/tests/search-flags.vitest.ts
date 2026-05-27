@@ -180,7 +180,7 @@ describe('Search Feature Flags', () => {
   });
 });
 
-// T254: Add coverage for planner/save flags that have outgrown dedicated parser coverage
+// Add coverage for planner/save flags that have outgrown dedicated parser coverage
 import {
   resolveSavePlannerMode,
   isSaveReconsolidationEnabled,

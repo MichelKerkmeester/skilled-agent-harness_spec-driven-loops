@@ -52,7 +52,7 @@ function makeResults(pairs: Array<[string | number, number]>): ScoredResult[] {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   T029-01: FEATURE FLAG
+   FEATURE FLAG
    ──────────────────────────────────────────────────────────────── */
 
 describe('T029-01: Feature Flag (SPECKIT_CONFIDENCE_TRUNCATION)', () => {
@@ -102,7 +102,7 @@ describe('T029-01: Feature Flag (SPECKIT_CONFIDENCE_TRUNCATION)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T029-02: FLAG DISABLED — PASS-THROUGH BEHAVIOUR
+   FLAG DISABLED — PASS-THROUGH BEHAVIOUR
    ──────────────────────────────────────────────────────────────── */
 
 describe('T029-02: Flag Disabled — Pass-Through', () => {
@@ -128,7 +128,7 @@ describe('T029-02: Flag Disabled — Pass-Through', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T029-03: BASIC TRUNCATION — CLEAR GAP
+   BASIC TRUNCATION — CLEAR GAP
    ──────────────────────────────────────────────────────────────── */
 
 describe('T029-03: Basic Truncation with Clear Score Gap', () => {
@@ -188,7 +188,7 @@ describe('T029-03: Basic Truncation with Clear Score Gap', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T029-04: MINIMUM RESULT COUNT ENFORCEMENT
+   MINIMUM RESULT COUNT ENFORCEMENT
    ──────────────────────────────────────────────────────────────── */
 
 describe('T029-04: Minimum Result Count (3)', () => {
@@ -245,7 +245,7 @@ describe('T029-04: Minimum Result Count (3)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T029-05: NO TRUNCATION WHEN GAPS ARE SIMILAR
+   NO TRUNCATION WHEN GAPS ARE SIMILAR
    ──────────────────────────────────────────────────────────────── */
 
 describe('T029-05: No Truncation When All Gaps Are Similar', () => {
@@ -280,7 +280,7 @@ describe('T029-05: No Truncation When All Gaps Are Similar', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T029-06: EDGE CASES
+   EDGE CASES
    ──────────────────────────────────────────────────────────────── */
 
 describe('T029-06: Edge Cases', () => {
@@ -322,7 +322,7 @@ describe('T029-06: Edge Cases', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T029-07: >30% TAIL REDUCTION VERIFICATION
+   >30% TAIL REDUCTION VERIFICATION
    ──────────────────────────────────────────────────────────────── */
 
 describe('T029-07: >30% Tail Reduction on Realistic Distribution', () => {
@@ -366,7 +366,7 @@ describe('T029-07: >30% Tail Reduction on Realistic Distribution', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T029-08: HELPER FUNCTIONS
+   HELPER FUNCTIONS
    ──────────────────────────────────────────────────────────────── */
 
 describe('T029-08: Helper Functions (computeGaps, computeMedian)', () => {
@@ -404,7 +404,7 @@ describe('T029-08: Helper Functions (computeGaps, computeMedian)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T029-09: NaN/INFINITY GUARD & SORT VALIDATION
+   NaN/INFINITY GUARD & SORT VALIDATION
    ──────────────────────────────────────────────────────────────── */
 
 describe('T029-09: NaN/Infinity Guard & Sort Validation', () => {

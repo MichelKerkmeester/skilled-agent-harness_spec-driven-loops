@@ -1,5 +1,5 @@
 // TEST: SEARCH ARCHIVAL
-// Converted from: t206-search-archival.test.ts (custom runner)
+// Converted from:(custom runner)
 import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import path from 'path';
@@ -122,7 +122,7 @@ describe('T206 - archived-tier cleanup leaves the column schema-only', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T235: Runtime behavior tests — verify actual archive filtering
+   Runtime behavior tests — verify actual archive filtering
    semantics beyond signature-only checks.
 ──────────────────────────────────────────────────────────────── */
 

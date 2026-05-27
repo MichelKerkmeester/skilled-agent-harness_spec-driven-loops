@@ -41,7 +41,7 @@ describe('alignment drift malformed fixture preservation', () => {
     expect(fixtureContent).toContain('This JSON is malformed');
   });
 
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('allows the verifier to pass for the fixture directory without masking other JSON files', () => {
     const result = spawnSync(
       'python3',

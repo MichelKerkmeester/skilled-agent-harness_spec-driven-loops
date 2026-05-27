@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: Embedder schema helpers (016/002)
+// TEST: Embedder schema helpers
 // ───────────────────────────────────────────────────────────────
 
 import Database from 'better-sqlite3';

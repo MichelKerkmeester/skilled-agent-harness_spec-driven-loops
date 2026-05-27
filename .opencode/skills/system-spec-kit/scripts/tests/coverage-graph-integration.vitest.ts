@@ -1,5 +1,5 @@
 /**
- * Coverage Graph Integration Tests (Phase 006 — REQ-GT-001 through REQ-GT-006)
+ * Coverage Graph Integration Tests (REQ-GT-001 through REQ-GT-006)
  *
  * Cross-layer contract verification between:
  *   - CJS modules: coverage-graph-core.cjs, coverage-graph-signals.cjs,
@@ -376,7 +376,7 @@ describe('coverage-graph-integration: CJS ↔ TS contract alignment', () => {
     });
 
     it('computeSourceDiversity returns canonical per-question average for populated graph', () => {
-      // ADR-001 canonical semantics: for each question, count distinct source
+      // Canonical semantics: for each question, count distinct source
       // quality classes reachable via ANSWERS → CITES paths, then average.
       const graph = coreModule.createGraph();
       graph.nodes.set('q-1', { id: 'q-1', kind: 'QUESTION' });

@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { validateApiKey } from '@spec-kit/shared/embeddings/factory';
 
-// TEST: API Validation (T177-T184)
-// REQ-029: Pre-Flight API Key Validation with HTTP mocking
+// TEST: API Validation
+// Pre-Flight API Key Validation with HTTP mocking
 
 const ENV_KEYS = [
   'EMBEDDINGS_PROVIDER',

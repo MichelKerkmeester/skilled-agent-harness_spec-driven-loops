@@ -60,7 +60,7 @@ describe('Batch Processor', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     2. Batch Size Validation (P0-08)
+     2. Batch Size Validation
   ════════════════════════════════════════════════════════════ */
 
   describe('2. batchSize Validation (P0-08)', () => {

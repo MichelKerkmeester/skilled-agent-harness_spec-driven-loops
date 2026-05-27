@@ -24,7 +24,7 @@ describe('outsourced agent handback docs', () => {
     '.opencode/skills/cli-gemini/assets/prompt_templates.md',
   ];
 
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('keeps all four skill docs aligned on post-010 handback guidance', () => {
     for (const docPath of skillDocs) {
       const content = readWorkspaceFile(docPath);

@@ -514,7 +514,7 @@ describe('checkpoint_delete schema', () => {
 });
 
 
-// CHK-024: Schema validation overhead <5ms benchmark
+// Schema validation overhead <5ms benchmark
 describe('schema validation performance (CHK-024)', () => {
   it('validateToolInputSchema completes in <5ms per tool (steady-state)', () => {
     for (const tool of TOOL_DEFINITIONS) {

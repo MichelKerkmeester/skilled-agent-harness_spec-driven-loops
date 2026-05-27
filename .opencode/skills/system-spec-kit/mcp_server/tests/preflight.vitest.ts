@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// 1. PREFLIGHT VALIDATION TESTS (T067-T070, T156-T166)
+// 1. PREFLIGHT VALIDATION TESTS
 // ───────────────────────────────────────────────────────────────
 import { describe, it, expect } from 'vitest';
 import * as preflight from '../lib/validation/preflight';
@@ -63,7 +63,7 @@ const TEST_CONTENT_OVER_MAX = 'x'.repeat(260000);
 describe('Preflight Validation', () => {
 
   /* ───────────────────────────────────────────────────────────────
-     Anchor Format Validation (T068, CHK-156)
+     Anchor Format Validation
   ──────────────────────────────────────────────────────────────── */
 
   describe('Anchor Format Validation (T068, CHK-156)', () => {
@@ -102,7 +102,7 @@ describe('Preflight Validation', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     Duplicate Detection (T069, CHK-157)
+     Duplicate Detection
   ──────────────────────────────────────────────────────────────── */
 
   describe('Duplicate Detection (T069, CHK-157)', () => {
@@ -152,7 +152,7 @@ describe('Preflight Validation', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     Token Budget Estimation (T070, CHK-158)
+     Token Budget Estimation
   ──────────────────────────────────────────────────────────────── */
 
   describe('Token Budget Estimation (T070, CHK-158)', () => {
@@ -228,7 +228,7 @@ describe('Preflight Validation', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     Unified Preflight (T067, CHK-159, CHK-160)
+     Unified Preflight ()
   ──────────────────────────────────────────────────────────────── */
 
   describe('Unified Preflight (T067, CHK-159, CHK-160)', () => {
@@ -271,7 +271,7 @@ describe('Preflight Validation', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     PreflightError Class (T157)
+     PreflightError Class
   ──────────────────────────────────────────────────────────────── */
 
   describe('PreflightError Class (T157)', () => {
@@ -315,7 +315,7 @@ describe('Preflight Validation', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     PreflightErrorCodes Enum (T158)
+     PreflightErrorCodes Enum
   ──────────────────────────────────────────────────────────────── */
 
   describe('PreflightErrorCodes Enum (T158)', () => {
@@ -360,7 +360,7 @@ describe('Preflight Validation', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     Anchor Format Validation — Extended (T159-T162)
+     Anchor Format Validation — Extended
   ──────────────────────────────────────────────────────────────── */
 
   describe('Anchor Format Validation — Extended (T159-T162)', () => {
@@ -439,7 +439,7 @@ More content follows.
   });
 
   /* ───────────────────────────────────────────────────────────────
-     Duplicate Detection — Extended (T163-T164)
+     Duplicate Detection — Extended
   ──────────────────────────────────────────────────────────────── */
 
   describe('Duplicate Detection — Extended (T163-T164)', () => {
@@ -633,7 +633,7 @@ More content follows.
   });
 
   /* ───────────────────────────────────────────────────────────────
-     Token Budget — Extended (T165-T166)
+     Token Budget — Extended
   ──────────────────────────────────────────────────────────────── */
 
   describe('Token Budget — Extended (T165-T166)', () => {
@@ -696,7 +696,7 @@ More content follows.
   });
 
   /* ───────────────────────────────────────────────────────────────
-     run_preflight() Combined (T156)
+     Run_preflight Combined
   ──────────────────────────────────────────────────────────────── */
 
   describe('run_preflight() Combined (T156)', () => {

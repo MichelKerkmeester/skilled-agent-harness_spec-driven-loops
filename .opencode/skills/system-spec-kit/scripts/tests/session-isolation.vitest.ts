@@ -209,7 +209,7 @@ describe('coverage graph session isolation', () => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// REQ-028 (F004, F005 in the 042 closing audit): shared-ID
+// (in the 042 closing audit): shared-ID
 // collision regression. Two sessions intentionally reuse the same
 // logical node and edge IDs, upsert independently, and the DB must
 // keep them as disjoint rows — an upsert in session B must never

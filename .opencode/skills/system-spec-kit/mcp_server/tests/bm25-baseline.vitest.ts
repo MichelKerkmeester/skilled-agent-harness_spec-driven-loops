@@ -3,28 +3,28 @@
 // ───────────────────────────────────────────────────────────────
 //
 // Validates:
-// T008.1  — evaluateContingency: PAUSE for MRR >= 0.80
-// T008.2  — evaluateContingency: RATIONALIZE for 0.50 <= MRR < 0.80
-// T008.3  — evaluateContingency: PROCEED for MRR < 0.50
-// T008.4  — evaluateContingency: exact boundary 0.80 → PAUSE
-// T008.5  — evaluateContingency: exact boundary 0.50 → RATIONALIZE
-// T008.6  — recordBaselineMetrics: writes all 5 metric rows to eval DB
-// T008.7  — recordBaselineMetrics: contingency metadata stored as JSON
-// T008.8  — runBM25Baseline: runs with mocked search function
-// T008.9  — runBM25Baseline: respects queryLimit config option
-// T008.10 — runBM25Baseline: skipHardNegatives reduces query count
-// T008.11 — runBM25Baseline: returns well-structured BM25BaselineResult
-// T008.12 — runBM25Baseline: disables non-BM25 channels (only calls searchFn)
-// T009.1  — computeBootstrapCI: iterations=0 returns safe degenerate CI
-// T009.2  — computeBootstrapCI: negative iterations return safe degenerate CI
-// T009.3  — computeBootstrapCI: empty input returns safe degenerate CI
-// T009.4  — computeBootstrapCI: single-element input behaves correctly
-// T009.5  — computeBootstrapCI: NaN values in perQueryMRR are filtered out
-// T009.6  — computeBootstrapCI: Infinity values in perQueryMRR are filtered out
-// T009.7  — computeBootstrapCI: all-NaN input returns degenerate zero CI
-// T009.8  — computeBootstrapCI: fractional iterations are floored
-// T009.9  — computeBootstrapCI: NaN iterations treated as 0
-// T009.10 — computeBootstrapCI: Infinity iterations treated as 0
+// 1 — evaluateContingency: PAUSE for MRR >= 0.80
+// 2 — evaluateContingency: RATIONALIZE for 0.50 <= MRR < 0.80
+// 3 — evaluateContingency: PROCEED for MRR < 0.50
+// 4 — evaluateContingency: exact boundary 0.80 → PAUSE
+// 5 — evaluateContingency: exact boundary 0.50 → RATIONALIZE
+// 6 — recordBaselineMetrics: writes all 5 metric rows to eval DB
+// 7 — recordBaselineMetrics: contingency metadata stored as JSON
+// 8 — runBM25Baseline: runs with mocked search function
+// 9 — runBM25Baseline: respects queryLimit config option
+// 10 — runBM25Baseline: skipHardNegatives reduces query count
+// 11 — runBM25Baseline: returns well-structured BM25BaselineResult
+// 12 — runBM25Baseline: disables non-BM25 channels (only calls searchFn)
+// 1 — computeBootstrapCI: iterations=0 returns safe degenerate CI
+// 2 — computeBootstrapCI: negative iterations return safe degenerate CI
+// 3 — computeBootstrapCI: empty input returns safe degenerate CI
+// 4 — computeBootstrapCI: single-element input behaves correctly
+// 5 — computeBootstrapCI: NaN values in perQueryMRR are filtered out
+// 6 — computeBootstrapCI: Infinity values in perQueryMRR are filtered out
+// 7 — computeBootstrapCI: all-NaN input returns degenerate zero CI
+// 8 — computeBootstrapCI: fractional iterations are floored
+// 9 — computeBootstrapCI: NaN iterations treated as 0
+// 10 — computeBootstrapCI: Infinity iterations treated as 0
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import * as path from 'path';

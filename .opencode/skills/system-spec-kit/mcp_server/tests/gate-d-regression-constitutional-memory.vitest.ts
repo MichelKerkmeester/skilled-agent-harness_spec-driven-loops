@@ -116,7 +116,7 @@ describe('Gate D regression constitutional memory', () => {
     handlerMocks.executePipeline.mockReset();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // Drift: vitest-recovery-followup verified against shipped behavior during Unit H
   it('discovers constitutional guidance from dedicated skill files and skips README placeholders', () => {
     const workspace = makeTempDir('gate-d-constitutional-files-');
     const constitutionalDir = path.join(

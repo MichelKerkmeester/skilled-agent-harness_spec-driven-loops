@@ -11,7 +11,7 @@ const tierClassifierModule = tierClassifier as unknown as Record<string, unknown
 describe('Tier Classifier (5-State Model)', () => {
 
   /* ───────────────────────────────────────────────────────────────
-     State Classification (T201-T210)
+     State Classification
      Production classifyState() accepts:
        - A number (retrievability, elapsedDays): classifyState(0.95, 0)
        - A memory object: classifyState(memoryObj) reads .retrievability or .attentionScore
@@ -65,7 +65,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     Archive Detection (T211-T215)
+     Archive Detection
      ARCHIVED: days > 90 AND r < 0.02
   ──────────────────────────────────────────────────────────────── */
 
@@ -92,7 +92,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     Retrievability Calculation (T216-T220)
+     Retrievability Calculation
      Production: calculateRetrievability(stability: number, elapsedDays: number): number
      R = (1 + (19/81) * t / S)^(-0.5)
   ──────────────────────────────────────────────────────────────── */
@@ -127,7 +127,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     classifyTier() (T221-T225)
+     ClassifyTier
      Production: classifyTier(memory: TierInput) returns {state, retrievability, effectiveHalfLife}
   ──────────────────────────────────────────────────────────────── */
 
@@ -164,7 +164,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     shouldArchive() (T226-T230)
+     ShouldArchive
   ──────────────────────────────────────────────────────────────── */
 
   describe('shouldArchive() (T226-T230)', () => {
@@ -190,7 +190,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     getStateStats() (T236-T240)
+     GetStateStats
      Production: getStateStats(memories) returns { HOT, WARM, COLD, DORMANT, ARCHIVED, total }
   ──────────────────────────────────────────────────────────────── */
 
@@ -243,7 +243,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     getStateContent() (T241-T245)
+     GetStateContent
      Production: getStateContent(memories[], targetState, limit) returns { state, memories, count }
   ──────────────────────────────────────────────────────────────── */
 
@@ -283,7 +283,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     formatStateResponse() (T246-T250)
+     FormatStateResponse
      Production: formatStateResponse(memories) returns [{id, title, state, retrievability, specFolder, filePath}]
   ──────────────────────────────────────────────────────────────── */
 
@@ -330,7 +330,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     filterAndLimitByState() (T251-T255)
+     FilterAndLimitByState
      Production: filterAndLimitByState(memories, targetState?, limit?)
   ──────────────────────────────────────────────────────────────── */
 
@@ -370,7 +370,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     getEffectiveHalfLife() (T256-T260)
+     GetEffectiveHalfLife
   ──────────────────────────────────────────────────────────────── */
 
   describe('getEffectiveHalfLife() (T256-T260)', () => {
@@ -396,7 +396,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     halfLifeToStability() (T261-T263)
+     HalfLifeToStability
   ──────────────────────────────────────────────────────────────── */
 
   describe('halfLifeToStability() (T261-T263)', () => {
@@ -417,7 +417,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     Threshold Configuration (T266-T270)
+     Threshold Configuration
   ──────────────────────────────────────────────────────────────── */
 
   describe('Threshold Configuration (T266-T270)', () => {
@@ -446,7 +446,7 @@ describe('Tier Classifier (5-State Model)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     STATE_THRESHOLDS Constants (T094-T099)
+     STATE_THRESHOLDS Constants
   ──────────────────────────────────────────────────────────────── */
 
   describe('STATE_THRESHOLDS Constants (T094-T099)', () => {

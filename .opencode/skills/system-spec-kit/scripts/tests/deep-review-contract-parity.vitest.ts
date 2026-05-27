@@ -9,7 +9,7 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
 const require = createRequire(import.meta.url);
 
-// T247: Import deep-review runtime-capabilities resolver for executable coverage
+// Import deep-review runtime-capabilities resolver for executable coverage
 const reviewCapabilityModulePath = path.join(
   WORKSPACE_ROOT,
   '.opencode/skills/deep-review/scripts/runtime-capabilities.cjs',

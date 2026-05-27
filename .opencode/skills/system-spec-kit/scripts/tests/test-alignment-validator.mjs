@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // PURPOSE: Validate telemetry schema/docs drift detection behavior
 //
-// Migrated from CommonJS in packet 074. The validator source uses
+// Migrated from CommonJS in. The validator source uses
 // `import.meta.url` (ESM-only), which blocked the previous
 // `transpileModule(... ModuleKind.CommonJS) + Module._compile`
 // approach because TypeScript can't transpile import.meta to CJS.

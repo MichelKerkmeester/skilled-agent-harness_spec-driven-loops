@@ -54,7 +54,7 @@ afterEach(() => {
 });
 
 describe('validate.sh normalizer lint', () => {
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('passes strict mode when the target tree has no local normalizer helpers', () => {
     const workspaceRoot = makeTempWorkspace();
     const specPath = createSpecFolder(workspaceRoot);
@@ -79,7 +79,7 @@ describe('validate.sh normalizer lint', () => {
     expect(result.stdout).toContain('No local normalizeScope*/getOptionalString declarations found');
   });
 
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('fails strict mode and lists violating files when local helper declarations are found', () => {
     const workspaceRoot = makeTempWorkspace();
     const specPath = createSpecFolder(workspaceRoot);
@@ -111,7 +111,7 @@ describe('validate.sh normalizer lint', () => {
     expect(result.stdout).not.toContain('ignore.vitest.ts');
   });
 
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('skips the rule outside strict mode', () => {
     const workspaceRoot = makeTempWorkspace();
     const specPath = createSpecFolder(workspaceRoot);

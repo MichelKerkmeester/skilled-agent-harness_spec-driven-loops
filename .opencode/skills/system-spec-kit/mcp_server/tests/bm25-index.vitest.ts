@@ -45,7 +45,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     T031: BM25Index class instantiation
+     BM25Index class instantiation
   ════════════════════════════════════════════════════════════ */
 
   describe('T031: BM25Index class instantiation', () => {
@@ -85,7 +85,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     T032: Tokenization splits text correctly
+     Tokenization splits text correctly
   ════════════════════════════════════════════════════════════ */
 
   describe('T032: Tokenization splits text correctly', () => {
@@ -148,7 +148,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     T033: Porter stemmer subset reduces words to stems
+     Porter stemmer subset reduces words to stems
   ════════════════════════════════════════════════════════════ */
 
   describe('T033: Porter stemmer subset reduces words to stems', () => {
@@ -207,7 +207,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     T034: Inverted index construction from documents
+     Inverted index construction from documents
   ════════════════════════════════════════════════════════════ */
 
   describe('T034: Inverted index construction from documents', () => {
@@ -293,7 +293,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     T035: IDF calculation for term importance
+     IDF calculation for term importance
   ════════════════════════════════════════════════════════════ */
 
   describe('T035: IDF calculation for term importance', () => {
@@ -338,7 +338,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     T036: BM25 scoring with k1=1.2, b=0.75 parameters
+     BM25 scoring with k1=1.2, b=0.75 parameters
   ════════════════════════════════════════════════════════════ */
 
   describe('T036: BM25 scoring with k1=1.2, b=0.75 parameters', () => {
@@ -402,7 +402,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     T037: ENABLE_BM25 feature flag controls activation
+     ENABLE_BM25 feature flag controls activation
   ════════════════════════════════════════════════════════════ */
 
   describe('T037: ENABLE_BM25 feature flag controls activation', () => {
@@ -462,7 +462,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     T038: BM25 integration with hybrid search pipeline
+     BM25 integration with hybrid search pipeline
   ════════════════════════════════════════════════════════════ */
 
   describe('T038: BM25 integration with hybrid search pipeline', () => {
@@ -508,7 +508,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     T039: combined_lexical_search() merges FTS5 + BM25 results
+     Combined_lexical_search merges FTS5 + BM25 results
   ════════════════════════════════════════════════════════════ */
 
   describe('T039: combined_lexical_search() merges FTS5 + BM25', () => {

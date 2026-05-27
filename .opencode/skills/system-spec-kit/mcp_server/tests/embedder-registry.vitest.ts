@@ -1,8 +1,8 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: Embedder registry (016/001)
+// TEST: Embedder registry
 // ───────────────────────────────────────────────────────────────
 // Pure types + frozen manifest tests. No runtime adapter wiring is
-// validated here (that's phase 016/002+).
+// Validated here (that's)
 // ───────────────────────────────────────────────────────────────
 
 import { describe, it, expect } from 'vitest';

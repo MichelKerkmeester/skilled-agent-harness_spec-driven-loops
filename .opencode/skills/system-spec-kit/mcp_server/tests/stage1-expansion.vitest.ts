@@ -1,5 +1,5 @@
 // TEST: Stage-1 Candidate Gen — Expansion & Dedup
-// Covers CHK-016: stage1-candidate-gen.ts orchestrates expansion
+// Covers: stage1-candidate-gen.ts orchestrates expansion
 // T1: Stage-1 calls expansion when enabled (R12 path)
 // T2: Deduplication works correctly — baseline-first ordering
 // T3: Expansion suppressed for simple queries (R15 mutual exclusion)

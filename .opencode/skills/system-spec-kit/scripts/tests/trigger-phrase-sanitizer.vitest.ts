@@ -76,7 +76,7 @@ describe('trigger-phrase sanitizer', () => {
     expect(falsePositives).toEqual([]);
   });
 
-  // ─── T237: Whitespace-only trigger phrases ──────────────────
+  // ───:Whitespace-only trigger phrases ──────────────────
 
   it('T237: whitespace-only strings should not count as valid trigger phrases', () => {
     // Finding #18: scoreTriggerQuality() uses raw array length with no

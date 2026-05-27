@@ -12,7 +12,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
 
   describe('classifyTier() with partial TierInput objects', () => {
 
-    // T-TC-01: Minimal object {id: 1, importance_tier: 'normal'}
+    // Minimal object {id:1, importance_tier:'normal'}
     it('T-TC-01: accepts minimal {id, importance_tier}', () => {
       const r = tierClassifier.classifyTier({ id: 1, importance_tier: 'normal' });
       expect(r).toBeTruthy();
@@ -20,21 +20,21 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
       expect(typeof r.retrievability).toBe('number');
     });
 
-    // T-TC-02: Constitutional tier with just {id, importance_tier}
+    // Constitutional tier with just {id, importance_tier}
     it('T-TC-02: Constitutional always HOT', () => {
       const r = tierClassifier.classifyTier({ id: 2, importance_tier: 'constitutional' });
       expect(r.state).toBe('HOT');
       expect(r.retrievability).toBe(1.0);
     });
 
-    // T-TC-03: Critical tier with minimal input
+    // Critical tier with minimal input
     it('T-TC-03: Critical always HOT, null halfLife', () => {
       const r = tierClassifier.classifyTier({ id: 3, importance_tier: 'critical' });
       expect(r.state).toBe('HOT');
       expect(r.effectiveHalfLife).toBeNull();
     });
 
-    // T-TC-04: Each importance_tier value with minimal object
+    // Each importance_tier value with minimal object
     it.each([
       'constitutional',
       'critical',
@@ -49,7 +49,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
       expect(validStates).toContain(r.state);
     });
 
-    // T-TC-05: Object with only {id} (no importance_tier)
+    // Object with only {id} (no importance_tier)
     it('T-TC-05: Object with only {id} — defaults applied', () => {
       const r = tierClassifier.classifyTier({ id: 50 });
       expect(r).toBeTruthy();
@@ -63,7 +63,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
 
   describe('classifyTier() with extra arbitrary fields (Record<string, unknown>)', () => {
 
-    // T-TC-06: Extra fields should be ignored, not cause errors
+    // Extra fields should be ignored, not cause errors
     it('T-TC-06: Extra arbitrary fields accepted', () => {
       const r = tierClassifier.classifyTier({
         id: 100,
@@ -79,7 +79,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
       expect(typeof r.state).toBe('string');
     });
 
-    // T-TC-07: Search-enriched object (typical handler output)
+    // Search-enriched object (typical handler output)
     it('T-TC-07: Search-enriched object accepted', () => {
       const searchResult = {
         id: 200,
@@ -107,7 +107,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
 
   describe('filterAndLimitByState() with mixed-shape objects', () => {
 
-    // T-TC-08: Mix of MemoryDbRow-shaped (snake_case) and camelCase objects
+    // Mix of MemoryDbRow-shaped (snake_case) and camelCase objects
     it('T-TC-08: Mixed-shape objects processed', () => {
       const memories = [
         // Snake_case (DB row style)
@@ -124,7 +124,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
       expect(Array.isArray(filtered)).toBe(true);
     });
 
-    // T-TC-09: Filter to HOT state with mixed shapes
+    // Filter to HOT state with mixed shapes
     it('T-TC-09: HOT filter finds constitutional', () => {
       const memories = [
         { id: 1, importance_tier: 'constitutional', stability: 1.0 },
@@ -144,7 +144,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
 
   describe('getStateStats() with TierInput objects', () => {
 
-    // T-TC-10: Stats work with partial objects
+    // Stats work with partial objects
     it('T-TC-10: Stats count partial objects', () => {
       const memories = [
         { id: 1, importance_tier: 'constitutional', stability: 1.0 },
@@ -156,7 +156,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
       expect(stats.total).toBe(3);
     });
 
-    // T-TC-11: Stats with search-enriched objects
+    // Stats with search-enriched objects
     it('T-TC-11: Stats with enriched objects', () => {
       const memories = [
         { id: 1, importance_tier: 'constitutional', similarity: 0.95, attentionScore: 1.0 },
@@ -176,7 +176,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
 
   describe('formatStateResponse() with TierInput objects', () => {
 
-    // T-TC-12: Mixed snake_case and camelCase field names
+    // Mixed snake_case and camelCase field names
     it('T-TC-12: formatStateResponse with mixed shapes', () => {
       const memories = [
         { id: 1, title: 'Test One', spec_folder: 'specs/001', file_path: '/a.md', importance_tier: 'constitutional', stability: 1.0 },
@@ -194,7 +194,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
       expect(allValid).toBe(true);
     });
 
-    // T-TC-13: Object without title gets "Untitled"
+    // Object without title gets "Untitled"
     it('T-TC-13: Missing title defaults to "Untitled"', () => {
       const formatted = tierClassifier.formatStateResponse([
         { id: 99, importance_tier: 'constitutional', stability: 1.0, extraField: 'hello' },
@@ -209,7 +209,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
 
   describe('shouldArchive() with TierInput objects', () => {
 
-    // T-TC-14: Partial object with extra fields
+    // Partial object with extra fields
     it('T-TC-14: shouldArchive with extra fields', () => {
       const result = tierClassifier.shouldArchive({
         id: 1,
@@ -222,7 +222,7 @@ describe('Tier Classifier — Type Unification (TierInput)', () => {
       expect(typeof result).toBe('boolean');
     });
 
-    // T-TC-15: Constitutional with extra fields still never archives
+    // Constitutional with extra fields still never archives
     it('T-TC-15: Constitutional never archives (with extras)', () => {
       const result = tierClassifier.shouldArchive({
         id: 2,

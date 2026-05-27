@@ -12,7 +12,7 @@ import { afterAll, describe, expect, it } from 'vitest';
 
 import { handleSessionResume } from '../../handlers/session-resume.js';
 
-// F-015-C5-01: capture the cwd at module load instead of hard-coding the
+// Capture the cwd at module load instead of hard-coding the
 // original developer's checkout path. The test changes cwd inside its `it`
 // block via process.chdir(TEMP_ROOT) and must restore the original in afterAll.
 const ORIGINAL_CWD = process.cwd();
@@ -123,7 +123,7 @@ function parseResumePayload(text: string): ResumePayload {
 writeFixtureDocs();
 
 afterAll(() => {
-  // F-015-C5-01: restore the cwd captured at module load (not a hard-coded path)
+  // Restore the cwd captured at module load (not a hard-coded path)
   process.chdir(ORIGINAL_CWD);
   fs.rmSync(TEMP_ROOT, { recursive: true, force: true });
 });

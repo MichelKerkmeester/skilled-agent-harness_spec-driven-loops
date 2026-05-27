@@ -13,7 +13,7 @@ type TruncateInput = Parameters<typeof peGate.truncateContent>[0];
 
 describe('Prediction Error Gate Module', () => {
   /* ───────────────────────────────────────────────────────────────
-     T101-T104: Threshold Constants
+     Threshold Constants
   ──────────────────────────────────────────────────────────────── */
 
   describe('T101-T104: Threshold Constants', () => {
@@ -41,7 +41,7 @@ describe('Prediction Error Gate Module', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T105-T112: evaluateMemory()
+     EvaluateMemory
      Production signature: evaluateMemory(contentHash, content, candidates, options)
      Candidates have similarity in 0-1 scale (normalized by findSimilarMemories)
   ──────────────────────────────────────────────────────────────── */
@@ -89,7 +89,7 @@ describe('Prediction Error Gate Module', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T113-T125: Contradiction Detection
+     Contradiction Detection
      Production: detectContradiction(newContent, existingContent)
      Returns: { detected: boolean, type: string|null, description: string|null, confidence: number }
      Patterns: negation, replacement, deprecation, correction, clarification, prohibition, obsolescence, explicit
@@ -179,7 +179,7 @@ describe('Prediction Error Gate Module', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T126-T132: Action Constants & Decision Logic
+     Action Constants & Decision Logic
   ──────────────────────────────────────────────────────────────── */
 
   describe('T126-T132: Action Constants & Decision Logic', () => {
@@ -230,7 +230,7 @@ describe('Prediction Error Gate Module', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T136-T145: Edge Cases
+     Edge Cases
   ──────────────────────────────────────────────────────────────── */
 
   describe('T136-T145: Edge Cases', () => {
@@ -261,7 +261,7 @@ describe('Prediction Error Gate Module', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T146-T155: Helper Functions
+     Helper Functions
   ──────────────────────────────────────────────────────────────── */
 
   describe('T146-T155: Helper Functions', () => {
@@ -348,7 +348,7 @@ describe('Prediction Error Gate Module', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T156-T165: Conflict Logging
+     Conflict Logging
   ──────────────────────────────────────────────────────────────── */
 
   describe('T156-T165: Conflict Logging', () => {
@@ -472,7 +472,7 @@ describe('Prediction Error Gate Module', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T162-T165: batchEvaluate()
+     BatchEvaluate
   ──────────────────────────────────────────────────────────────── */
 
   describe('T162-T165: batchEvaluate()', () => {

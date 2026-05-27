@@ -1,4 +1,4 @@
-// TEST: EXTRACTION ADAPTER (T029-T037)
+// TEST: EXTRACTION ADAPTER
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import Database from 'better-sqlite3';
 import * as workingMemory from '../lib/cognitive/working-memory';

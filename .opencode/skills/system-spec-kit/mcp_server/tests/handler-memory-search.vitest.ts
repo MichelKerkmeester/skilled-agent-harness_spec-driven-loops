@@ -323,7 +323,7 @@ describe('Packet 009 publication gate consumer', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T002: Chunk Collapse Dedup — G3 Fix
+   Chunk Collapse Dedup — G3 Fix
    collapseAndReassembleChunkResults is exported via __testables.
    Tests verify dedup runs regardless of the includeContent flag.
 ──────────────────────────────────────────────────────────────── */

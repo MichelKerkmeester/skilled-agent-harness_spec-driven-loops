@@ -6,10 +6,10 @@ type ImportanceTier = keyof typeof mod.IMPORTANCE_TIERS;
 // TEST: IMPORTANCE TIERS
 // Validates tier recognition, ordering, boost values, normalization,
 // Comparison, and decay/search behavior per tier.
-// Task ID: T504
+// Task ID
 describe('Importance Tiers (T504)', () => {
 
-  // 4.1 TIER RECOGNITION (T504-01)
+  // 4.1 TIER RECOGNITION
   describe('Tier Recognition (T504-01)', () => {
     it('T504-01: All 6 tiers recognized', () => {
       const expectedTiers: ImportanceTier[] = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
@@ -26,7 +26,7 @@ describe('Importance Tiers (T504)', () => {
     });
   });
 
-  // 4.2 TIER ORDERING (T504-02)
+  // 4.2 TIER ORDERING
   describe('Tier Ordering (T504-02)', () => {
     it('T504-02: Tier ordering is correct (constitutional > ... > deprecated)', () => {
       const values = {
@@ -46,7 +46,7 @@ describe('Importance Tiers (T504)', () => {
     });
   });
 
-  // 4.3 TIER BOOST VALUES (T504-03)
+  // 4.3 TIER BOOST VALUES
   describe('Tier Boost Values (T504-03)', () => {
     it('T504-03: Tier boost values are correct', () => {
       const expectedBoosts: Record<ImportanceTier, number> = {
@@ -71,7 +71,7 @@ describe('Importance Tiers (T504)', () => {
     });
   });
 
-  // 4.4 UNKNOWN TIER RETURNS DEFAULT (T504-04)
+  // 4.4 UNKNOWN TIER RETURNS DEFAULT
   describe('Unknown Tier Returns Default (T504-04)', () => {
     it('T504-04a: DEFAULT_TIER is "normal"', () => {
       expect(mod.DEFAULT_TIER).toBe('normal');
@@ -95,7 +95,7 @@ describe('Importance Tiers (T504)', () => {
     });
   });
 
-  // 4.5 TIER STRING NORMALIZATION (T504-05)
+  // 4.5 TIER STRING NORMALIZATION
   describe('Tier String Normalization (T504-05)', () => {
     it('T504-05: Tier string normalization (case)', () => {
       const tests: Array<{ input: string | null | undefined; expected: ImportanceTier }> = [
@@ -115,7 +115,7 @@ describe('Importance Tiers (T504)', () => {
     });
   });
 
-  // 4.6 TIER TRANSITIONS (T504-06)
+  // 4.6 TIER TRANSITIONS
   describe('Tier Transitions (T504-06)', () => {
     it('T504-06: Tier decay transitions work correctly', () => {
       const decayExpectations: Record<ImportanceTier, boolean> = {
@@ -138,7 +138,7 @@ describe('Importance Tiers (T504)', () => {
     });
   });
 
-  // 4.7 TIER COMPARISON (T504-07)
+  // 4.7 TIER COMPARISON
   describe('Tier Comparison (T504-07)', () => {
     it('T504-07: Tier comparison function', () => {
       const critVsNormal = mod.compareTiers('critical', 'normal');
@@ -151,7 +151,7 @@ describe('Importance Tiers (T504)', () => {
     });
   });
 
-  // 4.8 TIER VALUE AND MULTIPLIER (T504-08)
+  // 4.8 TIER VALUE AND MULTIPLIER
   describe('Tier Values (T504-08)', () => {
     it('T504-08: Tier value/multiplier values', () => {
       const expectedValues: Record<ImportanceTier, number> = {
@@ -191,7 +191,7 @@ describe('Importance Tiers (T504)', () => {
     });
   });
 
-  // 4.9 DOCUMENT TYPE DEFAULTS (T504-09)
+  // 4.9 DOCUMENT TYPE DEFAULTS
   describe('Document Type Defaults (T504-09)', () => {
     it('T504-09a: Hyphenated and spaced document types normalize correctly', () => {
       expect(mod.getDefaultTierForDocumentType('decision-record')).toBe('important');

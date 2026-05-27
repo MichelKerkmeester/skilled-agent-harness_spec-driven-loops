@@ -30,7 +30,7 @@ describe('Signal Vocabulary (T012)', () => {
     delete process.env.SPECKIT_SIGNAL_VOCAB;
   });
 
-  // --- T012-01: CORRECTION signal detected ----------------------
+  // CORRECTION signal detected
   describe('T012-01: CORRECTION signal detection', () => {
     it('detects "actually" as a CORRECTION signal', () => {
       const signals = detectSignals('actually, I was wrong about that');
@@ -62,7 +62,7 @@ describe('Signal Vocabulary (T012)', () => {
     });
   });
 
-  // --- T012-02: PREFERENCE signal detected ----------------------
+  // PREFERENCE signal detected
   describe('T012-02: PREFERENCE signal detection', () => {
     it('detects "prefer" as a PREFERENCE signal', () => {
       const signals = detectSignals('I prefer to always use TypeScript');
@@ -101,7 +101,7 @@ describe('Signal Vocabulary (T012)', () => {
     });
   });
 
-  // --- T012-03: Neutral prompt — no signals detected ------------
+  // Neutral prompt — no signals detected
   describe('T012-03: No signals for neutral prompt', () => {
     it('returns empty array for a neutral prompt', () => {
       const signals = detectSignals('search for memory context');
@@ -119,7 +119,7 @@ describe('Signal Vocabulary (T012)', () => {
     });
   });
 
-  // --- T012-04: Multiple signals in a single prompt -------------
+  // Multiple signals in a single prompt
   describe('T012-04: Multiple signals in one prompt', () => {
     it('detects both CORRECTION and PREFERENCE in same prompt', () => {
       const signals = detectSignals('actually, I prefer to use ESM imports');
@@ -137,7 +137,7 @@ describe('Signal Vocabulary (T012)', () => {
     });
   });
 
-  // --- T012-05: Signal boost applied correctly ------------------
+  // Signal boost applied correctly
   describe('T012-05: Signal boost applied to importanceWeight', () => {
     it('applySignalBoosts increases importanceWeight by correction boost', () => {
       const matches = [
@@ -187,7 +187,7 @@ describe('Signal Vocabulary (T012)', () => {
     });
   });
 
-  // --- T012-06: importanceWeight capped at 1.0 ------------------
+  // ImportanceWeight capped at 1.0
   describe('T012-06: importanceWeight capped at 1.0', () => {
     it('caps importanceWeight at 1.0 for high starting weight with correction boost', () => {
       const matches = [
@@ -239,7 +239,7 @@ describe('Signal Vocabulary (T012)', () => {
     });
   });
 
-  // --- T012-07: Flag disabled = no boost (backward compat) ------
+  // Flag disabled = no boost (backward compat)
   describe('T012-07: SPECKIT_SIGNAL_VOCAB flag controls activation', () => {
     it('does NOT apply signal boosts when SPECKIT_SIGNAL_VOCAB is explicitly false', () => {
       process.env.SPECKIT_SIGNAL_VOCAB = 'false';
@@ -268,7 +268,7 @@ describe('Signal Vocabulary (T012)', () => {
     });
   });
 
-  // --- T012-08: CORRECTION and PREFERENCE keyword lists exported --
+  // CORRECTION and PREFERENCE keyword lists exported
   describe('T012-08: Exported keyword constants', () => {
     it('CORRECTION_KEYWORDS is a non-empty array of strings', () => {
       expect(Array.isArray(CORRECTION_KEYWORDS)).toBe(true);

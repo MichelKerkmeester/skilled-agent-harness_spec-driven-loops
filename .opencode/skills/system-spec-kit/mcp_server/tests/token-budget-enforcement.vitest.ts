@@ -11,7 +11,7 @@ const PROJECT_ROOT = path.resolve(__dirname, '..');
 
 describe('T205: Token Budget Enforcement [deferred - requires DB test fixtures]', () => {
   // =========================================================
-  // T205-A: Layer Definition Token Budgets
+  // Layer Definition Token Budgets
   // =========================================================
   describe('T205-A: Layer Token Budgets', () => {
     it('T205-A1: All layer token budgets correct', () => {

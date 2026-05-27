@@ -1,4 +1,4 @@
-// TEST: deep-review reducer fail-closed behavior (phase 008 REQ-015, REQ-016)
+// TEST: deep-review reducer fail-closed behavior
 //
 // Covers:
 //  - Test 1: malformed JSONL triggers corruptionWarnings + non-zero exit unless --lenient

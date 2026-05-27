@@ -589,7 +589,7 @@ describe('shadow-evaluation-runtime', () => {
     expect(report?.comparisons).toHaveLength(1);
   });
 
-  // T255: Add concurrency/singleton guard tests
+  // Add concurrency/singleton guard tests
   it('prevents concurrent scheduler starts (singleton guard)', async () => {
     vi.useFakeTimers();
     insertSearchEvent(db, 1101, 'singleton query', new Date().toISOString());

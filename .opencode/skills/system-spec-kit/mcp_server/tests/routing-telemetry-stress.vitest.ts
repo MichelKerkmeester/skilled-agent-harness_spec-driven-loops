@@ -4,7 +4,7 @@
 // Stress coverage for routing-telemetry ring buffer + routeQuery latency
 // at higher N than the 012-T4.1 microbenchmark (200-iter), plus cache-
 // invalidation behavior under repeated invocations. Authored as scenario 3
-// closeout for packet 009-causal-graph-channel-routing.
+// Closeout for -causal-graph-channel-routing
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { routeQuery } from '../lib/search/query-router';
@@ -143,7 +143,7 @@ describe('012-S2: routeQuery latency under 1k-iter burst', () => {
     const p99 = samples[Math.floor(N * 0.99) - 1];
     const p50 = samples[Math.floor(N * 0.50) - 1];
 
-    // 5ms budget per spec REQ-005, validated at 5x the 012-T4.1 N=200 size.
+    // 5ms budget per spec, validated at 5x the 012-T4.1 N=200 size
     expect(p99).toBeLessThan(5);
     // p50 should be much tighter — sanity check that we're not riding the
     // budget ceiling on average.

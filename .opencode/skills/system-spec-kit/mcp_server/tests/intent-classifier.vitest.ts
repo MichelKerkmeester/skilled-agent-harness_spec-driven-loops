@@ -70,7 +70,7 @@ const TEST_QUERIES: Record<ClassifiableIntent, string[]> = {
 };
 
 /* ───────────────────────────────────────────────────────────────
-   T036: INTENT TYPES TESTS
+   INTENT TYPES TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T036: Intent Types', () => {
@@ -111,7 +111,7 @@ describe('T036: Intent Types', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T037: QUERY CLASSIFIER TESTS
+   QUERY CLASSIFIER TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T037: Query Classifier', () => {

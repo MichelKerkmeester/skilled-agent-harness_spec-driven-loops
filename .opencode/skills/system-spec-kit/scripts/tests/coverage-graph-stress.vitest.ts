@@ -1,5 +1,5 @@
 /**
- * Coverage Graph Stress Tests (Phase 006 — REQ-GT-007, REQ-GT-008)
+ * Coverage Graph Stress Tests (REQ-GT-007, REQ-GT-008)
  *
  * Performance and correctness validation at scale:
  *   - 1000+ node graph construction and query

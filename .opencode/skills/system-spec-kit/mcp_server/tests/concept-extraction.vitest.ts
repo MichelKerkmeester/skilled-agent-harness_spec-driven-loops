@@ -1,4 +1,4 @@
-// TEST: Phase B T022 — Concept Extraction
+// TEST: Phase B — Concept Extraction
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {

@@ -291,7 +291,7 @@ describe('stateless enrichment guardrails', () => {
     ]));
   });
 
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('keeps only project-confined file targets when spec docs list absolute paths', async () => {
     const specRoot = makeTempRoot('speckit-spec-folder-absolute-paths-');
     const projectAbsolutePath = path.join(
@@ -347,7 +347,7 @@ describe('stateless enrichment guardrails', () => {
     ]));
   });
 
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('uses spec-declared file targets to scope git context beyond the spec folder path itself', async () => {
     const repoRoot = makeTempRoot('speckit-git-context-');
     const specFolderPath = path.join(repoRoot, '.opencode', 'specs', 'system-spec-kit', '022-hybrid-rag-fusion', '009-perfect-session-capturing');

@@ -5,7 +5,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { TIER_MULTIPLIER } from '../lib/cognitive/fsrs-scheduler';
 
 // TEST: FSRS SCHEDULER (Vitest)
-// Covers: T016-T020, T034-T037, T048-T050
+// Covers
 type FsrsSchedulerModule = typeof import('../lib/cognitive/fsrs-scheduler');
 type PredictionErrorGateModule = typeof import('../lib/cognitive/prediction-error-gate');
 
@@ -25,7 +25,7 @@ beforeAll(async () => {
   }
 });
 
-// 4.1 FSRS RETRIEVABILITY TESTS (T016-T018)
+// 4.1 FSRS RETRIEVABILITY TESTS
 describe('FSRS Retrievability Calculation (T016-T018)', () => {
   it('T016: Just reviewed = full retrievability', () => {
     if (!fsrsScheduler?.calculateRetrievability) return;
@@ -48,7 +48,7 @@ describe('FSRS Retrievability Calculation (T016-T018)', () => {
   });
 });
 
-// 4.2 FSRS STABILITY UPDATE TESTS (T019-T020)
+// 4.2 FSRS STABILITY UPDATE TESTS
 describe('FSRS Stability Update (T019-T020)', () => {
   it('T019: Success grade increases stability', () => {
     if (!fsrsScheduler?.updateStability) return;
@@ -144,7 +144,7 @@ describe('FSRS Input Validation', () => {
   });
 });
 
-// 4.5 PREDICTION ERROR GATE TESTS (T034-T037)
+// 4.5 PREDICTION ERROR GATE TESTS
 describe('Prediction Error Gate (T034-T037)', () => {
   const newContent = 'Test memory content for evaluation';
   const dummyHash = 'test-hash-001';
@@ -222,7 +222,7 @@ describe('PE Gate Threshold Boundaries', () => {
   });
 });
 
-// 4.7 TESTING EFFECT TESTS (T048-T050)
+// 4.7 TESTING EFFECT TESTS
 describe('Testing Effect (T048-T050)', () => {
   it('T048: Retrievability factor affects search ranking', () => {
     if (!fsrsScheduler?.calculateRetrievability) return;

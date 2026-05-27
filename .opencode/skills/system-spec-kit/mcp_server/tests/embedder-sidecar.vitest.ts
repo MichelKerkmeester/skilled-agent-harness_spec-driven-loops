@@ -1,5 +1,5 @@
 // -------------------------------------------------------------------
-// TEST: Embedder sidecar execution (016/002/010)
+// TEST: Embedder sidecar execution
 // -------------------------------------------------------------------
 
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';

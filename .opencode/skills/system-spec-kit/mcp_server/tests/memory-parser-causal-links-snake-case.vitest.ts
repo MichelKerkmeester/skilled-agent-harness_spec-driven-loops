@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: memory-parser snake_case causal_links tests
 // ───────────────────────────────────────────────────────────────
-// F-008-B3-01: extractCausalLinks now matches both `causalLinks:` and
+// ExtractCausalLinks now matches both `causalLinks: ` and
 // `causal_links:` block headers. Behavior is identical for callers
 // using camelCase; snake_case fixtures used elsewhere in the parser
 // ecosystem now produce the same output.

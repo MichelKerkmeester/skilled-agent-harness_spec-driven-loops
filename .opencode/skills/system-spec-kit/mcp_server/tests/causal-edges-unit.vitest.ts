@@ -55,7 +55,7 @@ describe('Causal Edges Unit Tests', () => {
       )
     `);
 
-    // T001d: weight_history for audit tracking
+    // Weight_history for audit tracking
     testDb.exec(`
       CREATE TABLE IF NOT EXISTS weight_history (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -770,7 +770,7 @@ describe('Causal Edges Unit Tests', () => {
       }
     });
 
-    // 008/D17: confirm the search-utils cache key threads the generation
+    // Confirm the search-utils cache key threads the generation
     // counter ONLY when enableCausalBoost === true. Pre-D17 the existing
     // unit tests verified the counter increments but not the gating
     // wiring at memory_search level. This test verifies the gating
@@ -938,7 +938,7 @@ describe('Causal Edges Unit Tests', () => {
 
       const stats = causalEdges.getGraphStats();
       expect(stats.totalEdges).toBe(2);
-      // Handler-level coverage should exclude orphaned IDs (T004 fix).
+      // Handler-level coverage should exclude orphaned IDs (fix)
     });
 
     it('T005-R2: Non-orphaned edges should not be flagged', () => {

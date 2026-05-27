@@ -85,7 +85,7 @@ const mockDb = {
 } as unknown as Database.Database;
 
 /* ───────────────────────────────────────────────────────────────
-   FAKE GRAPH RESULTS (3 results as specified in T021)
+   FAKE GRAPH RESULTS (3 results as specified in)
 ──────────────────────────────────────────────────────────────── */
 
 const FAKE_GRAPH_RESULTS: ReturnType<GraphSearchFn> = [

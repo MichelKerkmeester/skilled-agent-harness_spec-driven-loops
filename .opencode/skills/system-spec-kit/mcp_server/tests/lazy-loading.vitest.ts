@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-// TEST: Lazy Loading Startup Behavior (T016-T019)
+// TEST: Lazy Loading Startup Behavior
 // Architecture-aligned replacement for legacy deferred placeholder.
 
 const ENV_KEYS = [

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // 1. GRAPH REGRESSION FLAG OFF VITEST
 // ───────────────────────────────────────────────────────────────
-// TEST: GRAPH REGRESSION - FLAG CONTRACT + NULL-WIRING SAFETY (T022)
+// TEST: GRAPH REGRESSION - FLAG CONTRACT + NULL-WIRING SAFETY
 // Verifies SPECKIT_GRAPH_UNIFIED env semantics and behavior when
 // Hybrid-search is explicitly initialized with graphFn = null.
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
@@ -27,7 +27,7 @@ function buildStubDb() {
   };
 }
 
-// SUITE: T022 — Graph Channel Bypassed When Flag Is Off
+// SUITE: Graph Channel Bypassed When Flag Is Off
 describe('T022: Graph Channel Feature Flag Regression', () => {
 
   /* ───────────────────────────────────────────────────────────────
@@ -45,8 +45,8 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
       expect(isGraphUnifiedEnabled()).toBe(true);
     });
 
-    // NOTE: T022-2 covers the hybridSearch graphFn=null behavior and lives in the
-    // Nested describe('T022-2: hybridSearch — graph search fn NOT called...') group below.
+    // NOTE: covers the hybridSearch graphFn=null behavior and lives in the
+    // Nested describe(':hybridSearch — graph search fn NOT called...') group below
 
     it('T022-3: Flag returns true when env var is exactly "true"', () => {
       process.env.SPECKIT_GRAPH_UNIFIED = 'true';

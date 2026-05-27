@@ -1,4 +1,4 @@
-// TEST: Chunking Orchestrator Safe-Swap Regressions (T013)
+// TEST: Chunking Orchestrator Safe-Swap Regressions
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import Database from 'better-sqlite3';
 

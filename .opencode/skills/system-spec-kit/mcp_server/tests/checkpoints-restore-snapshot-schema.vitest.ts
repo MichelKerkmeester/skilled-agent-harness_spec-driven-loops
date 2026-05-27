@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Checkpoint snapshot schema tests
 // ───────────────────────────────────────────────────────────────
-// F-005-A5-06: restoreCheckpoint validates the decompressed snapshot
+// RestoreCheckpoint validates the decompressed snapshot
 // against CheckpointSnapshotSchema and quarantines malformed rows
 // in result.errors instead of propagating untyped data.
 

@@ -1,4 +1,4 @@
-// TEST: Phase B T023 — Community Search Fallback
+// TEST: Phase B — Community Search Fallback
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import Database from 'better-sqlite3';
 

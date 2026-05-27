@@ -158,7 +158,7 @@ function queryHash(q: string): number {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   T031-01: SYNTHETIC QUERY CORPUS VERIFICATION
+   SYNTHETIC QUERY CORPUS VERIFICATION
    ──────────────────────────────────────────────────────────────── */
 
 describe('T031-01: Synthetic Query Corpus', () => {
@@ -193,7 +193,7 @@ describe('T031-01: Synthetic Query Corpus', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T031-02: CHANNEL COUNT PER TIER VERIFICATION
+   CHANNEL COUNT PER TIER VERIFICATION
    ──────────────────────────────────────────────────────────────── */
 
 describe('T031-02: Channel Count Per Tier', () => {
@@ -224,7 +224,7 @@ describe('T031-02: Channel Count Per Tier', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T031-03: SIMULATED TIMING COMPARISON
+   SIMULATED TIMING COMPARISON
    ──────────────────────────────────────────────────────────────── */
 
 describe('T031-03: Simulated Timing (Channel Count Proxy)', () => {
@@ -269,7 +269,7 @@ describe('T031-03: Simulated Timing (Channel Count Proxy)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T031-04: RESULT OVERLAP (JACCARD SIMILARITY)
+   RESULT OVERLAP (JACCARD SIMILARITY)
    ──────────────────────────────────────────────────────────────── */
 
 describe('T031-04: Result Overlap — Jaccard Similarity', () => {
@@ -333,7 +333,7 @@ describe('T031-04: Result Overlap — Jaccard Similarity', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T031-05: ROUTING CORRECTNESS ON SYNTHETIC CORPUS
+   ROUTING CORRECTNESS ON SYNTHETIC CORPUS
    ──────────────────────────────────────────────────────────────── */
 
 describe('T031-05: Routing Correctness on Synthetic Corpus', () => {

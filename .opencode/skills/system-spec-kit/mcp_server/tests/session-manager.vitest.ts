@@ -5,9 +5,9 @@ import Database from 'better-sqlite3';
 import * as sessionManager from '../lib/session/session-manager';
 import { extractSpecFolder } from '../lib/parsing/memory-parser';
 
-// TESTS: SESSION MANAGER (T001-T008)
-// T001-T008: Core session deduplication functionality
-// REQ-001: Session Deduplication - Hash-based duplicate prevention
+// TESTS: SESSION MANAGER
+// Core session deduplication functionality
+// Session Deduplication - Hash-based duplicate prevention
 
 interface SessionConfig {
   sessionTtlMinutes: number;

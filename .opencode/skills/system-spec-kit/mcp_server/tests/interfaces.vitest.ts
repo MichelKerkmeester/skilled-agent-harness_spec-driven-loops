@@ -1,4 +1,4 @@
-// TESTS: Protocol Abstractions (T084, T085, T086)
+// TESTS: Protocol Abstractions ()
 import { describe, it, expect } from 'vitest';
 import { IVectorStore } from '../lib/interfaces/vector-store';
 // Note: SQLiteVectorStore import deferred to Phase 2 (DB-dependent tests)

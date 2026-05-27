@@ -15,7 +15,7 @@ import type {
 
 // TESTS: CORRECTIONS MODULE
 // Phase 3 of SpecKit Reimagined - Learning from Corrections
-// Tasks: T052-T055, T142-T147
+// Tasks
 /* ───────────────────────────────────────────────────────────────
    TEST SETUP
 ──────────────────────────────────────────────────────────────── */

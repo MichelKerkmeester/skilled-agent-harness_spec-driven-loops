@@ -91,10 +91,10 @@ describe('parseObjectLiteralArgs', () => {
     const runtimeState = createRuntimeState();
     runtimeState.lastJobId = 'job-42"});globalThis.__manualPlaybookInjected = true;//';
 
-    // T-MPR-RUN-04 / R46-003: adversarial lastJobId fails the nanoid allowlist
+    // Adversarial lastJobId fails the nanoid allowlist
     // and substitution now refuses rather than passing the payload through. This
     // layered defense works together with the typed parser's string boundary
-    // enforcement (T-MPR-RUN-01) to keep `Function(...)`-shaped payloads from
+    // Enforcement to keep `Function(...)`-shaped payloads from
     // ever reaching any interpreter surface.
     expect(() => parseObjectLiteralArgs(
       '{ jobId:"<job-id>" }',
@@ -164,7 +164,7 @@ describe('discoverScenarioDefinitions', () => {
   });
 });
 
-// T-MPR-RUN-02 / R42-003: automatable metadata is read from scenario content
+// Automatable metadata is read from scenario content
 // (frontmatter or SOURCE METADATA), not inferred from filename substrings.
 describe('parseAutomatableMetadata', () => {
   it('reads automatable: false from frontmatter with optional reason', () => {
@@ -245,7 +245,7 @@ describe('parseAutomatableMetadata', () => {
   });
 });
 
-// T-MPR-RUN-04 / R46-003: adversarial placeholder injection must not reach the
+// Adversarial placeholder injection must not reach the
 // tokenizer. The sanitizer rejects anything outside a strict nanoid allowlist; the
 // parser must reject any remaining unreplaced `<job-id>` token so attackers cannot
 // influence the evaluated argument map through prior handler payloads.
@@ -281,7 +281,7 @@ describe('sanitizeJobIdForSubstitution (T-MPR-RUN-04)', () => {
   });
 });
 
-// T-MPR-RUN-05 / R50-002: tool-argument schemas reject unknown keys and missing
+// Tool-argument schemas reject unknown keys and missing
 // required fields. Shorthand dialect (`{jobId}`) is already blocked by
 // parseObjectLiteralArgs; the schema layer catches the partial-args case
 // (e.g. when defaults merge onto parsed fragments).
@@ -316,7 +316,7 @@ describe('validateToolArgsSchema (T-MPR-RUN-05)', () => {
   });
 });
 
-// T-MPR-RUN-05 / R50-002: the two incompatible argument dialects observed in
+// The two incompatible argument dialects observed in
 // the live corpus must yield distinct outcomes — the shorthand form is rejected
 // outright so documentation-quality drift cannot crash lifecycle checks.
 describe('shorthand dialect rejection (T-MPR-RUN-05)', () => {

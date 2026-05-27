@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// 1. TEST - TRACE PROPAGATION CHAIN (CHK-038)
+// 1. TEST - TRACE PROPAGATION CHAIN
 // ───────────────────────────────────────────────────────────────
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import * as hybridSearch from '../lib/search/hybrid-search';

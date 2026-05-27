@@ -2,7 +2,7 @@
 // TEST — Entity Density (012)
 // ───────────────────────────────────────────────────────────────
 // Cached high-degree title/trigger lookup used by shouldPreserveGraph
-// (REQ-003 + REQ-006).
+
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import Database from 'better-sqlite3';
@@ -112,7 +112,7 @@ describe('012-ED-1: getEntityDensityScore', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   012-ED-2: COLD START (REQ-006)
+   012-ED-2:COLD START
    ──────────────────────────────────────────────────────────────── */
 
 describe('012-ED-2: cold-start safety', () => {

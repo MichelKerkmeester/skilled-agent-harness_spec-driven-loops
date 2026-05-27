@@ -40,7 +40,7 @@ function approxEqual(a: number, b: number, epsilon = 1e-9): boolean {
 
 describe('Folder Relevance Scoring (t020)', () => {
   /* ───────────────────────────────────────────────────────────────
-     T020-01: FolderScore formula verification
+     FolderScore formula verification
      ──────────────────────────────────────────────────────────────── */
   describe('FolderScore formula', () => {
     it('T020-01: computes (1/sqrt(M+1)) * SUM(scores) for known inputs', () => {
@@ -78,7 +78,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-02: Damping factor verification
+     Damping factor verification
      ──────────────────────────────────────────────────────────────── */
   describe('Damping factor', () => {
     it('T020-02: folder with 9 results (damping=1/sqrt(10)) vs 1 result (damping=1/sqrt(2))', () => {
@@ -116,7 +116,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-03: Large folder damping — quality over quantity
+     Large folder damping — quality over quantity
      ──────────────────────────────────────────────────────────────── */
   describe('Large folder damping', () => {
     it('T020-03: folder with 100 low-score results does NOT dominate small high-quality folder', () => {
@@ -146,7 +146,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-04: Single folder — all results in one folder
+     Single folder — all results in one folder
      ──────────────────────────────────────────────────────────────── */
   describe('Single folder', () => {
     it('T020-04: all results in one folder returns single entry', () => {
@@ -172,7 +172,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-05: Empty results
+     Empty results
      ──────────────────────────────────────────────────────────────── */
   describe('Empty results', () => {
     it('T020-05a: empty results array returns empty map', () => {
@@ -190,7 +190,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-06: Mixed folders — 3+ folders with different sizes and scores
+     Mixed folders — 3+ folders with different sizes and scores
      ──────────────────────────────────────────────────────────────── */
   describe('Mixed folders', () => {
     it('T020-06: three folders with different sizes and scores computed correctly', () => {
@@ -233,7 +233,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-07: folderRank ordering — rank 1 = highest FolderScore
+     FolderRank ordering — rank 1 = highest FolderScore
      ──────────────────────────────────────────────────────────────── */
   describe('folderRank ordering', () => {
     it('T020-07: rank 1 assigned to highest FolderScore', () => {
@@ -265,7 +265,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-08: Feature flag — disabled returns original results
+     Feature flag — disabled returns original results
      ──────────────────────────────────────────────────────────────── */
   describe('Feature flag', () => {
     const originalEnv = process.env.SPECKIT_FOLDER_SCORING;
@@ -300,7 +300,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-09: Two-phase retrieval — only results from top-K folders
+     Two-phase retrieval — only results from top-K folders
      ──────────────────────────────────────────────────────────────── */
   describe('Two-phase retrieval', () => {
     it('T020-09: filters to results from top-K folders only', () => {
@@ -341,7 +341,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-10: Two-phase with K=1 — single folder
+     Two-phase with K=1 — single folder
      ──────────────────────────────────────────────────────────────── */
   describe('Two-phase K=1', () => {
     it('T020-10: K=1 returns results from only the top folder', () => {
@@ -373,7 +373,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-11: lookupFolders with mock DB
+     LookupFolders with mock DB
      ──────────────────────────────────────────────────────────────── */
   describe('lookupFolders', () => {
     it('T020-11a: returns correct mapping from mock database', () => {
@@ -414,7 +414,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-12: enrichResults preserves original fields
+     EnrichResults preserves original fields
      ──────────────────────────────────────────────────────────────── */
   describe('enrichResults preserves original fields', () => {
     it('T020-12: original fields are not lost after enrichment', () => {
@@ -447,7 +447,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-13: two-phase retrieval with empty inputs
+     Two-phase retrieval with empty inputs
      ──────────────────────────────────────────────────────────────── */
   describe('Two-phase edge cases', () => {
     it('T020-13a: empty results returns empty array', () => {
@@ -463,7 +463,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-14: enrichResults with empty input
+     EnrichResults with empty input
      ──────────────────────────────────────────────────────────────── */
   describe('enrichResults edge cases', () => {
     it('T020-14: empty results returns empty array', () => {
@@ -473,7 +473,7 @@ describe('Folder Relevance Scoring (t020)', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T020-15: string IDs handled correctly
+     String IDs handled correctly
      ──────────────────────────────────────────────────────────────── */
   describe('String ID handling', () => {
     it('T020-15: string IDs are converted to numbers for folderMap lookup', () => {

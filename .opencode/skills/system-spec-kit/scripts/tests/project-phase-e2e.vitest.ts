@@ -1,6 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: resolveProjectPhase — explicit override + inferred detection
-// Phase 002 CHK-028, CHK-029: projectPhase frontmatter propagation.
+// ProjectPhase frontmatter propagation
 // ───────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
@@ -55,7 +55,7 @@ function makeObservation(overrides: Partial<Observation> = {}): Observation {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   EXPLICIT OVERRIDE TESTS (CHK-028)
+   EXPLICIT OVERRIDE TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('resolveProjectPhase', () => {
@@ -102,7 +102,7 @@ describe('resolveProjectPhase', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     FALLBACK DETECTION (CHK-029)
+     FALLBACK DETECTION
   ──────────────────────────────────────────────────────────────── */
 
   describe('fallback detection when explicit is null/invalid (CHK-029)', () => {

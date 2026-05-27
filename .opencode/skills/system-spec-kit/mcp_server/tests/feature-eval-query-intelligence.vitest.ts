@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-// T001: Query complexity classifier
+// Query complexity classifier
 import {
   classifyQueryComplexity,
   SIMPLE_TERM_THRESHOLD,
@@ -13,14 +13,14 @@ import {
   hasTriggerMatch,
 } from '../lib/search/query-classifier';
 
-// T003: Channel min-representation R2
+// Channel min-representation R2
 import {
   analyzeChannelRepresentation,
   isChannelMinRepEnabled,
   QUALITY_FLOOR,
 } from '../lib/search/channel-representation';
 
-// T006: Confidence truncation
+// Confidence truncation
 import {
   truncateByConfidence,
   computeGaps,
@@ -29,7 +29,7 @@ import {
   GAP_THRESHOLD_MULTIPLIER,
 } from '../lib/search/confidence-truncation';
 
-// T007: Dynamic token budget
+// Dynamic token budget
 import {
   getDynamicTokenBudget,
   DEFAULT_BUDGET,
@@ -61,7 +61,7 @@ afterEach(() => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   T001: Query Complexity Classifier
+   Query Complexity Classifier
    ═══════════════════════════════════════════════════════════════ */
 
 describe('T001: Query Complexity Classifier', () => {
@@ -115,7 +115,7 @@ describe('T001: Query Complexity Classifier', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   T003: Channel Min-Representation R2
+   Channel Min-Representation R2
    ═══════════════════════════════════════════════════════════════ */
 
 describe('T003: Channel Min-Representation R2', () => {
@@ -205,7 +205,7 @@ describe('T003: Channel Min-Representation R2', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   T006: Confidence Truncation
+   Confidence Truncation
    ═══════════════════════════════════════════════════════════════ */
 
 describe('T006: Confidence Truncation', () => {
@@ -299,7 +299,7 @@ describe('T006: Confidence Truncation', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   T007: Dynamic Token Budget
+   Dynamic Token Budget
    ═══════════════════════════════════════════════════════════════ */
 
 describe('T007: Dynamic Token Budget', () => {

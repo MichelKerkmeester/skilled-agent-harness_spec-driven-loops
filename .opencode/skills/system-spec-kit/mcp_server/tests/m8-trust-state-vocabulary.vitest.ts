@@ -1,8 +1,8 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: M8 — Trust-state vocabulary expansion
 // ───────────────────────────────────────────────────────────────
-// Phase 017 / Phase 3 M8 (T-SHP-01, T-SBS-01, T-CGQ-11, T-CGQ-12,
-// R9-001, R22-001, R23-001, R27-002, R30-001)
+// Phase 3 (
+// R9-001)
 //
 // Canonical acceptance for the expanded SharedPayloadTrustState:
 //   live         — fresh, validated
@@ -57,7 +57,7 @@ describe('M8 — trust-state vocabulary (T-SHP-01 / R9-001)', () => {
     expect(trustStateFromGraphState('ready')).toBe('live');
     expect(trustStateFromGraphState('stale')).toBe('stale');
     // 'empty' and 'missing' are semantically "no data for this scope" rather
-    // than "data but outdated" — mapped to 'absent' per T-SHP-01.
+    // Than "data but outdated" — mapped to 'absent' per
     expect(trustStateFromGraphState('empty')).toBe('absent');
     expect(trustStateFromGraphState('missing')).toBe('absent');
     // 'error' indicates the probe itself failed; scope may or may not exist

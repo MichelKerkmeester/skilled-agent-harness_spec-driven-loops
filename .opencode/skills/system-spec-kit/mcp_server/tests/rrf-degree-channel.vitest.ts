@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // 1. TEST — RRF DEGREE CHANNEL
 // ───────────────────────────────────────────────────────────────
-// T002 (degree as 5th RRF channel) + T003a (co-activation boost)
+// (degree as 5th RRF channel) + (co-activation boost)
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { fuseResultsMulti, SOURCE_TYPES } from '@spec-kit/shared/algorithms/rrf-fusion';
@@ -91,7 +91,7 @@ function createMockDb(edges: Array<{
   } as unknown as import('better-sqlite3').Database;
 }
 
-// T002: Degree as 5th RRF Channel
+// Degree as 5th RRF Channel
 describe('T002: Degree as 5th RRF Channel', () => {
   beforeEach(() => {
     clearDegreeCache();
@@ -137,7 +137,7 @@ describe('T002: Degree as 5th RRF Channel', () => {
     });
 
     it('Degree channel contributes to convergence bonus', () => {
-      // Item 1 appears in vector + degree = convergence bonus
+      // Appears in vector + degree = convergence bonus
       const withDegree: RankedList[] = [
         { source: SOURCE_TYPES.VECTOR, results: [{ id: 1 }] },
         { source: SOURCE_TYPES.DEGREE, results: [{ id: 1 }] },
@@ -273,7 +273,7 @@ describe('T002: Degree as 5th RRF Channel', () => {
 
       const fused = fuseResultsMulti(degreeLists);
 
-      // Item 1 (highest degree) should have the highest RRF score
+      // (highest degree) should have the highest RRF score
       expect(fused[0].id).toBe(1);
       if (fused.length > 1) {
         expect(fused[0].rrfScore).toBeGreaterThan(fused[1].rrfScore);
@@ -351,7 +351,7 @@ describe('T002: Degree as 5th RRF Channel', () => {
   });
 });
 
-// T003a: Co-Activation Boost Strength
+// Co-Activation Boost Strength
 describe('T003a: Co-Activation Boost Strength', () => {
   // The co-activation module reads env vars at import time,
   // So we test the exported config and constants.
@@ -381,7 +381,7 @@ describe('T003a: Co-Activation Boost Strength', () => {
       const { boostScore, CO_ACTIVATION_CONFIG } = mod;
 
       // With boostFactor=0.25, maxRelated=5, relatedCount=5, avgSimilarity=100:
-      // RawBoost = 0.25 * (5/5) * (100/100) = 0.25
+      // RawBoost = 0.25 * (5/5) * = 0.25
       // R17 fan-effect: boost = rawBoost / sqrt(relatedCount) = 0.25 / sqrt(5)
       const baseScore = 0.5;
       const relatedCount = 5;

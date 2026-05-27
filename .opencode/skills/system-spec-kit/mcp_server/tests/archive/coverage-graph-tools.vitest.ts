@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// COVERAGE GRAPH TOOLS INTEGRATION TESTS (T022)
+// COVERAGE GRAPH TOOLS INTEGRATION TESTS
 // ───────────────────────────────────────────────────────────────
 // Tests for the MCP tool surface that exposes coverage graph
 // operations. Validates tool input/output schemas, error handling,

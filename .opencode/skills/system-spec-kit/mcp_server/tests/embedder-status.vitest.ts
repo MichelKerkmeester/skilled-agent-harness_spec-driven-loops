@@ -1,5 +1,5 @@
 // -------------------------------------------------------------------
-// TEST: Embedder Status Handler (016/003)
+// TEST: Embedder Status Handler
 // -------------------------------------------------------------------
 
 import { describe, expect, it, vi } from 'vitest';

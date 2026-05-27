@@ -7,7 +7,7 @@ describe('Memory Context Session State Persistence', () => {
     vi.unstubAllEnvs();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // Drift: vitest-recovery-followup verified against shipped behavior during Unit H
   it('persists an auto-discovered spec folder in the initial session state save', async () => {
     const handleMemorySearch = vi.fn(async () => ({
       content: [

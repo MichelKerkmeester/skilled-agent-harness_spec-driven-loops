@@ -41,7 +41,7 @@ afterEach(() => {
 
 describe('index-scope helper', () => {
   it('exports the expected memory and code-graph exclusion patterns', () => {
-    // Packet 113 (commit b062b12b4) removed z_archive from EXCLUDED_FOR_MEMORY.
+    // (commit b062b12b4) removed z_archive from EXCLUDED_FOR_MEMORY
     // z_archive content stays indexed and is deprioritized via ARCHIVE_MULTIPLIERS
     // in shared/scoring/folder-scoring.ts (0.1 multiplier).
     expect(EXCLUDED_FOR_MEMORY.length).toBeGreaterThanOrEqual(2);
@@ -89,7 +89,7 @@ describe('memory discovery respects index scope invariants', () => {
     const specDocs = findSpecDocuments(tempRoot).map(filePath => relative(tempRoot, filePath).replace(/\\/g, '/')).sort();
     const graphFiles = findGraphMetadataFiles(tempRoot).map(filePath => relative(tempRoot, filePath).replace(/\\/g, '/')).sort();
 
-    // z_archive content IS discovered post packet-113; deprioritization happens at scoring time via ARCHIVE_MULTIPLIERS.
+    // Z_archive content IS discovered post; deprioritization happens at scoring time via ARCHIVE_MULTIPLIERS
     expect(specDocs).toEqual([
       '.opencode/specs/system-spec-kit/001-active/spec.md',
       '.opencode/specs/system-spec-kit/z_archive/001-old/spec.md',

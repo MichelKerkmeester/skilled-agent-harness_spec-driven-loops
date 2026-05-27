@@ -1,5 +1,5 @@
 // -------------------------------------------------------------------
-// TEST: Embedder List Handler (016/003)
+// TEST: Embedder List Handler
 // -------------------------------------------------------------------
 
 import { describe, expect, it, vi } from 'vitest';

@@ -42,7 +42,7 @@ describe('ai-council runtime mirror parity', () => {
     // OpenCode permission schema accepts `allow` | `ask` | `deny` strings or
     // a glob-keyed object — NOT a `paths: [...]` array. Path-scope to
     // `ai-council/**` is enforced in lib/persist-artifacts.js via
-    // OUT_OF_SCOPE_WRITE rejection. See ADR-001 follow-up note.
+    // OUT_OF_SCOPE_WRITE rejection. See follow-up note
     expect(canonical).toContain('write: allow');
     expect(canonical).toContain('edit: allow');
     expect(canonical).toContain('bash: deny');

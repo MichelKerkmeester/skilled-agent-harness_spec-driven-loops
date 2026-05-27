@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Registry — canonical-fallback invariant tests (ADR-013/014)
+// MODULE: Registry — canonical-fallback invariant tests (ADR)
 // ───────────────────────────────────────────────────────────────────
 // Runner: `node --experimental-vm-modules .../registry.test.js` after tsc.
 // Standalone assertions (no Vitest dependency) — mirrors the
@@ -7,7 +7,7 @@
 // sibling directories.
 //
 // What this locks in:
-// - MANIFESTS[0] is the canonical model per ADR-013/014 operator override.
+// MANIFESTS[0] is the canonical model per ADR- operator override
 // - getCanonicalFallback('ollama') returns MANIFESTS[0].name.
 // - getCanonicalFallback('hf-local') returns the HF path form ('nomic-ai/<name>').
 // - getCanonicalFallback('voyage' | 'openai') returns the documented cloud strings.

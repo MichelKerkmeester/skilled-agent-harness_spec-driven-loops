@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: parseTriggerPhrases shape tests
 // ───────────────────────────────────────────────────────────────
-// F-005-A5-04: typed validator for trigger_phrases column on raw search
+// Typed validator for trigger_phrases column on raw search
 // results. Replaces the prior `safeJsonParse<string[]>` cast.
 
 import { describe, expect, it } from 'vitest';

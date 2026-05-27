@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: Ollama embedder adapter (016/002)
+// TEST: Ollama embedder adapter
 // ───────────────────────────────────────────────────────────────
 
 import { execFileSync } from 'node:child_process';

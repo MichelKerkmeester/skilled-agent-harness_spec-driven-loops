@@ -1,4 +1,4 @@
-// TEST: memory_context per-channel eval logging (T056)
+// TEST: memory_context per-channel eval logging
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 type EvalSearchQueryResult = {

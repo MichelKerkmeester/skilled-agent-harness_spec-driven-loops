@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Phase Parent Health Tests
 // ───────────────────────────────────────────────────────────────
-// F-019-D4-03: tests for assessPhaseParentHealth and the manifest-size
+// Tests for assessPhaseParentHealth and the manifest-size
 // thresholds. Builds synthetic phase-parent folders under os.tmpdir() with
 // varying child counts and asserts the health bucket and recommendation
 // text shape.

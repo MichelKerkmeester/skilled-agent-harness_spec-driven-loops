@@ -19,16 +19,16 @@ const MAX_MODULE_LINES = 320; // 300 target with 20-line tolerance
 // TODO: Extract quality gate, reconsolidation, chunked-indexing from memory-save (2,553 LOC source).
 const EXTENDED_LIMITS: Record<string, number> = {
   'context-server.js': 1800,        // actual: 1794 — Main entry point wiring for tools, hooks, startup lifecycle, startup root discovery, session priming, remediation hooks, and current bootstrap/recovery contracts
-  'tool-schemas.js': 910,           // actual: 904 — Expanded MCP schema set + Sprint 019: Zod schema integration, ingest tools, Phase 024 session_bootstrap, and newer graph/search tool contracts
+  'tool-schemas.js': 910,           // Actual:904 — Expanded MCP schema set + Sprint 019:Zod schema integration, ingest tools, session_bootstrap, and newer graph/search tool contracts
   'core/db-state.js': 500,          // actual: 449 — Database state tracking and rebinding lifecycle remain centralized pending deeper decomposition
-  'formatters/search-results.js': 880, // actual: 871 — Search result formatting + trust badges, Sprint 019/020 trace, and session-transition envelope support
+  'formatters/search-results.js': 880, // Actual:871 — Search result formatting + trust badges, Sprint trace, and session-transition envelope support
   'handlers/memory-search.js': 1450, // actual: 762 — Complex search logic with multiple strategies + Pipeline V2 integration
   'handlers/memory-triggers.js': 470, // actual: 454 — Trigger matching with cognitive features + governance/scope wiring
   'handlers/memory-crud.js': 40,    // actual: 32 — Re-export barrel (decomposed into memory-crud-{health,update,delete,stats,list,utils,types}.js)
-  'handlers/memory-save.js': 3490,  // actual: 3482 — Save logic with parsing, validation, indexing + quality gate + reconsolidation + Phase 019 Wave A save_lineage option forwarding
+  'handlers/memory-save.js': 3490,  // Actual:3482 — Save logic with parsing, validation, indexing + quality gate + reconsolidation + Wave A save_lineage option forwarding
   'handlers/memory-index.js': 700,  // actual: 421 — Index operations with scanning + spec document discovery (Spec 126)
-  'handlers/checkpoints.js': 860,   // actual: 853 — Checkpoint operations plus scoped metadata guards, restore/delete safety checks, SEC-002 scope enforcement, and T012 follow-up fixes
-  'hooks/memory-surface.js': 520,   // actual: 503 — Memory surface hooks with constitutional cache, auto-surface, attention-enriched hints, priming, session snapshots, and Phase 024 bootstrap telemetry
+  'handlers/checkpoints.js': 860,   // Actual:853 — Checkpoint operations plus scoped metadata guards, restore/delete safety checks, SEC-002 scope enforcement, and follow-up fixes
+  'hooks/memory-surface.js': 520,   // Actual:503 — Memory surface hooks with constitutional cache, auto-surface, attention-enriched hints, priming, session snapshots, and bootstrap telemetry
 };
 
 type CoreIndexModule = typeof import('../core/index');

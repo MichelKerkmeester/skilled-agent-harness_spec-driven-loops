@@ -1,4 +1,4 @@
-// TEST: Embeddings Architecture (T513)
+// TEST: Embeddings Architecture
 // Verifies current shared-provider architecture and MCP facade.
 import fs from 'fs';
 import path from 'path';

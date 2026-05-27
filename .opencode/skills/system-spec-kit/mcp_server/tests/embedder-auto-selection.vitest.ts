@@ -1,5 +1,5 @@
 // -------------------------------------------------------------------
-// TEST: Bootstrap embedder auto-selection (016/002/007)
+// TEST: Bootstrap embedder auto-selection
 // -------------------------------------------------------------------
 
 import { mkdtempSync, rmSync } from 'node:fs';

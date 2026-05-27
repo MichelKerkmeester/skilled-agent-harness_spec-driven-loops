@@ -1,6 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: Embedding Retry Stats — getEmbeddingRetryStats() zero-state and type contract
-// Phase 004 CHK-023 (memory_health embeddingRetry), CHK-024 (retry manager edge cases)
+// (memory_health embeddingRetry), (retry manager edge cases)
 // ───────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
@@ -42,7 +42,7 @@ describe('getEmbeddingRetryStats', () => {
   it('does not contain raw error messages or file paths', () => {
     const stats = getEmbeddingRetryStats();
     const serialized = JSON.stringify(stats);
-    // CHK-070: No raw error messages leaking internal paths
+    // No raw error messages leaking internal paths
     expect(serialized).not.toContain('/Users/');
     expect(serialized).not.toContain('Error:');
     expect(serialized).not.toContain('stack');

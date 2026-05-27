@@ -1,5 +1,5 @@
 // -------------------------------------------------------------------
-// TEST: Embedder Reindex Orchestrator (016/003)
+// TEST: Embedder Reindex Orchestrator
 // -------------------------------------------------------------------
 
 import fs from 'node:fs';

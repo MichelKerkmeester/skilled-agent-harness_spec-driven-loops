@@ -4,8 +4,8 @@ import {
   validateApiKey,
 } from '@spec-kit/shared/embeddings/factory';
 
-// TEST: API Key Validation (T087-T090)
-// REQ-029: Pre-Flight API Key Validation
+// TEST: API Key Validation
+// Pre-Flight API Key Validation
 // Architecture-aligned replacement for legacy deferred placeholder.
 
 const ENV_KEYS = [

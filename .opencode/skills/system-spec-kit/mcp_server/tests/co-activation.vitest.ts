@@ -129,7 +129,7 @@ describe('Co-Activation Module', () => {
     });
 
     it('Max related count and similarity', () => {
-      // PerNeighborBoost = 0.25 * (100/100) = 0.25
+      // PerNeighborBoost = 0.25 * = 0.25
       // FanDivisor = sqrt(5) ≈ 2.236
       // Boost = 0.25 / 2.236 ≈ 0.1118
       // Result = 0.5 + 0.1118 ≈ 0.6118

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: YAML intake-event payload vocabulary boundary (T-TEST-NEW-13)
+// TEST: YAML intake-event payload vocabulary boundary
 // ───────────────────────────────────────────────────────────────
-// R47-002 / T-YML-PLN-03: The /speckit:plan and /speckit:complete
+// The /speckit: plan and /speckit: complete
 // assets emit `intake_triggered` / `intake_completed` events that
 // MUST carry BOTH `folderState` (local classifier) and `startState`
 // (canonical intake-contract enum) as distinct fields. If either

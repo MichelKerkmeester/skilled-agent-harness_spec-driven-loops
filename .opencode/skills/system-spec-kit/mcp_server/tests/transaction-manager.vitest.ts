@@ -43,7 +43,7 @@ function cleanup(): void {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   UNIT TESTS (T105-T107)
+   UNIT TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('Transaction Manager Unit Tests', () => {
@@ -207,7 +207,7 @@ describe('Transaction Manager Unit Tests', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T192-T200: TRANSACTION ATOMICITY TESTS
+   TRANSACTION ATOMICITY TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('Transaction Atomicity Tests (T192-T200)', () => {

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Architecture Dependency Cycle Verification (Phase 049-006)
+// MODULE: Architecture Dependency Cycle Verification
 // ───────────────────────────────────────────────────────────────
-// Verifies that the dependency-graph cycles flagged in packet 046 §17 have
+// Verifies that the dependency-graph cycles flagged in §17 have
 // been broken by extracting shared types into neutral seam modules. The
 // tests confirm:
 //   - StructuralBootstrapContract is exported from the new type seam.
@@ -16,11 +16,11 @@ import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-// F-017-D2-01: type-only seam.
+// Type-only seam
 import type { StructuralBootstrapContract as ContractFromSeam } from '../lib/session/structural-bootstrap-contract.js';
 import type { StructuralBootstrapContract as ContractFromSnapshot } from '../lib/session/session-snapshot.js';
 
-// F-017-D2-02: type-only seam.
+// Type-only seam
 import type {
   CommunityResult as CommunityResultFromSeam,
   CommunitySummary as CommunitySummaryFromSeam,

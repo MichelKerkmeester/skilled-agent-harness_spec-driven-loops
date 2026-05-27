@@ -1,6 +1,6 @@
 // CONTINUE_SESSION coverage:
-// - T124 uses collect-session-data extractor
-// - T017-T020 retains DB-dependent placeholders
+// Uses collect-session-data extractor
+// Retains DB-dependent placeholders
 
 import { describe, it, expect } from 'vitest';
 import { createRequire } from 'module';
@@ -37,7 +37,7 @@ try {
 } catch (_err: unknown) {
 }
 
-// T124: CONTINUE_SESSION AUTO-GENERATION TESTS
+// CONTINUE_SESSION AUTO-GENERATION TESTS
 const t124Describe = collectSessionDataLoaded ? describe : describe.skip;
 
 t124Describe('T124: determineSessionStatus', () => {
@@ -167,7 +167,7 @@ t124Describe('T124: buildContinueSessionData', () => {
   });
 });
 
-// T017-T020: CONTINUE_SESSION.md GENERATION TESTS
+// CONTINUE_SESSION.md GENERATION TESTS
 // (SKIPPED — session-manager.js has DB-dependent imports)
 // Type note: skipped section covers dist/lib/session/session-manager.js
 // Imports Database type and working-memory module which trigger better-sqlite3

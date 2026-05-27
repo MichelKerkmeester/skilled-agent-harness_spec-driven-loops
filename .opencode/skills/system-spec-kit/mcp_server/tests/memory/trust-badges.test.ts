@@ -60,7 +60,7 @@ function createDb(): Database.Database {
   return db;
 }
 
-// 010/007 R-007-13: previously skipped due to a vitest mock-resolution path
+// R-007-13:previously skipped due to a vitest mock-resolution path
 // mismatch — `requireDb` is re-exported through `utils/index` and the mock
 // layer did not intercept the formatter's resolved path reliably. The
 // formatter now exposes a `dbGetter` injection seam on
@@ -199,7 +199,7 @@ describe('memory trust badges', () => {
     });
   });
 
-  // 008/D14: age-label allowlist boundary cases (R-007-P2-10).
+  // Age-label allowlist boundary cases
   // The allowlist accepts: never | today | yesterday | N day(s)|week(s)|month(s) ago.
   // Boundary cases pin the regex against drift.
   it('008/D14: explicit caller age strings within allowlisted grammar pass through', async () => {

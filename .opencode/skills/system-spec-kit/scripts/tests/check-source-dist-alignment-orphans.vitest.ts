@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Check Source/Dist Alignment Orphan Detection Tests
 // ───────────────────────────────────────────────────────────────
-// F-020-D5-02: tests that the broadened alignment checker scans the full set
+// Tests that the broadened alignment checker scans the full set
 // of runtime-critical dist subtrees and flags any *.js file whose matching
 // .ts source no longer exists. Builds a synthetic dist + source layout under
 // os.tmpdir(), invokes the real checker on it via a subprocess `node` call,
@@ -74,7 +74,7 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
     fs.rmSync(workRoot, { recursive: true, force: true });
   });
 
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('passes when every dist *.js has a matching source .ts', () => {
     const distLib = path.join(workRoot, 'mcp_server', 'dist', 'lib');
     const sourceLib = path.join(workRoot, 'mcp_server', 'lib');

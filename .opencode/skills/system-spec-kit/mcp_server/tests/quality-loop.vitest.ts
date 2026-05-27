@@ -200,7 +200,7 @@ describe('scoreTokenBudget', () => {
   it('respects custom char budget', () => {
     const content = 'x'.repeat(200);
     const result = scoreTokenBudget(content, 100);
-    expect(result.score).toBe(0.5); // 100/200
+    expect(result.score).toBe(0.5); 
     expect(result.issues).toHaveLength(1);
   });
 });

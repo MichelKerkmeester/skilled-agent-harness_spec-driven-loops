@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // 1. TEST — EDGE DENSITY
 // ───────────────────────────────────────────────────────────────
-// T003 acceptance tests for lib/eval/edge-density.ts
+// Acceptance tests for lib/eval/edge-density.ts
 //
 // Test cases:
 // D1 — Dense graph returns density >= 1.0 ("dense")

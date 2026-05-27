@@ -1,12 +1,12 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Workflow canonical-save metadata freshness regression
 // ───────────────────────────────────────────────────────────────
-// Phase 017 Wave A — T-CNS-01 + T-W1-CNS-04 (H-56-1 compound headline).
+// Wave A — + (H-56-1 compound headline)
 //
 // These tests assert that the canonical-save path writes fresh
-// description.json.lastUpdated on every invocation (T-CNS-01) and that
+// Description.json.lastUpdated on every invocation and that
 // refreshGraphMetadata runs unconditionally — even in plan-only mode —
-// so graph-metadata.json.derived.last_save_at advances (T-W1-CNS-04).
+// So graph-metadata.json.derived.last_save_at advances
 //
 // Two layers of coverage:
 //   1. Tight unit asserts that mirror the exact workflow.ts update block
@@ -20,7 +20,7 @@
 //      scaffolding that the unit harness already covers. Kept as
 //      a TODO fixture for when 003-memory-quality-issues/006 lands.
 //
-// See tasks.md T-CNS-01 and T-W1-CNS-04 for the acceptance matrix.
+// See tasks.md and for the acceptance matrix
 
 import fs from 'node:fs';
 import os from 'node:os';
@@ -53,7 +53,7 @@ function buildBaseDescription(specFolderBasename: string): PerFolderDescription 
 
 /**
  * Mirrors the workflow.ts:1261-1331 description.json update block after
- * the T-CNS-01 fix (lastUpdated assignment added, ctxFileWritten gate
+ * The fix (lastUpdated assignment added, ctxFileWritten gate
  * reflects reality). The workflow block is not directly importable
  * without booting the full pipeline, so we re-express its invariant
  * here. Any divergence in workflow.ts will be caught by the grep-level

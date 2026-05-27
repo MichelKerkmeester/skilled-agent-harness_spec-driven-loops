@@ -29,7 +29,7 @@ vi.mock('../handlers/session-resume.js', () => ({
             provenance: {
               producer: 'session_resume',
               sourceSurface: 'session_resume',
-              // M8 / T-SHP-01: trustState values live on the canonical
+              // TrustState values live on the canonical
               // SharedPayloadTrustState vocabulary. The previous 'ready'
               // fabrication is rejected by the transport coercer.
               trustState: 'live',

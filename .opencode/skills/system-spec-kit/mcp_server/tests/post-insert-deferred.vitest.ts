@@ -1,5 +1,5 @@
 // Migrated as part of 016 remediation — see FINAL-synthesis-and-review.md §6.3 for rationale.
-// T-TEST-01 (M13): enrichmentStatus migrated from boolean record to per-step OperationResult.
+// EnrichmentStatus migrated from boolean record to per-step OperationResult
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { clearBudget } from '../lib/enrichment/retry-budget.js';
 
@@ -235,7 +235,7 @@ describe('post-insert deferred enrichment reporting', () => {
       embeddingFailureReason: null,
       asyncEmbedding: false,
       causalLinksResult: null,
-      // T-PIN-04 (R14-003): partial causal-link failures must propagate as `partial`.
+      // Partial causal-link failures must propagate as `partial`
       enrichmentStatus: {
         causalLinks: {
           status: 'partial',
@@ -291,7 +291,7 @@ describe('post-insert deferred enrichment reporting', () => {
       embeddingFailureReason: null,
       asyncEmbedding: false,
       causalLinksResult: null,
-      // T-PIN-06 (R12-005): density-guard skip surfaces as skipped with reason 'density_guard'.
+      // Density-guard skip surfaces as skipped with reason 'density_guard'
       enrichmentStatus: {
         causalLinks: { status: 'ran' },
         entityExtraction: { status: 'ran' },

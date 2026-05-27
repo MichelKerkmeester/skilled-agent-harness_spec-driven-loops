@@ -92,7 +92,7 @@ describe('graph metadata backfill', () => {
     }
   });
 
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('writes graph-metadata.json for every packet with empty manual arrays', () => {
     const specsRoot = createSpecTree();
     const summary = runBackfill({ dryRun: false, root: specsRoot });

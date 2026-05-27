@@ -1,15 +1,15 @@
 // ───────────────────────────────────────────────────────────────
 // 1. TEST — FEATURE EVALUATION — SCORING CALIBRATION
 // ───────────────────────────────────────────────────────────────
-// Rigorous feature evaluation covering T001 (embedding cache),
-// T004 (score normalization), T005 (interference TM-01), and
-// T006 (classification-based decay TM-03).
-// Phase D cleanup: T002 (cold-start N4) removed — NOVELTY_BOOST was dead code.
+// Rigorous feature evaluation covering (embedding cache)
+// (score normalization), (interference TM-01), and
+// (classification-based decay TM-03)
+// Phase D cleanup:(cold-start N4) removed — NOVELTY_BOOST was dead code
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import Database from 'better-sqlite3';
 
-// --- T001: Embedding Cache ---
+// Embedding Cache
 import {
   initEmbeddingCache,
   lookupEmbedding,
@@ -19,20 +19,20 @@ import {
   computeContentHash,
 } from '../lib/cache/embedding-cache';
 
-// --- T004: Composite Scoring (normalization) ---
+// Composite Scoring (normalization)
 import {
   calculateFiveFactorScore,
   normalizeCompositeScores,
   isCompositeNormalizationEnabled,
 } from '../lib/scoring/composite-scoring';
 
-// --- T005: Interference Scoring ---
+// Interference Scoring
 import {
   applyInterferencePenalty,
   INTERFERENCE_PENALTY_COEFFICIENT,
 } from '../lib/scoring/interference-scoring';
 
-// --- T006: Classification-based Decay ---
+// Classification-based Decay
 const {
   IMPORTANCE_TIER_STABILITY_MULTIPLIER,
   CONTEXT_TYPE_STABILITY_MULTIPLIER,
@@ -68,7 +68,7 @@ function makeRow(createdAtMs: number, overrides: Record<string, unknown> = {}) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// T001: EMBEDDING CACHE
+// EMBEDDING CACHE
 // ═══════════════════════════════════════════════════════════════════
 
 describe('T001: Embedding Cache', () => {
@@ -83,7 +83,7 @@ describe('T001: Embedding Cache', () => {
     try { db.close(); } catch { /* ignore */ }
   });
 
-  // T041-01: Store an embedding, look it up, verify exact match
+  // Store an embedding, look it up, verify exact match
   it('T041-01: store → lookup returns exact byte-identical embedding', () => {
     const hash = computeContentHash('sprint 2 feature eval');
     const model = 'text-embedding-3-small';
@@ -99,13 +99,13 @@ describe('T001: Embedding Cache', () => {
     expect(Buffer.compare(result!, embedding)).toBe(0);
   });
 
-  // T041-02: Cache miss returns null
+  // Cache miss returns null
   it('T041-02: cache miss returns null for unknown hash', () => {
     const result = lookupEmbedding(db, 'deadbeef00000000', 'any-model', 768);
     expect(result).toBeNull();
   });
 
-  // T041-03: LRU eviction removes stale entries, keeps fresh ones
+  // LRU eviction removes stale entries, keeps fresh ones
   it('T041-03: time-based eviction removes stale entries, preserves fresh', () => {
     const model = 'test-model';
     const dims = 64;
@@ -129,7 +129,7 @@ describe('T001: Embedding Cache', () => {
     expect(lookupEmbedding(db, freshHash, model, dims)).not.toBeNull();
   });
 
-  // T041-04: computeContentHash is deterministic SHA-256
+  // ComputeContentHash is deterministic SHA-256
   it('T041-04: computeContentHash is deterministic 64-char hex SHA-256', () => {
     const content = 'reproducible hash test';
     const h1 = computeContentHash(content);
@@ -140,10 +140,10 @@ describe('T001: Embedding Cache', () => {
   });
 });
 
-// T002: COLD-START BOOST (N4) — removed in Phase D cleanup (dead code).
+// COLD-START BOOST (N4) — removed in Phase D cleanup (dead code)
 
 // ═══════════════════════════════════════════════════════════════════
-// T005: INTERFERENCE SCORING (TM-01)
+// INTERFERENCE SCORING (TM-01)
 // ═══════════════════════════════════════════════════════════════════
 
 describe('T005: Interference Scoring (TM-01)', () => {
@@ -151,7 +151,7 @@ describe('T005: Interference Scoring (TM-01)', () => {
     vi.unstubAllEnvs();
   });
 
-  // T041-10: interference_score=0.5 → penalty = coefficient * 0.5 = -0.04
+  // Interference_score=0.5 → penalty = coefficient * 0.5 = -0.04
   it('T041-10: interference_score=0.5 applies penalty of -0.04', () => {
     vi.stubEnv('SPECKIT_INTERFERENCE_SCORE', 'true');
     const baseScore = 0.7;
@@ -162,7 +162,7 @@ describe('T005: Interference Scoring (TM-01)', () => {
     expect(result).toBeCloseTo(0.66, 2);
   });
 
-  // T041-11: Flag explicitly disabled → no penalty applied
+  // Flag explicitly disabled → no penalty applied
   it('T041-11: flag disabled returns score unchanged', () => {
     vi.stubEnv('SPECKIT_INTERFERENCE_SCORE', 'false');
     const baseScore = 0.7;
@@ -170,7 +170,7 @@ describe('T005: Interference Scoring (TM-01)', () => {
     expect(result).toBe(baseScore);
   });
 
-  // T041-12: Penalty floors at zero (never negative)
+  // Penalty floors at zero (never negative)
   it('T041-12: penalty floors at 0 — score never goes negative', () => {
     vi.stubEnv('SPECKIT_INTERFERENCE_SCORE', 'true');
     const baseScore = 0.01;
@@ -179,7 +179,7 @@ describe('T005: Interference Scoring (TM-01)', () => {
     expect(result).toBe(0);
   });
 
-  // T041-13: Zero interference score → no change
+  // Zero interference score → no change
   it('T041-13: zero interference score leaves score unchanged', () => {
     vi.stubEnv('SPECKIT_INTERFERENCE_SCORE', 'true');
     const baseScore = 0.5;
@@ -189,7 +189,7 @@ describe('T005: Interference Scoring (TM-01)', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════
-// T006: CLASSIFICATION-BASED DECAY (TM-03)
+// CLASSIFICATION-BASED DECAY (TM-03)
 // ═══════════════════════════════════════════════════════════════════
 
 describe('T006: Classification-based Decay (TM-03)', () => {
@@ -203,7 +203,7 @@ describe('T006: Classification-based Decay (TM-03)', () => {
     }
   });
 
-  // T041-14: Constitutional tier has Infinity multiplier (no decay)
+  // Constitutional tier has Infinity multiplier (no decay)
   it('T041-14: constitutional tier → Infinity multiplier (never decays)', () => {
     expect(IMPORTANCE_TIER_STABILITY_MULTIPLIER['constitutional']).toBe(Infinity);
 
@@ -211,7 +211,7 @@ describe('T006: Classification-based Decay (TM-03)', () => {
     expect(multiplier).toBe(Infinity);
   });
 
-  // T041-15: Temporary tier decays faster than normal
+  // Temporary tier decays faster than normal
   it('T041-15: temporary tier decays faster than normal', () => {
     const tempMult = IMPORTANCE_TIER_STABILITY_MULTIPLIER['temporary'];
     const normalMult = IMPORTANCE_TIER_STABILITY_MULTIPLIER['normal'];
@@ -220,7 +220,7 @@ describe('T006: Classification-based Decay (TM-03)', () => {
     expect(normalMult).toBe(1.0);
   });
 
-  // T041-16: applyClassificationDecay with flag enabled adjusts stability
+  // ApplyClassificationDecay with flag enabled adjusts stability
   it('T041-16: flag enabled adjusts stability by combined multiplier', () => {
     process.env.SPECKIT_CLASSIFICATION_DECAY = 'true';
     const baseStability = 2.0;
@@ -231,7 +231,7 @@ describe('T006: Classification-based Decay (TM-03)', () => {
     expect(adjusted).toBe(6.0);
   });
 
-  // T041-17: Flag explicitly disabled → stability unchanged
+  // Flag explicitly disabled → stability unchanged
   it('T041-17: flag disabled returns stability unchanged', () => {
     process.env.SPECKIT_CLASSIFICATION_DECAY = 'false';
     const baseStability = 2.0;
@@ -239,7 +239,7 @@ describe('T006: Classification-based Decay (TM-03)', () => {
     expect(result).toBe(baseStability);
   });
 
-  // T041-18: Constitutional with any context → Infinity (no decay wins)
+  // Constitutional with any context → Infinity (no decay wins)
   it('T041-18: constitutional tier with any context type → Infinity', () => {
     const contexts = ['decision', 'research', 'implementation', 'general', 'unknown'];
     for (const ctx of contexts) {
@@ -248,7 +248,7 @@ describe('T006: Classification-based Decay (TM-03)', () => {
     }
   });
 
-  // T041-19: Decision context_type → Infinity regardless of tier
+  // Decision context_type → Infinity regardless of tier
   it('T041-19: decision context → Infinity regardless of tier', () => {
     expect(CONTEXT_TYPE_STABILITY_MULTIPLIER['decision']).toBe(Infinity);
     const mult = getClassificationDecayMultiplier('decision', 'temporary');
@@ -257,7 +257,7 @@ describe('T006: Classification-based Decay (TM-03)', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════
-// T004: SCORE NORMALIZATION
+// SCORE NORMALIZATION
 // ═══════════════════════════════════════════════════════════════════
 
 describe('T004: Score Normalization', () => {
@@ -265,7 +265,7 @@ describe('T004: Score Normalization', () => {
     vi.unstubAllEnvs();
   });
 
-  // T041-20: [0.2, 0.5, 0.8] normalizes to [0, 0.5, 1.0]
+  // [0.2, 0.5, 0.8] normalizes to [0, 0.5, 1.0]
   it('T041-20: min-max normalizes [0.2, 0.5, 0.8] to [0, 0.5, 1.0]', () => {
     vi.stubEnv('SPECKIT_SCORE_NORMALIZATION', 'true');
     const input = [0.2, 0.5, 0.8];
@@ -275,28 +275,28 @@ describe('T004: Score Normalization', () => {
     expect(result[2]).toBeCloseTo(1.0, 6);
   });
 
-  // T041-21: Single-element array normalizes to [0.0]
+  // Single-element array normalizes to [0.0]
   it('T041-21: single element normalizes to [0.0]', () => {
     vi.stubEnv('SPECKIT_SCORE_NORMALIZATION', 'true');
     const result = normalizeCompositeScores([0.42]);
     expect(result).toEqual([0]);
   });
 
-  // T041-22: All-same-value normalizes to [0.0, 0.0, ...]
+  // All-same-value normalizes to [0.0, 0.0,...]
   it('T041-22: all-same values normalize to [0.0, 0.0, 0.0]', () => {
     vi.stubEnv('SPECKIT_SCORE_NORMALIZATION', 'true');
     const result = normalizeCompositeScores([0.5, 0.5, 0.5]);
     expect(result).toEqual([0, 0, 0]);
   });
 
-  // T041-23: Empty array returns empty
+  // Empty array returns empty
   it('T041-23: empty array returns empty', () => {
     vi.stubEnv('SPECKIT_SCORE_NORMALIZATION', 'true');
     const result = normalizeCompositeScores([]);
     expect(result).toEqual([]);
   });
 
-  // T041-24: Flag explicitly disabled returns scores unchanged
+  // Flag explicitly disabled returns scores unchanged
   it('T041-24: flag disabled returns scores unchanged', () => {
     vi.stubEnv('SPECKIT_SCORE_NORMALIZATION', 'false');
     const input = [0.2, 0.5, 0.8];

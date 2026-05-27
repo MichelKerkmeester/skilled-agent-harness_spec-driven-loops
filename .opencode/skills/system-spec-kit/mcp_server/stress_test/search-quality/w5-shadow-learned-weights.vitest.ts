@@ -5,7 +5,7 @@
 
 import { describe, expect, it } from 'vitest';
 
-// F-011-C1-05: __testables exposes resolveLearnedBlendWeight so the env-clamp
+// __testables exposes resolveLearnedBlendWeight so the env-clamp
 // behavior can be verified without spinning up the full pipeline.
 import { __testables as stage2Testables } from '../../lib/search/pipeline/stage2-fusion.js';
 import { runMeasurement } from './measurement-fixtures.js';
@@ -99,7 +99,7 @@ describe('W5 advisor shadow learned weights', () => {
     expect(variant.summary.citationQuality).toBeGreaterThan(baseline.summary.citationQuality);
   });
 
-  // F-011-C1-05: learned blend weight clamp. The env-controlled blend weight
+  // Learned blend weight clamp. The env-controlled blend weight
   // is parsed and clamped at the source so the live blend (1-w)*manual +
   // w*learned can never exceed 5%. Default 0 means shadow-only behavior is
   // preserved when the flag is unset.

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: memory-parser description.json schema reuse tests
 // ───────────────────────────────────────────────────────────────
-// F-005-A5-05: parseDescriptionMetadataContent now runs through
+// ParseDescriptionMetadataContent now runs through
 // perFolderDescriptionSchema. Failures emit a path-aware error message.
 
 import { describe, expect, it } from 'vitest';

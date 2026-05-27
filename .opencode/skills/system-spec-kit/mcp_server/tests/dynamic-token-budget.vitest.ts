@@ -44,7 +44,7 @@ function withFlag(fn: () => void): void {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   T030-01: FEATURE FLAG
+   FEATURE FLAG
    ──────────────────────────────────────────────────────────────── */
 
 describe('T030-01: Feature Flag (SPECKIT_DYNAMIC_TOKEN_BUDGET)', () => {
@@ -94,7 +94,7 @@ describe('T030-01: Feature Flag (SPECKIT_DYNAMIC_TOKEN_BUDGET)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T030-02: FLAG DISABLED — DEFAULT BUDGET
+   FLAG DISABLED — DEFAULT BUDGET
    ──────────────────────────────────────────────────────────────── */
 
 describe('T030-02: Flag Disabled — Default Budget (4000)', () => {
@@ -127,7 +127,7 @@ describe('T030-02: Flag Disabled — Default Budget (4000)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T030-03: BUDGET PER TIER (FLAG ENABLED)
+   BUDGET PER TIER (FLAG ENABLED)
    ──────────────────────────────────────────────────────────────── */
 
 describe('T030-03: Budget Per Tier (Flag Enabled)', () => {
@@ -170,7 +170,7 @@ describe('T030-03: Budget Per Tier (Flag Enabled)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T030-04: CUSTOM CONFIG OVERRIDE
+   CUSTOM CONFIG OVERRIDE
    ──────────────────────────────────────────────────────────────── */
 
 describe('T030-04: Custom Config Override', () => {
@@ -191,7 +191,7 @@ describe('T030-04: Custom Config Override', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T030-05: DEFAULT CONFIG CONSTANTS
+   DEFAULT CONFIG CONSTANTS
    ──────────────────────────────────────────────────────────────── */
 
 describe('T030-05: Default Config Constants', () => {

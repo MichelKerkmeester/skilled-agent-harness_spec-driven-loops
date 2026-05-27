@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: Scope Governance Normalizer Parity
 // ───────────────────────────────────────────────────────────────
-// T-SCP-01 (R1-P1-001, R4-P1-001): verifies the canonical single-string
+// (R1-P1-001, R4-P1-001): verifies the canonical single-string
 // `normalizeScopeValue` export from `lib/governance/scope-governance` behaves
 // identically for every case the four previously-duplicated local copies
 // handled (handlers/save/reconsolidation-bridge, handlers/save/types

@@ -14,7 +14,7 @@ function approxEqual(a: number, b: number, epsilon: number = 0.0001): boolean {
 describe('Composite Scoring', () => {
 
   // ───────────────────────────────────────────────────────────────
-  // 1. WEIGHT CONFIGURATION TESTS (T401-T410)
+  // 1. WEIGHT CONFIGURATION TESTS
   // ───────────────────────────────────────────────────────────────
   describe('Weight Configuration (T401-T410)', () => {
     const weights = compositeScoring.DEFAULT_WEIGHTS
@@ -66,7 +66,7 @@ describe('Composite Scoring', () => {
   })
 
   // ───────────────────────────────────────────────────────────────
-  // 2. RETRIEVABILITY INTEGRATION TESTS (T411-T420)
+  // 2. RETRIEVABILITY INTEGRATION TESTS
   // ───────────────────────────────────────────────────────────────
   describe('Retrievability Integration (T411-T420)', () => {
     const calcR = compositeScoring.calculateRetrievabilityScore
@@ -247,7 +247,7 @@ describe('Composite Scoring', () => {
   })
 
   // ───────────────────────────────────────────────────────────────
-  // 3. SCORE CALCULATION TESTS (T421-T430)
+  // 3. SCORE CALCULATION TESTS
   // ───────────────────────────────────────────────────────────────
   describe('Score Calculation (T421-T430)', () => {
     const calcScore = compositeScoring.calculateCompositeScore
@@ -433,7 +433,7 @@ describe('Composite Scoring', () => {
   })
 
   // ───────────────────────────────────────────────────────────────
-  // 4. EDGE CASES (T431-T440)
+  // 4. EDGE CASES
   // ───────────────────────────────────────────────────────────────
   describe('Edge Cases (T431-T440)', () => {
     const calcScore = compositeScoring.calculateCompositeScore
@@ -582,7 +582,7 @@ describe('Composite Scoring', () => {
   })
 
   // ───────────────────────────────────────────────────────────────
-  // 5. RANKING TESTS (T441-T445)
+  // 5. RANKING TESTS
   // ───────────────────────────────────────────────────────────────
   describe('Ranking (T441-T445)', () => {
     const applyScoring = compositeScoring.applyCompositeScoring

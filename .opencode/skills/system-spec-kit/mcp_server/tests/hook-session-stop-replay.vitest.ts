@@ -73,7 +73,7 @@ describe.sequential('Claude session-stop replay harness', () => {
     expect(secondRun.state!.speckitSessionId).toBeNull();
   });
 
-  // T-SST-10 (R31-002/R32-002) replay: the first run parses the fixture,
+  // Replay: the first run parses the fixture
   // triggers a first-time spec folder detection, and writes state. All
   // three dimensions (metrics+producer, retarget, summary) can land in a
   // single `touchedPaths` entry because the handler now collapses them
@@ -101,7 +101,7 @@ describe.sequential('Claude session-stop replay harness', () => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// T-TEST-06 (paired with T-SST-07 / T-SST-12 / T-HST-09):
+// (paired with)
 // Autosave-ENABLED replay with failure injection. The prior harness
 // only exercises `autosaveMode: 'disabled'` (which trivially always
 // returns outcome='skipped'). The autosave-enabled path must be
@@ -194,7 +194,7 @@ describe.sequential('Claude session-stop autosave-enabled failure injection (T-T
     // must promote autosaveOutcome to 'failed' regardless of whether the
     // autosave script could have run.
     //
-    // This guards the T-SST-07 invariant that autosaveOutcome is the
+    // This guards the invariant that autosaveOutcome is the
     // contract consumers read to distinguish "state write actually
     // landed" from "autosave should be retried later".
     const originalWriteFileSync = fs.writeFileSync.bind(fs);

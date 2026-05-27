@@ -133,7 +133,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
     });
 
     it('has correct constants EMBEDDING_DIM matching runtime provider and DEFAULT_DB_PATH', () => {
-      // T252: EMBEDDING_DIM must match the runtime-resolved dimension, not a hard-coded 1024.
+      // EMBEDDING_DIM must match the runtime-resolved dimension, not a hard-coded 1024
       // The implementation resolves dimensions from the active provider (vector-index-store.ts:121-129).
       const runtimeDim = mod.getEmbeddingDim();
       expect(mod.EMBEDDING_DIM).toBe(runtimeDim);
@@ -836,7 +836,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       expect(result).toBe(false);
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // Drift: vitest-recovery-followup verified against shipped behavior during Unit H
     it('delete_memory_from_database aborts the primary delete when vec cleanup fails unexpectedly', async () => {
       vi.resetModules();
       const deletePrimarySpy = vi.fn(() => ({ changes: 1 }));
@@ -974,7 +974,7 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       expect(related.length).toBe(0);
     });
 
-    // ─── T236: Positive-path coverage for getRelatedMemories ──
+    // ───:Positive-path coverage for getRelatedMemories ──
 
     it('T236: returns related memories when related_memories JSON is populated', () => {
       // To test the positive path, we need to insert a memory with a

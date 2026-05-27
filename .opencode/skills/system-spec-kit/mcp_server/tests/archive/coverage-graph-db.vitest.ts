@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// COVERAGE GRAPH DB INTEGRATION TESTS (T022)
+// COVERAGE GRAPH DB INTEGRATION TESTS
 // ───────────────────────────────────────────────────────────────
 // Tests for the coverage graph database projection contract.
 // Validates upsert, query, replay, and latency expectations

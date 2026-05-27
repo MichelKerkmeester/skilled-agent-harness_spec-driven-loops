@@ -14,7 +14,7 @@ type FileMtimeRow = { file_mtime_ms: number | null };
 
 describe('T105 + T106 Safety Tests', () => {
   /* ═══════════════════════════════════════════════════════════
-     T105: batchSize Validation (P0-08)
+     BatchSize Validation
   ═══════════════════════════════════════════════════════════ */
 
   describe('T105: batchSize Validation', () => {
@@ -79,7 +79,7 @@ describe('T105 + T106 Safety Tests', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     T106: Mtime Update After Successful Indexing (P0-09)
+     Mtime Update After Successful Indexing
   ═══════════════════════════════════════════════════════════ */
 
   describe('T106: Mtime Update After Successful Indexing', () => {

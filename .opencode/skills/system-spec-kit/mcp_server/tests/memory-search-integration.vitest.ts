@@ -6,11 +6,11 @@
 // contains the expected substring, even if the runtime code is broken.
 //
 // The tests below have been improved where possible:
-// - T601-T620: Already exercise live FSRS functions -- these are genuine.
-// - T621-T630: Mixed -- export checks are real; source-text checks remain
+// Already exercise live FSRS functions -- these are genuine
+// Mixed -- export checks are real; source-text checks remain
 //   where the underlying function requires a DB to call.  Source-text checks
 //   are annotated with FIXME to flag them for future DB-fixture migration.
-// - T631-T650: Same mixed pattern.
+// Same mixed pattern
 //
 // The long-term goal is to replace ALL source-text assertions with behavioral
 // assertions backed by in-memory DB fixtures.
@@ -302,7 +302,7 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
   });
 
   describe('T641-T650 - Review Count & Timestamp', () => {
-    // FIXME(S3.5 #14): T641-T648 are all source-text assertions that check
+    // FIXME(S3.5 #14): are all source-text assertions that check
     // schema DDL strings and SQL statement text.  They verify that the source
     // code *mentions* the right column names but do not prove the runtime DB
     // actually creates and increments those columns.  Replace with DB-fixture
@@ -418,7 +418,7 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
       }
     });
 
-    // SKIP: deferred DB fixture integration — see packet 005/008 vitest stabilization
+    // SKIP: deferred DB fixture integration — see /008 vitest stabilization
     it.skip('multi-concept search returns ranked results from DB (requires DB fixture)', async () => {
       const top = seedMemoryRow(db, {
         title: 'Alpha beta canonical decision',

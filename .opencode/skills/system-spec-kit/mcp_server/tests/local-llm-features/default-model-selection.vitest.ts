@@ -15,7 +15,7 @@ async function loadFactory(): Promise<typeof import('../../../shared/embeddings/
 }
 
 describe('local LLM default model selection', () => {
-  // CLAIM: post-016/002/007 ship state — hf-local, Ollama, Voyage, and OpenAI each have documented default models and dimensions.
+  // CLAIM: post- ship state — hf-local, Ollama, Voyage, and OpenAI each have documented default models and dimensions
   beforeAll(() => {
     tempDir = mkdtempSync(path.join(tmpdir(), 'spec-kit-test-'));
     writeFileSync(path.join(tempDir, 'claim.txt'), 'default-model-selection');

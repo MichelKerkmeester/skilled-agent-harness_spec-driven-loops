@@ -1,21 +1,21 @@
 // ───────────────────────────────────────────────────────────────
-// ADVERSARIAL TEST: R33-001 Compact-Prime Identity Race (T-PRE-09)
+// ADVERSARIAL TEST: Compact-Prime Identity Race
 // ───────────────────────────────────────────────────────────────
-// Exercises T-HST-07 identity-based `clearCompactPrime()` guard.
+// Exercises identity-based `clearCompactPrime` guard
 // Scenario (per FINAL-synthesis-and-review.md §8.3):
 //   1. Consumer A reads compact prime payload #1 (cachedAt = T1).
 //   2. Producer writes a fresh compact prime payload #2 (cachedAt = T2 > T1)
 //      via compact-inject, overwriting pendingCompactPrime.
 //   3. Consumer A calls clearCompactPrime() — expecting to clear ITS OWN
 //      (now-superseded) payload #1.
-//   4. Post-T-HST-07: the clear MUST NOT erase payload #2, because the
+// 4. After the fix, the clear MUST NOT erase payload #2, because the
 //      expected-identity (cachedAt T1) does not match the on-disk
 //      pendingCompactPrime (cachedAt T2).
 //
-// Pre-T-HST-07 (R33-001 failure mode): clear erased by session ID only,
+// Before the fix (failure mode): clear erased by session ID only
 // deleting payload #2 and silently losing the fresh cached context.
 //
-// This test proves the identity-guard closes R33-001 with the exact
+// This test proves the identity-guard closes with the exact
 // interleaving described by FINAL §8.3.
 
 import { mkdirSync, mkdtempSync, rmSync } from 'node:fs';
@@ -109,7 +109,7 @@ describe.sequential('adversarial: R33-001 compact-prime identity race', () => {
     expect(producerResult.persisted).toBe(true);
 
     // 3. Consumer A tries to clear its (now-superseded) payload using the
-    //    identity captured at step 1. T-HST-07 MUST reject this clear.
+    // Identity captured at step 1. MUST reject this clear
     const clearResult = clearCompactPrime(sessionId, {
       cachedAt: observedByConsumer!.cachedAt,
       opaqueId: observedByConsumer!.opaqueId ?? null,
@@ -119,7 +119,7 @@ describe.sequential('adversarial: R33-001 compact-prime identity race', () => {
     // persist a new state.
     expect(clearResult).toBeNull();
 
-    // 4. The newer payload MUST survive the attempted clear. Pre-T-HST-07,
+    // 4. The newer payload MUST survive the attempted clear. Before the fix
     //    clearCompactPrime by session ID only would have erased it silently.
     const afterClear = loadState(sessionId);
     expect(afterClear.ok).toBe(true);

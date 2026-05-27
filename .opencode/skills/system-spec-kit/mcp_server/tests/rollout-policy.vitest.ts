@@ -1,4 +1,4 @@
-// TEST: ROLLOUT POLICY (T061-T065 prep)
+// TEST: ROLLOUT POLICY (prep)
 import { afterEach, describe, expect, it } from 'vitest';
 import {
   deterministicBucket,

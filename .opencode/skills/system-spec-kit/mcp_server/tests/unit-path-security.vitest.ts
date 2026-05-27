@@ -1,5 +1,5 @@
 // Converted from: unit-path-security.test.ts (custom runner)
-// TEST: PATH SECURITY (T001-T007)
+// TEST: PATH SECURITY
 // Phase 1: path-security.ts — realpathSync symlink traversal fix
 import { describe, it, expect, afterEach } from 'vitest';
 import * as path from 'path';

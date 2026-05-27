@@ -5,7 +5,7 @@ import path from 'node:path';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-// T-SRS-03: session-resume.getCachedSessionSummaryDecision now uses
+// Session-resume.getCachedSessionSummaryDecision now uses
 // loadMatchingStates instead of loadMostRecentState to enable per-candidate
 // retry.  The existing fixtures supply a single state via loadMostRecentStateMock;
 // we translate that into a loadMatchingStates shape for the handler.

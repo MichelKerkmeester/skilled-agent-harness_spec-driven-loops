@@ -1,6 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: V13, V14, V12 Validation Rules (lib/validate-memory-quality.ts)
-// Phase 003 CHK-027 through CHK-033: YAML syntax, content density,
+// Through: YAML syntax, content density
 // status/percentage contradiction, and topical coherence path normalization.
 // ───────────────────────────────────────────────────────────────
 

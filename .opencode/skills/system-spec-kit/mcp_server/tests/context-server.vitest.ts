@@ -79,7 +79,7 @@ describe('Context Server', () => {
   // GROUP 1: parseArgs<T>() Function Tests
   // =================================================================
   describe('Group 1: parseArgs<T>()', () => {
-    // T1: parseArgs exists in source (T303: moved to tools/types.ts)
+    // T1:parseArgs exists in source (moved to tools/types.ts)
     it('T1: parseArgs<T>() defined in source', () => {
       expect(toolTypesCode).toMatch(/function\s+parseArgs\s*<\s*T\s*>\s*\(/)
     })
@@ -208,7 +208,7 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/tools:\s*TOOL_DEFINITIONS/)
     })
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // Drift: vitest-recovery-followup verified against shipped behavior during Unit H
     it('T11c: Tool count is current expected list length', () => {
       const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
         const match = m.match(/name:\s*'(\w+)'/)
@@ -2691,7 +2691,7 @@ describe('Context Server', () => {
   })
 
   // =================================================================
-  // GROUP 14: Pending File Recovery (T107)
+  // GROUP 14:Pending File Recovery
   // =================================================================
   describe('Group 14: Pending File Recovery (T107)', () => {
     // T63: recoverPendingFiles function exists
@@ -2779,7 +2779,7 @@ describe('Context Server', () => {
     ]
 
     for (const imp of EXPECTED_IMPORTS) {
-      // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+      // Drift: vitest-recovery-followup verified against shipped behavior during Unit H
       it(`T67: Imports ${imp.name} from '${imp.module}'`, () => {
         const escaped = imp.module.replace(/[.*+?^${}()|[\]\\\/]/g, '\\$&')
         const importRegex = new RegExp(`import\\s+[^;]*from\\s+['"]${escaped}['"]`)

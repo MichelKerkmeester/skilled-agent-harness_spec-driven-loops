@@ -1,5 +1,5 @@
 // -------------------------------------------------------------------
-// TEST: success-vector-coverage hygiene (026/003/007)
+// TEST: success-vector-coverage hygiene
 // -------------------------------------------------------------------
 // The inverse of the reconcile hazard: rows marked `success` that are MISSING
 // an active vector surface. repairSuccessCoverage resets them to retry so the

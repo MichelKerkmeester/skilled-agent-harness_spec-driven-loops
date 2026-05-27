@@ -1,8 +1,8 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: F-011-C1-01 NDCG / MRR Metric Tests
+// MODULE: NDCG / MRR Metric Tests
 // ───────────────────────────────────────────────────────────────
 // Exercises the rank-sensitive metrics added to the search-quality harness.
-// Closes packet 046 finding F-011-C1-01: precision@K cannot distinguish a
+// Closes finding: precision@K cannot distinguish a
 // top-1 hit from a top-3 hit; NDCG@K and MRR can.
 
 import { describe, expect, it } from 'vitest';

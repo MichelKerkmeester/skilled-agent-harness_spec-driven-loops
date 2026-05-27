@@ -1,5 +1,5 @@
 // TEST: RESPONSE ENVELOPE
-// Tests for REQ-019: Standardized Response Structure
+// Tests for: Standardized Response Structure
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
@@ -302,7 +302,7 @@ describe('Response Envelope (T148-T155)', () => {
   });
 
   describe('T154: meta.latencyMs measurement', () => {
-    // F-015-C5-03: replace real-timer sleeps + elapsed-time asserts with
+    // Replace real-timer sleeps + elapsed-time asserts with
     // vi.useFakeTimers() + vi.setSystemTime so the test is deterministic
     // and does not slow down the suite. Restore real timers in afterEach
     // (always runs, even on test failure) so other describes are unaffected.
@@ -316,7 +316,7 @@ describe('Response Envelope (T148-T155)', () => {
     });
 
     it('should calculate latency when startTime provided', () => {
-      // F-015-C5-03: deterministic time advancement (was: real setTimeout 50ms)
+      // Deterministic time advancement (was: real setTimeout 50ms)
       const startTime = Date.now();
       vi.setSystemTime(Date.now() + 50);
 
@@ -342,7 +342,7 @@ describe('Response Envelope (T148-T155)', () => {
     });
 
     it('should measure latency in error responses', () => {
-      // F-015-C5-03: deterministic time advancement (was: real setTimeout 30ms)
+      // Deterministic time advancement (was: real setTimeout 30ms)
       const startTime = Date.now();
       vi.setSystemTime(Date.now() + 30);
 
@@ -356,7 +356,7 @@ describe('Response Envelope (T148-T155)', () => {
     });
 
     it('should measure latency in empty responses', () => {
-      // F-015-C5-03: deterministic time advancement (was: real setTimeout 30ms)
+      // Deterministic time advancement (was: real setTimeout 30ms)
       const startTime = Date.now();
       vi.setSystemTime(Date.now() + 30);
 

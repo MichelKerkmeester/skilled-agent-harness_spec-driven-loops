@@ -1,6 +1,6 @@
 // TEST: SCORING
 /**
- * scoring.vitest.ts — Decay & Recency Scoring Tests (T505)
+ * Scoring.vitest.ts — Decay & Recency Scoring Tests
  *
  * Tests the decay/recency/boost behavior of composite-scoring.ts.
  * Focuses on temporal decay curves, recency scoring, constitutional
@@ -45,7 +45,7 @@ function daysFromNow(n: number): string {
   return new Date(Date.now() + n * 24 * 60 * 60 * 1000).toISOString();
 }
 
-// T505-01: Recency Scoring
+// Recency Scoring
 describe('T505-01: Recency Scoring (calculateRecencyScore)', () => {
   it('should produce higher score for newer timestamps', () => {
     const recent = calculateRecencyScore(daysAgo(1));
@@ -68,7 +68,7 @@ describe('T505-01: Recency Scoring (calculateRecencyScore)', () => {
   });
 });
 
-// T505-02: Retrievability / Adjusted Score with Decay
+// Retrievability / Adjusted Score with Decay
 describe('T505-02: Retrievability Decay (calculateRetrievabilityScore)', () => {
   it('should produce higher score for more recent memories', () => {
     const recentRow = { stability: 5.0, lastReview: daysAgo(1) };
@@ -110,7 +110,7 @@ describe('T505-02: Retrievability Decay (calculateRetrievabilityScore)', () => {
   });
 });
 
-// T505-03: Score Normalization
+// Score Normalization
 describe('T505-03: Score Normalization', () => {
   it('should normalize composite scores to 0-1 range', () => {
     const zeroSim = calculateCompositeScore({ similarity: 0 });
@@ -143,7 +143,7 @@ describe('T505-03: Score Normalization', () => {
   });
 });
 
-// T505-04: Zero/Null Values
+// Zero/Null Values
 describe('T505-04: Zero/Null Values', () => {
   it('should handle zero similarity without error', () => {
     const score = calculateCompositeScore({ similarity: 0 });
@@ -158,7 +158,7 @@ describe('T505-04: Zero/Null Values', () => {
   });
 });
 
-// T505-05: Negative Values
+// Negative Values
 describe('T505-05: Negative Values', () => {
   it('should clamp composite score to >= 0 for negative similarity', () => {
     const score = calculateCompositeScore({ similarity: -50 });
@@ -167,7 +167,7 @@ describe('T505-05: Negative Values', () => {
   });
 });
 
-// T505-06: Extreme Values
+// Extreme Values
 describe('T505-06: Extreme Values', () => {
   it('should cap composite score at 1.0 for very large similarity', () => {
     const score = calculateCompositeScore({ similarity: 1e10 });
@@ -197,7 +197,7 @@ describe('T505-06: Extreme Values', () => {
   });
 });
 
-// T505-07: Batch Score Combination
+// Batch Score Combination
 describe('T505-07: Batch Scoring (applyCompositeScoring)', () => {
   it('should batch-score and sort multiple memories by composite score descending', () => {
     const now = new Date().toISOString();
@@ -247,7 +247,7 @@ describe('T505-07: Batch Scoring (applyCompositeScoring)', () => {
   });
 });
 
-// T505-08: Configuration & Constants
+// Configuration & Constants
 describe('T505-08: Decay Configuration & Constants', () => {
   it('should have RECENCY_SCALE_DAYS defined as a positive number', () => {
     expect(typeof RECENCY_SCALE_DAYS).toBe('number');

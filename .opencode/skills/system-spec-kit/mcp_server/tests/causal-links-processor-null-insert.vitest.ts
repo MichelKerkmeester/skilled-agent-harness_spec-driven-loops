@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: causal-links-processor null-insert tests
 // ───────────────────────────────────────────────────────────────
-// F-008-B3-02: processCausalLinks now gates `inserted` on a real (non-null)
+// ProcessCausalLinks now gates `inserted` on a real (non-null)
 // row id from causalEdges.insertEdge. When null is returned, the
 // processor pushes a skip-reason into result.errors instead of
 // silently incrementing the counter.
@@ -79,9 +79,9 @@ describe('processCausalLinks null-insert handling (F-008-B3-02)', () => {
       related_to: [],
     });
 
-    // F-008-B3-02: inserted MUST stay 0 because insertEdge returned null.
+    // Inserted MUST stay 0 because insertEdge returned null
     expect(result.inserted).toBe(0);
-    // F-008-B3-02: skip reason must be recorded in result.errors.
+    // Skip reason must be recorded in result.errors
     expect(result.errors.length).toBeGreaterThan(0);
     expect(result.errors[0].error).toMatch(/edge insert returned null/);
     // The reference is still considered resolved (the look-up succeeded).
@@ -111,7 +111,7 @@ describe('processCausalLinks null-insert handling (F-008-B3-02)', () => {
       related_to: [],
     });
 
-    // F-008-B3-02: inserted increments on a real row id.
+    // Inserted increments on a real row id
     expect(result.inserted).toBe(1);
     expect(result.resolved).toBe(1);
     expect(result.processed).toBe(1);

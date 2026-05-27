@@ -103,7 +103,7 @@ function withFeatureFlag(fn: () => void): void {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   T022-01: FEATURE FLAG TESTS
+   FEATURE FLAG TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-01: Feature Flag (SPECKIT_COMPLEXITY_ROUTER)', () => {
@@ -176,7 +176,7 @@ describe('T022-01: Feature Flag (SPECKIT_COMPLEXITY_ROUTER)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T022-02: SIMPLE TIER CLASSIFICATION (10+ queries)
+   SIMPLE TIER CLASSIFICATION (10+ queries)
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-02: Simple Tier Classification', () => {
@@ -241,7 +241,7 @@ describe('T022-02: Simple Tier Classification', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T022-03: MODERATE TIER CLASSIFICATION (10+ queries)
+   MODERATE TIER CLASSIFICATION (10+ queries)
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-03: Moderate Tier Classification', () => {
@@ -298,7 +298,7 @@ describe('T022-03: Moderate Tier Classification', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T022-04: COMPLEX TIER CLASSIFICATION (10+ queries)
+   COMPLEX TIER CLASSIFICATION (10+ queries)
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-04: Complex Tier Classification', () => {
@@ -355,7 +355,7 @@ describe('T022-04: Complex Tier Classification', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T022-05: CONFIG THRESHOLDS
+   CONFIG THRESHOLDS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-05: Config-Driven Thresholds', () => {
@@ -405,7 +405,7 @@ describe('T022-05: Config-Driven Thresholds', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T022-06: STOP-WORD RATIO CALCULATION
+   STOP-WORD RATIO CALCULATION
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-06: Stop-Word Ratio Accuracy', () => {
@@ -473,7 +473,7 @@ describe('T022-06: Stop-Word Ratio Accuracy', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T022-07: TRIGGER PHRASE MATCHING
+   TRIGGER PHRASE MATCHING
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-07: Trigger Phrase Matching', () => {
@@ -514,7 +514,7 @@ describe('T022-07: Trigger Phrase Matching', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T022-08: EDGE CASES & ERROR FALLBACKS
+   EDGE CASES & ERROR FALLBACKS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-08: Edge Cases and Error Fallbacks', () => {
@@ -579,7 +579,7 @@ describe('T022-08: Edge Cases and Error Fallbacks', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T022-09: CLASSIFICATION RESULT STRUCTURE
+   CLASSIFICATION RESULT STRUCTURE
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-09: ClassificationResult Structure', () => {
@@ -636,7 +636,7 @@ describe('T022-09: ClassificationResult Structure', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T022-10: TERM EXTRACTION
+   TERM EXTRACTION
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-10: Term Extraction', () => {
@@ -666,7 +666,7 @@ describe('T022-10: Term Extraction', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T022-11: CHANNEL ROUTING TIER MAPPING (Documentation)
+   CHANNEL ROUTING TIER MAPPING (Documentation)
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-11: Tier-to-Channel Mapping Readiness', () => {
@@ -690,7 +690,7 @@ describe('T022-11: Tier-to-Channel Mapping Readiness', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T022-12: COMPREHENSIVE ACCURACY TEST
+   COMPREHENSIVE ACCURACY TEST
 ──────────────────────────────────────────────────────────────── */
 
 describe('T022-12: Comprehensive Accuracy', () => {

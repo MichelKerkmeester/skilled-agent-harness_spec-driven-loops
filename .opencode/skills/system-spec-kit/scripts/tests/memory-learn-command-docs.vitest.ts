@@ -12,7 +12,7 @@ function readWorkspaceFile(relativePath: string): string {
 }
 
 describe('/memory:learn command docs', () => {
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('documents the constitutional workflow without contradictory qualification text', () => {
     const learnDoc = readWorkspaceFile('.opencode/commands/memory/learn.md');
 
@@ -22,7 +22,7 @@ describe('/memory:learn command docs', () => {
     expect(learnDoc).toContain('Self-check (do NOT prompt user unless one or more answers are "no"):');
   });
 
-  // REASON: 026/000/002-vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
+  // REASON: vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
   it.skip('keeps active command and workspace docs aligned to the constitutional manager wording', () => {
     const docPaths = [
       '.opencode/commands/README.txt',

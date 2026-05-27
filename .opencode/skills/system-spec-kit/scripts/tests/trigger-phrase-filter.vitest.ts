@@ -1,6 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: filterTriggerPhrases — 3-stage trigger phrase filter pipeline
-// Phase 004 CHK-021, CHK-042: Path fragments, short tokens, shingle dedup.
+// Path fragments, short tokens, shingle dedup
 // ───────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';

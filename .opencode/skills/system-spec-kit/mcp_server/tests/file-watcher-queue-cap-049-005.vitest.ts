@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: File Watcher Queue Cap & Close-Abort Tests (049/005, F-003-A3-03)
+// MODULE: File Watcher Queue Cap & Close-Abort Tests
 // ───────────────────────────────────────────────────────────────
 //
 // Asserts that startFileWatcher() bounds the pending-reindex slot queue and

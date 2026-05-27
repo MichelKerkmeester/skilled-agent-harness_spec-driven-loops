@@ -86,7 +86,7 @@ afterEach(() => {
 });
 
 describe('graph metadata integration', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // Drift: vitest-recovery-followup verified against shipped behavior during Unit H
   it('discovers root graph-metadata files under canonical specs', () => {
     const fixture = createGraphMetadataFixture();
     const discovered = findGraphMetadataFiles(fixture.root);

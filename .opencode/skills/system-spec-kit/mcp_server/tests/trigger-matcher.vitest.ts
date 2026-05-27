@@ -133,7 +133,7 @@ describe('Trigger Matcher (T501)', () => {
     mockDbState.preparedSql = [];
   });
 
-  // 4.1 EXACT MATCH (T501-01)
+  // 4.1 EXACT MATCH
   describe('Exact Match (T501-01)', () => {
     it('T501-01: exact match on trigger phrase', () => {
       const result = matchPhraseWithBoundary('I need to save context now', 'save context');
@@ -141,7 +141,7 @@ describe('Trigger Matcher (T501)', () => {
     });
   });
 
-  // 4.2 PARTIAL MATCH DETECTION (T501-02)
+  // 4.2 PARTIAL MATCH DETECTION
   describe('Partial Match Detection (T501-02)', () => {
     it('T501-02: word boundary prevents false positive', () => {
       // "save" should not match "saving" because of word boundaries
@@ -151,7 +151,7 @@ describe('Trigger Matcher (T501)', () => {
     });
   });
 
-  // 4.3 CASE-INSENSITIVE MATCHING (T501-03)
+  // 4.3 CASE-INSENSITIVE MATCHING
   describe('Case-insensitive Matching (T501-03)', () => {
     it('T501-03: all case variations match', () => {
       const result1 = matchPhraseWithBoundary('SAVE CONTEXT please', 'save context');
@@ -164,7 +164,7 @@ describe('Trigger Matcher (T501)', () => {
     });
   });
 
-  // 4.4 MULTI-WORD TRIGGER PHRASES (T501-04)
+  // 4.4 MULTI-WORD TRIGGER PHRASES
   describe('Multi-word Trigger Phrases (T501-04)', () => {
     it('T501-04: multi-word trigger phrase matches', () => {
       const text = 'How do I implement a spaced repetition system?';
@@ -173,7 +173,7 @@ describe('Trigger Matcher (T501)', () => {
     });
   });
 
-  // 4.5 SPECIAL CHARACTERS IN TRIGGERS (T501-05)
+  // 4.5 SPECIAL CHARACTERS IN TRIGGERS
   describe('Special Characters in Triggers (T501-05)', () => {
     it('T501-05: special characters handled without error', () => {
       const text = 'What is the cost of item (USD)?';
@@ -182,7 +182,7 @@ describe('Trigger Matcher (T501)', () => {
     });
   });
 
-  // 4.6 EMPTY TRIGGERS (T501-06)
+  // 4.6 EMPTY TRIGGERS
   describe('Empty Triggers (T501-06)', () => {
     it('T501-06: empty prompt returns no matches', () => {
       clearCache();
@@ -192,7 +192,7 @@ describe('Trigger Matcher (T501)', () => {
     });
   });
 
-  // 4.7 EMPTY PROMPT (T501-07)
+  // 4.7 EMPTY PROMPT
   describe('Empty Prompt (T501-07)', () => {
     it('T501-07: empty/null/undefined prompt returns no matches', () => {
       const result1 = matchTriggerPhrases(null as unknown as TriggerPrompt);
@@ -208,7 +208,7 @@ describe('Trigger Matcher (T501)', () => {
     });
   });
 
-  // 4.8 UNICODE NORMALIZATION (T501-08)
+  // 4.8 UNICODE NORMALIZATION
   describe('Unicode Normalization (T501-08)', () => {
     it('T501-08a: Unicode NFC normalization', () => {
       const result1 = normalizeUnicode('cafe\u0301'); // e + combining accent
@@ -240,7 +240,7 @@ describe('Trigger Matcher (T501)', () => {
     });
   });
 
-  // 4.9 MATCH CONFIG / SCORING (T501-09)
+  // 4.9 MATCH CONFIG / SCORING
   describe('Match Config / Scoring (T501-09)', () => {
     it('T501-09a: CACHE_TTL_MS configured', () => {
       expect(typeof CONFIG.CACHE_TTL_MS).toBe('number');
@@ -263,7 +263,7 @@ describe('Trigger Matcher (T501)', () => {
     });
   });
 
-  // 4.10 VERY LONG PROMPT PERFORMANCE (T501-10)
+  // 4.10 VERY LONG PROMPT PERFORMANCE
   describe('Very Long Prompt (T501-10)', () => {
     it('T501-10: very long prompt processes within 5s', () => {
       const longPrompt = 'word '.repeat(2000);
@@ -276,7 +276,7 @@ describe('Trigger Matcher (T501)', () => {
     });
   });
 
-  // 4.11 TRIGGER WITH REGEX-SPECIAL CHARACTERS (T501-11)
+  // 4.11 TRIGGER WITH REGEX-SPECIAL CHARACTERS
   describe('Trigger with Regex-special Characters (T501-11)', () => {
     it('T501-11: special chars handled without regex errors', () => {
       const specialPhrases = [
@@ -407,7 +407,7 @@ describe('Trigger Matcher (T501)', () => {
     });
   });
 
-  // 4.12 CACHE STATS (T501-12)
+  // 4.12 CACHE STATS
   describe('Cache Stats (T501-12)', () => {
     it('T501-12: cache stats structure', () => {
       clearCache();

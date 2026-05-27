@@ -7,7 +7,7 @@ import { ensureStateDir, getStatePath, loadState } from '../hooks/claude/hook-st
 const copilotHooksAvailable = existsSync(join(import.meta.dirname, '..', 'hooks', 'copilot', 'compact-cache.js'))
   && existsSync(join(import.meta.dirname, '..', 'hooks', 'copilot', 'session-prime.js'));
 
-// REASON: 026/000/002-vitest-recovery-followup requires optional compiled Copilot hook fixtures
+// REASON: vitest-recovery-followup requires optional compiled Copilot hook fixtures
 (copilotHooksAvailable ? describe : describe.skip)('copilot compact cycle', () => {
   const testSessionId = 'test-copilot-compact-cycle';
   let tempDir: string | null = null;

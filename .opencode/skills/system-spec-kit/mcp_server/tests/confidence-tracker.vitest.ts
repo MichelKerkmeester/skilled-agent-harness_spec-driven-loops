@@ -14,7 +14,7 @@ import Database from 'better-sqlite3';
 
 // TEST: CONFIDENCE TRACKER
 // Confidence scoring with validation and tier promotion
-// Task ID: T510 (happy path), T103 (DB error safety)
+// Task ID:(happy path), (DB error safety)
 type ConfidenceTrackerCall =
   | ((db: ConfidenceTrackerDatabase) => ValidationResult)
   | ((db: ConfidenceTrackerDatabase) => number)
@@ -87,7 +87,7 @@ describe('Confidence Tracker Tests (T510)', () => {
   });
 
   // ───────────────────────────────────────────────────────────────
-  // 1. INITIAL CONFIDENCE CONSTANTS (T510-01)
+  // 1. INITIAL CONFIDENCE CONSTANTS
   // ───────────────────────────────────────────────────────────────
   describe('Initial Confidence Constants (T510-01)', () => {
     it('T510-01a: CONFIDENCE_BASE = 0.5', () => {
@@ -109,7 +109,7 @@ describe('Confidence Tracker Tests (T510)', () => {
   });
 
   // ───────────────────────────────────────────────────────────────
-  // 2. POSITIVE FEEDBACK ADJUSTS UP (T510-02)
+  // 2. POSITIVE FEEDBACK ADJUSTS UP
   // ───────────────────────────────────────────────────────────────
   describe('Positive Feedback Adjusts Up (T510-02)', () => {
     it('T510-02a: Positive validation increases confidence', () => {
@@ -135,7 +135,7 @@ describe('Confidence Tracker Tests (T510)', () => {
   });
 
   // ───────────────────────────────────────────────────────────────
-  // 3. NEGATIVE FEEDBACK ADJUSTS DOWN (T510-03)
+  // 3. NEGATIVE FEEDBACK ADJUSTS DOWN
   // ───────────────────────────────────────────────────────────────
   describe('Negative Feedback Adjusts Down (T510-03)', () => {
     it('T510-03a: Negative validation decreases confidence', () => {
@@ -154,7 +154,7 @@ describe('Confidence Tracker Tests (T510)', () => {
   });
 
   // ───────────────────────────────────────────────────────────────
-  // 4. CONFIDENCE BOUNDS (T510-04)
+  // 4. CONFIDENCE BOUNDS
   // ───────────────────────────────────────────────────────────────
   describe('Confidence Bounds (T510-04)', () => {
     it('T510-04a: Confidence never goes below CONFIDENCE_MIN (0.0)', () => {
@@ -177,7 +177,7 @@ describe('Confidence Tracker Tests (T510)', () => {
   });
 
   // ───────────────────────────────────────────────────────────────
-  // 5. PROMOTION TRACKING AND HISTORY (T510-05)
+  // 5. PROMOTION TRACKING AND HISTORY
   // ───────────────────────────────────────────────────────────────
   describe('Promotion Tracking and History (T510-05)', () => {
     it('T510-05a: Promotion eligibility detected after meeting thresholds', () => {
@@ -216,14 +216,14 @@ describe('Confidence Tracker Tests (T510)', () => {
   });
 });
 
-// T103: DB ERROR SAFE DEFAULTS (P0-06 Safety Fix)
+// DB ERROR SAFE DEFAULTS (Safety Fix)
 // Verifies all 7 DB operations in confidence-tracker survive
 // Database failures without crashing the server.
 // Tests: closed DB handle, mock SQLITE_BUSY, error logging.
 describe('DB Error Safe Defaults (T103)', () => {
 
   // ───────────────────────────────────────────────────────────────
-  // 6. DB ERROR: CLOSED DB HANDLE (T103-01)
+  // 6. DB ERROR: CLOSED DB HANDLE
   // ───────────────────────────────────────────────────────────────
   describe('Closed DB Handle (T103-01)', () => {
     let closedDb: ClosableConfidenceTrackerDatabase | null = null;

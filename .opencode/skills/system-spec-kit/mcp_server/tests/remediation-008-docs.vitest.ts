@@ -12,7 +12,7 @@ function readWorkspaceFile(relativePath: string): string {
 }
 
 describe('008 search fusion and reranker remediation docs', () => {
-  // REASON: 026/000/002-vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
+  // REASON: vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
   it.skip('keeps feature catalog acceptance counts aligned with live root catalogs', () => {
     const spec = readWorkspaceFile(
       '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-skill-advisor-graph/008-deep-skill-feature-catalogs/spec.md',
@@ -23,7 +23,7 @@ describe('008 search fusion and reranker remediation docs', () => {
     expect(spec).toContain('deep-agent-improvement/feature_catalog/` -- root catalog + 13 feature entries across 3 categories');
   });
 
-  // REASON: 026/000/002-vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
+  // REASON: vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
   it.skip('documents the skill advisor plugin manifest and prompt hook contract', () => {
     const validation = readWorkspaceFile(
       '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/004-smart-router-context-efficacy/001-initial-research/research/research-validation.md',

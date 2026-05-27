@@ -20,7 +20,7 @@ afterEach(() => {
 });
 
 describe('copilot hook wiring', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // Drift: vitest-recovery-followup verified against shipped behavior during Unit H
   it('routes sessionStart through the repo-local wrapper and other events through Superset', () => {
     const parsed = JSON.parse(readFileSync(hooksJsonPath, 'utf-8'));
 

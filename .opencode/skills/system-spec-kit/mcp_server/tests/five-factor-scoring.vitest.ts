@@ -28,7 +28,7 @@ import {
 } from '../lib/cognitive/attention-decay';
 
 /* ───────────────────────────────────────────────────────────────
-   3. FIVE FACTOR WEIGHTS (T032)
+   3. FIVE FACTOR WEIGHTS
 ──────────────────────────────────────────────────────────────── */
 
 type BatchScoreInput = ScoringInput & { id: number };
@@ -66,7 +66,7 @@ describe('Five-Factor Weight Configuration (T032)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   4. TEMPORAL SCORE - Factor 1 (T032)
+   4. TEMPORAL SCORE - Factor 1
 ──────────────────────────────────────────────────────────────── */
 
 describe('Factor 1: Temporal Score (FSRS Retrievability)', () => {
@@ -93,7 +93,7 @@ describe('Factor 1: Temporal Score (FSRS Retrievability)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   5. USAGE SCORE - Factor 2 (T032)
+   5. USAGE SCORE - Factor 2
 ──────────────────────────────────────────────────────────────── */
 
 describe('Factor 2: Usage Score (Access Boost)', () => {
@@ -124,7 +124,7 @@ describe('Factor 2: Usage Score (Access Boost)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   6. IMPORTANCE SCORE - Factor 3 (T032)
+   6. IMPORTANCE SCORE - Factor 3
 ──────────────────────────────────────────────────────────────── */
 
 describe('Factor 3: Importance Score (Tier Multipliers)', () => {
@@ -160,7 +160,7 @@ describe('Factor 3: Importance Score (Tier Multipliers)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   7. CITATION SCORE - Factor 5 (T033)
+   7. CITATION SCORE - Factor 5
 ──────────────────────────────────────────────────────────────── */
 
 describe('Factor 5: Citation Recency Score (T033)', () => {
@@ -208,7 +208,7 @@ describe('Factor 5: Citation Recency Score (T033)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   8. PATTERN SCORE - Factor 4 (T034)
+   8. PATTERN SCORE - Factor 4
 ──────────────────────────────────────────────────────────────── */
 
 describe('Factor 4: Pattern Alignment Score (T034)', () => {
@@ -259,7 +259,7 @@ describe('Factor 4: Pattern Alignment Score (T034)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   9. FIVE-FACTOR COMPOSITE (T032)
+   9. FIVE-FACTOR COMPOSITE
 ──────────────────────────────────────────────────────────────── */
 
 describe('Five-Factor Composite Score (T032)', () => {
@@ -300,7 +300,7 @@ describe('Five-Factor Composite Score (T032)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   10. BATCH OPERATIONS (T032)
+   10. BATCH OPERATIONS
 ──────────────────────────────────────────────────────────────── */
 
 describe('Five-Factor Batch Operations', () => {
@@ -337,7 +337,7 @@ describe('Five-Factor Batch Operations', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   11. BREAKDOWN (T032)
+   11. BREAKDOWN
 ──────────────────────────────────────────────────────────────── */
 
 describe('Five-Factor Breakdown', () => {
@@ -366,7 +366,7 @@ describe('Five-Factor Breakdown', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   12. ATTENTION DECAY INTEGRATION (T035)
+   12. ATTENTION DECAY INTEGRATION
 ──────────────────────────────────────────────────────────────── */
 
 describe('Attention Decay Integration (T035)', () => {
@@ -465,7 +465,7 @@ describe('Backward Compatibility', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   14. RELEVANCE IMPROVEMENT (CHK-056)
+   14. RELEVANCE IMPROVEMENT
 ──────────────────────────────────────────────────────────────── */
 
 describe('Relevance Improvement Validation (CHK-056)', () => {

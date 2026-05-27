@@ -51,7 +51,7 @@ function makeConstitutionalDb(rows: Array<Record<string, unknown>>): { prepare: 
 }
 
 /* ───────────────────────────────────────────────────────────────
-   T-A4-01: EXTRACTION — IMPERATIVE CONTENT
+   EXTRACTION — IMPERATIVE CONTENT
 ──────────────────────────────────────────────────────────────── */
 
 describe('T-A4-01: Extraction from imperative content', () => {
@@ -140,7 +140,7 @@ describe('T-A4-01: Extraction from imperative content', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T-A4-02: DIRECTIVE PREFIX PATTERNS
+   DIRECTIVE PREFIX PATTERNS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T-A4-02: Directive prefix patterns', () => {
@@ -196,7 +196,7 @@ describe('T-A4-02: Directive prefix patterns', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T-A4-03: FALLBACK — NO CLEAR RULE PATTERN
+   FALLBACK — NO CLEAR RULE PATTERN
 ──────────────────────────────────────────────────────────────── */
 
 describe('T-A4-03: Fallback when content has no imperative rules', () => {
@@ -253,7 +253,7 @@ describe('T-A4-03: Fallback when content has no imperative rules', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T-A4-04: FORMAT DIRECTIVE METADATA
+   FORMAT DIRECTIVE METADATA
 ──────────────────────────────────────────────────────────────── */
 
 describe('T-A4-04: formatDirectiveMetadata', () => {
@@ -285,7 +285,7 @@ describe('T-A4-04: formatDirectiveMetadata', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T-A4-05: ENRICHMENT OF RESULT ARRAYS
+   ENRICHMENT OF RESULT ARRAYS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T-A4-05: enrichWithRetrievalDirectives', () => {
@@ -363,7 +363,7 @@ describe('T-A4-05: enrichWithRetrievalDirectives', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T-A4-06: NO SCORING LOGIC CHANGES (content transformation only)
+   NO SCORING LOGIC CHANGES (content transformation only)
 ──────────────────────────────────────────────────────────────── */
 
 describe('T-A4-06: Scoring invariants — content transformation only', () => {
@@ -424,7 +424,7 @@ describe('T-A4-06: Scoring invariants — content transformation only', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T-A4-07: EDGE CASES
+   EDGE CASES
 ──────────────────────────────────────────────────────────────── */
 
 describe('T-A4-07: Edge cases', () => {
@@ -483,7 +483,7 @@ describe('T-A4-07: Edge cases', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T-A4-08: AUTO-SURFACE INTEGRATION (constitutional injection path)
+   AUTO-SURFACE INTEGRATION (constitutional injection path)
 ──────────────────────────────────────────────────────────────── */
 
 describe('T-A4-08: constitutional auto-surface integration', () => {

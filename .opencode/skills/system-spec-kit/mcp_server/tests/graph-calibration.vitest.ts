@@ -693,7 +693,7 @@ describe('applyCommunityScoring', () => {
 
     const { items: result } = applyCommunityScoring(items, communityMap);
 
-    // Item 3: 0.30 + 0.03 = 0.33, still below item 2's 0.50
+    // 0.30 + 0.03 = 0.33, still below item 2's 0.50
     expect(result[0]!.id).toBe(1);
     expect(result[2]!.score).toBeCloseTo(0.33, 6);
     expect(result[2]!.score).toBeLessThan(result[1]!.score);

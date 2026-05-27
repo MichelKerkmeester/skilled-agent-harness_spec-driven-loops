@@ -1,11 +1,11 @@
 // ───────────────────────────────────────────────────────────────
 // 1. TEST — FEATURE EVALUATION — GRAPH SIGNALS
 // ───────────────────────────────────────────────────────────────
-// Rigorous cross-feature evaluation tests for T001, T002, T003a, T005a, T007
+// Rigorous cross-feature evaluation tests for
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-// --- T001/T002: Degree computation & RRF channel ---
+// /:Degree computation & RRF channel
 import {
   EDGE_TYPE_WEIGHTS,
   DEFAULT_MAX_TYPED_DEGREE,
@@ -19,14 +19,14 @@ import {
   clearDegreeCache,
 } from '../lib/search/graph-search-fn';
 
-// --- T002: RRF fusion ---
+// RRF fusion
 import {
   fuseResultsMulti,
   SOURCE_TYPES,
 } from '@spec-kit/shared/algorithms/rrf-fusion';
 import type { RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
 
-// --- T003a: Co-activation ---
+// Co-activation
 import {
   boostScore,
   CO_ACTIVATION_CONFIG,
@@ -35,14 +35,14 @@ import {
 import { applyGraphSignals } from '../lib/graph/graph-signals';
 import { resolveGraphWalkRolloutState } from '../lib/search/search-flags';
 
-// --- T005a: Signal vocabulary ---
+// Signal vocabulary
 import {
   detectSignals,
   applySignalBoosts,
 } from '../lib/parsing/trigger-matcher';
 import type { TriggerMatch } from '../lib/parsing/trigger-matcher';
 
-// --- T007: Token budget ---
+// Token budget
 import {
   getDynamicTokenBudget,
   DEFAULT_BUDGET,
@@ -157,7 +157,7 @@ function createGraphSignalsDb(edges: Array<{
 
 
 // ═══════════════════════════════════════════════════════════════════
-// T001: TYPED-WEIGHTED DEGREE COMPUTATION
+// TYPED-WEIGHTED DEGREE COMPUTATION
 // ═══════════════════════════════════════════════════════════════════
 
 describe('T001: Typed-weighted degree computation', () => {
@@ -255,7 +255,7 @@ describe('T001: Typed-weighted degree computation', () => {
 
 
 // ═══════════════════════════════════════════════════════════════════
-// T002: RRF 5TH DEGREE CHANNEL
+// RRF 5TH DEGREE CHANNEL
 // ═══════════════════════════════════════════════════════════════════
 
 describe('T002: RRF 5th degree channel integration', () => {
@@ -403,7 +403,7 @@ describe('T028: graph-walk rollout evaluation coverage', () => {
 
 
 // ═══════════════════════════════════════════════════════════════════
-// T003a: CO-ACTIVATION SUBLINEAR SCALING (FAN-EFFECT)
+// CO-ACTIVATION SUBLINEAR SCALING (FAN-EFFECT)
 // ═══════════════════════════════════════════════════════════════════
 
 describe('T003a: Co-activation sublinear scaling (R17 fan-effect)', () => {
@@ -482,7 +482,7 @@ describe('T003a: Co-activation sublinear scaling (R17 fan-effect)', () => {
 
 
 // ═══════════════════════════════════════════════════════════════════
-// T005a: SIGNAL VOCABULARY DETECTION
+// SIGNAL VOCABULARY DETECTION
 // ═══════════════════════════════════════════════════════════════════
 
 describe('T005a: Signal vocabulary detection', () => {
@@ -579,7 +579,7 @@ describe('T005a: Signal vocabulary detection', () => {
 
 
 // ═══════════════════════════════════════════════════════════════════
-// T007: TOKEN BUDGET ESTIMATION
+// TOKEN BUDGET ESTIMATION
 // ═══════════════════════════════════════════════════════════════════
 
 describe('T007: Token budget estimation', () => {

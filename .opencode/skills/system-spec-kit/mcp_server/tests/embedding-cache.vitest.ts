@@ -35,7 +35,7 @@ describe('Embedding Cache (T015)', () => {
     } catch { /* ignore */ }
   });
 
-  // T015-01: initEmbeddingCache creates table successfully
+  // InitEmbeddingCache creates table successfully
   it('T015-01: initEmbeddingCache creates table successfully', () => {
     const tables = db
       .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='embedding_cache'")
@@ -53,7 +53,7 @@ describe('Embedding Cache (T015)', () => {
     expect(tables).toHaveLength(1);
   });
 
-  // T015-02: storeEmbedding + lookupEmbedding round-trip works
+  // StoreEmbedding + lookupEmbedding round-trip works
   it('T015-02: store and lookup round-trip', () => {
     const hash = computeContentHash('hello world');
     const model = 'text-embedding-ada-002';
@@ -70,13 +70,13 @@ describe('Embedding Cache (T015)', () => {
     expect(Buffer.compare(result!, embedding)).toBe(0);
   });
 
-  // T015-03: Cache miss returns null for unknown hash
+  // Cache miss returns null for unknown hash
   it('T015-03: cache miss returns null', () => {
     const result = lookupEmbedding(db, 'nonexistent_hash', 'any-model', 768);
     expect(result).toBeNull();
   });
 
-  // T015-04: Different model_id triggers cache miss (same content)
+  // Different model_id triggers cache miss (same content)
   it('T015-04: different model_id triggers cache miss', () => {
     const hash = computeContentHash('same content');
     const dims = 64;
@@ -121,7 +121,7 @@ describe('Embedding Cache (T015)', () => {
     expect(Buffer.compare(lookupEmbedding(db, hash, model, dimsB)!, embB)).toBe(0);
   });
 
-  // T015-05: lookupEmbedding updates last_used_at on hit
+  // LookupEmbedding updates last_used_at on hit
   it('T015-05: lookupEmbedding updates last_used_at on hit', () => {
     const hash = computeContentHash('track usage');
     const model = 'test-model';
@@ -155,7 +155,7 @@ describe('Embedding Cache (T015)', () => {
     expect(afterLookup.last_used_at > afterBackdate.last_used_at).toBe(true);
   });
 
-  // T015-06: evictOldEntries removes entries older than threshold
+  // EvictOldEntries removes entries older than threshold
   it('T015-06: evictOldEntries removes old entries', () => {
     const hash = computeContentHash('evict me');
     const model = 'test-model';
@@ -183,7 +183,7 @@ describe('Embedding Cache (T015)', () => {
     expect(lookupEmbedding(db, freshHash, model, dims)).not.toBeNull();
   });
 
-  // T015-07: getCacheStats returns correct counts
+  // GetCacheStats returns correct counts
   it('T015-07: getCacheStats returns correct counts', () => {
     // Empty stats
     const empty = getCacheStats(db);
@@ -206,7 +206,7 @@ describe('Embedding Cache (T015)', () => {
     expect(stats.newestEntry).not.toBeNull();
   });
 
-  // T015-08: clearCache removes all entries
+  // ClearCache removes all entries
   it('T015-08: clearCache removes all entries', () => {
     const dims = 32;
     const emb = makeEmbeddingBuffer(dims);
@@ -220,7 +220,7 @@ describe('Embedding Cache (T015)', () => {
     expect(getCacheStats(db).totalEntries).toBe(0);
   });
 
-  // T015-09: Duplicate store (same hash+model) replaces existing
+  // Duplicate store (same hash+model) replaces existing
   it('T015-09: duplicate store replaces existing entry', () => {
     const hash = computeContentHash('replace test');
     const model = 'test-model';
@@ -241,7 +241,7 @@ describe('Embedding Cache (T015)', () => {
     expect(Buffer.compare(result!, emb2)).toBe(0);
   });
 
-  // T015-10: computeContentHash returns consistent SHA-256
+  // ComputeContentHash returns consistent SHA-256
   it('T015-10: computeContentHash returns consistent SHA-256', () => {
     const content = 'deterministic hashing test';
 
@@ -259,7 +259,7 @@ describe('Embedding Cache (T015)', () => {
     expect(hash3).not.toBe(hash1);
   });
 
-  // T015-11: Cache lookup performance (<1ms for simple ops)
+  // Cache lookup performance (<1ms for simple ops)
   it('T015-11: cache lookup performance benchmark', () => {
     const hash = computeContentHash('perf test');
     const model = 'test-model';

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: hooks/shared-provenance helpers (T-W1-HOK-02)
+// TEST: hooks/shared-provenance helpers
 // ───────────────────────────────────────────────────────────────
 // Verifies that the 3 provenance helpers behave identically after
 // extraction from hooks/claude/shared.ts into hooks/shared-provenance.ts.

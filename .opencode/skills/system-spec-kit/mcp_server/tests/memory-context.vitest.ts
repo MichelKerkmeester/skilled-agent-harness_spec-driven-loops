@@ -80,7 +80,7 @@ function invokeMemoryContext(args: Record<string, unknown>): Promise<MCPResponse
 }
 
 /* ───────────────────────────────────────────────────────────────
-   T001-T010: CONTEXT MODES TESTS
+   CONTEXT MODES TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T001-T010: Context Modes Configuration [deferred - requires DB test fixtures]', () => {
@@ -164,7 +164,7 @@ describe('T001-T010: Context Modes Configuration [deferred - requires DB test fi
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T011-T020: INTENT_TO_MODE ROUTING TESTS
+   INTENT_TO_MODE ROUTING TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T011-T020: Intent-to-Mode Routing [deferred - requires DB test fixtures]', () => {
@@ -222,7 +222,7 @@ describe('T011-T020: Intent-to-Mode Routing [deferred - requires DB test fixture
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T021-T030: handle_memory_context MAIN HANDLER TESTS
+   Handle_memory_context MAIN HANDLER TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T021-T030: Main Handler Tests [deferred - requires DB test fixtures]', () => {
@@ -381,7 +381,7 @@ describe('T015: Session transition contract coverage', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T031-T040: QUICK MODE CONFIGURATION TESTS
+   QUICK MODE CONFIGURATION TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T031-T040: Quick Mode Configuration Tests [deferred - requires DB test fixtures]', () => {
@@ -449,7 +449,7 @@ describe('T031-T040: Quick Mode Configuration Tests [deferred - requires DB test
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T041-T050: DEEP MODE CONFIGURATION TESTS
+   DEEP MODE CONFIGURATION TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T041-T050: Deep Mode Configuration Tests [deferred - requires DB test fixtures]', () => {
@@ -504,7 +504,7 @@ describe('T041-T050: Deep Mode Configuration Tests [deferred - requires DB test 
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T051-T060: FOCUSED MODE CONFIGURATION TESTS
+   FOCUSED MODE CONFIGURATION TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T051-T060: Focused Mode Configuration Tests [deferred - requires DB test fixtures]', () => {
@@ -561,7 +561,7 @@ describe('T051-T060: Focused Mode Configuration Tests [deferred - requires DB te
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T061-T070: RESUME MODE CONFIGURATION TESTS
+   RESUME MODE CONFIGURATION TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T061-T070: Resume Mode Configuration Tests [deferred - requires DB test fixtures]', () => {
@@ -622,7 +622,7 @@ describe('T061-T070: Resume Mode Configuration Tests [deferred - requires DB tes
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T071-T080: AUTO MODE CONFIGURATION TESTS
+   AUTO MODE CONFIGURATION TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T071-T080: Auto Mode Configuration Tests [deferred - requires DB test fixtures]', () => {
@@ -690,7 +690,7 @@ describe('T071-T080: Auto Mode Configuration Tests [deferred - requires DB test 
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T081-T090: L1 ORCHESTRATION TOKEN BUDGET TESTS (CHK-071, CHK-072, CHK-074)
+   L1 ORCHESTRATION TOKEN BUDGET TESTS ()
 ──────────────────────────────────────────────────────────────── */
 
 describe('T081-T090: L1 Orchestration Token Budget Tests [deferred - requires DB test fixtures]', () => {
@@ -769,7 +769,7 @@ describe('T081-T090: L1 Orchestration Token Budget Tests [deferred - requires DB
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T091-T100: INPUT VALIDATION TESTS
+   INPUT VALIDATION TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T091-T100: Input Validation Tests [deferred - requires DB test fixtures]', () => {
@@ -837,7 +837,7 @@ describe('T091-T100: Input Validation Tests [deferred - requires DB test fixture
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T101-T105: MODULE EXPORTS TESTS
+   MODULE EXPORTS TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T101-T105: Module Exports Tests [deferred - requires DB test fixtures]', () => {
@@ -868,7 +868,7 @@ describe('T101-T105: Module Exports Tests [deferred - requires DB test fixtures]
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T201-T220: TOKEN BUDGET ENFORCEMENT TESTS (T205)
+   TOKEN BUDGET ENFORCEMENT TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T201-T220: Token Budget Enforcement (T205) [deferred - requires DB test fixtures]', () => {

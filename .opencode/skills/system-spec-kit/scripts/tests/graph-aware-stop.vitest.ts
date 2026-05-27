@@ -1,4 +1,4 @@
-// TEST: graph-aware stop evaluation (phase 008 REQ-023)
+// TEST: graph-aware stop evaluation
 //
 // Validates that the reducer's graph_convergence event ingestion + dashboard
 // surfacing work end-to-end. The test should fail if the reducer falls back

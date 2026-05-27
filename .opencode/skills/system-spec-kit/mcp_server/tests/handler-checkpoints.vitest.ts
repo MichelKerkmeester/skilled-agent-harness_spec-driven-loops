@@ -18,7 +18,7 @@ const bm25IndexAvailable = false;
 const triggerMatcherAvailable = false;
 
 // HANDLER CHECKPOINTS TESTS
-// Covers: T521, T102
+// Covers
 type HandlerExportName = keyof typeof handler;
 
 function invalidArgs<T>(value: unknown): T {

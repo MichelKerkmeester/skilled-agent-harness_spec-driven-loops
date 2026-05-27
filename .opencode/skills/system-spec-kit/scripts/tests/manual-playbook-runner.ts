@@ -26,7 +26,7 @@ type ScenarioDefinition = {
   exactPrompt: string;
   commandSequence: string;
   expectedSignals: string;
-  // T-MPR-RUN-02 / R42-003: explicit automatable boolean from scenario frontmatter
+  // Explicit automatable boolean from scenario frontmatter
   // (or SOURCE METADATA). When null, falls back to legacy filename-substring inference
   // in preclassifiedUnautomatableReason().
   automatable: boolean | null;
@@ -627,7 +627,7 @@ function parseSteps(commandSequence: string): ScenarioStep[] {
   return lineSteps.map(classifyStep);
 }
 
-// T-MPR-RUN-04 / R46-003: `lastJobId` originates from prior handler payloads and is
+// `lastJobId` originates from prior handler payloads and is
 // interpolated into tokenized object-literal source before parsing. Even though the
 // typed parser rejects quoted-string breakouts (see parseObjectLiteralArgs test
 // coverage), we sanitize at the substitution boundary as defense in depth: only a
@@ -649,7 +649,7 @@ function substitutePlaceholders(value: string, fixture: FixtureToolContext, runt
   if (runtimeState.lastJobId && next.includes('<job-id>')) {
     const sanitized = sanitizeJobIdForSubstitution(runtimeState.lastJobId);
     if (sanitized === null) {
-      // T-MPR-RUN-04 / R46-003: adversarial lastJobId must never reach the
+      // Adversarial lastJobId must never reach the
       // tokenizer. Throw a structured error so the scenario fails visibly
       // instead of silently swallowing a dangerous payload.
       throw new Error(

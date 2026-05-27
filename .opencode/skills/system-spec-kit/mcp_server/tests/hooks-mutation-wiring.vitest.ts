@@ -112,7 +112,7 @@ describe('Hooks mutation wiring', () => {
     );
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // Drift: vitest-recovery-followup verified against shipped behavior during Unit H
   it('keeps hooks README documented exports aligned with explicit hooks barrel exports', () => {
     const hooksIndexPath = path.join(__dirname, '..', 'hooks', 'index.ts');
     const hooksReadmePath = path.join(__dirname, '..', 'hooks', 'README.md');
