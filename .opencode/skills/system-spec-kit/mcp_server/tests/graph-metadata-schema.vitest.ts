@@ -165,7 +165,7 @@ afterEach(() => {
 });
 
 describe('graph metadata schema and parser', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('accepts derived metadata created from canonical packet docs', () => {
     const specFolder = createSpecFolder();
     const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
@@ -424,7 +424,7 @@ describe('graph metadata schema and parser', () => {
     expect(metadata.derived.key_files).not.toContain('system-spec-kit/901-cross-track/spec.md');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('drops obsolete memory metadata references and nonexistent key-file candidates', () => {
     const specFolder = createSpecFolder({
       materializeImplementationSummaryReferences: false,
@@ -538,7 +538,7 @@ describe('graph metadata schema and parser', () => {
     expect(metadata.derived.entities.some((entity) => entity.name === 'handover.md')).toBe(false);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('keeps the current 24-entity cap and rejects bare runtime names', () => {
     const specFolder = createSpecFolder({
       implementationSummaryReferences: Array.from({ length: 30 }, (_, index) => `scripts/entities/entity-${index + 1}.ts`),

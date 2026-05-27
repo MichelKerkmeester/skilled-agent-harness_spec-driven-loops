@@ -166,7 +166,7 @@ function isMigrationError(e) {
 }
 
 // ════════════════════════════════════════════════════════════════════════
-// T1: SYNTAX VALIDATION
+// SYNTAX VALIDATION
 // ════════════════════════════════════════════════════════════════════════
 function t1SyntaxValidation() {
   section('T1: Syntax Validation');
@@ -246,7 +246,7 @@ function canLoadViaDynamicImport(filePath) {
 }
 
 // ════════════════════════════════════════════════════════════════════════
-// T2: MCP MODULE IMPORT CHAIN
+// MCP MODULE IMPORT CHAIN
 // ════════════════════════════════════════════════════════════════════════
 function t2McpImports() {
   section('T2: MCP Module Import Chain');
@@ -292,7 +292,7 @@ function t2McpImports() {
 }
 
 // ════════════════════════════════════════════════════════════════════════
-// T9: SCRIPTS MODULE IMPORTS
+// SCRIPTS MODULE IMPORTS
 // ════════════════════════════════════════════════════════════════════════
 function t9ScriptsImports() {
   section('T9: Scripts Module Imports');
@@ -335,7 +335,7 @@ function t9ScriptsImports() {
 }
 
 // ════════════════════════════════════════════════════════════════════════
-// T10: NAMING COMPLIANCE SWEEP
+// NAMING COMPLIANCE SWEEP
 // ════════════════════════════════════════════════════════════════════════
 function t10NamingCompliance() {
   section('T10: Naming Compliance Sweep');
@@ -419,7 +419,7 @@ function t10NamingCompliance() {
 }
 
 // ════════════════════════════════════════════════════════════════════════
-// T7: CROSS-REFERENCE INTEGRITY
+// CROSS-REFERENCE INTEGRITY
 // ════════════════════════════════════════════════════════════════════════
 // Detects within-file naming mismatches: a camelCase variable is declared
 // But its snake_case equivalent is used (the exact pattern of bugs 1-3).

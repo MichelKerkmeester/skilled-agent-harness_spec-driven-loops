@@ -1,9 +1,9 @@
 // TEST: Stage-1 Candidate Gen — Expansion & Dedup
 // Covers: stage1-candidate-gen.ts orchestrates expansion
-// T1: Stage-1 calls expansion when enabled (R12 path)
-// T2: Deduplication works correctly — baseline-first ordering
-// T3: Expansion suppressed for simple queries (R15 mutual exclusion)
-// T4: Expansion disabled when flag is OFF → single channel
+// Stage-1 calls expansion when enabled (R12 path)
+// Deduplication works correctly — baseline-first ordering
+// Expansion suppressed for simple queries (R15 mutual exclusion)
+// Expansion disabled when flag is OFF → single channel
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
 // We test the internal helpers via __testables and mock external deps

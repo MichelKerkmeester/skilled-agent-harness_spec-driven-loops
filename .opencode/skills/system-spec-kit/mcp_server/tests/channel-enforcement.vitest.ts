@@ -5,28 +5,28 @@
 //
 // Coverage:
 // Enforcement wrapper (enforceChannelRepresentation)
-// T1:  enforcement applies when flag enabled and a channel is missing
-// T2:  enforcement does not apply when flag is disabled
-// T3:  topK parameter limits the inspection window
-// T4:  promoted results are appended and metadata is correct
-// T5:  promoted raw scores are normalized into the fused range before sorting
+// enforcement applies when flag enabled and a channel is missing
+// enforcement does not apply when flag is disabled
+// topK parameter limits the inspection window
+// promoted results are appended and metadata is correct
+// promoted raw scores are normalized into the fused range before sorting
 //
 // Precision verification (R2 guarantee)
-// T6:  all channels represented → top-3 unchanged (precision preserved)
-// T7:  one channel missing → top-3 still contains high-scoring items
-// T8:  promotions never displace items already in top-3 (appended)
-// T9:  quality floor prevents low-quality promotions
-// T10: multiple missing channels → each gets at most 1 promotion
-// T11: R15+R2 interaction — ≥2 channels from router preserves R2 guarantee
+// all channels represented → top-3 unchanged (precision preserved)
+// one channel missing → top-3 still contains high-scoring items
+// promotions never displace items already in top-3 (appended)
+// quality floor prevents low-quality promotions
+// multiple missing channels → each gets at most 1 promotion
+// R15+R2 interaction — ≥2 channels from router preserves R2 guarantee
 //
 // Edge cases
-// T12: empty results → no crash
-// T13: single result → no crash
-// T14: all channel result sets empty → no enforcement needed
-// T15: topK=0 → no enforcement (empty window), tail returned intact
-// T16: topK larger than results → full list inspected
-// T17: promoted items carry original extra fields
-// T18: channelCounts in EnforcementResult cover full result list
+// empty results → no crash
+// single result → no crash
+// all channel result sets empty → no enforcement needed
+// topK=0 → no enforcement (empty window), tail returned intact
+// topK larger than results → full list inspected
+// promoted items carry original extra fields
+// channelCounts in EnforcementResult cover full result list
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
@@ -97,7 +97,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
 
   // ========== : ENFORCEMENT WRAPPER TESTS ==========================
 
-  // ---- T1: Enforcement applies when flag enabled and a channel is missing ----
+  // ---- Enforcement applies when flag enabled and a channel is missing ----
   it('T1: enforcement applies when flag enabled and channel is missing', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.9, 'vector'),
@@ -117,7 +117,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.results).toHaveLength(3);
   });
 
-  // ---- T2: Enforcement does not apply when flag is disabled ----
+  // ---- Enforcement does not apply when flag is disabled ----
   it('T2: enforcement does not apply when flag is disabled', () => {
     setEnv(FEATURE_FLAG, 'false');
 
@@ -137,7 +137,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.results[0].id).toBe('a1');
   });
 
-  // ---- T3: topK parameter limits the inspection window ----
+  // ---- topK parameter limits the inspection window ----
   it('T3: topK parameter limits the inspection window to the first N results', () => {
     // 5 results; graph is present at position 4 (outside window=3).
     // When window=3, graph should appear under-represented.
@@ -165,7 +165,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.results.length).toBeGreaterThanOrEqual(5);
   });
 
-  // ---- T4: Promoted results appended and metadata is correct ----
+  // ---- Promoted results appended and metadata is correct ----
   it('T4: promoted results appear in results list and metadata reflects the promotion', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.9, 'vector'),
@@ -186,7 +186,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect((promoted as Record<string, unknown>)?.title).toBe('BM25 Doc');
   });
 
-  // ---- T5: Promoted raw scores are normalized into the fused range ----
+  // ---- Promoted raw scores are normalized into the fused range ----
   it('T5: promoted raw scores are normalized into the fused range before sorting', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.9, 'vector'),
@@ -223,7 +223,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
 
   // ========== : PRECISION VERIFICATION TESTS =======================
 
-  // ---- T6: All channels represented → top-3 unchanged (precision preserved) ----
+  // ---- All channels represented → top-3 unchanged (precision preserved) ----
   it('T6: all channels represented — top-3 is identical before and after enforcement', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.95, 'vector'),
@@ -246,7 +246,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(topNIds(result, 3)).toEqual(['a1', 'b1', 'g1']);
   });
 
-  // ---- T7: One channel missing → top-3 still contains high-scoring items ----
+  // ---- One channel missing → top-3 still contains high-scoring items ----
   it('T7: one channel missing — top-3 still contains the original high-scoring items', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.95, 'vector'),
@@ -273,7 +273,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(g1Index).toBeGreaterThanOrEqual(3);
   });
 
-  // ---- T8: Promotions never displace items already in top-3 (appended, not inserted) ----
+  // ---- Promotions never displace items already in top-3 (appended, not inserted) ----
   it('T8: promotions with lower scores are appended after the top-3, not inserted', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.93, 'vector'),
@@ -296,7 +296,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.results[3].id).toBe('g1');
   });
 
-  // ---- T9: Quality floor prevents low-quality promotions ----
+  // ---- Quality floor prevents low-quality promotions ----
   it('T9: quality floor blocks promotions below 0.005, preventing low-quality pollution', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.9, 'vector'),
@@ -317,7 +317,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.enforcement.underRepresentedChannels).toContain('graph');
   });
 
-  // ---- T10: Multiple missing channels — each gets at most 1 promotion ----
+  // ---- Multiple missing channels — each gets at most 1 promotion ----
   it('T10: multiple missing channels — each receives at most 1 promotion', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.9, 'vector'),
@@ -349,7 +349,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.results.find(r => r.source === 'graph')?.id).toBe('g1');
   });
 
-  // ---- T11: R15+R2 interaction — min 2 channels from router preserves R2 guarantee ----
+  // ---- R15+R2 interaction — min 2 channels from router preserves R2 guarantee ----
   it('T11: when router returns ≥2 channels both present in top-k, no promotion is triggered', () => {
     // R15 (router) guarantees at least 2 channels. R2 (channel min-rep) should
     // Be a no-op when those channels already appear in the top-k window.
@@ -376,7 +376,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
 
   // ========== EDGE CASES ================================================
 
-  // ---- T12: Empty results → no crash ----
+  // ---- Empty results → no crash ----
   it('T12: empty fusedResults — returns empty results without crashing', () => {
     const channels = new Map<string, ChannelResult[]>([
       ['vector', [makeChannel('a1', 0.8)]],
@@ -390,7 +390,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.enforcement.underRepresentedChannels).toHaveLength(0);
   });
 
-  // ---- T13: Single result → no crash ----
+  // ---- Single result → no crash ----
   it('T13: single fused result — returns correctly without crashing', () => {
     const fused: FusedResult[] = [makeFused('a1', 0.8, 'vector')];
     const channels = new Map<string, ChannelResult[]>([
@@ -404,7 +404,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.results[0].id).toBe('a1'); // original item still present
   });
 
-  // ---- T14: All channel result sets empty → no enforcement needed ----
+  // ---- All channel result sets empty → no enforcement needed ----
   it('T14: all channel result sets empty — no promotions, results pass through', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.8, 'vector'),
@@ -421,7 +421,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.results).toHaveLength(1);
   });
 
-  // ---- T15: topK=0 → empty window, tail returned intact ----
+  // ---- topK=0 → empty window, tail returned intact ----
   it('T15: topK=0 — empty inspection window, full results returned without promotions', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.9, 'vector'),
@@ -441,7 +441,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.enforcement.promotedCount).toBe(0);
   });
 
-  // ---- T16: topK larger than results → full list inspected ----
+  // ---- topK larger than results → full list inspected ----
   it('T16: topK larger than results length — full list is inspected, no out-of-bounds', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.9, 'vector'),
@@ -461,7 +461,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.results).toHaveLength(3);
   });
 
-  // ---- T17: Promoted items carry original extra fields ----
+  // ---- Promoted items carry original extra fields ----
   it('T17: promoted items preserve extra fields from the channel result', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.9, 'vector'),
@@ -480,7 +480,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(promotedB1?.rank).toBe(2);
   });
 
-  // ---- T18: channelCounts in EnforcementResult cover full result list ----
+  // ---- channelCounts in EnforcementResult cover full result list ----
   it('T18: channelCounts reflects per-channel counts across the full result list', () => {
     const fused: FusedResult[] = [
       makeFused('a1', 0.9, 'vector'),

@@ -79,24 +79,24 @@ describe('Context Server', () => {
   // GROUP 1: parseArgs<T>() Function Tests
   // =================================================================
   describe('Group 1: parseArgs<T>()', () => {
-    // T1:parseArgs exists in source (moved to tools/types.ts)
+    // parseArgs exists in source (moved to tools/types.ts)
     it('T1: parseArgs<T>() defined in source', () => {
       expect(toolTypesCode).toMatch(/function\s+parseArgs\s*<\s*T\s*>\s*\(/)
     })
 
-    // T2: parseArgs has the correct implementation pattern (cast via unknown)
+    // parseArgs has the correct implementation pattern (cast via unknown)
     it('T2: parseArgs uses double-cast pattern', () => {
       expect(toolTypesCode).toMatch(
         /function\s+parseArgs<T>\(args:\s*Record<string,\s*unknown>\):\s*T\s*\{[\s\S]*?return\s+args\s+as\s+unknown\s+as\s+T;/
       )
     })
 
-    // T3: parseArgs parameter type is Record<string, unknown>
+    // parseArgs parameter type is Record<string, unknown>
     it('T3: parseArgs accepts Record<string, unknown>', () => {
       expect(toolTypesCode).toMatch(/parseArgs<T>\(args:\s*Record<string,\s*unknown>\)/)
     })
 
-    // T4: Verify cast semantics against the shipped parser
+    // Verify cast semantics against the shipped parser
     it('T4: parseArgs preserves object identity', () => {
       const input = { query: 'test', limit: 10 }
       const result = actualParseArgs<{ query: string; limit: number }>(input)
@@ -104,7 +104,7 @@ describe('Context Server', () => {
       expect(result.limit).toBe(10)
     })
 
-    // T5: parseArgs with empty object
+    // parseArgs with empty object
     it('T5: parseArgs handles empty args', () => {
       const emptyResult = actualParseArgs<{ optional?: string }>({})
       expect(emptyResult.optional).toBeUndefined()
@@ -116,7 +116,7 @@ describe('Context Server', () => {
       expect(Object.keys(nullishResult)).toHaveLength(0)
     })
 
-    // T6: parseArgs with extra fields (MCP may pass unexpected args)
+    // parseArgs with extra fields (MCP may pass unexpected args)
     it('T6: parseArgs passes through extra fields', () => {
       const extraInput = { query: 'hello', unexpectedField: true, anotherExtra: 42 }
       const extraResult = actualParseArgs<{ query: string }>(extraInput)
@@ -124,7 +124,7 @@ describe('Context Server', () => {
       expect((extraResult as unknown as { unexpectedField: boolean }).unexpectedField).toBe(true)
     })
 
-    // T7: parseArgs with type coercion edge cases (number as string)
+    // parseArgs with type coercion edge cases (number as string)
     it('T7: parseArgs does NOT coerce types', () => {
       const coercionInput = { id: '42' }
       const coercionResult = actualParseArgs<{ id: number }>(coercionInput)
@@ -132,7 +132,7 @@ describe('Context Server', () => {
       expect(coercionResult.id).toBe('42')
     })
 
-    // T8: parseArgs with null values
+    // parseArgs with null values
     it('T8: parseArgs preserves null values', () => {
       const nullInput = { query: null, limit: null }
       const nullResult = actualParseArgs<{ query: string | null; limit: number | null }>(nullInput)
@@ -140,7 +140,7 @@ describe('Context Server', () => {
       expect(nullResult.limit).toBeNull()
     })
 
-    // T9: parseArgs with nested objects
+    // parseArgs with nested objects
     it('T9: parseArgs preserves nested structures', () => {
       const nestedInput = { metadata: { key: 'value' }, tags: ['a', 'b'] }
       const nestedResult = actualParseArgs<{ metadata: { key: string }; tags: string[] }>(nestedInput)
@@ -148,7 +148,7 @@ describe('Context Server', () => {
       expect(nestedResult.tags).toHaveLength(2)
     })
 
-    // T10: parseArgs returns same reference (no clone)
+    // parseArgs returns same reference (no clone)
     it('T10: parseArgs returns same reference (no copy)', () => {
       const refInput = { test: 'ref' }
       const refResult = actualParseArgs<{ test: string }>(refInput)
@@ -199,7 +199,7 @@ describe('Context Server', () => {
       'session_bootstrap',
     ]
 
-    // T11: TOOL_DEFINITIONS export exists
+    // TOOL_DEFINITIONS export exists
     it('T11: TOOL_DEFINITIONS export exists', () => {
       expect(toolSchemasCode).toMatch(/export\s+const\s+TOOL_DEFINITIONS/)
     })
@@ -217,7 +217,7 @@ describe('Context Server', () => {
       expect(sectionToolNames.length).toBe(EXPECTED_TOOLS.length)
     })
 
-    // T12: Each expected tool exists
+    // Each expected tool exists
     for (const tool of EXPECTED_TOOLS) {
       it(`T12: Tool defined: ${tool}`, () => {
         const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
@@ -228,8 +228,8 @@ describe('Context Server', () => {
       })
     }
 
-    // T13: No unexpected tools (only expected ones exist)
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // No unexpected tools (only expected ones exist)
+    // drift: verified against shipped behavior during Unit H
     it('T13: No unexpected tools', () => {
       const sectionToolNames = (toolSchemasCode.match(/name:\s*'(\w+)'/g) || []).map((m: string) => {
         const match = m.match(/name:\s*'(\w+)'/)
@@ -239,7 +239,7 @@ describe('Context Server', () => {
       expect(unexpected).toHaveLength(0)
     })
 
-    // T14: Each tool has a description
+    // Each tool has a description
     for (const tool of EXPECTED_TOOLS) {
       it(`T14: Tool ${tool} has description`, () => {
         const toolDefRegex = new RegExp(`name:\\s*'${tool}'\\s*,\\s*description:\\s*'`)
@@ -247,7 +247,7 @@ describe('Context Server', () => {
       })
     }
 
-    // T15: Each tool has an inputSchema
+    // Each tool has an inputSchema
     for (const tool of EXPECTED_TOOLS) {
       it(`T15: Tool ${tool} has inputSchema`, () => {
         const schemaRegex = new RegExp(`name:\\s*'${tool}'[\\s\\S]*?inputSchema:\\s*\\{`)
@@ -296,13 +296,13 @@ describe('Context Server', () => {
       'session_health', 'session_resume', 'session_bootstrap',
     ]
 
-    // T16: CallToolRequestSchema handler exists
+    // CallToolRequestSchema handler exists
     it('T16: CallToolRequestSchema handler exists', () => {
       expect(sourceCode).toMatch(/targetServer\.setRequestHandler\(CallToolRequestSchema/)
     })
 
     // Verify dispatchTool is used instead of switch
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T16b: dispatchTool(name, args) called', () => {
       expect(sourceCode).toMatch(/dispatchTool\(name,\s*validatedArgs,\s*callerContext\)/)
     })
@@ -327,7 +327,7 @@ describe('Context Server', () => {
       expect(sourceCode).toContain('primePackage: available in meta.sessionPriming.primePackage')
     })
 
-    // T17: All tools dispatched via tool modules
+    // All tools dispatched via tool modules
     function readDispatchModuleCode(): string {
       const moduleDirs = [
         path.join(SERVER_DIR, 'tools'),
@@ -356,7 +356,7 @@ describe('Context Server', () => {
       expect(caseCount).toBe(EXPECTED_CASES.length)
     })
 
-    // T18: Each tool dispatch uses parseArgs<T>
+    // Each tool dispatch uses parseArgs<T>
     for (const caseName of EXPECTED_CASES) {
       it(`T18: Tool '${caseName}' uses parseArgs<T>`, () => {
         const allToolModulesCode = readDispatchModuleCode()
@@ -367,7 +367,7 @@ describe('Context Server', () => {
       })
     }
 
-    // T19: Unknown tools cause error
+    // Unknown tools cause error
     it('T19: Unknown tool throws error', () => {
       expect(sourceCode).toMatch(/throw\s+new\s+Error\(`Unknown tool:\s*\$\{name\}`\)/)
     })
@@ -1223,7 +1223,7 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/afterToolCallbacks\.push\(fn\)/)
     })
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T000b: callbacks are triggered after dispatchTool and non-blocking', () => {
       expect(sourceCode).toMatch(/const\s+result\s*=\s*await\s+runWithCallerContext\([\s\S]*?dispatchTool\(name,\s*validatedArgs,\s*callerContext\)/)
       expect(sourceCode).toMatch(/runAfterToolCallbacks\(name,\s*callId,\s*structuredClone\(result\)\)/)
@@ -1397,7 +1397,7 @@ describe('Context Server', () => {
       expect(callbackFinished).toBe(true)
     })
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T000e: non-memory-aware tools invoke TM-05 tool-dispatch hook at runtime', async () => {
       expect(sourceCode).toContain('autoSurfacedContext = await autoSurfaceAtToolDispatch(name, validatedArgs)')
 
@@ -1548,7 +1548,7 @@ describe('Context Server', () => {
       expect(JSON.parse((response as { content: Array<{ text: string }> }).content[0].text).meta.autoSurfacedContext).toEqual(surfaced)
     })
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T000g: memory_context resume mode invokes TM-05 compaction hook at runtime', async () => {
       expect(sourceCode).toContain("name === 'memory_context' && validatedArgs.mode === 'resume'")
       expect(sourceCode).toContain('autoSurfaceAtCompaction(contextHint)')
@@ -1607,7 +1607,7 @@ describe('Context Server', () => {
       expect(JSON.parse((response as { content: Array<{ text: string }> }).content[0].text).meta.autoSurfacedContext).toEqual(surfaced)
     })
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T000h: memory_context non-resume mode keeps SK-004 memory-aware path', async () => {
       expect(sourceCode).toContain("name === 'memory_context' && validatedArgs.mode === 'resume'")
       expect(sourceCode).toContain('autoSurfaceMemories(contextHint)')
@@ -2031,19 +2031,19 @@ describe('Context Server', () => {
   // GROUP 5: Error Handling & buildErrorResponse
   // =================================================================
   describe('Group 5: Error Handling', () => {
-    // T20: Source wraps dispatch in try/catch
+    // Source wraps dispatch in try/catch
     it('T20: Dispatch wrapped in try/catch', () => {
       const tryCatchPattern = /try\s*\{[\s\S]*?validateInputLengths\(args\)[\s\S]*?dispatchTool\(name[\s\S]*?\}\s*catch\s*\(error/
       expect(tryCatchPattern.test(sourceCode)).toBe(true)
     })
 
-    // T21: Catch block uses buildErrorResponse
+    // Catch block uses buildErrorResponse
     it('T21: Catch uses buildErrorResponse()', () => {
       const buildErrorPattern = /catch[\s\S]*?buildErrorResponse\(name,\s*err,\s*args\)/
       expect(buildErrorPattern.test(sourceCode)).toBe(true)
     })
 
-    // T22: Error response is wrapped as an MCP error envelope
+    // Error response is wrapped as an MCP error envelope
     it('T22: Error responses set isError: true', () => {
       expect(sourceCode).toMatch(/wrapForMCP\(errorResponse\s+as\s+any,\s*true\)/)
     })
@@ -2061,7 +2061,7 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/createMCPErrorResponse\(\{/)
     })
 
-    // T23: buildErrorResponse direct test
+    // buildErrorResponse direct test
     it('T23: buildErrorResponse returns structured object', async () => {
       const errorsModule = await importFirst<ErrorsModule>([
         async () => await import('../lib/errors/index'),
@@ -2079,7 +2079,7 @@ describe('Context Server', () => {
       ).toBeTruthy()
     })
 
-    // T24: Error response contains recovery hints
+    // Error response contains recovery hints
     it('T24: getRecoveryHint returns RecoveryHint object', async () => {
       const errorsModule = await importFirst<ErrorsModule>([
         async () => await import('../lib/errors/index'),
@@ -2094,7 +2094,7 @@ describe('Context Server', () => {
       expect(hint).not.toBeNull()
     })
 
-    // T25: ErrorCodes enum/object exists
+    // ErrorCodes enum/object exists
     it('T25: ErrorCodes defined', async () => {
       const errorsModule = await importFirst<ErrorsModule>([
         async () => await import('../lib/errors/index'),
@@ -2111,17 +2111,17 @@ describe('Context Server', () => {
   // GROUP 6: Token Budget Integration
   // =================================================================
   describe('Group 6: Token Budget Integration', () => {
-    // T26: Source injects tokenBudget into response metadata
+    // Source injects tokenBudget into response metadata
     it('T26: Token budget injection exists', () => {
       expect(sourceCode).toMatch(/getTokenBudget\(name\)/)
     })
 
-    // T27: Budget overflow warning logged
+    // Budget overflow warning logged
     it('T27: Token budget overflow detection', () => {
       expect(sourceCode).toMatch(/tokenCount\s*>\s*budget/)
     })
 
-    // T28: getTokenBudget direct tests
+    // getTokenBudget direct tests
     it('T28: L1 budget = 3500 (memory_context)', async () => {
       const layerDefs = await importFirst<LayerDefinitionsModule>([
         async () => await import('../lib/architecture/layer-definitions'),
@@ -2191,17 +2191,17 @@ describe('Context Server', () => {
   // GROUP 7: Hooks Integration (MEMORY_AWARE_TOOLS, extractContextHint)
   // =================================================================
   describe('Group 7: Hooks Integration', () => {
-    // T29: Source imports MEMORY_AWARE_TOOLS
+    // Source imports MEMORY_AWARE_TOOLS
     it('T29: Imports MEMORY_AWARE_TOOLS from hooks', () => {
       expect(sourceCode).toMatch(/import\s*\{[^}]*MEMORY_AWARE_TOOLS[^}]*\}\s*from\s*['"]\.\/hooks\/index\.js['"]/)
     })
 
-    // T30: Source checks MEMORY_AWARE_TOOLS.has(name)
+    // Source checks MEMORY_AWARE_TOOLS.has(name)
     it('T30: Checks MEMORY_AWARE_TOOLS.has(name)', () => {
       expect(sourceCode).toMatch(/MEMORY_AWARE_TOOLS\.has\(name\)/)
     })
 
-    // T31: Hooks module direct tests
+    // Hooks module direct tests
     it('T31: MEMORY_AWARE_TOOLS is a Set', async () => {
       const hooksModule = await importFirst<HooksModule>([
         async () => await import('../hooks/index'),
@@ -2313,19 +2313,19 @@ describe('Context Server', () => {
   // GROUP 8: Input Validation (validateInputLengths)
   // =================================================================
   describe('Group 8: Input Validation', () => {
-    // T32: Source calls validateInputLengths before dispatch
+    // Source calls validateInputLengths before dispatch
     it('T32: validateInputLengths called before dispatchTool', () => {
       const validationOrder = /validateInputLengths\(args\)[\s\S]*?dispatchTool\(name/
       expect(validationOrder.test(sourceCode)).toBe(true)
     })
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T32a: Schema validation happens at the server boundary before dispatch', () => {
       expect(sourceCode).toMatch(/const\s+validatedArgs:[\s\S]*?validateToolArgs\(name,\s*args\)/)
       expect(sourceCode).toMatch(/dispatchTool\(name,\s*validatedArgs,\s*callerContext\)/)
     })
 
-    // T33: validateInputLengths direct tests
+    // validateInputLengths direct tests
     it('T33: validateInputLengths accepts normal input', async () => {
       const utilsModule = await importFirst<UtilsModule>([
         async () => await import('../utils/index'),
@@ -2382,7 +2382,7 @@ describe('Context Server', () => {
       expect(() => validateInputLengths({ title: 'x'.repeat(1000) })).toThrow()
     })
 
-    // T34: INPUT_LIMITS constants
+    // INPUT_LIMITS constants
     it('T34: INPUT_LIMITS.query = 10000', async () => {
       const utilsModule = await importFirst<UtilsModule>([
         async () => await import('../utils/index'),
@@ -2418,24 +2418,24 @@ describe('Context Server', () => {
   // GROUP 9: Server Configuration & Metadata
   // =================================================================
   describe('Group 9: Server Configuration', () => {
-    // T35: Server name
+    // Server name
     it('T35: Server name is "mk-spec-memory"', () => {
       const serverName = sourceCode.match(/name:\s*'([^']+)'/)
       expect(serverName).not.toBeNull()
       expect(serverName![1]).toBe('mk-spec-memory')
     })
 
-    // T36: Server version format
+    // Server version format
     it('T36: Server version is semver', () => {
       expect(sourceCode).toMatch(/version:\s*'\d+\.\d+\.\d+'/)
     })
 
-    // T37: Capabilities include tools
+    // Capabilities include tools
     it('T37: Server capabilities include tools', () => {
       expect(sourceCode).toMatch(/capabilities:\s*\{\s*tools:\s*\{\}/)
     })
 
-    // T38: Uses StdioServerTransport
+    // Uses StdioServerTransport
     it('T38: Uses StdioServerTransport', () => {
       expect(sourceCode).toMatch(/new\s+StdioServerTransport\(\)/)
     })
@@ -2445,53 +2445,53 @@ describe('Context Server', () => {
   // GROUP 10: Shutdown & Process Handlers
   // =================================================================
   describe('Group 10: Shutdown & Process Handlers', () => {
-    // T39: SIGTERM handler
+    // SIGTERM handler
     it('T39: SIGTERM handler registered', () => {
       expect(sourceCode).toMatch(/process\.on\('SIGTERM'/)
     })
 
-    // T40: SIGINT handler
+    // SIGINT handler
     it('T40: SIGINT handler registered', () => {
       expect(sourceCode).toMatch(/process\.on\('SIGINT'/)
     })
 
-    // T41: uncaughtException handler
+    // uncaughtException handler
     it('T41: uncaughtException handler registered', () => {
       expect(sourceCode).toMatch(/process\.on\('uncaughtException'/)
     })
 
-    // T42: unhandledRejection handler
+    // unhandledRejection handler
     it('T42: unhandledRejection handler registered', () => {
       expect(sourceCode).toMatch(/process\.on\('unhandledRejection'/)
     })
 
-    // T43: Shutdown closes database
+    // Shutdown closes database
     it('T43: SIGTERM closes database', () => {
       expect(sourceCode).toMatch(/process\.on\('SIGTERM'[\s\S]*?fatalShutdown/);
       expect(sourceCode).toMatch(/fatalShutdown[\s\S]*?vectorIndex\.closeDb\(\)/)
     })
 
-    // T44: Shutdown no longer references the removed archival manager
+    // Shutdown no longer references the removed archival manager
     it('T44: Shutdown no longer references the removed archival manager', () => {
       expect(sourceCode).not.toMatch(/archivalManager/)
     })
 
-    // T45: Shutdown stops retry manager
+    // Shutdown stops retry manager
     it('T45: Shutdown stops retry manager', () => {
       expect(sourceCode).toMatch(/retryManager\.stopBackgroundJob\(\)/)
     })
 
-    // T46: Shutdown clears tool cache (KL-4)
+    // Shutdown clears tool cache (KL-4)
     it('T46: Shutdown clears tool cache', () => {
       expect(sourceCode).toMatch(/toolCache\.shutdown\(\)/)
     })
 
-    // T47: Shutdown closes transport (P1-09)
+    // Shutdown closes transport (P1-09)
     it('T47: Shutdown closes transport (P1-09)', () => {
       expect(sourceCode).toMatch(/transport\.close\(\)/)
     })
 
-    // T47b: File watcher delete path clears mutation caches after DB cleanup
+    // File watcher delete path clears mutation caches after DB cleanup
     it('T47b: watcher-backed delete runs post-mutation hooks', () => {
       expect(sourceCode).toMatch(/runPostMutationHooks\('delete',\s*\{\s*filePath,\s*deletedCount\s*\}\)/)
     })
@@ -2505,7 +2505,7 @@ describe('Context Server', () => {
       expect(sourceCode).not.toMatch(/indexMemoryFile\(filePath,\s*\{\s*asyncEmbedding:\s*true\s*\}\)/)
     })
 
-    // T48: Shutdown guard prevents double shutdown
+    // Shutdown guard prevents double shutdown
     it('T48: Double-shutdown guard', () => {
       expect(sourceCode).toMatch(/if\s*\(shuttingDown\)\s*return/)
     })
@@ -2516,33 +2516,33 @@ describe('Context Server', () => {
   // GROUP 11: Startup & Initialization
   // =================================================================
   describe('Group 11: Startup & Initialization', () => {
-    // T49: main() function exists
+    // main() function exists
     it('T49: main() function defined', () => {
       expect(sourceCode).toMatch(/async\s+function\s+main\(\)/)
     })
 
-    // T50: main() is called at module level
+    // main() is called at module level
     it('T50: main() invoked at module level', () => {
       expect(sourceCode).toMatch(/main\(\)\.catch/)
     })
 
-    // T51: Database initialization
+    // Database initialization
     it('T51: Database initialized in main()', () => {
       expect(sourceCode).toMatch(/vectorIndex\.initializeDb\(\)/)
     })
 
-    // T52: memory runtime guard for lazy init
+    // memory runtime guard for lazy init
     it('T52: memory runtime guard in dispatch', () => {
       expect(sourceCode).toContain('const memoryRuntimeRequired = MEMORY_RUNTIME_TOOL_NAMES.has(name)')
       expect(sourceCode).toContain('await ensureMemoryRuntimeInitialized(`handler:${name}`)')
     })
 
-    // T53: detectNodeVersionMismatch called
+    // detectNodeVersionMismatch called
     it('T53: detectNodeVersionMismatch() called at startup', () => {
       expect(sourceCode).toMatch(/detectNodeVersionMismatch\(\)/)
     })
 
-    // T55: API key validation (with skip env var)
+    // API key validation (with skip env var)
     it('T55: API key validation with skip option', () => {
       expect(sourceCode).toMatch(/SPECKIT_SKIP_API_VALIDATION/)
     })
@@ -2552,12 +2552,12 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/throw new Error\(dimValidation\.warning \?\? 'Embedding dimension mismatch between provider and database'\)/)
     })
 
-    // T56: Startup scan runs in background
+    // Startup scan runs in background
     it('T56: Startup scan runs via setImmediate', () => {
       expect(sourceCode).toMatch(/setImmediate\(\(\)\s*=>\s*\{[\s\S]*?void startupScan\(DEFAULT_BASE_PATH\)/)
     })
 
-    // T57: startupScanInProgress guard
+    // startupScanInProgress guard
     it('T57: Startup scan re-entry guard', () => {
       expect(sourceCode).toMatch(/if\s*\(startupScanInProgress\)/)
     })
@@ -2575,17 +2575,17 @@ describe('Context Server', () => {
   // GROUP 12: Auto-Surface Context Integration (SK-004)
   // =================================================================
   describe('Group 12: Auto-Surface Context (SK-004)', () => {
-    // T58: autoSurfacedContext injected into successful response envelope metadata
+    // autoSurfacedContext injected into successful response envelope metadata
     it('T58: Auto-surfaced context injected into response envelope metadata', () => {
       expect(sourceCode).toMatch(/meta\.autoSurfacedContext\s*=\s*autoSurfacedContext/)
     })
 
-    // T59: Auto-surface errors are non-fatal
+    // Auto-surface errors are non-fatal
     it('T59: Auto-surface errors are non-fatal', () => {
       expect(sourceCode).toMatch(/Auto-surface failed \(non-fatal\)/)
     })
 
-    // T60: Only injected for non-error responses
+    // Only injected for non-error responses
     it('T60: Auto-surface only on non-error responses', () => {
       expect(sourceCode).toMatch(/!result\.isError/)
     })
@@ -2627,7 +2627,7 @@ describe('Context Server', () => {
       'session_bootstrap': '[L1:Orchestration]',
     }
 
-    // T61: Tool descriptions include layer prefix
+    // Tool descriptions include layer prefix
     for (const [tool, prefix] of Object.entries(LAYER_PREFIXES)) {
       it(`T61: ${tool} has prefix ${prefix}`, () => {
         const descRegex = new RegExp(`name:\\s*'${tool}'\\s*,\\s*description:\\s*'(\\[L\\d+:\\w+\\])`)
@@ -2637,7 +2637,7 @@ describe('Context Server', () => {
       })
     }
 
-    // T62: Token Budget mentioned in descriptions
+    // Token Budget mentioned in descriptions
     it('T62: Token budgets in descriptions', () => {
       const budgetPattern = /Token Budget:\s*\d+/g
       const budgetMatches = toolSchemasCode.match(budgetPattern)
@@ -2694,7 +2694,7 @@ describe('Context Server', () => {
   // GROUP 14:Pending File Recovery
   // =================================================================
   describe('Group 14: Pending File Recovery (T107)', () => {
-    // T63: recoverPendingFiles function exists
+    // recoverPendingFiles function exists
     it('T63: recoverPendingFiles() defined', () => {
       expect(sourceCode).toMatch(/async\s+function\s+recoverPendingFiles/)
     })
@@ -2707,7 +2707,7 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/function\s+getPendingRecoveryLocations\(basePath:\s*string\)/)
     })
 
-    // T64: Recovery called during startup scan
+    // Recovery called during startup scan
     it('T64: recoverPendingFiles called in startupScan', () => {
       expect(sourceCode).toMatch(/await\s+recoverPendingFiles\(basePath\)/)
     })
@@ -2731,13 +2731,13 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/const\s+existingScanLocations\s*=\s*getPendingRecoveryLocations\(basePath\)/)
     })
 
-    // T65: Recovery returns structured result
+    // Recovery returns structured result
     it('T65: PendingRecoveryResult has structured fields', () => {
       const resultPattern = /PendingRecoveryResult\s*=\s*\{[\s\S]*?found[\s\S]*?processed[\s\S]*?recovered[\s\S]*?failed/
       expect(resultPattern.test(sourceCode)).toBe(true)
     })
 
-    // T66: Recovery error is caught (non-fatal)
+    // Recovery error is caught (non-fatal)
     it('T66: Pending file recovery errors caught', () => {
       const recoveryCatch = /recoverPendingFiles[\s\S]*?catch\s*\(error/
       expect(recoveryCatch.test(sourceCode)).toBe(true)
@@ -2833,7 +2833,7 @@ describe('Context Server', () => {
       ].filter(Boolean).join(' ')
     }
 
-    // T68: Zero-memory edge case — returns valid non-empty string with basic server info
+    // Zero-memory edge case — returns valid non-empty string with basic server info
     it('T68: zero memories still returns valid instructions', () => {
       const stats: DynamicMemoryStats = {
         totalMemories: 0,
@@ -2866,7 +2866,7 @@ describe('Context Server', () => {
       expect(result).not.toContain('Warning')
     })
 
-    // T69: Stale threshold boundary — 10 stale = no warning, 11 stale = warning
+    // Stale threshold boundary — 10 stale = no warning, 11 stale = warning
     it('T69: stale warning appears only when staleCount > 10', () => {
       const baseStats: DynamicMemoryStats = {
         totalMemories: 100,
@@ -2899,7 +2899,7 @@ describe('Context Server', () => {
       expect(wellAbove).toContain('Warning: 50 stale memories detected')
     })
 
-    // T70: SPECKIT_DYNAMIC_INIT=false → empty string
+    // SPECKIT_DYNAMIC_INIT=false → empty string
     it('T70: dynamicInit disabled returns empty string', () => {
       const stats: DynamicMemoryStats = {
         totalMemories: 100,

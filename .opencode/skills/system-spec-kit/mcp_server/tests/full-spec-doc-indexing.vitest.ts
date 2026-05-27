@@ -332,13 +332,13 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
       expect(result).toBe('system-spec-kit/100-feature');
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('Returns folder category for skill README path', () => {
       const result = extractSpecFolder('/p/.opencode/skills/system-spec-kit/README.md');
       expect(result).toBe('skills');
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('Returns folder category for command README path', () => {
       const result = extractSpecFolder('/p/.opencode/commands/speckit/README.txt');
       expect(result).toBe('commands');

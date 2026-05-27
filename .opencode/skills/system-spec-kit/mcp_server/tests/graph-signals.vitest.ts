@@ -691,7 +691,7 @@ describe('Graph Signals (S8 — N2a + N2b)', () => {
   });
 
   describe('cache invalidation after causal edge mutations', () => {
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('invalidates graph and degree caches after memory deletion removes causal edges', () => {
       for (const memoryId of [1, 2, 3]) {
         insertMemory(db, memoryId);

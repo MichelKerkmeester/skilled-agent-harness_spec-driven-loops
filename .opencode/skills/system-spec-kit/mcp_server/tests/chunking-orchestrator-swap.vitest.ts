@@ -347,7 +347,7 @@ describe('T013: staged swap regressions', () => {
     }
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('successful swap deletes old children and links new children atomically', async () => {
     const filePath = '/tmp/specs/test-safe-swap/memory.md';
     const { parentId, oldChildIds } = seedExistingParentWithChildren(filePath, 2);
@@ -403,7 +403,7 @@ describe('T013: staged swap regressions', () => {
     expect(deleteMemoryCalls).toEqual(oldChildIds);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('swap failure rolls back: old children remain and staged children are cleaned', async () => {
     const filePath = '/tmp/specs/test-safe-swap/memory-fail.md';
     const { parentId, oldChildIds } = seedExistingParentWithChildren(filePath, 2);
@@ -451,7 +451,7 @@ describe('T013: staged swap regressions', () => {
     expect(deleteMemoryCalls).toEqual(rollbackDeletedIds);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('fails safe-swap finalization when old-child bulk delete fails and keeps old children linked', async () => {
     const filePath = '/tmp/specs/test-safe-swap/memory-delete-fail.md';
     const { parentId, oldChildIds } = seedExistingParentWithChildren(filePath, 2);
@@ -483,7 +483,7 @@ describe('T013: staged swap regressions', () => {
     expect(oldChildren.every((row) => row.parent_id === parentId)).toBe(true);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('partial embedding failures still swap successfully with mixed child statuses', async () => {
     mockChunks = [
       { content: 'partial chunk 1', anchorIds: ['p1'], label: 'partial-1', charCount: 15 },
@@ -593,7 +593,7 @@ describe('T013: staged swap regressions', () => {
     expect(parentRow.content_text).toBe('Old parent summary');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('uses normalized content hash for chunk embedding cache keys', async () => {
     mockChunks = [
       {

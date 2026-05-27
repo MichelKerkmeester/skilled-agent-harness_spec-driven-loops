@@ -40,7 +40,7 @@ function makeDiverseCandidates(count: number): MMRCandidate[] {
 
 describe('C138-P1 MMR Reranker', () => {
 
-  // ---- T1: Identical candidates get deduplicated ----
+  // ---- Identical candidates get deduplicated ----
   it('T1: reduces identical candidates to limit=1', () => {
     const candidates = makeIdenticalCandidates(5);
     const result = applyMMR(candidates, { lambda: 0.5, limit: 5 });
@@ -51,7 +51,7 @@ describe('C138-P1 MMR Reranker', () => {
     expect(result.length).toBeGreaterThanOrEqual(1);
   });
 
-  // ---- T2: lambda=0.5 maximizes diversity ----
+  // ---- lambda=0.5 maximizes diversity ----
   it('T2: lambda=0.5 selects diverse candidates over similar high-scorers', () => {
     const candidates = [
       makeCandidate(1, 0.95, [1, 0, 0, 0]),   // top score, direction A
@@ -69,7 +69,7 @@ describe('C138-P1 MMR Reranker', () => {
     expect(ids.indexOf(3)).toBeLessThan(ids.indexOf(2) === -1 ? Infinity : ids.indexOf(2));
   });
 
-  // ---- T3: lambda=0.85 preserves relevance order ----
+  // ---- lambda=0.85 preserves relevance order ----
   it('T3: lambda=0.85 mostly preserves original score ranking', () => {
     const candidates = makeDiverseCandidates(5);
     const result = applyMMR(candidates, { lambda: 0.85, limit: 5 });
@@ -79,7 +79,7 @@ describe('C138-P1 MMR Reranker', () => {
     expect(result[1].id).toBe(2); // second highest likely second
   });
 
-  // ---- T4: N=20 hardcap ----
+  // ---- N=20 hardcap ----
   it('T4: processes at most maxCandidates=20', () => {
     const candidates = Array.from({ length: 50 }, (_, i) =>
       makeCandidate(i + 1, 1.0 - i * 0.01, [Math.random(), Math.random(), Math.random(), Math.random()]),
@@ -93,7 +93,7 @@ describe('C138-P1 MMR Reranker', () => {
     }
   });
 
-  // ---- T5: O(N²) completes in <10ms for N=20 ----
+  // ---- O(N²) completes in <10ms for N=20 ----
   it('T5: N=20 completes within 10ms', () => {
     const candidates = Array.from({ length: 20 }, (_, i) => {
       const emb = new Array(768).fill(0).map(() => Math.random());
@@ -107,7 +107,7 @@ describe('C138-P1 MMR Reranker', () => {
     expect(elapsed).toBeLessThan(10);
   });
 
-  // ---- T6: Output respects limit ----
+  // ---- Output respects limit ----
   it('T6: never returns more than limit results', () => {
     const candidates = makeDiverseCandidates(10);
     const result = applyMMR(candidates, { lambda: 0.7, limit: 5 });
@@ -115,13 +115,13 @@ describe('C138-P1 MMR Reranker', () => {
     expect(result.length).toBeLessThanOrEqual(5);
   });
 
-  // ---- T7: Empty input returns empty ----
+  // ---- Empty input returns empty ----
   it('T7: returns empty array for empty input', () => {
     const result = applyMMR([], { lambda: 0.7, limit: 5 });
     expect(result).toEqual([]);
   });
 
-  // ---- T8: Single candidate returns that candidate ----
+  // ---- Single candidate returns that candidate ----
   it('T8: single candidate is returned as-is', () => {
     const candidates = [makeCandidate(42, 0.99, [1, 0, 0, 0])];
     const result = applyMMR(candidates, { lambda: 0.7, limit: 5 });
@@ -130,7 +130,7 @@ describe('C138-P1 MMR Reranker', () => {
     expect(result[0].id).toBe(42);
   });
 
-  // ---- T9: Cosine similarity correctness ----
+  // ---- Cosine similarity correctness ----
   it('T9: computeCosine returns correct values', () => {
     const a = makeEmbedding([1, 0, 0]);
     const b = makeEmbedding([0, 1, 0]);
@@ -141,7 +141,7 @@ describe('C138-P1 MMR Reranker', () => {
     expect(computeCosine(a, makeEmbedding([-1, 0, 0]))).toBeCloseTo(-1, 5); // opposite
   });
 
-  // ---- T10: Zero embeddings handled gracefully ----
+  // ---- Zero embeddings handled gracefully ----
   it('T10: zero-vector embeddings return 0 similarity', () => {
     const zero = makeEmbedding([0, 0, 0]);
     const normal = makeEmbedding([1, 0, 0]);
@@ -150,7 +150,7 @@ describe('C138-P1 MMR Reranker', () => {
     expect(computeCosine(zero, zero)).toBe(0);
   });
 
-  // ---- T11: Deterministic output ----
+  // ---- Deterministic output ----
   it('T11: same input produces same output', () => {
     const candidates = makeDiverseCandidates(8);
     const config: MMRConfig = { lambda: 0.6, limit: 4 };

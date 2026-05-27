@@ -136,7 +136,7 @@ describe('Memory roadmap flag documentation', () => {
     });
   }
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('manual playbook 125 matches the canonical roadmap contract', () => {
     const playbookPath = path.join(SKILL_ROOT, 'manual_testing_playbook', 'manual_testing_playbook.md');
     const featureFilePath = path.join(

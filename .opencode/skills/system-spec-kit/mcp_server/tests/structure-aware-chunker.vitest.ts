@@ -11,7 +11,7 @@ import type { Chunk } from '@spec-kit/shared/lib/structure-aware-chunker';
 
 describe('C138-P4 Structure-Aware Chunker', () => {
 
-  // ---- T1: Code blocks are never split ----
+  // ---- Code blocks are never split ----
   it('T1: fenced code block remains atomic in single chunk', () => {
     const md = `Some text before.
 
@@ -34,7 +34,7 @@ Some text after.`;
     expect(codeChunk!.content).toMatch(/^```/);
   });
 
-  // ---- T2: Tables are never split ----
+  // ---- Tables are never split ----
   it('T2: GFM table remains atomic in single chunk', () => {
     const md = `# Results
 
@@ -57,7 +57,7 @@ More text.`;
     expect(tableChunk!.content.split('\n').filter((l: string) => l.includes('|')).length).toBeGreaterThanOrEqual(5);
   });
 
-  // ---- T3: Headings start new chunks ----
+  // ---- Headings start new chunks ----
   it('T3: heading starts a new chunk', () => {
     const md = `# Section One
 
@@ -75,7 +75,7 @@ Second paragraph.`;
     expect(chunks.some((c: Chunk) => c.content.includes('Section Two'))).toBe(true);
   });
 
-  // ---- T4: Chunk size limits respected for text ----
+  // ---- Chunk size limits respected for text ----
   it('T4: text chunks respect maxTokens limit', () => {
     // Create a long text that exceeds 500 tokens (2000 chars)
     const paragraph = 'Lorem ipsum dolor sit amet. '.repeat(100); // ~2800 chars
@@ -86,13 +86,13 @@ Second paragraph.`;
     expect(chunks.length).toBeGreaterThan(1);
   });
 
-  // ---- T5: Empty input ----
+  // ---- Empty input ----
   it('T5: empty markdown returns empty chunks', () => {
     expect(chunkMarkdown('')).toEqual([]);
     expect(chunkMarkdown('   ')).toEqual([]);
   });
 
-  // ---- T6: Large code block preserved even if exceeding maxTokens ----
+  // ---- Large code block preserved even if exceeding maxTokens ----
   it('T6: large code block stays atomic even when exceeding maxTokens', () => {
     const bigCode = '```\n' + 'x = x + 1\n'.repeat(500) + '```';
     const chunks: Chunk[] = chunkMarkdown(bigCode, 100);
@@ -102,7 +102,7 @@ Second paragraph.`;
     expect(codeChunks[0].content).toContain('x = x + 1');
   });
 
-  // ---- T7: Mixed content ordering ----
+  // ---- Mixed content ordering ----
   it('T7: preserves order of mixed content types', () => {
     const md = `# Title
 
@@ -129,7 +129,7 @@ Conclusion.`;
     expect(codeIdx).toBeLessThan(tableIdx);
   });
 
-  // ---- T8: Token estimates are reasonable ----
+  // ---- Token estimates are reasonable ----
   it('T8: token estimates use ~4 chars per token', () => {
     const md = 'A'.repeat(400); // 400 chars → ~100 tokens
     const chunks: Chunk[] = chunkMarkdown(md);
@@ -140,7 +140,7 @@ Conclusion.`;
     expect(chunks[0].tokenEstimate).toBeLessThanOrEqual(101);
   });
 
-  // ---- T9: splitIntoBlocks identifies block types correctly ----
+  // ---- splitIntoBlocks identifies block types correctly ----
   it('T9: block splitter correctly identifies code, table, heading, text', () => {
     const md = `# Heading
 

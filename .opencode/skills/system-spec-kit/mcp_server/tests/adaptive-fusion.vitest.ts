@@ -64,7 +64,7 @@ describe('C136-10 Adaptive Fusion', () => {
     vi.resetModules();
   });
 
-  // ---- T1: Weight profiles per intent ----
+  // ---- Weight profiles per intent ----
   it('T1: returns correct weights for understand intent', () => {
     const w = getAdaptiveWeights('understand');
     expect(w.semanticWeight).toBeCloseTo(0.7 / 1.15, 9);
@@ -113,7 +113,7 @@ describe('C136-10 Adaptive Fusion', () => {
     expect(w.graphWeight).toBeCloseTo(0.23, 9);
   });
 
-  // ---- T6: Weights sum <= 1.0 ----
+  // ---- Weights sum <= 1.0 ----
   it('T6: all weight profiles sum to <= 1.0', () => {
     const allProfiles = { ...INTENT_WEIGHT_PROFILES, default: DEFAULT_WEIGHTS };
     for (const [name] of Object.entries(allProfiles)) {
@@ -128,7 +128,7 @@ describe('C136-10 Adaptive Fusion', () => {
     }
   });
 
-  // ---- T7: Document type adjustments keep sum <= 1.0 ----
+  // ---- Document type adjustments keep sum <= 1.0 ----
   it('T7: document type adjustments keep weights sum <= 1.0', () => {
     for (const docType of ['decision', 'implementation', 'research']) {
       for (const intent of ['understand', 'fix_bug', 'add_feature', 'refactor']) {
@@ -139,7 +139,7 @@ describe('C136-10 Adaptive Fusion', () => {
     }
   });
 
-  // ---- T8: Deterministic output ----
+  // ---- Deterministic output ----
   it('T8: adaptiveFuse produces deterministic output for same inputs', () => {
     const semantic = makeItems(5, 'sem');
     const keyword = makeItems(5, 'kw');
@@ -152,7 +152,7 @@ describe('C136-10 Adaptive Fusion', () => {
     expect(run1.map(r => r.rrfScore)).toEqual(run2.map(r => r.rrfScore));
   });
 
-  // ---- T9: Feature flag OFF returns standard ----
+  // ---- Feature flag OFF returns standard ----
   it('T9: flag OFF returns standard fusion results', () => {
     setEnv(FEATURE_FLAG, 'false');
     const semantic = makeItems(3, 'sem');
@@ -168,7 +168,7 @@ describe('C136-10 Adaptive Fusion', () => {
     expect(result.darkRunDiff).toBeUndefined();
   });
 
-  // ---- T10: Feature flag ON returns adaptive ----
+  // ---- Feature flag ON returns adaptive ----
   it('T10: flag ON returns adaptive fusion results', () => {
     setEnv(FEATURE_FLAG, 'true');
     const semantic = makeItems(3, 'sem');
@@ -218,7 +218,7 @@ describe('C136-10 Adaptive Fusion', () => {
     expect(inBucket.weights.keywordWeight).toBeCloseTo(0.2 / 1.15, 9);
   });
 
-  // ---- T11: Dark-run mode computes diff ----
+  // ---- Dark-run mode computes diff ----
   it('T11: dark-run mode returns standard results with diff', () => {
     setEnv(FEATURE_FLAG, 'false');
     const semantic = makeItems(3, 'sem');
@@ -236,7 +236,7 @@ describe('C136-10 Adaptive Fusion', () => {
     expect(result.results.map(r => r.id)).toEqual(standard.map(r => r.id));
   });
 
-  // ---- T12: degraded contract is emitted by the real adaptive failure branch ----
+  // ---- degraded contract is emitted by the real adaptive failure branch ----
   it('T12: degraded contract is assembled by hybridAdaptiveFuse when adaptive fusion throws', async () => {
     vi.resetModules();
     vi.doMock('@spec-kit/shared/algorithms/rrf-fusion', async () => {
@@ -276,14 +276,14 @@ describe('C136-10 Adaptive Fusion', () => {
     expect(result.weights.keywordWeight).toBeCloseTo(0.2 / 1.15, 9);
   });
 
-  // ---- T13: Empty inputs return empty ----
+  // ---- Empty inputs return empty ----
   it('T13: returns empty results for empty inputs', () => {
     setEnv(FEATURE_FLAG, 'true');
     const result = hybridAdaptiveFuse([], [], 'understand');
     expect(result.results).toEqual([]);
   });
 
-  // ---- T14: Different intents produce different output order ----
+  // ---- Different intents produce different output order ----
   it('T14: different intents produce different weight distributions', () => {
     const wUnderstand = getAdaptiveWeights('understand');
     const wFixBug = getAdaptiveWeights('fix_bug');
@@ -293,7 +293,7 @@ describe('C136-10 Adaptive Fusion', () => {
     expect(wUnderstand.keywordWeight).not.toBe(wFixBug.keywordWeight);
   });
 
-  // ---- T15: find_spec keeps the same core ordering while giving graph more weight ----
+  // ---- find_spec keeps the same core ordering while giving graph more weight ----
   it('T15: find_spec gives graph more weight than understand', () => {
     const wFindSpec = getAdaptiveWeights('find_spec');
     const wUnderstand = getAdaptiveWeights('understand');

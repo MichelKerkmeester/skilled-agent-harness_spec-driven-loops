@@ -69,7 +69,7 @@ describe('T024 Channel Representation Check', () => {
     restoreEnv();
   });
 
-  // ---- T1: All channels represented — no promotions ----
+  // ---- All channels represented — no promotions ----
   it('T1: all channels represented in topK — returns no promotions', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -89,7 +89,7 @@ describe('T024 Channel Representation Check', () => {
     expect(result.topK).toHaveLength(3);
   });
 
-  // ---- T2: One channel missing from topK but has qualifying results → promotes best ----
+  // ---- One channel missing from topK but has qualifying results → promotes best ----
   it('T2: one channel missing from topK — promotes its best qualifying result', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -110,7 +110,7 @@ describe('T024 Channel Representation Check', () => {
     expect(result.underRepresentedChannels).toContain('graph');
   });
 
-  // ---- T3: Channel missing but its best result is below quality floor — no promotion ----
+  // ---- Channel missing but its best result is below quality floor — no promotion ----
   it('T3: channel missing and best result below quality floor — no promotion', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -128,7 +128,7 @@ describe('T024 Channel Representation Check', () => {
     expect(result.underRepresentedChannels).toContain('graph');
   });
 
-  // ---- T4: Multiple channels under-represented — promotes from each ----
+  // ---- Multiple channels under-represented — promotes from each ----
   it('T4: multiple channels under-represented — promotes best from each', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -153,7 +153,7 @@ describe('T024 Channel Representation Check', () => {
     expect(bm25Promotion?.id).toBe('b1');
   });
 
-  // ---- T5: Channel returned no results at all — not considered under-represented ----
+  // ---- Channel returned no results at all — not considered under-represented ----
   it('T5: channel with no results at all — not flagged as under-represented', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -169,7 +169,7 @@ describe('T024 Channel Representation Check', () => {
     expect(result.promoted).toHaveLength(0);
   });
 
-  // ---- T6: Empty topK — returns empty without crash ----
+  // ---- Empty topK — returns empty without crash ----
   it('T6: empty topK — returns empty result without crashing', () => {
     const topK: TopKItem[] = [];
     const allChannelResults = new Map<string, ChannelResult[]>([
@@ -183,7 +183,7 @@ describe('T024 Channel Representation Check', () => {
     expect(result.underRepresentedChannels).toHaveLength(0);
   });
 
-  // ---- T7: Feature flag disabled — returns topK unchanged ----
+  // ---- Feature flag disabled — returns topK unchanged ----
   it('T7: feature flag disabled — returns topK unchanged with no promotions', () => {
     setEnv(FEATURE_FLAG, 'false');
 
@@ -202,7 +202,7 @@ describe('T024 Channel Representation Check', () => {
     expect(result.underRepresentedChannels).toHaveLength(0);
   });
 
-  // ---- T8: Promoted results include correct metadata (promotedFrom field) ----
+  // ---- Promoted results include correct metadata (promotedFrom field) ----
   it('T8: promoted result has correct promotedFrom and source metadata', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -223,7 +223,7 @@ describe('T024 Channel Representation Check', () => {
     expect((p as Record<string, unknown>).title).toBe('BM25 Doc'); // extra fields preserved
   });
 
-  // ---- T9: Channel counts are accurate in output ----
+  // ---- Channel counts are accurate in output ----
   it('T9: channelCounts accurately reflects final topK composition', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -244,7 +244,7 @@ describe('T024 Channel Representation Check', () => {
     expect(result.channelCounts['graph']).toBe(1);
   });
 
-  // ---- T10: Quality floor exact threshold — 0.005 passes, 0.004 fails ----
+  // ---- Quality floor exact threshold — 0.005 passes, 0.004 fails ----
   it('T10: quality floor is exact — score 0.005 qualifies, 0.004 does not', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -268,7 +268,7 @@ describe('T024 Channel Representation Check', () => {
     expect(resultBelowFloor.promoted).toHaveLength(0);
   });
 
-  // ---- T11: Promotes the BEST result (highest score) from each channel ----
+  // ---- Promotes the BEST result (highest score) from each channel ----
   it('T11: promotes the highest-scoring qualifying result from under-represented channel', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -288,7 +288,7 @@ describe('T024 Channel Representation Check', () => {
     expect(result.promoted[0].id).toBe('g1'); // g1 has the highest score
   });
 
-  // ---- T12: Empty allChannelResults — returns topK unchanged ----
+  // ---- Empty allChannelResults — returns topK unchanged ----
   it('T12: empty allChannelResults — returns topK unchanged', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -302,7 +302,7 @@ describe('T024 Channel Representation Check', () => {
     expect(result.underRepresentedChannels).toHaveLength(0);
   });
 
-  // ---- T13: isChannelMinRepEnabled reflects env var correctly ----
+  // ---- isChannelMinRepEnabled reflects env var correctly ----
   it('T13: isChannelMinRepEnabled returns true when env var is set to "true"', () => {
     setEnv(FEATURE_FLAG, 'true');
     expect(isChannelMinRepEnabled()).toBe(true);
@@ -317,7 +317,7 @@ describe('T024 Channel Representation Check', () => {
     expect(isChannelMinRepEnabled()).toBe(true); // graduated: default ON
   });
 
-  // ---- T14: Multi-source items (sources array) count for all listed channels ----
+  // ---- Multi-source items (sources array) count for all listed channels ----
   it('T14: topK item with sources array counts toward all listed channels', () => {
     // Item a1 is in both vector and bm25 via convergence
     const topK: TopKItem[] = [
@@ -339,12 +339,12 @@ describe('T024 Channel Representation Check', () => {
     expect(result.promoted[0].promotedFrom).toBe('graph');
   });
 
-  // ---- T15: QUALITY_FLOOR constant is exactly 0.005 ----
+  // ---- QUALITY_FLOOR constant is exactly 0.005 ----
   it('T15: QUALITY_FLOOR constant is exactly 0.005', () => {
     expect(QUALITY_FLOOR).toBe(0.005);
   });
 
-  // ---- T16: Core function appends promoted items without re-sorting (architectural contract) ----
+  // ---- Core function appends promoted items without re-sorting (architectural contract) ----
   it('T16: promoted items are appended at the end — core function does NOT re-sort', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -367,7 +367,7 @@ describe('T024 Channel Representation Check', () => {
     expect(result.topK[2].id).toBe('g1');
   });
 
-  // ---- T17: Under-represented channel detection works for multiple missing channels ----
+  // ---- Under-represented channel detection works for multiple missing channels ----
   it('T17: correctly identifies all under-represented channels from channel map', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),
@@ -388,7 +388,7 @@ describe('T024 Channel Representation Check', () => {
     expect(result.underRepresentedChannels).not.toContain('vector');
   });
 
-  // ---- T18: Mixed quality floor — some channels qualify, some don't ----
+  // ---- Mixed quality floor — some channels qualify, some don't ----
   it('T18: only channels with results above QUALITY_FLOOR are promoted', () => {
     const topK: TopKItem[] = [
       makeTopKItem('a1', 0.9, 'vector'),

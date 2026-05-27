@@ -185,14 +185,14 @@ describe('C138 Integration Pipeline', () => {
     SPECKIT_MULTI_QUERY: false,
   };
 
-  // ---- T1: Full pipeline completes within 120ms ----
+  // ---- Full pipeline completes within 120ms ----
   it('T1: end-to-end latency is under 120ms', () => {
     const response = hybridSearchEnhanced('fix auth token error', 'auto', ALL_FLAGS_ON);
 
     expect(response.metrics.latencyMs).toBeLessThan(120);
   });
 
-  // ---- T2: Token budget respected ----
+  // ---- Token budget respected ----
   it('T2: payload respects 2000-token (8000 char) budget', () => {
     const response = hybridSearchEnhanced('explain architecture', 'deep', ALL_FLAGS_ON);
 
@@ -200,7 +200,7 @@ describe('C138 Integration Pipeline', () => {
     expect(response.metrics.tokensConsumed).toBeLessThanOrEqual(2000);
   });
 
-  // ---- T3: All source types hit ----
+  // ---- All source types hit ----
   it('T3: pipeline hits vector, fts5, and graph sources', () => {
     const response = hybridSearchEnhanced('find spec for auth', 'auto', ALL_FLAGS_ON);
 
@@ -209,7 +209,7 @@ describe('C138 Integration Pipeline', () => {
     expect(response.metrics.sourcesHit).toContain('graph');
   });
 
-  // ---- T4: TRM metadata populated ----
+  // ---- TRM metadata populated ----
   it('T4: TRM metadata has valid statistical fields', () => {
     const response = hybridSearchEnhanced('fix bug in login', 'auto', ALL_FLAGS_ON);
 
@@ -219,7 +219,7 @@ describe('C138 Integration Pipeline', () => {
     expect(typeof response.trm.evidenceGapDetected).toBe('boolean');
   });
 
-  // ---- T5: Evidence gap warning appears when gap detected ----
+  // ---- Evidence gap warning appears when gap detected ----
   it('T5: evidence gap warning in payload iff trm.evidenceGapDetected is true', () => {
     const response = hybridSearchEnhanced('bake bread recipe', 'auto', ALL_FLAGS_ON);
 
@@ -232,7 +232,7 @@ describe('C138 Integration Pipeline', () => {
     }
   });
 
-  // ---- T6: Feature flags OFF → no regression ----
+  // ---- Feature flags OFF → no regression ----
   it('T6: flags OFF produces valid results without new features', () => {
     const response = hybridSearchEnhanced('fix auth error', 'auto', ALL_FLAGS_OFF);
 
@@ -241,7 +241,7 @@ describe('C138 Integration Pipeline', () => {
     expect(typeof response.trm.zScore).toBe('number');
   });
 
-  // ---- T7: Flags ON vs OFF produce different results ----
+  // ---- Flags ON vs OFF produce different results ----
   it('T7: adaptive fusion flag changes output characteristics', () => {
     const withFlags = hybridSearchEnhanced('understand architecture', 'auto', ALL_FLAGS_ON);
     const withoutFlags = hybridSearchEnhanced('understand architecture', 'auto', ALL_FLAGS_OFF);
@@ -251,7 +251,7 @@ describe('C138 Integration Pipeline', () => {
     expect(withoutFlags.payload.length).toBeGreaterThan(0);
   });
 
-  // ---- T8: Different intents produce different pipeline behavior ----
+  // ---- Different intents produce different pipeline behavior ----
   it('T8: fix_bug vs understand intents produce different results', () => {
     const fixBug = hybridSearchEnhanced('fix the login bug', 'auto', ALL_FLAGS_ON);
     const understand = hybridSearchEnhanced('explain the login system', 'auto', ALL_FLAGS_ON);
@@ -261,7 +261,7 @@ describe('C138 Integration Pipeline', () => {
     expect(understand.metrics.latencyMs).toBeLessThan(120);
   });
 
-  // ---- T9: Mode="deep" activates multi-query ----
+  // ---- Mode="deep" activates multi-query ----
   it('T9: deep mode search still returns valid results', () => {
     const response = hybridSearchEnhanced('fix login error', 'deep', ALL_FLAGS_ON);
 
@@ -269,7 +269,7 @@ describe('C138 Integration Pipeline', () => {
     expect(response.metrics.latencyMs).toBeLessThan(120);
   });
 
-  // ---- T10: Response structure matches EnhancedMCPResponse ----
+  // ---- Response structure matches EnhancedMCPResponse ----
   it('T10: response has correct shape', () => {
     const response = hybridSearchEnhanced('test query', 'auto', ALL_FLAGS_ON);
 

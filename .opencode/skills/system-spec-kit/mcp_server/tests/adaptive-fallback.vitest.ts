@@ -55,7 +55,7 @@ describe('C138-P0 Adaptive Fallback', () => {
     metadata = { fallbackRetry: false };
   });
 
-  // ---- T1: Primary returns results → no retry ----
+  // ---- Primary returns results → no retry ----
   it('T1: skips fallback when primary scatter returns results', async () => {
     const primaryResults: ScatterResult[] = [
       { id: 1, title: 'Match A', score: 0.85 },
@@ -71,7 +71,7 @@ describe('C138-P0 Adaptive Fallback', () => {
     expect(mockScatter).toHaveBeenCalledWith('auth token', { min_similarity: 0.3 });
   });
 
-  // ---- T2: Primary returns empty → retries at 0.17 ----
+  // ---- Primary returns empty → retries at 0.17 ----
   it('T2: retries at lower threshold when primary returns 0 results', async () => {
     const fallbackResults: ScatterResult[] = [
       { id: 3, title: 'Weak Match', score: 0.22 },
@@ -90,7 +90,7 @@ describe('C138-P0 Adaptive Fallback', () => {
     expect(mockScatter).toHaveBeenNthCalledWith(2, 'obscure gibberish query', { min_similarity: 0.17 });
   });
 
-  // ---- T3: Both passes return empty → still returns empty ----
+  // ---- Both passes return empty → still returns empty ----
   it('T3: returns empty when both passes find nothing', async () => {
     mockScatter
       .mockResolvedValueOnce([])
@@ -103,12 +103,12 @@ describe('C138-P0 Adaptive Fallback', () => {
     expect(mockScatter).toHaveBeenCalledTimes(2);
   });
 
-  // ---- T4: fallbackRetry starts false ----
+  // ---- fallbackRetry starts false ----
   it('T4: metadata.fallbackRetry is false initially', () => {
     expect(metadata.fallbackRetry).toBe(false);
   });
 
-  // ---- T5: Custom thresholds ----
+  // ---- Custom thresholds ----
   it('T5: accepts custom primary and fallback thresholds', async () => {
     mockScatter
       .mockResolvedValueOnce([])
@@ -123,7 +123,7 @@ describe('C138-P0 Adaptive Fallback', () => {
     expect(mockScatter).toHaveBeenNthCalledWith(2, 'custom query', { min_similarity: 0.1 });
   });
 
-  // ---- T6: Primary has exactly 1 result → no retry ----
+  // ---- Primary has exactly 1 result → no retry ----
   it('T6: single primary result prevents fallback', async () => {
     mockScatter.mockResolvedValueOnce([{ id: 'solo', title: 'Solo', score: 0.31 }]);
 
@@ -134,7 +134,7 @@ describe('C138-P0 Adaptive Fallback', () => {
     expect(mockScatter).toHaveBeenCalledTimes(1);
   });
 
-  // ---- T7: Scatter error propagates ----
+  // ---- Scatter error propagates ----
   it('T7: scatter errors propagate without swallowing', async () => {
     mockScatter.mockRejectedValueOnce(new Error('DB connection failed'));
 

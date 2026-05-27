@@ -151,7 +151,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
       expect(mode).toBe('resume');
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T524-2: Short question routes to focused mode', async () => {
       const result = await withTimeout(
         handler.handleMemoryContext({
@@ -321,7 +321,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
 
   // SUITE: tokenUsage Fallback Contract + Pressure Policy
   describe('tokenUsage fallback contract and pressure policy lane', () => {
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T018/T019: 55% pressure keeps intent-selected mode (no override)', async () => {
       const result = await withTimeout(
         handler.handleMemoryContext({
@@ -419,7 +419,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
       expect(parsed.meta.pressureLevel).toBe('quick');
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T017: estimator unavailable logs WARN and keeps auto-selected mode', async () => {
       vi.spyOn(layerDefs, 'getLayerInfo').mockReturnValue({
         id: 'L1',
@@ -761,7 +761,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
       expect(typeof parsed.hints![0]).toBe('string');
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('keeps successful retrievals when telemetry assembly throws', async () => {
       vi.spyOn(retrievalTelemetry, 'isExtendedTelemetryEnabled').mockReturnValue(true);
       vi.spyOn(retrievalTelemetry, 'createTelemetry').mockImplementation(() => {
@@ -780,7 +780,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
       expect(parsed.meta).not.toHaveProperty('_telemetry');
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('keeps successful retrievals when session inferred mode persistence throws', async () => {
       vi.spyOn(workingMemory, 'setSessionInferredMode').mockImplementation(() => {
         throw new Error('session write failed');

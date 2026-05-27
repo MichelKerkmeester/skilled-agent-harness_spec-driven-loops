@@ -110,7 +110,7 @@ describe('H5: all tool schemas have additionalProperties: false', () => {
     expect(missing).toEqual([]);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   // 014+: code-graph/advisor tool families moved to dedicated MCP servers; this server exposes the memory/checkpoint/session/embedder surface.
   it('total tool count matches expected', () => {
     // Ensures no schema was accidentally dropped during bulk edit

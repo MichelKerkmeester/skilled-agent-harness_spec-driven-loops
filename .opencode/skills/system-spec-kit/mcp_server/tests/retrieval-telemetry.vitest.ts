@@ -102,7 +102,7 @@ describe('C136-12: retrieval-telemetry', () => {
     }
   });
 
-  // T01: Default telemetry object structure
+  // Default telemetry object structure
   it('T01: createTelemetry returns valid default structure', () => {
     const t = createTelemetry();
     expect(t.enabled).toBe(false);
@@ -129,7 +129,7 @@ describe('C136-12: retrieval-telemetry', () => {
     expect(t.architecture.scopeDimensionsTracked).toBe(4);
   });
 
-  // T02: Feature flag disabled
+  // Feature flag disabled
   it('T02: feature flag false disables recording', () => {
     process.env.SPECKIT_EXTENDED_TELEMETRY = 'false';
     const t = createTelemetry();
@@ -156,7 +156,7 @@ describe('C136-12: retrieval-telemetry', () => {
     expect(isExtendedTelemetryEnabled()).toBe(false);
   });
 
-  // T03: Latency accumulation
+  // Latency accumulation
   it('T03: recordLatency accumulates total from components', () => {
     const t = createEnabledTelemetry();
     recordLatency(t, 'candidateLatencyMs', 50);
@@ -184,7 +184,7 @@ describe('C136-12: retrieval-telemetry', () => {
     expect(t.latency.fusionLatencyMs).toBe(0);
   });
 
-  // T04: Mode capture
+  // Mode capture
   it('T04: recordMode captures mode, override, and pressure', () => {
     const t = createEnabledTelemetry();
     recordMode(t, 'focused', true, 'quick', 0.85);
@@ -204,7 +204,7 @@ describe('C136-12: retrieval-telemetry', () => {
     expect(t.mode.tokenUsageRatio).toBe(0);
   });
 
-  // T05: Fallback flags
+  // Fallback flags
   it('T05: recordFallback sets trigger and degraded flags', () => {
     const t = createEnabledTelemetry();
     expect(t.fallback.fallbackTriggered).toBe(false);
@@ -223,7 +223,7 @@ describe('C136-12: retrieval-telemetry', () => {
     expect(t.fallback.degradedModeActive).toBe(true);
   });
 
-  // T06: Quality proxy 0-1 range
+  // Quality proxy 0-1 range
   it('T06: computeQualityProxy returns value in 0-1 range', () => {
     const t = createEnabledTelemetry();
     const score = computeQualityProxy(t);
@@ -262,7 +262,7 @@ describe('C136-12: retrieval-telemetry', () => {
     expect(t.quality.qualityProxyScore).toBeLessThan(0.85);
   });
 
-  // T07: recordQualityProxy populates quality fields
+  // recordQualityProxy populates quality fields
   it('T07: recordQualityProxy sets all quality metrics', () => {
     const t = createEnabledTelemetry();
     const results = [
@@ -290,7 +290,7 @@ describe('C136-12: retrieval-telemetry', () => {
     expect(t.quality.topResultScore).toBe(0);
   });
 
-  // T08: JSON serialization
+  // JSON serialization
   it('T08: toJSON produces valid serializable object', () => {
     const t = createEnabledTelemetry();
     recordLatency(t, 'candidateLatencyMs', 42);
@@ -328,7 +328,7 @@ describe('C136-12: retrieval-telemetry', () => {
     expect(json.mode).toBeUndefined();
   });
 
-  // T09: Edge cases
+  // Edge cases
   it('T09: handles results with only similarity (no score)', () => {
     const t = createEnabledTelemetry();
     recordQualityProxy(
@@ -360,7 +360,7 @@ describe('C136-12: retrieval-telemetry', () => {
     expect(t.quality.boostImpactDelta).toBe(0);
   });
 
-  // T10: Latency overwrite (stage re-recording)
+  // Latency overwrite (stage re-recording)
   it('T10: re-recording a latency stage overwrites previous value', () => {
     const t = createEnabledTelemetry();
     recordLatency(t, 'candidateLatencyMs', 100);
@@ -385,7 +385,7 @@ describe('C136-12: retrieval-telemetry', () => {
     expect(t.architecture.scopeDimensionsTracked).toBe(6);
   });
 
-  // T11: Trace payload schema + serialization redaction
+  // Trace payload schema + serialization redaction
   it('T11: recordTracePayload stores canonical trace payload', () => {
     const t = createEnabledTelemetry();
     const accepted = recordTracePayload(t, {

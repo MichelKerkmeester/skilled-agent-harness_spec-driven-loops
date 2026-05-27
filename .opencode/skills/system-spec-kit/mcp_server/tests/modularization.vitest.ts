@@ -123,7 +123,7 @@ describe('Module Line Counts (<300 lines)', () => {
     'tools/lifecycle-tools.js',
   ];
   for (const mod of modules) {
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it(`${mod} is within line limit`, () => {
       const filePath = path.join(MCP_SERVER_PATH, 'dist', mod);
       if (!fs.existsSync(filePath)) {

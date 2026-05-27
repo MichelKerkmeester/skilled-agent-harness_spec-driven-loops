@@ -517,7 +517,7 @@ function installMutationLedgerMocks() {
 ──────────────────────────────────────────────────────────────── */
 
 describe('handleMemoryDelete - Happy Path', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-D1: Single ID delete returns deleted=1', async () => {
     if (!handler?.handleMemoryDelete || !vectorIndex) {
       throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable');
@@ -528,7 +528,7 @@ describe('handleMemoryDelete - Happy Path', () => {
     expect(parsed?.data?.deleted).toBe(1);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-D2: Delete non-existent returns deleted=0', async () => {
     if (!handler?.handleMemoryDelete || !vectorIndex) { throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable'); }
     const calls = installDeleteMocks({ deleteResult: false, dbAvailable: true });
@@ -537,7 +537,7 @@ describe('handleMemoryDelete - Happy Path', () => {
     expect(parsed?.data?.deleted).toBe(0);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-D3: String ID "7" parsed to numeric 7', async () => {
     if (!handler?.handleMemoryDelete || !vectorIndex) { throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable'); }
     const calls = installDeleteMocks({ deleteResult: true });
@@ -545,7 +545,7 @@ describe('handleMemoryDelete - Happy Path', () => {
     expect(calls.deleteMemory[0]).toBe(7);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-D4: Successful delete clears caches', async () => {
     if (!handler?.handleMemoryDelete || !vectorIndex) { throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable'); }
     const calls = installDeleteMocks({ deleteResult: true });
@@ -556,7 +556,7 @@ describe('handleMemoryDelete - Happy Path', () => {
     expect(calls.clearConstitutionalCache.length).toBeGreaterThan(0);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-D5: Failed delete does not clear caches', async () => {
     if (!handler?.handleMemoryDelete || !vectorIndex) { throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable'); }
     const calls = installDeleteMocks({ deleteResult: false });
@@ -565,7 +565,7 @@ describe('handleMemoryDelete - Happy Path', () => {
     expect(calls.invalidateOnWrite).toHaveLength(0);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-D6: Single delete with unavailable DB returns E_DB_UNAVAILABLE envelope', async () => {
     if (!handler?.handleMemoryDelete || !vectorIndex) { throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable'); }
     installDeleteMocks({ dbAvailable: false });
@@ -579,7 +579,7 @@ describe('handleMemoryDelete - Happy Path', () => {
     expect(parsed?.data?.details?.deleted).toBe(0);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-D7: Single delete surfaces mutation-ledger append warnings', async (ctx) => {
     if (!mutationLedgerMod) { ctx.skip(); return; }
     if (!handler?.handleMemoryDelete || !vectorIndex) { throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable'); }
@@ -602,7 +602,7 @@ describe('handleMemoryDelete - Happy Path', () => {
 ──────────────────────────────────────────────────────────────── */
 
 describe('handleMemoryDelete - Causal Edge Cleanup', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-CE1: Causal edges cleaned up on single delete', async (ctx) => {
     // Optional module — test skipped at runtime when causalEdgesMod unavailable
     if (!causalEdgesMod) { ctx.skip(); return; }
@@ -613,7 +613,7 @@ describe('handleMemoryDelete - Causal Edge Cleanup', () => {
     expect(calls.causalDeleteEdges[0]).toBe('5');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-CE2: Causal edge cleanup failure aborts delete transaction', async (ctx) => {
     // Optional module — test skipped at runtime when causalEdgesMod unavailable
     if (!causalEdgesMod) { ctx.skip(); return; }
@@ -622,7 +622,7 @@ describe('handleMemoryDelete - Causal Edge Cleanup', () => {
     await expect(handler.handleMemoryDelete({ id: 3, confirm: true })).rejects.toThrow('Mock edge cleanup error');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-CE3: No edge cleanup when delete fails', async (ctx) => {
     // Optional module — test skipped at runtime when causalEdgesMod unavailable
     if (!causalEdgesMod) { ctx.skip(); return; }
@@ -1665,7 +1665,7 @@ describe.skip('handleMemoryHealth - Happy Path', () => {
     expect(parsed?.data?.repair?.actions).toContain('orphan_edges_cleaned:2');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-H15: autoRepair reports no cleanup when the vector channel is unavailable', async (ctx) => {
     if (
       !handler?.handleMemoryHealth ||
@@ -1831,7 +1831,7 @@ describe.skip('handleMemoryHealth - Happy Path', () => {
 ──────────────────────────────────────────────────────────────── */
 
 describe('MCP Response Envelope Structure', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-ENV1: Success response envelope structure', async () => {
     if (!handler?.handleMemoryDelete || !vectorIndex) { throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable'); }
     const calls = installDeleteMocks({ deleteResult: true });
@@ -1840,7 +1840,7 @@ describe('MCP Response Envelope Structure', () => {
     expect(result?.isError).toBe(false);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-ENV2: Envelope has summary, data, hints, meta', async () => {
     if (!handler?.handleMemoryDelete || !vectorIndex) { throw new Error('Test setup incomplete: memory-crud handler or vector-index unavailable'); }
     const calls = installDeleteMocks({ deleteResult: true });
@@ -1861,7 +1861,7 @@ describe('MCP Response Envelope Structure', () => {
 });
 
 describe('Mutation ledger wiring', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('EXT-ML1: single delete logs a delete mutation', async (ctx) => {
     // Optional module — test skipped at runtime when mutationLedgerMod unavailable
     if (!mutationLedgerMod) { ctx.skip(); return; }

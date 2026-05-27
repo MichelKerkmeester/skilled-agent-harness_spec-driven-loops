@@ -65,7 +65,7 @@ describe('C138-P2 SQLite FTS5 BM25 Search', () => {
     db.close();
   });
 
-  // ---- T1: FTS5 table detection ----
+  // ---- FTS5 table detection ----
   it('T1: isFts5Available detects memory_fts table', () => {
     expect(isFts5Available(db)).toBe(true);
   });
@@ -76,7 +76,7 @@ describe('C138-P2 SQLite FTS5 BM25 Search', () => {
     emptyDb.close();
   });
 
-  // ---- T2: BM25 weights are correct ----
+  // ---- BM25 weights are correct ----
   it('T2: FTS5_BM25_WEIGHTS has correct values', () => {
     expect(FTS5_BM25_WEIGHTS[0]).toBe(10.0); // title
     expect(FTS5_BM25_WEIGHTS[1]).toBe(5.0);  // trigger_phrases
@@ -84,7 +84,7 @@ describe('C138-P2 SQLite FTS5 BM25 Search', () => {
     expect(FTS5_BM25_WEIGHTS[3]).toBe(1.0);  // content_text
   });
 
-  // ---- T3: Basic BM25 search returns results ----
+  // ---- Basic BM25 search returns results ----
   it('T3: fts5Bm25Search returns matching results', () => {
     const results = fts5Bm25Search(db, 'login');
     expect(results.length).toBeGreaterThan(0);
@@ -94,7 +94,7 @@ describe('C138-P2 SQLite FTS5 BM25 Search', () => {
     expect(ids).toContain(3);
   });
 
-  // ---- T4: Title match scores higher than content match ----
+  // ---- Title match scores higher than content match ----
   it('T4: title match scores higher due to 10x weight', () => {
     const results = fts5Bm25Search(db, 'authentication');
     expect(results.length).toBeGreaterThan(0);
@@ -103,14 +103,14 @@ describe('C138-P2 SQLite FTS5 BM25 Search', () => {
     expect(results[0].fts_score).toBeGreaterThan(0);
   });
 
-  // ---- T5: specFolder filter works ----
+  // ---- specFolder filter works ----
   it('T5: specFolder filter restricts results', () => {
     const results = fts5Bm25Search(db, 'login', { specFolder: 'db-spec' });
     // No login results in db-spec
     expect(results.length).toBe(0);
   });
 
-  // ---- T6: Archived compatibility flag is inert after cleanup ----
+  // ---- Archived compatibility flag is inert after cleanup ----
   it('T6: archived matches remain retrievable without a default exclusion branch', () => {
     const results = fts5Bm25Search(db, 'archived');
     const ids = results.map(r => r.id);
@@ -123,19 +123,19 @@ describe('C138-P2 SQLite FTS5 BM25 Search', () => {
     expect(compatibilityIds).toEqual(baselineIds);
   });
 
-  // ---- T7: Empty query returns empty ----
+  // ---- Empty query returns empty ----
   it('T7: empty query returns empty array', () => {
     const results = fts5Bm25Search(db, '');
     expect(results).toEqual([]);
   });
 
-  // ---- T8: Limit parameter works ----
+  // ---- Limit parameter works ----
   it('T8: limit parameter caps result count', () => {
     const results = fts5Bm25Search(db, 'login', { limit: 1 });
     expect(results.length).toBeLessThanOrEqual(1);
   });
 
-  // ---- T9: Scores are positive (negated from bm25) ----
+  // ---- Scores are positive (negated from bm25) ----
   it('T9: fts_score values are positive numbers', () => {
     const results = fts5Bm25Search(db, 'login');
     for (const r of results) {
@@ -143,7 +143,7 @@ describe('C138-P2 SQLite FTS5 BM25 Search', () => {
     }
   });
 
-  // ---- T10: Results are sorted by score descending ----
+  // ---- Results are sorted by score descending ----
   it('T10: results are sorted by fts_score descending', () => {
     const results = fts5Bm25Search(db, 'login');
     for (let i = 0; i < results.length - 1; i++) {

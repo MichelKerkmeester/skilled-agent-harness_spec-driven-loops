@@ -82,7 +82,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     restoreEnv();
   });
 
-  // -- T1: Feature flag OFF → identity result ------------------------------
+  // -- Feature flag OFF → identity result ------------------------------
 
   it('T1: returns identity result when SPECKIT_EMBEDDING_EXPANSION is explicitly off', async () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'false'; // graduated — must explicitly disable
@@ -105,7 +105,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(mockVectorSearch).not.toHaveBeenCalled();
   });
 
-  // -- T2: Feature flag ON, simple query → R15 suppression -----------------
+  // -- Feature flag ON, simple query → R15 suppression -----------------
 
   it('T2: suppresses expansion for "simple" queries when R15 classifier is active', async () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'true';
@@ -132,7 +132,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(mockVectorSearch).not.toHaveBeenCalled();
   });
 
-  // -- T3: Feature flag ON, complex query → expansion runs -----------------
+  // -- Feature flag ON, complex query → expansion runs -----------------
 
   it('T3: runs expansion for a complex query when flag is on', async () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'true';
@@ -156,7 +156,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(mockVectorSearch).toHaveBeenCalledTimes(1);
   });
 
-  // -- T4: R15 mutual exclusion details ------------------------------------
+  // -- R15 mutual exclusion details ------------------------------------
 
   it('T4: R15 mutual exclusion — "simple" tier always suppresses, regardless of content', async () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'true';
@@ -192,7 +192,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(result.original).toBe(moderateQuery);
   });
 
-  // -- T5: isExpansionActive() respects flag OFF ----------------------------
+  // -- isExpansionActive() respects flag OFF ----------------------------
 
   it('T5: isExpansionActive() returns false when flag is explicitly off', () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'false'; // graduated — must explicitly disable
@@ -204,7 +204,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(isExpansionActive('some complex multi word query here now')).toBe(false);
   });
 
-  // -- T6: isExpansionActive() respects R15 simple classification -----------
+  // -- isExpansionActive() respects R15 simple classification -----------
 
   it('T6: isExpansionActive() returns false for simple query when R15 is active', () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'true';
@@ -216,7 +216,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(isExpansionActive('auth error fix')).toBe(false);
   });
 
-  // -- T7: isExpansionActive() returns true for complex query ---------------
+  // -- isExpansionActive() returns true for complex query ---------------
 
   it('T7: isExpansionActive() returns true for complex query when flag is on', () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'true';
@@ -238,7 +238,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(isExpansionActive('one')).toBe(true);
   });
 
-  // -- T8: Empty embedding → identity result -------------------------------
+  // -- Empty embedding → identity result -------------------------------
 
   it('T8: returns identity result for empty embedding (zero-length Float32Array)', async () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'true';
@@ -257,7 +257,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(mockVectorSearch).not.toHaveBeenCalled();
   });
 
-  // -- T9: ExpandedQuery shape ----------------------------------------------
+  // -- ExpandedQuery shape ----------------------------------------------
 
   it('T9: result always has original, expanded, and combinedQuery fields', async () => {
     delete process.env.SPECKIT_EMBEDDING_EXPANSION;
@@ -288,7 +288,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(Array.isArray(complex.expanded)).toBe(true);
   });
 
-  // -- T10: No latency degradation for simple queries -----------------------
+  // -- No latency degradation for simple queries -----------------------
 
   it('T10: simple query returns within 5 ms (no I/O, flag on)', async () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'true';
@@ -311,7 +311,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(elapsed).toBeLessThan(5);
   });
 
-  // -- T11: combinedQuery equals original when no terms found ---------------
+  // -- combinedQuery equals original when no terms found ---------------
 
   it('T11: combinedQuery === original when vector search returns no content', async () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'true';
@@ -356,7 +356,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(result.combinedQuery).toBe(query);
   });
 
-  // -- T12: combinedQuery appends expanded terms ----------------------------
+  // -- combinedQuery appends expanded terms ----------------------------
 
   it('T12: combinedQuery appends expanded terms space-separated', async () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'true';
@@ -385,7 +385,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
     }
   });
 
-  // -- T13: Graceful degradation on vectorSearch error ---------------------
+  // -- Graceful degradation on vectorSearch error ---------------------
 
   it('T13: returns identity result when vectorSearch throws', async () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'true';

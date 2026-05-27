@@ -801,7 +801,7 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
       checkpointStorage.deleteCheckpoint('t107-empty');
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T107-07: null row rejects restore', () => {
       const ok = injectCheckpoint('t107-null-row', [null]);
       if (!ok) return;

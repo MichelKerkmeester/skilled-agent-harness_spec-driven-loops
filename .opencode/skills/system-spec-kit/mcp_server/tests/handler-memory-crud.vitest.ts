@@ -99,7 +99,7 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
       ).rejects.toThrow(/confirm/);
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T519-D4: Non-numeric id throws', async () => {
       await expect(
         handler.handleMemoryDelete({ id: 'not-a-number', confirm: true } as unknown as Parameters<typeof handler.handleMemoryDelete>[0])
@@ -108,7 +108,7 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
       );
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('T519-D5: Partially numeric id strings are rejected', async () => {
       await expect(
         handler.handleMemoryDelete({ id: '12abc', confirm: true } as unknown as Parameters<typeof handler.handleMemoryDelete>[0])

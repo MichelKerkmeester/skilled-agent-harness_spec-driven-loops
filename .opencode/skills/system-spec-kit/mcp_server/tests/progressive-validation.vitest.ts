@@ -325,7 +325,7 @@ describe('PI-B2: Progressive Validation Pipeline', () => {
       expect(exitCode).toBe(2);
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('Level 1 detect with --json produces JSON output', () => {
       const folder = tracked(createMinimalLevel1Folder());
       const { stdout } = runProgressive(folder, ['--level', '1', '--json']);
@@ -748,7 +748,7 @@ describe('PI-B2: Progressive Validation Pipeline', () => {
       expect(stdout.length).toBeGreaterThan(0);
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('validate.sh --json produces valid JSON', () => {
       const folder = tracked(createMinimalLevel1Folder());
       const { stdout } = runValidate(folder, ['--json']);

@@ -275,7 +275,7 @@ describe.sequential('Gate D intent routing regression', () => {
   // against an in-memory DB (or at least against the real filtering code path)
   // is required to close this coverage gap.  See review finding S3.5 #13.
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('routes canonical queries across auto, quick, deep, focused, and resume without archived or legacy-memory fallback', async () => {
     const cases = [
       {
@@ -445,7 +445,7 @@ describe.sequential('Gate D intent routing regression', () => {
     expect(searchArgs.includeConstitutional).toBe(true);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('resume handler does not fall back to legacy memory when spec-docs resolve', async () => {
     const response = await handleMemoryContext({
       input: CANONICAL_QUERY,

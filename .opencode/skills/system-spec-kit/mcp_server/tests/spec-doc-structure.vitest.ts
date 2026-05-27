@@ -167,7 +167,7 @@ afterEach(() => {
 });
 
 describe('spec-doc-structure contract', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('freezes the failure-code ordering from Gate C research', () => {
     expect(RULE_FAILURE_CODES.FRONTMATTER_MEMORY_BLOCK).toEqual([
       'SPECDOC_FRONTMATTER_001',
@@ -376,7 +376,7 @@ describe('spec-doc-structure contract', () => {
     expect(result.details.some((detail) => detail.includes('SPECDOC_FINGERPRINT_002'))).toBe(true);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('reports strict validation failures on the legacy Level 3 filled template fixture', () => {
     const parent = makeTempDir('speckit-validate-');
     const folder = path.join(parent, '064-spec-doc-structure-level3');
@@ -431,7 +431,7 @@ describe('spec-doc-structure contract', () => {
     expect(result.stdout).toContain('RESULT: FAILED');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('keeps validate.sh help aligned with the validator registry', () => {
     const registry = JSON.parse(fs.readFileSync(VALIDATOR_REGISTRY, 'utf8')) as Array<{ rule_id: string }>;
     const result = spawnSync(VALIDATE_SCRIPT, ['--help'], {
@@ -446,7 +446,7 @@ describe('spec-doc-structure contract', () => {
     expect(result.stdout).toContain('operational_runtime');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('fails semantic-empty authored frontmatter fields', () => {
     const folder = copyFixture('053-template-compliant-level2');
     const specPath = path.join(folder, 'spec.md');
@@ -468,7 +468,7 @@ describe('spec-doc-structure contract', () => {
     expect(result.stdout).toContain('RESULT: FAILED');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('fails duplicate opening anchor IDs during packet validation', () => {
     const folder = copyFixture('011-anchors-duplicate-ids');
     const result = spawnSync(VALIDATE_SCRIPT, [folder], {

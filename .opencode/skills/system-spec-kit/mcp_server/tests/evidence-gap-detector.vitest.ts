@@ -15,7 +15,7 @@ import type { TRMResult } from '../lib/search/evidence-gap-detector';
 
 describe('C138-P1 Evidence Gap Detector (TRM)', () => {
 
-  // ---- T1: Well-separated scores → no gap ----
+  // ---- Well-separated scores → no gap ----
   it('T1: high Z-score distribution returns gapDetected=false', () => {
     // One dominant score, rest much lower → high Z-score
     const scores = [0.95, 0.12, 0.10, 0.08, 0.05];
@@ -27,7 +27,7 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(result.stdDev).toBeGreaterThan(0);
   });
 
-  // ---- T2: Flat distribution → gap detected ----
+  // ---- Flat distribution → gap detected ----
   // SKIP: Z-score threshold drift after 011 confidence-scoring update; recalibration deferred
   it.skip('T2: uniform scores produce low Z-score and detect gap', () => {
     // All scores nearly identical → Z-score ≈ 0
@@ -38,7 +38,7 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(result.zScore).toBeLessThan(Z_SCORE_THRESHOLD);
   });
 
-  // ---- T3: All identical scores above threshold → no gap ----
+  // ---- All identical scores above threshold → no gap ----
   it('T3: identical scores above MIN_ABSOLUTE_SCORE return gapDetected=false', () => {
     const scores = [0.30, 0.30, 0.30, 0.30];
     const result = detectEvidenceGap(scores);
@@ -50,7 +50,7 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(result.stdDev).toBe(0);
   });
 
-  // ---- T4: Empty array → gap detected ----
+  // ---- Empty array → gap detected ----
   it('T4: empty score array returns gap with zeroed stats', () => {
     const result = detectEvidenceGap([]);
 
@@ -60,7 +60,7 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(result.stdDev).toBe(0);
   });
 
-  // ---- T5: Single score above threshold → no gap ----
+  // ---- Single score above threshold → no gap ----
   it('T5: single high score returns no gap', () => {
     const result = detectEvidenceGap([0.85]);
 
@@ -69,7 +69,7 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(result.mean).toBe(0.85);
   });
 
-  // ---- T6: Single score below MIN_ABSOLUTE_SCORE → gap ----
+  // ---- Single score below MIN_ABSOLUTE_SCORE → gap ----
   it('T6: single very low score triggers gap via absolute threshold', () => {
     const result = detectEvidenceGap([0.01]);
 
@@ -77,7 +77,7 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(result.mean).toBe(0.01);
   });
 
-  // ---- T7: Scores near Z-score boundary ----
+  // ---- Scores near Z-score boundary ----
   // SKIP: Z-score threshold drift after 011 confidence-scoring update; recalibration deferred
   it.skip('T7: scores near Z=1.5 boundary behave correctly', () => {
     // Construct scores where Z-score is exactly near threshold
@@ -98,7 +98,7 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(aboveThreshold.zScore).toBeGreaterThan(Z_SCORE_THRESHOLD);
   });
 
-  // ---- T8: Top score below absolute minimum ----
+  // ---- Top score below absolute minimum ----
   it('T8: all scores below MIN_ABSOLUTE_SCORE trigger gap regardless of Z', () => {
     const scores = [0.012, 0.001, 0.001]; // top=0.012 < 0.015
     const result = detectEvidenceGap(scores);
@@ -106,7 +106,7 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(result.gapDetected).toBe(true);
   });
 
-  // ---- T9: Mean and stdDev are mathematically correct ----
+  // ---- Mean and stdDev are mathematically correct ----
   it('T9: mean and stdDev computed correctly', () => {
     const scores = [1.0, 2.0, 3.0, 4.0, 5.0];
     const result = detectEvidenceGap(scores);
@@ -116,7 +116,7 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(result.stdDev).toBeCloseTo(Math.sqrt(2), 5);
   });
 
-  // ---- T10: Warning format string ----
+  // ---- Warning format string ----
   it('T10: formatEvidenceGapWarning produces correct markdown', () => {
     const trm: TRMResult = { gapDetected: true, zScore: 0.87, mean: 0.3, stdDev: 0.15 };
     const warning = formatEvidenceGapWarning(trm);
@@ -126,7 +126,7 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(warning.startsWith('> **')).toBe(true);
   });
 
-  // ---- T11: Large score arrays perform well ----
+  // ---- Large score arrays perform well ----
   it('T11: handles 1000 scores without issue', () => {
     const scores = Array.from({ length: 1000 }, (_, i) => 1 / (60 + i + 1));
     const start = performance.now();
@@ -138,7 +138,7 @@ describe('C138-P1 Evidence Gap Detector (TRM)', () => {
     expect(typeof result.zScore).toBe('number');
   });
 
-  // ---- T12: Negative scores handled ----
+  // ---- Negative scores handled ----
   it('T12: handles negative RRF scores gracefully', () => {
     const scores = [-0.1, -0.2, 0.3];
     const result = detectEvidenceGap(scores);

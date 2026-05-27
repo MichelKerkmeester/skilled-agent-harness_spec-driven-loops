@@ -218,7 +218,7 @@ const BARREL_FILES = [
 ];
 
 // ════════════════════════════════════════════════════════════════════════
-// T3: EXPORT CONTRACT VERIFICATION
+// EXPORT CONTRACT VERIFICATION
 // ════════════════════════════════════════════════════════════════════════
 function t3ExportContracts() {
   section('T3: Export Contract Verification - Handlers');
@@ -308,7 +308,7 @@ function t3ExportContracts() {
 }
 
 // ════════════════════════════════════════════════════════════════════════
-// T6: BACKWARD-COMPAT ALIAS VERIFICATION
+// BACKWARD-COMPAT ALIAS VERIFICATION
 // ════════════════════════════════════════════════════════════════════════
 function t6BackwardCompatAliases() {
   section('T6: Backward-Compat Aliases');

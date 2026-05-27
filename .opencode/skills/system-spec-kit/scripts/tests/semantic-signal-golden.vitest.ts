@@ -187,7 +187,7 @@ describe('semantic signal extractor golden coverage', () => {
       ],
     );
 
-    // T09: specFolderName no longer injected into topics, so 'signal extraction' bigram
+    // specFolderName no longer injected into topics, so 'signal extraction' bigram
     // may not form. Accept either 'signal extractor' (from decision title) or 'signal extraction'.
     expect(workflowTopics.join(' ')).toMatch(/signal (extractor|extraction)/);
     expect(sessionTopics.join(' ')).toMatch(/signal (extractor|extraction)/);
