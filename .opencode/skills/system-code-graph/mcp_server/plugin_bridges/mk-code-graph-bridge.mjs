@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Helper for packet 026/007/009 (relocated under mcp_server/ in 026/009/016).
+// Helper relocated under mcp_server.
 // Lives outside `.opencode/plugins/` so OpenCode discovers only real plugin entrypoints.
 
 import { handleSessionResume } from '../dist/handlers/session-resume.js';

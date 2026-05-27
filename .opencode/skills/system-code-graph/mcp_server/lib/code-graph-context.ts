@@ -283,7 +283,7 @@ function computeFreshness(): { lastScanAt: string | null; staleness: 'fresh' | '
   }
 }
 
-// R-007-P2-3: Read-path allowlist for `reason` / `step` strings on
+// Read-path allowlist for `reason` / `step` strings on
 // edge metadata. The same sanitizer pattern as `code-graph-db` and
 // `query.ts`: defense-in-depth single-line, length-capped, non-
 // control-char check.
@@ -500,7 +500,7 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
 }
 
 /**
- * F-004-A4-02: Discriminated result for subject resolution.
+ * Discriminated result for subject resolution.
  *
  * - 'resolved': matched a row in code_nodes
  * - 'unresolved': DB was queryable but no matching row exists
@@ -519,7 +519,7 @@ export type ResolveSubjectResult =
  * Internal helper used by `buildContext`; surfaces DB failures distinctly
  * from "no matching row" so callers can react accordingly.
  */
-// F-004-A4-02: typed resolution result
+// Typed resolution result
 function resolveSubjectToRefTyped(subject: string): ResolveSubjectResult {
   try {
     const d = graphDb.getDb();
@@ -551,7 +551,7 @@ function resolveSubjectToRefTyped(subject: string): ResolveSubjectResult {
     }
     return { kind: 'unresolved' };
   } catch (err: unknown) {
-    // F-004-A4-02: DB error is now distinct from unresolved. Previously
+    // DB error is now distinct from unresolved. Previously
     // swallowed silently as "unresolved subject"; now surfaces the reason.
     return {
       kind: 'unavailable',
@@ -563,14 +563,14 @@ function resolveSubjectToRefTyped(subject: string): ResolveSubjectResult {
 /**
  * Backward-compatible wrapper: `null` when the subject is unresolved OR the
  * DB is unavailable. New callers should use `resolveSubjectToRefTyped`.
- * F-004-A4-02: a side-channel debug log surfaces the unavailable case so the
+ * A side-channel debug log surfaces the unavailable case so the
  * silent-error path is auditable from logs even when callers only see null.
  */
 function resolveSubjectToRef(subject: string): ArtifactRef | null {
   const result = resolveSubjectToRefTyped(subject);
   if (result.kind === 'resolved') return result.ref;
   if (result.kind === 'unavailable') {
-    // F-004-A4-02: surface DB-failure path so it's not silently lost
+    // Surface DB-failure path so it's not silently lost
     console.warn(
       `[code-graph-context] resolveSubjectToRef DB unavailable for subject "${subject}": ${result.reason}`,
     );

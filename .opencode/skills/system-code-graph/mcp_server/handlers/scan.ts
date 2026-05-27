@@ -657,7 +657,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     graphDb.setCodeGraphScope(scopePolicy);
   }
 
-  // F-014-C4-03: refresh candidate manifest after a successful scan so
+  // Refresh candidate manifest after a successful scan so
   // the next detectState() has a current baseline to compare against. Without
   // this, code_graph_status reports stale ("candidate manifest drift") on the
   // very next call after an explicit user-triggered scan. Incremental scans

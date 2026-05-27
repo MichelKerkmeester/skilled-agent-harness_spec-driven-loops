@@ -73,7 +73,7 @@ function buildScopePreflight() {
   };
 }
 
-// F-019: Informational scope-mismatch field derived from the
+// Informational scope-mismatch field derived from the
 // already-computed preflight. Returns `null` when scopes match.
 // When they differ, surfaces the canonical { stored, active,
 // recommendation } shape so operators can decide whether to
@@ -208,7 +208,7 @@ export async function handleCodeGraphVerify(
     });
     const readiness = buildReadinessBlock(readyState);
     const scopePreflight = buildScopePreflight();
-    // F-019: Informational scopeMismatch field derived from the
+    // Informational scopeMismatch field derived from the
     // single preflight call (no extra DB query). Surfaces stored
     // vs active scope and a remediation hint when the two differ.
     const scopeMismatch = buildScopeMismatchInfo(scopePreflight);
@@ -222,7 +222,7 @@ export async function handleCodeGraphVerify(
       });
     }
 
-    // F-019: scope mismatch is informational only — verify proceeds
+    // Scope mismatch is informational only — verify proceeds
     // and the `scopeMismatch` field on the response surfaces the
     // canonical { stored, active, recommendation } shape so operators
     // can decide whether to rescan or override. The legacy block

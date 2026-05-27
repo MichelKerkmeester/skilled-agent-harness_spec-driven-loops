@@ -2199,7 +2199,7 @@ export async function indexFiles(config: IndexerConfig, options: IndexFilesOptio
 
   const phases = buildIndexPhases(config, options, speckitScanStart, scanOutcomeRef);
 
-  // R-007-P2-2: Wrap runPhases in try/catch/finally so error outcomes still
+  // Wrap runPhases in try/catch/finally so error outcomes still
   // emit the spec_kit.graph.scan_duration_ms histogram. The emit-metrics
   // phase itself only fires on the happy path (since a prior phase failure
   // short-circuits the runner); the catch block backfills the missing
