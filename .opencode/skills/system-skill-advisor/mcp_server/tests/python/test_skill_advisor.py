@@ -1548,7 +1548,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-012: affordance validation preserves entity-kind allowlist", str(exc))
 
-    # R-007-8: affordance validation rejects `conflicts_with` /
+    # affordance validation rejects `conflicts_with` /
     # `conflictsWith` because conflict edges require authoritative
     # bilateral declarations in `edges.conflicts_with` instead.
     try:

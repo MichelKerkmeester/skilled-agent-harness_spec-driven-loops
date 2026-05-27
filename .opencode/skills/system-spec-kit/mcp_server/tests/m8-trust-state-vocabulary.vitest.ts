@@ -1,9 +1,6 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: — Trust-state vocabulary expansion
+// TEST: Trust-state vocabulary expansion
 // ───────────────────────────────────────────────────────────────
-// Phase 3 (
-// R9-001)
-//
 // Canonical acceptance for the expanded SharedPayloadTrustState:
 //   live         — fresh, validated
 //   stale        — exists but may be outdated, query still valid

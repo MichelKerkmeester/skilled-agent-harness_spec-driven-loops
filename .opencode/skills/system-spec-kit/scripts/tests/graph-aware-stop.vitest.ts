@@ -194,7 +194,7 @@ afterEach(() => {
   }
 });
 
-// REASON: 026/000/002-vitest-recovery-followup requires optional deep-research reducer fixture
+// REASON: requires the optional deep-research reducer fixture
 (reducer ? describe : describe.skip)('graph-aware stop evaluation', () => {
   it('propagates graph STOP_BLOCKED blockers into the registry and dashboard', () => {
     const specFolder = makeFixture('blocked', [
