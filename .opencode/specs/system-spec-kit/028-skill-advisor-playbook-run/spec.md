@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run"
-    last_updated_at: "2026-05-26T20:00:00Z"
+    last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "playbook-run-operator"
-    recent_action: "Executed playbook waves across local + CLI-delegated runners; recorded verdicts"
-    next_safe_action: "Finalize per-phase implementation summaries and roll up release readiness"
+    recent_action: "All phases complete: playbook run, finding remediation, P1 routing tuning"
+    next_safe_action: "None; F4 cold-env residual is an optional follow-up"
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-playbook-run"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 98
     open_questions: []
     answered_questions:
       - "Phase granularity: 4 grouped phases (user-selected)"
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete (F4 cold-env residual) |
 | **Created** | 2026-05-26 |
 | **Branch** | `main` |
 | **Parent Spec** | (root packet) |
@@ -103,7 +103,7 @@ This is a test-execution + documentation packet. The only repo writes are the sp
 | 002 | `002-mcp-native-scenarios/` | NC-001..009 native MCP tools + MCP-native lanes (advisor_recommend/status/validate/rebuild, skill_graph_*) — local | Complete |
 | 003 | `003-cli-hooks-and-plugin/` | CL-001/003/004/005/006 runtime hooks + opencode plugin bridge — local | Complete |
 | 004 | `004-shell-python-daemon/` | CP/OP/AU/AI/LC/SC/PC — CLI-delegated (devin PC/AU/CP, opencode SC/AI/LC) + OP local | Complete |
-| 005 | `005-finding-remediation/` | Deep-research (cli-codex gpt-5.5) root-causing the 5 findings + 7 remediation phase children (sub-parent) | Complete |
+| 005 | `005-finding-remediation/` | Deep-research (cli-codex gpt-5.5) root-causing the 5 findings + 7 remediation phase children (sub-parent) | Complete (F4 cold-env residual) |
 | 006 | `006-p1-routing-tuning/` | Skill-advisor P1 routing/abstention tuning: remediate the residual non-alias P1 regression failures across both scorers (5 classes; both scorers 0 regression failures) | Complete (verified 2026-05-27) |
 
 ### Phase Transition Rules
@@ -127,13 +127,13 @@ This is a test-execution + documentation packet. The only repo writes are the sp
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Should the surfaced findings (corpus accuracy regression; `semantic_shadow` weight drift; opencode bridge native-route fail-open; stale vitest paths in NC-004/005) be filed as follow-on remediation packets? (Out of scope here — recorded for triage.)
+- ~~Should the surfaced findings be filed as follow-on remediation packets?~~ **Resolved:** all 5 findings were remediated in phase `005-finding-remediation` (F1-F5; F4 has a flagged cold-env residual), and the residual P1 routing/abstention gaps in phase `006-p1-routing-tuning`. Both scorers now report 0 regression failures.
 <!-- /ANCHOR:questions -->
 
 ---
 
 ## RELATED DOCUMENTS
 
-- **Phase children**: `001-preconditions-and-build/`, `002-mcp-native-scenarios/`, `003-cli-hooks-and-plugin/`, `004-shell-python-daemon/`
+- **Phase children**: `001-preconditions-and-build/`, `002-mcp-native-scenarios/`, `003-cli-hooks-and-plugin/`, `004-shell-python-daemon/`, `005-finding-remediation/` (sub-parent), `006-p1-routing-tuning/`
 - **Playbook source**: `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md`
 - **Graph Metadata**: `graph-metadata.json` (`derived.last_active_child_id` pointer)

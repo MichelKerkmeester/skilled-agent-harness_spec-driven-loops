@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: OpenCode Bridge Native Route Fix (F4) — Pending"
-description: "Planned, not yet implemented. Specifies the bridge direct-compat-import + launcher lease/socket reclaim so the native advisor route engages."
+title: "Implementation Summary: OpenCode Bridge Native Route (F4) — Partial"
+description: "Shipped the bridge direct compat import (route:native verified); a daemon-freshness/cold-env residual where the bridge still falls to python remains flagged."
 trigger_phrases:
   - "F4 implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/005-opencode-bridge-native-route"
-    last_updated_at: "2026-05-26T20:40:00Z"
-    last_updated_by: "deep-research-remediation"
-    recent_action: "Specced F4; pending implementation"
-    next_safe_action: "Implement via /speckit:implement"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Shipped bridge direct compat import (route:native); cold-env residual flagged"
+    next_safe_action: "Optional follow-up: close the cold-env daemon-freshness residual"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-skill-advisor-playbook-run/005-finding-remediation/005-opencode-bridge-native-route |
-| **Completed** | Pending |
+| **Completed** | Partial (2026-05-27) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -44,14 +45,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Not yet implemented. Specified and ready for `/speckit:implement`. When implemented, the bridge's `loadNativeAdvisorModules()` imports `dist/mcp_server/compat/index.js` directly (using its `probeAdvisorDaemon`/`readAdvisorStatus`/`handleAdvisorRecommend`/`buildSkillAdvisorBrief`) as the primary native path, with the launcher/MCP subprocess kept only as a fallback; and the launcher treats a held lease without a live `daemon-ipc.sock` as stale/reclaimable instead of writing `LEASE_HELD_BY... (no-bridge-socket)` to the MCP client's stdout. Result: the OpenCode plugin gets `route:"native"` + an `Advisor:` brief instead of silent python fail-open.
+The bridge's `loadNativeAdvisorModules()` now imports `dist/mcp_server/compat/index.js` directly as the primary native path (launcher/MCP subprocess kept only as fallback), and `probeNativeAdvisor` is gated on a reader-usable trustState so a usable-but-degraded daemon still serves a native route. With this, the OpenCode plugin returns `route:"native"` + an `Advisor:` brief instead of the silent python fail-open (verified).
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.../mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | Modify (planned) | Direct compat import; launcher fallback |
-| `.opencode/bin/mk-skill-advisor-launcher.cjs` / `lib/launcher-ipc-bridge.cjs` | Modify (planned) | Reclaim stale lease; stop poisoning MCP stdout |
+| `.../mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | Modify | Direct compat import; reader-usable trustState gate; launcher fallback |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -59,7 +59,7 @@ Not yet implemented. Specified and ready for `/speckit:implement`. When implemen
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Pending. Delivery: `/speckit:implement`, then re-run the CL-005 bridge smoke (expect `route:"native"`) and the `forceNative:true` probe.
+Shipped in the remediation commit; verified the bridge returns `route:"native"` + brief via the direct compat path. The launcher lease/socket reclaim and the cold-environment daemon-freshness path were not fully closed — see limitations.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -70,8 +70,8 @@ Pending. Delivery: `/speckit:implement`, then re-run the CL-005 bridge smoke (ex
 | Decision | Why |
 |----------|-----|
 | Direct compat import as primary | Research reproduced that direct import succeeds while the launcher path fails on a stale lease |
+| Gate the probe on reader-usable trustState | A live/stale-but-usable daemon should still serve a native route instead of failing open to python |
 | Keep launcher as fallback | Non-colocated callers may still need the subprocess path |
-| Surface the real diagnostic | The blanket fail-open hid an actionable lease/socket bug |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -81,9 +81,9 @@ Pending. Delivery: `/speckit:implement`, then re-run the CL-005 bridge smoke (ex
 
 | Check | Result |
 |-------|--------|
-| CL-005 returns route:native + Advisor brief | Pending |
-| forceNative succeeds when daemon live | Pending |
-| No `(no-bridge-socket)` on MCP stdout | Pending |
+| Bridge returns `route:"native"` + brief (warm path) | pass |
+| Direct compat import + status succeeds | pass |
+| Cold-environment daemon-freshness path | RESIDUAL — can still fall to python; flagged |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -91,6 +91,5 @@ Pending. Delivery: `/speckit:implement`, then re-run the CL-005 bridge smoke (ex
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not yet implemented.** Root cause reproduced in `../research/research.md` §3 F4.
-2. **Lease reclaim must not race a live daemon** — reclaim only when socket absent AND lease stale.
+1. **Cold-env residual (why this phase is Partial).** In a cold environment where the daemon is not yet reader-usable, the bridge can still return `route:"python"`. The warm/direct-import path is fixed and verified; closing the cold-start daemon-freshness availability gate (and the launcher stale-lease reclaim) is an optional follow-up.
 <!-- /ANCHOR:limitations -->

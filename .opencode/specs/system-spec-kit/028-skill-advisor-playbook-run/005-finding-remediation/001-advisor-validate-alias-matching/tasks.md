@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/001-advisor-validate-alias-matching"
-    last_updated_at: "2026-05-26T20:40:00Z"
-    last_updated_by: "deep-research-remediation"
-    recent_action: "Specced tasks"
-    next_safe_action: "Implement"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Implemented and verified"
+    next_safe_action: "None; phase complete and verified"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,8 +47,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read advisor-validate.ts match sites (~266-275, ~361-371) and aliases.ts export shape
-- [ ] T002 Confirm/add a `canonicalizeSkillId()` helper backed by aliases.ts groups
+- [x] T001 Read advisor-validate.ts match sites (~266-275, ~361-371) and aliases.ts export shape
+- [x] T002 Confirm/add a `canonicalizeSkillId()` helper backed by aliases.ts groups
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,9 +56,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Canonicalize both sides at the aggregate gold-match site (advisor-validate.ts)
-- [ ] T004 Canonicalize both sides at the per-skill gold-match site (advisor-validate.ts)
-- [ ] T005 Guarantee additive semantics (only widen matches; idempotent)
+- [x] T003 Canonicalize both sides at the aggregate gold-match site (advisor-validate.ts)
+- [x] T004 Canonicalize both sides at the per-skill gold-match site (advisor-validate.ts)
+- [x] T005 Guarantee additive semantics (only widen matches; idempotent)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,9 +66,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Re-run advisor_validate; confirm full-corpus ~74% / holdout ~65%
-- [ ] T007 Run skill_advisor_regression.py; confirm no new regressions
-- [ ] T008 tsc --noEmit + advisor-recommend/validate vitest; reconcile NC-003 documented baseline
+- [x] T006 Re-run advisor_validate; confirm full-corpus ~74% / holdout ~65%
+- [x] T007 Run skill_advisor_regression.py; confirm no new regressions
+- [x] T008 tsc --noEmit + advisor-recommend/validate vitest; reconcile NC-003 documented baseline
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -76,9 +76,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Verification passed (metric lift, no regression)
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Verification passed (metric lift, no regression)
 <!-- /ANCHOR:completion -->
 
 ---

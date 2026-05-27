@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/005-opencode-bridge-native-route"
-    last_updated_at: "2026-05-26T20:40:00Z"
-    last_updated_by: "deep-research-remediation"
-    recent_action: "Specced F4 bridge native-route fix"
-    next_safe_action: "Implement via /speckit:implement"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Shipped bridge direct compat import; cold-env residual flagged"
+    next_safe_action: "Optional: close the cold-env daemon-freshness residual"
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Partial |
 | **Created** | 2026-05-26 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->

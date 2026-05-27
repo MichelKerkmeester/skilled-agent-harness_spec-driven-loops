@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/006-playbook-vitest-path-fix"
-    last_updated_at: "2026-05-26T20:40:00Z"
-    last_updated_by: "deep-research-remediation"
-    recent_action: "Specced tasks"
-    next_safe_action: "Implement"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Implemented and verified"
+    next_safe_action: "None; phase complete and verified"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-006"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm canonical command runs 49 tests from system-skill-advisor/mcp_server
+- [x] T001 Confirm canonical command runs 49 tests from system-skill-advisor/mcp_server
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -55,8 +55,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 [P] Replace stale vitest command in 004-ambiguous-brief-rendering.md (~line 38)
-- [ ] T003 [P] Replace stale vitest command in 005-lifecycle-redirect-metadata.md (~line 36)
+- [x] T002 [P] Replace stale vitest command in 004-ambiguous-brief-rendering.md (~line 38)
+- [x] T003 [P] Replace stale vitest command in 005-lifecycle-redirect-metadata.md (~line 36)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -64,8 +64,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T004 Run both corrected commands (49/49 pass)
-- [ ] T005 Re-grep playbook + feature_catalog → no `skill-advisor/tests/` matches
+- [x] T004 Run both corrected commands (49/49 pass)
+- [x] T005 Re-grep playbook + feature_catalog → no `skill-advisor/tests/` matches
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -73,9 +73,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Commands run; no residual stale paths
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Commands run; no residual stale paths
 <!-- /ANCHOR:completion -->
 
 ---

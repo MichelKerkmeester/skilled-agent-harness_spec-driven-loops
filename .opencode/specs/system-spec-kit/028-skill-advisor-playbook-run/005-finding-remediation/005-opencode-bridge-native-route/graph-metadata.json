@@ -33,7 +33,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in-progress",
     "key_files": [
       ".opencode/bin/mk-skill-advisor-launcher.cjs",
       ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",

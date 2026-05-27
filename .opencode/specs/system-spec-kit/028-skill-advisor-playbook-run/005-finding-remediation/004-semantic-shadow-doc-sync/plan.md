@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/004-semantic-shadow-doc-sync"
-    last_updated_at: "2026-05-26T20:40:00Z"
-    last_updated_by: "deep-research-remediation"
-    recent_action: "Specced approach"
-    next_safe_action: "Implement"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Implemented and verified"
+    next_safe_action: "None; phase complete and verified"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,8 +55,8 @@ Pure documentation/comment alignment to the verified source of truth. The live l
 - [x] Stale doc/comment sites identified
 
 ### Definition of Done
-- [ ] SC-004/SC-005 + feature-catalog + comment updated
-- [ ] SC-004/SC-005 re-run PASS; semantic-shadow vitest still green
+- [x] SC-004/SC-005 + feature-catalog + comment updated
+- [x] SC-004/SC-005 re-run PASS; semantic-shadow vitest still green
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -97,18 +97,18 @@ Inventory: grep `LaneMatch.shadowOnly` / `shadowOnly` consumers before touching 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm lane-registry.ts:12 (0.05/live) and vitest:212-213 still assert fused shadowOnly:false
-- [ ] Grep consumers of raw `LaneMatch.shadowOnly`
+- [x] Confirm lane-registry.ts:12 (0.05/live) and vitest:212-213 still assert fused shadowOnly:false
+- [x] Grep consumers of raw `LaneMatch.shadowOnly`
 
 ### Phase 2: Core Implementation
-- [ ] Update SC-004 expectation (shadowOnly:false for live lane)
-- [ ] Update SC-005 (non-zero ablation lane)
-- [ ] Update feature_catalog/04-attribution.md
-- [ ] Fix the stale comment in semantic-shadow.ts (and clarify raw flag semantics)
+- [x] Update SC-004 expectation (shadowOnly:false for live lane)
+- [x] Update SC-005 (non-zero ablation lane)
+- [x] Update feature_catalog/04-attribution.md
+- [x] Fix the stale comment in semantic-shadow.ts (and clarify raw flag semantics)
 
 ### Phase 3: Verification
-- [ ] Re-run SC-004/SC-005 against the live build — PASS
-- [ ] semantic-shadow vitest still green
+- [x] Re-run SC-004/SC-005 against the live build — PASS
+- [x] semantic-shadow vitest still green
 <!-- /ANCHOR:phases -->
 
 ---

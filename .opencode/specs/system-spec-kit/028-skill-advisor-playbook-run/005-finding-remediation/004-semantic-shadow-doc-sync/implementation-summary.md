@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: semantic_shadow Doc/Comment Sync (F3) — Pending"
-description: "Planned, not yet implemented. Specifies syncing SC-004/SC-005 + feature-catalog + a stale code comment to the live semantic_shadow lane; the weight stays 0.05."
+title: "Implementation Summary: semantic_shadow Doc Sync (F3) — Complete"
+description: "Shipped: SC-004/SC-005 scenarios, the feature-catalog attribution doc, and a stale lane comment are synced to the verified live semantic_shadow lane (weight 0.05, live, shadowOnly:false); the weight was NOT changed."
 trigger_phrases:
   - "F3 implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/004-semantic-shadow-doc-sync"
-    last_updated_at: "2026-05-26T20:40:00Z"
-    last_updated_by: "deep-research-remediation"
-    recent_action: "Specced F3; pending implementation"
-    next_safe_action: "Implement via /speckit:implement"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Shipped semantic_shadow doc + comment sync to the live lane"
+    next_safe_action: "None; phase complete and verified"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-skill-advisor-playbook-run/005-finding-remediation/004-semantic-shadow-doc-sync |
-| **Completed** | Pending |
+| **Completed** | 2026-05-27 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -44,16 +45,16 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Not yet implemented. Specified and ready for `/speckit:implement`. When implemented it updates the stale SC-004/SC-005 scenarios, the feature-catalog attribution doc, and a stale comment in `lanes/semantic-shadow.ts` to match the verified live lane (weight 0.05, `live:true`, fused `shadowOnly:false`). The weight is intentional and is NOT changed — this is a documentation/comment-only sync that clears the SC-004 PARTIAL from the 028 run.
+The stale SC-004/SC-005 scenarios, the feature-catalog attribution doc, and a stale comment in `lanes/semantic-shadow.ts` now match the verified live lane (weight 0.05, `live:true`, fused `shadowOnly:false`). The weight is intentional and was NOT changed — this was a documentation/comment-only sync that clears the SC-004 PARTIAL from the 028 run.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.../08--scorer-fusion/004-lane-attribution.md` | Modify (planned) | Expect shadowOnly:false |
-| `.../08--scorer-fusion/005-ablation.md` | Modify (planned) | Non-zero ablation lane |
-| `.../feature_catalog/04--scorer-fusion/04-attribution.md` | Modify (planned) | Match live |
-| `.../lib/scorer/lanes/semantic-shadow.ts` | Modify (planned) | Fix stale comment / clarify raw flag |
+| `.../08--scorer-fusion/004-lane-attribution.md` | Modify | Expect shadowOnly:false |
+| `.../08--scorer-fusion/005-ablation.md` | Modify | Non-zero ablation lane |
+| `.../feature_catalog/04--scorer-fusion/04-attribution.md` | Modify | Match the live lane |
+| `.../lib/scorer/lanes/semantic-shadow.ts` | Modify | Rewrote stale comment / clarified the raw shadowOnly flag |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -61,7 +62,7 @@ Not yet implemented. Specified and ready for `/speckit:implement`. When implemen
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Pending. Delivery: `/speckit:implement`, then re-run SC-004/SC-005 (expect PASS) and confirm the semantic-shadow vitest stays green.
+Shipped in the remediation commit; the semantic-shadow vitest (asserting weighted score > 0, shadowOnly false) stays green and the lane weight is unchanged.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -71,7 +72,7 @@ Pending. Delivery: `/speckit:implement`, then re-run SC-004/SC-005 (expect PASS)
 
 | Decision | Why |
 |----------|-----|
-| Fix docs, keep the weight | Registry + vitest + feature catalog confirm 0.05/live is intentional; the scenarios are stale |
+| Fix docs, keep the weight | Registry + vitest + feature catalog confirm 0.05/live is intentional; the scenarios were stale |
 | Prefer comment fix over removing the raw shadowOnly flag | Avoids a behavior change for any consumer of `LaneMatch.shadowOnly` |
 <!-- /ANCHOR:decisions -->
 
@@ -82,9 +83,9 @@ Pending. Delivery: `/speckit:implement`, then re-run SC-004/SC-005 (expect PASS)
 
 | Check | Result |
 |-------|--------|
-| SC-004/SC-005 re-run PASS | Pending |
-| Lane weight unchanged (0.05) | Pending |
-| semantic-shadow vitest green | Pending |
+| SC-004/SC-005 docs match the live lane | done |
+| Lane weight unchanged (0.05) | confirmed |
+| semantic-shadow vitest green | pass |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -92,6 +93,5 @@ Pending. Delivery: `/speckit:implement`, then re-run SC-004/SC-005 (expect PASS)
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not yet implemented.** Root cause verified in `../research/research.md` §3 F3.
-2. **Raw `LaneMatch.shadowOnly` semantics** — decide whether to keep + clarify or remove during implementation (prefer keep).
+1. **None.** Documentation/comment sync only; no behavior change.
 <!-- /ANCHOR:limitations -->

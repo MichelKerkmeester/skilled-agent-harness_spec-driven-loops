@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Skill Advisor Finding Remediation"
-description: "Phase parent for remediating the 5 key findings from the system-skill-advisor playbook run (028), decomposed into 6 independently-shippable remediation phases backed by deep research."
+description: "Phase parent for remediating the 5 key findings from the system-skill-advisor playbook run (028), decomposed into 7 independently-shippable remediation phases backed by deep research."
 trigger_phrases:
   - "skill advisor finding remediation"
   - "028 finding remediation"
@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "scorer-p0-remediation"
-    recent_action: "All 7 phases implemented and verified; phase 007 closed"
-    next_safe_action: "None; all phases complete (residual non-alias P1 parity gaps tracked in 007 limitations)"
+    recent_action: "6 of 7 phases complete; F4 bridge has a cold-env residual"
+    next_safe_action: "Optional: close the F4 cold-env daemon-freshness residual"
     blockers: []
     key_files:
       - ".opencode/specs/system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/research/research.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-remediation"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | Complete (F4 cold-env residual) |
 | **Created** | 2026-05-26 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

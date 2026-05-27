@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/006-playbook-vitest-path-fix"
-    last_updated_at: "2026-05-26T20:40:00Z"
-    last_updated_by: "deep-research-remediation"
-    recent_action: "Specced approach"
-    next_safe_action: "Implement"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Implemented and verified"
+    next_safe_action: "None; phase complete and verified"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-006"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,8 +55,8 @@ Trivial doc fix: swap the pre-extraction `--prefix system-spec-kit/mcp_server ..
 - [x] Affected scenarios enumerated (NC-004, NC-005)
 
 ### Definition of Done
-- [ ] Both commands corrected
-- [ ] Re-grep returns no `skill-advisor/tests/` matches
+- [x] Both commands corrected
+- [x] Re-grep returns no `skill-advisor/tests/` matches
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,15 +94,15 @@ Inventory: `grep -rn "skill-advisor/tests" .opencode/skills/system-skill-advisor
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the canonical command runs 49 tests from system-skill-advisor/mcp_server
+- [x] Confirm the canonical command runs 49 tests from system-skill-advisor/mcp_server
 
 ### Phase 2: Core Implementation
-- [ ] Replace the command in NC-004 (line ~38)
-- [ ] Replace the command in NC-005 (line ~36)
+- [x] Replace the command in NC-004 (line ~38)
+- [x] Replace the command in NC-005 (line ~36)
 
 ### Phase 3: Verification
-- [ ] Run both corrected commands (49/49 pass)
-- [ ] Re-grep playbook + feature_catalog → no `skill-advisor/tests/` matches
+- [x] Run both corrected commands (49/49 pass)
+- [x] Re-grep playbook + feature_catalog → no `skill-advisor/tests/` matches
 <!-- /ANCHOR:phases -->
 
 ---

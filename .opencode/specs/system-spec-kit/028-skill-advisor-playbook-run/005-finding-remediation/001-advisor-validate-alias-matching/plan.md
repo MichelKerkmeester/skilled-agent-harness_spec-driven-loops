@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/001-advisor-validate-alias-matching"
-    last_updated_at: "2026-05-26T20:40:00Z"
-    last_updated_by: "deep-research-remediation"
-    recent_action: "Specced approach"
-    next_safe_action: "Implement"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Implemented and verified"
+    next_safe_action: "None; phase complete and verified"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,9 +56,9 @@ Introduce an alias-canonicalization step (reuse `lib/scorer/aliases.ts`) and app
 - [x] Projected metric lift quantified (74.09% / 65.0%)
 
 ### Definition of Done
-- [ ] Both match sites alias-aware
-- [ ] advisor_validate re-run shows the lift; no regression
-- [ ] tsc + advisor-validate vitest pass
+- [x] Both match sites alias-aware
+- [x] advisor_validate re-run shows the lift; no regression
+- [x] tsc + advisor-validate vitest pass
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -99,18 +99,18 @@ Inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Read `advisor-validate.ts` match sites + `aliases.ts` export shape
-- [ ] Confirm a canonicalization helper exists or add a small one
+- [x] Read `advisor-validate.ts` match sites + `aliases.ts` export shape
+- [x] Confirm a canonicalization helper exists or add a small one
 
 ### Phase 2: Core Implementation
-- [ ] Apply canonicalization to both sides at the aggregate match site
-- [ ] Apply at the per-skill match site
-- [ ] Ensure semantics are additive (only widen matches)
+- [x] Apply canonicalization to both sides at the aggregate match site
+- [x] Apply at the per-skill match site
+- [x] Ensure semantics are additive (only widen matches)
 
 ### Phase 3: Verification
-- [ ] Re-run advisor_validate; confirm full-corpus ~74% / holdout ~65%
-- [ ] Run skill_advisor_regression.py; confirm no new regressions
-- [ ] tsc --noEmit + advisor-recommend/validate vitest
+- [x] Re-run advisor_validate; confirm full-corpus ~74% / holdout ~65%
+- [x] Run skill_advisor_regression.py; confirm no new regressions
+- [x] tsc --noEmit + advisor-recommend/validate vitest
 <!-- /ANCHOR:phases -->
 
 ---

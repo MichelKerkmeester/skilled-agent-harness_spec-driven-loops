@@ -32,7 +32,7 @@
       "make"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts",
       "spec.md",

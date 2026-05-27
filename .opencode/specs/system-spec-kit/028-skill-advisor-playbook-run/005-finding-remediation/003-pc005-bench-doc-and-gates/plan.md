@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/003-pc005-bench-doc-and-gates"
-    last_updated_at: "2026-05-26T20:40:00Z"
-    last_updated_by: "deep-research-remediation"
-    recent_action: "Specced approach"
-    next_safe_action: "Implement"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Implemented and verified"
+    next_safe_action: "None; phase complete and verified"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-003"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,9 +55,9 @@ Doc-and-threshold change: correct the documented invocation and align the script
 - [x] Gate semantics + envelope identified
 
 ### Definition of Done
-- [ ] Doc runs as written (--dataset present)
-- [ ] Gates recalibrated + stress vitest aligned
-- [ ] A nominal run reports passing/advisory gates
+- [x] Doc runs as written (--dataset present)
+- [x] Gates recalibrated + stress vitest aligned
+- [x] A nominal run reports passing/advisory gates
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -97,17 +97,17 @@ Inventory: confirm no CI invokes the bench with the old 20 ms warm gate as a har
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Read bench argparse defaults + the stress vitest contract + feature-catalog envelope
-- [ ] Decide cold p95: advisory vs subprocess-scoped budget (open question)
+- [x] Read bench argparse defaults + the stress vitest contract + feature-catalog envelope
+- [x] Decide cold p95: advisory vs subprocess-scoped budget (open question)
 
 ### Phase 2: Core Implementation
-- [ ] Update PC-005 doc with --dataset + --runs 1 smoke note
-- [ ] Set warm p95 default to 50 ms; make cold p95 advisory or rename to subprocess scope
-- [ ] Align python-bench-runner-stress.vitest.ts
+- [x] Update PC-005 doc with --dataset + --runs 1 smoke note
+- [x] Set warm p95 default to 50 ms; make cold p95 advisory or rename to subprocess scope
+- [x] Align python-bench-runner-stress.vitest.ts
 
 ### Phase 3: Verification
-- [ ] Run the corrected documented command; confirm exit 0 + gate report
-- [ ] Run the stress vitest
+- [x] Run the corrected documented command; confirm exit 0 + gate report
+- [x] Run the stress vitest
 <!-- /ANCHOR:phases -->
 
 ---
