@@ -47,8 +47,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read ambiguity.ts:44-57, projection.ts:47-55, fusion.ts:265-268/389-404 + failing fixtures
-- [ ] T002 Decide mcp-code-mode route-vs-relabel for P0-UNC-002
+- [x] T001 Read scorer regions in both fusion.ts + skill_advisor.py; established per-case ground truth for both
+- [x] T002 Decided mcp-code-mode route (not relabel) for P0-UNC-002
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,9 +56,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Add low-information abstention/route rule in ambiguity.ts; wire into fusion
-- [ ] T004 [P] Add /speckit:plan command-intent bonus in projection.ts + fusion.ts
-- [ ] T005 Add a regression fixture covering the ambiguity rule
+- [x] T003 Low-information abstention in both scorers (fusion.ts phrase-anchor guard; skill_advisor.py ambiguous-ratio guard)
+- [x] T004 [P] code-mode disambiguation + model-B owner normalization + prompt-improver/chrome parity fixes
+- [x] T005 Verified the ambiguity rule against P0-UNC fixtures + the 193-row corpus (no over/under-abstention)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,8 +66,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Run skill_advisor_regression.py; P0 ≥ 0.92, no regression
-- [ ] T007 tsc --noEmit + scorer vitest; adversarial over-abstention/over-fire checks
+- [x] T006 Both regression harnesses: P0 12/12, no regression; corpus 45→62 (0 lost)
+- [x] T007 tsc clean + 448 vitest + Python 57/57 + alignment verifier PASS; over-abstention check ("code audit" still routes)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -75,9 +75,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] P0 pass rate ≥ 0.92, no regression
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] P0 pass rate 12/12 in both scorers, no regression
 <!-- /ANCHOR:completion -->
 
 ---

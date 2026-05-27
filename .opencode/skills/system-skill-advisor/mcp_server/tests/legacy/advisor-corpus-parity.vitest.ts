@@ -119,10 +119,12 @@ describe('advisor 197-prompt corpus regression-protection parity', () => {
         }
       }
 
-      // Current fallback graph after the sk-prompt-small-model rename: Python
-      // preserves 45 legacy-correct rows; TS preserves all of them.
-      expect(pythonCorrect).toBe(45);
-      expect(hookPreservedPythonCorrect).toBe(45);
+      // Scorer P0 routing fixes (memory-save model-B normalization, code-mode
+      // disambiguation, low-information ambiguity abstention) lift Python corpus
+      // accuracy 45 -> 62 legacy-correct rows with zero lost rows (every prior
+      // correct row stays correct); the native/hook scorer preserves all 62.
+      expect(pythonCorrect).toBe(62);
+      expect(hookPreservedPythonCorrect).toBe(62);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

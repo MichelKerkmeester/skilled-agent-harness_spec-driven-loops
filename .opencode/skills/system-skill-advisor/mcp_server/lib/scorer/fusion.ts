@@ -227,6 +227,13 @@ function readOnlyRouteAllowed(promptLower: string, skillId: string): boolean {
   if (skillId === 'mcp-chrome-devtools' && /\b(\.codex\/agents|state log|predictions schema|current labels|gate-3-classifier\.ts)\b/.test(promptLower)) {
     return true;
   }
+  // Browser/devtools inspection is a genuine chrome-devtools task even though
+  // its verb ("inspect") reads as a read-only explainer. Lift it off the
+  // explainer floor when the prompt carries devtools-specific vocabulary.
+  if (skillId === 'mcp-chrome-devtools'
+    && /\b(network waterfall|network tab|network request|dev ?tools|browser console|page inspector|dom inspector|performance trace|inspect (the )?(network|dom|page|element|browser))\b/.test(promptLower)) {
+    return true;
+  }
   if (skillId === 'cli-codex' && /\b\.codex\/agents\b/.test(promptLower)) {
     return true;
   }
@@ -269,6 +276,13 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   if (promptLower.includes('/speckit:plan')) {
     if (recommendation.skill === 'command-spec-kit') return R.speckitPlanCommandBonus;
     if (recommendation.skill === 'sk-doc') return R.speckitPlanSkDocPenalty;
+  }
+  // External-tool-chain ("call_tool_chain") vocabulary belongs to mcp-code-mode,
+  // not the generic code skill. Disambiguate so the best guess for these
+  // toolchain-shaped prompts is mcp-code-mode.
+  if (/\b(call_tool_chain|code mode|tool ?chain|api chain)\b/.test(promptLower)) {
+    if (recommendation.skill === 'mcp-code-mode') return R.mcpToolchainCodeModeBonus;
+    if (recommendation.skill === 'sk-code') return R.mcpToolchainSkCodePenalty;
   }
   if (/\b(save context|save memory)\b/.test(promptLower)) {
     if (recommendation.skill === 'memory:save') return R.saveContextMemorySaveBonus;
@@ -402,6 +416,42 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     };
   });
   ranked = applyAmbiguity(ranked);
+
+  // Low-information ambiguity abstention: a short, intent-less prompt that lands
+  // in a multi-candidate ambiguity cluster is genuinely under-specified. Floor
+  // every cluster member's uncertainty above the strict threshold so strict
+  // callers abstain, while confidence-only callers still surface the best guess
+  // (the disambiguated top-ranked candidate).
+  const meaningfulTokenCount = promptLower.split(/\s+/).filter((token) => token.length > 1).length;
+  const lowInfoPrompt = meaningfulTokenCount <= 3 && !hasTaskIntent && !promptLower.includes('/');
+  if (lowInfoPrompt) {
+    const clusterMembers = ranked.filter((recommendation) => (recommendation.ambiguousWith?.length ?? 0) > 0);
+    // Only abstain when the cluster's lead is built from diffuse, shared
+    // single-word keyword matches rather than a distinctive multi-word phrase
+    // anchor (an explicit-author/derived phrase match such as "code audit").
+    // A multi-word anchor means the prompt does pin a specific skill, so it
+    // should route instead of abstaining.
+    const clusterHasPhraseAnchor = clusterMembers.some((recommendation) => (
+      recommendation.laneContributions.some((contribution) => (
+        (contribution.lane === 'explicit_author' || contribution.lane === 'derived_generated')
+        && contribution.evidence.some((entry) => entry.includes(' '))
+      ))
+    ));
+    if (clusterMembers.length >= 2 && !clusterHasPhraseAnchor) {
+      const confThreshold = options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD;
+      const uncThreshold = options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD;
+      const floor = SCORING_CALIBRATION.uncertainty.lowInfoAmbiguityFloor;
+      ranked = ranked.map((recommendation) => {
+        if ((recommendation.ambiguousWith?.length ?? 0) === 0) return recommendation;
+        const uncertainty = Math.max(recommendation.uncertainty, floor);
+        return {
+          ...recommendation,
+          uncertainty,
+          passes_threshold: recommendation.confidence >= confThreshold && uncertainty <= uncThreshold,
+        };
+      });
+    }
+  }
 
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);
   const visible = options.includeAllCandidates ? ranked : passing;

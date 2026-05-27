@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation"
-    last_updated_at: "2026-05-26T20:40:00Z"
-    last_updated_by: "deep-research-remediation"
-    recent_action: "Deep research converged; authored 6 remediation phases"
-    next_safe_action: "Implement phase 006 then 004/003/001/005/002 via /speckit:implement"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-p0-remediation"
+    recent_action: "All 6 remediation phases implemented + verified (002 closed: both scorers P0 12/12)"
+    next_safe_action: "None — all findings remediated; out-of-scope P1 alias drift tracked separately"
     blockers: []
     key_files:
       - ".opencode/specs/system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/research/research.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-remediation"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-26 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -94,7 +94,7 @@ Authoring-only at this level; the remediation phases name their own target files
 | Phase | Folder | Finding | Focus | Status |
 |-------|--------|---------|-------|--------|
 | 001 | `001-advisor-validate-alias-matching/` | F1a | Alias-aware gold matching in advisor_validate (recovers 50.78%→74.09% / 42.5%→65.0%) | Done (verified 2026-05-27) |
-| 002 | `002-scorer-p0-routing-fixes/` | F1b | P0-CMD /speckit:plan intent bonus (TS scorer) done+verified; P0-UNC mcp-code-mode/abstention + Python-scorer parity flagged | Partial |
+| 002 | `002-scorer-p0-routing-fixes/` | F1b | Model-B explicit-slash routing, code-mode disambiguation, low-info abstention — both scorers P0 12/12; corpus 45→62 (0 lost); TS↔Python parity | Done (verified 2026-05-27) |
 | 003 | `003-pc005-bench-doc-and-gates/` | F2 | PC-005 `--dataset` doc + warm/cold p95 gate calibration | Done (verified 2026-05-27) |
 | 004 | `004-semantic-shadow-doc-sync/` | F3 | Sync SC-004/SC-005 + feature-catalog + stale code comment to the live 0.05 lane | Done (verified 2026-05-27) |
 | 005 | `005-opencode-bridge-native-route/` | F4 | Bridge direct compat import done+verified; daemon-freshness availability gate flagged (residual cold-env route:python) | Partial |

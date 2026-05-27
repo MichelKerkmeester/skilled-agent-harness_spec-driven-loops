@@ -10,20 +10,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/002-scorer-p0-routing-fixes"
-    last_updated_at: "2026-05-26T20:40:00Z"
-    last_updated_by: "deep-research-remediation"
-    recent_action: "Specced F1b scorer/routing fixes"
-    next_safe_action: "Implement via /speckit:implement"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-p0-remediation"
+    recent_action: "Implemented and verified F1b scorer routing fixes"
+    next_safe_action: "None; phase complete and verified"
     blockers: []
     key_files:
-      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/ambiguity.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "mcp-code-mode routes (not relabelled)"
+      - "abstain only on ambiguous-keyword-driven winners"
 ---
 # Feature Specification: Scorer P0 Routing Fixes (F1b)
 
@@ -39,8 +42,9 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-05-26 |
+| **Completed** | 2026-05-27 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
@@ -124,6 +128,8 @@ Raise P0 pass rate by fixing the two genuine routing defects, so PC-004's P0 gat
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Restore `mcp-code-mode` as a live route, or relabel `P0-UNC-002` to the intended skill? (decide during implementation)
-- Should low-information ambiguity suppress all recommendations by default, or only for specific prompt shapes like "api chain mcp"?
+_All resolved during implementation._
+
+- ~~Restore `mcp-code-mode` as a live route, or relabel `P0-UNC-002`?~~ **Resolved: route.** Toolchain vocabulary disambiguates toward mcp-code-mode; it is the best guess surfaced in confidence-only mode.
+- ~~Should low-information ambiguity suppress all recommendations by default, or only for specific prompt shapes?~~ **Resolved: abstain only when the winner's lead is ambiguous-keyword-driven (no phrase/intent anchor)** — abstains on "api chain mcp" while terse-but-anchored prompts ("code audit") still route. Principled, not a per-prompt hack (SC-002).
 <!-- /ANCHOR:questions -->

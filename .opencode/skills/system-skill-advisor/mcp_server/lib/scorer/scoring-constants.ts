@@ -83,6 +83,10 @@ export interface UncertaintyCalibration {
   readonly lowConfidencePenaltyThreshold: number;
   /** Penalty added when confidence falls below the threshold. */
   readonly lowConfidencePenalty: number;
+  /** Uncertainty floor applied to every member of a low-information ambiguity
+   * cluster. Above the default strict threshold so strict callers abstain,
+   * but below 1 so confidence-only callers still surface the best guess. */
+  readonly lowInfoAmbiguityFloor: number;
   /** Hard floor on the final uncertainty value. */
   readonly hardFloor: number;
   /** Hard ceiling on the final uncertainty value. */
@@ -120,6 +124,10 @@ export interface RoutingCalibration {
   // strong skill signal like "docs".
   readonly speckitPlanCommandBonus: number;
   readonly speckitPlanSkDocPenalty: number;
+  // code-mode / external-tool-chain intent: disambiguate toolchain-shaped
+  // prompts toward mcp-code-mode rather than the generic code skill.
+  readonly mcpToolchainCodeModeBonus: number;
+  readonly mcpToolchainSkCodePenalty: number;
   // phase-folder intent
   readonly phaseFolderSpecKitBonus: number;
   // save-context / save-memory intent
@@ -170,6 +178,7 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     directEvidenceDiscount: 0.06,
     lowConfidencePenaltyThreshold: 0.8,
     lowConfidencePenalty: 0.08,
+    lowInfoAmbiguityFloor: 0.42,
     hardFloor: 0.08,
     hardCeiling: 0.95,
   }),
@@ -186,6 +195,8 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     speckitResumeCommandPenalty: -0.12,
     speckitPlanCommandBonus: 0.5,
     speckitPlanSkDocPenalty: -0.18,
+    mcpToolchainCodeModeBonus: 0.5,
+    mcpToolchainSkCodePenalty: -0.18,
     phaseFolderSpecKitBonus: 0.35,
     saveContextMemorySaveBonus: 0.55,
     saveContextMemorySpecKitPenalty: -0.25,

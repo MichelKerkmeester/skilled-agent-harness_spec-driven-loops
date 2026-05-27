@@ -160,10 +160,12 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     };
     console.log(`advisor-parity-report ${JSON.stringify(report)}`);
 
-    // Current fallback graph after the sk-prompt-small-model rename: Python
-    // preserves 45 legacy-correct rows; TS preserves all of them.
-    expect(pythonCorrect).toBe(45);
-    expect(tsAlsoCorrect).toBe(45);
+    // Scorer P0 routing fixes (memory-save model-B normalization, code-mode
+    // disambiguation, low-information ambiguity abstention) lift Python corpus
+    // accuracy 45 -> 62 legacy-correct rows with zero lost rows (every prior
+    // correct row stays correct); TS preserves all 62.
+    expect(pythonCorrect).toBe(62);
+    expect(tsAlsoCorrect).toBe(62);
     expect(regressions).toBe(0);
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);

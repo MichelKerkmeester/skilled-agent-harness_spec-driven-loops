@@ -1778,7 +1778,10 @@ COMMAND_BRIDGES = {
     },
     "command-prompt-improver": {
         "description": "Create or improve AI prompts using /prompt.",
-        "slash_markers": ["/prompt", "prompt"],
+        # Only the literal slash invocation is an explicit-command signal. The
+        # bare word "prompt" appears in ordinary requests ("improve this prompt")
+        # and must NOT trigger the command bridge over the owning skill sk-prompt.
+        "slash_markers": ["/prompt"],
     },
     "command-create-agent": {
         "description": "Create a new OpenCode agent using /create:agent.",
@@ -1808,7 +1811,11 @@ COMMAND_BRIDGES = {
 }
 
 COMMAND_BRIDGE_OWNER_NORMALIZATION = {
-    "command-memory-save": "memory:save",
+    # An explicit /X:y slash command routes to the skill that OWNS the workflow,
+    # not to a command-bridge alias. The memory-save workflow is owned by
+    # system-spec-kit (its toolchain performs the save), so /memory:save
+    # normalizes there rather than to the inline `memory:save` bridge record.
+    "command-memory-save": "system-spec-kit",
     "command-create-agent": "create:agent",
     "command-create-testing-playbook": "create:testing-playbook",
     "command-spec-kit-resume": "system-spec-kit",
@@ -2727,6 +2734,94 @@ DEEP_REVIEW_DISAMBIGUATION_PHRASES = (
 
 DISAMBIGUATION_MARGIN = 0.10
 
+# External-tool-chain ("call_tool_chain") vocabulary belongs to mcp-code-mode,
+# not the generic code skill. Used to disambiguate toolchain-shaped prompts.
+CODE_MODE_TOOLCHAIN_RE = re.compile(r"\b(call_tool_chain|code mode|tool ?chain|api chain)\b")
+
+# Task-intent verbs (parity with the TS scorer's TASK_INTENT). A prompt that
+# carries one of these is not treated as an under-specified low-information
+# prompt for abstention purposes.
+TASK_INTENT_RE = re.compile(
+    r"\b(add|append|build|change|configure|create|edit|fix|generate|implement"
+    r"|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b"
+)
+
+# Uncertainty floor applied to every member of a low-information ambiguity
+# cluster: above the default strict threshold so strict callers abstain, but
+# below 1 so confidence-only callers still surface the best guess.
+LOW_INFO_AMBIGUITY_UNCERTAINTY_FLOOR = 0.42
+
+# Minimum share of the winner's matches that must be ambiguous multi-skill
+# keywords ("(multi)") for low-information abstention to fire. This separates a
+# genuinely under-specified prompt ("api chain mcp" — all matches are shared
+# keywords) from a terse-but-anchored one ("code audit" — anchored by a phrase
+# and an intent), which should still route.
+LOW_INFO_AMBIGUITY_MULTI_RATIO = 0.5
+
+
+def _apply_code_mode_disambiguation(
+    recommendations: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> None:
+    """Lift mcp-code-mode just above sk-code on toolchain-shaped prompts.
+
+    Toolchain vocabulary ("call_tool_chain", "code mode", "api chain") is the
+    mcp-code-mode domain. When it appears and both candidates are present,
+    raise mcp-code-mode's confidence just above sk-code so it becomes the
+    disambiguated best guess, WITHOUT demoting sk-code out of the ambiguity
+    cluster — low-information abstention still applies to the cluster.
+    """
+    if not prompt_lower or not recommendations:
+        return
+    if not CODE_MODE_TOOLCHAIN_RE.search(prompt_lower):
+        return
+    mcp = next((r for r in recommendations if r.get("skill") == "mcp-code-mode"), None)
+    if mcp is None:
+        return
+    sk_code = next((r for r in recommendations if r.get("skill") == "sk-code"), None)
+    sk_conf = float(sk_code.get("confidence", 0.0)) if sk_code else 0.0
+    target = round(min(0.95, max(float(mcp.get("confidence", 0.0)), sk_conf + 0.03)), 2)
+    if target > float(mcp.get("confidence", 0.0)):
+        mcp["confidence"] = target
+
+
+def _apply_low_info_ambiguity_abstention(
+    recommendations: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> None:
+    """Floor the uncertainty of a low-information ambiguity cluster (TS parity).
+
+    A short, intent-less prompt that lands in a multi-candidate cluster (two or
+    more confidence-passing candidates within the ambiguity margin) is
+    under-specified. Flooring uncertainty above the strict threshold makes
+    strict callers abstain while confidence-only callers still surface the
+    top-ranked best guess.
+    """
+    if not recommendations:
+        return
+    meaningful = [token for token in re.findall(r"\b\w+\b", prompt_lower) if len(token) > 1]
+    if len(meaningful) > 3 or TASK_INTENT_RE.search(prompt_lower) or "/" in prompt_lower:
+        return
+    passing_conf = [
+        rec for rec in recommendations
+        if float(rec.get("confidence", 0.0)) >= DEFAULT_CONFIDENCE_THRESHOLD
+    ]
+    if len(passing_conf) < 2:
+        return
+    top_conf = max(float(rec["confidence"]) for rec in passing_conf)
+    cluster = [rec for rec in passing_conf if top_conf - float(rec["confidence"]) <= 0.05 + 1e-9]
+    if len(cluster) < 2:
+        return
+    # Only abstain when the winner's lead is built from ambiguous multi-skill
+    # keywords rather than a distinctive anchor (phrase/intent/explicit match).
+    winner = max(cluster, key=lambda rec: float(rec.get("confidence", 0.0)))
+    num_matches = max(1, int(winner.get("_num_matches", 1)))
+    multi_ratio = int(winner.get("_num_ambiguous", 0)) / num_matches
+    if multi_ratio < LOW_INFO_AMBIGUITY_MULTI_RATIO:
+        return
+    for rec in cluster:
+        rec["uncertainty"] = max(float(rec.get("uncertainty", 0.0)), LOW_INFO_AMBIGUITY_UNCERTAINTY_FLOOR)
+
 
 def _apply_deep_research_disambiguation(
     recommendations: List[Dict[str, Any]],
@@ -3036,6 +3131,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     # deep-review vs code-review before the iteration-loop tiebreaker so the
     # primary-slot selection is stable on audit/review-token prompts.
     _apply_deep_research_disambiguation(recommendations, prompt_lower)
+    _apply_code_mode_disambiguation(recommendations, prompt_lower)
     _apply_deep_skill_routing_layer(recommendations, prompt)
 
     # Iteration-loop tiebreaker: when the query mentions iterative investigation/review
@@ -3047,6 +3143,13 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
 
     refresh_passes_threshold(recommendations)
     _apply_graph_conflict_penalty(recommendations)
+    refresh_passes_threshold(recommendations)
+
+    # Low-information ambiguity abstention runs BEFORE the sort: flooring the
+    # cluster's uncertainty makes every member fail the strict dual-threshold,
+    # so the sort falls through to confidence and the disambiguated best guess
+    # ranks first for confidence-only callers (strict callers still abstain).
+    _apply_low_info_ambiguity_abstention(recommendations, prompt_lower)
     refresh_passes_threshold(recommendations)
 
     ranked = sorted(
