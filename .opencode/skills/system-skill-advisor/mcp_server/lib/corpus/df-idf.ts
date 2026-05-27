@@ -5,7 +5,7 @@
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-// F-016-D1-08: Keep `filterCorpusStatEligible` as the default predicate so
+// Keep `filterCorpusStatEligible` as the default predicate so
 // existing callers see no behavioral change, but expose a `predicate`
 // parameter on `computeCorpusStats` so callers can pass a different filter
 // (or the eligible documents directly) without the corpus math module
@@ -148,7 +148,7 @@ function writeCachedCorpusStats(cachePath: string, sourceKey: string, stats: Cor
 export function computeCorpusStats(
   documents: readonly CorpusDocument[],
   now = new Date(),
-  // F-016-D1-08: predicate is opt-in; default keeps the existing
+  // Predicate is opt-in; default keeps the existing
   // lifecycle-aware behavior so callers that do not pass a predicate get
   // the same result as before. Callers that already filter their documents
   // upstream can pass `(entries) => entries` to skip the inner pass.

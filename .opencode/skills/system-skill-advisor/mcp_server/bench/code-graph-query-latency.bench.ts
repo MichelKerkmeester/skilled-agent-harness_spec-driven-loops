@@ -1,11 +1,10 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Code Graph Query Latency Benchmark (PR 9 / T-048)
+// MODULE: Code Graph Query Latency Benchmark
 // ───────────────────────────────────────────────────────────────
 // Wraps `buildContext` for the 3 canonical query modes
 // (outline / blast_radius / relationship) against a hashed corpus
 // fixture, then asserts percentile DELTA vs the baseline JSON file. Missing
 // or malformed baselines are bench invariants and must fail instead of skip.
-// Closes findings F36 #7, F73-#3, F73-#4, F28.
 
 import { createHash } from 'node:crypto';
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';

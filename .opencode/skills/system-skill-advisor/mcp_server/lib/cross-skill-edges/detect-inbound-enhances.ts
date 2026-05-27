@@ -121,7 +121,7 @@ function scoreAssetShape(
         detail: `target has ${rule.skill_has_asset}`,
       };
     }
-    // F-08-001 P1: Array.isArray guard before .every()
+    // Array.isArray guard before .every()
     if (
       Array.isArray(rule.skill_has_files) &&
       rule.skill_has_files.length > 0 &&
@@ -208,7 +208,7 @@ export function detectInboundEnhances(
       // Infer weight and context from same-family exemplars or enhance_when rules
       const { weight, context, blockers } = inferEdgePayload(source, target, byFamily);
 
-      // F-10-001 P1: applyable requires deterministically-inferred weight + context, not just empty blockers
+      // Applyable requires deterministically-inferred weight + context, not just empty blockers
       const applyable = weight !== null && context !== null && blockers.length === 0;
       out.push({
         id: hashCandidate(source.skillId, target.skillId),

@@ -60,7 +60,7 @@ function writeJsonAtomic(filePath: string, payload: GenerationMetadata): void {
   }
 }
 
-// F-001-A1-03: token-checked lock release.
+// Token-checked lock release.
 //
 // The previous implementation stored only `pid:timestamp` and let any process
 // remove the lock file unconditionally. That meant publisher A could pause
@@ -200,7 +200,7 @@ export async function publishAfterCommit<T>(
 }
 
 // Test-only surface: stress + unit tests need to drive the lock primitive
-// directly to verify the F-001-A1-03 token-ownership semantics. Production
+// Directly to verify the token-ownership semantics. Production
 // code should always go through `publishSkillGraphGeneration`.
 export const __testables = {
   acquireGenerationLock,

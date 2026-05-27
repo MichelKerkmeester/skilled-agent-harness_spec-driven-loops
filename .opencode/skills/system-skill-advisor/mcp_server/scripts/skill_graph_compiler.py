@@ -42,7 +42,7 @@ ALLOWED_CATEGORIES = {
 }
 EDGE_TYPES = {"depends_on", "enhances", "siblings", "conflicts_with", "prerequisite_for"}
 ALLOWED_ENTITY_KINDS = {"skill", "agent", "script", "config", "reference"}
-# R-007-8 contract decision: affordance derived inputs MAY declare
+# Contract decision: affordance derived inputs MAY declare
 # routing-direction edges (`depends_on`, `enhances`, `siblings`,
 # `prerequisite_for`) but MUST NOT declare `conflicts_with`.
 #
@@ -56,7 +56,7 @@ ALLOWED_ENTITY_KINDS = {"skill", "agent", "script", "config", "reference"}
 # Therefore we VALIDATE: any `conflicts_with`/`conflictsWith` field
 # on an affordance is reported as `derived.affordances[i] has
 # unsupported field(s)` by `validate_derived_affordances`. This
-# closes R-007-8 with an explicit (validate, do not serialize)
+# Closes with an explicit (validate, do not serialize)
 # contract that mirrors `derived.entities` constraints.
 AFFORDANCE_RELATION_FIELDS = {
     "dependsOn": "depends_on",
@@ -77,7 +77,7 @@ AFFORDANCE_ALLOWED_FIELDS = {
     "skillId", "skill_id", "name", "triggers", "category",
     *AFFORDANCE_RELATION_FIELDS.keys(),
 }
-# R-007-9: broadened prompt-injection denylist. Mirrors the TS-side
+# Broadened prompt-injection denylist. Mirrors the TS-side
 # `INSTRUCTION_PATTERN` in `affordance-normalizer.ts` so both compile-
 # time (Python) and score-time (TypeScript) input paths reject the
 # same set of injection-shaped phrases. Real-world corpora include
@@ -113,7 +113,7 @@ AFFORDANCE_TOKEN_PATTERN = re.compile(r"\b(?:bearer|token|secret|apikey|api_key)
 
 
 # ───────────────────────────────────────────────────────────────
-# R-007-P2-9: Affordance normalization debug counters
+# Affordance normalization debug counters
 # ───────────────────────────────────────────────────────────────
 # Mirror of the TS-side counters in
 # `skill_advisor/lib/affordance-normalizer.ts`. Operators can read these via
@@ -457,7 +457,7 @@ def normalize_affordance_edges(raw_affordance: dict) -> List[dict]:
 def normalize_affordance_input(raw_affordance: Any) -> Optional[dict]:
     """Normalize one allowlisted affordance object for derived inputs.
 
-    R-007-P2-9: Bumps `AFFORDANCE_NORMALIZER_COUNTERS` to give operators
+    Bumps `AFFORDANCE_NORMALIZER_COUNTERS` to give operators
     visibility into how many affordance inputs are received, accepted, and
     dropped (and why) when compiling the skill graph.
     """
@@ -535,7 +535,7 @@ def validate_derived_affordances(folder_name: str, derived: dict, all_skill_ids:
         if not isinstance(raw_affordance, dict):
             errors.append(f"derived.affordances[{index}] must be an object")
             continue
-        # R-007-8: conflict edges from affordances are explicitly
+        # Conflict edges from affordances are explicitly
         # rejected. Report them BEFORE the generic "unsupported
         # field" message so operators see a contract reason, not a
         # generic allowlist miss.

@@ -144,7 +144,7 @@ function confidenceFor(args: {
   if (args.hasTaskIntent
     && (args.directScore >= C.taskIntentDirectScoreFloor
       || args.liveNormalized >= C.taskIntentLiveNormalizedFloor)) {
-    // F-012-C2-03: Token-stuffing dispersion guard. Without this, a prompt
+    // Token-stuffing dispersion guard. Without this, a prompt
     // with task-intent + many weak signals (saturating liveNormalized) but
     // no strong direct anchor would force confidence to taskIntentFloor for
     // many unrelated skills. The guard fires when liveNormalized is near-

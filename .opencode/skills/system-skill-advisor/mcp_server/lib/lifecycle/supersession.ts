@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { sanitizeEnvelopeSkillLabel } from '../derived/sanitizer.js';
-// F-018-D3-02: derive lifecycle status from the canonical tuple in
+// Derive lifecycle status from the canonical tuple in
 // status-values.ts so this module's hand-written union cannot drift.
 import type { SkillLifecycleStatus } from './status-values.js';
 

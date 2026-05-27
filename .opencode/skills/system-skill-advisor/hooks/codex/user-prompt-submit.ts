@@ -192,7 +192,7 @@ function emitTimeoutFallbackWarning(
 }
 
 function timeoutFallbackOutput(): CodexHookSpecificOutput {
-  // F-006-B1-01: Route the cold-start timeout fallback through the shared
+  // Route the cold-start timeout fallback through the shared
   // `renderAdvisorTimeoutFallback()` helper in lib/render.ts. The bespoke
   // inline string previously lived here; centralizing it keeps any future
   // runtime that needs a cold-start fallback aligned on the same contract

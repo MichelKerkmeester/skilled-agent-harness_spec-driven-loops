@@ -10,7 +10,7 @@ import { runDaemonStateMutation } from './state-mutation.js';
 import { workspaceRelativeFilePath } from '../derived/provenance.js';
 import { errorMessage } from '../utils/error-format.js';
 import { findAdvisorWorkspaceRoot } from '../utils/workspace-root.js';
-// F-016-D1-06: per-skill reindex/generation orchestration is extracted into
+// Per-skill reindex/generation orchestration is extracted into
 // a separate module so this file owns *watching* (chokidar wiring, debounce,
 // target discovery) while the orchestrator owns *processing* (hash
 // bookkeeping, generation publication, busy-retry). External API is
@@ -70,7 +70,7 @@ export interface SkillGraphWatcherStatus {
 export interface SkillGraphFsWatcher {
   on: (event: string, listener: (...args: unknown[]) => void) => SkillGraphFsWatcher;
   add?: (paths: string | string[]) => SkillGraphFsWatcher;
-  // F-003-A3-01: chokidar exposes unwatch(); we accept it as an optional capability
+  // Chokidar exposes unwatch; we accept it as an optional capability
   // so refreshTargets() can prune paths that disappeared between scans. Test
   // harnesses without unwatch fall back to add-only behavior; real chokidar
   // wires this to its native unsubscribe.
@@ -83,16 +83,16 @@ export interface SkillGraphWatcher {
   readonly targets: readonly WatchTarget[];
   status: () => SkillGraphWatcherStatus;
   refreshTargets: () => void;
-  // F-001-A1-01: drain any queued reindex work without closing the watcher.
+  // Drain any queued reindex work without closing the watcher.
   flush: () => Promise<void>;
-  // F-001-A1-02: lifecycle uses this to silence reindex generation writes
+  // Lifecycle uses this to silence reindex generation writes
   // during shutdown; pending flushes still run for hash bookkeeping but never
   // call publishSkillGraphGeneration().
   suppressGenerationPublication: (value: boolean) => void;
   close: () => Promise<void>;
 }
 
-// F-016-D1-06: PendingSkill is defined in watcher-orchestrator.ts (single
+// PendingSkill is defined in watcher-orchestrator.ts (single
 // source of truth for the orchestrator contract) and imported as a type at
 // the top of this file. Local code references PendingSkill identically to
 // the previous module-private interface.
@@ -106,7 +106,7 @@ const DEFAULT_STORM_WINDOW_MS = 10_000;
 const DEFAULT_CIRCUIT_COOLDOWN_MS = 10_000;
 const DEFAULT_BUSY_RETRY_DELAYS_MS = [250, 500, 1_000] as const;
 const TEMP_SUFFIX_PATTERN = /(?:\.tmp|\.swp|~)$/i;
-// F-003-A3-02: cap diagnostics array so a long-running daemon does not leak the
+// Cap diagnostics array so a long-running daemon does not leak the
 // process heap with one entry per watcher event. 100 keeps enough recent
 // context for triage; aggregate counters cover the long tail and are exposed as
 // a single `COUNTERS:...` synthetic line at the head of status().diagnostics so
@@ -175,7 +175,7 @@ function walkSkillDirectories(skillsRoot: string): string[] {
     .sort((left, right) => left.localeCompare(right));
 }
 
-// F-004-A4-04: Malformed graph-metadata.json previously vanished into a bare
+// Malformed graph-metadata.json previously vanished into a bare
 // `catch {}`, dropping every derived key-file watch target without a trace.
 // Surface the parse failure through an optional onMalformed callback so the
 // caller can record a diagnostic (e.g. MALFORMED_GRAPH_METADATA:<path>:<reason>)
@@ -190,7 +190,7 @@ function parseDerivedKeyFiles(
   try {
     const parsed: unknown = JSON.parse(readFileSync(graphMetadataPath, 'utf8'));
     if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
-      // F-004-A4-04: top-level shape is wrong but JSON parsed; still flag it so
+      // Top-level shape is wrong but JSON parsed; still flag it so
       // the caller knows the schema drifted away from the documented contract.
       onMalformed?.(graphMetadataPath, 'top-level value is not an object');
       return [];
@@ -214,14 +214,14 @@ function parseDerivedKeyFiles(
       .map((entry) => resolve(workspaceRoot, entry))
       .filter((entry) => existsSync(entry));
   } catch (error: unknown) {
-    // F-004-A4-04: previously this catch silently dropped JSON.parse errors;
+    // Previously this catch silently dropped JSON.parse errors;
     // now we surface a reason string so operators see WHY targets disappeared.
     onMalformed?.(graphMetadataPath, errorMessage(error));
     return [];
   }
 }
 
-// F-004-A4-04: optional onMalformed callback lets the watcher record a
+// Optional onMalformed callback lets the watcher record a
 // diagnostic when graph-metadata.json fails to parse. Default callers (tests,
 // external consumers) keep the original two-arg signature.
 export function discoverWatchTargets(
@@ -355,13 +355,13 @@ export function writeFileAtomic(filePath: string, content: string): void {
 export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): SkillGraphWatcher {
   const workspaceRoot = resolve(options.workspaceRoot);
   const skillsRoot = resolve(options.skillsRoot ?? defaultSkillsRoot(workspaceRoot));
-  // F-003-A3-02: diagnostics + counters are declared up front so the malformed
+  // Diagnostics + counters are declared up front so the malformed
   // metadata callback (used by the initial discoverWatchTargets() scan below)
   // can record events before the watcher even starts.
   const diagnostics: string[] = [];
   const diagnosticCounts = new Map<string, number>();
 
-  // F-003-A3-02: replace direct `diagnostics.push(...)` with a helper that
+  // Replace direct `diagnostics.push(...)` with a helper that
   // enforces the ring buffer cap and bumps the aggregate counter. Counters
   // survive the buffer rotation so operators can see "we hit 4,200
   // WATCHER_ERROR events" even though only the last 100 strings are retained.
@@ -375,7 +375,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
     diagnosticCounts.set(key, (diagnosticCounts.get(key) ?? 0) + 1);
   }
 
-  // F-004-A4-04: invoked by parseDerivedKeyFiles when graph-metadata.json is
+  // Invoked by parseDerivedKeyFiles when graph-metadata.json is
   // malformed; the closure pushes a diagnostic so operators see the malformed
   // path + reason instead of silently losing key-file watch targets.
   const recordMalformedMetadata = (filePath: string, reason: string): void => {
@@ -410,7 +410,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
   let debounceTimer: NodeJS.Timeout | null = null;
   let circuitOpenUntil = 0;
   let closed = false;
-  // Serialization primitive for F-001-A1-01: only one flush drain runs at a
+  // Serialization primitive: only one flush drain runs at a
   // time, regardless of how many timers or close() calls fire concurrently.
   // Events queued while a flush is running are picked up by the same drain
   // loop after the active batch settles.
@@ -419,7 +419,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
   const defaultReindex = async (): Promise<ReindexResult> => indexSkillMetadata(skillsRoot);
   const reindexSkill = options.reindexSkill ?? defaultReindex;
 
-  // F-016-D1-06: orchestrator owns per-skill processing (hash bookkeeping,
+  // Orchestrator owns per-skill processing (hash bookkeeping,
   // generation publication, busy-retry). The factory is forward-declared and
   // wired up below `refreshTargets` so the orchestrator can call into the
   // refresh hook without a circular reference. Using a `let` lets us declare
@@ -427,7 +427,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
   // eslint-disable-next-line prefer-const
   let orchestrator: ReturnType<typeof createWatcherOrchestrator>;
 
-  // F-003-A3-01: target refresh previously only added new paths; removed paths
+  // Target refresh previously only added new paths; removed paths
   // stayed under chokidar's watch forever, leaking listeners + per-path file
   // descriptors for the daemon's lifetime. We now compute path additions AND
   // removals, call watcher.unwatch() for the removals (when the harness
@@ -451,7 +451,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
       for (const removedPath of removedPaths) {
         fileHashes.delete(removedPath);
       }
-      // F-003-A3-01: also drop pending reindex requests whose owning skill no
+      // Also drop pending reindex requests whose owning skill no
       // longer has any watched paths, so the queue cannot retain phantom work
       // for skills that have been deleted on disk.
       const livingSlugs = new Set(refreshed.map((target) => target.skillSlug));
@@ -471,7 +471,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
     }
     if (eventTimes.length > stormEventLimit) {
       circuitOpenUntil = currentTime + circuitCooldownMs;
-      // F-003-A3-02: route through pushDiagnostic so the entry counts toward
+      // Route through pushDiagnostic so the entry counts toward
       // the REINDEX_STORM_CIRCUIT_OPEN aggregate even after the ring buffer
       // rolls over.
       pushDiagnostic(`REINDEX_STORM_CIRCUIT_OPEN:${eventTimes.length}`);
@@ -503,7 +503,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
     }, delay);
   }
 
-  // F-016-D1-06: per-skill processing now lives in WatcherOrchestrator.
+  // Per-skill processing now lives in WatcherOrchestrator.
   // The orchestrator is parameterized with this watcher's closures so it
   // can hash files, quarantine malformed markdown, and refresh targets
   // identically to the previous inline implementation. External behavior
@@ -527,7 +527,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
     skillMdFilename: SKILL_MD,
   });
 
-  // F-001-A1-01: serialized drain. Only one drainPending() runs at a time,
+  // Serialized drain. Only one drainPending runs at a time,
   // tracked via flushPromise. Concurrent triggers (debounce timer + close()
   // for example) all await the same promise. After a batch finishes, if more
   // events were queued while the batch was running, drain again on the same
@@ -548,7 +548,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
       pending.clear();
       for (const request of batch) {
         try {
-          // F-016-D1-06: delegate to orchestrator; behavior identical to
+          // Delegate to orchestrator; behavior identical to
           // the previous inline processSkill() call.
           await orchestrator.processSkill(request);
         } catch (error: unknown) {
@@ -556,7 +556,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
           if (code === 'ENOENT') {
             continue;
           }
-          // F-003-A3-02: route through pushDiagnostic so REINDEX_FAILED counts
+          // Route through pushDiagnostic so REINDEX_FAILED counts
           // accumulate even after the ring buffer drops the per-skill strings.
           pushDiagnostic(`REINDEX_FAILED:${request.skillSlug}:${errorMessage(error)}`);
         }
@@ -574,7 +574,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
     if (typeof targetPath === 'string') enqueue(targetPath);
   });
   watcher.on('error', (error: unknown) => {
-    // F-003-A3-02: WATCHER_ERROR counter tracks the total number of error
+    // WATCHER_ERROR counter tracks the total number of error
     // events even after the ring buffer rotates older entries out.
     pushDiagnostic(`WATCHER_ERROR:${errorMessage(error)}`);
   });
@@ -584,7 +584,7 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
       return targets;
     },
     status: () => {
-      // F-003-A3-02: prepend a synthetic COUNTERS:... line so callers see the
+      // Prepend a synthetic COUNTERS:... line so callers see the
       // long-tail aggregate even after the ring buffer has dropped the
       // original event strings. The line is regenerated on every status() call
       // and is NOT stored in the buffer (so it does not double-count itself).
@@ -601,23 +601,23 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
         pendingEvents: [...pending.values()].reduce((total, item) => total + item.changedPaths.size, 0),
         circuitOpen: now() < circuitOpenUntil,
         quarantinedSkills: countActiveQuarantines(workspaceRoot, options.quarantineDbPath),
-        // F-016-D1-06: lastReindexAt is owned by the orchestrator now; the
+        // lastReindexAt is owned by the orchestrator now; the
         // public status() shape is unchanged.
         lastReindexAt: orchestrator.getLastReindexAt(),
         diagnostics: diagnosticLines,
       };
     },
     refreshTargets,
-    // F-001-A1-02: lifecycle.ts calls suppressGenerationPublication(true) before
+    // Lifecycle.ts calls suppressGenerationPublication(true) before
     // tearing the watcher down, so any queued processSkill() that runs during
     // close()/flushPending() will not write a 'live' generation that would
     // overwrite the terminal 'unavailable' state.
-    // F-016-D1-06: routed through the orchestrator so the suppression flag
+    // Routed through the orchestrator so the suppression flag
     // is read by whichever module owns publishSkillGraphGeneration().
     suppressGenerationPublication: (value: boolean) => {
       orchestrator.setSuppressGenerationPublication(value);
     },
-    // F-001-A1-01: public drain hook. Lifecycle.ts uses this to quiesce the
+    // Public drain hook. Lifecycle.ts uses this to quiesce the
     // queue before publishing the final terminal state.
     flush: () => flushPending(),
     close: async () => {

@@ -2,7 +2,7 @@
 // MODULE: Derived Generated Lane
 // ───────────────────────────────────────────────────────────────
 
-// F-016-D1-07: Pull the age-haircut policy from the scorer-local seam
+// Pull the age-haircut policy from the scorer-local seam
 // instead of reaching into the lifecycle subsystem directly. The lifecycle
 // implementation stays the source of truth; the seam keeps the scorer's
 // dependency direction inward.

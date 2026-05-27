@@ -24,7 +24,7 @@ import { applyEnhanceEdge } from './apply-graph-metadata-patch.js';
  * @returns Result including candidates, applied edges, skipped edges, and errors
  */
 export async function propagateInboundEnhances(options: PropagateEnhancesOptions): Promise<PropagateEnhancesResult> {
-  // F-06-004 P1: capture per-file parse errors at the loader boundary instead of silently dropping skills
+  // Capture per-file parse errors at the loader boundary instead of silently dropping skills
   const { records: skills, errors: loaderErrors } = await loadAllSkillMetadataWithErrors(options.skillsRoot);
   const detectOpts = {
     minConfidence: options.minConfidence ?? 0.75,
@@ -53,7 +53,7 @@ export async function propagateInboundEnhances(options: PropagateEnhancesOptions
     });
 
     for (const c of toApply) {
-      // F-03-001 P1: pass skillsRoot to enforce path-boundary at write time
+      // Pass skillsRoot to enforce path-boundary at write time
       const r = await applyEnhanceEdge(c, options.skillsRoot);
       if (r.applied) {
         result.applied.push(c.id);

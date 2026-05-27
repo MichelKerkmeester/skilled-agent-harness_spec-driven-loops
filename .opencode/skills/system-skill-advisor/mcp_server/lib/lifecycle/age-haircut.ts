@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { isAuthorLane, type DerivedTrustLane } from '../derived/trust-lanes.js';
-// F-018-D3-02: derive lifecycle status from the canonical tuple instead of
+// Derive lifecycle status from the canonical tuple instead of
 // hand-writing the union; new values added to status-values.ts surface here
 // as a compile error at the consumer site.
 import type { SkillLifecycleStatus } from './status-values.js';

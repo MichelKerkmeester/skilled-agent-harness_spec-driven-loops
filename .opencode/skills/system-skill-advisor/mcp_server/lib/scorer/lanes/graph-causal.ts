@@ -86,7 +86,7 @@ export function scoreGraphCausalLane(
     }
   }
 
-  // F-012-C2-01: Preserve negative graph contributions through lane emit.
+  // Preserve negative graph contributions through lane emit.
   // Previously the filter dropped any entry with `value.score <= 0`, which
   // silently discarded suppressive evidence accumulated through `conflicts_with`
   // edges (EDGE_MULTIPLIER = -0.35). The filter now keeps non-zero scores and

@@ -82,7 +82,7 @@ export async function startSkillGraphDaemon(options: SkillGraphDaemonOptions): P
       lastLiveAt: trustState.lastLiveAt,
     });
 
-    // F-001-A1-02: tear down the watcher BEFORE publishing the terminal
+    // Tear down the watcher BEFORE publishing the terminal
     // unavailable generation. Otherwise an in-flight or queued reindex flush
     // can race the shutdown and publish a 'live' generation after we've
     // already published 'unavailable', leaving the on-disk state lying about

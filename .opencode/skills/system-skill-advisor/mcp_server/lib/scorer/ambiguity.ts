@@ -7,7 +7,7 @@ import type { AdvisorScoredRecommendation } from './types.js';
 export const AMBIGUITY_MARGIN = 0.05;
 export const AMBIGUITY_CONFIDENCE_MARGIN = 0.05;
 
-// F-012-C2-04: Compute ambiguity from ranking `score` so the cluster aligns
+// Compute ambiguity from ranking `score` so the cluster aligns
 // with the score-based fusion ranking (top-two-by-confidence may not match
 // top-two-by-score).
 //

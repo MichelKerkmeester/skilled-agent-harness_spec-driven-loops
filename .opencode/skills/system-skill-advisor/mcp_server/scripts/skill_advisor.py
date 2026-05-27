@@ -1129,7 +1129,7 @@ SYNONYM_MAP = {
     "functions": ["methods", "definitions", "symbols"],
     "classes": ["types", "definitions", "structure"],
     "symbols": ["definitions", "functions", "classes", "exports"],
-    
+
     # Git & version control
     "branch": ["git", "commit", "merge", "checkout"],
     "commit": ["git", "version", "push", "branch", "changes"],
@@ -1141,7 +1141,7 @@ SYNONYM_MAP = {
     "git": ["commit", "branch", "version", "push", "merge", "worktree"],
     "pull": ["git", "fetch", "merge", "remote"],
     "clone": ["git", "repository", "download"],
-    
+
     # Memory & context preservation
     "context": ["memory", "session", "save"],
     "remember": ["memory", "context", "save", "store"],
@@ -1154,7 +1154,7 @@ SYNONYM_MAP = {
     "session": ["memory", "context", "conversation"],
     "preserve": ["memory", "save", "context", "store"],
     "store": ["memory", "save", "context", "persist"],
-    
+
     # Documentation
     "doc": ["documentation", "explain", "describe", "markdown"],
     "docs": ["documentation", "explain", "describe", "markdown"],
@@ -1163,14 +1163,14 @@ SYNONYM_MAP = {
     "readme": ["documentation", "markdown", "explain"],
     "flowchart": ["documentation", "diagram", "ascii"],
     "diagram": ["documentation", "flowchart", "visual"],
-    
+
     # Spec & planning
     "plan": ["spec", "architect", "design", "roadmap", "breakdown"],
     "spec": ["specification", "plan", "document", "folder"],
     "folder": ["spec", "directory", "create", "organize"],
     "scaffold": ["create", "generate", "new", "template"],
     "template": ["scaffold", "create", "generate"],
-    
+
     # Debugging & browser
     "bug": ["debug", "error", "issue", "defect", "verification"],
     "console": ["chrome", "browser", "debug", "log"],
@@ -1212,7 +1212,7 @@ SYNONYM_MAP = {
     "explore": ["search", "find", "navigate", "discover"],
     "navigate": ["find", "search", "locate", "goto"],
     "locate": ["find", "search", "where"],
-    
+
     # Actions & creation
     "create": ["implement", "build", "generate", "new", "add", "scaffold"],
     "make": ["create", "implement", "build", "generate"],
@@ -1220,7 +1220,7 @@ SYNONYM_MAP = {
     "add": ["create", "implement", "new", "insert"],
     "build": ["create", "implement", "generate"],
     "generate": ["create", "build", "scaffold"],
-    
+
     # Code quality & fixes
     "check": ["verify", "validate", "test"],
     "fix": ["debug", "correct", "resolve", "code", "implementation"],
@@ -1228,7 +1228,7 @@ SYNONYM_MAP = {
     "test": ["verify", "validate", "check", "spec", "quality"],
     "verify": ["check", "validate", "test", "confirm"],
     "validate": ["check", "verify", "test"],
-    
+
     # Prompt engineering
     "prompt": ["enhance", "improve", "optimize", "engineering", "framework"],
     "enhance": ["prompt", "improve", "optimize", "refine"],
@@ -1241,7 +1241,7 @@ SYNONYM_MAP = {
     "explain": ["understand", "how", "works", "describe"],
     "understand": ["how", "explain", "learn", "works"],
     "works": ["how", "understand", "explain", "function"],
-    
+
     # Display & output
     "show": ["list", "display", "outline", "tree"],
     "list": ["show", "display", "enumerate"],
@@ -1293,7 +1293,7 @@ INTENT_BOOSTERS = {
     "speckit": ("system-spec-kit", 0.8),
     "task": ("system-spec-kit", 0.3),
     "tasks": ("system-spec-kit", 0.4),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # SK-AUTORESEARCH: Autonomous deep research loop
     # ─────────────────────────────────────────────────────────────────
@@ -1356,7 +1356,7 @@ INTENT_BOOSTERS = {
     "network": ("mcp-chrome-devtools", 0.8),
     "performance": ("mcp-chrome-devtools", 0.5),
     "screenshot": ("mcp-chrome-devtools", 2.0),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-DOCUMENTATION: Documentation and diagrams
     # ─────────────────────────────────────────────────────────────────
@@ -2232,7 +2232,7 @@ def _apply_memory_save_file_operation_cap(
 # Candidate-3 deep-skill routing, per 130 research.md §5-§6:
 #   total_score = (lexical_score * 1.0) + (structural_score * 2.0) + (prior_art_score * 3.0)
 # Fallback to Candidate 2 happens naturally when packet_context is empty: prior_art_score=0.
-# LOW confidence (<0.65) returns a clarifying_question payload. This closes 130 F60,
+# LOW confidence (<0.65) returns a clarifying_question payload. This closes 130
 # where "iterate findings until convergence" was DANGEROUS because all deep-* loops
 # have different convergence and findings semantics.
 DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")
@@ -2413,7 +2413,7 @@ def _deep_routing_confidence_band(max_score: float) -> str:
 
 
 def _deep_routing_clarifying_question(prompt_lower: str, winner: str, runner_up: str) -> str:
-    """Return the targeted F60 clarification for low-confidence deep-* routing."""
+    """Return the targeted clarification for low-confidence deep-* routing."""
     if "architecture" in prompt_lower or "decision" in prompt_lower or "strategy" in prompt_lower:
         return "Are you comparing existing strategies (deep-ai-council) or discovering new ones (deep-research)?"
     if "findings" in prompt_lower or "convergence" in prompt_lower or "stabilize" in prompt_lower:
@@ -3094,7 +3094,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     _apply_graph_boosts(skill_boosts, boost_reasons)
     _apply_family_affinity(skill_boosts, boost_reasons)
 
-    # F-013-C3-01: Review-plus-write disambiguation (Python parity with the
+    # Review-plus-write disambiguation (Python parity with the
     # TypeScript explicit lane). Applied AFTER graph boosts so the
     # sibling/enhances graph signal between sk-code-review and sk-code does
     # not counter-boost sk-code-review back above sk-code. When the prompt

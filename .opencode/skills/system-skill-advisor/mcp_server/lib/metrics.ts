@@ -479,7 +479,7 @@ export class AdvisorHookMetricsCollector {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 5. SPEC_KIT.* INSTRUMENTATION NAMESPACE (PR 5)
+// 5. SPEC_KIT.* INSTRUMENTATION NAMESPACE
 // ───────────────────────────────────────────────────────────────
 // Adds 17 canonical `spec_kit.<group>.<metric_name>` metrics for code-graph,
 // scorer, freshness, and cross-cutting advisor surfaces. All emission paths
@@ -487,9 +487,8 @@ export class AdvisorHookMetricsCollector {
 // Persistence is additive: definitions live alongside the existing
 // AdvisorHookMetricSnapshot, no rename or removal of existing fields.
 //
-// Closes findings: F43, F28, F35, F36 #4/#7/#8, F50, F72, F73, F74, F75,
-// F76, F77. Lifecycle-promotion metrics are intentionally omitted per PR 3
-// (lifecycle-promotion fields were removed upstream).
+// Lifecycle-promotion metrics are intentionally omitted because those fields
+// were removed upstream.
 
 export const SPECKIT_GRAPH_QUERY_MODES = ['outline', 'blast_radius', 'relationship'] as const;
 export const SPECKIT_GRAPH_OUTCOMES = ['success', 'error'] as const;
@@ -513,7 +512,7 @@ export type SpeckitMetricName =
   | 'spec_kit.graph.query_cache_misses_total'
   | 'spec_kit.graph.edge_detection_total'
   | 'spec_kit.graph.partial_persist_retries_total'
-  // R-007-P2-6: blast-radius compute / DB failure counter labelled with
+  // Blast-radius compute / DB failure counter labelled with
   // `code` (e.g. `compute_error`) so operators can distinguish failure
   // modes in the failure-fallback path.
   | 'spec_kit.graph.blast_radius_failure_total'
@@ -537,7 +536,7 @@ export const SPECKIT_METRIC_DEFINITIONS = [
   { name: 'spec_kit.graph.query_cache_misses_total', type: 'counter', labels: ['mode'] },
   { name: 'spec_kit.graph.edge_detection_total', type: 'counter', labels: ['edge_type', 'runtime'] },
   { name: 'spec_kit.graph.partial_persist_retries_total', type: 'counter', labels: [] },
-  // R-007-P2-6: blast-radius failure counter (compute_error / DB error /
+  // Blast-radius failure counter (compute_error / DB error /
   // Etc.). Distinguishes a real compute failure from a legitimately empty
   // Blast radius (which has no failureFallback at all).
   { name: 'spec_kit.graph.blast_radius_failure_total', type: 'counter', labels: ['code'] },

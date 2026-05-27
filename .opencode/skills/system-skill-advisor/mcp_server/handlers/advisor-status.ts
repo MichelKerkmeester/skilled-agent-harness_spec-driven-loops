@@ -124,7 +124,7 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
       errors.push('advisor_status found freshness artifacts, but no live daemon PID/process evidence');
     }
     const state = isFreshness(generation.state) ? generation.state : 'unavailable';
-    // F10/F18: data is stale when sources are physically newer than the
+    // Data is stale when sources are physically newer than the
     // artifact, regardless of stored sourceSignature semantics. This is the
     // stronger physical-evidence signal vs. signature mismatch which can
     // arise from benign workspace differences.
@@ -139,7 +139,7 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
       reason: generation.reason,
       lastLiveAt: state === 'live' ? generation.updatedAt : null,
     });
-    // F10/F18: `freshness` describes data/artifact state (live/stale/absent/
+    // `freshness` describes data/artifact state (live/stale/absent/
     // unavailable from the generation file), while `trustState.state` is the
     // daemon-gated caller-trust axis. Keep them decoupled so callers reading
     // `freshness` see artifact health independent of daemon availability.

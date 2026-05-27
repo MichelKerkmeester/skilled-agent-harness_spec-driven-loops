@@ -28,7 +28,7 @@ export function invalidateSkillGraphCaches(event: Omit<CacheInvalidationEvent, '
     ...event,
     invalidatedAt: new Date().toISOString(),
   };
-  // F-001-A1-04: enforce monotonic generation observation.
+  // Enforce monotonic generation observation.
   //
   // publishSkillGraphGeneration() releases its file lock BEFORE calling this
   // function. That means two publishers can interleave such that generation

@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import type { ToolDefinition } from './types.js';
-// F-018-D3-04 (partial): The descriptor's `properties` keys MUST stay aligned
+// Partial: The descriptor's `properties` keys MUST stay aligned
 // with ADVISOR_RECOMMEND_PARAMETER_KEYS so the JSON Schema, Zod schema, and
 // ALLOWED_PARAMETERS stay in sync. The tuple is the single source of truth;
 // drift surfaces as a type-level mismatch when adding or removing a key here.

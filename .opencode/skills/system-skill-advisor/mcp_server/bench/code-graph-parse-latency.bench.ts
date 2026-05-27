@@ -1,8 +1,8 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Code Graph Parse Latency Bench (PR 8 — F36 #4 / F73-#2)
+// MODULE: Code Graph Parse Latency Bench
 // ───────────────────────────────────────────────────────────────
 // Wraps parseFile per language, exercising the spec_kit.graph.parse_duration_ms
-// histogram emitted from tree-sitter-parser.ts (PR 5 anchor). Asserts
+// histogram emitted from tree-sitter-parser.ts. Asserts
 // non-zero sample counts per language and logs P50/P95/P99 informationally.
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';

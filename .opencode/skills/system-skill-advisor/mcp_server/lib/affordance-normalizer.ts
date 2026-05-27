@@ -54,7 +54,7 @@ export interface NormalizedAffordance {
 export const AFFORDANCE_TRIGGER_FIELDS = ['name', 'triggers', 'category'] as const;
 
 /**
- * R-007-P2-9: Debug counters for affordance-input drop categories. Operators
+ * Debug counters for affordance-input drop categories. Operators
  * can read these via `getAffordanceNormalizerCounters()` to diagnose why
  * affordance evidence does or does not reach the scorer. Counters are
  * monotonically increasing across the lifetime of the process and may be
@@ -101,7 +101,7 @@ export function resetAffordanceNormalizerCounters(): void {
 const MAX_PHRASE_LENGTH = 80;
 const MAX_TRIGGERS_PER_AFFORDANCE = 12;
 const MAX_EDGES_PER_AFFORDANCE = 12;
-// R-007-9: broadened prompt-injection denylist. The original pattern
+// Broadened prompt-injection denylist. The original pattern
 // only caught the exact strings `ignore previous/all instructions`,
 // `system:`, `developer:`, `assistant:`, `execute:`, `instruction:`.
 // Real-world prompt-injection corpora (Anthropic, OpenAI, Lakera) also

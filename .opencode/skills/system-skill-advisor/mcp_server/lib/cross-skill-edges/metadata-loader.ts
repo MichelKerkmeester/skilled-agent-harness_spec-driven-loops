@@ -111,7 +111,7 @@ function parseSkillMetadata(sourcePath: string): SkillMetadataRecord | null {
 
     const derived = isRecord(parsedJson.derived) ? parsedJson.derived : null;
 
-    // Parse edges if present — validate each element's shape before accepting (F-10-002 P1)
+    // Parse edges if present — validate each element's shape before accepting
     let edges: SkillMetadataRecord['edges'] = undefined;
     if (isRecord(parsedJson.edges)) {
       edges = {};
@@ -139,7 +139,7 @@ function parseSkillMetadata(sourcePath: string): SkillMetadataRecord | null {
     }
 
     // Parse enhance_when if present (optional schema-additive field).
-    // Accept object form OR array-of-objects form; reject primitives / non-objects (F-10-002, F-08-003 P1).
+    // Accept object form OR array-of-objects form; reject primitives / non-objects.
     let enhance_when: SkillMetadataRecord['enhance_when'] = undefined;
     if (parsedJson.enhance_when !== undefined && parsedJson.enhance_when !== null) {
       const raw = parsedJson.enhance_when;
@@ -192,7 +192,7 @@ export async function loadAllSkillMetadata(skillsRoot: string): Promise<SkillMet
 }
 
 /**
- * Load all skill metadata files and surface per-file parse errors (F-06-004 P1).
+ * Load all skill metadata files and surface per-file parse errors.
  * Used by propagateInboundEnhances to populate PropagateEnhancesResult.errors[].
  */
 export async function loadAllSkillMetadataWithErrors(skillsRoot: string): Promise<LoadSkillMetadataResult> {

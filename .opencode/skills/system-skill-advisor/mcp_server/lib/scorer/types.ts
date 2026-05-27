@@ -4,7 +4,7 @@
 
 import type { AffordanceInput } from '../affordance-normalizer.js';
 import type { ScorerLaneId } from './lane-registry.js';
-// F-018-D3-02: SkillLifecycleStatus now derives from the canonical tuple in
+// SkillLifecycleStatus now derives from the canonical tuple in
 // lifecycle/status-values.ts. The re-export here keeps every existing consumer
 // importing from `scorer/types.js`.
 import {
@@ -48,7 +48,7 @@ export interface SkillEdgeProjection {
   readonly context?: string;
 }
 
-// F-004-A4-01: 'filesystem-fallback' is set when SQLite projection threw
+// 'filesystem-fallback' is set when SQLite projection threw
 // (corrupt DB, schema mismatch, etc.) and we degraded to filesystem scan; the
 // optional `fallbackReason` carries the underlying error so operators can
 // distinguish a clean filesystem-only run ('filesystem' source) from a

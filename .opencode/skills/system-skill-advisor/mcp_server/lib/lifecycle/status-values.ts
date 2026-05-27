@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Skill Lifecycle Status Canonical Values
 // ───────────────────────────────────────────────────────────────
-// F-018-D3-02: Single source of truth for the 4-value lifecycle status union
+// Single source of truth for the 4-value lifecycle status union
 // used by the scorer, age-haircut, supersession, and skill-derived schemas.
 // Previously each consumer hand-wrote `'active' | 'deprecated' | 'archived' |
 // 'future'` so adding a new value required touching every site. Deriving

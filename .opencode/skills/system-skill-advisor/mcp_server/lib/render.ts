@@ -159,7 +159,7 @@ export function renderAdvisorBrief(
   );
 }
 
-// F-006-B1-01: Shared timeout-fallback renderer. Previously the Codex hook
+// Shared timeout-fallback renderer. Previously the Codex hook
 // emitted a bespoke `Advisor: stale (cold-start timeout)\nFallback marker: ...`
 // string inline. Centralizing the format here keeps every runtime that needs
 // a cold-start timeout fallback aligned on a single contract — `renderAdvisorBrief`

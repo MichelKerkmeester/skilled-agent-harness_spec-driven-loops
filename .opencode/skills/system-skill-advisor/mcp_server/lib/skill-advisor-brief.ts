@@ -39,13 +39,13 @@ import {
   type AdvisorBriefRenderableResult,
 } from './render.js';
 
-// Wire prompt-cache invalidation to graph generation bumps (F81/F77/F78).
+// Wire prompt-cache invalidation to graph generation bumps.
 // Module-init scope: registers exactly once per host process at first import.
 onCacheInvalidation(() => {
   advisorPromptCache.clear();
 });
 
-// F-018-D3-03: AdvisorRuntime now derives from the canonical tuple in
+// AdvisorRuntime now derives from the canonical tuple in
 // advisor-runtime-values.ts. The local re-export keeps every existing
 // consumer importing from this module path unchanged; the local import
 // keeps the type usable inside this file's own interfaces.

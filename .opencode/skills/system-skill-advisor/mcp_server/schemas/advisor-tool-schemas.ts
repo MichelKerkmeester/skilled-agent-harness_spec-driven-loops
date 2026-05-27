@@ -11,7 +11,7 @@ import { SCORER_LANE_IDS } from '../lib/scorer/lane-registry.js';
 export const AdvisorFreshnessSchema = z.enum(['live', 'stale', 'absent', 'unavailable']);
 export const AdvisorLaneSchema = z.enum(SCORER_LANE_IDS);
 
-// F-005-A5-01: Bound caller-supplied workspaceRoot inputs to a small
+// Bound caller-supplied workspaceRoot inputs to a small
 // allowlist (repo root + os.tmpdir()) so handlers cannot be coerced into
 // resolving paths outside the workspace. resolve() canonicalizes the input
 // path; realpathSync follows symlinks; the prefix check rejects anything
@@ -21,7 +21,7 @@ export const AdvisorLaneSchema = z.enum(SCORER_LANE_IDS);
 // .opencode/skill sentinel — same shape as findAdvisorWorkspaceRoot but
 // inlined here to avoid a circular import between schemas/ and lib/.
 function detectRepoRoot(): string {
-  // F-005-A5-01: Use the same SKILL.md sentinel that
+  // Use the same SKILL.md sentinel that
   // findAdvisorWorkspaceRoot uses in advisor-validate.ts so the schema
   // and the handler agree on which directory is the workspace root.
   // A bare `.opencode/skill` sentinel can match nested mock directories
@@ -42,7 +42,7 @@ function canonicalize(input: string): string {
   try {
     return realpathSync.native(resolved);
   } catch {
-    // F-005-A5-01: Path may not exist yet (test fixtures created lazily,
+    // Path may not exist yet (test fixtures created lazily,
     // tmpdir mkdtemp paths probed before mkdir). Walk up and realpath the
     // first existing ancestor, then re-join the unresolved tail. This
     // resolves macOS-style symlinks like /tmp → /private/tmp even when
@@ -72,7 +72,7 @@ const ALLOWED_WORKSPACE_PREFIXES: readonly string[] = (() => {
   const prefixes: string[] = [];
   prefixes.push(canonicalize(detectRepoRoot()));
   prefixes.push(canonicalize(tmpdir()));
-  // F-005-A5-01: Include the canonicalized /tmp prefix as well. On macOS
+  // Include the canonicalized /tmp prefix as well. On macOS
   // os.tmpdir() returns the per-user temp dir under /var/folders/...; the
   // /tmp symlink resolves to /private/tmp. Test fixtures and tools that
   // hardcode /tmp/foo paths need both forms in the allowlist.
@@ -89,7 +89,7 @@ const ALLOWED_WORKSPACE_PREFIXES: readonly string[] = (() => {
 })();
 
 /**
- * F-005-A5-01: Validate that a caller-supplied workspaceRoot resolves under
+ * Validate that a caller-supplied workspaceRoot resolves under
  * the repo root, os.tmpdir(), or an explicit allowlist entry after
  * realpath canonicalization.
  *
@@ -120,7 +120,7 @@ const laneBreakdownSchema = z.object({
   shadowOnly: z.boolean(),
 }).strict();
 
-// NOTE (R-007-10, T-C / DEFER decision):
+// NOTE (DEFER decision):
 // `AdvisorScoringOptions.affordances` (see `lib/scorer/types.ts:94`) is a
 // COMPILE-TIME-ONLY internal seam used by the scorer fusion path. Affordance
 // evidence is sourced from compiled skill graph metadata via
@@ -133,7 +133,7 @@ const laneBreakdownSchema = z.object({
 // Internal callers that need request-local affordance scoring should invoke
 // `scoreAdvisorPrompt` directly with `AdvisorScoringOptions.affordances`.
 export const AdvisorRecommendInputSchema = z.object({
-  // F-005-A5-01: workspaceRoot must resolve under the allowed prefix set.
+  // workspaceRoot must resolve under the allowed prefix set.
   workspaceRoot: BoundedWorkspaceRootSchema.optional(),
   prompt: z.string().min(1).max(10_000),
   options: z.object({
@@ -195,7 +195,7 @@ export const AdvisorRecommendOutputSchema = z.object({
 }).strict();
 
 export const AdvisorStatusInputSchema = z.object({
-  // F-005-A5-01: bound workspaceRoot to allowed prefix set.
+  // Bound workspaceRoot to allowed prefix set.
   workspaceRoot: BoundedWorkspaceRootSchema,
   maxMetadataFiles: z.number().int().positive().max(10_000).optional(),
 }).strict();
@@ -220,7 +220,7 @@ export const AdvisorStatusOutputSchema = z.object({
 
 export const AdvisorRebuildInputSchema = z.object({
   force: z.boolean().optional(),
-  // F-005-A5-01: bound workspaceRoot to allowed prefix set.
+  // Bound workspaceRoot to allowed prefix set.
   workspaceRoot: BoundedWorkspaceRootSchema.optional(),
 }).strict();
 
@@ -239,7 +239,7 @@ export const AdvisorRebuildOutputSchema = z.object({
 
 export const AdvisorValidateInputSchema = z.object({
   confirmHeavyRun: z.literal(true),
-  // F-005-A5-01: bound workspaceRoot to allowed prefix set.
+  // Bound workspaceRoot to allowed prefix set.
   workspaceRoot: BoundedWorkspaceRootSchema.optional(),
   skillSlug: z.string().min(1).nullable().optional(),
   outcomeEvents: z.array(z.object({

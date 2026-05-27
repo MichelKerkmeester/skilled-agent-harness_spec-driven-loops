@@ -78,12 +78,12 @@ function escapeRegex(value: string): string {
 /**
  * Substitute provider name in an exemplar context.
  * Replaces peer skill IDs appearing in the context with the target skill ID.
- * Returns null when context is null/undefined (F-07-001 P1).
+ * Returns null when context is null/undefined.
  */
 function substituteProviderName(context: string | null | undefined, peerIds: string[], targetSkillId: string): string | null {
   if (context == null) return null;
   let result = context;
-  // Escape $ in replacement to avoid $1/$& pattern-substitution surprises (F-07-006 P2)
+  // Escape $ in replacement to avoid $1/$& pattern-substitution surprises
   const replacement = targetSkillId.replace(/\$/g, '$$$$');
   for (const peerId of peerIds) {
     if (!peerId) continue;
@@ -113,7 +113,7 @@ export function inferEdgePayload(
   const rules = asArray(source.enhance_when ?? []);
   for (const rule of rules) {
     const assetMatch = rule.skill_has_asset && targetHasFile(target, rule.skill_has_asset);
-    // F-08-001 P1: Array.isArray guard before .every()
+    // Array.isArray guard before .every()
     const filesMatch = Array.isArray(rule.skill_has_files) &&
       rule.skill_has_files.length > 0 &&
       rule.skill_has_files.every(f => typeof f === 'string' && targetHasFile(target, f));
@@ -151,7 +151,7 @@ export function inferEdgePayload(
     // Provider-template substitution: replace any peer-skill-id appearing in an exemplar context
     const exemplar = familyEdges[0];
     const peerIds = familyEdges.map(e => e.target);
-    // F-07-001 P1: substituteProviderName now guards null/undefined and returns null
+    // substituteProviderName now guards null/undefined and returns null
     context = substituteProviderName(exemplar?.context, peerIds, target.skillId);
   }
 

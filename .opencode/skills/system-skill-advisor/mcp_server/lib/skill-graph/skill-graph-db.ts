@@ -805,9 +805,9 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
 /**
  * Refresh embeddings for skill_nodes rows.
  *
- * Dual-path dispatch (010/004):
+ * Dual-path dispatch:
  * - When `hasActiveEmbedderPointer(database)` returns true: use the pluggable
- *   EmbedderAdapter layer (010/001) — embed via `getAdapter(active.name)` and
+ * EmbedderAdapter layer — embed via `getAdapter(active.name)` and
  *   write to `vec_<active.dim>` table via INSERT OR REPLACE.
  * - When the pointer is unset (fresh install / pre-pluggable state): keep the
  *   legacy path — embed via `createEmbeddingsProvider()` factory and write to

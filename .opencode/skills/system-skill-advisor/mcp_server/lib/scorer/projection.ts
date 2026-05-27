@@ -173,7 +173,7 @@ function projectionFromRow(row: SkillNodeRow): SkillProjection {
     ? graphMetadata.redirect_to
     : (typeof derived.redirect_to === 'string' ? derived.redirect_to : null);
   const redirectFrom = stringArray(graphMetadata.redirect_from ?? derived.redirect_from);
-  // F-012-C2-02: Distinguish derivedTriggers (intent-shaped phrases) from
+  // Distinguish derivedTriggers (intent-shaped phrases) from
   // derivedKeywords (entity-shaped concepts). Previously both fields were
   // assigned the same array (value-by-reference), which double-counted the
   // same evidence into two scoring inputs. Triggers now come from
@@ -262,7 +262,7 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
     const derived = typeof metadata.derived === 'object' && metadata.derived !== null && !Array.isArray(metadata.derived)
       ? metadata.derived as Record<string, unknown>
       : {};
-    // F-012-C2-02: Same split applied here as in projectionFromRow above —
+    // Same split applied here as in projectionFromRow above —
     // derivedTriggers (from trigger_phrases) and derivedKeywords (from
     // key_topics + entities + key_files + source_docs) are now distinct.
     const derivedTriggers = unique(
@@ -296,7 +296,7 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
   return { skills: [...skills, ...COMMAND_BRIDGES], edges, generatedAt: new Date().toISOString(), source: 'filesystem' };
 }
 
-// F-004-A4-01: previously a bare `catch {}` swallowed every SQLite read error
+// Previously a bare `catch {}` swallowed every SQLite read error
 // and silently fell back to the filesystem projection, hiding corrupt-DB and
 // schema-drift failures from operators. We now distinguish three cases:
 //   1. SQLite read succeeded → return that projection ('sqlite').

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Advisor Tool Contract Keys
 // ───────────────────────────────────────────────────────────────
-// F-018-D3-04 (partial): Single source of truth for the parameter key sets
+// Partial: Single source of truth for the parameter key sets
 // of the two most critical advisor tool contracts. The JSON Schema
 // descriptors (skill_advisor/tools/advisor-recommend.ts +
 // skill_advisor/tools/advisor-validate.ts) and the ALLOWED_PARAMETERS map in

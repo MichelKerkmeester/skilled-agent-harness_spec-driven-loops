@@ -4,7 +4,7 @@
 
 import { existsSync, renameSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-// F-016-D1-05: Pull `runWithBusyRetry` from the neutral utils seam instead
+// Pull `runWithBusyRetry` from the neutral utils seam instead
 // of reaching into the daemon watcher module. The freshness subsystem now
 // depends inward on a small busy-retry utility; the watcher keeps its own
 // implementation for internal use and external consumers (existing tests

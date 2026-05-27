@@ -12,7 +12,7 @@ import type { InboundEnhanceCandidate } from './types.js';
 // ───────────────────────────────────────────────────────────────
 
 /**
- * Validate that the source path is a graph-metadata.json file under the trusted skills root (F-03-001 P1).
+ * Validate that the source path is a graph-metadata.json file under the trusted skills root.
  * Prevents path traversal in apply mode.
  */
 function isPathWithin(candidatePath: string, trustedRoot: string): boolean {
@@ -30,7 +30,7 @@ function isPathWithin(candidatePath: string, trustedRoot: string): boolean {
  * @param candidate - The candidate to apply
  * @param skillsRoot - Optional trusted workspace root. When provided, candidate.sourcePath
  *                    MUST resolve under this root and have basename 'graph-metadata.json'.
- *                    This guards against path traversal in apply mode (F-03-001 P1, NFR-S01).
+ * This guards against path traversal in apply mode.
  */
 export async function applyEnhanceEdge(
   candidate: InboundEnhanceCandidate,

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Advisor Runtime Canonical Values
 // ───────────────────────────────────────────────────────────────
-// F-018-D3-03: Single source of truth for the advisor runtime label set.
+// Single source of truth for the advisor runtime label set.
 // Skill-advisor-brief, hook prompts, metrics, and tests all derive their
 // runtime union from this tuple via `typeof ADVISOR_RUNTIME_VALUES[number]`.
 // Adding a new runtime (e.g. a future provider) requires changing only this

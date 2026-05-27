@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Skill Graph Watcher Orchestrator
 // ───────────────────────────────────────────────────────────────
-// F-016-D1-06: Internal helper extracted from `daemon/watcher.ts` so the
+// Internal helper extracted from `daemon/watcher.ts` so the
 // watcher module owns *watching* (chokidar wiring, debounce timers, target
 // discovery) while this module owns *orchestration* (skill-by-skill reindex
 // dispatch, hash-bookkeeping, generation publication). The watcher
@@ -54,7 +54,7 @@ export interface WatcherOrchestratorOptions {
 }
 
 export interface WatcherOrchestrator {
-  /** F-001-A1-02: route generation publication suppression through the orchestrator. */
+  /** Route generation publication suppression through the orchestrator. */
   setSuppressGenerationPublication: (value: boolean) => void;
   /** Last time a reindex completed; used by the watcher's status() output. */
   getLastReindexAt: () => string | null;
@@ -76,7 +76,7 @@ export function createWatcherOrchestrator(
     const skillMdPath = `${request.skillDir}/${options.skillMdFilename}`;
     if (!options.hasValidSkillMarkdown(skillMdPath)) {
       options.quarantineSkill(request.skillSlug, skillMdPath, 'MALFORMED_SKILL_MD');
-      // F-003-A3-02: counter key 'QUARANTINED' tracks total quarantine events
+      // Counter key 'QUARANTINED' tracks total quarantine events
       // even after the ring buffer drops the per-skill string entries.
       options.pushDiagnostic(`QUARANTINED:${request.skillSlug}`);
       return;
@@ -111,7 +111,7 @@ export function createWatcherOrchestrator(
     for (const changedPath of missingChangedPaths) {
       options.fileHashes.delete(changedPath);
     }
-    // F-001-A1-02: shutdown() may have flipped suppression on while this flush
+    // shutdown() may have flipped suppression on while this flush
     // was already running. Skip the live-state publication so the daemon does
     // not overwrite the terminal `unavailable` generation.
     if (!suppressGenerationPublication) {

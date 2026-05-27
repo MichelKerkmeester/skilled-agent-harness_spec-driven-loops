@@ -250,7 +250,7 @@ export function scoreExplicitLane(prompt: string, projection: AdvisorProjection)
     push(scores, 'system-spec-kit', 0.4, 'speckit-resume-skill-disambiguation');
     push(scores, 'command-spec-kit', -1.0, 'speckit-resume-skill-disambiguation');
   }
-  // F-013-C3-01: Review-plus-write disambiguation. When the prompt contains
+  // Review-plus-write disambiguation. When the prompt contains
   // the word `review` AND any explicit write/edit verb (`update|edit|fix|modify`),
   // the request is implementation work, not a code review. Nudge the explicit
   // lane toward `sk-code` and away from `sk-code-review`. The magnitudes

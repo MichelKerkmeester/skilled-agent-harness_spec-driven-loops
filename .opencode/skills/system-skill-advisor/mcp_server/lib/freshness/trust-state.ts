@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Advisor Freshness Trust State
 // ───────────────────────────────────────────────────────────────
-// PR 4 / F71 / F17 / F18: canonical TrustState surface. This module is
+// Canonical TrustState surface. This module is
 // the SINGLE source of truth for the 4-value caller-trust axis used by
 // every freshness producer (advisor, hook brief, code-graph handlers).
 //
@@ -23,7 +23,7 @@
 //   'fresh' → 'live'
 //   'stale' → 'stale'
 //   'empty' → 'absent'
-//   'error' → 'unavailable'  ← PR 4 widening
+// 'error' → 'unavailable' ← widening
 //
 // During the migration window we keep the SharedPayloadTrustState super-
 // type (8 values) as the wire-level union and re-export the 4-value
@@ -32,7 +32,7 @@
 // rather than carving out their own narrower unions.
 
 import { isSpeckitMetricsEnabled, speckitMetrics } from '../metrics.js';
-// F-018-D3-01: SkillGraphTrustState now derives from a canonical tuple in
+// SkillGraphTrustState now derives from a canonical tuple in
 // trust-state-values.ts. The local re-export keeps every existing consumer
 // importing this path; the tuple is the single source of truth.
 import {

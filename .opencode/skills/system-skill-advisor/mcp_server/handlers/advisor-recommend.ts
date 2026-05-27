@@ -34,7 +34,7 @@ function findWorkspaceRoot(start = process.cwd()): string {
   return findAdvisorWorkspaceRoot(start, { maxDepth: 12 });
 }
 
-// F-005-A5-01: Canonicalize a caller-supplied workspaceRoot via realpath.
+// Canonicalize a caller-supplied workspaceRoot via realpath.
 // The schema-level allowlist refinement runs against the same canonical
 // form, so a caller passing /tmp/symlink-to-repo gets the real path
 // post-symlink before downstream code uses it.
@@ -220,7 +220,7 @@ function roundScore(value: number): number {
 }
 
 async function computeRecommendationOutput(input: AdvisorRecommendInput): Promise<AdvisorRecommendOutput> {
-  // F-005-A5-01: Canonicalize via realpath after the schema allowlist check.
+  // Canonicalize via realpath after the schema allowlist check.
   const workspaceRoot = input.workspaceRoot
     ? canonicalizeWorkspaceRoot(input.workspaceRoot)
     : findWorkspaceRoot();
@@ -319,7 +319,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
 
 export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResponse> {
   const input = AdvisorRecommendInputSchema.parse(args);
-  // F-005-A5-01: Canonicalize via realpath after the schema allowlist check.
+  // Canonicalize via realpath after the schema allowlist check.
   const workspaceRoot = input.workspaceRoot
     ? canonicalizeWorkspaceRoot(input.workspaceRoot)
     : findWorkspaceRoot();

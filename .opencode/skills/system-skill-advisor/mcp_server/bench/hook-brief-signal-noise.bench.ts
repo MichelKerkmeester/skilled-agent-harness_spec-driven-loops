@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Hook Brief Signal/Noise Bench (PR 10 — F36 #8, F19-F22)
+// MODULE: Hook Brief Signal/Noise Bench
 // ───────────────────────────────────────────────────────────────
 // Invokes the brief renderer per runtime (claude/codex/gemini/copilot),
 // loads the iter-4 7-axis adapter divergence matrix as a fixture, and
@@ -17,7 +17,7 @@ import {
 import type { AdvisorBriefRenderableResult } from '../lib/render.js';
 import type { AdvisorRecommendation } from '../lib/subprocess.js';
 
-// Iter-4 F22 7-axis adapter divergence matrix encoded as a runtime-keyed fixture.
+// Iter-4 7-axis adapter divergence matrix encoded as a runtime-keyed fixture.
 const F22_AXES = [
   'inputFieldNames', 'cwdResolution', 'inputSource', 'outputShape',
   'timeoutHandling', 'renderThresholdOverride', 'sideEffectsBeyondReturn',
@@ -68,7 +68,7 @@ function buildNoiseRenderables(): readonly AdvisorBriefRenderableResult[] {
 // Rationale — the renderer is the prompt-boundary guard; it returns null on noise
 // (no passing recommendation, sanitization rejection, non-live freshness) and a
 // short formatted line on signal. So rendered-string-presence IS the signal/noise
-// boundary per F19-F22 + F36 #8.
+// boundary.
 function signalCount(brief: string | null): number {
   return brief && brief.length > 0 ? 1 : 0;
 }
@@ -105,7 +105,7 @@ describe('hook-brief-signal-noise.bench (PR 10 — F36 #8, F19-F22)', () => {
       const brief = renderAdvisorBrief(renderable, { tokenCap: 80 });
       const signals = signalCount(brief);
       expect(signals).toBeGreaterThan(0);
-      // Emit metric sample for this runtime (PR 5 contract: runtime + freshness_state).
+      // Emit metric sample for this runtime.
       speckitMetrics.incrementCounter('spec_kit.advisor.recommendation_emitted_total',
         { runtime, freshness_state: renderable.freshness });
       // Bench-style log (mirrors latency-bench.ts JSON shape).
