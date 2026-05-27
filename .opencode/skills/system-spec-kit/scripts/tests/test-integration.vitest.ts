@@ -125,7 +125,7 @@ afterEach(() => {
 ──────────────────────────────────────────────────────────────── */
 
 describe('validation pipeline integration', () => {
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('returns structured diagnostics for valid and invalid spec-folder states', () => {
     const workspaceRoot = makeTempWorkspace();
     const specPath = createTestSpecFolder(workspaceRoot, '002-validation-test', 2);
@@ -199,7 +199,7 @@ describe('cognitive memory export parity', () => {
 });
 
 describe('spec-folder creation and template parity', () => {
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('keeps template levels and required files available', () => {
     expect(fs.existsSync(path.join(SCRIPTS_DIR, 'spec', 'create.sh'))).toBe(true);
     expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level_1'))).toBe(true);

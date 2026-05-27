@@ -110,7 +110,7 @@ afterEach(async () => {
   }
 });
 
-// REASON: 026/000/002-vitest-recovery-followup requires optional compiled Copilot hook fixtures
+// REASON: requires optional compiled Copilot hook fixtures
 (copilotHooksAvailable ? describe : describe.skip)('Copilot UserPromptSubmitted advisor workaround', () => {
   it('AS1 writes startup context and advisor brief to the managed custom-instructions block', async () => {
     const { output, buildBrief, diagnostics, written } = await runHook({

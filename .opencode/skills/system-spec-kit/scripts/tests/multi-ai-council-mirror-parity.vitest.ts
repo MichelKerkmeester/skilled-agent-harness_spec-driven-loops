@@ -59,7 +59,7 @@ function firstHeaderDrift(expected: string[], actual: string[]): string {
 }
 
 describe('ai-council runtime mirror parity', () => {
-  // followup-actual: 026/000/002-vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
+  // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
   it.fails.skip('keeps section headers, markers, and body size aligned across 4 runtimes', () => {
     const canonicalFile = mirrors[0];
     const canonicalBody = bodyFor(canonicalFile);

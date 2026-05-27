@@ -170,7 +170,7 @@ async function createLivePid(): Promise<ChildProcess> {
   return child;
 }
 
-// SKIP: known launcher process lifecycle flake — see packet 005-cross-cutting-quality/008
+// SKIP: known launcher process lifecycle flake
 describe.skip('mk-spec-memory launcher lease', () => {
   afterEach(async () => {
     while (launcherRuns.length > 0) {

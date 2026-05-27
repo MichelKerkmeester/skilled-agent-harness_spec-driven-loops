@@ -641,7 +641,7 @@ Test.
 
   });
 
-  // T-PB2-06: SUGGEST level presents issues with guided options
+  // SUGGEST level presents issues with guided options
   describe('T-PB2-06: Suggest level presents issues with guided options', () => {
 
     it('T-PB2-06a: [SUGGEST] markers appear for fixable but non-auto-fixable issues', () => {
@@ -705,7 +705,7 @@ Test.
 
   });
 
-  // T-PB2-07: REPORT level produces structured output
+  // REPORT level produces structured output
   describe('T-PB2-07: Report level produces structured output', () => {
 
     it('T-PB2-07a: --level 4 output contains pipeline summary section', () => {
@@ -771,7 +771,7 @@ Test.
 
   });
 
-  // T-PB2-08: DRY-RUN mode — shows changes without applying
+  // DRY-RUN mode — shows changes without applying
   describe('T-PB2-08: --dry-run shows changes without applying', () => {
 
     let tmpDir: string;
@@ -865,7 +865,7 @@ Test.
 
   });
 
-  // T-PB2-09: Exit code compatibility (0 / 1 / 2)
+  // Exit code compatibility (0 / 1 / 2)
   describe('T-PB2-09: Exit code compatibility (0 / 1 / 2)', () => {
 
     it('T-PB2-09a: exit 0 for a passing spec (full pipeline)', () => {
@@ -923,7 +923,7 @@ Test.
 
   });
 
-  // T-PB2-10: --json produces parseable structured output
+  // --json produces parseable structured output
   describe('T-PB2-10: --json produces parseable structured output', () => {
 
     it('T-PB2-10a: --json output is valid JSON', () => {
@@ -985,7 +985,7 @@ Test.
 
   });
 
-  // T-PB2-11 / T-PB2-12 / T-PB2-13: --level N pipeline stages
+  // --level N pipeline stages
   describe('T-PB2-11/12/13: --level N controls pipeline depth', () => {
 
     it('T-PB2-11: --level 1 output does NOT contain Level 2/3/4 headings', () => {
@@ -1040,7 +1040,7 @@ Test.
 
   });
 
-  // T-PB2-15: Edge cases
+  // Edge cases
   describe('T-PB2-15: Edge cases', () => {
 
     it('T-PB2-15a: missing folder argument exits 2 with error message', () => {

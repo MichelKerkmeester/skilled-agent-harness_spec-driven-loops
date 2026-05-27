@@ -134,7 +134,7 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
     const checkerSource = fs.readFileSync(CHECKER_PATH, 'utf8');
     // The three known orphans flagged by the broadened scan are time-boxed:
     // corpus.js, measurement-fixtures.js, metrics.js — siblings of the
-    // Harness.js file deleted in packet 007.
+    // Harness.js file deleted.
     expect(checkerSource).toContain('dist/tests/search-quality/corpus.js');
     expect(checkerSource).toContain('dist/tests/search-quality/measurement-fixtures.js');
     expect(checkerSource).toContain('dist/tests/search-quality/metrics.js');

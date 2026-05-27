@@ -100,7 +100,7 @@ trigger_phrases:
 tool_count: 0
 ---
 
-# ADR-003 embedding token budget
+# Embedding token budget
 
 The 037-token-budget-worker-deep-dive packet documents the current decision.
 It also references parent packet 026-graph-and-context-optimization as lineage.

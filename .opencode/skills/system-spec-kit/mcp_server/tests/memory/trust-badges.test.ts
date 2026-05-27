@@ -60,7 +60,7 @@ function createDb(): Database.Database {
   return db;
 }
 
-// R-007-13:previously skipped due to a vitest mock-resolution path
+// Previously skipped due to a vitest mock-resolution path
 // mismatch — `requireDb` is re-exported through `utils/index` and the mock
 // layer did not intercept the formatter's resolved path reliably. The
 // formatter now exposes a `dbGetter` injection seam on

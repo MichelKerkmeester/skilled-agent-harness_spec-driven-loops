@@ -780,7 +780,7 @@ describe('Causal Edges Unit Tests', () => {
       const fs = await import('node:fs/promises');
       const url = new URL('../lib/search/search-utils.ts', import.meta.url);
       const src = await fs.readFile(url, 'utf8');
-      // The gating condition introduced by R-007-12: includeCausalGeneration
+      // The gating condition introduced for includeCausalGeneration
       // is true only when enableCausalBoost === true AND a finite generation
       // number is provided. Verify both halves are present together.
       expect(src.includes('enableCausalBoost === true')).toBe(true);
