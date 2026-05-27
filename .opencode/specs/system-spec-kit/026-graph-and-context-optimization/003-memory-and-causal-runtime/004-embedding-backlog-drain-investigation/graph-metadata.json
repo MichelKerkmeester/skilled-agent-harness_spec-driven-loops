@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedding backlog drain investigation",
+      "mk-spec-memory re-embed non-convergence",
+      "retry queue parking daemon config reload",
+      "embedding backlog drain investigation plan",
+      "mk-spec-memory re-embed non-convergence plan",
+      "retry queue parking daemon config reload plan",
+      "embedding backlog drain investigation tasks",
+      "mk-spec-memory re-embed non-convergence tasks",
+      "retry queue parking daemon config reload tasks",
+      "embedding backlog drain investigation summary",
+      "mk-spec-memory re-embed non-convergence summary",
+      "retry queue parking daemon config reload summary"
+    ],
+    "key_topics": [
+      "embedding",
+      "backlog",
+      "drain",
+      "investigation",
+      "mk-spec-memory",
+      "re-embed",
+      "non-convergence",
+      "retry",
+      "queue",
+      "parking",
+      "daemon",
+      "config"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/iterations/iteration-010.md",
+      "research/deep-research-state.jsonl",
+      "research/deltas/iter-010.jsonl",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "spec.md",
+      "research/deep-research-strategy.md",
+      "mcp_server/lib/providers/retry-manager.ts",
+      "mcp_server/cli.ts",
+      "handlers/memory-index.ts",
+      "handlers/embedder-set.ts",
+      "lib/embedders/reindex.ts",
+      "research/iterations/iteration-007.md",
+      "database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+      "research/iterations/iteration-008.md",
+      "research/findings-registry.json",
+      "research/deep-research-dashboard.md",
+      "mcp_server/lib/embedders/reindex.ts"
+    ],
+    "entities": [
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iter-010.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-010.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli.ts",
+        "kind": "code",
+        "path": "mcp_server/cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-set.ts",
+        "kind": "code",
+        "path": "handlers/embedder-set.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": "lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+        "kind": "file",
+        "path": "database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the 026 spec-folder reorganization, a bulk re-embed of the mk-spec-memory store (~17k of ~27k rows unembedded) will not converge to a clean state. Pending embeddings are parked as `failed` by two retry-retention limits (`SPECKIT_RETRY_QUEUE_MAX_PENDING` default 1000, `SPECKIT_RETRY_QUEUE_MAX_AGE_MS` default 24h) in `retry-manager.js`; `reindex --force` is content-driven and skips rows already marked `failed`; `embedder_set` writes vectors but statuses do not stick because stale-config daemon workers re-park them; and the persistent multi-process daemon does not reload env config on `/mcp` reconnect, so config fixes and worker kills do not take effect cleanly. The result is a backlog that cannot be driven to `0 failed / 0 pending`.",
+    "created_at": "2026-05-26T22:10:31.718Z",
+    "last_save_at": "2026-05-27T03:52:02.040Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ]
+  }
+}

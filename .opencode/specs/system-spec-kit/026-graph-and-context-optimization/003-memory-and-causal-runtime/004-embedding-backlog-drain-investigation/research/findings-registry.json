@@ -1,0 +1,772 @@
+{
+  "sessionId": "rsr-2026-05-26T20-43-39Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-what-is-the-exact-mechanism-by-which-pending-embeddings-become-failed-trace-e",
+      "text": "Q1: What is the exact mechanism by which pending embeddings become `failed`? Trace `enforceRetryRetentionLimits()` in `retry-manager.js` — which rows are parked (pending-cap vs max-age), in what order, and against which `embedding_status` set?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-does-the-retry-manager-ever-embed-clean-pending-rows-retry-count-0-or-only-dr",
+      "text": "Q2: Does the retry-manager ever embed clean `pending` rows (retry_count=0), or only drain its own retry queue? What component is responsible for the initial `pending -> success` transition vs `pending -> retry/failed`?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-how-does-reindex-force-decide-what-to-re-embed-and-why-does-it-report-indexed",
+      "text": "Q3: How does `reindex --force` decide what to (re)embed, and why does it report `Indexed/Updated: 0` and skip rows already marked `failed`? Is status reset part of `--force`?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-what-does-embedder-set-name-actually-do-does-it-write-vectors-to-the-shard-co",
+      "text": "Q4: What does `embedder_set(name)` actually do — does it write vectors to the shard, commit `embedding_status`, and flip the active pointer only on full success? Where can statuses fail to \"stick\"?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-what-is-the-daemon-lifecycle-mk-spec-memory-launcher-cjs-ipc-bridge-worker-pr",
+      "text": "Q5: What is the daemon lifecycle (`mk-spec-memory-launcher.cjs` + IPC bridge + worker processes)? Does it reload env config on `/mcp` reconnect or only on full process restart? Why do killed stale workers respawn with stale config?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-what-is-the-minimal-reproducible-operator-procedure-correct-restart-env-embed",
+      "text": "Q6: What is the minimal, reproducible operator procedure (correct restart + env + embed trigger) that drives a large backlog to 0 failed / 0 pending without re-parking — and should the cap(1000)/max-age(24h) defaults change?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Q1: What is the exact mechanism by which pending embeddings become `failed`? Trace `enforceRetryRetentionLimits()` in `retry-manager.js` — which rows are parked (pending-cap vs max-age), in what order, and against which `embedding_status` set?",
+    "Q2: Does the retry-manager ever embed clean `pending` rows (retry_count=0), or only drain its own retry queue? What component is responsible for the initial `pending -> success` transition vs `pending -> retry/failed`?",
+    "Q3: How does `reindex --force` decide what to (re)embed, and why does it report `Indexed/Updated: 0` and skip rows already marked `failed`? Is status reset part of `--force`?",
+    "Q4: What does `embedder_set(name)` actually do — does it write vectors to the shard, commit `embedding_status`, and flip the active pointer only on full success? Where can statuses fail to \"stick\"?",
+    "Q5: What is the daemon lifecycle (`mk-spec-memory-launcher.cjs` + IPC bridge + worker processes)? Does it reload env config on `/mcp` reconnect or only on full process restart? Why do killed stale workers respawn with stale config?",
+    "Q6: What is the minimal, reproducible operator procedure (correct restart + env + embed trigger) that drives a large backlog to 0 failed / 0 pending without re-parking — and should the cap(1000)/max-age(24h) defaults change?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-9-embedder-set-name-does-not-directly-write-memory-index-embedding-status-it-valid",
+      "text": "`embedder_set(name)` does not directly write `memory_index.embedding_status`. It validates the embedder, ensures the vector table, and queues `startReindex()`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts`:54-94]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-embedder-status-is-read-only-for-the-embedding-metadata-state-machine-it-maps-qu",
+      "text": "`embedder_status` is read-only for the embedding metadata state machine. It maps queued/running/completed job state from `embedder_jobs` and does not commit `memory_index.embedding_status`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts`:68-86]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-memory-index-scan-force-true-is-not-a-global-status-reset-force-disables-the-inc",
+      "text": "`memory_index_scan({ force: true })` is not a global status reset. Force disables the incremental categorizer, but each file still flows through `indexSingleFile()` / `indexMemoryFile()`. The dedup precheck still returns `unchanged` during force when same-path content and metadata match and the existing status is `success`, `pending`, or `partial`; `failed` is not in that unchanged-eligible set. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`:444-493; `.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`:15-16,255-279]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-deferred-indexing-writes-or-resets-rows-to-pending-existing-deferred-records-are",
+      "text": "Deferred indexing writes or resets rows to `pending`. Existing deferred records are updated to `pending`, `retry_count = 0`, `last_retry_at = NULL`; new deferred records insert with `embedding_status = 'pending'`. This is the source of backlog rows when embedding generation is skipped, fails, or async embedding is requested. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`:300-383]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-retry-failures-move-through-two-paths-transient-failures-call-incrementretrycoun",
+      "text": "Retry failures move through two paths: transient failures call `incrementRetryCount()` and set `embedding_status = 'retry'` until `MAX_RETRIES`; once exhausted, `markAsFailed()` writes `embedding_status = 'failed'`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:770-831]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-the-clean-retry-manager-success-path-is-not-direct-pending-success-claimretrycan",
+      "text": "The clean retry-manager success path is not direct `pending -> success`. `claimRetryCandidate()` first atomically claims a `pending` row by setting it to `retry`; `retryEmbedding()` then writes `embedding_status = 'success'` only after generating or loading an embedding and inserting `vec_memories`. So the retry-manager path is `pending -> retry -> success`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:293-329,645-750]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-the-embedder-reindex-job-writes-vectors-to-the-target-vec-table-and-shard-then-f",
+      "text": "The embedder reindex job writes vectors to the target vec table and shard, then flips the active embedder and marks the job completed only after all rows are processed. It selects all `memory_index` rows and has no `embedding_status` filter or `embedding_status` update, so it can populate a new active shard while leaving `pending`, `retry`, or `failed` metadata untouched. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`:219-225,392-448]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-the-exact-parking-path-is-enforceretryretentionlimits-it-first-marks-aged-rows-a",
+      "text": "The exact parking path is `enforceRetryRetentionLimits()`. It first marks aged rows as `failed` where `embedding_status IN ('pending', 'retry')` and `COALESCE(last_retry_at, created_at, updated_at)` is older than `maxAgeMs`, with failure reason `Retry retention max age exceeded`. It then selects remaining `pending` / `retry` rows ordered oldest first and parks every row after `OFFSET maxPending` as `failed` with reason `Retry retention pending cap exceeded`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:474-523]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-the-initial-indexing-path-can-write-clean-success-without-the-retry-manager-inde",
+      "text": "The initial indexing path can write clean `success` without the retry manager. `index_memory()` inserts `success` when sqlite-vec is available; otherwise it inserts `pending`. On update with an embedding, `update_memory()` temporarily sets `pending`, writes the vector row, then marks `success` after the vector write is confirmed. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`:259-297,509-546]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-the-live-db-matches-the-max-age-branch-not-the-pending-cap-branch-failed-7105-pe",
+      "text": "The live DB matches the max-age branch, not the pending-cap branch: `failed=7105`, `pending=10199`, `retry=40`, `success=9623`, and all 7,105 failed rows have failure reason `Retry retention max age exceeded`. This confirms the parked rows in the observed backlog were aged `pending` / `retry` rows. [SOURCE: sqlite query on `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-the-retry-manager-does-process-clean-pending-rows-getretryqueue-selects-embeddin",
+      "text": "The retry manager does process clean `pending` rows. `getRetryQueue()` selects `embedding_status IN ('pending','retry')`, orders `pending` ahead of `retry`, and treats `pending` as immediately eligible. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:529-577]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-enforceretryretentionlimits-has-two-parking-branches-and-max-age-runs-first-it-c",
+      "text": "`enforceRetryRetentionLimits()` has two parking branches, and max-age runs first. It computes `oldestAllowedIso = now - maxAgeMs`, then updates rows where `embedding_status IN ('pending', 'retry')` and `COALESCE(last_retry_at, created_at, updated_at) < oldestAllowedIso`, setting `embedding_status = 'failed'`, `failure_reason = 'Retry retention max age exceeded'`, and `updated_at = nowIso`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:474] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:482] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:484]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-pending-cap-parking-runs-after-max-age-so-expired-rows-are-removed-from-the-queu",
+      "text": "Pending-cap parking runs after max-age, so expired rows are removed from the queue before the cap is calculated. The cap query re-selects only remaining `pending` / `retry` rows, orders them by `COALESCE(last_retry_at, created_at, updated_at) ASC, id ASC`, and selects rows after `OFFSET maxPending`. Those overflow ids are then updated to `failed` with `failure_reason = 'Retry retention pending cap exceeded'`, guarded again by `embedding_status IN ('pending', 'retry')`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:493] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:500] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:502]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-retention-executes-before-embedding-attempts-in-the-background-path-runbackgroun",
+      "text": "Retention executes before embedding attempts in the background path. `runBackgroundJob()` calls `enforceRetryRetentionLimits()` before reading stats or calling `processRetryQueue()`, and `processRetryQueue()` then calls `getRetryQueue()`, which calls `enforceRetryRetentionLimits()` again before selecting candidates. This makes a drain pass capable of parking rows as failed before it attempts any vector generation. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:865] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:870] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:986] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:997] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:1009]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-runtime-js-matches-the-typescript-retention-logic-the-built-dist-lib-providers-r",
+      "text": "Runtime JS matches the TypeScript retention logic. The built `dist/lib/providers/retry-manager.js` uses the same max-age update, the same overflow selection with `LIMIT -1 OFFSET ?`, and the same second guarded update. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js`:313] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js`:319] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js`:327] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js`:335]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-the-defaults-are-module-load-constants-speckit-retry-queue-max-pending-defaults-",
+      "text": "The defaults are module-load constants: `SPECKIT_RETRY_QUEUE_MAX_PENDING` defaults to `1_000`, and `SPECKIT_RETRY_QUEUE_MAX_AGE_MS` defaults to 24 hours. Because these are read into constants at module evaluation, a live daemon with stale environment keeps stale retention behavior until the process reloads this module in a new process. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:342] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:343] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:344] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:389]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-the-live-database-currently-has-failed-7105-pending-10189-retry-50-and-success-9",
+      "text": "The live database currently has `failed=7105`, `pending=10189`, `retry=50`, and `success=9623`. Every failed row has `failure_reason = 'Retry retention max age exceeded'`; there are no pending-cap failures in the current failed set. [SOURCE: sqlite query on `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-the-live-pending-retry-queue-is-no-longer-older-than-24-hours-but-it-is-still-ab",
+      "text": "The live pending/retry queue is no longer older than 24 hours, but it is still above the default cap. With the default `maxPending=1000`, the cap query would currently select 9,239 overflow rows: 9,184 `pending` plus 55 `retry`, beginning at queue rank 1001. That means the present backlog would re-park by pending-cap if processed by a daemon using default cap settings. [SOURCE: sqlite window query on `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-the-status-set-is-narrow-both-branches-only-park-rows-currently-in-pending-or-re",
+      "text": "The status set is narrow: both branches only park rows currently in `pending` or `retry`. They do not touch `success`, `failed`, or `partial`, and the pending-cap branch does not include a `retry_count` predicate. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:489] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:495] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:508]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-the-unit-test-contract-confirms-both-branches-are-intentional-the-retry-retentio",
+      "text": "The unit test contract confirms both branches are intentional: the retry-retention test imports `enforceRetryRetentionLimits(1, 1000, fixedDate)`, expects expired and overflow counts, and asserts both failure-reason SQL branches are issued. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/providers/retry-retention.vitest.ts`:44]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-max-age-parking-runs-first-it-computes-oldestallowediso-now-maxagems-then-marks-",
+      "text": "Max-age parking runs first. It computes `oldestAllowedIso = now - maxAgeMs`, then marks rows `failed` with `failure_reason = 'Retry retention max age exceeded'` when `embedding_status IN ('pending', 'retry')` and `COALESCE(last_retry_at, created_at, updated_at) < oldestAllowedIso`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:474] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:482] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:484] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:489]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-pending-cap-parking-runs-after-max-age-parking-against-the-remaining-queue-only-",
+      "text": "Pending-cap parking runs after max-age parking, against the remaining queue only. The cap query re-selects rows still in `embedding_status IN ('pending', 'retry')`, orders them by `COALESCE(last_retry_at, created_at, updated_at) ASC, id ASC`, and selects every row after `OFFSET maxPending`; each selected id is then updated to `failed` with `failure_reason = 'Retry retention pending cap exceeded'`, guarded again by `embedding_status IN ('pending', 'retry')`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:493] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:495] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:496] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:502] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:508]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-retention-is-a-pre-drain-failure-writer-not-retry-exhaustion-runbackgroundjob-ca",
+      "text": "Retention is a pre-drain failure writer, not retry exhaustion. `runBackgroundJob()` calls `enforceRetryRetentionLimits()` before it reads queue stats or calls `processRetryQueue()`. `processRetryQueue()` then calls `getRetryQueue()`, and `getRetryQueue()` calls `enforceRetryRetentionLimits()` again before selecting candidates. A background drain pass can therefore park rows as `failed` before any embedding generation attempt happens in that pass. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:986] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:997] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:1001] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:1009] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:865] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:870] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:536]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-the-defaults-are-module-load-constants-speckit-retry-queue-max-pending-falls-bac",
+      "text": "The defaults are module-load constants: `SPECKIT_RETRY_QUEUE_MAX_PENDING` falls back to `1000`, and `SPECKIT_RETRY_QUEUE_MAX_AGE_MS` falls back to 24 hours. A process that loaded the module before env changes keeps the old constants until a full process/module reload. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:342] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:343] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:344] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:389]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-the-live-db-still-points-to-max-age-as-the-observed-parking-mechanism-current-co",
+      "text": "The live DB still points to max-age as the observed parking mechanism. Current counts are `failed=7105`, `pending=10179`, `retry=60`, and `success=9623`; every failed row has `failure_reason = 'Retry retention max age exceeded'`. Under the default cap, the remaining queue would keep 1000 `pending` rows and park 9179 `pending` plus 60 `retry` rows as overflow. [SOURCE: sqlite query on `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-the-parking-status-set-is-narrow-both-retention-branches-only-touch-rows-whose-c",
+      "text": "The parking status set is narrow: both retention branches only touch rows whose current `embedding_status` is `pending` or `retry`. They do not touch `success`, pre-existing `failed`, or `partial` rows. The pending-cap branch also has no `retry_count` predicate, so clean `pending` rows and previously retried `retry` rows compete in the same age-ordered queue. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:489] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:495] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`:508]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-the-runtime-retry-manager-js-matches-the-typescript-source-for-retention-parking",
+      "text": "The runtime `retry-manager.js` matches the TypeScript source for retention parking. `enforceRetryRetentionLimits()` is exported from the compiled JS, and the compiled function keeps the same two SQL branches: max-age update first, pending-cap overflow selection second, then guarded overflow updates. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js`:313] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js`:319] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js`:327] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js`:335] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js`:822]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-the-test-suite-treats-both-retention-branches-as-intentional-retry-retention-vit",
+      "text": "The test suite treats both retention branches as intentional. `retry-retention.vitest.ts` calls `enforceRetryRetentionLimits(1, 1000, fixedDate)`, expects both expired and overflow changes, and asserts both failure-reason SQL branches are issued. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/providers/retry-retention.vitest.ts`:44] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/providers/retry-retention.vitest.ts`:47] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/tests/providers/retry-retention.vitest.ts`:49]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-fully-stop-the-lease-owning-daemon-do-not-rely-on-mcp-reconnect-the-lease-file-i",
+      "text": "Fully stop the lease-owning daemon; do not rely on `/mcp` reconnect. The lease file is `.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json`, and in this pass it contained PID `49658` with `startedAt=2026-05-26T21:21:45.936Z`. [SOURCE: `.opencode/bin/mk-spec-memory-launcher.cjs:62`] [SOURCE: `.opencode/bin/mk-spec-memory-launcher.cjs:130`] [SOURCE: `.opencode/bin/mk-spec-memory-launcher.cjs:189`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json:2`]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-let-the-retry-manager-drain-not-embedder-set-perform-the-metadata-convergence-th",
+      "text": "Let the retry-manager drain, not `embedder_set`, perform the metadata convergence. The success-writing trigger is `retryEmbedding()` via `processRetryQueue()` / `runBackgroundJob()`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js:642`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js:687`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js:742`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js:760`]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-reset-retention-parked-failed-rows-to-a-retryable-state-before-expecting-backlog",
+      "text": "Reset retention-parked failed rows to a retryable state before expecting backlog convergence. Without this, `getRetryQueue()` will never select rows already marked `failed`. The internal target state is `embedding_status='retry', retry_count=0, last_retry_at=NULL, failure_reason=NULL`; the existing internal helper does that one row at a time for `failed` rows. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js:625`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js:627`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js:628`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js:629`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/providers/retry-manager.js:632`]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-restart-the-runtime-so-mk-spec-memory-launcher-cjs-spawns-a-fresh-context-server",
+      "text": "Restart the runtime so `mk-spec-memory-launcher.cjs` spawns a fresh `context-server.js` with the env above. Confirm the short IPC socket exists at `/tmp/mk-spec-memory/daemon-ipc.sock`. [SOURCE: `.opencode/bin/lib/launcher-ipc-bridge.cjs:7`] [SOURCE: `.opencode/bin/lib/launcher-ipc-bridge.cjs:32`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/ipc/socket-server.js:137`] [SOURCE: `/tmp/mk-spec-memory/daemon-ipc.sock`]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-set-the-daemon-env-before-launch",
+      "text": "Set the daemon env before launch:",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-status-in-failed-pending-retry-and-active-vector-exists-reconcile-metadata-to-su",
+      "text": "`status IN ('failed','pending','retry') AND active vector exists`: reconcile metadata to `success`;",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-6-2-status-in-failed-pending-retry-and-active-vector-missing-and-failure-reason-like",
+      "text": "`status IN ('failed','pending','retry') AND active vector missing AND failure_reason LIKE 'Retry retention%'`: reset to retry-eligible;",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-6-11-let-retry-manager-drain-only-rows-still-missing-active-vectors-in-the-current-db",
+      "text": "Let retry-manager drain only rows still missing active vectors. In the current DB, this should be zero after active-vector reconciliation.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-6-3-non-retention-provider-failures-with-no-active-vector-leave-alone-unless-explici",
+      "text": "non-retention provider failures with no active vector: leave alone unless explicitly requested.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-6-5-product-default-make-retention-warn-defer-rather-than-mark-failed-before-first-e",
+      "text": "product default: make retention warn/defer rather than mark `failed` before first embedding attempt, or raise defaults to a bulk-safe floor and only fail rows after retry exhaustion;",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-6-10-run-the-guarded-reconcile-reset-maintenance-operation-in-dry-run-mode-then-apply",
+      "text": "Run the guarded reconcile/reset maintenance operation in dry-run mode, then apply mode.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-6-6-separate-follow-up-fix-context-server-currently-calls-startbackgroundjob-interva",
+      "text": "separate follow-up fix: `context-server` currently calls `startBackgroundJob({ intervalMs: 5 * 60 * 1000, batchSize: 5 })`, overriding the env-parsed retry interval and batch size. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1828`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1829`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1830`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:351`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:352`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:353`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:943`]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-6-8-set-env-before-the-next-launch-provider-short-ipc-socket-dir-raised-cap-long-max",
+      "text": "Set env before the next launch: provider, short IPC socket dir, raised cap, long max age, and desired retry interval/batch.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-6-4-short-term-operator-default-speckit-retry-queue-max-pending-300000-and-speckit-r",
+      "text": "short term operator default: `SPECKIT_RETRY_QUEUE_MAX_PENDING=300000` and `SPECKIT_RETRY_QUEUE_MAX_AGE_MS=3153600000000`;",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-6-9-start-a-fresh-daemon-so-retry-manager-module-scope-constants-read-the-new-env",
+      "text": "Start a fresh daemon so `retry-manager` module-scope constants read the new env.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-6-7-stop-the-lease-owning-daemon-and-sidecar-workers-do-not-rely-on-mcp-reconnect",
+      "text": "Stop the lease-owning daemon and sidecar workers. Do not rely on `/mcp` reconnect.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-6-12-verify-failed-0-pending-0-retry-0-and-success-total-then-verify-active-vector-co",
+      "text": "Verify `failed=0`, `pending=0`, `retry=0`, and `success=total`, then verify active-vector coverage for all success rows.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`",
+        "`.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`"
+      ]
+    },
+    {
+      "id": "finding-8-5-active-shard-mismatch-or-missing-shard-metadata-fails-closed-dry-run-reports-act",
+      "text": "Active-shard mismatch or missing shard metadata fails closed: dry-run reports `activeShardVerified=false`, and apply mutates zero rows or raises a typed guard error.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/deep-research-strategy.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-006.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-007.md`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`"
+      ]
+    },
+    {
+      "id": "finding-8-7-apply-is-idempotent-a-second-dry-run-after-apply-reports-vector-present-status-s",
+      "text": "Apply is idempotent: a second dry-run after apply reports `vector_present_status_stale=0`, `missing_active_vector_retry_eligible=0`, and `missing_active_vector_provider_failure=0` for the repaired backlog.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/deep-research-strategy.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-006.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-007.md`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`"
+      ]
+    },
+    {
+      "id": "finding-8-2-apply-mode-updates-vector-present-stale-rows-to-success-clears-failure-reason-pr",
+      "text": "Apply mode updates vector-present stale rows to `success`, clears `failure_reason`, preserves the row, and does not enqueue them.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/deep-research-strategy.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-006.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-007.md`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`"
+      ]
+    },
+    {
+      "id": "finding-8-1-dry-run-counts-active-vector-present-failed-pending-and-retry-rows-as-vector-pre",
+      "text": "Dry-run counts active-vector-present `failed`, `pending`, and `retry` rows as `vector_present_status_stale`, including the current expected status split `16344 / 957 / 25`.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/deep-research-strategy.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-006.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-007.md`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`"
+      ]
+    },
+    {
+      "id": "finding-8-6-masked-failed-rows-with-active-vectors-are-reconciled-to-success-not-pruned",
+      "text": "Masked failed rows with active vectors are reconciled to `success`, not pruned.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/deep-research-strategy.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-006.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-007.md`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`"
+      ]
+    },
+    {
+      "id": "finding-8-4-missing-vector-provider-failures-count-as-missing-active-vector-provider-failure",
+      "text": "Missing-vector provider failures count as `missing_active_vector_provider_failure` and remain unchanged by default.",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/deep-research-strategy.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-006.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-007.md`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`"
+      ]
+    },
+    {
+      "id": "finding-8-3-missing-vector-retention-failures-count-as-missing-active-vector-retry-eligible-",
+      "text": "Missing-vector retention failures count as `missing_active_vector_retry_eligible`; apply mode moves failed rows to `retry` with `retry_count=0`, `last_retry_at=NULL`, and `failure_reason=NULL`. This mirrors the internal failed-row retry reset shape. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:833`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:844`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:846`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:847`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:848`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:849`]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/deep-research-strategy.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-006.md`",
+        "`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-007.md`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts`"
+      ]
+    },
+    {
+      "id": "finding-9-4-concurrent-drain-acquire-a-write-lock-with-begin-immediate-recompute-active-prof",
+      "text": "Concurrent drain: acquire a write lock with `BEGIN IMMEDIATE`, recompute active profile and row predicates inside the transaction, and update rows only while they still match the dry-run predicates. Do not trust stale dry-run ids.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-daemon-retry-config-must-not-be-frozen-at-module-load-or-hidden-behind-an-ipc-re",
+      "text": "Daemon retry config must not be frozen at module load or hidden behind an IPC reconnect to an old process.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-7-embedder-profile-mismatch-compare-provider-model-and-dim-from-main-active-metada",
+      "text": "Embedder profile mismatch: compare provider, model, and dim from main active metadata and the attached shard before mutating any rows.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-9-idempotency-a-second-dry-run-after-apply-must-report-zero-vector-present-status-",
+      "text": "Idempotency: a second dry-run after apply must report zero `vector_present_status_stale` rows and must not enqueue or rewrite already-successful rows.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-8-masked-duplicates-reconcile-masked-failed-rows-to-success-if-they-have-active-ve",
+      "text": "Masked duplicates: reconcile masked failed rows to `success` if they have active vectors; do not prune them in this tool. Iteration 8 scoped pruning out because deletion is a separate retention/dedup problem. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-008.md:241`]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-partial-vectors-require-both-target-vec-memories-rowid-coverage-and-target-vec-d",
+      "text": "Partial vectors: require both target `vec_memories` rowid coverage and target `vec_<dim>` row coverage before marking `success`. Row existence in only one surface is a diagnostic, not success.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-10-q1-pending-embeddings-become-failed-through-enforceretryretentionlimits-which-pa",
+      "text": "Q1: Pending embeddings become `failed` through `enforceRetryRetentionLimits()`, which parks old `pending` / `retry` rows by max-age first and then parks queue overflow past `maxPending`.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-11-q2-yes-the-retry-manager-embeds-clean-pending-rows-it-selects-them-first-claims-",
+      "text": "Q2: Yes, the retry manager embeds clean `pending` rows: it selects them first, claims them as `retry`, and commits `success` only after the vector write succeeds.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-12-q3-reindex-force-is-file-dedup-driven-not-a-db-status-reset-it-can-report-zero-u",
+      "text": "Q3: `reindex --force` is file/dedup driven, not a DB status reset; it can report zero updates when files are unchanged or failed rows are masked by newer path-anchor rows.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-13-q4-embedder-set-name-queues-reindex-reindex-writes-vectors-and-flips-the-active-",
+      "text": "Q4: `embedder_set(name)` queues reindex; reindex writes vectors and flips the active embedder/job state, but currently does not commit `memory_index.embedding_status='success'`.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-14-q5-the-launcher-owns-a-lease-and-bridges-reconnects-to-the-existing-daemon-env-c",
+      "text": "Q5: The launcher owns a lease and bridges reconnects to the existing daemon; env config is read at daemon spawn/module load, so killed sidecar workers respawn with the old daemon env.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-15-q6-the-safe-runbook-is-full-lease-owner-restart-with-correct-env-reconcile-vecto",
+      "text": "Q6: The safe runbook is full lease-owner restart with correct env, reconcile vector-present stale rows first, reset only genuinely missing retention failures, then drain; defaults should become non-destructive for clean pending rows rather than cap-1000/max-age-24h failure parking.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-reindex-jobs-must-commit-metadata-success-for-rows-they-successfully-wrote-into-",
+      "text": "Reindex jobs must commit metadata success for rows they successfully wrote into the target active vector store.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-retry-retention-must-not-park-never-attempted-clean-pending-rows-before-they-can",
+      "text": "Retry retention must not park never-attempted clean `pending` rows before they can be claimed.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-6-zero-dim-or-mismatched-vectors-fail-before-apply-if-the-active-profile-dim-is-mi",
+      "text": "Zero-dim or mismatched vectors: fail before apply if the active profile dim is missing/zero or if main active metadata and shard metadata disagree. Active shard attach already validates profile metadata and creates dim-specific tables. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:415`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:440`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:483`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:748`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:782`]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-memory-embedding-reconcile-is-not-implemented-in-the-current-codebase-iteration-",
+      "text": "`memory_embedding_reconcile()` is not implemented in the current codebase; iteration 8/9 define its acceptance contract, but the public MCP registration path and tests still need an implementation packet. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-009.md:99`]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-emergency-sql-fallback-if-the-mcp-tool-is-not-available-attach-the-active-shard-",
+      "text": "Emergency SQL fallback if the MCP tool is not available: attach the active shard, verify provider/model/dim, update only rows with both active vector surfaces, then reset only missing-vector retry-retention failures. Use `BEGIN IMMEDIATE`; do not run this concurrently with a drain.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-highest-priority-commit-reindex-metadata-success-at-opencode-skills-system-spec-",
+      "text": "Highest priority: commit reindex metadata success at `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:440` and compiled anchor `.opencode/skills/system-spec-kit/mcp_server/dist/lib/embedders/reindex.js:316-318`. Minimal change: inside the completion transaction, after `setActiveEmbedder(...)` and before `setJobStatus(..., 'completed', ...)`, mark only target-profile vector-present rows `success`, clear `failure_reason`, and set `embedding_generated_at` if absent. This one fix alone would have prevented the active-vector/status-stale half of the incident: a completed `embedder_set` reindex would not leave already-written rows as `failed`, `pending`, or `retry`. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:440`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:441`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:442`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/embedders/reindex.js:316`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/dist/lib/embedders/reindex.js:318`]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-next-priority-make-retention-non-destructive-for-never-attempted-clean-pending-r",
+      "text": "Next priority: make retention non-destructive for never-attempted clean `pending` rows in `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:474-508`, and remove or move the pre-drain retention call at `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:536` / `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:997`. Minimal change: apply retention only to `embedding_status = 'retry' OR COALESCE(retry_count,0) > 0`, then process the retry queue before any cap enforcement. This one fix alone would have prevented the re-parking of clean backlog rows, but not the stale metadata left by vector-only reindex. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:474`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:489`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:495`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:508`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:536`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:997`]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-12-partial-vector-states-zero-mismatched-dimensions-profile-mismatch-and-concurrent",
+      "text": "Partial-vector states, zero/mismatched dimensions, profile mismatch, and concurrent drain must fail closed. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-009.md:70`]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-preferred-path-once-implemented-run-guarded-dry-run-then-apply",
+      "text": "Preferred path once implemented: run guarded dry-run, then apply:",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-13-pruning-masked-failed-rows-is-explicitly-not-covered-reconcile-should-mark-vecto",
+      "text": "Pruning masked failed rows is explicitly not covered. Reconcile should mark vector-present stale rows `success`; dedup/prune is a separate maintenance tool with different safety checks. [SOURCE: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation/research/iterations/iteration-008.md:241`]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-raise-daemon-env-before-any-retry-drain-or-reset-of-genuinely-missing-vectors",
+      "text": "Raise daemon env before any retry drain or reset of genuinely missing vectors:",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-record-the-starting-status-count",
+      "text": "Record the starting status count:",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-snapshot-counts-drifted-between-prompt-baseline-iteration-7-and-this-iteration-s",
+      "text": "Snapshot counts drifted between prompt baseline, iteration 7, and this iteration's read-only spot check. The runbook must use live preflight counts and dry-run buckets, not hard-coded counts as mutation predicates.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-11-the-emergency-sql-assumes-the-active-768d-ollama-nomic-shard-path-and-vec-768-ta",
+      "text": "The emergency SQL assumes the active 768d ollama/nomic shard path and `vec_768` table; the tool implementation must resolve and verify these dynamically from active metadata.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-third-priority-re-read-retry-config-per-drain-start-and-stop-hardcoding-daemon-r",
+      "text": "Third priority: re-read retry config per drain/start and stop hardcoding daemon retry options. Minimal change: replace module-scope retry constants with a `readRetryRuntimeConfig()` used by retention, background job, and startBackgroundJob; remove context-server's hardcoded `{ intervalMs: 5 * 60 * 1000, batchSize: 5 }` except in tests. Also document that `.env.local` edits require a lease-owner restart unless an explicit daemon env reload is implemented. This one fix alone would have prevented stale-config respawn after env tuning, but not the missing reindex success commit. [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:343`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:351`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1828`] [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1830`] [SOURCE: `.opencode/bin/mk-spec-memory-launcher.cjs:49`] [SOURCE: `.opencode/bin/mk-spec-memory-launcher.cjs:416`]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-14-this-research-did-not-benchmark-drain-throughput-after-raising-batch-interval-di",
+      "text": "This research did not benchmark drain throughput after raising batch/interval, did not validate behavior on a DB with genuinely missing active vectors, and did not test restart behavior through every host MCP client.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-verify-after-apply-and-restart",
+      "text": "Verify after apply and restart:",
+      "addedAtIteration": 10,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 6,
+    "resolvedQuestions": 0,
+    "keyFindings": 81,
+    "convergenceScore": 0.12,
+    "coverageBySources": {
+      "other": 16
+    }
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}
