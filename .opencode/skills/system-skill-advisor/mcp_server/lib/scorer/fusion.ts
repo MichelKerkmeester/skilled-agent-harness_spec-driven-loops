@@ -45,6 +45,15 @@ const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|genera
 const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|continue iteration|resume iteration|overnight run|overnight research run|packet-local iteration|delta record|canonical jsonl|same lineage)\b/;
 const FILE_SAVE_OPERATION = /\bsave\b.{0,48}\b(file|files|document|documents|buffer|tab|workspace)\b|\b(file|files|document|documents|buffer|tab|workspace)\b.{0,48}\bsave\b/;
 const MEMORY_SAVE_CONTEXT_ANCHOR = /\b(memory|context|conversation|session|handover|checkpoint|resume|preserve|remember|capture|store)\b|\/memory:save|memory:save/;
+// Class C breadth/multi-concern abstention gates. A broad greenfield build or a
+// multi-concern optimization is under-specified for single-skill routing.
+const BREADTH_BUILD_VERB = /\b(build|create|implement|generate|scaffold)\b/;
+const BREADTH_NOUN = /\b(full[- ]?stack|service|platform|application|microservice|saas|backend|whole (app|system))\b/;
+// Narrow anchors that make a broad-build prompt specific enough to route.
+const BREADTH_NARROW_ANCHOR = /\.[a-z]{2,4}\b|\b(test|tests|error|bug|failure|failing|handler|component|function|route|endpoint|class|method|benchmark|review|audit|migration|schema)\b/;
+const MULTI_CONCERN_VERB = /\b(optimize|improve|enhance|harden|speed up)\b/;
+const CONCERN_PERF = /\b(speed|latency|execution|throughput|performance|startup|memory|cpu)\b/;
+const CONCERN_QUALITY = /\b(quality|accuracy|recommendation|recommendations|correctness|reliability|coverage)\b/;
 
 type MutableLaneScores = {
   -readonly [K in keyof LaneScores]: LaneMatch[];
@@ -469,6 +478,37 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
           passes_threshold: recommendation.confidence >= confThreshold && uncertainty <= uncThreshold,
         };
       });
+    }
+  }
+
+  // Class C: breadth / multi-concern abstention. A broad greenfield build
+  // ("build full stack typescript service") or a multi-concern optimization
+  // ("optimize X execution speed and recommendation quality") is under-specified
+  // for single-skill routing. When the top code-like candidate carries that
+  // shape, floor every passing candidate's uncertainty so strict callers abstain.
+  // Narrow anchors (a file, failing test, named component/route, benchmark, or
+  // review intent) bypass the broad-build branch; the multi-concern branch
+  // requires two distinct concern classes, so a file + single concern still routes.
+  if (!promptLower.includes('/')) {
+    const concernClasses = (CONCERN_PERF.test(promptLower) ? 1 : 0) + (CONCERN_QUALITY.test(promptLower) ? 1 : 0);
+    const broadBuild = BREADTH_BUILD_VERB.test(promptLower) && BREADTH_NOUN.test(promptLower) && !BREADTH_NARROW_ANCHOR.test(promptLower);
+    const multiConcern = MULTI_CONCERN_VERB.test(promptLower) && concernClasses >= 2;
+    if (broadBuild || multiConcern) {
+      const topRec = ranked.find((recommendation) => recommendation.passes_threshold) ?? null;
+      if (topRec && (topRec.skill === 'sk-code' || topRec.skill === 'system-skill-advisor')) {
+        const confThreshold = options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD;
+        const uncThreshold = options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD;
+        const floor = SCORING_CALIBRATION.uncertainty.lowInfoAmbiguityFloor;
+        ranked = ranked.map((recommendation) => {
+          if (!recommendation.passes_threshold) return recommendation;
+          const uncertainty = Math.max(recommendation.uncertainty, floor);
+          return {
+            ...recommendation,
+            uncertainty,
+            passes_threshold: recommendation.confidence >= confThreshold && uncertainty <= uncThreshold,
+          };
+        });
+      }
     }
   }
 

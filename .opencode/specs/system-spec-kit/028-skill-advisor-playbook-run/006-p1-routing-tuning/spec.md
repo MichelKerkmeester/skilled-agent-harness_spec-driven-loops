@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/006-p1-routing-tuning"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "scorer-p1-tuning"
-    recent_action: "Implemented and verified Class E code-audit routing fix"
-    next_safe_action: "Implement classes A then B then C, and resolve Class D before touching it"
+    recent_action: "All 5 classes implemented and verified; both scorers 0 regression failures"
+    next_safe_action: "None; phase complete and verified"
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts"
@@ -22,9 +22,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-006"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Class A confidence via direct-evidence anchors plus ranking bonus"
+      - "Class D colon-syntax routes to deep-review; bare auto review stays code-review"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Skill Advisor P1 Routing & Abstention Tuning
@@ -40,8 +42,9 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-27 |
+| **Completed** | 2026-05-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 6 of 6 |
@@ -140,8 +143,8 @@ Lift the residual P1 rows in both scorers — by adding the missing routing sign
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Regression P1 failures drop materially in both harnesses with zero P0 regression and green parity tests.
-- **SC-002**: Each change is a principled, bounded signal (documented per class), not a per-prompt hack, and adds a regression guard where it introduces new behavior.
+- **SC-001**: ✅ Met — both regression harnesses reach **0 failures across all 50 cases** (P0 12/12 each), with zero P0 regression and green parity/corpus tests.
+- **SC-002**: ✅ Met — each class is a principled bounded signal (direct-evidence anchors, code-edit context, colon-syntax discriminator, narrowly-gated breadth abstention), and two adversarial routable guards (`P2-BREADTH-GUARD-001/002`) were added so future changes cannot silently over-abstain.
 <!-- /ANCHOR:success-criteria -->
 
 ---

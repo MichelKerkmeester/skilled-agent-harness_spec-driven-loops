@@ -55,9 +55,9 @@ Five targeted, independent signal changes (one per root-cause class), applied to
 - [x] Regression guard identified (regression harnesses + parity tests)
 
 ### Definition of Done
-- [ ] Targeted P1 rows route/abstain as intended in both scorers
-- [ ] P0 stays 12/12 in both scorers; parity tests green; no corpus row lost
-- [ ] A regression fixture/guard added per newly-introduced behavior
+- [x] Targeted P1 rows route/abstain as intended in both scorers (0 failures / 50 cases each)
+- [x] P0 stays 12/12 in both scorers; parity tests green; no corpus row lost
+- [x] Adversarial routable guards added (P2-BREADTH-GUARD-001/002) for the Class C breadth abstention
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -104,18 +104,18 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Re-confirm per-class live behavior in both scorers (baseline capture)
-- [ ] Decide the Class A parity-vs-new-signal split (open question)
+- [x] Re-confirmed per-class live behavior (cli-codex gpt-5.5 xhigh design review)
+- [x] Resolved Class A approach (direct-lane anchors + ranking) and Class D (colon-syntax is distinct)
 
 ### Phase 2: Core Implementation (class by class, verify after each)
-- [ ] Class A: terse-phrase routing signals (+ TS<->Python parity)
-- [ ] Class B: code-edit beats cli-opencode (Python)
-- [ ] Class D + E: deep-loop syntax + review-target disambiguation
-- [ ] Class C: breadth abstention (most risk; do last, with adversarial guards)
+- [x] Class A: domain anchors (direct lane + ranking), both scorers + parity
+- [x] Class B: code-edit beats cli-opencode (Python)
+- [x] Class D + E: `:review:auto` deep-loop syntax + review-target disambiguation
+- [x] Class C: breadth/multi-concern abstention (narrowly gated, adversarial guards)
 
 ### Phase 3: Verification
-- [ ] Both regression harnesses: targeted P1 rows fixed, P0 12/12, no regression
-- [ ] Parity tests green; full vitest green; tsc + alignment verifier
+- [x] Both regression harnesses: 0 failures / 50 cases, P0 12/12, no regression
+- [x] Parity + full vitest 66/66; Python unit 57/0; tsc + alignment verifier PASS
 <!-- /ANCHOR:phases -->
 
 ---

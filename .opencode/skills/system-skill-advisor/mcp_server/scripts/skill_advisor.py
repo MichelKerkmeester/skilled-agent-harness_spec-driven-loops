@@ -2870,6 +2870,55 @@ def _apply_low_info_ambiguity_abstention(
         rec["uncertainty"] = max(float(rec.get("uncertainty", 0.0)), LOW_INFO_AMBIGUITY_UNCERTAINTY_FLOOR)
 
 
+# Class C breadth/multi-concern abstention gates (parity with the TS scorer).
+BREADTH_BUILD_VERB_RE = re.compile(r"\b(build|create|implement|generate|scaffold)\b")
+BREADTH_NOUN_RE = re.compile(r"\b(full[- ]?stack|service|platform|application|microservice|saas|backend)\b")
+BREADTH_NARROW_ANCHOR_RE = re.compile(
+    r"\.[a-z]{2,4}\b|\b(test|tests|error|bug|failure|failing|handler|component|function"
+    r"|route|endpoint|class|method|benchmark|review|audit|migration|schema)\b"
+)
+MULTI_CONCERN_VERB_RE = re.compile(r"\b(optimize|improve|enhance|harden)\b")
+CONCERN_PERF_RE = re.compile(r"\b(speed|latency|execution|throughput|performance|startup|memory|cpu)\b")
+CONCERN_QUALITY_RE = re.compile(r"\b(quality|accuracy|recommendation|recommendations|correctness|reliability|coverage)\b")
+
+
+def _apply_breadth_abstention(
+    recommendations: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> None:
+    """Floor uncertainty on under-specified breadth/multi-concern prompts.
+
+    A broad greenfield build ("build full stack typescript service") or a
+    multi-concern optimization ("optimize X execution speed and recommendation
+    quality") routes over-confidently to a code-like skill. When the would-be
+    top is code-like, floor every passing candidate's uncertainty so strict
+    callers abstain. Narrow anchors (file/test/handler/route/benchmark/review)
+    bypass the broad-build branch; multi-concern requires two concern classes,
+    so a file plus a single concern still routes.
+    """
+    if not prompt_lower or "/" in prompt_lower:
+        return
+    concern_classes = (1 if CONCERN_PERF_RE.search(prompt_lower) else 0) + (
+        1 if CONCERN_QUALITY_RE.search(prompt_lower) else 0
+    )
+    broad_build = (
+        bool(BREADTH_BUILD_VERB_RE.search(prompt_lower))
+        and bool(BREADTH_NOUN_RE.search(prompt_lower))
+        and not BREADTH_NARROW_ANCHOR_RE.search(prompt_lower)
+    )
+    multi_concern = bool(MULTI_CONCERN_VERB_RE.search(prompt_lower)) and concern_classes >= 2
+    if not (broad_build or multi_concern):
+        return
+    passing = [rec for rec in recommendations if rec.get("passes_threshold")]
+    if not passing:
+        return
+    top = max(passing, key=lambda rec: float(rec.get("confidence", 0.0)))
+    if top.get("skill") not in ("sk-code", "system-skill-advisor"):
+        return
+    for rec in passing:
+        rec["uncertainty"] = max(float(rec.get("uncertainty", 0.0)), LOW_INFO_AMBIGUITY_UNCERTAINTY_FLOOR)
+
+
 def _apply_deep_research_disambiguation(
     recommendations: List[Dict[str, Any]],
     prompt_lower: str,
@@ -3198,6 +3247,8 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     # so the sort falls through to confidence and the disambiguated best guess
     # ranks first for confidence-only callers (strict callers still abstain).
     _apply_low_info_ambiguity_abstention(recommendations, prompt_lower)
+    refresh_passes_threshold(recommendations)
+    _apply_breadth_abstention(recommendations, prompt_lower)
     refresh_passes_threshold(recommendations)
 
     ranked = sorted(

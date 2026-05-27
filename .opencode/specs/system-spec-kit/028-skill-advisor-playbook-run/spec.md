@@ -104,7 +104,7 @@ This is a test-execution + documentation packet. The only repo writes are the sp
 | 003 | `003-cli-hooks-and-plugin/` | CL-001/003/004/005/006 runtime hooks + opencode plugin bridge — local | Complete |
 | 004 | `004-shell-python-daemon/` | CP/OP/AU/AI/LC/SC/PC — CLI-delegated (devin PC/AU/CP, opencode SC/AI/LC) + OP local | Complete |
 | 005 | `005-finding-remediation/` | Deep-research (cli-codex gpt-5.5) root-causing the 5 findings + 7 remediation phase children (sub-parent) | Complete |
-| 006 | `006-p1-routing-tuning/` | Skill-advisor P1 routing/abstention tuning: remediate the residual non-alias P1 regression failures across both scorers | In Progress (Class E done; D blocked) |
+| 006 | `006-p1-routing-tuning/` | Skill-advisor P1 routing/abstention tuning: remediate the residual non-alias P1 regression failures across both scorers (5 classes; both scorers 0 regression failures) | Complete (verified 2026-05-27) |
 
 ### Phase Transition Rules
 - Each phase passes `validate.sh` independently before rollup.

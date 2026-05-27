@@ -46,3 +46,5 @@
 {"id":"P1-PHRASE-006","priority":"P1","prompt":"code graph search","confidence_only":false,"expect_result":true,"expected_top_any":["system-code-graph"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-PHRASE-007","priority":"P1","prompt":"structural search","confidence_only":false,"expect_result":true,"expected_top_any":["system-code-graph"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-PHRASE-008","priority":"P1","prompt":"browser verification checklist","confidence_only":false,"expect_result":true,"expected_top_any":["sk-code"],"expect_kind":"skill","allow_command_bridge":false}
+{"id":"P2-BREADTH-GUARD-001","priority":"P2","prompt":"build TypeScript route handler for auth","confidence_only":false,"expect_result":true,"expected_top_any":["sk-code"],"expect_kind":"skill","allow_command_bridge":false}
+{"id":"P2-BREADTH-GUARD-002","priority":"P2","prompt":"fix full-stack auth service test failure","confidence_only":false,"expect_result":true,"expected_top_any":["sk-code"],"expect_kind":"skill","allow_command_bridge":false}

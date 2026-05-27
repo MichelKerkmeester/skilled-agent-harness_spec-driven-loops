@@ -60,8 +60,8 @@ _memory:
 - [x] T004 Class B: code-edit context beats cli-opencode (skill_advisor.py code-edit disambiguator) — fixes OPENCODE-001
 - [x] T005 [P] Class D: `:review:auto` colon-syntax -> deep-review (both scorers); kept "auto review" -> sk-code-review per the documented decision (codex confirmed the split). Also Class E AUDIT-001 (audit recommendations -> sk-code-review)
 - [x] T006 [P] Class E: "code audit" -> sk-code-review over deep-review (TS; Python already correct) — verified
-- [ ] T007 Class C: breadth abstention for greenfield/multi-concern prompts (both scorers; adversarial guards)
-- [ ] T008 Add regression fixtures/guards for newly-introduced behavior
+- [x] T007 Class C: breadth/multi-concern abstention (both scorers); narrowly gated, top-must-be-code-like, narrow-anchor + single-concern bypass
+- [x] T008 Added adversarial routable guards P2-BREADTH-GUARD-001/002 (must-route) to the regression fixtures
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,8 +69,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Both regression harnesses: targeted P1 rows fixed; P0 12/12; no regression
-- [ ] T010 Parity + full vitest green; tsc + alignment verifier PASS
+- [x] T009 Both regression harnesses: 0 failures across all 50 cases; P0 12/12 each; no regression
+- [x] T010 Parity + full vitest 66/66; Python unit 57/0; tsc clean + alignment verifier PASS
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -78,9 +78,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` (or class deferred with rationale)
-- [ ] No `[B]` blocked tasks remaining
-- [ ] P0 12/12 both scorers; parity green; targeted P1 rows improved
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] P0 12/12 both scorers; parity green; all 50 regression cases pass
 <!-- /ANCHOR:completion -->
 
 ---
