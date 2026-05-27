@@ -238,12 +238,20 @@ SKILL_ALIAS_GROUPS = {
         "/deep:start-research-loop",
         "deep:start-research-loop",
         "deep-research",
+        "sk-deep-research",
     },
     "deep-review": {
         "command-spec-kit-deep-review",
         "/deep:start-review-loop",
         "deep:start-review-loop",
         "deep-review",
+        "sk-deep-review",
+    },
+    "deep-agent-improvement": {
+        "command-spec-kit-deep-agent-improvement",
+        "/deep:start-agent-improvement-loop",
+        "deep-agent-improvement",
+        "sk-deep-agent-improvement",
     },
     "deep-ai-council": {
         "deep-ai-council",
@@ -2890,7 +2898,7 @@ def _apply_iteration_loop_tiebreaker(
     a specific CLI executor (e.g. "use cli-codex for 50 iterations"), the skill advisor
     previously returned command-spec-kit and the cli-* peer with similar confidence. Picking
     the cli-* peer as the primary route bypasses the skill's state machine, convergence
-    detection, and deltas — see the post-mortem in Phase 016 FINAL synthesis.
+    detection, and deltas.
 
     Rule: if the prompt contains iteration-loop phrases AND both a command-spec-kit
     recommendation and a cli-* skill recommendation are present, penalize the cli-*

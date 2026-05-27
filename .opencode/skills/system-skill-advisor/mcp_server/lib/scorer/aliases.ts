@@ -24,6 +24,12 @@ const RAW_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.fre
     'deep-review',
     'sk-deep-review',
   ],
+  'deep-agent-improvement': [
+    'command-spec-kit-deep-agent-improvement',
+    '/deep:start-agent-improvement-loop',
+    'deep-agent-improvement',
+    'sk-deep-agent-improvement',
+  ],
   'deep-ai-council': [
     '@deep-ai-council',
     'deep-ai-council',

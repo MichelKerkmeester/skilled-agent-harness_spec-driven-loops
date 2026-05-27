@@ -13,7 +13,7 @@
     "trigger_phrases": ["harness alias awareness", "regression harness alias drift", "lane weight sweep stale path"],
     "key_topics": ["alias-aware gold matching", "deep-* skill id drift", "lane-weight-sweep workspace root"],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": ["spec.md", "plan.md", "tasks.md"],
     "entities": ["skill_advisor_regression.py", "advisor-validate.ts", "lane-weight-sweep.vitest.ts", "aliases.ts"],
     "causal_summary": "Follow-up P1s surfaced during phase 002: both regression harnesses match gold labels strictly (deep-* alias drift) and lane-weight-sweep.vitest.ts anchors on a renamed 026 packet path. Filed for later implementation.",

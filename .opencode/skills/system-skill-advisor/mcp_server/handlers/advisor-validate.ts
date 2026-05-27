@@ -12,7 +12,7 @@ import { z } from 'zod';
 import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
 import { runPromotionLatencyBench } from '../bench/latency-bench.js';
 import { createFixtureProjection } from '../lib/scorer/projection.js';
-import { skillMatchesAlias } from '../lib/scorer/aliases.js';
+import { skillInAliasSet, skillMatchesAlias } from '../lib/scorer/aliases.js';
 import type { SkillProjection } from '../lib/scorer/types.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 import {
@@ -378,8 +378,10 @@ function evaluateRegressionCases(cases: readonly RegressionCase[], workspaceRoot
     });
     const top = result.recommendations[0] ?? null;
     const expected = testCase.expected_top_any ?? [];
+    // Gold labels may use a renamed alias of the live skill id; match
+    // alias-aware so legitimate renames are not flagged as failures.
     const passed = testCase.expect_result
-      ? Boolean(top && expected.includes(top.skill))
+      ? Boolean(top && skillInAliasSet(top.skill, expected))
       : top === null;
     if (testCase.priority === 'P0') {
       p0Total += 1;

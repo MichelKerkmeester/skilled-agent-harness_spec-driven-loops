@@ -23,6 +23,9 @@ build/
 dist/
 .opencode/output/
 
+# Generated lane-weight-sweep diagnostic reports (test artifacts)
+sweep-reports/
+
 # ───────────────────────────────────────────
 # Certificates & secrets
 # ───────────────────────────────────────────

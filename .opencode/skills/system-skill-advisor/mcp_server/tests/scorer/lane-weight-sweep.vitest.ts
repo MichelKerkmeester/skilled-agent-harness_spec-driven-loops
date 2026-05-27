@@ -27,24 +27,41 @@ import { HARDER_INTENT_PROMPT_CORPUS } from './fixtures/harder-intent-prompt-cor
 import { INTENT_PROMPT_CORPUS } from './fixtures/intent-prompt-corpus.js';
 import { seedSkillEmbeddings, type SeedResult } from './fixtures/seed-skill-embeddings.js';
 
+// Stable repo-root marker (the skill's own package.json). Replaces the prior
+// anchor on a spec-packet path that was renamed away in the reorg, so the
+// suite resolves the workspace root regardless of packet renumbering.
+const WORKSPACE_ROOT_MARKER = join(
+  '.opencode',
+  'skills',
+  'system-skill-advisor',
+  'mcp_server',
+  'package.json',
+);
+
+// Sweep reports are regenerated diagnostics. Their former spec-packet home was
+// removed in the reorg, so they now write under the skill's own test tree
+// (gitignored), which keeps the destination stable and avoids recreating
+// deleted packet folders via mkdir.
 const PACKET_RELATIVE_PATH = join(
   '.opencode',
-  'specs',
-  'system-spec-kit',
-  '026-graph-and-context-optimization',
-  '006-skill-advisor',
-  '002-skill-advisor-scoring-engine',
-  '006-seeded-corpus-evaluation-sweep',
+  'skills',
+  'system-skill-advisor',
+  'mcp_server',
+  'tests',
+  'scorer',
+  'sweep-reports',
+  'seeded-corpus-evaluation-sweep',
 );
 
 const HARDER_PACKET_RELATIVE_PATH = join(
   '.opencode',
-  'specs',
-  'system-spec-kit',
-  '026-graph-and-context-optimization',
-  '006-skill-advisor',
-  '002-skill-advisor-scoring-engine',
-  '007-hard-intent-corpus-resweep',
+  'skills',
+  'system-skill-advisor',
+  'mcp_server',
+  'tests',
+  'scorer',
+  'sweep-reports',
+  'hard-intent-corpus-resweep',
 );
 
 const ORIGINAL_24_BASELINE = {
@@ -146,12 +163,12 @@ const HARDER_REASON_BY_PROMPT = new Map(
 function findWorkspaceRoot(start = process.cwd()): string {
   let current = resolve(start);
   while (current !== dirname(current)) {
-    if (existsSync(join(current, PACKET_RELATIVE_PATH)) && existsSync(join(current, HARDER_PACKET_RELATIVE_PATH))) {
+    if (existsSync(join(current, WORKSPACE_ROOT_MARKER))) {
       return current;
     }
     current = dirname(current);
   }
-  throw new Error(`Could not find workspace root containing ${PACKET_RELATIVE_PATH} and ${HARDER_PACKET_RELATIVE_PATH}`);
+  throw new Error(`Could not find workspace root containing ${WORKSPACE_ROOT_MARKER}`);
 }
 
 function tableEscape(value: string): string {

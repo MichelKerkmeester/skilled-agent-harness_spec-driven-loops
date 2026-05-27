@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "scorer-p0-remediation"
-    recent_action: "Original 6 phases done; filed phase 007 for follow-up P1s"
-    next_safe_action: "Implement phase 007 (harness alias-awareness + stale test path)"
+    recent_action: "All 7 phases implemented and verified; phase 007 closed"
+    next_safe_action: "None; all phases complete (residual non-alias P1 parity gaps tracked in 007 limitations)"
     blockers: []
     key_files:
       - ".opencode/specs/system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/research/research.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-remediation"
       parent_session_id: null
-    completion_pct: 86
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-26 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -100,7 +100,7 @@ Authoring-only at this level; the remediation phases name their own target files
 | 004 | `004-semantic-shadow-doc-sync/` | F3 | Sync SC-004/SC-005 + feature-catalog + stale code comment to the live 0.05 lane | Done (verified 2026-05-27) |
 | 005 | `005-opencode-bridge-native-route/` | F4 | Bridge direct compat import done+verified; daemon-freshness availability gate flagged (residual cold-env route:python) | Partial |
 | 006 | `006-playbook-vitest-path-fix/` | F5 | Correct NC-004/NC-005 vitest invocation path | Done (verified 2026-05-27) |
-| 007 | `007-harness-alias-and-stale-path/` | follow-up | Regression-harness alias-awareness (`deep-*` IDs) + stale lane-weight-sweep packet path — out-of-scope P1s surfaced during 002 | Planned |
+| 007 | `007-harness-alias-and-stale-path/` | follow-up | Regression-harness alias-awareness (`deep-*` IDs) + stale lane-weight-sweep packet path | Done (verified 2026-05-27) |
 
 ### Phase Transition Rules
 - Each phase passes `validate.sh` independently before implementation.
