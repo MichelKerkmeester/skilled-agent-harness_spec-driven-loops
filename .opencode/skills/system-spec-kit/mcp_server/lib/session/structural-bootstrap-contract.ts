@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Structural Bootstrap Contract Type
 // ───────────────────────────────────────────────────────────────
-// F-017-D2-01: Type-only seam shared by `lib/session/session-snapshot.ts`
+// Type-only seam shared by `lib/session/session-snapshot.ts`
 // (the contract producer) and `hooks/memory-surface.ts` (a contract consumer
 // that previously imported from session-snapshot, creating a value-level
 // cycle because session-snapshot in turn imported `isSessionPrimed` and

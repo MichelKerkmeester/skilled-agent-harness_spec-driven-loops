@@ -277,7 +277,7 @@ interface CheckpointSnapshot {
   timestamp: string;
 }
 
-// F-005-A5-06: Validate the decompressed checkpoint snapshot before
+// Validate the decompressed checkpoint snapshot before
 // restore. Previously the gzipped blob was JSON.parsed and cast directly
 // to CheckpointSnapshot — malformed memory_index rows propagated through
 // `getMemoryIds()` and the INSERT loops. This schema validates the
@@ -1793,7 +1793,7 @@ function restoreCheckpoint(
       return result;
     }
 
-    // F-005-A5-06: Validate the snapshot envelope against
+    // Validate the snapshot envelope against
     // CheckpointSnapshotSchema before restore. Failures route into
     // `result.errors` as a single `Malformed snapshot row N: <reason>`
     // entry per failing path so callers see exactly which structural
@@ -2138,7 +2138,7 @@ export {
   CheckpointCreateError,
   RESTORE_IN_PROGRESS_ERROR_CODE,
   RESTORE_IN_PROGRESS_ERROR_MESSAGE,
-  // F-005-A5-06: snapshot schema exposed for direct shape testing.
+  // Snapshot schema exposed for direct shape testing.
   CheckpointSnapshotSchema,
 };
 

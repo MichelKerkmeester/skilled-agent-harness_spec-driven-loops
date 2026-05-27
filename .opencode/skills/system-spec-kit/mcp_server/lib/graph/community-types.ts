@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Community Graph Shared Types
 // ───────────────────────────────────────────────────────────────
-// F-017-D2-02: Type-only seam shared by community-detection,
+// Type-only seam shared by community-detection,
 // community-storage, and community-summaries. Previously these three modules
 // formed a triangular type cycle: community-summaries imported
 // `CommunityResult` from community-detection, community-storage imported

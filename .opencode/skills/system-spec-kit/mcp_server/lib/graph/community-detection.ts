@@ -6,7 +6,7 @@ import type Database from 'better-sqlite3';
 
 import { isCommunitySummariesEnabled } from '../search/search-flags.js';
 import { getCommunities, storeCommunities } from './community-storage.js';
-// F-017-D2-02: CommunityResult now lives in the neutral types seam so the
+// CommunityResult now lives in the neutral types seam so the
 // detection/storage/summaries triangle cannot reform a value cycle. The
 // re-export here keeps every existing consumer importing from this module.
 import type { CommunityResult } from './community-types.js';

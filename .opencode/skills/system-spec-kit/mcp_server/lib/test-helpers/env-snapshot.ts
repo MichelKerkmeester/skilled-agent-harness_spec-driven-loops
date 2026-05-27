@@ -12,8 +12,7 @@
 //   beforeEach(() => { restoreEnv = snapshotEnv(['MY_VAR']); });
 //   afterEach(() => { restoreEnv(); });
 //
-// Closes packet-049 sub-phase 009 finding F-015-C5-04 / F-015-C5-05
-// (env-leak across tests). Test-only infrastructure; no product
+// Prevents env-leak across tests. Test-only infrastructure; no product
 // surface depends on this module.
 
 /**

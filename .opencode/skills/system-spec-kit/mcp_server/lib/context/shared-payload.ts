@@ -6,7 +6,7 @@
 
 import { assertNever } from '../utils/exhaustiveness.js';
 import type { UnicodeRuntimeFingerprint } from '@spec-kit/shared/unicode-normalization';
-// F-016-D1-02: Pull the sanitizer from the neutral utils seam instead of the
+// Pull the sanitizer from the neutral utils seam instead of the
 // advisor renderer module. Cross-cutting payload code should depend inward
 // on `lib/utils/`; the renderer keeps the implementation.
 import { sanitizeSkillLabel } from '../utils/skill-label-sanitizer.js';

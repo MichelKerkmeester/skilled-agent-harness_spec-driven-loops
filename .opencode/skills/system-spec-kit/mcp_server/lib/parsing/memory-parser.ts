@@ -29,7 +29,7 @@ import {
   validateGraphMetadataContent,
 } from '../graph/graph-metadata-parser.js';
 import { GRAPH_METADATA_MIGRATED_QUALITY_FLAG } from '../graph/graph-metadata-schema.js';
-// F-005-A5-05: Reuse the canonical perFolderDescriptionSchema instead of
+// Reuse the canonical perFolderDescriptionSchema instead of
 // re-implementing per-field defensive coercion inline.
 import {
   perFolderDescriptionSchema,
@@ -524,7 +524,7 @@ function parseDescriptionMetadataContent(
     throw new Error(`Invalid description metadata content for ${filePath}: ${message}`);
   }
 
-  // F-005-A5-05: Run the parsed object through perFolderDescriptionSchema.
+  // Run the parsed object through perFolderDescriptionSchema.
   // The schema enforces canonical field shapes (string vs string[]); we
   // surface a path-aware error message on validation failure so the caller
   // sees exactly which fixture or stored description.json is malformed.
@@ -541,7 +541,7 @@ function parseDescriptionMetadataContent(
   const extractedSpecFolder = extractSpecFolder(filePath);
   const validated = validation.data;
 
-  // F-005-A5-05: The schema validates field shapes; we keep the existing
+  // The schema validates field shapes; we keep the existing
   // trim/normalize semantics here so consumers see the same DescriptionMetadataContent
   // they did before (trimmed strings, deduped non-empty arrays).
   return {
@@ -902,7 +902,7 @@ export function extractCausalLinks(content: string): CausalLinks {
     related_to: []
   };
 
-  // F-008-B3-01: Accept both `causalLinks:` (camelCase) and `causal_links:`
+  // Accept both `causalLinks:` (camelCase) and `causal_links:`
   // (snake_case) tokens. Other parts of the parser ecosystem already use
   // snake_case (e.g. graph-metadata-parser.ts), so the regex is widened to
   // a single source of truth that matches either form. Behavior is

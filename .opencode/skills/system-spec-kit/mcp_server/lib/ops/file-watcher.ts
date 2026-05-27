@@ -221,7 +221,7 @@ export function startFileWatcher(config: WatcherConfig): FSWatcher {
 
   // C3 fix: Bounded concurrency — prevent unbounded parallel reindex operations
   const MAX_CONCURRENT_REINDEX = 2;
-  // F-003-A3-03: Cap the pending-slot queue so a runaway watcher event storm
+  // Cap the pending-slot queue so a runaway watcher event storm
   // can't grow the wait list without bound. 1000 pending entries is generous
   // enough for ordinary workloads (debounceTimers already coalesces by file
   // path upstream so each slot maps to one distinct file's reindex turn) but
@@ -249,7 +249,7 @@ export function startFileWatcher(config: WatcherConfig): FSWatcher {
       return Promise.resolve();
     }
     return new Promise((resolve, reject) => {
-      // F-003-A3-03: drop the oldest waiter when the queue is at cap; the
+      // Drop the oldest waiter when the queue is at cap; the
       // displaced waiter's wrapping operation should treat the sentinel error
       // as a recoverable signal (skip this round, debounce will re-fire on the
       // next change).
@@ -272,7 +272,7 @@ export function startFileWatcher(config: WatcherConfig): FSWatcher {
     if (next) next.resolve();
   }
 
-  // F-003-A3-03: drain the pending-slot queue on close() so the watcher does
+  // Drain the pending-slot queue on close() so the watcher does
   // not silently leak Promises. Every queued waiter rejects with the same
   // sentinel; the wrapping `operation()` catch in scheduleTask logs and exits
   // cleanly. The active count is intentionally NOT decremented here — those
@@ -337,7 +337,7 @@ export function startFileWatcher(config: WatcherConfig): FSWatcher {
 
       const task = operation().catch((error: unknown) => {
         const message = error instanceof Error ? error.message : String(error);
-        // F-003-A3-03: queue-overflow and queue-closed errors are expected
+        // Queue-overflow and queue-closed errors are expected
         // outcomes of the bounded-queue policy, not failures. Log them at a
         // lower severity so storms do not drown legitimate task warnings.
         if (message === QUEUE_OVERFLOW_REASON || message === QUEUE_CLOSED_REASON) {
@@ -508,7 +508,7 @@ export function startFileWatcher(config: WatcherConfig): FSWatcher {
     }
     debounceTimers.clear();
 
-    // F-003-A3-03: drop every queued slot waiter before settling in-flight
+    // Drop every queued slot waiter before settling in-flight
     // work. The waiters reject with QUEUE_CLOSED_REASON; their wrapping
     // operation()s catch and log without re-entering the watcher.
     abortPendingReindexQueue();

@@ -11,7 +11,7 @@ import * as path from 'path';
 
 const PHASE_CHILD_REGEX = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 
-// F-019-D4-03: thresholds for phase-parent health classification. Buckets are
+// Thresholds for phase-parent health classification. Buckets are
 // chosen to surface manifest sprawl early without breaking validation flow.
 // `warning` = manifest readability degrading; `error` = manifest unmanageable
 // in a single review pass. Buckets are advisory; callers decide whether to
@@ -58,7 +58,7 @@ export function isPhaseParent(specFolderAbsPath: string): boolean {
   return false;
 }
 
-// F-019-D4-03: counts direct phase children regardless of whether each child
+// Counts direct phase children regardless of whether each child
 // has spec.md/description.json. Counting all NNN-named direct children
 // reflects manifest size (what an author actually scrolls past), not the
 // strict phase-parent qualifier. Returns 0 when the folder is not a phase
@@ -79,7 +79,7 @@ function countPhaseChildren(specFolderAbsPath: string): number {
   }
 }
 
-// F-019-D4-03: lightweight health assessment for phase-parent folders. Returns
+// Lightweight health assessment for phase-parent folders. Returns
 // a non-mutating advisory record consumable by validation rules and tooling.
 // `ok` => under warning threshold; `warning` => 20-40 children (consider
 // summarized manifest); `error` => >40 children (manifest unreadable, split

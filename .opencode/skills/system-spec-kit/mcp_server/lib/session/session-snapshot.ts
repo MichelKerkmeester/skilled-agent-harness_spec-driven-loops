@@ -15,7 +15,7 @@ import {
   trustStateFromStructuralStatus,
   type SharedPayloadProvenance,
 } from '../context/shared-payload.js';
-// F-017-D2-01: StructuralBootstrapContract now lives in a neutral seam
+// StructuralBootstrapContract now lives in a neutral seam
 // module so memory-surface and session-snapshot can both depend on it
 // without creating a value-level dependency cycle. The re-export keeps every
 // existing consumer importing the type from this module path.
