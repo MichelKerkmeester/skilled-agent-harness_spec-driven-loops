@@ -83,7 +83,7 @@ export interface QualityGateParams {
   anchors?: string[];
   embedding?: Float32Array | number[] | null;
   findSimilar?: FindSimilarFn | null;
-  /** REQ-D4-003: context_type for short-critical exception evaluation */
+  /** context_type for short-critical exception evaluation */
   contextType?: string | null;
   mode?: 'planner-advisory' | 'legacy';
 }
@@ -111,7 +111,7 @@ const MIN_CONTENT_LENGTH = 50;
 const WARN_ONLY_PERIOD_MS = 14 * 24 * 60 * 60 * 1000;
 
 // ───────────────────────────────────────────────────────────────
-// REQ-D4-003: Short-critical quality gate exception
+// Short-critical quality gate exception
 // ───────────────────────────────────────────────────────────────
 
 /** Minimum number of structural signals required for short-critical exception. */
@@ -299,11 +299,11 @@ function ensureActivationTimestampInitialized(): void {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   3b. REQ-D4-003: SAVE QUALITY GATE EXCEPTIONS
+   SAVE QUALITY GATE EXCEPTIONS
    ──────────────────────────────────────────────────────────────── */
 
 /**
- * REQ-D4-003: Check whether the save quality gate exceptions feature is enabled.
+ * Check whether the save quality gate exceptions feature is enabled.
  * Default: TRUE (graduated). Set SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS=false to disable.
  *
  * When enabled, decision documents with sufficient structural signals may bypass
@@ -317,7 +317,7 @@ export function isSaveQualityGateExceptionsEnabled(): boolean {
 }
 
 /**
- * REQ-D4-003: Count structural signals present in a document.
+ * Count structural signals present in a document.
  *
  * Structural signals: title, specFolder (non-empty), anchor (non-empty string).
  * A decision document with >= 2 signals qualifies for the short-critical exception.
@@ -335,7 +335,7 @@ export function countStructuralSignals(params: {
 }
 
 /**
- * REQ-D4-003: Determine whether the short-critical exception applies.
+ * Determine whether the short-critical exception applies.
  *
  * Returns true when ALL conditions hold:
  *   1. SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS is enabled
@@ -388,7 +388,7 @@ export function shouldBypassShortDecisionLengthGate(params: {
  * - Content is non-empty and meets minimum length
  * - Spec folder path is valid format
  *
- * REQ-D4-003: When SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS is enabled, the
+ * When SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS is enabled, the
  * minimum content length check is bypassed for `planning` (or legacy `decision`)
  * context_type documents that have >= 2 structural signals (title + specFolder + anchor).
  * Bypass events are logged as warnings (warn-only initially).
@@ -412,7 +412,7 @@ export function validateStructural(params: {
   if (!params.content || params.content.trim().length === 0) {
     reasons.push('Content is empty');
   } else if (params.content.trim().length < MIN_CONTENT_LENGTH) {
-    // REQ-D4-003: Check for short-critical exception before adding rejection reason
+    // Check for short-critical exception before adding rejection reason
     const exceptionApplies = isShortCriticalException({
       contextType: params.contextType,
       title: params.title,
@@ -797,7 +797,7 @@ export function runQualityGate(params: QualityGateParams): QualityGateResult {
   const allReasons: string[] = [];
 
   // Layer 1: Structural validation
-  // REQ-D4-003: Pass contextType so validateStructural can apply the short-critical exception
+  // Pass contextType so validateStructural can apply the short-critical exception
   const structural = validateStructural({
     title: params.title,
     content: params.content,

@@ -56,7 +56,7 @@ interface CacheArgsInput {
   includeTrace?: boolean;
   cacheVersion?: string;
   /**
-   * R-007-12: Causal-edges generation counter snapshot. When `enableCausalBoost`
+   * Causal-edges generation counter snapshot. When `enableCausalBoost`
    * is true, callers should pass the current generation from
    * `causalEdges.getCausalEdgesGeneration()` so that any causal-edge mutation
    * naturally invalidates this cache key on the next lookup.
@@ -175,7 +175,7 @@ function buildCacheArgs({
     adaptiveFusionIntent,
     query: normalizedQuery,
   });
-  // R-007-12: Only include causal-edges generation in the cache key when the
+  // Only include causal-edges generation in the cache key when the
   // caller has actually opted into causal boost; otherwise cache keys remain
   // stable for callers that do not consume the causal graph.
   const includeCausalGeneration = enableCausalBoost === true

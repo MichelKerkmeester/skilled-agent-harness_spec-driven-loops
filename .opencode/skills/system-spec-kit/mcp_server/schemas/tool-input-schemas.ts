@@ -145,7 +145,7 @@ const memoryContextSchema = getSchema({
   sessionId: z.string().optional(),
   enableDedup: z.boolean().optional(),
   includeContent: z.boolean().optional(),
-  includeTrace: z.boolean().optional(), // CHK-040: Forward to internal memory_search
+  includeTrace: z.boolean().optional(), // Forward to internal memory_search
   tokenUsage: boundedNumber(0, 1).optional(),
   anchors: optionalStringArray,
   profile: z.enum(['quick', 'research', 'resume', 'debug']).optional(),
@@ -673,7 +673,7 @@ export function validateToolArgs(toolName: string, rawInput: Record<string, unkn
   } catch (error: unknown) {
     if (error instanceof ZodError) {
       const formatted = formatZodError(toolName, error);
-      // CHK-029: Log rejected params for audit trail (MCP uses stderr)
+      // Log rejected params for audit trail (MCP uses stderr)
       console.error(`[schema-validation] ${toolName}: ${formatted.message}`);
       throw formatted;
     }

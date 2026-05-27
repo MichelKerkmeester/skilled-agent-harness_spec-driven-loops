@@ -11,8 +11,8 @@
 // Search channels handled:
 //   - multi-concept: Generate per-concept embeddings, run multiConceptSearch
 //   - hybrid (deep mode): Query expansion + multi-variant hybrid search + dedup
-//   - hybrid (R12):       Embedding-based query expansion (SPECKIT_EMBEDDING_EXPANSION)
-// Suppressed when R15 classifies query as "simple" (mutual exclusion)
+// hybrid: Embedding-based query expansion (SPECKIT_EMBEDDING_EXPANSION)
+// Suppressed when classifies query as "simple" (mutual exclusion)
 //   - hybrid: collectRawCandidates → falls back to vector on failure
 //   - vector: Direct vectorSearch
 //
@@ -78,7 +78,7 @@ const MULTI_CONCEPT_MIN_SIMILARITY = 0.5;
 /** Number of constitutional results to fetch when none appear in hybrid/vector results. */
 const CONSTITUTIONAL_INJECT_LIMIT = 5;
 
-/** Number of similar memories to mine for R12 embedding-based query expansion terms. */
+/** Number of similar memories to mine for embedding-based query expansion terms. */
 const DEFAULT_EXPANSION_CANDIDATE_LIMIT = 5;
 
 /** D2: Timeout for facet decomposition parallel searches (ms). */
@@ -419,8 +419,8 @@ function mergeCandidateBatches(
  * additional variants are produced by `expandQuery`. If expansion fails or produces
  * no new terms, the array contains only the original query.
  *
- * Simple-query bypass (038): When R15 classifies the query as "simple",
- * rule-based expansion is skipped — consistent with the R12 embedding-expansion
+ * Simple-query bypass (038): When classifies the query as "simple",
+ * rule-based expansion is skipped — consistent with the embedding-expansion
  * path's `isExpansionActive()` gate. Simple queries do not benefit from synonym
  * expansion and the additional search channels add latency without recall gain.
  *
@@ -871,14 +871,14 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
       } // end: if (candidates.length === 0)
     } else {
-      // -- R12: Embedding-based query expansion (SPECKIT_EMBEDDING_EXPANSION) --
+      // Embedding-based query expansion (SPECKIT_EMBEDDING_EXPANSION)
       //
-      // When R12 is enabled and R15 does not classify the query as "simple",
+      // When is enabled and does not classify the query as "simple",
       // We expand the query using embedding similarity to find related terms
       // From the memory index. The expanded query is used as an additional
       // Hybrid search channel whose results are merged with the baseline.
       //
-      // Mutual exclusion: isExpansionActive() returns false when R15 classifies
+      // Mutual exclusion: isExpansionActive returns false when classifies
       // The query as "simple", suppressing expansion with zero added latency.
 
       let r12ExpansionApplied = false;
@@ -959,7 +959,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
         }
       }
 
-      // Standard hybrid search — runs when R12 is off, suppressed by R15,
+      // Standard hybrid search — runs when is off, suppressed by,
       // Or produced no results (candidates still empty from the try block above).
       // Uses effectiveQuery (concept-expanded) for BM25 recall.
       if (!r12ExpansionApplied) {
@@ -1293,10 +1293,10 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     }
   }
 
-  // -- R8: Summary Embedding Channel ---------------------------------------
+  // Summary Embedding Channel
   // When SPECKIT_MEMORY_SUMMARIES is enabled (default-ON) and scale gate is
   // Met (>5000 indexed), run a parallel search on summary embeddings and merge
-  // Results. Pattern follows R12 embedding expansion: run in parallel, merge
+  // Results. Pattern follows embedding expansion: run in parallel, merge
   // + deduplicate by ID.
   if (isMemorySummariesEnabled()) {
     try {

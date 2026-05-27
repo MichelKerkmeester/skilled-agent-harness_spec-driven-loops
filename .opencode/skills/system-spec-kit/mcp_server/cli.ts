@@ -258,7 +258,7 @@ async function runBulkDelete(): Promise<void> {
   const dryRun = getFlag('dry-run');
   const skipCheckpoint = getFlag('skip-checkpoint');
 
-  // F-17 — Validate --older-than is a positive integer.
+  // Validate --older-than is a positive integer.
   // Use strict check: entire string must be digits only (parseInt accepts "10abc" as 10).
   if (olderThanDays) {
     if (!/^\d+$/.test(olderThanDays) || parseInt(olderThanDays, 10) <= 0) {
@@ -473,7 +473,7 @@ async function runReindex(): Promise<void> {
     includeSpecDocs: true,
   });
 
-  // F-16 — Check result.isError before reporting success
+  // Check result.isError before reporting success
   if (result?.isError) {
     const errText = result?.content?.[0]?.text || 'Unknown error';
     console.error(`\n  ERROR: Reindex failed: ${errText}`);

@@ -161,7 +161,7 @@ export function isQualityAutoFixEnabled(): boolean {
 // -- Hybrid RAG Fusion Refinement flags --
 
 /**
- * R1 MPAB: Document-level chunk-to-memory score aggregation.
+ * MPAB: Document-level chunk-to-memory score aggregation.
  * Default: TRUE (graduated). Set SPECKIT_DOCSCORE_AGGREGATION=false to disable.
  */
 export function isDocscoreAggregationEnabled(): boolean {
@@ -219,8 +219,8 @@ export function isNegativeFeedbackEnabled(): boolean {
 // -- Pipeline Refactor flags --
 
 /**
- * R12: Query expansion for embedding-based retrieval.
- * Suppressed when R15 classification = "simple" (mutual exclusion).
+ * Query expansion for embedding-based retrieval.
+ * Suppressed when classification = "simple" (mutual exclusion).
  * Default: TRUE (graduated). Set SPECKIT_EMBEDDING_EXPANSION=false to disable.
  */
 export function isEmbeddingExpansionEnabled(): boolean {
@@ -239,7 +239,7 @@ export function isConsolidationEnabled(): boolean {
 }
 
 /**
- * R16: Encoding-intent capture at index time.
+ * Encoding-intent capture at index time.
  * Records intent metadata (document, code, structured_data) alongside embeddings.
  * Default: TRUE (graduated). Set SPECKIT_ENCODING_INTENT=false to disable.
  */
@@ -294,7 +294,7 @@ export function isCommunitySummariesEnabled(): boolean {
 }
 
 /**
- * R8: Memory summary generation (TF-IDF extractive summaries as search channel).
+ * Memory summary generation (TF-IDF extractive summaries as search channel).
  * Default: TRUE (enabled). Set SPECKIT_MEMORY_SUMMARIES=false to disable.
  */
 export function isMemorySummariesEnabled(): boolean {
@@ -310,7 +310,7 @@ export function isTemporalContiguityEnabled(): boolean {
 }
 
 /**
- * R10: Auto entity extraction (rule-based noun-phrase extraction at save time).
+ * Auto entity extraction (rule-based noun-phrase extraction at save time).
  * Default: TRUE (enabled). Set SPECKIT_AUTO_ENTITIES=false to disable.
  */
 export function isAutoEntitiesEnabled(): boolean {
@@ -318,8 +318,8 @@ export function isAutoEntitiesEnabled(): boolean {
 }
 
 /**
- * S5: Cross-document entity linking (entity-based cross-doc edges).
- * Requires R10 (auto entities) to also be enabled.
+ * Cross-document entity linking (entity-based cross-doc edges).
+ * Requires auto entities to also be enabled.
  * Default: TRUE (enabled). Set SPECKIT_ENTITY_LINKING=false to disable.
  */
 export function isEntityLinkingEnabled(): boolean {

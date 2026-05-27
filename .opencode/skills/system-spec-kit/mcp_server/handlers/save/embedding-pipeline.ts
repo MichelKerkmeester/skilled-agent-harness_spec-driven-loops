@@ -166,7 +166,7 @@ export async function generateOrCacheEmbedding(
         console.error(`[memory-save] Embedding cache HIT for ${path.basename(filePath)}`);
       } else {
         // Cache miss: normalize content then generate embedding via provider
-        // S1: strip structural noise (frontmatter, anchors, HTML comments) before embedding
+        // strip structural noise (frontmatter, anchors, HTML comments) before embedding
         const weightedInput = embeddings.buildWeightedDocumentText(buildParsedMemoryWeightedSections(parsed));
         embedding = await embeddings.generateDocumentEmbedding(weightedInput);
         if (embedding) {

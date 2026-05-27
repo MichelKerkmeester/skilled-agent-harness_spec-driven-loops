@@ -163,7 +163,7 @@ let db: Database.Database | null = null;
  * cached responses derived from the causal graph become stale on the next
  * lookup without requiring a wholesale tool-cache invalidation.
  *
- * R-007-12 — targeted memory_search cache invalidation.
+ * targeted memory_search cache invalidation.
  */
 let causalEdgesGeneration = 0;
 
@@ -180,7 +180,7 @@ function getCausalEdgesGeneration(): number {
 }
 
 function invalidateDegreeCache(): void {
-  // R-007-12: bump the causal-edges generation FIRST so any cache key that
+  // bump the causal-edges generation FIRST so any cache key that
   // includes it (e.g. memory_search when enableCausalBoost=true) becomes
   // stale on the next read without invalidating unrelated tool entries.
   bumpCausalEdgesGeneration();
@@ -379,7 +379,7 @@ function insertEdge(
       ) as { id: number } | undefined;
       const rowId = row ? row.id : 0;
 
-      // T001d: Log weight change on conflict update
+      // Log weight change on conflict update
       if (existing && rowId && isFiniteNumber(existing.strength) && existing.strength !== clampedStrength) {
         logWeightChange(rowId, existing.strength, clampedStrength, createdBy, 'insert-upsert');
       }
@@ -701,7 +701,7 @@ function updateEdge(
 
     // Wrap SELECT + UPDATE + logWeightChange in a transaction for atomicity
     const changed = database.transaction(() => {
-      // T001d: Capture old strength for weight_history logging
+      // Capture old strength for weight_history logging
       let oldStrength: number | undefined;
       if (updates.strength !== undefined) {
         const existing = (database.prepare(
@@ -718,7 +718,7 @@ function updateEdge(
 
       const changed = (result as { changes: number }).changes > 0;
 
-      // T001d: Log weight change to weight_history
+      // Log weight change to weight_history
       if (changed && nextStrength !== undefined && isFiniteNumber(oldStrength)) {
         if (oldStrength !== nextStrength) {
           logWeightChange(edgeId, oldStrength, nextStrength, changedBy, reason);
@@ -897,7 +897,7 @@ function createSpecDocumentChain(documentIds: Record<string, number>): { inserte
 }
 
 /* ───────────────────────────────────────────────────────────────
-   10. WEIGHT HISTORY & AUDIT (T001d)
+   WEIGHT HISTORY & AUDIT
 ----------------------------------------------------------------*/
 
 function logWeightChange(
@@ -1072,7 +1072,7 @@ export {
   cleanupOrphanedEdges,
   createSpecDocumentChain,
 
-  // T001d: Weight history & audit
+  // Weight history & audit
   logWeightChange,
   getWeightHistory,
   rollbackWeights,
@@ -1082,7 +1082,7 @@ export {
   touchEdgeAccess,
   getStaleEdges,
 
-  // R-007-12: Generation counter for memory_search cache invalidation
+  // Generation counter for memory_search cache invalidation
   getCausalEdgesGeneration,
 };
 

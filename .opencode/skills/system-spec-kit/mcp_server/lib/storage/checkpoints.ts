@@ -1835,7 +1835,7 @@ function restoreCheckpoint(
       return result;
     }
 
-    // P0-005 FIX: Split INSERT strategy by restore mode.
+    // FIX: Split INSERT strategy by restore mode.
     // ClearExisting mode: INSERT OR REPLACE is safe (table was already emptied).
     // Merge mode: INSERT OR REPLACE triggers CASCADE DELETE on working_memory
     // Via the FOREIGN KEY (memory_id) REFERENCES memory_index(id) ON DELETE CASCADE.
@@ -1991,7 +1991,7 @@ function restoreCheckpoint(
           );
           const insertResult = memoryInsertStmt.run(...values) as { changes: number };
 
-          // P0-005: In merge mode, INSERT OR IGNORE returns changes=0 when
+          // In merge mode, INSERT OR IGNORE returns changes=0 when
           // The row already exists. Follow up with an explicit UPDATE to
           // Apply the snapshot values without triggering CASCADE deletes.
           if (!clearExisting && insertResult.changes === 0 && memoryUpdateStmt) {

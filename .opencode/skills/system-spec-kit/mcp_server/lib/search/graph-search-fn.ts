@@ -32,7 +32,7 @@ interface DegreeCacheState {
 // 2. TYPED-DEGREE CONSTANTS
 
 // ───────────────────────────────────────────────────────────────
-/** Edge type weights for typed-degree computation (R4 5th RRF channel) */
+/** Edge type weights for typed-degree computation (5th RRF channel) */
 const EDGE_TYPE_WEIGHTS: Record<string, number> = {
   caused: 1.0,
   derived_from: 0.9,
@@ -688,7 +688,7 @@ function createUnifiedGraphSearchFn(
 // ───────────────────────────────────────────────────────────────
 export {
   createUnifiedGraphSearchFn,
-  // Typed-degree computation (R4 5th RRF channel)
+  // Typed-degree computation (5th RRF channel)
   EDGE_TYPE_WEIGHTS,
   DEFAULT_MAX_TYPED_DEGREE,
   MAX_TOTAL_DEGREE,

@@ -282,7 +282,7 @@ export function evaluateContingencyRelative(
 }
 
 /* ───────────────────────────────────────────────────────────────
-   2b. BOOTSTRAP CONFIDENCE INTERVAL (REQ-S0-004)
+   2b. BOOTSTRAP CONFIDENCE INTERVAL
    Statistical significance testing for the contingency decision.
    Uses bootstrap resampling to compute 95% CI for MRR@5.
 ──────────────────────────────────────────────────────────────── */
@@ -522,7 +522,7 @@ export async function runBM25Baseline(
   let totalRecall = 0;
   let totalHitRate = 0;
 
-  // Collect per-query MRR for bootstrap CI (REQ-S0-004)
+  // Collect per-query MRR for bootstrap CI
   const perQueryMRR: number[] = [];
 
   for (const q of queries) {
@@ -563,7 +563,7 @@ export async function runBM25Baseline(
   const timestamp = new Date().toISOString();
   const contingencyDecision = evaluateContingency(metrics.mrr5);
 
-  // Compute bootstrap 95% CI for statistical significance (REQ-S0-004: p<0.05)
+  // Compute bootstrap 95% CI for statistical significance (: p<0.05)
   const bootstrapCI = computeBootstrapCI(perQueryMRR);
 
   return {

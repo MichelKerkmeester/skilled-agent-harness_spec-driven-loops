@@ -2,7 +2,7 @@
 // MODULE: Spec Folder Hierarchy
 // ───────────────────────────────────────────────────────────────
 // Builds a spec folder hierarchy from stored spec_folder paths
-// And enables hierarchy-aware retrieval (REQ-S6-006).
+// And enables hierarchy-aware retrieval.
 //
 // Parses folder paths like "system-spec-kit/140-hybrid-rag/006-sprint-5"
 // Into a tree structure where each path segment is a node, allowing child

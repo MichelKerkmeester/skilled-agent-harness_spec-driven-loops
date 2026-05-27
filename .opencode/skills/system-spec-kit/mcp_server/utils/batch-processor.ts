@@ -106,7 +106,7 @@ export async function processWithRetry<T, R>(
  * Provides controlled execution to prevent resource exhaustion.
  *
  * @throws {Error} If batchSize is not a positive finite integer.
- *   T105/P0-08: Validates batchSize BEFORE any processing to prevent
+ * Validates batchSize BEFORE any processing to prevent
  *   infinite loops (batchSize=0) or nonsensical iteration (NaN, negative,
  *   Infinity, fractional values).
  */
@@ -117,7 +117,7 @@ export async function processBatches<T, R>(
   delayMs: number = BATCH_DELAY_MS,
   retryOptions: RetryOptions = {}
 ): Promise<Array<R | RetryErrorResult>> {
-  // T105/P0-08: Validate batchSize before any processing.
+  // Validate batchSize before any processing.
   // NaN <= 0 is false, so the original <= 0 check alone would miss NaN.
   // Also reject Infinity and non-integer values for safety.
   if (typeof batchSize !== 'number' || !Number.isFinite(batchSize) || batchSize <= 0 || batchSize !== Math.floor(batchSize)) {

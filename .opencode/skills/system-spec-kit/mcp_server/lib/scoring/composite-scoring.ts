@@ -7,7 +7,7 @@ import { calculatePopularityScore } from '../storage/access-tracker.js';
 import { computeRecencyScore, DECAY_RATE } from './folder-scoring.js';
 // Interference scoring penalty
 import { applyInterferencePenalty, INTERFERENCE_PENALTY_COEFFICIENT } from './interference-scoring.js';
-// Scoring observability (N4 + TM-01 logging, 5% sampled)
+// Scoring observability (N4 + logging, 5% sampled)
 import { shouldSample, logScoringObservation } from '../telemetry/scoring-observability.js';
 
 import type { MemoryDbRow } from '@spec-kit/shared/types';
@@ -261,7 +261,7 @@ export const PATTERN_ALIGNMENT_BONUSES: PatternAlignmentBonuses = {
   type_match: 0.2,
 };
 
-// TM-01: Re-export interference penalty coefficient for test access
+// Re-export interference penalty coefficient for test access
 export { INTERFERENCE_PENALTY_COEFFICIENT } from './interference-scoring.js';
 
 // ───────────────────────────────────────────────────────────────
@@ -324,7 +324,7 @@ export function calculateRetrievabilityScore(row: ScoringInput): number {
   const elapsedMs = Date.now() - timestamp;
   const elapsedDays = Math.max(0, elapsedMs / (1000 * 60 * 60 * 24));
 
-  // TM-03: Classification decay applies at stability-level; when enabled do not
+  // Classification decay applies at stability-level; when enabled do not
   // Additionally apply elapsed-time tier multipliers to avoid double decay.
   let adjustedStability = stability;
   if (classificationDecayEnabled) {
@@ -548,7 +548,7 @@ function applyPostProcessingAndObserve(
   // Capture pre-penalty composite for telemetry (before interference + clamp)
   const scoreBeforePenalties = composite;
 
-  // TM-01: Apply interference penalty (after doc multiplier)
+  // Apply interference penalty (after doc multiplier)
   const interferenceScore = (row.interference_score as number) || 0;
   composite = applyInterferencePenalty(composite, interferenceScore);
 

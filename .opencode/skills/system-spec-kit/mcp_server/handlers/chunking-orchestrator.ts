@@ -264,7 +264,7 @@ async function indexChunkedMemoryFile(
     let childId: number | undefined;
 
     try {
-      // Persistent embedding cache (REQ-S2-001) avoids re-calling the embedding
+      // Persistent embedding cache avoids re-calling the embedding
       // Provider on re-index — content-hash keyed so unchanged chunks skip API entirely.
       let chunkEmbedding: Float32Array | null = null;
       let chunkEmbeddingStatus = 'pending';

@@ -2261,7 +2261,7 @@ async function processPreparedMemory(
     // NOTE: Content-hash dedup (C5-1) moved inside BEGIN IMMEDIATE transaction
     // to eliminate TOCTOU race between check and insert.
 
-    // EMBEDDING GENERATION (with persistent SQLite cache — REQ-S2-001)
+    // EMBEDDING GENERATION (with persistent SQLite cache)
     const embeddingResult = await generateOrCacheEmbedding(database, routedParsed, routedFilePath, asyncEmbedding);
     const {
       embedding,
@@ -2270,7 +2270,7 @@ async function processPreparedMemory(
       pendingCacheWrite,
     } = embeddingResult;
 
-    // -- the rollout: TM-04 Quality Gate (before PE gating, after embedding) --
+    // the rollout: Quality Gate (before PE gating, after embedding)
     if (isSaveQualityGateEnabled() && isQualityGateEnabled()) {
       try {
         const qualityGateResult = runQualityGate({

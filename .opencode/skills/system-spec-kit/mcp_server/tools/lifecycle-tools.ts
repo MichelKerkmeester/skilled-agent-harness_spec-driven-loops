@@ -2,7 +2,7 @@
 // MODULE: Lifecycle Tools
 // ───────────────────────────────────────────────────────────────
 // Dispatch for L6-L7 lifecycle tools: index_scan, preflight,
-// Postflight, learning_history (T303).
+// Postflight, learning_history.
 import {
   handleMemoryIndexScan,
   handleMemoryIngestStart,

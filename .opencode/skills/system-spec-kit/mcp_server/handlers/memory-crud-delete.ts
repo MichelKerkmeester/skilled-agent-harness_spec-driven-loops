@@ -93,7 +93,7 @@ async function handleMemoryDelete(args: DeleteArgs): Promise<MCPResponse> {
   if (numericId !== null) {
     const singleSnapshot = getMemoryHashSnapshot(database, numericId);
 
-    // T2-5 transaction wrapper — wraps single-delete path (memory delete, causal edge
+    // transaction wrapper — wraps single-delete path (memory delete, causal edge
     // Cleanup, ledger append) in a transaction for atomicity on error.
     database.transaction(() => {
       deletedCount = vectorIndex.deleteMemory(numericId) ? 1 : 0;

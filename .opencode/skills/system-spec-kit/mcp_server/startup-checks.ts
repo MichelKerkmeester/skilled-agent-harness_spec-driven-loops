@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Startup Checks
 // ───────────────────────────────────────────────────────────────
-// Non-critical startup checks extracted from context-server.ts (T303).
+// Non-critical startup checks extracted from context-server.ts.
 import path from 'path';
 import fs from 'fs';
 

@@ -1,12 +1,12 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Scoring Observability
 // ───────────────────────────────────────────────────────────────
-// Lightweight observability logging for TM-01 interference scoring
+// Lightweight observability logging for interference scoring
 // values at query time.
 // Sampled at 5% of queries to avoid performance overhead.
 // All logging is best-effort (fail-safe, never throws).
 // Feature flags:
-// SPECKIT_INTERFERENCE_SCORE — TM-01 interference penalty
+// SPECKIT_INTERFERENCE_SCORE — interference penalty
 import type Database from 'better-sqlite3';
 
 // Feature catalog: Scoring observability
@@ -29,7 +29,7 @@ export interface ScoringObservation {
   queryId: string;
   timestamp: string;
   memoryAgeDays: number;
-  // TM-01 fields
+  // fields
   interferenceApplied: boolean;
   interferenceScore: number;
   interferencePenalty: number;

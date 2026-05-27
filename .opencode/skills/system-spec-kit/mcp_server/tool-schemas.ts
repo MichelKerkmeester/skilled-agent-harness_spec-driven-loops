@@ -2,7 +2,7 @@
 // MODULE: Tool Schemas
 // ───────────────────────────────────────────────────────────────
 // All MCP tool definitions (names, descriptions, input schemas).
-// Extracted from context-server.ts for maintainability (T303).
+// Extracted from context-server.ts for maintainability.
 import {
   MAX_INGEST_PATHS,
   MEMORY_BULK_DELETE_MIN_OLDER_THAN_DAYS,
@@ -37,7 +37,7 @@ export interface ToolDefinition {
 // 2. TOOL DEFINITIONS
 
 // ───────────────────────────────────────────────────────────────
-// T061: L1 Orchestration - Unified entry point (Token Budget: 3500)
+// L1 Orchestration - Unified entry point (Token Budget: 3500)
 const memoryContext: ToolDefinition = {
   name: 'memory_context',
   description: '[L1:Orchestration] Unified entry point for context retrieval with intent-aware routing. START HERE for most context-retrieval operations across indexed spec docs and constitutional rules. For session recovery, use mode: \'resume\' with profile: \'resume\'. Automatically detects task intent (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision) and routes to optimal retrieval strategy. Modes: auto (default), quick (trigger-based), deep (comprehensive), focused (intent-optimized), resume (session recovery). Token Budget: 3500. For code search, use mcp__mk_code_index__code_graph_query for structural code queries (callers, imports) and Grep for exact text or token searches.',
@@ -210,7 +210,7 @@ const memoryMatchTriggers: ToolDefinition = {
   inputSchema: { type: 'object', additionalProperties: false, properties: { prompt: { type: 'string', minLength: 1, description: 'User prompt or text to match against trigger phrases' }, specFolder: { type: 'string', description: 'Limit trigger matches to a specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed trigger matching.' }, userId: { type: 'string', description: 'User boundary for governed trigger matching.' }, agentId: { type: 'string', description: 'Agent boundary for governed trigger matching.' }, limit: { type: 'number', default: 3, minimum: 1, maximum: 100, description: 'Maximum number of matching spec-doc records to return (default: 3)' }, session_id: { type: 'string', description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.' }, turnNumber: { type: 'number', minimum: 1, description: 'Current conversation turn number. Used with session_id for decay calculations.' }, include_cognitive: { type: 'boolean', default: true, description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.' } }, required: ['prompt'] },
 };
 
-// T306: Added asyncEmbedding parameter for non-blocking embedding generation
+// Added asyncEmbedding parameter for non-blocking embedding generation
 const memorySave: ToolDefinition = {
   name: 'memory_save',
   description: '[L2:Core] Index a spec document or constitutional file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Routed saves write continuity into canonical spec documents (decision-record.md, implementation-summary.md, handover.md). Includes pre-flight validation (T067-T070) for anchor format, duplicate detection, and token budget estimation. Token Budget: 3500.',
@@ -431,7 +431,7 @@ const taskPostflight: ToolDefinition = {
   inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', minLength: 1, description: 'Path to spec folder (must match preflight)' }, taskId: { type: 'string', minLength: 1, description: 'Task identifier (must match preflight)' }, knowledgeScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task knowledge level (0-100)' }, uncertaintyScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task uncertainty level (0-100)' }, contextScore: { type: 'number', minimum: 0, maximum: 100, description: 'Post-task context completeness (0-100)' }, gapsClosed: { type: 'array', items: { type: 'string' }, description: 'List of knowledge gaps closed during task (optional)' }, newGapsDiscovered: { type: 'array', items: { type: 'string' }, description: 'List of new gaps discovered during task (optional)' }, sessionId: { type: 'string', description: 'Optional session identifier. Required when multiple sessions share the same taskId and you need to target a specific learning cycle.' } }, required: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore'] },
 };
 
-// T043-T047: Causal Memory Graph tools (REQ-012) - L6: Analysis
+// Causal Memory Graph tools - L6: Analysis
 const memoryDriftWhy: ToolDefinition = {
   name: 'memory_drift_why',
   description: '[L6:Analysis] Trace causal chain for a spec-doc record (causal-graph node) to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and causal-graph node relationships. Token Budget: 1200.',
@@ -603,23 +603,23 @@ const embedderStatus: ToolDefinition = {
 };
 
 // Code Graph - Structural code analysis tools
-// Code-graph tool schemas migrated to system-code-graph standalone MCP server per ADR-002
+// Code-graph tool schemas migrated to system-code-graph standalone MCP server
 // (.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/006-extraction-and-isolation/003-standalone-mcp-topology-pivot/decision-record.md)
-// Tool IDs unchanged (ADR-001 Q4 stable); namespace changed: mcp__mk_spec_memory__code_graph_* → mcp__mk_code_index__code_graph_*
+// Tool IDs unchanged (Q4 stable); namespace changed: mcp__mk_spec_memory__code_graph_* → mcp__mk_code_index__code_graph_*
 
 
 
 
 
 
-// T018: Session health diagnostic tool
+// Session health diagnostic tool
 const sessionHealth: ToolDefinition = {
   name: 'session_health',
   description: '[L3:Discovery] Check session readiness: priming status, code graph freshness, time since last tool call. Call periodically during long sessions to check for context drift. Returns ok/warning/stale with actionable hints. No arguments required.',
   inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
 };
 
-// Phase 020: Composite session resume tool
+// Composite session resume tool
 const sessionResume: ToolDefinition = {
   name: 'session_resume',
   description: '[L1:Orchestration] Resume session with combined memory and code graph status in a single call. Use when you want the detailed merged resume payload directly. For the canonical first-call recovery path on session start or after /clear, prefer session_bootstrap. Use minimal: true to skip the heavy memory context call and return code graph, structural context, hints, and session-quality metadata without the full memory payload.',
@@ -635,7 +635,7 @@ const sessionResume: ToolDefinition = {
   },
 };
 
-// Phase 024 / Item 7: Composite session bootstrap tool
+// Composite session bootstrap tool
 const sessionBootstrap: ToolDefinition = {
   name: 'session_bootstrap',
   description: '[L1:Orchestration] Complete session bootstrap in one call. Returns session context, system health, structural readiness, and recommended next actions. This is the canonical first recovery call on session start or after /clear; it wraps the full session_resume payload plus session_health.',
@@ -711,6 +711,6 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   embedderList,
   embedderSet,
   embedderStatus,
-  // L8: Code Graph schemas live in system-code-graph per ADR-002
-  // L8: Skill Graph schemas live in system-skill-advisor per 013/009/008.
+  // L8: Code Graph schemas live in system-code-graph
+  // L8: Skill Graph schemas live in system-skill-advisor
 ];

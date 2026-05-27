@@ -11,9 +11,9 @@
 // Density classifications:
 // >= 1.0  → "dense"    — graph is highly connected
 // 0.5–1.0 → "moderate" — sufficient for graph signals
-// < 0.5   → "sparse"   — R10 escalation recommended
+// < 0.5 → "sparse" — escalation recommended
 //
-// When density < 0.5 an R10 escalation recommendation is generated
+// When density < 0.5 an escalation recommendation is generated
 // And included in the result.
 
 import type Database from 'better-sqlite3';
@@ -42,7 +42,7 @@ export interface EdgeDensityResult {
   density: number;
   /** Human-readable density band. */
   classification: DensityClassification;
-  /** true when density < 0.5 — triggers R10 escalation. */
+  /** true when density < 0.5 — triggers escalation. */
   r10Escalation: boolean;
   /** Present when r10Escalation is true. Contains timeline recommendation. */
   r10Recommendation?: string;
@@ -66,7 +66,7 @@ const DENSE_THRESHOLD = 1.0;
  *   - Total memory count from memory_index (coverage context).
  *
  * @param database - An initialized better-sqlite3 Database instance.
- * @returns EdgeDensityResult with all metrics and optional R10 escalation.
+ * @returns EdgeDensityResult with all metrics and optional escalation.
  */
 export function measureEdgeDensity(database: Database.Database): EdgeDensityResult {
   try {
@@ -102,7 +102,7 @@ export function measureEdgeDensity(database: Database.Database): EdgeDensityResu
     // Classify
     const classification = classifyDensity(density);
 
-    // R10 escalation
+    // escalation
     const r10Escalation = density < MODERATE_THRESHOLD;
     const r10Recommendation = r10Escalation
       ? buildR10Recommendation(density, edgeCount, nodeCount, totalMemories)
@@ -175,12 +175,12 @@ function classifyDensity(density: number): DensityClassification {
 }
 
 /**
- * Build an R10 escalation recommendation when density < 0.5.
+ * Build an escalation recommendation when density < 0.5.
  *
  * Documents:
  *   - Current density
- *   - Sprint timeline recommendation for R10 (graph enrichment)
- *   - Impact on R4 (typed-degree) effectiveness
+ * - Sprint timeline recommendation for graph enrichment
+ * - Impact on typed-degree effectiveness
  */
 function buildR10Recommendation(
   density: number,

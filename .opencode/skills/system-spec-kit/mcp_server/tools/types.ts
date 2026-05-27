@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Types
 // ───────────────────────────────────────────────────────────────
-// Shared types for tool dispatch modules (T303).
+// Shared types for tool dispatch modules.
 // Re-export canonical MCPResponse from shared
 export type { MCPResponse } from '@spec-kit/shared/types';
 
@@ -177,7 +177,7 @@ export interface SaveArgs {
   force?: boolean;
   dryRun?: boolean;
   skipPreflight?: boolean;
-  asyncEmbedding?: boolean; // T306: When true, embedding generation is deferred (non-blocking)
+  asyncEmbedding?: boolean; // When true, embedding generation is deferred (non-blocking)
   routeAs?:
     | 'narrative_progress'
     | 'narrative_delivery'

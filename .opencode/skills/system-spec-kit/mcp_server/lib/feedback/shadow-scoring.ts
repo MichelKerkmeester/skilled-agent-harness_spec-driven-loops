@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Shadow Scoring with Holdout (REQ-D4-006)
+// MODULE: Shadow Scoring with Holdout
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Shadow scoring with holdout evaluation
 // Compares would-have-changed rankings vs live rankings on a

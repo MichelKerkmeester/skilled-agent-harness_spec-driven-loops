@@ -4,8 +4,8 @@
 // Feature catalog: Encoding-intent capture at index time
 // Semantic query expansion using embedding similarity.
 //
-// R12/R15 Mutual Exclusion:
-// When the R15 query complexity classifier returns tier = "simple",
+// Mutual Exclusion
+// When the query complexity classifier returns tier = "simple",
 // Embedding expansion is suppressed entirely. This prevents unnecessary
 // Latency on short, well-defined queries that benefit from exact matches
 // Rather than semantic broadening.
@@ -90,7 +90,7 @@ const EXPANSION_STOP_WORDS: ReadonlySet<string> = new Set([
 
 /**
  * Produce a no-op ExpandedQuery that preserves the original query unchanged.
- * Used when the feature flag is off, when R15 classifies the query as
+ * Used when the feature flag is off, when classifies the query as
  * "simple", or when expansion fails gracefully.
  *
  * @param query - The original query string.
@@ -187,7 +187,7 @@ function extractTermsFromContents(
  *
  * Guard conditions (returns identity result immediately if any apply):
  *   1. `SPECKIT_EMBEDDING_EXPANSION` flag is off (default).
- *   2. R15 mutual exclusion — query classified as "simple" by
+ * 2. mutual exclusion — query classified as "simple" by
  *      `classifyQueryComplexity()`. Simple queries benefit from exact-match
  *      retrieval; broadening them degrades precision without recall gain.
  *   3. Embedding vector is invalid (zero-length or non-finite values).
@@ -217,10 +217,10 @@ export async function expandQueryWithEmbeddings(
     return identityResult(query);
   }
 
-  // -- Guard 2: R15 mutual exclusion -----------------------------------------
+  // Guard 2: mutual exclusion
   // ClassifyQueryComplexity() returns "complex" when SPECKIT_COMPLEXITY_ROUTER
-  // Is disabled (its own feature flag). When R15 is active and classifies the
-  // Query as "simple", R12 expansion is suppressed to avoid latency overhead
+  // Is disabled (its own feature flag). When is active and classifies the
+  // Query as "simple", expansion is suppressed to avoid latency overhead
   // On short, high-precision queries.
   const complexityResult = classifyQueryComplexity(query);
   if (complexityResult.tier === 'simple') {
@@ -313,7 +313,7 @@ export async function expandQueryWithEmbeddings(
    ──────────────────────────────────────────────────────────────── */
 
 /**
- * Synchronous predicate that returns true when R12 embedding expansion
+ * Synchronous predicate that returns true when embedding expansion
  * would actually run for a given query.
  *
  * Useful in Stage 1 for conditional branching without triggering the
@@ -321,7 +321,7 @@ export async function expandQueryWithEmbeddings(
  *
  * Conditions for expansion to be active:
  *   - SPECKIT_EMBEDDING_EXPANSION flag is on.
- *   - R15 complexity classification is NOT "simple".
+ * - complexity classification is NOT "simple".
  *
  * @param query - The candidate search query.
  * @returns True when embedding expansion should be applied.

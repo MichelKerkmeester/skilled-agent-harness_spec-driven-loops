@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Learned Triggers Schema Migration (R11)
+// MODULE: Learned Triggers Schema Migration
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Learned relevance feedback
 // Schema migration for the learned_triggers column.

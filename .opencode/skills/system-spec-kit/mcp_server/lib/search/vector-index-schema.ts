@@ -418,8 +418,8 @@ function getMigrationAllowedBasePaths(): string[] {
 // V17: Add interference_score column
 // V18: the rollout — weight_history table + causal_edges provenance + encoding_intent column
 // V19: degree_snapshots + community_assignments (N2 graph centrality)
-// V20: memory_summaries + memory_entities + entity_catalog (R8/R10/S5)
-// V21: Add learned_triggers column (R11 learned feedback)
+// V20: memory_summaries + memory_entities + entity_catalog
+// V21: Add learned_triggers column (learned feedback)
 // V22: Step 2 memory lineage tables + active projection support
 // V23: One-time spec_folder re-canonicalization + session_state migration
 // V24: Add trigger-cache source and temporal contiguity indexes
@@ -1069,7 +1069,7 @@ export function run_migrations(database: Database.Database, from_version: number
     }
   };
 
-  // V20 -> v21: Add learned_triggers column (R11 learned feedback)
+  // V20 -> v21: Add learned_triggers column (learned feedback)
   migrations[21] = () => {
     try {
       database.exec("ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]'");
@@ -2348,7 +2348,7 @@ export function create_schema(
         compatibility as unknown as Record<string, unknown>
       );
     }
-    // the rollout (REQ-S2-001) — embedding cache table must exist before any
+    // the rollout — embedding cache table must exist before any
     // Save/index operation so lookupEmbedding() can skip redundant provider calls.
     ensureEmbeddingCacheSchema(database);
     return;
@@ -2478,7 +2478,7 @@ export function create_schema(
   ensureLineageTables(database);
   ensureGovernanceTables(database);
 
-  // the rollout (REQ-S2-001) — create embedding_cache table
+  // the rollout — create embedding_cache table
   ensureEmbeddingCacheSchema(database);
 
   // Create memory_index-specific indexes (not IF NOT EXISTS because this is a fresh DB)

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Feedback Event Ledger (REQ-D4-001)
+// MODULE: Feedback Event Ledger
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Implicit feedback log
 // Records implicit feedback signals from search/save interactions

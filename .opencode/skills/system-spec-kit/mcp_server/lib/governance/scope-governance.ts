@@ -45,7 +45,7 @@ export interface GovernedIngestInput extends ScopeContext {
 /**
  * Result of governed-ingest validation and field normalization.
  */
-// R5: Simplified normalized type — previously a complex intersection.
+// Simplified normalized type — previously a complex intersection.
 export interface GovernanceNormalized {
   tenantId?: string | null;
   userId?: string | null;

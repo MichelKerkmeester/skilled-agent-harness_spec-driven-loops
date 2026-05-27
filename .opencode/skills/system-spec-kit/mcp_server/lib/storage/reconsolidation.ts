@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Reconsolidation
 // ───────────────────────────────────────────────────────────────
-// TM-06: Reconsolidation-on-Save
+// Reconsolidation-on-Save
 //
 // After embedding generation, check top-3 most similar memories
 // In the spec folder:
@@ -700,7 +700,7 @@ export async function reconsolidate(
         let conflictMemory = newMemory;
 
         // F04-002: Wrap store + conflict in single transaction for atomicity
-        // TM-06 live-save path: materialize memory + supersede edge together
+        // live-save path: materialize memory + supersede edge together
         try {
           const conflictTx = db.transaction(() => {
             if (conflictMemory.id === undefined) {

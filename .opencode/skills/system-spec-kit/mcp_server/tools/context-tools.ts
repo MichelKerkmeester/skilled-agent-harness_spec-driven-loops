@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Context Tools
 // ───────────────────────────────────────────────────────────────
-// Dispatch for L1 Orchestration tool: memory_context (T303).
+// Dispatch for L1 Orchestration tool: memory_context.
 import { handleMemoryContext } from '../handlers/index.js';
 import { validateToolArgs } from '../schemas/tool-input-schemas.js';
 import { parseArgs } from './types.js';

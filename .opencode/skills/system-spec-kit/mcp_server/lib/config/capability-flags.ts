@@ -7,7 +7,7 @@
 // roadmap phases that remain intentionally dormant in production.
 import { isFeatureEnabled } from '../cognitive/rollout-policy.js';
 
-// R6: Derive phase type from the canonical array to keep them in sync.
+// Derive phase type from the canonical array to keep them in sync.
 const SUPPORTED_PHASES_ARRAY = ['baseline', 'lineage', 'graph', 'adaptive', 'scope-governance'] as const;
 
 /** Canonical rollout phases used by memory roadmap tracking. */

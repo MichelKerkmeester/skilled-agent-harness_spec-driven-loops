@@ -79,7 +79,7 @@ import {
   type SessionTransitionTrace,
 } from '../lib/search/session-transition.js';
 
-// REQ-D5-003: Mode-Aware Response Shape
+// Mode-Aware Response Shape
 import {
   applyProfileToEnvelope,
   isResponseProfileEnabled,
@@ -886,7 +886,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     detectedIntent || undefined
   );
 
-  // R-007-12: When causal boost is enabled, fold the causal-edges generation
+  // When causal boost is enabled, fold the causal-edges generation
   // counter into the cache key so causal-edge mutations naturally invalidate
   // the affected memory_search entries on the next lookup. We deliberately
   // keep the generation OFF the key when the caller has not opted into causal
@@ -1228,8 +1228,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       null,
       extraData,
       includeTrace,
-      normalizedQuery,   // REQ-D5-001/D5-004: pass query for recovery + confidence context
-      specFolder ?? null // REQ-D5-001: pass specFolder for recovery narrowing detection
+      normalizedQuery,   // pass query for recovery + confidence context
+      specFolder ?? null // pass specFolder for recovery narrowing detection
     );
 
     // Prepend evidence gap warning if present
@@ -1479,7 +1479,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
   } catch (_error: unknown) { /* eval logging must never break search */ }
 
-  // REQ-D4-001: Implicit feedback — log search_shown events for returned results
+  // Implicit feedback — log search_shown events for returned results
   // Shadow-only: no ranking side effects. Fail-safe, never throws.
   try {
     if (isImplicitFeedbackLogEnabled()) {
@@ -1553,7 +1553,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
   } catch (_error: unknown) { /* query flow tracking must never break search */ }
 
-  // REQ-D5-003: Apply presentation profile when flag is enabled and profile is specified.
+  // Apply presentation profile when flag is enabled and profile is specified.
   // Phase C: effectiveProfile includes auto-routed profile from intent detection.
   if (effectiveProfile && typeof effectiveProfile === 'string' && isResponseProfileEnabled()) {
     const firstEntry = responseToReturn?.content?.[0];

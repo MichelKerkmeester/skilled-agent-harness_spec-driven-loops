@@ -2,7 +2,7 @@
 // MODULE: Rank Metrics
 // ───────────────────────────────────────────────────────────────
 // IR metric computation functions extracted from shadow-scoring.ts
-// for modularization (REQ-D4-006).
+// for modularization.
 //
 // Provides: Kendall tau, NDCG, MRR, rank comparison, and
 // direction classification utilities.

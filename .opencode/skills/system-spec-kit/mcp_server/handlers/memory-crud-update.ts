@@ -142,7 +142,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
     }
   }
 
-  // T2-5 transaction wrapper — wraps all synchronous mutation steps (DB update,
+  // transaction wrapper — wraps all synchronous mutation steps (DB update,
   // Cache invalidation, BM25 re-index, ledger append) in a single transaction for atomicity.
   // Embedding generation (async) runs before this block; its result feeds into updateParams.
   const fields = Object.keys(updateParams).filter((key) => key !== 'id' && key !== 'embedding');

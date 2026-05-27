@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Profile Formatters
 // ───────────────────────────────────────────────────────────────
-// REQ-D5-003: Mode-Aware Response Shape
+// Mode-Aware Response Shape
 //
 // PURPOSE: Route search/context results through one of four named
 // presentation profiles, each optimising for a different consumer:

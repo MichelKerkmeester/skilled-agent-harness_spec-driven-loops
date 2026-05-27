@@ -99,7 +99,7 @@ export interface ReconsolidationResultCandidate extends Record<string, unknown> 
 // Feature catalog: Assistive reconsolidation
 
 // ───────────────────────────────────────────────────────────────
-// ASSISTIVE RECONSOLIDATION CONSTANTS (REQ-D4-005)
+// ASSISTIVE RECONSOLIDATION CONSTANTS
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -766,8 +766,8 @@ export async function runReconsolidationIfEnabled(
   }
 
   // ─────────────────────────────────────────────────────────────
-  // ASSISTIVE RECONSOLIDATION (REQ-D4-005)
-  // Runs independently of the TM-06 flag.  Requires embedding.
+  // ASSISTIVE RECONSOLIDATION
+  // Runs independently of the flag. Requires embedding.
   // Does NOT block normal save — all actions are advisory or
   // shadow-only (auto-merge at >= 0.96 only archives old record).
   // ─────────────────────────────────────────────────────────────

@@ -5,13 +5,13 @@
 // 1. DATABASE HELPERS
 
 // ───────────────────────────────────────────────────────────────
-// T304: Consolidated database access and error-coercion utilities
+// Consolidated database access and error-coercion utilities
 // To eliminate duplicate getDb()+null-check and instanceof Error
 // Patterns across handler files.
 import * as vectorIndex from '../lib/search/vector-index.js';
 
 /**
- * T304: Get the database instance, throwing if not initialized.
+ * Get the database instance, throwing if not initialized.
  *
  * Replaces the repeated pattern:
  * ```
@@ -33,7 +33,7 @@ function requireDb(): NonNullable<ReturnType<typeof vectorIndex.getDb>> {
 }
 
 /**
- * T304: Coerce an unknown error value to a string message.
+ * Coerce an unknown error value to a string message.
  *
  * Replaces the repeated pattern:
  * ```

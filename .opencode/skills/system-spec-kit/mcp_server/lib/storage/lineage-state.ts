@@ -540,7 +540,7 @@ function insertAppendOnlyMemoryIndexRow(params: CreateAppendOnlyMemoryRecordPara
   return memoryId;
 }
 
-// R1: Shared early-return helper for lineage functions.
+// Shared early-return helper for lineage functions.
 function getExistingLineageTransition(
   database: Database.Database,
   memoryId: number,

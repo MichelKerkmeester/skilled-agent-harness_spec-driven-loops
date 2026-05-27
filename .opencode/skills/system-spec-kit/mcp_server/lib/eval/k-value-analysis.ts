@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: K-Value Sensitivity Analysis (T004A)
+// MODULE: K-Value Sensitivity Analysis
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: RRF K-value sensitivity analysis
 // Measures the impact of different RRF K-values on ranking stability.
@@ -314,7 +314,7 @@ function formatKValueReport(analysis: KValueAnalysisResult): KValueReport {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 5. JUDGED RELEVANCE EVALUATION (REQ-D1-003)
+// 5. JUDGED RELEVANCE EVALUATION
 
 // ───────────────────────────────────────────────────────────────
 
@@ -334,7 +334,7 @@ type IntentClass =
 
 /**
  * A judged query with explicit relevance labels for NDCG/MRR evaluation.
- * REQ-D1-003: Judged query set for per-intent K sweep.
+ * Judged query set for per-intent K sweep.
  */
 interface JudgedQuery {
   /** The query string */
@@ -391,7 +391,7 @@ interface JudgedKSweepResult {
 
 // ───────────────────────────────────────────────────────────────
 
-/** K-values for the judged relevance sweep (REQ-D1-003). */
+/** K-values for the judged relevance sweep. */
 const JUDGED_K_SWEEP_VALUES = K_VALUES;
 
 interface OptimizationJudgment {
@@ -594,7 +594,7 @@ function computeMrr5Judged(
 // ───────────────────────────────────────────────────────────────
 
 /**
- * Check if experimental K selection is enabled (REQ-D1-003).
+ * Check if experimental K selection is enabled.
  * Default: ON (graduated). Set SPECKIT_RRF_K_EXPERIMENTAL=false to disable.
  * When OFF, per-intent K selection is skipped and K=60 is used.
  * When ON, NDCG@10-maximizing K is selected per intent.
@@ -748,7 +748,7 @@ export {
   argmaxK,
   optimizeKValuesByIntent,
   resolveOptimalRrfK,
-  // REQ-D1-003: Judged relevance K-optimization
+  // Judged relevance K-optimization
   JUDGED_K_SWEEP_VALUES,
   computeNdcg10,
   computeMrr5Judged,
@@ -763,7 +763,7 @@ export type {
   KValueAnalysisResult,
   KValueReport,
   IntentKOptimizationQuery,
-  // REQ-D1-003: Judged relevance types
+  // Judged relevance types
   IntentClass,
   JudgedQuery,
   JudgedKMetrics,

@@ -239,7 +239,7 @@ const FSRS_CONSTANTS = {
  * Each tier modifies how quickly memories decay relative to the base FSRS schedule.
  * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
  *
- * NOTE (TM-03): This multiplier operates on elapsed-time in composite-scoring.ts
+ * NOTE This multiplier operates on elapsed-time in composite-scoring.ts
  * (lower value = slower perceived time = slower decay). It is a SEPARATE system from
  * IMPORTANCE_TIER_STABILITY_MULTIPLIER below, which operates on the FSRS stability
  * parameter directly. Do NOT apply both to the same memory — use one or the other:
@@ -256,7 +256,7 @@ const TIER_MULTIPLIER: Readonly<Record<string, number>> = {
   scratch: 3.0,
 } as const;
 
-/* --- 4a. CLASSIFICATION-BASED DECAY (TM-03) ---
+/* 4a. CLASSIFICATION-BASED DECAY
    Gated by SPECKIT_CLASSIFICATION_DECAY env var.
    Multiplies FSRS stability so that:
      - Infinity stability → R(t) = 1.0 always (no decay)
@@ -264,7 +264,7 @@ const TIER_MULTIPLIER: Readonly<Record<string, number>> = {
      - <1.0 stability multiplier → faster decay */
 
 /**
- * TM-03: Context-type stability multipliers.
+ * Context-type stability multipliers.
  * Applied to the FSRS stability parameter before computing retrievability.
  * Infinity = no decay (retrievability always 1.0).
  * 2.0 = stability doubled → slower decay.
@@ -284,7 +284,7 @@ const CONTEXT_TYPE_STABILITY_MULTIPLIER: Record<string, number> = {
 };
 
 /**
- * TM-03: Importance-tier stability multipliers.
+ * Importance-tier stability multipliers.
  * Parallel to TIER_MULTIPLIER but operates on stability (not elapsed time).
  * Used exclusively by getClassificationDecayMultiplier() when
  * SPECKIT_CLASSIFICATION_DECAY is enabled. Do NOT combine with TIER_MULTIPLIER.
@@ -304,7 +304,7 @@ const IMPORTANCE_TIER_STABILITY_MULTIPLIER: Record<string, number> = {
 };
 
 /**
- * TM-03: Compute combined stability multiplier from context_type and importance_tier.
+ * Compute combined stability multiplier from context_type and importance_tier.
  *
  * Logic:
  *   - If either dimension resolves to Infinity, the combined result is Infinity
@@ -332,7 +332,7 @@ function getClassificationDecayMultiplier(contextType: string, importanceTier: s
 }
 
 /**
- * TM-03: Apply classification-based decay to a stability value.
+ * Apply classification-based decay to a stability value.
  * Gated by SPECKIT_CLASSIFICATION_DECAY env var (must be "true" or "1").
  *
  * Returns stability unchanged when the feature flag is disabled.
@@ -366,7 +366,7 @@ function applyClassificationDecay(
   return stability * multiplier;
 }
 
-/* --- 4b. HYBRID DECAY POLICY (REQ-D4-002) ---
+/* --- 4b. HYBRID DECAY POLICY ---
    Gated by SPECKIT_HYBRID_DECAY_POLICY env var (default OFF).
    Distinguishes two classes of memory:
 
@@ -378,7 +378,7 @@ function applyClassificationDecay(
       transient, implementation, discovery, research, general)
       Normal FSRS schedule applies without modification.
 
-   This is intentionally SEPARATE from TM-03 (applyClassificationDecay) which
+   This is intentionally SEPARATE from applyClassificationDecay, which
    uses a combined context_type × importance_tier multiplier and is default-ON.
    SPECKIT_HYBRID_DECAY_POLICY is default-OFF and must be opted into explicitly.
    DO NOT combine both policies on the same memory. */
@@ -405,7 +405,7 @@ const HYBRID_FSRS_CONTEXT_TYPES: ReadonlySet<string> = new Set([
 const NO_DECAY = Infinity;
 
 /**
- * REQ-D4-002: Check whether the hybrid decay policy feature flag is enabled.
+ * Check whether the hybrid decay policy feature flag is enabled.
  * Default: TRUE (graduated). Set SPECKIT_HYBRID_DECAY_POLICY=false to disable.
  */
 function isHybridDecayPolicyEnabled(): boolean {
@@ -414,7 +414,7 @@ function isHybridDecayPolicyEnabled(): boolean {
 }
 
 /**
- * REQ-D4-002: Classify a memory's decay behaviour under the hybrid policy.
+ * Classify a memory's decay behaviour under the hybrid policy.
  *
  * Returns:
  *   - 'no_decay'       for decision / constitutional / critical context types
@@ -437,7 +437,7 @@ function getHybridDecayMultiplier(contextType: string, _importanceTier?: string)
 }
 
 /**
- * REQ-D4-002: Apply the hybrid decay policy to a stability value.
+ * Apply the hybrid decay policy to a stability value.
  *
  * When SPECKIT_HYBRID_DECAY_POLICY is OFF (default), returns stability unchanged.
  * When ON:
@@ -470,13 +470,13 @@ export {
   FSRS_CONSTANTS,
   TIER_MULTIPLIER,
 
-  // TM-03: Classification-based decay constants and functions
+  // Classification-based decay constants and functions
   CONTEXT_TYPE_STABILITY_MULTIPLIER,
   IMPORTANCE_TIER_STABILITY_MULTIPLIER,
   getClassificationDecayMultiplier,
   applyClassificationDecay,
 
-  // REQ-D4-002: Hybrid decay policy
+  // Hybrid decay policy
   NO_DECAY,
   HYBRID_FSRS_CONTEXT_TYPES,
   HYBRID_NO_DECAY_CONTEXT_TYPES,

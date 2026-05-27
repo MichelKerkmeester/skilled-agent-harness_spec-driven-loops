@@ -383,7 +383,7 @@ const retryHealthSnapshot: EmbeddingRetryStats = {
   queueDepth: 0,
 };
 
-// T3-15 circuit breaker — prevents the background retry job from
+// circuit breaker — prevents the background retry job from
 // Hammering the embedding API when the provider is entirely down. After
 // PROVIDER_FAILURE_THRESHOLD consecutive failures across any items, the
 // Circuit opens for PROVIDER_COOLDOWN_MS, causing retryEmbedding to skip
@@ -704,7 +704,7 @@ async function retryEmbedding(
         Math.floor(cachedEmbedding.byteLength / Float32Array.BYTES_PER_ELEMENT),
       );
     } else {
-      // T3-15: Skip API call if provider circuit breaker is open
+      // Skip API call if provider circuit breaker is open
       if (isProviderCircuitOpen()) {
         return { success: false, error: 'Embedding provider circuit breaker open — skipping API call' };
       }

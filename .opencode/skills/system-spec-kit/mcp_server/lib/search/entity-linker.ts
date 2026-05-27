@@ -20,10 +20,10 @@ import type Database from 'better-sqlite3';
 /** Maximum causal edges per node to prevent graph density explosion. */
 const MAX_EDGES_PER_NODE = 20;
 
-/** S5 density guard default: skip entity linking when projected density exceeds this threshold. */
+/** density guard default: skip entity linking when projected density exceeds this threshold. */
 const DEFAULT_MAX_EDGE_DENSITY = 1.0;
 
-/** Environment variable for overriding S5 density guard threshold. */
+/** Environment variable for overriding density guard threshold. */
 const ENTITY_LINKING_MAX_DENSITY_ENV = 'SPECKIT_ENTITY_LINKING_MAX_DENSITY';
 const logger = createLogger('EntityLinker');
 
@@ -728,7 +728,7 @@ function getSpecFolder(db: Database.Database, memoryId: number): string | null {
 }
 
 /**
- * Parse and validate the maximum edge density threshold for S5 linking.
+ * Parse and validate the maximum edge density threshold for linking.
  * Accepts finite non-negative values; invalid inputs fall back to default.
  */
 function sanitizeDensityThreshold(value: unknown): number {
@@ -740,7 +740,7 @@ function sanitizeDensityThreshold(value: unknown): number {
 }
 
 /**
- * Resolve S5 density threshold from env var with safe fallback.
+ * Resolve density threshold from env var with safe fallback.
  */
 function getEntityLinkingDensityThreshold(): number {
   const raw = process.env[ENTITY_LINKING_MAX_DENSITY_ENV];

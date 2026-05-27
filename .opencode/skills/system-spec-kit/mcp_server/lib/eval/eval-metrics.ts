@@ -2,7 +2,7 @@
 // MODULE: Eval Metrics
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Core metric computation
-// T006a-e: Pure computation functions for 12 evaluation metrics
+// Pure computation functions for 12 evaluation metrics
 // (7 core + 5 diagnostic). No DB access, no side effects.
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -328,7 +328,7 @@ export function computeHitRate(
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * T006a: Inversion Rate.
+ * Inversion Rate.
  *
  * Counts pairwise ranking inversions versus ground truth relevance
  * ordering. A pair (i, j) is inverted when result at rank i has
@@ -367,7 +367,7 @@ export function computeInversionRate(
 }
 
 /**
- * T006b: Constitutional Surfacing Rate.
+ * Constitutional Surfacing Rate.
  *
  * Percentage of queries where constitutional-tier memories appear
  * in the top-K results.
@@ -398,7 +398,7 @@ export function computeConstitutionalSurfacingRate(
 }
 
 /**
- * T006c: Importance-Weighted Recall.
+ * Importance-Weighted Recall.
  *
  * Recall@K but each relevant item is weighted by its tier:
  *   constitutional = 3x, critical = 2x, important = 1.5x, normal = 1x
@@ -457,7 +457,7 @@ export function computeImportanceWeightedRecall(
 }
 
 /**
- * T006d: Cold-Start Detection Rate.
+ * Cold-Start Detection Rate.
  *
  * Percentage of queries where recently created memories (< cutoffHours
  * old at query time) surface in top-K when they are relevant.
@@ -512,7 +512,7 @@ export function computeColdStartDetectionRate(
 }
 
 /**
- * T006e: Intent-Weighted NDCG.
+ * Intent-Weighted NDCG.
  *
  * NDCG@K but relevance grades are scaled by intent-type-specific
  * multipliers. Different intent types weight relevance differently:

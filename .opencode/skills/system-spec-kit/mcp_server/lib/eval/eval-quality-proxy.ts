@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Eval Quality Proxy (T006G)
+// MODULE: Eval Quality Proxy
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Quality proxy formula
 // Automated quality proxy metric that correlates with manual

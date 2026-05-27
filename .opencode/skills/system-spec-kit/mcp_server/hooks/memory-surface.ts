@@ -94,7 +94,7 @@ const MEMORY_AWARE_TOOLS: Set<string> = new Set([
   'memory_index_scan'
 ]);
 
-// Token budgets for dual-scope lifecycle hooks (TM-05)
+// Token budgets for dual-scope lifecycle hooks
 const TOOL_DISPATCH_TOKEN_BUDGET = 4000;
 const COMPACTION_TOKEN_BUDGET = 4000;
 
@@ -538,7 +538,7 @@ function resetSessionPrimed(sessionId?: string): void {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   6. TOOL DISPATCH HOOK (TM-05)
+   TOOL DISPATCH HOOK
 ──────────────────────────────────────────────────────────────── */
 
 /**
@@ -586,7 +586,7 @@ async function autoSurfaceAtToolDispatch(
 }
 
 /* ───────────────────────────────────────────────────────────────
-   7. COMPACTION HOOK (TM-05)
+   COMPACTION HOOK
 ──────────────────────────────────────────────────────────────── */
 
 /**

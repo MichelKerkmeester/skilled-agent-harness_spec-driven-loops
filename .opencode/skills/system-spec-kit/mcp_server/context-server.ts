@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Context Server
 // ───────────────────────────────────────────────────────────────
-// T303: Decomposed — tool schemas in tool-schemas.ts, dispatch
+// Decomposed — tool schemas in tool-schemas.ts, dispatch
 // Logic in tools/*.ts. This file retains server init, startup,
 // Shutdown, and main orchestration only.
 import fs from 'fs';
@@ -26,7 +26,7 @@ import {
   init as initDbState
 } from './core/index.js';
 
-// T303: Tool schemas and dispatch
+// Tool schemas and dispatch
 import { TOOL_DEFINITIONS } from './tool-schemas.js';
 import { dispatchTool } from './tools/index.js';
 import { validateToolArgs } from './schemas/tool-input-schemas.js';
@@ -65,7 +65,7 @@ import { runWithCallerContext, type MCPCallerContext } from './lib/context/calle
 import { getTokenBudget } from './lib/architecture/layer-definitions.js';
 import { createMCPErrorResponse, wrapForMCP } from './lib/response/envelope.js';
 
-// T303: Startup checks (extracted from this file)
+// Startup checks (extracted from this file)
 import { detectNodeVersionMismatch, checkSqliteVersion } from './startup-checks.js';
 import {
   getStartupEmbeddingDimension,
@@ -122,18 +122,18 @@ import * as workingMemory from './lib/cognitive/working-memory.js';
 import * as attentionDecay from './lib/cognitive/attention-decay.js';
 import * as coActivation from './lib/cognitive/co-activation.js';
 import { initScoringObservability } from './lib/telemetry/scoring-observability.js';
-// T099: Retry manager for background embedding retry job (REQ-031, CHK-179)
+// Retry manager for background embedding retry job
 import * as retryManager from './lib/providers/retry-manager.js';
 import { buildErrorResponse, getDefaultErrorCodeForTool, getRecoveryHint } from './lib/errors.js';
-// T001-T004: Session deduplication
+// Session deduplication
 import * as sessionManager from './lib/session/session-manager.js';
 import * as shadowEvaluationRuntime from './lib/feedback/shadow-evaluation-runtime.js';
-// Phase 023: Context metrics — lightweight session quality tracking
+// Context metrics — lightweight session quality tracking
 import { recordMetricEvent } from './lib/session/context-metrics.js';
 
 // P4-12/P4-19: Incremental index (passed to db-state for stale handle refresh)
 import * as incrementalIndex from './lib/storage/incremental-index.js';
-// T107: Transaction manager for pending file recovery on startup (REQ-033)
+// Transaction manager for pending file recovery on startup
 import * as transactionManager from './lib/storage/transaction-manager.js';
 // KL-4: Tool cache cleanup on shutdown
 import * as toolCache from './lib/cache/tool-cache.js';
@@ -186,7 +186,7 @@ interface AutoSurfaceResult {
   };
   sessionPrimed?: boolean;
   primedTool?: string;
-  /** T018: Structured Prime Package for non-hook CLI auto-priming */
+  /** Structured Prime Package for non-hook CLI auto-priming */
   primePackage?: {
     specFolder: string | null;
     currentTask: string | null;
@@ -224,7 +224,7 @@ const GRAPH_ENRICHMENT_NEIGHBOR_LIMIT = 6;
 const GRAPH_ENRICHMENT_SYMBOL_LIMIT = 4;
 const GRAPH_CONTEXT_EXCLUDED_TOOLS = new Set<string>([
   ...MEMORY_AWARE_TOOLS,
-  // Code-graph MCP tools route through standalone mk-code-index per ADR-002.
+  // Code-graph MCP tools route through standalone mk-code-index
 ]);
 
 const MEMORY_RUNTIME_TOOL_NAMES = new Set<string>([
@@ -330,7 +330,7 @@ function isMutationStatus(status: string | undefined): boolean {
 
 let generatedCallIdCounter = 0;
 const FALLBACK_SESSION_TRACKING_ID = `stdio-session-${process.pid}`;
-// F-017-D2-03: `getDetectedRuntime` was previously exported from this module
+// `getDetectedRuntime` was previously exported from this module
 // but had zero live consumers (only its own definition + the generated
 // `dist/context-server.d.ts` declaration). The variable still drives the
 // startup banner inside main(), so it stays as a module-private. Removing
@@ -422,7 +422,7 @@ function resolveSessionTrackingId(
   return explicitSessionId ?? transportSessionId ?? codexThreadId ?? FALLBACK_SESSION_TRACKING_ID;
 }
 
-// REQ-014: Sticky session for follow_on_tool_use correlation.
+// Sticky session for follow_on_tool_use correlation.
 // Stores the last resolved session ID so non-search tools (e.g. memory_stats)
 // that lack an explicit sessionId param can still correlate with a prior search.
 // Safe for stdio (single client). TTL in query-flow-tracker bounds staleness.
@@ -724,7 +724,7 @@ function injectSessionPrimeHints(
     `Session priming: loaded ${constitutionalCount} constitutional memories and ${codeGraphState}`
   );
 
-  // T018: Include Prime Package hints for non-hook CLIs
+  // Include Prime Package hints for non-hook CLIs
   const pkg = sessionPrimeContext.primePackage;
   if (pkg) {
     hints.push('primePackage: available in meta.sessionPriming.primePackage');
@@ -779,7 +779,7 @@ async function getMemoryStats(): Promise<DynamicMemoryStats> {
   }
 }
 
-// (CHK-076): Instructions are computed once at startup and NOT refreshed during the session.
+// Instructions are computed once at startup and NOT refreshed during the session.
 // This is by design — instruction updates require MCP protocol re-negotiation which most clients
 // Don't support. If index changes significantly, restart the server to refresh instructions.
 async function buildServerInstructions(): Promise<string> {
@@ -805,7 +805,7 @@ async function buildServerInstructions(): Promise<string> {
     staleWarning.trim(),
   ];
 
-  // Phase 024 / Item 4 + M8 / T-CGQ-12: Session recovery digest from
+  // Session recovery digest from
   // session-snapshot. 'empty' recommends mcp__mk_code_index__code_graph_scan (graph absent);
   // 'error' recommends memory_health because structural context is
   // unavailable, not merely outdated.
@@ -827,7 +827,7 @@ async function buildServerInstructions(): Promise<string> {
     }
   } catch { /* session-snapshot not available — skip digest */ }
 
-  // Phase 027 + M8 / T-CGQ-12 (R27-002): Structural bootstrap guidance for
+  // Structural bootstrap guidance for
   // non-hook runtimes. Readiness vocabulary is aligned across bootstrap,
   // resume, health, and mcp__mk_code_index__code_graph_query (ready | stale | absent |
   // unavailable). mcp__mk_code_index__code_graph_query is only recommended when structural
@@ -842,7 +842,7 @@ async function buildServerInstructions(): Promise<string> {
   lines.push('- If "unavailable" (DB unreachable / readiness probe failed): call memory_health for repair guidance instead of mcp__mk_code_index__code_graph_query');
   lines.push('- Recovery priority: session_bootstrap → session_resume → mcp__mk_code_index__code_graph_scan');
 
-  // Phase 024 + M8 / T-CGQ-12: Tool routing decision tree.
+  // Tool routing decision tree.
   // mcp__mk_code_index__code_graph_query is only surfaced when graph freshness is 'fresh' or
   // 'stale' (queryable). 'empty' → recommend mcp__mk_code_index__code_graph_scan; 'error' →
   // recommend memory_health because the database probe failed.
@@ -909,7 +909,7 @@ const serverWithInstructions = server as unknown as { setInstructions?: (instruc
 const KNOWN_TOOL_NAMES = new Set(TOOL_DEFINITIONS.map((tool) => tool.name));
 
 /* ───────────────────────────────────────────────────────────────
-   4. TOOL DEFINITIONS (T303: from tool-schemas.ts)
+   TOOL DEFINITIONS
 ──────────────────────────────────────────────────────────────── */
 
 function registerContextServerHandlers(targetServer: Server): void {
@@ -918,7 +918,7 @@ function registerContextServerHandlers(targetServer: Server): void {
   }));
 
 /* ───────────────────────────────────────────────────────────────
-   5. TOOL DISPATCH (T303: routed through tools/*.ts)
+   TOOL DISPATCH
 ──────────────────────────────────────────────────────────────── */
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -940,18 +940,18 @@ function registerContextServerHandlers(targetServer: Server): void {
       ? validateToolArgs(name, args) as Record<string, unknown>
       : args;
 
-    // T018: Track last tool call timestamp for all tools except session_health.
+    // Track last tool call timestamp for all tools except session_health.
     if (name !== 'session_health') {
       recordToolCall(sessionTrackingId);
 
-      // Phase 023: Record metric event for context quality tracking
+      // Record metric event for context quality tracking
       recordMetricEvent({ kind: 'tool_call', toolName: name });
     }
     // Classify specific tool calls for finer-grained metrics
     if (name === 'memory_context' && validatedArgs.mode === 'resume') {
       recordMetricEvent({ kind: 'memory_recovery' });
     }
-    // Code-graph MCP metrics now originate from standalone mk-code-index per ADR-002.
+    // Code-graph MCP metrics now originate from standalone mk-code-index
     if (typeof validatedArgs.specFolder === 'string' && validatedArgs.specFolder) {
       recordMetricEvent({ kind: 'spec_folder_change', specFolder: validatedArgs.specFolder as string });
     }
@@ -983,7 +983,7 @@ function registerContextServerHandlers(targetServer: Server): void {
       }
     }
 
-    // SK-004/TM-05: Auto-surface memories before dispatch (after validation)
+    // SK-004: Auto-surface memories before dispatch (after validation)
     let autoSurfacedContext: AutoSurfaceResult | null = null;
     const isCompactionLifecycleCall =
       name === 'memory_context' && validatedArgs.mode === 'resume';
@@ -1016,7 +1016,7 @@ function registerContextServerHandlers(targetServer: Server): void {
       console.warn(`[context-server] Auto-surface precheck exceeded p95 target: ${autoSurfaceLatencyMs}ms`);
     }
 
-    // T303: Dispatch to tool modules
+    // Dispatch to tool modules
     const result = await runWithCallerContext(
       callerContext,
       async () => dispatchTool(name, validatedArgs, callerContext),
@@ -1032,7 +1032,7 @@ function registerContextServerHandlers(targetServer: Server): void {
 
     runAfterToolCallbacks(name, callId, structuredClone(result));
 
-    // REQ-014: Log follow_on_tool_use when a non-search tool is called after a recent search
+    // Log follow_on_tool_use when a non-search tool is called after a recent search
     // Shadow-only: no ranking side effects. Fail-safe, never throws.
     if (isMemoryRuntimeInitialized() && name !== 'memory_search' && name !== 'memory_context' && name !== 'session_health') {
       try {
@@ -1046,7 +1046,7 @@ function registerContextServerHandlers(targetServer: Server): void {
       } catch { /* follow_on_tool_use logging must never break dispatch */ }
     }
 
-    // Phase 024: Code-search redirect hint for memory tools
+    // Code-search redirect hint for memory tools
     if ((name === 'memory_search' || name === 'memory_context') && result && !result.isError && result.content?.[0]?.text) {
       const queryStr = typeof args.query === 'string' ? args.query : typeof args.input === 'string' ? args.input : '';
       const codeSearchPattern = /\b(find code|implementation of|function that|where is|how does .+ work|class that|method for)\b/i;
@@ -1121,8 +1121,8 @@ function registerContextServerHandlers(targetServer: Server): void {
       appendAutoSurfaceHints(result, autoSurfacedContext);
     }
 
-    // Token Budget Hybrid: Inject tokenBudget into response metadata (CHK-072)
-    // T205: Enforce per-layer token budgets with actual truncation
+    // Token Budget Hybrid: Inject tokenBudget into response metadata
+    // Enforce per-layer token budgets with actual truncation
     if (result && result.content && result.content[0]?.text) {
       try {
         const envelope = JSON.parse(result.content[0].text) as Record<string, unknown>;
@@ -1152,7 +1152,7 @@ function registerContextServerHandlers(targetServer: Server): void {
           if (typeof meta.tokenCount === 'number' && meta.tokenCount > budget) {
             console.error(`[token-budget] ${name} response (${meta.tokenCount} tokens) exceeds budget (${budget})`);
 
-            // T205: Attempt to truncate results array to fit within budget
+            // Attempt to truncate results array to fit within budget
             const innerResults = data?.results;
             if (Array.isArray(innerResults) && innerResults.length > 1) {
               const originalCount = innerResults.length;
@@ -1190,7 +1190,7 @@ function registerContextServerHandlers(targetServer: Server): void {
 
     return result;
   } catch (error: unknown) {
-    // REQ-004: Include recovery hints in all error responses
+    // Include recovery hints in all error responses
     const err = error instanceof Error ? error : new Error(String(error));
     try {
       const errorResponse = buildErrorResponse(name, err, args);
@@ -1250,8 +1250,8 @@ function getPendingRecoveryLocations(basePath: string): string[] {
 }
 
 /**
- * T107: Recover pending memory files on MCP startup.
- * CHK-188: Pending files processed by recovery job on next startup.
+ * Recover pending memory files on MCP startup.
+ * Pending files processed by recovery job on next startup.
  *
  * Scans for files with _pending suffix (created when index failed after file write)
  * and attempts to index them.
@@ -1311,7 +1311,7 @@ async function startupScan(basePath: string): Promise<void> {
 
   startupScanInProgress = true;
   try {
-    // T107: Recover any pending files from previous failed index operations
+    // Recover any pending files from previous failed index operations
     await recoverPendingFiles(basePath);
 
     console.error('[context-server] Starting background scan for spec documents and constitutional memories...');
@@ -1385,7 +1385,7 @@ async function startupScan(basePath: string): Promise<void> {
       }
     }
 
-    // Log atomicity metrics for monitoring (CHK-190)
+    // Log atomicity metrics for monitoring
     const metrics = transactionManager.getMetrics();
     if (metrics.totalRecoveries > 0 || metrics.totalErrors > 0) {
       console.error(`[context-server] Atomicity metrics: ${metrics.totalAtomicWrites} successful, ${metrics.totalErrors} failed, ${metrics.totalRecoveries} recovered`);
@@ -1586,7 +1586,7 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  // T087-T090: Pre-Flight API Key Validation (REQ-029)
+  // Pre-Flight API Key Validation
   // Validates API key at startup to fail fast with actionable error messages
   // Skip validation if SPECKIT_SKIP_API_VALIDATION=true (for testing/CI)
   let startupEmbeddingConfig: Awaited<ReturnType<typeof resolveStartupEmbeddingConfig>> | null = null;
@@ -1717,7 +1717,7 @@ async function main(): Promise<void> {
     // Check SQLite version meets minimum requirement (3.35.0+)
     checkSqliteVersion(database);
 
-    // T076: Verify WAL mode is active for operational concurrency guarantees.
+    // Verify WAL mode is active for operational concurrency guarantees.
     const walRow = database.prepare('PRAGMA journal_mode').get() as { journal_mode?: string } | undefined;
     const journalMode = String(walRow?.journal_mode ?? '').toLowerCase();
     if (journalMode !== 'wal') {
@@ -1823,7 +1823,7 @@ async function main(): Promise<void> {
       console.warn('[context-server] Embedder re-index resume failed:', message);
     }
 
-    // T099: Background retry job for pending embeddings (REQ-031, CHK-179)
+    // Background retry job for pending embeddings
     // Processes memories with failed embeddings in the background
     try {
       const retryJobResult = retryManager.startBackgroundJob({
@@ -1840,7 +1840,7 @@ async function main(): Promise<void> {
       console.warn('[context-server] Background retry job failed to start:', message);
     }
 
-    // REQ-D4-006: Shadow feedback holdout evaluation background scheduler.
+    // Shadow feedback holdout evaluation background scheduler.
     // Replays recent production queries through a shadow-only path once the
     // weekly holdout cycle is due. Fail-safe and gated by SPECKIT_SHADOW_FEEDBACK.
     try {
@@ -1855,7 +1855,7 @@ async function main(): Promise<void> {
       console.warn('[context-server] Shadow feedback evaluation scheduler failed to start:', message);
     }
 
-    // REQ-D4-004: Batch feedback learning — runs one cycle at startup (shadow-only, no live ranking mutations).
+    // Batch feedback learning — runs one cycle at startup (shadow-only, no live ranking mutations).
     // Feature-flag gated by SPECKIT_BATCH_LEARNED_FEEDBACK (default ON, graduated).
     try {
       const batchResult = runBatchLearning(database);
@@ -1869,13 +1869,13 @@ async function main(): Promise<void> {
       console.warn('[context-server] Batch learning failed (non-fatal):', message);
     }
 
-    // T001-T004: Session deduplication module
+    // Session deduplication module
     try {
       const sessionResult = sessionManager.init(database);
       if (sessionResult.success) {
         console.error(`[context-server] Session manager initialized (enabled: ${sessionManager.isEnabled()})`);
 
-        // T073-T075: Crash Recovery Pattern (REQ-016)
+        // Crash Recovery Pattern
         // Reset any sessions that were active when server last crashed
         const recoveryResult = sessionManager.resetInterruptedSessions();
         if (recoveryResult.interruptedCount > 0) {

@@ -57,7 +57,7 @@ export function stripAnchors(content: string): string {
  * Strip all HTML comments.
  *
  * This catches structural markers not covered by stripAnchors(), e.g.:
- *   <!-- S1 gate: open -->
+ * <!-- gate: open -->
  *   <!-- TODO: remove -->
  *   <!-- prettier-ignore -->
  */
@@ -138,7 +138,7 @@ export function normalizeMarkdownTables(content: string): string {
  * Normalize markdown list notation to clean prose tokens.
  *
  * Handles:
- *   - GitHub-style task checkboxes:  `- [ ] T001 [P] Implement…`  →  `[ ] T001 [P] Implement…`
+ * GitHub-style task checkboxes: `- [ ] [P] Implement…` → `[ ] [P] Implement…`
  *   - Checked checkboxes:            `- [x] Done item`             →  `[x] Done item`
  *   - Plain list bullets:            `- item` / `* item`           →  `item`
  *   - Ordered list numbers:          `1. item`                      →  `item`

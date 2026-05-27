@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Batch Feedback Learning (REQ-D4-004)
+// MODULE: Batch Feedback Learning
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Weekly batch feedback learning
 // Aggregates implicit feedback events from the ledger (see

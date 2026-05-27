@@ -74,7 +74,7 @@ const NEGATION_KEYWORDS = [
 ];
 
 /* ───────────────────────────────────────────────────────────────
-   3. T002a: CONTRADICTION SCAN
+   CONTRADICTION SCAN
 ----------------------------------------------------------------*/
 
 /**
@@ -277,7 +277,7 @@ function computeWordOverlap(textA: string, textB: string): number {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   4. T002e: CONTRADICTION CLUSTER SURFACING
+   CONTRADICTION CLUSTER SURFACING
 ----------------------------------------------------------------*/
 
 /**
@@ -324,7 +324,7 @@ export function buildContradictionClusters(
 }
 
 /* ───────────────────────────────────────────────────────────────
-   5. T002b: HEBBIAN EDGE STRENGTHENING
+   HEBBIAN EDGE STRENGTHENING
 ----------------------------------------------------------------*/
 
 /**
@@ -389,7 +389,7 @@ export function runHebbianCycle(database: Database.Database): { strengthened: nu
 }
 
 /* ───────────────────────────────────────────────────────────────
-   6. T002c: STALENESS DETECTION
+   STALENESS DETECTION
 ----------------------------------------------------------------*/
 
 /**
@@ -401,7 +401,7 @@ export function detectStaleEdges(_database: Database.Database): CausalEdge[] {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   7. T002d: EDGE BOUNDS ENFORCEMENT
+   EDGE BOUNDS ENFORCEMENT
 ----------------------------------------------------------------*/
 
 /**
@@ -436,17 +436,17 @@ export function checkEdgeBounds(
  * Designed to run as a weekly batch job.
  */
 export function runConsolidationCycle(database: Database.Database): ConsolidationResult {
-  // T002a + T002e: Contradiction scan + cluster surfacing
+  // Contradiction scan + cluster surfacing
   const contradictionPairs = scanContradictions(database);
   const contradictions = buildContradictionClusters(database, contradictionPairs);
 
-  // T002b: Hebbian strengthening + decay
+  // Hebbian strengthening + decay
   const hebbian = runHebbianCycle(database);
 
-  // T002c: Staleness detection
+  // Staleness detection
   const staleEdges = detectStaleEdges(database);
 
-  // T002d: Edge bounds — check counts (enforcement happens at insertEdge)
+  // Edge bounds — check counts (enforcement happens at insertEdge)
   let rejectedCount = 0;
   try {
     const nodes = (database.prepare(`

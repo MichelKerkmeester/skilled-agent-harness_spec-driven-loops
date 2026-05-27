@@ -15,7 +15,7 @@ import type Database from 'better-sqlite3';
  * Default co-activation boost strength when SPECKIT_COACTIVATION_STRENGTH is not set.
  *
  * Intentional deviation from the original spec (which listed 0.2): empirical tuning raised
- * this to 0.25 for better discovery recall. The R17 fan-effect divisor (sqrt scaling)
+ * this to 0.25 for better discovery recall. The fan-effect divisor (sqrt scaling)
  * keeps hub-node inflation in check, so a higher raw factor remains safe. Tests are
  * written against 0.25 and serve as the authoritative contract going forward.
  */

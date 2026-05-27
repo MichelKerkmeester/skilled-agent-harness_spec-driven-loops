@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Stage2 Fusion
 // ───────────────────────────────────────────────────────────────
-// the rollout (R6): 4-Stage Retrieval Pipeline
+// the rollout: 4-Stage Retrieval Pipeline
 //
 // I/O CONTRACT:
 // Input:  Stage2Input { candidates: PipelineRow[], config, stage1Metadata }
@@ -250,7 +250,7 @@ async function loadPersistedLearnedStage2Model(): Promise<LearnedModel | null> {
  * Apply validation-signal scoring at the Stage 2 single scoring point.
  *
  * Uses quality metadata extracted from spec artifacts to apply a bounded
- * multiplier over the current composite score. This keeps S3 integrated
+ * multiplier over the current composite score. This keeps integrated
  * in ranking while preserving score stability.
  */
 function applyValidationSignalScoring(results: PipelineRow[]): PipelineRow[] {
@@ -1113,7 +1113,7 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
             const boost = spreadMap.get(row.id);
             if (boost !== undefined) {
               const baseScore = resolveBaseScore(row);
-              // R17 fan-effect divisor: dampen hub nodes proportionally to their
+              // fan-effect divisor: dampen hub nodes proportionally to their
               // fan-out degree so no single hub dominates the top-N results.
               // Uses the same sqrt scaling as co-activation.ts boostScore().
               const relatedCount = typeof row.id === 'number' ? (relatedCounts.get(row.id) ?? 0) : 0;

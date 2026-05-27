@@ -179,7 +179,7 @@ interface TrustedSessionResolution {
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * Session configuration with defaults from spec.md (R7 mitigation)
+ * Session configuration with defaults from spec.md (mitigation)
  * - Session TTL: 30 minutes
  * - Cap at 100 entries per session
  */

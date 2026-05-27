@@ -20,14 +20,14 @@ import { formatAgeString } from '../lib/utils/format-helpers.js';
 import * as memoryParser from '../lib/parsing/memory-parser.js';
 import { requireDb } from '../utils/index.js';
 
-// REQ-019: Standardized Response Structure
+// Standardized Response Structure
 import {
   createMCPSuccessResponse,
   createMCPEmptyResponse,
   type MCPResponse,
 } from '../lib/response/envelope.js';
 
-// REQ-D5-001: Empty/Weak Result Recovery UX
+// Empty/Weak Result Recovery UX
 import {
   buildRecoveryPayload,
   shouldTriggerRecovery,
@@ -35,7 +35,7 @@ import {
   type RecoveryPayload,
 } from '../lib/search/recovery-payload.js';
 
-// REQ-D5-004: Per-Result Calibrated Confidence
+// Per-Result Calibrated Confidence
 import {
   computeResultConfidence,
   assessRequestQuality,
@@ -44,7 +44,7 @@ import {
   type RequestQualityAssessment,
 } from '../lib/search/confidence-scoring.js';
 
-// REQ-D5-002: Two-Tier Explainability
+// Two-Tier Explainability
 import {
   attachExplainabilityToResults,
   isResultExplainEnabled,
@@ -149,7 +149,7 @@ export interface MemoryResultTrace {
   adaptiveMode?: string | null;
   sessionTransition?: SessionTransitionTrace;
   /**
-   * R-007-P2-11: Observability flag for trust-badge derivation.
+   * Observability flag for trust-badge derivation.
    * Populated when `includeTrace` is set so operators can see
    * whether the derivation query was attempted, how many badges
    * actually came from the DB-side path (vs. fallback/explicit),
@@ -190,7 +190,7 @@ export interface MemoryResultEnvelope extends FormattedSearchResult {
   source?: MemoryResultSource;
   trace?: MemoryResultTrace;
   trustBadges?: MemoryTrustBadges;
-  /** Phase C T025: Graph evidence provenance — edges, communities, and boost factors. */
+  /** Phase C: Graph evidence provenance — edges, communities, and boost factors. */
   graphEvidence?: {
     edges: Array<{ sourceId: number; targetId: number; relation: string; strength: number }>;
     communities: Array<{ communityId: number; summary?: string }>;
@@ -255,7 +255,7 @@ export function safeJsonParse<T>(str: string | null | undefined, fallback: T): T
   }
 }
 
-// F-005-A5-04: Typed parser for the `triggerPhrases` column on raw search
+// Typed parser for the `triggerPhrases` column on raw search
 // results. Replaces the previous `safeJsonParse<string[]>` cast which only
 // validated that the input was JSON and silently accepted non-string
 // elements (numbers, objects, mixed arrays). This validator returns [] on
@@ -325,7 +325,7 @@ function deriveCitationPolicy(requestQuality: RequestQualityAssessment | null): 
 }
 
 /**
- * R-007-P2-10: Allowlisted grammar for explicit `extractionAge` /
+ * Allowlisted grammar for explicit `extractionAge`
  * `lastAccessAge` strings. Mirrors the output of `formatAgeString`:
  *
  *   never | today | yesterday |
@@ -354,7 +354,7 @@ function sanitizeAgeLabel(value: unknown, fallbackIso: unknown): string {
 }
 
 /**
- * R-007-11: Normalize a caller-supplied `trustBadges` payload into
+ * Normalize a caller-supplied `trustBadges` payload into
  * a strict `MemoryTrustBadges` shape. Each field is sanitized
  * independently — `null` / wrong type means "fall through to
  * derivation" at merge time. Returns `null` only when the input is
@@ -405,7 +405,7 @@ export function toTrustBadges(snapshot: TrustBadgeSnapshot | null): MemoryTrustB
 }
 
 /**
- * R-007-11: Merge an explicit caller-supplied partial onto the
+ * Merge an explicit caller-supplied partial onto the
  * derived snapshot per-field. Non-null explicit fields override
  * matching derived fields; null/missing fields fall through to
  * derived. When `derived` is undefined and the explicit partial is
@@ -456,11 +456,11 @@ interface TrustBadgeFetchResult {
 /**
  * Resolve causal-edge / weight-history badge snapshots for the given results.
  *
- * R-007-P2-11: returns observability fields alongside the snapshot map so
+ * returns observability fields alongside the snapshot map so
  * operators can distinguish "no IDs to query" / "DB unavailable" / "query
  * error" / "0 rows" via `MemoryResultTrace.trustBadgeDerivation`.
  *
- * R-007-13 (T-E): `dbGetter` is a DI seam for testability. Production callers
+ * (T-E): `dbGetter` is a DI seam for testability. Production callers
  * omit it and use `requireDb`; tests can pass a closure returning a `:memory:`
  * better-sqlite3 instance.
  */
@@ -710,7 +710,7 @@ function extractTrace(rawResult: RawSearchResult, extraData?: Record<string, unk
     addChannel(channelsUsed, channel);
   }
 
-  // CHK-038: Fallback — read queryComplexity from traceMetadata if not found in stages
+  // Fallback — read queryComplexity from traceMetadata if not found in stages
   if (!queryComplexity) {
     const tm = rawResult.traceMetadata as Record<string, unknown> | undefined;
     if (typeof tm?.queryComplexity === 'string' && (tm.queryComplexity as string).length > 0) {
@@ -781,7 +781,7 @@ export async function formatSearchResults(
   }
 
   if (!results || results.length === 0) {
-    // REQ-D5-001: Attach recovery payload when flag is enabled
+    // Attach recovery payload when flag is enabled
     let recoveryPayload: RecoveryPayload | null = null;
     const requestQualityData = isResultConfidenceEnabled()
       ? assessRequestQuality([], [])
@@ -796,7 +796,7 @@ export async function formatSearchResults(
     const responsePolicy = deriveResponsePolicy(requestQualityData, recoveryPayload);
     const citationPolicy = deriveCitationPolicy(requestQualityData);
 
-    // REQ-019: Use standardized empty response envelope
+    // Use standardized empty response envelope
     return createMCPEmptyResponse({
       tool: 'memory_search',
       summary: 'No matching memories found',
@@ -806,7 +806,7 @@ export async function formatSearchResults(
         ...(requestQualityData ?? {}),
         // Preserve caller metadata, but keep trace-only fields opt-in.
         ...safeExtraData,
-        // REQ-D5-001: Attach recovery payload (additive, only when flag enabled)
+        // Attach recovery payload (additive, only when flag enabled)
         ...(recoveryPayload !== null ? { recovery: recoveryPayload } : {}),
         citationPolicy,
         ...(responsePolicy !== null ? { responsePolicy } : {}),
@@ -834,7 +834,7 @@ export async function formatSearchResults(
       similarity: rawResult.similarity ?? rawResult.averageSimilarity,
       isConstitutional: rawResult.isConstitutional || false,
       importanceTier: rawResult.importance_tier,
-      // F-005-A5-04: Use typed validator instead of safeJsonParse cast.
+      // Use typed validator instead of safeJsonParse cast.
       triggerPhrases: parseTriggerPhrases(rawResult.triggerPhrases),
       createdAt: rawResult.created_at,
       isChunk: rawResult.isChunk === true,
@@ -849,9 +849,9 @@ export async function formatSearchResults(
         : undefined,
     };
 
-    // R-007-11 + P2-10: explicit `trustBadges` payloads are
+    // Explicit `trustBadges` payloads are
     // sanitized per-field (allowlisted age strings, clamped
-    // confidence, type-checked booleans). R-007-11 + merge: the
+    // confidence, type-checked booleans). The
     // sanitized partial is merged onto the derived snapshot
     // per-field so callers can override specific fields without
     // wholesale-replacing the badge.
@@ -882,7 +882,7 @@ export async function formatSearchResults(
         memoryState: typeof rawResult.memoryState === 'string' ? rawResult.memoryState : null,
       };
       formattedResult.trace = extractTrace(rawResult, extraData);
-      // R-007-P2-11: stamp the badge-derivation observability
+      // stamp the badge-derivation observability
       // fields onto the trace so operators can distinguish
       // explicit-vs-derived without inspecting logs.
       formattedResult.trace.trustBadgeDerivation = {
@@ -892,7 +892,7 @@ export async function formatSearchResults(
       };
     }
 
-    // Phase C T029: Include graphEvidence provenance when present on the pipeline row.
+    // Phase C: Include graphEvidence provenance when present on the pipeline row.
     // The field is populated by Stage 2 when SPECKIT_RESULT_PROVENANCE is enabled.
     if (rawResult.graphEvidence && typeof rawResult.graphEvidence === 'object') {
       const evidence = rawResult.graphEvidence as Record<string, unknown>;
@@ -1022,7 +1022,7 @@ export async function formatSearchResults(
     return formattedResult;
   }));
 
-  // REQ-D5-004: Compute per-result confidence when flag is enabled (additive, no side-effects)
+  // Compute per-result confidence when flag is enabled (additive, no side-effects)
   const confidenceEnabled = isResultConfidenceEnabled();
   let confidenceData: ReturnType<typeof computeResultConfidence> | null = null;
   let requestQualityData: ReturnType<typeof assessRequestQuality> | null = null;
@@ -1033,7 +1033,7 @@ export async function formatSearchResults(
     requestQualityData = assessRequestQuality(scoredResults, confidenceData);
   }
 
-  // REQ-D5-001: Compute recovery payload for weak/partial results when flag is enabled
+  // Compute recovery payload for weak/partial results when flag is enabled
   let recoveryPayload: RecoveryPayload | null = null;
   if (isEmptyResultRecoveryEnabled() && formatted.length > 0) {
     // Compute average confidence for recovery decision
@@ -1056,12 +1056,12 @@ export async function formatSearchResults(
     }
   }
 
-  // REQ-019: Build summary based on result characteristics
+  // Build summary based on result characteristics
   const summary = constitutionalCount > 0
     ? `Found ${formatted.length} memories (${constitutionalCount} constitutional)`
     : `Found ${formatted.length} memories`;
 
-  // REQ-019: Build hints based on context
+  // Build hints based on context
   const hints: string[] = [];
   if (includeContent && anchors && anchors.length > 0) {
     hints.push('Anchor filtering applied for token efficiency');
@@ -1083,7 +1083,7 @@ export async function formatSearchResults(
     }
   );
 
-  // REQ-D5-002: Attach explainability (slim tier) to every result when flag is ON.
+  // Attach explainability (slim tier) to every result when flag is ON.
   // Pass results as PipelineRow-compatible — they share the same Record<string,unknown> base.
   // Debug tier is opt-in via SPECKIT_RESULT_EXPLAIN_DEBUG env var.
   const explainOptions: ExplainabilityOptions = {
@@ -1099,15 +1099,15 @@ export async function formatSearchResults(
   const responsePolicy = deriveResponsePolicy(requestQualityData, recoveryPayload);
   const citationPolicy = deriveCitationPolicy(requestQualityData);
 
-  // REQ-019: Use standardized success response envelope
+  // Use standardized success response envelope
   const responseData: Record<string, unknown> = {
     searchType: searchType,
     count: formatted.length,
     constitutionalCount: constitutionalCount,
     results: resultsWithExplain,
-    // REQ-D5-004: Request-level quality assessment (additive)
+    // Request-level quality assessment (additive)
     ...(requestQualityData !== null ? requestQualityData : {}),
-    // REQ-D5-001: Recovery payload for weak/partial results (additive)
+    // Recovery payload for weak/partial results (additive)
     ...(recoveryPayload !== null ? { recovery: recoveryPayload } : {}),
     citationPolicy,
     ...(responsePolicy !== null ? { responsePolicy } : {}),

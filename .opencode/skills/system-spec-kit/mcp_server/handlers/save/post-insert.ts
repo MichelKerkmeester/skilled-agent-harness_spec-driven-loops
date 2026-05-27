@@ -516,8 +516,8 @@ function resolveGraphLifecycleSkipReason(skipReason: unknown): EnrichmentSkipRea
 /**
  * Run post-insert enrichment pipeline for a newly saved memory.
  *
- * Sequentially executes: causal links processing, entity extraction (R10),
- * summary generation (R8), and cross-document entity linking (S5).
+ * Sequentially executes: causal links processing, entity extraction,
+ * summary generation, and cross-document entity linking.
  * Each step is independently guarded by its feature flag and wrapped
  * in try-catch so a single failure does not block the others.
  *
