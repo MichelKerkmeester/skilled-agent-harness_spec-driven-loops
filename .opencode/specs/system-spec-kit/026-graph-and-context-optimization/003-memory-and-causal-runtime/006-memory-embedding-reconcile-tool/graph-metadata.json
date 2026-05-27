@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory_embedding_reconcile",
+      "embedding status reconcile",
+      "embedding backlog drain",
+      "vector present status stale",
+      "embedding maintenance tool",
+      "memory_embedding_reconcile plan",
+      "embedding reconcile implementation",
+      "embedding status convergence",
+      "reconcile handler registration",
+      "memory_embedding_reconcile tasks",
+      "embedding reconcile task breakdown",
+      "reconcile vitest tasks"
+    ],
+    "key_topics": [
+      "embedding",
+      "status",
+      "reconcile",
+      "backlog",
+      "drain",
+      "vector",
+      "present",
+      "stale",
+      "maintenance",
+      "tool",
+      "plan",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "lib/embedders/embedding-reconcile.ts",
+      "mcp_server/lib/embedders/embedding-reconcile.ts",
+      "mcp_server/handlers/memory-embedding-reconcile.ts",
+      "mcp_server/tools/memory-tools.ts",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "mcp_server/tool-schemas.ts",
+      "mcp_server/handlers/index.ts",
+      "mcp_server/tools/types.ts",
+      "mcp_server/context-server.ts",
+      "mcp_server/tests/embedding-reconcile.vitest.ts",
+      "tools/memory-tools.ts",
+      "schemas/tool-input-schemas.ts",
+      "handlers/index.ts",
+      "tools/types.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "handlers/memory-embedding-reconcile.ts",
+      "implementation-summary.md",
+      "handlers/memory-retention-sweep.ts"
+    ],
+    "entities": [
+      {
+        "name": "embedding-reconcile.ts",
+        "kind": "code",
+        "path": "lib/embedders/embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-embedding-reconcile.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-tools.ts",
+        "kind": "code",
+        "path": "mcp_server/tools/memory-tools.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "mcp_server/tools/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-reconcile.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedding-reconcile.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": "handlers/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Run Record",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The one-time backlog repair — vector-present rows whose `embedding_status` is stale at `failed`/`pending`/`retry`, which must be flipped to `success` — was executed via hand-written guarded SQL (\"emergency fallback\" in 004 `research/research.md` §7-§8). That path is manual, easy to misapply against the wrong shard, and unsafe to re-run by an operator without re-deriving every predicate by hand. 004 `research.md` §7 and §13 call for a first-class, guarded MCP tool so the repair is repeatable instead of a copy-pasted transaction.",
+    "created_at": "2026-05-27T08:49:42.820Z",
+    "last_save_at": "2026-05-27T08:49:42.820Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

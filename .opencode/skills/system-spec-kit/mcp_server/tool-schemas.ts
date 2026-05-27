@@ -330,6 +330,21 @@ const memoryRetentionSweep: ToolDefinition = {
   inputSchema: { type: 'object', additionalProperties: false, properties: { dryRun: { type: 'boolean', default: false, description: 'When true, return expired candidates without mutating memory_index or related indexes.' } } },
 };
 
+const memoryEmbeddingReconcile: ToolDefinition = {
+  name: 'memory_embedding_reconcile',
+  description: '[L4:Mutation] Reconcile memory_index.embedding_status against active vector coverage: flip vector-present failed/pending/retry rows to success, and optionally reset genuinely missing-vector retention failures to retry. Dry-run by default; resolves and verifies the active shard from runtime metadata and fails closed on mismatch. Token Budget: 500.',
+  inputSchema: { type: 'object', additionalProperties: false, properties: {
+    mode: { type: 'string', enum: ['dry-run', 'apply'], default: 'dry-run', description: 'dry-run (default) previews buckets; apply mutates in one transaction.' },
+    activeOnly: { type: 'boolean', default: true, description: 'Resolve and verify the active shard from runtime metadata (never a caller path).' },
+    resetMissing: { type: 'boolean', default: true, description: 'Reset genuinely missing-vector retention failures to retry-eligible.' },
+    missingFailureScope: { type: 'string', enum: ['retry-retention'], default: 'retry-retention', description: 'Which missing-vector failures may be reset.' },
+    maskedFailedPolicy: { type: 'string', enum: ['reconcile'], default: 'reconcile', description: 'Masked duplicate failed rows are reconciled to success, never pruned here.' },
+    providerFailurePolicy: { type: 'string', enum: ['report-only'], default: 'report-only', description: 'Non-retention provider failures are reported, not mutated.' },
+    requireActiveShard: { type: 'boolean', default: true, description: 'Fail closed when the active shard cannot be verified.' },
+    repairSuccessCoverage: { type: 'boolean', default: false, description: '[Phase 007] Also reset success rows missing an active vector surface to retry for re-embedding.' }
+  } },
+};
+
 // L5: Lifecycle - Checkpoints and versioning (Token Budget: 600)
 const checkpointCreate: ToolDefinition = {
   name: 'checkpoint_create',
@@ -673,6 +688,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryValidate,
   memoryBulkDelete,
   memoryRetentionSweep,
+  memoryEmbeddingReconcile,
   // L5: Lifecycle
   checkpointCreate,
   checkpointList,

@@ -240,6 +240,7 @@ const MEMORY_RUNTIME_TOOL_NAMES = new Set<string>([
   'memory_validate',
   'memory_bulk_delete',
   'memory_retention_sweep',
+  'memory_embedding_reconcile',
   'memory_index_scan',
   'memory_ingest_start',
   'memory_ingest_status',

@@ -149,6 +149,18 @@ export interface RetentionSweepArgs {
   dryRun?: boolean;
 }
 
+/** Arguments for memory_embedding_reconcile maintenance requests. */
+export interface ReconcileArgs {
+  mode?: 'dry-run' | 'apply';
+  activeOnly?: boolean;
+  resetMissing?: boolean;
+  missingFailureScope?: 'retry-retention';
+  maskedFailedPolicy?: 'reconcile';
+  providerFailurePolicy?: 'report-only';
+  requireActiveShard?: boolean;
+  repairSuccessCoverage?: boolean;
+}
+
 /** Arguments for selecting the active embedder target. */
 export interface EmbedderSetArgs {
   name: string;

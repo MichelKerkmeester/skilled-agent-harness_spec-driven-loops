@@ -1,0 +1,94 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Memory Embedding Reconcile Handler
+// ────────────────────────────────────────────────────────────────
+import { checkDatabaseUpdated } from '../core/index.js';
+import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
+import * as vectorIndex from '../lib/search/vector-index.js';
+import { runMemoryEmbeddingReconcile, ActiveShardGuardError } from '../lib/embedders/embedding-reconcile.js';
+import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope.js';
+import { toErrorMessage } from '../utils/index.js';
+
+import type { MCPResponse } from './types.js';
+import type { EmbeddingReconcileArgs } from '../lib/embedders/embedding-reconcile.js';
+
+/** Handle the memory_embedding_reconcile MCP tool request. */
+async function handleMemoryEmbeddingReconcile(args: EmbeddingReconcileArgs): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_embedding_reconcile');
+  await checkDatabaseUpdated();
+
+  const mode = args?.mode === 'apply' ? 'apply' : 'dry-run';
+
+  const database = vectorIndex.getDb();
+  if (!database) {
+    return createMCPErrorResponse({
+      tool: 'memory_embedding_reconcile',
+      error: 'Embedding reconcile aborted: database unavailable',
+      code: 'E_DB_UNAVAILABLE',
+      details: { mode },
+      recovery: {
+        hint: 'Restart the MCP server or run memory_index_scan() to reinitialize the database.',
+        actions: ['Restart the MCP server', 'Call memory_index_scan()'],
+        severity: 'error',
+      },
+    });
+  }
+
+  // Best-effort: guarantee the active shard is attached as active_vec. The
+  // reconcile verifies it and fails closed if it is still unavailable.
+  try {
+    vectorIndex.attachActiveVectorShardForActiveProfile(database);
+  } catch {
+    // Non-fatal: verifyActiveShard reports activeShardVerified=false downstream.
+  }
+
+  try {
+    const result = runMemoryEmbeddingReconcile(database, args ?? {});
+    const stale = result.buckets.vector_present_status_stale.count;
+    const missing = result.buckets.missing_active_vector_retry_eligible.count;
+
+    const summary = result.mode === 'apply'
+      ? `Reconciled ${result.applied?.reconciledToSuccess ?? 0} vector-present row(s) to success; reset ${result.applied?.resetToRetry ?? 0} missing-vector row(s) to retry`
+      : `Dry-run: ${stale} vector-present stale row(s), ${missing} missing-vector retry-eligible; no rows mutated`;
+
+    const hints: string[] = [];
+    if (!result.safety.activeShardVerified) {
+      hints.push(`Active shard not verified (${result.safety.reason ?? 'unknown'}); no rows were counted or mutated.`);
+    } else if (result.mode === 'dry-run' && stale > 0) {
+      hints.push('Run memory_embedding_reconcile({ mode: "apply" }) to converge embedding_status to success.');
+    }
+
+    return createMCPSuccessResponse({
+      tool: 'memory_embedding_reconcile',
+      summary,
+      data: result,
+      hints,
+    });
+  } catch (error: unknown) {
+    if (error instanceof ActiveShardGuardError) {
+      return createMCPErrorResponse({
+        tool: 'memory_embedding_reconcile',
+        error: error.message,
+        code: error.code,
+        details: { mode },
+        recovery: {
+          hint: 'Ensure the active embedder shard is attached and matches the active pointer; restart the MCP server if needed.',
+          actions: ['Run embedder_status()', 'Run memory_health()'],
+          severity: 'error',
+        },
+      });
+    }
+    return createMCPErrorResponse({
+      tool: 'memory_embedding_reconcile',
+      error: `Embedding reconcile failed: ${toErrorMessage(error)}`,
+      code: 'E_EMBEDDING_RECONCILE_FAILED',
+      details: { mode },
+      recovery: {
+        hint: 'Inspect memory_index and the active vector shard state, then retry in dry-run.',
+        actions: ['Run memory_health()', 'Retry memory_embedding_reconcile({ mode: "dry-run" })'],
+        severity: 'error',
+      },
+    });
+  }
+}
+
+export { handleMemoryEmbeddingReconcile };

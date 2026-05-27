@@ -15,6 +15,7 @@ import {
   handleMemoryValidate,
   handleMemoryBulkDelete,
   handleMemoryRetentionSweep,
+  handleMemoryEmbeddingReconcile,
   handleEmbedderList,
   handleEmbedderSet,
   handleEmbedderStatus,
@@ -35,6 +36,7 @@ import type {
   MemoryValidateArgs,
   BulkDeleteArgs,
   RetentionSweepArgs,
+  ReconcileArgs,
   EmbedderSetArgs,
   EmbedderStatusArgs,
 } from './types.js';
@@ -53,6 +55,7 @@ export const TOOL_NAMES = new Set([
   'memory_validate',
   'memory_bulk_delete',
   'memory_retention_sweep',
+  'memory_embedding_reconcile',
   'embedder_list',
   'embedder_set',
   'embedder_status',
@@ -93,6 +96,7 @@ export async function handleTool(name: string, args: Record<string, unknown>): P
     case 'memory_validate':       return handleMemoryValidate(parseArgs<MemoryValidateArgs>(validateToolArgs('memory_validate', args)));
     case 'memory_bulk_delete':    return handleMemoryBulkDelete(parseArgs<BulkDeleteArgs>(validateToolArgs('memory_bulk_delete', args)));
     case 'memory_retention_sweep': return handleMemoryRetentionSweep(parseArgs<RetentionSweepArgs>(validateToolArgs('memory_retention_sweep', args)));
+    case 'memory_embedding_reconcile': return handleMemoryEmbeddingReconcile(parseArgs<ReconcileArgs>(validateToolArgs('memory_embedding_reconcile', args)));
     case 'embedder_list':
       validateToolArgs('embedder_list', args);
       return handleEmbedderList();

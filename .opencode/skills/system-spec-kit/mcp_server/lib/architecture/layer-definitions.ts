@@ -74,7 +74,7 @@ export const LAYER_DEFINITIONS: Record<LayerId, LayerDefinition> = {
     tokenBudget: 1000,
     priority: 4,
     useCase: 'Make changes to existing memories when corrections or updates are needed.',
-    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete', 'memory_retention_sweep']
+    tools: ['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete', 'memory_retention_sweep', 'memory_embedding_reconcile']
   },
   L5: {
     id: 'L5',

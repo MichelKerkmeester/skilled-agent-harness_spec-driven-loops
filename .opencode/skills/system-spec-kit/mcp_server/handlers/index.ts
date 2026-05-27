@@ -71,6 +71,7 @@ type MemoryCrudModule = typeof import('./memory-crud.js');
 type MemoryIndexModule = typeof import('./memory-index.js');
 type MemoryBulkDeleteModule = typeof import('./memory-bulk-delete.js');
 type MemoryRetentionSweepModule = typeof import('./memory-retention-sweep.js');
+type MemoryEmbeddingReconcileModule = typeof import('./memory-embedding-reconcile.js');
 type EmbedderListModule = typeof import('./embedder-list.js');
 type EmbedderSetModule = typeof import('./embedder-set.js');
 type EmbedderStatusModule = typeof import('./embedder-status.js');
@@ -92,6 +93,7 @@ let memoryCrudModule: Promise<MemoryCrudModule> | null = null;
 let memoryIndexModule: Promise<MemoryIndexModule> | null = null;
 let memoryBulkDeleteModule: Promise<MemoryBulkDeleteModule> | null = null;
 let memoryRetentionSweepModule: Promise<MemoryRetentionSweepModule> | null = null;
+let memoryEmbeddingReconcileModule: Promise<MemoryEmbeddingReconcileModule> | null = null;
 let embedderListModule: Promise<EmbedderListModule> | null = null;
 let embedderSetModule: Promise<EmbedderSetModule> | null = null;
 let embedderStatusModule: Promise<EmbedderStatusModule> | null = null;
@@ -165,6 +167,13 @@ function getMemoryRetentionSweepModule(): Promise<MemoryRetentionSweepModule> {
     memoryRetentionSweepModule = loadHandlerModule<MemoryRetentionSweepModule>('memory-retention-sweep');
   }
   return memoryRetentionSweepModule;
+}
+
+function getMemoryEmbeddingReconcileModule(): Promise<MemoryEmbeddingReconcileModule> {
+  if (!memoryEmbeddingReconcileModule) {
+    memoryEmbeddingReconcileModule = loadHandlerModule<MemoryEmbeddingReconcileModule>('memory-embedding-reconcile');
+  }
+  return memoryEmbeddingReconcileModule;
 }
 
 function getEmbedderListModule(): Promise<EmbedderListModule> {
@@ -302,6 +311,7 @@ export const find_constitutional_files = lazyFunction(getMemoryIndexModule, 'fin
 // Memory bulk delete handler
 export const handleMemoryBulkDelete = lazyFunction(getMemoryBulkDeleteModule, 'handleMemoryBulkDelete');
 export const handleMemoryRetentionSweep = lazyFunction(getMemoryRetentionSweepModule, 'handleMemoryRetentionSweep');
+export const handleMemoryEmbeddingReconcile = lazyFunction(getMemoryEmbeddingReconcileModule, 'handleMemoryEmbeddingReconcile');
 
 // Embedder handlers
 export const handleEmbedderList = lazyFunction(getEmbedderListModule, 'handleEmbedderList');
