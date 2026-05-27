@@ -3,7 +3,7 @@ name: sk-git
 description: "Git workflow orchestrator: worktree setup, clean commits, finish/PR creation across git-worktrees, git-commit, git-finish."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 <!-- Keywords: git-workflow, git-worktree, conventional-commits, pull-request, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review -->
@@ -286,6 +286,7 @@ git-finish (feature A) → git-finish (feature B)
 8. **Defer toolchain + DB work to main on large reorgs** - For large rename/reorg, do file/`git mv` ops in the worktree but run the spec-kit toolchain (strict validate, generators, metadata regen) and ALL memory reindex/re-embed on `main` AFTER merge. A bare worktree lacks gitignored deps (`node_modules`/`dist`) and the memory/vector DBs are a single global instance — never per-worktree. See [large_reorg_playbook.md](references/large_reorg_playbook.md).
 9. **Scan for gitignored leftovers after a rename wave** - After `git mv` + merge, detect dirs with disk files but 0 tracked files (`git ls-files <dir>` empty and `git status --porcelain --untracked-files=all` clean) and `rm -rf` them — they are stale ignored cruft (`.DS_Store`, `*.log`, `*.pyc`) left behind by `git mv`.
 10. **Verify rename history is preserved** - After a rename wave confirm `R`-status (not delete+add) before commit, and after merge confirm the tree has no old+new duplicate folders.
+11. **Honor an authorized operator's explicit direct-push directive on a protected branch** - Protected-branch rules (PR-required, verified signatures, code scanning) primarily gate EXTERNAL contributors. When the operator holds bypass rights and explicitly asks to commit/push directly to a protected branch, do a direct `git push` — do NOT default to a PR detour, re-ask whether to use a PR, or frame the bypass / resulting unsigned commit as a problem. Still apply full commit hygiene: scope the commit to the intended files only (a shared or dirty tree may hold concurrent work — never blind `git add -A`), use Conventional Commits, and report plainly that the push bypassed protection. Whether a given operator/repo grants that bypass authority is recorded in operator memory, not in this codebase-agnostic skill.
 
 ### Commit Message Logic (AI-Scannable)
 
@@ -328,7 +329,7 @@ Use this logic whenever the AI writes or rewrites commit messages.
 
 1. **Force push to main/master** - Protected branches must never receive force pushes
 2. **Never create branches directly** - Use `git worktree add -b ...`; never use `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`
-3. **Commit directly to protected branches** - Always use feature branches and PRs
+3. **Commit directly to protected branches WITHOUT operator authorization** - Default to feature branches + PRs. EXCEPTION: when the operator has bypass authority on that branch and explicitly directs a direct commit/push, honor it (see ALWAYS #11) — do not force a PR detour.
 4. **Leave worktrees uncleaned** - Remove worktree directories after merge
 5. **Commit secrets or credentials** - Use environment variables or secret management
 6. **Create PRs without description** - Always include context, changes, and testing notes
