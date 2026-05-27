@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Atomic Persistence Tests
 // ───────────────────────────────────────────────────────────────
-// F-002-A2-01: persistIndexedFileResult must wrap its 4 storage operations
+// persistIndexedFileResult must wrap its 4 storage operations
 // in a single per-file transaction. A throw mid-persistence rolls all four
 // back atomically.
 

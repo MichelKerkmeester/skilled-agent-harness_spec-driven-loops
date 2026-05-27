@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: Code Graph Readiness Contract (Shared Module)
 // ───────────────────────────────────────────────────────────────
-// Phase 017 / T-CGC-01: fixture-parity tests for the 4 helpers
+// Fixture-parity tests for the 4 helpers
 // extracted from handlers/code-graph/query.ts:225-300 into
 // lib/code-graph/readiness-contract.ts. Each assertion below
 // encodes the pre-refactor query.ts behaviour so the extraction
@@ -47,7 +47,7 @@ describe('readiness-contract / canonicalReadinessFromFreshness', () => {
     expect(canonicalReadinessFromFreshness('empty')).toBe('missing');
   });
 
-  // ── Packet 016 / F-009: error → missing fixture ─────────────────
+  // ── Error → missing fixture ─────────────────
   // The helper at readiness-contract.ts:73-87 already maps `error` →
   // `missing`. The shared fixture was missing this coverage; without
   // it a future regression on the `error` arm would only be caught
@@ -70,7 +70,7 @@ describe('readiness-contract / queryTrustStateFromFreshness', () => {
     expect(queryTrustStateFromFreshness('empty')).toBe('absent');
   });
 
-  // ── Packet 016 / F-009: error → unavailable fixture ────────────────
+  // ── Error → unavailable fixture ────────────────
   // Mirrors the canonicalReadiness fixture above. The helper at
   // readiness-contract.ts:109-123 already projects `error` → `unavailable`,
   // but the shared fixture didn't pin it. Lock it down so cross-handler
@@ -91,7 +91,7 @@ describe('readiness-contract / queryTrustStateFromFreshness', () => {
       'rebuilt',
       'rehomed',
     ]);
-    // Packet 016 / F-009: include 'error' in the iteration so the
+    // Include 'error' in the iteration so the
     // sweep proves all four freshness states project into the canonical
     // 8-state union (no escapes).
     for (const freshness of ['fresh', 'stale', 'empty', 'error'] as const) {
@@ -133,7 +133,7 @@ describe('readiness-contract / buildQueryGraphMetadata', () => {
     });
   });
 
-  // ── Packet 016 / F-009: error → no provenance lookup fixture ──────
+  // ── Error → no provenance lookup fixture ──────
   // Per readiness-contract.ts:143, an unreachable scope must short-circuit
   // BEFORE the db call to avoid surfacing stale or partial provenance from
   // a crashed probe. Lock that contract from the shared suite.
@@ -172,13 +172,13 @@ describe('readiness-contract / buildReadinessBlock', () => {
     expect(block.trustState).toBe('absent');
   });
 
-  // ── Packet 016 / F-009: error → missing/unavailable fixture ───────
+  // ── Error → missing/unavailable fixture ───────
   // The crash-on-probe path must project to canonicalReadiness='missing'
   // (structurally missing scope) AND trustState='unavailable' (not 'absent';
   // that would conflate a crash with a genuinely empty graph). This is the
   // single source of truth for the shared degraded-readiness vocabulary
   // referenced by all three handlers (context / status / query) — see
-  // packet 016 decision-record.md ADR-001.
+  // shared degraded-readiness decision record.
   it('augments the block with canonicalReadiness="missing" + trustState="unavailable" (error)', () => {
     const block = buildReadinessBlock(makeReadiness('error'));
     expect(block.canonicalReadiness).toBe('missing');

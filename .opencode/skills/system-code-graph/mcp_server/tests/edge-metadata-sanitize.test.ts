@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: edge-metadata sanitizer (010/007/T-D R-007-P2-3)
+// MODULE: edge-metadata sanitizer
 // ───────────────────────────────────────────────────────────────
 // Read-path allowlist for `reason` / `step` strings on edges.
 // Allowlist: single-line, length ≤ 200, no control characters

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Subject Resolution Typed Result Tests
 // ───────────────────────────────────────────────────────────────
-// F-004-A4-02: resolveSubjectToRef must distinguish "no row" from "DB
+// resolveSubjectToRef must distinguish "no row" from "DB
 // unavailable." Legacy callers still receive null on either case (logged
 // to console.warn for the unavailable path), but the typed companion
 // surfaces the discriminated kind.

@@ -1,9 +1,9 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Phase Runner Tests (012/002)
+// MODULE: Phase Runner Tests
 // ───────────────────────────────────────────────────────────────
 // Validates rejection paths (duplicate names, missing deps,
 // cycles) plus dependency-only output visibility and failure
-// attribution. Covers spec 012/002 §4 R-002-1, R-002-2, R-002-7.
+// attribution. Covers duplicate names, missing deps, cycles, and dependency-only output visibility.
 
 import { describe, it, expect } from 'vitest';
 import {
@@ -104,7 +104,7 @@ describe('phase-runner: topologicalSort', () => {
     expect(topologicalSort(phases)).toEqual(['producer', 'consumer']);
   });
 
-  // 008/D4 regression: duplicate-output rejection (R-007-P2-1).
+  // Regression: duplicate-output rejection.
   // The implementation rejects (a) two phases publishing the same custom
   // output key, and (b) an output key colliding with another phase's name.
   // Pre-008 the only duplicate-shape test was duplicate phase NAMES.

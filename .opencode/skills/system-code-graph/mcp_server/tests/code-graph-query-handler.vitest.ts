@@ -104,7 +104,7 @@ function createDb({
         return undefined;
       }),
     })),
-    // F-002-A2-03: snapshot-stable read transactions in query handler.
+    // Snapshot-stable read transactions in query handler.
     // Mock transaction() to invoke the callback synchronously (better-sqlite3
     // semantics: returns a function that runs the callback in a transaction).
     transaction: vi.fn((fn: (...args: unknown[]) => unknown) => fn),
@@ -139,7 +139,7 @@ describe('code-graph-query handler', () => {
       allowGuardedInlineFullScan: true,
     });
     expect(mocks.queryEdgesFrom).toHaveBeenCalledWith('symbol-1', 'IMPORTS');
-    // M8 / T-CGQ-11: readiness carries the raw ensure-ready fields plus
+    // Readiness carries the raw ensure-ready fields plus
     // the canonical vocabulary alignment (ready/stale/missing) and the
     // shared trust-state vocabulary (live/stale/absent/unavailable).
     expect(parsed.data.readiness).toEqual({
@@ -161,7 +161,7 @@ describe('code-graph-query handler', () => {
     });
     const parsed = JSON.parse(result.content[0].text);
 
-    // PR 4 / F71 step 6: readiness-crash now emits a canonical readiness
+    // Readiness-crash now emits a canonical readiness
     // block with V2 freshness='error', V3 canonicalReadiness='missing', and
     // V5-widened trustState='unavailable' so query consumers see the same
     // canonical vocabulary as code_graph_context (S2-matching).
@@ -313,7 +313,7 @@ describe('code-graph-query handler', () => {
     expect(mocks.queryEdgesFrom).toHaveBeenCalledWith('symbol-1', 'OVERRIDES');
   });
 
-  // M8 / T-CGQ-10 (R19-001): transitive traversal must flag dangling
+  // Transitive traversal must flag dangling
   // endpoints as corruption warnings instead of silently returning nodes
   // with null fqName/filePath metadata.
   it('flags dangling transitive endpoints as corruption warnings instead of null-metadata nodes', async () => {
@@ -363,7 +363,7 @@ describe('code-graph-query handler', () => {
     ]);
   });
 
-  // M8 / T-CGQ-11 (R22-001, R23-001): readiness block must carry both the
+  // Readiness block must carry both the
   // raw freshness and the canonical readiness + trust state so consumers
   // see one aligned vocabulary across session_bootstrap, session_resume,
   // and code_graph_query.
@@ -1089,8 +1089,8 @@ describe('code-graph-query handler', () => {
     expect(mocks.queryFileImportDependents).not.toHaveBeenCalled();
   });
 
-  // 008/D10: pin failureFallback.code field shape end-to-end through the
-  // handler. The 010/007/T-F R-007-P2-6 closure added a stable `code`
+  // Pin failureFallback.code field shape end-to-end through the
+  // handler. The closure added a stable `code`
   // field with a 5-value literal union; this test verifies the field
   // appears on the response (currently `unresolved_subject` is the
   // most-reachable code from a unit test; other codes are exercised by
@@ -1109,7 +1109,7 @@ describe('code-graph-query handler', () => {
     expect(parsed.data.failureFallback.code).toBe('unresolved_subject');
   });
 
-  // 008/D10: pin minConfidence runtime echo. The Zod schema accepts
+  // Pin minConfidence runtime echo. The Zod schema accepts
   // [0, 1]; the handler receives it and threads it through to
   // computeBlastRadius. This test verifies the runtime path echoes
   // the value back (proving the parameter flowed end-to-end and was
@@ -1222,7 +1222,7 @@ describe('code-graph-query handler', () => {
 
   it('filters blast-radius traversal by minConfidence', async () => {
     mocks.getDb.mockReturnValue({
-      // F-002-A2-03: identity transaction mock so snapshot-stable wraps don't trip
+      // Identity transaction mock so snapshot-stable wraps don't trip
       transaction: vi.fn((fn: (...args: unknown[]) => unknown) => fn),
       prepare: vi.fn((sql: string) => ({
         all: vi.fn(() => {

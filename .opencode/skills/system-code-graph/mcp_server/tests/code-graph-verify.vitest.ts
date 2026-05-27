@@ -376,7 +376,7 @@ describe('code-graph verify', () => {
     });
 
     it('proceeds with informational scopeMismatch when stored and active scopes differ', async () => {
-      // F-019: scope mismatch is informational only — verify proceeds
+      // Scope mismatch is informational only — verify proceeds
       // and surfaces the canonical { stored, active, recommendation }
       // envelope alongside the normal verification result.
       mocks.getStoredCodeGraphScope.mockReturnValueOnce({
@@ -412,7 +412,7 @@ describe('code-graph verify', () => {
     });
 
     it('does not surface scopeMismatch when stored and active scopes match (informational field is null/absent on parity)', async () => {
-      // F-019 contract: the informational field appears ONLY when
+      // The informational field appears ONLY when
       // scopes diverge. When they match (the default fixture state),
       // the response carries scopePreflight.status === 'pass' and
       // omits the scopeMismatch envelope entirely.
@@ -551,7 +551,7 @@ describe('code-graph verify', () => {
       expect(mocks.ensureCodeGraphReady).not.toHaveBeenCalled();
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('resolves the default battery path inside the 007 packet', async () => {
       const response = await handleCodeGraphVerify({ includeDetails: true });
       const parsed = JSON.parse(response.content[0].text);
@@ -563,7 +563,7 @@ describe('code-graph verify', () => {
       expect(parsed.result.queryCount).toBeGreaterThan(0);
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('resolves the default gold-battery path correctly without phantom skill/ segment', async () => {
       // Regression guard: the legacy hardcoded `../../../../../` URL path in
       // gold-query-verifier.ts resolved correctly from the TS source location

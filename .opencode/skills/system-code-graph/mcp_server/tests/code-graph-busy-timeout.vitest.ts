@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph SQLite Busy Timeout Tests
 // ───────────────────────────────────────────────────────────────
-// F-002-A2-02: initDb must set busy_timeout = 5000ms so concurrent writers
+// initDb must set busy_timeout = 5000ms so concurrent writers
 // wait for the writer lock instead of throwing SQLITE_BUSY immediately.
 
 import { afterEach, describe, expect, it } from 'vitest';

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Stale-Detection Mtime-vs-Hash Tests
 // ───────────────────────────────────────────────────────────────
-// F-014-C4-01: isFileStale + ensureFreshFiles must hash on mtime drift
+// isFileStale + ensureFreshFiles must hash on mtime drift
 // before declaring a file stale. A touch (mtime drift, content unchanged)
 // stays fresh; only a real content change flips the file to stale.
 
@@ -59,7 +59,7 @@ describe('F-014-C4-01: hash on mtime drift before declaring stale', () => {
       utimesSync(filePath, t1, t1);
       expect(Math.trunc(statSync(filePath).mtimeMs)).toBe(Math.trunc(t1.getTime()));
 
-      // F-014-C4-01: touch-only must NOT be stale. Content hash matches
+      // Touch-only must NOT be stale. Content hash matches
       // even though the mtime drifted.
       expect(isFileStale(filePath)).toBe(false);
 

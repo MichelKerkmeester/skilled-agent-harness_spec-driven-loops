@@ -352,7 +352,7 @@ describe('indexer-types', () => {
       expect(config.maxFileSizeBytes).toBe(102400);
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('excludes .opencode default folders by default and exposes the active scope fingerprint', () => {
       const config = getDefaultConfig('/root');
 
@@ -419,7 +419,7 @@ describe('indexer-types', () => {
       expect(shouldIndexForCodeGraph('/root/.opencode/skills/example.ts', config.scopePolicy)).toBe(true);
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('lets an explicit per-call false override an env opt-in', () => {
       const config = getDefaultConfig('/root', { includeSkills: false, env: { [CODE_GRAPH_INDEX_SKILLS_ENV]: 'true' } });
 
@@ -432,7 +432,7 @@ describe('indexer-types', () => {
       expect(shouldIndexForCodeGraph('/root/.opencode/skills/sk-doc/example.ts', config.scopePolicy)).toBe(false);
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it.each([
       ['agents', CODE_GRAPH_INDEX_AGENTS_ENV, 'includeAgents', '**/.opencode/agents/**', '/root/.opencode/agents/code.md'],
       ['commands', CODE_GRAPH_INDEX_COMMANDS_ENV, 'includeCommands', '**/.opencode/commands/**', '/root/.opencode/commands/speckit/run.yaml'],
@@ -481,7 +481,7 @@ describe('indexer-types', () => {
       },
     );
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('supports granular per-call skill selection with one, two and zero skills', () => {
       const oneSkill = getDefaultConfig('/root', { includeSkills: ['sk-doc'], env: {} });
       expect(oneSkill.scopePolicy.includedSkillsList).toEqual(['sk-doc']);
@@ -501,7 +501,7 @@ describe('indexer-types', () => {
       expect(shouldIndexForCodeGraph('/root/.opencode/skills/sk-doc/SKILL.md', noSkills.scopePolicy)).toBe(false);
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('supports granular skill selection from csv env', () => {
       const config = getDefaultConfig('/root', { env: { [CODE_GRAPH_INDEX_SKILLS_ENV]: 'sk-doc,sk-code-review' } });
 
@@ -594,7 +594,7 @@ describe('structural-indexer', () => {
       }
     });
 
-    // REASON: 026/000/002-vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
+    // REASON: requires missing fixture, daemon, auth, or offline-unavailable toolchain
     it.skip('keeps symlinked skill roots excluded when the scan root is canonicalized first', async () => {
       const tempDir = mkdtempSync(join(tmpdir(), 'code-graph-symlink-scope-fixture-'));
 
@@ -672,7 +672,7 @@ describe('structural-indexer', () => {
       }
     });
 
-    // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+    // drift: verified against shipped behavior during Unit H
     it('indexes selected skill and agent doc rows without opening other default-excluded folders', async () => {
       const tempDir = mkdtempSync(join(tmpdir(), 'code-graph-doc-selected-skill-fixture-'));
       const expectedRelativePaths = [

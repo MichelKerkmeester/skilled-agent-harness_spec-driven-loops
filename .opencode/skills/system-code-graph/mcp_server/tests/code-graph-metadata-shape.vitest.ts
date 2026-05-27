@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Metadata Shape Tests
 // ───────────────────────────────────────────────────────────────
-// F-004-A4-03: metadata getters distinguish absent vs corrupt-JSON vs
+// Metadata getters distinguish absent vs corrupt-JSON vs
 // invalid-shape. The legacy *() functions still return null on any
 // non-resolved state; the new *WithDiagnostics() companions return the
 // discriminated kind.

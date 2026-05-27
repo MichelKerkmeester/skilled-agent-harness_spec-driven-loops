@@ -2,12 +2,12 @@
 // MODULE: Code Graph Read-Path Cluster A Tests
 // ───────────────────────────────────────────────────────────────
 // Coverage:
-//   - F-007: Blocked-read diagnostics — scope + manifest fields
+//   - Blocked-read diagnostics — scope + manifest fields
 //     surface on `data.*` (not just `data.readiness.*`).
-//   - F-018: Guarded auto-rescan policy — happy path (allowed)
+//   - Guarded auto-rescan policy — happy path (allowed)
 //     when stored scope matches active scope and parse backlog
 //     is clean; conservative path (blocked) when backlog > 0.
-//   - F-019: Verify scope-aware preflight — surfaces informational
+//   - Verify scope-aware preflight — surfaces informational
 //     `scopeMismatch` field when stored and active scopes differ.
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -22,7 +22,7 @@ import {
 } from '../lib/auto-rescan-policy.js';
 
 // ───────────────────────────────────────────────────────────────
-// F-018: Auto-rescan policy unit tests (pure helper)
+// Auto-rescan policy unit tests (pure helper)
 // ───────────────────────────────────────────────────────────────
 
 describe('F-018: shouldAutoRescan policy', () => {
@@ -78,7 +78,7 @@ describe('F-018: shouldAutoRescan policy', () => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// F-007: Query handler blocked-payload diagnostics on data.*
+// Query handler blocked-payload diagnostics on data.*
 // ───────────────────────────────────────────────────────────────
 // The handler tests below mock ensure-ready and the DB so the
 // handler runs in isolation; we only assert on the JSON envelope
@@ -168,7 +168,7 @@ describe('F-007: blocked full-scan payload surfaces diagnostics on data', () => 
     const parsed = JSON.parse(result.content[0].text);
 
     expect(parsed.status).toBe('blocked');
-    // F-007: `reason`, `activeScope`, `storedScope`, `manifestCount`,
+    // `reason`, `activeScope`, `storedScope`, `manifestCount`,
     // `manifestDigest` MUST be reachable directly on `data.*` so
     // operators routing on them don't have to walk into
     // `data.readiness.*`. The nested readiness block continues to
@@ -230,7 +230,7 @@ describe('F-007: blocked full-scan payload surfaces diagnostics on data', () => 
 });
 
 // ───────────────────────────────────────────────────────────────
-// F-019: Verify scope-aware preflight informational field
+// Verify scope-aware preflight informational field
 // ───────────────────────────────────────────────────────────────
 // Verify is a separate handler with its own mock surface; we
 // reuse the query mocks above (handleCodeGraphQuery is mocked in
@@ -262,10 +262,10 @@ describe('F-019: code_graph_verify scope-aware preflight', () => {
   });
 
   it('proceeds with informational scopeMismatch when stored and active scopes differ', async () => {
-    // F-019: scope mismatch is informational only — verify proceeds
+    // Scope mismatch is informational only — verify proceeds
     // and surfaces the canonical { stored, active, recommendation }
     // envelope alongside the normal verification result. We dynamically
-    // import a clean verify handler with isolated mocks so the F-007
+    // import a clean verify handler with isolated mocks so the
     // query mocks above don't leak into it.
     vi.resetModules();
     const verifyMocks = {
@@ -309,7 +309,7 @@ describe('F-019: code_graph_verify scope-aware preflight', () => {
     });
     const parsed = JSON.parse(response.content[0].text);
 
-    // F-019: verify proceeds and surfaces the canonical
+    // Verify proceeds and surfaces the canonical
     // { stored, active, recommendation } envelope as informational
     // diagnostics. The gold-query battery still runs and the result
     // payload is present.

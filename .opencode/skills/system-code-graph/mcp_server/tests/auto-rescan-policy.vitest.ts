@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: Auto-Rescan Policy (F-018 safety gate)
+// TEST: Auto-Rescan Policy safety gate
 // ───────────────────────────────────────────────────────────────
 import { describe, expect, it, vi } from 'vitest';
 

@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Candidate Manifest Tests
 // ───────────────────────────────────────────────────────────────
-// F-014-C4-03: a persisted candidate manifest tracks {count, digest} of
+// A persisted candidate manifest tracks {count, digest} of
 // known indexable file paths. On detectState, divergence (count or digest
 // drift) flips freshness to stale + full_scan even if individual mtimes
 // look fine.

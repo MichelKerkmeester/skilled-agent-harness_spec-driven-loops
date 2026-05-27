@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: Code Graph Status — Readiness Snapshot (Packet 014)
+// TEST: Code Graph Status — Readiness Snapshot
 // ───────────────────────────────────────────────────────────────
 // Verifies that `code_graph_status` surfaces an action-level readiness
 // snapshot (full_scan | selective_reindex | none) WITHOUT mutating the
@@ -152,7 +152,7 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── A. Fresh state → readiness.action = "none" ────────────────
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('surfaces readiness.action="none" for a fresh graph (criterion A)', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'fresh',
@@ -168,7 +168,7 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── B. Empty graph → readiness.action = "full_scan" ───────────
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('surfaces readiness.action="full_scan" for an empty graph with descriptive reason (criterion B)', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'empty',
@@ -186,7 +186,7 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── C. Broad stale → readiness.action = "full_scan" ───────────
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('surfaces readiness.action="full_scan" for broad stale (>50 files) (criterion C)', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'stale',
@@ -202,7 +202,7 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── D. Bounded stale → readiness.action = "selective_reindex" ─
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('surfaces readiness.action="selective_reindex" for bounded stale (criterion D)', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'stale',
@@ -218,7 +218,7 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── Error path → no exception, action defaults to "none" ──────
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('surfaces readiness for an unavailable graph without throwing', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'error',
@@ -234,7 +234,7 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
   });
 
   // ── Trust-state alignment: snapshot does not break canonical mapping
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('preserves canonicalReadiness/trustState mapping from freshness', async () => {
     const parsed = await statusWithSnapshot({
       freshness: 'empty',
@@ -308,7 +308,7 @@ describe('code_graph_status is side-effect free (criterion E)', () => {
     vi.clearAllMocks();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('does NOT call any mutating code-graph-db export', async () => {
     const { handleCodeGraphStatus } = await import('../handlers/status.js');
     await handleCodeGraphStatus();
@@ -328,14 +328,14 @@ describe('code_graph_status is side-effect free (criterion E)', () => {
     expect(writeSurfaceMocks.cleanupOrphans).not.toHaveBeenCalled();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('does NOT call ensureCodeGraphReady (mutating entry point)', async () => {
     const { handleCodeGraphStatus } = await import('../handlers/status.js');
     await handleCodeGraphStatus();
     expect(ensureReadyMocks.ensureCodeGraphReady).not.toHaveBeenCalled();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('uses the read-only snapshot helper with process.cwd()', async () => {
     const { handleCodeGraphStatus } = await import('../handlers/status.js');
     await handleCodeGraphStatus();

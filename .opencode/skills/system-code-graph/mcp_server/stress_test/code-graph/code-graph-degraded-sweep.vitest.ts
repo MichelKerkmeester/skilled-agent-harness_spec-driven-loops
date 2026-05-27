@@ -6,7 +6,7 @@
 //
 // Purpose
 // -------
-// Packet 010 v1.0.2 stress run produced a NEUTRAL verdict for packet 005
+// A prior stress run produced a NEUTRAL verdict for the code-graph fast-fail path
 // (code-graph fast-fail) because the Q1 cells did not exercise
 // `fallbackDecision` end-to-end - the live graph was healthy after pre-flight
 // recovery. Per `011-post-stress-followup-research/research/research.md` Section 4
@@ -245,7 +245,7 @@ describe('code_graph_query degraded stress sweep (packet 013)', () => {
     // bump in the production threshold (e.g., 50 -> 55) still trips the full-
     // scan branch without rewriting the test.
     //
-    // F-014-C4-01: hash-on-mtime-drift-before-stale means mtime-only drift no
+    // Hash-on-mtime-drift-before-stale means mtime-only drift no
     // longer flips a file to stale. The disk content must differ from the
     // stored content_hash for the staleness signal to fire.
     const STALE_FILE_COUNT = SELECTIVE_REINDEX_THRESHOLD + 10;
@@ -260,7 +260,7 @@ describe('code_graph_query degraded stress sweep (packet 013)', () => {
 
       // Insert a code_files row whose stored content_hash represents an
       // OLDER version of this file. ensureFreshFiles() hashes the on-disk
-      // content (post-F-014-C4-01) and finds it differs from the stored
+      // content and finds it differs from the stored
       // hash -> marks the file stale.
       const storedMtime = Date.now();
       const olderContent = `export const sample${i} = ${i - 1000};\n`;
