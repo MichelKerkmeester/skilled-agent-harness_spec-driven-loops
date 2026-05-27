@@ -2,8 +2,8 @@
 // MODULE: Factory
 // ───────────────────────────────────────────────────────────────────
 
-import { execFileSync } from 'child_process';
 import { existsSync, readdirSync } from 'fs';
+import { createRequire } from 'node:module';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -26,6 +26,8 @@ import type {
   CreateProviderOptions,
   ApiKeyValidationResult,
 } from '../types.js';
+
+const require = createRequire(import.meta.url);
 
 function getErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
@@ -273,38 +275,101 @@ function warnActiveOllamaFallback(message: string): void {
   console.warn(`[factory] ${message}`);
 }
 
-function quoteSqlString(value: string): string {
-  return `'${value.replace(/'/g, "''")}'`;
-}
-
 function quoteSqlIdentifier(value: string): string {
   return `"${value.replace(/"/g, '""')}"`;
 }
 
-function querySqliteScalar(sqlitePath: string, sql: string): string | null {
+interface SqliteStatement {
+  get(...params: readonly unknown[]): Record<string, unknown> | undefined;
+}
+
+interface SqliteDatabase {
+  prepare(sql: string): SqliteStatement;
+  close(): void;
+}
+
+type DatabaseSyncConstructor = new (
+  filename: string,
+  options: { readOnly: boolean },
+) => SqliteDatabase;
+
+let databaseSyncConstructor: DatabaseSyncConstructor | null | undefined;
+
+function loadDatabaseSync(): DatabaseSyncConstructor | null {
+  if (databaseSyncConstructor !== undefined) {
+    return databaseSyncConstructor;
+  }
+
   try {
-    const output = execFileSync('sqlite3', [sqlitePath, sql], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-      timeout: 2000,
-    }).trim();
-    return output.length > 0 ? output : null;
-  } catch (_error: unknown) {
+    const sqliteModule = require('node:sqlite') as unknown;
+    const DatabaseSync = typeof sqliteModule === 'object' && sqliteModule !== null
+      ? (sqliteModule as { DatabaseSync?: unknown }).DatabaseSync
+      : undefined;
+    if (typeof DatabaseSync !== 'function') {
+      throw new Error('DatabaseSync export is unavailable');
+    }
+
+    databaseSyncConstructor = DatabaseSync as DatabaseSyncConstructor;
+    return databaseSyncConstructor;
+  } catch (error: unknown) {
+    databaseSyncConstructor = null;
+    warnActiveOllamaFallback(
+      `node:sqlite is unavailable for active-embedder metadata reads (${getErrorMessage(error)}); continuing provider cascade.`,
+    );
     return null;
+  }
+}
+
+function querySqliteScalar(sqlitePath: string, sql: string, params: readonly unknown[] = []): string | null {
+  const DatabaseSync = loadDatabaseSync();
+  if (DatabaseSync === null) {
+    return null;
+  }
+
+  let db: SqliteDatabase | null = null;
+  try {
+    db = new DatabaseSync(sqlitePath, { readOnly: true });
+    const row = db.prepare(sql).get(...params);
+    if (!row) {
+      return null;
+    }
+
+    const value = Object.values(row)[0];
+    if (value === null || value === undefined) {
+      return null;
+    }
+
+    const scalar = String(value).trim();
+    return scalar.length > 0 ? scalar : null;
+  } catch (error: unknown) {
+    warnActiveOllamaFallback(
+      `Failed to read active-embedder metadata from ${sqlitePath}: ${getErrorMessage(error)}; continuing provider cascade.`,
+    );
+    return null;
+  } finally {
+    try {
+      db?.close();
+    } catch (error: unknown) {
+      warnActiveOllamaFallback(
+        `Failed to close SQLite metadata database ${sqlitePath}: ${getErrorMessage(error)}; continuing provider cascade.`,
+      );
+    }
   }
 }
 
 function readVecMetadataValue(sqlitePath: string, key: string): string | null {
   return querySqliteScalar(
     sqlitePath,
-    `SELECT value FROM vec_metadata WHERE key = ${quoteSqlString(key)} LIMIT 1;`,
+    'SELECT value FROM vec_metadata WHERE key = ? LIMIT 1;',
+    [key],
   );
 }
 
 function tableExistsInSqlite(sqlitePath: string, tableName: string): boolean {
   return querySqliteScalar(
     sqlitePath,
-    `SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name = ${quoteSqlString(tableName)};`,
+    "SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name = ?;",
+    [tableName],
   ) === '1';
 }
 
@@ -356,6 +421,7 @@ function readActiveOllamaEmbedderFromDb(sqlitePath: string): ActiveOllamaEmbedde
 
   const name = readVecMetadataValue(sqlitePath, 'active_embedder_name');
   const dimRaw = readVecMetadataValue(sqlitePath, 'active_embedder_dim');
+  const provider = normalizeProviderName(readVecMetadataValue(sqlitePath, 'active_embedder_provider')) ?? 'ollama';
   const dim = typeof dimRaw === 'string' ? Number.parseInt(dimRaw, 10) : NaN;
 
   if (!name || !Number.isInteger(dim) || dim <= 0) {
@@ -385,7 +451,7 @@ function readActiveOllamaEmbedderFromDb(sqlitePath: string): ActiveOllamaEmbedde
     const shardPath = path.join(
       path.dirname(sqlitePath),
       'vectors',
-      `context-vectors__ollama__${name}__${dim}.sqlite`,
+      `context-vectors__${provider}__${name}__${dim}.sqlite`,
     );
     if (existsSync(shardPath) && tableExistsInSqlite(shardPath, expectedTable)) {
       tableSource = shardPath;

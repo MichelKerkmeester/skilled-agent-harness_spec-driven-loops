@@ -12,7 +12,7 @@
         ".opencode/bin/mk-spec-memory-launcher.cjs"
       ],
       "env": {
-        "EMBEDDINGS_PROVIDER": "ollama",
+        "EMBEDDINGS_PROVIDER": "auto",
         "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory",
         "SPECKIT_RETRY_QUEUE_MAX_PENDING": "300000",
         "SPECKIT_RETRY_BATCH_SIZE": "100",
