@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Session Snapshot
 // ───────────────────────────────────────────────────────────────
-// Phase 024: Lightweight read-only snapshot of session state.
+// Lightweight read-only snapshot of session state.
 // Aggregates metrics, graph freshness, and priming status into a
 // single object for buildServerInstructions() and agent bootstrap.
 
@@ -181,7 +181,7 @@ export function getSessionSnapshot(): SessionSnapshot {
 }
 
 /**
- * Phase 027: Build a structural bootstrap contract for a given surface.
+ * Build a structural bootstrap contract for a given surface.
  * Reuses resolveGraphFreshness() and getGraphStats() from this module.
  * Keeps output compact (targets 250-400 tokens, ceiling 500).
  */

@@ -196,7 +196,7 @@ function getSafeHistoryEvents(database: Database.Database, memoryId: number): Hi
   }
 }
 
-// T-SCP-01 (R1-P1-001, R4-P1-001): local normalizer collapsed into the
+// Local normalizer collapsed into the
 // canonical `normalizeScopeValue` from `lib/governance/scope-governance`.
 // Return shape preserved as `string | null` — the downstream `!= null` filter
 // at `scopeTuple` tolerates both null and undefined, so semantics are identical.
@@ -575,7 +575,7 @@ function validateTransitionInput(
   if (transitionEvent === 'SUPERSEDE' && predecessorMemoryId == null) {
     throw new Error('E_LINEAGE: SUPERSEDE transition requires a predecessor');
   }
-  // M6 FIX: Compare timestamps as numeric epoch values, not raw strings,
+  // Compare timestamps as numeric epoch values, not raw strings,
   // to handle non-ISO strings and timezone-offset variants correctly.
   if (predecessor && new Date(validFrom).getTime() < new Date(predecessor.valid_from).getTime()) {
     throw new Error(

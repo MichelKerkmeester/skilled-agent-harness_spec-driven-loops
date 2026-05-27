@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Warm-Start Variant Runner (026/013)
+// MODULE: Warm-Start Variant Runner
 // ───────────────────────────────────────────────────────────────
 // Packet-local benchmark orchestration for the conditional warm-start bundle.
 // This stays intentionally narrow: it evaluates a frozen corpus of compact

@@ -184,7 +184,7 @@ function chunkByAnchors(sections: AnchorSection[]): AnchorChunk[] {
   for (const section of sections) {
     const sectionLabel = getSectionLabel(section);
 
-    // F-10 — Oversized anchor sections must be further split to respect
+    // Oversized anchor sections must be further split to respect
     // MAX_CHUNK_CHARS. Previously they were emitted as single oversized chunks.
     if (section.charCount > MAX_CHUNK_CHARS) {
       flush();

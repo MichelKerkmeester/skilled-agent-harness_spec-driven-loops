@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Query Flow Tracker (REQ-014-001)
+// MODULE: Query Flow Tracker
 // ───────────────────────────────────────────────────────────────
 // Tracks query history per session to detect reformulations and
 // same-topic re-queries. Emits feedback events via the existing

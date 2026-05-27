@@ -2,7 +2,7 @@
 // MODULE: Attention Decay
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Classification-based decay
-// DECAY STRATEGY (ADR-004): This module is the FACADE for all long-term
+// DECAY STRATEGY: This module is the FACADE for all long-term
 // Memory decay. It exposes FSRS-based decay as the canonical path
 // (via composite-scoring.ts and fsrs-scheduler.ts).
 // Legacy exponential functions (calculateDecayedScore, applyDecay) were
@@ -51,7 +51,7 @@ interface DecayConfigType {
   minScoreThreshold: number;
 }
 
-// ADR-061: Decay rates aligned with importance-tiers.js (1.0 = no decay)
+// Decay rates aligned with importance-tiers.js (1.0 = no decay)
 const DECAY_CONFIG: DecayConfigType = {
   defaultDecayRate: 0.80,
   decayRateByTier: {

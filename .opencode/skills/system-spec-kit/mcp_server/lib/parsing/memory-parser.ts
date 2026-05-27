@@ -348,7 +348,7 @@ export function parseMemoryContent(
   const qualityScore = extractQualityScore(content);
   const qualityFlags = extractQualityFlags(content);
 
-  // Infer memory_type for type-specific half-lives (CHK-230)
+  // Infer memory_type for type-specific half-lives
   const typeInference: TypeInferenceResult = inferMemoryType({
     filePath,
     content: content,
@@ -357,7 +357,7 @@ export function parseMemoryContent(
     importanceTier: importance_tier,
   });
 
-  // Extract causal_links for relationship tracking (CHK-231)
+  // Extract causal_links for relationship tracking
   const causalLinks = extractCausalLinks(content);
 
   return {
@@ -891,7 +891,7 @@ export function computeContentHash(content: string): string {
 }
 
 /**
- * Extract causal_links from memory content YAML metadata block (T126)
+ * Extract causal_links from memory content YAML metadata block
  */
 export function extractCausalLinks(content: string): CausalLinks {
   const causalLinks: CausalLinks = {

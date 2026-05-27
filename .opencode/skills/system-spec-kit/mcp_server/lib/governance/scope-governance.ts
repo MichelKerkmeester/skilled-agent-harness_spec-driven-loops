@@ -169,7 +169,7 @@ function normalizeId(value: unknown): string | undefined {
 }
 
 /**
- * T-SCP-01 (R1-P1-001, R4-P1-001): canonical single-string scope normalizer.
+ * Canonical single-string scope normalizer.
  *
  * Returns `string | null` to preserve the historical semantics of four local
  * copies collapsed here (reconsolidation-bridge, lineage-state, save/types,
@@ -385,7 +385,7 @@ export function recordGovernanceAudit(database: Database.Database, entry: Govern
   );
 }
 
-// See ADR-012 in packet 026/005.
+
 export function recordTierDowngradeAudit(
   database: Database.Database,
   params: TierDowngradeAuditParams,

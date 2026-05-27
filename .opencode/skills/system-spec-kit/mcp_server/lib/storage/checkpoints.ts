@@ -1056,7 +1056,7 @@ function clearTableForRestoreScope(
   }
 
   if (tableName === 'causal_edges') {
-    // T112 FIX: Use the passed `database` handle directly. Delegating through
+    // Use the passed `database` handle directly. Delegating through
     // module-level `db` helpers in causal-edges.ts caused scoped restores to
     // delete from the wrong database handle.
     if (memoryIds.length > 0 && tableExists(database, 'causal_edges')) {
@@ -1443,7 +1443,7 @@ function getMemoryRestoreColumns(
 }
 
 /* ───────────────────────────────────────────────────────────────
-   6. T107 FIX: CHECKPOINT SCHEMA VALIDATION
+   6. Fix: CHECKPOINT SCHEMA VALIDATION
    Validate each memory row before restore to prevent silent data
    loss from corrupt/malformed checkpoint snapshots.
 ----------------------------------------------------------------*/
@@ -1491,7 +1491,6 @@ function validateMemoryRow(
     ? r.canonical_file_path
     : r.file_path;
 
-  // See ADR-006 in packet 026/005.
   if (!shouldIndexForMemory(resolvedPath as string)) {
     governanceAudits.push({
       action: GOVERNANCE_AUDIT_ACTIONS.CHECKPOINT_RESTORE_EXCLUDED_PATH_REJECTED,
@@ -1866,7 +1865,7 @@ function restoreCheckpoint(
     acquireRestoreBarrier();
     restoreBarrierHeld = true;
 
-    // T101 FIX: Transaction-wrap checkpoint restore to prevent data loss.
+    // Transaction-wrap checkpoint restore to prevent data loss.
     // When clearExisting=true, the DELETE and all INSERTs must be atomic.
     // If any INSERT fails after DELETE, ROLLBACK restores original data.
     // Previously, individual insert errors were silently swallowed inside

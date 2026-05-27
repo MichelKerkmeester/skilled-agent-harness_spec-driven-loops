@@ -179,7 +179,7 @@ export const DEFAULT_WEIGHTS: LegacyWeights = {
 // HIGH-003 FIX: Re-export DECAY_RATE for backward compatibility
 export const RECENCY_SCALE_DAYS: number = 1 / DECAY_RATE;
 
-// T301: FSRS constants imported from canonical source (fsrs-scheduler.ts)
+// FSRS constants imported from canonical source (fsrs-scheduler.ts)
 // Re-exported for backward compatibility — consumers may import from here
 export const FSRS_FACTOR: number = 19 / 81;
 export const FSRS_DECAY: number = -0.5;
@@ -293,7 +293,7 @@ function parseLastAccessed(value: number | string | undefined | null): number | 
 }
 
 /**
- * T032: Calculate temporal/retrievability score (REQ-017 Factor 1)
+ * Calculate temporal/retrievability score
  * Uses FSRS v4 power-law formula: R = (1 + 0.235 * t/S)^-0.5
  */
 export function calculateRetrievabilityScore(row: ScoringInput): number {
@@ -362,7 +362,7 @@ export function calculateRetrievabilityScore(row: ScoringInput): number {
 export const calculateTemporalScore = calculateRetrievabilityScore;
 
 /**
- * T032: Calculate usage score (REQ-017 Factor 2)
+ * Calculate usage score
  * Formula: min(1.5, 1.0 + accessCount * 0.05)
  * Normalized to 0-1 range for composite scoring
  */
@@ -374,7 +374,7 @@ export function calculateUsageScore(accessCount: number): number {
 }
 
 /**
- * T032: Calculate importance score with multiplier (REQ-017 Factor 3)
+ * Calculate importance score with multiplier
  */
 export function calculateImportanceScore(tier: string, baseWeight: number | undefined): number {
   const tierLower = (tier || 'normal').toLowerCase();
@@ -385,7 +385,7 @@ export function calculateImportanceScore(tier: string, baseWeight: number | unde
 }
 
 /**
- * T033: Calculate citation recency score (REQ-017 Factor 5)
+ * Calculate citation recency score
  */
 export function calculateCitationScore(row: ScoringInput): number {
   // C2 FIX: Only use actual citation data (lastCited / last_cited).
@@ -412,7 +412,7 @@ export function calculateCitationScore(row: ScoringInput): number {
 }
 
 /**
- * T034: Calculate pattern alignment score (REQ-017 Factor 4)
+ * Calculate pattern alignment score
  */
 export function calculatePatternScore(row: ScoringInput, options: ScoringOptions = {}): number {
   let score = 0;
@@ -584,7 +584,7 @@ function applyPostProcessingAndObserve(
 
 // ───────────────────────────────────────────────────────────────
 /**
- * T032: Calculate 5-factor composite score (REQ-017)
+ * Calculate 5-factor composite score
  *
  * Returns a single 0-1 score combining five weighted factors:
  * temporal (FSRS retrievability), usage (access frequency),
@@ -686,7 +686,7 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
 
 // ───────────────────────────────────────────────────────────────
 /**
- * T032: Apply 5-factor scoring to a batch of results.
+ * Apply 5-factor scoring to a batch of results.
  *
  * Each result is augmented with:
  * - `composite_score`: Five-factor composite (0-1) combining retrievability,
@@ -760,7 +760,7 @@ export function applyCompositeScoring(
 }
 
 /**
- * T032: Get 5-factor score breakdown.
+ * Get 5-factor score breakdown.
  *
  * @param row - Scoring input row with memory fields
  * @param options - Optional scoring configuration

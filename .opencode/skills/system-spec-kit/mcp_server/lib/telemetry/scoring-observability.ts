@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Scoring Observability (T010)
+// MODULE: Scoring Observability
 // ───────────────────────────────────────────────────────────────
 // Lightweight observability logging for TM-01 interference scoring
 // values at query time.

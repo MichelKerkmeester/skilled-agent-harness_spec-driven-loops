@@ -27,9 +27,7 @@ export type TaskType = 'search' | 'browse' | 'modify' | 'checkpoint' | 'analyze'
 
 /* ───────────────────────────────────────────────────────────────
    2. LAYER CONSTANTS
-
-   REQ-020: Layered Tool Organization (L1-L7 structure)
-
+   Layered Tool Organization (L1-L7 structure)
    Design Principles:
    - Progressive disclosure: Start with high-level, drill down as needed
    - Token efficiency: Higher layers = fewer tokens, more targeted
@@ -149,7 +147,7 @@ export function getLayerForTool(toolName: string): LayerId | null {
 
 /**
  * Get the layer prefix for a tool's description.
- * CHK-073: Tool descriptions include layer prefix.
+ * Tool descriptions include layer prefix.
  */
 export function getLayerPrefix(toolName: string): string {
   const layerId = getLayerForTool(toolName);
@@ -161,7 +159,7 @@ export function getLayerPrefix(toolName: string): string {
 
 /**
  * Enhance a tool description with layer information.
- * CHK-073: Adds layer prefix to description.
+ * Adds layer prefix to description.
  */
 export function enhanceDescription(toolName: string, description: string): string {
   const prefix = getLayerPrefix(toolName);
@@ -172,8 +170,7 @@ export function enhanceDescription(toolName: string, description: string): strin
 
 /* ───────────────────────────────────────────────────────────────
    5. TOKEN BUDGET HELPERS
-
-   CHK-072: Token budgets assigned per layer.
+   Token budgets assigned per layer.
    ──────────────────────────────────────────────────────────────── */
 
 /**
@@ -212,7 +209,7 @@ export function getLayersByPriority(): LayerDefinition[] {
 
 /**
  * Get layer usage guidance based on task.
- * CHK-074: Progressive disclosure from Orchestration to Analysis layers.
+ * Progressive disclosure from Orchestration to Analysis layers.
  */
 export function getRecommendedLayers(taskType: TaskType): LayerId[] {
   const recommendations: Record<TaskType, LayerId[]> = {

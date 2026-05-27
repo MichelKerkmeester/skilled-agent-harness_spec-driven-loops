@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Passive Context Enrichment Pipeline
 // ───────────────────────────────────────────────────────────────
-// F057: Implements Phase 020 Part 3 — runPassiveEnrichment().
+// Implements runPassiveEnrichment().
 //
 // Enriches tool responses with:
 //   1. Code graph symbols near any file paths mentioned in the response

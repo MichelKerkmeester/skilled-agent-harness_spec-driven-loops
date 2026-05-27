@@ -249,7 +249,7 @@ async function loadRetryModule(): Promise<RetryModule | null> {
 
 /**
  * Check if an error is transient (worth retrying).
- * REQ-032: Uses retry module for comprehensive classification
+ * Uses retry module for comprehensive classification
  * when available, falls back to legacy patterns.
  */
 export function isTransientError(error: Error): boolean {
@@ -261,7 +261,7 @@ export function isTransientError(error: Error): boolean {
     retryModuleLoadError = null;
   }
 
-  // Use retry module if available (REQ-032)
+  // Use retry module if available
   if (retryModule && retryModule.isTransientError) {
     return retryModule.isTransientError(error);
   }
@@ -282,7 +282,7 @@ export function isTransientError(error: Error): boolean {
 
 /**
  * Check if an error is permanent (should NOT retry).
- * REQ-032: Fail-fast for 401, 403, and other permanent errors.
+ * Fail-fast for 401, 403, and other permanent errors.
  */
 export function isPermanentError(error: Error): boolean {
   if (retryModule === null && retryModulePromise === null) {
@@ -293,7 +293,7 @@ export function isPermanentError(error: Error): boolean {
     retryModuleLoadError = null;
   }
 
-  // Use retry module if available (REQ-032)
+  // Use retry module if available
   if (retryModule && retryModule.isPermanentError) {
     return retryModule.isPermanentError(error);
   }
@@ -366,7 +366,7 @@ function sanitizeDetails(details: unknown, promptValues: readonly string[] = [],
 
 /**
  * Build an error response object with recovery hints.
- * REQ-019: Uses standardized envelope (summary, data, hints, meta).
+ * Uses standardized envelope (summary, data, hints, meta).
  */
 export function buildErrorResponse(
   toolName: string,

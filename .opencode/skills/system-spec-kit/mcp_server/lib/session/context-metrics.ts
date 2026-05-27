@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Context Metrics
 // ───────────────────────────────────────────────────────────────
-// Phase 023: Lightweight session quality tracking.
+// Lightweight session quality tracking.
 // Collects events during MCP tool dispatch and computes quality scores.
 // In-memory only — no DB persistence needed for now.
 
@@ -118,7 +118,7 @@ export function recordMetricEvent(event: MetricEvent): void {
   }
 }
 
-/** Phase 024 / Item 9: Record a bootstrap telemetry event. */
+/** Record a bootstrap telemetry event. */
 export function recordBootstrapEvent(
   source: BootstrapSource,
   durationMs: number,
@@ -197,7 +197,7 @@ function computeContinuity(): number {
 }
 
 /**
- * F047: Single source of truth for lastToolCallAt timestamp.
+ * Single source of truth for lastToolCallAt timestamp.
  * session-health.ts should use this instead of the memory-surface duplicate.
  */
 export function getLastToolCallAt(): number | null {
@@ -213,7 +213,7 @@ export function computeQualityScore(): QualityScore {
     continuity: computeContinuity(),
   };
 
-  // F065: Weight rationale for quality score factors:
+  // Weight rationale for quality score factors
   //
   //   recency (0.35)       — Highest weight because stale sessions are the primary
   //                          degradation signal. A 60-min gap almost certainly means

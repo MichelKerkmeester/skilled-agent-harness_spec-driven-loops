@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Bm25-Only Baseline Runner (T008)
+// MODULE: Bm25-Only Baseline Runner
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: BM25-only baseline
 //
@@ -477,7 +477,7 @@ export function recordBaselineMetrics(
  * For testing without a live DB, inject a mock `searchFn` that returns
  * deterministic results (see tests/bm25-baseline.vitest.ts).
  *
- * The ground truth relevance judgments use the dataset from T007
+ * The ground truth relevance judgments use the dataset
  * (ground-truth-data.ts) with real production memory IDs mapped via
  * multi-strategy FTS5 matching (scripts/map-ground-truth-ids.ts).
  * Each non-hard-negative query has 1-3 graded relevance entries

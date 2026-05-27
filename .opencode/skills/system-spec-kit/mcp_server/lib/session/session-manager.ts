@@ -783,7 +783,7 @@ function cleanupExpiredSessions(): CleanupResult {
 }
 
 /**
- * T302: Clean up stale sessions across all session-related tables.
+ * Clean up stale sessions across all session-related tables.
  * 
  * Targets:
  *   - working_memory: entries with last_focused older than threshold
@@ -1434,13 +1434,13 @@ export {
   // Hash generation
   generateMemoryHash,
 
-  // Deduplication methods (T002)
+  // Deduplication methods
   shouldSendMemory,
   shouldSendMemoriesBatch,
   markMemorySent,
   markMemoriesSentBatch,
 
-  // Session persistence (T003)
+  // Session persistence
   cleanupExpiredSessions,
   cleanupStaleSessions,
   clearSession,
@@ -1448,21 +1448,21 @@ export {
   isTrackedSession,
   resolveTrustedSession,
 
-  // Integration helpers (T004)
+  // Integration helpers
   filterSearchResults,
   markResultsSent,
 
-  // Session State Management (T073: Crash Recovery)
+  // Session State Management
   ensureSessionStateSchema,
   saveSessionState,
   completeSession,
 
-  // Crash Recovery (T074-T075)
+  // Crash Recovery
   resetInterruptedSessions,
   recoverState,
   getInterruptedSessions,
 
-  // CONTINUE_SESSION.md Generation (T071-T072)
+  // CONTINUE_SESSION.md Generation
   generateContinueSessionMd,
   writeContinueSessionMd,
   checkpointSession,

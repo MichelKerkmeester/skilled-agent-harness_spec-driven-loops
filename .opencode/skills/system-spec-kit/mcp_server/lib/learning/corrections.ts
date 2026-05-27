@@ -419,7 +419,7 @@ export function record_correction(params: RecordCorrectionParams): CorrectionRes
     throw new Error('correction_type is required');
   }
 
-  // Validate correction type (T054)
+  // Validate correction type
   const valid_types = get_correction_types();
   if (!valid_types.includes(correction_type)) {
     throw new Error(`correction_type must be one of: ${valid_types.join(', ')}`);
@@ -446,11 +446,11 @@ export function record_correction(params: RecordCorrectionParams): CorrectionRes
 
   // Use transaction for atomicity
   const run_correction = db.transaction(() => {
-    // Apply stability penalty to original memory (T053: 0.5x penalty)
+    // Apply stability penalty to original memory (0.5x penalty)
     const original_stability_after = original_stability_before * CORRECTION_STABILITY_PENALTY;
     set_memory_stability(original_memory_id, original_stability_after);
 
-    // Apply stability boost to correction memory if exists (T055: 1.2x boost)
+    // Apply stability boost to correction memory if exists (1.2x boost)
     let correction_stability_after: number | null = null;
     if (correction_memory_id && correction_stability_before !== null) {
       correction_stability_after = correction_stability_before * REPLACEMENT_STABILITY_BOOST;

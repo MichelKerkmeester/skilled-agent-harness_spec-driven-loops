@@ -102,7 +102,6 @@ export function applyPostInsertMetadata(
 
     const guardPath = row?.canonical_file_path || row?.file_path || null;
     if (guardPath && !isIndexableConstitutionalMemoryPath(guardPath)) {
-      // See ADR-006 in packet 026/005.
       normalizedFields.importance_tier = 'important';
       try {
         recordTierDowngradeAudit(db, {

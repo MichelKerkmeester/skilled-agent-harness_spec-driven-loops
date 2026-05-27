@@ -12,7 +12,7 @@
 import type { SharedPayloadProvenance } from '../context/shared-payload.js';
 
 /**
- * Phase 027: Structural Bootstrap Contract — shared by all non-hook surfaces.
+ * Structural Bootstrap Contract — shared by all non-hook surfaces.
  * Single source of truth for structural context in startup/recovery flows.
  * Token budget: 250-400 tokens (hard ceiling 500 including guidance).
  */

@@ -465,7 +465,7 @@ export function getCachedRegex(phrase: string): RegExp {
   // Unicode-aware word boundary avoids false matches across non-Latin scripts.
   const regex = buildBoundaryRegex(normalizedPhrase);
 
-  // Evict oldest entry if at capacity (T015: LRU eviction)
+  // Evict oldest entry if at capacity (LRU eviction)
   if (regexLruCache.size >= CONFIG.MAX_REGEX_CACHE_SIZE) {
     const oldestKey = regexLruCache.keys().next().value;
     if (oldestKey !== undefined) {

@@ -198,7 +198,7 @@ export function computeRecall(
   if (relevantIds.size === 0) return 0;
 
   const topResults = topK(results, k);
-  // F-28 — Deduplicate hits by memoryId to prevent Recall > 1.0
+  // Deduplicate hits by memoryId to prevent Recall > 1.0
   // When the same memory appears multiple times in results.
   const seenIds = new Set<number>();
   let hits = 0;
@@ -280,7 +280,7 @@ export function computeMAP(
   if (relevantIds.size === 0) return 0;
 
   const topResults = topK(results, k);
-  // F-29 — Deduplicate relevant IDs in MAP calculation to prevent
+  // Deduplicate relevant IDs in MAP calculation to prevent
   // MAP > 1.0 when duplicate memoryIds appear in results.
   const seenIds = new Set<number>();
   let hits = 0;

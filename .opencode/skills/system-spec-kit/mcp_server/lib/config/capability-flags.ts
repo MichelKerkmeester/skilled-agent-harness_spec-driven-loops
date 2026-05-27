@@ -144,7 +144,7 @@ export {
   getMemoryRoadmapPhase,
   /** @internal — exposed for test utilities only */
   isMemoryRoadmapCapabilityEnabled,
-  /** F044: Documented parser backend env var name */
+  /** Documented parser backend env var name */
   SPECKIT_PARSER_ENV,
 };
 

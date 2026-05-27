@@ -2,7 +2,7 @@
 // MODULE: Recovery Hints
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Guards and edge cases
-// Error catalog with recovery hints (REQ-004, REQ-009)
+// Error catalog with recovery hints
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
 
@@ -100,7 +100,7 @@ export const ERROR_CODES = {
   MEMORY_DELETE_FAILED: 'E082',
   MEMORY_UPDATE_FAILED: 'E083',
   MEMORY_DUPLICATE: 'E084',
-  // Specific save-failure subtypes (added post-014/022 to replace the E081 catch-all per
+  // Specific save-failure subtypes (added to replace the E081 catch-all
   // ai-council/embedding-worker-diagnostic/post-execution-followup.md; preserves the
   // underlying issue message so callers can act on it instead of seeing only "unexpected error"):
   MEMORY_SAVE_GOVERNANCE_REJECTED: 'E085',
@@ -698,7 +698,7 @@ export const RECOVERY_HINTS: RecoveryHintMap = {
 };
 
 // ───────────────────────────────────────────────────────────────
-// 4. DEFAULT HINT (REQ-009)
+// 4. DEFAULT HINT
 
 // ───────────────────────────────────────────────────────────────
 /**
@@ -846,7 +846,7 @@ export const TOOL_SPECIFIC_HINTS: ToolSpecificHintMap = {
   },
 };
 
-// 6. getRecoveryHint() FUNCTION (T010)
+// 6. getRecoveryHint() FUNCTION
 //
 // Returns recovery hint for tool + error code.
 // Zero runtime cost - static lookup.
@@ -866,7 +866,7 @@ export function getRecoveryHint(toolName: string, errorCode: string): RecoveryHi
     return RECOVERY_HINTS[errorCode];
   }
 
-  // 3. Return default hint (REQ-009)
+  // 3. Return default hint
   return DEFAULT_HINT;
 }
 

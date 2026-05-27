@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Consumption Logger (T004 — Agent Ux Instrumentation)
+// MODULE: Consumption Logger (Agent Ux Instrumentation)
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Agent consumption instrumentation
 // Logs agent consumption events to a SQLite table for G-NEW-2

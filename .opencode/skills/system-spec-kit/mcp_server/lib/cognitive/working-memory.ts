@@ -2,12 +2,12 @@
 // MODULE: Working Memory
 // ───────────────────────────────────────────────────────────────
 // Session-based attention management
-// DECAY STRATEGY (ADR-004): This module handles SESSION-SCOPED decay
+// DECAY STRATEGY: This module handles SESSION-SCOPED decay
 // Only (event-distance based: score * pow(0.85, eventsElapsed)). It operates on
 // The working_memory table, NOT memory_index. This is intentionally
 // Independent of FSRS long-term decay — different time scale, different
 // Domain (ephemeral session attention vs persistent memory scoring).
-// The T214/T008 decay/delete separation (floor=0.05, deleteThreshold=0.01)
+// The decay/delete separation (floor=0.05, deleteThreshold=0.01)
 // Ensures stable resting state and explicit low-score eviction.
 import type Database from 'better-sqlite3';
 import { isFeatureEnabled } from './rollout-policy.js';

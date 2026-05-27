@@ -67,7 +67,7 @@ let parentPollTimer: NodeJS.Timeout | null = null;
 
 const MAX_LINE_BYTES = 1024 * 1024; // 1MB
 const MAX_INPUT_ITEMS = 500;
-// Derived from registry MANIFESTS[0] per ADR-013/014 — adding a new top
+// Derived from registry MANIFESTS[0] — adding a new top
 // entry to shared/embeddings/registry.ts auto-updates this constant.
 const DEFAULT_MODEL: string = getCanonicalFallback('hf-local');
 

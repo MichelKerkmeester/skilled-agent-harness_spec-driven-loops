@@ -83,7 +83,7 @@ if (TIER_CONFIG.warmThreshold <= TIER_CONFIG.coldThreshold) {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   1.5 TYPE-SPECIFIC HALF-LIVES (REQ-002, T008)
+   1.5 TYPE-SPECIFIC HALF-LIVES
 ----------------------------------------------------------------*/
 
 type TierState = 'HOT' | 'WARM' | 'COLD' | 'DORMANT' | 'ARCHIVED';
@@ -151,7 +151,7 @@ function getMemoryTypesModule(): Record<string, unknown> | null {
 }
 
 /**
- * Get effective half-life for a memory based on its type (REQ-002, CHK-017)
+ * Get effective half-life for a memory based on its type
  * Priority: explicit half_life_days > memory_type lookup > default
  */
 function getEffectiveHalfLife(memory: TierInput | null | undefined): number | null {
@@ -356,7 +356,7 @@ function getStateContent(
 }
 
 /**
- * T210: Per-tier limit map used by filterAndLimitByState.
+ * Per-tier limit map used by filterAndLimitByState.
  * When applyStateLimits is true, each tier is capped to its max count.
  * If a tier has fewer results than its limit, the surplus slots are
  * redistributed to other tiers that have overflow (in priority order).
@@ -377,7 +377,7 @@ const TIER_PRIORITY: TierState[] = ['HOT', 'WARM', 'COLD', 'DORMANT', 'ARCHIVED'
  * Generic over any type assignable to TierInput so callers preserve their
  * concrete element type without double-casting.
  *
- * T210: When no targetState is specified, enforces per-tier quantity limits
+ * When no targetState is specified, enforces per-tier quantity limits
  * (HOT: 5, WARM: 10, COLD: 3, DORMANT: 2, ARCHIVED: 1 by default).
  * If a tier has fewer results than its limit, surplus slots are redistributed
  * to other tiers in priority order to maximize total result count.

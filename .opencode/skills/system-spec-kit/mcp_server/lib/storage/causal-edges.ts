@@ -141,7 +141,7 @@ interface GraphStats {
 
 interface CausalChainNode {
   id: string;
-  edgeId?: number;          // T202: causal_edges.id for unlink workflow
+  edgeId?: number;          // Preserve causal_edges.id for unlink workflow
   depth: number;
   relation: RelationType;
   strength: number;
@@ -234,7 +234,7 @@ function init(database: Database.Database): void {
   db = database;
 
   // Defensive traversal indexes — the canonical creation lives in
-  // Vector-index-impl.ts migration v8 (CHK-062).  These IF NOT EXISTS guards
+  // Vector-index-impl.ts migration v8. These IF NOT EXISTS guards
   // Ensure the indexes are present even when the module is initialised outside
   // The normal migration path (e.g. tests, standalone scripts).
   try {
@@ -636,7 +636,7 @@ function getCausalChain(
 
       const child: CausalChainNode = {
         id: nextId,
-        edgeId: edge.id,               // T202: preserve edge ID for unlink workflow
+        edgeId: edge.id,               // Preserve edge ID for unlink workflow
         depth: depth + 1,
         relation: edge.relation,
         strength: weightedStrength,

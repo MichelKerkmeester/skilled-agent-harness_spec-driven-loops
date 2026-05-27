@@ -50,7 +50,7 @@ const DEFAULT_DEBOUNCE_MS = 2000;
 const RETRY_DELAYS_MS = [1000, 2000, 4000];
 const MAX_BUSY_RETRIES = RETRY_DELAYS_MS.length;
 
-// CHK-087: Watcher metrics counters
+// Watcher metrics counters
 let filesReindexed = 0;
 let totalReindexTimeMs = 0;
 let chokidarModule: ChokidarModule | null = null;
@@ -287,7 +287,7 @@ export function startFileWatcher(config: WatcherConfig): FSWatcher {
     }
   }
 
-  // M1 fix: AbortController per file path for cancellation of stale reindex
+  // AbortController per file path for cancellation of stale reindex
   const activeAbortControllers = new Map<string, AbortController>();
 
   const trackInFlight = (task: Promise<void>): void => {
@@ -356,7 +356,7 @@ export function startFileWatcher(config: WatcherConfig): FSWatcher {
     const filePath = typeof targetPath === 'string' ? targetPath : null;
     const forceReindex = options.force === true;
 
-    // M1: Abort any in-flight reindex for this same file before scheduling new one
+    // Abort any in-flight reindex for this same file before scheduling new one
     if (filePath) {
       const prev = activeAbortControllers.get(filePath);
       if (prev) prev.abort();

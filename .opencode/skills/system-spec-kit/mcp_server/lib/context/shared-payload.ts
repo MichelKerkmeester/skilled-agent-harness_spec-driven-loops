@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Shared Payload Contract
 // ───────────────────────────────────────────────────────────────
-// Phase 030 / Phase 1: common payload and provenance envelope
+// Common payload and provenance envelope
 // shared by startup, recovery, and compaction surfaces.
 
 import { assertNever } from '../utils/exhaustiveness.js';
@@ -22,7 +22,7 @@ export const SHARED_PAYLOAD_KIND_VALUES = [
 export type SharedPayloadKind = (typeof SHARED_PAYLOAD_KIND_VALUES)[number];
 
 // ───────────────────────────────────────────────────────────────
-// M8 / T-SHP-01 (R9-001): Trust-state vocabulary expansion.
+// Trust-state vocabulary expansion.
 // Canonical axes keep 'live' and 'stale' for existing-but-freshness
 // semantics and add 'absent' (does not exist for this scope) and
 // 'unavailable' (should exist but inaccessible — I/O failure,
@@ -1006,7 +1006,7 @@ export function coerceSharedPayloadEnvelope(value: unknown): SharedPayloadEnvelo
 }
 
 // ───────────────────────────────────────────────────────────────
-// M8 / T-SHP-01 (R9-001): Canonical mapping from structural freshness
+// Canonical mapping from structural freshness
 // to trust state. 'empty' and 'missing' indicate the graph scope has
 // no data (→ 'absent'); 'error' indicates the scope is unreachable
 // (→ 'unavailable'). Callers that only observe structural status

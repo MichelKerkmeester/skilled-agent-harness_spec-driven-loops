@@ -5,7 +5,7 @@
 // with active vector coverage. A row that already has both active vector
 // surfaces (vec_memories_rowids + vec_<dim>) must not stay failed/pending/retry.
 //
-// Spec: 026/003/006-memory-embedding-reconcile-tool.
+
 // Acceptance contract: 004-embedding-backlog-drain-investigation
 //   research/iterations/iteration-008.md §F1-F4, iteration-010.md §F6.
 //
@@ -35,7 +35,7 @@ export interface EmbeddingReconcileArgs {
   /** Fail closed when the active shard cannot be verified (default true). */
   requireActiveShard?: boolean;
   /**
-   * [Phase 007] Also reset `success` rows that are MISSING an active vector
+   * Also reset `success` rows that are MISSING an active vector
    * surface back to `retry` so the retry-manager re-embeds them. Default false;
    * the count is always reported under `coverage` regardless.
    */
@@ -82,11 +82,11 @@ export interface ReconcilePlannedMutation {
 export interface ReconcileApplied {
   reconciledToSuccess: number;
   resetToRetry: number;
-  /** [Phase 007] success rows missing a vector that were reset to retry for re-embedding. */
+  /** Success rows missing a vector that were reset to retry for re-embedding. */
   successCoverageReset?: number;
 }
 
-/** [Phase 007] success-rows-missing-active-vector coverage diagnostic. */
+/** Success-rows-missing-active-vector coverage diagnostic. */
 export interface ReconcileCoverage {
   successMissingActiveVector: number;
 }
@@ -98,7 +98,7 @@ export interface EmbeddingReconcileResult {
   buckets: ReconcileBuckets;
   plannedMutations: ReconcilePlannedMutation[];
   applied?: ReconcileApplied;
-  /** [Phase 007] success-coverage diagnostic; present once the active shard is verified. */
+  /** Success-coverage diagnostic; present once the active shard is verified. */
   coverage?: ReconcileCoverage;
   durationMs: number;
 }
@@ -278,7 +278,7 @@ function computeBuckets(database: Database.Database, dimTable: string): Reconcil
 }
 
 /**
- * [Phase 007] Count `success` rows MISSING an active vector surface — the
+ * Count `success` rows MISSING an active vector surface — the
  * inverse hazard of status-stale rows. `dimTable` is a validated `vec_<int>`
  * name, so interpolation is safe.
  */

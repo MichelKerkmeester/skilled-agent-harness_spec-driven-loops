@@ -15,7 +15,7 @@
 // Linear multiplicative: score * 0.95 per tick
 // Timescale: minutes. Operates on session-scoped attention scores only.
 //
-// DECAY STRATEGY (ADR-004): This is the CANONICAL long-term decay
+// DECAY STRATEGY: This is the CANONICAL long-term decay
 // Algorithm. All temporal decay for persistent memories should route
 // Through calculateRetrievability(). Formula: R(t) = (1 + 19/81 * t/S)^(-0.5)
 // Where t = elapsed days, S = stability (grows with successful reviews).
@@ -222,7 +222,7 @@ function processReview(params: FsrsParams, grade: number): ReviewResult {
 const FSRS_CONSTANTS = {
   FSRS_FACTOR,
   FSRS_DECAY,
-  FSRS_HALF_LIFE_FACTOR, // T301: derived constant (19/243)
+  FSRS_HALF_LIFE_FACTOR, // Derived constant (19/243)
   GRADE_AGAIN,
   GRADE_HARD,
   GRADE_GOOD,
@@ -457,7 +457,7 @@ export {
   // Constants
   FSRS_FACTOR,
   FSRS_DECAY,
-  FSRS_HALF_LIFE_FACTOR, // T301: derived constant for half-life ↔ stability
+  FSRS_HALF_LIFE_FACTOR, // Derived constant for half-life ↔ stability
   GRADE_AGAIN,
   GRADE_HARD,
   GRADE_GOOD,

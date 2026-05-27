@@ -354,8 +354,8 @@ function getMaxRetryQueueAgeMs(): number {
   return parsePositiveIntEnv('SPECKIT_RETRY_QUEUE_MAX_AGE_MS', 24 * 60 * 60 * 1000);
 }
 
-// Background retry job configuration (REQ-031, CHK-179)
-// Env-overrideable (post-014/022 substrate repair — see 022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic):
+// Background retry job configuration
+// Env-overrideable
 //   SPECKIT_RETRY_INTERVAL_MS — interval between background batches (default 300000 = 5 min)
 //   SPECKIT_RETRY_BATCH_SIZE  — items processed per batch (default 5)
 //   SPECKIT_RETRY_ENABLED     — set to "false" to disable the background loop entirely (default enabled)
@@ -949,7 +949,7 @@ async function processRetryQueue(limit = 3, contentLoader: ContentLoader | null 
 }
 
 /* ───────────────────────────────────────────────────────────────
-   6. BACKGROUND RETRY JOB (T099, REQ-031, CHK-179)
+   6. BACKGROUND RETRY JOB
 ──────────────────────────────────────────────────────────────── */
 
 function startBackgroundJob(options: Partial<BackgroundJobConfig> = {}): boolean {

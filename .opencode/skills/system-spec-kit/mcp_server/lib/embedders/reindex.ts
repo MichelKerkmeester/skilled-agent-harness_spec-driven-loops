@@ -348,7 +348,7 @@ function writeVectorsToShard(
   try {
     shard.pragma('journal_mode = WAL');
 
-    // ADR-012 bridge: load sqlite-vec so the runtime KNN virtual table can be created
+    // Load sqlite-vec so the runtime KNN virtual table can be created
     // and populated alongside the canonical vec_<dim> blob table. When the extension
     // is unavailable the runtime falls back to vec_<dim> only and search degrades to
     // lexical signals; we surface that through the existing console.warn in vector-index-store.

@@ -438,7 +438,7 @@ export function checkDuplicate(params: DuplicateCheckParams, options: DuplicateC
     content_hash: null,
   };
 
-  // T-SCP-01 (R1-P1-001, R4-P1-001): inline lambda collapsed into the canonical
+  // Inline lambda collapsed into the canonical
   // `normalizeScopeValue` from `lib/governance/scope-governance`. Return shape
   // preserved as `string | null` so the `=== null` / `!== null` narrowing in
   // `scopeFilters` and the SQL filter loop below continues to behave identically.

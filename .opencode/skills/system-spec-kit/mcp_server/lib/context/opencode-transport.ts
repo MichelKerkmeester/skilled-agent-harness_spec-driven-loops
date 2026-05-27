@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: OpenCode Transport Adapter
 // ───────────────────────────────────────────────────────────────
-// Phase 030 / Phase 2: transport-only mapping from shared payload
+// Transport-only mapping from shared payload
 // contracts to OpenCode-oriented startup, message, and compaction blocks.
 
 import {
@@ -139,7 +139,7 @@ export function coerceSharedPayloadEnvelope(value: unknown): SharedPayloadEnvelo
       `Invalid shared payload envelope provenance.producer "${String(value.provenance.producer)}"; expected one of ${formatAllowedValues(SHARED_PAYLOAD_PRODUCER_VALUES)}.`,
     );
   }
-  // M8 / T-SHP-01: reject legacy or unknown trust-state labels so producers
+  // Reject legacy or unknown trust-state labels so producers
   // must migrate to the 'absent'/'unavailable' vocabulary rather than silently
   // collapsing non-existent/unreachable scopes into 'stale'.
   if (!isSharedPayloadTrustState(value.provenance.trustState)) {

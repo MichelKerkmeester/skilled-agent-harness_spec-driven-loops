@@ -918,7 +918,7 @@ function validateSpecDocSufficiency(folder: string, level: string): RuleResult {
   for (const document of collectDocuments(folder, level)) {
     const parsed = parseAnchors(document.content);
 
-    // T113 FIX: Anchor-parse failures must cause SPEC_DOC_SUFFICIENCY to fail.
+    // Anchor-parse failures must cause SPEC_DOC_SUFFICIENCY to fail.
     // Previously, parse errors were silently ignored and the function would
     // continue checking whatever anchors were partially parsed, letting
     // documents with corrupt anchor structure pass sufficiency validation.
