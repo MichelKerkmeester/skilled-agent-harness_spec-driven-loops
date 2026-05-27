@@ -265,10 +265,10 @@ export async function main(): Promise<void> {
   console.error(`[mk-skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);
   initSkillGraphDb(resolveSkillGraphDbDir());
 
-  // Phase 003/006: resolve the active embedder via the shared cascade if the
+  // Resolve the active embedder via the shared cascade if the
   // persisted pointer is the `'auto'` sentinel or references a manifest the
   // shared registry no longer knows about (legacy `embeddinggemma-300m`
-  // pointer from a pre-phase-007 install). The first scan or watcher tick
+  // pointer from a legacy install). The first scan or watcher tick
   // after this call routes through `refreshSkillEmbeddingsViaAdapter`
   // because `hasActiveEmbedderPointer` now returns true.
   try {

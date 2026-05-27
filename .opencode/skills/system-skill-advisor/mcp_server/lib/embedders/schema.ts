@@ -27,7 +27,7 @@ interface MetadataRow {
   readonly value: string;
 }
 
-// Phase 003/006 (shared-embedder-logic-with-spec-memory) flipped the default
+// The shared-embedder alignment flipped the default
 // from `embeddinggemma-300m` to the `'auto'` sentinel. The shared cascade
 // (`@spec-kit/shared/embeddings/auto-select.ts`) picks the actual model at
 // runtime: Ollama (nomic-embed-text:v1.5 priority) → hf-local nomic →
@@ -152,7 +152,7 @@ export function setActiveEmbedder(db: Database.Database, name: string, dim: numb
 }
 
 // ───────────────────────────────────────────────────────────────
-// Cascade integration (phase 003/006)
+// Cascade integration
 // ───────────────────────────────────────────────────────────────
 
 export interface EnsureActiveEmbedderOptions {
@@ -172,7 +172,7 @@ export interface EnsureActiveEmbedderOptions {
  * resolution. Returns true when:
  * - the pointer is the `'auto'` sentinel (fresh install or explicit reset)
  * - the persisted name no longer resolves through `getManifest()` (orphan
- *   from a pre-phase-007 install that still has `embeddinggemma-300m` saved)
+ *   from a legacy install that still has `embeddinggemma-300m` saved)
  */
 function pointerNeedsResolution(pointer: ActiveEmbedder): boolean {
   if (pointer.name === 'auto' || pointer.dim === 0) {
@@ -239,7 +239,7 @@ export async function ensureActiveEmbedder(
       // the metadata-store contract stays truthful when non-Ollama manifests
       // are added in the future. Today all shared MANIFESTS use `backend: 'ollama'`
       // so this always evaluates to `'ollama'` — the derivation removes the
-      // hardcoded lie surfaced by the phase 003/006 deep-review (P1-3).
+      // hardcoded lie that an earlier review flagged.
       const manifest = getManifest(pointer.name);
       return {
         name: pointer.name,

@@ -7,7 +7,7 @@
 // The active default is the `'auto'` sentinel; `ensureActiveEmbedder()`
 // invokes the shared cascade (`@spec-kit/shared/embeddings/auto-select.ts`)
 // on first daemon start and persists the winner. Cascade picks at runtime:
-// Ollama → hf-local → OpenAI → Voyage (ADR-014 local-first).
+// Ollama → hf-local → OpenAI → Voyage (local-first).
 // ───────────────────────────────────────────────────────────────
 
 export type { BackendKind, EmbedderManifest } from './types.js';
