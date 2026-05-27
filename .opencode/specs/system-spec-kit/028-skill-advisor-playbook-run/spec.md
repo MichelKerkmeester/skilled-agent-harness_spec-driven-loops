@@ -103,7 +103,8 @@ This is a test-execution + documentation packet. The only repo writes are the sp
 | 002 | `002-mcp-native-scenarios/` | NC-001..009 native MCP tools + MCP-native lanes (advisor_recommend/status/validate/rebuild, skill_graph_*) — local | Complete |
 | 003 | `003-cli-hooks-and-plugin/` | CL-001/003/004/005/006 runtime hooks + opencode plugin bridge — local | Complete |
 | 004 | `004-shell-python-daemon/` | CP/OP/AU/AI/LC/SC/PC — CLI-delegated (devin PC/AU/CP, opencode SC/AI/LC) + OP local | Complete |
-| 005 | `005-finding-remediation/` | Deep-research (cli-codex gpt-5.5) root-causing the 5 findings + 6 remediation phase children (sub-parent) | In Progress |
+| 005 | `005-finding-remediation/` | Deep-research (cli-codex gpt-5.5) root-causing the 5 findings + 7 remediation phase children (sub-parent) | Complete |
+| 006 | `006-p1-routing-tuning/` | Skill-advisor P1 routing/abstention tuning: remediate the residual non-alias P1 regression failures across both scorers | Planned |
 
 ### Phase Transition Rules
 - Each phase passes `validate.sh` independently before rollup.
@@ -118,6 +119,7 @@ This is a test-execution + documentation packet. The only repo writes are the sp
 | 002 | 003 | NC scenarios executed with verdicts | NC results table populated |
 | 003 | 004 | CL hook smokes executed with verdicts | CL results table populated |
 | 004 | rollup | CP/OP/AU/AI/LC/SC/PC executed or SKIP-with-blocker | Per-wave verdict counts recorded |
+| 005-finding-remediation | 006-p1-routing-tuning | Findings + alias follow-ups closed; residual non-alias P1s scoped for routing/abstention tuning | validate.sh + both regression harnesses |
 <!-- /ANCHOR:phase-map -->
 
 ---
