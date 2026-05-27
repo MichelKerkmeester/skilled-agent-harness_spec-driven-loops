@@ -91,6 +91,7 @@ Keep this theme as the single active parent for the full skill advisor system. E
 | 003 | router | Intent routing optimization across 5 children: search-and-routing tuning, phrase booster tailoring, smart router remediation, hook surface integration, and setup command |
 | 004 | hardening | Skill-advisor hardening and safety improvements across 4 children: deferred remediation, telemetry measurement, plugin hardening, standards alignment, and CLI Devin integration |
 | 005 | docs | Skill-advisor documentation work across 3 children: docs/code alignment, code-folder READMEs, and doc/config drift fixes |
+| 006 | playbook-run-and-remediation | Manual-testing playbook run + finding remediation (F1-F5) + P1 routing/abstention tuning, across 14 sub-phases (moved from former top-level `028-skill-advisor-playbook-run`) |
 
 ---
 
@@ -133,6 +134,7 @@ Keep this theme as the single active parent for the full skill advisor system. E
 | 10 | `003-advisor-standards-alignment/` | Complete | Feature Specification: Skill-Advisor Standards Alignment |
 | 11 | `001-advisor-hook-brief-improvements/` | Research Queued | Feature Specification: Skill-Advisor Hook Improvements |
 | 12 | `005-advisor-setup-command/` | Implemented | Feature Specification: Skill Advisor Setup Command |
+| 13 | `006-playbook-run-and-remediation/` | Complete (F4 cold-env residual) | Skill Advisor Manual Testing Playbook Run + remediation + P1 tuning (sub-parent; moved from top-level 028) |
 <!-- /ANCHOR:phase-map -->
 
 <!-- The 4 daemon-corruption packets that were briefly registered here (006-009) were

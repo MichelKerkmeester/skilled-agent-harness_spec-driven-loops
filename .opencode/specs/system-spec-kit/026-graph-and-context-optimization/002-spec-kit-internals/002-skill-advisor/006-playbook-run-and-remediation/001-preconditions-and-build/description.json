@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/001-preconditions-and-build",
+  "description": "Feature Specification: Preconditions and Build (Playbook Run Phase 001)",
+  "keywords": [
+    "feature",
+    "specification",
+    "preconditions",
+    "build",
+    "playbook",
+    "run",
+    "phase",
+    "001"
+  ],
+  "lastUpdated": "2026-05-27T11:54:00.542Z",
+  "specId": "001",
+  "folderSlug": "preconditions-and-build",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "006-playbook-run-and-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_21-10__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

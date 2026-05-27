@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix",
+  "description": "Feature Specification: Playbook Vitest Path Fix (F5)",
+  "keywords": [
+    "feature",
+    "specification",
+    "playbook",
+    "vitest",
+    "path",
+    "fix"
+  ],
+  "lastUpdated": "2026-05-27T11:54:02.288Z",
+  "specId": "006",
+  "folderSlug": "playbook-vitest-path-fix",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "006-playbook-run-and-remediation",
+    "005-finding-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

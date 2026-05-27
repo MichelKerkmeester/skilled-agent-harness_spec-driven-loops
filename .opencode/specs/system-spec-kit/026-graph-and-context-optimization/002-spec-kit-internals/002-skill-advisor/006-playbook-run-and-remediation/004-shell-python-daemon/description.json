@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/004-shell-python-daemon",
+  "description": "Feature Specification: Shell/Python/Daemon Waves (Playbook Run Phase 004)",
+  "keywords": [
+    "feature",
+    "specification",
+    "shell",
+    "python",
+    "daemon",
+    "waves",
+    "playbook",
+    "run",
+    "phase",
+    "004"
+  ],
+  "lastUpdated": "2026-05-27T11:54:00.118Z",
+  "specId": "004",
+  "folderSlug": "shell-python-daemon",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "006-playbook-run-and-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_21-10__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

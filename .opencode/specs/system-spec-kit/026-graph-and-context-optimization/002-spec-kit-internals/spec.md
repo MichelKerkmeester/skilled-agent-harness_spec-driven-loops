@@ -87,7 +87,7 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-resource-map-deep-loop-fix/` | resource-map.md template and deep-loop artifact placement and auto-emit | complete |
-| 002 | `002-skill-advisor/` | Skill-advisor system: graph, scoring engine, routing engine, hardening, docs | complete |
+| 002 | `002-skill-advisor/` | Skill-advisor system: graph, scoring engine, routing engine, hardening, docs, playbook-run + remediation | in progress |
 | 003 | `003-template-levels/` | Manifest-driven spec template system (research, design, implementation) | in progress (85%) |
 | 004 | `004-literal-spec-folder-names/` | Concrete-token spec-folder and phase naming policy | deferred |
 

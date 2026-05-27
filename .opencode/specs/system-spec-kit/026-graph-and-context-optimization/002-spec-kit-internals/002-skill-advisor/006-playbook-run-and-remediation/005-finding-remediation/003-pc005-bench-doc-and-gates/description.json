@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates",
+  "description": "Feature Specification: PC-005 Bench Doc + Gate Calibration (F2)",
+  "keywords": [
+    "feature",
+    "specification",
+    "pc-005",
+    "bench",
+    "doc",
+    "gate",
+    "calibration"
+  ],
+  "lastUpdated": "2026-05-27T11:54:03.154Z",
+  "specId": "003",
+  "folderSlug": "pc005-bench-doc-and-gates",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "006-playbook-run-and-remediation",
+    "005-finding-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

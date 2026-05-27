@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/003-cli-hooks-and-plugin",
+  "description": "Feature Specification: CLI Hooks and Plugin (Playbook Run Phase 003)",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli",
+    "hooks",
+    "plugin",
+    "playbook",
+    "run",
+    "phase",
+    "003"
+  ],
+  "lastUpdated": "2026-05-27T11:54:00.966Z",
+  "specId": "003",
+  "folderSlug": "cli-hooks-and-plugin",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "006-playbook-run-and-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_21-10__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

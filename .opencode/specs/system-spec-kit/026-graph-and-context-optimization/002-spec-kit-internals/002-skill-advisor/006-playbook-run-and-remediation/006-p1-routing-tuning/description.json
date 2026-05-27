@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/006-p1-routing-tuning",
+  "description": "Feature Specification: Skill Advisor P1 Routing & Abstention Tuning",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "advisor",
+    "routing",
+    "abstention",
+    "tuning"
+  ],
+  "lastUpdated": "2026-05-27T11:53:59.660Z",
+  "specId": "006",
+  "folderSlug": "p1-routing-tuning",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals",
+    "002-skill-advisor",
+    "006-playbook-run-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
