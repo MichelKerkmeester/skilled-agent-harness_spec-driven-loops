@@ -9,7 +9,7 @@
 // ║          single stdout JSON response and exits.                         ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 //
-// F-020-D5-04: this file is the SOURCE-OF-TRUTH bridge. It lives outside the
+// This file is the SOURCE-OF-TRUTH bridge. It lives outside the
 // TypeScript build tree on purpose:
 //   1. The OpenCode plugin host imports `.opencode/plugins/*.js` only — having
 //      the bridge as a sibling .mjs keeps the plugin entrypoint count to 1
@@ -20,13 +20,13 @@
 //      as plain JS for live diagnosis when the OpenCode plugin host misroutes.
 //   3. Migrating to TS would require either (a) building this file into the
 //      same dist tree the plugin watches, creating a chicken-and-egg with
-//      cache-signature freshness (see F-020-D5-01), or (b) maintaining a
+//      cache-signature freshness, or (b) maintaining a
 //      .ts → .mjs build step exclusive to this single file. Either path is
 //      a larger packet than the source/dist boundary fixes here.
 //
 // Smoke tests asserting the subprocess envelope live in the standalone
 // system-skill-advisor compatibility test suite.
-// Helper for packet 026/007/009. This file intentionally lives outside
+// This file intentionally lives outside
 // `.opencode/plugins/` so OpenCode discovers only real plugin entrypoints.
 
 import { readFileSync } from 'node:fs';
@@ -263,7 +263,7 @@ function parseAdvisorToolData(toolResponse) {
   return parsed?.data ?? parsed;
 }
 
-// F-006-B1-03: The dead `renderNativeBrief()` alternate renderer was removed
+// The dead `renderNativeBrief()` alternate renderer was removed
 // here. It was unreferenced (verified via grep across mcp_server) and could
 // drift from the shared `renderAdvisorBrief()` formatter. Bridge output now
 // flows exclusively through `renderAdvisorBrief()` loaded via
@@ -469,7 +469,7 @@ async function buildLegacyBrief(input) {
 async function buildBrief(input, dependencies = {}) {
   const env = dependencies.env ?? process.env;
   if (env[DISABLED_ENV] === '1') {
-    // F-006-B1-02: Silent fail-open in disabled mode. Previously this branch
+    // Silent fail-open in disabled mode. Previously this branch
     // returned a model-visible `Advisor: disabled by ...` brief, but every
     // other runtime (Codex, Claude, Copilot, Gemini) fails open silently when
     // the disabled flag is set. Aligning OpenCode with the dominant pattern

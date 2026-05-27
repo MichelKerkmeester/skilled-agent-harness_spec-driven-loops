@@ -14,7 +14,7 @@
 #   bash .opencode/skills/system-skill-advisor/mcp_server/scripts/verify-zombie-soak.sh
 #   bash .opencode/skills/system-skill-advisor/mcp_server/scripts/verify-zombie-soak.sh --verbose
 #
-# Evidence capture for CHK-014 in 007/checklist.md:
+# Evidence capture:
 #   bash .../verify-zombie-soak.sh --verbose > /tmp/soak-evidence-$(date +%Y%m%d).log 2>&1
 
 set -euo pipefail
