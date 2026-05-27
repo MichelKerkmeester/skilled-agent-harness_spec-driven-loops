@@ -1,0 +1,28 @@
+{
+  "specFolder": "003-pc005-bench-doc-and-gates",
+  "description": "Feature Specification: PC-005 Bench Doc + Gate Calibration (F2)",
+  "keywords": [
+    "feature",
+    "specification",
+    "pc-005",
+    "bench",
+    "doc",
+    "gate",
+    "calibration"
+  ],
+  "lastUpdated": "2026-05-26T21:20:44.527Z",
+  "specId": "003",
+  "folderSlug": "pc005-bench-doc-and-gates",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-skill-advisor-playbook-run",
+    "005-finding-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

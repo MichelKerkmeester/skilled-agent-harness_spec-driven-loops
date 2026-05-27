@@ -35,7 +35,7 @@ Validate that ambiguous advisor results surface as ambiguity rather than a false
 1. Run the ambiguity-focused unit test:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests/handlers/advisor-recommend.vitest.ts skill-advisor/tests/legacy/advisor-renderer.vitest.ts --reporter=default
+cd .opencode/skills/system-skill-advisor/mcp_server && npm exec -- vitest run tests/handlers/advisor-recommend.vitest.ts tests/legacy/advisor-renderer.vitest.ts --reporter=default
 ```
 
 2. Call a broad prompt likely to place two skills close together:

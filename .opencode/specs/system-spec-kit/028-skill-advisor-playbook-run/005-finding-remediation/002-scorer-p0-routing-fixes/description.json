@@ -1,0 +1,27 @@
+{
+  "specFolder": "002-scorer-p0-routing-fixes",
+  "description": "Feature Specification: Scorer P0 Routing Fixes (F1b)",
+  "keywords": [
+    "feature",
+    "specification",
+    "scorer",
+    "routing",
+    "fixes",
+    "f1b"
+  ],
+  "lastUpdated": "2026-05-26T21:20:41.535Z",
+  "specId": "002",
+  "folderSlug": "scorer-p0-routing-fixes",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-skill-advisor-playbook-run",
+    "005-finding-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

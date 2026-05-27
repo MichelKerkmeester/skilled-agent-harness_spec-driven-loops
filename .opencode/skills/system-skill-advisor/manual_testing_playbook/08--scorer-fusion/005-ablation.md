@@ -46,7 +46,7 @@ advisor_validate({"skillSlug":null})
 
 - Baseline accuracy matches the documented baseline (within noise).
 - Disabling any non-zero lane degrades accuracy by a measurable amount.
-- Disabling `semantic_shadow` (already weight 0) has no effect on live scoring.
+- Disabling `semantic_shadow` (a live lane at weight 0.05) measurably affects scoring.
 - Post-ablation `laneWeights` equal pre-ablation values (ablation does not mutate live configuration).
 
 ### Failure Modes

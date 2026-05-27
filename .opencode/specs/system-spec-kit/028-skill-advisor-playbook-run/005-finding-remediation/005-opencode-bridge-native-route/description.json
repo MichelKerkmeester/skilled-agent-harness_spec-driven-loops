@@ -1,0 +1,28 @@
+{
+  "specFolder": "005-opencode-bridge-native-route",
+  "description": "Feature Specification: OpenCode Bridge Native Route Fix (F4)",
+  "keywords": [
+    "feature",
+    "specification",
+    "opencode",
+    "bridge",
+    "native",
+    "route",
+    "fix"
+  ],
+  "lastUpdated": "2026-05-26T21:20:48.106Z",
+  "specId": "005",
+  "folderSlug": "opencode-bridge-native-route",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-skill-advisor-playbook-run",
+    "005-finding-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

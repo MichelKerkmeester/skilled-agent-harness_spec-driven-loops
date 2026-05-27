@@ -156,8 +156,11 @@ export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProje
         return null;
       }
 
-      // The cutoff suppresses random near-zero vector noise while keeping this
-      // lane purely observational; registry weight remains 0.00 and live=false.
+      // The cutoff suppresses random near-zero vector noise. The semantic lane is
+      // LIVE in the registry (weight 0.05, live=true). This raw match still tags
+      // shadowOnly:true, but fusion derives the effective shadowOnly from lane
+      // liveness (isLiveScorerLane), so attribution reports shadowOnly:false for
+      // this live lane.
       const roundedScore = Math.round(score * 1_000_000) / 1_000_000;
       return {
         skillId: skill.id,

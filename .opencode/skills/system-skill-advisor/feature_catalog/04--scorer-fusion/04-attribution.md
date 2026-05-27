@@ -18,7 +18,7 @@ Make the fusion score auditable by exposing each lane's contribution per recomme
 
 ## 2. CURRENT REALITY
 
-`lib/scorer/attribution.ts` builds the `laneBreakdown` array when `includeAttribution: true` is passed to `advisor_recommend`. Each entry carries exactly `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly`. The semantic lane always reports `shadowOnly: true`. Prompt substrings are never copied into attribution.
+`lib/scorer/attribution.ts` builds the `laneBreakdown` array when `includeAttribution: true` is passed to `advisor_recommend`. Each entry carries exactly `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly`. The semantic lane reports `shadowOnly: false` because it is a live lane (registry weight 0.05); fusion derives `shadowOnly` from lane liveness. Prompt substrings are never copied into attribution.
 
 ## 3. SOURCE FILES
 

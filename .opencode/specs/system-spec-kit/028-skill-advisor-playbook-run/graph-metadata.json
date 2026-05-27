@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-skill-advisor-playbook-run",
+  "spec_folder": "system-spec-kit/028-skill-advisor-playbook-run",
+  "parent_id": null,
+  "children_ids": [
+    "system-spec-kit/028-skill-advisor-playbook-run/001-preconditions-and-build",
+    "system-spec-kit/028-skill-advisor-playbook-run/002-mcp-native-scenarios",
+    "system-spec-kit/028-skill-advisor-playbook-run/003-cli-hooks-and-plugin",
+    "system-spec-kit/028-skill-advisor-playbook-run/004-shell-python-daemon",
+    "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor playbook run",
+      "skill-advisor manual testing playbook",
+      "028 skill advisor playbook"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "playbook",
+      "run",
+      "skill-advisor",
+      "manual",
+      "testing",
+      "028",
+      "system-skill-advisor",
+      "ships",
+      "46-scenario",
+      "spanning"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Manual Testing Playbook Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-skill-advisor` skill ships a 46-scenario manual testing playbook (`manual_testing_playbook/`) spanning native MCP tools, CLI runtime hooks, compatibility shims, auto-update daemon state, auto-indexing, lifecycle routing, scorer fusion and Python compatibility. The playbook had not been executed end-to-end against the current build, so its real PASS/PARTIAL/FAIL/SKIP state and any drift between documented expected signals and live behavior were unknown.",
+    "created_at": "2026-05-26T20:09:07.489Z",
+    "last_save_at": "2026-05-27T03:52:02.263Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}

@@ -271,6 +271,38 @@ function parseAdvisorToolData(toolResponse) {
 // stay because they are still used by `buildNativeBrief` and `buildLegacyBrief`.
 
 async function loadNativeAdvisorModules() {
+  // Primary native path: import the compiled compat module in-process. This is the
+  // canonical native surface (status handler, recommend handler, daemon probe, brief)
+  // and its return shapes already match this bridge's consumers — readAdvisorStatus
+  // returns the status DATA object (probeNativeAdvisor reads .freshness/.generation),
+  // handleAdvisorRecommend returns the MCP `{content:[{text}]}` envelope
+  // (buildNativeBrief parses content[0].text), and probeAdvisorDaemon returns the
+  // probe result directly. Importing compat avoids the launcher/MCP stdio handshake,
+  // which fails open to the python route when a stale launcher lease has no IPC socket
+  // (LEASE_HELD_BY... no-bridge-socket). The launcher subprocess remains a fallback for
+  // callers without a colocated dist build.
+  try {
+    const compat = await import(new URL('../dist/mcp_server/compat/index.js', import.meta.url));
+    if (
+      typeof compat.readAdvisorStatus === 'function'
+      && typeof compat.handleAdvisorRecommend === 'function'
+    ) {
+      return {
+        readAdvisorStatus: (args) => compat.readAdvisorStatus(args),
+        handleAdvisorRecommend: (args) => compat.handleAdvisorRecommend(args),
+        probeAdvisorDaemon: typeof compat.probeAdvisorDaemon === 'function'
+          ? (args) => compat.probeAdvisorDaemon(args)
+          : null,
+        buildSkillAdvisorBrief: typeof compat.buildSkillAdvisorBrief === 'function'
+          ? compat.buildSkillAdvisorBrief
+          : null,
+        renderAdvisorBrief,
+      };
+    }
+  } catch {
+    // Compat import unavailable (e.g. dist not built for a non-colocated caller).
+    // Fall through to the launcher/MCP-subprocess fallback below.
+  }
   return {
     readAdvisorStatus: async (args) => parseAdvisorToolData(await callAdvisorTool('advisor_status', args, args.workspaceRoot)),
     handleAdvisorRecommend: (args) => callAdvisorTool('advisor_recommend', args, args.workspaceRoot),
@@ -300,17 +332,32 @@ async function probeNativeAdvisor(input, dependencies = {}) {
   }
 
   const modules = await (dependencies.loadNativeAdvisorModules ?? loadNativeAdvisorModules)();
+  let probe;
   if (typeof modules.probeAdvisorDaemon === 'function') {
-    return modules.probeAdvisorDaemon({ workspaceRoot: input.workspaceRoot });
+    probe = await modules.probeAdvisorDaemon({ workspaceRoot: input.workspaceRoot });
+  } else {
+    const status = await modules.readAdvisorStatus({ workspaceRoot: input.workspaceRoot });
+    probe = {
+      available: status.freshness === 'live' || status.freshness === 'stale',
+      freshness: status.freshness,
+      generation: status.generation,
+      trustState: status.trustState,
+      reason: status.errors?.[0] ?? status.trustState?.reason ?? null,
+    };
   }
-  const status = await modules.readAdvisorStatus({ workspaceRoot: input.workspaceRoot });
-  return {
-    available: status.freshness === 'live' || status.freshness === 'stale',
-    freshness: status.freshness,
-    generation: status.generation,
-    trustState: status.trustState,
-    reason: status.errors?.[0] ?? status.trustState?.reason ?? null,
-  };
+  // The skill graph is serveable whenever trustState is reader-usable
+  // (live/stale). Recommendations run in-process off the graph DB; the daemon only
+  // drives auto-reindex. So when the daemon/artifact freshness axis reports
+  // 'unavailable' but trustState is live/stale, serve native in a degraded mode
+  // instead of failing open to python (which yields no brief). createTrustState still
+  // downgrades to 'unavailable'/'absent'/'stale' for a missing, corrupt, or
+  // source-newer graph, so this never serves an untrustworthy graph.
+  const trustStateValue = probe?.trustState?.state;
+  const trustUsable = trustStateValue === 'live' || trustStateValue === 'stale';
+  if (probe && !probe.available && trustUsable) {
+    return { ...probe, available: true, degraded: true, daemonAvailable: false };
+  }
+  return probe;
 }
 
 async function buildNativeBrief(input, dependencies = {}) {

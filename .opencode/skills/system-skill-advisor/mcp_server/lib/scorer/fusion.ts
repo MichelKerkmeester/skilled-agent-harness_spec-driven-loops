@@ -266,6 +266,10 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
     if (recommendation.skill === 'system-spec-kit') return R.speckitResumeSpecKitBonus;
     if (recommendation.skill === 'command-spec-kit') return R.speckitResumeCommandPenalty;
   }
+  if (promptLower.includes('/speckit:plan')) {
+    if (recommendation.skill === 'command-spec-kit') return R.speckitPlanCommandBonus;
+    if (recommendation.skill === 'sk-doc') return R.speckitPlanSkDocPenalty;
+  }
   if (/\b(save context|save memory)\b/.test(promptLower)) {
     if (recommendation.skill === 'memory:save') return R.saveContextMemorySaveBonus;
     if (recommendation.skill === 'system-spec-kit') return R.saveContextMemorySpecKitPenalty;

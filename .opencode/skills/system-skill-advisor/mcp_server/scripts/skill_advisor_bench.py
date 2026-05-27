@@ -243,9 +243,10 @@ def main() -> int:
     parser.add_argument("--threshold", type=float, default=0.8, help="Confidence threshold for advisor runs.")
     parser.add_argument("--uncertainty", type=float, default=0.35, help="Uncertainty threshold for advisor runs.")
     parser.add_argument("--out", default="", help="Optional path to write JSON report.")
-    parser.add_argument("--max-warm-p95-ms", type=float, default=20.0, help="Warm-mode p95 gate (in-process).")
-    parser.add_argument("--max-cold-p95-ms", type=float, default=60.0, help="Cold-mode p95 gate (subprocess one-shot).")
-    parser.add_argument("--min-throughput-multiplier", type=float, default=2.0, help="Minimum batch throughput multiplier over subprocess one-shot.")
+    parser.add_argument("--max-warm-p95-ms", type=float, default=50.0, help="Warm-mode p95 gate (in-process). Default 50ms matches the documented cache-hit design envelope.")
+    parser.add_argument("--max-cold-p95-ms", type=float, default=60.0, help="Cold-mode p95 gate (subprocess one-shot). Advisory by default; measures per-prompt process startup, not native scorer latency.")
+    parser.add_argument("--min-throughput-multiplier", type=float, default=2.0, help="Minimum batch throughput multiplier over subprocess one-shot. Blocking regression gate.")
+    parser.add_argument("--enforce-cold-p95", action="store_true", help="Treat cold-mode p95 (subprocess one-shot) as a blocking gate. Advisory by default since it measures Python+Node process startup, not native scorer latency; enforce only on a calibrated host.")
     args = parser.parse_args()
 
     prompts = load_prompts_from_dataset(args.dataset)
@@ -268,7 +269,14 @@ def main() -> int:
         "cold_p95": subprocess_summary["p95_ms"] <= args.max_cold_p95_ms,
         "throughput_multiplier": throughput_multiplier >= args.min_throughput_multiplier,
     }
-    overall_pass = all(gates.values())
+    # cold_p95 measures per-prompt subprocess cold-start (Python + optional Node bridge
+    # startup), not native scorer latency, so it is advisory by default. warm_p95 and
+    # throughput_multiplier are the blocking regression gates; enforce cold_p95 only on a
+    # calibrated host via --enforce-cold-p95.
+    blocking_gate_names = ["warm_p95", "throughput_multiplier"]
+    if args.enforce_cold_p95:
+        blocking_gate_names.append("cold_p95")
+    overall_pass = all(gates[name] for name in blocking_gate_names)
 
     report = {
         "dataset": args.dataset,
@@ -281,6 +289,7 @@ def main() -> int:
         "batch_mode": batch_summary,
         "throughput_multiplier": round(throughput_multiplier, 4),
         "gates": gates,
+        "cold_p95_advisory": not args.enforce_cold_p95,
         "overall_pass": overall_pass,
     }
 

@@ -1,0 +1,26 @@
+{
+  "specFolder": "005-finding-remediation",
+  "description": "Feature Specification: Skill Advisor Finding Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "advisor",
+    "finding",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-26T21:20:40.557Z",
+  "specId": "005",
+  "folderSlug": "finding-remediation",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-skill-advisor-playbook-run"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

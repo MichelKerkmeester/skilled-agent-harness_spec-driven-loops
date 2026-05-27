@@ -44,7 +44,7 @@ advisor_recommend({"prompt":"review this pull request","options":{"topK":1,"incl
 ### Expected Signals
 
 - With `includeAttribution: true`, each lane entry carries exactly the documented fields: `lane`, `rawScore`, `weight`, `weightedScore`, `shadowOnly`.
-- `semantic_shadow` always reports `shadowOnly: true`.
+- `semantic_shadow` reports `shadowOnly: false` (it is a live lane at registry weight 0.05; fusion derives the flag from lane liveness).
 - With `includeAttribution: false`, `laneBreakdown` is absent or empty.
 - No raw prompt substring appears in attribution.
 

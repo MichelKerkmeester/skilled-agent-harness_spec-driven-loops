@@ -1,0 +1,27 @@
+{
+  "specFolder": "028-skill-advisor-playbook-run",
+  "description": "Feature Specification: Skill Advisor Manual Testing Playbook Run",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "advisor",
+    "manual",
+    "testing",
+    "playbook",
+    "run"
+  ],
+  "lastUpdated": "2026-05-26T20:09:07.489Z",
+  "specId": "028",
+  "folderSlug": "skill-advisor-playbook-run",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_21-09__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

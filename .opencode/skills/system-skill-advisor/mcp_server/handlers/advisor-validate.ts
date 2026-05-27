@@ -12,6 +12,7 @@ import { z } from 'zod';
 import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
 import { runPromotionLatencyBench } from '../bench/latency-bench.js';
 import { createFixtureProjection } from '../lib/scorer/projection.js';
+import { skillMatchesAlias } from '../lib/scorer/aliases.js';
 import type { SkillProjection } from '../lib/scorer/types.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 import {
@@ -267,11 +268,22 @@ function evaluateRows(rows: readonly CorpusRow[], workspaceRoot: string): {
     const result = scoreAdvisorPrompt(row.prompt, { workspaceRoot });
     if (result.topSkill === null) unknown += 1;
     if (expected === null && result.topSkill !== null) falseFire += 1;
-    if (result.topSkill === expected) correct += 1;
+    // Alias-aware gold matching: corpus labels may use superseded skill IDs
+    // (e.g. sk-deep-research) that the live graph indexes under a canonical
+    // alias (deep-research). skillMatchesAlias canonicalizes both sides.
+    // The strict `===` branch preserves the both-null (correct-abstain) case.
+    const topMatchesExpected =
+      result.topSkill === expected ||
+      (result.topSkill !== null &&
+        expected !== null &&
+        skillMatchesAlias(result.topSkill, expected));
+    if (topMatchesExpected) correct += 1;
     if (expected !== null) {
       const aggregate = aggregates.get(expected) ?? { total: 0, matched: 0 };
       aggregate.total += 1;
-      if (result.topSkill === expected) aggregate.matched += 1;
+      if (result.topSkill !== null && skillMatchesAlias(result.topSkill, expected)) {
+        aggregate.matched += 1;
+      }
       aggregates.set(expected, aggregate);
     }
   }

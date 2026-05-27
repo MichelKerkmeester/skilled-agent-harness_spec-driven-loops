@@ -1,0 +1,27 @@
+{
+  "specFolder": "006-playbook-vitest-path-fix",
+  "description": "Feature Specification: Playbook Vitest Path Fix (F5)",
+  "keywords": [
+    "feature",
+    "specification",
+    "playbook",
+    "vitest",
+    "path",
+    "fix"
+  ],
+  "lastUpdated": "2026-05-26T21:20:49.841Z",
+  "specId": "006",
+  "folderSlug": "playbook-vitest-path-fix",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-skill-advisor-playbook-run",
+    "005-finding-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

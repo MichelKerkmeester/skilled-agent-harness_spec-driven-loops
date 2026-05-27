@@ -33,7 +33,7 @@ Validate lifecycle redirect metadata for non-active skill states.
 1. Run lifecycle tests:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests/lifecycle-derived-metadata.vitest.ts skill-advisor/tests/compat/plugin-bridge.vitest.ts --reporter=default
+cd .opencode/skills/system-skill-advisor/mcp_server && npm exec -- vitest run tests/lifecycle-derived-metadata.vitest.ts tests/compat/plugin-bridge.vitest.ts --reporter=default
 ```
 
 2. If a runtime fixture is available, call:

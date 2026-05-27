@@ -1,0 +1,30 @@
+{
+  "specFolder": "004-shell-python-daemon",
+  "description": "Feature Specification: Shell/Python/Daemon Waves (Playbook Run Phase 004)",
+  "keywords": [
+    "feature",
+    "specification",
+    "shell",
+    "python",
+    "daemon",
+    "waves",
+    "playbook",
+    "run",
+    "phase",
+    "004"
+  ],
+  "lastUpdated": "2026-05-26T20:10:30.278Z",
+  "specId": "004",
+  "folderSlug": "shell-python-daemon",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-skill-advisor-playbook-run"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-05-26_21-10__executed-all-46-playbook-scenarios-across-9.md"
+  ]
+}

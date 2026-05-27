@@ -115,6 +115,11 @@ export interface RoutingCalibration {
   // explicit slash-command bonuses
   readonly speckitResumeSpecKitBonus: number;
   readonly speckitResumeCommandPenalty: number;
+  // explicit /speckit:plan command-bridge intent: the literal slash command must
+  // route to the command-spec-kit bridge even when the prompt also carries a
+  // strong skill signal like "docs".
+  readonly speckitPlanCommandBonus: number;
+  readonly speckitPlanSkDocPenalty: number;
   // phase-folder intent
   readonly phaseFolderSpecKitBonus: number;
   // save-context / save-memory intent
@@ -179,6 +184,8 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     corpusStudyOtherSkillsPenalty: -0.16,
     speckitResumeSpecKitBonus: 0.16,
     speckitResumeCommandPenalty: -0.12,
+    speckitPlanCommandBonus: 0.5,
+    speckitPlanSkDocPenalty: -0.18,
     phaseFolderSpecKitBonus: 0.35,
     saveContextMemorySaveBonus: 0.55,
     saveContextMemorySpecKitPenalty: -0.25,
