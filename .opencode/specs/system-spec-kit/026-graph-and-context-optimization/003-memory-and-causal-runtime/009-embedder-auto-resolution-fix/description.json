@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix",
   "description": "Feature Specification: Robust embedding-provider auto-resolution fix (node:sqlite metadata read)",
   "keywords": [
@@ -13,7 +14,7 @@
     "metadata",
     "read"
   ],
-  "lastUpdated": "2026-05-27T13:27:15.135Z",
+  "lastUpdated": "2026-05-27T14:05:45.831Z",
   "specId": "009",
   "folderSlug": "embedder-auto-resolution-fix",
   "parentChain": [
@@ -23,7 +24,8 @@
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-05-26_15-05__implemented-the-durable-008-recommended-fix-so.md"
+  ]
 }
