@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/119-comment-ref-hygiene"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Completed rule + cleanup; sweep zero"
-    next_safe_action: "None; packet complete"
+    recent_action: "Test-file comment extension done; authored sources sweep zero"
+    next_safe_action: "None; packet complete (prod + test comments)"
     blockers: []
     key_files:
       - ".opencode/skills/sk-code/references/universal/code_style_guide.md"
@@ -66,6 +66,9 @@ Every ephemeral-artifact reference was stripped from production-code comments/JS
 - **system-spec-kit** (handlers, lib, scripts, hooks, shared, benchmarks, mcp_server full sweep, stress_test) — `af392cb4b6`, `e8c6e68ad9`, `4f0a1d8e1f`, `49232c4049`, `2ae5ad9822`, `ab3ade4854`, `36012a8fa1`, `0b0a694ba2`
 
 Final sweep: **0 ephemeral-artifact refs in production-code comments across all four skills.**
+
+### Extension — test-file comments (per user decision)
+After production code was clean, the scope was extended (user-approved) to the test suites. Ephemeral-artifact ids were stripped from test **comments / JSDoc / block-comment headers** only — local `// T##:` and `// T-XXX-NN:` sequence labels, spec-folder paths inside `// drift:` / `// followup-actual:` / `// REASON:` annotations, and packet/ADR/finding (`R-007-NN`) refs. **Test-name strings, assertions, and fixtures (including the `## ADR-001` decision-record sample) were left byte-for-byte.** Delivered via `a4f8f98d1b` (skill-advisor), `6e0c75d52f` (code-graph), `cf9703ed59` (spec-kit), then a CLI-CODEX pass + Claude straggler fixes: `9f8412c67b`, `2783476b57`, `8a6c89e733`, `4355437409`. Authored test sources now sweep clean.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -101,6 +104,9 @@ Two course corrections are recorded honestly: (1) a destructive `git checkout` c
 | Check | Result |
 |-------|--------|
 | Comprehensive sweep — ephemeral refs in production-code comments, all 4 skills | PASS — 0 (deep-agent 0, skill-advisor 0, code-graph 0, spec-kit 0) |
+| Extension sweep — ephemeral refs in test-file comments (authored sources, all 4 skills) | PASS — 0 (only the `## ADR-001` fixture + compiled `.vitest.js` build output remain, both intentionally) |
+| Extension fence — every test-file change is a comment line (no test-name/assertion/fixture edits) | PASS (one behavior-neutral whitespace trim noted) |
+| Extension tests — vitest on heaviest-changed files | PASS (394 + 246 passed; 7 pre-existing `describe.skip`) |
 | Per-chunk comments-only diff (no Bucket-B string/SQL/glob/test edits) | PASS |
 | Typecheck — system-spec-kit / system-code-graph / system-skill-advisor | PASS (green after every chunk) |
 | Test suites — skill-advisor (449), code-graph (564) | PASS (run during CODEX passes) |
@@ -115,7 +121,7 @@ Two course corrections are recorded honestly: (1) a destructive `git checkout` c
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- **Out of agreed scope (intentional):** functional string literals (Bucket B — `.opencode/specs/` path constants, globs, SQL, `notes:`/`description:` values, output strings like `'Structural Bootstrap (Phase 027)'`), test files (Bucket C — `*.test.ts`/`*.vitest.ts` comments and fixtures), and markdown docs were left untouched. Domain/algorithm "phase 1/2" terms, HTTP codes, and stable standards (CWE/RFC/POSIX) are correctly retained.
+- **Test-file COMMENTS were cleaned in the extension** (see What Was Built). What remains intentionally untouched: functional string literals (Bucket B — `.opencode/specs/` path constants, globs, SQL, `notes:`/`description:` values, output strings like `'Structural Bootstrap (Phase 027)'`), **test fixtures and test-name strings** (Bucket C — e.g. the `## ADR-001` decision-record fixture, `it('T209-5: …')` names), markdown docs, and **compiled `*.vitest.js` build output** (its `.ts` source is clean and re-syncs on rebuild). Domain/algorithm "phase 1/2" terms, HTTP codes, and stable standards (CWE/RFC/POSIX) are correctly retained.
 - **Pre-existing test failures** in the spec-kit suite (listed above) are unrelated to this cleanup and were not introduced by it; they trace to other agents' source moves/logic changes in a heavily concurrent repo.
 - **Concurrent-agent collision** earlier in the packet (shared `main` tree) is analyzed in full in the plan file; prevention is per-agent worktree isolation + never `git checkout`-ing files one did not author.
 <!-- /ANCHOR:limitations -->

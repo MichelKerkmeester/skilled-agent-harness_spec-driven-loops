@@ -185,7 +185,7 @@ Part A (sk-code rule) and the comments-only edit discipline live here.
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Owner | Decision authority | Approved (plan + 4 scoping answers) | 2026-05-27 |
-| Claude | Implementer | In progress | 2026-05-27 |
-| CLI-CODEX (gpt-5.5) | Per-chunk reviewer | Pending | — |
+| Owner | Decision authority | Approved (plan + 6 scoping answers, incl. test-comment extension) | 2026-05-27 |
+| Claude | Implementer | Complete (prod + test-file comment extension) | 2026-05-27 |
+| CLI-CODEX (gpt-5.5) | Per-chunk reviewer | Reviewed (defects repaired by Claude) | 2026-05-27 |
 <!-- /ANCHOR:sign-off -->
