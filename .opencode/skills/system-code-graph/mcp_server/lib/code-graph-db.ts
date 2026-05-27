@@ -263,7 +263,7 @@ export function initDb(dbDir: string): Database.Database {
   try {
     dbPath = join(dbDir, 'code-graph.sqlite');
     db = new Database(dbPath);
-    // F-002-A2-02: explicit busy_timeout so concurrent writers wait up to 5s
+    // Explicit busy_timeout so concurrent writers wait up to 5s
     // for the writer lock instead of throwing SQLITE_BUSY immediately. Set
     // BEFORE journal_mode/foreign_keys so any incidental contention during
     // PRAGMA setup also benefits from the wait.
@@ -389,14 +389,14 @@ export function setLastDetectorProvenance(provenance: DetectorProvenance): void 
 
 export function getLastDetectorProvenanceSummary(): DetectorProvenanceSummary | null {
   const result = getLastDetectorProvenanceSummaryWithDiagnostics();
-  // F-004-A4-03: backward-compat — caller-visible API still returns null on
+  // Backward-compat: caller-visible API still returns null on
   // any non-resolved state; corrupt/invalid state is observable via the
   // *WithDiagnostics() companion below.
   return result.kind === 'resolved' ? result.value : null;
 }
 
 /**
- * F-004-A4-03: Discriminated metadata read result so callers can distinguish
+ * Discriminated metadata read result so callers can distinguish
  * - 'absent': the row does not exist (first-write hasn't happened yet)
  * - 'resolved': the row exists, parsed cleanly, and matches the expected shape
  * - 'corrupt': the row exists but is not valid JSON (write-side bug or
@@ -415,7 +415,7 @@ export type MetadataReadResult<T> =
   | { kind: 'invalid-shape'; raw: string };
 
 export function getLastDetectorProvenanceSummaryWithDiagnostics(): MetadataReadResult<DetectorProvenanceSummary> {
-  // F-004-A4-03: typed read — distinguish absent vs corrupt vs invalid
+  // Typed read: distinguish absent vs corrupt vs invalid.
   const value = getMetadata('last_detector_provenance_summary');
   if (!value) {
     return { kind: 'absent' };
@@ -444,12 +444,12 @@ export function setLastDetectorProvenanceSummary(summary: DetectorProvenanceSumm
 
 export function getLastGraphEdgeEnrichmentSummary(): GraphEdgeEnrichmentSummary | null {
   const result = getLastGraphEdgeEnrichmentSummaryWithDiagnostics();
-  // F-004-A4-03: backward-compat null on any non-resolved state
+  // Backward-compat null on any non-resolved state.
   return result.kind === 'resolved' ? result.value : null;
 }
 
 export function getLastGraphEdgeEnrichmentSummaryWithDiagnostics(): MetadataReadResult<GraphEdgeEnrichmentSummary> {
-  // F-004-A4-03: typed read — distinguish absent vs corrupt vs invalid
+  // Typed read: distinguish absent vs corrupt vs invalid.
   const value = getMetadata('last_graph_edge_enrichment_summary');
   if (!value) {
     return { kind: 'absent' };
@@ -522,12 +522,12 @@ export function getLastFailedScan(): FailedScanRecord | null {
 
 export function getLastGoldVerification(): object | null {
   const result = getLastGoldVerificationWithDiagnostics();
-  // F-004-A4-03: backward-compat null on any non-resolved state
+  // Backward-compat null on any non-resolved state.
   return result.kind === 'resolved' ? result.value : null;
 }
 
 export function getLastGoldVerificationWithDiagnostics(): MetadataReadResult<object> {
-  // F-004-A4-03: typed read — distinguish absent vs corrupt vs invalid
+  // Typed read: distinguish absent vs corrupt vs invalid.
   const value = getCodeGraphMetadata('last_gold_verification');
   if (!value) {
     return { kind: 'absent' };
@@ -564,9 +564,9 @@ export function getGraphQualitySummary(): {
 /**
  * Insert or update a file record, returning the file ID.
  *
- * T-ENR-02 (R5-002): `options.fileMtimeMs` lets callers stage a placeholder
- * mtime (e.g. `0`) during multi-step structural persistence so `isFileStale()`
- * continues flagging the file as stale until nodes + edges have landed.
+ * `options.fileMtimeMs` lets callers stage a placeholder mtime (e.g. `0`)
+ * during multi-step structural persistence so `isFileStale()` continues
+ * flagging the file as stale until nodes + edges have landed.
  * When omitted, the current on-disk mtime is used (original behavior).
  */
 export function upsertFile(
@@ -771,7 +771,7 @@ export function isFileStale(filePath: string, options?: { currentContentHash?: s
   if (currentMtimeMs === null) return true;
   if (!row.content_hash) return true;
 
-  // F-014-C4-01: hash content on mtime drift before declaring stale. A touch
+  // Hash content on mtime drift before declaring stale. A touch
   // (mtime drift, content unchanged) used to force reindex; now it stays
   // fresh as long as the content hash matches. Avoids gratuitous full-scans
   // on `git checkout` of unchanged files.
@@ -815,7 +815,7 @@ export function ensureFreshFiles(filePaths: string[]): FreshFilesResult {
       stale.push(filePath);
       continue;
     }
-    // F-014-C4-01: hash on mtime drift before declaring stale. Touch-only
+    // Hash on mtime drift before declaring stale. Touch-only
     // changes (mtime drift, content unchanged) stay fresh; only real content
     // changes flip the file to stale.
     const currentContentHash = getCurrentFileContentHash(filePath);
@@ -1178,8 +1178,8 @@ function rowToNode(r: Record<string, unknown>): CodeNode {
 }
 
 /**
- * R-007-P2-3: Allowlist `reason` / `step` strings on the edge-
- * metadata read path. Stale or imported rows may contain values
+ * Allowlist `reason` / `step` strings on the edge-metadata read path.
+ * Stale or imported rows may contain values
  * that pre-date a sanitizer change, were written by a different
  * branch, or simply contain control characters/newlines that
  * would break downstream rendering. Strict allowlist keeps the

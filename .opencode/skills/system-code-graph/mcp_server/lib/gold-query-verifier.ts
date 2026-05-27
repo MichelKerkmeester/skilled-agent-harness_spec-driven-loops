@@ -52,10 +52,10 @@ function resolveProjectRoot(): string {
 }
 
 /**
- * Canonical on-disk path to the v1 gold battery shipped under the 007 research
- * assets folder. Re-exported so handlers do not redeclare the relative path.
+ * Canonical on-disk path to the gold battery shipped under the research assets
+ * folder. Re-exported so handlers do not redeclare the relative path.
  *
- * REQ-014: keep in sync if the asset moves under the 007 research packet.
+ * Keep in sync if the asset moves.
  */
 export const DEFAULT_GOLD_BATTERY_PATH = resolve(
   resolveProjectRoot(),

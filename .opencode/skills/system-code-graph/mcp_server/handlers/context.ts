@@ -56,10 +56,10 @@ interface ContextFallbackDecision {
 }
 
 function shouldBlockReadPath(readiness: ReadyResult): boolean {
-  // Packet 016 / F-001: a crashed readiness probe (`freshness: 'error'`) MUST
-  // also block before `buildContext()` so the degraded envelope preserves
-  // canonical readiness/trustState and emits an `rg` recovery signal — the
-  // same shape that `code_graph_query` already ships via `fallbackDecision`.
+  // A crashed readiness probe (`freshness: 'error'`) MUST also block before
+  // `buildContext()` so the degraded envelope preserves canonical
+  // readiness/trustState and emits an `rg` recovery signal — the same shape
+  // that `code_graph_query` already ships via `fallbackDecision`.
   // Falling through to `buildContext()` on a crashed probe loses the
   // structured envelope and downgrades the response to a generic 'error'.
   if (readiness.freshness === 'error') {
@@ -85,8 +85,8 @@ function seedEndLine(seed: NonNullable<ContextHandlerArgs['seeds']>[number]): nu
 }
 
 function buildContextFallbackDecision(readiness: ContextReadiness): ContextFallbackDecision | null {
-  // Packet 016 / F-001: mirror `code_graph_query.buildFallbackDecision` shape
-  // so callers see ONE shared recovery vocabulary across all three handlers.
+  // Mirror `code_graph_query.buildFallbackDecision` shape so callers see ONE
+  // shared recovery vocabulary across all three handlers.
   // - readiness crash (`freshness: 'error'`) → fall back to `rg`
   // - full_scan required (no inline performed) → run `code_graph_scan`
   if (readiness.freshness === 'error') {
@@ -179,10 +179,10 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
         allowGuardedInlineFullScan: true,
       });
     } catch (err: unknown) {
-      // PR 4 / F71 step 5: surface as canonical 'error' freshness so
-      // buildReadinessBlock() maps it to canonicalReadiness='missing' +
-      // trustState='unavailable' automatically. Removes the manual
-      // trustState injection that previously lived at the response site.
+      // Surface as canonical 'error' freshness so buildReadinessBlock() maps
+      // it to canonicalReadiness='missing' + trustState='unavailable'
+      // automatically. Removes the manual trustState injection that previously
+      // lived at the response site.
       readiness = {
         freshness: 'error' as const,
         action: 'none' as const,
@@ -195,11 +195,11 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
     if (shouldBlockReadPath(readiness)) {
       const readinessBlock = buildReadinessBlock(readiness);
       const fallbackDecision = buildContextFallbackDecision(readiness);
-      // Packet 016 / F-001: differentiate the crash-on-probe envelope from
-      // the standard full_scan-required envelope so operators see WHY graph
-      // answers were omitted. The `rg` fallback is the same recovery the
-      // query handler already ships; this aligns the three handlers on one
-      // shared degraded-readiness vocabulary (see decision-record.md ADR-001).
+      // Differentiate the crash-on-probe envelope from the standard
+      // full_scan-required envelope so operators see WHY graph answers were
+      // omitted. The `rg` fallback is the same recovery the query handler
+      // already ships; this aligns the three handlers on one shared
+      // degraded-readiness vocabulary.
       const isCrash = readiness.freshness === 'error';
       const message = isCrash
         ? `code_graph_not_ready: ${readiness.reason}`
@@ -229,8 +229,8 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
               graphAnswersOmitted: true,
               requiredAction,
               blockReason,
-              // F-007: surface scope + manifest diagnostics
-              // directly on the blocked payload's `data` object
+              // Surface scope + manifest diagnostics directly on
+              // the blocked payload's `data` object
               // so operators can route on them without parsing
               // `data.readiness`. Backward compatible: legacy
               // callers reading `status` + `data.blockReason`
@@ -305,9 +305,9 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
     };
 
     const result = buildContext(contextArgs);
-    // PR 4 / F71 step 5: trustState is now derived canonically by
-    // buildReadinessBlock() through the V2-widened freshness union
-    // ('error' → trustState 'unavailable'). No manual injection needed.
+    // trustState is now derived canonically by buildReadinessBlock() through
+    // the widened freshness union ('error' → trustState 'unavailable'). No
+    // manual injection needed.
     const readinessBlock = buildReadinessBlock(readiness);
     const lastPersistedAt = graphDb.getStats().lastScanTimestamp;
 

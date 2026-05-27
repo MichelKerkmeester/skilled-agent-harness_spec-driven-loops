@@ -1,8 +1,8 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Startup Brief Builder
 // ───────────────────────────────────────────────────────────────
-// Phase 026: Build a compact startup brief for hook-capable runtimes
-// from local code graph + hook state (no MCP round-trip).
+// Build a compact startup brief for hook-capable runtimes from local code
+// graph + hook state (no MCP round-trip).
 
 import { getStats, queryStartupHighlights, type StartupHighlight } from './code-graph-db.js';
 import { getGraphReadinessSnapshot } from './ensure-ready.js';
@@ -132,7 +132,7 @@ function buildStartupSurface(args: {
     'Session context received. Current state:',
     '',
     `- Memory: ${memoryLine}`,
-    // 005/REQ-017: this startup label refers to the structural code graph,
+    // This startup label refers to the structural code graph,
     // distinct from the memory causal graph surfaced by memory_causal_stats.
     `- Code Graph: ${codeGraphLine}`,
     '- Note: this is a startup snapshot; later structural reads may differ if the repo state changed.',
@@ -229,8 +229,8 @@ function buildGraphOutline(highlightCount: number = 5): Pick<StartupBriefResult,
         lines.push('Freshness: stale — first structural read may trigger bounded inline refresh or recommend code_graph_scan.');
       }
     } else if (freshness === 'error') {
-      // PR 4 / F71: ensure-ready probe crashed (DB unreachable, lock held,
-      // etc). Surface as 'missing' graphState (V4 vocabulary) rather than
+      // ensure-ready probe crashed (DB unreachable, lock held, etc). Surface
+      // as 'missing' graphState rather than
       // pretending the index is ready.
       lines.push('Freshness: probe crashed — code_graph_status will report the failure; treat structural context as unavailable until repair.');
     }
@@ -244,8 +244,8 @@ function buildGraphOutline(highlightCount: number = 5): Pick<StartupBriefResult,
       lines.push(...highlights.map(formatHighlight));
     }
 
-    // PR 4 / F71: keep the public V4 graphState vocabulary stable while
-    // preserving the V2 error axis for startup provenance trust-state.
+    // Keep the public graphState vocabulary stable while preserving the error
+    // axis for startup provenance trust-state.
     let graphState: StartupBriefResult['graphState'];
     let graphTrustState: SharedPayloadTrustState;
     if (freshness === 'error') {

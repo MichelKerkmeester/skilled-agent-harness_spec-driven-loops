@@ -19,12 +19,10 @@ import {
 } from './index-scope-policy.js';
 import { isRecord } from './query-result-adapter.js';
 import * as graphDb from './code-graph-db.js';
-// F-018: shared policy module (`auto-rescan-policy.ts`) is the
-// canonical reference for the read-path guard. ensure-ready
-// delegates here so callers that consume the helper directly
-// (read-path handlers via `shouldAutoRescan(...)`) and callers
-// that rely on `ReadyResult.autoRescanSafety` see identical
-// decisions.
+// Shared policy module (`auto-rescan-policy.ts`) is the canonical reference
+// for the read-path guard. ensure-ready delegates here so callers that consume
+// the helper directly (read-path handlers via `shouldAutoRescan(...)`) and
+// callers that rely on `ReadyResult.autoRescanSafety` see identical decisions.
 import { shouldAutoRescan } from './auto-rescan-policy.js';
 
 // ───────────────────────────────────────────────────────────────
@@ -32,11 +30,10 @@ import { shouldAutoRescan } from './auto-rescan-policy.js';
 // ───────────────────────────────────────────────────────────────
 
 export type ReadyAction = 'none' | 'full_scan' | 'selective_reindex';
-// PR 4 / F71 / F17 / F18: Re-export the canonical GraphFreshness union from
-// ops-hardening (V2 superset: includes 'error' for unreachable/crashed scopes).
-// The local 3-value alias is gone; ensure-ready callers pick up the widened
-// union automatically via this re-export so the codebase stays on a single
-// vocabulary (see plan §6 PR 4 step 1).
+// Re-export the canonical GraphFreshness union from ops-hardening (superset:
+// includes 'error' for unreachable/crashed scopes). The local 3-value alias is
+// gone; ensure-ready callers pick up the widened union automatically via this
+// re-export so the codebase stays on a single vocabulary.
 export type { GraphFreshness } from './ops-hardening.js';
 import type { GraphFreshness } from './ops-hardening.js';
 
@@ -114,8 +111,8 @@ function isCommitSha(value: string): boolean {
 }
 
 /**
- * F-014-C4-02: return the file-paths touched by `git diff` between two HEAD
- * shas. Returns null on git failure (caller falls back to the existing
+ * Return the file-paths touched by `git diff` between two HEAD shas.
+ * Returns null on git failure (caller falls back to the existing
  * full-scan behavior — no regression). Returns an empty array when both shas
  * are valid but no files changed between them.
  *
@@ -141,8 +138,8 @@ function getGitDiffFilePaths(rootDir: string, fromSha: string, toSha: string): s
 }
 
 /**
- * F-014-C4-02: Decide whether a raw HEAD pointer change actually touches the
- * indexed file set. Returns:
+ * Decide whether a raw HEAD pointer change actually touches the indexed file
+ * set. Returns:
  *   - 'unknown' if git is unavailable or one sha is missing (caller keeps
  *     existing full-scan behavior so we never silently downgrade safety)
  *   - 'in-scope' if the diff touches at least one tracked file
@@ -177,7 +174,7 @@ function classifyHeadDriftScope(
   return 'out-of-scope';
 }
 
-// ─── F-014-C4-03: Candidate manifest for untracked indexable file discovery ───
+// ─── Candidate manifest for untracked indexable file discovery ───
 //
 // Rationale: `detectState()` only looks at files already in `code_files`, so a
 // brand-new `src/new.ts` is invisible until something else triggers a full
@@ -240,8 +237,8 @@ function evaluateGuardedFullScan(
   diagnostics: ReturnType<typeof buildReadinessDiagnostics>,
   parseErrorBacklogThreshold: number,
 ): Pick<ReadyResult, 'autoRescanSafety' | 'autoRescanBlockReason'> {
-  // F-018: delegate to the shared `auto-rescan-policy.ts` helper
-  // so this gate and the read-path handler gate stay in sync.
+  // Delegate to the shared `auto-rescan-policy.ts` helper so this gate and
+  // the read-path handler gate stay in sync.
   const decision = shouldAutoRescan({
     storedScope: { fingerprint: diagnostics.storedScope?.fingerprint ?? null },
     activeScope: { fingerprint: diagnostics.activeScope?.fingerprint ?? null },
@@ -262,7 +259,7 @@ function evaluateGuardedFullScan(
  * (first run) or if the stored value is malformed.
  */
 function loadCandidateManifest(): CandidateManifest | null {
-  // F-014-C4-03: bounded read of the persisted manifest
+  // Bounded read of the persisted manifest.
   const raw = graphDb.getCodeGraphMetadata(CANDIDATE_MANIFEST_KEY);
   if (!raw) return null;
   try {
@@ -282,7 +279,7 @@ function loadCandidateManifest(): CandidateManifest | null {
  * scan so the next `detectState()` has a baseline to compare against.
  */
 export function recordCandidateManifest(filePaths: string[]): void {
-  // F-014-C4-03: persist {count, digest} only — no per-path storage.
+  // Persist {count, digest} only — no per-path storage.
   const sorted = [...filePaths].sort();
   const digest = createHash('sha256').update(sorted.join('\n'), 'utf-8').digest('hex').slice(0, 16);
   const manifest: CandidateManifest = {
@@ -430,7 +427,7 @@ function detectState(rootDir: string): {
     return { freshness: 'empty', action: 'full_scan', staleFiles: [], deletedFiles: [], reason: 'no tracked files in code_files table' };
   }
 
-  // F-014-C4-02: Classify HEAD drift by index scope. Raw HEAD drift no longer
+  // Classify HEAD drift by index scope. Raw HEAD drift no longer
   // triggers full_scan if the diff touches no path in `getTrackedFiles()`.
   // 'unknown' means git was unavailable or shas are missing — we keep the
   // existing safe behavior (treat headChanged as significant).
@@ -442,7 +439,7 @@ function detectState(rootDir: string): {
   const { existingFiles, deletedFiles } = partitionTrackedFiles(trackedFiles);
   const { stale } = ensureFreshFiles(existingFiles);
 
-  // F-014-C4-03: Detect untracked-indexable drift via the candidate manifest.
+  // Detect untracked-indexable drift via the candidate manifest.
   // If the on-disk indexable cardinality or digest diverges from the stored
   // baseline, flip to stale + full_scan even when individual mtimes look fine.
   const manifestDrift = detectCandidateManifestDrift(trackedFiles);
@@ -480,7 +477,7 @@ function detectState(rootDir: string): {
       };
     }
 
-    // F-014-C4-02: HEAD pointer may have advanced without touching tracked
+    // HEAD pointer may have advanced without touching tracked
     // files. Update the stored HEAD so we don't re-classify on every probe.
     if (headChanged && headScope === 'out-of-scope' && currentHead) {
       setLastGitHead(currentHead);
@@ -557,12 +554,12 @@ async function indexWithTimeout(
 /**
  * Persist one indexed file without marking it fresh until structural rows land.
  *
- * T-ENR-02 (R5-002): Stage `file_mtime_ms=0`, write nodes/edges, then finalize
- * with the real mtime so persistence failures leave the file stale for retry.
+ * Stage `file_mtime_ms=0`, write nodes/edges, then finalize with the real
+ * mtime so persistence failures leave the file stale for retry.
  *
- * F-002-A2-01: Wrap the four storage operations (stage upsert, replaceNodes,
- * replaceEdges, finalize upsert) in a single per-file transaction so a crash
- * mid-persistence rolls all four back atomically. Per-file scope keeps the
+ * Wrap the four storage operations (stage upsert, replaceNodes, replaceEdges,
+ * finalize upsert) in a single per-file transaction so a crash mid-persistence
+ * rolls all four back atomically. Per-file scope keeps the
  * lock window short (3-4 statements) so concurrent readers/writers on the
  * same DB are not starved during a long scan.
  */
@@ -572,7 +569,7 @@ export function persistIndexedFileResult(result: ParseResult): void {
     return;
   }
 
-  // F-002-A2-01: atomic per-file persistence boundary
+  // Atomic per-file persistence boundary.
   const tx = graphDb.getDb().transaction(() => {
     const fileId = graphDb.upsertFile(
       result.filePath, result.language, result.contentHash,
@@ -676,8 +673,8 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
       // Update stored git HEAD after full scan
       const head = getCurrentGitHead(rootDir);
       if (head) setLastGitHead(head);
-      // F-014-C4-03: refresh candidate manifest after a full scan so the next
-      // detectState() has a current baseline to compare against.
+      // Refresh candidate manifest after a full scan so the next detectState()
+      // has a current baseline to compare against.
       try {
         recordCandidateManifest(graphDb.getTrackedFiles());
       } catch {
@@ -708,7 +705,7 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
 
       const head = getCurrentGitHead(rootDir);
       if (head) setLastGitHead(head);
-      // F-014-C4-03: refresh candidate manifest after a selective reindex too
+      // Refresh candidate manifest after a selective reindex too
       // (the tracked-file set may have grown if the scan added new files).
       try {
         recordCandidateManifest(graphDb.getTrackedFiles());
@@ -768,10 +765,10 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
  * Non-mutating freshness check for status display.
  * Does NOT trigger reindexing.
  *
- * PR 4 / F71 / F17 / F18: returns 'error' on probe crash so callers can
- * canonically distinguish "scope is unreachable" from "scope is empty".
+ * Returns 'error' on probe crash so callers can canonically distinguish
+ * "scope is unreachable" from "scope is empty".
  * The widened union flows through readiness-contract → trustStateFromGraphState
- * to emit `trustState: 'unavailable'` per the V5-widened contract.
+ * to emit `trustState: 'unavailable'` per the widened contract.
  */
 export function getGraphFreshness(rootDir: string): GraphFreshness {
   try {
@@ -783,7 +780,7 @@ export function getGraphFreshness(rootDir: string): GraphFreshness {
 }
 
 // ───────────────────────────────────────────────────────────────
-// Read-only readiness snapshot (Packet 014)
+// Read-only readiness snapshot
 // ───────────────────────────────────────────────────────────────
 // Surfaces the same `action` + `freshness` + `reason` triplet that
 // `ensureCodeGraphReady` would emit, but WITHOUT mutating any state:

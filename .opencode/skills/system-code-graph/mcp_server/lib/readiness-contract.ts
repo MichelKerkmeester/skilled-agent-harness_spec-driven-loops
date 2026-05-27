@@ -1,12 +1,9 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Readiness Contract (Shared)
 // ───────────────────────────────────────────────────────────────
-// Phase 017 / T-CGC-01: shared readiness contract for code-graph
-// handlers. Extracted from handlers/code-graph/query.ts so the
-// query handler and its sibling handlers (scan, status, context)
-// can converge on one readiness vocabulary — see T-W1-CGC-03 (Wave B) for the
-// propagation task that wires this contract into the remaining
-// handlers.
+// Shared readiness contract for code-graph handlers. Extracted from
+// handlers/code-graph/query.ts so the query handler and its sibling handlers
+// (scan, status, context) can converge on one readiness vocabulary.
 //
 // Scope: 4 helpers that map ensure-ready `GraphFreshness`
 // ('fresh'|'stale'|'empty'|'error') onto:
@@ -18,8 +15,8 @@
 //
 // IMPORTANT: this module does NOT introduce a new trust-state
 // enum. It consumes the canonical `SharedPayloadTrustState` from
-// lib/context/shared-payload.ts (see M8 / T-SHP-01, R9-001). The
-// handler-level helpers below only emit a 4-value subset
+// lib/context/shared-payload.ts. The handler-level helpers below only emit a
+// 4-value subset
 // (live|stale|absent|unavailable) because ensure-ready knows about
 // four freshness states — that subset is a safe, forward-
 // compatible projection over the canonical type.
@@ -35,9 +32,8 @@ import {
 } from './shared/shared-payload.js';
 import { assertNever } from './shared/assert-never.js';
 
-// Re-export the surface types that downstream consumers (query.ts
-// and its Wave B siblings) need so they can import everything
-// readiness-related from a single module.
+// Re-export the surface types that downstream consumers need so they can
+// import everything readiness-related from a single module.
 export type { ReadyResult } from './ensure-ready.js';
 export type { StructuralReadiness } from './ops-hardening.js';
 export type { SharedPayloadTrustState } from './shared/shared-payload.js';
@@ -65,9 +61,9 @@ export interface CodeGraphReadinessBlock extends ReadyResult {
  *   'fresh' → 'ready'
  *   'stale' → 'stale'
  *   'empty' → 'missing'
- *   'error' → 'missing'  (PR 4 / F71: unreachable scope is structurally missing)
+ *   'error' → 'missing'  (unreachable scope is structurally missing)
  *
- * Origin: M8 / T-CGQ-11 (R22-001, R23-001); PR 4 step 2 widens the union.
+ * A later change widens the union.
  */
 export function canonicalReadinessFromFreshness(
   freshness: ReadyResult['freshness'],
@@ -96,14 +92,13 @@ export function canonicalReadinessFromFreshness(
  *   'fresh' → 'live'
  *   'stale' → 'stale'
  *   'empty' → 'absent'
- *   'error' → 'unavailable'  (PR 4 / F71: scope unreachable, not absent)
+ *   'error' → 'unavailable'  (scope unreachable, not absent)
  *
  * The return type is the full canonical 8-state union
  * (`SharedPayloadTrustState`); the projection is a 4-value
- * subset (live | stale | absent | unavailable) matching the V5-widened
+ * subset (live | stale | absent | unavailable) matching the widened
  * `SkillGraphTrustState` axis at skill-advisor/lib/freshness/trust-state.ts.
- * Callers must NOT narrow this to a custom 4-state enum —
- * see M8 / T-SHP-01 (R9-001); PR 4 step 2 adds the `error` arm.
+ * Do not narrow this to a custom 4-state enum; the `error` arm is required.
  */
 export function queryTrustStateFromFreshness(
   freshness: ReadyResult['freshness'],
@@ -131,12 +126,12 @@ export function queryTrustStateFromFreshness(
  * `graphMetadata` field entirely in that case rather than
  * surfacing a placeholder.
  *
- * Origin: M8 / T-CGQ-09 (R18-001, R20-003).
+ * Provenance is omitted when no trusted persisted source exists.
  */
 function getPersistedDetectorProvenance(
   readiness: ReadyResult,
 ): DetectorProvenance | null {
-  // PR 4 / F71: 'empty' = scope has no rows yet; 'error' = scope unreachable
+  // 'empty' = scope has no rows yet; 'error' = scope unreachable
   // (probe crashed). Both cases must skip db lookup so we don't surface
   // stale or partial provenance from an unreachable store.
   if (readiness.freshness === 'empty' || readiness.freshness === 'error') {
@@ -188,8 +183,8 @@ function buildQueryTrustArtifacts(
         }),
       };
     case 'error':
-      // PR 4 / F71: unreachable scope. graphMetadata is omitted (provenance
-      // probe is suppressed in getPersistedDetectorProvenance), and trust
+      // Unreachable scope. graphMetadata is omitted (provenance probe is
+      // suppressed in getPersistedDetectorProvenance), and trust
       // collapses to 'unverified' / 'unknown'. Downstream consumers should
       // use the readiness-block trustState='unavailable' to differentiate
       // crash-on-probe from genuinely empty scopes.
@@ -235,7 +230,7 @@ export function buildQueryTrustMetadata(
  *   - `trustState` — the shared-payload axis
  *     (`live|stale|absent` subset of the canonical 8-state type).
  *
- * Origin: M8 / T-CGQ-11.
+ * Keeps readiness and trust-state mapping centralized for handlers.
  */
 export function buildReadinessBlock(
   readiness: ReadyResult,

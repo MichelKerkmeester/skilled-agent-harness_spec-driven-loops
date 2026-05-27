@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Tool Schemas
 // ───────────────────────────────────────────────────────────────
-// ADR-002: standalone mk-code-index MCP server owns these schemas.
+// Standalone mk-code-index MCP server owns these schemas.
 
 export interface ToolDefinition {
   name: string;

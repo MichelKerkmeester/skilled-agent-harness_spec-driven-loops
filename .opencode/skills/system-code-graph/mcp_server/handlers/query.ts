@@ -20,8 +20,8 @@ import type {
   OutlineQueryNode,
   RelationshipQueryEdge,
 } from '../lib/query-result-adapter.js';
-// R-007-P2-6: emit a stable failure-counter metric so operators can
-// distinguish DB / compute failures from legitimately empty blast radii.
+// Emit a stable failure-counter metric so operators can distinguish DB /
+// compute failures from legitimately empty blast radii.
 import { isSpeckitMetricsEnabled, speckitMetrics } from '../lib/shared/metrics-stub.js';
 
 export interface QueryArgs {
@@ -165,8 +165,8 @@ interface BlastRadiusAffectedFile {
 interface BlastRadiusFailureFallback {
   reason: string;
   /**
-   * R-007-P2-6: Stable machine-readable failure code so operators can
-   * distinguish failure modes (DB error vs ambiguous subject vs unresolved
+   * Stable machine-readable failure code so operators can distinguish
+   * failure modes (DB error vs ambiguous subject vs unresolved
    * subject vs limit reached vs empty source) without parsing free-form
    * `reason` strings. Optional for backward compatibility with older
    * call sites.
@@ -181,7 +181,7 @@ interface BlastRadiusFailureFallback {
 }
 
 /**
- * R-007-P2-6: Stable failure-fallback code values surfaced via
+ * Stable failure-fallback code values surfaced via
  * `BlastRadiusFailureFallback.code`. Adding new values is non-breaking; do
  * not rename existing literals once consumers depend on them.
  */
@@ -419,12 +419,9 @@ function resolveSubject(
   return { symbolId: null };
 }
 
-// Phase 017 / T-CGC-01: readiness helpers extracted to
-// lib/code-graph/readiness-contract.ts so the sibling
-// code-graph handlers (scan, status, context) can share one vocabulary — see
-// T-W1-CGC-03 (Wave B) for the propagation task. See that module
-// for M8 / T-CGQ-09 / T-CGQ-11 origin notes (R18-001, R20-003,
-// R22-001, R23-001).
+// Readiness helpers extracted to lib/code-graph/readiness-contract.ts so the
+// sibling code-graph handlers (scan, status, context) can share one
+// vocabulary. See that module for durable mapping notes.
 
 function buildGraphQueryPayload<T extends Record<string, unknown>>(
   payload: T,
@@ -519,8 +516,8 @@ function excludeDanglingEdges<TEntry>(
 /**
  * BFS transitive traversal from a symbolId via the given edge type.
  *
- * M8 / T-CGQ-10 (R19-001): dangling nodes (where queryEdgesFrom/To returns
- * an edge whose endpoint has no node row) were previously surfaced as
+ * Dangling nodes (where queryEdgesFrom/To returns an edge whose endpoint has
+ * no node row) were previously surfaced as
  * successful traversal results with null fqName/filePath. They are now
  * flagged as corruption alongside the resolved results so callers can
  * trust the absence of `warnings` as "no dangling references".
@@ -677,7 +674,7 @@ function edgeMetadataOutput(edge: OutboundEdgeEntry['edge'] | InboundEdgeEntry['
 }
 
 /* ───────────────────────────────────────────────────────────────
-   R-007-P2-7: Shared relationship-edge mapper
+   Shared relationship-edge mapper
    --------------------------------------------------------------
    Replaces near-duplicate switch branches for `calls_from`,
    `calls_to`, `imports_from`, and `imports_to`. Two inputs control
@@ -894,7 +891,7 @@ function buildBlockedReadPayload(
   subject: string,
 ) {
   const fallbackDecision = buildFallbackDecision(readiness);
-  // F-007: surface scope + manifest diagnostics directly on the
+  // Surface scope + manifest diagnostics directly on the
   // blocked payload's `data` object so operators can route on
   // them without parsing `data.readiness`. Backward compatible:
   // legacy callers reading `status` + `data.blockReason` continue
@@ -1103,8 +1100,8 @@ function computeBlastRadius(
     }
   }
 
-  // R-007-P2-4: Detect true overflow by comparing the full traversal size
-  // against `limit` BEFORE slicing. Previously `affectedFiles.length >= limit`
+  // Detect true overflow by comparing the full traversal size against `limit`
+  // BEFORE slicing. Previously `affectedFiles.length >= limit`
   // false-positived whenever the reachable set happened to equal `limit`
   // exactly. We over-collect (`limit + 1` semantically — here the whole
   // BFS frontier is already in `affectedByFile`) and slice down only after
@@ -1183,8 +1180,8 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
       allowGuardedInlineFullScan: true,
     });
   } catch (error) {
-    // PR 4 / F71 step 6: emit S2-matching 'unavailable' trust-state on
-    // readiness-crash so query consumers see the same canonical vocabulary
+    // Emit 'unavailable' trust-state on readiness-crash so query consumers
+    // see the same canonical vocabulary
     // as code_graph_context. Previously this path dropped the readiness
     // block entirely and only returned a status:'error' string.
     const reason = error instanceof Error ? error.message : String(error);
@@ -1317,8 +1314,8 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
 
       const resolvedSubject = resolvedPathCandidate ?? graphDb.resolveSubjectFilePath(candidate);
       if (typeof resolvedSubject !== 'string' || resolvedSubject.length === 0) {
-        // R-007-P2-5: Preserve any sibling seeds we have already resolved
-        // ahead of this failed candidate. Returning `nodes: []` here would
+        // Preserve any sibling seeds we have already resolved ahead of this
+        // failed candidate. Returning `nodes: []` here would
         // discard work the caller can still use; instead surface the
         // already-resolved seeds so multi-subject blast-radius queries
         // degrade gracefully when one subject fails to resolve.
@@ -1420,8 +1417,8 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
     } catch (error) {
       const depthGroups = buildDepthGroups([], effectiveDepth);
       const reason = error instanceof Error ? error.message : String(error);
-      // R-007-P2-6: Surface a stable `code` and emit a warning log + metric
-      // so operators can distinguish a genuine compute / DB failure from a
+      // Surface a stable `code` and emit a warning log + metric so operators
+      // can distinguish a genuine compute / DB failure from a
       // legitimately empty blast radius (which has no failureFallback).
       console.warn(
         `[code-graph-query] blast_radius compute failure: ${reason} (sources=${sourceFiles.length})`,
@@ -1523,8 +1520,8 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
   // If includeTransitive, use BFS traversal instead of 1-hop
   if (args.includeTransitive) {
     const direction = operation.endsWith('from') ? 'from' : 'to';
-    // F-002-A2-03: wrap the BFS multi-SELECT traversal in a snapshot-stable
-    // read transaction so a concurrent index pass cannot shift the result set
+    // Wrap the BFS multi-SELECT traversal in a snapshot-stable read
+    // transaction so a concurrent index pass cannot shift the result set
     // between the per-depth queries. better-sqlite3 transactions in WAL mode
     // observe a consistent snapshot for the lifetime of the transaction.
     const transitive = graphDb.getDb().transaction(() => transitiveTraversal(
@@ -1558,15 +1555,15 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
 
   let result;
   switch (operation) {
-    // R-007-P2-7: 4 near-duplicate switch branches collapsed via the shared
+    // 4 near-duplicate switch branches collapsed via the shared
     // `mapOutboundRelationshipEdge` / `mapInboundRelationshipEdge` helpers.
     // Variation surface: (1) direction (outbound / inbound), (2) whether the
     // start line is included (calls_*) or omitted (imports_*).
     case 'calls_from':
     case 'imports_from': {
       const includeLine = operation === 'calls_from';
-      // F-002-A2-03: snapshot-stable read transaction. queryEdgesFrom issues
-      // the edge lookup AND a per-edge node lookup; wrapping in a transaction
+      // Snapshot-stable read transaction. queryEdgesFrom issues the edge
+      // lookup AND a per-edge node lookup; wrapping in a transaction
       // ensures both observe a consistent snapshot under concurrent writers.
       const edges = graphDb.getDb().transaction(
         () => graphDb.queryEdgesFrom(symbolId, requestedEdgeType),
@@ -1593,7 +1590,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
     case 'calls_to':
     case 'imports_to': {
       const includeLine = operation === 'calls_to';
-      // F-002-A2-03: snapshot-stable read transaction (see calls_from above).
+      // Snapshot-stable read transaction (see calls_from above).
       const edges = graphDb.getDb().transaction(
         () => graphDb.queryEdgesTo(symbolId, requestedEdgeType),
       )();

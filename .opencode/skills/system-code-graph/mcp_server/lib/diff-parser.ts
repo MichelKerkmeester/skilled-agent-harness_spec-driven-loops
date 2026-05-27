@@ -6,13 +6,13 @@
 // sections, `--- a/<path>` / `+++ b/<path>` headers, and
 // `@@ -oldStart,oldLines +newStart,newLines @@` hunks.
 //
-// **Library choice (P1-03 blocker resolution):** *no third-party
-// library*. A custom parser was chosen because:
+// **Library choice:** *no third-party library*. A custom parser was chosen
+// because:
 //
 //   - Adding a new npm dependency for a 100-line parser violates
 //     the project's "trust internal code" + minimal-dep posture.
 //     The mcp_server `package.json` deliberately keeps its
-//     `dependencies` list short (12 entries; see ADR-016 family).
+//     `dependencies` list short.
 //   - The unified-diff format is a published, stable POSIX
 //     specification. A purpose-built parser handles only the
 //     subset `git diff` emits, which keeps the surface tiny and
@@ -21,12 +21,11 @@
 //     mutates files based on diff content, so we don't need
 //     library-grade patch-application semantics. Hunk metadata
 //     is enough.
-//   - Clean-room rule (ADR-012-001): a custom parser cannot drag
-//     in upstream `diff` package source forms.
+//   - Clean-room rule: a custom parser cannot drag in upstream `diff`
+//     package source forms.
 //
 // Format reference: `man diff` § "Unified format". This parser
-// returns `parse_error` on inputs it cannot map to that format
-// (R-002-6).
+// returns `parse_error` on inputs it cannot map to that format.
 
 /** A single change hunk: contiguous added/removed/context lines. */
 export interface DiffHunk {
@@ -120,8 +119,8 @@ export function parseUnifiedDiff(diff: string): DiffParseResult {
   let currentNewPath: string | null = null;
   let currentHunks: DiffHunk[] = [];
   let inHunkBody = false;
-  // R-007-4: Track expected remaining old/new line counts for the
-  // active hunk body. When BOTH counters reach zero the hunk body
+  // Track expected remaining old/new line counts for the active hunk body.
+  // When BOTH counters reach zero the hunk body
   // is complete, and any subsequent line — even one starting with
   // `-` (the next file's `--- a/<path>` header) or `+` (the next
   // file's `+++ b/<path>` header) — must NOT be consumed as part
@@ -162,8 +161,8 @@ export function parseUnifiedDiff(diff: string): DiffParseResult {
       // mid-file from a previous block, flush it first so we never
       // mix headers across files.
       //
-      // R-007-4: when the active hunk body has counted down its
-      // expected old/new line counts, the next `--- ` IS the next
+      // When the active hunk body has counted down its expected old/new line
+      // counts, the next `--- ` IS the next
       // file's pre-image header — finalize and start a fresh file.
       if (currentOldPath !== null || currentNewPath !== null) {
         finalizeCurrentFile();
@@ -206,8 +205,8 @@ export function parseUnifiedDiff(diff: string): DiffParseResult {
       // or empty (trailing blank). We don't retain them — only
       // ranges matter for symbol mapping.
       //
-      // R-007-4 boundary fix: maintain `remainingOldLines` /
-      // `remainingNewLines` so that once the declared hunk size is
+      // Boundary fix: maintain `remainingOldLines` / `remainingNewLines`
+      // so that once the declared hunk size is
       // exhausted, the body terminates BEFORE we look at the next
       // line. Without this, a hunk body's tail lines starting with
       // `-` could greedily eat the following file's `--- a/<path>`

@@ -201,13 +201,12 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
   } catch {
     // Status must remain best-effort even if the marker cannot be refreshed.
   }
-  // Packet 016 / F-003: read the readiness snapshot FIRST so the degraded
-  // envelope still surfaces even when `graphDb.getStats()` throws (e.g. DB
-  // file corrupted or locked). Previously stats was called first; on crash
-  // the catch path returned a generic "Code graph not initialized" error
-  // and packet 014's whole point — surfacing action-level readiness — was
-  // defeated. The snapshot helper is read-only (packet 014, REQ-001) so
-  // calling it earlier never causes side effects.
+  // Read the readiness snapshot FIRST so the degraded envelope still surfaces
+  // even when `graphDb.getStats()` throws (e.g. DB file corrupted or locked).
+  // Previously stats was called first; on crash the catch path returned a
+  // generic "Code graph not initialized" error and action-level readiness was
+  // hidden. The snapshot helper is read-only, so calling it earlier never
+  // causes side effects.
   const snapshot = getGraphReadinessSnapshot(process.cwd());
   const freshness = snapshot.freshness;
   const storedScope = graphDb.getStoredCodeGraphScope();
@@ -227,8 +226,8 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
 
   if (!stats) {
     // DB unavailable: surface the readiness snapshot + clear recovery signal
-    // (`rg` fallback per shared degraded-readiness vocabulary; see decision-
-    // record.md ADR-001) instead of returning a generic init error string.
+    // (`rg` fallback per shared degraded-readiness vocabulary) instead of
+    // returning a generic init error string.
     const readinessReason = snapshot.reason && snapshot.reason.length > 0
       ? snapshot.reason
       : (statsError ? `code-graph stats unavailable: ${statsError}` : 'code-graph stats unavailable');
@@ -273,12 +272,11 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
       stats.lastScanTimestamp,
     );
     const verificationPassPolicy = getVerificationPassPolicy(lastGoldVerification);
-    // PR 4 / F71 step 7: switch on the unified V2 freshness enum so each
-    // canonical state has its own status reason (no more V4 string-mapping
-    // that swallowed 'error' as 'missing'). Packet 014: prefer the snapshot
-    // reason when present (it carries action-level detail like "graph is
-    // empty (0 nodes)" or "<N> stale files exceed selective threshold");
-    // fall back to the canonical state reason otherwise.
+    // Switch on the unified freshness enum so each canonical state has its own
+    // status reason (no string-mapping that swallows 'error' as 'missing').
+    // Prefer the snapshot reason when present (it carries action-level detail
+    // like "graph is empty (0 nodes)" or "<N> stale files exceed selective
+    // threshold"); fall back to the canonical state reason otherwise.
     let statusReason: string;
     switch (freshness) {
       case 'fresh':
@@ -361,8 +359,8 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
       }],
     };
   } catch (err: unknown) {
-    // Packet 016 / F-003: preserve the readiness snapshot when the post-stats
-    // path fails (e.g. drift summary / verification trust calculation throws).
+    // Preserve the readiness snapshot when the post-stats path fails (e.g.
+    // drift summary / verification trust calculation throws).
     // Operators must still see action-level readiness instead of a generic
     // init error. Falls back to the snapshot we computed at the top of the
     // handler, which is read-only and never throws (returns 'error'

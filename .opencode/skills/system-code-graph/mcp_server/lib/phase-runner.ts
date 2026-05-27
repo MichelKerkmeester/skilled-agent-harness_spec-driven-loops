@@ -9,11 +9,10 @@
 // contains ONLY the outputs of phases listed in its `inputs` —
 // undeclared upstream outputs are not visible to the phase body.
 //
-// Owner-local clean-room implementation per ADR-012-001. The DAG
-// shape (declared inputs/outputs, duplicate/missing/cycle
-// rejection, dependency-only output passing) is taken from the
-// pt-02 §4 phase-runner pattern; no upstream source/schema text
-// is reused.
+// Owner-local clean-room implementation. The DAG shape (declared
+// inputs/outputs, duplicate/missing/cycle rejection, dependency-only output
+// passing) is taken from the phase-runner pattern; no upstream source/schema
+// text is reused.
 
 /**
  * A single phase in the indexing DAG.
@@ -65,8 +64,8 @@ export class PhaseRunnerError extends Error {
   }
 }
 
-// 008/D3: Runtime guards for phase keys. TypeScript enforces these at
-// compile time, but consumers of the exported API may pass values
+// Runtime guards for phase keys. TypeScript enforces these at compile time,
+// but consumers of the exported API may pass values
 // through type-erased boundaries (JSON, dynamic loading, JS callers).
 // Reject empty strings, non-strings, and strings containing control
 // characters BEFORE DAG construction so the failure path is predictable.
@@ -118,14 +117,14 @@ function outputKey(phase: Phase): string {
  * Rejection paths (in evaluation order):
  *   1. Duplicate phase name        → PhaseRunnerError('duplicate-phase')
  *   2. Duplicate `output` key      → PhaseRunnerError('duplicate-output')
- *      across phases (R-007-P2-1)
+ *      across phases
  *   3. Dependency that does not    → PhaseRunnerError('missing-dependency')
  *      resolve to any phase output
  *   4. Any cycle                    → PhaseRunnerError('cycle-detected')
  */
 export function topologicalSort(phases: readonly Phase[]): string[] {
-  // 008/D3: Validate every phase's runtime keys BEFORE DAG construction.
-  // TypeScript erases at runtime, so callers loading phases through
+  // Validate every phase's runtime keys BEFORE DAG construction. TypeScript
+  // erases at runtime, so callers loading phases through
   // JSON / dynamic imports / JS bridges may bypass the compile-time
   // contract and reach this function with malformed shapes.
   for (const phase of phases) {
@@ -150,8 +149,8 @@ export function topologicalSort(phases: readonly Phase[]): string[] {
     phasesByName.set(phase.name, phase);
   }
 
-  // R-007-P2-1: Build output-key → phase-name lookup AND reject any
-  // duplicate output keys. Two phases publishing the same output
+  // Build output-key → phase-name lookup AND reject any duplicate output
+  // keys. Two phases publishing the same output
   // key are just as ambiguous as two phases sharing a name —
   // dependents that reference that key cannot deterministically
   // resolve which producer's value they receive. Mirror the
@@ -256,11 +255,10 @@ export function topologicalSort(phases: readonly Phase[]): string[] {
  *
  * - Each phase receives a `deps` object containing ONLY outputs of
  *   phases listed in its `inputs`. Other phase outputs in the run
- *   are not visible — this is the dependency-only passing contract
- *   from R-002-2.
+ *   are not visible — this is the dependency-only passing contract.
  * - On failure, throws `PhaseRunnerError('phase-failure')` carrying
- *   the offending phase name in `phaseName` and the original error
- *   as `cause` (R-002-7 failure attribution).
+ *   the offending phase name in `phaseName` and the original error as
+ *   `cause` for failure attribution.
  *
  * Returns the full output map keyed by each phase's `output` (or
  * `name` when `output` is omitted).

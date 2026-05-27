@@ -1,13 +1,13 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Code Graph Auto-Rescan Policy (F-018)
+// MODULE: Code Graph Auto-Rescan Policy
 // ───────────────────────────────────────────────────────────────
 // Shared policy module that decides whether the read-path
 // handlers (query, context) may safely auto-trigger a guarded
 // inline full scan when ensure-ready returns
 // `action: "full_scan"`.
 //
-// Phase 012/005 added a scope-fingerprint guard in scan.ts that
-// prevents unsafe scope-mismatched scans from wiping the
+// A scope-fingerprint guard in scan.ts prevents unsafe scope-mismatched scans
+// from wiping the
 // populated index. With that guard in place, it is now SAFE to
 // allow read-path handlers to auto-rescan when stored scope
 // matches the active runtime scope AND the parse-diagnostics
@@ -17,7 +17,7 @@
 //   - If `shouldAutoRescan(...)` returns true, the caller is
 //     authorized to run an inline full scan.
 //   - If it returns false, the caller MUST NOT run a full scan
-//     and MUST surface the F-007 diagnostics payload so
+//     and MUST surface the diagnostics payload so
 //     operators can choose remediation.
 //
 // Note: ensure-ready.ts maintains its own internal copy of this
@@ -80,7 +80,7 @@ export interface AutoRescanPolicyDecision {
  * Default backlog threshold. Any non-zero parse-diagnostic
  * backlog blocks the auto-rescan unless the caller relaxes the
  * threshold explicitly. This conservative default mirrors the
- * existing F-018 guard in `ensure-ready.ts`.
+ * existing guard in `ensure-ready.ts`.
  */
 export const DEFAULT_PARSE_DIAGNOSTICS_BACKLOG_THRESHOLD = 0;
 
@@ -101,7 +101,7 @@ export const DEFAULT_PARSE_DIAGNOSTICS_BACKLOG_THRESHOLD = 0;
  *      backlog means the rescan is unlikely to re-trip the same
  *      parse errors).
  *
- * Otherwise the caller must block with F-007 diagnostics.
+ * Otherwise the caller must block with diagnostics.
  */
 export function shouldAutoRescan(
   args: AutoRescanPolicyArgs,
