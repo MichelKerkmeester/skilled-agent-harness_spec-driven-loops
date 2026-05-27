@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Surrogate Storage
 // ───────────────────────────────────────────────────────────────
-// SQLite storage layer for query surrogates (REQ-D2-005).
+// SQLite storage layer for query surrogates.
 // Extracted from query-surrogates.ts for modularization.
 //
 // Provides: table init, store, load, and batch-load operations.

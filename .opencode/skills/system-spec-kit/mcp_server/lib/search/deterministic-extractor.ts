@@ -2,7 +2,7 @@
 // MODULE: Deterministic Extractor
 // ───────────────────────────────────────────────────────────────
 // Rule-based extraction functions for save-time graph enrichment.
-// Extracted from graph-lifecycle.ts for modularization (REQ-D3-004).
+// Extracted from graph-lifecycle.ts for modularization.
 //
 // All functions are deterministic — no LLM calls.
 
@@ -46,7 +46,7 @@ export interface WriteEdgePayload {
 }
 
 /**
- * Packet 007 guardrail: deterministic extraction here is regex-backed string
+ * Deterministic extraction here is regex-backed string
  * matching. It is not AST parsing and should not be labelled as such.
  */
 export const DETERMINISTIC_EXTRACTOR_PROVENANCE = {

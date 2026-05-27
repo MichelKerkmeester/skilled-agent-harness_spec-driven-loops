@@ -327,7 +327,7 @@ export function recordSelection(
     }
 
     // Apply learned triggers (Safeguard #1 -- separate column, NOT FTS5)
-    // F-04 — applyLearnedTriggers swallowed errors and returned void,
+    // applyLearnedTriggers swallowed errors and returned void,
     // So recordSelection always returned applied: true even on failure.
     // Now propagate success/failure from the callee.
     const applied = applyLearnedTriggers(memoryId, terms, db, queryId);

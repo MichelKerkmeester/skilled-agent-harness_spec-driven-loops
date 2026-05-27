@@ -403,19 +403,19 @@ function getMigrationAllowedBasePaths(): string[] {
 }
 
 // Schema version for migration tracking
-// Added memory_type column for type-specific half-lives (REQ-002)
-// Added file_mtime_ms for incremental indexing fast-path (REQ-023, T064-T066)
-// Added 'partial' embedding_status for deferred indexing (REQ-031, T096)
-// Added causal_edges table for Causal Memory Graph (REQ-012, T043-T047)
-// Added memory_corrections table for learning from corrections (REQ-015, REQ-026, T052-T055)
+// Added memory_type column for type-specific half-lives
+// Added file_mtime_ms for incremental indexing fast-path
+// Added 'partial' embedding_status for deferred indexing
+// Added causal_edges table for Causal Memory Graph
+// Added memory_corrections table for learning from corrections
 // V10: Schema consolidation and index optimization
 // V11: Error code deduplication and validation improvements
-// V12: Unified memory_conflicts DDL (KL-1 Schema Unification)
+// V12: Unified memory_conflicts DDL
 // V13: Add document_type and spec_level columns for full spec folder document indexing
 // V14: Add content_text column + FTS5 rebuild for BM25 full-text search across restarts
 // V15: Add quality_score and quality_flags columns for memory quality gates
 // V16: Add parent_id column for chunked indexing of large files (010-index-large-files)
-// V17: Add interference_score column for TM-01 (the rollout)
+// V17: Add interference_score column
 // V18: the rollout — weight_history table + causal_edges provenance + encoding_intent column
 // V19: degree_snapshots + community_assignments (N2 graph centrality)
 // V20: memory_summaries + memory_entities + entity_catalog (R8/R10/S5)
@@ -510,7 +510,7 @@ export function run_migrations(database: Database.Database, from_version: number
       logger.info('Migration v4: Created FSRS indexes');
     },
     5: () => {
-      // V4 -> v5: Add memory_type column for type-specific half-lives (REQ-002, T006)
+      // V4 -> v5: Add memory_type column for type-specific half-lives
       try {
         database.exec(`
           ALTER TABLE memory_index ADD COLUMN memory_type TEXT DEFAULT 'declarative'
@@ -560,7 +560,7 @@ export function run_migrations(database: Database.Database, from_version: number
       logger.info('Migration v5: Type inference backfill will run on next index scan');
     },
     6: () => {
-      // V5 -> v6: Add file_mtime_ms for incremental indexing (REQ-023, T064-T066)
+      // V5 -> v6: Add file_mtime_ms for incremental indexing
       try {
         database.exec('ALTER TABLE memory_index ADD COLUMN file_mtime_ms INTEGER');
         logger.info('Migration v6: Added file_mtime_ms column for incremental indexing');
@@ -578,7 +578,7 @@ export function run_migrations(database: Database.Database, from_version: number
       }
     },
     7: () => {
-      // V6 -> v7: Add 'partial' embedding_status for deferred indexing (REQ-031, T096)
+      // V6 -> v7: Add 'partial' embedding_status for deferred indexing
       try {
         database.exec(`
           CREATE INDEX IF NOT EXISTS idx_embedding_pending
@@ -602,7 +602,7 @@ export function run_migrations(database: Database.Database, from_version: number
       }
     },
     8: () => {
-      // V7 -> v8: Create causal_edges table for Causal Memory Graph (REQ-012, T043-T047)
+      // V7 -> v8: Create causal_edges table for Causal Memory Graph
       try {
         database.exec(`
           CREATE TABLE IF NOT EXISTS causal_edges (
@@ -684,7 +684,7 @@ export function run_migrations(database: Database.Database, from_version: number
       }
     },
     12: () => {
-      // V11 -> v12: Unify memory_conflicts DDL (KL-1 Schema Unification)
+      // V11 -> v12: Unify memory_conflicts DDL
       migrateMemoryConflictsTable(database);
       logger.info('Migration v12: Unified memory_conflicts table (KL-1)');
 
@@ -2052,7 +2052,7 @@ export function migrate_constitutional_tier(database: Database.Database): void {
   }
 }
 
-// P2-001: Create indexes for commonly queried columns
+// Create indexes for commonly queried columns
 /**
  * Creates common indexes used by vector-index queries.
  * @param database - The database connection to update.

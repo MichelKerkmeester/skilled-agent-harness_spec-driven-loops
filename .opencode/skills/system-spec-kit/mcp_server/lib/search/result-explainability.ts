@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Result Explainability
 // ───────────────────────────────────────────────────────────────
-// REQ-D5-002: Two-Tier Explainability
+// Two-Tier Explainability
 //
 // PURPOSE: Attach natural-language "why" explanations to each
 // search result, composed from the scoring signals applied during

@@ -181,7 +181,7 @@ export function get_status_counts(
     GROUP BY m.embedding_status
   `).all();
 
-  // M7 FIX: Include 'partial' status in counts
+  // Include 'partial' status in counts.
   const counts = { pending: 0, success: 0, failed: 0, retry: 0, partial: 0 };
   for (const row of rows as Array<{ embedding_status: keyof typeof counts; count: number }>) {
     if (row.embedding_status in counts) {
@@ -256,7 +256,7 @@ export function vector_search(
   const query_buffer = to_embedding_buffer(query_embedding);
   const max_distance = 2 * (1 - minSimilarity / 100);
 
-  // ADR-004: FSRS-preferred decay with half-life fallback
+  // FSRS-preferred decay with half-life fallback
   const decay_expr = useDecay
     ? `CASE
          WHEN m.is_pinned = 1 THEN m.importance_weight
@@ -300,7 +300,7 @@ export function vector_search(
     params.push(contextType);
   }
 
-  // M8 FIX: If constitutional results already satisfy limit, return them directly
+  // If constitutional results already satisfy limit, return them directly.
   if (constitutional_results.length >= limit) {
     return constitutional_results.slice(0, limit);
   }
@@ -1422,7 +1422,7 @@ export function verify_integrity(
     logger.info(`Cleaned ${cleaned_vectors} orphaned vectors`);
   }
 
-  // F-08 — Guard vec_memories queries with sqlite_vec availability check.
+  // Guard vec_memories queries with sqlite_vec availability check.
   // When sqlite-vec is not loaded, the vec_memories table does not exist.
   const missing_vectors = sqlite_vec
     ? (database.prepare(`

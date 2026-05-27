@@ -163,7 +163,7 @@ const INTENT_PATTERNS: Record<IntentType, RegExp[]> = {
 };
 
 /**
- * T016: Lightweight deterministic embedding centroid classifier.
+ * Lightweight deterministic embedding centroid classifier.
  *
  * The model uses hashed bag-of-words embeddings so centroids can be built
  * synchronously at module initialization with no external provider dependency.
@@ -232,7 +232,7 @@ const INTENT_STABILITY_CORPUS: ReadonlyArray<{ query: string; expectedIntent: In
 ];
 
 /**
- * P3-12: Negative patterns — when matched, penalize the given intent.
+ * Negative patterns — when matched, penalize the given intent.
  * E.g., "how to fix" should not score for "understand".
  */
 const INTENT_NEGATIVE_PATTERNS: Partial<Record<IntentType, RegExp[]>> = {
@@ -248,10 +248,10 @@ const INTENT_NEGATIVE_PATTERNS: Partial<Record<IntentType, RegExp[]>> = {
   ],
 };
 
-/** P3-12: Minimum confidence threshold below which "general" style fallback is used */
+/** Minimum confidence threshold below which "general" style fallback is used */
 const MIN_CONFIDENCE_THRESHOLD = 0.08;
 /**
- * REQ-001 / REQ-016 (Cluster 2): Centroid-only confidence floor. When the
+ * Centroid-only confidence floor. When the
  * classifier has ZERO keyword and ZERO regex-pattern evidence, the only signal
  * left is a hashed bag-of-words centroid match — which spuriously fires for
  * tokenizer collisions. The canonical command spec at
@@ -332,7 +332,7 @@ function calculateKeywordScore(query: string, intent: IntentType): { score: numb
     }
   }
 
-  // P3-12: Require at least 2 keyword matches for a meaningful keyword score.
+  // Require at least 2 keyword matches for a meaningful keyword score.
   // A single generic keyword match produces a heavily discounted score.
   if (matches.length === 1) {
     score *= 0.3;
@@ -533,7 +533,7 @@ function classifyIntent(query: string): IntentResult {
   };
 
   const allKeywords: string[] = [];
-  // REQ-001 (Cluster 2): Track per-intent keyword + pattern evidence so the
+  // Track per-intent keyword + pattern evidence so the
   // centroid-only confidence floor can fire on queries that scored ONLY via
   // hashed bag-of-words centroid match (e.g. "Semantic Search" → fix_bug 0.098).
   const intentEvidence: Record<IntentType, { keywords: number; patterns: number }> = {
@@ -553,7 +553,7 @@ function classifyIntent(query: string): IntentResult {
 
     let combined = (centroidScore * 0.5) + (keywordScore * 0.35) + (patternScore * 0.15);
 
-    // P3-12: Apply negative pattern penalties
+    // Apply negative pattern penalties.
     const negPatterns = INTENT_NEGATIVE_PATTERNS[intent];
     if (negPatterns) {
       for (const neg of negPatterns) {
@@ -588,7 +588,7 @@ function classifyIntent(query: string): IntentResult {
 
   const rankedIntents = buildRankedIntents(scores);
 
-  // P3-12: If top score is below minimum confidence, return "understand" with low confidence
+  // If top score is below minimum confidence, return "understand" with low confidence.
   // This prevents weak single-keyword matches from dominating classification.
   if (topScore < MIN_CONFIDENCE_THRESHOLD) {
     return {
@@ -606,7 +606,7 @@ function classifyIntent(query: string): IntentResult {
     };
   }
 
-  // REQ-001 / REQ-016 (Cluster 2): Centroid-only fallback gate.
+  // Centroid-only fallback gate.
   // If the winning intent has NO keyword match AND NO regex pattern hit, the
   // only signal is a hashed bag-of-words centroid coincidence. The canonical
   // command spec mandates that confidence below 0.30 falls back to `understand`
@@ -835,7 +835,7 @@ function getProfileForIntent(intent: IntentType): 'quick' | 'research' | 'debug'
 /* --- 5. EXPORTS --- */
 
 /**
- * C138: Intent-to-MMR-lambda mapping.
+ * Intent-to-MMR-lambda mapping.
  * Controls the trade-off between relevance and diversity for each intent.
  * Lower lambda → more diversity. Higher lambda → more relevance.
  * Per spec: understand→0.5 (diversity), fix_bug→0.85 (relevance).

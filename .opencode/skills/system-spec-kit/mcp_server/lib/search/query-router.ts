@@ -204,7 +204,7 @@ interface GraphPreservationDecision {
 }
 
 /**
- * REQ-001 / REQ-003: Decide whether the graph channel should be added to a
+ * Decide whether the graph channel should be added to a
  * routing decision regardless of complexity tier.
  *
  * The feature flag self-gates this helper so direct callers see the same
@@ -218,7 +218,7 @@ interface GraphPreservationDecision {
  *   rows with ≥3 outgoing causal_edges → preserved + degree.
  *
  * Cold-start (empty causal_edges or missing DB): the entity-density signal
- * scores 0 and the override stays inactive (REQ-006).
+ * scores 0 and the override stays inactive.
  *
  * @param query - Raw search query.
  * @param db - Optional database handle used for entity-density scoring.
@@ -398,10 +398,10 @@ function routeQuery(
     appendRoutingReason(routingReasons, reason);
   }
 
-  // REQ-002 / REQ-003: graph-channel preservation override. Adds the graph
+  // Graph-channel preservation override. Adds the graph
   // channel to simple/moderate tiers when intent is find_spec/find_decision OR
   // when the entity-density signal fires. Complex-tier already includes graph
-  // so the override is a no-op there. The feature flag (REQ-008, default-ON)
+  // so the override is a no-op there. The default-on feature flag
   // keeps a clean revert path.
   if (isGraphChannelPreservationEnabled() && classification.tier !== 'complex') {
     const decision = shouldPreserveGraph(query, safeGetDb(), intent);

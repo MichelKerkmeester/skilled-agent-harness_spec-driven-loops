@@ -116,7 +116,7 @@ export function extractAnchorMetadata(content: string): AnchorMetadata[] {
     const lineNumber = i + 1; // 1-based
     const line = lines[i];
 
-    // F-01 — Parse open tag BEFORE close tag so same-line anchors
+    // Parse open tag BEFORE close tag so same-line anchors
     // (<!-- ANCHOR:x -->...<!-- /ANCHOR:x -->) are captured. The old logic
     // Checked close first, found no matching open on the stack, skipped it,
     // Then `continue` prevented the open-tag check from running.

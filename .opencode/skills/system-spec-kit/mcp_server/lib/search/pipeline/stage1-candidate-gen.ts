@@ -590,14 +590,14 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     intent: config.adaptiveFusionIntent ?? undefined,
   };
 
-  // -- D2 REQ-D2-002: Graph Concept Routing -----------------------------------
+  // -- Graph Concept Routing -----------------------------------
   //
   // When SPECKIT_GRAPH_CONCEPT_ROUTING is enabled, extract noun phrases from
   // the query and match them against the concept alias table. If concepts are
   // matched, log them to the trace for downstream use (graph channel activation
   // is surfaced via trace metadata; actual graph channel is handled in Stage 2).
   //
-  // Phase B T016: When SPECKIT_QUERY_CONCEPT_EXPANSION is also enabled,
+  // When SPECKIT_QUERY_CONCEPT_EXPANSION is also enabled,
   // matched concepts are reverse-mapped to their alias terms and appended to
   // the query for the hybrid search channel, improving recall for alias-rich
   // queries (e.g. "semantic search" → also searches "retrieval", "query", etc.).
@@ -617,7 +617,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
       }
       const routing = routeQueryConcepts(query, routingDb);
       if (routing.graphActivated && routing.concepts.length > 0) {
-        // Phase B T016: Expand query with concept alias terms
+        // Expand query with concept alias terms
         if (isQueryConceptExpansionEnabled()) {
           try {
             const originalTokens = nounPhrases(query);
@@ -708,7 +708,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
     // Deep mode: expand query into variants and run hybrid for each, then dedup
     if (mode === 'deep' && isMultiQueryEnabled()) {
-      // -- D2 REQ-D2-001: Query Decomposition (SPECKIT_QUERY_DECOMPOSITION) ---
+      // -- Query Decomposition (SPECKIT_QUERY_DECOMPOSITION) ---
       //
       // When enabled and the query is multi-faceted, decompose into up to 3
       // sub-query facets and run hybrid search per facet. Results are merged
@@ -961,7 +961,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
       // Standard hybrid search — runs when R12 is off, suppressed by R15,
       // Or produced no results (candidates still empty from the try block above).
-      // Phase B T016: Uses effectiveQuery (concept-expanded) for BM25 recall.
+      // Uses effectiveQuery (concept-expanded) for BM25 recall.
       if (!r12ExpansionApplied) {
         try {
           channelCount = 1;
@@ -1156,7 +1156,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   candidates = filterByMinQualityScore(candidates, qualityThreshold);
   candidates = boostGraphMetadataCandidates(candidates, query);
 
-  // -- D2 REQ-D2-003: Corpus-Grounded LLM Reformulation ----------------------
+  // -- Corpus-Grounded LLM Reformulation ----------------------
   //
   // When SPECKIT_LLM_REFORMULATION is enabled and mode === 'deep':
   //   1. Retrieve top-3 seed results via fast BM25/FTS5 (no embedding call).
@@ -1243,7 +1243,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     }
   }
 
-  // -- D2 REQ-D2-004: HyDE Shadow Mode ----------------------------------------
+  // -- HyDE Shadow Mode ----------------------------------------
   //
   // When SPECKIT_HYDE is enabled and mode === 'deep':
   //   - Check if the current baseline has low confidence.
@@ -1373,7 +1373,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     }
   }
 
-  // -- D2 REQ-D2-005: Query Surrogate Matching (SPECKIT_QUERY_SURROGATES) ----
+  // -- Query Surrogate Matching (SPECKIT_QUERY_SURROGATES) ----
   //
   // When SPECKIT_QUERY_SURROGATES is enabled, batch-load stored surrogates for
   // all candidate IDs and run matchSurrogates() against each. Candidates with
@@ -1470,7 +1470,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     );
   }
 
-  // P1 fix: activeChannels counts actual retrieval channels (vector, keyword/BM25),
+  // activeChannels counts actual retrieval channels (vector, keyword/BM25),
   // while channelCount counts parallel query variants. In hybrid mode both vector
   // and keyword channels are always active regardless of query variant count.
   const activeChannels = searchType === 'hybrid' ? 2 : 1;

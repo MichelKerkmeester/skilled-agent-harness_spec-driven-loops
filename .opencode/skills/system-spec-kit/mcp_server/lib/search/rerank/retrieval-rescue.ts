@@ -192,7 +192,7 @@ function documentHintScore(tokens: string[], row: PipelineRow, artifactClass?: s
 }
 
 function computeRescueLayerScore(baseScore: number, rescueScore: number): number {
-  // ADR-013: keep RESCUE_SCORE_CAP clamp as defense-in-depth even though the
+  // Keep RESCUE_SCORE_CAP clamp as defense-in-depth even though the
   // formula ceiling (0.03 + 0.78 = 0.81) is below the 1.0 cap with rescueScore
   // bounded to [0,1] at the lexicalScore site. The cap exists in case the
   // formula or input bounds change in the future.
@@ -374,7 +374,7 @@ export function applyRetrievalRescueLayer(
   const rescued = expanded.map((row): ScoredRow => {
     const baseScore = resolveEffectiveScore(row);
     const rescue = lexicalScore(query, row, options.artifactClass);
-    // ADR-013: rescue candidates should compete after the outer normalization
+    // Rescue candidates should compete after the outer normalization
     // clamp, not be held below original-lane candidates by a local 0.82 cap.
     const score = computeRescueLayerScore(baseScore, rescue.score);
     const boost = Math.max(0, score - baseScore);

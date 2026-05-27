@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Confidence Scoring
 // ───────────────────────────────────────────────────────────────
-// REQ-D5-004: Per-result calibrated confidence scoring
+// Per-result calibrated confidence scoring
 //
 // PURPOSE: Combine margin, multi-channel agreement,
 // and anchor density into a single calibrated confidence score per

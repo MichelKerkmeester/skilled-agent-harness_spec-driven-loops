@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // In-process rolling 200-decision window of channel selection per routing decision.
 // Surfaces graphChannelInvocationRate (and per-channel rates) for memory_health
-// (REQ-004). Pure in-memory state — no persistence, resets on process restart.
+// Pure in-memory state — no persistence, resets on process restart.
 
 // Feature catalog: Query complexity router
 

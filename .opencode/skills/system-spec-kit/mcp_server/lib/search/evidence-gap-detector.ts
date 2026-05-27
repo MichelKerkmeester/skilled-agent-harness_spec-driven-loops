@@ -15,8 +15,8 @@ import type { ParserProvenance } from '../context/shared-payload.js';
  * Z-score threshold below which retrieval confidence is considered low.
  *
  * Tuning history:
- * - 1.5 (May 17 jina-v3 + retrieval-rescue layer baseline; ADR-010/011 era)
- * - 1.3 (May 20 nomic-embed-text-v1.5 default per ADR-013, no cross-encoder
+ * - 1.5 (May 17 jina-v3 + retrieval-rescue layer baseline)
+ * - 1.3 (May 20 nomic-embed-text-v1.5 default, no cross-encoder
  *   provider available; positional fallback-sort lands paraphrase queries
  *   around Z=1.4 consistently. 1.3 reflects the realistic steady-state
  *   floor under that configuration.)
@@ -57,7 +57,7 @@ export interface TRMResult {
 }
 
 /**
- * Result of a graph-topology-based coverage pre-check (T014).
+ * Result of a graph-topology-based coverage pre-check.
  * Produced before the TRM Z-score check to detect low coverage early
  * and allow the caller to skip full retrieval scatter (saves 30-50ms).
  */
@@ -79,7 +79,7 @@ interface MemoryGraphLike {
 }
 
 /**
- * Packet 007 guardrail: these detectors are heuristic/statistical lanes.
+ * These detectors are heuristic/statistical lanes.
  * They are useful regression targets, but they are not AST-backed parsers.
  */
 export const EVIDENCE_GAP_DETECTOR_PROVENANCE = {
@@ -98,7 +98,7 @@ export const EVIDENCE_GAP_DETECTOR_PROVENANCE = {
 
 // ───────────────────────────────────────────────────────────────
 /**
- * Graph-topology coverage pre-check (T014).
+ * Graph-topology coverage pre-check.
  *
  * Before running the more expensive TRM Z-score check, estimate whether
  * the graph has enough connected memory nodes to produce useful results.

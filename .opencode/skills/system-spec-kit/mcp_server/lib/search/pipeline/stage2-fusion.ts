@@ -157,7 +157,7 @@ function isShadowLearningModelLoadEnabled(): boolean {
   return process.env.SPECKIT_SHADOW_LEARNING?.toLowerCase().trim() === 'true';
 }
 
-// F-011-C1-05: learned blend weight. Reads SPECKIT_LEARNED_STAGE2_BLEND_WEIGHT
+// Learned blend weight. Reads SPECKIT_LEARNED_STAGE2_BLEND_WEIGHT
 // (default 0.0 → identical to today's shadow-only behavior). Clamped to
 // [0, 0.05] so promotion stays a small guarded blend, never a flip. The
 // bound is intentional: even when opted in, the manual combiner remains the
@@ -427,7 +427,7 @@ function applyGraphCalibrationProfileToResults(results: PipelineRow[]): Pipeline
 }
 
 /**
- * Phase C T026: Populate graphEvidence provenance on each result that received
+ * Populate graphEvidence provenance on each result that received
  * a graph-based boost. Extracts contributing causal edges, co-activation edges,
  * and community membership from the database. Gated behind SPECKIT_RESULT_PROVENANCE.
  *
@@ -873,7 +873,7 @@ function applyUsageRankingBoost(
 /**
  * Apply FSRS testing effect (strengthening write-back) for all accessed memories.
  *
- * Called only when `trackAccess` is true (P3-09 FIX: explicit opt-in to avoid
+ * Called only when `trackAccess` is true (explicit opt-in to avoid
  * unintended write side-effects during read-only searches).
  *
  * For each result, the current retrievability R(t) is computed from the stored
@@ -1212,7 +1212,7 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
     }
   }
 
-  // -- 2d. Usage-weighted ranking (Phase D T034) --
+  // -- 2d. Usage-weighted ranking --
   if (isUsageRankingEnabled()) {
     try {
       const db = requireDb();
@@ -1223,7 +1223,7 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
     }
   }
 
-  // -- 2e. Graph evidence provenance (Phase C T026) --
+  // -- 2e. Graph evidence provenance --
   // Populate graphEvidence on results that received graph-based boosts.
   // Gated behind SPECKIT_RESULT_PROVENANCE. Fail-open.
   try {
@@ -1234,7 +1234,7 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
   }
 
   // -- 3. Testing effect (FSRS write-back) --
-  // P3-09 FIX: Only when explicitly opted in via trackAccess.
+  // Only when explicitly opted in via trackAccess.
   // Write-back is fire-and-forget; errors per-row are swallowed inside
   // ApplyTestingEffect so they never abort the pipeline.
   if (config.trackAccess) {
@@ -1297,17 +1297,17 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
   }
 
   // -- 6a. Learned Stage 2 shadow scoring --
-  // REQ-D1-006: Runs the learned linear ranker in parallel with the manual combiner.
+  // Runs the learned linear ranker in parallel with the manual combiner.
   // Shadow-only — scores are logged for comparison but never affect live ranking.
   // Gated behind SPECKIT_LEARNED_STAGE2_COMBINER (default ON, graduated).
-  // F-011-C1-05: when SPECKIT_LEARNED_STAGE2_BLEND_WEIGHT is set in (0, 0.05],
+  // When SPECKIT_LEARNED_STAGE2_BLEND_WEIGHT is set in (0, 0.05],
   // a small guarded blend `(1-w)*manual + w*learned` is applied to the live
   // score. Default 0 preserves shadow-only behavior. The blend weight is
   // clamped at the source by resolveLearnedBlendWeight().
   if (isLearnedStage2CombinerEnabled()) {
     try {
       const learnedShadowModel = await loadPersistedLearnedStage2Model();
-      // F-011-C1-05: weight resolved once per pipeline run; flag-gated and
+      // Weight resolved once per pipeline run; flag-gated and
       // clamped. Zero means shadow-only (today's behavior).
       const learnedBlendWeight = resolveLearnedBlendWeight();
       for (let rowIndex = 0; rowIndex < results.length; rowIndex++) {
@@ -1336,7 +1336,7 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
           console.warn(
             `[stage2-fusion] shadow-learned id=${row.id} manual=${shadow.manualScore.toFixed(4)} learned=${shadow.learnedScore.toFixed(4)} delta=${shadow.delta.toFixed(4)}`
           );
-          // F-011-C1-05: apply the small guarded blend when weight > 0 AND a
+          // Apply the small guarded blend when weight > 0 AND a
           // shadow result is available (model loaded successfully). Mutate
           // the row through withSyncedScoreAliases so all score aliases stay
           // aligned. When weight is 0 (default) or model failed to load, this
@@ -1480,7 +1480,7 @@ export const __testables = {
   enrichResultsWithAnchorMetadata,
   enrichResultsWithValidationMetadata,
   applyValidationSignalScoring,
-  // F-011-C1-05: learned blend weight resolver, exposed for unit testing
+  // Learned blend weight resolver, exposed for unit testing
   // the env-var clamp and default-zero behavior.
   resolveLearnedBlendWeight,
 };

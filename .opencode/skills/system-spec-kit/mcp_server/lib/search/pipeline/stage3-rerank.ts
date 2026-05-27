@@ -319,7 +319,7 @@ async function collapseAndReassembleChunkResults(
 
   // Merge non-chunks + reassembled parent rows, deduplicate by id (prefer highest score),
   // Then sort by effective score.
-  // F-07 — Parent rows could appear in both nonChunks and reassembledRows
+  // Parent rows could appear in both nonChunks and reassembledRows
   // When a parent exists as a standalone row AND has chunk children.
   const mergedMap = new Map<unknown, PipelineRow>();
   for (const row of [...nonChunks, ...reassembledRows]) {
@@ -354,7 +354,7 @@ function electBestChunk(chunks: PipelineRow[]): PipelineRow {
  * Checks all score fields in priority order to avoid silently
  * discarding Stage 2 signal enrichment.
  *
- * P1-015: Fallback chain expanded to include intentAdjustedScore
+ * Fallback chain expanded to include intentAdjustedScore
  * and rrfScore before raw score/similarity, matching Stage 2's
  * resolveBaseScore() pattern for defensive correctness.
  *

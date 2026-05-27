@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Session State
 // ───────────────────────────────────────────────────────────────
-// REQ-D5-006: Retrieval session state for cross-turn context
+// Retrieval session state for cross-turn context
 //
 // PURPOSE: Track per-session retrieval state to enable:
 // 1. Cross-turn deduplication — deprioritize already-seen results

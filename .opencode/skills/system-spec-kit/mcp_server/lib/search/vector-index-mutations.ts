@@ -451,7 +451,7 @@ export function update_memory(
         const guardPath = existingRow.canonical_file_path || existingRow.file_path;
         const hasNonConstitutionalPath = guardPath && !isIndexableConstitutionalMemoryPath(guardPath);
         if (hasNonConstitutionalPath && importanceTier === 'constitutional') {
-          // See ADR-006 in packet 026/005.
+          // Non-constitutional paths cannot be promoted to constitutional tier.
           nextImportanceTier = 'important';
         }
         if (
@@ -632,7 +632,7 @@ export function delete_memory_from_database(database: Database.Database, id: num
     return result.changes > 0;
   });
 
-  // BUG-021: Remove the BM25 document only after the source row is deleted.
+  // Remove the BM25 document only after the source row is deleted.
   const deleted = delete_memory_tx();
   if (deleted) {
     try {

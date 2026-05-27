@@ -55,7 +55,7 @@ type Bm25Engine = typeof BM25_ENGINE_VALUES[number];
 let packedInmemoryWarningEmitted = false;
 
 /**
- * C138: Field weight multipliers for weighted BM25 scoring.
+ * Field weight multipliers for weighted BM25 scoring.
  * When indexing a document composed of multiple fields, multiply
  * each field's token scores by the appropriate weight before
  * accumulating the total document score.
@@ -357,7 +357,7 @@ class BM25Index {
   }
 
   /**
-   * P3-04/T312: Defer full startup warmup into batched row-ID syncs so process
+   * Defer full startup warmup into batched row-ID syncs so process
    * initialization is not blocked by a monolithic in-memory rebuild.
    */
   rebuildFromDatabase(database: Database.Database): number {

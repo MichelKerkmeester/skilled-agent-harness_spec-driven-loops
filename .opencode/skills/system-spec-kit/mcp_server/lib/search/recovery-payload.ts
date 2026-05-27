@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Recovery Payload
 // ───────────────────────────────────────────────────────────────
-// REQ-D5-001: Empty/Weak Result Recovery UX
+// Empty/Weak Result Recovery UX
 //
 // PURPOSE: Generate structured recovery payloads when search returns
 // no results, very low-confidence results, or only partial matches.
@@ -215,14 +215,14 @@ function recommendAction(status: RecoveryStatus, reason: RecoveryReason): Recove
   return 'broaden_or_ask';
 }
 
-// -- Graph-Expanded Fallback (Phase B T017) -----------------------------------
+// -- Graph-Expanded Fallback -----------------------------------
 
 import type Database from 'better-sqlite3';
 import { routeQueryConcepts } from './entity-linker.js';
 import { isGraphFallbackEnabled } from './search-flags.js';
 
 /**
- * Phase B T017: Build graph-expanded fallback query terms on zero/weak results.
+ * Build graph-expanded fallback query terms on zero/weak results.
  *
  * When the search produces no results or low-confidence results, this function
  * queries the causal_edges table for nodes related to the matched concepts from

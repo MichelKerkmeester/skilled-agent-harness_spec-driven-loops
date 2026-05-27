@@ -74,7 +74,7 @@ const MIN_MATCH_THRESHOLD = 0.15;
    4. FEATURE FLAG
 ──────────────────────────────────────────────────────────────── */
 
-// D2 REQ-D2-005: Query surrogates gate — canonical implementation in search-flags.ts.
+// Query surrogates gate — canonical implementation in search-flags.ts.
 // Default: TRUE (graduated). Set SPECKIT_QUERY_SURROGATES=false to disable.
 import { isQuerySurrogatesEnabled } from './search-flags.js';
 export { isQuerySurrogatesEnabled };

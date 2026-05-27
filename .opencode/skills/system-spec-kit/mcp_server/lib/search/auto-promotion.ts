@@ -225,7 +225,7 @@ export function executeAutoPromotion(db: Database, memoryId: number): AutoPromot
     }
 
     // Safeguard: cap promotion throughput to avoid runaway tier inflation.
-    // F-02 — Wrap throttle check + tier update + audit insert in a
+    // Wrap throttle check + tier update + audit insert in a
     // BEGIN IMMEDIATE transaction so concurrent calls cannot exceed the rate limit.
     ensurePromotionAuditTable(db);
 

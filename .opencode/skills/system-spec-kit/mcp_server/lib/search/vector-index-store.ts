@@ -4,7 +4,7 @@
 // Feature catalog: Hybrid search pipeline
 // SEARCH: VECTOR INDEX
 // TypeScript port of the vector index implementation.
-// DECAY STRATEGY (ADR-004): Search-time temporal decay uses an
+// DECAY STRATEGY: Search-time temporal decay uses an
 // FSRS-preferred strategy. Memories with FSRS review data (last_review
 // IS NOT NULL, review_count > 0) use the FSRS v4 power-law formula:
 // R(t) = (1 + 0.2346 * t / S)^(-0.5)
@@ -586,7 +586,7 @@ function drop_legacy_temp_aliases(database: Database.Database): void {
   }
 }
 
-// P1-06 FIX: Unified allowed paths
+// Unified allowed paths
 const ALLOWED_BASE_PATHS = [
   path.join(process.cwd(), 'specs'),
   path.join(process.cwd(), '.opencode'),
@@ -934,7 +934,7 @@ type PreparedStatements = {
   get_stats: Database.Statement<[], { total: number; complete: number; pending: number; failed: number }>;
   list_base: Database.Statement<[number, number], MemoryRow[]>;
 };
-// F-09 — Scope prepared statements per Database instance via WeakMap.
+// Scope prepared statements per Database instance via WeakMap.
 // The old global singleton would return stale statements from a prior DB connection
 // When called with a different database, executing queries against the wrong connection.
 const prepared_statements_cache = new WeakMap<Database.Database, PreparedStatements>();

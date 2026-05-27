@@ -5,7 +5,7 @@
 // Gated via SPECKIT_ENTITY_LINKING
 // Creates causal edges between memories sharing entities across spec folders.
 //
-// Also provides query-time concept routing (D2 REQ-D2-002):
+// Also provides query-time concept routing:
 // Gated via SPECKIT_GRAPH_CONCEPT_ROUTING
 // Extracts noun phrases from a query and matches them against a concept alias
 // table, returning the matched canonical concept names for graph channel routing.
@@ -74,7 +74,7 @@ export interface EntityLinkStats {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 3. CONCEPT ROUTING (D2 REQ-D2-002)
+// 3. CONCEPT ROUTING
 
 // ───────────────────────────────────────────────────────────────
 
@@ -138,7 +138,7 @@ const BUILTIN_CONCEPT_ALIASES: Record<string, string> = {
   'checkpoints': 'checkpoint',
   'snapshot': 'checkpoint',
   'snapshots': 'checkpoint',
-  // Search quality / ranking domain (Phase B T015)
+  // Search quality / ranking domain
   'semantic': 'search',
   'semantics': 'search',
   'ranking': 'search',
@@ -370,7 +370,7 @@ export function routeQueryConcepts(
 }
 
 /**
- * Phase B T016: Given a list of canonical concept names, reverse-lookup the
+ * Given a list of canonical concept names, reverse-lookup the
  * alias table to collect related search terms for query expansion.
  *
  * For each canonical name, finds all aliases that map to it (excluding the
@@ -1152,7 +1152,7 @@ export const __testables = {
   normalizeEntityName,
   getEdgeCount,
   getSpecFolder,
-  // D2 REQ-D2-002 concept routing internals
+  // Concept routing internals
   BUILTIN_CONCEPT_ALIASES,
   MIN_NOUN_PHRASE_TOKEN_LENGTH,
   MAX_CONCEPTS_PER_QUERY,

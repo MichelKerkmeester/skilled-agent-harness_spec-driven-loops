@@ -201,7 +201,7 @@ export function isChannelMinRepEnabled(): boolean {
 }
 
 /**
- * TM-06: Reconsolidation-on-save for memory deduplication.
+ * Reconsolidation-on-save for memory deduplication.
  * Default: TRUE (graduated). Set SPECKIT_RECONSOLIDATION=false to disable.
  */
 export function isReconsolidationEnabled(): boolean {
@@ -209,7 +209,7 @@ export function isReconsolidationEnabled(): boolean {
 }
 
 /**
- * T002b/A4: Negative-feedback confidence demotion in ranking.
+ * Negative-feedback confidence demotion in ranking.
  * Default: TRUE (graduated). Set SPECKIT_NEGATIVE_FEEDBACK=false to disable.
  */
 export function isNegativeFeedbackEnabled(): boolean {
@@ -354,7 +354,7 @@ export function isFileWatcherEnabled(): boolean {
 }
 
 /**
- * T008: Verify-fix-verify memory quality loop.
+ * Verify-fix-verify memory quality loop.
  * Default: TRUE (graduated). Set SPECKIT_QUALITY_LOOP=false to disable.
  */
 export function isQualityLoopEnabled(): boolean {
@@ -362,11 +362,11 @@ export function isQualityLoopEnabled(): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   5. D2 QUERY INTELLIGENCE FLAGS
+   5. QUERY INTELLIGENCE FLAGS
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * D2 REQ-D2-001: Query decomposition — bounded facet detection.
+ * Query decomposition — bounded facet detection.
  * Deep-mode only: multi-faceted queries split into up to 3 sub-queries.
  * Default: TRUE (graduated). Set SPECKIT_QUERY_DECOMPOSITION=false to disable.
  */
@@ -375,7 +375,7 @@ export function isQueryDecompositionEnabled(): boolean {
 }
 
 /**
- * D2 REQ-D2-002: Graph concept routing — query-time alias matching.
+ * Graph concept routing — query-time alias matching.
  * Extracts noun phrases from the query and matches against concept alias table,
  * activating the graph channel for matched concepts.
  * Default: TRUE (graduated). Set SPECKIT_GRAPH_CONCEPT_ROUTING=false to disable.
@@ -385,7 +385,7 @@ export function isGraphConceptRoutingEnabled(): boolean {
 }
 
 /**
- * D2 REQ-D2-005: Index-time surrogates for recall improvement.
+ * Index-time surrogates for recall improvement.
  * Generates surrogate metadata (aliases, headings, summary, questions)
  * at index time; matched at query time with no LLM calls.
  * Default: TRUE (graduated). Set SPECKIT_QUERY_SURROGATES=false to disable.
@@ -395,11 +395,11 @@ export function isQuerySurrogatesEnabled(): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   6. D4 PHASE A FLAGS (Feedback & Quality Learning)
+   6. FEEDBACK & QUALITY LEARNING FLAGS
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * REQ-D4-001: Implicit feedback event ledger.
+ * Implicit feedback event ledger.
  * Shadow-only — no ranking side effects.
  * Default: TRUE (graduated). Set SPECKIT_IMPLICIT_FEEDBACK_LOG=false to disable.
  */
@@ -408,7 +408,7 @@ export function isImplicitFeedbackLogEnabled(): boolean {
 }
 
 /**
- * REQ-D4-002: Hybrid decay policy — type-aware no-decay for permanent artifacts.
+ * Hybrid decay policy — type-aware no-decay for permanent artifacts.
  * Default: TRUE (graduated). Set SPECKIT_HYBRID_DECAY_POLICY=false to disable.
  * When enabled: decision/constitutional/critical context types receive Infinity
  * stability (no decay). All other types follow the standard FSRS schedule.
@@ -418,7 +418,7 @@ export function isHybridDecayPolicyEnabled(): boolean {
 }
 
 /**
- * REQ-D4-003: Short-critical quality gate exception.
+ * Short-critical quality gate exception.
  * Default: TRUE (graduated). Set SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS=false to disable.
  * When enabled: decision context_type documents with >= 2 structural signals
  * bypass the 50-character minimum content length check.
@@ -428,11 +428,11 @@ export function isSaveQualityGateExceptionsEnabled(): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   7. D2 PHASE B FLAGS (LLM Query Intelligence)
+   7. LLM QUERY INTELLIGENCE FLAGS
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * D2 REQ-D2-003: Corpus-grounded LLM query reformulation.
+ * Corpus-grounded LLM query reformulation.
  * Step-back abstraction + corpus seed grounding. Deep-mode only.
  * Default: TRUE (graduated). Set SPECKIT_LLM_REFORMULATION=false to disable.
  * Requires an OpenAI-compatible LLM endpoint (LLM_REFORMULATION_ENDPOINT).
@@ -442,7 +442,7 @@ export function isLlmReformulationEnabled(): boolean {
 }
 
 /**
- * D2 REQ-D2-004: HyDE (Hypothetical Document Embeddings).
+ * HyDE (Hypothetical Document Embeddings).
  * Generates a pseudo-document for low-confidence deep queries.
  * Default: TRUE (graduated). Set SPECKIT_HYDE=false to disable.
  */
@@ -451,11 +451,11 @@ export function isHyDEEnabled(): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   8. D3 PHASE B FLAGS (Graph Lifecycle)
+   8. GRAPH LIFECYCLE FLAGS
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * REQ-D3-003: Graph refresh mode.
+ * Graph refresh mode.
  * Controls when dirty-node recomputation runs after write operations.
  * Default: 'write_local' (graduated). Set SPECKIT_GRAPH_REFRESH_MODE=off to disable.
  * Values: off | write_local | scheduled.
@@ -469,7 +469,7 @@ export function isGraphRefreshDisabled(): boolean {
 }
 
 /**
- * REQ-D3-004: Async LLM graph backfill for high-value documents.
+ * Async LLM graph backfill for high-value documents.
  * Runs after deterministic extraction; adds probabilistic edges via LLM.
  * Default: TRUE (graduated). Set SPECKIT_LLM_GRAPH_BACKFILL=false to disable.
  */
@@ -478,11 +478,11 @@ export function isLlmGraphBackfillEnabled(): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   9. D3 PHASE C FLAGS (Graph Calibration & Communities)
+   9. GRAPH CALIBRATION & COMMUNITIES FLAGS
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * REQ-D3-005 / REQ-D3-006: Graph calibration profiles and community thresholds.
+ * Graph calibration profiles and community thresholds.
  * Enables calibration profile enforcement, Louvain activation gates, and
  * community score capping (secondary-only).
  * Default: TRUE (graduated). Set SPECKIT_GRAPH_CALIBRATION_PROFILE=false to disable.
@@ -492,11 +492,11 @@ export function isGraphCalibrationProfileEnabled(): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   10. D1 PHASE D FLAGS (Learned Ranking)
+   10. LEARNED RANKING FLAGS
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * REQ-D1-006: Learned Stage 2 weight combiner (shadow mode).
+ * Learned Stage 2 weight combiner (shadow mode).
  * Runs the learned linear ranker in parallel with manual weights.
  * Scores are computed but NOT used for ranking (shadow-only).
  * Default: TRUE (graduated). Set SPECKIT_LEARNED_STAGE2_COMBINER=false to disable.
@@ -506,11 +506,11 @@ export function isLearnedStage2CombinerEnabled(): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   11. D4 PHASE C FLAGS (Shadow Evaluation)
+   11. SHADOW EVALUATION FLAGS
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * REQ-D4-006: Shadow scoring with holdout evaluation.
+ * Shadow scoring with holdout evaluation.
  * Compares would-have-changed rankings vs live rankings on a holdout
  * slice of queries. Shadow-only — no ranking side effects.
  * Default: TRUE (graduated). Set SPECKIT_SHADOW_FEEDBACK=false to disable.
@@ -520,11 +520,11 @@ export function isShadowFeedbackEnabled(): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   12. D5 PHASE C FLAGS (Progressive Disclosure & Session State)
+   12. PROGRESSIVE DISCLOSURE & SESSION STATE FLAGS
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * REQ-D5-005: Progressive disclosure for search results.
+ * Progressive disclosure for search results.
  * Replaces hard tail-truncation with summary layer + snippet + cursor pagination.
  * Default: TRUE (graduated). Set SPECKIT_PROGRESSIVE_DISCLOSURE_V1=false to disable.
  */
@@ -533,7 +533,7 @@ export function isProgressiveDisclosureEnabled(): boolean {
 }
 
 /**
- * REQ-D5-006: Retrieval session state for cross-turn context.
+ * Retrieval session state for cross-turn context.
  * Enables cross-turn dedup and goal-aware refinement of search results.
  * Default: TRUE (graduated). Set SPECKIT_SESSION_RETRIEVAL_STATE_V1=false to disable.
  */
@@ -542,11 +542,11 @@ export function isSessionRetrievalStateEnabled(): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   13. SPEC 011 GRADUATED FLAGS
+   13. GRADUATED FLAGS
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * REQ-D1-001: Calibrated overlap bonus for multi-channel convergence.
+ * Calibrated overlap bonus for multi-channel convergence.
  * Default: TRUE (graduated). Set SPECKIT_CALIBRATED_OVERLAP_BONUS=false to disable.
  */
 export function isCalibratedOverlapBonusEnabled(): boolean {
@@ -554,7 +554,7 @@ export function isCalibratedOverlapBonusEnabled(): boolean {
 }
 
 /**
- * REQ-D1-003: Experimental per-intent RRF K selection.
+ * Experimental per-intent RRF K selection.
  * Default: TRUE (graduated). Set SPECKIT_RRF_K_EXPERIMENTAL=false to disable.
  */
 export function isRrfKExperimentalEnabled(): boolean {
@@ -562,7 +562,7 @@ export function isRrfKExperimentalEnabled(): boolean {
 }
 
 /**
- * D3 Phase A: Sparse-first + intent-aware typed traversal.
+ * Sparse-first + intent-aware typed traversal.
  * Default: TRUE (graduated). Set SPECKIT_TYPED_TRAVERSAL=false to disable.
  */
 export function isTypedTraversalEnabled(): boolean {
@@ -570,7 +570,7 @@ export function isTypedTraversalEnabled(): boolean {
 }
 
 /**
- * REQ-D5-001: Empty/weak result recovery UX.
+ * Empty/weak result recovery UX.
  * Default: TRUE (graduated). Set SPECKIT_EMPTY_RESULT_RECOVERY_V1=false to disable.
  */
 export function isEmptyResultRecoveryEnabled(): boolean {
@@ -578,7 +578,7 @@ export function isEmptyResultRecoveryEnabled(): boolean {
 }
 
 /**
- * REQ-D5-004: Per-result calibrated confidence scoring.
+ * Per-result calibrated confidence scoring.
  * Default: TRUE (graduated). Set SPECKIT_RESULT_CONFIDENCE_V1=false to disable.
  */
 export function isResultConfidenceEnabled(): boolean {
@@ -586,7 +586,7 @@ export function isResultConfidenceEnabled(): boolean {
 }
 
 /**
- * REQ-D4-004: Weekly batch feedback learning pipeline.
+ * Weekly batch feedback learning pipeline.
  * Default: TRUE (graduated). Set SPECKIT_BATCH_LEARNED_FEEDBACK=false to disable.
  */
 export function isBatchLearnedFeedbackEnabled(): boolean {
@@ -594,7 +594,7 @@ export function isBatchLearnedFeedbackEnabled(): boolean {
 }
 
 /**
- * REQ-D4-005: Assistive reconsolidation for near-duplicate detection.
+ * Assistive reconsolidation for near-duplicate detection.
  * Default: TRUE (graduated). Set SPECKIT_ASSISTIVE_RECONSOLIDATION=false to disable.
  */
 export function isAssistiveReconsolidationEnabled(): boolean {
@@ -602,7 +602,7 @@ export function isAssistiveReconsolidationEnabled(): boolean {
 }
 
 /**
- * REQ-D5-002: Two-tier result explainability.
+ * Two-tier result explainability.
  * Default: TRUE (graduated). Set SPECKIT_RESULT_EXPLAIN_V1=false to disable.
  */
 export function isResultExplainEnabled(): boolean {
@@ -610,7 +610,7 @@ export function isResultExplainEnabled(): boolean {
 }
 
 /**
- * REQ-D5-003: Mode-aware response profile formatting.
+ * Mode-aware response profile formatting.
  * Default: TRUE (graduated). Set SPECKIT_RESPONSE_PROFILE_V1=false to disable.
  */
 export function isResponseProfileEnabled(): boolean {
@@ -622,7 +622,7 @@ export function isResponseProfileEnabled(): boolean {
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * Phase B T016: Query concept expansion for hybrid search.
+ * Query concept expansion for hybrid search.
  * When concept routing matches aliases, expands query with related terms.
  * Default: TRUE (graduated). Set SPECKIT_QUERY_CONCEPT_EXPANSION=false to disable.
  */
@@ -631,7 +631,7 @@ export function isQueryConceptExpansionEnabled(): boolean {
 }
 
 /**
- * Phase B T017: Graph-expanded fallback on zero/weak results.
+ * Graph-expanded fallback on zero/weak results.
  * Queries causal_edges for neighbor titles when recovery triggers.
  * Default: TRUE (graduated). Set SPECKIT_GRAPH_FALLBACK=false to disable.
  */
@@ -640,7 +640,7 @@ export function isGraphFallbackEnabled(): boolean {
 }
 
 /**
- * Phase B T020: Always-on graph context injection.
+ * Always-on graph context injection.
  * Runs concept routing + graph neighbor lookup even without seed results.
  * Default: TRUE (graduated). Set SPECKIT_GRAPH_CONTEXT_INJECTION=false to disable.
  */
@@ -649,7 +649,7 @@ export function isGraphContextInjectionEnabled(): boolean {
 }
 
 /**
- * Phase C T027: Result provenance — include graph evidence metadata in search results.
+ * Result provenance — include graph evidence metadata in search results.
  * When enabled, search results include graphEvidence with contributing edges,
  * communities, and boost factors for transparency and debuggability.
  * Default: TRUE (enabled). Set SPECKIT_RESULT_PROVENANCE=false to disable.
@@ -659,7 +659,7 @@ export function isResultProvenanceEnabled(): boolean {
 }
 
 /**
- * Phase D T036: Temporal validity tracking for causal edges.
+ * Temporal validity tracking for causal edges.
  * Default: TRUE (graduated). Set SPECKIT_TEMPORAL_EDGES=false to disable.
  */
 export function isTemporalEdgesEnabled(): boolean {
@@ -667,7 +667,7 @@ export function isTemporalEdgesEnabled(): boolean {
 }
 
 /**
- * Phase D T036: Usage-weighted ranking signal.
+ * Usage-weighted ranking signal.
  * Default: TRUE (graduated). Set SPECKIT_USAGE_RANKING=false to disable.
  */
 export function isUsageRankingEnabled(): boolean {
@@ -675,7 +675,7 @@ export function isUsageRankingEnabled(): boolean {
 }
 
 /**
- * Phase D T036: Ontology-guided extraction validation hooks.
+ * Ontology-guided extraction validation hooks.
  * Default: TRUE (graduated). Set SPECKIT_ONTOLOGY_HOOKS=false to disable.
  */
 export function isOntologyHooksEnabled(): boolean {
@@ -683,7 +683,7 @@ export function isOntologyHooksEnabled(): boolean {
 }
 
 /**
- * Phase B T018: Community-level search as fallback channel.
+ * Community-level search as fallback channel.
  * When primary search returns weak/no results, searches community summaries
  * and injects matching community members as candidates.
  * Default: TRUE (graduated). Set SPECKIT_COMMUNITY_SEARCH_FALLBACK=false to disable.
@@ -693,7 +693,7 @@ export function isCommunitySearchFallbackEnabled(): boolean {
 }
 
 /**
- * Phase B T019: Dual-level retrieval mode.
+ * Dual-level retrieval mode.
  * Adds retrievalLevel parameter: 'local' (entity), 'global' (community), 'auto' (local + fallback).
  * Default: TRUE (graduated). Set SPECKIT_DUAL_RETRIEVAL=false to disable.
  */

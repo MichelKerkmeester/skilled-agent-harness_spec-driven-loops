@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Progressive Disclosure
 // ───────────────────────────────────────────────────────────────
-// REQ-D5-005: Progressive disclosure for search results
+// Progressive disclosure for search results
 //
 // PURPOSE: Replace hard tail-truncation with a multi-layer response:
 // 1. Summary layer — compact digest of result quality distribution

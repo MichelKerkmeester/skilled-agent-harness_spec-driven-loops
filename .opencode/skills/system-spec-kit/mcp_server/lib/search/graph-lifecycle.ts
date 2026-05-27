@@ -2,8 +2,8 @@
 // MODULE: Graph Lifecycle
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Graph lifecycle refresh
-// REQ-D3-003: Graph Refresh on Write
-// REQ-D3-004: Deterministic Save-Time Enrichment (wiring side)
+// Graph Refresh on Write
+// Deterministic Save-Time Enrichment (wiring side)
 //
 // Gated via SPECKIT_GRAPH_REFRESH_MODE (off | write_local | scheduled)
 // and SPECKIT_LLM_GRAPH_BACKFILL for async LLM enrichment.
@@ -54,7 +54,7 @@ function invalidateGraphCaches(db: Database.Database): void {
 // ───────────────────────────────────────────────────────────────
 
 /**
- * REQ-D3-003: Graph refresh mode.
+ * Graph refresh mode.
  * Controls when dirty-node recomputation is triggered after write operations.
  *
  * Values:
@@ -80,7 +80,7 @@ export function isGraphRefreshEnabled(): boolean {
   return resolveGraphRefreshMode() !== 'off';
 }
 
-// REQ-D3-004: LLM graph backfill gate — canonical implementation in search-flags.ts.
+// LLM graph backfill gate — canonical implementation in search-flags.ts.
 // Default: TRUE (graduated). Set SPECKIT_LLM_GRAPH_BACKFILL=false to disable.
 import {
   isGraphRefreshDisabled,
@@ -123,7 +123,7 @@ export interface GraphRefreshResult {
 }
 
 /**
- * T-PIN-08 (R27-001): machine-readable reason emitted when `onIndex` skips
+ * Machine-readable reason emitted when `onIndex` skips
  * enrichment.  Consumers (post-insert, runEnrichmentBackfill) key on this to
  * decide whether the skip is remediable.
  */
@@ -409,7 +409,7 @@ export function registerGlobalRefreshFn(fn: () => void): void {
 // ───────────────────────────────────────────────────────────────
 
 /**
- * REQ-D3-003: Hook called after a write operation that modifies edges.
+ * Hook called after a write operation that modifies edges.
  *
  * Pipeline:
  *   1. markDirty(edges.nodes)
@@ -485,11 +485,11 @@ export function onWrite(
 }
 
 // ───────────────────────────────────────────────────────────────
-// 9. DETERMINISTIC SAVE-TIME ENRICHMENT (REQ-D3-004) — onIndex
+// 9. DETERMINISTIC SAVE-TIME ENRICHMENT — onIndex
 // ───────────────────────────────────────────────────────────────
 
 /**
- * REQ-D3-004: Deterministic save-time enrichment hook.
+ * Deterministic save-time enrichment hook.
  *
  * Called at index time after a memory is persisted.  Extracts entities and
  * relations from the document using rule-based (deterministic) extraction and
@@ -510,7 +510,7 @@ export function onIndex(
   content: string,
   options?: { qualityScore?: number; llmBackfillThreshold?: number },
 ): OnIndexResult {
-  // T-PIN-08 (R27-001): build a typed skipped result so consumers can route
+  // Build a typed skipped result so consumers can route
   // on reason rather than the collapsed boolean.
   const buildSkipped = (skipReason: OnIndexSkipReason): OnIndexResult => ({
     edgesCreated: 0,

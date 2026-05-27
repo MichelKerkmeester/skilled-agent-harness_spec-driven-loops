@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // Cached lookup that flags queries whose terms hit titles / trigger_phrases of
 // memory_index rows with ≥3 outgoing causal_edges. Used by the query router
-// (REQ-003) to activate the graph channel for entity-rich short queries.
+// to activate the graph channel for entity-rich short queries.
 //
 // The cache is a Set of lowercase tokens drawn from high-degree memory rows.
 // Refreshes lazily on a 60s TTL or via invalidateEntityDensityCache(). Falls

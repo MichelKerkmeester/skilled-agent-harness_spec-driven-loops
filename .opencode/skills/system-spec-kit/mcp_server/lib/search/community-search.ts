@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Community Search
 // ───────────────────────────────────────────────────────────────
-// Phase B T018: Community-level search as fallback channel.
+// Community-level search as fallback channel.
 //
 // When primary search returns weak or zero results, this module
 // searches community summaries by keyword matching and returns

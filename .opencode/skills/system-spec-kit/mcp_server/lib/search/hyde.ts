@@ -100,7 +100,7 @@ const HYDE_TIMEOUT_MS = 8000;
    4. FEATURE FLAGS
 ──────────────────────────────────────────────────────────────── */
 
-// D2 REQ-D2-004: HyDE feature gate — canonical implementation in search-flags.ts.
+// HyDE feature gate — canonical implementation in search-flags.ts.
 // Default: TRUE (graduated). Set SPECKIT_HYDE=false to disable.
 import { isHyDEEnabled } from './search-flags.js';
 export { isHyDEEnabled };

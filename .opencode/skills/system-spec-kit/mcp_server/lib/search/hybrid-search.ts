@@ -123,7 +123,7 @@ interface HybridSearchResult {
    * - `'graph'` — graph traversal relevance
    *
    * After hybrid merge, all source scores are min-max normalized to 0-1 within
-   * their source group to ensure fair cross-method comparison (see P3-02 fix).
+   * their source group to ensure fair cross-method comparison.
    */
   score: number;
   source: string;
@@ -264,7 +264,7 @@ let vectorSearchFn: VectorSearchFn | null = null;
 let graphSearchFn: GraphSearchFn | null = null;
 let enrichFusedResultsObserver: (() => void) | null = null;
 
-// 6. GRAPH CHANNEL METRICS (T008)
+// 6. GRAPH CHANNEL METRICS
 
 interface GraphChannelMetrics {
   totalQueries: number;
@@ -483,7 +483,7 @@ function ftsSearch(
   const { limit = DEFAULT_LIMIT, specFolder, includeArchived = false } = options;
 
   try {
-    // C138-P2: Delegate to weighted BM25 FTS5 search from sqlite-fts.ts
+    // Delegate to weighted BM25 FTS5 search from sqlite-fts.ts
     // Uses bm25(memory_fts, 10.0, 5.0, 2.0, 1.0) for per-column weighting
     // (title 10x, trigger_phrases 5x, file_path 2x, content 1x)
     // Filters: deprecated-tier exclusion and spec-folder matching handled by fts5Bm25Search
@@ -1391,7 +1391,7 @@ async function collectAndFuseHybridResults(
       if (sources.size === 1 && sources.has('graph')) graphMetrics.graphOnlyResults++;
     }
 
-    // C138/T315: Build weighted fusion lists once from lightweight adaptive
+    // Build weighted fusion lists once from lightweight adaptive
     // weights, avoiding the heavier hybridAdaptiveFuse() standard-first path.
     const detectedIntent = classifyIntent(query).intent;
     const intent = resolveFusionIntentContract({
@@ -1632,7 +1632,7 @@ async function enrichFusedResults(
   const s4attributionMeta = shadowMeta._s4attribution;
   const degradationMeta = shadowMeta._degradation;
 
-  // C138/T316: MMR reranking with request-scoped embedding cache.
+  // MMR reranking with request-scoped embedding cache.
   // Reuse embeddings already returned by the vector channel when present and
   // only query vec_memories for missing IDs.
   let reranked: HybridSearchResult[] = fusedHybridResults.slice(0, limit);
@@ -1713,7 +1713,7 @@ async function enrichFusedResults(
     }
   }
 
-  // C138: Co-activation spreading — enrich with temporal neighbors
+  // Co-activation spreading — enrich with temporal neighbors
   const topIds = reranked
     .slice(0, SPREAD_ACTIVATION_TOP_N)
     .map(r => r.id)
@@ -1727,7 +1727,7 @@ async function enrichFusedResults(
         for (const result of reranked) {
           const boost = spreadMap.get(result.id as number);
           if (boost !== undefined) {
-            // M10 FIX: Update all score aliases so downstream consumers see the boost
+            // Update all score aliases so downstream consumers see the boost.
             const boostedScore = ((result.score as number) ?? 0) + boost * CO_ACTIVATION_CONFIG.boostFactor;
             (result as Record<string, unknown>).score = boostedScore;
             if ('rrfScore' in result) (result as Record<string, unknown>).rrfScore = boostedScore;
@@ -1972,7 +1972,7 @@ async function collectRawCandidates(
 /**
  * Search with automatic fallback chain.
  * When SPECKIT_SEARCH_FALLBACK=true: delegates to the 3-tier quality-aware
- * fallback (searchWithFallbackTiered). Otherwise: C138-P0 two-pass adaptive
+   * fallback (searchWithFallbackTiered). Otherwise: two-pass adaptive
  * fallback — primary at minSimilarity=30, retry at 17.
  *
  * @param query - The search query string.
@@ -1992,7 +1992,7 @@ async function searchWithFallback(
 
   // Primary 30 filters noise; fallback 17 widens recall for sparse corpora
   // Where no result exceeds the primary threshold — chosen empirically via eval.
-  // P3-03 FIX: Use hybridSearchEnhanced (with RRF fusion) instead of
+  // Use hybridSearchEnhanced (with RRF fusion) instead of
   // The naive hybridSearch that merges raw scores
   const { allowedChannels, stages } = await executeFallbackPlan(
     query,
@@ -2153,8 +2153,8 @@ function extractSpecSegments(filePath: string): { left: string; right: string; t
 
 // Memoize description map to avoid rebuilding on every search query.
 // Cache invalidates after 60 seconds so folder renames are eventually picked up.
-// M5 fix: Return stale cache immediately and refresh asynchronously to avoid
-// Blocking the search hot path with synchronous filesystem crawls.
+// Return stale cache immediately and refresh asynchronously to avoid
+// blocking the search hot path with synchronous filesystem crawls.
 let descMapCache: { map: Map<string, string>; timestamp: number } | null = null;
 let descMapRefreshing = false;
 const DESC_MAP_TTL_MS = 60_000;
@@ -2433,7 +2433,7 @@ async function searchWithFallbackTiered(
   return finalResults;
 }
 
-// 14. PRE-FLIGHT TOKEN BUDGET VALIDATION (T007)
+// 14. PRE-FLIGHT TOKEN BUDGET VALIDATION
 
 /** Default token budget — configurable via SPECKIT_TOKEN_BUDGET env var. */
 const DEFAULT_TOKEN_BUDGET = 2000;

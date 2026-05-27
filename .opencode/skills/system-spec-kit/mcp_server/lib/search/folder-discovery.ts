@@ -395,7 +395,7 @@ function collectDiscoveredSpecState(basePaths: string[]): DiscoveredSpecState {
           latestMtime = mtime;
         }
         // Also check description.json mtime so aggregate cache staleness
-        // Detects per-folder description edits (CHK-024 / REQ-008).
+        // Detects per-folder description edits.
         try {
           const descPath = path.join(discoveredFolder.folderPath, 'description.json');
           const descMtime = fs.statSync(descPath).mtimeMs;
@@ -752,7 +752,7 @@ export function generateFolderDescriptions(specsBasePaths: string[]): Descriptio
 }
 
 /**
- * F-39: Batch repair stale description.json files.
+ * Batch repair stale description.json files.
  * Separated from generateFolderDescriptions to keep the main generation loop fast.
  * Call this as a maintenance operation, not on every cache rebuild.
  *

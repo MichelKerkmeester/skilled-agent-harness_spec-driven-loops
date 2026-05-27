@@ -6,10 +6,10 @@
 // Walks the causal_edges graph up to MAX_HOPS, amplifying scores
 // For results related to top seed results via weighted CTE.
 //
-// D3 Phase A — Sparse-First + Intent-Aware Traversal:
-// - REQ-D3-001: Sparse-first policy — density < 0.5 disables community
+// Sparse-First + Intent-Aware Traversal:
+// - Sparse-first policy — density < 0.5 disables community
 //   detection and constrains traversal to typed 1-hop expansion only.
-// - REQ-D3-002: Intent-aware edge traversal — maps classified query intents
+// - Intent-aware edge traversal — maps classified query intents
 //   to edge-type priority orderings; computes traversal score as:
 //   score = seedScore * edgePrior * hopDecay * freshness
 // Both requirements are gated behind SPECKIT_TYPED_TRAVERSAL (default ON, graduated).
@@ -30,7 +30,7 @@ const SEED_FRACTION = 0.25;
 const MAX_SEED_RESULTS = 5;
 
 // ───────────────────────────────────────────────────────────────
-// D3-001: SPARSE-FIRST POLICY CONSTANTS
+// SPARSE-FIRST POLICY CONSTANTS
 // ───────────────────────────────────────────────────────────────
 /** Graph density threshold below which community detection is disabled
  * and traversal is constrained to typed 1-hop expansion only.
@@ -44,7 +44,7 @@ const SPARSE_MAX_HOPS = 1;
 const DEFAULT_TYPED_TRAVERSAL_DEPTH = SPARSE_MAX_HOPS;
 
 // ───────────────────────────────────────────────────────────────
-// D3-002: INTENT-AWARE EDGE TRAVERSAL
+// INTENT-AWARE EDGE TRAVERSAL
 // ───────────────────────────────────────────────────────────────
 /** Per-hop decay factor applied to traversal score. 1-hop = 1.0, 2-hop = 0.5. */
 const HOP_DECAY_BASE = 1.0;
@@ -76,7 +76,7 @@ const DEFAULT_EDGE_PRIOR = 1.0;
 const FRESHNESS_DECAY_WINDOW_MS = 30 * 24 * 60 * 60 * 1000;
 
 /**
- * C138-P2: Relation-type weight multipliers for causal edge traversal.
+ * Relation-type weight multipliers for causal edge traversal.
  * Applied during CTE accumulation so stronger relation types (supersedes)
  * amplify the boost while weaker ones (contradicts) attenuate it.
  *
@@ -117,19 +117,19 @@ interface CausalBoostMetadata {
   injectedCount: number;
   maxBoostApplied: number;
   traversalDepth: number;
-  /** D3-001: true when sparse-first policy was active (density < threshold) */
+  /** True when sparse-first policy was active (density < threshold) */
   sparseModeActive?: boolean;
-  /** D3-002: intent used for edge traversal scoring (if typed traversal enabled) */
+  /** Intent used for edge traversal scoring (if typed traversal enabled) */
   intentUsed?: string;
 }
 
-/** Options for applyCausalBoost — extended with D3 Phase A parameters. */
+/** Options for applyCausalBoost — extended with sparse-first parameters. */
 interface CausalBoostOptions {
-  /** D3-001/002: Graph density (edgeCount / totalMemories). Used for sparse-first gate. */
+  /** Graph density (edgeCount / totalMemories). Used for sparse-first gate. */
   graphDensity?: number;
-  /** D3-002: Classified query intent. Used for intent-aware edge priority mapping. */
+  /** Classified query intent. Used for intent-aware edge priority mapping. */
   intent?: string;
-  /** D3-002: Freshness factor [0,1] applied to traversal scoring. Defaults to 1.0. */
+  /** Freshness factor [0,1] applied to traversal scoring. Defaults to 1.0. */
   freshness?: number;
 }
 
@@ -167,7 +167,7 @@ function init(database: Database.Database): void {
 }
 
 // ───────────────────────────────────────────────────────────────
-// D3-001: SPARSE-FIRST POLICY
+// SPARSE-FIRST POLICY
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -221,7 +221,7 @@ function resolveTraversalDepth(depth: number = DEFAULT_TYPED_TRAVERSAL_DEPTH): n
 }
 
 // ───────────────────────────────────────────────────────────────
-// D3-002: INTENT-AWARE EDGE TRAVERSAL HELPERS
+// INTENT-AWARE EDGE TRAVERSAL HELPERS
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -278,7 +278,7 @@ function computeHopDecay(hopDistance: number): number {
 }
 
 /**
- * Compute the D3-002 intent-aware traversal score.
+ * Compute the intent-aware traversal score.
  * Formula: seedScore * edgePrior * hopDecay * freshness
  *
  * @param seedScore  - Base score of the seed node (0–1)
@@ -410,7 +410,7 @@ function computeBoostByHop(hopDistance: number): number {
  * Walk causal edges up to maxHops from the given seed memory IDs,
  * returning a map of neighbor ID to boost score.
  *
- * D3-001: Accepts an optional maxHops override. When sparse mode is active
+   * Accepts an optional maxHops override. When sparse mode is active
  * (density < 0.5 and SPECKIT_TYPED_TRAVERSAL enabled), the caller passes
  * SPARSE_MAX_HOPS (1) to constrain traversal depth.
  */
@@ -424,7 +424,7 @@ function getNeighborBoosts(memoryIds: number[], maxHops: number = MAX_HOPS): Map
   const originIds = ids.map((value) => String(value));
   const placeholders = originIds.map(() => '?').join(', ');
 
-  // C138-P2: Relation-weighted CTE — accumulates score with multiplier
+  // Relation-weighted CTE — accumulates score with multiplier
   // Based on edge relation type and edge strength column.
   // 'supersedes' edges get 1.5x, 'contradicts' 0.8x, others 1.0x.
   const query = `
@@ -479,7 +479,7 @@ function getNeighborBoosts(memoryIds: number[], maxHops: number = MAX_HOPS): Map
     for (const row of rows) {
       const neighborId = Number.parseInt(row.node_id, 10);
       if (!Number.isFinite(neighborId)) continue;
-      // C138-P2: Combine hop-distance decay with relation-weighted walk score
+      // Combine hop-distance decay with relation-weighted walk score
       const hopBoost = computeBoostByHop(row.min_hop);
       const walkMultiplier = typeof row.max_walk_score === 'number' && Number.isFinite(row.max_walk_score)
         ? Math.max(0.1, Math.min(2.0, row.max_walk_score))
@@ -519,15 +519,15 @@ function fetchNeighborRows(memoryIds: number[]): RankedSearchResult[] {
  * Apply causal graph boost to ranked search results, injecting
  * graph-discovered neighbors and amplifying scores for connected nodes.
  *
- * D3 Phase A extensions:
- * - REQ-D3-001: When SPECKIT_TYPED_TRAVERSAL is enabled and graphDensity < 0.5,
+   * Sparse-first and intent-aware traversal extensions:
+   * - When SPECKIT_TYPED_TRAVERSAL is enabled and graphDensity < 0.5,
  *   activates sparse mode: traversal depth = 1, community detection suppressed.
- * - REQ-D3-002: When SPECKIT_TYPED_TRAVERSAL is enabled and intent is provided,
+   * - When SPECKIT_TYPED_TRAVERSAL is enabled and intent is provided,
  *   applies intent-aware edge traversal scoring using the formula:
  *   score = seedScore * edgePrior * hopDecay * freshness
  *
  * @param results - Ranked search results from prior pipeline stages
- * @param options - Optional D3 parameters (graphDensity, intent, freshness)
+   * @param options - Optional traversal parameters (graphDensity, intent, freshness)
  */
 function applyCausalBoost(
   results: RankedSearchResult[],
@@ -535,7 +535,7 @@ function applyCausalBoost(
 ): { results: RankedSearchResult[]; metadata: CausalBoostMetadata } {
   const { graphDensity, intent = 'understand', freshness = 1.0 } = options;
 
-  // D3-001: Determine sparse mode and effective hop depth
+  // Determine sparse mode and effective hop depth.
   const sparseMode = isSparseMode(graphDensity);
   const effectiveMaxHops = sparseMode ? SPARSE_MAX_HOPS : MAX_HOPS;
 
@@ -557,13 +557,13 @@ function applyCausalBoost(
   const seedLimit = Math.max(1, Math.min(MAX_SEED_RESULTS, Math.ceil(results.length * SEED_FRACTION)));
   const seedResults = results.slice(0, seedLimit);
   const seedIds = seedResults.map((item) => item.id);
-  // D3-001: Pass effectiveMaxHops to constrain traversal in sparse mode
+  // Pass effectiveMaxHops to constrain traversal in sparse mode.
   const neighborBoosts = getNeighborBoosts(seedIds, effectiveMaxHops);
   if (neighborBoosts.size === 0) {
     return { results, metadata };
   }
 
-  // D3-002: When SPECKIT_TYPED_TRAVERSAL is enabled, re-score neighbor boosts
+  // When SPECKIT_TYPED_TRAVERSAL is enabled, re-score neighbor boosts
   // using the intent-aware traversal formula: seedScore * edgePrior * hopDecay * freshness.
   // We use the average seed score as the seedScore proxy and the actual hop distance
   // returned by getNeighborBoosts(). This preserves backward compatibility: when flag
@@ -606,7 +606,7 @@ function applyCausalBoost(
     }
   }
 
-  // Select the active boost map: intent-aware when D3-002 flag is on, classic otherwise
+  // Select the active boost map: intent-aware when the flag is on, classic otherwise.
   const classicBoosts = new Map<number, number>();
   for (const [neighborId, neighborBoost] of neighborBoosts) {
     classicBoosts.set(neighborId, neighborBoost.boost);
@@ -674,7 +674,7 @@ function applyCausalBoost(
 }
 
 // ───────────────────────────────────────────────────────────────
-// Phase B T020: ALWAYS-ON GRAPH CONTEXT INJECTION
+// ALWAYS-ON GRAPH CONTEXT INJECTION
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -694,7 +694,7 @@ interface GraphContextResult {
 }
 
 /**
- * Phase B T020: Always-on graph context injection.
+ * Always-on graph context injection.
  *
  * Runs concept routing on the query and finds graph neighbors for matched
  * concepts, returning graph context metadata (related memory IDs, edge types).
@@ -812,7 +812,7 @@ export {
   computeIntentAwareTraversalScore,
   getNeighborBoosts,
   applyCausalBoost,
-  // Phase B T020
+  // Always-on graph context injection
   injectGraphContext,
 };
 
