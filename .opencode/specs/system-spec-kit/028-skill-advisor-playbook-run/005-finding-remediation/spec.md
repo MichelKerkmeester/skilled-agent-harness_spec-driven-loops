@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "scorer-p0-remediation"
-    recent_action: "All 6 remediation phases implemented + verified (002 closed: both scorers P0 12/12)"
-    next_safe_action: "None — all findings remediated; out-of-scope P1 alias drift tracked separately"
+    recent_action: "Original 6 phases done; filed phase 007 for follow-up P1s"
+    next_safe_action: "Implement phase 007 (harness alias-awareness + stale test path)"
     blockers: []
     key_files:
       - ".opencode/specs/system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/research/research.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-remediation"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 86
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-05-26 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -69,8 +69,9 @@ Deep-research each finding to a verified root cause (done — see `research/rese
 ## 3. SCOPE
 
 ### In Scope
-- Six remediation phases (001-006) covering all 5 findings (F1 split into metric-layer F1a + scorer-layer F1b).
-- Each phase: spec + plan + tasks + pending-implementation summary, grounded in the deep-research evidence.
+- Phases 001-006 covering all 5 original findings (F1 split into metric-layer F1a + scorer-layer F1b).
+- Phase 007: follow-up P1s surfaced during 002 (regression-harness alias-awareness + stale lane-weight-sweep packet path).
+- Each phase: spec + plan + tasks + implementation summary, grounded in evidence.
 
 ### Out of Scope
 - Executing the fixes (this packet specs them; implementation is the subsequent /speckit:implement pass).
@@ -99,6 +100,7 @@ Authoring-only at this level; the remediation phases name their own target files
 | 004 | `004-semantic-shadow-doc-sync/` | F3 | Sync SC-004/SC-005 + feature-catalog + stale code comment to the live 0.05 lane | Done (verified 2026-05-27) |
 | 005 | `005-opencode-bridge-native-route/` | F4 | Bridge direct compat import done+verified; daemon-freshness availability gate flagged (residual cold-env route:python) | Partial |
 | 006 | `006-playbook-vitest-path-fix/` | F5 | Correct NC-004/NC-005 vitest invocation path | Done (verified 2026-05-27) |
+| 007 | `007-harness-alias-and-stale-path/` | follow-up | Regression-harness alias-awareness (`deep-*` IDs) + stale lane-weight-sweep packet path — out-of-scope P1s surfaced during 002 | Planned |
 
 ### Phase Transition Rules
 - Each phase passes `validate.sh` independently before implementation.
@@ -111,6 +113,7 @@ Authoring-only at this level; the remediation phases name their own target files
 |------|-----|----------|--------------|
 | research | phases | Root cause + target files verified per finding | research/research.md §3 |
 | phases | implement | Each phase has scope + approach + tasks | validate.sh per child |
+| 002-scorer-p0-routing-fixes | 007-harness-alias-and-stale-path | Out-of-scope P1s surfaced during 002 (alias drift + stale test path) recorded for follow-up | validate.sh per child |
 <!-- /ANCHOR:phase-map -->
 
 ---
