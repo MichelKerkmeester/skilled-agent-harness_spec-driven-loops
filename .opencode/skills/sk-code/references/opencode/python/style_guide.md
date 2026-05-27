@@ -308,7 +308,7 @@ results.sort(key=lambda x: x['timestamp'], reverse=True)
 if item_id in processed_set:
     continue
 
-# REQ-033: transaction manager for pending file recovery
+# Recover pending writes on startup so a crash cannot lose data
 transaction_manager = TransactionManager(db_path)
 ```
 

@@ -69,6 +69,15 @@ manual review gates; the alignment verifier does not parse intent from comments.
 // Note: Using setTimeout because requestAnimationFrame not available in Node
 ```
 
+### No Ephemeral-Artifact Pointers in Comments
+
+```markdown
+[ ] No spec/packet/phase numbers, T###/REQ-###/CHK-###, feature-catalog, ADR, or ticket ids in comments
+    - Keep the durable WHY; drop the perishable label
+    - Structural path/globs the code needs (e.g. .opencode/specs/) and stable standards (CWE-###) are OK
+    - See references/universal/code_style_guide.md §4 "No ephemeral-artifact pointers"
+```
+
 ### Numbered ALL-CAPS Section Invariant
 
 ```markdown

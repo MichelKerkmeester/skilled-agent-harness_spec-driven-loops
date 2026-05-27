@@ -165,6 +165,8 @@ const needs_hls_library = !video.canPlayType('application/vnd.apple.mpegurl');
 if (window[INIT_FLAG]) return;
 ```
 
+> **Allowed vs. forbidden — see the canonical rule.** The prefixes above (`WEBFLOW:`, `MOTION:`, `LENIS:`, `HLS.JS:`) are allowed because they name a durable platform/library. The flip side — comments must **never** name an ephemeral tracking artifact (a ClickUp/ticket id like `CU-8abc`, a project-spec folder or number, a phase/packet number, or an ADR id) — is defined once for both surfaces in [`../../universal/code_style_guide.md`](../../universal/code_style_guide.md) §4 "No ephemeral-artifact pointers". It extends the existing "no ticket references in file headers" rule to **all** inline comments. Keep the WHY; drop the ephemeral pointer.
+
 ---
 
 ## 8. KEY PRINCIPLES (DISTILLED)

@@ -556,8 +556,9 @@ Use plain comments that explain reasoning:
 - `// Rationale for this path`
 - `// Contract/precondition that must hold`
 - `// State that must hold after execution`
-- `// REQ-###|BUG-###|SEC-###|T###: traceability`
+- `// SEC: security note tied to a stable standard (CWE-###)`
 - `// Reliability/performance/security risk control`
+- No spec-folder-internal ids (`T###`/`REQ-###`/`CHK-###`/ADR/ticket) in comments — see [`../shared/universal_patterns.md`](../shared/universal_patterns.md) §4.
 
 ### Capitalization
 

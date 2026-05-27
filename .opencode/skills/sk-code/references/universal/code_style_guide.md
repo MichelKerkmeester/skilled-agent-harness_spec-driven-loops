@@ -95,7 +95,7 @@ Well-named identifiers and clear structure self-document. Add a comment only whe
 
 - A hidden constraint exists (for example, "this works around browser bug X").
 - A non-obvious invariant must be preserved (for example, "must run before init Y").
-- A workaround references a specific issue (for example, "see issue #1234").
+- A workaround needs its cause named (for example, "works around an upstream SDK hang on empty payloads") — name the symptom, not a ticket id (see "No ephemeral-artifact pointers" below).
 - Behavior would surprise a reader.
 
 ### Never comment what the code does
@@ -112,6 +112,46 @@ i += 1
 ### No commented-out code
 
 Delete it. Git history preserves it. Commented code is cognitive load with no payoff.
+
+### No ephemeral-artifact pointers
+
+Never name a specific instance of an ephemeral tracking artifact in a comment. Keep the durable WHY; drop the perishable label. This is the canonical rule for both the OPENCODE and WEBFLOW surfaces — surface guides point here rather than restating it.
+
+An *ephemeral artifact* is anything that gets renamed, renumbered, archived, or deleted on its own schedule while the code lives on: a spec folder or its number (`specs/042-foo`, `Spec 031`), a packet / phase / task / checklist / requirement number (`Packet 117`, `Phase 005`, `T043`, `CHK-160`, `REQ-005`), a feature-catalog entry (`feature_catalog/04--scorer-fusion/...`), an ADR id (`ADR-004`), or a ticket / issue id (`#1234`, `CU-8abc`). When the artifact moves, the comment becomes a dangling pointer that sends the next reader chasing a dead reference — worse than no comment.
+
+| Reference in a comment | Allowed? | Why |
+|------------------------|----------|-----|
+| Spec folder / spec / packet / phase number | No | Renamed or archived independently of the code |
+| Task / checklist / requirement id (`T###`, `CHK-###`, `REQ-###`) | No | Points into a spec folder's tasks/checklist/spec that gets archived |
+| Feature-catalog entry, ADR id, ticket / issue id | No | Tracking artifacts with their own lifecycle |
+| The durable WHY — the constraint, invariant, or decision itself | Yes — required | Survives any artifact lifecycle change |
+| A path or glob the running code needs (`.opencode/specs/`, `specs/NNN-*`) | Yes | Structural — code the runtime reads, not a traceability comment |
+| A stable external standard (`CWE-79`, an RFC number, `POSIX`) | Yes | Externally versioned; does not get archived with a sprint |
+| A platform / library name (`WEBFLOW:`, `MOTION:`, `LENIS:`) | Yes | Names a durable platform, not a tracking artifact |
+
+The line that matters is *instance vs. structural*: a string the program reads at runtime (a `.opencode/specs/` path constant) stays; a comment that merely cites an artifact for traceability is what this rule forbids.
+
+```javascript
+// BAD — points into tasks.md, which is archived per spec folder
+// T107/REQ-033: transaction manager for pending file recovery
+const tx = new TransactionManager(dbPath);
+
+// GOOD — keeps the WHY, drops the ephemeral id
+// Recover pending writes on startup so a mid-write crash cannot lose data
+const tx = new TransactionManager(dbPath);
+```
+
+```javascript
+// BAD — "ADR-004" is renamed/archived independently of this code
+// ADR-004: FSRS-preferred decay with half-life fallback
+const decay = fsrsDecay(age);
+
+// GOOD — the behavior and the durable algorithm name are what a reader needs
+// FSRS-preferred decay with half-life fallback
+const decay = fsrsDecay(age);
+```
+
+When a comment mixes a forbidden id with a stable standard, keep the standard: `// CHK-160 / SEC: sanitize input (CWE-79)` becomes `// SEC: sanitize input to prevent stored XSS (CWE-79)`.
 
 ### Surface-specific commenting notes
 

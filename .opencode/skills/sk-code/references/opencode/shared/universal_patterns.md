@@ -201,9 +201,9 @@ if (!isValid) return null;
 | Situation | Comment? | Example |
 |-----------|----------|---------|
 | Non-obvious logic | YES | `// Sort timestamp DESC so newest appears first` |
-| Business rule | YES | `// REQ-005: constitutional tier always surfaces` |
-| Workaround | YES | `// Workaround for SDK bug #123` |
-| Security concern | YES | `// SEC-001: sanitize input (CWE-79)` |
+| Business rule | YES | `// Constitutional tier must always surface regardless of score` |
+| Workaround | YES | `// Works around an SDK hang on empty payloads` |
+| Security concern | YES | `// SEC: sanitize input to prevent stored XSS (CWE-79)` |
 | Self-explanatory code | NO | `const sum = a + b;` needs no comment |
 | Obvious loops | NO | `for (let i = 0; i < 10; i++)` needs no comment |
 
@@ -224,57 +224,34 @@ const score = calculateDecay(baseScore, age); // weighted decay
 
 ## 4. REFERENCE COMMENT PATTERNS
 
-Reference comments create traceability between code and requirements/issues. OpenCode uses these prefixes:
+> **Governed by the canonical rule.** Comments must never embed an ephemeral-artifact pointer — a spec folder/number, a packet/phase/task/checklist/requirement id, a feature-catalog entry, an ADR id, or a ticket id. See [`../../universal/code_style_guide.md`](../../universal/code_style_guide.md) §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract. Only a **durable** external standard may be cited in a comment.
 
-### Pattern Reference Table
+### Allowed Reference Comments
 
-| Prefix | Purpose | Format | Example |
-|--------|---------|--------|---------|
-| `T###` | Task reference | `// T001: Description` | `// T043-T047: Causal Memory Graph handlers` |
-| `BUG-###` | Bug fix tracking | `// BUG-042: Fix race condition` | `// BUG-107: Pending file recovery on startup` |
-| `REQ-###` | Requirement tracing | `// REQ-003: Must support UTF-8` | `// REQ-033: Transaction manager for recovery` |
-| `SEC-###` | Security note | `// SEC-001: Description (CWE-XXX)` | `// SEC-001: Sanitize user input (CWE-79)` |
-| `CHK-###` | Checklist item | `// CHK-160: Token budget estimation` | `// CHK-160: Pre-flight validation` |
+| Prefix | Purpose | Allowed because | Example |
+|--------|---------|-----------------|---------|
+| `SEC:` | Security note tied to a stable standard | CWE/CVE/RFC ids are externally versioned and durable | `// SEC: sanitize user input to prevent stored XSS (CWE-79)` |
+| `PERF:` | Performance constraint | Names a durable behavioral requirement, no artifact id | `// PERF: debounce to one reflow per frame` |
+| `BUG` | Workaround for a durable external bug | Names the symptom + a durable tracker, not a spec-folder bug list | `// Works around an upstream SDK hang on empty payloads` |
 
-### Evidence from Codebase
+### Removed prefixes — DO NOT USE
+
+`T###`, `REQ-###`, and `CHK-###` are **removed**. They point into `tasks.md` / `spec.md` / `checklist.md` inside a spec folder that is renamed or archived independently of the code — exactly the dangling pointer the canonical rule forbids. Replace the id with the durable WHY:
 
 ```typescript
-// From context-server.ts:34,62,65
+// BAD — points into an archived spec folder
 // T043-T047: Causal Memory Graph handlers
+
+// GOOD — names the behavior, which never gets archived
+// Causal Memory Graph handlers: drift-why, causal-link, causal-stats, causal-unlink
 handleMemoryDriftWhy, handleMemoryCausalLink, handleMemoryCausalStats, handleMemoryCausalUnlink,
-
-// T001-T004: Session deduplication
-import * as sessionManager from './lib/session/session-manager';
-
-// T107/REQ-033: transaction manager for pending file recovery
-import * as transactionManager from './lib/storage/transaction-manager';
 ```
 
 ### When to Use Reference Comments
 
-1. **Implementing a specific task**: Link to task ID
-2. **Fixing a reported bug**: Link to bug tracker ID
-3. **Implementing a requirement**: Link to requirement spec
-4. **Security-sensitive code**: Link to CWE and document mitigation
-5. **Checklist validation**: Link to specific checklist item
-
-### Grouping Related Tasks
-
-For related tasks, use range notation:
-
-```javascript
-// GOOD: Range for related tasks
-// T043-T047: Causal Memory Graph handlers
-
-// ALSO GOOD: List for non-sequential
-// T001, T004, T015: Session management handlers
-
-// BAD: Individual comments for each
-// T043: drift_why handler
-// T044: causal_link handler
-// T045: causal_stats handler
-// T046: (etc - too verbose)
-```
+1. **Security-sensitive code**: cite the durable standard (CWE/CVE/RFC) and the mitigation.
+2. **Documented workaround**: name the durable external tracker plus the symptom.
+3. **Never** to point at a spec folder, task, requirement, checklist, packet, phase, or ADR — capture the WHY instead.
 
 ### Design Principles Gate (KISS/DRY/SOLID)
 
@@ -507,31 +484,31 @@ Use equivalent names with language-appropriate casing for the same concept.
 | Is valid flag | `isValid` | `is_valid` | `isValid` |
 | Max results | `maxResults` | `max_results` | `maxResults` |
 
-### Pattern C: Reference comment traceability
+### Pattern C: Cross-language comment consistency
 
-Use the same task/requirement IDs across code and config comments.
+Express the same durable WHY across code and config comments — never a shared task/requirement id (those rot per the canonical rule; see §4).
 
 **TypeScript / JavaScript**
 ```typescript
-// REQ-033: Keep retry budget bounded for startup recovery
+// Keep retry budget bounded so startup recovery cannot loop forever
 const MAX_RETRIES = 3;
 ```
 
 **Python / Shell**
 ```python
-# REQ-033: Keep retry budget bounded for startup recovery
+# Keep retry budget bounded so startup recovery cannot loop forever
 MAX_RETRIES = 3
 ```
 
 ```bash
-# REQ-033: Keep retry budget bounded for startup recovery
+# Keep retry budget bounded so startup recovery cannot loop forever
 readonly MAX_RETRIES=3
 ```
 
 **JSONC**
 ```jsonc
 {
-  // REQ-033: Keep retry budget bounded for startup recovery
+  // Keep retry budget bounded so startup recovery cannot loop forever
   "maxRetries": 3
 }
 ```

@@ -281,7 +281,7 @@ Use plain comments that explain reasoning:
 - `// Reasoning for non-obvious choice`
 - `// Precondition/invariant check`
 - `// State that must always hold`
-- `// REQ-###|BUG-###|SEC-###|T###: traceability hook`
+- `// SEC: security note tied to a stable standard (CWE-###)`
 - `// Safety, performance, or reliability constraint`
 
 ### Capitalization
@@ -297,22 +297,20 @@ All comment text MUST start with a capital letter:
 
 ### Reference Comments
 
-Use bracketed module prefix for inline comments:
+Use a bracketed module prefix for inline comments:
 
 ```javascript
 // [module-name] Description of what this does
 ```
 
-Use task/requirement prefixes for traceability:
+Cite only durable references — never a spec-folder-internal id. Comments must not embed a spec folder/number, task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; see [`../shared/universal_patterns.md`](../shared/universal_patterns.md) §4 and [`../../universal/code_style_guide.md`](../../universal/code_style_guide.md) §4 "No ephemeral-artifact pointers".
 
 ```javascript
-// T043-T047: Causal Memory Graph handlers
-// REQ-033: Transaction manager for recovery
-// SEC-001: Sanitize input (CWE-79)
-// BUG-107: Pending file recovery on startup
+// GOOD — durable WHY, no ephemeral id
+// Causal Memory Graph handlers: drift-why, causal-link, causal-stats, causal-unlink
+// Recover pending writes on startup so a crash cannot lose data
+// SEC: sanitize input to prevent stored XSS (CWE-79)
 ```
-
-**Evidence**: `mcp_server/context-server.ts:34,42,62,65`
 
 ### Function Purpose Comments
 

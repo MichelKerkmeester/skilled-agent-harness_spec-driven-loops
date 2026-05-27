@@ -63,6 +63,7 @@ For formal findings-first review output, run `sk-code-review` as the baseline an
 - [ ] **[P1] CHK-HDR-04**: Category label is ALL CAPS
 - [ ] **[P1] CHK-HDR-05**: Component name is descriptive (2-4 words)
 - [ ] **[P2] CHK-HDR-06**: No metadata (dates, authors, version numbers) in header
+- [ ] **[P1] CHK-CMT-01**: No ephemeral artifact ids in any comment (ticket/ClickUp ids, spec/phase/packet numbers, ADR ids) — keep the WHY; see [references/universal/code_style_guide.md](../../references/universal/code_style_guide.md) §4
 
 **Compliant Example:**
 ```javascript

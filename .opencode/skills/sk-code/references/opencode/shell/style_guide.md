@@ -284,7 +284,7 @@ fi
 # Strict mode must catch pipe failures in complex commands
 set -o pipefail
 
-# T107/REQ-033: pending file recovery transaction manager
+# Recover pending writes on startup so a crash cannot lose data
 source "$SCRIPT_DIR/lib/transaction.sh"
 ```
 

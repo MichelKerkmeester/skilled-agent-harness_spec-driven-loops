@@ -72,7 +72,7 @@ Define deterministic configuration quality checks so config updates stay parseab
 
 ## 4. P2 - RECOMMENDED
 
-- Add `REQ-###` markers for high-impact rules.
+- Add a durable WHY comment for high-impact rules (never a spec-folder-internal id like `REQ-###`; see `../shared/universal_patterns.md` §4).
 - Keep key ordering stable (`$schema`, core flags, behavior config, advanced settings).
 - Include value constraints in comments for opaque numbers.
 

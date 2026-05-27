@@ -52,6 +52,7 @@ Production-tested snippets beat ad-hoc inventions for Webflow's CDN-loaded runti
 - [ ] Three-line file header with box-drawing characters
 - [ ] Category and component name in ALL CAPS
 - [ ] No metadata in headers (no dates/authors/tickets)
+- [ ] No ephemeral artifact ids in comments (tickets, spec/phase/packet numbers, ADR ids) — see `../../universal/code_style_guide.md` §4
 - [ ] Numbered section headers for organization
 - [ ] Wrapped in IIFE `(() => { ... })()`
 

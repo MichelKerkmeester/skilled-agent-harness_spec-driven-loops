@@ -57,6 +57,7 @@ P0 covers issues that have caused production incidents or reviewer-author confus
 4. **No silent failures** — exceptions either surface to the caller or are logged with enough context to debug.
 5. **Naming convention adherence** — surface-specific (snake_case for WEBFLOW JS, camelCase for OPENCODE TypeScript, snake_case for OPENCODE Python/Shell, etc.).
 6. **No hardcoded secrets** — credentials, API keys, tokens never inline; always env vars or secret stores.
+7. **No ephemeral-artifact pointers in comments** — comments must not name a spec folder/number, packet/phase/task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; these get renamed or archived and rot into dangling pointers. Keep the durable WHY. See `code_style_guide.md` §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract.
 
 ---
 
