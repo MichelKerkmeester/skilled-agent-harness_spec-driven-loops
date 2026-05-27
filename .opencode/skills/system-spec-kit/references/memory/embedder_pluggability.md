@@ -37,7 +37,7 @@ mk-spec-memory has a pluggable text embedder. The current default is `nomic-embe
 
 `mk-spec-memory` indexes prose: spec docs, decision records, continuity frontmatter, conversation summaries. Prose recall benefits from text-tuned embedders that handle paraphrase, multilingual prefixes, and synonym overlap.
 
-`system-code-graph` was a separate code-embedder MCP until the 014 CocoIndex deprecation; after 014 it became a structural tree-sitter indexer with no embeddings, so embedder pluggability now applies to mk-spec-memory only.
+`system-code-graph` was a separate code-embedder MCP until the 014 deprecation; after 014 it became a structural tree-sitter indexer with no embeddings, so embedder pluggability now applies to mk-spec-memory only.
 
 ### What "out-of-box for any embedder" means
 
@@ -173,7 +173,7 @@ Per-row empirical results live in `evidence/embedder-comparison-with-rescue.json
 
 ## 3. CODE GRAPH (no embedder since 014)
 
-`system-code-graph` had a pluggable code embedder before 014, including `CodeRankEmbed`, sentence-transformers, MPS device selection, and a `ccc reset/index` swap workflow. The 014 CocoIndex deprecation removed that semantic/vector layer completely. `system-code-graph` is now a structural tree-sitter indexer under `.opencode/skills/system-code-graph/`, storing nodes and edges with no embeddings, no embedder runtime, no `ccc` CLI, and no `.cocoindex_code/`. Embedder pluggability now applies only to mk-spec-memory.
+`system-code-graph` had a pluggable code embedder before 014, including `CodeRankEmbed`, sentence-transformers, MPS device selection, and a `ccc reset/index` swap workflow. The 014 deprecation removed that semantic/vector layer completely. `system-code-graph` is now a structural tree-sitter indexer under `.opencode/skills/system-code-graph/`, storing nodes and edges with no embeddings, no embedder runtime, and no `ccc` CLI. Embedder pluggability now applies only to mk-spec-memory.
 
 ---
 

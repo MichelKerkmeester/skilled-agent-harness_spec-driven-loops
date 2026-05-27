@@ -19,7 +19,6 @@
   "expectedAbsentTriggers": [
     "kit/026",
     "graph",
-    "phase 7 cocoindex",
     "level spec"
   ],
   "expectedPresentTriggers": [
