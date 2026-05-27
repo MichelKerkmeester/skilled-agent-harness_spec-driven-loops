@@ -1596,7 +1596,7 @@ PHRASE_INTENT_BOOSTERS = {
     "5d agent scoring": [("deep-agent-improvement", 2.8)],
     "5d scoring": [("deep-agent-improvement", 1.8)],
     "integration scanning": [("deep-agent-improvement", 2.6)],
-    "integration scan": [("deep-agent-improvement", 1.6)],
+    "integration scan": [("deep-agent-improvement", 2.2)],
     "dynamic profiling": [("deep-agent-improvement", 2.6)],
     "dynamic profile": [("deep-agent-improvement", 1.6)],
     "evaluate agent quality": [("deep-agent-improvement", 2.8)],
@@ -1610,7 +1610,11 @@ PHRASE_INTENT_BOOSTERS = {
     "agent evaluation": [("deep-agent-improvement", 2.6)],
     # --- Code discovery and structural search ---
     "semantic search": [("system-code-graph", 1.5)],
+    "structural search": [("system-code-graph", 2.2)],
+    "code graph search": [("system-code-graph", 2.2)],
     "code search": [("system-code-graph", 2.0)],
+    "webflow cms": [("mcp-code-mode", 2.2)],
+    "cms collection": [("mcp-code-mode", 2.0)],
     "vector search": [("system-code-graph", 1.2)],
     "concept search": [("system-code-graph", 1.2)],
     "find implementation": [("system-code-graph", 1.5)],
@@ -1649,6 +1653,8 @@ PHRASE_INTENT_BOOSTERS = {
     ":start-review-loop": [("deep-review", 3.0)],
     ":start-review-loop:auto": [("deep-review", 3.0)],
     ":start-review-loop:confirm": [("deep-review", 3.0)],
+    ":review:auto": [("deep-review", 3.0)],
+    ":review:confirm": [("deep-review", 3.0)],
     "mcp server code": [("sk-code", 1.8)],
     "system code style guidance": [("sk-code", 1.7)],
     "python shell json standards": [("sk-code", 1.9)],
@@ -2738,6 +2744,8 @@ DEEP_REVIEW_DISAMBIGUATION_PHRASES = (
     "autonomous review",
     "/deep:start-review-loop",
     "deep:start-review-loop",
+    ":review:auto",
+    ":review:confirm",
 )
 
 DISAMBIGUATION_MARGIN = 0.10
@@ -2765,6 +2773,37 @@ LOW_INFO_AMBIGUITY_UNCERTAINTY_FLOOR = 0.42
 # keywords) from a terse-but-anchored one ("code audit" — anchored by a phrase
 # and an intent), which should still route.
 LOW_INFO_AMBIGUITY_MULTI_RATIO = 0.5
+
+# Class B (CLI-vs-skill): a code-edit request is sk-code work even when it names
+# a CLI tool ("update the python script following opencode standards"). These
+# gate the code-edit disambiguator; the explicit-CLI guard preserves genuine
+# "use cli-opencode" / "delegate to opencode" delegation prompts.
+CODE_EDIT_VERB_RE = re.compile(r"\b(update|edit|modify|fix|refactor|implement|write|patch|rewrite)\b")
+CODE_SURFACE_NOUN_RE = re.compile(r"\b(script|file|module|function|class|handler|component|code|\.py|\.ts|\.js|\.tsx|\.mjs|\.cjs)\b")
+CLI_OPENCODE_EXPLICIT_RE = re.compile(r"\b(cli-opencode|opencode cli|delegate to opencode|use opencode)\b")
+
+
+def _apply_code_edit_cli_disambiguation(
+    recommendations: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> None:
+    """Keep code-edit requests on sk-code even when a CLI tool is named.
+
+    "update the python script following opencode standards" is sk-code work,
+    but the bare "opencode" keyword scores cli-opencode while sk-code fails only
+    on uncertainty (not confidence). When code-edit verbs + a code-surface noun
+    are present and the prompt does NOT explicitly invoke the CLI, cap sk-code's
+    uncertainty so it clears the strict threshold and outranks the keyword match.
+    """
+    if not prompt_lower:
+        return
+    if CLI_OPENCODE_EXPLICIT_RE.search(prompt_lower):
+        return
+    if not (CODE_EDIT_VERB_RE.search(prompt_lower) and CODE_SURFACE_NOUN_RE.search(prompt_lower)):
+        return
+    sk_code = next((rec for rec in recommendations if rec.get("skill") == "sk-code"), None)
+    if sk_code is not None:
+        sk_code["uncertainty"] = min(float(sk_code.get("uncertainty", 1.0)), 0.30)
 
 
 def _apply_code_mode_disambiguation(
@@ -3140,6 +3179,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     # primary-slot selection is stable on audit/review-token prompts.
     _apply_deep_research_disambiguation(recommendations, prompt_lower)
     _apply_code_mode_disambiguation(recommendations, prompt_lower)
+    _apply_code_edit_cli_disambiguation(recommendations, prompt_lower)
     _apply_deep_skill_routing_layer(recommendations, prompt)
 
     # Iteration-loop tiebreaker: when the query mentions iterative investigation/review

@@ -47,8 +47,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Re-capture baseline behavior per class in both scorers
-- [ ] T002 Decide Class A parity-vs-new-signal split (open question)
+- [x] T001 Re-captured baseline behavior per class in both scorers (codex gpt-5.5 xhigh design review)
+- [x] T002 Resolved Class A approach: domain anchors in the direct-evidence lane (confidence) + primaryIntentBonus (rank); Python booster bumps
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,9 +56,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Class A: terse-phrase routing signals (mcp-code-mode / deep-agent-improvement / system-code-graph) in both scorers
-- [ ] T004 Class B: code-edit context beats cli-opencode (skill_advisor.py)
-- [B] T005 [P] Class D: `:review:auto` / auto-review loop syntax -> deep-review (both scorers) — BLOCKED: conflicts with the documented "auto review" -> sk-code-review decision; resolve open question first
+- [x] T003 Class A: domain anchors (mcp-code-mode webflow/cms, deep-agent-improvement, system-code-graph) in both scorers — direct lane + ranking
+- [x] T004 Class B: code-edit context beats cli-opencode (skill_advisor.py code-edit disambiguator) — fixes OPENCODE-001
+- [x] T005 [P] Class D: `:review:auto` colon-syntax -> deep-review (both scorers); kept "auto review" -> sk-code-review per the documented decision (codex confirmed the split). Also Class E AUDIT-001 (audit recommendations -> sk-code-review)
 - [x] T006 [P] Class E: "code audit" -> sk-code-review over deep-review (TS; Python already correct) — verified
 - [ ] T007 Class C: breadth abstention for greenfield/multi-concern prompts (both scorers; adversarial guards)
 - [ ] T008 Add regression fixtures/guards for newly-introduced behavior

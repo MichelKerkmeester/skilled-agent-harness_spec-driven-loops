@@ -97,6 +97,24 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/deep:start-review-loop': [['deep-review', 1.6], ['command-spec-kit', 0.45]],
   '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
   'auto review release readiness': [['deep-review', 1]],
+  // Colon-command syntax (":review:auto") is a deep-review LOOP invocation,
+  // distinct from natural-language "auto review this PR" (which stays
+  // sk-code-review). Strong direct-evidence anchor + a bounded code-review
+  // penalty so the loop skill wins the rank.
+  ':review:auto': [['deep-review', 1.6], ['sk-code-review', -0.6]],
+  ':review:confirm': [['deep-review', 1.6], ['sk-code-review', -0.6]],
+  // Domain phrase anchors (multi-token, so they lift confidence via the direct
+  // lane without firing on single tokens like "scan"/"profile"/"search"/"cms").
+  'webflow cms': [['mcp-code-mode', 1.5], ['sk-code', -0.5]],
+  'cms collection': [['mcp-code-mode', 1.4]],
+  'structural search': [['system-code-graph', 1.5]],
+  'code graph search': [['system-code-graph', 1.5]],
+  'find code that': [['system-code-graph', 1.4]],
+  'code that handles': [['system-code-graph', 1.4]],
+  '5d scoring': [['deep-agent-improvement', 1.5]],
+  '5-dimension agent scoring': [['deep-agent-improvement', 1.6]],
+  'integration scan': [['deep-agent-improvement', 1.5]],
+  'dynamic profile': [['deep-agent-improvement', 1.5]],
   'chrome devtools': [['mcp-chrome-devtools', 1]],
   'staging url': [['mcp-chrome-devtools', 0.65]],
   'staging site': [['mcp-chrome-devtools', 0.65]],

@@ -132,6 +132,12 @@ export interface RoutingCalibration {
   // it must beat the deep-review loop skill on the near-tie.
   readonly codeAuditCodeReviewBonus: number;
   readonly codeAuditDeepReviewPenalty: number;
+  // review-loop colon syntax (":review:auto"): rank the deep-review loop above
+  // single-pass code review (the direct anchor already lifts its confidence).
+  readonly reviewLoopDeepReviewBonus: number;
+  // "audit ... recommendations" is a review task, not an advisor-self task.
+  readonly auditRecsCodeReviewBonus: number;
+  readonly auditRecsAdvisorPenalty: number;
   // phase-folder intent
   readonly phaseFolderSpecKitBonus: number;
   // save-context / save-memory intent
@@ -203,6 +209,9 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     mcpToolchainSkCodePenalty: -0.18,
     codeAuditCodeReviewBonus: 0.2,
     codeAuditDeepReviewPenalty: -0.2,
+    reviewLoopDeepReviewBonus: 0.5,
+    auditRecsCodeReviewBonus: 0.35,
+    auditRecsAdvisorPenalty: -0.25,
     phaseFolderSpecKitBonus: 0.35,
     saveContextMemorySaveBonus: 0.55,
     saveContextMemorySpecKitPenalty: -0.25,

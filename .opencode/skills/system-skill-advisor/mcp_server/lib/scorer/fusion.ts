@@ -280,7 +280,9 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   // External-tool-chain ("call_tool_chain") vocabulary belongs to mcp-code-mode,
   // not the generic code skill. Disambiguate so the best guess for these
   // toolchain-shaped prompts is mcp-code-mode.
-  if (/\b(call_tool_chain|code mode|tool ?chain|api chain)\b/.test(promptLower)) {
+  // Toolchain + external-data-source vocabulary (webflow CMS, cms collection)
+  // is mcp-code-mode territory, not the generic code skill.
+  if (/\b(call_tool_chain|code mode|tool ?chain|api chain|webflow cms|cms collection)\b/.test(promptLower)) {
     if (recommendation.skill === 'mcp-code-mode') return R.mcpToolchainCodeModeBonus;
     if (recommendation.skill === 'sk-code') return R.mcpToolchainSkCodePenalty;
   }
@@ -289,6 +291,17 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   if (/\bcode audit\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code-review') return R.codeAuditCodeReviewBonus;
     if (recommendation.skill === 'deep-review') return R.codeAuditDeepReviewPenalty;
+  }
+  // Colon-command review-loop syntax (":review:auto") invokes the deep-review
+  // loop; rank it above single-pass code review.
+  if (/:review:(auto|confirm)\b/.test(promptLower)) {
+    if (recommendation.skill === 'deep-review') return R.reviewLoopDeepReviewBonus;
+    if (recommendation.skill === 'sk-code-review') return R.deepReviewSkCodeReviewPenalty;
+  }
+  // Auditing recommendation quality is a review task, not an advisor-self task.
+  if (/\baudit\b/.test(promptLower) && /\b(recommendation|recommendations|recommendation quality|routing quality)\b/.test(promptLower)) {
+    if (recommendation.skill === 'sk-code-review') return R.auditRecsCodeReviewBonus;
+    if (recommendation.skill === 'system-skill-advisor') return R.auditRecsAdvisorPenalty;
   }
   if (/\b(save context|save memory)\b/.test(promptLower)) {
     if (recommendation.skill === 'memory:save') return R.saveContextMemorySaveBonus;
