@@ -224,4 +224,51 @@ describe('memory_embedding_reconcile', () => {
     expect(second.buckets.missing_active_vector_retry_eligible.count).toBe(0);
     expect(second.buckets.missing_active_vector_provider_failure.count).toBe(0);
   });
+
+  // P1-001 — partial coverage: a row missing only ONE surface is "missing" (OR),
+  // and apply resets it (the old AND predicate would count but not reset it).
+  it('counts + resets a failed-retention row missing only one vector surface', () => {
+    ({ db, dir } = createFixture());
+    addRow(db, { id: 1, status: 'failed', failureReason: 'Retry retention pending cap exceeded', hasVector: false });
+    db.prepare('INSERT INTO active_vec.vec_768 (id) VALUES (1)').run(); // has dim table, missing rowids
+
+    const dry = runMemoryEmbeddingReconcile(db, { mode: 'dry-run' });
+    expect(dry.buckets.missing_active_vector_retry_eligible.count).toBe(1);
+    expect(dry.plannedMutations.find((m) => m.name === 'reset_missing_active_vector_to_retry_eligible')?.rows).toBe(1);
+
+    const applied = runMemoryEmbeddingReconcile(db, { mode: 'apply' });
+    expect(applied.applied?.resetToRetry).toBe(1);
+    expect(statusOf(db, 1).embedding_status).toBe('retry');
+  });
+
+  // P1-002 — already-queued pending/retry missing-vector rows are left alone
+  // (failed-only scope); a second apply must not clobber their retry_count.
+  it('leaves already-queued pending/retry missing-vector rows untouched', () => {
+    ({ db, dir } = createFixture());
+    addRow(db, { id: 1, status: 'pending', hasVector: false });
+    db.prepare('UPDATE memory_index SET retry_count = 2 WHERE id = 1').run();
+
+    const dry = runMemoryEmbeddingReconcile(db, { mode: 'dry-run' });
+    expect(dry.buckets.missing_active_vector_retry_eligible.count).toBe(0);
+
+    const applied = runMemoryEmbeddingReconcile(db, { mode: 'apply' });
+    expect(applied.applied?.resetToRetry).toBe(0);
+    expect(statusOf(db, 1)).toMatchObject({ embedding_status: 'pending', retry_count: 2 });
+  });
+
+  // P1-002 — missing-vector reset is idempotent: failed-retention -> retry once,
+  // a second apply is a no-op (no matching 'failed' rows remain).
+  it('missing-vector reset is idempotent across repeated applies', () => {
+    ({ db, dir } = createFixture());
+    addRow(db, { id: 1, status: 'failed', failureReason: 'Retry retention max age exceeded', hasVector: false });
+
+    const first = runMemoryEmbeddingReconcile(db, { mode: 'apply' });
+    expect(first.applied?.resetToRetry).toBe(1);
+    expect(statusOf(db, 1).embedding_status).toBe('retry');
+
+    const second = runMemoryEmbeddingReconcile(db, { mode: 'apply' });
+    expect(second.applied?.resetToRetry).toBe(0);
+    const secondDry = runMemoryEmbeddingReconcile(db, { mode: 'dry-run' });
+    expect(secondDry.buckets.missing_active_vector_retry_eligible.count).toBe(0);
+  });
 });

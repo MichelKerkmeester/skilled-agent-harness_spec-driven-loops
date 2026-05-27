@@ -234,14 +234,18 @@ function computeBuckets(database: Database.Database, dimTable: string): Reconcil
   }
   const staleCount = byStatus.failed + byStatus.pending + byStatus.retry;
 
+  // Only genuinely-parked retention FAILURES missing a vector need reset to
+  // retry. Already-pending/retry rows are queued for the daemon and are left
+  // alone — counting them would overstate plannedMutations and break
+  // idempotency (a second apply would clobber their retry_count). "Missing" =
+  // either surface absent (OR), keeping this complementary with the
+  // vector-present update (which requires BOTH surfaces). Matches the apply
+  // UPDATE exactly so plannedMutations is accurate and a re-run is a no-op.
   const retryEligible = (database.prepare(`
     SELECT COUNT(*) AS n FROM memory_index m
-    WHERE m.embedding_status IN ('failed', 'pending', 'retry')
+    WHERE m.embedding_status = 'failed'
+      AND m.failure_reason LIKE 'Retry retention%'
       AND (${missingPredicate})
-      AND (
-        m.embedding_status IN ('pending', 'retry')
-        OR (m.embedding_status = 'failed' AND m.failure_reason LIKE 'Retry retention%')
-      )
   `).get() as { n: number }).n;
 
   const providerFailure = (database.prepare(`
@@ -387,19 +391,23 @@ export function runMemoryEmbeddingReconcile(
     applied.reconciledToSuccess = reconcile.changes;
 
     if (resetMissing) {
+      // Reset only parked retention FAILURES missing a vector surface back to
+      // retry. failed -> retry makes this idempotent (a second apply finds no
+      // matching 'failed' rows) and never touches already-queued pending/retry
+      // rows' retry_count. Missing = either surface absent (OR), matching the
+      // retryEligible bucket above.
       const reset = database.prepare(`
         UPDATE memory_index
-        SET embedding_status = CASE WHEN embedding_status = 'failed' THEN 'retry' ELSE embedding_status END,
+        SET embedding_status = 'retry',
             retry_count = 0,
             last_retry_at = NULL,
             failure_reason = NULL,
             updated_at = CURRENT_TIMESTAMP
-        WHERE embedding_status IN ('failed', 'pending', 'retry')
-          AND NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = memory_index.id)
-          AND NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = memory_index.id)
+        WHERE embedding_status = 'failed'
+          AND failure_reason LIKE 'Retry retention%'
           AND (
-            embedding_status IN ('pending', 'retry')
-            OR (embedding_status = 'failed' AND failure_reason LIKE 'Retry retention%')
+            NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = memory_index.id)
+            OR NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = memory_index.id)
           )
       `).run();
       applied.resetToRetry = reset.changes;
