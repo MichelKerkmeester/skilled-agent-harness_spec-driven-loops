@@ -294,7 +294,7 @@ def compare_inventories(
 ) -> Dict[str, Any]:
     """Compare SKILL.md discovery against a compiled-graph skill-ID inventory.
 
-    R42-002 flagged that `health_check()` previously returned ``ok`` even when
+    An earlier review flagged that `health_check()` previously returned ``ok`` even when
     the two authoritative routing inventories disagreed:
 
     * SKILL.md discovery (this module's cache) drives the per-skill record

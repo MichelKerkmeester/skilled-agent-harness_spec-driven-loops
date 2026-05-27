@@ -902,7 +902,7 @@ def compile_graph(
     Args:
         all_metadata: Per-skill parsed graph-metadata.json tuples.
         topology_warnings: Optional dict of advisory warning-category → messages
-            captured during validation (R45-003 T-SGC-02 durability fix).
+            captured during validation.
             When supplied, the compiled output serializes them under the
             ``topology_warnings`` key so downstream consumers
             (``health_check()``) can detect degraded topology state without

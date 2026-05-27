@@ -639,10 +639,10 @@ def _load_source_graph_signal_map() -> Dict[str, List[str]]:
 def _load_source_conflict_declarations() -> Dict[str, Set[str]]:
     """Read per-skill `graph-metadata.json` to recover directional conflict edges.
 
-    T-SAP-04 (R46-002): defense-in-depth for the runtime conflict penalty. The
+    Defense-in-depth for the runtime conflict penalty. The
     compiled graph's `conflicts` is flattened into undirected pairs, so the
     runtime cannot detect unilateral-declaration asymmetry from that payload
-    alone. The compiler's T-SGC-03 symmetry check gates against unilateral
+    alone. The compiler's symmetry check gates against unilateral
     declarations at build time, but if a compiled graph is shipped that
     bypassed validation (e.g. a legacy JSON artifact), the runtime must
     refuse to penalize a non-declaring skill. This helper replays the
@@ -1060,8 +1060,8 @@ def _apply_signal_boosts(
 def _apply_graph_conflict_penalty(recommendations: List[Dict[str, Any]]) -> None:
     """Increase uncertainty when conflicting skills are both recommended.
 
-    T-SAP-04 (R46-002): defense-in-depth reciprocity check. The compiled graph
-    promises that `conflicts` pairs are mutually declared (T-SGC-03 compiler
+    Defense-in-depth reciprocity check. The compiled graph
+    promises that `conflicts` pairs are mutually declared (compiler
     gate), but the runtime re-verifies by reading per-skill
     `graph-metadata.json` before penalizing. If a pair is unilateral, the
     penalty is skipped — a unilateral metadata edit must not silently
@@ -2925,7 +2925,7 @@ def _apply_deep_research_disambiguation(
 ) -> None:
     """Ensure deep-research beats sk-code-review by ≥ 0.10 on deep-research prompts.
 
-    T-SAP-02 (R45-002): audit/review-token overlap between deep-research prompts
+    Audit/review-token overlap between deep-research prompts
     and code-review prompts produced sub-0.02 confidence ties. When the prompt
     contains an unambiguous deep-research marker AND both `deep-research`
     and `sk-code-review` appear as candidates, widen the margin to at least
@@ -3323,7 +3323,7 @@ def _compare_inventories(
 ) -> Dict[str, Any]:
     """Thin wrapper around ``skill_advisor_runtime.compare_inventories``.
 
-    T-SAR-01 (R42-002): the primitive set-comparison lives in
+    The primitive set-comparison lives in
     ``skill_advisor_runtime.py`` so it can be reused from other harnesses;
     this wrapper extracts the compiled-graph skill IDs and forwards to the
     runtime helper.
