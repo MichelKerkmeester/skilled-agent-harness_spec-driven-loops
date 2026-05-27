@@ -91,23 +91,4 @@ describe('T209: Wire setAttentionScore for Trigger Matches', () => {
       expect(boostPattern.test(handlerSource)).toBe(true);
     });
   });
-
-  // SUITE: T209 — Task ID documented in source
-  describe('Task ID documented in source', () => {
-    it('T209-7: T209 task ID documented in handler source', () => {
-      let source: string;
-      try {
-        source = fs.readFileSync(
-          path.join(HANDLERS_PATH, '..', 'handlers', 'memory-triggers.ts'),
-          'utf-8'
-        );
-      } catch {
-        source = fs.readFileSync(
-          path.join(HANDLERS_PATH, 'memory-triggers.js'),
-          'utf-8'
-        );
-      }
-      expect(source).toContain('T209');
-    });
-  });
 });

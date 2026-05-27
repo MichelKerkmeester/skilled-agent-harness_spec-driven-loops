@@ -402,7 +402,7 @@ function processCausalLinks(database: BetterSqlite3.Database, memoryId: number, 
       const edgeTargetId = mapping.reverse ? memoryIdStr : String(resolvedId);
 
       try {
-        // F-008-B3-02: causalEdges.insertEdge returns `number | null`. The
+        // causalEdges.insertEdge returns `number | null`. The
         // null path covers: database not initialized, self-loop rejected,
         // edge bounds exceeded, contradiction detected, non-finite strength
         // clamp. Previously the count incremented unconditionally, masking
@@ -420,7 +420,7 @@ function processCausalLinks(database: BetterSqlite3.Database, memoryId: number, 
           result.inserted++;
           console.error(`[causal-links] Inserted edge id=${insertedRowId}: ${edgeSourceId} -[${mapping.relation}]-> ${edgeTargetId}`);
         } else {
-          // F-008-B3-02: surface skipped reasons rather than masking them.
+          // Surface skipped reasons rather than masking them.
           result.errors.push({
             type: link_type,
             reference,

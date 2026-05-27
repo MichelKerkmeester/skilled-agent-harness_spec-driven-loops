@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Session Bootstrap Handler
 // ───────────────────────────────────────────────────────────────
-// Phase 024 / Item 7: Composite tool that runs session_resume
+// Composite tool that runs session_resume
 // + session_health in one call, merging results with hints.
 
 import { handleSessionResume } from './session-resume.js';
@@ -287,7 +287,7 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
     allHints.push('session_health failed. Try calling it manually.');
   }
 
-  // Phase 027: Structural bootstrap contract
+  // Structural bootstrap contract
   const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
   if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
     allHints.push(

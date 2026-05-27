@@ -381,7 +381,7 @@ function prepareParsedMemoryForIndexing(
     qualityLoopMode?: 'advisory' | 'full-auto';
   } = {},
 ): PreparedParsedMemory {
-  // See ADR-006 and ADR-010 in packet 026/005.
+  // Resolve to the canonical path before applying memory-index governance.
   const canonicalFilePath = resolveCanonicalPath(path.resolve(parsed.filePath));
   if (!shouldIndexForMemory(canonicalFilePath)) {
     throw new Error(`Memory indexing excluded for path: ${parsed.filePath}`);
@@ -901,7 +901,7 @@ function buildRoutedSaveOptions(
 }
 
 function shouldUseCanonicalRouting(_params: Pick<AtomicSaveParams, 'routeAs' | 'mergeModeHint' | 'targetAnchorId'>): boolean {
-  // Test-only bypass: allows the T518 atomic-save failure-injection suite
+  // Test-only bypass: allows the atomic-save failure-injection suite
   // to exercise the legacy prepareParsedMemoryForIndexing path without
   // setting up full Tier 3 classifier fixtures.
   if (process.env.SPECKIT_TEST_DISABLE_CANONICAL_ROUTING === 'true') return false;
@@ -2359,7 +2359,7 @@ async function processPreparedMemory(
       },
     };
 
-    // T028/T029: complete async reconsolidation planning before chunking or
+    // Complete async reconsolidation planning before chunking or
     // taking the SQLite writer lock, so chunked saves do not bypass the gate
     // and BEGIN IMMEDIATE only covers synchronous DB mutation work.
     reconResult = await runReconsolidationIfEnabled(

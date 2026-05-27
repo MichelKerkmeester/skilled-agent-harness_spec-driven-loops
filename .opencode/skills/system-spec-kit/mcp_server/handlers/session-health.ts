@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Session Health Handler
 // ───────────────────────────────────────────────────────────────
-// T018: MCP tool handler for session_health — reports session
+// MCP tool handler for session_health — reports session
 // readiness, code graph freshness, and priming status.
 
 import {
@@ -34,7 +34,7 @@ import type { MCPResponse } from '@spec-kit/shared/types';
 ──────────────────────────────────────────────────────────────── */
 
 type SessionStatus = 'ok' | 'warning' | 'stale';
-// M8 / T-SHS-01: Section-level trust state reuses the canonical
+// Section-level trust state reuses the canonical
 // SharedPayloadTrustState vocabulary ('live' / 'stale' / 'absent' /
 // 'unavailable'). Keeping the alias narrows to just the four states
 // session-health observes (it never emits 'cached'/'imported'/etc.).
@@ -153,7 +153,7 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
     graphFreshness = 'error';
   }
 
-  // Phase 027: Structural bootstrap contract for health surface
+  // Structural bootstrap contract for health surface
   const structuralContext = buildStructuralBootstrapContract('session_health');
 
   const sessionAgeMs = now - serverStartedAt;
@@ -186,7 +186,7 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
     hints.push('No tool calls in >15 min. Session context may be drifting.');
   }
 
-  // Phase 023: Compute quality score from context metrics
+  // Compute quality score from context metrics
   const qualityScore = computeQualityScore();
   const payloadStructuralTrust = buildStructuralContextTrust(structuralContext);
   const sessionHealthContent = `status=${status}; priming=${primed ? 'primed' : 'not_primed'}; graph=${graphFreshness}; specFolder=${specFolder ?? 'none'}`;

@@ -1,9 +1,9 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Session Resume Handler
 // ───────────────────────────────────────────────────────────────
-// Phase 020: Composite MCP tool that merges memory resume context,
+// Composite MCP tool that merges memory resume context,
 // and code graph status into a single call.
-// T-SRS-BND-01 (R2-P1-001): bind public session_resume sessionId input to the
+// Bind public session_resume sessionId input to the
 // MCP transport caller context before cached-session lookups can consume it.
 // Default mode is strict rejection; MCP_SESSION_RESUME_AUTH_MODE=permissive
 // logs mismatches for staged canary rollout instead of rejecting immediately.
@@ -443,7 +443,7 @@ export function getCachedSessionSummaryDecision(
     return evaluateCachedSessionSummaryCandidate(candidate, options);
   }
 
-  // T-SRS-03 (R38-001 extension): retry candidate-by-candidate rather than
+  // Retry candidate-by-candidate rather than
   // treating the single newest state as all-or-nothing.  Mirrors the per-file
   // isolation P0-D landed in loadMostRecentState but extends it to the fidelity/
   // freshness evaluation layer — if the newest state has a schema mismatch,
@@ -529,7 +529,7 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
     ? args.sessionId
     : null;
 
-  // T-SRS-BND-01: under stdio, callerCtx.sessionId is vacuous because the MCP SDK
+  // Under stdio, callerCtx.sessionId is vacuous because the MCP SDK
   // hard-codes an empty transport session field for stdio
   // (@modelcontextprotocol/sdk/dist/esm/shared/protocol.js:280-316). That is not a
   // security hole because stdio runs as a single-UID subprocess with no cross-trust
@@ -546,7 +546,7 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
   // F052: Record memory recovery metric for session_resume
   recordMetricEvent({ kind: 'memory_recovery' });
 
-  // Phase 024: Record bootstrap telemetry
+  // Record bootstrap telemetry
   const startMs = Date.now();
   const hints: string[] = [];
 
@@ -588,14 +588,14 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
       edgeCount: snapshot.data.totalEdges,
       fileCount: snapshot.data.totalFiles,
     };
-    // Graph status hints deferred to structural contract (Phase 027)
+    // Graph status hints deferred to structural contract.
     // — structural context hints at lines 128-130 provide preferred recovery path
   } catch {
     codeGraph = { status: 'error', lastScan: null, nodeCount: 0, edgeCount: 0, fileCount: 0 };
     hints.push('Code graph unavailable. Run `code_graph_scan` to initialize.');
   }
 
-  // Phase 027: Structural bootstrap contract for resume surface
+  // Structural bootstrap contract for resume surface
   const structuralContext = buildStructuralBootstrapContract('session_resume');
   if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
     hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
@@ -722,7 +722,7 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
     hints: [...new Set(hints)],
   };
 
-  // Phase 024 / Item 9: Record bootstrap telemetry
+  // Record bootstrap telemetry
   if (!args.minimal) {
     recordBootstrapEvent(
       'tool',

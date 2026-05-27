@@ -163,7 +163,7 @@ function finalizeAssistiveRecommendation(
   };
 }
 
-// T-RBD-02 (R21-001): Aggregate per-step typed results into the response envelope.
+// Aggregate per-step typed results into the response envelope.
 // Previous implementation collapsed any `false` boolean into a generic string;
 // the new shape propagates per-step status, reason, and warnings so MCP clients
 // can mechanically distinguish deferred / partial / skipped / failed / ran and
@@ -189,7 +189,7 @@ function buildPostInsertEnrichmentResult(
     deferred: deferredSteps,
   } = groupEnrichmentStepEntries(stepEntries);
 
-  // T-RBD-03 / T-RBD-01 (commit 709727e98): this MCP response rollup intentionally
+  // This MCP response rollup intentionally
   // diverges from post-insert.ts. Clients need the postInsertEnrichment block to keep
   // deferred/partial/failed nuance, warnings, and recovery hints visible even when the
   // writer-side executionStatus collapsed to a simpler failure-with-recovery decision
@@ -486,8 +486,7 @@ export function buildPlannerResponse({ planner }: BuildPlannerResponseParams): M
 }
 
 /**
- * Classify a save-time error message into a specific error code. Added post-014/022
- * (per ai-council/embedding-worker-diagnostic/post-execution-followup.md) to replace
+ * Classify a save-time error message into a specific error code. Added to replace
  * the historical E081 catch-all that obscured the actual failure mode for hours of
  * debugging. The full message is still returned in the `error` field; this only
  * picks a more specific code so callers can pattern-match on the code without
@@ -561,10 +560,9 @@ export function buildSaveResponse({ result, filePath, asyncEmbedding, requestId 
       ? result.error
       : (typeof result.message === 'string' && result.message.length > 0 ? result.message : 'Memory save failed');
 
-    // Post-014/022: classify the error by pattern so the response code points at the actual
+    // Classify the error by pattern so the response code points at the actual
     // failure mode instead of always returning E081 "unexpected error". The full message
-    // is still preserved in the `error` field. See
-    // ai-council/embedding-worker-diagnostic/post-execution-followup.md.
+    // is still preserved in the `error` field.
     const classifiedCode = classifySaveErrorCode(errorMessage);
     const extraDetails = extractSaveErrorDetails(errorMessage);
 

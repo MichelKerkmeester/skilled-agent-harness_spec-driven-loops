@@ -246,7 +246,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
         deletedIds.push(memory.id);
 
         // Clean up causal edges
-        // F-27 — Propagate edge-cleanup errors to fail the transaction.
+        // Propagate edge-cleanup errors to fail the transaction.
         // Previously errors were caught and logged, leaving orphan causal edges
         // When memory rows were successfully deleted but edge cleanup failed.
         causalEdges.deleteEdgesForMemory(String(memory.id));

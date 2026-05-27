@@ -578,7 +578,7 @@ async function indexChunkedMemoryFile(
     }
   }
 
-  // T332: Update parent BM25 only after at least one chunk succeeds and
+  // Update parent BM25 only after at least one chunk succeeds and
   // (for safe-swap) finalization completes.
   if (bm25Index.isBm25Enabled()) {
     try {

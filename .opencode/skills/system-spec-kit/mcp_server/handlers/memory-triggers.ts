@@ -30,9 +30,9 @@ import type { TierInput, StateStats } from '../lib/cognitive/tier-classifier.js'
 import * as coActivation from '../lib/cognitive/co-activation.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 
-// REQ-019: Standardized Response Structure
+// Standardized response structure
 import { createMCPSuccessResponse, createMCPEmptyResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
-// T004: Consumption instrumentation
+// Consumption instrumentation
 import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger.js';
 
 // Eval logger — fail-safe, no-op when SPECKIT_EVAL_LOGGING !== "true"
@@ -361,12 +361,12 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   let cognitiveStats: CognitiveStats | null = null;
 
   if (useCognitive) {
-    // Step 3: ACTIVATE (T209)
+    // Activate matched memories.
     const activatedMemories: number[] = [];
     for (const match of results) {
       try {
         attentionDecay.activateMemory(match.memoryId);
-        // T209: Persist max attention boost for matched memories.
+        // Persist max attention boost for matched memories.
         workingMemory.setAttentionScore(sessionId as string, match.memoryId, 1.0);
         activatedMemories.push(match.memoryId);
       } catch (err: unknown) {

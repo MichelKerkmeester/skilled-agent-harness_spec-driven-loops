@@ -3,7 +3,7 @@
 // ────────────────────────────────────────────────────────────────
 // Shared utilities extracted from handler modules to break dependency cycles.
 //
-// GROWTH POLICY (T033):
+// Growth policy:
 // - ONLY add functions extracted from handler modules to break circular deps
 // - Each function MUST document its origin handler in a JSDoc comment
 // - Max 5 functions — if exceeded, split into domain-specific modules

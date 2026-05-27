@@ -337,7 +337,7 @@ interface SearchArgs {
   rerank?: boolean;
   applyLengthPenalty?: boolean;
   trackAccess?: boolean; // opt-in access tracking (default false)
-  includeArchived?: boolean; // REQ-206: include archived memories in search (default false)
+  includeArchived?: boolean; // Include archived memories in search (default false)
   enableSessionBoost?: boolean;
   enableCausalBoost?: boolean;
   minQualityScore?: number;
@@ -345,9 +345,9 @@ interface SearchArgs {
   mode?: string; // "deep" mode enables query expansion for multi-query RAG
   includeTrace?: boolean;
   sessionTransition?: SessionTransitionTrace;
-  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
+  /** Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
   profile?: string;
-  /** Phase B T019: Dual-level retrieval — 'local' (entity), 'global' (community), 'auto' (local + fallback). */
+  /** Dual-level retrieval — 'local' (entity), 'global' (community), 'auto' (local + fallback). */
   retrievalLevel?: 'local' | 'global' | 'auto';
 }
 
@@ -984,7 +984,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     const pipelineResult: PipelineResult = await executePipeline(pipelineConfig);
     let resultsForFormatting = pipelineResult.results as unknown as SessionAwareResult[];
 
-    // Phase B T018/T019: Community search fallback — inject community members on weak results
+    // Community search fallback — inject community members on weak results
     let communityFallbackApplied = false;
     const shouldRunCommunitySearch = (
       isDualRetrievalEnabled() &&
@@ -1511,7 +1511,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
   } catch (_error: unknown) { /* feedback logging must never break search */ }
 
-  // REQ-014: Query flow tracking + result_cited for includeContent searches
+  // Query flow tracking + result_cited for includeContent searches
   // Shadow-only: emits query_reformulated, same_topic_requery, and result_cited events.
   try {
     if (isImplicitFeedbackLogEnabled()) {

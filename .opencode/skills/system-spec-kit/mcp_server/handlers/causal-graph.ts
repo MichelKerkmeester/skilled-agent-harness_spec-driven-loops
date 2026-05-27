@@ -18,7 +18,7 @@ import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-gu
 import { toErrorMessage } from '../utils/index.js';
 import { ErrorCodes, getRecoveryHint } from '../lib/errors.js';
 
-// REQ-019: Standardized Response Structure
+// Standardized response structure
 import { createMCPSuccessResponse, createMCPErrorResponse, createMCPEmptyResponse } from '../lib/response/envelope.js';
 
 // Shared handler types
@@ -34,7 +34,7 @@ import type { MCPResponse } from './types.js';
 
 /** Flat edge representation for API responses */
 export interface FlatEdge {
-  id: number;               // T202: causal_edges.id for unlink workflow
+  id: number;               // causal_edges.id for unlink workflow
   from: string;
   to: string;
   relation: string;
@@ -263,7 +263,7 @@ function flattenCausalTree(
   function traverse(node: CausalChainNode): void {
     for (const child of node.children) {
       const edge: FlatEdge = {
-        id: child.edgeId ?? 0,          // T202: edge ID from storage layer
+        id: child.edgeId ?? 0,          // Edge ID from storage layer
         from: direction === 'forward' ? node.id : child.id,
         to: direction === 'forward' ? child.id : node.id,
         relation: child.relation,
@@ -280,7 +280,7 @@ function flattenCausalTree(
         bucket.push(edge);
       }
 
-      // T006 — Only flag max_depth_reached when a node exists at the depth limit.
+      // Only flag max_depth_reached when a node exists at the depth limit.
       // Nodes at maxDepth-1 with no children are natural leaves (edges were queried).
       // Nodes at maxDepth were added but never explored (traverse returned early).
       if (child.depth >= maxDepth) {
@@ -368,7 +368,7 @@ function mapDirection(direction: string): 'forward' | 'backward' | 'both' {
 }
 
 /**
- * T203: Filter a FlattenedChain to only include edges whose relation
+ * Filter a FlattenedChain to only include edges whose relation
  * is in the provided set. When relations is null/empty, returns the
  * chain unchanged.
  */
@@ -530,7 +530,7 @@ async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
         incomingChain = tree ? flattenCausalTree(tree, maxDepth, 'backward') : createEmptyChain();
       }
 
-      // T203: Apply relations filter (after traversal, before response)
+      // Apply relations filter after traversal, before response.
       incomingChain = filterChainByRelations(incomingChain, relations);
       outgoingChain = filterChainByRelations(outgoingChain, relations);
       const combinedChain = mergeFlattenedChains(incomingChain, outgoingChain);

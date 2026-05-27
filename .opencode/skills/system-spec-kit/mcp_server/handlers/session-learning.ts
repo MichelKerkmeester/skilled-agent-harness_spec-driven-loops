@@ -7,7 +7,7 @@ import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-gu
 import { MemoryError, ErrorCodes } from '../lib/errors.js';
 import { toErrorMessage } from '../utils/index.js';
 
-// REQ-019: Standardized Response Structure
+// Standardized response structure
 import { createMCPSuccessResponse } from '../lib/response/envelope.js';
 
 // Shared handler types
@@ -192,7 +192,7 @@ const SESSION_LEARNING_COLUMNS = [
   'completed_at',
 ].join(', ');
 
-// M2 FIX: Track schema init per database instance, not as a process-global boolean.
+// Track schema init per database instance, not as a process-global boolean.
 // If the server swaps to a fresh DB connection, the old global would skip init.
 const schemaInitializedDbs = new WeakSet<Database>();
 
@@ -269,7 +269,7 @@ function ensureSchema(database: Database): void {
 }
 
 /**
- * T304: Validate that all score parameters are present and within 0-100 range.
+ * Validate that all score parameters are present and within 0-100 range.
  * Extracted from duplicate blocks in handleTaskPreflight and handleTaskPostflight.
  */
 function validateScores(
@@ -287,7 +287,7 @@ function validateScores(
     if (score.value === undefined || score.value === null) {
       throw new MemoryError(ErrorCodes.MISSING_REQUIRED_PARAM, `${score.name} is required`, { param: score.name });
     }
-    // M3 FIX: Reject NaN (typeof NaN === 'number' so the old check passed it through)
+    // Reject NaN (typeof NaN === 'number' so the old check passed it through)
     if (typeof score.value !== 'number' || !Number.isFinite(score.value) || score.value < 0 || score.value > 100) {
       throw new MemoryError(ErrorCodes.INVALID_PARAMETER, `${score.name} must be a finite number between 0 and 100`, { param: score.name, value: score.value });
     }
@@ -319,7 +319,7 @@ async function handleTaskPreflight(args: PreflightArgs): Promise<MCPResponse> {
     throw new MemoryError(ErrorCodes.MISSING_REQUIRED_PARAM, 'taskId is required', { param: 'taskId' });
   }
 
-  // T304: Consolidated score validation
+  // Consolidated score validation
   validateScores(knowledge_score, uncertainty_score, context_score);
 
   await checkDatabaseUpdated();
@@ -478,7 +478,7 @@ async function handleTaskPostflight(args: PostflightArgs): Promise<MCPResponse> 
     throw new MemoryError(ErrorCodes.MISSING_REQUIRED_PARAM, 'taskId is required', { param: 'taskId' });
   }
 
-  // T304: Consolidated score validation
+  // Consolidated score validation
   validateScores(knowledge_score, uncertainty_score, context_score);
 
   await checkDatabaseUpdated();
@@ -762,7 +762,7 @@ async function handleGetLearningHistory(args: LearningHistoryArgs): Promise<MCPR
 
     let responseSummary: LearningHistorySummary | null = null;
     if (include_summary) {
-      // T503: Build summary SQL with the same filters as the records query
+      // Build summary SQL with the same filters as the records query
       let summarySql = `
         SELECT
           COUNT(*) as total_tasks,

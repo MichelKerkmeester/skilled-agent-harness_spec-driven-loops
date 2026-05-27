@@ -43,7 +43,7 @@ import {
   type DivergenceReconcileSummary,
 } from './memory-index-alias.js';
 
-// REQ-019: Standardized Response Structure
+// Standardized response structure
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
 import { validateGovernedIngest } from '../lib/governance/scope-governance.js';
 
@@ -235,7 +235,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
   await checkDatabaseUpdated();
 
-  // L15/T303: Atomic scan lease check.
+  // Atomic scan lease check.
   // Reserve scan_started_at up front to avoid check-then-set race windows.
   const now = Date.now();
   const lease = await acquireIndexScanLease({
@@ -464,7 +464,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     console.error(`[memory-index-scan] Fast-path skips: ${results.incremental.fast_path_skips}, Mtime changed: ${results.incremental.mtime_changed}`);
   }
 
-  // T106/P0-09: Track successfully indexed files for post-indexing mtime update.
+  // Track successfully indexed files for post-indexing mtime update.
   // SAFETY INVARIANT: mtime markers are updated ONLY after indexing succeeds.
   // Failed files keep their old mtime so shouldReindex() returns 'modified'
   // Or 'new' on the next scan, ensuring automatic retry. Moving this update
@@ -476,7 +476,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   if (filesToIndex.length > 0) {
     const batchResults = await processBatches(filesToIndex, async (filePath: string) => {
       const isSpecDoc = specDocKeySet.has(getCachedKey(filePath));
-      // Packet 018: constitutional markdown is policy text, not evidence-bearing memory.
+      // Constitutional markdown is policy text, not evidence-bearing memory.
       // It does not carry primary-evidence sections or ANCHOR tags by design, so the
       // strict sufficiency gate would always reject it. Treat constitutional files like
       // spec docs and pass them through warn-only mode so they index against the same
@@ -587,7 +587,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }
   }
 
-  // T106/P0-09: Update mtimes ONLY for successfully indexed files (not before indexing).
+  // Update mtimes ONLY for successfully indexed files, not before indexing.
   // Failed files keep their old mtime so they are retried on next scan.
   // This is the ONLY place where scan-triggered mtime updates occur.
   // See also: indexMemoryFile() sets file_mtime_ms within its DB transaction,

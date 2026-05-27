@@ -43,7 +43,7 @@ interface CausalLinksResult {
   errors: { type: string; reference: string; error: string }[];
 }
 
-// M13: Per-step enum status refactor (R7-002, R8-001, R8-002, R11-005, R12-005, R14-003, R21-001).
+// Per-step enum status refactor.
 // Replaces boolean-valued record that collapsed success / feature-disabled skip /
 // nothing-to-do skip / deferral / density-guard skip / partial failure into `true`.
 export type EnrichmentStepStatus = 'ran' | 'skipped' | 'failed' | 'deferred' | 'partial';
@@ -91,7 +91,7 @@ export type PostInsertExecutionReason =
   | 'enrichment_step_partial';
 
 export interface PostInsertExecutionStatus {
-  // T-PIN-07 (R17-002): an exception-driven step failure must NOT be reported
+  // An exception-driven step failure must NOT be reported
   // as `ran`.  When any step reports `failed`, execution status rolls up to
   // `failed`; when any step reports `partial`, it rolls up to `partial`.
   status: 'ran' | 'deferred' | 'failed' | 'partial';
@@ -521,7 +521,7 @@ function resolveGraphLifecycleSkipReason(skipReason: unknown): EnrichmentSkipRea
  * Each step is independently guarded by its feature flag and wrapped
  * in try-catch so a single failure does not block the others.
  *
- * M13 (R8-001): Each step returns a typed `EnrichmentStepResult` with
+   * Each step returns a typed `EnrichmentStepResult` with
  * distinct statuses for success ('ran'), skip ('skipped' + reason),
  * failure ('failed' + reason), and partial outcomes ('partial').
  *
@@ -569,8 +569,8 @@ export async function runPostInsertEnrichmentIfEnabled(
   options: PostInsertEnrichmentOptions = {},
 ): Promise<PostInsertEnrichmentResult> {
   if (!shouldRunPostInsertEnrichment(options.plannerMode)) {
-    // M13: Deferral is NOT success — each step reports `deferred` so consumers
-    // can route to runEnrichmentBackfill for recovery (R8-001, R21-001).
+    // Deferral is NOT success — each step reports `deferred` so consumers
+    // can route to runEnrichmentBackfill for recovery.
     return {
       causalLinksResult: null,
       enrichmentStatus: {

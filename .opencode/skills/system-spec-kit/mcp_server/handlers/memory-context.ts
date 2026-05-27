@@ -91,7 +91,7 @@ interface ContextOptions {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
-  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+  includeTrace?: boolean; // Forward to internal memory_search calls
   anchors?: string[];
   profile?: string;
   sessionTransition?: SessionTransitionTrace;
@@ -127,14 +127,14 @@ interface ContextArgs {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
-  includeTrace?: boolean; // CHK-040: Forward to internal memory_search calls
+  includeTrace?: boolean; // Forward to internal memory_search calls
   tokenUsage?: number;
   anchors?: string[];
-  /** REQ-D5-003: Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
+  /** Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
   profile?: string;
 }
 
-/** T205: Token budget enforcement metadata */
+/** Token budget enforcement metadata */
 type DroppedAllResultsReason = 'impossible_budget' | 'parse_failed' | 'no_survivor_fits';
 
 interface TokenBudgetEnforcement {
@@ -475,7 +475,7 @@ function buildStructuralRoutingNudge(
 }
 
 /* ───────────────────────────────────────────────────────────────
-   2. TOKEN BUDGET ENFORCEMENT (T205)
+   2. TOKEN BUDGET ENFORCEMENT
    
    Enforces per-layer/per-mode token budgets by estimating the
    token count of strategy results and truncating when exceeded.
@@ -483,7 +483,7 @@ function buildStructuralRoutingNudge(
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * T205: Enforce token budget on strategy results.
+ * Enforce token budget on strategy results.
  * 
  * Estimates the token count of the serialized result. If over budget,
  * parses embedded result arrays and removes lowest-priority items
@@ -508,7 +508,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
     };
   }
 
-  // REQ-002 (Cluster 1) Sanity guard: when reported usage is far below budget but
+  // Sanity guard: when reported usage is far below budget but
   // we somehow entered enforcement (e.g. estimator ran twice on already-truncated
   // payload, or budget was passed in as a tiny number), short-circuit and return
   // the unmodified result. This prevents the historical regression where a
@@ -560,7 +560,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
       : [];
     const contentClone = fallbackContent.map((entry) => ({ ...entry }));
 
-    // REQ-002 (Cluster 1): When structural truncation already produced a non-empty
+    // When structural truncation already produced a non-empty
     // result set, preserve it rather than silently dropping to count:0,results:[].
     // The previous behaviour caused the wrapper to report `returnedResultCount > 0`
     // in metadata while shipping an empty payload to the caller.
@@ -758,7 +758,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
   // Try to find and truncate the inner results array
   const contentArr = (truncatedResult as Record<string, unknown>).content as Array<{ type: string; text: string }> | undefined;
   let parseFailedInnerText: string | undefined;
-  // REQ-002 (Cluster 1): Track survivors so the fallback path can preserve them
+  // Track survivors so the fallback path can preserve them
   // instead of zero-filling.
   let preservedAfterStructural: Array<Record<string, unknown>> = [];
   if (contentArr && Array.isArray(contentArr) && contentArr.length > 0 && contentArr[0]?.text) {
@@ -774,7 +774,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
         const currentResults = [...innerResults];
         let currentTokens = preEnforcementTokens;
 
-        // Phase 1: Adaptive content truncation — truncate content fields before dropping results
+        // Adaptive content truncation — truncate content fields before dropping results
         const MAX_CONTENT_CHARS = 500;
         for (const r of currentResults) {
           if (r.content && typeof r.content === 'string' && r.content.length > MAX_CONTENT_CHARS) {
@@ -787,7 +787,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
         innerEnvelope.data.count = currentResults.length;
         currentTokens = estimateTokens(JSON.stringify(innerEnvelope));
 
-        // Phase 2: Drop lowest-scored results if still over budget
+        // Drop lowest-scored results if still over budget
         while (currentResults.length > 1 && currentTokens > budgetTokens) {
           // Remove the last (lowest-scored) result
           const removed = currentResults.pop();
@@ -795,7 +795,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
           currentTokens -= removedTokens;
         }
 
-        // Phase 3: Two-tier response — append metadata-only entries for dropped results
+        // Two-tier response — append metadata-only entries for dropped results
         const droppedResults = innerResults.slice(currentResults.length);
         if (droppedResults.length > 0) {
           const metadataOnly = droppedResults.map((r: Record<string, unknown>) => ({
@@ -820,7 +820,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
         innerEnvelope.data.count = currentResults.length;
         returnedResultCount = currentResults.length;
 
-        // REQ-002 (Cluster 1): Snapshot survivors before any further compaction
+        // Snapshot survivors before any further compaction
         // so the fallback path can preserve them instead of zero-filling.
         preservedAfterStructural = currentResults.slice();
 
@@ -873,7 +873,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
 
   // Fallback when parsing fails or a structured response still exceeds budget.
   // Always emit valid nested JSON rather than raw character slices.
-  // REQ-002 (Cluster 1): Hand the fallback the survivors from structural
+  // Hand the fallback the survivors from structural
   // truncation so it can keep them instead of silently zero-filling.
   const fallbackResult = fallbackToStructuredBudget(
     parseFailed ? result : truncatedResult,
@@ -1000,7 +1000,7 @@ async function executeDeepStrategy(input: string, intent: string | null, options
     limit: options.limit || 10,
     includeConstitutional: true,
     includeContent: options.includeContent || false,
-    includeTrace: options.includeTrace || false, // CHK-040
+    includeTrace: options.includeTrace || false, // Forward to internal memory_search calls
     anchors: options.anchors,
     sessionId: options.sessionId,
     sessionTransition: options.sessionTransition,
@@ -1030,7 +1030,7 @@ async function executeFocusedStrategy(input: string, intent: string | null, opti
     limit: options.limit || 8,
     includeConstitutional: true,
     includeContent: options.includeContent || false,
-    includeTrace: options.includeTrace || false, // CHK-040
+    includeTrace: options.includeTrace || false, // Forward to internal memory_search calls
     anchors: options.anchors,
     sessionId: options.sessionId,
     sessionTransition: options.sessionTransition,
@@ -1342,9 +1342,9 @@ function buildResponseMeta(params: BuildResponseMetaParams): Record<string, unkn
     sessionLifecycle,
     tokenBudget: effectiveBudget,
     tokenBudgetEnforcement: enforcement,
-    // REQ-004 (Cluster 2): `meta.intent` is the AUTHORITATIVE intent for output
+    // `meta.intent` is the AUTHORITATIVE intent for output
     // rendering, anchor selection, mode routing, and weight adjustment. The
-    // separate `data.queryIntentRouting` field (added by Phase 020) describes
+    // separate `data.queryIntentRouting` field describes
     // backend channel selection only (structural / hybrid / semantic) and MUST
     // NOT be conflated with this intent. The classification kind is annotated
     // explicitly here to remove ambiguity for downstream consumers.
@@ -1429,7 +1429,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
 
     const normalizedInput = input.trim();
 
-    // ── Phase 020: Query-Intent Routing ──────────────────────────
+    // ── Query-Intent Routing ──────────────────────────
     // Classify query intent and optionally augment response with code
     // graph context for structural/hybrid queries. Entire block is
     // wrapped in try/catch — any failure silently falls through to
@@ -1567,7 +1567,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       sessionId: effectiveSessionId,
       enableDedup: enableDedup,
       includeContent: include_content,
-      includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true, // CHK-040
+      includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true, // Forward to internal memory_search calls
       anchors,
       profile: args.profile,
     };
@@ -1700,11 +1700,11 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       // Best-effort session state write — do not fail the handler
     }
 
-    // T205: Determine effective token budget from mode or layer definitions
+    // Determine effective token budget from mode or layer definitions
     const modeTokenBudget = CONTEXT_MODES[effectiveMode]?.tokenBudget;
     const effectiveBudget = modeTokenBudget || tokenBudget;
 
-    // M1 FIX: Inject auto-resume context BEFORE budget enforcement
+    // Inject auto-resume context BEFORE budget enforcement
     // so the final response respects the advertised token budget.
     const tracedResult0: ContextResult = effectiveMode === 'quick' && options.includeTrace === true
       ? attachSessionTransitionTrace(
@@ -1727,7 +1727,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       }
     }
 
-    // T205: Enforce token budget AFTER all context injection
+    // Enforce token budget AFTER all context injection
     const { result: budgetedResult, enforcement } = enforceTokenBudget(tracedResult0, effectiveBudget);
     const tracedResult = budgetedResult;
     const intentTelemetry = detectedIntent ? intentClassifier.emitIntentTelemetry(normalizedInput, {
@@ -1742,14 +1742,14 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       },
     }) : null;
 
-    // Phase 020: Attach graph context and query-intent routing metadata
+    // Attach graph context and query-intent routing metadata
     const responseData: ContextResult & Record<string, unknown> = { ...tracedResult };
     if (graphContextResult) {
       responseData.graphContext = graphContextResult;
     }
     if (queryIntentMetadata) {
       const runtimeId = detectRuntime().runtime;
-      // REQ-004 (Cluster 2): Annotate explicitly so callers do not confuse this
+      // Annotate explicitly so callers do not confuse this
       // backend-channel selector with the authoritative `meta.intent` task intent.
       responseData.queryIntentRouting = {
         ...queryIntentMetadata,

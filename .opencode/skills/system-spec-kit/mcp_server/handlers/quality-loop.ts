@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Quality Loop (T008)
+// MODULE: Quality Loop
 // ───────────────────────────────────────────────────────────────
 import { initEvalDb } from '../lib/eval/eval-db.js';
 import { isQualityAutoFixEnabled, isQualityLoopEnabled } from '../lib/search/search-flags.js';

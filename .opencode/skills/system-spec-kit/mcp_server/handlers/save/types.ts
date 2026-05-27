@@ -110,7 +110,7 @@ export interface AssistiveRecommendation {
 }
 
 /**
- * T-RCB-09 (R11-004, R12-003): structured warning surfaced when the scope
+ * Structured warning surfaced when the scope
  * filter or overfetch window dropped otherwise-relevant vector-search
  * candidates.  Emitted alongside plain string warnings so downstream
  * consumers can mechanically distinguish silent starvation from regular
@@ -361,7 +361,7 @@ export interface MemoryScopeMatch {
   sessionId?: string | null;
 }
 
-// T-SCP-01 (R1-P1-001, R4-P1-001): local normalizer collapsed into the
+// Local normalizer collapsed into the
 // canonical `normalizeScopeValue` from `lib/governance/scope-governance`.
 // Preserved as a re-export under the original name so consumers in
 // `create-record.ts` / `dedup.ts` remain unchanged. Callers only use truthy

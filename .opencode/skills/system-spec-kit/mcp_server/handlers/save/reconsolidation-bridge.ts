@@ -62,14 +62,14 @@ export interface ScopeFilteredSearchResult {
   candidates: ReconsolidationResultCandidate[];
   suppressedCandidateIds: number[];
   /**
-   * T-RCB-10 (R16-002): vector-search rows rejected as malformed — missing
+   * Vector-search rows rejected as malformed — missing
    * id, file_path, or similarity.  Reported separately from scope-suppressed
    * ids so callers can distinguish data-integrity failures from ordinary
    * scope mismatches.
    */
   malformedCandidateCount: number;
   /**
-   * T-RCB-09 (R12-003): original vector-search row count before scope/malformed
+   * Original vector-search row count before scope/malformed
    * filtering trimmed the set.  When `rawCandidateCount > 0 && candidates.length === 0`,
    * the limit-pre-filter window or scope filter has starved otherwise-relevant
    * candidates.
@@ -226,7 +226,7 @@ function repairBm25Document(args: {
   }
 }
 
-// T-SCP-01 (R1-P1-001, R4-P1-001): local normalizer collapsed into the
+// Local normalizer collapsed into the
 // canonical `normalizeScopeValue` export from `lib/governance/scope-governance`.
 // Return shape preserved as `string | null` so downstream null-specific
 // narrowing (RequestedScope = Record<_, string | null>, `hasGovernedScope`'s
@@ -292,7 +292,7 @@ function candidateMatchesRequestedScope(
 }
 
 /**
- * T-RCB-10 (R16-002): reject malformed vector-search rows instead of coercing
+ * Reject malformed vector-search rows instead of coercing
  * them into sentinel values.  A valid candidate must carry a positive integer
  * `id`, a non-empty `file_path`, and a finite numeric `similarity`.  Returning
  * `null` from this mapper tells `findScopeFilteredCandidates` to drop (and
@@ -388,7 +388,7 @@ export function findScopeFilteredCandidates(args: {
 
     const mapped = mapScopeFilteredCandidate(rawCandidate, args.parsed, scopeRows.get(candidateId ?? -1));
     if (mapped === null) {
-      // T-RCB-10 (R16-002): reject rather than sentinel-substitute.
+      // Reject rather than sentinel-substitute.
       malformedCandidateCount += 1;
       continue;
     }
@@ -408,7 +408,7 @@ export function findScopeFilteredCandidates(args: {
 }
 
 /**
- * T-RCB-09 (R11-004, R12-003): append a structured `scope_filter_suppressed_candidates`
+ * Append a structured `scope_filter_suppressed_candidates`
  * warning to the shared recon warning carrier when the scope filter or overfetch window
  * silently drops in-scope candidates.  The plain-text warning remains for human
  * readability; the structured entry is what automation keys on.
@@ -503,7 +503,7 @@ export async function runReconsolidationIfEnabled(
     },
   };
 
-  // T-04: search-flags.ts is the canonical caller-visible opt-in gate.
+  // search-flags.ts is the canonical caller-visible opt-in gate.
   // Reconsolidation.ts keeps an internal guard as a defensive fallback for
   // Direct callers and future entry points.
   if (!force && allowSaveTimeReconsolidation && embedding) {
@@ -545,7 +545,7 @@ export async function runReconsolidationIfEnabled(
                   minSimilarity: 50,
                   overfetchMultiplier: 3,
                 });
-                // T-RCB-09/10 (R11-004, R12-003, R16-002): surface scope-filter
+                // Surface scope-filter
                 // suppression + malformed-row rejection as structured warnings.
                 recordScopeFilterSuppressionWarnings(
                   searchResult,
@@ -785,7 +785,7 @@ export async function runReconsolidationIfEnabled(
         limit: 3,
         minSimilarity: Math.round(ASSISTIVE_REVIEW_THRESHOLD * 100),
       });
-      // T-RCB-09/10 (R11-004, R12-003, R16-002): surface assistive-lookup
+      // Surface assistive-lookup
       // scope-filter suppression and malformed rows alongside the save path.
       recordScopeFilterSuppressionWarnings(
         assistiveSearchResult,
@@ -833,7 +833,7 @@ export async function runReconsolidationIfEnabled(
         // 'keep_separate' → no action, fall through to normal save
       }
     } catch (assistiveErr: unknown) {
-      // T-RCB-11 (R19-002): do not silently fall open. Surface assistive failures
+      // Do not silently fall open. Surface assistive failures
       // as a structured warning + machine-readable status on the save-time recon
       // result so callers can route to remediation.  The ordinary save still
       // proceeds (assistive is advisory), but the failure is now auditable.

@@ -20,7 +20,7 @@ import { checkDatabaseUpdated } from '../core/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { requireDb, toErrorMessage } from '../utils/index.js';
 
-// REQ-019: Standardized Response Structure
+// Standardized response structure
 import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope.js';
 
 // Shared handler types
@@ -550,7 +550,7 @@ async function handleCheckpointRestore(args: CheckpointRestoreArgs): Promise<MCP
   const hasPartialFailure = result.partialFailure === true;
   const hasPartialSuccess = !hasPartialFailure && (result.skipped > 0 || hasRestoreErrors);
 
-  // T102 FIX: Rebuild search indexes after checkpoint restore
+  // Rebuild search indexes after checkpoint restore
   // Without this, restored memories are invisible to search until server restart.
   // Matches the startup rebuild sequence in context-server.ts (lines 776-791).
   if (result.restored > 0 || result.workingMemoryRestored > 0) {
@@ -774,7 +774,7 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
     // Adaptive signals are best-effort only
   }
 
-  // T002a: Auto-promotion wiring on positive feedback.
+  // Auto-promotion wiring on positive feedback.
   let autoPromotion: {
     attempted: boolean;
     promoted: boolean;
@@ -794,12 +794,12 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
     };
   }
 
-  // T002b: Negative-feedback confidence signal persistence for runtime scoring.
+  // Negative-feedback confidence signal persistence for runtime scoring.
   if (!wasUseful) {
     recordNegativeFeedbackEvent(database, memoryId);
   }
 
-  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
+  // Optional wiring from memory_validate to learned feedback + ground truth.
   let learnedFeedback: {
     attempted: boolean;
     applied: boolean;

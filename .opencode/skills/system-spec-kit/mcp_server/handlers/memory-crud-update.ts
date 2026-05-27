@@ -209,9 +209,9 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
         }
       }
 
-      // T2-6 — BM25 index stores title + trigger phrases; must re-index when either changes
-      // So keyword search reflects the updated content.
-      // T-05: BM25 re-index failure now rolls back the transaction when the index is operational.
+      // BM25 index stores title + trigger phrases; must re-index when either changes
+      // so keyword search reflects the updated content.
+      // BM25 re-index failure now rolls back the transaction when the index is operational.
       // Infrastructure failures (BM25 not available, DB missing prepare) are non-fatal warnings.
       if ((updateParams.title !== undefined || updateParams.triggerPhrases !== undefined) && bm25Index.isBm25Enabled()) {
         try {
@@ -227,7 +227,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
           }
         } catch (e: unknown) {
           const bm25ErrMsg = e instanceof Error ? e.message : String(e);
-          // T-05 + P1-02 fix: Distinguish infrastructure failures from data failures.
+          // Distinguish infrastructure failures from data failures.
           // Infrastructure failures mean the BM25 subsystem is unavailable or torn down —
           // These are non-fatal warnings. Data failures mean the index IS operational but rejected
           // The input — those must re-throw to roll back the transaction.
@@ -247,7 +247,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
         }
       }
 
-      // T-05: Record UPDATE history after successful mutation
+      // Record UPDATE history after successful mutation
       try {
         recordHistory(
           id, 'UPDATE',
