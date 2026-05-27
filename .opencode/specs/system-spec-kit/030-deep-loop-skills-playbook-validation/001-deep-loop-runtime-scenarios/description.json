@@ -1,0 +1,24 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/030-deep-loop-skills-playbook-validation/001-deep-loop-runtime-scenarios",
+  "description": "Feature Specification: Deep-Loop Runtime Scenarios (Deep-Loop Playbook 001)",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-loop",
+    "runtime",
+    "scenarios",
+    "playbook",
+    "001"
+  ],
+  "lastUpdated": "2026-05-27T07:07:07.025Z",
+  "specId": "001",
+  "folderSlug": "deep-loop-runtime-scenarios",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "030-deep-loop-skills-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,24 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/030-deep-loop-skills-playbook-validation/004-deep-research-scenarios",
+  "description": "Feature Specification: Deep-Research Scenarios (Deep-Loop Playbook 004)",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-research",
+    "scenarios",
+    "deep-loop",
+    "playbook",
+    "004"
+  ],
+  "lastUpdated": "2026-05-27T07:07:08.557Z",
+  "specId": "004",
+  "folderSlug": "deep-research-scenarios",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "030-deep-loop-skills-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

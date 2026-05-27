@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/030-deep-loop-skills-playbook-validation",
+  "spec_folder": "system-spec-kit/030-deep-loop-skills-playbook-validation",
+  "parent_id": null,
+  "children_ids": [
+    "system-spec-kit/030-deep-loop-skills-playbook-validation/001-deep-loop-runtime-scenarios",
+    "system-spec-kit/030-deep-loop-skills-playbook-validation/002-deep-ai-council-scenarios",
+    "system-spec-kit/030-deep-loop-skills-playbook-validation/003-deep-review-scenarios",
+    "system-spec-kit/030-deep-loop-skills-playbook-validation/004-deep-research-scenarios",
+    "system-spec-kit/030-deep-loop-skills-playbook-validation/005-deep-agent-improvement-scenarios",
+    "system-spec-kit/030-deep-loop-skills-playbook-validation/006-release-readiness-synthesis"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop skills playbook validation",
+      "deep-loop manual testing run",
+      "030 deep loop skills playbook validation"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "skills",
+      "playbook",
+      "validation",
+      "deep-loop",
+      "manual",
+      "testing",
+      "run",
+      "030",
+      "five",
+      "deep-loop-runtime"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "006-release-readiness-synthesis/dispatch-runbook.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "dispatch-runbook.md",
+        "kind": "doc",
+        "path": "006-release-readiness-synthesis/dispatch-runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Skills Playbook Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five deep-loop skills — `deep-loop-runtime` (22), `deep-ai-council` (32), `deep-review` (45), `deep-research` (41), and `deep-agent-improvement` (37) — ship manual testing playbooks totalling **177 scenarios**. Each playbook's Execution Policy requires scenarios to be \"executed for real, not mocked.\" There is no captured, dated operator run on record across these five skills, so release readiness for the deep-loop family cannot be asserted.",
+    "created_at": "2026-05-27T07:08:08.383Z",
+    "last_save_at": "2026-05-27T13:45:36.993Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}

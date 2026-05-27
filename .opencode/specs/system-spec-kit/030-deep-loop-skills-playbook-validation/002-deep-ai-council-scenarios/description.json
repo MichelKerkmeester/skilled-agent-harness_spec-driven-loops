@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation/002-deep-ai-council-scenarios",
+  "description": "Feature Specification: Deep-AI-Council Scenarios (Deep-Loop Playbook 002)",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-ai-council",
+    "scenarios",
+    "deep-loop",
+    "playbook",
+    "002"
+  ],
+  "lastUpdated": "2026-05-27T08:41:18.491Z",
+  "specId": "002",
+  "folderSlug": "deep-ai-council-scenarios",
+  "parentChain": [
+    "system-spec-kit",
+    "030-deep-loop-skills-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

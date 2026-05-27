@@ -1,0 +1,24 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/030-deep-loop-skills-playbook-validation/005-deep-agent-improvement-scenarios",
+  "description": "Feature Specification: Deep-Agent-Improvement Scenarios (Deep-Loop Playbook 005)",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-agent-improvement",
+    "scenarios",
+    "deep-loop",
+    "playbook",
+    "005"
+  ],
+  "lastUpdated": "2026-05-27T07:07:09.046Z",
+  "specId": "005",
+  "folderSlug": "deep-agent-improvement-scenarios",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "030-deep-loop-skills-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
