@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity"
-    last_updated_at: "2026-05-27T05:56:01Z"
+    last_updated_at: "2026-05-27T07:17:55Z"
     last_updated_by: "main_agent"
-    recent_action: "ran-one-time-backlog-reconcile-on-live-db-17241-rows-to-success"
-    next_safe_action: "operator-restart-lease-owner-daemon-to-activate-005-prevention-code"
+    recent_action: "restarted-lease-owner-daemon-loaded-005-fixes-backlog-confirmed-clear"
+    next_safe_action: "none-005-fully-activated-followups-tracked-as-separate-packets"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts"
@@ -148,7 +148,7 @@ The 004 runbook (§7–§8) was executed against the **live** `context-index.sql
 
 ### Residual / Next
 
-- Prevention code (REQ-001/002/003) still requires a **lease-owner daemon restart** to become active (Known Limitations #1).
+- **(Done 2026-05-27)** Prevention code (REQ-001/002/003) activated via a full lease-owner daemon restart — the stale owner (PID 62412, started 05:25Z, pre-build) was killed and a fresh owner (launcher PID 63074 / daemon 63114) spawned from current `dist/` at 07:14Z via a post-kill `/mcp` reconnect. `memory_stats` confirmed `failed/pending/retry = 0` under the new daemon.
 - 23 `success` rows lack an active vector surface (0.24%) — separate hygiene item, out of scope for this reconcile.
 
 <!-- /ANCHOR:operator-run -->
