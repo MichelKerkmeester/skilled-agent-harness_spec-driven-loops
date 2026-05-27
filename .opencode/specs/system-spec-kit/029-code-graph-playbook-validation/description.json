@@ -1,0 +1,22 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/029-code-graph-playbook-validation",
+  "description": "Feature Specification: Code Graph Playbook Validation",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "graph",
+    "playbook",
+    "validation"
+  ],
+  "lastUpdated": "2026-05-27T05:35:17.989Z",
+  "specId": "029",
+  "folderSlug": "code-graph-playbook-validation",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

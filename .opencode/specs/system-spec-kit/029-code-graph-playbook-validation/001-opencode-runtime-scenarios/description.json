@@ -1,0 +1,26 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios",
+  "description": "Feature Specification: OpenCode Runtime Scenarios (Code Graph Playbook 001)",
+  "keywords": [
+    "feature",
+    "specification",
+    "opencode",
+    "runtime",
+    "scenarios",
+    "code",
+    "graph",
+    "playbook",
+    "001"
+  ],
+  "lastUpdated": "2026-05-27T05:35:18.449Z",
+  "specId": "001",
+  "folderSlug": "opencode-runtime-scenarios",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "029-code-graph-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

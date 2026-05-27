@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/029-code-graph-playbook-validation/003-release-readiness-synthesis",
+  "description": "Feature Specification: Release-Readiness Synthesis (Code Graph Playbook 003)",
+  "keywords": [
+    "feature",
+    "specification",
+    "release-readiness",
+    "synthesis",
+    "code",
+    "graph",
+    "playbook",
+    "003"
+  ],
+  "lastUpdated": "2026-05-27T05:35:19.300Z",
+  "specId": "003",
+  "folderSlug": "release-readiness-synthesis",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "029-code-graph-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

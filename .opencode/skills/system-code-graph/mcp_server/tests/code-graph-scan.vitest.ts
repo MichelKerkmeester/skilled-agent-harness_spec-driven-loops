@@ -126,6 +126,7 @@ vi.mock('../lib/parser-skip-list.js', () => ({
 
 vi.mock('../lib/tree-sitter-parser.js', () => ({
   getParserHealth: mocks.getParserHealthMock,
+  resetParserHealth: vi.fn(),
 }));
 
 import { handleCodeGraphScan, relativizeScanError } from '../handlers/scan.js';

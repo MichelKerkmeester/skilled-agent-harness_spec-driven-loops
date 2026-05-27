@@ -78,4 +78,6 @@ contextType: "verification"
 
 ## Notes
 
-Tests the path in `mcp_server/handlers/query.ts` → `mcp_server/lib/blast-radius/*`. Multi-subject union logic is in the blast-radius assembler; transitive BFS uses the maxDepth bound to prevent runaway traversal.
+Tests the path in `mcp_server/handlers/query.ts`. Multi-subject union logic is in the blast-radius assembler; transitive BFS uses the maxDepth bound to prevent runaway traversal.
+
+> **Contract (fixed in packet 029 phase 008, F-022-1):** `blast_radius` honors `includeTransitive`. Default (flag absent) returns **direct importers only (depth 1)**; `includeTransitive:true` opts into multi-hop closure up to `maxDepth` (default 3). Step 3's `transitive > non-transitive` assertion therefore depends on step 1 running WITHOUT `includeTransitive` (depth-1 baseline) and step 3 WITH it. Before the fix the flag was ignored and blast_radius was always multi-hop, so this assertion was unsatisfiable.

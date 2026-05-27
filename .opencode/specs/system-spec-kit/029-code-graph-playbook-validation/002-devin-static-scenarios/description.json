@@ -1,0 +1,26 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios",
+  "description": "Feature Specification: Devin Static Scenarios (Code Graph Playbook 002)",
+  "keywords": [
+    "feature",
+    "specification",
+    "devin",
+    "static",
+    "scenarios",
+    "code",
+    "graph",
+    "playbook",
+    "002"
+  ],
+  "lastUpdated": "2026-05-27T05:35:18.877Z",
+  "specId": "002",
+  "folderSlug": "devin-static-scenarios",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "029-code-graph-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

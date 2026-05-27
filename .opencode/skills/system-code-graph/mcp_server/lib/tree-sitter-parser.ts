@@ -69,6 +69,29 @@ export function __resetParserHealth(): void {
   parserHealth = 'ok';
 }
 
+/**
+ * Production recovery from a global parser quarantine.
+ *
+ * A B2 fault ("memory access out of bounds") quarantines the parser for the
+ * remainder of the process to avoid compounding WASM-heap corruption. Before
+ * this function the only escape was a launcher restart, so a single B2 stranded
+ * every subsequent scan (full scans returned zero nodes, which the scan
+ * handler's zero-node guard then rejected to protect the existing graph).
+ *
+ * An explicit full scan is a deliberate "retry" signal, so the scan handler
+ * calls this to clear the quarantine AND drop the parser instance + grammar
+ * cache. The next parse re-runs `ensureInit()`, rebuilding a fresh
+ * web-tree-sitter instance on a clean heap rather than reusing the corrupted
+ * one. Distinct from `__resetParserHealth` (test-only flag flip that leaves the
+ * instance in place).
+ */
+export function resetParserHealth(): void {
+  parserHealth = 'ok';
+  parserInstance = null;
+  initPromise = null;
+  grammarCache.clear();
+}
+
 export function classifyError(err: unknown): 'B1' | 'B2' | 'OTHER' {
   const message = err instanceof Error ? err.message : String(err);
   if (message.includes('resolved is not a function')) return 'B1';

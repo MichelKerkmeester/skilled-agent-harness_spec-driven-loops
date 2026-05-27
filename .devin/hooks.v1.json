@@ -17,7 +17,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR}\" && /opt/homebrew/bin/node .opencode/skills/system-code-graph/dist/system-spec-kit/mcp_server/hooks/devin/session-start.js'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR}\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/devin/session-start.js'",
           "timeout": 3
         }
       ]

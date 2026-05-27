@@ -1277,6 +1277,12 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
   }
 
   if (operation === 'blast_radius') {
+    // Honor the documented `includeTransitive` flag for blast_radius: the schema
+    // describes it as "Enable multi-hop BFS traversal" (default false) with
+    // `maxDepth` applying only when it is true. Default returns direct importers
+    // only (depth 1); the flag opts into multi-hop closure up to maxDepth. (The
+    // call-graph operations gate on the same flag in their own branch.)
+    const effectiveDepth = args.includeTransitive ? maxDepth : 1;
     const rawSubjects = args.unionMode === 'multi'
       ? [subject, ...(args.subjects ?? [])]
       : [subject];
@@ -1316,7 +1322,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
         // discard work the caller can still use; instead surface the
         // already-resolved seeds so multi-subject blast-radius queries
         // degrade gracefully when one subject fails to resolve.
-        const preservedDepthGroups = buildDepthGroups([], maxDepth);
+        const preservedDepthGroups = buildDepthGroups([], effectiveDepth);
         const preservedSeedNodes = sourceFiles.map((filePath) => ({
           filePath,
           depth: 0,
@@ -1355,7 +1361,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
     }
 
     if (ambiguityCandidates.length > 0) {
-      const depthGroups = buildDepthGroups([], maxDepth);
+      const depthGroups = buildDepthGroups([], effectiveDepth);
       return {
         content: [{
           type: 'text',
@@ -1382,7 +1388,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
     }
 
     if (sourceFiles.length === 0) {
-      const depthGroups = buildDepthGroups([], maxDepth);
+      const depthGroups = buildDepthGroups([], effectiveDepth);
       return {
         content: [{
           type: 'text',
@@ -1410,9 +1416,9 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
 
     let blastRadius;
     try {
-      blastRadius = graphDb.getDb().transaction(() => computeBlastRadius(sourceFiles, maxDepth, limit, minConfidence, ambiguityCandidates))();
+      blastRadius = graphDb.getDb().transaction(() => computeBlastRadius(sourceFiles, effectiveDepth, limit, minConfidence, ambiguityCandidates))();
     } catch (error) {
-      const depthGroups = buildDepthGroups([], maxDepth);
+      const depthGroups = buildDepthGroups([], effectiveDepth);
       const reason = error instanceof Error ? error.message : String(error);
       // R-007-P2-6: Surface a stable `code` and emit a warning log + metric
       // so operators can distinguish a genuine compute / DB failure from a
@@ -1458,7 +1464,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
             nodes: blastRadius.nodes,
             multiFileUnion: args.unionMode === 'multi' && blastRadius.sourceFiles.length > 1,
             unionMode: args.unionMode ?? 'single',
-            maxDepth: Math.max(0, maxDepth),
+            maxDepth: Math.max(0, effectiveDepth),
             affectedFiles: blastRadius.affectedFiles,
             depthGroups: blastRadius.depthGroups,
             riskLevel: blastRadius.riskLevel,

@@ -13,6 +13,7 @@ import {
 } from '../lib/cross-file-edge-resolver.js';
 import { getDefaultConfig, type DetectorProvenance, type CodeEdge } from '../lib/indexer-types.js';
 import { indexFiles } from '../lib/structural-indexer.js';
+import { resetParserHealth } from '../lib/tree-sitter-parser.js';
 import * as graphDb from '../lib/code-graph-db.js';
 import { persistIndexedFileResult, recordCandidateManifest } from '../lib/ensure-ready.js';
 import {
@@ -365,6 +366,17 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
 
   if (gitHeadChanged && incremental) {
     console.error(`[code-graph-scan] Git HEAD changed (${previousGitHead} -> ${currentGitHead}); honoring incremental content-hash reindex`);
+  }
+
+  // An explicit full scan is a deliberate retry, so clear any prior global parser
+  // quarantine before indexing. A B2 ("memory access out of bounds") quarantine
+  // otherwise persists until a launcher restart, making every full scan return
+  // zero nodes (then rejected by the zero-node guard below). resetParserHealth()
+  // drops the corrupted parser instance so indexing re-initializes a fresh
+  // web-tree-sitter instance. Incremental scans do NOT reset — only an explicit
+  // `incremental: false` request signals intent to retry.
+  if (args.incremental === false) {
+    resetParserHealth();
   }
 
   const results = await indexFiles(config, { skipFreshFiles: effectiveIncremental });

@@ -1,0 +1,39 @@
+{
+  "system_instructions": [
+    "You are a SWE-1.6 build-and-hook validation worker for the system-code-graph + system-spec-kit runtime.",
+    "Before producing the output, you MUST call mcp__sequential_thinking__sequentialthinking with at least 5 thoughts.",
+    "You may run the project's own npm build scripts (clean/build) and pipe payloads through compiled hook scripts. Do NOT edit, move, or delete any source file. Writes are limited to /tmp.",
+    "Cite evidence with exact command and observed output.",
+    "Stop conditions: emit the required result blocks then exit. Do not request further input."
+  ],
+  "allowed_tools": ["Read", "Grep", "Glob", "Bash"],
+  "permissions": {
+    "allow": [
+      "Read(<repo-root>/**)",
+      "Exec(npm)",
+      "Exec(node)",
+      "Exec(mkdir)",
+      "Exec(jq)",
+      "Exec(ls)",
+      "Exec(test)",
+      "Exec(find)",
+      "Exec(cat)",
+      "Exec(head)",
+      "Exec(tail)",
+      "Exec(printf)",
+      "Exec(echo)",
+      "Exec(rg)",
+      "Exec(grep)",
+      "Exec(env)"
+    ],
+    "deny": [
+      "Exec(mv)",
+      "Exec(cp)",
+      "Exec(git checkout)",
+      "Exec(git reset)",
+      "Exec(git clean)",
+      "Exec(pnpm)",
+      "Exec(yarn)"
+    ]
+  }
+}

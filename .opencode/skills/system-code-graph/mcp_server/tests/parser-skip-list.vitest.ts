@@ -300,4 +300,44 @@ describe('tree-sitter parser skip-list wrapper', () => {
     expect(parseMock).toHaveBeenCalledTimes(2);
     expect(getParserHealth()).toBe('quarantined');
   });
+
+  // resetParserHealth() is the production recovery. Unlike the
+  // test-only __resetParserHealth (flag flip), it ALSO drops the parser instance
+  // and grammar cache so the next getParser() rebuilds a fresh web-tree-sitter
+  // instance on a clean heap.
+  it('resetParserHealth clears quarantine and drops instance + grammar cache for a fresh re-init', async () => {
+    vi.resetModules();
+    process.env.SPECKIT_PARSER_SKIP_LIST_ENABLED = 'true';
+    const tempDir = mkdtempSync(join(tmpdir(), 'parser-skip-list-fullreset-'));
+    tempDirs.push(tempDir);
+    const parseMock = vi.fn(() => {
+      throw new Error('RuntimeError: memory access out of bounds');
+    });
+    mockWebTreeSitter(parseMock);
+    const dynamicDb = await import('../lib/code-graph-db.js');
+    closeDynamicDb = dynamicDb.closeDb;
+    dynamicDb.initDb(tempDir);
+
+    const { TreeSitterParser, getParserHealth, resetParserHealth } = await import('../lib/tree-sitter-parser.js');
+    await TreeSitterParser.init();
+    await TreeSitterParser.loadLanguage('bash');
+    const parser = new TreeSitterParser();
+
+    // Trigger a B2 quarantine; instance + grammar are still loaded.
+    parser.parse('echo bad', 'bash', undefined, '/workspace/quarantine.sh');
+    expect(getParserHealth()).toBe('quarantined');
+    expect(TreeSitterParser.isReady('bash')).toBe(true);
+
+    // Full reset: quarantine cleared AND the parser is no longer ready
+    // (instance + grammar cache dropped) so the next getParser() re-inits fresh.
+    resetParserHealth();
+    expect(getParserHealth()).toBe('ok');
+    expect(TreeSitterParser.isReady('bash')).toBe(false);
+
+    // Re-init (what getParser() does for a not-ready parser), then parse re-engages.
+    await TreeSitterParser.init();
+    await TreeSitterParser.loadLanguage('bash');
+    parser.parse('echo good', 'bash', undefined, '/workspace/post-fullreset.sh');
+    expect(parseMock).toHaveBeenCalledTimes(2);
+  });
 });

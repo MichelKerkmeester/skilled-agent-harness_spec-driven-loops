@@ -134,7 +134,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | 018 | mcp.json server key rename | [018-mcp-json-server-key-rename.md](./09--post-rename-infrastructure/018-mcp-json-server-key-rename.md) |
 | 019 | database path verification | [019-database-path-verification.md](./09--post-rename-infrastructure/019-database-path-verification.md) |
 | 020 | TypeScript build and entry point | [020-typescript-build-and-entry-point.md](./09--post-rename-infrastructure/020-typescript-build-and-entry-point.md) |
-| 021 | unicode-normalization fix from 009 | [021-unicode-normalization-fix-from-009.md](./09--post-rename-infrastructure/021-unicode-normalization-fix-from-009.md) |
+| 021 | root dist cleanup verification (file retains historical name `021-unicode-normalization-fix-from-009`) | [021-unicode-normalization-fix-from-009.md](./09--post-rename-infrastructure/021-unicode-normalization-fix-from-009.md) |
 
 ---
 

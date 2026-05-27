@@ -943,6 +943,7 @@ describe('code-graph-query handler', () => {
       subject: 'src/a.ts',
       subjects: ['src/x.ts'],
       unionMode: 'multi',
+      includeTransitive: true,
       maxDepth: 2,
     });
     const parsed = JSON.parse(result.content[0].text);
@@ -1012,12 +1013,57 @@ describe('code-graph-query handler', () => {
     ]);
   });
 
+  // blast_radius must honor the documented includeTransitive flag.
+  // Default (flag absent) = direct importers only (depth 1); includeTransitive:true
+  // opts into multi-hop closure up to maxDepth. Before the fix, blast_radius always
+  // traversed to maxDepth regardless of the flag.
+  it('blast_radius honors includeTransitive: default depth-1 only, flag expands to multi-hop', async () => {
+    mocks.queryFileImportDependents.mockReturnValue([
+      { importedFilePath: 'src/a.ts', importerFilePath: 'src/b.ts' },
+      { importedFilePath: 'src/b.ts', importerFilePath: 'src/c.ts' },
+    ]);
+    mocks.queryFileDegrees.mockReturnValue([
+      { filePath: 'src/a.ts', degree: 1 },
+      { filePath: 'src/b.ts', degree: 1 },
+      { filePath: 'src/c.ts', degree: 1 },
+    ]);
+
+    // Default (no includeTransitive): even with maxDepth:3, only direct importers.
+    const defaultResult = await handleCodeGraphQuery({
+      operation: 'blast_radius',
+      subject: 'src/a.ts',
+      maxDepth: 3,
+    });
+    const defaultParsed = JSON.parse(defaultResult.content[0].text);
+    expect(defaultParsed.data.affectedFiles).toHaveLength(1);
+    expect(defaultParsed.data.affectedFiles[0]).toMatchObject({ filePath: 'src/b.ts', depth: 1 });
+    expect(defaultParsed.data.affectedFiles).not.toContainEqual(
+      expect.objectContaining({ filePath: 'src/c.ts' }),
+    );
+
+    // includeTransitive:true: multi-hop closure up to maxDepth includes depth-2.
+    const transitiveResult = await handleCodeGraphQuery({
+      operation: 'blast_radius',
+      subject: 'src/a.ts',
+      includeTransitive: true,
+      maxDepth: 3,
+    });
+    const transitiveParsed = JSON.parse(transitiveResult.content[0].text);
+    expect(transitiveParsed.data.affectedFiles).toContainEqual(
+      expect.objectContaining({ filePath: 'src/b.ts', depth: 1 }),
+    );
+    expect(transitiveParsed.data.affectedFiles).toContainEqual(
+      expect.objectContaining({ filePath: 'src/c.ts', depth: 2 }),
+    );
+  });
+
   it('returns structured failureFallback when blast-radius cannot resolve a subject', async () => {
     mocks.resolveSubjectFilePath.mockReturnValueOnce(null);
 
     const result = await handleCodeGraphQuery({
       operation: 'blast_radius',
       subject: 'MissingSymbol',
+      includeTransitive: true,
     });
     const parsed = JSON.parse(result.content[0].text);
 
@@ -1126,6 +1172,7 @@ describe('code-graph-query handler', () => {
     const result = await handleCodeGraphQuery({
       operation: 'blast_radius',
       subject: 'src/a.ts',
+      includeTransitive: true,
       maxDepth: 0,
     });
     const parsed = JSON.parse(result.content[0].text);
@@ -1210,6 +1257,7 @@ describe('code-graph-query handler', () => {
     const result = await handleCodeGraphQuery({
       operation: 'blast_radius',
       subject: 'src/a.ts',
+      includeTransitive: true,
       maxDepth: 2,
       minConfidence: 0.75,
     });

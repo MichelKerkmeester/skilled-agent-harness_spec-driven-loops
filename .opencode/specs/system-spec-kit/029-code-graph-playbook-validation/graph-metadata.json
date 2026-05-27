@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/029-code-graph-playbook-validation",
+  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation",
+  "parent_id": null,
+  "children_ids": [
+    "system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios",
+    "system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios",
+    "system-spec-kit/029-code-graph-playbook-validation/003-release-readiness-synthesis",
+    "system-spec-kit/029-code-graph-playbook-validation/004-hook-and-doc-fixes",
+    "system-spec-kit/029-code-graph-playbook-validation/005-db-binding-cleanup",
+    "system-spec-kit/029-code-graph-playbook-validation/006-parser-quarantine-recovery",
+    "system-spec-kit/029-code-graph-playbook-validation/007-followup-hook-docs-and-022",
+    "system-spec-kit/029-code-graph-playbook-validation/008-blast-radius-transitive-flag"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph playbook validation",
+      "system-code-graph manual testing run",
+      "029 code graph playbook validation"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "playbook",
+      "validation",
+      "system-code-graph",
+      "manual",
+      "testing",
+      "run",
+      "029",
+      "skill",
+      "ships",
+      "22-scenario"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Playbook Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-code-graph` skill ships a 22-scenario manual testing playbook (`manual_testing_playbook/`) that validates the `mk-code-index` MCP runtime: read-path freshness, manual scan/verify/status, detect_changes, context retrieval, coverage graph, MCP tool surface, doctor-code-graph policy, post-rename infrastructure, and the Devin SessionStart hook. These scenarios have no captured, dated operator run on record. Release readiness cannot be asserted without one.",
+    "created_at": "2026-05-26T19:43:14.031Z",
+    "last_save_at": "2026-05-27T05:35:21.981Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}
