@@ -17,7 +17,7 @@ interface SearchQualityMetricSummary {
   };
   refusalSurvival: number;
   citationQuality: number;
-  // F-011-C1-01: rank-sensitive metrics — NDCG@K and MRR distinguish a top-1
+  // rank-sensitive metrics — NDCG@K and MRR distinguish a top-1
   // hit from a top-3 hit (precision@K cannot). Additive only; existing
   // precision/recall/latency/refusal/citation outputs are unchanged.
   ndcgAt3: number;
@@ -53,7 +53,7 @@ function recallAtK(
   return hits.size / relevant.size;
 }
 
-// F-011-C1-01: NDCG@K — rank-sensitive metric. Distinguishes a top-1 hit from
+// NDCG@K — rank-sensitive metric. Distinguishes a top-1 hit from
 // a top-3 hit (precision@K cannot). Uses binary relevance (1 if id in
 // relevantIds, else 0) and standard log2 rank discount. Returns 0 when no
 // relevant ids exist (matches precisionAtK / recallAtK convention).
@@ -87,7 +87,7 @@ function ndcgAtK(
   return roundMetric(dcg / idcg);
 }
 
-// F-011-C1-01: MRR — mean reciprocal rank of the FIRST relevant hit.
+// MRR — mean reciprocal rank of the FIRST relevant hit.
 // Returns 1 if the top result is relevant, 0.5 if rank 2, 0.333 if rank 3,
 // etc. Returns 0 when no relevant hit appears in the candidate list at all
 // or when relevantIds is empty.
@@ -133,7 +133,7 @@ function summarizeSearchQualityRun(run: SearchQualityRun): SearchQualityMetricSu
     latency: latencyPercentiles(run.cases.map((testCase) => testCase.latency.totalMs)),
     refusalSurvival: refusalSurvival(run),
     citationQuality: citationQuality(run),
-    // F-011-C1-01: surface rank-sensitive metrics. NDCG@3 / NDCG@10 / MRR
+    // surface rank-sensitive metrics. NDCG@3 / NDCG@10 / MRR
     // averages mirror the precisionAt3 / recallAt3 averaging convention.
     ndcgAt3: average(run.cases.map((testCase) => testCase.finalRelevance.ndcgAt3), totalCases),
     ndcgAt10: average(run.cases.map((testCase) => testCase.finalRelevance.ndcgAt10), totalCases),
@@ -166,7 +166,7 @@ export {
   recallAtK,
   refusalSurvival,
   summarizeSearchQualityRun,
-  // F-011-C1-01: rank-sensitive metric exports
+  // rank-sensitive metric exports
   ndcgAtK,
   mrr,
 };
