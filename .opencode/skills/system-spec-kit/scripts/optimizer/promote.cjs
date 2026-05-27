@@ -6,12 +6,12 @@
 
 
 // ---------------------------------------------------------------
-// MODULE: Advisory Promotion Gate (T007)
+// MODULE: Advisory Promotion Gate
 // ---------------------------------------------------------------
 // Evaluates candidates against baseline and produces advisory-only
 // promotion reports. NEVER auto-promotes. Production promotion is
 // blocked until Phase 1 replay fixtures AND Phase 3 behavioral
-// suites exist (REQ-006).
+// suites exist.
 // ---------------------------------------------------------------
 
 const fs = require('fs');

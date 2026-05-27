@@ -157,7 +157,7 @@ function extractFilesFromData(
     const canonicalSourcePath = toCanonicalRelativePath(rawPath, CONFIG.PROJECT_ROOT);
     if (!canonicalSourcePath) return;
 
-    // F-20: Use full canonical source path as map key to prevent truncation-based collisions
+    // Use full canonical source path as map key to prevent truncation-based collisions.
     let mapKey = sourcePathToKey.get(canonicalSourcePath) ?? canonicalSourcePath;
 
     if (!sourcePathToKey.has(canonicalSourcePath) && filesMap.has(canonicalSourcePath)) {
@@ -241,7 +241,7 @@ function extractFilesFromData(
   }
 
   // Source 2: files_modified array (legacy format)
-  // F-16: Always pass 'Modified' action for filesModified entries
+  // Always pass 'Modified' action for filesModified entries.
   if (collectedData.filesModified && Array.isArray(collectedData.filesModified)) {
     for (const fileInfo of collectedData.filesModified) {
       const rawPath = typeof fileInfo.path === 'string'
@@ -328,7 +328,7 @@ function enhanceFilesWithSemanticDescriptions(
     // Priority 1: Exact full path match
     if (semanticFileChanges.has(filePath)) {
       const info = semanticFileChanges.get(filePath)!;
-      // F-19: Only overwrite ACTION when existing is missing or generic 'Modified'
+      // Only overwrite ACTION when existing is missing or generic 'Modified'.
       const preserveAction = file.ACTION && file.ACTION !== 'Modified';
       return {
         ...file,
@@ -355,7 +355,7 @@ function enhanceFilesWithSemanticDescriptions(
 
     if (matchCount === 1 && basenameMatch) {
       const info = basenameMatch.info;
-      // F-19: Preserve specific actions (Created/Deleted/Renamed/Read)
+      // Preserve specific actions (Created/Deleted/Renamed/Read).
       const preserveAction = file.ACTION && file.ACTION !== 'Modified';
       return {
         ...file,

@@ -46,7 +46,7 @@ const CONTAMINATED_NAME_PATTERNS = [
   /^Glob\s*(?:search|:)/i,
   /^Bash\s+command/i,
   /^[\/\.][^\s]+$/,
-  // F-37: Read/Edit/Write with short path format (e.g., "Read src/foo.ts")
+  // Read/Edit/Write with short path format (e.g., "Read src/foo.ts").
   /^(?:Read|Edit|Write)\s+[^\s]+\/[^\s]+$/i,
 ];
 
@@ -196,7 +196,7 @@ function truncateSlugAtWordBoundary(slug: string, max: number = DEFAULT_SLUG_MAX
  * @returns The original filename if unique, or a collision-free variant.
  */
 export function ensureUniqueMemoryFilename(contextDir: string, filename: string): string {
-  // F-07: Use atomic O_CREAT|O_EXCL instead of readdirSync + set check
+  // Use atomic O_CREAT|O_EXCL instead of readdirSync + set check.
   const filePath = path.join(contextDir, filename);
   try {
     const fd = fs.openSync(filePath, fs.constants.O_CREAT | fs.constants.O_EXCL | fs.constants.O_WRONLY, 0o600);
@@ -206,7 +206,7 @@ export function ensureUniqueMemoryFilename(contextDir: string, filename: string)
     return filename;
   } catch (err: unknown) {
     const code = (err as NodeJS.ErrnoException).code;
-    // F-29: Only retry on EEXIST; ENOENT (dir missing) means no collision
+    // Only retry on EEXIST; ENOENT (dir missing) means no collision.
     if (code === 'ENOENT') return filename;
     if (code !== 'EEXIST') throw err;
   }

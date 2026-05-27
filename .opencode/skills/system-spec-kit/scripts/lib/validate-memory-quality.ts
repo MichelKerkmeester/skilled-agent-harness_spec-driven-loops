@@ -306,7 +306,7 @@ function extractFrontMatter(content: string): string {
  * Extract frontmatter and validate its YAML syntax in a single pass.
  * Returns { raw, parseError } where parseError is non-null when malformed YAML
  * is detected. The parse error is meant to be surfaced as a V13 rule failure,
- * not thrown as an exception (T018).
+ * not thrown as an exception.
  */
 function extractAndValidateFrontMatter(content: string): { raw: string; parseError: string | null } {
   const raw = extractFrontMatter(content);
@@ -317,7 +317,7 @@ function extractAndValidateFrontMatter(content: string): { raw: string; parseErr
     const parseError = validateFrontMatterSyntax(raw);
     return { raw, parseError };
   } catch (err: unknown) {
-    // Convert any unexpected exception into a structured failure (T018)
+    // Convert any unexpected exception into a structured failure.
     const parseError = `unexpected parse error: ${err instanceof Error ? err.message : String(err)}`;
     return { raw, parseError };
   }
@@ -690,9 +690,8 @@ function extractAllowedSpecIds(specFolder: string): Set<string> {
       allowedSpecIds.add(childSpecId);
     }
 
-    // Rec 5: Also scan sibling phases under the parent spec folder.
-    // When saving memory for "023/012-memory-save-quality-pipeline",
-    // references to "011-skill-alignment" should be allowed (same parent 023).
+    // Also scan sibling phases under the parent spec folder.
+    // References to sibling phase folders should be allowed under the same parent.
     const parentDir = path.dirname(resolvedSpecFolder);
     if (parentDir !== resolvedSpecFolder) {
       try {
@@ -1013,7 +1012,7 @@ function validateMemoryQualityContent(content: string, options?: { filePath?: st
   let v12Failed = false;
   let v12Message = 'ok';
   if (specFolder && !isMemoryDirFile && !isSpecDoc) {
-    // T023: Normalize specFolder to an absolute path before resolving spec.md.
+    // Normalize specFolder to an absolute path before resolving spec.md.
     // If specFolder is already absolute, use it as-is; otherwise resolve relative
     // to the current working directory.
     const resolvedSpecFolder = resolveSpecFolderPath(specFolder);
@@ -1060,8 +1059,8 @@ function validateMemoryQualityContent(content: string, options?: { filePath?: st
   });
 
   // V13: Frontmatter YAML integrity and content density
-  // Sub-check 1: YAML syntax errors in frontmatter (T017-T018)
-  // Sub-check 2: Content density — strip frontmatter block, count non-whitespace chars (T020)
+  // Sub-check 1: YAML syntax errors in frontmatter.
+  // Sub-check 2: Content density — strip frontmatter block, count non-whitespace chars.
   let v13Failed = false;
   let v13Message = 'ok';
   if (frontMatterParseError) {
@@ -1082,7 +1081,7 @@ function validateMemoryQualityContent(content: string, options?: { filePath?: st
     message: v13Message,
   });
 
-  // V14: Status/percentage contradiction — status=complete but percentage < 100 (T025)
+  // V14: Status/percentage contradiction — status=complete but percentage < 100.
   // Emitted as a soft warning (blockOnWrite: false, blockOnIndex: false)
   let v14Failed = false;
   let v14Message = 'ok';

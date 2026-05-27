@@ -281,7 +281,7 @@ function findFactByPattern(observations: Observation[], pattern: RegExp): string
 }
 
 const INVALID_BLOCKER_PATTERNS: RegExp[] = [
-  // Spec-defined (REQ-006): markdown headers, leading quotes/backtick/space, transition quotes
+  // Spec-defined invalid patterns: markdown headers, leading quotes/backtick/space, transition quotes.
   /^##\s+/,
   /^['"` ]/,
   /'\s+to\s+'/i,

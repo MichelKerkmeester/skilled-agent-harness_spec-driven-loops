@@ -32,7 +32,7 @@ run_check() {
 # 2. VALIDATION LOGIC
 # ───────────────────────────────────────────────────────────────
 
-    # TODO: Parse Predecessor/Successor metadata table rows instead of grepping for phase name presence. Current approach may pass with swapped, stale, or duplicated adjacency metadata. See review finding F-035.
+    # TODO: Parse Predecessor/Successor metadata table rows instead of grepping for phase name presence. Current approach may pass with swapped, stale, or duplicated adjacency metadata.
 
     # Check if this folder has phase children
     local phase_dir

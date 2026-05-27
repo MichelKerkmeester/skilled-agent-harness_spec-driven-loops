@@ -56,7 +56,7 @@ resolve_markdown_reference_path() {
 }
 
 extract_markdown_link_targets() {
-    # F-009-B4-01: Markdown link extraction now covers four formats:
+    # Markdown link extraction now covers four formats:
     #
     #   1. Inline parens:        [label](path.md)         [label](path.md#anchor)
     #   2. Angle-bracket inline: [label](<path.md>)        — relative paths only

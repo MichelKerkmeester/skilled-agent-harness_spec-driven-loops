@@ -1,7 +1,7 @@
 'use strict';
 
 // ---------------------------------------------------------------
-// MODULE: Coverage Graph Core (T001 + T002)
+// MODULE: Coverage Graph Core
 // ---------------------------------------------------------------
 // Extracted and adapted from mcp_server/lib/storage/causal-edges.ts
 // Provides edge management primitives for in-memory coverage graphs

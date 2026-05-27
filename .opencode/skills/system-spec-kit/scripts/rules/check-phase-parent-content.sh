@@ -64,7 +64,7 @@ run_check() {
         [[ -n "$finding" ]] && RULE_DETAILS+=("$finding")
     done <<< "$findings"
 
-    # F-019-D4-03: append manifest-size health advisory using the dist
+    # Append manifest-size health advisory using the dist
     # is-phase-parent.js CLI. Emits child_count + threshold bucket so authors
     # see manifest sprawl alongside content-discipline tokens. Soft-fails if
     # node or the dist artifact is unavailable; never escalates final status.

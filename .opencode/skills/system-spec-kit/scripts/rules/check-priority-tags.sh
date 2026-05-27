@@ -25,7 +25,7 @@ run_check() {
     RULE_DETAILS=()
     RULE_REMEDIATION=""
     
-    # T501 FIX: Strip non-numeric suffix (e.g. "3+" → "3") for arithmetic comparisons
+    # Strip non-numeric suffix (e.g. "3+" → "3") for arithmetic comparisons.
     local numeric_level="${level//[^0-9]/}"
     if [[ "$numeric_level" -lt 2 ]]; then
         RULE_STATUS="skip"

@@ -4,7 +4,7 @@
 # ───────────────────────────────────────────────────────────────
 #
 # Grandfathering windows for the canonical-save hardening rollout:
-# - 007/008/009/010 temporary allowlist expires at 2026-05-01T00:00:00Z
+# - Temporary rollout allowlist expires at 2026-05-01T00:00:00Z
 # - save_lineage enforcement becomes hard for graph writes on/after 2026-05-01T00:00:00Z
 
 set -euo pipefail

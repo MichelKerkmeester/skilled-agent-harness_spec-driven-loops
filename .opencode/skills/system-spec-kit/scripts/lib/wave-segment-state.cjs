@@ -1,7 +1,7 @@
 'use strict';
 
 // ---------------------------------------------------------------
-// MODULE: Wave Segment State (T003, T-WE-NEW-4)
+// MODULE: Wave Segment State
 // ---------------------------------------------------------------
 // Per-segment state management, JSONL lineage, and merge helpers
 // keyed by explicit segment identifiers.

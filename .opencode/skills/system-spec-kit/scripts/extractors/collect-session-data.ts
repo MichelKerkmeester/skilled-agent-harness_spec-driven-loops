@@ -207,7 +207,7 @@ function extractPreflightPostflightData(collectedData: CollectedDataFull | null)
 
   const DEFAULT_VALUE = null;
 
-  // F-35: Guard against NaN/Infinity — replace with null
+  // Guard against NaN/Infinity — replace with null.
   const safeNum = (v: number | undefined | null): number | null =>
     v !== undefined && v !== null && Number.isFinite(v) ? v : null;
 
@@ -476,7 +476,7 @@ function determineSessionStatus(
   }
 
   if (blockers && blockers !== 'None') {
-    // O5-13: Scope F-25 resolution to observations AFTER the blocker was detected
+    // Scope blocker resolution to observations AFTER the blocker was detected.
     const blockerKeywordsLocal = /\b(?:blocked|stuck|can't proceed|cannot proceed|waiting on|depends on|broken|fails?)\b/i;
     const blockerIdx = observations.findIndex((obs) => {
       const text = `${obs.title || ''} ${obs.narrative || ''}`;
@@ -1008,7 +1008,7 @@ function buildContinueSessionData(params: ContinueSessionParams): ContinueSessio
   const continuationCount = recentContext?.[0]?.continuationCount ?? 1;
 
   const lastPrompt = userPrompts[userPrompts.length - 1];
-  // F-19 — Guard against invalid timestamps that cause RangeError on toISOString()
+  // Guard against invalid timestamps that cause RangeError on toISOString().
   let lastActivity: string;
   if (lastPrompt?.timestamp) {
     const d = new Date(lastPrompt.timestamp);
@@ -1052,7 +1052,7 @@ function shouldAutoSave(messageCount: number): boolean {
    6. SESSION DATA COLLECTION
 ------------------------------------------------------------------*/
 
-// F-24: Single helper for spec-folder resolution — replaces 3 redundant resolution points
+// Single helper for spec-folder resolution — replaces redundant resolution points.
 // CODEX2-004: Returns both the relative folder name AND the matched specs root
 //             so callers can reuse the winning root without re-calling findActiveSpecsDir().
 interface SpecFolderResolution {
@@ -1197,8 +1197,8 @@ async function collectSessionData(
 ): Promise<SessionData> {
   const now = new Date();
 
-  // F-24: Consolidated spec-folder resolution helper
-  // CODEX2-004: Preserve the winning specs root from phase 1 for use in phase 2
+  // Consolidated spec-folder resolution helper.
+  // Preserve the winning specs root from phase 1 for use in phase 2
   let folderName: string = specFolderName || '';
   let resolvedSpecsRoot: string | null = null;
   const candidateSpecsDirs = Array.from(new Set([
@@ -1435,7 +1435,7 @@ async function collectSessionData(
   const createdAtEpoch: number = Math.floor(Date.now() / 1000);
 
   let SPEC_FILES: SpecFileEntry[] = [];
-  // CODEX2-004: Reuse the specs root that phase 1 matched instead of re-calling
+  // Reuse the specs root that phase 1 matched instead of re-calling
   // findActiveSpecsDir(), which always prefers PROJECT_ROOT/specs and can point
   // at the wrong tree when specs exist in both locations.
   const activeSpecsDir = resolvedSpecsRoot
@@ -1445,7 +1445,7 @@ async function collectSessionData(
   if (!data.SPEC_FOLDER && folderName) {
     data.SPEC_FOLDER = folderName;
   }
-  // F-03: Path traversal guard with canonical path resolution
+  // Path traversal guard with canonical path resolution.
   let specFolderPath: string | null = null;
   if (data.SPEC_FOLDER) {
     const candidate = path.resolve(activeSpecsDir, data.SPEC_FOLDER);

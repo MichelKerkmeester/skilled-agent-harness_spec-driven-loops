@@ -1,7 +1,7 @@
 'use strict';
 
 // ---------------------------------------------------------------
-// MODULE: Wave Lifecycle (T-WE-NEW-1, T004)
+// MODULE: Wave Lifecycle
 // ---------------------------------------------------------------
 // Orchestrator lifecycle helpers for fan-out, join, prune, promote,
 // merge, and resume state transitions. Parallelism lives at the

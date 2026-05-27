@@ -1,11 +1,11 @@
 'use strict';
 
 // ---------------------------------------------------------------
-// MODULE: Random Search Optimizer (T004 + T005)
+// MODULE: Random Search Optimizer
 // ---------------------------------------------------------------
 // Searches bounded deterministic numeric config space via random
 // sampling. Records an audit trail for ALL candidates, both
-// accepted and rejected (REQ-007, REQ-008).
+// accepted and rejected.
 // ---------------------------------------------------------------
 
 const fs = require('fs');

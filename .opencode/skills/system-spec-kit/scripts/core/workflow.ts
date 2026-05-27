@@ -104,7 +104,7 @@ const moduleDir = dirnameFromImportMeta(import.meta.url);
 // 2. HELPERS
 // ───────────────────────────────────────────────────────────────
 
-// Phase 004 T011: Trigger phrase filter — suppresses path fragments, short tokens, and shingle subsets
+// Trigger phrase filter — suppresses path fragments, short tokens, and shingle subsets.
 const TRIGGER_ALLOW_LIST = new Set(['rag', 'bm25', 'mcp', 'adr', 'jwt', 'api', 'cli', 'llm', 'ai']);
 
 function normalizeWorkflowTriggerKey(value: string): string {
@@ -726,7 +726,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       }) as CollectedDataFull;
       log('   Using pre-loaded data (normalized)');
     } else if (loadDataFn) {
-      // F-22: Guard loadDataFn result with explicit null check
+      // Guard loadDataFn result with explicit null check.
       collectedData = (await loadDataFn()) || null;
       log('   Loaded via custom function');
     } else {
@@ -830,7 +830,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     const validatedSpecFolderPath: string = await ensureSpecFolderExists(specFolder);
     log(`   Using existing spec folder: ${validatedSpecFolderPath}\n`);
 
-    // F-23: Define contamination cleaning functions before enrichment
+    // Define contamination cleaning functions before enrichment.
     let hadContamination = false;
     let contaminationMaxSeverity: ContaminationSeverity | null = null;
     const contaminationAuditTrail: ContaminationAuditRecord[] = [];
@@ -868,7 +868,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       if (!observations) {
         return observations;
       }
-      // F-23: Clean ALL observations, not just provenanced ones
+      // Clean ALL observations, not just provenanced ones.
       return observations.map((observation) => {
         if (!observation) {
           return observation;
@@ -889,17 +889,17 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       });
     };
 
-    // F-23: Pre-enrichment contamination cleaning pass
+    // Pre-enrichment contamination cleaning pass.
     {
       const preCleanedObservations = cleanObservations(collectedData.observations);
       const preCleanedSummary = (typeof collectedData.SUMMARY === 'string' && collectedData.SUMMARY.length > 0)
         ? cleanContaminationText(collectedData.SUMMARY) : collectedData.SUMMARY;
-      // Phase 002 T010: Clean _JSON_SESSION_SUMMARY (raw sessionSummary title candidate)
+      // Clean _JSON_SESSION_SUMMARY (raw sessionSummary title candidate).
       const preCleanedJsonSummary = (typeof (collectedData as Record<string, unknown>)._JSON_SESSION_SUMMARY === 'string' &&
         ((collectedData as Record<string, unknown>)._JSON_SESSION_SUMMARY as string).length > 0)
         ? cleanContaminationText((collectedData as Record<string, unknown>)._JSON_SESSION_SUMMARY as string)
         : (collectedData as Record<string, unknown>)._JSON_SESSION_SUMMARY;
-      // Phase 002 T011: Clean _manualDecisions array entries
+      // Clean _manualDecisions array entries.
       const preCleanedDecisions = Array.isArray((collectedData as Record<string, unknown>)._manualDecisions)
         ? ((collectedData as Record<string, unknown>)._manualDecisions as unknown[]).map((d: unknown) => {
             if (typeof d === 'string') return cleanContaminationText(d);
@@ -913,7 +913,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
             return d;
           })
         : (collectedData as Record<string, unknown>)._manualDecisions;
-      // Phase 002 T012: Clean recentContext array entries
+      // Clean recentContext array entries.
       const preCleanedRecentCtx = Array.isArray(collectedData.recentContext)
         ? collectedData.recentContext.map((entry) => ({
             ...entry,
@@ -921,7 +921,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
             learning: typeof entry.learning === 'string' ? cleanContaminationText(entry.learning) : entry.learning,
           }))
         : collectedData.recentContext;
-      // Phase 002 T013-T014: Clean technicalContext KEY and VALUE strings
+      // Clean technicalContext KEY and VALUE strings.
       const preCleanedTechCtx = Array.isArray((collectedData as Record<string, unknown>).TECHNICAL_CONTEXT)
         ? ((collectedData as Record<string, unknown>).TECHNICAL_CONTEXT as Array<{ KEY: string; VALUE: string }>).map((entry) => ({
             KEY: typeof entry.KEY === 'string' ? cleanContaminationText(entry.KEY) : entry.KEY,
@@ -1241,7 +1241,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     ],
     allowSpecTitleFallback
   );
-  // F-26: Load description.json to include memoryNameHistory in slug candidates
+  // Load description.json to include memoryNameHistory in slug candidates.
   let memoryNameHistoryForSlug: readonly string[] = [];
   const slugApiModule = await tryImportMcpApi('@spec-kit/mcp-server/api');
   if (slugApiModule) {
@@ -1406,7 +1406,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   const writtenFiles: string[] = [];
   log('   Skipping legacy [spec]/memory/*.md writes');
 
-  // T-CNS-01 (Phase 017 Wave A, H-56-1 fix): the legacy RC-6 stub hard-coded
+  // The legacy RC-6 stub hard-coded
   // ctxFileWritten = false, which silently disabled the description.json
   // memorySequence + lastUpdated update block on every canonical save.
   // Post-v3.4.1.0 the legacy [spec]/memory/*.md artifact is intentionally not
@@ -1425,7 +1425,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       await withSavePfdLock(specFolderAbsolute, async () => {
         let existing = loadPFD(specFolderAbsolute);
 
-        // F-36: Regenerate missing/corrupt description.json from spec.md + path structure
+        // Regenerate missing/corrupt description.json from spec.md + path structure.
         if (!existing) {
           const specsBaseDirs = Array.from(new Set([
             ...getSpecsDirectories(),
@@ -1466,7 +1466,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
             ...(sequenceSnapshot.memoryNameHistory || []).slice(-19),
             rawCtxFilename,
           ];
-          // T-CNS-01 (Phase 017 Wave A, H-56-1 fix): bump lastUpdated on every
+          // Bump lastUpdated on every
           // canonical save so metadata-freshness consumers (graph readiness,
           // staleness detectors, /memory:search ranking) see a live timestamp.
           // Pre-017: this field was never written by the canonical-save path —
@@ -1491,18 +1491,18 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
         }
       });
     } catch (descErr: unknown) {
-      // F-34: Log error instead of silently swallowing
+      // Log error instead of silently swallowing.
       console.warn(`[workflow] description.json tracking error: ${descErr instanceof Error ? descErr.message : String(descErr)}`);
     }
   } else {
     log('   Context file was a duplicate — skipping description tracking');
   }
 
-  // T-W1-CNS-04 (Phase 017 Wave A, H-56-1 fix): previously gated on
+  // Previously gated on
   // options.plannerMode === 'full-auto', which made the default plan-only
   // /memory:save a structural no-op for graph-metadata.json (last_save_at
   // never advanced, Step 11.5 spec-doc reindex was deferred indefinitely,
-  // post-save quality review was skipped). The compound with T-CNS-01's
+  // post-save quality review was skipped). The compound with the
   // dead ctxFileWritten stub produced H-56-1 (default canonical save wrote
   // zero metadata). Lifted unconditional so every canonical save refreshes
   // graph metadata, re-indexes touched spec docs, and runs the post-save
@@ -1682,7 +1682,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     log('Step 11.5: deferred (planner-default save requires explicit reindex follow-up)');
   }
 
-  // Step 11.75: Post-save quality review (T115 FIX — wire into production pipeline)
+  // Step 11.75: Post-save quality review — wire into production pipeline.
   // Runs the post-save reviewer against the canonical spec-doc save artifacts.
   // Non-blocking: review failures are logged but do not abort the workflow.
   if (shouldRunExplicitSaveFollowUps) {

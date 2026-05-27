@@ -6,7 +6,7 @@
 
 
 // ---------------------------------------------------------------
-// MODULE: Replay Corpus Builder (T001)
+// MODULE: Replay Corpus Builder
 // ---------------------------------------------------------------
 // Extracts replay corpus from packet JSONL data for offline
 // loop optimization. Packet family 040 is REQUIRED. 028 is an
@@ -444,7 +444,7 @@ function buildCorpus(packetFamily, options = {}) {
     corpus.push(entry);
   }
 
-  // Mark unavailable metrics explicitly (REQ-009)
+  // Mark unavailable metrics explicitly.
   if (!entry.metadata.hasGraphMetrics) {
     warnings.push(
       `Corpus entry ${entry.id}: graph metrics unavailable (older trace format)`,

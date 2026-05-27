@@ -191,7 +191,7 @@ export interface CollectedDataBase {
   contextType?: string;
   /** Snake-case variant for raw JSON compatibility. Prefer contextType (camelCase) in new code. */
   context_type?: string;
-  // Phase 002 T029: Explicit projectPhase from JSON payload (mirrors contextType pattern)
+  // Explicit projectPhase from JSON payload (mirrors contextType pattern).
   projectPhase?: string;
   /** Snake-case variant for raw JSON compatibility. Prefer projectPhase (camelCase) in new code. */
   project_phase?: string;

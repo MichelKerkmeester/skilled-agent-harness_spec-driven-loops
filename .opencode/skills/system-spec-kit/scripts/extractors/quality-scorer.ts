@@ -39,7 +39,7 @@ interface QualityInputs {
 const QUALITY_RULE_IDS: QualityRuleId[] = ['V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12', 'V13', 'V14'];
 
 // O2-9: Weight penalties by V-rule severity instead of flat rate
-// Recalibrated (Phase 002): five simultaneous MEDIUM failures → ~0.85 (meaningfully below 0.90).
+// Recalibrated: five simultaneous MEDIUM failures → ~0.85 (meaningfully below 0.90).
 // HIGH rules (V1, V3, V8, V9, V11, V13) block writes upstream so rarely reach the scorer;
 // they carry a larger penalty to reflect their critical nature when they do.
 const PENALTY_BY_SEVERITY: Record<ValidationRuleSeverity, number> = {
@@ -192,7 +192,7 @@ function scoreMemoryQuality(inputs: QualityInputs): QualityScoreResult {
     qualityScore -= 0.15;
   }
 
-  // Phase 002: Bonus additions removed. Base score is 1.0; only penalties and caps apply.
+  // Bonus additions removed. Base score is 1.0; only penalties and caps apply.
   // Prior bonuses (+0.05 messages, +0.05 tools, +0.10 decisions) masked up to 5 simultaneous
   // soft failures, making quality_score effectively binary. Removed to restore discriminative power.
 

@@ -1,12 +1,12 @@
 'use strict';
 
 // ---------------------------------------------------------------
-// MODULE: Deterministic Replay Runner (T003)
+// MODULE: Deterministic Replay Runner
 // ---------------------------------------------------------------
 // Replays corpus entries with given configurations, producing
 // deterministic outputs. Same inputs always produce same outputs.
 // Isolates replay from live network or human-in-the-loop
-// variability (REQ-004).
+// variability.
 // ---------------------------------------------------------------
 
 /* ---------------------------------------------------------------

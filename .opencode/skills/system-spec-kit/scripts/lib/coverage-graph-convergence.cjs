@@ -1,8 +1,8 @@
 'use strict';
-// ADR-001: sourceDiversity is an adapter replicating the MCP handler's canonical algorithm. Do not diverge. See ./mcp_server/lib/coverage-graph/coverage-graph-signals.ts for the authoritative implementation.
+// sourceDiversity is an adapter replicating the MCP handler's canonical algorithm. Do not diverge. See ./mcp_server/lib/coverage-graph/coverage-graph-signals.ts for the authoritative implementation.
 
 // ---------------------------------------------------------------
-// MODULE: Coverage Graph Convergence (T005)
+// MODULE: Coverage Graph Convergence
 // ---------------------------------------------------------------
 // Graph-aware convergence helpers that combine graph-structural
 // signals with Phase 1 stop-trace convergence scoring. Provides

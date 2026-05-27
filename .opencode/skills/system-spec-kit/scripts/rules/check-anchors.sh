@@ -88,7 +88,7 @@ run_check() {
     tmp_opens=$(mktemp)
     tmp_closes=$(mktemp)
 
-    # T007: Check that major spec docs have at least 1 ANCHOR tag
+    # Check that major spec docs have at least 1 ANCHOR tag.
     local -a major_docs=("spec.md" "plan.md" "tasks.md" "checklist.md" "decision-record.md")
     for doc_name in "${major_docs[@]-}"; do
         local doc_path="$folder/$doc_name"

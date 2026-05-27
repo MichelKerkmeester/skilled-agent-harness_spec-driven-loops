@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────
-// SCRIPT: Phase 2 Closure Metrics (T050-T053)
+// SCRIPT: Closure Metrics
 // ───────────────────────────────────────────────────────────────
 
 import fs from 'fs';

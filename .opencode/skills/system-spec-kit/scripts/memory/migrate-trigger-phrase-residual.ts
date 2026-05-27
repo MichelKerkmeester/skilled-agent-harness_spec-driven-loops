@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------
 // MODULE: Trigger Phrase Residual Migration
 // ---------------------------------------------------------------
-// One-time corpus migration for Phase 6 PR-13. This utility re-sanitizes
+// One-time corpus migration. This utility re-sanitizes
 // historical memory trigger_phrases using the live sanitizer plus bounded
 // canonicalization rules for stale residual cleanup.
 

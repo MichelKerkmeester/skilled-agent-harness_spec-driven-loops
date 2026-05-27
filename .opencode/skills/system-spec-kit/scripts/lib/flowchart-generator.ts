@@ -351,7 +351,7 @@ function classifyDiagramPattern(asciiArt: string): DiagramClassification {
     .some((line) => ((line.match(/\u25BC/g) || []).length > 1));
   const hasParallelBlock: boolean = art.includes('parallel') || (hasBranchConnector && hasMultipleBranchArrows);
   const hasApprovalGate: boolean = asciiArt.includes('\u2554\u2550') || art.includes('approval') || art.includes('gate');
-  // F-24 — └ and ┘ are standard box-drawing characters used in any boxed
+  // └ and ┘ are standard box-drawing characters used in any boxed
   // Diagram. Requiring both misclassifies most diagrams as loops. Instead, only
   // Match explicit "loop" keyword or back-edge indicators (← ↑ arrows pointing back).
   const hasLoopBack: boolean = art.includes('loop') || art.includes('retry') ||

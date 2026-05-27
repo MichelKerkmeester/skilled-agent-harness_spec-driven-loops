@@ -42,7 +42,7 @@ const OPTIONAL_PLACEHOLDERS: Set<string> = new Set([
   'ANCHOR_ID', 'TYPE', 'NARRATIVE', 'FILES_LIST',
   'CAPTURED_FILE_COUNT', 'FILESYSTEM_FILE_COUNT', 'GIT_CHANGED_FILE_COUNT',
   'HEAD_REF', 'COMMIT_REF',
-  // Phase 004: toolCalls/exchanges compact strings — empty when no data present
+  // ToolCalls/exchanges compact strings — empty when no data present.
   'TOOL_CALLS_COMPACT', 'EXCHANGES_COMPACT', 'hasToolCalls', 'hasExchanges',
 ]);
 
@@ -177,7 +177,7 @@ async function populateTemplate(templateName: string, data: TemplateContext): Pr
   const templateDir: string = CONFIG.TEMPLATE_DIR;
   const templatePath: string = path.join(templateDir, `${templateName}_template.md`);
 
-  // T029 FIX: Add error handling for template not found scenario
+  // Add error handling for template not found scenario.
   try {
     // Check if template exists before reading
     await fs.access(templatePath);

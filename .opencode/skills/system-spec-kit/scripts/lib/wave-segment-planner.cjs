@@ -1,11 +1,11 @@
 'use strict';
 
 // ---------------------------------------------------------------
-// MODULE: Wave Segment Planner (T001, T-WE-NEW-2, T-WE-NEW-3)
+// MODULE: Wave Segment Planner
 // ---------------------------------------------------------------
 // Deterministic segmentation for review files and research domains.
 // v1: heuristic-based (file counts, directory grouping, hotspot ranking)
-// v2: graph/cluster-enhanced (Phase 002 coverage graph overlay)
+// v2: graph/cluster-enhanced coverage graph overlay.
 //
 // Segment identity and ordering are reproducible from the same inputs.
 // Activation gates ensure wave mode only activates for large targets.
@@ -310,7 +310,7 @@ function generateDomainLedger(sources, metrics) {
 }
 
 /* ---------------------------------------------------------------
-   5. REVIEW SEGMENTATION (T001)
+   5. REVIEW SEGMENTATION
 ----------------------------------------------------------------*/
 
 /**
@@ -428,7 +428,7 @@ function segmentForReview(inventory, config) {
 const MAX_SEGMENTS_DEFAULT = 20;
 
 /* ---------------------------------------------------------------
-   6. RESEARCH SEGMENTATION (T001)
+   6. RESEARCH SEGMENTATION
 ----------------------------------------------------------------*/
 
 /**

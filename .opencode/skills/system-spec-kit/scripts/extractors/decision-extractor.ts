@@ -15,7 +15,7 @@ import { generateAnchorId, validateAnchorUniqueness, extractSpecNumber } from '.
 import { generateDecisionTree } from '../lib/decision-tree-generator.js';
 import { truncateOnWordBoundary } from '../lib/truncate-on-word-boundary.js';
 import type { DecisionNode } from '../lib/decision-tree-generator.js';
-// O5-4: Removed dead simFactory import (F-12 eliminated simulation fallback path)
+// Removed dead simFactory import after eliminating the simulation fallback path.
 import type {
   CollectedDataSubset,
   DecisionOption,
@@ -30,7 +30,7 @@ export type { DecisionOption, DecisionRecord, DecisionData };
    1. INTERFACES
 ------------------------------------------------------------------*/
 
-// F-32: Word boundaries prevent partial matches (e.g., "undecided" matching "decided")
+// Word boundaries prevent partial matches (e.g., "undecided" matching "decided").
 const DECISION_CUE_REGEX = /\b(decided|chose|will use|approach is|going with|rejected|we'll|selected|prefer|adopt)\b/i;
 const HIGH_CONFIDENCE_THRESHOLD = 0.8;
 const MEDIUM_CONFIDENCE_THRESHOLD = 0.5;
@@ -241,12 +241,12 @@ async function extractDecisions(
     // safer lexical recovery path.
     : validatedAuthoredDecisions);
 
-  // F-12: Return empty decisions for null input instead of synthetic simulation data
+  // Return empty decisions for null input instead of synthetic simulation data.
   if (!collectedData) {
     return { DECISIONS: [], DECISION_COUNT: 0, HIGH_CONFIDENCE_COUNT: 0, MEDIUM_CONFIDENCE_COUNT: 0, LOW_CONFIDENCE_COUNT: 0, FOLLOWUP_COUNT: 0 };
   }
 
-  // F-12: Process manual decisions, then merge with observation-extracted decisions
+  // Process manual decisions, then merge with observation-extracted decisions.
   let processedManualDecisions: DecisionRecord[] = [];
   if (manualDecisionInputs.length > 0) {
     structuredLog('info', 'Processing manual decisions', {
@@ -421,7 +421,7 @@ async function extractDecisions(
       }
     );
 
-    // F-12: Don't return early — fall through to merge with observation-extracted decisions
+    // Don't return early — fall through to merge with observation-extracted decisions.
   }
 
   // Process MCP data - extract decision observations
@@ -429,7 +429,7 @@ async function extractDecisions(
     .filter((obs) => obs.type === 'decision')
     .filter((obs) => !(processedManualDecisions.length > 0 && obs._manualDecision));
 
-  // REQ-002: suppress ALL observation-type decisions when manual decisions exist,
+  // Suppress ALL observation-type decisions when manual decisions exist,
   // since observation decisions are auto-extracted from the same session and manual
   // decisions should take full precedence
   if (processedManualDecisions.length > 0) {
@@ -557,7 +557,7 @@ async function extractDecisions(
         return { CAVEAT_ITEM: text };
       });
 
-    // F-32: Merge file evidence with fact evidence instead of preferring files only
+    // Merge file evidence with fact evidence instead of preferring files only.
     const observationFiles = 'files' in obs && Array.isArray(obs.files) ? obs.files : null;
     const fileEvidence = observationFiles
       ? observationFiles.map((f: string) => ({ EVIDENCE_ITEM: f }))
@@ -625,7 +625,7 @@ async function extractDecisions(
     return decision;
   });
 
-  // F-12: Merge manual decisions with observation-extracted decisions
+  // Merge manual decisions with observation-extracted decisions.
   const allDecisions = [...processedManualDecisions, ...decisions];
 
   const highConfidence: number = allDecisions.filter((d) => d.CONFIDENCE >= HIGH_CONFIDENCE_THRESHOLD).length;

@@ -66,7 +66,7 @@ run_check() {
             return
         fi
 
-        # F-009-B4-04: Preserve helper extra_header results and classify by
+        # Preserve helper extra_header results and classify by
         # document position. The helper emits required_header lines first
         # (in expected order) and extra_header lines at the end. For
         # classification we need to walk the actual document and record
@@ -107,7 +107,7 @@ run_check() {
                     errors+=("$display_name: Required section header out of order '$value'")
                     ;;
                 extra_header)
-                    # F-009-B4-04: Classify extras by position in the actual
+                    # Classify extras by position in the actual
                     # document. If the extra header appears AFTER the last
                     # required header, it is a packet extension (accepted).
                     # If it appears BEFORE, it is mid-document drift
@@ -154,7 +154,7 @@ run_check() {
     if [[ -f "$folder/checklist.md" ]]; then
         local bare_priority_count=0
         local chk_count=0
-        # F-009-B4-05: Match both lowercase and uppercase X in checkbox class
+        # Match both lowercase and uppercase X in checkbox class
         # so checklists exported from external tools that use [X] do not
         # produce false-positive missing-CHK errors.
         bare_priority_count=$(count_matches '^\s*-\s*\[[ xX]\]\s*\*\*\[P[012]\]\*\*' "$folder/checklist.md")

@@ -1,7 +1,7 @@
 'use strict';
 
 // ---------------------------------------------------------------
-// MODULE: Coverage Graph Signals (T003)
+// MODULE: Coverage Graph Signals
 // ---------------------------------------------------------------
 // Extracted and adapted from mcp_server/lib/graph/graph-signals.ts
 // Provides signal computation for in-memory coverage graphs:

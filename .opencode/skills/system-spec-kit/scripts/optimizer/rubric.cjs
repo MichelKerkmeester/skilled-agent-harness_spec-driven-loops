@@ -1,12 +1,12 @@
 'use strict';
 
 // ---------------------------------------------------------------
-// MODULE: Quality Rubric (T002)
+// MODULE: Quality Rubric
 // ---------------------------------------------------------------
 // Defines a quality rubric with per-dimension scoring for
 // evaluating deep-loop replay runs. Dimensions include
 // convergenceEfficiency, recoverySuccessRate, findingAccuracy,
-// and synthesisQuality. Scores are broken down by dimension (REQ-003).
+// and synthesisQuality. Scores are broken down by dimension.
 // ---------------------------------------------------------------
 
 /* ---------------------------------------------------------------
@@ -200,7 +200,7 @@ function scoreRun(rubric, replayResults) {
     const scorer = DIMENSION_SCORERS[name];
 
     if (!scorer) {
-      // Unknown dimension, mark unavailable (REQ-009: no fake values)
+      // Unknown dimension, mark unavailable; do not synthesize fake values.
       perDimension[name] = {
         score: null,
         weight,

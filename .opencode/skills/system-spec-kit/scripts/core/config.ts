@@ -72,7 +72,7 @@ export interface SpecKitConfig {
    2. PATH CONSTANTS
 ------------------------------------------------------------------*/
 
-// F-08: Stable root detection — walk up from moduleDir looking for package.json
+// Stable root detection — walk up from moduleDir looking for package.json.
 // Instead of relying on fragile relative moduleDir offset
 function findScriptsRoot(startDir: string): string {
   let dir = startDir;
@@ -253,7 +253,7 @@ function loadConfig(): WorkflowConfig {
     if (fsSync.existsSync(configPath)) {
       const configContent: string = fsSync.readFileSync(configPath, 'utf-8');
 
-      // F-09: Strip JSONC comments and parse directly — no brace-depth extraction needed
+      // Strip JSONC comments and parse directly — no brace-depth extraction needed.
       const stripped: string = stripJsoncComments(configContent).trim();
 
       if (!stripped) {
@@ -283,7 +283,7 @@ function loadConfig(): WorkflowConfig {
 
 const userConfig: WorkflowConfig = loadConfig();
 
-// F-30: Immutable static config — frozen after initialization
+// Immutable static config — frozen after initialization.
 const STATIC_CONFIG = Object.freeze({
   SKILL_VERSION: '1.7.2',
   MESSAGE_COUNT_TRIGGER: 20,

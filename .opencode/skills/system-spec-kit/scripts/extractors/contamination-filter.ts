@@ -33,7 +33,7 @@ const DEFAULT_DENYLIST: readonly DenylistEntry[] = [
   { label: 'step-by-step orchestration', pattern: /\bI'll execute this step by step\b/gi, severity: 'medium' },
   { label: 'analysis preamble', pattern: /\bLet me analyze (?:this|the|your)\b/gi, severity: 'medium' },
   { label: 'progress narration', pattern: /\bI'll now\b/gi, severity: 'medium' },
-  // F-11: Tighten "Step N:" to require orchestration context (not docs/headings)
+  // Tighten "Step N:" to require orchestration context (not docs/headings).
   { label: 'step narration', pattern: /^(?:\s*)Step\s+\d+:\s+(?:I'll|Let me|I need to|I will)\b/gim, severity: 'medium' },
   // Preamble phrases — low severity
   { label: 'check preamble', pattern: /\bLet me check\b/gi, severity: 'low' },
@@ -65,33 +65,33 @@ const DEFAULT_DENYLIST: readonly DenylistEntry[] = [
   { label: 'tool usage narration', pattern: /\bI'll use the \w+ tool\b/gi, severity: 'high' },
   { label: 'tool usage narration active', pattern: /\bUsing the \w+ tool\b/gi, severity: 'high' },
   { label: 'tool usage preamble', pattern: /\bLet me use the \w+ tool\b/gi, severity: 'high' },
-  // F-10: Tool titles with path arguments (Read/Edit/Write/Grep/Glob/Bash) — high severity
+  // Tool titles with path arguments (Read/Edit/Write/Grep/Glob/Bash) — high severity.
   { label: 'tool title with path', pattern: /\b(?:Read|Edit|Write|Grep|Glob|Bash)\s+tool\s+(?:on\s+)?[\/\.][^\s]+/gi, severity: 'high' },
   // API/service error leakage — high severity
   { label: 'api error prefix', pattern: /\bAPI\s+Error:\s*\d{3}\b/gi, severity: 'high' },
   { label: 'json error payload', pattern: /\{"\s*(?:type|error)"\s*:\s*"\s*(?:error|api_error|overloaded_error|rate_limit_error|server_error|invalid_request_error)\b/gi, severity: 'high' },
   { label: 'request id leak', pattern: /"request_id"\s*:\s*"req_[a-zA-Z0-9]+"/gi, severity: 'high' },
-  // Hedging phrases — low severity (T017)
+  // Hedging phrases — low severity.
   { label: 'hedging i-think', pattern: /\bI think\b(?!\s+(?:we should|you should|it would|this is good|this approach))/gi, severity: 'low' },
   { label: 'hedging it-seems', pattern: /\bit seems\b/gi, severity: 'low' },
   { label: 'hedging perhaps', pattern: /\bPerhaps\b(?=\s+(?:I|we|the|this|that|it|you))/gi, severity: 'low' },
   { label: 'hedging might-be', pattern: /\bthis might be\b/gi, severity: 'low' },
   { label: 'hedging could-be', pattern: /\bthis could be\b/gi, severity: 'low' },
-  // Conversational acknowledgment fillers — low severity (T018)
+  // Conversational acknowledgment fillers — low severity.
   { label: 'certainly filler', pattern: /\bCertainly!\s/gi, severity: 'low' },
-  // Meta-commentary — high severity (T019)
+  // Meta-commentary — high severity.
   { label: 'ai should-note meta', pattern: /\bI should note that\b/gi, severity: 'high' },
   { label: 'ai worth-noting meta', pattern: /\bIt(?:'s| is) worth noting that\b/gi, severity: 'medium' },
-  // Instruction echoing — medium severity (T020)
+  // Instruction echoing — medium severity.
   { label: 'instruction echo please', pattern: /^(?:Please\s+)?(?:provide|list|explain|describe|tell me|give me)\b.{0,60}(?::\s*$)/gim, severity: 'medium' },
-  // Markdown artifact patterns — medium severity (T021)
+  // Markdown artifact patterns — medium severity.
   { label: 'orphaned markdown header', pattern: /^#{1,6}\s*$/gm, severity: 'medium' },
   { label: 'stray backtick block', pattern: /^```\s*$/gm, severity: 'medium' },
-  // Safety disclaimer patterns — high severity (T022)
+  // Safety disclaimer patterns — high severity.
   { label: 'safety cannot disclaimer', pattern: /\bI(?:'m| am) not able to(?! (?:reproduce|replicate|confirm|verify|find|locate|identify|determine|access|connect)\b)\b/gi, severity: 'high' },
   { label: 'safety i-cannot disclaimer', pattern: /\bI cannot\b(?=\s+(?:provide|assist|help|access|create|generate|write|give))/gi, severity: 'high' },
   { label: 'safety please-consult disclaimer', pattern: /\bPlease consult\b/gi, severity: 'high' },
-  // Redundant certainty markers — low severity (T023)
+  // Redundant certainty markers — low severity.
   { label: 'certainty important-note marker', pattern: /\bIt is important to note(?: that)?\b/gi, severity: 'low' },
   { label: 'certainty worth-mentioning marker', pattern: /\bIt is worth mentioning(?: that)?\b/gi, severity: 'low' },
   { label: 'certainty keep-in-mind marker', pattern: /\bIt(?:'s| is) important to keep in mind\b/gi, severity: 'low' },
@@ -167,7 +167,7 @@ function filterContamination(
     return { cleanedText: '', removedPhrases: [], hadContamination: false, matchedPatterns: [], maxSeverity: null };
   }
 
-  // F-10: Pre-normalize — NFKC Unicode, collapse whitespace, strip zero-width chars
+  // Pre-normalize — NFKC Unicode, collapse whitespace, strip zero-width chars.
   let cleaned = input
     .normalize('NFKC')
     .replace(/[\u00AD\u034F\u061C\u200B-\u200F\u2028-\u202F\uFEFF]/g, '')
@@ -188,7 +188,7 @@ function filterContamination(
     }
   }
 
-  // F-31: Post-cleanup — orphaned punctuation, double-spaces, leading conjunctions
+  // Post-cleanup — orphaned punctuation, double-spaces, leading conjunctions.
   cleaned = cleaned
     .replace(/^\s*[,;:]\s*/gm, '')           // orphaned leading punctuation
     .replace(/\s+([,;:!?.])/g, '$1')          // space before punctuation

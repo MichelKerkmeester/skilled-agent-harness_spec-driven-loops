@@ -1,13 +1,13 @@
 'use strict';
 
 // ---------------------------------------------------------------
-// MODULE: Wave Convergence (T005)
+// MODULE: Wave Convergence
 // ---------------------------------------------------------------
-// Segment-level convergence helpers that wrap Phase 002 graph
+// Segment-level convergence helpers that wrap graph
 // metrics and stop traces. Provides wave-level convergence
 // evaluation, segment pruning logic, and promotion decisions.
 //
-// v2 graph-enhanced convergence is gated on Phase 002 coverage
+// v2 graph-enhanced convergence is gated on coverage
 // graph being operational. v1 uses heuristic signals only.
 // ---------------------------------------------------------------
 
@@ -57,7 +57,7 @@ const WAVE_CONVERGENCE_WEIGHTS = Object.freeze({
  * @param {Array<object>} [signals.segmentStates] - Per-segment states with convergence scores
  * @param {number} [signals.crossSegmentNovelty] - Novelty ratio across segments (0.0-1.0)
  * @param {number} [signals.gapCoverage] - Fraction of known gaps covered (0.0-1.0)
- * @param {object} [signals.graphMetrics] - Phase 002 graph metrics (optional, v2)
+ * @param {object} [signals.graphMetrics] - Graph metrics (optional, v2)
  * @param {number} [threshold] - Custom convergence threshold
  * @returns {{ converged: boolean, score: number, signals: object, blockedBy: Array<string> }}
  */
@@ -173,7 +173,7 @@ function evaluateWaveConvergence(board, signals, threshold) {
  * @param {object} signals - Pruning signal inputs
  * @param {number} [signals.stuckCount] - Consecutive low-progress iterations
  * @param {number} [signals.convergenceScore] - Current convergence score
- * @param {boolean} [signals.graphConverged] - Phase 002 graph says converged
+ * @param {boolean} [signals.graphConverged] - Graph says converged
  * @param {number} [threshold] - Custom convergence threshold
  * @returns {{ shouldPrune: boolean, reason: string, pruneType: string }}
  */

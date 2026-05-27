@@ -653,7 +653,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
       ? data.trigger_phrases
       : [];
 
-  // F-15: Field-by-field completion instead of early return — backfill missing arrays
+  // Field-by-field completion instead of early return — backfill missing arrays.
   if (data.userPrompts || data.user_prompts || data.observations || data.recentContext || data.recent_context) {
     const cloned = cloneInputData(data) as NormalizedData;
     if (!Array.isArray(cloned.userPrompts)) cloned.userPrompts = userPrompts as NormalizedUserPrompt[];
@@ -662,7 +662,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
     cloned.userPrompts = coerceUserPromptEntries(cloned.userPrompts as Array<NormalizedUserPrompt | string>);
     cloned.recentContext = coerceRecentContextEntries(cloned.recentContext as Array<RecentContext | string>);
     cloned.observations = coerceObservationEntries(cloned.observations as Array<Observation | string>);
-    // F-16: Ensure FILES uses FileEntry format
+    // Ensure FILES uses FileEntry format.
     if (cloned.FILES && Array.isArray(cloned.FILES)) {
       cloned.FILES = cloned.FILES.map((f) => normalizeFileEntryLike(f));
     }
@@ -704,7 +704,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
             return { FILE_PATH: filePath, DESCRIPTION: description, ACTION: 'Modified' };
           });
         } else {
-          // T004: Empty filesModified: [] produces FILES: [], not key omission
+          // Empty filesModified: [] produces FILES: [], not key omission.
           cloned.FILES = [];
         }
       }
@@ -767,7 +767,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
     if (typeof fastPathContextType === 'string' && fastPathContextType.length > 0) {
       cloned.contextType = fastPathContextType;
     }
-    // Phase 002 T028: Propagate projectPhase through fast-path (mirrors contextType pattern)
+    // Propagate projectPhase through fast-path (mirrors contextType pattern).
     const fastPathProjectPhase = (
       (data as Record<string, unknown>).projectPhase
       || (data as Record<string, unknown>).project_phase
@@ -852,7 +852,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
     normalized.causal_links = explicitCausalLinks;
   }
 
-  // F-16: Convert filesModified to FileEntry format with ACTION field
+  // Convert filesModified to FileEntry format with ACTION field.
   const filesModified = Array.isArray(data.filesModified)
     ? data.filesModified
     : Array.isArray(data.files_modified)
@@ -950,7 +950,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
     observations.push(buildNextStepsObservation(nextSteps));
   }
 
-  // Phase 004 T033: Observation dedup at normalization time — string-equality dedup
+  // Observation dedup at normalization time — string-equality dedup.
   normalized.observations = dedupeObservationsByNarrative(observations);
 
   // T09b: Promote exchanges to multi-message userPrompts for richer semantic input
@@ -991,7 +991,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
   if (typeof slowPathContextType === 'string' && slowPathContextType.length > 0) {
     normalized.contextType = slowPathContextType;
   }
-  // Phase 002 T029: Propagate projectPhase through slow-path (mirrors contextType pattern)
+  // Propagate projectPhase through slow-path (mirrors contextType pattern).
   const slowPathProjectPhase = (
     (data as Record<string, unknown>).projectPhase
     || (data as Record<string, unknown>).project_phase
@@ -1041,7 +1041,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
  * @param specFolderArg - Optional spec folder path from CLI argument; when provided, the specFolder field in data is not required.
  * @returns Nothing on success; throws an Error with concatenated validation messages on failure.
  */
-// P1: Known fields for unknown-field detection (T007)
+// Known fields for unknown-field detection.
 const KNOWN_RAW_INPUT_FIELDS: Set<string> = new Set([
   'title', 'description',
   'specFolder', 'spec_folder', 'SPEC_FOLDER',
@@ -1062,7 +1062,7 @@ const KNOWN_RAW_INPUT_FIELDS: Set<string> = new Set([
   'recentContext', 'recent_context',
   'causalLinks', 'causal_links',
   'saveMode', 'save_mode',
-  // T06: Preflight/postflight epistemic tracking fields
+  // Preflight/postflight epistemic tracking fields.
   'knowledgeScore', 'knowledge_score',
   'uncertaintyScore', 'uncertainty_score',
   'contextScore', 'context_score',
@@ -1071,7 +1071,7 @@ const KNOWN_RAW_INPUT_FIELDS: Set<string> = new Set([
   'newGapsDiscovered', 'new_gaps_discovered',
 ]);
 
-// P1: Valid contextType values for enum validation (T009)
+// Valid contextType values for enum validation.
 const VALID_CONTEXT_TYPES: string[] = [
   'implementation', 'research', 'debugging', 'review', 'planning',
   'decision', 'architecture', 'configuration', 'documentation', 'general',
@@ -1084,7 +1084,7 @@ function validateInputData(data: RawInputData, specFolderArg: string | null = nu
     throw new Error('Input validation failed: data must be a non-null object');
   }
 
-  // P1: Warn on unknown fields for typo detection (T008)
+  // Warn on unknown fields for typo detection.
   for (const key of Object.keys(data)) {
     if (!KNOWN_RAW_INPUT_FIELDS.has(key)) {
       console.warn(`[WARN] Unknown field in input data: "${key}" — this field will be ignored`);
@@ -1097,7 +1097,7 @@ function validateInputData(data: RawInputData, specFolderArg: string | null = nu
     }
   }
 
-  // P1: contextType enum validation (T010)
+  // contextType enum validation.
   if (data.contextType !== undefined && typeof data.contextType === 'string' && !VALID_CONTEXT_TYPES.includes(data.contextType)) {
     errors.push(`Invalid contextType: "${data.contextType}". Valid values: ${VALID_CONTEXT_TYPES.join(', ')}`);
   }
@@ -1105,7 +1105,7 @@ function validateInputData(data: RawInputData, specFolderArg: string | null = nu
     errors.push(`Invalid context_type: "${data.context_type}". Valid values: ${VALID_CONTEXT_TYPES.join(', ')}`);
   }
 
-  // P1: String length limits (T011-T013)
+  // String length limits.
   if (typeof data.sessionSummary === 'string' && data.sessionSummary.length > 50000) {
     errors.push(`sessionSummary exceeds maximum length of 50000 characters (got ${data.sessionSummary.length})`);
   }
@@ -1385,7 +1385,7 @@ function transformOpencodeCapture(
   specFolderHint?: string | null,
   source: CaptureDataSource = 'opencode-capture',
 ): TransformedCapture {
-  // F-14: Runtime guards — validate capture shape before processing
+  // Runtime guards — validate capture shape before processing.
   if (!capture || typeof capture !== 'object') {
     return {
       userPrompts: [],
@@ -1483,7 +1483,7 @@ function transformOpencodeCapture(
     ? (toolCalls || []).filter(isToolRelevant)
     : (toolCalls || []);
 
-  // F-33: Capture-scoped monotonic counter for deterministic fallback timestamps
+  // Capture-scoped monotonic counter for deterministic fallback timestamps.
   const rawBaseTime = normalizedCapture.capturedAt
     ? new Date(normalizedCapture.capturedAt).getTime()
     : Date.now();

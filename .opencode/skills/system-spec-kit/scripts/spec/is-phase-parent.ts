@@ -7,7 +7,7 @@ import * as path from 'path';
 
 const PHASE_CHILD_REGEX = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 
-// F-019-D4-03: thresholds for phase-parent manifest health. Mirrors the
+// Thresholds for phase-parent manifest health. Mirrors the
 // authoritative copy in mcp_server/lib/spec/is-phase-parent.ts so shell rules
 // and TypeScript runtime callers see identical buckets.
 export const PHASE_PARENT_WARNING_THRESHOLD = 20;
@@ -52,7 +52,7 @@ export function isPhaseParent(specFolderAbsPath: string): boolean {
   return false;
 }
 
-// F-019-D4-03: counts ALL direct NNN-named children regardless of whether
+// Counts ALL direct NNN-named children regardless of whether
 // each has spec.md/description.json — this reflects manifest size (visual
 // scroll length), not the strict phase-parent qualifier.
 function countPhaseChildren(specFolderAbsPath: string): number {
@@ -71,7 +71,7 @@ function countPhaseChildren(specFolderAbsPath: string): number {
   }
 }
 
-// F-019-D4-03: lightweight advisory health record — same logic as
+// Lightweight advisory health record — same logic as
 // mcp_server/lib/spec/is-phase-parent.ts so shell and TS runtime agree.
 export function assessPhaseParentHealth(specFolderAbsPath: string): PhaseParentHealth {
   if (!isPhaseParent(specFolderAbsPath)) {
@@ -107,7 +107,7 @@ export function assessPhaseParentHealth(specFolderAbsPath: string): PhaseParentH
   };
 }
 
-// F-019-D4-03: CLI entrypoint so shell rules can shell-out without a separate
+// CLI entrypoint so shell rules can shell-out without a separate
 // JS wrapper. Usage: `node scripts/dist/spec/is-phase-parent.js health <folder>`
 // emits one line: `<status>\t<childCount>\t<recommendation>` (tab-separated).
 // Invoking with `check <folder>` keeps the original boolean exit-code contract

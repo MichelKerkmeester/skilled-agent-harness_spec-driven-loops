@@ -471,7 +471,7 @@ function calculateQualityScore(items: PromptItem[], config: FilterConfig): numbe
 // 6. MAIN FILTER FUNCTIONS
 // ───────────────────────────────────────────────────────────────
 function createFilterPipeline(customConfig: Partial<FilterConfig> = {}): FilterPipeline {
-  // F-23 — Deep merge to preserve nested defaults (e.g., pipeline.stages).
+  // Deep merge to preserve nested defaults (e.g., pipeline.stages).
   // Shallow spread drops nested defaults when customConfig partially overrides pipeline.
   const defaults = loadFilterConfig();
   const config: FilterConfig = {

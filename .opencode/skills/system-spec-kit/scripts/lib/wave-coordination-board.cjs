@@ -1,7 +1,7 @@
 'use strict';
 
 // ---------------------------------------------------------------
-// MODULE: Wave Coordination Board (T003, T-WE-NEW-4)
+// MODULE: Wave Coordination Board
 // ---------------------------------------------------------------
 // Reducer-owned board.json execution ledger, status transitions,
 // conflict tracking, and derived dashboard renderer helpers.
@@ -487,7 +487,7 @@ function deriveBoardStatus(board) {
 function renderDashboard(board) {
   if (!board) return '# Wave Execution Dashboard\n\nNo board data available.\n';
 
-  // T117 FIX: Escape metadata values before injecting into markdown table cells.
+  // Escape metadata values before injecting into markdown table cells.
   // Unescaped pipe characters or backticks in board metadata can break table
   // structure or inject arbitrary markdown content.
   function esc(value) {

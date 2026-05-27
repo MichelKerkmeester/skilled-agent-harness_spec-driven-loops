@@ -26,7 +26,7 @@ const FOLDER_STOPWORDS = new Set([
 // ───────────────────────────────────────────────────────────────
 
 export function injectQualityMetadata(content: string, qualityScore: number, qualityFlags: string[]): string {
-  // F-21: Require `---` at string start for strict frontmatter detection
+  // Require `---` at string start for strict frontmatter detection.
   const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!frontmatterMatch || frontmatterMatch.index === undefined) {
     return content;

@@ -103,7 +103,7 @@ async function main(): Promise<void> {
   log(`Production DB: ${PROD_DB_PATH}`);
 
   // 3. Initialize vector index and hybrid search (opens the production DB)
-  // F-22 — Guard null dereference: check db before passing to initHybridSearch
+  // Guard null dereference: check db before passing to initHybridSearch.
   const db = vectorIndex.initializeDb(PROD_DB_PATH);
   if (!db) {
     console.error('ERROR: Could not initialize database');

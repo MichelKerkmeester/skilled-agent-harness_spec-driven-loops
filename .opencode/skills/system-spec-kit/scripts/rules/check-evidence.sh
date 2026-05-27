@@ -12,9 +12,9 @@ set -euo pipefail
 #              P2 items are exempt. Patterns: [EVIDENCE:], | Evidence:, ✓/✔,
 #              (verified)/(tested)/(confirmed), [DEFERRED:]
 #
-# F-009-B4-02: A second checkbox on the same line is no longer treated
+# A second checkbox on the same line is no longer treated
 # as evidence. Only explicit semantic markers count.
-# F-009-B4-03: Priority parsing is now sourced from
+# Priority parsing is now sourced from
 # scripts/lib/check-priority-helper.sh so this rule shares its regex
 # with check-priority-tags.sh.
 
@@ -22,7 +22,7 @@ set -euo pipefail
 # 1. INITIALIZATION
 # ───────────────────────────────────────────────────────────────
 
-# F-009-B4-03: Source the shared priority helper. BASH_SOURCE-relative path
+# Source the shared priority helper. BASH_SOURCE-relative path
 # keeps the resolution stable when this rule is invoked from validate.sh.
 _check_evidence_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=../lib/check-priority-helper.sh
@@ -57,7 +57,7 @@ run_check() {
     while IFS= read -r line || [[ -n "$line" ]]; do
         ((line_num++)) || true
 
-        # F-009-B4-03: Detect priority section headers via the shared helper.
+        # Detect priority section headers via the shared helper.
         local _detected_priority=""
         if detect_priority_section_header "$line" _detected_priority; then
             current_priority="$_detected_priority"
@@ -68,7 +68,7 @@ run_check() {
         if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[[xX]\] ]]; then
             local item_priority=""
             local _inline_priority=""
-            # F-009-B4-03: Reuse the shared inline tag detector.
+            # Reuse the shared inline tag detector.
             if detect_priority_inline_tag "$line" _inline_priority; then
                 item_priority="$_inline_priority"
             elif [[ -n "$current_priority" ]]; then
@@ -83,7 +83,7 @@ run_check() {
             line_lower=$(echo "$line" | tr '[:upper:]' '[:lower:]')
 
             # Evidence patterns: explicit semantic markers only.
-            # F-009-B4-02: The same-line second-checkbox heuristic was
+            # The same-line second-checkbox heuristic was
             # removed because multi-task lines (e.g. "- [x] foo / - [x] bar"
             # collapsed onto one author-formatted line) produced false
             # positives that masked missing evidence on real items.

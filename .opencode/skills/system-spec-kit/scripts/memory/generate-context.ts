@@ -469,12 +469,12 @@ export function updatePhaseParentPointer(
     ...derived,
     last_active_child_id: activeChildId,
     last_active_at: timestamp,
-    // F-019-D4-01: bump parent's last_save_at when the bubble-up touches it,
+    // Bump parent's last_save_at when the bubble-up touches it,
     // so consumers reading derived metadata see a current save timestamp.
     last_save_at: timestamp,
   };
 
-  // F-019-D4-01: ensure children_ids contains the saved child's packet id
+  // Ensure children_ids contains the saved child's packet id
   // (idempotent — only inserts when absent so concurrent saves stay safe).
   if (activeChildId) {
     const existingChildren = Array.isArray(metadata.children_ids)
@@ -667,7 +667,7 @@ function validateArguments(): void {
   if (validation.valid) return;
 
   // --- Subfolder support: before failing, try to find the folder as a child ---
-  // T114 FIX: Only use basename-based child resolution when the input is a single
+  // Only use basename-based child resolution when the input is a single
   // segment (no '/' separators). Multi-segment paths like "003-parent/121-child"
   // must NOT be silently retargeted by basename alone, because stripping the parent
   // could resolve to a different parent's child with the same leaf name.

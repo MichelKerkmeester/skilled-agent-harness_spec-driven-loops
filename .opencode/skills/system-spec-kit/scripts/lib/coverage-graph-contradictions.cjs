@@ -1,7 +1,7 @@
 'use strict';
 
 // ---------------------------------------------------------------
-// MODULE: Coverage Graph Contradictions (T004)
+// MODULE: Coverage Graph Contradictions
 // ---------------------------------------------------------------
 // Extracted and adapted from mcp_server/lib/graph/contradiction-detection.ts
 // Provides contradiction scanning and reporting for in-memory

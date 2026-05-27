@@ -7,7 +7,7 @@
 # headers (## P0 / ### [P1] / etc.) and inline tags ([P0]/**P0**) so
 # the two rules stay aligned.
 #
-# F-009-B4-03: Before this helper, both rules implemented their own
+# Before this helper, both rules implemented their own
 # priority parsing with subtly different regexes (check-evidence used
 # 1-6 header levels with optional brackets; check-priority-tags used
 # 1-3 levels without brackets). Shared parsing eliminates that drift.

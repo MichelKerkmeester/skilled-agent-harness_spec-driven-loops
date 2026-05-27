@@ -16,7 +16,7 @@
 //   mcp_server/lib/eval/memory-state-baseline.ts, so the stale
 //   pre-rename dist artifact set was removed.
 //
-// F-020-D5-02 / F-020-D5-03 (2026-04-30):
+// Broadened dist alignment scan (2026-04-30):
 // - The previous DIST_TARGETS set covered only `dist/lib` and `scripts/dist`,
 //   so orphans elsewhere (e.g. `dist/tests/search-quality/harness.js` after
 //   its source moved to `stress_test/search-quality/harness.ts`) were never
@@ -25,7 +25,7 @@
 //   matrix_runners, schemas, stress_test, tests, core, configs, api, utils.
 //   Each target maps dist `*.js` back to the matching source `.ts` directory.
 // - The stale `dist/tests/search-quality/harness.js` was removed in this
-//   packet (007); the broadened scan ensures the same drift surfaces a
+//   packet; the broadened scan ensures the same drift surfaces a
 //   violation rather than going silent.
 
 import * as fs from 'fs';
@@ -54,11 +54,11 @@ interface DistTarget {
 }
 
 const REQUIRED_ROOT_DIRS = ['mcp_server', 'scripts'] as const;
-// F-020-D5-02: time-bounded allowlist for known stragglers surfaced by the
+// Time-bounded allowlist for known stragglers surfaced by the
 // broadened scan. Each entry MUST include a follow-on owner and remediation
-// date. The harness orphan (F-020-D5-03) is being deleted in this packet;
+// date. The harness orphan is being deleted in this packet;
 // the remaining three search-quality dist artifacts cannot be deleted by
-// this packet under its scope discipline (only D5-03 authorized harness.js
+// this packet under its scope discipline (only harness.js was authorized for
 // removal) and are time-boxed for a follow-on cleanup packet.
 const ALLOWLIST_EXCEPTIONS: AllowlistException[] = [
   {
@@ -129,7 +129,7 @@ function findJsFiles(dir: string): string[] {
   return results.sort((left, right) => left.localeCompare(right));
 }
 
-// F-020-D5-02: cover runtime-critical dist subtrees beyond `dist/lib`. Each
+// Cover runtime-critical dist subtrees beyond `dist/lib`. Each
 // entry maps `mcp_server/dist/<sub>/*.js` back to `mcp_server/<sub>/*.ts`.
 // New entries should be added when a new runtime subtree appears under
 // `mcp_server/dist/`. Empty/optional dist roots are skipped at scan time.
@@ -221,7 +221,7 @@ const DIST_TARGETS: DistTarget[] = [
   },
 ];
 
-// F-020-D5-02: derive the package-relative path so the report shows the
+// Derive the package-relative path so the report shows the
 // `mcp_server/dist/...` or `scripts/dist/...` prefix that authors recognize.
 // Previously this used a hardcoded `target.label === 'mcp_server'` check
 // which only worked for the single combined `dist/lib` target. With the
@@ -251,7 +251,7 @@ function main(): void {
 
   for (const target of DIST_TARGETS) {
     const absoluteDistRoot = path.join(packageRoot, target.distRoot);
-    // F-020-D5-02: skip optional/empty dist roots silently rather than failing
+    // Skip optional/empty dist roots silently rather than failing
     // the build. Some targets (e.g. mcp_server/dist/api) may not exist in all
     // build configurations. Required-target enforcement was load-bearing only
     // when DIST_TARGETS contained the two combined roots; the broadened set

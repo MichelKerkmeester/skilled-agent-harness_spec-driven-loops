@@ -150,7 +150,7 @@ function extractSpecNumber(specFolder: string): string {
 }
 
 // ───────────────────────────────────────────────────────────────
-// 10. TEMPLATE ANCHOR WRAPPING (T011-T014)
+// 10. TEMPLATE ANCHOR WRAPPING
 // ───────────────────────────────────────────────────────────────
 /**
  * Detects ## headings and wraps sections with ANCHOR tags

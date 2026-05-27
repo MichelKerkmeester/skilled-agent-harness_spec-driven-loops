@@ -71,7 +71,7 @@ function normalizeRelativePath(filePath: string, projectRoot?: string): string {
   let cleaned: string = pathPosix.normalize(filePath.replace(/\\/g, '/'));
 
   if (projectRoot) {
-    // F-02: Segment-boundary containment check prevents partial-prefix matches
+    // Segment-boundary containment check prevents partial-prefix matches
     // (e.g., root="/foo/bar" must not match "/foo/barbaz/file")
     const normalizedRoot = pathPosix.normalize(projectRoot.replace(/\\/g, '/'))
       .replace(/\/+$/, '');
