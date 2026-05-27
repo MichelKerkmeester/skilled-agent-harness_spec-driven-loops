@@ -271,7 +271,7 @@ describe('truncateToBudget', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   CHK-023: adjustedBudget = max(dynamicBudget - (resultCount * 26), 200)
+   AdjustedBudget = max(dynamicBudget - (resultCount * 26), 200)
    The formula lives inline in hybrid-search.ts (line ~971).
    We test the formula's math directly since it is not exported as a function.
    ──────────────────────────────────────────────────────────────── */

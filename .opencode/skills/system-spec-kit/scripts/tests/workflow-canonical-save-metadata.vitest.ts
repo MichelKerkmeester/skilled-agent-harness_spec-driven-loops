@@ -76,7 +76,7 @@ function applyWorkflowCanonicalSaveUpdate(
     ...(snapshot.memoryNameHistory || []).slice(-19),
     nextMemoryName,
   ];
-  // T-CNS-01: lastUpdated must be refreshed on every canonical save.
+  // LastUpdated must be refreshed on every canonical save.
   snapshot.lastUpdated = new Date().toISOString();
   savePerFolderDescription(snapshot, folderPath);
 

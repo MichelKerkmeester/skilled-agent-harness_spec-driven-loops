@@ -567,7 +567,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
     });
 
     it('T031-HYB-08: hybridSearchEnhanced() filters results by specFolder', async () => {
-      // T250: Strengthen from smoke-test (array exists) to asserting specFolder filter is honored
+      // Strengthen from smoke-test (array exists) to asserting specFolder filter is honored
       const results = await hybridSearch.hybridSearchEnhanced('module', mockEmbedding, { limit: 10, specFolder: 'specs/auth' });
       expect(results).toBeDefined();
       expect(Array.isArray(results)).toBe(true);

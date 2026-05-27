@@ -228,7 +228,7 @@ describe('T008: BM25 Relative Contingency Decision', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   TESTS: computeBootstrapCI (T009)
+   TESTS: computeBootstrapCI
 ──────────────────────────────────────────────────────────────── */
 
 describe('T009: Bootstrap CI guards', () => {

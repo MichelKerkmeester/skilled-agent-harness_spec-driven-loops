@@ -110,7 +110,7 @@ function readWorkspaceFile(relativePath: string): string {
       );
     }
 
-    // REQ-030 retraction (042 closing audit, F010/F011/F012): the runtime
+    // Retraction (042 closing audit, F010/F011/F012): the runtime
     // only persists lineage events for `resume` and `restart`. `fork` and
     // `completed-continue` are deferred with an explicit note. The parity
     // test mirrors the shipped contract by asserting the live branches exist
@@ -181,7 +181,7 @@ function readWorkspaceFile(relativePath: string): string {
     }
   });
 
-  // T247: Add executable coverage for deep-review runtime-capabilities.cjs
+  // Add executable coverage for deep-review runtime-capabilities.cjs
   it('exposes a machine-readable capability matrix for every supported deep-review runtime', () => {
     const runtimeIds = reviewCapabilityModule!.listRuntimeCapabilityIds();
     expect(runtimeIds).toEqual(['opencode', 'claude', 'codex', 'gemini']);

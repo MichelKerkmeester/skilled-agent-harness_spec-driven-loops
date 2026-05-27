@@ -129,7 +129,7 @@ describe('T033: R15 + R2 Interaction Tests', () => {
     });
   });
 
-  /* -- Section 2: R2 within R15-routed channel subsets -- */
+  /* Section 2: R2 within channel subsets -- */
 
   describe('R2 diversity within R15 channel subsets', () => {
 

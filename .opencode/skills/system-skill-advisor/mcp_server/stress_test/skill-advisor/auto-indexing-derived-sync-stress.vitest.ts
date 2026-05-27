@@ -231,7 +231,7 @@ describe('sa-008..sa-011 — auto-indexing derived metadata stress behavior', ()
 
     expect(results.every((result) => result.changed)).toBe(true);
     // Idempotence invariant: second sync over an unchanged SKILL.md must report
-    // changed=false. Fixed in packet 045 by excluding `generated_at` from the
+    // Changed=false. Fixed in packet 045 by excluding `generated_at` from the
     // derived-block comparison and preserving the existing block on disk when
     // content is stable.
     expect(secondPass.every((result) => result.changed === false)).toBe(true);

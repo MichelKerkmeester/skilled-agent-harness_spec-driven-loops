@@ -194,7 +194,7 @@ describe('T037: Query Classifier', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T038: INTENT WEIGHT ADJUSTMENTS TESTS
+   INTENT WEIGHT ADJUSTMENTS TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T038: Intent Weight Adjustments', () => {
@@ -250,7 +250,7 @@ describe('T038: Intent Weight Adjustments', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T039: VALIDATION FUNCTIONS TESTS
+   VALIDATION FUNCTIONS TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T039: Validation Functions', () => {
@@ -285,7 +285,7 @@ describe('T039: Validation Functions', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   CHK-039: OVERALL ACCURACY TEST (>80%)
+   OVERALL ACCURACY TEST (>80%)
 ──────────────────────────────────────────────────────────────── */
 
 describe('CHK-039: Overall Accuracy Test', () => {
@@ -309,7 +309,7 @@ describe('CHK-039: Overall Accuracy Test', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T051-T060: EXTENDED INTENT CLASSIFIER TESTS
+   EXTENDED INTENT CLASSIFIER TESTS
 ──────────────────────────────────────────────────────────────── */
 
 describe('T051: Intent Classification for add_feature Queries', () => {

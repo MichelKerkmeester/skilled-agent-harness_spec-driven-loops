@@ -296,7 +296,7 @@ describe('Checkpoints Storage (T503)', () => {
     cleanupDb();
   });
 
-  // 5.1 CREATE CHECKPOINT (T503-01)
+  // 5.1 CREATE CHECKPOINT
   describe('Create Checkpoint', () => {
     it('T503-01: Create checkpoint stores data', () => {
       const checkpoint = mod.createCheckpoint({
@@ -355,7 +355,7 @@ describe('Checkpoints Storage (T503)', () => {
     });
   });
 
-  // 5.2 LIST CHECKPOINTS (T503-02)
+  // 5.2 LIST CHECKPOINTS
   describe('List Checkpoints', () => {
     it('T503-02: List checkpoints returns all', () => {
       const list = mod.listCheckpoints();
@@ -370,7 +370,7 @@ describe('Checkpoints Storage (T503)', () => {
     });
   });
 
-  // 5.3 RESTORE CHECKPOINT (T503-03)
+  // 5.3 RESTORE CHECKPOINT
   describe('Restore Checkpoint', () => {
     it('T503-03: Restore checkpoint retrieves data', () => {
       mod.createCheckpoint({ name: 'restore-target-checkpoint' });
@@ -386,7 +386,7 @@ describe('Checkpoints Storage (T503)', () => {
     });
   });
 
-  // 5.4 DELETE CHECKPOINT (T503-04)
+  // 5.4 DELETE CHECKPOINT
   describe('Delete Checkpoint', () => {
     it('T503-04: Delete checkpoint removes data', () => {
       mod.createCheckpoint({ name: 'to-delete' });
@@ -401,7 +401,7 @@ describe('Checkpoints Storage (T503)', () => {
     });
   });
 
-  // 5.5 NON-EXISTENT CHECKPOINT (T503-05)
+  // 5.5 NON-EXISTENT CHECKPOINT
   describe('Non-existent Checkpoint', () => {
     it('T503-05a: Non-existent checkpoint returns null', () => {
       if (!mod.getCheckpoint) return;
@@ -416,7 +416,7 @@ describe('Checkpoints Storage (T503)', () => {
     });
   });
 
-  // 5.6 DELETE NON-EXISTENT (T503-06)
+  // 5.6 DELETE NON-EXISTENT
   describe('Delete Non-existent', () => {
     it('T503-06: Delete non-existent returns false', () => {
       const result = mod.deleteCheckpoint('never-existed');
@@ -424,7 +424,7 @@ describe('Checkpoints Storage (T503)', () => {
     });
   });
 
-  // 5.7 MAX CHECKPOINTS LIMIT (T503-07)
+  // 5.7 MAX CHECKPOINTS LIMIT
   describe('Max Checkpoints Limit', () => {
     it('T503-07: Max checkpoints limit enforced', () => {
       if (!mod.MAX_CHECKPOINTS) return;
@@ -440,7 +440,7 @@ describe('Checkpoints Storage (T503)', () => {
     });
   });
 
-  // 5.8 CHECKPOINT METADATA PRESERVED (T503-08)
+  // 5.8 CHECKPOINT METADATA PRESERVED
   describe('Checkpoint Metadata', () => {
     it('T503-08: Checkpoint metadata preserved', () => {
       if (!mod.getCheckpoint) return;
@@ -462,7 +462,7 @@ describe('Checkpoints Storage (T503)', () => {
     });
   });
 
-  // 5.9 EMPTY DATABASE (T503-09)
+  // 5.9 EMPTY DATABASE
   describe('Empty Database', () => {
     it('T503-09: Empty database returns empty list', () => {
       const emptyDbPath = path.join(os.tmpdir(), `empty-cp-test-${Date.now()}.db`);
@@ -500,7 +500,7 @@ describe('Checkpoints Storage (T503)', () => {
     });
   });
 
-  // 5.10 SPEC FOLDER FILTERING (T503-10)
+  // 5.10 SPEC FOLDER FILTERING
   describe('Spec Folder Filtering', () => {
     it('T503-10: Spec folder filtering', () => {
       mod.createCheckpoint({

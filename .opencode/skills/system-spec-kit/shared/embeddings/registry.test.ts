@@ -45,7 +45,7 @@ console.log('=== registry.test: canonical-fallback invariants ===');
 assert(MANIFESTS.length > 0, 'MANIFESTS is non-empty');
 assert(listManifests().length === MANIFESTS.length, 'listManifests matches MANIFESTS');
 
-// 2. MANIFESTS[0] matches ADR-013/014 consensus
+// 2. MANIFESTS[0] matches /014 consensus
 assert(
   MANIFESTS[0]?.name === ADR_CANONICAL_NAME,
   `MANIFESTS[0].name === '${ADR_CANONICAL_NAME}' (ADR-013/014 operator override)`,

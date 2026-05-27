@@ -32,7 +32,7 @@ import {
 
 const TEST_DB_DIR = path.join(os.tmpdir(), `speckit-pipeline-enforcement-${process.pid}`);
 const TEST_DB_PATH = path.join(TEST_DB_DIR, 'speckit-memory.db');
-// F-015-C5-06: replace the previous fixed `tmp-test-fixtures/` repo-local path
+// Replace the previous fixed `tmp-test-fixtures/` repo-local path
 // with a per-test mkdtemp root that has a unique random suffix. Two concurrent
 // runs no longer collide on a shared path, and a crashed run's leftover dir
 // has a unique suffix so the next run is not affected by stale fixtures.
@@ -335,7 +335,7 @@ afterAll(() => {
     // Ignore cleanup errors
   }
   fs.rmSync(TEST_DB_DIR, { recursive: true, force: true });
-  // F-015-C5-06: remove the entire mkdtemp root (was: only FIXTURE_ROOT subdir)
+  // Remove the entire mkdtemp root (was: only FIXTURE_ROOT subdir)
   fs.rmSync(FIXTURE_TEMP_ROOT, { recursive: true, force: true });
 });
 

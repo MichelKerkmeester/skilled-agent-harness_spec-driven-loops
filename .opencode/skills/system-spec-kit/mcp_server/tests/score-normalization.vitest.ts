@@ -365,7 +365,7 @@ describe('Composite Score Normalization (T004)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   3. K-Value Sensitivity Analysis (T004a)
+   3. K-Value Sensitivity Analysis
    ──────────────────────────────────────────────────────────────── */
 
 describe('K-Value Sensitivity Analysis (T004a)', () => {

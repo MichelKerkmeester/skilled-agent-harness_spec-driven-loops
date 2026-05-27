@@ -1,4 +1,4 @@
-// TEST: Ingest Job Queue State + Edge Cases (T005b)
+// TEST: Ingest Job Queue State + Edge Cases
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';

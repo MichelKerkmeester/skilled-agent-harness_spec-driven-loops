@@ -83,7 +83,7 @@ describe('Session Manager Tests (T001-T008)', () => {
     }
   });
 
-  // T001: SESSION MANAGER INSTANTIATION
+  // SESSION MANAGER INSTANTIATION
   describe('T001: SessionManager class instantiation with default config', () => {
     it('T001: SessionManager exports all required functions', () => {
       const requiredExports: string[] = [
@@ -117,7 +117,7 @@ describe('Session Manager Tests (T001-T008)', () => {
     });
   });
 
-  // T002: HASH GENERATION
+  // HASH GENERATION
   describe('T002: Hash generation for memory content fingerprinting', () => {
     it('T002: Hash generated with content_hash', () => {
       const memory1: MemoryObject = createMemory({ content_hash: 'abc123def456' });
@@ -165,7 +165,7 @@ describe('Session Manager Tests (T001-T008)', () => {
     });
   });
 
-  // T003: shouldSendMemory() RETURNS TRUE FOR NEW MEMORIES
+  // ShouldSendMemory RETURNS TRUE FOR NEW MEMORIES
   describe('T003: shouldSendMemory() returns true for new memories', () => {
     beforeEach(() => {
       resetDb();
@@ -185,7 +185,7 @@ describe('Session Manager Tests (T001-T008)', () => {
     });
   });
 
-  // T004: shouldSendMemory() RETURNS FALSE FOR ALREADY-SENT
+  // ShouldSendMemory RETURNS FALSE FOR ALREADY-SENT
   describe('T004: shouldSendMemory() returns false for already-sent memories', () => {
     beforeEach(() => {
       resetDb();
@@ -206,7 +206,7 @@ describe('Session Manager Tests (T001-T008)', () => {
     });
   });
 
-  // T005: markMemorySent() TRACKS SENT MEMORY IDS
+  // MarkMemorySent TRACKS SENT MEMORY IDS
   describe('T005: markMemorySent() correctly tracks sent memory IDs', () => {
     beforeEach(() => {
       resetDb();
@@ -239,7 +239,7 @@ describe('Session Manager Tests (T001-T008)', () => {
     });
   });
 
-  // T006: SESSION ID GENERATION IS UNIQUE
+  // SESSION ID GENERATION IS UNIQUE
   describe('T006: Session ID generation is unique per session', () => {
     beforeEach(() => {
       resetDb();
@@ -270,7 +270,7 @@ describe('Session Manager Tests (T001-T008)', () => {
     });
   });
 
-  // T007: MEMORY FILTERING REMOVES DUPLICATES
+  // MEMORY FILTERING REMOVES DUPLICATES
   describe('T007: Memory filtering removes duplicates from search results', () => {
     beforeEach(() => {
       resetDb();
@@ -327,7 +327,7 @@ describe('Session Manager Tests (T001-T008)', () => {
     });
   });
 
-  // T008: DEDUP_SAVINGS_TOKENS CALCULATION
+  // DEDUP_SAVINGS_TOKENS CALCULATION
   describe('T008: dedup_savings_tokens calculation accuracy', () => {
     beforeEach(() => {
       resetDb();
@@ -368,7 +368,7 @@ describe('Session Manager Tests (T001-T008)', () => {
     });
   });
 
-  // T009: CROSS-PATH SESSION CONSISTENCY
+  // CROSS-PATH SESSION CONSISTENCY
   describe('T009: Cross-path session consistency via spec folder canonicalization', () => {
     it('T009: extractSpecFolder produces same result for symlink and real paths', () => {
       // Simulates the scenario where the same memory file is accessed

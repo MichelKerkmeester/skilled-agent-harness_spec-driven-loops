@@ -390,7 +390,7 @@ Question C
     expect(dashboard).toContain('- stopReason: plateau');
   });
 
-  // ─── T241: Parseable schema corruption ──────────────────────
+  // ─── : Parseable schema corruption ──────────────────────
 
   it('T241: handles JSONL with parseable but schema-corrupt iteration entries', () => {
     // Finding #24: The existing tests only cover completely invalid JSON

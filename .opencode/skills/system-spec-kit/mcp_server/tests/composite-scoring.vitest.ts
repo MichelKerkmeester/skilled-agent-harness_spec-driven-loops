@@ -748,7 +748,7 @@ describe('Composite Scoring', () => {
   })
 
   // ───────────────────────────────────────────────────────────────
-  // 7. FIVE-FACTOR MODEL TESTS (T083-T093)
+  // 7. FIVE-FACTOR MODEL TESTS
   // ───────────────────────────────────────────────────────────────
   describe('Five-Factor Model (T083-T093)', () => {
     const weights = compositeScoring.FIVE_FACTOR_WEIGHTS
@@ -1028,7 +1028,7 @@ describe('Composite Scoring', () => {
       'PATTERN_ALIGNMENT_BONUSES',
       'FSRS_FACTOR',
       'FSRS_DECAY',
-      // 5-factor scoring functions (REQ-017)
+      // 5-factor scoring functions
       'calculateTemporalScore',
       'calculateUsageScore',
       'calculateImportanceScore',

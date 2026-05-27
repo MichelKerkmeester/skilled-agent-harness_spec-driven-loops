@@ -114,7 +114,7 @@ describe('F-003-A3-03: file-watcher reindex queue is bounded and closes cleanly'
     await closePromise;
     const closeDuration = Date.now() - closeStart;
 
-    // Without F-003-A3-03 the queued waiters would still be awaiting their
+    // Without the queued waiters would still be awaiting their
     // Promises (never resolving) — close() would hang on inFlightReindex
     // because each queued task's wrapper awaits acquireReindexSlot() which
     // would never resolve. With the fix, those awaiters reject with

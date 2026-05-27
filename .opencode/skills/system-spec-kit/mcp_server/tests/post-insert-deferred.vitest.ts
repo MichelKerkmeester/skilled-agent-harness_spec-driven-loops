@@ -40,7 +40,7 @@ describe('post-insert deferred enrichment reporting', () => {
     );
 
     expect(result.causalLinksResult).toBeNull();
-    // M13: every step reports explicit `deferred` status (not silently `true`).
+    // Every step reports explicit `deferred` status (not silently `true`).
     const deferred = { status: 'deferred', reason: 'planner_first_mode' };
     expect(result.enrichmentStatus).toEqual({
       causalLinks: deferred,
@@ -123,7 +123,7 @@ describe('post-insert deferred enrichment reporting', () => {
       embeddingFailureReason: null,
       asyncEmbedding: false,
       causalLinksResult: null,
-      // M13: per-step OperationResult shape.
+      // Per-step OperationResult shape.
       enrichmentStatus: {
         causalLinks: { status: 'ran' },
         entityExtraction: { status: 'failed', reason: 'entity_extraction_exception', warnings: ['boom'] },

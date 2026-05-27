@@ -1,5 +1,5 @@
 // TEST: Ground Truth Feedback
-// R13-S2: Phase B (implicit feedback) + Phase C (LLM-judge)
+// Phase B (implicit feedback) + Phase C (LLM-judge)
 // For ground truth expansion.
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import * as path from 'path';

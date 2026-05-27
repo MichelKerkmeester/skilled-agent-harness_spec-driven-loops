@@ -231,7 +231,7 @@ function getErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
-// Test Suite: IVectorStore Interface (T084)
+// Test Suite: IVectorStore Interface
 describe('Protocol Abstractions', () => {
 
   describe('IVectorStore Interface (T084)', () => {
@@ -356,7 +356,7 @@ describe('Protocol Abstractions', () => {
     });
   });
 
-  // Test Suite: IEmbeddingProvider Interface (T085)
+  // Test Suite: IEmbeddingProvider Interface
   describe('IEmbeddingProvider Interface (T085)', () => {
 
     it('IEmbeddingProvider base class throws on unimplemented methods', async () => {
@@ -471,7 +471,7 @@ describe('Protocol Abstractions', () => {
     });
   });
 
-  // Test Suite: SQLiteVectorStore (T086)
+  // Test Suite: SQLiteVectorStore
   // Deferred to Phase 2 — requires DB dependencies (better-sqlite3,
   // Sqlite-vec, format-helpers) that aren't available in pure-logic context.
   describe('SQLiteVectorStore (T086) [deferred to Phase 2]', () => {

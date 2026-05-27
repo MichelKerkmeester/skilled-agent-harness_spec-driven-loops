@@ -362,7 +362,7 @@ describe('Co-Activation Module', () => {
   });
 
   /* ───────────────────────────────────────────────────────────────
-     T003: Fan-Effect Divisor (R17) Tests
+     Fan-Effect Divisor (R17) Tests
   ──────────────────────────────────────────────────────────────── */
 
   describe('T003: Co-Activation Boost Behavior', () => {

@@ -660,7 +660,7 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
   });
 
   // ───────────────────────────────────────────────────────────────
-  // 7. SUITE: T102 - INDEX REBUILD AFTER CHECKPOINT RESTORE
+  // 7. SUITE: - INDEX REBUILD AFTER CHECKPOINT RESTORE
   // ───────────────────────────────────────────────────────────────
   describe('T102 - Index Rebuild After Checkpoint Restore', () => {
     it('T102-1: bm25Index module available', () => {

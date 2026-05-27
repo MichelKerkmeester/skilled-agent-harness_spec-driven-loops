@@ -178,7 +178,7 @@ describe('isMpabEnabled', () => {
   });
 });
 
-// CollapseAndReassembleChunkResults — T001a
+// CollapseAndReassembleChunkResults
 describe('collapseAndReassembleChunkResults', () => {
   it('empty input returns empty array', () => {
     expect(collapseAndReassembleChunkResults([])).toEqual([]);

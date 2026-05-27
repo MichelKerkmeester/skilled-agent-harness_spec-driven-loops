@@ -89,7 +89,7 @@ describe('deep-review reducer and schema contract', () => {
       expect(content, `${docPath} workflow should carry release readiness through synthesis`).toContain(
         'releaseReadinessState',
       );
-      // REQ-030 / REQ-034 retraction (042 closing audit, Lane 3 + Lane 5):
+      // Retraction (042 closing audit, Lane 3 + Lane 5)
       // the `completed-continue` lifecycle branch is now deferred, so the
       // report-guidance passage no longer promises snapshot-and-reopen as a
       // live runtime behavior. The assertion mirrors the retracted prose and

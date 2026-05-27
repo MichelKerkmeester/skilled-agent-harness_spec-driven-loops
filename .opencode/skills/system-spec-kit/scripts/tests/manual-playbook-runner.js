@@ -190,7 +190,7 @@ function createParseFailureReason(text, missingParts) {
         : 'scenario file';
     return `Missing ${missingParts.join(' and ')} in ${scope}.`;
 }
-// T-MPR-RUN-02 / R42-003: Extract explicit `automatable: true|false` metadata from
+// Extract explicit `automatable: true|false` metadata from
 // scenario frontmatter or SOURCE METADATA section. Returns:
 //   - { automatable: true|false, reason?: string } when the field is present
 //   - { automatable: null } when absent (callers fall back to legacy inference)
@@ -231,7 +231,7 @@ export function parseScenarioDefinition(filePath) {
     const titleMatch = text.match(/^#\s+(.+)$/m);
     const scenarioId = scenarioIdMatch?.[1]?.trim() ?? path.basename(filePath, '.md');
     const featureName = titleMatch?.[1]?.trim() ?? path.basename(filePath, '.md');
-    // T-MPR-RUN-02 / R42-003: read explicit automatable metadata once; propagated into
+    // Read explicit automatable metadata once; propagated into
     // every ScenarioDefinition regardless of which fallback branch produces it.
     const { automatable, reason: automatableReason } = parseAutomatableMetadata(text);
     const parseProseDefinition = () => {
@@ -353,7 +353,7 @@ function scenarioResultFromParseFailure(failure) {
     };
 }
 function preclassifiedUnautomatableReason(definition) {
-    // T-MPR-RUN-02 / R42-003: explicit scenario metadata wins over filename-substring
+    // Explicit scenario metadata wins over filename-substring
     // inference. When `automatable: false` is declared, honor it (with its reason when
     // supplied). When `automatable: true` is declared, shortcut past the legacy
     // filename fallbacks below.
@@ -448,7 +448,7 @@ function parseSteps(commandSequence) {
     }
     return lineSteps.map(classifyStep);
 }
-// T-MPR-RUN-04 / R46-003: `lastJobId` originates from prior handler payloads and is
+// `lastJobId` originates from prior handler payloads and is
 // interpolated into tokenized object-literal source before parsing. Even though the
 // typed parser rejects quoted-string breakouts (see parseObjectLiteralArgs test
 // coverage), we sanitize at the substitution boundary as defense in depth: only a
@@ -470,7 +470,7 @@ function substitutePlaceholders(value, fixture, runtimeState) {
     if (runtimeState.lastJobId && next.includes('<job-id>')) {
         const sanitized = sanitizeJobIdForSubstitution(runtimeState.lastJobId);
         if (sanitized === null) {
-            // T-MPR-RUN-04 / R46-003: adversarial lastJobId must never reach the
+            // Adversarial lastJobId must never reach the
             // tokenizer. Throw a structured error so the scenario fails visibly
             // instead of silently swallowing a dangerous payload.
             throw new Error('Playbook injection defense: runtimeState.lastJobId contains characters '
@@ -872,7 +872,7 @@ function coerceToolArgs(step, definition, fixture, runtimeState) {
             ...parsedStepArgs(step, definition, fixture, runtimeState),
         };
     }
-    // T-MPR-RUN-05 / R50-002: validate against known-tool schema so shorthand drift
+    // Validate against known-tool schema so shorthand drift
     // (`{jobId}` vs `{ jobId:"..." }`) cannot silently pass through with partial args.
     validateToolArgsSchema(step.toolName, args);
     if ((step.toolName === 'memory_context' || step.toolName === 'memory_search') && typeof args.sessionId === 'string') {

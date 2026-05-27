@@ -182,7 +182,7 @@ function testTemplateCompliancePromptContracts() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   T242: Semantic assertions — beyond string-presence
+   Semantic assertions — beyond string-presence
    Finding #26: test-phase-command-workflows.js is a string-presence
    check only; it never asserts implementation scope semantics or
    PREFLIGHT/POSTFLIGHT score contracts.
@@ -203,14 +203,14 @@ function testPhaseYamlStructuralContracts() {
     if (!exists(filePath)) continue;
     const text = readFile(filePath);
 
-    // T242-SS1: YAML assets must define numbered steps (step_N or step N)
+    // YAML assets must define numbered steps (step_N or step N)
     const hasNumberedSteps = /step[_\s]?\d+/i.test(text) || /^\s*\d+\.\s/m.test(text);
     assertTrue(
       hasNumberedSteps,
       `T242-SS1: ${yaml} defines numbered workflow steps`
     );
 
-    // T242-SS2: Validate.sh invocation must include --strict flag
+    // Validate.sh invocation must include --strict flag
     if (text.includes('validate.sh')) {
       assertTrue(
         text.includes('--strict'),
@@ -218,7 +218,7 @@ function testPhaseYamlStructuralContracts() {
       );
     }
 
-    // T242-SS3: Template compliance must define both inline_scaffolds AND
+    // Template compliance must define both inline_scaffolds AND
     // a validation step — not just mention the words
     if (text.includes('template_compliance:')) {
       assertTrue(
@@ -240,19 +240,19 @@ function testImplementScopeContracts() {
     if (!exists(filePath)) continue;
     const text = readFile(filePath);
 
-    // T242-IS1: Implement assets must reference plan.md as input
+    // Implement assets must reference plan.md as input
     assertTrue(
       text.includes('plan.md') || text.includes('plan_path'),
       `T242-IS1: ${yaml} references plan.md as prerequisite`
     );
 
-    // T242-IS2: Implement assets must reference tasks.md for tracking
+    // Implement assets must reference tasks.md for tracking
     assertTrue(
       text.includes('tasks.md') || text.includes('task_tracker'),
       `T242-IS2: ${yaml} references tasks.md for progress tracking`
     );
 
-    // T242-IS3: Implement assets must reference checklist or verification
+    // Implement assets must reference checklist or verification
     assertTrue(
       text.includes('checklist') || text.includes('verification') || text.includes('validate'),
       `T242-IS3: ${yaml} references verification/checklist step`
@@ -271,13 +271,13 @@ function testCompleteYamlContracts() {
     if (!exists(filePath)) continue;
     const text = readFile(filePath);
 
-    // T242-CS1: Complete assets must reference implementation-summary.md
+    // Complete assets must reference implementation-summary.md
     assertTrue(
       text.includes('implementation-summary') || text.includes('implementation_summary'),
       `T242-CS1: ${yaml} references implementation-summary.md`
     );
 
-    // T242-CS2: Complete assets should mention completion verification
+    // Complete assets should mention completion verification
     assertTrue(
       text.includes('complete') || text.includes('finish') || text.includes('done'),
       `T242-CS2: ${yaml} references completion state`
@@ -286,7 +286,7 @@ function testCompleteYamlContracts() {
 }
 
 function testPhaseAssetsMutualConsistency() {
-  // T242-MC1: All auto/confirm pairs should have matching step counts
+  // All auto/confirm pairs should have matching step counts
   const pairs = [
     ['speckit_plan_auto.yaml', 'speckit_plan_confirm.yaml'],
     ['speckit_implement_auto.yaml', 'speckit_implement_confirm.yaml'],

@@ -417,7 +417,7 @@ describe('Save Quality Gate (TM-04)', () => {
         expect(scoreTriggerQuality(['a', 'b', 'c', 'd', 'e'])).toBe(1.0);
       });
 
-      // ─── T237: Whitespace-only trigger phrases ────────────────
+      // ─── : Whitespace-only trigger phrases ────────────────
 
       it('TR-T237-1: Whitespace-only phrases do not count as trigger coverage', () => {
         const score = scoreTriggerQuality(['   ', '\t', '\n']);

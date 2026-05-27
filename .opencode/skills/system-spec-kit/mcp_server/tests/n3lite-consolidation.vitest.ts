@@ -106,7 +106,7 @@ function seedContradictingMemories(db: Database.Database): void {
   );
 }
 
-/* -- T002a: Contradiction scan -- */
+/* : Contradiction scan -- */
 
 describe('T002a: Contradiction scan', () => {
   it('T-N3-01: hasNegationConflict detects single-sided negation', () => {
@@ -168,7 +168,7 @@ describe('T002a: Contradiction scan', () => {
   });
 });
 
-/* -- T002e: Contradiction cluster surfacing -- */
+/* : Contradiction cluster surfacing -- */
 
 describe('T002e: Contradiction cluster surfacing', () => {
   it('T-N3-08: buildContradictionClusters includes seed pair members', () => {
@@ -218,7 +218,7 @@ describe('T002e: Contradiction cluster surfacing', () => {
   });
 });
 
-/* -- T001d: Weight history -- */
+/* : Weight history -- */
 
 describe('T001d: Weight history audit tracking', () => {
   it('T-WH-01: updateEdge logs weight change to weight_history', () => {
@@ -298,7 +298,7 @@ describe('T001d: Weight history audit tracking', () => {
   });
 });
 
-/* -- T002b: Hebbian strengthening -- */
+/* : Hebbian strengthening -- */
 
 describe('T002b: Hebbian strengthening', () => {
   it('T-HEB-01: recently accessed edges get strengthened', () => {
@@ -394,7 +394,7 @@ describe('T002b: Hebbian strengthening', () => {
   });
 });
 
-/* -- T002c: Staleness detection -- */
+/* : Staleness detection -- */
 
 describe('T002c: Staleness detection', () => {
   it('T-STALE-01: detects edges not accessed in 90+ days', () => {
@@ -421,7 +421,7 @@ describe('T002c: Staleness detection', () => {
   });
 });
 
-/* -- T002d: Edge bounds enforcement -- */
+/* : Edge bounds enforcement -- */
 
 describe('T002d: Edge bounds enforcement', () => {
   it('T-BOUNDS-01: checkEdgeBounds reports correct count', () => {
@@ -478,7 +478,7 @@ describe('T002d: Edge bounds enforcement', () => {
   });
 });
 
-/* -- T002: Full consolidation cycle -- */
+/* : Full consolidation cycle -- */
 
 describe('T002: Full consolidation cycle', () => {
   it('T-CONS-01: runConsolidationCycle runs without error', () => {

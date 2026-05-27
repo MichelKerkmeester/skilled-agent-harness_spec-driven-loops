@@ -89,7 +89,7 @@ describe('History Tests (T508)', () => {
     } catch { /* ignore cleanup errors */ }
   });
 
-  // Record History Entry (T508-01)
+  // Record History Entry
   describe('Record History Entry', () => {
     it('T508-01: recordHistory returns UUID', () => {
       const id = mod.recordHistory(1, 'ADD', null, JSON.stringify({ title: 'Test Memory 1' }), 'system');
@@ -136,7 +136,7 @@ describe('History Tests (T508)', () => {
     });
   });
 
-  // Get History for Memory (T508-02)
+  // Get History for Memory
   describe('Get History for Memory', () => {
     it('T508-02a: getHistory returns array of entries', () => {
       // Record a few more entries
@@ -168,7 +168,7 @@ describe('History Tests (T508)', () => {
     });
   });
 
-  // History Respects Limit (T508-03)
+  // History Respects Limit
   describe('History Respects Limit', () => {
     it('T508-03: getHistory respects limit parameter', () => {
       const limited = mod.getHistory(1, 2);
@@ -177,7 +177,7 @@ describe('History Tests (T508)', () => {
     });
   });
 
-  // Chronological Ordering (T508-04)
+  // Chronological Ordering
   describe('Chronological Ordering', () => {
     it('T508-04: History is ordered newest-first (DESC)', () => {
       const history = mod.getHistory(1);
@@ -189,7 +189,7 @@ describe('History Tests (T508)', () => {
     });
   });
 
-  // History Stats (T508-05)
+  // History Stats
   describe('History Stats', () => {
     it('T508-05a: getHistoryStats returns valid stats', () => {
       // Record a DELETE event
@@ -290,7 +290,7 @@ describe('History Tests (T508)', () => {
     });
   });
 
-  // Legacy Schema Migration (T508-06)
+  // Legacy Schema Migration
   describe('Legacy Schema Migration', () => {
     it('T508-06a: init() migrates legacy CHECK(actor IN ...) and FOREIGN KEY constraints', () => {
       const activeDb = requireDb();
@@ -373,7 +373,7 @@ describe('History Tests (T508)', () => {
     });
   });
 
-  // Memory_bulk_delete olderThanDays boundaries (T508-08)
+  // Memory_bulk_delete olderThanDays boundaries
   describe('memory_bulk_delete olderThanDays boundaries', () => {
     const baseInput = { tier: 'normal', confirm: true } as const;
 
@@ -408,7 +408,7 @@ describe('History Tests (T508)', () => {
     });
   });
 
-  // UUID Generation (T508-07)
+  // UUID Generation
   describe('UUID Generation', () => {
     it('T508-07a: generateUuid returns 36-char string', () => {
       const uuid = mod.generateUuid();

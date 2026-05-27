@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: BooleanExpr — Typed YAML Predicate Grammar (S7 / M11) Tests
+// MODULE: BooleanExpr — Typed YAML Predicate Grammar (S7 ) Tests
 // ───────────────────────────────────────────────────────────────────
 
 // Runner: `node --experimental-vm-modules .../boolean-expr.test.js` after tsc.
@@ -43,7 +43,7 @@ function assert(cond: boolean, label: string): void {
   assert(result.expr?.value === false, 'FALSE literal captured');
 }
 
-// Lowercase / Titlecase booleans rejected per T-TEST-NEW-19 regression.
+// Lowercase Titlecase booleans rejected per regression.
 {
   const result = parseBooleanExprString('intake_only == true');
   assert(result.ok === false, "lowercase 'true' rejected");
@@ -81,7 +81,7 @@ function assert(cond: boolean, label: string): void {
   assert(result.ok === false, 'missing operator rejected');
 }
 
-// Prose-bleed detection (T-YML-PLN-04 / T-YML-CMP-01).
+// Prose-bleed detection .
 {
   const prose = 'Immediately after the canonical spec document is refreshed on disk';
   assert(findProseBleed(prose) !== null, 'prose bleed detected');

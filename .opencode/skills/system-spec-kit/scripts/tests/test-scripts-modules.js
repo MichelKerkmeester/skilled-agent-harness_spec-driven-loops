@@ -3013,7 +3013,7 @@ async function testMemoryRankMemories() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   T233: WRAP-ALL-TEMPLATES SHIPPED PATH COVERAGE
+   WRAP-ALL-TEMPLATES SHIPPED PATH COVERAGE
    Finding #14: Test coverage is skewed toward helper smoke tests
    (generateAnchorId, categorizeSection, etc.), not the shipped
    wrapping path (wrap-all-templates.ts → wrapSectionsWithAnchors).
@@ -3033,7 +3033,7 @@ async function testWrapAllTemplatesShippedPath() {
 
     const wrapModule = require(DIST_WRAP);
 
-    // T233-WR-001: Module exports the main wrapping function
+    // Module exports the main wrapping function
     if (typeof wrapModule.wrapSectionsWithAnchors === 'function') {
       pass('T233-WR-001: wrapSectionsWithAnchors is exported', 'function found');
     } else if (typeof wrapModule.default === 'function') {
@@ -3048,7 +3048,7 @@ async function testWrapAllTemplatesShippedPath() {
       }
     }
 
-    // T233-WR-002: wrapSectionsWithAnchors processes markdown content
+    // WrapSectionsWithAnchors processes markdown content
     if (typeof wrapModule.wrapSectionsWithAnchors === 'function') {
       const input = `# Test Section
 
@@ -3082,7 +3082,7 @@ More content.
       }
     }
 
-    // T233-WR-005: wrapSectionsWithAnchors is idempotent (wrapping twice doesn't double anchors)
+    // WrapSectionsWithAnchors is idempotent (wrapping twice doesn't double anchors)
     if (typeof wrapModule.wrapSectionsWithAnchors === 'function') {
       const input = `# Idempotent Test\n\nContent.\n`;
       const first = wrapModule.wrapSectionsWithAnchors(input);
@@ -3103,7 +3103,7 @@ More content.
       }
     }
 
-    // T233-WR-006: Module exports processTemplate or similar shipped function
+    // Module exports processTemplate or similar shipped function
     const shippedFunctions = Object.keys(wrapModule).filter(k => typeof wrapModule[k] === 'function');
     if (shippedFunctions.length >= 1) {
       pass('T233-WR-006: Module exports shipped functions', `count=${shippedFunctions.length}: ${shippedFunctions.slice(0, 5).join(', ')}`);
@@ -3168,7 +3168,7 @@ async function main() {
   await testExtractorsImplementationGuide();
   await testExtractorsSessionAdditional();
 
-  // T233: Shipped wrapping path coverage
+  // Shipped wrapping path coverage
   await testWrapAllTemplatesShippedPath();
 
   // LOW priority additional function tests

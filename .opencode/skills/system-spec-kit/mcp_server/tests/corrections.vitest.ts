@@ -112,7 +112,7 @@ describe('CORRECTIONS MODULE TESTS (T052-T055, T142-T147)', () => {
     teardownTestDb();
   });
 
-  // --- T052: Schema creation ----------------------------------
+  // : Schema creation
 
   describe('T052: Schema Creation', () => {
     it('T052: memory_corrections table should exist', () => {
@@ -143,7 +143,7 @@ describe('CORRECTIONS MODULE TESTS (T052-T055, T142-T147)', () => {
     });
   });
 
-  // --- T053: Record correction with stability penalty ---------
+  // : Record correction with stability penalty
 
   describe('T053: Record Correction with 0.5x Stability Penalty', () => {
     it('T053/CHK-067: applies 0.5x penalty to original memory', () => {
@@ -189,7 +189,7 @@ describe('CORRECTIONS MODULE TESTS (T052-T055, T142-T147)', () => {
     });
   });
 
-  // --- T054: Correction types ---------------------------------
+  // : Correction types
 
   describe('T054: Correction Type Tracking', () => {
     it('T054: deprecated type works (no replacement)', () => {
@@ -211,7 +211,7 @@ describe('CORRECTIONS MODULE TESTS (T052-T055, T142-T147)', () => {
     });
   });
 
-  // --- CHK-070: Undo capability -------------------------------
+  // : Undo capability
 
   describe('CHK-070: Undo Capability', () => {
     it('CHK-070: undo restores stability and marks correction as undone', () => {
@@ -351,7 +351,7 @@ describe('CORRECTIONS MODULE TESTS (T052-T055, T142-T147)', () => {
     });
   });
 
-  // --- CHK-069: Feature flag ----------------------------------
+  // : Feature flag
 
   describe('CHK-069: Feature Flag', () => {
     it('CHK-069: isEnabled returns a boolean', () => {
@@ -415,7 +415,7 @@ describe('CORRECTIONS MODULE TESTS (T052-T055, T142-T147)', () => {
     });
   });
 
-  // --- T142-T147: CORRECTIONS ENHANCEMENTS --------------------
+  // : CORRECTIONS ENHANCEMENTS
 
   describe('T142: memory_corrections table schema (v9 migration)', () => {
     it('T142: all required columns present', () => {

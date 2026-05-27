@@ -9,7 +9,7 @@ import { describe, it, expect } from 'vitest';
 // C1 — path traversal rejection on ingest paths
 // H2 — bounded paths array (max 50)
 // H5 — additionalProperties: false on all schemas
-// M5 — ingest schema minItems/minLength constraints
+// Ingest schema minItems/minLength constraints
 import {
   validateToolArgs,
   ToolSchemaValidationError,

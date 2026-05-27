@@ -73,7 +73,7 @@ def test_advisor_module():
 
     ok("T243-SA-LOAD: skill_advisor.py loads")
 
-    # T243-SA-001: analyze_prompt returns list
+    # Analyze_prompt returns list
     try:
         result = advisor.analyze_prompt(
             prompt="create a pull request on github",
@@ -89,7 +89,7 @@ def test_advisor_module():
     except Exception as exc:
         fail_test("T243-SA-001: analyze_prompt returns list", str(exc))
 
-    # T243-SA-002: analyze_prompt with confidence_only mode
+    # Analyze_prompt with confidence_only mode
     try:
         result = advisor.analyze_prompt(
             prompt="create a pull request on github",
@@ -105,7 +105,7 @@ def test_advisor_module():
     except Exception as exc:
         fail_test("T243-SA-002: analyze_prompt confidence_only mode works", str(exc))
 
-    # T243-SA-003: analyze_prompt with empty string
+    # Analyze_prompt with empty string
     try:
         result = advisor.analyze_prompt(
             prompt="",
@@ -121,7 +121,7 @@ def test_advisor_module():
     except Exception as exc:
         fail_test("T243-SA-003: analyze_prompt handles empty prompt", str(exc))
 
-    # T243-SA-004: analyze_batch returns list
+    # Analyze_batch returns list
     try:
         result = advisor.analyze_batch(
             prompts=["create a PR", "save memory context"],
@@ -141,7 +141,7 @@ def test_advisor_module():
     except Exception as exc:
         fail_test("T243-SA-004: analyze_batch returns list", str(exc))
 
-    # T243-SA-005: health_check returns dict with expected keys
+    # Health_check returns dict with expected keys
     try:
         health = advisor.health_check()
         if isinstance(health, dict):
@@ -157,7 +157,7 @@ def test_advisor_module():
     except Exception as exc:
         fail_test("T243-SA-005: health_check returns dict", str(exc))
 
-    # T243-SA-005b: corrupt source graph-metadata degrades health visibly.
+    # Corrupt source graph-metadata degrades health visibly.
     try:
         original_skills_dir = advisor.SKILLS_DIR
         original_graph = advisor._SKILL_GRAPH
@@ -210,7 +210,7 @@ def test_advisor_module():
     except Exception as exc:
         fail_test("T243-SA-005b: corrupt source metadata degrades health", str(exc))
 
-    # T243-SA-005c: SKILL.md parse drops make cache health degraded, not green.
+    # SKILL.md parse drops make cache health degraded, not green.
     try:
         original_skills_dir = advisor.SKILLS_DIR
         original_graph = advisor._SKILL_GRAPH
@@ -265,7 +265,7 @@ def test_advisor_module():
     except Exception as exc:
         fail_test("T243-SA-005c: cache parse drops degrade health", str(exc))
 
-    # T243-SA-006: get_skills returns non-empty dict
+    # Get_skills returns non-empty dict
     try:
         skills = advisor.get_skills()
         if isinstance(skills, dict) and len(skills) > 0:
@@ -275,7 +275,7 @@ def test_advisor_module():
     except Exception as exc:
         fail_test("T243-SA-006: get_skills returns populated dict", str(exc))
 
-    # T243-SA-007: parse_frontmatter captures Keywords HTML comments
+    # Parse_frontmatter captures Keywords HTML comments
     try:
         with tempfile.NamedTemporaryFile("w", suffix=".md", delete=False, encoding="utf-8") as f:
             f.write(
@@ -303,7 +303,7 @@ keywords: existing-term
     except Exception as exc:
         fail_test("T243-SA-007: parse_frontmatter captures Keywords HTML comments", str(exc))
 
-    # T243-SA-008: cached skill records include Keywords HTML comment variants
+    # Cached skill records include Keywords HTML comment variants
     try:
         runtime = load_module("skill_advisor_runtime", "skill_advisor_runtime.py")
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -334,7 +334,7 @@ description: Runtime cache fixture
     except Exception as exc:
         fail_test("T243-SA-008: cached skill records include Keywords HTML comment variants", str(exc))
 
-    # T243-SA-009: analyze_prompt result shape has expected fields
+    # Analyze_prompt result shape has expected fields
     try:
         result = advisor.analyze_prompt(
             prompt="review code changes in PR",
@@ -355,7 +355,7 @@ description: Runtime cache fixture
     except Exception as exc:
         fail_test("T243-SA-009: Result item has 'skill' field", str(exc))
 
-    # T243-SA-010: graph intent_signals + derived.trigger_phrases affect routing
+    # Graph intent_signals + derived.trigger_phrases affect routing
     try:
         with tempfile.TemporaryDirectory() as tmpdir:
             for skill_name in ("alpha-skill", "beta-skill"):
@@ -489,7 +489,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-010: graph signals and trigger phrases boost routing", str(exc))
 
-    # T243-SA-011: T-SAP-02 / R45-002 deep-research vs sk-code-review margin >= 0.10
+    # Deep-research vs sk-code-review margin >= 0.10
     try:
         thin_margin_prompts = [
             "deep research audit this subsystem",
@@ -524,7 +524,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-011: deep-research disambiguation enforces >= 0.10 margin", str(exc))
 
-    # T243-SA-012: T-SAP-02 deep-review vs sk-code-review margin >= 0.10
+    # Deep-review vs sk-code-review margin >= 0.10
     try:
         review_failures = []
         for prompt in ["deep review this code for audit findings", "deep-review audit the module"]:
@@ -554,7 +554,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-012: deep-review disambiguation enforces >= 0.10 margin", str(exc))
 
-    # T243-SA-013: T-SAR-01 / R42-002 inventory comparison detects mismatch
+    # Inventory comparison detects mismatch
     try:
         parity = advisor._compare_inventories(["sk-git", "sk-doc"], {
             "families": {"sk-util": ["sk-git", "sk-doc", "sk-missing"]},
@@ -575,7 +575,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-013: inventory parity check detects graph-only skill", str(exc))
 
-    # T243-SA-013c: T-SAR-01 runtime-level `compare_inventories` helper.
+    # Runtime-level `compare_inventories` helper.
     try:
         runtime = load_module("skill_advisor_runtime", "skill_advisor_runtime.py")
         parity = runtime.compare_inventories(
@@ -597,7 +597,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-013c: runtime compare_inventories flags symmetric mismatches", str(exc))
 
-    # T243-SA-013b: inventory parity also detects SKILL.md-only skill.
+    # Inventory parity also detects SKILL.md-only skill.
     try:
         parity = advisor._compare_inventories(["alpha", "beta"], {
             "families": {"sk-util": ["alpha"]},
@@ -614,7 +614,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-013b: inventory parity check detects discovery-only skill", str(exc))
 
-    # T243-SA-014: T-SGC-02 / R45-003 health_check exposes topology_warnings payload
+    # Health_check exposes topology_warnings payload
     try:
         original_graph = advisor._SKILL_GRAPH
         original_source = advisor._SKILL_GRAPH_SOURCE
@@ -650,7 +650,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-014: health_check exposes topology_warnings", str(exc))
 
-    # T243-SA-015: T-SAP-04 / R46-002 conflict penalty requires reciprocity.
+    # Conflict penalty requires reciprocity.
     try:
         original_graph = advisor._SKILL_GRAPH
         original_source = advisor._SKILL_GRAPH_SOURCE
@@ -707,9 +707,9 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-015: conflict penalty only applies on mutual declaration", str(exc))
 
-    # T243-SA-016: T-TEST-NEW-09 / R46-001 — `/deep:start-research-loop` must route
+    # — `/deep:start-research-loop` must route
     # to `deep-research`, NOT collapse to the generic `command-spec-kit`. The
-    # owning-skill signal was lost for slash subcommands before T-SAP-03 /
+    # Owning-skill signal was lost for slash subcommands before
     # skill_advisor.py line 1312 fix; this regression pins the subcommand map.
     try:
         failures = []
@@ -754,7 +754,7 @@ description: Fixture helper for routing tests
             str(exc),
         )
 
-    # T243-SA-017: routing-accuracy Wave A command bridges normalize to owner.
+    # Routing-accuracy Wave A command bridges normalize to owner.
     try:
         failures = []
         expected_routes = [
@@ -787,7 +787,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-017: command bridge winners normalize to owning skills", str(exc))
 
-    # T243-SA-018: quoted commands and command-target implementation refs are guarded.
+    # Quoted commands and command-target implementation refs are guarded.
     try:
         guard_cases = [
             ("explain `/memory:save` without changing files", "command-memory-save", True),
@@ -811,7 +811,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-018: command bridge normalization guard preserves implementation refs", str(exc))
 
-    # T243-SA-019: --stdin-preferred does not read an interactive stdin before argv fallback.
+    # --stdin-preferred does not read an interactive stdin before argv fallback.
     try:
         class FakeTty:
             def isatty(self):
@@ -834,7 +834,7 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-019: stdin-preferred skips tty reads before argv fallback", str(exc))
 
-    # T243-SA-020: native legacy bridge preserves parity-critical fields.
+    # Native legacy bridge preserves parity-critical fields.
     try:
         native_output = {
             "recommendations": [{
@@ -892,7 +892,7 @@ def test_bench_harness():
 
     ok("T246-BN-LOAD: skill_advisor_bench.py loads")
 
-    # T246-BN-001: load_prompts_from_dataset with valid JSONL
+    # Load_prompts_from_dataset with valid JSONL
     try:
         with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False, encoding="utf-8") as f:
             f.write('{"prompt": "test prompt 1"}\n')
@@ -909,7 +909,7 @@ def test_bench_harness():
     except Exception as exc:
         fail_test("T246-BN-001: load_prompts_from_dataset parses valid JSONL", str(exc))
 
-    # T246-BN-002: load_prompts_from_dataset rejects malformed rows
+    # Load_prompts_from_dataset rejects malformed rows
     try:
         with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False, encoding="utf-8") as f:
             f.write('{"prompt": "valid"}\n')
@@ -926,7 +926,7 @@ def test_bench_harness():
     except Exception as exc:
         fail_test("T246-BN-002: load_prompts_from_dataset rejects malformed", str(exc))
 
-    # T246-BN-003: load_prompts_from_dataset rejects empty prompt field
+    # Load_prompts_from_dataset rejects empty prompt field
     try:
         with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False, encoding="utf-8") as f:
             f.write('{"prompt": ""}\n')
@@ -942,7 +942,7 @@ def test_bench_harness():
     except Exception as exc:
         fail_test("T246-BN-003: load_prompts_from_dataset rejects empty prompt", str(exc))
 
-    # T246-BN-004: load_advisor_module returns valid module
+    # Load_advisor_module returns valid module
     try:
         module = bench.load_advisor_module()
         if hasattr(module, "analyze_prompt"):
@@ -952,7 +952,7 @@ def test_bench_harness():
     except Exception as exc:
         fail_test("T246-BN-004: load_advisor_module returns usable module", str(exc))
 
-    # T246-BN-005: in-process benchmark disables built-in semantic mode like subprocess paths.
+    # In-process benchmark disables built-in semantic mode like subprocess paths.
     try:
         original_loader = bench.load_advisor_module
         original_env = os.environ.get(bench.BENCH_ENV_FLAG)
@@ -996,7 +996,7 @@ def test_regression_harness():
 
     ok("T246-RG-LOAD: skill_advisor_regression.py loads")
 
-    # T246-RG-001: compute_metrics with sample results
+    # Compute_metrics with sample results
     try:
         sample_results = [
             {
@@ -1046,7 +1046,7 @@ def test_regression_harness():
     except Exception as exc:
         fail_test("T246-RG-001: compute_metrics produces correct counts", str(exc))
 
-    # T246-RG-002: compute_metrics with empty results
+    # Compute_metrics with empty results
     try:
         metrics = regression.compute_metrics([])
         if isinstance(metrics, dict) and metrics.get("total_cases") == 0:
@@ -1057,7 +1057,7 @@ def test_regression_harness():
     except Exception as exc:
         fail_test("T246-RG-002: compute_metrics handles empty list", str(exc))
 
-    # T246-RG-003: load_jsonl with valid file
+    # Load_jsonl with valid file
     try:
         with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False, encoding="utf-8") as f:
             f.write('{"prompt": "test 1", "id": "T1"}\n')
@@ -1075,7 +1075,7 @@ def test_regression_harness():
     except Exception as exc:
         fail_test("T246-RG-003: load_jsonl parses valid JSONL", str(exc))
 
-    # T246-RG-004: load_jsonl rejects missing prompt field
+    # Load_jsonl rejects missing prompt field
     try:
         with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False, encoding="utf-8") as f:
             f.write('{"id": "no-prompt"}\n')
@@ -1091,7 +1091,7 @@ def test_regression_harness():
     except Exception as exc:
         fail_test("T246-RG-004: load_jsonl rejects missing prompt", str(exc))
 
-    # T246-RG-005: load_advisor_module returns valid module
+    # Load_advisor_module returns valid module
     try:
         module = regression.load_advisor_module()
         if hasattr(module, "analyze_prompt"):
@@ -1104,7 +1104,7 @@ def test_regression_harness():
     except Exception as exc:
         fail_test("T246-RG-005: regression load_advisor_module returns usable module", str(exc))
 
-    # T246-RG-006: regression harness can exercise subprocess bridge cases.
+    # Regression harness can exercise subprocess bridge cases.
     try:
         case = {
             "id": "subprocess-bridge",
@@ -1188,7 +1188,7 @@ def test_graph_compiler():
 
         return exit_code, stdout_buffer.getvalue(), stderr_buffer.getvalue()
 
-    # T246-GC-001: Orphan skills now fail validation.
+    # Orphan skills now fail validation.
     try:
         exit_code, stdout_text, stderr_text = run_compiler({
             "orphan-skill": make_edges(),
@@ -1203,7 +1203,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-001: orphan topology violation exits non-zero", str(exc))
 
-    # T246-GC-002: Missing prerequisite symmetry now fails validation.
+    # Missing prerequisite symmetry now fails validation.
     try:
         exit_code, stdout_text, stderr_text = run_compiler({
             "alpha": make_edges(depends_on=[edge("beta", 0.9, "requires beta")]),
@@ -1219,7 +1219,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-002: symmetry topology violation exits non-zero", str(exc))
 
-    # T246-GC-003: Weight-band warnings remain advisory-only.
+    # Weight-band warnings remain advisory-only.
     try:
         exit_code, stdout_text, stderr_text = run_compiler({
             "alpha": make_edges(depends_on=[edge("beta", 0.2, "out-of-band dependency")]),
@@ -1235,7 +1235,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-003: weight-band warnings stay advisory", str(exc))
 
-    # T246-GC-004: Existing dependency-cycle errors still fail validation.
+    # Existing dependency-cycle errors still fail validation.
     try:
         exit_code, stdout_text, stderr_text = run_compiler({
             "alpha": make_edges(
@@ -1261,7 +1261,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-004: dependency cycles still exit non-zero", str(exc))
 
-    # T246-GC-005: Missing conflict reciprocity now fails validation.
+    # Missing conflict reciprocity now fails validation.
     try:
         exit_code, stdout_text, stderr_text = run_compiler({
             "alpha": make_edges(conflicts_with=[edge("beta", 0.9, "one-sided conflict")]),
@@ -1277,7 +1277,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-005: conflict symmetry topology violation exits non-zero", str(exc))
 
-    # T246-GC-006: Three-node dependency cycles now fail validation with a path.
+    # Three-node dependency cycles now fail validation with a path.
     try:
         exit_code, stdout_text, stderr_text = run_compiler({
             "alpha": make_edges(
@@ -1307,7 +1307,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-006: three-node dependency cycles exit non-zero with path", str(exc))
 
-    # T246-GC-007: Acyclic dependency graphs still pass validation.
+    # Acyclic dependency graphs still pass validation.
     try:
         exit_code, stdout_text, stderr_text = run_compiler({
             "alpha": make_edges(depends_on=[edge("beta", 0.9, "acyclic dependency")]),
@@ -1327,7 +1327,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-007: acyclic dependency graph passes validation", str(exc))
 
-    # T246-GC-008: T-SGC-02 / R45-003 compile_graph serializes topology_warnings.
+    # Compile_graph serializes topology_warnings.
     try:
         fake_metadata = [
             (
@@ -1377,7 +1377,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-008: compile_graph serializes topology_warnings durably", str(exc))
 
-    # T246-GC-009: T-SGC-03 / T-SAP-04 compile_graph emits only mutually-declared conflicts.
+    # Compile_graph emits only mutually-declared conflicts.
     try:
         fake_metadata_unilateral = [
             (
@@ -1441,7 +1441,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-009: compile_graph emits conflicts only on mutual declaration", str(exc))
 
-    # T246-GC-010: cross-file validators tolerate invalid edges payloads after schema errors.
+    # Cross-file validators tolerate invalid edges payloads after schema errors.
     try:
         invalid_metadata = [
             ("alpha", "/tmp/alpha", {"skill_id": "alpha", "edges": []}),
@@ -1461,7 +1461,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-010: invalid edge containers do not crash graph validators", str(exc))
 
-    # T246-GC-011: affordances become derived signals and existing relation edges only.
+    # Affordances become derived signals and existing relation edges only.
     try:
         normalized = compiler.normalize_affordance_input({
             "skillId": "alpha",
@@ -1524,7 +1524,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("T246-GC-011: affordances compile as derived signals and existing edges", str(exc))
 
-    # T246-GC-012: affordance validation preserves the entity-kind allowlist.
+    # Affordance validation preserves the entity-kind allowlist.
     try:
         errors = compiler.validate_derived_affordances(
             "alpha",
@@ -1573,7 +1573,7 @@ def test_graph_compiler():
     except Exception as exc:
         fail_test("R-007-8: affordance `conflicts_with` is rejected with explicit reserved-field error", str(exc))
 
-    # R-007-P2-8: shared adversarial fixture coverage. Mirrors the
+    # Shared adversarial fixture coverage. Mirrors the
     # TS-side test in `affordance-normalizer.test.ts` so both
     # sanitizers stay row-for-row identical.
     try:

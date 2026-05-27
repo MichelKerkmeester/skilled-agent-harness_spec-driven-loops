@@ -369,7 +369,7 @@ describe.sequential('Claude session-stop autosave outcomes', () => {
   });
 
   // ────────────────────────────────────────────────────────────────
-  // T-SST-10 (R31-002/R32-002): single atomic state write per stop event
+  // : single atomic state write per stop event
   // ────────────────────────────────────────────────────────────────
   it('collapses all stop-hook state changes into a single atomic write (T-SST-10)', async () => {
     const transcriptPath = join(sandboxRoot!, 'atomic-patch-transcript.jsonl');
@@ -452,7 +452,7 @@ describe.sequential('Claude session-stop autosave outcomes', () => {
   });
 
   // ────────────────────────────────────────────────────────────────
-  // T-SST-09 (R20-001): stat snapshot frozen before producer metadata
+  // Stat snapshot frozen before producer metadata
   // ────────────────────────────────────────────────────────────────
   it('freezes transcript stat BEFORE parseTranscript so producer metadata matches the parsed generation (T-SST-09)', async () => {
     const transcriptPath = join(sandboxRoot!, 'preparse-stat-transcript.jsonl');
@@ -552,7 +552,7 @@ describe.sequential('Claude session-stop autosave outcomes', () => {
   });
 
   // ────────────────────────────────────────────────────────────────
-  // T-SST-11 (R37-002): retarget uses refreshed lastSpecFolder, not the
+  // Retarget uses refreshed lastSpecFolder, not the
   // stale snapshot taken at handler entry
   // ────────────────────────────────────────────────────────────────
   it('refreshes lastSpecFolder before detectSpecFolder so another writer cannot lock in a stale packet (T-SST-11)', async () => {
@@ -636,7 +636,7 @@ describe.sequential('Claude session-stop autosave outcomes', () => {
   });
 
   // ────────────────────────────────────────────────────────────────
-  // T-SST-12 (R33-003): autosave aborts on persisted:false
+  // Autosave aborts on persisted:false
   // ────────────────────────────────────────────────────────────────
   it('aborts autosave when the atomic state write fails to persist (T-SST-12)', async () => {
     const transcriptPath = join(sandboxRoot!, 'persist-fail-transcript.jsonl');

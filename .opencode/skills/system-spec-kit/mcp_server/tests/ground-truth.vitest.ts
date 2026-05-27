@@ -115,7 +115,7 @@ afterEach(() => {
 });
 
 /* ═══════════════════════════════════════════════════════════
-   T007.1: generateGroundTruth() returns ≥100 queries
+   1: generateGroundTruth returns ≥100 queries
 ════════════════════════════════════════════════════════════ */
 
 describe('T007.1: generateGroundTruth() total query count', () => {
@@ -152,7 +152,7 @@ describe('T007.1: generateGroundTruth() total query count', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════
-   T007.2: All 7 intent types have ≥5 queries
+   2: All 7 intent types have ≥5 queries
 ════════════════════════════════════════════════════════════ */
 
 describe('T007.2: Intent type coverage (≥5 per type)', () => {
@@ -181,7 +181,7 @@ describe('T007.2: Intent type coverage (≥5 per type)', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════
-   T007.3: Complexity tiers — ≥3 tiers, ≥10 per tier
+   3: Complexity tiers — ≥3 tiers, ≥10 per tier
 ════════════════════════════════════════════════════════════ */
 
 describe('T007.3: Complexity tier coverage', () => {
@@ -214,7 +214,7 @@ describe('T007.3: Complexity tier coverage', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════
-   T007.4: ≥30 manual queries (NOT trigger-derived)
+   4: ≥30 manual queries (NOT trigger-derived)
 ════════════════════════════════════════════════════════════ */
 
 describe('T007.4: Manual query count (≥30)', () => {
@@ -244,7 +244,7 @@ describe('T007.4: Manual query count (≥30)', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════
-   T007.5: ≥3 hard negative queries
+   5: ≥3 hard negative queries
 ════════════════════════════════════════════════════════════ */
 
 describe('T007.5: Hard negative queries (≥3)', () => {
@@ -285,7 +285,7 @@ describe('T007.5: Hard negative queries (≥3)', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════
-   T007.6: No duplicate query strings
+   6: No duplicate query strings
 ════════════════════════════════════════════════════════════ */
 
 describe('T007.6: Query string uniqueness', () => {
@@ -315,7 +315,7 @@ describe('T007.6: Query string uniqueness', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════
-   T007.7: Data integrity — required fields and valid enum values
+   7: Data integrity — required fields and valid enum values
 ════════════════════════════════════════════════════════════ */
 
 describe('T007.7: Data integrity and field validation', () => {
@@ -382,7 +382,7 @@ describe('T007.7: Data integrity and field validation', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════
-   T007.8: validateGroundTruthDiversity() — all gates pass
+   8: validateGroundTruthDiversity — all gates pass
 ════════════════════════════════════════════════════════════ */
 
 describe('T007.8: validateGroundTruthDiversity() validation', () => {

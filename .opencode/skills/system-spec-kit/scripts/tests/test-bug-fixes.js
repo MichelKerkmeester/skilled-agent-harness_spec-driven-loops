@@ -382,7 +382,7 @@ async function testBug007() {
   }
 }
 
-// BUG-008: UTF-8 BOM Detection
+// UTF-8 BOM detection
 async function testBug008() {
   log('\n🔬 BUG-008: UTF-8 BOM Detection Missing');
   

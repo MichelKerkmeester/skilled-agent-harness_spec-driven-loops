@@ -281,7 +281,7 @@ describe('Context Server', () => {
   })
 
   // =================================================================
-  // GROUP 3: Tool Dispatch Coverage (T303: dispatchTool replaces switch)
+  // GROUP 3: Tool Dispatch Coverage (dispatchTool replaces switch)
   // =================================================================
   describe('Group 3: Tool Dispatch Coverage', () => {
     const EXPECTED_CASES = [
@@ -301,7 +301,7 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/targetServer\.setRequestHandler\(CallToolRequestSchema/)
     })
 
-    // T303: Verify dispatchTool is used instead of switch
+    // Verify dispatchTool is used instead of switch
     // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('T16b: dispatchTool(name, args) called', () => {
       expect(sourceCode).toMatch(/dispatchTool\(name,\s*validatedArgs,\s*callerContext\)/)
@@ -374,7 +374,7 @@ describe('Context Server', () => {
   })
 
   // =================================================================
-  // GROUP 3b: After-Tool Callback Pipeline (T000a-T000d)
+  // GROUP 3b: After-Tool Callback Pipeline
   // =================================================================
   describe('Group 3b: After-Tool Callback Pipeline', () => {
     const RUNTIME_MOCK_MODULES = [
@@ -1233,7 +1233,7 @@ describe('Context Server', () => {
 
     it('T000b: per-callback error isolation with logging', () => {
       expect(sourceCode).toMatch(/for\s*\(const\s+callback\s+of\s+afterToolCallbacks\)/)
-      expect(sourceCode).toMatch(/void\s+callback\(tool,\s*callId,\s*result\)\.catch\(\(error:\s*unknown\)\s*=>\s*\{/) 
+      expect(sourceCode).toMatch(/void\s+callback\(tool,\s*callId,\s*result\)\.catch\(\(error:\s*unknown\)\s*=>\s*\{/)
       expect(sourceCode).toMatch(/afterTool callback failed/)
     })
 
@@ -2079,7 +2079,7 @@ describe('Context Server', () => {
       ).toBeTruthy()
     })
 
-    // T24: Error response contains recovery hints (REQ-004)
+    // T24: Error response contains recovery hints
     it('T24: getRecoveryHint returns RecoveryHint object', async () => {
       const errorsModule = await importFirst<ErrorsModule>([
         async () => await import('../lib/errors/index'),

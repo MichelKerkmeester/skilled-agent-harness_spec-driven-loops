@@ -213,7 +213,7 @@ describe('resume-ladder', () => {
     expect(result.keyFiles).toContain('mcp_server/tests/session-resume.vitest.ts');
   });
 
-  // T256: Add absolute and out-of-root specFolder rejection tests
+  // Add absolute and out-of-root specFolder rejection tests
   it('rejects absolute specFolder values that escape the workspace root', () => {
     const workspacePath = createWorkspace();
     workspacesToRemove.push(workspacePath);

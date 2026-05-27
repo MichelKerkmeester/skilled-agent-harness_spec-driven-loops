@@ -824,7 +824,7 @@ describe('C2: generatePerFolderDescription path containment', () => {
   });
 });
 
-/* --- 010-CHK-024: Stale detection incorporates description.json mtime --- */
+/* 010-: Stale detection incorporates description.json mtime --- */
 
 describe('CHK-024: description.json mtime staleness', () => {
   let td: string;
@@ -880,7 +880,7 @@ describe('CHK-024: description.json mtime staleness', () => {
   });
 });
 
-/* --- 010-CHK-028: loadPerFolderDescription performance benchmark --- */
+/* 010-: loadPerFolderDescription performance benchmark --- */
 
 describe('CHK-028: Per-folder description.json read performance', () => {
   let td: string;
@@ -960,7 +960,7 @@ describe('CHK-027: concurrent description writes', () => {
   });
 });
 
-/* --- 010-CHK-029: Full aggregation scan performance benchmark --- */
+/* 010-: Full aggregation scan performance benchmark --- */
 
 describe('CHK-029: generateFolderDescriptions scan performance', () => {
   let td: string;

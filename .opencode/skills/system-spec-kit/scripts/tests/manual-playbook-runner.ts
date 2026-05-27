@@ -320,7 +320,7 @@ function createParseFailureReason(text: string, missingParts: string[]): string 
   return `Missing ${missingParts.join(' and ')} in ${scope}.`;
 }
 
-// T-MPR-RUN-02 / R42-003: Extract explicit `automatable: true|false` metadata from
+// Extract explicit `automatable: true|false` metadata from
 // scenario frontmatter or SOURCE METADATA section. Returns:
 //   - { automatable: true|false, reason?: string } when the field is present
 //   - { automatable: null } when absent (callers fall back to legacy inference)
@@ -368,7 +368,7 @@ export function parseScenarioDefinition(filePath: string): ScenarioParseResult {
   const titleMatch = text.match(/^#\s+(.+)$/m);
   const scenarioId = scenarioIdMatch?.[1]?.trim() ?? path.basename(filePath, '.md');
   const featureName = titleMatch?.[1]?.trim() ?? path.basename(filePath, '.md');
-  // T-MPR-RUN-02 / R42-003: read explicit automatable metadata once; propagated into
+  // Read explicit automatable metadata once; propagated into
   // every ScenarioDefinition regardless of which fallback branch produces it.
   const { automatable, reason: automatableReason } = parseAutomatableMetadata(text);
 
@@ -508,7 +508,7 @@ function scenarioResultFromParseFailure(failure: ScenarioParseFailure): Scenario
 }
 
 function preclassifiedUnautomatableReason(definition: ScenarioDefinition): string | null {
-  // T-MPR-RUN-02 / R42-003: explicit scenario metadata wins over filename-substring
+  // Explicit scenario metadata wins over filename-substring
   // inference. When `automatable: false` is declared, honor it (with its reason when
   // supplied). When `automatable: true` is declared, shortcut past the legacy
   // filename fallbacks below.
@@ -1013,7 +1013,7 @@ function defaultArgsForTool(
   }
 }
 
-// T-MPR-RUN-05 / R50-002: lightweight schema validator for tool arguments.
+// Lightweight schema validator for tool arguments.
 // Each tool has an allowed set of keys + required fields. Rejects unknown keys to
 // surface playbook drift immediately; rejects missing required fields so that
 // previously-undefined-in-JS-scoping shorthand (`{jobId}`) cannot slip past the
@@ -1093,7 +1093,7 @@ function coerceToolArgs(
     };
   }
 
-  // T-MPR-RUN-05 / R50-002: validate against known-tool schema so shorthand drift
+  // Validate against known-tool schema so shorthand drift
   // (`{jobId}` vs `{ jobId:"..." }`) cannot silently pass through with partial args.
   validateToolArgsSchema(step.toolName, args);
 

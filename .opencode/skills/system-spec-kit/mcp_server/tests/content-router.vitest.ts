@@ -625,7 +625,7 @@ describe('content-router helper contracts', () => {
   });
 });
 
-// T248: Add non-progress route category coverage
+// Add non-progress route category coverage
 describe('content-router non-progress route categories', () => {
   const router = createContentRouter({
     embedText: makeEmbeddingFn(),

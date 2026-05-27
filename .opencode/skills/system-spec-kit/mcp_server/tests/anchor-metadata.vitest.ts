@@ -576,7 +576,7 @@ describe('AnchorMetadata interface shape', () => {
 });
 
 // ===============================================================
-// SECTION 5: ANCHOR parsing does NOT mutate causal_edges (T011)
+// SECTION 5: ANCHOR parsing does NOT mutate causal_edges
 // ===============================================================
 
 describe('ANCHOR parsing — no graph mutation (T011)', () => {

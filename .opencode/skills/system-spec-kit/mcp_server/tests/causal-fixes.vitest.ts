@@ -67,7 +67,7 @@ describe('T202 + T203: FlatEdge id & Relations Filter [deferred - requires DB te
       )
     `);
 
-    // T001d: weight_history
+    // Weight_history
     testDb.exec(`
       CREATE TABLE IF NOT EXISTS weight_history (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

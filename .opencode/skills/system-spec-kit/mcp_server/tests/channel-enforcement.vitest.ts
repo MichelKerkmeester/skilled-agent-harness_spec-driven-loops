@@ -1,17 +1,17 @@
 // ───────────────────────────────────────────────────────────────
 // 1. TEST — CHANNEL ENFORCEMENT
 // ───────────────────────────────────────────────────────────────
-// Channel Enforcement + Precision Verification (T003b + T003c)
+// Channel Enforcement + Precision Verification (+ )
 //
 // Coverage:
-// T003b — Enforcement wrapper (enforceChannelRepresentation)
+// Enforcement wrapper (enforceChannelRepresentation)
 // T1:  enforcement applies when flag enabled and a channel is missing
 // T2:  enforcement does not apply when flag is disabled
 // T3:  topK parameter limits the inspection window
 // T4:  promoted results are appended and metadata is correct
 // T5:  promoted raw scores are normalized into the fused range before sorting
 //
-// T003c — Precision verification (R2 guarantee)
+// Precision verification (R2 guarantee)
 // T6:  all channels represented → top-3 unchanged (precision preserved)
 // T7:  one channel missing → top-3 still contains high-scoring items
 // T8:  promotions never displace items already in top-3 (appended)
@@ -95,7 +95,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     restoreEnv();
   });
 
-  // ========== T003b: ENFORCEMENT WRAPPER TESTS ==========================
+  // ========== : ENFORCEMENT WRAPPER TESTS ==========================
 
   // ---- T1: Enforcement applies when flag enabled and a channel is missing ----
   it('T1: enforcement applies when flag enabled and channel is missing', () => {
@@ -221,7 +221,7 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
     expect(result.results[2].id).toBe('g1');
   });
 
-  // ========== T003c: PRECISION VERIFICATION TESTS =======================
+  // ========== : PRECISION VERIFICATION TESTS =======================
 
   // ---- T6: All channels represented → top-3 unchanged (precision preserved) ----
   it('T6: all channels represented — top-3 is identical before and after enforcement', () => {

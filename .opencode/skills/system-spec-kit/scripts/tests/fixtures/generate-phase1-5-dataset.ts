@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// 1. PHASE 1.5 DATASET GENERATOR (T027A-T027B)
+// 1. PHASE 1.5 DATASET GENERATOR
 // ───────────────────────────────────────────────────────────────
 import fs from 'fs';
 import path from 'path';

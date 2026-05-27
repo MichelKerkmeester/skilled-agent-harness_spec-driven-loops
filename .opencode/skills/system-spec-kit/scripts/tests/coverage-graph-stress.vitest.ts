@@ -176,7 +176,7 @@ describe('coverage-graph-stress', () => {
     });
 
     it('source diversity scales to 1000+ nodes', () => {
-      // ADR-001 canonical semantics: the signal is question-centric, so a
+      // Canonical semantics: the signal is question-centric, so a
       // buildLargeGraph() output with no QUESTION-kind nodes returns 0. That
       // is semantically correct and cheap; the stress bound we care about
       // here is runtime, not the numeric output.
@@ -396,7 +396,7 @@ describe('coverage-graph-stress', () => {
       const graph = coreModule.createGraph();
 
       // Create 500 questions; cover 250 of them with TWO answering findings each
-      // (ADR-001 canonical semantics: a question needs ≥2 ANSWERS edges to count as covered).
+      // (canonical semantics: a question needs ≥2 ANSWERS edges to count as covered).
       for (let i = 0; i < 500; i++) {
         graph.nodes.set(`q-${i}`, { id: `q-${i}`, kind: 'QUESTION' });
       }

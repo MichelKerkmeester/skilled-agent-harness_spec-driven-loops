@@ -1,6 +1,6 @@
 // TEST: Learned Relevance Feedback (R11)
-// Tests all 10 safeguards, auto-promotion (T002a), and negative
-// Feedback confidence signal (T002b/A4).
+// Tests all 10 safeguards, auto-promotion , and negative
+// Feedback confidence signal (A4).
 import { describe, it, expect, beforeAll, beforeEach, afterAll, afterEach, vi } from 'vitest';
 import * as path from 'path';
 import * as os from 'os';
@@ -776,7 +776,7 @@ describe('Ground Truth Feedback Capture (T027a)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   8. AUTO-PROMOTION TESTS (T002a)
+   8. AUTO-PROMOTION TESTS
    ──────────────────────────────────────────────────────────────── */
 
 describe('Auto-Promotion Engine (T002a)', () => {
@@ -932,7 +932,7 @@ describe('Auto-Promotion Engine (T002a)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   9. NEGATIVE FEEDBACK TESTS (T002b / A4)
+   9. NEGATIVE FEEDBACK TESTS (A4)
    ──────────────────────────────────────────────────────────────── */
 
 describe('Negative Feedback Confidence Signal (T002b / A4)', () => {

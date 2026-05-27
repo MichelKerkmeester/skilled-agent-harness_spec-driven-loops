@@ -56,7 +56,7 @@ describe('T205: Token Budget Enforcement [deferred - requires DB test fixtures]'
   });
 
   // =========================================================
-  // T205-B: enforceTokenBudget Function (memory-context.ts)
+  // EnforceTokenBudget Function (memory-context.ts)
   // =========================================================
   describe('T205-B: enforceTokenBudget Function', () => {
     it('T205-B1: Small result under budget is not truncated', () => {
@@ -252,7 +252,7 @@ describe('T205: Token Budget Enforcement [deferred - requires DB test fixtures]'
   });
 
   // =========================================================
-  // T205-C: Dispatch-Level Enforcement (context-server.ts)
+  // Dispatch-Level Enforcement (context-server.ts)
   // =========================================================
   describe('T205-C: Dispatch-Level Token Budget Enforcement', () => {
     it('T205-C1: Dispatch-level truncation logic present', () => {
@@ -291,7 +291,7 @@ describe('T205: Token Budget Enforcement [deferred - requires DB test fixtures]'
   });
 
   // =========================================================
-  // T205-D: Mode-Level Budgets (memory-context CONTEXT_MODES)
+  // Mode-Level Budgets (memory-context CONTEXT_MODES)
   // =========================================================
   describe('T205-D: Context Mode Token Budgets', () => {
     it('T205-D1: Mode budgets correct', () => {

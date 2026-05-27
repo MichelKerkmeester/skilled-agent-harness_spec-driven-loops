@@ -81,7 +81,7 @@ describe('phase-parent pointer writes after canonical save', () => {
     expect(parentDerived.last_active_at).toBe('2026-04-27T12:01:00.000Z');
   });
 
-  // F-019-D4-01: parent children_ids and last_save_at must refresh when a child save bubbles up.
+  // Parent children_ids and last_save_at must refresh when a child save bubbles up.
   it('refreshes parent children_ids and last_save_at on child save (F-019-D4-01)', () => {
     updatePhaseParentPointersAfterSave(childFolder, '2026-04-27T12:03:00.000Z');
 

@@ -106,7 +106,7 @@ describe('determineSessionStatus', () => {
       10,
     );
 
-    // Blocker is resolved via reconciliation pass (F-25), then completion check falls through
+    // Blocker is resolved via reconciliation pass , then completion check falls through
     // Since last observation has "resolved", and it's a resolution keyword, the blocker is
     // cleared but the final observation doesn't have a completion keyword → IN_PROGRESS
     // unless the last observation also matches completion.

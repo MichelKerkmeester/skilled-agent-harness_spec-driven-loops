@@ -319,7 +319,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
     });
   });
 
-  // SUITE: tokenUsage Fallback Contract + Pressure Policy (T000f/T000g, T018-T020)
+  // SUITE: tokenUsage Fallback Contract + Pressure Policy
   describe('tokenUsage fallback contract and pressure policy lane', () => {
     // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
     it('T018/T019: 55% pressure keeps intent-selected mode (no override)', async () => {
@@ -505,7 +505,7 @@ describe('Handler Memory Context (T524) [deferred - requires DB test fixtures]',
     });
   });
 
-  // SUITE: Session lifecycle contract (T027k-T027m)
+  // SUITE: Session lifecycle contract
   describe('Session lifecycle metadata and resume context', () => {
     it('T027k: missing sessionId generates ephemeral UUID scope', async () => {
       const result = await withTimeout(

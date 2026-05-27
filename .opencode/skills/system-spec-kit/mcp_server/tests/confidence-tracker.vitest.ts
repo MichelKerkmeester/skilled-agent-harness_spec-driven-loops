@@ -277,7 +277,7 @@ describe('DB Error Safe Defaults (T103)', () => {
   });
 
   // ───────────────────────────────────────────────────────────────
-  // 7. DB ERROR: MOCK SQLITE_BUSY (T103-02)
+  // 7. DB ERROR: MOCK SQLITE_BUSY
   // ───────────────────────────────────────────────────────────────
   describe('Mock SQLITE_BUSY (T103-02)', () => {
     let brokenDb: ConfidenceTrackerDatabase;
@@ -311,7 +311,7 @@ describe('DB Error Safe Defaults (T103)', () => {
   });
 
   // ───────────────────────────────────────────────────────────────
-  // 8. DB ERROR: ERROR LOGGING VERIFICATION (T103-03)
+  // 8. DB ERROR: ERROR LOGGING VERIFICATION
   // ───────────────────────────────────────────────────────────────
   describe('Error Logging Verification (T103-03)', () => {
     let brokenDb: ConfidenceTrackerDatabase;
@@ -351,7 +351,7 @@ describe('DB Error Safe Defaults (T103)', () => {
   });
 
   // ───────────────────────────────────────────────────────────────
-  // 9. DB ERROR: GETCONFIDENCEINFO FULL STRUCTURE (T103-04)
+  // 9. DB ERROR: GETCONFIDENCEINFO FULL STRUCTURE
   // ───────────────────────────────────────────────────────────────
   describe('getConfidenceInfo Full Structure (T103-04)', () => {
     it('T103-04a: getConfidenceInfo throws on broken DB (T-07: explicit failure signaling)', () => {

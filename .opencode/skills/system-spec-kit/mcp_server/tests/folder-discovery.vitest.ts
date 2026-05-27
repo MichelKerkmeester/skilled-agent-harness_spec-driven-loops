@@ -1144,9 +1144,9 @@ describe('P1-4: loadPerFolderDescription with empty specId', () => {
 
     const result = loadPerFolderDescription(folderDir);
     expect(result).not.toBeNull();
-    // F-36 upgrade-on-read: empty specId should stay empty (no numeric prefix on folder name)
+    // Upgrade-on-read: empty specId should stay empty (no numeric prefix on folder name)
     expect(result!.specId).toBe('');
-    // F-36 upgrade-on-read: empty folderSlug should be derived from folder name
+    // Upgrade-on-read: empty folderSlug should be derived from folder name
     expect(result!.folderSlug).toBe('my-auth-spec');
   });
 });

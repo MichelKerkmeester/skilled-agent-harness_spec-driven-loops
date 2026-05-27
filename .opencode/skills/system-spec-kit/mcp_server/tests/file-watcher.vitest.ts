@@ -361,7 +361,7 @@ describe('file-watcher runtime behavior', () => {
     await closeTrackedWatcher(watcher);
   });
 
-  // CHK-077: File watcher timing test — changed file re-indexed within 5 seconds
+  // File watcher timing test — changed file re-indexed within 5 seconds
   it('CHK-077: changed .md file re-indexed within 5 seconds of save', async () => {
     const { emit, watchFactory } = createWatchFactoryHarness();
     const tempDir = await createTempDir();
@@ -389,7 +389,7 @@ describe('file-watcher runtime behavior', () => {
     expect(elapsed).toBeLessThan(5000);
   });
 
-  // CHK-078: Debounce coalescing — 5 rapid writes produce exactly 1 reindex
+  // Debounce coalescing — 5 rapid writes produce exactly 1 reindex
   it('CHK-078: rapid consecutive saves debounced to exactly 1 re-index', async () => {
     const { emit, watchFactory } = createWatchFactoryHarness();
     const tempDir = await createTempDir();

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: M8 — Trust-state vocabulary expansion
+// TEST: — Trust-state vocabulary expansion
 // ───────────────────────────────────────────────────────────────
 // Phase 3 (
 // R9-001)

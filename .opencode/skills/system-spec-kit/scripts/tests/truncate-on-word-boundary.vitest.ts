@@ -143,7 +143,7 @@ describe('truncateOnWordBoundary', () => {
     expect(result.endsWith('...')).toBe(false);
   });
 
-  // ─── T240: Astral Unicode and grapheme inputs ───────────────
+  // ─── : Astral Unicode and grapheme inputs ───────────────
 
   it('T240: handles astral-plane emoji without corrupting surrogate pairs', () => {
     // Each emoji like \u{1F600} is 2 code units in UTF-16 but 1 grapheme.

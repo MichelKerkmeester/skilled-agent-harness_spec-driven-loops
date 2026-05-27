@@ -194,7 +194,7 @@ describe('Hit Rate@1', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   DIAGNOSTIC: T006a — Inversion Rate
+   DIAGNOSTIC: Inversion Rate
 ──────────────────────────────────────────────────────────────── */
 
 describe('T006a: Inversion Rate', () => {
@@ -237,7 +237,7 @@ describe('T006a: Inversion Rate', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   DIAGNOSTIC: T006b — Constitutional Surfacing Rate
+   DIAGNOSTIC: Constitutional Surfacing Rate
 ──────────────────────────────────────────────────────────────── */
 
 describe('T006b: Constitutional Surfacing Rate', () => {
@@ -270,7 +270,7 @@ describe('T006b: Constitutional Surfacing Rate', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   DIAGNOSTIC: T006c — Importance-Weighted Recall
+   DIAGNOSTIC: Importance-Weighted Recall
 ──────────────────────────────────────────────────────────────── */
 
 describe('T006c: Importance-Weighted Recall', () => {
@@ -322,7 +322,7 @@ describe('T006c: Importance-Weighted Recall', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   DIAGNOSTIC: T006d — Cold-Start Detection Rate
+   DIAGNOSTIC: Cold-Start Detection Rate
 ──────────────────────────────────────────────────────────────── */
 
 describe('T006d: Cold-Start Detection Rate', () => {
@@ -389,7 +389,7 @@ describe('T006d: Cold-Start Detection Rate', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   DIAGNOSTIC: T006e — Intent-Weighted NDCG
+   DIAGNOSTIC: Intent-Weighted NDCG
 ──────────────────────────────────────────────────────────────── */
 
 describe('T006e: Intent-Weighted NDCG', () => {
@@ -542,7 +542,7 @@ describe('Edge Cases', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   DUPLICATE-ID HANDLING: Precision/F1 (T005)
+   DUPLICATE-ID HANDLING: Precision/F1
 ──────────────────────────────────────────────────────────────── */
 
 describe('T005: Duplicate-ID handling in Precision/F1', () => {
@@ -574,7 +574,7 @@ describe('T005: Duplicate-ID handling in Precision/F1', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   computeMAP — Mean Average Precision (CHK-088)
+   computeMAP — Mean Average Precision
 ──────────────────────────────────────────────────────────────── */
 
 describe('computeMAP', () => {

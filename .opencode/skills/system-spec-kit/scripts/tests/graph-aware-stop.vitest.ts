@@ -248,7 +248,7 @@ afterEach(() => {
   });
 
   it('consumes the canonical MCP handler output shape (phase 008 P1-01 closure)', () => {
-    // Phase 008 P1-01 closure: the MCP handler emits a canonical `score`
+    // P1-01 closure: the MCP handler emits a canonical `score`
     // field at the top level of the graph_convergence event (and mirrored in
     // signals.score). The reducer MUST consume this shape directly without
     // relying on synthetic `blendedScore` aliases. This test seeds the exact

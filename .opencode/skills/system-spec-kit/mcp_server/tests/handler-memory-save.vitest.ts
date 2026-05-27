@@ -616,7 +616,7 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
         warnings: [],
         saveTimeReconsolidation: { status: 'skipped', persistedState: { kind: 'create' } },
       } as Awaited<ReturnType<typeof reconsolidationModule.runReconsolidationIfEnabled>>);
-      // Phase 016 predecessor-CAS hardening added a write-transaction-scoped call
+      // Predecessor-CAS hardening added a write-transaction-scoped call
       // to findScopeFilteredCandidates. This spy prevents the tiny test embedding
       // from tripping vector_search dim validation; tests that need to simulate
       // candidate-churn can override via reconsolidationModuleFactory.
@@ -2432,7 +2432,7 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
     // vi.spyOn on ES module bindings does not propagate to `import { foo }`
     // consumers inside memory-save.ts, so the test ends up hitting real
     // vector_search with the harness's tiny fixture embedding. Requires a
-    // proper DB/vector-index fixture harness, which this T518 suite was
+    // Proper DB/vector-index fixture harness, which this suite was
     // explicitly marked "[deferred - requires DB test fixtures]" to defer.
     it.skip('persists quality-loop trigger phrase fixes into downstream save inputs', async () => {
       const runQualityGateMock = vi.fn(() => ({ pass: true, warnOnly: false, reasons: [], layers: {} }));
@@ -2889,7 +2889,7 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
 
     // Skipped: times out after 30s — exercises full atomic-save concurrency
     // contract including spec-folder mutex, which requires real file
-    // promotion and DB serialization the T518 harness does not provide.
+    // Promotion and DB serialization the harness does not provide.
     // Deferred pending integration-test infrastructure.
     it.skip('serializes concurrent atomic saves before promoting the second pending file', async () => {
       process.env.SPECKIT_TEST_DISABLE_CANONICAL_ROUTING = 'true';

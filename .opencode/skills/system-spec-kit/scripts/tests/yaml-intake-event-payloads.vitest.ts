@@ -81,7 +81,7 @@ describe('YAML intake-event payloads preserve folderState / startState boundary 
     it(`${assetName}: folder_state is mapped explicitly to start_state via map_to_start_state (or equivalent)`, () => {
       const text = fs.readFileSync(assetPath, 'utf-8');
 
-      // R41-001 + R47-002: the two vocabularies must be reconciled by an
+      // + : the two vocabularies must be reconciled by an
       // explicit mapping in the asset, not collapsed by convention. Plan
       // assets use `map_to_start_state:`, complete assets reuse the
       // intake-contract directly. The test accepts either path so the

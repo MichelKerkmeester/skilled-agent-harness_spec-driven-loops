@@ -1394,7 +1394,7 @@ async function testExtractorsIndex() {
     assertType(extractors.generateSessionId, 'function', 'EXT-IDX-008: generateSessionId re-exported');
     assertType(extractors.getChannel, 'function', 'EXT-IDX-009: getChannel re-exported');
     assertType(extractors.buildImplementationGuideData, 'function', 'EXT-IDX-010: buildImplementationGuideData re-exported');
-    // EXT-IDX-011..013: capture module re-exports removed (recovery mode deprecated)
+    // Capture module re-exports removed (recovery mode deprecated)
     skip('EXT-IDX-011: captureCodexConversation', 'Recovery mode deprecated');
     skip('EXT-IDX-012: captureCopilotConversation', 'Recovery mode deprecated');
     skip('EXT-IDX-013: captureGeminiConversation', 'Recovery mode deprecated');

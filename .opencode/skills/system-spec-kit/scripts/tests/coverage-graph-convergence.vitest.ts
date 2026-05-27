@@ -61,7 +61,7 @@ function makeGraph(nodes: GraphNode[], edges: GraphEdge[]): Graph {
 }
 
 /**
- * Phase 008 ADR-001 canonicalization note: these tests exercise the CJS
+ * Canonicalization note: these tests exercise the CJS
  * coverage-graph-convergence helper AFTER it was refactored into a thin
  * adapter over the MCP canonical signal algorithms. The canonical definitions
  * are question-centric:
@@ -145,7 +145,7 @@ describe('coverage-graph-convergence', () => {
       [],
     );
 
-    // ADR-001 canonical semantics: 0 questions → 0 coverage (not 1).
+    // Canonical semantics: 0 questions → 0 coverage (not 1).
     // This is the fail-closed default; stop gates should block when there's nothing to stop on.
     expect(convergenceModule.computeQuestionCoverage(graph)).toBe(0);
   });
@@ -168,7 +168,7 @@ describe('coverage-graph-convergence', () => {
 
     const result = convergenceModule.computeGraphConvergence(graph);
     // q-1 is covered (2 ANSWERS), q-2 is not → coverage = 0.5
-    // q-1 reaches 1 quality class via f-1→s-1, q-2 reaches 0 → diversity = 0.5
+    // Q-1 reaches 1 quality class via f-1→s-1, q-2 reaches 0 → diversity = 0.5
     expect(result.blendedScore).toBe(result.graphScore);
     expect(result.components.questionCoverage).toBe(0.5);
     expect(result.components.sourceDiversity).toBe(0.5);

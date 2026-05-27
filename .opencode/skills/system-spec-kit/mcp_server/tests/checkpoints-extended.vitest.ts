@@ -343,7 +343,7 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
     });
   });
 
-  // 4.6 T101: Transaction rollback on corrupt restore
+  // 4.6 : Transaction rollback on corrupt restore
   describe('Storage: T101 Transaction Rollback on Corrupt Restore', () => {
     it('EXT-S11: transaction rollback preserves data on corrupt restore', () => {
       const countBefore = getCount('SELECT COUNT(*) as cnt FROM memory_index');
@@ -694,7 +694,7 @@ describe('CHECKPOINTS EXTENDED TESTS [deferred - requires DB test fixtures]', ()
     });
   });
 
-  // 4.8 T107: Schema validation rejects corrupt checkpoint rows
+  // 4.8 : Schema validation rejects corrupt checkpoint rows
   describe('Storage: T107 Schema Validation Before Restore', () => {
     function injectCheckpoint(name: string, memories: CheckpointMemoryRowInput[]): boolean {
       const snapshot = {

@@ -352,7 +352,7 @@ describe('C136-10 Adaptive Fusion', () => {
     });
   });
 
-  // ---- T019: graphWeight and graphCausalBias field validation ----
+  // : graphWeight and graphCausalBias field validation
 
   describe('T019: graphWeight and graphCausalBias profiles', () => {
     const PROFILE_NAMES = ['understand', 'find_spec', 'fix_bug', 'add_feature', 'refactor'] as const;
@@ -390,7 +390,7 @@ describe('C136-10 Adaptive Fusion', () => {
       expect(profile.graphWeight, `find_spec.graphWeight (${profile.graphWeight}) must be >= 0.25`).toBeGreaterThanOrEqual(0.25);
     });
 
-    // T019-5: Removed — 'debug' is not a valid IntentType.
+    // Removed — 'debug' is not a valid IntentType.
     // The debug profile was erroneously included and has been removed from INTENT_WEIGHT_PROFILES.
 
     it('T019-6: DEFAULT_WEIGHTS includes both graphWeight and graphCausalBias as numbers', () => {

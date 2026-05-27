@@ -18,7 +18,7 @@ function getFiles(result: NormalizedData | RawInputData): NormalizedFileEntry[] 
   return (result as NormalizedData).FILES || [];
 }
 
-// Covers: F-16 (Ensure FILES uses FileEntry format via normalizeFileEntryLike)
+// Covers: (Ensure FILES uses FileEntry format via normalizeFileEntryLike)
 describe('normalizeFileEntryLike via normalizeInputData', () => {
   it('normalizes an empty object to defaults', () => {
     const result = normalizeInputData(makeInputWithFiles([{}]));
@@ -159,7 +159,7 @@ describe('normalizeFileEntryLike via normalizeInputData', () => {
   });
 });
 
-// Covers: F-15 (Field-by-field completion instead of early return — backfill missing arrays)
+// Covers: (Field-by-field completion instead of early return — backfill missing arrays)
 describe('normalizeInputData importanceTier propagation (BUG-006)', () => {
   it('propagates importanceTier through slow path', () => {
     const result = normalizeInputData({

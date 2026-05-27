@@ -1,5 +1,5 @@
 // TEST: Shadow Scoring
-// R13-S2: Shadow scoring infrastructure and disabled compatibility paths.
+// Shadow scoring infrastructure and disabled compatibility paths.
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import * as path from 'path';
 import * as fs from 'fs';
@@ -345,7 +345,7 @@ describe('Shadow Scoring (R13-S2)', () => {
 /* --- Disabled Channel Attribution Tests (module removed) --- */
 
 /*
-describe('Channel Attribution (R13-S2)', () => {
+describe('Channel Attribution', () => {
   describe('attributeChannels', () => {
     it('tags results with correct single channels', () => {
       const results = makeResults([1, 2, 3]);

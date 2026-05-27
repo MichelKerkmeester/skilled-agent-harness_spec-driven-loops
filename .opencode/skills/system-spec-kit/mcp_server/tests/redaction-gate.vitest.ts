@@ -1,4 +1,4 @@
-// TEST: REDACTION GATE CALIBRATION (T027g-T027i)
+// TEST: REDACTION GATE CALIBRATION
 import { describe, expect, it } from 'vitest';
 import {
   applyRedactionGate,

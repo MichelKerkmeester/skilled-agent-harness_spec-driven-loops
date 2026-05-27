@@ -1,4 +1,4 @@
-// TEST: SESSION LIFECYCLE CONTRACT (T027n)
+// TEST: SESSION LIFECYCLE CONTRACT
 import { afterEach, describe, expect, it } from 'vitest';
 import Database from 'better-sqlite3';
 import * as workingMemory from '../lib/cognitive/working-memory';

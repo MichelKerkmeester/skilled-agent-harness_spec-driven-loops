@@ -1198,7 +1198,7 @@ describe('Ablation Framework — Channel Isolation (R13-S3 acceptance)', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════
-// MULTI-METRIC WIRING (CHK-088–091)
+// MULTI-METRIC WIRING (091)
 // ═══════════════════════════════════════════════════════════════════
 
 describe('Ablation Framework — Multi-Metric Wiring (CHK-088–091)', () => {

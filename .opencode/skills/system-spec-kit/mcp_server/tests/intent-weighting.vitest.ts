@@ -425,7 +425,7 @@ describe('T017-G2: Score Distribution Characteristics', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   5. NORMALIZATION METHOD VERIFICATION (T003d)
+   5. NORMALIZATION METHOD VERIFICATION
    ──────────────────────────────────────────────────────────────── */
 
 describe('T017-G2: Normalization Method — RRF + Composite Score', () => {
