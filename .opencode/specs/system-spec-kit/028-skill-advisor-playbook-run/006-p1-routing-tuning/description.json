@@ -1,20 +1,23 @@
 {
-  "specFolder": "028-skill-advisor-playbook-run/006-p1-routing-tuning",
-  "description": "Scope + plan for remediating the residual non-alias P1 regression failures across both scorers, grouped into 5 root-cause classes (terse-phrase routing, CLI-vs-skill, greenfield abstention, deep-loop syntax, review-target disambiguation).",
+  "level": "1",
+  "specFolder": "system-spec-kit/028-skill-advisor-playbook-run/006-p1-routing-tuning",
+  "description": "Feature Specification: Skill Advisor P1 Routing & Abstention Tuning",
   "keywords": [
-    "skill advisor p1 routing tuning",
-    "scorer abstention tuning",
-    "terse phrase routing",
-    "cli vs skill disambiguation",
-    "greenfield abstention"
+    "feature",
+    "specification",
+    "skill",
+    "advisor",
+    "routing",
+    "abstention",
+    "tuning"
   ],
-  "lastUpdated": "2026-05-27T00:00:00.000Z",
+  "lastUpdated": "2026-05-27T08:42:57.361Z",
   "specId": "006",
   "folderSlug": "p1-routing-tuning",
   "parentChain": [
+    "system-spec-kit",
     "028-skill-advisor-playbook-run"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-skill-advisor-playbook-run/006-p1-routing-tuning |
-| **Completed** | Pending |
+| **Completed** | In Progress (Class E shipped 2026-05-27) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,7 +45,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Not yet implemented. This packet scopes the residual non-alias P1 regression failures into 5 root-cause classes (see spec §3): missing/under-confident terse-phrase routing, CLI-vs-skill, over-confident greenfield (should abstain), deep-loop syntax, and review-target disambiguation. When implemented it adds the missing routing signal, abstention trigger, or disambiguation rule per class, in both scorers (or the lagging scorer for parity-only cases), guarded by the regression and parity harnesses.
+In progress. This packet scopes the residual non-alias P1 regression failures into 5 root-cause classes (see spec §3) and implements them class by class.
+
+**Class E (shipped):** "code audit" now routes to sk-code-review over the deep-review loop skill in the TS scorer (Python already routed it via an explicit booster), fixing P1-PHRASE-001. Verified: TS P0 12/12, full vitest 66/66, Python P0 12/12 unchanged, no regression.
+
+**Class D (blocked):** routing `:review:auto` to deep-review conflicts with a documented decision (`skill_advisor.py` deliberately keeps "auto review" as sk-code-review). Needs the open question resolved first.
+
+**Classes A, B, C (pending):** terse-phrase routing (needs TS confidence-floor work + Python booster calibration), CLI-vs-skill (Python), and greenfield abstention (highest risk; done last with adversarial guards).
 
 ### Files Changed
 

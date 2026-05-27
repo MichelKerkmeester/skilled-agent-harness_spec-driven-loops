@@ -1,20 +1,21 @@
 {
-  "specFolder": "005-finding-remediation",
-  "description": "Follow-up remediation: regression-harness alias-awareness and stale lane-weight-sweep packet path",
+  "specFolder": "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation",
+  "description": "Feature Specification: Skill Advisor Finding Remediation",
   "keywords": [
-    "follow-up",
-    "remediation",
-    "regression-harness",
-    "alias-awareness",
-    "stale",
-    "lane-weight-sweep",
-    "packet",
-    "path"
+    "feature",
+    "specification",
+    "skill",
+    "advisor",
+    "finding",
+    "remediation"
   ],
-  "lastUpdated": "2026-05-27T07:15:42.805Z",
+  "lastUpdated": "2026-05-27T08:41:18.470Z",
   "specId": "005",
   "folderSlug": "finding-remediation",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "028-skill-advisor-playbook-run"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": [
     "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"

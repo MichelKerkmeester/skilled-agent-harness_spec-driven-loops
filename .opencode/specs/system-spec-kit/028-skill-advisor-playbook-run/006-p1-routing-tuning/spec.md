@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-skill-advisor-playbook-run/006-p1-routing-tuning"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "scorer-p1-tuning"
-    recent_action: "Scoped residual P1 failures into 5 root-cause classes with per-case evidence"
-    next_safe_action: "Implement class by class via /speckit:implement, verifying after each"
+    recent_action: "Implemented and verified Class E code-audit routing fix"
+    next_safe_action: "Implement classes A then B then C, and resolve Class D before touching it"
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-05-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -164,5 +164,5 @@ Lift the residual P1 rows in both scorers — by adding the missing routing sign
 
 - Class C: what is the principled signal for "too broad to route" (token count + multi-concern + no dominant intent), and how is over-abstention bounded?
 - Class A: add signals in both scorers, or close the TS<->Python parity gap by porting Python's existing phrase boosters to TS first, then add the genuinely-missing ones to both?
-- Is `:review:auto` (Class D) a stable, documented command syntax worth a dedicated rule, or an artifact of the fixture wording?
+- Is `:review:auto` (Class D) a stable, documented command syntax worth a dedicated rule, or an artifact of the fixture wording? **BLOCKER (found during implementation):** `skill_advisor.py` deliberately omits "auto review" from deep-review disambiguation because the corpus treats "auto review this PR" as sk-code-review (see the note above `DEEP_REVIEW_DISAMBIGUATION_PHRASES`). Routing `:review:auto` to deep-review must not regress that; resolve the colon-syntax-vs-natural-language distinction before implementing Class D.
 <!-- /ANCHOR:questions -->

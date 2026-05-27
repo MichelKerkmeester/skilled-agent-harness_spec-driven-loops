@@ -128,6 +128,10 @@ export interface RoutingCalibration {
   // prompts toward mcp-code-mode rather than the generic code skill.
   readonly mcpToolchainCodeModeBonus: number;
   readonly mcpToolchainSkCodePenalty: number;
+  // "code audit" review-target intent: a code audit is a code-review task, so
+  // it must beat the deep-review loop skill on the near-tie.
+  readonly codeAuditCodeReviewBonus: number;
+  readonly codeAuditDeepReviewPenalty: number;
   // phase-folder intent
   readonly phaseFolderSpecKitBonus: number;
   // save-context / save-memory intent
@@ -197,6 +201,8 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     speckitPlanSkDocPenalty: -0.18,
     mcpToolchainCodeModeBonus: 0.5,
     mcpToolchainSkCodePenalty: -0.18,
+    codeAuditCodeReviewBonus: 0.2,
+    codeAuditDeepReviewPenalty: -0.2,
     phaseFolderSpecKitBonus: 0.35,
     saveContextMemorySaveBonus: 0.55,
     saveContextMemorySpecKitPenalty: -0.25,

@@ -1,5 +1,5 @@
 {
-  "specFolder": "002-mcp-native-scenarios",
+  "specFolder": "system-spec-kit/028-skill-advisor-playbook-run/002-mcp-native-scenarios",
   "description": "Feature Specification: MCP-Native Scenarios (Playbook Run Phase 002)",
   "keywords": [
     "feature",
@@ -11,13 +11,10 @@
     "phase",
     "002"
   ],
-  "lastUpdated": "2026-05-26T20:10:25.890Z",
+  "lastUpdated": "2026-05-27T08:41:18.461Z",
   "specId": "002",
   "folderSlug": "mcp-native-scenarios",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-skill-advisor-playbook-run"
   ],

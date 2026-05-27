@@ -58,8 +58,8 @@ _memory:
 
 - [ ] T003 Class A: terse-phrase routing signals (mcp-code-mode / deep-agent-improvement / system-code-graph) in both scorers
 - [ ] T004 Class B: code-edit context beats cli-opencode (skill_advisor.py)
-- [ ] T005 [P] Class D: `:review:auto` / auto-review loop syntax -> deep-review (both scorers)
-- [ ] T006 [P] Class E: audit + review-target -> sk-code-review over system-skill-advisor/deep-review (both scorers)
+- [B] T005 [P] Class D: `:review:auto` / auto-review loop syntax -> deep-review (both scorers) — BLOCKED: conflicts with the documented "auto review" -> sk-code-review decision; resolve open question first
+- [x] T006 [P] Class E: "code audit" -> sk-code-review over deep-review (TS; Python already correct) — verified
 - [ ] T007 Class C: breadth abstention for greenfield/multi-concern prompts (both scorers; adversarial guards)
 - [ ] T008 Add regression fixtures/guards for newly-introduced behavior
 <!-- /ANCHOR:phase-2 -->

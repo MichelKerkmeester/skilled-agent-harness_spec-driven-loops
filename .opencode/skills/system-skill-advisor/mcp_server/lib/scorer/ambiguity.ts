@@ -11,9 +11,9 @@ export const AMBIGUITY_CONFIDENCE_MARGIN = 0.05;
 // with the score-based fusion ranking (top-two-by-confidence may not match
 // top-two-by-score).
 //
-// Packet 084 (SAD-002 fix): also compute on `confidence` and union the two
+// Also compute on `confidence` and union the two
 // clusters. Score-margin keeps ranking alignment; confidence-margin restores
-// the feature-catalog-documented "0.05 confidence window" and catches
+// the documented "0.05 confidence window" and catches
 // cross-domain prompts where confidence is near-tied (user-visible signal)
 // even when score gaps just exceed the score margin. A candidate is in the
 // ambiguity cluster when EITHER gap is within its respective 0.05 margin —

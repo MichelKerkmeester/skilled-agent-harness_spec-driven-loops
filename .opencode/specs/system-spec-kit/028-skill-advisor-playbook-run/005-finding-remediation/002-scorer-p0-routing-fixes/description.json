@@ -1,5 +1,5 @@
 {
-  "specFolder": "002-scorer-p0-routing-fixes",
+  "specFolder": "system-spec-kit/028-skill-advisor-playbook-run/005-finding-remediation/002-scorer-p0-routing-fixes",
   "description": "Feature Specification: Scorer P0 Routing Fixes (F1b)",
   "keywords": [
     "feature",
@@ -9,13 +9,10 @@
     "fixes",
     "f1b"
   ],
-  "lastUpdated": "2026-05-26T21:20:41.535Z",
+  "lastUpdated": "2026-05-27T08:41:18.475Z",
   "specId": "002",
   "folderSlug": "scorer-p0-routing-fixes",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "028-skill-advisor-playbook-run",
     "005-finding-remediation"

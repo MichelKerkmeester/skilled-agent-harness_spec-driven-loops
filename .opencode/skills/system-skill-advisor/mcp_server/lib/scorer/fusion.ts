@@ -284,6 +284,12 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
     if (recommendation.skill === 'mcp-code-mode') return R.mcpToolchainCodeModeBonus;
     if (recommendation.skill === 'sk-code') return R.mcpToolchainSkCodePenalty;
   }
+  // A "code audit" is a code-review task, not a deep-review loop. On the
+  // near-tie this phrase produces, prefer sk-code-review over deep-review.
+  if (/\bcode audit\b/.test(promptLower)) {
+    if (recommendation.skill === 'sk-code-review') return R.codeAuditCodeReviewBonus;
+    if (recommendation.skill === 'deep-review') return R.codeAuditDeepReviewPenalty;
+  }
   if (/\b(save context|save memory)\b/.test(promptLower)) {
     if (recommendation.skill === 'memory:save') return R.saveContextMemorySaveBonus;
     if (recommendation.skill === 'system-spec-kit') return R.saveContextMemorySpecKitPenalty;

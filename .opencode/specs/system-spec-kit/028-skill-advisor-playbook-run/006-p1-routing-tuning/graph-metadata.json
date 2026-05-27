@@ -13,7 +13,7 @@
     "trigger_phrases": ["p1 routing tuning", "skill advisor p1 failures", "scorer routing abstention tuning"],
     "key_topics": ["terse-phrase routing", "cli-vs-skill disambiguation", "greenfield abstention", "deep-loop syntax", "review-target disambiguation"],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in-progress",
     "key_files": ["spec.md", "plan.md", "tasks.md"],
     "entities": ["fusion.ts", "skill_advisor.py", "scoring-constants.ts", "skill_advisor_regression.py"],
     "causal_summary": "Scopes the residual non-alias P1 regression failures into 5 root-cause classes (terse-phrase routing, CLI-vs-skill, greenfield abstention, deep-loop syntax, review-target disambiguation) with per-case evidence, approach, and a regression guard. Planned, not yet implemented.",
