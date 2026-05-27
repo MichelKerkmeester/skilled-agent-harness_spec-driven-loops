@@ -9,7 +9,7 @@ export {
   autoSurfaceAtToolDispatch,
   autoSurfaceAtCompaction,
   MEMORY_AWARE_TOOLS,
-  // T018: Session tracking for session_health tool
+  // Session tracking for session_health tool
   recordToolCall,
   getSessionTimestamps,
   getLastActiveSessionId,

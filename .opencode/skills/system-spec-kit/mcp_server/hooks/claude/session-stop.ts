@@ -39,7 +39,7 @@ function resolveGenerateContextScriptPath(): string | null {
   // Test-only env override: SPECKIT_GENERATE_CONTEXT_SCRIPT is honored only when
   // NODE_ENV='test' or SPECKIT_TEST='true'. In production, the env var is ignored
   // to prevent malformed/hostile values from redirecting autosave script execution
-  // before workflow path resolution. See packet 097/P1-006 + 098/004.
+  // before workflow path resolution.
   const isTestMode =
     process.env.NODE_ENV === 'test' || process.env.SPECKIT_TEST === 'true';
   const explicitPath = isTestMode
@@ -94,8 +94,8 @@ interface SpecFolderDetectionResult {
  * Run context autosave using the in-memory merged state returned by the
  * single atomic `updateState()` call.
  *
- * T-SST-10 (R31-002/R32-002): Autosave reads from the merged state carried
- * in-process — NOT from a fresh disk reload. A disk reload here would
+ * Autosave reads from the merged state carried in-process — NOT from a fresh
+ * disk reload. A disk reload here would
  * create a torn-state window where interleaved writers could re-compose
  * fields between the stop hook's atomic write and the autosave spawn.
  */
@@ -243,8 +243,8 @@ function logTokenSnapshot(
 /**
  * Build producer metadata from a pre-captured transcript stat.
  *
- * T-SST-09 (R20-001): The caller MUST pass a transcript stat snapshotted
- * BEFORE `parseTranscript()` runs, so the metadata describes the same
+ * The caller MUST pass a transcript stat snapshotted BEFORE
+ * `parseTranscript()` runs, so the metadata describes the same
  * transcript generation that was parsed. A re-stat here would produce
  * metadata pointing at a later state than the tokens/offset reflect.
  */
@@ -312,7 +312,7 @@ export async function processStopHook(
   // ────────────────────────────────────────────────────────────────
   // ACCUMULATE PATCH — do NOT write state mid-flight
   // ────────────────────────────────────────────────────────────────
-  // T-SST-10 (R31-002/R32-002): Collapse what were previously three
+  // Collapse what were previously three
   // independent `recordStateUpdate()` calls (transcript/metrics+producer,
   // spec folder retarget, session summary) into a single atomic
   // `updateState()` at the end of this function. Intermediate writes
@@ -328,8 +328,8 @@ export async function processStopHook(
     const transcriptPath = input.transcript_path as string;
     const startOffset = stateBeforeStop?.metrics?.lastTranscriptOffset ?? 0;
 
-    // T-SST-09 (R20-001): Snapshot transcript stat BEFORE parseTranscript()
-    // runs so the fingerprint/size/mtime describe the same generation the
+    // Snapshot transcript stat BEFORE parseTranscript() runs so the
+    // fingerprint/size/mtime describe the same generation the
     // parser will consume. A re-stat inside buildProducerMetadata would
     // capture a later state than the bytes actually parsed (cursor and
     // metadata describing different transcript generations).
@@ -420,7 +420,7 @@ export async function processStopHook(
   // ────────────────────────────────────────────────────────────────
   // Auto-detect spec folder from transcript paths
   // ────────────────────────────────────────────────────────────────
-  // T-SST-11 (R37-002): Refresh lastSpecFolder from a fresh state read
+  // Refresh lastSpecFolder from a fresh state read
   // immediately before detection, so the "prefer currentSpecFolder"
   // preference inside selectDetectedSpecFolder does not lock in a stale
   // generation if another writer advanced the packet target between
@@ -470,8 +470,8 @@ export async function processStopHook(
   // ────────────────────────────────────────────────────────────────
   // Single atomic state write
   // ────────────────────────────────────────────────────────────────
-  // T-SST-10 (R31-002/R32-002): Apply accumulated patch exactly once.
-  // T-SST-12 (R33-003): Consume `persisted: false` — if the write was
+  // Apply accumulated patch exactly once.
+  // Consume `persisted: false` — if the write was
   // attempted but did not land on disk, the autosave MUST abort;
   // spawning the continuity script would otherwise persist stale disk
   // state (or a mix of fields from separate generations). When there is

@@ -184,10 +184,9 @@ export function resolveActiveProfileProvider(): ActiveProfileProvider {
 }
 
 function resolveActiveProfileModel(provider: ActiveProfileProvider): string {
-  // Derived from registry MANIFESTS[0] + CLOUD_CANONICAL per ADR-013/014.
+  // Derived from registry MANIFESTS[0] + CLOUD_CANONICAL.
   // Pre-022 the switch returned inline string literals (`'BAAI/bge-base-en-v1.5'`,
-  // `'jina-embeddings-v3'`, etc.) — see audit packet 021 findings f-iter001-001/002
-  // and ADR-amendment in 022/010 for the verification clause.
+  // `'jina-embeddings-v3'`, etc.) and duplicated the verification clause.
   switch (provider) {
     case 'voyage':
       return process.env.VOYAGE_EMBEDDINGS_MODEL || getCanonicalFallback('voyage');

@@ -11,7 +11,7 @@ import type { IEmbeddingProvider, ProviderMetadata, TaskPrefixMap } from '../../
 // 1. CONFIGURATION
 // ---------------------------------------------------------------
 
-// Derived from registry MANIFESTS[0] per ADR-013/014 (single source of truth).
+// Derived from registry MANIFESTS[0] (single source of truth).
 const DEFAULT_MODEL: string = getCanonicalFallback('hf-local');
 const EMBEDDING_DIM: number = 768;
 // MAX_TEXT_LENGTH imported from chunking.ts (single source of truth)

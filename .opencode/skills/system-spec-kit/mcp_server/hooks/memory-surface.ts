@@ -12,7 +12,7 @@ import { buildStructuralBootstrapContract } from '../lib/session/session-snapsho
 import { getCodeGraphStatusSnapshotFromMarker } from '../lib/code-graph-boundary.js';
 
 import type { Database } from '@spec-kit/shared/types';
-// F-017-D2-01: Import the type from the neutral seam module instead of from
+// Import the type from the neutral seam module instead of from
 // session-snapshot (which itself transitively imports this file's value-level
 // helpers `isSessionPrimed` and `getLastActiveSessionId`). The type-only
 // import via the seam breaks the value-level cycle.
@@ -58,21 +58,21 @@ interface AutoSurfaceResult {
   };
   sessionPrimed?: boolean;
   primedTool?: string;
-  /** T018: Structured Prime Package returned on first tool call */
+  /** Structured Prime Package returned on first tool call */
   primePackage?: PrimePackage;
   surfaced_at: string;
   latencyMs: number;
 }
 
-/** T018: Structured session prime payload for non-hook CLI auto-priming */
+/** Structured session prime payload for non-hook CLI auto-priming */
 interface PrimePackage {
   specFolder: string | null;
   currentTask: string | null;
   codeGraphStatus: 'fresh' | 'stale' | 'empty';
   recommendedCalls: string[];
-  /** Phase 027: Structural bootstrap contract for non-hook runtimes */
+  /** Structural bootstrap contract for non-hook runtimes */
   structuralContext?: StructuralBootstrapContract;
-  /** Phase 009 T041: Graph retrieval routing rules for AI session priming */
+  /** Graph retrieval routing rules for AI session priming */
   routingRules?: {
     graphRetrieval: string;
     communitySearch: string;
@@ -109,12 +109,12 @@ const CONSTITUTIONAL_CACHE_TTL = 60000; // 1 minute
 // for new sessions on long-lived MCP servers.
 const primedSessionIds: Set<string> = new Set();
 
-// T018: Session-level tracking for prime package and session_health
+// Session-level tracking for prime package and session_health
 const serverStartedAt = Date.now();
 let lastToolCallAt = Date.now();
 let lastActiveSessionId: string | null = null;
 
-/** T018: Update last tool call timestamp (called from context-server dispatch). */
+/** Update last tool call timestamp (called from context-server dispatch). */
 function recordToolCall(sessionId?: string): void {
   lastToolCallAt = Date.now();
   if (typeof sessionId === 'string' && sessionId.trim().length > 0) {
@@ -122,13 +122,13 @@ function recordToolCall(sessionId?: string): void {
   }
 }
 
-/** T018: Get session tracking timestamps */
+/** Get session tracking timestamps */
 function getSessionTimestamps(): { serverStartedAt: number; lastToolCallAt: number } {
   return { serverStartedAt, lastToolCallAt };
 }
 
 /**
- * T018: Check if a specific session has been primed.
+ * Check if a specific session has been primed.
  * Session identity is required to avoid cross-session bleed-through.
  */
 function isSessionPrimed(sessionId: string): boolean {
@@ -391,7 +391,7 @@ async function autoSurfaceMemories(
   }
 }
 
-/** T018: Build structured Prime Package for non-hook CLI auto-priming */
+/** Build structured Prime Package for non-hook CLI auto-priming */
 function buildPrimePackage(
   toolArgs: Record<string, unknown>,
   graphSnapshot: NonNullable<AutoSurfaceResult['codeGraphStatus']>,
@@ -441,7 +441,7 @@ function buildPrimePackage(
   }
   toolRoutingRules.push('exact text/regex → Grep');
 
-  // Phase 027: Structural bootstrap contract for auto-prime surface
+  // Structural bootstrap contract for auto-prime surface
   const structuralContext = buildStructuralBootstrapContract('auto-prime');
 
   return {
@@ -482,13 +482,13 @@ async function primeSessionIfNeeded(
     const codeGraphStatus = getCodeGraphStatusSnapshot();
     const latencyMs = Date.now() - startTime;
 
-    // T018: Build structured Prime Package
+    // Build structured Prime Package
     const primePackage = buildPrimePackage(toolArgs, codeGraphStatus);
 
-    // F045: Mark session as primed AFTER successful execution (not before try)
+    // Mark session as primed AFTER successful execution (not before try)
     markSessionPrimed(effectiveSessionId);
 
-    // Phase 024 / Item 9: Record bootstrap telemetry for MCP auto-priming
+    // Record bootstrap telemetry for MCP auto-priming
     recordBootstrapEvent('mcp_auto', Date.now() - startTime, 'full');
 
     if (enrichedConstitutional.length === 0 && codeGraphStatus.status !== 'ok') {
@@ -646,7 +646,7 @@ export {
   autoSurfaceAtToolDispatch,
   autoSurfaceAtCompaction,
 
-  // T018: Session tracking for session_health tool
+  // Session tracking for session_health tool
   recordToolCall,
   getSessionTimestamps,
   getLastActiveSessionId,
@@ -655,5 +655,5 @@ export {
   getCodeGraphStatusSnapshot,
 };
 
-// T018: Export types for session-health handler
+// Export types for session-health handler
 export type { PrimePackage, AutoSurfaceResult };

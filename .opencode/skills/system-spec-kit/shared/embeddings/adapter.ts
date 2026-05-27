@@ -5,8 +5,8 @@
 // skill-advisor. Both skills' local `mcp_server/lib/embedders/adapter.ts`
 // re-export from here.
 //
-// Promoted from mk-spec-memory's mcp_server/lib/embedders/adapter.ts in
-// phase 003/006 (shared-embedder-logic-with-spec-memory). The shared
+// Promoted from mk-spec-memory's mcp_server/lib/embedders/adapter.ts.
+// The shared
 // interface adopts skill-advisor's wider surface (optional
 // `options?: EmbedderOptions` parameter) because it is strictly
 // backward-compatible with mk-spec-memory's narrower interface and

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: BooleanExpr — Typed YAML Predicate Grammar (S7 / M11)
+// MODULE: BooleanExpr — Typed YAML Predicate Grammar
 // ───────────────────────────────────────────────────────────────────
 
 // Canonical grammar for command-asset YAML `when:` fields that must be
@@ -17,11 +17,8 @@
 //   - Legacy string literal (still accepted, parsed via bounded grammar):
 //       when: "intake_only == TRUE"
 //   - Prose timing notes MUST NOT live under `when:`. Use `after:` (new
-//     field added by T-YML-PLN-04 / T-YML-CMP-01) for free-form narrative
+//     field for free-form narrative
 //     timing hints.
-//
-// Related tasks: T-YML-PLN-02, T-YML-PLN-04, T-YML-CMP-01, T-YML-DPR-01.
-// Related research IDs: R42-001, R43-002, R44-003, R48-002, R49-002, R50-001.
 // ---------------------------------------------------------------
 
 // ---------------------------------------------------------------
@@ -113,7 +110,7 @@ const PROSE_BLEED_TOKENS: ReadonlyArray<string> = [
  *
  * Boolean tokens match only the uppercase forms `TRUE` and `FALSE` to
  * preserve the existing runtime contract. Case-variants (`true`, `True`)
- * are rejected — see regression test T-TEST-NEW-19.
+ * are rejected by regression coverage.
  */
 export function parseBooleanExprString(raw: string): ParsedBooleanExpr {
   if (typeof raw !== 'string') {

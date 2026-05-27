@@ -5,8 +5,8 @@
 // skill-advisor. Both skills' local `mcp_server/lib/embedders/types.ts`
 // re-export from here.
 //
-// Promoted from mk-spec-memory's mcp_server/lib/embedders/types.ts in
-// phase 003/006 so both skills share the canonical surface.
+// Promoted from mk-spec-memory's mcp_server/lib/embedders/types.ts so both
+// skills share the canonical surface.
 // ───────────────────────────────────────────────────────────────
 
 /**
@@ -25,7 +25,7 @@ export type BackendKind = 'ollama' | 'api' | 'sentence-transformers';
  * time.
  *
  * Dimensions are part of the manifest because the vector store uses
- * dim-tagged tables (`vec_768`, `vec_1024`, etc.). Phase 016/002 lazily
+ * dim-tagged tables (`vec_768`, `vec_1024`, etc.). The registry lazily
  * creates the table matching `dim` when a new embedder is selected.
  *
  * Prefix tokens are required by some models (notably `nomic-embed-text-v1.5`):

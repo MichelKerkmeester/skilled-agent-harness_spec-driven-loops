@@ -92,9 +92,9 @@ interface OllamaManifest {
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-// 022/009: cascade-probe timing constants. Each accepts an optional env-var
+// Cascade-probe timing constants. Each accepts an optional env-var
 // override so operators can tune the cascade without code edits. Defaults are
-// the empirically tuned values from the 015 cascade-reorder packet.
+// empirically tuned for the cascade reorder.
 function parsePositiveInt(value: string | undefined, fallback: number): number {
   if (typeof value !== 'string') return fallback;
   const parsed = Number.parseInt(value.trim(), 10);
@@ -474,9 +474,9 @@ async function selectWithoutPersistence(options: AutoSelectOptions): Promise<Aut
   };
 
   const probes: AutoSelectProbeResult[] = [];
-  // ADR-014: local-first cascade. Try Ollama first, fall through to hf-local
+  // Local-first cascade. Try Ollama first, fall through to hf-local
   // (Python/sentence-transformers), then escalate to cloud APIs (OpenAI, Voyage)
-  // only when nothing local works. Supersedes ADR-013's cloud-first ordering.
+  // only when nothing local works. Supersedes the cloud-first ordering.
   const sequence: Array<readonly [AutoSelectedEmbedderProvider, (ctx: ProbeContext) => Promise<ProbeOutcome>]> = [
     ['ollama', probeOllama],
     ['hf-local', probeHfLocal],

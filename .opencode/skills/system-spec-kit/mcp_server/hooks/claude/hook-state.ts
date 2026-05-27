@@ -288,10 +288,10 @@ export type LoadMostRecentStateResult =
   };
 
 /**
- * T-SRS-03 (R38-001 extension): return ALL matching states (newest-first)
- * so consumers can fall back candidate-by-candidate rather than treating the
- * single newest as an all-or-nothing result.  Mirrors the per-file isolation
- * pattern P0-D landed in `loadMostRecentState()`.
+ * Return ALL matching states (newest-first) so consumers can fall back
+ * candidate-by-candidate rather than treating the single newest as an
+ * all-or-nothing result. Mirrors the per-file isolation pattern used by
+ * `loadMostRecentState()`.
  */
 export interface LoadMatchingStatesResult {
   states: Array<{ state: PersistedHookState; path: string; updatedAtMs: number; mtimeMs: number }>;
@@ -657,7 +657,7 @@ function deriveMostRecentFailureReason(errors: HookStateFileError[]): HookStateL
 }
 
 /**
- * T-SRS-03 (R38-001 extension): expose every matching state newest-first so
+ * Expose every matching state newest-first so
  * consumers (e.g. `getCachedSessionSummaryDecision`) can retry per-candidate
  * instead of failing when the single newest state happens to fail a later
  * fidelity gate.  This is the shared scan used by `loadMostRecentState`; we
@@ -805,7 +805,7 @@ export function loadMostRecentState(
       return { ok: false, reason: 'not_found', errors: [] };
     }
 
-    // T-HST-10 (R4-003): rank by logical `state.updatedAt` rather than filesystem `mtimeMs`.
+    // Rank by logical `state.updatedAt` rather than filesystem `mtimeMs`.
     // Touch-based operations (backup, rsync --times, fs-level restore) can bump mtime without
     // reflecting a newer logical session update. `updatedAt` is the authoritative write-time
     // marker persisted by `persistState()` and is therefore stable across filesystem touches.

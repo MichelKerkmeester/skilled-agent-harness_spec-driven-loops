@@ -146,8 +146,8 @@ function warnIfVoyageWouldShadowLocal(explicitProvider: string | null): void {
 // Per-provider canonical fallback names — derived from registry MANIFESTS[0]
 // (for ollama / hf-local) and CLOUD_CANONICAL (for voyage / openai). This map
 // is frozen at module load so a registry change (re-order MANIFESTS, swap
-// CLOUD_CANONICAL) auto-propagates without code edits here. See ADR-013/014
-// and shared/embeddings/registry.ts:getCanonicalFallback().
+// CLOUD_CANONICAL) auto-propagates without code edits here. See
+// shared/embeddings/registry.ts:getCanonicalFallback().
 const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> = Object.freeze({
   voyage: getCanonicalFallback('voyage'),
   openai: getCanonicalFallback('openai'),
@@ -441,7 +441,7 @@ function readActiveOllamaEmbedderFromDb(sqlitePath: string): ActiveOllamaEmbedde
 
   const expectedTable = `vec_${dim}`;
 
-  // ADR-012 (canonical vector shard split): the dim-tagged table moved out of the
+  // The dim-tagged table moved out of the
   // main metadata DB and into a per-embedder shard at <db_dir>/vectors/. We accept
   // either location: main DB first (legacy layout), then the shard.
   let tableSource: string | null = null;
@@ -523,7 +523,7 @@ function getProviderInfoForResolution(resolution: ProviderResolution): ProviderI
     ? `Fallback from ${metadata.requestedProvider} to ${metadata.effectiveProvider}: ${metadata.fallbackReason}`
     : resolution.reason;
 
-  // 014/007: surface accidental Voyage drift at the first provider resolution.
+  // Surface accidental Voyage drift at the first provider resolution.
   warnIfVoyageDriftDetected(metadata.effectiveProvider);
 
   return {
@@ -851,7 +851,7 @@ async function ensureCloudProviderValidated(options: ValidateApiKeyOptions): Pro
 }
 
 function getCascadeFallbackOrder(failedProvider: SupportedProviderName): SupportedProviderName[] {
-  // ADR-014 (2026-05-19): local-first cascade. When a provider fails at creation
+  // Local-first cascade. When a provider fails at creation
   // time, fall through in the order Ollama -> hf-local -> OpenAI -> Voyage. The
   // ollama-specific short list keeps the legacy local-only progression.
   const cascadeOrder: SupportedProviderName[] = failedProvider === 'ollama'
@@ -1037,18 +1037,18 @@ export function getProviderInfo(): ProviderInfoWithFallback {
 }
 
 // ---------------------------------------------------------------
-// 4. PRE-FLIGHT API KEY VALIDATION (REQ-029, T087-T090)
+// 4. PRE-FLIGHT API KEY VALIDATION
 // ---------------------------------------------------------------
 
 /**
  * Validation timeout in milliseconds.
- * REQ-029, CHK-170: Must complete within 5s
+ * Must complete within 5s.
  */
 export const VALIDATION_TIMEOUT_MS: number = 5000;
 
 /**
  * Validate API key at startup before any tool usage.
- * REQ-029: Pre-Flight API Key Validation
+ * Pre-flight API key validation.
  *
  * This function should be called during MCP server startup to fail fast
  * if the configured embedding provider has an invalid API key.

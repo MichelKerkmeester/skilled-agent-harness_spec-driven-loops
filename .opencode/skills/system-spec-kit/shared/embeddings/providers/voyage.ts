@@ -212,7 +212,7 @@ export class VoyageProvider implements IEmbeddingProvider {
 
   /**
    * Make request with retry logic for transient errors.
-   * REQ-032: 3 retries with backoff (1s, 2s, 4s), fail fast for 401/403.
+   * Three retries with backoff (1s, 2s, 4s), fail fast for 401/403.
    */
   async makeRequest(input: string | string[], inputType: string | null = null): Promise<VoyageEmbeddingResponse> {
     return retryWithBackoff<VoyageEmbeddingResponse>(

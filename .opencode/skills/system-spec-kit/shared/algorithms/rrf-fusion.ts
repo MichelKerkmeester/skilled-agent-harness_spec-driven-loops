@@ -382,7 +382,7 @@ function fuseResultsMulti(
   const results = Array.from(scoreMap.values())
     .sort((a, b) => b.rrfScore - a.rrfScore);
 
-  // T004: Normalize RRF scores to [0,1] when enabled
+  // Normalize RRF scores to [0,1] when enabled
   if (isScoreNormalizationEnabled()) {
     normalizeRrfScores(results);
   }
@@ -542,7 +542,7 @@ function fuseResultsCrossVariant(
   const results = Array.from(mergedMap.values())
     .sort((a, b) => b.rrfScore - a.rrfScore);
 
-  // T004: Normalize RRF scores to [0,1] when enabled
+  // Normalize RRF scores to [0,1] when enabled
   if (isScoreNormalizationEnabled()) {
     normalizeRrfScores(results);
   }

@@ -119,12 +119,12 @@ function readCompactPrimeIdentity(sessionId: string): { cachedAt: string; opaque
 }
 
 /**
- * T-SRS-04 (R29-002): map rejection reasons to distinct short-form status labels
- * so startup surface no longer collapses schema-mismatch, transcript-identity-
- * mismatch, stale-summary, and ordinary missing-state into the same "startup
- * summary only" string.  Depends on T-HST-01/02 (HookState schema-version
- * plumbing from P0-A) which guarantees the upstream rejection reason is
- * actually populated with the right discriminator.
+ * Map rejection reasons to distinct short-form status labels so startup surface
+ * no longer collapses schema-mismatch, transcript-identity-mismatch,
+ * stale-summary, and ordinary missing-state into the same "startup summary
+ * only" string. Depends on HookState schema-version plumbing, which guarantees
+ * the upstream rejection reason is actually populated with the right
+ * discriminator.
  */
 function describeMemoryStatus(
   hasCachedContinuity: boolean,
@@ -212,7 +212,7 @@ export function handleStartup(
   const sessionContinuity = cachedSummaryDecision.status === 'accepted'
     ? cachedSummaryDecision.cachedSummary?.startupHint ?? null
     : null;
-  // T-SRS-04 (R29-002): forward the rejection reason so the startup surface can
+  // Forward the rejection reason so the startup surface can
   // differentiate schema_mismatch / transcript_identity_mismatch / stale_summary
   // / missing_state instead of collapsing them all into "startup summary only".
   const rejectionReason = cachedSummaryDecision.status === 'rejected'

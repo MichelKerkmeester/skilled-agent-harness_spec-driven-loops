@@ -348,7 +348,7 @@ function getEmbeddingCacheStats(): EmbeddingCacheStats {
 // ---------------------------------------------------------------
 
 /**
- * LAZY SINGLETON PATTERN (REQ-003, T016-T019)
+ * LAZY SINGLETON PATTERN
  *
  * The embedding provider is initialized lazily on first use to reduce
  * MCP startup time from 2-3s to <500ms.
@@ -380,8 +380,8 @@ function shouldEagerWarmup(): boolean {
 
 /**
  * Get or create provider instance (lazy singleton).
- * T016: Provider is created on first call, not at module load time.
- * T017: Model initialization is deferred until first embedding request.
+ * Provider is created on first call, not at module load time.
+ * Model initialization is deferred until first embedding request.
  */
 async function getProvider(): Promise<IEmbeddingProvider> {
   if (providerInstance) {
@@ -398,7 +398,7 @@ async function getProvider(): Promise<IEmbeddingProvider> {
   providerInitPromise = (async (): Promise<IEmbeddingProvider> => {
     try {
       providerInstance = await createEmbeddingsProvider({
-        warmup: false, // T017: No warmup at creation; model loads on first embed call
+        warmup: false, // No warmup at creation; model loads on first embed call
       });
       MODEL_NAME = getProviderModelName(providerInstance);
       providerInitCompleteTime = Date.now();
@@ -452,7 +452,7 @@ function getLazyLoadingStats(): LazyLoadingStats {
 
 /**
  * Generate embedding for text (low-level function).
- * T017: First call triggers lazy model initialization.
+ * First call triggers lazy model initialization.
  * Circuit breaker: returns null immediately when the provider is failing.
  */
 async function generateEmbedding(text: string): Promise<Float32Array | null> {
@@ -477,7 +477,7 @@ async function generateEmbedding(text: string): Promise<Float32Array | null> {
     return null;
   }
 
-  // T017: Track first embedding time for lazy loading diagnostics
+  // Track first embedding time for lazy loading diagnostics
   const isFirstEmbedding = !firstEmbeddingTime && !isProviderInitialized();
 
   try {
@@ -542,7 +542,7 @@ async function generateBatchEmbeddings(
     return [];
   }
 
-  // AI-FIX: F-26 — Validate concurrency to prevent infinite loop (i += 0 never exits)
+  // Validate concurrency to prevent infinite loop (i += 0 never exits)
   if (!Number.isFinite(concurrency) || concurrency < 1) {
     concurrency = 5;
   }
@@ -871,7 +871,7 @@ const EMBEDDING_DIM: number = 768;
 const EMBEDDING_TIMEOUT: number = 30000;
 // MAX_TEXT_LENGTH is imported from chunking.ts (single source of truth)
 // DEFAULT_MODEL_NAME is the fallback; use get_model_name() for the actual active model.
-// Derived from registry MANIFESTS[0] per ADR-013/014 — adding a new top entry to
+// Derived from registry MANIFESTS[0] — adding a new top entry to
 // shared/embeddings/registry.ts auto-updates this export.
 export const DEFAULT_MODEL_NAME: string = getCanonicalFallback('hf-local');
 // Legacy alias for backwards compatibility
@@ -915,11 +915,11 @@ export {
   getStartupEmbeddingProfile,
   clearEmbeddingCache,
   getEmbeddingCacheStats,
-  // T016-T019: Lazy loading exports
+  // Lazy loading exports
   isProviderInitialized,
   shouldEagerWarmup,
   getLazyLoadingStats,
-  // T087-T090: Pre-flight API key validation (REQ-029)
+  // Pre-flight API key validation
   validateApiKey,
   VALIDATION_TIMEOUT_MS,
   // Constants

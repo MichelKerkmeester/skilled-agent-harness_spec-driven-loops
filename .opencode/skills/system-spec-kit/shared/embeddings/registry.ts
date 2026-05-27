@@ -5,8 +5,8 @@
 // skill-advisor. Both skills' local `mcp_server/lib/embedders/registry.ts`
 // re-export from here.
 //
-// Promoted from mk-spec-memory's mcp_server/lib/embedders/registry.ts in
-// phase 003/006. 7 text-tuned embedder manifests are intentionally kept
+// Promoted from mk-spec-memory's mcp_server/lib/embedders/registry.ts.
+// Text-tuned embedder manifests are intentionally kept
 // separate from future code-tuned consumers.
 // ───────────────────────────────────────────────────────────────
 
@@ -18,7 +18,7 @@ import type { BackendKind, EmbedderManifest } from './types.js';
  * Frozen list of supported embedder manifests. Add a new model = append a
  * row here + ensure the manifest's `backend` adapter exists.
  *
- * Order keeps the ADR-012 local fallback candidates grouped by provider.
+ * Order keeps the local fallback candidates grouped by provider.
  */
 const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
   {
@@ -104,7 +104,7 @@ export function listManifests(): ReadonlyArray<EmbedderManifest> {
 
 /**
  * Convenience: return only the unique dimensions across all manifests.
- * Phase 016/002 uses this to know which `vec_<dim>` tables may need
+ * Uses this to know which `vec_<dim>` tables may need
  * eventual creation (lazy — only on first reference).
  */
 export function listSupportedDimensions(): ReadonlyArray<number> {
@@ -142,7 +142,7 @@ export function getAdapter(name: string): EmbedderAdapter | undefined {
 export { MANIFESTS };
 
 // ───────────────────────────────────────────────────────────────
-// Canonical per-provider fallback (ADR-013/014)
+// Canonical per-provider fallback
 // ───────────────────────────────────────────────────────────────
 // Single source of truth for "what model do we use when no env var is set,
 // no `vec_metadata.active_embedder_name` row exists, and the cascade probe
@@ -175,13 +175,13 @@ const CLOUD_CANONICAL: Readonly<Record<'voyage' | 'openai', string>> = Object.fr
  * Return the canonical fallback model name for a provider.
  *
  * - For `ollama` and `hf-local`, the name is derived from `MANIFESTS[0]` so
- *   the registry's declaration order is the single source of truth (per
- *   ADR-013/014 ordering). For hf-local the name is prefixed with the
+ *   the registry's declaration order is the single source of truth. For
+ *   hf-local the name is prefixed with the
  *   HuggingFace org (`nomic-ai/...`) because hf-local resolves models from
  *   the HF Hub, not the Ollama tag namespace.
  * - For `voyage` and `openai`, a single canonical string per provider lives
  *   in `CLOUD_CANONICAL` above — cloud providers do not have a registry
- *   array because the spec-memory bake-off (016/004) is local-first.
+ *   array because the spec-memory bake-off is local-first.
  *
  * Throws `EmbedderNotConfiguredError` if MANIFESTS is empty (programmer
  * error — should never happen in production).
@@ -217,16 +217,16 @@ export function getCanonicalFallback(provider: CanonicalProvider): string {
 }
 
 // ───────────────────────────────────────────────────────────────
-// Canonical reranker model names (ADR-022 audit P1)
+// Canonical reranker model names
 // ───────────────────────────────────────────────────────────────
 // Single source of truth for reranker model defaults used by
 // cross-encoder.ts PROVIDER_CONFIG entries. P1 audit closure
 // eliminates the hardcoded "cross-encoder/ms-marco-MiniLM-L-6-v2"
 // string duplicated from PROVIDER_CONFIG.local.model.
 //
-// Reranking is REMOVED as of the 014 deprecation: the mk-spec-memory local
-// cross-encoder path was removed in 003 and the local rerank sidecar skill was
-// deleted in 004 (cloud rerankers voyage/cohere were already removed in 022/013).
+// Reranking is REMOVED: the mk-spec-memory local cross-encoder path and local
+// rerank sidecar skill were deleted, and cloud rerankers voyage/cohere were
+// already removed.
 // These canonical names are now dead config defaults with no live importers —
 // retained only as a reference should a reranker ever be re-introduced.
 

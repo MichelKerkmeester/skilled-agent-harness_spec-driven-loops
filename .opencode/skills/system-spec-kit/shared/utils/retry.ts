@@ -310,7 +310,7 @@ export async function retryWithBackoff<T>(fn: () => Promise<T>, options: RetryOp
       const classification = classifyError(lastError);
       const { type: errorType, reason, shouldRetry: defaultShouldRetry } = classification;
 
-      // CHK-185: Log retry attempt with error type
+      // Log retry attempt with error type
       attemptLog.push({
         attempt: attemptNum,
         success: false,
@@ -326,7 +326,7 @@ export async function retryWithBackoff<T>(fn: () => Promise<T>, options: RetryOp
         `[${errorType}] ${lastError.message}`
       );
 
-      // CHK-184: Permanent errors fail fast (no retry)
+      // Permanent errors fail fast (no retry)
       if (errorType === 'permanent') {
         console.error(
           `[retry] ${operationName} failed permanently (${reason}), not retrying`
@@ -345,7 +345,7 @@ export async function retryWithBackoff<T>(fn: () => Promise<T>, options: RetryOp
         ? shouldRetry(lastError, attempt, classification)
         : defaultShouldRetry;
 
-      // CHK-183: Check if retries exhausted
+      // Check if retries exhausted
       if (attempt >= maxRetries || !willRetry) {
         console.error(
           `[retry] ${operationName} exhausted retries (${attemptNum} attempts)`
@@ -359,7 +359,7 @@ export async function retryWithBackoff<T>(fn: () => Promise<T>, options: RetryOp
         throw exhaustedError;
       }
 
-      // CHK-182: Calculate backoff delay
+      // Calculate backoff delay
       const delay = calculateBackoff(attempt, config);
 
       console.error(

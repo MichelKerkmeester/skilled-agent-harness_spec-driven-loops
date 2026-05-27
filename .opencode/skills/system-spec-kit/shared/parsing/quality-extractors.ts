@@ -7,7 +7,7 @@ const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/;
 /**
  * Extract the YAML frontmatter block (between --- delimiters).
  * Returns empty string when no frontmatter is found — body text must never
- * be parsed as metadata (T040 acceptance criteria).
+ * be parsed as metadata.
  */
 function extractFrontmatter(content: string): string {
   const match = content.match(FRONTMATTER_RE);

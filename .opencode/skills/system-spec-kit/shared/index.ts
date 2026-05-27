@@ -298,7 +298,7 @@ export {
 } from './ranking/learned-combiner.js';
 
 // ---------------------------------------------------------------
-// 12. YAML PREDICATE GRAMMAR (S7 / M11)
+// 12. YAML PREDICATE GRAMMAR
 // ---------------------------------------------------------------
 export {
   parseBooleanExprString,

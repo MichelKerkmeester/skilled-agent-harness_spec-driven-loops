@@ -12,9 +12,9 @@ import type { EmbeddingProfileData, IEmbeddingProvider, ProviderMetadata } from 
 // ---------------------------------------------------------------
 
 const DEFAULT_OLLAMA_BASE_URL = 'http://127.0.0.1:11434';
-// Derived from registry MANIFESTS[0] per ADR-013/014.
+// Derived from registry MANIFESTS[0].
 // Previously hardcoded to 'jina-embeddings-v3' — that was stale
-// (pre-ADR-013) and contradicted the bake-off operator override.
+// and contradicted the bake-off operator override.
 const DEFAULT_MODEL: string = getCanonicalFallback('ollama');
 const EMBEDDING_TIMEOUT = 30000;
 

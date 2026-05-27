@@ -6,8 +6,8 @@
 // re-export from here.
 //
 // Promoted from mk-spec-memory's mcp_server/lib/embedders/adapters/ollama.ts
-// in phase 003/006. The implementation is byte-equivalent to skill-advisor's
-// prior copy plus mk-spec-memory's (they had already converged).
+// The implementation is byte-equivalent to skill-advisor's prior copy plus
+// mk-spec-memory's (they had already converged).
 // ───────────────────────────────────────────────────────────────
 
 import type { EmbedderAdapter, EmbedderOptions } from '../adapter.js';

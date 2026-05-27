@@ -2,8 +2,7 @@
 // MODULE: Gate 3 Classifier
 // ---------------------------------------------------------------
 // Shared typed classifier for the Gate 3 (SPEC FOLDER QUESTION) trigger surface.
-// Addresses findings R41-002, R45-001, R47-001 (T-DOC-02) and R48-001, R49-001,
-// R50-001 (T-DOC-03) from the 016 foundational-runtime deep review.
+// Addresses classifier edge cases from the foundational-runtime deep review.
 //
 // Runtime root docs (AGENTS.md, CLAUDE.md, GEMINI.md, CODEX.md) and the
 // spec_kit command entry docs cite this module as the machine contract.
