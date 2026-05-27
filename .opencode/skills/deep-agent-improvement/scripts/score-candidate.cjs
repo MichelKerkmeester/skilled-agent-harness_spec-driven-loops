@@ -349,7 +349,7 @@ function scoreDimSystemFitness(profile, content) {
 }
 
 function scoreDynamic(candidateContent, agentName, profile, weights, integrationReport) {
-  // Accept optional weights override; fall back to hardcoded defaults (ADR-005 backward compat)
+  // Accept optional weights override; fall back to hardcoded defaults for backward compat
   const effectiveWeights = weights || DIMENSION_WEIGHTS;
 
   const structural = scoreDimStructural(profile, candidateContent);
@@ -485,7 +485,7 @@ function main() {
   const family = inferFamily(resolvedProfileId, manifest, targetPath);
   const agentName = profile.id;
 
-  // Accept optional --weights=<json> to override DIMENSION_WEIGHTS (ADR-005)
+  // Accept optional --weights=<json> to override DIMENSION_WEIGHTS
   let weightsOverride = null;
   if (args.weights) {
     try {

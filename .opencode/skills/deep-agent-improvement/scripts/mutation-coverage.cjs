@@ -15,7 +15,7 @@ const crypto = require('node:crypto');
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Namespace for improvement loop coverage graph (ADR-002).
+ * Namespace for improvement loop coverage graph.
  * Isolates from deep-research/review coverage graphs.
  * @type {string}
  */

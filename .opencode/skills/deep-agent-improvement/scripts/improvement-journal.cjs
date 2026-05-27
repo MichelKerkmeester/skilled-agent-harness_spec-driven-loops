@@ -41,7 +41,7 @@ const SESSION_OUTCOMES = Object.freeze({
 
 /**
  * Valid event types for the improvement journal.
- * Journal captures lifecycle events and stop decisions (ADR-001: orchestrator only).
+ * Journal captures lifecycle events and stop decisions (orchestrator only).
  * @type {Readonly<string[]>}
  */
 const VALID_EVENT_TYPES = Object.freeze([
@@ -131,7 +131,7 @@ function validateEvent(event) {
 
 /**
  * Append an event to the improvement journal (append-only JSONL).
- * ADR-001: Journal emission is orchestrator-only; this function is the single write point.
+ * Journal emission is orchestrator-only; this function is the single write point.
  *
  * @param {string} journalPath - Path to the improvement-journal.jsonl file
  * @param {object} event - Event object with { eventType, iteration?, candidateId?, details? }
