@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Improvement focus: **LEAF autonomous review loop; P0/P1/P2 severity discipline; convergence detection**. LEAF dispatched ONLY by /speckit:deep-review. Same command-orchestrator architecture as @improve-agent.",
     "created_at": "2026-05-18T07:49:27.108Z",
-    "last_save_at": "2026-05-24T05:40:25.417Z",
+    "last_save_at": "2026-05-27T13:45:35.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

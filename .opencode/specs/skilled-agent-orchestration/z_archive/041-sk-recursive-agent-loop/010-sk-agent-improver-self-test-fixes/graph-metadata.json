@@ -46,7 +46,7 @@
     ],
     "entities": [
       {
-        "name": "agent.md",
+        "name": "start-agent-improvement-loop.md",
         "kind": "doc",
         "path": ".opencode/commands/deep/start-agent-improvement-loop.md",
         "source": "derived"
@@ -162,7 +162,7 @@
     ],
     "causal_summary": "Phase 009 (self-test) found 5 issues:",
     "created_at": "2026-04-13T04:55:07.906Z",
-    "last_save_at": "2026-05-24T05:40:25.353Z",
+    "last_save_at": "2026-05-27T13:45:35.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

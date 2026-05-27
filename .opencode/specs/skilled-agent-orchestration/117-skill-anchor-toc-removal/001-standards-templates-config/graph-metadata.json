@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The sk-doc standards, doc templates, and `template_rules.json` config currently mandate or allow `## TABLE OF CONTENTS` blocks and treat `ANCHOR` markers as recommended. If the bulk cleanup (phases 002/003) ran without first changing these, cleaned docs would be re-flagged by `validate_document.py` (`missing_toc` is a blocking error for readme/install_guide/playbook) and regenerated docs would reintroduce TOCs.",
     "created_at": "2026-05-26T09:40:16.335Z",
-    "last_save_at": "2026-05-26T09:45:44.467Z",
+    "last_save_at": "2026-05-27T13:45:34.999Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

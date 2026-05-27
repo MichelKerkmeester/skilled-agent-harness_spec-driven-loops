@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Define the run harness contract: pre-flight checks, dispatch loop, output capture, scoring workflow, and findings aggregation. The actual run is a separate execution session against this scaffold (estimated 30-45 min wall-clock for N=1 sweep).",
     "created_at": "2026-04-26T15:00:00Z",
-    "last_save_at": "2026-05-26T16:51:05.384Z",
+    "last_save_at": "2026-05-27T13:45:35.650Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,10 @@
 {
   "level": "2",
-  "specFolder": "012-literal-spec-folder-names",
-  "description": "Improve AI-driven spec folder and phase naming so AI-chosen slugs describe concrete work being built or fixed rather than generic placeholders like re",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names",
+  "description": "Feature Specification: Improve AI-driven spec folder and phase naming so AI-chosen slugs describe concrete work being built or fixed rather than gener",
   "keywords": [
+    "feature",
+    "specification",
     "improve",
     "ai-driven",
     "spec",
@@ -17,16 +19,16 @@
     "built",
     "fixed",
     "rather",
-    "generic",
-    "placeholders",
-    "like",
-    "remediation",
-    "phase-n"
+    "gener"
   ],
-  "lastUpdated": "2026-05-19T17:43:19.862Z",
-  "specId": "012",
+  "lastUpdated": "2026-05-27T08:41:18.202Z",
+  "specId": "004",
   "folderSlug": "literal-spec-folder-names",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals"
+  ],
   "memorySequence": 3,
   "memoryNameHistory": [
     "19-05-26_13-49__with-swe-1.md",

@@ -76,4 +76,3 @@ Sub-packets 001 through 011 changed runtime hook contracts, advisor delivery, pl
 ### Follow-Ups
 
 - If `SPECKIT_CODEX_HOOK_TIMEOUT_MS` turns out to be internal-only after operator survey, consider moving it to a deprecated section or prefixing with "(internal)".
-- If the 009 tree adopts strict template-anchor compliance, this packet (plus siblings 001-007) will need an anchor backfill pass.

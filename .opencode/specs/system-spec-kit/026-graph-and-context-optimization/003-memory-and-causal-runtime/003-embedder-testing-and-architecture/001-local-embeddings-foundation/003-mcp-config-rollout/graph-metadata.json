@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 5 MCP runtime configs all had `EMBEDDINGS_PROVIDER=auto` but no `HF_EMBEDDINGS_MODEL`, AND `VOYAGE_API_KEY` was exported from three places (`~/.zshrc:21`, project `.env:15`, macOS launchd). The auto-resolver picked Voyage on every MCP spawn because the key was present.",
     "created_at": "2026-05-12T16:27:48Z",
-    "last_save_at": "2026-05-26T16:51:05.711Z",
+    "last_save_at": "2026-05-27T13:45:36.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

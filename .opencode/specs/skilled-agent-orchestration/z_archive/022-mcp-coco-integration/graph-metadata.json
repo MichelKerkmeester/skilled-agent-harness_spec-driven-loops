@@ -42,25 +42,21 @@
     "status": "complete",
     "key_files": [
       ".claude/mcp.json",
+      ".agents/settings.json",
       ".gemini/settings.json",
       ".codex/config.toml",
-      ".opencode/skills/mcp-coco-index/scripts/common.sh",
-      ".opencode/skills/mcp-coco-index/scripts/doctor.sh",
-      ".opencode/skills/mcp-coco-index/scripts/ensure_ready.sh",
-      ".opencode/skills/mcp-coco-index/references/cross_cli_playbook.md",
-      ".opencode/skills/mcp-coco-index/references/downstream_adoption_checklist.md",
       "research/research.md",
-      ".opencode/skills/mcp-coco-index/README.md",
-      ".opencode/skills/mcp-coco-index/scripts/install.sh",
-      ".opencode/skills/mcp-coco-index/scripts/update.sh",
       ".opencode/agents/context.md",
-      ".opencode/skills/mcp-coco-index/SKILL.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "scratch/cross-cli-auto-usage-test-results.md",
-      ".cocoindex_code/target_sqlite.db",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/common.sh",
+      "scripts/doctor.sh",
+      "spec.md",
+      ".claude/agents/context.md",
+      ".codex/agents/context.toml"
     ],
     "entities": [
       {
@@ -72,7 +68,7 @@
       {
         "name": "settings.json",
         "kind": "config",
-        "path": ".gemini/settings.json",
+        "path": ".agents/settings.json",
         "source": "derived"
       },
       {
@@ -82,69 +78,15 @@
         "source": "derived"
       },
       {
-        "name": "common.sh",
-        "kind": "script",
-        "path": ".opencode/skills/mcp-coco-index/scripts/common.sh",
-        "source": "derived"
-      },
-      {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": ".opencode/skills/mcp-coco-index/scripts/doctor.sh",
-        "source": "derived"
-      },
-      {
-        "name": "ensure_ready.sh",
-        "kind": "script",
-        "path": ".opencode/skills/mcp-coco-index/scripts/ensure_ready.sh",
-        "source": "derived"
-      },
-      {
-        "name": "cross_cli_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-coco-index/references/cross_cli_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "downstream_adoption_checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-coco-index/references/downstream_adoption_checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-coco-index/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "install.sh",
-        "kind": "script",
-        "path": ".opencode/skills/mcp-coco-index/scripts/install.sh",
-        "source": "derived"
-      },
-      {
-        "name": "update.sh",
-        "kind": "script",
-        "path": ".opencode/skills/mcp-coco-index/scripts/update.sh",
-        "source": "derived"
-      },
-      {
         "name": "context.md",
         "kind": "doc",
         "path": ".opencode/agents/context.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-coco-index/SKILL.md",
         "source": "derived"
       },
       {
@@ -172,15 +114,33 @@
         "source": "derived"
       },
       {
-        "name": "target_sqlite.db",
-        "kind": "file",
-        "path": ".cocoindex_code/target_sqlite.db",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "common.sh",
+        "kind": "script",
+        "path": "scripts/common.sh",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.toml",
+        "kind": "file",
+        "path": ".codex/agents/context.toml",
         "source": "derived"
       },
       {
@@ -206,11 +166,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Code Search Protocol",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Server Registration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode had no semantic code search capability. All code exploration relied on Grep (exact/regex text patterns), Glob (file path patterns), and Read (full file retrieval). The @context agent had to re-discover code structure every session with no persistent index and no way to query code by intent or concept. Searching for \"find authentication middleware\" with Grep required knowing the exact identifiers; with no semantic layer, fuzzy or conceptual queries returned zero results.",
     "created_at": "2026-04-12T09:02:50.170Z",
-    "last_save_at": "2026-05-24T05:40:25.307Z",
+    "last_save_at": "2026-05-27T13:45:35.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

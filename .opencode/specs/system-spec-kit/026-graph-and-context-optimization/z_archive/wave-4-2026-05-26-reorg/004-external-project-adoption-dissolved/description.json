@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved",
   "description": "Feature Specification: Graph Impact and Affordance Uplift (012)",
   "keywords": [
     "feature",
@@ -10,12 +10,14 @@
     "uplift",
     "012"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.719Z",
-  "specId": "006",
-  "folderSlug": "graph-impact-and-affordance-uplift",
+  "lastUpdated": "2026-05-27T08:41:18.444Z",
+  "specId": "004",
+  "folderSlug": "external-project-adoption-dissolved",
   "parentChain": [
     "system-spec-kit",
-    "026-graph-and-context-optimization"
+    "026-graph-and-context-optimization",
+    "z_archive",
+    "wave-4-2026-05-26-reorg"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

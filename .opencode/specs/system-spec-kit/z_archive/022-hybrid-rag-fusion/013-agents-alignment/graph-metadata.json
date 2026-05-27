@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/013-agents-alignment",
-  "spec_folder": "system-spec-kit/022-hybrid-rag-fusion/013-agents-alignment",
-  "parent_id": "system-spec-kit/022-hybrid-rag-fusion",
+  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/013-agents-alignment",
+  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/013-agents-alignment",
+  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -49,10 +49,7 @@
       "scratch/archive-pass2/review-report.md",
       "scratch/archive-pass2/iteration-001.md",
       "scratch/archive-pass2/iteration-004.md",
-      ".gemini/workflows/delegate_agent.md",
-      ".claude/agents/write.md",
-      ".codex/agents/write.toml",
-      ".gemini/agents/write.md"
+      ".gemini/workflows/delegate_agent.md"
     ],
     "entities": [
       {
@@ -107,18 +104,6 @@
         "name": "delegate_agent.md",
         "kind": "doc",
         "path": ".gemini/workflows/delegate_agent.md",
-        "source": "derived"
-      },
-      {
-        "name": "write.md",
-        "kind": "doc",
-        "path": ".claude/agents/write.md",
-        "source": "derived"
-      },
-      {
-        "name": "write.toml",
-        "kind": "file",
-        "path": ".codex/agents/write.toml",
         "source": "derived"
       },
       {
@@ -198,11 +183,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Canonical Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Content Alignment Review",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original `013-agents-alignment` packet described a simpler runtime model than the repository now uses. It treated `.opencode/agents/*.md` as a single canonical source copied directly to every runtime, but the live repo has split lineage:",
     "created_at": "2026-04-12T09:02:50.287Z",
-    "last_save_at": "2026-04-26T09:17:15.502Z",
+    "last_save_at": "2026-05-27T13:45:37.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

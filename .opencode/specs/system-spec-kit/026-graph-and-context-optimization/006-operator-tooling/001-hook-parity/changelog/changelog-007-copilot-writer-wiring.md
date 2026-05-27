@@ -55,4 +55,3 @@ After phase 006 fixed the Copilot schema crash, the `userPromptSubmitted` hook s
 ### Follow-Ups
 
 - Cross-runtime smoke matrix should be re-run now that both phases 006 and 007 are live.
-- The Superset wrapper at `~/.superset/bin/copilot` continues to clobber `.github/hooks/superset-notify.json` on every launch. Phase 007 works around this by using `.claude/settings.local.json` instead. A future phase could patch the Superset wrapper or add a repo-local guard.

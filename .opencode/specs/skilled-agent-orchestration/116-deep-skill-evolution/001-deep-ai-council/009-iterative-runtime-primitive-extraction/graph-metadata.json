@@ -8,9 +8,7 @@
   "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/009-iterative-runtime-primitive-extraction"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -189,7 +187,7 @@
     ],
     "causal_summary": "Extract council-compatible shared primitives from deep-loop-runtime without creating a peer council-runtime package.",
     "created_at": "2026-05-23T07:45:27Z",
-    "last_save_at": "2026-05-24T05:40:25.243Z",
+    "last_save_at": "2026-05-27T13:45:34.912Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

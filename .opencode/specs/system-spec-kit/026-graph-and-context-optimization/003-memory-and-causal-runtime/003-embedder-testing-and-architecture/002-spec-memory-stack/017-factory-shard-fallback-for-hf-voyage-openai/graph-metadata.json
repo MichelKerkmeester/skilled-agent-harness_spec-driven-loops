@@ -198,7 +198,7 @@
     ],
     "causal_summary": "This is **Phase 17** of the ADR-012 embedder testing and architecture work under `002-spec-memory-stack`.",
     "created_at": "2026-05-19T19:21:53Z",
-    "last_save_at": "2026-05-26T16:51:05.812Z",
+    "last_save_at": "2026-05-27T13:45:36.337Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

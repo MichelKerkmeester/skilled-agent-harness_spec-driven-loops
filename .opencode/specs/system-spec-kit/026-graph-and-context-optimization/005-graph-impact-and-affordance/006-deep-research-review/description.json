@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/006-deep-research-review",
   "description": "Feature Specification: Deep Research Review 008",
   "keywords": [
     "feature",
@@ -9,13 +9,13 @@
     "review",
     "008"
   ],
-  "lastUpdated": "2026-05-02T10:39:48.731Z",
-  "specId": "008",
+  "lastUpdated": "2026-05-27T08:41:18.372Z",
+  "specId": "006",
   "folderSlug": "deep-research-review",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "006-graph-impact-and-affordance-uplift"
+    "005-graph-impact-and-affordance"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

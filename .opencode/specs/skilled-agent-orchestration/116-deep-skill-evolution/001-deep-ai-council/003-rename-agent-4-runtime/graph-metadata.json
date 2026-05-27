@@ -4,11 +4,11 @@
   "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/003-rename-agent-4-runtime",
   "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/003-rename-agent-4-runtime"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -43,7 +43,6 @@
       ".codex/agents/ai-council.toml",
       ".gemini/agents/ai-council.md",
       ".opencode/skills/deep-ai-council/SKILL.md",
-      ".opencode/skills/system-spec-kit/references/rename-pattern.md",
       ".opencode/agents/README.txt",
       ".claude/agents/README.txt",
       ".codex/agents/README.txt",
@@ -75,12 +74,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-ai-council/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "rename-pattern.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/rename-pattern.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 3 of 6. Parallel-eligible with 002/004/005 after 001 emits rename-plan.json.",
     "created_at": "2026-05-21T06:57:09Z",
-    "last_save_at": "2026-05-24T05:40:25.237Z",
+    "last_save_at": "2026-05-27T13:45:34.898Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

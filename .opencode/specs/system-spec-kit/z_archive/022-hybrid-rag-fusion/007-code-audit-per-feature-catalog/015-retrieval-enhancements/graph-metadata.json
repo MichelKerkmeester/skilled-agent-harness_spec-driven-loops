@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/015-retrieval-enhancements",
-  "spec_folder": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/015-retrieval-enhancements",
-  "parent_id": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
+  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/015-retrieval-enhancements",
+  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/015-retrieval-enhancements",
+  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Systematic code audit of 9 Retrieval Enhancements features in the Spec Kit Memory MCP server. Each feature from `feature_catalog/15--retrieval-enhancements/` was verified against source code implementation to confirm accuracy, completeness, and catalog alignment.",
     "created_at": "2026-04-12T09:02:50.253Z",
-    "last_save_at": "2026-04-26T09:17:15.413Z",
+    "last_save_at": "2026-05-27T13:45:37.325Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

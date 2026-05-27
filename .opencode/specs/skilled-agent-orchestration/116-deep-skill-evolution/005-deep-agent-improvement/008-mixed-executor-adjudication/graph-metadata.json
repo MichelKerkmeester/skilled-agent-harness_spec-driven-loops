@@ -50,8 +50,6 @@
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/deep-agent-improvement/SKILL.md",
-      ".opencode/skills/deep-agent-improvement/references/mixed_executor_methodology.md",
-      ".opencode/skills/deep-agent-improvement/references/profiling_audit_log.md",
       ".opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/spec.md",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/plan.md",
@@ -103,18 +101,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-agent-improvement/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "mixed_executor_methodology.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-agent-improvement/references/mixed_executor_methodology.md",
-        "source": "derived"
-      },
-      {
-        "name": "profiling_audit_log.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-agent-improvement/references/profiling_audit_log.md",
         "source": "derived"
       },
       {
@@ -206,11 +192,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executor Dispatch",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 128 brings the methodology patterns proven in arc 119 (deep-research uplift) into deep-agent-improvement: mixed-executor dispatch (cli-devin SWE-1.6 breadth + cli-codex gpt-5.5 synthesis) and adjudication-iter false-positive filter. The 119 research demonstrated a 90%+ false-positive rate on adversarial passes without adjudication, and the mixed-executor pattern (8+2 split) provided better breadth/synthesis balance than single-executor approaches. This packet documents these patterns as recommended methodology for DAI multi-iter sweeps and adds DAI-004 audit logging for dynamic profiling.",
     "created_at": "2026-05-23T08:30:00.000Z",
-    "last_save_at": "2026-05-24T05:40:25.279Z",
+    "last_save_at": "2026-05-27T13:45:34.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

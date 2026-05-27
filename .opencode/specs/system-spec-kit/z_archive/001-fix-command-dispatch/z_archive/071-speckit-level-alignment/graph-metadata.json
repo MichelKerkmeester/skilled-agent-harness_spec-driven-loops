@@ -47,8 +47,6 @@
       "assets/template_mapping.md",
       "references/validation/validation_rules.md",
       "references/validation/phase_checklists.md",
-      "templates/level_2/checklist.md",
-      "templates/level_2/spec.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
@@ -57,10 +55,12 @@
       ".opencode/skills/system-spec-kit/assets/template_mapping.md",
       ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
       ".opencode/skills/system-spec-kit/references/validation/phase_checklists.md",
-      ".opencode/skills/system-spec-kit/templates/level_2/checklist.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -130,6 +130,24 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specificatio",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -188,29 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Verified Scope",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current State Analysis",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Based Template Alignment Implementation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Align ALL SpecKit scripts, lib modules, and documentation with the new level-based template architecture from Spec 069.",
     "created_at": "2026-04-12T09:02:53.544Z",
-    "last_save_at": "2026-04-26T09:17:15.956Z",
+    "last_save_at": "2026-05-27T13:45:37.112Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -40,7 +40,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
-      ".opencode/skills/system-code-graph/mcp_server/handlers/ccc-feedback.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -51,12 +50,6 @@
         "name": "metrics.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ccc-feedback.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/ccc-feedback.ts",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Async File",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original phase scope conflated two different concerns:",
     "created_at": "2026-05-16T07:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.158Z",
+    "last_save_at": "2026-05-27T13:45:34.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

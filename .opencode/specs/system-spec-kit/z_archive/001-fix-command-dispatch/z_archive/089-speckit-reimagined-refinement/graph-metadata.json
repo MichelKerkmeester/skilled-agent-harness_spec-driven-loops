@@ -49,7 +49,6 @@
       ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md",
       ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
       ".opencode/skills/system-spec-kit/assets/template_mapping.md",
-      ".opencode/agents/write.md",
       ".opencode/agents/orchestrate.md",
       "implementation-summary.md",
       "checklist.md",
@@ -60,7 +59,8 @@
       "references/config/environment_variables.md",
       "scripts/spec/validate.sh",
       "scripts/spec/create.sh",
-      "spec/validate.sh"
+      "spec/validate.sh",
+      "assets/level_decision_matrix.md"
     ],
     "entities": [
       {
@@ -109,12 +109,6 @@
         "name": "template_mapping.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/assets/template_mapping.md",
-        "source": "derived"
-      },
-      {
-        "name": "write.md",
-        "kind": "doc",
-        "path": ".opencode/agents/write.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Injection Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "title: \\\"Spec 089: system-spec-kit Reimagined Refinement\\\"",
     "created_at": "2026-04-12T09:02:53.559Z",
-    "last_save_at": "2026-04-26T09:17:16.001Z",
+    "last_save_at": "2026-05-27T13:45:37.191Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

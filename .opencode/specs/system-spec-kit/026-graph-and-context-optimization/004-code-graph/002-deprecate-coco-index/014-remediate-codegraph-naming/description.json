@@ -1,5 +1,6 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/014-remediate-codegraph-naming",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming",
   "description": "Feature Specification: Remove residual ccc references from system-code-graph docs and align doc names to code-graph's own current naming",
   "keywords": [
     "feature",
@@ -18,15 +19,15 @@
     "current",
     "naming"
   ],
-  "lastUpdated": "2026-05-25T15:33:23.552Z",
+  "lastUpdated": "2026-05-27T08:41:18.316Z",
   "specId": "014",
   "folderSlug": "remediate-codegraph-naming",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "014-deprecate-coco-index"
+    "004-code-graph",
+    "002-deprecate-coco-index"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

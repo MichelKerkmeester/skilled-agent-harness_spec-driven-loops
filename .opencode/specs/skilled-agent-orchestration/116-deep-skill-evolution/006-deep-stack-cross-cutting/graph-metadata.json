@@ -11,39 +11,85 @@
     "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review"
   ],
   "migrated": true,
-  "migration_source": "consolidation",
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation",
-      "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-commands-relocation",
-      "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "deep-stack cross-cutting",
-      "deep skills differentiation",
+      "deep skills differentiation audit",
       "deep commands relocation",
-      "deep skill doc evolution"
+      "deep skill documentation evolution"
     ],
     "key_topics": [
+      "deep-stack",
+      "cross-cutting",
+      "deep",
+      "skills",
       "differentiation",
+      "audit",
       "commands",
       "relocation",
+      "skill",
       "documentation",
-      "evolution"
+      "evolution",
+      "work"
     ],
     "importance_tier": "important",
-    "status": "in-progress",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "Cross-cutting deep-stack work: unique-value differentiation audit, deep-* command relocation, and documentation evolution across the five deep-* skills.",
-    "created_at": "2026-05-26T13:39:54.163431+00:00",
-    "last_save_at": "2026-05-26T13:39:54.163431+00:00",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Some",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Some deep-* work does not belong to any single skill: auditing where the skills' use cases overlap, relocating the shared `deep:*` command assets, and evolving documentation conventions across all five skills at once. Left as separate one-leaf clusters, these inflate the root manifest without carrying single-skill weight.",
+    "created_at": "2026-05-27T13:26:54.912Z",
+    "last_save_at": "2026-05-27T13:45:34.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The `system-code-graph` references were still root-level kebab-case files and the skill router used static paths. This packet aligns those references with sk-doc's reference-template pattern, moves canonical docs into focused snake_case subfolders, leaves compatibility stubs at old paths, and updates active navigation to prefer the canonical files.",
     "created_at": "2026-05-24T07:58:55Z",
-    "last_save_at": "2026-05-26T16:51:06.213Z",
+    "last_save_at": "2026-05-27T13:45:36.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

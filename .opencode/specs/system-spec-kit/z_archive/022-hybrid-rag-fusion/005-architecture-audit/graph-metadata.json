@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit",
-  "spec_folder": "system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit",
-  "parent_id": "system-spec-kit/022-hybrid-rag-fusion",
+  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/005-architecture-audit",
+  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/005-architecture-audit",
+  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "This completed Level 3 spec captures the architecture audit of `.opencode/skills/system-spec-kit/` with focus on the ownership boundary between root `scripts/` and `mcp_server/`. The work established a boundary contract, reduced cross-area drift, hardened enforcement, merged the former `030-architecture-boundary-remediation` follow-up, and closed later verification-driven issues around naming, README coverage, symlinked runtime paths, and source-dist alignment.",
     "created_at": "2026-04-12T09:02:50.240Z",
-    "last_save_at": "2026-04-26T09:17:15.381Z",
+    "last_save_at": "2026-05-27T13:45:37.294Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

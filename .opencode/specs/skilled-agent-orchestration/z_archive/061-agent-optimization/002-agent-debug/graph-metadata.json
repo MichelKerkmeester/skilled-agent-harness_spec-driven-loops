@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Improvement focus: **5-phase root-cause discipline; user-invoked-only constraint; debug-delegation.md write boundary**. USER-INVOKED ONLY — never auto-dispatched (per memory rule). Retains exclusive write access for debug-delegation.md.",
     "created_at": "2026-05-18T07:49:27.102Z",
-    "last_save_at": "2026-05-24T05:40:25.413Z",
+    "last_save_at": "2026-05-27T13:45:35.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

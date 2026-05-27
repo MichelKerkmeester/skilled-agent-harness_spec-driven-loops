@@ -4,17 +4,17 @@
   "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/008-deep-review-gate-model-reconciliation",
   "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review/001-gate-model-reconciliation"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "gate model reconciliation",
-      "006-gate-model-reconciliation",
+      "001-gate-model-reconciliation",
       "legal-stop gate bundle",
       "9-gate authoritative model",
       "gate count drift",
@@ -28,7 +28,7 @@
       "gate",
       "model",
       "reconciliation",
-      "006-gate-model-reconciliation",
+      "001-gate-model-reconciliation",
       "legal-stop",
       "bundle",
       "9-gate",
@@ -41,9 +41,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-review/references/convergence.md",
-      ".opencode/skills/deep-review/references/loop_protocol.md",
-      ".opencode/skills/deep-review/references/state_format.md",
       ".opencode/skills/deep-review/feature_catalog/04--severity-system/05-quality-gates.md",
       ".opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md",
       ".opencode/skills/deep-review/changelog/v1.10.0.0.md",
@@ -56,24 +53,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/references/convergence.md",
-        "source": "derived"
-      },
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/references/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/references/state_format.md",
-        "source": "derived"
-      },
       {
         "name": "05-quality-gates.md",
         "kind": "doc",
@@ -199,11 +178,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-review legal-stop gate model has drifted across documentation surfaces. The `003-deep-review` phase-5 deep-research loop surfaced a 4-gap cluster (LG-0013, LG-0016, LG-0031, LG-0032) plus a deeper finding during this packet's investigation: the AUTHORITATIVE producer (both `deep_start-review-loop_{auto,confirm}.yaml` workflows) emits **9 gates** with the `Gate` suffix at the `step_emit_blocked_stop` append_jsonl step, but every documentation surface describes a different, incomplete model:",
     "created_at": "2026-05-23T18:38:12.948Z",
-    "last_save_at": "2026-05-25T08:01:03.362Z",
+    "last_save_at": "2026-05-27T13:45:34.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

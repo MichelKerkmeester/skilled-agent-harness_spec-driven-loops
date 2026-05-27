@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/002-code-graph-phase-runner-and-detect-changes",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/001-code-graph-phase-runner",
   "description": "Feature Specification: Code Graph Phase Runner + detect_changes Preflight (012/002)",
   "keywords": [
     "feature",
@@ -12,13 +12,13 @@
     "012",
     "002"
   ],
-  "lastUpdated": "2026-04-26T07:03:47.552Z",
-  "specId": "002",
-  "folderSlug": "code-graph-phase-runner-and-detect-changes",
+  "lastUpdated": "2026-05-27T08:41:18.353Z",
+  "specId": "001",
+  "folderSlug": "code-graph-phase-runner",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "010-graph-impact-and-affordance-uplift"
+    "005-graph-impact-and-affordance"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

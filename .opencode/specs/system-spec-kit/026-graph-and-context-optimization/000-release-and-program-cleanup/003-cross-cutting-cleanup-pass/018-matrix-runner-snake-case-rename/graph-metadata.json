@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The CLI matrix runner folder used kebab-case while adjacent MCP server support directories use snake_case. That naming mismatch made the runtime tree inconsistent and left imports, docs, tests, feature catalog entries, and prior packet evidence pointing at the outlier path.",
     "created_at": "2026-05-18T08:15:53.134Z",
-    "last_save_at": "2026-05-26T16:51:05.330Z",
+    "last_save_at": "2026-05-27T13:45:35.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

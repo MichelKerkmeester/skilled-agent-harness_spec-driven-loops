@@ -238,7 +238,7 @@
     ],
     "causal_summary": "This phase closes hook parity defects discovered on 2026-04-21 across the OpenCode plugin bridge, Codex advisor hooks, Copilot startup routing, Codex PreToolUse safety, and runtime documentation. The implementation keeps each runtime on its real capability surface: OpenCode injects through the plugin bridge, Codex uses prompt/pre-tool hooks plus `session_bootstrap` for startup recovery, and Copilot starts through the repo-local wrapper.",
     "created_at": "2026-04-21T10:15:00.000Z",
-    "last_save_at": "2026-05-26T16:51:06.258Z",
+    "last_save_at": "2026-05-27T13:45:36.798Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

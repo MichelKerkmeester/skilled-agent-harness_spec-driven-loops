@@ -168,7 +168,7 @@
     ],
     "causal_summary": "Per opencode official docs (`https://opencode.ai/docs/skills`, `/agents`, `/commands`), opencode's project-level discovery looks for **`.opencode/skills/`**, **`.opencode/agents/`**, **`.opencode/commands/`** (all plural). This repo uses singular for all three, so opencode's built-in discovery silently fails on every dispatch. This packet aligns the repo with opencode convention.",
     "created_at": "2026-05-18T07:49:27.231Z",
-    "last_save_at": "2026-05-24T05:40:25.529Z",
+    "last_save_at": "2026-05-27T13:45:35.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

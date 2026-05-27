@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Six tests in the stress-test and unit-test surface have reliability defects that make them brittle on non-developer machines, in CI, or under repeated runs. One test hard-codes the original developer's local checkout path. One asserts absolute latency budgets that can fail on slower hardware. One uses real-timer sleeps with elapsed-time assertions, slowing the suite and producing flakes. Two tests mutate process env vars (`SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED`, `SPECKIT_MMR`) without restoration, leaking state across the run. One test uses a repo-local temp fixture root that collides between parallel runs and survives crashes.",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-26T16:51:05.478Z",
+    "last_save_at": "2026-05-27T13:45:35.771Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

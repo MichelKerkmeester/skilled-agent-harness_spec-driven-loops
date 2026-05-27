@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The canonical Vitest stress suite in `mcp_server/stress_test/` is provider-agnostic by design. It mocks `executePipeline` and uses synthetic candidates, so substrate paths such as llama-cpp embedding generation, V-rule save behavior, CocoIndex two-client coordination, query-expansion bounds, and token-budget edges had no canonical stress gate. The only substrate-level evidence lived in `_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs` from packet 045.",
     "created_at": "2026-05-14T21:40:55.576Z",
-    "last_save_at": "2026-05-26T16:51:05.779Z",
+    "last_save_at": "2026-05-27T13:45:36.234Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

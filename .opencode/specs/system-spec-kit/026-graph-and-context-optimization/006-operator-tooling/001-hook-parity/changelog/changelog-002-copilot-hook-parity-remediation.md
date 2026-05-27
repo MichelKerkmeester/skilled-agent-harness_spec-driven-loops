@@ -67,4 +67,3 @@ Copilot CLI has no supported prompt-mutation hook surface. This phase implemente
 
 - Next-prompt freshness: Copilot sees the managed block on the next prompt after the file changes, not as true in-turn prompt mutation.
 - ACP (Agent Client Protocol) remains deferred as a future dynamic-injection path once the public-preview API stabilizes.
-- Packet 006 addresses a schema crash in Copilot's hook executor discovered after ship.

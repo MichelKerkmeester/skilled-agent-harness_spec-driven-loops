@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment",
-  "spec_folder": "system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment",
-  "parent_id": "system-spec-kit/022-hybrid-rag-fusion",
+  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment",
+  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment",
+  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [
-    "system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
-    "system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/002-skill-review-post-022"
+    "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
+    "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/002-skill-review-post-022"
   ],
   "manual": {
     "depends_on": [],
@@ -17,7 +17,6 @@
       "skill alignment",
       "011 alignment",
       "system-spec-kit backlog",
-      "system skill guide update",
       "implementation",
       "plan",
       "tasks",
@@ -25,7 +24,8 @@
       "checklist",
       "summary",
       "implementation summary",
-      "011"
+      "011",
+      "skill"
     ],
     "key_topics": [
       "skill",
@@ -33,13 +33,13 @@
       "011",
       "system-spec-kit",
       "backlog",
-      "system",
-      "guide",
-      "update",
       "implementation",
       "plan",
       "tasks",
-      "verification"
+      "verification",
+      "checklist",
+      "summary",
+      "011-skill-alignment"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -59,41 +59,39 @@
       ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md",
       ".opencode/skills/system-spec-kit/assets/template_mapping.md",
       "mcp_server/tool-schemas.ts",
-      ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/spec.md",
-      ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/plan.md",
-      ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/tasks.md",
-      ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/checklist.md",
-      ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/implementation-summary.md"
+      ".opencode/commands/memory/search.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      "resource-map.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/checklist.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -157,6 +155,18 @@
         "source": "derived"
       },
       {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -175,19 +185,19 @@
         "source": "derived"
       },
       {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Record",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -197,23 +207,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Kit Level",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `011-skill-alignment` pack preserved an older story that no longer matched the repository. It mixed a finished-state label with draft or pre-implementation language, cited superseded command-surface counts, and had to reconcile the final `system-spec-kit` skill/reference/asset drift after the live memory surface settled at **33 tools**, **4 commands**, with retrieval documented under `/memory:search` and shared-memory lifecycle routed through `/memory:manage shared`.",
     "created_at": "2026-04-12T09:02:50.284Z",
-    "last_save_at": "2026-04-27T13:38:47.634Z",
+    "last_save_at": "2026-05-27T13:45:37.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,11 +219,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
-    ],
-    "children_ids": [
-      "system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
-      "system-spec-kit/022-hybrid-rag-fusion/011-skill-alignment/002-skill-review-post-022"
+      "implementation-summary.md",
+      "resource-map.md"
     ]
   }
 }

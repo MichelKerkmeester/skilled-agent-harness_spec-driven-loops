@@ -199,7 +199,7 @@
     ],
     "causal_summary": "System-spec-kit now crosses the code-graph boundary through shared contracts, a readiness marker, and MCP RPC. ADR-001 supersedes the older sibling-import allowance.",
     "created_at": "2026-05-15T08:24:07Z",
-    "last_save_at": "2026-05-26T16:51:05.570Z",
+    "last_save_at": "2026-05-27T13:45:35.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-15T09:35:00Z",
     "source_docs": [

@@ -86,4 +86,3 @@ Running `opencode` in any directory under this repo terminated the TUI with `Typ
 
 - Module-global state refactor (P2): still deferred. Per-instance closure or WeakMap for multi-instance races.
 - In-flight bridge dedup (P2): still deferred.
-- Unbounded prompt/brief size caps (P2): still deferred.

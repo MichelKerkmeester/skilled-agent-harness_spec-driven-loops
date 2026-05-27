@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/006-shared-memory-rollout",
-  "spec_folder": "system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/006-shared-memory-rollout",
-  "parent_id": "system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features",
+  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/006-shared-memory-rollout",
+  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/006-shared-memory-rollout",
+  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify + level3-arch + level3plus-govern | v2.2\"",
     "created_at": "2026-04-12T09:02:50.262Z",
-    "last_save_at": "2026-04-26T09:17:15.438Z",
+    "last_save_at": "2026-05-27T13:45:37.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

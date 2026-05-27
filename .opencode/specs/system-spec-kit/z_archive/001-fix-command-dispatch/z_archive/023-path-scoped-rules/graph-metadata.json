@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules",
   "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules",
-  "parent_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive",
+  "parent_id": null,
   "children_ids": [
     "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/001-mvp-monolithic",
     "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture"
@@ -17,22 +17,30 @@
       "023-path-scoped-rules",
       "023 path scoped rules",
       "001-mvp-monolithic",
-      "002-modular-architecture"
+      "002-modular-architecture",
+      "resource map",
+      "023-path-scoped-rules resource map",
+      "path catalog 023-path-scoped-rules"
     ],
     "key_topics": [
+      "023-path-scoped-rules",
       "023",
       "path",
       "scoped",
       "rules",
       "001-mvp-monolithic",
-      "002-modular-architecture"
+      "002-modular-architecture",
+      "resource",
+      "map",
+      "catalog",
+      "parent",
+      "packet"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      "description.json",
-      "graph-metadata.json"
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -42,31 +50,92 @@
         "source": "derived"
       },
       {
-        "name": "description.json",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": "description.json",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "doc",
-        "path": "graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "023 Path Scoped Rules",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Path Scoped Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map: 023-path-scoped-rules",
+        "kind": "quoted",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Feature Specification: 023 Path Scoped Rules",
+    "causal_summary": "This parent packet coordinates the phased work under `023 Path Scoped Rules` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level. The current child surface includes 001-mvp-monolithic, 002-modular-architecture.",
     "created_at": "2026-04-27T13:33:11Z",
-    "last_save_at": "2026-04-27T13:33:11Z",
+    "last_save_at": "2026-05-27T13:45:37.024Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "resource-map.md"
     ]
   }
 }

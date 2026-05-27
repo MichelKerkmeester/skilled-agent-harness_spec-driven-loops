@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/006-analysis",
-  "spec_folder": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/006-analysis",
-  "parent_id": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
+  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/006-analysis",
+  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/006-analysis",
+  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The analysis category contains 7 manual test scenarios covering causal graph operations (create, stats, delete, trace), epistemic measurement (preflight, postflight), and learning history retrieval. Each scenario must be executed with defined prompts, expected behaviors verified, and evidence captured to validate that analysis tools function correctly.",
     "created_at": "2026-04-12T09:02:50.293Z",
-    "last_save_at": "2026-04-26T09:17:15.517Z",
+    "last_save_at": "2026-05-27T13:45:37.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

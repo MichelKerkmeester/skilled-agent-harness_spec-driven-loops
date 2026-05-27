@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The skill advisor's `INTENT_BOOSTERS` dict (`skill_advisor.py:496`) contains **24 multi-word keys** that the advisor's tokenizer splits on whitespace — making those booster entries effective no-ops. The separate `PHRASE_INTENT_BOOSTERS` dict (`skill_advisor.py:788`) already provides the correct mechanism (substring match against the raw prompt before tokenization), but it's under-used: 6 of the 24 misplaced multi-word keys have no PHRASE equivalent, and recently-added Barter-context phrases like \"iron law\", \"barter-scrooge monorepo\", \"observe never modify\" have no phrase route. Users asking natural-language questions with multi-word identifiers receive lower confidence or fall back to weaker token matches, eroding Gate 2 routing quality.",
     "created_at": "2026-04-15T10:54:05.055Z",
-    "last_save_at": "2026-05-26T16:51:05.605Z",
+    "last_save_at": "2026-05-27T13:45:35.907Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

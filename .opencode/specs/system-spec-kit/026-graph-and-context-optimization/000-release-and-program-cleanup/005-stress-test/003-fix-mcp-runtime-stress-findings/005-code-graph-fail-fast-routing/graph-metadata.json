@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Add `fallbackDecision: { nextTool, reason, retryAfter }` to all blocked/degraded code-graph read payloads. Preserve `allowInlineFullScan:false` (no inline full scans on read paths). Make the operator action obvious instead of weakening the boundary.",
     "created_at": "2026-04-27T07:48:04.873Z",
-    "last_save_at": "2026-05-26T16:51:05.392Z",
+    "last_save_at": "2026-05-27T13:45:35.659Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

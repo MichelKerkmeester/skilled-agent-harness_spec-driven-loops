@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/024-compact-code-graph/016-cross-runtime-ux",
-  "spec_folder": "system-spec-kit/024-compact-code-graph/016-cross-runtime-ux",
-  "parent_id": "system-spec-kit/024-compact-code-graph",
+  "packet_id": "system-spec-kit/z_archive/024-compact-code-graph/016-cross-runtime-ux",
+  "spec_folder": "system-spec-kit/z_archive/024-compact-code-graph/016-cross-runtime-ux",
+  "parent_id": "system-spec-kit/z_archive/024-compact-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,7 +43,6 @@
     "key_files": [
       ".opencode/agents/context.md",
       "checklist.md",
-      "tests/crash-recovery.vitest.ts",
       "spec.md",
       ".claude/settings.local.json",
       "plan.md",
@@ -61,12 +60,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "crash-recovery.vitest.ts",
-        "kind": "test",
-        "path": "tests/crash-recovery.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "References Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Template compliance shim section. Legacy phase content continues below.",
     "created_at": "2026-04-13T04:55:08.078Z",
-    "last_save_at": "2026-04-26T09:17:15.636Z",
+    "last_save_at": "2026-05-27T13:45:37.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

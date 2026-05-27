@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
-  "spec_folder": "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
-  "parent_id": "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion",
+  "packet_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
+  "spec_folder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
+  "parent_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Three retrieval quality features — session boost, causal boost, and deep query expansion — are each gated behind explicit opt-in environment variables (`SPECKIT_SESSION_BOOST`, `SPECKIT_CAUSAL_BOOST`). Because `isFeatureEnabled()` in `rollout-policy.ts` treats an *undefined* env var as ON, but `session-boost.ts` and `causal-boost.ts` call `isFeatureEnabled` with their specific flag names that users typically do not set, the net effect is that the features are effectively OFF for all default installations. A test search for \"semantic search\" confirmed: `sessionBoostApplied: \"off\"`, `causalBoostApplied: \"off\"`, and `deepExpansion: false` even in `deep` mode.",
     "created_at": "2026-04-12T09:02:50.334Z",
-    "last_save_at": "2026-04-26T09:17:15.596Z",
+    "last_save_at": "2026-05-27T13:45:37.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

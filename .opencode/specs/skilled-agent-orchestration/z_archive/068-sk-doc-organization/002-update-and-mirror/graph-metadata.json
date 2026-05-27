@@ -41,7 +41,6 @@
     "key_files": [
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/commands/create/README.txt",
-      ".opencode/install_guides/SET-UP - Opencode Agents.md",
       ".opencode/commands/create/agent.md",
       ".gemini/commands/create/agent.toml",
       ".gemini/commands/create/changelog.toml",
@@ -63,12 +62,6 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/create/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "SET-UP - Opencode Agents.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - Opencode Agents.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 2** of the Reorganize sk-doc/assets reorganization. After Phase 1 physically moved 4 asset items to `assets/` root and deleted the empty `agents/` subfolder, all dependent references still point to the OLD paths. Phase 2 closes that gap by applying 4 fixed-string substring substitutions across the canonical `.opencode/` tree and then replicating the changes to the other 3 runtime mirrors (`.claude/`, `.codex/`, `.gemini/`).",
     "created_at": "2026-05-05T07:55:03Z",
-    "last_save_at": "2026-05-24T05:40:25.444Z",
+    "last_save_at": "2026-05-27T13:45:35.268Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",
     "source_docs": [

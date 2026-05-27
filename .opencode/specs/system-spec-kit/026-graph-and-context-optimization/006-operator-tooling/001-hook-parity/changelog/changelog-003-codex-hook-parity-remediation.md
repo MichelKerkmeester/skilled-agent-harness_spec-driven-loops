@@ -68,4 +68,3 @@ Codex CLI sessions previously returned no startup context and no advisor brief. 
 ### Follow-Ups
 
 - Codex hooks are still under development (`codex features list` reports `codex_hooks` as under development). Future releases may require contract re-verification.
-- A downstream routing asymmetry was discovered in the skill catalog (not the hook layer). `sk-improve-prompt` was patched in a separate change.

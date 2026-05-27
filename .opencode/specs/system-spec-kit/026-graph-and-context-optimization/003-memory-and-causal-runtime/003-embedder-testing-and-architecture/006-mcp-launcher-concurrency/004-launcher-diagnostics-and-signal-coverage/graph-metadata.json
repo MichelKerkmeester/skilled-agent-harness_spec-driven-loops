@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The 3-reviewer audit of packets 006+007 surfaced 14 P2 findings — none blockers, each a hardening opportunity. Operator directive: close all of them. Themes: PID-reuse triage needs `startedAt` in stdout, atypical exit signals (SIGQUIT, uncaughtException) leak lease files, `isLeaseHeld()` probe path opens+mutates+closes the SQLite lease DB on every call (overhead + lock-thrash risk), DELETE-mode fallback log doesn't communicate the concurrency tradeoff, `checkSqliteIntegrity` still runs with 0ms `busy_timeout` so the auto-quarantine path can still false-positive, code-index has a vestigial `stateFile` write that briefly collides with the lease file, `MK_*_DB_DIR` override can disconnect lease check from DB write (must be documented), and 6 test-hygiene gaps (loose substring assert, PID range scan, missing clean-exit assertion, hardcoded path constants, terminate zombie path, tight CI timing).",
     "created_at": "2026-05-18T06:42:51Z",
-    "last_save_at": "2026-05-26T16:51:05.957Z",
+    "last_save_at": "2026-05-27T13:45:36.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

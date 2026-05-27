@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation",
-  "spec_folder": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation",
-  "parent_id": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
+  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation",
+  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation",
+  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Systematic code audit of 10 Mutation features in the Spec Kit Memory MCP server. Each feature from the `feature_catalog/02--mutation/` category will be verified against its source code implementation to confirm accuracy, completeness, and catalog alignment.",
     "created_at": "2026-04-12T09:02:50.245Z",
-    "last_save_at": "2026-04-26T09:17:15.394Z",
+    "last_save_at": "2026-05-27T13:45:37.306Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

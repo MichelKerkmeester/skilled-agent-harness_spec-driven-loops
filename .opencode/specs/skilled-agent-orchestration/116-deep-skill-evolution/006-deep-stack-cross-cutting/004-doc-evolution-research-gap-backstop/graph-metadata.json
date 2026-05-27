@@ -4,18 +4,27 @@
   "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/004-doc-evolution-research-gap-backstop",
   "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/009-deep-research-gap-backstop"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "deep-research gap backstop",
       "008 residual gap research",
-      "deep-skill doc-evolution backstop"
+      "deep-skill doc-evolution backstop",
+      "deep-research gap backstop plan",
+      "008 residual gap research plan",
+      "deep-skill doc-evolution backstop plan",
+      "deep-research gap backstop tasks",
+      "008 residual gap research tasks",
+      "deep-skill doc-evolution backstop tasks",
+      "deep-research gap backstop summary",
+      "008 residual gap research outcome",
+      "deep-skill doc-evolution backstop result"
     ],
     "key_topics": [
       "deep-research",
@@ -26,16 +35,17 @@
       "research",
       "deep-skill",
       "doc-evolution",
-      "pass",
-      "reworked",
-      "deep",
-      "skills"
+      "plan",
+      "tasks",
+      "summary",
+      "outcome"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "research/deep-research-dashboard.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -46,13 +56,25 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -80,15 +102,108 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "externalized",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Prompt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 008 doc-evolution pass reworked the 5 deep-* skills extensively. A focused deep-research backstop is needed to confirm no residual documentation or reference-structure gaps remain (stale paths, mis-placements, structure mismatches) beyond what the manual passes already caught.",
     "created_at": "2026-05-25T18:28:40.767Z",
-    "last_save_at": "2026-05-25T18:28:40.767Z",
+    "last_save_at": "2026-05-27T13:45:34.995Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ]
   }
 }

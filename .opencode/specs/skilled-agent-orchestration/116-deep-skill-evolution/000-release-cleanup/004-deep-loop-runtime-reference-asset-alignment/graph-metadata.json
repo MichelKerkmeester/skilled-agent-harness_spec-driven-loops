@@ -8,9 +8,7 @@
   "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/003-reference-asset-alignment"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -45,14 +43,9 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/deep-ai-council/references/quick_reference.md",
-      ".opencode/skills/deep-ai-council/references/loop_protocol.md",
       ".opencode/skills/deep-ai-council/SKILL.md",
       ".opencode/skills/deep-ai-council/README.md",
       ".opencode/skills/deep-ai-council/changelog/v2.2.0.0.md",
-      ".opencode/skills/deep-review/references/convergence_signals.md",
-      ".opencode/skills/deep-review/references/state_outputs.md",
-      ".opencode/skills/deep-review/references/state_reducer_registry.md",
       ".opencode/skills/deep-review/SKILL.md",
       ".opencode/skills/deep-review/README.md",
       ".opencode/skills/deep-review/changelog/v1.10.1.0.md",
@@ -64,21 +57,11 @@
       "checklist.md",
       "decision-record.md",
       "spec.md",
-      "schemas/iteration-output.schema.json"
+      "schemas/iteration-output.schema.json",
+      "prompts/iteration-rcaf.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-ai-council/references/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-ai-council/references/loop_protocol.md",
-        "source": "derived"
-      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -95,24 +78,6 @@
         "name": "v2.2.0.0.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-ai-council/changelog/v2.2.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence_signals.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/references/convergence_signals.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_outputs.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/references/state_outputs.md",
-        "source": "derived"
-      },
-      {
-        "name": "state_reducer_registry.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/references/state_reducer_registry.md",
         "source": "derived"
       },
       {
@@ -164,6 +129,18 @@
         "source": "derived"
       },
       {
+        "name": "iteration-rcaf.md",
+        "kind": "doc",
+        "path": "prompts/iteration-rcaf.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,11 +187,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Skills",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Owner",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase aligns the three deep skills to one sk-doc-compatible resource model without flattening their domain differences. `deep-ai-council` gains the missing council-specific reference and asset family, `deep-review` gains focused convergence/state references, and `deep-research` records that its prior split is the aligned research model.",
     "created_at": "2026-05-25T06:37:29.559Z",
-    "last_save_at": "2026-05-25T08:01:03.341Z",
+    "last_save_at": "2026-05-27T13:45:34.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

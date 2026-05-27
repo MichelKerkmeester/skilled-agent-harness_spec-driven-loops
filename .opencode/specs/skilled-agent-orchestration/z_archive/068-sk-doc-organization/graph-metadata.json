@@ -38,16 +38,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/install_guides/SET-UP - Opencode Agents.md",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "SET-UP - Opencode Agents.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - Opencode Agents.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -93,7 +86,7 @@
     ],
     "causal_summary": "The `sk-doc` skill's `assets/` directory has accreted a two-level hierarchy that no longer matches its access patterns. Two heavy-traffic groups — the `agent_template.md` / `command_template.md` files and the `feature_catalog/` / `testing_playbook/` package folders — sit one folder deeper than they need to be (under `assets/agents/` and `assets/documentation/` respectively). They are referenced from many places: sk-doc internal docs (~13 files), six `/create:*` commands replicated across four runtime trees with their YAML execution-path files (~30+ files), the `@create` agent across four runtimes (4 files), and an OpenCode setup install guide. Promoting these four items to `assets/` root and removing the now-empty `agents/` subfolder shortens every load path and removes the only one-template-deep subfolder.",
     "created_at": "2026-05-05T07:55:03Z",
-    "last_save_at": "2026-05-24T05:40:25.442Z",
+    "last_save_at": "2026-05-27T13:45:35.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T12:00:00Z",
     "source_docs": [

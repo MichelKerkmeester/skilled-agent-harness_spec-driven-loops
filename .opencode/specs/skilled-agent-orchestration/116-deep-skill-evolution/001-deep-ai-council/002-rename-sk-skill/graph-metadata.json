@@ -4,11 +4,11 @@
   "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/002-rename-sk-skill",
   "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/002-rename-sk-skill"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 2 of 6 in 115. Sibling-parallel with 003/004/005 after 001.",
     "created_at": "2026-05-21T06:57:08Z",
-    "last_save_at": "2026-05-24T05:40:25.235Z",
+    "last_save_at": "2026-05-27T13:45:34.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

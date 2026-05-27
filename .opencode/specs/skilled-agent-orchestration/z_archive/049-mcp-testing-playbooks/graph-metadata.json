@@ -41,7 +41,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/commands/create/testing-playbook.md",
       ".opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/mcp-chrome-devtools/manual_testing_playbook/manual_testing_playbook.md",
@@ -54,24 +53,20 @@
       "manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/mcp-coco-index/manual_testing_playbook/02--mcp-search-tool/008-concurrent-refresh-race.md",
-      ".opencode/skills/mcp-coco-index/manual_testing_playbook/03--configuration/004-root-path-env-var-override.md",
-      ".opencode/skills/mcp-coco-index/manual_testing_playbook/04--daemon-lifecycle/003-helper-script-readiness.md",
       ".opencode/skills/mcp-chrome-devtools/SKILL.md",
-      ".opencode/skills/mcp-coco-index/SKILL.md",
       ".opencode/skills/mcp-code-mode/SKILL.md"
     ],
     "entities": [
       {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
         "name": "testing-playbook.md",
         "kind": "doc",
         "path": ".opencode/commands/create/testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -114,24 +109,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "008-concurrent-refresh-race.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-coco-index/manual_testing_playbook/02--mcp-search-tool/008-concurrent-refresh-race.md",
-        "source": "derived"
-      },
-      {
-        "name": "004-root-path-env-var-override.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-coco-index/manual_testing_playbook/03--configuration/004-root-path-env-var-override.md",
-        "source": "derived"
-      },
-      {
-        "name": "003-helper-script-readiness.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-coco-index/manual_testing_playbook/04--daemon-lifecycle/003-helper-script-readiness.md",
         "source": "derived"
       },
       {
@@ -205,11 +182,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three of the four MCP skills (`mcp-chrome-devtools`, `mcp-clickup`, `mcp-code-mode`) currently ship without any deterministic operator-facing test surface — operators have no shared way to verify install health or to confirm a regression. This spec authors three new manual testing playbooks (BDG ~22 scenarios, CU ~25 scenarios, CM ~26 scenarios) plus a coverage audit of the existing `mcp-coco-index` playbook. All playbooks follow the canonical sk-doc playbook contract: per-skill `manual_testing_playbook/` folder containing a root `manual_testing_playbook.md` plus numbered category folders with one per-feature file per scenario.",
     "created_at": "2026-04-26T09:17:15.287Z",
-    "last_save_at": "2026-05-24T05:40:25.381Z",
+    "last_save_at": "2026-05-27T13:45:35.158Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

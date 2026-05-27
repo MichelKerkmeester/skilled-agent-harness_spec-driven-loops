@@ -4,11 +4,11 @@
   "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/014-deep-agent-improvement-benchmark-threshold-and-profile-path",
   "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/005-deep-agent-improvement/001-benchmark-threshold-and-profile-path"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 005-deep-agent-improvement release-cleanup ran a deep-research loop that surfaced six logic gaps. Three doc gaps were fixed in 005; two code/config gaps were escalated (spec \u00a73 kept `.cjs`/config changes out of that doc-cleanup packet). This packet fixes those two.",
+    "causal_summary": "The 005-deep-agent-improvement release-cleanup ran a deep-research loop that surfaced six logic gaps. Three doc gaps were fixed in 005; two code/config gaps were escalated (spec §3 kept `.cjs`/config changes out of that doc-cleanup packet). This packet fixes those two.",
     "created_at": "2026-05-24T04:32:12.188Z",
-    "last_save_at": "2026-05-25T08:01:03.376Z",
+    "last_save_at": "2026-05-27T13:45:34.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

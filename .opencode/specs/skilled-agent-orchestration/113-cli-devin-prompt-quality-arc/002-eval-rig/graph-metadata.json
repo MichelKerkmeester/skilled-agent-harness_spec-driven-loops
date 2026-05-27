@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Build the load-bearing infrastructure for the bespoke deep-loop: a fixture set (5–10 tasks grounded in documented SWE 1.6 failure modes), a grader harness that dispatches a stronger LLM to score outputs against rubrics, a sha256-keyed cache layer that survives across iterations and operator-paused runs, and a deterministic-check library that handles bundle-gate compliance, path/cwd validation, and pre-planning regex matching. Verifiable in isolation: dry-run on canned outputs proves scoring pipeline produces expected scores before any real SWE 1.6 dispatch is made.",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-05-24T05:40:25.172Z",
+    "last_save_at": "2026-05-27T13:45:34.782Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

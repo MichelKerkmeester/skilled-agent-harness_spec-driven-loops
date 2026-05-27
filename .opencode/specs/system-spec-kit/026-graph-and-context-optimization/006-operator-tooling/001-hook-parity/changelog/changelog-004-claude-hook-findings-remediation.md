@@ -71,4 +71,3 @@ End-to-end Claude Code hook testing surfaced three defects. (A) The skill-adviso
 
 - AS-003 (hook count parity) is blocked by user-global GitKraken/SUPERSET hooks that cannot be changed from this packet.
 - AS-004 (live Claude session) is blocked by sandbox authentication.
-- A future phase should re-verify hook count in an authenticated environment.

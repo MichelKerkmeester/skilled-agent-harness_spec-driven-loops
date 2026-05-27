@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Packet 046 deep research iteration-001 identified four concurrency defects in the skill-advisor daemon and freshness layer. Three are P1 (watcher flush reentrancy, lifecycle/shutdown ordering, generation lock-token theft) and one is P2 (out-of-order cache invalidation). Each defect lets the daemon's persisted state diverge from reality under realistic timer + shutdown + GC-pause interleavings.",
     "created_at": "2026-05-01T04:10:18Z",
-    "last_save_at": "2026-05-26T16:51:05.340Z",
+    "last_save_at": "2026-05-27T13:45:35.587Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

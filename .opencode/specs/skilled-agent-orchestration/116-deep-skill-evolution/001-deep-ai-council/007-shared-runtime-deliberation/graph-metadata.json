@@ -8,9 +8,7 @@
   "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -51,8 +49,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation/description.json",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation/graph-metadata.json",
       "ai-council/council-report.md",
       "ai-council/ai-council-strategy.md",
       "ai-council/seats/round-001/seat-01-advocate-extract.md",
@@ -94,18 +90,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -203,11 +187,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This packet records a four-seat AI Council deliberation on whether `sk-ai-council` should become a shared runtime similar to `deep-loop-runtime`. The ruling is **HYBRID**: do not extract the whole council skill now; extract only reusable state, scoped-write, and convergence primitives if consumer growth or duplicate-runtime pressure appears.",
     "created_at": "2026-05-23T05:04:55Z",
-    "last_save_at": "2026-05-24T05:40:25.240Z",
+    "last_save_at": "2026-05-27T13:45:34.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-23T05:04:55Z",
     "source_docs": [

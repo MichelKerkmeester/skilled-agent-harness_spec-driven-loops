@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) drifted across five files. cli-opencode contradicts itself on subagent invocation (claims subagents are not directly invokable, then invokes them in references). cli-copilot's effort flag prose is inconsistent with the live CLI. The five prompt-templates files omit required model/effort/tier pins, embed `--yolo` write flags without approval gates, and miss explicit `--model` defaults.",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-26T16:51:05.479Z",
+    "last_save_at": "2026-05-27T13:45:35.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

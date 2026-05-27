@@ -1,37 +1,22 @@
 {
+  "level": "3",
   "specFolder": "skilled-agent-orchestration/119-comment-ref-hygiene",
-  "description": "Forbid ephemeral-artifact references (spec folders, packet/phase numbers, feature-catalog, ADR/task ids) in inline code comments; add sk-code rule and",
+  "description": "Feature Specification: Forbid ephemeral-artifact references in code comments",
   "keywords": [
+    "feature",
+    "specification",
     "forbid",
     "ephemeral-artifact",
     "references",
-    "spec",
-    "folders",
-    "packet",
-    "phase",
-    "numbers",
-    "feature-catalog",
-    "adr",
-    "task",
-    "ids",
-    "inline",
     "code",
-    "comments",
-    "add",
-    "sk-code",
-    "rule",
-    "clean",
-    "deep",
-    "system",
-    "skills"
+    "comments"
   ],
-  "lastUpdated": "2026-05-27T07:07:21.839Z",
+  "lastUpdated": "2026-05-27T08:41:18.125Z",
   "specId": "119",
   "folderSlug": "comment-ref-hygiene",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

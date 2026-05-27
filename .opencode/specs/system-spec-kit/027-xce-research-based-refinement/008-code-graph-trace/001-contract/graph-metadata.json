@@ -19,16 +19,32 @@
     "trigger_phrases": [
       "027 phase 003 contract",
       "code_graph_trace contract",
-      "TraceTool interface"
+      "TraceTool interface",
+      "027 003 001 plan",
+      "trace contract plan",
+      "027 003 001 tasks",
+      "trace contract tasks",
+      "027 003 001 checklist",
+      "trace contract checklist",
+      "027 003 001 summary",
+      "trace contract summary"
     ],
     "key_topics": [
-      "trace",
+      "027",
+      "phase",
+      "003",
       "contract",
-      "typescript",
-      "interface"
+      "tracetool",
+      "interface",
+      "001",
+      "plan",
+      "trace",
+      "tasks",
+      "checklist",
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "spec-scaffolded",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -37,15 +53,155 @@
       "implementation-summary.md"
     ],
     "entities": [
-      { "name": "spec.md", "kind": "doc", "path": "spec.md", "source": "derived" },
-      { "name": "plan.md", "kind": "doc", "path": "plan.md", "source": "derived" },
-      { "name": "tasks.md", "kind": "doc", "path": "tasks.md", "source": "derived" },
-      { "name": "checklist.md", "kind": "doc", "path": "checklist.md", "source": "derived" },
-      { "name": "implementation-summary.md", "kind": "doc", "path": "implementation-summary.md", "source": "derived" }
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trace Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Upstream Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Small",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Contract child packet for code_graph_trace interfaces.",
+    "causal_summary": "The trace library, handler, and tests need a shared typed surface before implementation starts. Without a contract-first packet, downstream work can drift on result field names, depth metadata, and architectural-role typing.",
     "created_at": "2026-05-12T00:00:00Z",
-    "last_save_at": "2026-05-12T00:00:00Z",
+    "last_save_at": "2026-05-27T13:45:36.918Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -53,8 +209,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "completion_pct": 0
-  },
-  "importance_tier": "important"
+    ]
+  }
 }

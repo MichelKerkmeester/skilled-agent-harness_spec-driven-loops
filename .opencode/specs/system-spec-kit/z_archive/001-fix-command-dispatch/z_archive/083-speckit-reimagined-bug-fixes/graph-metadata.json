@@ -42,15 +42,6 @@
     "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/README.md",
-      ".claude/commands/spec_kit/complete.md",
-      ".claude/commands/spec_kit/implement.md",
-      ".claude/commands/spec_kit/plan.md",
-      ".claude/commands/spec_kit/resume.md",
-      ".claude/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
-      ".claude/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
-      ".claude/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
-      ".claude/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
-      ".claude/commands/spec_kit/assets/spec_kit_resume_auto.yaml",
       ".claude/commands/memory/learn.md",
       ".claude/commands/memory/save.md",
       ".claude/commands/memory/manage.md",
@@ -66,54 +57,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "complete.md",
-        "kind": "doc",
-        "path": ".claude/commands/spec_kit/complete.md",
-        "source": "derived"
-      },
-      {
-        "name": "implement.md",
-        "kind": "doc",
-        "path": ".claude/commands/spec_kit/implement.md",
-        "source": "derived"
-      },
-      {
-        "name": "resume.md",
-        "kind": "doc",
-        "path": ".claude/commands/spec_kit/resume.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_complete_auto.yaml",
-        "kind": "config",
-        "path": ".claude/commands/spec_kit/assets/spec_kit_complete_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_complete_confirm.yaml",
-        "kind": "config",
-        "path": ".claude/commands/spec_kit/assets/spec_kit_complete_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_implement_auto.yaml",
-        "kind": "config",
-        "path": ".claude/commands/spec_kit/assets/spec_kit_implement_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_implement_confirm.yaml",
-        "kind": "config",
-        "path": ".claude/commands/spec_kit/assets/spec_kit_implement_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_resume_auto.yaml",
-        "kind": "config",
-        "path": ".claude/commands/spec_kit/assets/spec_kit_resume_auto.yaml",
         "source": "derived"
       },
       {
@@ -205,11 +148,59 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Bug Fixes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Total Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After the successful release of Spec Kit v1.2.1.0 (SpecKit Reimagined + Memory Command Consolidation), comprehensive parallel audits revealed **70+ issues** across the command files, YAML workflow assets, MCP server code, and documentation. This specification consolidates findings from:",
     "created_at": "2026-04-12T09:02:53.554Z",
-    "last_save_at": "2026-04-26T09:17:15.984Z",
+    "last_save_at": "2026-05-27T13:45:37.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

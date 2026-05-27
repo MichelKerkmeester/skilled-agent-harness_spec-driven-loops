@@ -191,7 +191,7 @@
     ],
     "causal_summary": "This packet audits first-party code-bearing folders across the 19 requested skills for code README coverage and sk-code convention drift. The chosen scope prioritizes durable folder documentation now and names source-code convention clusters as follow-on packets where edits would cross many production and test surfaces.",
     "created_at": "2026-05-15T11:40:19Z",
-    "last_save_at": "2026-05-26T16:51:05.579Z",
+    "last_save_at": "2026-05-27T13:45:35.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

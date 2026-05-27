@@ -210,7 +210,7 @@
     ],
     "causal_summary": "This packet reverses the parent-root artifact placement policy introduced during the `007-deep-review-remediation/006-integrity-parity-closure` follow-up work and reinforced by later canonical-placement commits. It restores the earlier ownership model: root specs keep root-local `research/` and `review/`, while child phases and sub-phases keep packet folders inside their own local `research/` and `review/` directories. It also owns the repo-wide migration of child packets that were already centralized under ancestor roots, including the later manual owner-map cleanup that emptied the remaining root `research/` and `review/` packet directories under `026-graph-and-context-optimization`.",
     "created_at": "2026-04-24T12:32:52.475Z",
-    "last_save_at": "2026-05-26T16:51:05.500Z",
+    "last_save_at": "2026-05-27T13:45:35.801Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -8,9 +8,7 @@
   "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/001-doc-remediation"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -212,9 +210,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The parent packet's Phase 5 deep-research loop surfaced 36 unique findings (0 P0 / 23 P1 / 13 P2) across 7 transverse patterns. Zero overlap with the 21 Phase-2 audit findings \u2014 these are factual content drift the audit-and-validate phases missed. Three of the highest-impact findings were introduced or propagated by the Phase 3 README rewrite itself (`code-surface` fabrication, `129/001 ADR-001` mis-citation echoed into the new changelog, 22-vs-27 vitest count drift).",
+    "causal_summary": "The parent packet's Phase 5 deep-research loop surfaced 36 unique findings (0 P0 / 23 P1 / 13 P2) across 7 transverse patterns. Zero overlap with the 21 Phase-2 audit findings — these are factual content drift the audit-and-validate phases missed. Three of the highest-impact findings were introduced or propagated by the Phase 3 README rewrite itself (`code-surface` fabrication, `129/001 ADR-001` mis-citation echoed into the new changelog, 22-vs-27 vitest count drift).",
     "created_at": "2026-05-23T22:00:00Z",
-    "last_save_at": "2026-05-25T08:01:03.322Z",
+    "last_save_at": "2026-05-27T13:45:34.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

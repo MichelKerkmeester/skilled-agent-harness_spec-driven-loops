@@ -202,7 +202,7 @@
     ],
     "causal_summary": "After the 001 reindex refreshes the skill advisor, validate that:",
     "created_at": "2026-05-18T07:49:27.130Z",
-    "last_save_at": "2026-05-24T05:40:25.427Z",
+    "last_save_at": "2026-05-27T13:45:35.236Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

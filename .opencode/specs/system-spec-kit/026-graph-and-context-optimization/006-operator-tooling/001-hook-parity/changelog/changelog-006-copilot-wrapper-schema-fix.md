@@ -51,4 +51,3 @@ Copilot CLI 1.0.34 (and earlier versions back to 1.0.14) logged `Neither 'bash' 
 ### Follow-Ups
 
 - Phase 007 (`copilot-writer-wiring`) replaces the no-op `bash: "true"` on `UserPromptSubmit` and `SessionStart` with the actual Copilot writer invocations so the managed block refreshes per-prompt.
-- Cross-runtime smoke matrix should be re-run after both phases 006 and 007 are live.

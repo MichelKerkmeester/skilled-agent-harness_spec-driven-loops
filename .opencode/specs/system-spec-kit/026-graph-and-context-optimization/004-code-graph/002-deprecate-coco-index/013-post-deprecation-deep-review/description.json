@@ -1,22 +1,27 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/013-post-deprecation-deep-review",
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/013-post-deprecation-deep-review",
   "description": "Feature Specification: Post-Deprecation Deep Review (014 CocoIndex/Rerank Arc)",
   "keywords": [
+    "feature",
+    "specification",
     "post-deprecation",
-    "deep-review",
-    "cli-devin",
-    "swe-1.6",
-    "30-surfaces"
+    "deep",
+    "review",
+    "014",
+    "cocoindex",
+    "rerank",
+    "arc"
   ],
-  "lastUpdated": "2026-05-25T00:00:00.000Z",
+  "lastUpdated": "2026-05-27T08:41:18.310Z",
   "specId": "013",
   "folderSlug": "post-deprecation-deep-review",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "014-deprecate-coco-index"
+    "004-code-graph",
+    "002-deprecate-coco-index"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

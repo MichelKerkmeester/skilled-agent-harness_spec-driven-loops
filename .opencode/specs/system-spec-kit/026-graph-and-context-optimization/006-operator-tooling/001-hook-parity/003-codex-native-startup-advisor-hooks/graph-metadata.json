@@ -206,7 +206,7 @@
     ],
     "causal_summary": "User-verified on 2026-04-22 that Codex CLI sessions return \"no startup context observed\" and \"no advisor brief observed\" — identical user-visible symptoms to the Copilot CLI gap (sibling phase 004). Root cause is different: **Codex natively supports the hook transport**. The file `~/.codex/hooks.json` already registers `SessionStart`, `UserPromptSubmit`, and `Stop` hooks — but only wires Superset's `notify.sh` (notification script), not Spec Kit Memory's advisor/context emitter.",
     "created_at": "2026-04-22T06:39:13.790Z",
-    "last_save_at": "2026-05-26T16:51:06.263Z",
+    "last_save_at": "2026-05-27T13:45:36.802Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

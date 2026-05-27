@@ -210,7 +210,7 @@
     ],
     "causal_summary": "GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a peer to `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`. The packet `075-cli-copilot-hallucination-caveat` already documented quality concerns; the recent price change tips the cost/benefit balance decisively. Continuing to ship `cli-copilot` as a routable skill creates three problems:",
     "created_at": "2026-05-06T10:28:50.690Z",
-    "last_save_at": "2026-05-24T05:40:25.499Z",
+    "last_save_at": "2026-05-27T13:45:35.356Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

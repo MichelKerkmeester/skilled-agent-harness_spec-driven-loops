@@ -4,10 +4,10 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/003-handler",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -15,17 +15,39 @@
     "trigger_phrases": [
       "027 004 003 handler",
       "impact analysis handler",
-      "code-graph-llm-risk-enrich"
+      "code-graph-llm-risk-enrich",
+      "027 004 003 handler plan",
+      "impact handler plan",
+      "027 004 003 handler tasks",
+      "impact handler tasks",
+      "027 004 003 handler checklist",
+      "impact handler checklist",
+      "027 004 003 handler summary",
+      "impact handler summary"
     ],
     "key_topics": [
+      "027",
+      "004",
+      "003",
       "handler",
-      "mcp",
-      "enrichment",
-      "impact"
+      "impact",
+      "analysis",
+      "code-graph-llm-risk-enrich",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "deterministic"
     ],
     "importance_tier": "important",
-    "status": "scaffolded",
-    "key_files": [],
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
     "entities": [
       {
         "name": "spec.md",
@@ -56,21 +78,133 @@
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Impact Analysis Handler",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Handler and optional enrichment adapter scaffold for code graph impact analysis.",
+    "causal_summary": "The deterministic analyzer needs an MCP-facing entry point with validation, readiness checks, response envelopes, and optional narrative enrichment that cannot run unless explicitly configured. This child owns both `handlers/impact-analysis.ts` and the optional `code-graph-llm-risk-enrich.ts` adapter.",
     "created_at": "2026-05-12T00:00:00.000Z",
-    "last_save_at": "2026-05-12T00:00:00.000Z",
+    "last_save_at": "2026-05-27T13:45:36.927Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "completion_pct": 0
-  },
-  "importance_tier": "important"
+    ]
+  }
 }

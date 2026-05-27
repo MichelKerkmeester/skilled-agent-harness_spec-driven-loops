@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The skill-advisor system has already passed through sibling sub-phases `001`, `008`, and `009`, plus targeted parity closure in `007/006-integrity-parity-closure/`. That earlier work established the end-to-end hook surfaces, but packet-02 research still identified a bounded implementation set across OpenCode threshold parity, shared brief rendering, MCP surface symmetry, validator threshold semantics, and durable prompt-safe telemetry.",
     "created_at": "2026-04-24T01:10:00Z",
-    "last_save_at": "2026-05-26T16:51:05.589Z",
+    "last_save_at": "2026-05-27T13:45:35.888Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

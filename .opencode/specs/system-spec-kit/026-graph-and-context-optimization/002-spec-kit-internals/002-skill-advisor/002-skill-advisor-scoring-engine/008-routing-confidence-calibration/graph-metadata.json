@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 015 sub-packets 001-008 proved the cosine lane cannot flip routings on either tested corpus (24-prompt + 22-harder) at any semantic weight from 0.00 to 0.30. The 015 next-steps advisory at `scratch/next-steps-advisory.md` identified the only remaining fusion-magnitude lever: **damping explicit/lexical contributions when their evidence is weak**.",
     "created_at": "2026-05-14T02:15:00Z",
-    "last_save_at": "2026-05-26T16:51:05.601Z",
+    "last_save_at": "2026-05-27T13:45:35.902Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T02:15:00Z",
     "source_docs": [

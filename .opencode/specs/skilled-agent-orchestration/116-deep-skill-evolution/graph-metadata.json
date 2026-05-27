@@ -23,11 +23,11 @@
     "trigger_phrases": [
       "deep skill evolution arc",
       "deep stack consolidation",
-      "ai-council rename + iterative",
+      "deep-ai-council rename + iterative",
       "deep-loop runtime isolation",
       "deep-research uplift + hygiene",
       "deep-agent-improvement correctness + evaluator",
-      "deep-skills unique value"
+      "deep-stack cross-cutting"
     ],
     "key_topics": [
       "deep",
@@ -36,7 +36,7 @@
       "arc",
       "stack",
       "consolidation",
-      "ai-council",
+      "deep-ai-council",
       "rename",
       "iterative",
       "deep-loop",
@@ -46,13 +46,20 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "000-release-cleanup/context-index.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.md",
+        "kind": "doc",
+        "path": "000-release-cleanup/context-index.md",
         "source": "derived"
       },
       {
@@ -92,9 +99,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Across late 2026-04 \u2192 2026-05, the deep-* skill family co-evolved through 17 independently-created packets (115\u2013130 plus a duplicate 124). Each packet captured an incremental decision \u2014 rename, isolate, iterate, harden, fix, validate \u2014 about one of five interrelated skills: `sk-ai-council`, `deep-review`, `deep-loop-runtime`, `deep-research`, and `deep-agent-improvement`. Read individually the packets stand alone; read together they form a single coherent arc that the skilled-agent-orchestration track lacked a unified parent for.",
+    "causal_summary": "The deep-* skill family — `deep-ai-council`, `deep-review`, `deep-loop-runtime`, `deep-research`, and `deep-agent-improvement` — evolved through many incremental decisions (rename, isolate, iterate, harden, fix, validate). The skilled-agent-orchestration track lacked a single parent that holds that evolution together and lets a maintainer find any decision's home without scanning dozens of sibling folders.",
     "created_at": "2026-05-23T09:23:18.906998Z",
-    "last_save_at": "2026-05-24T05:40:25.195Z",
+    "last_save_at": "2026-05-27T13:45:34.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Packet 018 deferred plugin bridge unit isolation because behavioral tests still spawned the bridge process for every assertion. That made logic failures slower to diagnose and coupled unit coverage to MCP subprocess availability.",
     "created_at": "2026-05-15T10:50:15Z",
-    "last_save_at": "2026-05-26T16:51:05.574Z",
+    "last_save_at": "2026-05-27T13:45:35.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

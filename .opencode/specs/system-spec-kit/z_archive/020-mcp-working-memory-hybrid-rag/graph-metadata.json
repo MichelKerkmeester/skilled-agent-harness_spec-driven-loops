@@ -47,16 +47,11 @@
       "verification"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
       "research/research.md",
-      "handover.md"
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -66,55 +61,19 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "handover.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": "handover.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Working Memory",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -126,98 +85,111 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Keep",
+        "name": "Memory File Quality",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Usefulness Audit",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Executive Summary",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Working Memory Hybrid",
+        "name": "Sampling Approach",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Scoring Dimensions",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Overview This",
+        "name": "Sampling Approach To",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Current Level",
+        "name": "Resource Map",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "validator-compliant",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "name": "Resource Map: 020-mcp-working-memory-hybrid-rag",
+        "kind": "quoted",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "correct",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "resource-map.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This archived system-spec-kit archive folder captures work related to MCP Working Memory Hybrid Rag. The earlier markdown drifted away from the active templates, which caused validator failures and made the archive harder to trust.",
     "created_at": "2026-04-12T09:02:53.570Z",
-    "last_save_at": "2026-04-27T13:33:11Z",
+    "last_save_at": "2026-05-27T13:45:37.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
       "research/research.md",
-      "handover.md"
+      "resource-map.md"
     ]
   }
 }

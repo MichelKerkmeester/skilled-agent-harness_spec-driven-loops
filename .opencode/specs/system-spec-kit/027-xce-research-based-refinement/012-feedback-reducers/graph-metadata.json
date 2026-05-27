@@ -10,22 +10,12 @@
     "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/004-retention-reducer",
     "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/005-env-tests-integration"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/002-feedback-p0-correctness"
-    ],
-    "children": [
-      "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/001-aggregator",
-      "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/002-coco-rerank-consumer",
-      "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/003-causal-reducer",
-      "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/004-retention-reducer",
-      "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/005-env-tests-integration"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval",
-      "system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -36,70 +26,75 @@
       "feedback aggregation"
     ],
     "key_topics": [
+      "027",
+      "phase",
+      "009",
       "feedback",
       "reducers",
+      "reducer",
+      "parent",
+      "learning",
       "aggregation",
-      "coco",
-      "session-trace",
-      "causal",
-      "retention",
-      "env",
-      "tests"
+      "coordinates",
+      "consume",
+      "existing"
     ],
     "importance_tier": "important",
-    "status": "phase-parent",
-    "completion_pct": 0,
+    "status": "planned",
     "key_files": [
-      "spec.md",
-      "description.json",
-      "graph-metadata.json"
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "feedback-aggregation.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/feedback/feedback-aggregation.ts",
-        "source": "child-001"
-      },
-      {
-        "name": "feedback_reducer.py",
-        "kind": "code",
-        "path": "mcp-coco-index/mcp_server/cocoindex_code/feedback_reducer.py",
-        "source": "child-002"
-      },
-      {
-        "name": "session-trace-causal-reducer.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/feedback/session-trace-causal-reducer.ts",
-        "source": "child-003"
-      },
-      {
-        "name": "feedback-retention-reducer.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/feedback/feedback-retention-reducer.ts",
-        "source": "child-004"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "child-005"
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feedback Reducers",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hard Dependency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Soft Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Phase parent for 009 feedback reducers. Phase 012 is the hard precondition. Child 001 creates the shared feedback aggregation foundation; children 002, 003, and 004 implement independent consumers; child 005 closes env docs and integration tests.",
+    "causal_summary": "Phase 009 coordinates the learning feedback reducers that consume existing feedback signals after Phase 012 has landed the required correctness preconditions. The parent holds no implementation tasks itself; it routes work into five child packets with explicit dependency order.",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-05-12T07:20:00.000Z",
-    "save_lineage": "phase-parent-scaffold",
+    "last_save_at": "2026-05-27T13:45:36.943Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "001-aggregator/spec.md",
-      "002-coco-rerank-consumer/spec.md",
-      "003-causal-reducer/spec.md",
-      "004-retention-reducer/spec.md",
-      "005-env-tests-integration/spec.md"
-    ],
-    "last_active_child_id": null,
-    "last_active_at": null
+      "spec.md"
+    ]
   }
 }

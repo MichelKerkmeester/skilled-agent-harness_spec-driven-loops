@@ -53,14 +53,14 @@
       ".opencode/skills/cli-codex/README.md",
       ".opencode/skills/cli-gemini/README.md",
       ".opencode/skills/mcp-chrome-devtools/README.md",
-      ".opencode/skills/mcp-coco-index/README.md",
       ".opencode/skills/mcp-code-mode/README.md",
       ".opencode/skills/sk-code-review/README.md",
       ".opencode/skills/sk-doc/README.md",
       ".opencode/skills/sk-git/README.md",
       "tasks.md",
       "implementation-summary.md",
-      "spec.md"
+      "spec.md",
+      "plan.md"
     ],
     "entities": [
       {
@@ -97,6 +97,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skill READMEs and command READMEs vary in quality, structure and voice. Most lack two-tier voice, comparison tables, numbered Feature subsections and HVR compliance. The recently upgraded `.opencode/skills/sk-doc/references/specific/readme_creation.md` and `.opencode/skills/sk-doc/references/global/hvr_rules.md` from spec 032 define production-quality standards that no existing skill README meets except the system-spec-kit exemplars.",
     "created_at": "2026-04-12T09:02:50.178Z",
-    "last_save_at": "2026-05-24T05:40:25.322Z",
+    "last_save_at": "2026-05-27T13:45:35.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

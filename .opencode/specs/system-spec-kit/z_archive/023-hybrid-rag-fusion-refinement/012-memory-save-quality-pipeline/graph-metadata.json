@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/023-hybrid-rag-fusion-refinement/012-memory-save-quality-pipeline",
-  "spec_folder": "system-spec-kit/023-hybrid-rag-fusion-refinement/012-memory-save-quality-pipeline",
-  "parent_id": "system-spec-kit/023-hybrid-rag-fusion-refinement",
+  "packet_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/012-memory-save-quality-pipeline",
+  "spec_folder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/012-memory-save-quality-pipeline",
+  "parent_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "This phase addresses structured-input (`--json`/`--stdin`) quality regressions in memory save generation where normalization and extraction assumptions caused thin, low-value output. The work standardizes normalization, synthesis, quality scoring, and contamination handling for structured flows while preserving transcript-mode behavior.",
     "created_at": "2026-04-12T09:02:50.338Z",
-    "last_save_at": "2026-04-26T09:17:15.603Z",
+    "last_save_at": "2026-05-27T13:45:37.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A repo-wide audit of the `@debug` agent (`.opencode/agents/debug.md` plus three sibling runtime definitions in `.claude/`, `.codex/`, `.gemini/`) confirmed the agent is shelfware. Its description and the orchestrator routing both promise auto-dispatch on `failure_count >= 3`, but no executable code increments that counter or invokes the Task tool. Zero `debug-delegation.md` instances exist across all spec folders despite a fully formed template, and in the one place where a workflow does prompt the user (`speckit_implement_auto.yaml:413` / `speckit_complete_auto.yaml:898-910`), the prompt is a buried A/B/C/D menu that operators consistently skip.",
     "created_at": "2026-04-27T08:35:00Z",
-    "last_save_at": "2026-05-24T05:40:25.383Z",
+    "last_save_at": "2026-05-27T13:45:35.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

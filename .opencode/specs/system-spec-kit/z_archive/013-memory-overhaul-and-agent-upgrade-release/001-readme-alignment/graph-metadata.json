@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/001-readme-alignment",
+  "spec_folder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/001-readme-alignment",
+  "parent_id": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "task",
+      "readme",
+      "audit",
+      "alignment",
+      "spec",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "decision",
+      "record"
+    ],
+    "key_topics": [
+      "task",
+      "readme",
+      "audit",
+      "alignment",
+      "spec",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "decision",
+      "record"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/scoring/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/README.md",
+      ".opencode/skills/system-spec-kit/scripts/README.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/README.md",
+      ".opencode/skills/system-spec-kit/scripts/core/README.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/README.md",
+      ".opencode/skills/system-spec-kit/scripts/memory/README.md",
+      ".opencode/skills/system-spec-kit/shared/README.md",
+      ".opencode/skills/system-spec-kit/templates/README.md",
+      ".opencode/skills/README.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/skills/sk-doc/README.md",
+      ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/mcp-chrome-devtools/README.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Overhaul",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Upgrade Release",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changelog Updates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Manual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Priority Compliance",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: P0 High-Priority READMEs",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Anchor Compliance",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Audit every README.md file in the `.opencode/` directory tree to ensure all statistics, feature descriptions, version numbers, and cross-references reflect the post-implementation state of specs 014–016 and 122–129. Produce a changes.md file documenting every required edit.",
+    "created_at": "2026-05-26T19:43:14.232Z",
+    "last_save_at": "2026-05-27T13:45:37.211Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

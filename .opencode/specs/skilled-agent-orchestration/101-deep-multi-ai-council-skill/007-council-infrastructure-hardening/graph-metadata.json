@@ -46,13 +46,10 @@
       ".opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts",
       ".opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/seed-helpers.ts",
       "mcp_server/package.json",
       "scripts/test-council-matrix.sh",
       "mcp_server/tests/council-playbook-anchor-integrity.vitest.ts",
-      "tests/fixtures/council-value/dac-030.ts",
       ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/dac-030.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -93,18 +90,6 @@
         "name": "multi-ai-council-runtime-parity.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "seed-helpers.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/seed-helpers.ts",
-        "source": "derived"
-      },
-      {
-        "name": "dac-030.ts",
-        "kind": "code",
-        "path": "tests/fixtures/council-value/dac-030.ts",
         "source": "derived"
       },
       {
@@ -196,11 +181,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Broaden Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After 101/006 shipped, six residual gaps remained: (1) no runnable council-test gate, so the 8-day test-rot window that surfaced in 101/004 can recur; (2) the playbook's §17 FEATURE CATALOG CROSS-REFERENCE INDEX carries 32 \"No feature catalog exists yet\" placeholders inherited from packet 002; (3) playbook scenario → vitest test-name anchors are one-way strings with no integrity check; (4) DAC-025's \"delete graph + replay from artifacts\" path is doc-only with no helper script; (5) the Codex TOML runtime mirror is only checked for sandbox/permission strings, not name + description prose; (6) DAC-030 and DAC-032 fixture helpers normalize operator-facing answers from grouped runtime responses without code-level provenance for future maintainers.",
     "created_at": "2026-05-11T11:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.139Z",
+    "last_save_at": "2026-05-27T13:45:34.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

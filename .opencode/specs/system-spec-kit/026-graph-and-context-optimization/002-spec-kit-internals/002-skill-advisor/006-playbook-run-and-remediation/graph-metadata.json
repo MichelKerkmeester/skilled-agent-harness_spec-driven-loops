@@ -94,7 +94,7 @@
     ],
     "causal_summary": "The `system-skill-advisor` skill ships a 46-scenario manual testing playbook (`manual_testing_playbook/`) spanning native MCP tools, CLI runtime hooks, compatibility shims, auto-update daemon state, auto-indexing, lifecycle routing, scorer fusion and Python compatibility. The playbook had not been executed end-to-end against the current build, so its real PASS/PARTIAL/FAIL/SKIP state and any drift between documented expected signals and live behavior were unknown.",
     "created_at": "2026-05-26T20:09:07.489Z",
-    "last_save_at": "2026-05-27T11:53:18.221Z",
+    "last_save_at": "2026-05-27T13:45:35.981Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "This is **Phase 9** of the 008-template-levels parent, addressing the operational risk recorded as **RM-8** in `../cross-phase-review-synthesis.md`. The destructive event documented at §5 (≈11:00–11:55 UTC, 2026-05-04) occurred when `opencode + deepseek-v4-pro` under `/deep:start-review-loop:auto` deleted 44 files across phases 007 and 008. Spec docs (spec.md/plan.md/tasks.md/checklist.md/decision-record.md/implementation-summary.md/description.json/graph-metadata.json) AND review/ subtrees were removed despite the dispatch prompt stating the target is read-only.",
     "created_at": "2026-05-11T05:45:03Z",
-    "last_save_at": "2026-05-26T16:51:05.671Z",
+    "last_save_at": "2026-05-27T13:45:36.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

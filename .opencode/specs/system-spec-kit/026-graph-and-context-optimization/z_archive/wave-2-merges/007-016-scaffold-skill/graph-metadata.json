@@ -189,7 +189,7 @@
     ],
     "causal_summary": "ADR-001 for parent packet 014 accepted a code-graph extraction plan that makes `.opencode/skills/system-code-graph/` the first-class owner of the code-graph subsystem. Before source files can move in Phase 003, the target skill folder needs the empty package shape, metadata, docs, and placeholder directories required by the migration plan.",
     "created_at": "2026-05-14T07:54:11Z",
-    "last_save_at": "2026-05-26T16:51:06.303Z",
+    "last_save_at": "2026-05-27T13:45:36.837Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T07:54:11Z",
     "source_docs": [

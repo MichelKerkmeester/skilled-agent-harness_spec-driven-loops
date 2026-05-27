@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The current `.opencode/skills/system-code-graph/README.md` opens with implementation prose (\"Structural code indexing, SQLite-backed graph storage...\"). Operators reading the skill cold get a technical map without a reason to care. The Public root README and the system-spec-kit README both open with a problem hook (\"AI assistants have amnesia\") and walk the reader through problem → solution → mechanism → quick start → reference. The system-code-graph README should follow the same arc so the skill positions as indispensable, not specialized.",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-05-26T16:51:06.239Z",
+    "last_save_at": "2026-05-27T13:45:36.780Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

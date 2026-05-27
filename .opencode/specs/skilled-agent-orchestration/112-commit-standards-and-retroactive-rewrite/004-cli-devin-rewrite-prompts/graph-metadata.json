@@ -41,9 +41,6 @@
     "key_files": [
       ".opencode/skills/cli-devin/assets/deep-loop-iter-template.md",
       ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
-      ".opencode/skills/deep-research/references/state_format.md",
-      ".opencode/skills/deep-research/references/loop_protocol.md",
-      ".opencode/skills/deep-research/references/convergence.md",
       "implementation-summary.md",
       ".opencode/skills/cli-devin/references/deep-loop-iter-contract.md",
       "spec.md",
@@ -61,24 +58,6 @@
         "name": "agent-config-deep-research-iter.json",
         "kind": "config",
         "path": ".opencode/skills/cli-devin/assets/agent-config-deep-research-iter.json",
-        "source": "derived"
-      },
-      {
-        "name": "state_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/state_format.md",
-        "source": "derived"
-      },
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/references/convergence.md",
         "source": "derived"
       },
       {
@@ -194,11 +173,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "brief",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion_pct",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 4** of the 112 packet. It authors the deep-skill-style scaffolding that Phase 005 will run. Modeled directly on:",
     "created_at": "2026-05-16T09:42:35Z",
-    "last_save_at": "2026-05-24T05:40:25.168Z",
+    "last_save_at": "2026-05-27T13:45:34.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

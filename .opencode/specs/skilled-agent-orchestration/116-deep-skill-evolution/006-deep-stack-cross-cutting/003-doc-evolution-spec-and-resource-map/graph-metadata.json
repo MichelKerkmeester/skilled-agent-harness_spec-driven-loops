@@ -4,11 +4,11 @@
   "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/003-doc-evolution-spec-and-resource-map",
   "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/001-spec-and-resource-map"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The 008 cluster improves documentation across five mature deep-* skills, but a sibling cluster (`000-release-cleanup`) already shipped uneven per-skill cleanup. Without a single source of truth for what each skill still needs, phases 002-009 risk redoing finished work, missing a flat reference directory, or emitting findings in inconsistent shapes.",
     "created_at": "2026-05-25T14:26:45.200Z",
-    "last_save_at": "2026-05-25T14:26:45.200Z",
+    "last_save_at": "2026-05-27T13:45:34.994Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

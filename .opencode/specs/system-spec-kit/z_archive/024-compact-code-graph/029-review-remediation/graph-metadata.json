@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/024-compact-code-graph/029-review-remediation",
-  "spec_folder": "system-spec-kit/024-compact-code-graph/029-review-remediation",
-  "parent_id": "system-spec-kit/024-compact-code-graph",
+  "packet_id": "system-spec-kit/z_archive/024-compact-code-graph/029-review-remediation",
+  "spec_folder": "system-spec-kit/z_archive/024-compact-code-graph/029-review-remediation",
+  "parent_id": "system-spec-kit/z_archive/024-compact-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,15 +44,9 @@
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-      ".opencode/specs/system-spec-kit/024-compact-code-graph/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/024-compact-code-graph/checklist.md",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
-      ".opencode/specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity/spec.md",
-      ".opencode/specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity/implementation-summary.md",
-      ".opencode/specs/system-spec-kit/024-compact-code-graph/027-opencode-structural-priming/spec.md",
-      ".opencode/specs/system-spec-kit/024-compact-code-graph/027-opencode-structural-priming/plan.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
       ".opencode/agents/context.md",
       ".claude/agents/context.md",
@@ -60,7 +54,12 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "hooks/gemini/session-prime.ts"
+      "hooks/gemini/session-prime.ts",
+      "hooks/claude/session-stop.ts",
+      "tests/session-bootstrap.vitest.ts",
+      "tests/hook-session-start.vitest.ts",
+      "tests/hook-session-stop.vitest.ts",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -136,6 +135,30 @@
         "source": "derived"
       },
       {
+        "name": "session-bootstrap.vitest.ts",
+        "kind": "test",
+        "path": "tests/session-bootstrap.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-start.vitest.ts",
+        "kind": "test",
+        "path": "tests/hook-session-start.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-stop.vitest.ts",
+        "kind": "test",
+        "path": "tests/hook-session-stop.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Review Remediation",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -182,35 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Scoped",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The completed deep review for `024-compact-code-graph` found seven active issues that leave the packet internally inconsistent across runtime contracts, hook safety, evidence traceability, and cross-runtime guidance. The current tree still advertises behavior that either is not implemented, is documented inconsistently, or is proven with stale evidence. Until these findings are remediated or explicitly downgraded with truthful packet updates, the parent packet cannot be treated as release-ready.",
     "created_at": "2026-04-12T09:02:53.434Z",
-    "last_save_at": "2026-04-26T09:17:15.657Z",
+    "last_save_at": "2026-05-27T13:45:37.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

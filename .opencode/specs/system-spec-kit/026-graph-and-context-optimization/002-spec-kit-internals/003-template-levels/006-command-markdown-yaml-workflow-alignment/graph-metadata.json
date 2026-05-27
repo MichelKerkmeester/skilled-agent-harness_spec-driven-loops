@@ -202,7 +202,7 @@
     ],
     "causal_summary": "This packet audits the AI-facing command surfaces for `/spec_kit` after the template-level refactor. The command Markdown files and YAML workflow assets must describe the current manifest-backed Level contract, current validation semantics, and current hardening behavior without preserving deleted script or folder references.",
     "created_at": "2026-05-02T06:53:47Z",
-    "last_save_at": "2026-05-26T16:51:05.666Z",
+    "last_save_at": "2026-05-27T13:45:36.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

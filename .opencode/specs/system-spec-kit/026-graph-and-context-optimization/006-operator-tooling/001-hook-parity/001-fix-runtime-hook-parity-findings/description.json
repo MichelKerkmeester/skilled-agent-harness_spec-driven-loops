@@ -10,7 +10,7 @@
     "parity",
     "remediation"
   ],
-  "lastUpdated": "2026-05-26T17:26:21.443Z",
+  "lastUpdated": "2026-05-27T08:41:18.386Z",
   "specId": "001",
   "folderSlug": "fix-runtime-hook-parity-findings",
   "parentChain": [

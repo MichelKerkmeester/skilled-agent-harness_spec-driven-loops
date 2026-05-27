@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The SpecKit slash-command directory was named `spec_kit/` (snake_case with underscore), inconsistent with the recent rename convention shipping `speckit` (single token) across the repo — e.g., `/create:sk-skill → /create:skill` and `doctor/help.md → doctor/speckit.md`. The directory name drives the slash-command form, so every `/spec_kit:plan`, `/spec_kit:complete`, etc. invocation was misaligned with the canonical short form.",
     "created_at": "2026-05-23T14:01:41.753Z",
-    "last_save_at": "2026-05-24T05:40:25.194Z",
+    "last_save_at": "2026-05-27T13:45:34.827Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

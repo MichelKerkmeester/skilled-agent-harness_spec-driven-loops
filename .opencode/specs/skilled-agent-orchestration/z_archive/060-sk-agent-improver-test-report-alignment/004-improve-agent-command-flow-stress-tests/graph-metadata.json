@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Packet 060/002 ran R1 stress tests with the prepend-agent-body dispatch and scored 0/2/4 PASS/PARTIAL/FAIL. 060/003 research diagnosed the failure as test-layer-selection: @improve-agent's discipline lives in the `/deep:start-agent-improvement-loop` command orchestrator, not in the agent body. Packet 005 (was 062) just shipped the executable wiring (static benchmark assets, materializer, nested `legal_stop_evaluated.details.gateResults`, stop-reason enum reconciliation, both YAMLs in lockstep).",
     "created_at": "2026-05-02T15:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.409Z",
+    "last_save_at": "2026-05-27T13:45:35.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

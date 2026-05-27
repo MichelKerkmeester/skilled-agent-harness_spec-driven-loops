@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Adopt upstream auto-review's marker-based dedup pattern (same family as 110/003 H-7) but applied to mutation signatures: `sha256(dimension + mutationType + targetSection + normalized_body_64chars)`. **Authoritative storage: `mutation-coverage.json`** (where the existing `mutations` + `exhausted` arrays live per council §6 evidence at `mutation-coverage.cjs:59-67` and `:80-92`). The reducer at `reduce-state.cjs` MUST be updated to handle the new signature field; `manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` MUST be updated to verify the replay consumer respects signatures.",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.164Z",
+    "last_save_at": "2026-05-27T13:45:34.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-memory-causal-trust-display",
   "description": "Feature Specification: Memory Causal Trust Display (012/005)",
   "keywords": [
     "feature",
@@ -11,13 +11,13 @@
     "012",
     "005"
   ],
-  "lastUpdated": "2026-04-26T07:03:47.570Z",
-  "specId": "005",
+  "lastUpdated": "2026-05-27T08:41:18.367Z",
+  "specId": "004",
   "folderSlug": "memory-causal-trust-display",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "010-graph-impact-and-affordance-uplift"
+    "005-graph-impact-and-affordance"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index"
-    last_updated_at: "2026-05-25T00:00:00Z"
+    last_updated_at: "2026-05-26T00:00:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Phases 002-012 done; coco+rerank coupling removed; builds+tests green"
-    next_safe_action: "Optional: scrub harmless residual (index-scope exclusion, sweep, data)"
+    recent_action: "Scrubbed residual CocoIndex from live docs + F-AC3 fixtures; zero coco in live repo"
+    next_safe_action: "None; remaining coco = intentional history + frozen benchmark data"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,8 @@ _memory:
       parent_session_id: null
     completion_pct: 95
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Removed F-AC3 'phase 7 cocoindex' (orphaned test data) per user override of 013 'Do NOT retry'."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-phase-parent | v2.2 -->
 # Feature Specification: Deprecate CocoIndex + Rerank-Sidecar, Decouple Code-Graph

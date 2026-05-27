@@ -1,43 +1,43 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/024-compact-code-graph",
-  "spec_folder": "system-spec-kit/024-compact-code-graph",
+  "packet_id": "system-spec-kit/z_archive/024-compact-code-graph",
+  "spec_folder": "system-spec-kit/z_archive/024-compact-code-graph",
   "parent_id": null,
   "children_ids": [
-    "system-spec-kit/024-compact-code-graph/001-precompact-hook",
-    "system-spec-kit/024-compact-code-graph/002-session-start-hook",
-    "system-spec-kit/024-compact-code-graph/003-stop-hook-tracking",
-    "system-spec-kit/024-compact-code-graph/004-cross-runtime-fallback",
-    "system-spec-kit/024-compact-code-graph/005-command-agent-alignment",
-    "system-spec-kit/024-compact-code-graph/006-documentation-alignment",
-    "system-spec-kit/024-compact-code-graph/007-testing-validation",
-    "system-spec-kit/024-compact-code-graph/008-structural-indexer",
-    "system-spec-kit/024-compact-code-graph/009-code-graph-storage-query",
-    "system-spec-kit/024-compact-code-graph/010-cocoindex-bridge-context",
-    "system-spec-kit/024-compact-code-graph/011-compaction-working-set",
-    "system-spec-kit/024-compact-code-graph/012-cocoindex-ux-utilization",
-    "system-spec-kit/024-compact-code-graph/013-correctness-boundary-repair",
-    "system-spec-kit/024-compact-code-graph/014-hook-durability-auto-enrichment",
-    "system-spec-kit/024-compact-code-graph/015-tree-sitter-migration",
-    "system-spec-kit/024-compact-code-graph/016-cross-runtime-ux",
-    "system-spec-kit/024-compact-code-graph/017-tree-sitter-classifier-fixes",
-    "system-spec-kit/024-compact-code-graph/018-non-hook-auto-priming",
-    "system-spec-kit/024-compact-code-graph/019-code-graph-auto-trigger",
-    "system-spec-kit/024-compact-code-graph/020-query-routing-integration",
-    "system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity",
-    "system-spec-kit/024-compact-code-graph/022-gemini-hook-porting",
-    "system-spec-kit/024-compact-code-graph/023-context-preservation-metrics",
-    "system-spec-kit/024-compact-code-graph/024-hookless-priming-optimization",
-    "system-spec-kit/024-compact-code-graph/025-tool-routing-enforcement",
-    "system-spec-kit/024-compact-code-graph/026-session-start-injection-debug",
-    "system-spec-kit/024-compact-code-graph/027-opencode-structural-priming",
-    "system-spec-kit/024-compact-code-graph/028-startup-highlights-remediation",
-    "system-spec-kit/024-compact-code-graph/029-review-remediation",
-    "system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin",
-    "system-spec-kit/024-compact-code-graph/031-normalized-analytics-reader",
-    "system-spec-kit/024-compact-code-graph/032-cached-summary-fidelity-gates",
-    "system-spec-kit/024-compact-code-graph/033-fts-forced-degrade-hardening",
-    "system-spec-kit/024-compact-code-graph/034-workflow-split-and-token-insight-contracts"
+    "system-spec-kit/z_archive/024-compact-code-graph/001-precompact-hook",
+    "system-spec-kit/z_archive/024-compact-code-graph/002-session-start-hook",
+    "system-spec-kit/z_archive/024-compact-code-graph/003-stop-hook-tracking",
+    "system-spec-kit/z_archive/024-compact-code-graph/004-cross-runtime-fallback",
+    "system-spec-kit/z_archive/024-compact-code-graph/005-command-agent-alignment",
+    "system-spec-kit/z_archive/024-compact-code-graph/006-documentation-alignment",
+    "system-spec-kit/z_archive/024-compact-code-graph/007-testing-validation",
+    "system-spec-kit/z_archive/024-compact-code-graph/008-structural-indexer",
+    "system-spec-kit/z_archive/024-compact-code-graph/009-code-graph-storage-query",
+    "system-spec-kit/z_archive/024-compact-code-graph/010-cocoindex-bridge-context",
+    "system-spec-kit/z_archive/024-compact-code-graph/011-compaction-working-set",
+    "system-spec-kit/z_archive/024-compact-code-graph/012-cocoindex-ux-utilization",
+    "system-spec-kit/z_archive/024-compact-code-graph/013-correctness-boundary-repair",
+    "system-spec-kit/z_archive/024-compact-code-graph/014-hook-durability-auto-enrichment",
+    "system-spec-kit/z_archive/024-compact-code-graph/015-tree-sitter-migration",
+    "system-spec-kit/z_archive/024-compact-code-graph/016-cross-runtime-ux",
+    "system-spec-kit/z_archive/024-compact-code-graph/017-tree-sitter-classifier-fixes",
+    "system-spec-kit/z_archive/024-compact-code-graph/018-non-hook-auto-priming",
+    "system-spec-kit/z_archive/024-compact-code-graph/019-code-graph-auto-trigger",
+    "system-spec-kit/z_archive/024-compact-code-graph/020-query-routing-integration",
+    "system-spec-kit/z_archive/024-compact-code-graph/021-cross-runtime-instruction-parity",
+    "system-spec-kit/z_archive/024-compact-code-graph/022-gemini-hook-porting",
+    "system-spec-kit/z_archive/024-compact-code-graph/023-context-preservation-metrics",
+    "system-spec-kit/z_archive/024-compact-code-graph/024-hookless-priming-optimization",
+    "system-spec-kit/z_archive/024-compact-code-graph/025-tool-routing-enforcement",
+    "system-spec-kit/z_archive/024-compact-code-graph/026-session-start-injection-debug",
+    "system-spec-kit/z_archive/024-compact-code-graph/027-opencode-structural-priming",
+    "system-spec-kit/z_archive/024-compact-code-graph/028-startup-highlights-remediation",
+    "system-spec-kit/z_archive/024-compact-code-graph/029-review-remediation",
+    "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin",
+    "system-spec-kit/z_archive/024-compact-code-graph/031-normalized-analytics-reader",
+    "system-spec-kit/z_archive/024-compact-code-graph/032-cached-summary-fidelity-gates",
+    "system-spec-kit/z_archive/024-compact-code-graph/033-fts-forced-degrade-hardening",
+    "system-spec-kit/z_archive/024-compact-code-graph/034-workflow-split-and-token-insight-contracts"
   ],
   "manual": {
     "depends_on": [],
@@ -54,10 +54,10 @@
       "024",
       "compact",
       "plan",
-      "tasks",
-      "checklist",
-      "decision",
-      "record"
+      "deep",
+      "research",
+      "report",
+      "code"
     ],
     "key_topics": [
       "spec",
@@ -68,96 +68,25 @@
       "024",
       "compact",
       "plan",
-      "tasks",
-      "checklist",
-      "decision",
-      "record"
+      "deep",
+      "research",
+      "report",
+      "code"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
-      "mcp_server/hooks/gemini/session-prime.ts",
-      "decision-record.md",
-      ".gemini/settings.json",
-      "hooks/memory-surface.ts",
-      "mcp_server/hooks/claude/compact-inject.ts",
-      "mcp_server/hooks/claude/session-prime.ts",
-      "mcp_server/hooks/claude/shared.ts",
-      "mcp_server/hooks/claude/hook-state.ts",
-      ".claude/settings.local.json",
-      "mcp_server/hooks/claude/session-stop.ts",
-      "mcp_server/hooks/claude/claude-transcript.ts",
       "spec.md",
-      "plan.md",
-      "checklist.md",
-      "mcp_server/tests/hook-precompact.vitest.ts",
-      "implementation-summary.md",
-      "dist/hooks/memory-surface.js",
+      "hooks/memory-surface.ts",
       "handlers/memory-context.ts",
       ".opencode/agents/context.md",
-      ".claude/agents/context.md"
+      ".claude/agents/context.md",
+      ".codex/agents/context.toml",
+      ".gemini/settings.json",
+      "resource-map.md",
+      "research/research.md"
     ],
     "entities": [
-      {
-        "name": "session-prime.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/gemini/session-prime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "memory-surface.ts",
-        "kind": "code",
-        "path": "hooks/memory-surface.ts",
-        "source": "derived"
-      },
-      {
-        "name": "compact-inject.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/compact-inject.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shared.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/shared.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hook-state.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/hook-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "session-stop.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/session-stop.ts",
-        "source": "derived"
-      },
-      {
-        "name": "claude-transcript.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/claude-transcript.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -165,33 +94,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook-precompact.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/hook-precompact.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-surface.js",
+        "name": "memory-surface.ts",
         "kind": "code",
-        "path": "dist/hooks/memory-surface.js",
+        "path": "hooks/memory-surface.ts",
         "source": "derived"
       },
       {
@@ -207,6 +112,36 @@
         "source": "derived"
       },
       {
+        "name": "context.toml",
+        "kind": "file",
+        "path": ".codex/agents/context.toml",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Hybrid Context Injection",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -219,43 +154,93 @@
         "source": "derived"
       },
       {
-        "name": "Summary This",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Context",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Hybrid Approach",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Claude Code",
+        "name": "Deep Research Report",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compact Code Graph",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Complete Findings",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Two Parallel Tracks This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Compaction",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. READMEs",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Template compliance shim section. Legacy phase content continues below.",
+    "causal_summary": "The `024-compact-code-graph` packet spans a large phased workstream, but the parent folder originally had metadata without a canonical root `spec.md`. Without that lean parent manifest, validation and resume flows had to infer intent from child packets and graph metadata instead of a stable root spec.",
     "created_at": "2026-04-12T09:02:50.341Z",
-    "last_save_at": "2026-04-27T13:33:57.271Z",
+    "last_save_at": "2026-05-27T13:45:37.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "research/research.md",
+      "resource-map.md"
     ]
   }
 }

@@ -66,4 +66,3 @@ The 2026-04-21 hook parity review found 10 runtime-hook defects. The highest ris
 ### Follow-Ups
 
 - Phase 002 (Copilot hook parity), Phase 003 (Codex native hooks), and Phase 004 (Claude findings) address remaining runtime gaps not covered by this initial remediation.
-- Full-suite baseline is green. Deferred Vitest failures from earlier sessions are closed.

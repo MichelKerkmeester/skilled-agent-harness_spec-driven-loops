@@ -11,26 +11,12 @@
     "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/005-attribution",
     "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/006-integration-smoke"
   ],
-  "migrated": false,
-  "migration_source": "phase-parent-scaffold",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "children": [
-      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/001-import-upstream",
-      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/002-scripts",
-      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/003-tests-port",
-      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/004-docs",
-      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/005-attribution",
-      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/006-integration-smoke"
-    ],
-    "supersedes": [
-      "mcp-coco-index partial soft fork 0.2.3+spec-kit-fork.0.2.0"
-    ],
-    "related_to": [
-      "system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering",
-      "system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients",
-      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras"
-    ]
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -40,42 +26,75 @@
       "cocoindex-code v0.2.33 adoption"
     ],
     "key_topics": [
+      "027",
+      "phase",
+      "001",
       "cocoindex",
-      "complete fork",
-      "phase parent",
-      "v0.2.33"
+      "complete",
+      "fork",
+      "parent",
+      "cocoindex-code",
+      "adoption",
+      "tracks",
+      "six",
+      "child"
     ],
     "importance_tier": "important",
-    "status": "phase-parent",
-    "completion_pct": 0,
+    "status": "planned",
     "key_files": [
-      "spec.md",
-      "description.json",
-      "graph-metadata.json"
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "cocoindex-code v0.2.33",
-        "kind": "external_source",
-        "path": "external/cocoindex-code-main",
-        "source": "manual"
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
       },
       {
-        "name": "mcp-coco-index fork root",
-        "kind": "skill",
-        "path": ".opencode/skills/mcp-coco-index",
-        "source": "manual"
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Baseline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Downstream Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Phase parent coordinates six child packets for a complete local fork of the cocoindex-code MCP wrapper from the fixed v0.2.33 snapshot.",
+    "causal_summary": "This parent tracks the six child packets that together establish the complete fork baseline for later CocoIndex retrieval work.",
     "created_at": "2026-05-10T00:00:00Z",
-    "last_save_at": "2026-05-12T07:20:00Z",
-    "save_lineage": "phase-parent-scaffold",
+    "last_save_at": "2026-05-27T13:45:36.951Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T07:20:00Z",
     "source_docs": [
       "spec.md"
-    ],
-    "last_active_child_id": null,
-    "last_active_at": "2026-05-12T07:20:00Z"
+    ]
   }
 }

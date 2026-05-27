@@ -197,7 +197,7 @@
     ],
     "causal_summary": "This fix adds **`</dev/null`** as a permanent rule across all automation surfaces that dispatch `opencode run` non-interactively. Touched files: 4 YAML workflow files (deep-research auto/confirm + deep-review auto/confirm), the `cli-opencode` skill (SKILL.md, README.md, references/cli_reference.md, references/integration_patterns.md, assets/prompt_templates.md), and 2 stress-test `dispatch-cli-opencode.sh` scripts. The Barter sibling repo's mirrored cli-opencode skill is included where present.",
     "created_at": "2026-05-08T13:30:00Z",
-    "last_save_at": "2026-05-24T05:40:25.549Z",
+    "last_save_at": "2026-05-27T13:45:35.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

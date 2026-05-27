@@ -44,6 +44,7 @@
       ".opencode/skills/system-spec-kit/shared/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/shared/embeddings.js",
       ".opencode/skills/system-spec-kit/mcp_server/shared/trigger-extractor.js",
+      ".opencode/skills/system-spec-kit/mcp_server/shared/README.md",
       ".opencode/skills/system-spec-kit/README.md",
       "mcp_server/shared/embeddings.js",
       "mcp_server/shared/trigger-extractor.js",
@@ -201,7 +202,7 @@
     ],
     "causal_summary": "The system-spec-kit has shared JavaScript modules duplicated or re-exported across two separate lib folders, creating several issues:",
     "created_at": "2026-04-12T09:02:53.533Z",
-    "last_save_at": "2026-04-26T09:17:15.925Z",
+    "last_save_at": "2026-05-27T13:45:37.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

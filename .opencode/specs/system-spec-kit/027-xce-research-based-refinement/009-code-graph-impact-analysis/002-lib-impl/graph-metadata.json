@@ -4,11 +4,10 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/002-lib-impl",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract",
-      "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -16,17 +15,39 @@
     "trigger_phrases": [
       "027 004 002 lib impl",
       "code-graph-impact-analysis.ts",
-      "impact analysis library"
+      "impact analysis library",
+      "027 004 002 lib impl plan",
+      "impact library plan",
+      "027 004 002 lib impl tasks",
+      "impact library tasks",
+      "027 004 002 lib impl checklist",
+      "impact library checklist",
+      "027 004 002 lib impl summary",
+      "impact library summary"
     ],
     "key_topics": [
-      "library",
+      "027",
+      "004",
+      "002",
+      "lib",
+      "impl",
+      "code-graph-impact-analysis",
       "impact",
-      "risk-signals",
-      "scoring"
+      "analysis",
+      "library",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
-    "status": "scaffolded",
-    "key_files": [],
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
     "entities": [
       {
         "name": "spec.md",
@@ -57,21 +78,133 @@
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Impact Analysis Library",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Changed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Library implementation scaffold for deterministic code graph impact analysis.",
+    "causal_summary": "The code graph has change detection and an impact traversal mode, but not deterministic risk-scored file impact analysis. This child implements `code-graph-impact-analysis.ts` against the contract child, reusing existing graph helpers and extending the current impact-mode surface.",
     "created_at": "2026-05-12T00:00:00.000Z",
-    "last_save_at": "2026-05-12T00:00:00.000Z",
+    "last_save_at": "2026-05-27T13:45:36.926Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "last_active_child_id": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "completion_pct": 0
-  },
-  "importance_tier": "important"
+    ]
+  }
 }

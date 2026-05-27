@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Spec 020 (`skill-advisor-hook-surface`) wired the Spec Kit Memory MCP to inject two payloads via Claude Code's native hook system: `SessionStart:startup` delivers code-graph freshness and structural highlights, and `UserPromptSubmit` delivers the skill-advisor brief (format: `Advisor: <skill> <conf>/<uncert> <status>`). Both hooks work correctly in Claude Code.",
     "created_at": "2026-04-22T06:13:42.052Z",
-    "last_save_at": "2026-05-26T16:51:06.261Z",
+    "last_save_at": "2026-05-27T13:45:36.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

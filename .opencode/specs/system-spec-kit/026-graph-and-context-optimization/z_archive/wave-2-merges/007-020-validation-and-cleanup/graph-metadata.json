@@ -40,7 +40,6 @@
     "key_files": [
       ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts",
       "implementation-summary.md",
-      ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -57,12 +56,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001-005 completed the design, scaffold, physical source/database move, consumer rewire, and documentation/runtime migration for extracting code-graph into `.opencode/skills/system-code-graph/`. The final phase needed to prove the new package is buildable and testable from its new location, confirm the copied DB is valid, remove the old fallback DB only after validation, clear active stale source-path references, and mark parent phase 014 complete.",
     "created_at": "2026-05-14T08:43:25Z",
-    "last_save_at": "2026-05-26T16:51:06.311Z",
+    "last_save_at": "2026-05-27T13:45:36.845Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:43:25Z",
     "source_docs": [

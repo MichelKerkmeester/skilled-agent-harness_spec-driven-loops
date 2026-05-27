@@ -234,7 +234,7 @@
     ],
     "causal_summary": "The skill advisor today lives at `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/`. It is a sizeable subsystem — handlers, scorer fusion, lane registry, scorer lanes, daemon lifecycle, projection, ablation, schemas, tests, feature_catalog, manual_testing_playbook, plus a `references/` tree — buried 5 levels deep inside `system-spec-kit`. That coupling makes it harder to:",
     "created_at": "2026-05-14T02:00:00Z",
-    "last_save_at": "2026-05-26T16:51:05.518Z",
+    "last_save_at": "2026-05-27T13:45:35.825Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-14T02:00:00Z",
     "source_docs": [

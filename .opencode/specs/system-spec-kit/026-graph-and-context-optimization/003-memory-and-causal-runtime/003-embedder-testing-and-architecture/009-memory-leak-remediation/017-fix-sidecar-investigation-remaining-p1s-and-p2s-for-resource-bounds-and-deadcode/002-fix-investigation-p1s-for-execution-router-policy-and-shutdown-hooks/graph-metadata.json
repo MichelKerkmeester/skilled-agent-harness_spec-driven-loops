@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Close F6, F31, F52, F53, F58, F61, and F74 with surgical router edits, isolate test-only seams in a test-only module, add fixture coverage for the fallback/shutdown behavior, and keep the child packet independently verifiable.",
     "created_at": "2026-05-23T06:21:18Z",
-    "last_save_at": "2026-05-26T16:51:06.061Z",
+    "last_save_at": "2026-05-27T13:45:36.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

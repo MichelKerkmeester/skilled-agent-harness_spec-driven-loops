@@ -88,7 +88,7 @@
     ],
     "causal_summary": "Optimize intent routing across the skill advisor system through coordinated improvements to search accuracy, phrase boosting, smart router behavior, hook surface integration, and setup command infrastructure. The 5 children bind together thematically around the goal of making skill advisor routing more precise, responsive, and maintainable.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-26T16:51:05.603Z",
+    "last_save_at": "2026-05-27T13:45:35.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The v1.0.2 stress-test rerun closed with four follow-ups tagged in `../010-stress-test-close-loop-measurement-rerun/findings.md` Recommendations §1-5 — three concrete P0/P1/P2 bugs and one telemetry-leverage opportunity. Each is currently \"tagged for follow-up\" but lacks a refined fix proposal: the right intervention point, alternatives considered, falsifiable success criteria, and a recommended scope estimate for the eventual remediation packet. Without that refinement step, the follow-ups stay open indefinitely or get scoped poorly downstream.",
     "created_at": "2026-04-27T18:45:00Z",
-    "last_save_at": "2026-05-26T16:51:05.402Z",
+    "last_save_at": "2026-05-27T13:45:35.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

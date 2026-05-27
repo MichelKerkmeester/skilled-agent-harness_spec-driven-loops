@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The 5 cli-* skills under `.opencode/skills/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an external CLI from another AI runtime — and were authored from the same 8-section template. Audit during packet 051 surfaced concrete drift: cli-copilot is missing the Error Handling table, cli-opencode duplicates UNKNOWN_FALLBACK_CHECKLIST 3×, cli-claude-code is missing the Default Invocation block, INTENT_SIGNALS counts differ (codex=8, others=7), and the new Provider Auth Pre-Flight pattern added to cli-opencode in 051 has no equivalent in the other 4 even though several of them have provider-auth failure modes.",
     "created_at": "2026-04-29T12:04:01Z",
-    "last_save_at": "2026-05-24T05:40:25.387Z",
+    "last_save_at": "2026-05-27T13:45:35.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

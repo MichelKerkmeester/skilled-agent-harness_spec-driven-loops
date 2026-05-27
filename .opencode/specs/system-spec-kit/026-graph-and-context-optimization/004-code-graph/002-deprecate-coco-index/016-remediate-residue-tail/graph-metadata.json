@@ -195,7 +195,7 @@
     ],
     "causal_summary": "After packets `014-remediate-codegraph-naming` + `015-remediate-cross-surface-residue`, an exhaustive verify-first sweep was run to prove the 014 deprecation residue was fully closed (not just \"a grep returned 0\"). The sweep first exposed a recurring methodology bug — `-g '!...'` exclude globs built in an unquoted shell variable get mangled by zsh, silently breaking rg under `2>/dev/null` and producing false-negative \"0 residue\" results. With inline-quoted excludes + per-token greps, the true picture emerged: the deprecation residue is essentially closed, with only a 2-item live-doc tail referencing deleted artifacts.",
     "created_at": "2026-05-25T16:46:14Z",
-    "last_save_at": "2026-05-26T16:51:06.149Z",
+    "last_save_at": "2026-05-27T13:45:36.698Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

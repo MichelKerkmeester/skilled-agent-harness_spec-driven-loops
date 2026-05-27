@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog",
+  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/006-feature-catalog",
   "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/006-feature-catalog",
   "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [],
@@ -11,28 +11,206 @@
   },
   "derived": {
     "trigger_phrases": [
+      "feature",
+      "catalog",
+      "comprehensive",
+      "audit",
+      "remediation",
+      "spec",
+      "006",
       "feature catalog",
-      "feature catalog graph metadata"
+      "tasks",
+      "verification",
+      "checklist",
+      "decision"
     ],
     "key_topics": [
       "feature",
-      "catalog"
+      "catalog",
+      "comprehensive",
+      "audit",
+      "remediation",
+      "spec",
+      "006",
+      "tasks",
+      "verification",
+      "checklist",
+      "decision",
+      "wrapper"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "handover.md"
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/16-json-mode-hybrid-enrichment.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/17-json-primary-deprecation-posture.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/153-json-mode-hybrid-enrichment.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/154-json-primary-deprecation-posture.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/15-evaluation-api-surface.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/22-mcp-server-public-api-barrel.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/23-embeddings-and-retry-api.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/17--governance/05-constitutional-gate-enforcement-rule-pack.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/09-runtime-config-contract.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/10-filter-config-contract.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/02-memory-health-auto-repair.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/03-feedback-driven-revalidation.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/01-category-stub.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/02-lazy-loading-migration-and-warmup-compatibility.md"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "11-feature-catalog-code-references.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md",
+        "source": "derived"
+      },
+      {
+        "name": "FEATURE_CATALOG.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "MANUAL_TESTING_PLAYBOOK.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "source": "derived"
+      },
+      {
+        "name": "16-json-mode-hybrid-enrichment.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/16-json-mode-hybrid-enrichment.md",
+        "source": "derived"
+      },
+      {
+        "name": "17-json-primary-deprecation-posture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/17-json-primary-deprecation-posture.md",
+        "source": "derived"
+      },
+      {
+        "name": "153-json-mode-hybrid-enrichment.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/153-json-mode-hybrid-enrichment.md",
+        "source": "derived"
+      },
+      {
+        "name": "154-json-primary-deprecation-posture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/154-json-primary-deprecation-posture.md",
+        "source": "derived"
+      },
+      {
+        "name": "15-evaluation-api-surface.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/15-evaluation-api-surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "22-mcp-server-public-api-barrel.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/22-mcp-server-public-api-barrel.md",
+        "source": "derived"
+      },
+      {
+        "name": "23-embeddings-and-retry-api.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/23-embeddings-and-retry-api.md",
+        "source": "derived"
+      },
+      {
+        "name": "05-constitutional-gate-enforcement-rule-pack.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/17--governance/05-constitutional-gate-enforcement-rule-pack.md",
+        "source": "derived"
+      },
+      {
+        "name": "09-runtime-config-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/09-runtime-config-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "10-filter-config-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/10-filter-config-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "01-category-stub.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md",
+        "source": "derived"
+      },
+      {
+        "name": "02-memory-health-auto-repair.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/02-memory-health-auto-repair.md",
+        "source": "derived"
+      },
+      {
+        "name": "03-feedback-driven-revalidation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/03-feedback-driven-revalidation.md",
+        "source": "derived"
+      },
+      {
+        "name": "02-lazy-loading-migration-and-warmup-compatibility.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/02-lazy-loading-migration-and-warmup-compatibility.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog Comprehensive Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "State Addendum",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Normalization Addendum",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This wrapper packet preserves the historical 2026-03-08 through 2026-03-26 audit trail, but it must no longer be read as the live denominator source on its own.",
     "created_at": "2026-04-12T09:02:50.241Z",
-    "last_save_at": "2026-04-26T09:17:15.385Z",
+    "last_save_at": "2026-05-27T13:45:37.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

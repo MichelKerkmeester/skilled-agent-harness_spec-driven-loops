@@ -198,7 +198,7 @@
     ],
     "causal_summary": "This packet designs the full v1.0.4 stress matrix that packet 029 explicitly did not attempt. Packet 029 proved a narrow 12-case telemetry posture: it produced 16 live handler envelopes, scored `93/96 = 96.9%`, kept harness quality flat at `75.4%`, and warned that v1.0.2's 30-cell CLI-model baseline is not exact same-cell comparable (`029-clean-infrastructure-stress-test/findings-v1-0-4.md:19`, `:23`, `:24`, `:25`, `:27`).",
     "created_at": "2026-04-29T11:40:34.000Z",
-    "last_save_at": "2026-05-26T16:51:05.436Z",
+    "last_save_at": "2026-05-27T13:45:35.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -44,28 +44,19 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/templates/handover.md",
-      ".opencode/commands/spec_kit/resume.md",
-      "plan.md",
       "spec.md",
-      ".opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml",
-      ".opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml",
-      "checklist.md",
+      "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "resume.md",
-        "kind": "doc",
-        "path": ".opencode/commands/spec_kit/resume.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -75,21 +66,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "spec_kit_resume_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_resume_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec_kit_resume_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/spec_kit/assets/spec_kit_resume_confirm.yaml",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -99,37 +84,19 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Three State Files",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "Feature Name",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Refinement Based",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "System Improvement",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -141,7 +108,25 @@
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -154,6 +139,12 @@
       },
       {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refinement Based",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -199,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Path Conventions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "This captures 80% of ECP's benefit because:",
+    "causal_summary": "SpecKit Refinement: ECP Analysis & Improvements",
     "created_at": "2026-04-12T09:02:53.513Z",
-    "last_save_at": "2026-04-27T13:33:11Z",
+    "last_save_at": "2026-05-27T13:45:37.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +208,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "resource-map.md"
     ]
   }
 }

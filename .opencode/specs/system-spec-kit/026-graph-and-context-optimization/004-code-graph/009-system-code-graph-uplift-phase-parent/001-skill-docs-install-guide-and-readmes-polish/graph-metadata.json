@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Research §10 enumerated 10 priority items spanning SKILL.md, INSTALL_GUIDE.md, ARCHITECTURE.md, references, feature_catalog, and per-folder mcp_server READMEs. Verified findings include drift (INSTALL_GUIDE version + tool count, ARCHITECTURE launcher reference, stale SKILL.md continuity), HVR violations (87+ across core docs), and useful-content gaps (no \"why\" primers, no glossaries, no situational triggers). All accumulated since packet 028 closed tool-count and topology drift.",
     "created_at": "2026-05-16T10:35:00Z",
-    "last_save_at": "2026-05-26T16:51:06.237Z",
+    "last_save_at": "2026-05-27T13:45:36.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

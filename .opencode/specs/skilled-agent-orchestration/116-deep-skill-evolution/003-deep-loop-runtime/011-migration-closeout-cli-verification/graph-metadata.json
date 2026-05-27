@@ -146,7 +146,7 @@
     ],
     "causal_summary": "The deep-loop runtime isolation arc (`FULL_ISOLATE_NO_MCP` + council-graph CLI migration) removed the 8 graph MCP tools and built the `.cjs` CLI, but was left in flight: stale tool-count references in three runtime configs and two READMEs, stale spec statuses, an orphaned DB copy and dead README dirs in the memory server, and the migrated vitest sweep was never recorded green.",
     "created_at": "2026-05-25T11:00:44.830Z",
-    "last_save_at": "2026-05-25T13:19:42.745Z",
+    "last_save_at": "2026-05-27T13:45:34.969Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

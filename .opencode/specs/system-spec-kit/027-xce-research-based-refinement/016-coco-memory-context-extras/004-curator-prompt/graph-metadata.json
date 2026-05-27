@@ -4,29 +4,204 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/004-curator-prompt",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras",
   "children_ids": [],
-  "manual": {"depends_on": [], "supersedes": [], "related_to": []},
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
   "derived": {
-    "trigger_phrases": ["027 011 004 curator prompt", "memory curator prompt", "context_curator.ts"],
-    "key_topics": ["memory", "curator", "prompt", "schema", "cache"],
-    "importance_tier": "important",
-    "status": "draft",
-    "completion_pct": 0,
-    "key_files": ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"],
+    "trigger_phrases": [
+      "027 011 004 curator prompt",
+      "memory curator prompt",
+      "context_curator.ts",
+      "027 011 004 plan",
+      "027 011 004 tasks",
+      "027 011 004 checklist",
+      "027 011 004 implementation summary"
+    ],
+    "key_topics": [
+      "027",
+      "011",
+      "004",
+      "curator",
+      "prompt",
+      "memory",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "pipeline"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/llm-cache.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
     "entities": [
       {
-        "name": "context_curator.ts",
+        "name": "llm-cache.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/context_curator.ts",
-        "source": "planned"
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/llm-cache.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Curator Prompt",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Curator",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Child 004 creates the memory curator prompt, parser, schema validation, and cache extension for Track B.",
+    "causal_summary": "The memory pipeline can return deterministic ranked results, but it has no governed packaging plan that groups candidate IDs into causal chains, direct evidence, supporting context, and omitted-but-available items.",
     "created_at": "2026-05-12T00:00:00Z",
-    "last_save_at": "2026-05-12T00:00:00Z",
-    "save_lineage": "phase-child-scaffold",
+    "last_save_at": "2026-05-27T13:45:36.973Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T00:00:00Z",
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "checklist.md"],
-    "last_active_child_id": null,
-    "last_active_at": null
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
   }
 }

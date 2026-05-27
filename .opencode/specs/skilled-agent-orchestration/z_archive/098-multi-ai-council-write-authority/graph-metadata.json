@@ -218,7 +218,7 @@
     ],
     "causal_summary": "The multi-ai-council agent currently operates planning-only: its YAML carries `write: deny / edit: deny / bash: deny / patch: deny` across all 4 runtime mirrors. Today, the helper script `persist-artifacts.cjs` (or the dispatching command) reads the council's chat output and writes the artifact tree (`ai-council-config.json`, `ai-council-state.jsonl`, `ai-council-strategy.md`, `council-report.md`, `seats/`, `deliberations/`, `critiques/`). Packet 089 explicitly listed \"LEAF council write files\" as a NO-GO blocker condition pending design. This packet ships the design and the implementation: the council flips to `write: allow / edit: allow` scoped to `ai-council/**`, with bash and patch staying denied. Audit-trail events (`artifact_written`) are appended to the existing `ai-council-state.jsonl` schema additively (v1.1 → v1.2). Rollback uses round-NNN folders as the unit of recovery: on any seat error or convergence failure, the council writes a `rollback` event and prunes the round artifacts.",
     "created_at": "2026-05-08T21:45:00Z",
-    "last_save_at": "2026-05-24T05:40:25.550Z",
+    "last_save_at": "2026-05-27T13:45:35.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

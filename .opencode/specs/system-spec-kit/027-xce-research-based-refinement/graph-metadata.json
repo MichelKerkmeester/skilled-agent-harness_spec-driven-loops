@@ -4,13 +4,13 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement",
   "parent_id": null,
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/001-rename-mcp-namespace-mk-spec-memory",
+    "system-spec-kit/027-xce-research-based-refinement/001-release-cleanup",
     "system-spec-kit/027-xce-research-based-refinement/002-feedback-p0-correctness",
     "system-spec-kit/027-xce-research-based-refinement/003-memoization-dependency-dag-foundation",
     "system-spec-kit/027-xce-research-based-refinement/004-causal-graph-lifecycle-tombstones",
     "system-spec-kit/027-xce-research-based-refinement/005-frontmatter-causal-edge-promoter",
     "system-spec-kit/027-xce-research-based-refinement/006-statediff-reconciliation-layer",
-    "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
+    "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
     "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace",
     "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
     "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval",
@@ -39,13 +39,6 @@
       "code_graph impact analysis",
       "advisor first-action mandate",
       "HLD LLD generation pipeline",
-      "027 pt-03 coco-index xce teachings",
-      "027 pt-03 memory backend causal graph xce",
-      "mcp-coco-index intent steering query expansion",
-      "memory backend semantic trigger matching",
-      "session-trace causal edge inference",
-      "feedback-ledger learned retention",
-      "shared rerank client coco memory",
       "cocoindex complete fork",
       "mcp-coco-index full upstream fork",
       "cocoindex-code v0.2.33 adoption"
@@ -62,167 +55,32 @@
       "prat",
       "algorithm",
       "reverse",
-      "engineering",
-      "cocoindex",
-      "complete fork",
-      "mcp-coco-index",
-      "cocoindex-code",
-      "v0.2.33"
+      "engineering"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "001-cocoindex-complete-fork/spec.md",
-      "001-cocoindex-complete-fork/plan.md",
-      "001-cocoindex-complete-fork/research.md",
-      "001-cocoindex-complete-fork/decision-record.md",
-      "001-cocoindex-complete-fork/resource-map.md",
-      "research/findings.md",
-      "research/research.md",
-      "research/sub-packet-proposals.md",
-      "research/resource-map.md",
-      "research/027-xce-research-based-refinement-pt-02/research.md",
-      "research/027-xce-research-based-refinement-pt-02/sub-packet-amendments.md",
-      "research/027-xce-research-pt-03/research.md",
-      "research/027-xce-research-pt-03/resource-map.md",
-      "research/027-xce-research-pt-03/deep-research-strategy.md",
-      "research/027-xce-research-pt-03/deep-research-state.jsonl",
-      "mcp_server/skill_advisor/lib/render.ts",
-      "external/README.md",
-      "external/steering/opencode-prompt.txt",
-      ".opencode/skills/system-spec-kit/mcp_server/code_graph/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/render.ts",
-      "research/deep-research-state.jsonl",
-      "skill_advisor/lib/render.ts",
-      "mcp_server/lib/eval/eval-metrics.ts",
-      "scripts/observability/smart-router-measurement.ts",
-      "external/steering/CLAUDE.md",
-      "external/assets/xce-hero.png",
-      "code_graph/lib/code-graph-context.ts",
-      "code_graph/lib/code-graph-db.ts",
-      "code_graph/lib/indexer-types.ts"
+      "research/027-xce-research-pt-04/research.md",
+      "tools/memory-tools.ts",
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "findings.md",
-        "kind": "doc",
-        "path": "research/findings.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "sub-packet-proposals.md",
-        "kind": "doc",
-        "path": "research/sub-packet-proposals.md",
-        "source": "derived"
-      },
-      {
-        "name": "pt-02 research.md",
-        "kind": "doc",
-        "path": "research/027-xce-research-based-refinement-pt-02/research.md",
-        "source": "manual"
-      },
-      {
-        "name": "pt-02 sub-packet-amendments.md",
-        "kind": "doc",
-        "path": "research/027-xce-research-based-refinement-pt-02/sub-packet-amendments.md",
-        "source": "manual"
-      },
-      {
-        "name": "pt-03 research.md",
-        "kind": "doc",
-        "path": "research/027-xce-research-pt-03/research.md",
-        "source": "manual"
-      },
-      {
-        "name": "pt-03 resource-map.md",
-        "kind": "doc",
-        "path": "research/027-xce-research-pt-03/resource-map.md",
-        "source": "manual"
-      },
-      {
-        "name": "render.ts",
+        "name": "memory-tools.ts",
         "kind": "code",
-        "path": "mcp_server/skill_advisor/lib/render.ts",
+        "path": "tools/memory-tools.ts",
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "external/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-prompt.txt",
-        "kind": "file",
-        "path": "external/steering/opencode-prompt.txt",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-tools.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "eval-metrics.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/eval/eval-metrics.ts",
-        "source": "derived"
-      },
-      {
-        "name": "smart-router-measurement.ts",
-        "kind": "code",
-        "path": "scripts/observability/smart-router-measurement.ts",
-        "source": "derived"
-      },
-      {
-        "name": "CLAUDE.md",
-        "kind": "doc",
-        "path": "external/steering/CLAUDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "xce-hero.png",
-        "kind": "file",
-        "path": "external/assets/xce-hero.png",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-context.ts",
-        "kind": "code",
-        "path": "code_graph/lib/code-graph-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-db.ts",
-        "kind": "code",
-        "path": "code_graph/lib/code-graph-db.ts",
-        "source": "derived"
-      },
-      {
-        "name": "indexer-types.ts",
-        "kind": "code",
-        "path": "code_graph/lib/indexer-types.ts",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Based Refinement",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -254,52 +112,15 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Final Synthesis",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Research Synthesis",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Executive Summary The Xanther Context Engine",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 001 Complete CocoIndex MCP Fork",
-        "kind": "spec_phase",
-        "path": "001-cocoindex-complete-fork/spec.md",
-        "source": "manual"
-      },
-      {
-        "name": "cocoindex-code v0.2.33 baseline",
-        "kind": "external_source",
-        "path": "external/cocoindex-code-main",
-        "source": "manual"
       }
     ],
-    "causal_summary": "The `external/` folder began as XCE research and now also contains the downloaded upstream cocoindex-code snapshot for the complete-fork prerequisite. Pt-01 produced the original code-graph + skill-advisor phases; pt-02 cross-validated those plans; pt-03 expanded scope to mcp-coco-index and the memory backend. Phase 001 was added on 2026-05-10 to replace the partial mcp-coco-index soft fork with a complete local fork of the upstream cocoindex-code MCP wrapper at v0.2.33, while keeping the transitive cocoindex engine as a pinned/audited dependency unless scope expands. The original phase children were renumbered to 002-011; CocoIndex-facing phases 007, 010, and 011 now depend on Phase 001 before modifying the MCP wrapper.",
+    "causal_summary": "The `external/` folder of this packet contains the public Xanther Context Engine (XCE) integration repository — README, MIT license, MCP configs for 5 IDEs, and 3 steering files (`CLAUDE.md`, `kiro.md`, `opencode-prompt.txt`). XCE is a hosted SaaS MCP server that delivers architectural context (HLD, LLD, component descriptions, call graphs, impact analysis) via 5 tool primitives, claiming +7.4pp on SWE-bench Verified for Sonnet 4.0 and ~20% token reduction when steering rules are active. The underlying PRAT (Persistent Recursive Abstract Tree) algorithm is closed-source.",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-05-13T09:18:48.676Z",
-    "save_lineage": "codex-phase-001-cocoindex-complete-fork-plan",
+    "last_save_at": "2026-05-27T13:45:36.902Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [
-      "spec.md",
-      "research/research.md",
-      "research/027-xce-research-pt-03/research.md",
-      "001-cocoindex-complete-fork/spec.md",
-      "001-cocoindex-complete-fork/plan.md",
-      "001-cocoindex-complete-fork/research.md"
-    ],
-    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/001-rename-mcp-namespace-mk-spec-memory",
-    "last_active_at": "2026-05-13T09:18:48.675Z"
+      "spec.md"
+    ]
   }
 }

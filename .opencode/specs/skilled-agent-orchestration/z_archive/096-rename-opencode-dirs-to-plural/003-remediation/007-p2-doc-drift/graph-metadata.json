@@ -41,9 +41,7 @@
       ".opencode/skills/sk-code/references/opencode/shared/hooks.md",
       ".opencode/install_guides/SET-UP - AGENTS.md",
       ".opencode/install_guides/SET-UP - Code Graph.md",
-      ".opencode/install_guides/SET-UP - Opencode Agents.md",
       ".opencode/install_guides/SET-UP - Skill Advisor.md",
-      ".opencode/install_guides/SET-UP - Skill Creation.md",
       "tasks.md",
       "spec.md",
       "plan.md",
@@ -70,21 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "SET-UP - Opencode Agents.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - Opencode Agents.md",
-        "source": "derived"
-      },
-      {
         "name": "SET-UP - Skill Advisor.md",
         "kind": "doc",
         "path": ".opencode/install_guides/SET-UP - Skill Advisor.md",
-        "source": "derived"
-      },
-      {
-        "name": "SET-UP - Skill Creation.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - Skill Creation.md",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Install guides and root docs still cite singular paths or stale inventory; `.opencode/skills/sk-code/` has a dead Copilot target-authority guard branch; two cli-opencode playbooks have nested-backtick prompts that render incorrectly.",
     "created_at": "2026-05-18T07:49:27.245Z",
-    "last_save_at": "2026-05-24T05:40:25.541Z",
+    "last_save_at": "2026-05-27T13:45:35.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract",
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract",
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
   "children_ids": [],
@@ -11,46 +11,192 @@
   },
   "derived": {
     "trigger_phrases": [
-      "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract",
-      "system-spec-kit",
-      "027-xce-research-based-refinement",
-      "007-code-graph-hld-lld",
-      "001-contract",
-      "001",
-      "contract",
-      "code",
-      "graph",
-      "hld",
-      "lld",
-      "define"
+      "027 phase 002 contract",
+      "hld lld contract",
+      "HldLldClassifier",
+      "027 phase 002 contract plan",
+      "hld lld contract plan",
+      "027 phase 002 contract tasks",
+      "hld lld contract tasks",
+      "027 phase 002 contract checklist",
+      "hld lld contract checklist",
+      "implementation",
+      "summary",
+      "template"
     ],
     "key_topics": [
-      "system-spec-kit",
-      "027-xce-research-based-refinement",
-      "007-code-graph-hld-lld",
-      "001-contract",
-      "001",
+      "027",
+      "phase",
+      "002",
       "contract",
-      "code",
-      "graph",
       "hld",
       "lld",
-      "define",
-      "typescript"
+      "hldlldclassifier",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "spec_scaffolded",
+    "status": "in_progress",
     "key_files": [
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "spec.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Define the TypeScript contract for deterministic code_graph HLD/LLD generation.",
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Publish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The HLD/LLD generator, handler, and tests need a shared TypeScript contract before they can proceed in parallel. Without the contract child, downstream phases may disagree on role labels, dependency records, sort guarantees, or serialized payload shape.",
     "created_at": "2026-05-18T08:15:28.149Z",
-    "last_save_at": "2026-05-19T19:44:28.899Z",
+    "last_save_at": "2026-05-27T13:45:36.912Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

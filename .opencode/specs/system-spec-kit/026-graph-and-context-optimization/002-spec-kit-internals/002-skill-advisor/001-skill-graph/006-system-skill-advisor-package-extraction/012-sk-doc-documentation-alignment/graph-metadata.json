@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The `system-skill-advisor` package had grown through extraction packets. Its docs still mixed early extraction language, stale root README paths, old four-tool advisor claims, old scorer weight values, and inconsistent regression-count wording.",
     "created_at": "2026-05-18T08:53:19.989Z",
-    "last_save_at": "2026-05-26T16:51:05.537Z",
+    "last_save_at": "2026-05-27T13:45:35.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

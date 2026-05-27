@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Audit-confirmed P0 bugs in system-skill-advisor docs: broken ADR-001 path (missing `001-skill-graph/` segment), broken hook reference link in README/INSTALL_GUIDE, wrong build-command path in ARCHITECTURE §8, and 9 nested READMEs with stale audit-packet rows.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-05-26T16:51:05.635Z",
+    "last_save_at": "2026-05-27T13:45:35.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

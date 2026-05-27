@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 026 wave-4 reorganization (a large rename/renumber executed in a git worktree, then merged to main) hit several avoidable failure modes that the sk-git skill does not currently guard against: gitignored leftover folders after `git mv`, a fresh worktree missing gitignored build deps (breaking the spec-kit toolchain), the memory DB being a single global instance (not per-worktree), accidental staging of unrelated in-flight WIP, and rename-heavy merge verification gaps.",
     "created_at": "2026-05-26T17:36:41.943Z",
-    "last_save_at": "2026-05-26T17:37:00.224Z",
+    "last_save_at": "2026-05-27T13:45:35.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

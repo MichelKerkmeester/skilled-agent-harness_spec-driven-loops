@@ -199,7 +199,7 @@
     ],
     "causal_summary": "This packet delivers the end state implied by that analysis. `/memory:save` is planner-first by default: the handler computes the same route and legality data as before but stops short of mutation and returns structured planner output instead. `full-auto` is preserved as an explicit fallback via `SPECKIT_SAVE_PLANNER_MODE=full-auto`, with canonical atomic mutation, `POST_SAVE_FINGERPRINT` safety parity, same-path identity, and rollback intact. The legacy `[spec]/memory/*.md` write path is retired. Four previously default-on behaviors become explicit opt-in: `SPECKIT_ROUTER_TIER3_ENABLED`, `SPECKIT_QUALITY_AUTO_FIX`, `SPECKIT_RECONSOLIDATION_ENABLED`, `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED`. Freshness becomes follow-up work via three new APIs: `refreshGraphMetadata`, `reindexSpecDocs`, `runEnrichmentBackfill`. `hybrid` is documented as reserved and currently behaves like `plan-only`. The content-router category contract is preserved with one honest, scoped exception: a Tier 3 default-disable and manual-review guard inside `content-router.ts`. 43 implementation tasks shipped under v3.4.1.0. A deep-review pass flagged 3 P0, 5 P1, and 1 P2 findings on router honesty, fallback safety parity, blocker classification, deferred-helper coverage, and changelog accuracy; all 9 were resolved before closeout.",
     "created_at": "2026-04-15T10:00:01Z",
-    "last_save_at": "2026-05-26T16:51:05.682Z",
+    "last_save_at": "2026-05-27T13:45:36.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

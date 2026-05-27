@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 003-fix-mcp-runtime-stress-findings deep review confirmed the v1.0.2 verdict (6/7 PROVEN, 0 REGRESSION, 83.8% overall) holds independent verification, AND validated that the proposed P0 cli-copilot Gate 3 bypass fix in `executor-config.ts` + `buildCopilotPromptArg` is correctly implemented across all 5 sub-checks. The review surfaced 6 P2 advisories around documentation drift, navigation, and verdict replayability. None block release; closing them tightens the cycle's auditability.",
     "created_at": "2026-04-28T15:15:00.000Z",
-    "last_save_at": "2026-05-26T16:51:05.376Z",
+    "last_save_at": "2026-05-27T13:45:35.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

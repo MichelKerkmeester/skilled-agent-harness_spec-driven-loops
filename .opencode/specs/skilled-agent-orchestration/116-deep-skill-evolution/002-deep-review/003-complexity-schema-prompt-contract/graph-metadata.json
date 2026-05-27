@@ -50,7 +50,6 @@
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/003-complexity-schema-prompt-contract/decision-record.md",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/003-complexity-schema-prompt-contract/description.json",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/003-complexity-schema-prompt-contract/graph-metadata.json",
-      ".opencode/skills/deep-review/references/state_format.md",
       ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
       ".opencode/skills/deep-review/scripts/reduce-state.cjs",
       "checklist.md",
@@ -101,12 +100,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/003-complexity-schema-prompt-contract/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "state_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/references/state_format.md",
         "source": "derived"
       },
       {
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 defines the canonical v2 review-depth contract for `deep-review` iteration records and the rendered prompt pack. The contract adds the discriminator `reviewDepthSchemaVersion: 2`, applicability-driven enforcement through `reviewDepthApplicability`, explicit target proof through `targetSelection`, coverage accounting through `searchCoverage`, and auditable search rows through `searchLedger[]`.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-24T05:40:25.250Z",
+    "last_save_at": "2026-05-27T13:45:34.929Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

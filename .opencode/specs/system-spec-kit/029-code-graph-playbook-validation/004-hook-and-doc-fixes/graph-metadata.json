@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 029 validation run surfaced (a) F-025-1: the Devin SessionStart hook in `.devin/hooks.v1.json` registers a non-existent path, so the hook never fires; and (b) several stale playbook scenario docs (F-011-1 verify-`rating`, F-020-1 tool count 11→8, F-021-1 label/content mismatch, 009/010 line drift).",
     "created_at": "2026-05-27T03:30:26.441Z",
-    "last_save_at": "2026-05-27T05:35:21.990Z",
+    "last_save_at": "2026-05-27T13:45:36.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

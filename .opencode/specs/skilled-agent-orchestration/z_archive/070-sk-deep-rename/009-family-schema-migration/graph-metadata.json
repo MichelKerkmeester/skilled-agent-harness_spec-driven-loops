@@ -51,15 +51,11 @@
       "implementation-summary.md",
       ".opencode/skills/deep-review/graph-metadata.json",
       ".opencode/skills/deep-research/graph-metadata.json",
-      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js",
-      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.d.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/dist/tool-schemas.js",
       ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/dist/schemas/tool-input-schemas.js",
       ".opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite",
-      "dist/lib/skill-graph/skill-graph-db.js",
-      "dist/lib/skill-graph/skill-graph-db.d.ts",
       "dist/tool-schemas.js",
       "schemas/tool-input-schemas.ts",
       "dist/schemas/tool-input-schemas.js"
@@ -105,18 +101,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/deep-review/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph-db.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph-db.d.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.d.ts",
         "source": "derived"
       },
       {
@@ -208,11 +192,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 008 attempted the `sk-deep` to `deep-loop` internal family rename, but the existing SQLite-backed skill graph schema rejects `deep-loop` inserts because `skill-graph-db.ts` and its dist mirror hardcode a SQL `CHECK` constraint that still lists `sk-deep`.",
     "created_at": "2026-05-05T18:25:00Z",
-    "last_save_at": "2026-05-24T05:40:25.466Z",
+    "last_save_at": "2026-05-27T13:45:35.306Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T18:25:00Z",
     "source_docs": [

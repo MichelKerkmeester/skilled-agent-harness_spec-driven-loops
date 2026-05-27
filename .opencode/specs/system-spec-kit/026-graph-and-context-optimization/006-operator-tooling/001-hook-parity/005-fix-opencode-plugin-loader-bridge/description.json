@@ -9,7 +9,7 @@
     "loader",
     "remediation"
   ],
-  "lastUpdated": "2026-05-26T17:26:29.034Z",
+  "lastUpdated": "2026-05-27T08:41:18.405Z",
   "specId": "005",
   "folderSlug": "fix-opencode-plugin-loader-bridge",
   "parentChain": [

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Five vitest unit tests in the spec-kit MCP server have been failing since packets 040 (sk-doc conformance sweep) and commit `7dfd108` (skill_id rename). The failures were observed during packet 045 work and confirmed unrelated via `git stash`. Most are test-out-of-sync issues from intentional content reduction; two are caused by an incomplete snake_case rename (commit `7dfd108` updated `graph-metadata.json` but missed two kebab-case literals).",
     "created_at": "2026-05-01T03:47:16Z",
-    "last_save_at": "2026-05-26T16:51:05.339Z",
+    "last_save_at": "2026-05-27T13:45:35.585Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

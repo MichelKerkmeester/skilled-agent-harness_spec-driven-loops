@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Packet 037's 20-iter deep-review surfaced 2 P0 + 25 P1 + ~30 P2 findings on system-code-graph v1.0.0.0. The P0s contradict shipped documentation claims (isolation lie + ccc_* fake readiness). The P1s span runtime correctness, tests, build state, launcher, /doctor coverage, and cross-runtime config consistency. Without remediation, v1.0.0.0 ships in a CONDITIONAL state with a known documentation-vs-reality gap.",
     "created_at": "2026-05-26T16:51:06.371Z",
-    "last_save_at": "2026-05-26T16:51:06.371Z",
+    "last_save_at": "2026-05-27T13:45:36.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

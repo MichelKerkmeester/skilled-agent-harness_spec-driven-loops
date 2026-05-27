@@ -41,6 +41,10 @@
     "status": "complete",
     "key_files": [
       "mcp_server/lib/embedders/embedding-reconcile.ts",
+      "mcp_server/tools/types.ts",
+      "schemas/tool-input-schemas.ts",
+      "mcp_server/tests/vector-coverage-hygiene.vitest.ts",
+      "tests/vector-coverage-hygiene.vitest.ts",
       "mcp_server/tests/embedding-reconcile.vitest.ts",
       "lib/embedders/embedding-reconcile.ts",
       "spec.md",
@@ -53,6 +57,24 @@
         "name": "embedding-reconcile.ts",
         "kind": "code",
         "path": "mcp_server/lib/embedders/embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "mcp_server/tools/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-coverage-hygiene.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/vector-coverage-hygiene.vitest.ts",
         "source": "derived"
       },
       {
@@ -174,29 +196,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Verification during the 005 reconcile found 23 rows marked `embedding_status='success'` that are MISSING from an active vector surface — not present in `active_vec.vec_memories_rowids` OR not present in `active_vec.vec_<dim>`. This is the inverse of the fixed backlog bug (those rows were \"has vector, wrong status\"; these are \"right status, missing vector\", ~0.24% of success rows) and they may not surface correctly in semantic search. The 006 reconcile tool does NOT touch success rows, so this case needs its own detection and repair.",
     "created_at": "2026-05-27T08:49:43.296Z",
-    "last_save_at": "2026-05-27T08:49:43.296Z",
+    "last_save_at": "2026-05-27T13:45:36.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

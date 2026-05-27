@@ -43,7 +43,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "tests/council-graph.vitest.ts",
       "spec.md",
       ".opencode/skills/deep-ai-council/manual_testing_playbook/05--scope-boundaries/001-graph-support-derived-and-scoped.md",
       ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
@@ -59,16 +58,9 @@
       ".opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md",
       "plan.md",
       "implementation-summary.md",
-      ".opencode/skills/deep-ai-council/references/graph_support.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "council-graph.vitest.ts",
-        "kind": "test",
-        "path": "tests/council-graph.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -154,12 +146,6 @@
         "source": "derived"
       },
       {
-        "name": "graph_support.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-ai-council/references/graph_support.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -206,11 +192,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 of `101-deep-multi-ai-council-skill` shipped a dedicated council graph (4 MCP tools, 8 node kinds, 10 relation kinds, 5 query modes, 3 convergence buckets) backed by `council-graph.sqlite` and verified by `tests/council-graph.vitest.ts`. The manual testing playbook was not updated to match: the entire shipped surface is exercised by zero operator-driven scenarios; the only mention of `council_graph_*` in the playbook tree is one textual line in DAC-011. The DAC-011 scenario file is also still named `001-graph-support-explicitly-out-of-scope.md` even though its content was rewritten in-place to \"Graph support stays derived and scoped\".",
     "created_at": "2026-05-11T05:27:10Z",
-    "last_save_at": "2026-05-24T05:40:25.134Z",
+    "last_save_at": "2026-05-27T13:45:34.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

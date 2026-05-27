@@ -43,14 +43,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-db.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-query.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts",
       ".opencode/skills/deep-ai-council/SKILL.md",
-      ".opencode/skills/deep-ai-council/references/graph_support.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -61,18 +57,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "council-graph-db.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-db.ts",
-        "source": "derived"
-      },
-      {
-        "name": "council-graph-query.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/council-graph/council-graph-query.ts",
-        "source": "derived"
-      },
       {
         "name": "tool-schemas.ts",
         "kind": "code",
@@ -92,21 +76,9 @@
         "source": "derived"
       },
       {
-        "name": "council-graph.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-ai-council/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph_support.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-ai-council/references/graph_support.md",
         "source": "derived"
       },
       {
@@ -204,11 +176,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dedicated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 implements dedicated derived graph support for Deep AI Council deliberation. The graph adds bounded MCP query and convergence context without making graph rows authoritative over packet-local council artifacts.",
     "created_at": "2026-05-10T06:35:40Z",
-    "last_save_at": "2026-05-24T05:40:25.133Z",
+    "last_save_at": "2026-05-27T13:45:34.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

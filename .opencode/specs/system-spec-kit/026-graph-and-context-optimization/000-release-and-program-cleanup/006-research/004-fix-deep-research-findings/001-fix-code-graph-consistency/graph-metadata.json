@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Nine consistency-and-resilience defects across the code-graph indexing, query, and doctor-workflow surface area leak partial-write, contention, snapshot-skew, and silent-error bugs identified by packet 046's deep research:",
     "created_at": "2026-05-01T05:18:47Z",
-    "last_save_at": "2026-05-26T16:51:05.460Z",
+    "last_save_at": "2026-05-27T13:45:35.748Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

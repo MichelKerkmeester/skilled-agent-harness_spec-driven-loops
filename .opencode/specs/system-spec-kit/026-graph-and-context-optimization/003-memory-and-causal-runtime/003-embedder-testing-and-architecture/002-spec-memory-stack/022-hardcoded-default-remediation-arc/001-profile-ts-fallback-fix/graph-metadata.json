@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Purpose: thread all 4 profile.ts inline `||` returns through `getCanonicalFallback(provider)`, and remove the dead-code fallback at `embeddings.ts:774`. Ship `profile.test.ts` with 6 standalone-assertion invariants locking the contract.",
     "created_at": "2026-05-23T13:29:12.045886Z",
-    "last_save_at": "2026-05-26T16:51:05.825Z",
+    "last_save_at": "2026-05-27T13:45:36.385Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

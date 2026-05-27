@@ -4,11 +4,11 @@
   "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/005-rename-root-docs-hooks-index",
   "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -38,10 +38,6 @@
     "key_files": [
       ".opencode/skills/README.md",
       "tasks.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index/plan.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index/tasks.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index/implementation-summary.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md"
@@ -56,25 +52,25 @@
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -138,13 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "test",
-        "kind": "key_phrase",
+        "name": "1. SUMMARY",
+        "kind": "heading",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
+        "name": "Overview",
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
@@ -184,11 +180,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 5 of 6. Parallel after 001. Touches root-level surfaces + skills index.",
     "created_at": "2026-05-21T06:57:10Z",
-    "last_save_at": "2026-05-24T05:40:25.238Z",
+    "last_save_at": "2026-05-27T13:45:34.903Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Advisor freshness still writes `.opencode/skill/.advisor-state`, regenerating a stale survivor directory. `audit_descriptions.py:157` and `skill_advisor.py` native bridge constants still retain singular-root defaults despite 096 claiming they were patched.",
     "created_at": "2026-05-18T07:49:27.244Z",
-    "last_save_at": "2026-05-24T05:40:25.540Z",
+    "last_save_at": "2026-05-27T13:45:35.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

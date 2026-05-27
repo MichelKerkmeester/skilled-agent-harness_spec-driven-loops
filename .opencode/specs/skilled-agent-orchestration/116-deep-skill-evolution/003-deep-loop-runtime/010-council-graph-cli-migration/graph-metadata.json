@@ -5,19 +5,20 @@
   "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime",
   "children_ids": [],
   "migrated": true,
-  "migration_source": "manual-scaffold",
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "council graph CLI migration",
       "council_graph_ MCP removal",
-      "deep-loop-runtime council loopType"
+      "deep-loop-runtime council loopType",
+      "010 council graph CLI migration handover",
+      "deep-loop-runtime council loopType resume",
+      "131/003/010 handover"
     ],
     "key_topics": [
       "council",
@@ -25,61 +26,188 @@
       "cli",
       "migration",
       "mcp",
+      "removal",
       "deep-loop-runtime",
-      "deep-ai-council"
+      "looptype",
+      "010",
+      "handover",
+      "resume",
+      "131"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      ".opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts",
+      ".opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts",
+      ".opencode/skills/deep-loop-runtime/lib/council/convergence.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/query.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/council-graph-query.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json",
+      ".opencode/skills/deep-loop-runtime/lib/council/README.md",
+      ".opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
+      ".opencode/skills/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts",
+      ".opencode/skills/deep-ai-council/SKILL.md",
+      ".opencode/commands/deep/ask-ai-council.md",
+      ".opencode/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      ".gemini/agents/ai-council.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "council-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph-query.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/council/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "upsert.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "query.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/query.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "status.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spawn-cjs.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph-query.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/council-graph-query.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph-script.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph-value-scenarios.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph-value-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
         "kind": "doc",
+        "path": ".opencode/skills/deep-loop-runtime/lib/council/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "replay-graph-from-artifacts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "replay-graph-from-artifacts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ask-ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/ask-ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
         "path": "spec.md",
-        "source": "manual"
+        "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
+        "name": "Council Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
         "path": "plan.md",
-        "source": "manual"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "manual"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "manual"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "manual"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "manual"
+        "source": "derived"
       }
     ],
-    "causal_summary": "Packet complete: council graph persistence/query/convergence moved behind deep-loop-runtime CLI support, deep-ai-council replay rewired to runtime upsert, council_graph_* MCP handlers/schemas/dispatcher wiring removed, remaining tests migrated to runtime coverage, and tool-count mirrors updated to 35.",
+    "causal_summary": "Phase 010 completes the council graph half of the deep-loop-runtime MCP-to-CLI migration. The existing direct scripts in `.opencode/skills/deep-loop-runtime/scripts/{upsert,query,status,convergence}.cjs` already handle `loopType=research` and `loopType=review`; this packet specifies extending the same scripts to accept `loopType=council`, porting the dedicated council database/query/convergence code into `.opencode/skills/deep-loop-runtime/lib/council/`, rewiring `deep-ai-council` to spawn the scripts, and deleting the four `council_graph_*` MCP tools from `system-spec-kit`.",
     "created_at": "2026-05-24T05:40:34Z",
-    "last_save_at": "2026-05-24T07:40:20Z",
-    "save_lineage": "manual_scaffold",
+    "last_save_at": "2026-05-27T13:45:34.965Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -87,7 +215,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ]
   }
 }

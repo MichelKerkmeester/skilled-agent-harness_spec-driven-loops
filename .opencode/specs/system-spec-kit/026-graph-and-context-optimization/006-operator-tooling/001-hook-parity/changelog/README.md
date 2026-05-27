@@ -57,4 +57,3 @@ Voice rules per `.opencode/skills/sk-doc/references/global/hvr_rules.md` apply t
 - File names: `changelog-<phase>-<short-name>.md`
 - One file per shipped phase, regardless of commit count
 - Multi-commit phases collapse into one entry with all commits listed in Files Changed
-- HVR rules are non-negotiable: no em-dashes, no semicolons, no Oxford commas in narrative prose

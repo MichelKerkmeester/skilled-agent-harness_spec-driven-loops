@@ -91,7 +91,7 @@
     ],
     "causal_summary": "Optimize the skill advisor's scoring system by activating semantic similarity lanes through embedding cache infrastructure, cosine wiring, and systematic weight tuning. The 8 children bind together thematically around a progressive evaluation pipeline: from shadow-only cosine lane deployment (014) through ablation sweeps (015), weight sweep harness development (016), corpus-seeded evaluation (017), harder-intent stress testing (020), to final routing calibration (023). This enables data-driven lane weight selection and damping configurations that lift recall on intent-described prompts without regressing today-correct baseline accuracy.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-26T16:51:05.589Z",
+    "last_save_at": "2026-05-27T13:45:35.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

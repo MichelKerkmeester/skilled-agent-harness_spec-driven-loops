@@ -4,11 +4,11 @@
   "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/007-deep-review-release-cleanup",
   "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -212,8 +212,8 @@
     ],
     "causal_summary": "The `deep-review` skill (v1.8.0.0) is mature but pre-dates the most recent sk-doc template revisions and has never been audited end-to-end against the current creation standards. Before the broader `116-deep-skill-evolution` arc begins, this sub-phase brings the skill's documentation surface to 100% sk-doc conformance, fixes latent bugs, rewrites the README in current marketing-leaning HVR voice, and seeds a deep-research loop on top of a validated baseline.",
     "created_at": "2026-05-23T15:16:23.363Z",
-    "last_save_at": "2026-05-25T08:01:03.356Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-05-27T13:45:34.859Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

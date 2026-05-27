@@ -149,7 +149,7 @@
     ],
     "causal_summary": "The repo carries a semantic code-search stack that is being retired: the `mcp-coco-index` skill (a soft-fork of cocoindex-code + the `ccc` CLI + the `cocoindex_code` MCP server) and the `system-rerank-sidecar` cross-encoder HTTP service. Two couplings make removal non-trivial: `system-code-graph` (structural indexing) is bound to CocoIndex through the `ccc_*` bridge tools and the semantic/hybrid query-intent routing, and `system-rerank-sidecar` is consumed by **both** CocoIndex and `mk-spec-memory` (opt-in cross-encoder rerank). Removing these cleanly requires mapping every live touchpoint first.",
     "created_at": "2026-05-25T06:48:03.559Z",
-    "last_save_at": "2026-05-26T16:51:06.132Z",
+    "last_save_at": "2026-05-27T13:45:36.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

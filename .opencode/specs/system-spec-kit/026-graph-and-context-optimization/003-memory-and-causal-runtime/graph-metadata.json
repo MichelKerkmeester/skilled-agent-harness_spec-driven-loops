@@ -6,7 +6,13 @@
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
     "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing",
-    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture"
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/007-success-vector-coverage-hygiene",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/008-embedder-provider-auto-resolution",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix"
   ],
   "manual": {
     "depends_on": [],
@@ -84,11 +90,13 @@
     ],
     "causal_summary": "Harden the memory continuity substrate, deliver causal-graph channel routing, and validate the embedding architecture. The memory store is a distinct surface from the code graph and cross-links to it.",
     "created_at": "2026-05-26T16:35:26.649Z",
-    "last_save_at": "2026-05-26T16:51:05.673Z",
+    "last_save_at": "2026-05-27T14:05:47.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix",
+    "last_active_at": "2026-05-27T14:05:47.998Z"
   }
 }

@@ -42,6 +42,7 @@
     "status": "complete",
     "key_files": [
       "research/research.md",
+      ".opencode/.spec-kit/code-graph/database/code-graph.sqlite",
       ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite",
       ".codex/config.toml",
       "research/resource-map.md",
@@ -64,6 +65,12 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/.spec-kit/code-graph/database/code-graph.sqlite",
         "source": "derived"
       },
       {
@@ -197,17 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 1** of the Deep-research deep-dive + rework of install guides, scripts, and doctor commands for post-CocoIndex-deprecation reality, including 116 deep-skill-evolution impact specification.",
     "created_at": "2026-05-26T05:47:43Z",
-    "last_save_at": "2026-05-26T16:51:06.289Z",
+    "last_save_at": "2026-05-27T13:45:36.826Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

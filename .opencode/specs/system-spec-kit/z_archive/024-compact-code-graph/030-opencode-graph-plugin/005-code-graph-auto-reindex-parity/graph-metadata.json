@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/005-code-graph-auto-reindex-parity",
-  "spec_folder": "system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin/005-code-graph-auto-reindex-parity",
-  "parent_id": "system-spec-kit/024-compact-code-graph/030-opencode-graph-plugin",
+  "packet_id": "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/005-code-graph-auto-reindex-parity",
+  "spec_folder": "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/005-code-graph-auto-reindex-parity",
+  "parent_id": "system-spec-kit/z_archive/024-compact-code-graph/030-opencode-graph-plugin",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,22 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "tests/ensure-ready.vitest.ts",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "ensure-ready.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/ensure-ready.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -194,11 +186,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 5 is the bounded follow-on under packet `030-opencode-graph-plugin` that is now implemented. Its goal was to make structural graph freshness behave more like CocoIndex: detect staleness on use, perform bounded inline refresh when safe, including small post-commit drift, and fall back to explicit stale reporting when refresh would be too expensive or risky.",
     "created_at": "2026-04-12T09:02:53.438Z",
-    "last_save_at": "2026-04-26T09:17:15.668Z",
+    "last_save_at": "2026-05-27T13:45:37.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

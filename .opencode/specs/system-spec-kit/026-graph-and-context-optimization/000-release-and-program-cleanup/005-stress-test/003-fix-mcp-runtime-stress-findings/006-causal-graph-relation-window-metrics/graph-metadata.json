@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Add `deltaByRelation`, `dominantRelation`, `dominantRelationShare`, `balanceStatus`, and `remediationHint` fields to `causal-stats` response per 007 §5 Q7. Add per-relation per-window auto-edge caps to prevent supersedes bursts. Zero-fill all 6 relation types in `by_relation` so missing types don't disappear. Reconcile `health` field with `meetsTarget`.",
     "created_at": "2026-04-27T07:56:25.231Z",
-    "last_save_at": "2026-05-26T16:51:05.393Z",
+    "last_save_at": "2026-05-27T13:45:35.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

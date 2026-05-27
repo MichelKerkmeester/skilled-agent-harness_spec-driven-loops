@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
-  "spec_folder": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
-  "parent_id": "system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
+  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
+  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
+  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,7 +48,6 @@
       "scripts/spec/check-completion.sh",
       "checklist.md",
       "scripts/ops/runbook.sh",
-      ".opencode/skills/system-spec-kit/nodes/phase-system.md",
       "scripts/spec/create.sh",
       "scripts/spec/validate.sh",
       "scripts/core/tree-thinning.ts",
@@ -60,7 +59,8 @@
       "scripts/memory/generate-context.ts",
       "scripts/core/workflow.ts",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "spec.md"
     ],
     "entities": [
       {
@@ -103,12 +103,6 @@
         "name": "runbook.sh",
         "kind": "script",
         "path": "scripts/ops/runbook.sh",
-        "source": "derived"
-      },
-      {
-        "name": "phase-system.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/nodes/phase-system.md",
         "source": "derived"
       },
       {
@@ -184,6 +178,12 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "This packet audits the 17 Tooling and Scripts catalog entries that support Spec Kit build workflows, validation rules, admin operations, checkpointing, and source-dist hygiene. The verified result is 16 MATCH and 1 PARTIAL, with the remaining drift concentrated in the code-standards-alignment entry rather than runtime behavior.",
     "created_at": "2026-04-12T09:02:50.253Z",
-    "last_save_at": "2026-04-26T09:17:15.415Z",
+    "last_save_at": "2026-05-27T13:45:37.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

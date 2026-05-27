@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/003-code-graph-edge-explanation-and-impact-uplift",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift",
   "description": "Feature Specification: Code Graph Edge Explanation + Impact Uplift (012/003)",
   "keywords": [
     "feature",
@@ -13,13 +13,13 @@
     "012",
     "003"
   ],
-  "lastUpdated": "2026-04-26T07:03:47.557Z",
-  "specId": "003",
-  "folderSlug": "code-graph-edge-explanation-and-impact-uplift",
+  "lastUpdated": "2026-05-27T08:41:18.357Z",
+  "specId": "002",
+  "folderSlug": "edge-explanation-impact-uplift",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization",
-    "010-graph-impact-and-affordance-uplift"
+    "005-graph-impact-and-affordance"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
+  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
   "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
   "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
   "children_ids": [],
@@ -11,25 +11,200 @@
   },
   "derived": {
     "trigger_phrases": [
-      "evaluation",
-      "evaluation graph metadata"
+      "evaluation testing",
+      "ablation test",
+      "dashboard test",
+      "eval reporting test",
+      "evaluation dashboard generation",
+      "baseline comparison",
+      "learning history",
+      "ex-026 ex-027 ex-046 ex-047 ex-048 ex-049",
+      "evaluation test plan",
+      "ablation test plan",
+      "dashboard test plan",
+      "evaluation tasks"
     ],
     "key_topics": [
-      "evaluation"
+      "evaluation",
+      "testing",
+      "ablation",
+      "test",
+      "dashboard",
+      "eval",
+      "reporting",
+      "generation",
+      "baseline",
+      "comparison",
+      "learning",
+      "history"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md",
-      "plan.md",
+      "mcp_server/lib/eval/ablation-framework.ts",
+      "mcp_server/handlers/eval-reporting.ts",
+      "mcp_server/lib/eval/reporting-dashboard.ts",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/026-ablation-studies-eval-run-ablation.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/027-reporting-dashboard-eval-reporting-dashboard.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/046-anchor-aware-chunk-thinning-r7.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/047-encoding-intent-capture-at-index-time-r16.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/048-auto-entity-extraction-r10.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/049-4-stage-pipeline-refactor-r6.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md"
     ],
-    "entities": [],
-    "causal_summary": "Graph metadata for the current packet.",
+    "entities": [
+      {
+        "name": "ablation-framework.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/eval/ablation-framework.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-reporting.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/eval-reporting.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reporting-dashboard.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/eval/reporting-dashboard.ts",
+        "source": "derived"
+      },
+      {
+        "name": "026-ablation-studies-eval-run-ablation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/026-ablation-studies-eval-run-ablation.md",
+        "source": "derived"
+      },
+      {
+        "name": "027-reporting-dashboard-eval-reporting-dashboard.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/027-reporting-dashboard-eval-reporting-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "046-anchor-aware-chunk-thinning-r7.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/046-anchor-aware-chunk-thinning-r7.md",
+        "source": "derived"
+      },
+      {
+        "name": "047-encoding-intent-capture-at-index-time-r16.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/047-encoding-intent-capture-at-index-time-r16.md",
+        "source": "derived"
+      },
+      {
+        "name": "048-auto-entity-extraction-r10.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/048-auto-entity-extraction-r10.md",
+        "source": "derived"
+      },
+      {
+        "name": "049-4-stage-pipeline-refactor-r6.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/049-4-stage-pipeline-refactor-r6.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Execute",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The evaluation category contains 6 manual test scenarios covering ablation studies (channel-level Recall@20 delta measurement), reporting dashboard (sprint/channel trend aggregation), evaluation dashboard generation, ablation study execution with custom parameters, baseline comparison reporting, and learning history retrieval. The four new scenarios (EX-046 through EX-049) expand coverage to comprehensive evaluation workflows and historical analysis. Each scenario must be executed with defined prompts, expected behaviors verified, and evidence captured to validate that evaluation tools function correctly.",
     "created_at": "2026-04-12T09:02:50.294Z",
-    "last_save_at": "2026-04-26T09:17:15.518Z",
+    "last_save_at": "2026-05-27T13:45:37.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

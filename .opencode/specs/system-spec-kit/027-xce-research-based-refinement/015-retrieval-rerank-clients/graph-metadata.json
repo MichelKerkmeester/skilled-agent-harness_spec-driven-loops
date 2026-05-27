@@ -4,17 +4,12 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering",
-      "system-spec-kit/027-xce-research-based-refinement/011-memory-semantic-triggers",
-      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras",
-      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -23,24 +18,204 @@
       "shared RerankClient",
       "EmbeddingCacheClient",
       "shared rerank client coco memory",
-      "cross-backend embedding overlap telemetry"
+      "cross-backend embedding overlap telemetry",
+      "027 phase 010 plan",
+      "027 phase 010 tasks",
+      "027 phase 010 checklist",
+      "027 phase 010 ADRs",
+      "027 phase 010 implementation summary",
+      "027 phase 010 resource map"
     ],
     "key_topics": [
+      "027",
+      "phase",
+      "010",
+      "retrieval",
       "rerank",
-      "client",
-      "embedding",
-      "cache",
-      "interface",
-      "extraction",
+      "clients",
       "shared",
-      "voyage",
-      "circuit-breaker",
-      "fusion-future"
+      "rerankclient",
+      "embeddingcacheclient",
+      "client",
+      "coco",
+      "memory"
     ],
     "importance_tier": "important",
-    "status": "spec-scaffolded",
-    "completion_pct": 0,
+    "status": "in_progress",
     "key_files": [
+      "checklist.md",
+      "decision-record.md",
+      "mcp_server/lib/cache/embedding-cache.ts",
+      "mcp_server/lib/search/README.md",
+      "plan.md",
+      "tasks.md",
+      "resource-map.md",
+      "implementation-summary.md",
+      "mcp_server/lib/search/pipeline/stage3-rerank.ts",
+      "mcp_server/ENV_REFERENCE.md",
+      "spec.md",
+      "lib/cache/embedding-cache.ts",
+      "mcp_server/lib/search/pipeline/types.ts",
+      "mcp_server/lib/search/pipeline/README.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/README.md",
+      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-pt-03/research.md",
+      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-pt-03/iterations/iteration-010.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-cache.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/cache/embedding-cache.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp_server/lib/search/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/pipeline/stage3-rerank.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": "mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/pipeline/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-pt-03/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrieval Rerank Clients",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Coco",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Sub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Interfaces",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Voyage Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Sub",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Interface Extraction",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Adapter Swap",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coco Rerank Adapter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pt-03 RQ-B5 (verdict ADAPT clients / DEFER shared store / SKIP shared indexers, see `../research/027-xce-research-pt-03/research.md` §RQ-B5 and `../research/027-xce-research-pt-03/iterations/iteration-010.md`) identifies that memory's `cross-encoder.ts:35-554` is already provider-generic (Voyage, Cohere, local) with caching, caps, circuit breaker, score-origin metadata. CocoIndex has its own embedding usage (Voyage Code 3) but no rerank stage today. Two extractable interfaces:",
+    "created_at": "2026-05-09T11:00:00Z",
+    "last_save_at": "2026-05-27T13:45:36.964Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-10T10:05:44.449Z",
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,62 +223,6 @@
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md"
-    ],
-    "entities": [
-      {
-        "name": "rerank-client.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/rerank-client.ts",
-        "source": "planned"
-      },
-      {
-        "name": "embedding-cache-client.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cache/embedding-cache-client.ts",
-        "source": "planned"
-      },
-      {
-        "name": "cross-encoder.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/cross-encoder.ts",
-        "source": "modified"
-      },
-      {
-        "name": "embedding-cache.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cache/embedding-cache.ts",
-        "source": "modified"
-      },
-      {
-        "name": "stage3-rerank.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/pipeline/stage3-rerank.ts",
-        "source": "modified"
-      },
-      {
-        "name": "rerank_adapter.py",
-        "kind": "code",
-        "path": "mcp-coco-index/mcp_server/cocoindex_code/rerank_adapter.py",
-        "source": "planned"
-      },
-      {
-        "name": "query.py",
-        "kind": "code",
-        "path": "mcp-coco-index/mcp_server/cocoindex_code/query.py",
-        "source": "modified"
-      }
-    ],
-    "causal_summary": "Phase 010 implements pt-03 RQ-B5 client extraction. Extracts shared RerankClient<T> + EmbeddingCacheClient interfaces from memory cross-encoder + embedding-cache; CocoIndex opt-in adapter for rerank only. NO shared persistent storage (Voyage Code 3 vs Voyage 4 model_id binding). NO shared indexing pipelines (SKIP boundary binding). Cross-backend hit-rate overlap telemetry feeds future shared-store decision. Foundational interface for future RQ-A5 fusion consumer (when Phases 001-003 ship). Dependency added for the Coco adapter path: Phase 001 must land before this phase modifies mcp-coco-index; the memory-only interface extraction can still be reasoned about independently.",
-    "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-05-10T10:05:44.449Z",
-    "save_lineage": "scaffold",
-    "last_accessed_at": "2026-05-10T10:05:44.449Z",
-    "source_docs": [
-      "spec.md",
-      "../research/027-xce-research-pt-03/research.md",
-      "../research/027-xce-research-pt-03/iterations/iteration-010.md"
-    ],
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }

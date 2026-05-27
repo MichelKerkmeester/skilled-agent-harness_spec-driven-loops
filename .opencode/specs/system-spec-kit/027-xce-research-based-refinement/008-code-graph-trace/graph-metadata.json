@@ -10,12 +10,6 @@
     "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/004-test"
   ],
   "manual": {
-    "children": [
-      "001-contract",
-      "002-lib-impl",
-      "003-handler",
-      "004-test"
-    ],
     "depends_on": [
       {
         "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
@@ -34,18 +28,23 @@
       "trace tool"
     ],
     "key_topics": [
-      "phase-parent",
+      "027",
+      "phase",
+      "003",
       "code-graph",
       "trace",
-      "contract-first"
+      "tool",
+      "work",
+      "combines",
+      "public",
+      "mcp",
+      "contract",
+      "resolver"
     ],
     "importance_tier": "important",
-    "status": "phase-parent",
-    "last_active_child_id": null,
+    "status": "planned",
     "key_files": [
-      "spec.md",
-      "description.json",
-      "graph-metadata.json"
+      "spec.md"
     ],
     "entities": [
       {
@@ -55,28 +54,49 @@
         "source": "derived"
       },
       {
-        "name": "description.json",
-        "kind": "metadata",
-        "path": "description.json",
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "metadata",
-        "path": "graph-metadata.json",
+        "name": "Code Graph Trace",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose This",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase parent for the contract-first code_graph_trace decomposition.",
+    "causal_summary": "The trace tool work combines a public MCP contract, a resolver library, handler wiring, and verification fixtures. Keeping those concerns in one populated packet made parallel execution harder and let implementation details drift across docs.",
     "created_at": "2026-05-08T15:00:00Z",
-    "last_save_at": "2026-05-12T00:00:00Z",
+    "last_save_at": "2026-05-27T13:45:36.917Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "description.json",
-      "graph-metadata.json"
-    ],
-    "completion_pct": 0
-  },
-  "importance_tier": "important"
+      "spec.md"
+    ]
+  }
 }

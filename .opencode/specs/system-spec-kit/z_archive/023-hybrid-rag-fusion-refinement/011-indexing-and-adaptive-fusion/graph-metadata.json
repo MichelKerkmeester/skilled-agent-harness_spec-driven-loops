@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion",
-  "spec_folder": "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion",
-  "parent_id": "system-spec-kit/023-hybrid-rag-fusion-refinement",
+  "packet_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion",
+  "spec_folder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion",
+  "parent_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement",
   "children_ids": [
-    "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/001-wire-promotion-gate",
-    "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds",
-    "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/003-real-feedback-labels",
-    "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/004-fix-access-signal-path",
-    "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/005-e2e-integration-test",
-    "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
-    "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/007-external-graph-memory-research",
-    "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
-    "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/009-graph-retrieval-improvements"
+    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/001-wire-promotion-gate",
+    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds",
+    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/003-real-feedback-labels",
+    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/004-fix-access-signal-path",
+    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/005-e2e-integration-test",
+    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
+    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/007-external-graph-memory-research",
+    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
+    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/009-graph-retrieval-improvements"
   ],
   "manual": {
     "depends_on": [],
@@ -24,13 +24,15 @@
       "indexing enablement",
       "adaptive fusion",
       "cocoindex path drift",
-      "code graph init",
       "indexing enablement plan",
       "adaptive fusion plan",
       "indexing tasks",
       "adaptive fusion tasks",
       "indexing implementation summary",
-      "adaptive fusion implementation summary"
+      "adaptive fusion implementation summary",
+      "resource map",
+      "011-indexing-and-adaptive-fusion resource map",
+      "path catalog 011-indexing-and-adaptive-fusion"
     ],
     "key_topics": [
       "indexing",
@@ -40,29 +42,23 @@
       "cocoindex",
       "path",
       "drift",
-      "code",
-      "graph",
-      "init",
       "plan",
-      "tasks"
+      "tasks",
+      "implementation",
+      "summary",
+      "resource"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".cocoindex_code/settings.yml",
       "mcp_server/formatters/search-results.ts",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      "resource-map.md"
     ],
     "entities": [
-      {
-        "name": "settings.yml",
-        "kind": "config",
-        "path": ".cocoindex_code/settings.yml",
-        "source": "derived"
-      },
       {
         "name": "search-results.ts",
         "kind": "code",
@@ -82,15 +78,21 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -112,19 +114,19 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement After",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Stabilize",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Problem Statement Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -202,27 +204,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After repository path changes, indexing subsystems were inconsistent: CocoIndex environment paths were stale, code-graph initialization could fail lazily, and adaptive fusion defaults were not explicitly represented across MCP config surfaces. Lexical score visibility through fusion traces was also incomplete.",
+    "causal_summary": "Feature Specification: Indexing and Adaptive Fusion Enablement",
     "created_at": "2026-04-12T09:02:50.324Z",
-    "last_save_at": "2026-04-27T13:38:47.634Z",
+    "last_save_at": "2026-05-27T13:45:37.512Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
-    ],
-    "children_ids": [
-      "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/001-wire-promotion-gate",
-      "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds",
-      "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/003-real-feedback-labels",
-      "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/004-fix-access-signal-path",
-      "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/005-e2e-integration-test",
-      "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
-      "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/007-external-graph-memory-research",
-      "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
-      "system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/009-graph-retrieval-improvements"
+      "implementation-summary.md",
+      "resource-map.md"
     ]
   }
 }

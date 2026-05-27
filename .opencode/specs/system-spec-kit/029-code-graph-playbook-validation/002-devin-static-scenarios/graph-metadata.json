@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Run these 7 scenarios through `cli-devin` SWE-1.6 (coding-specialized, free-tier, fast) with the SWE-1.6 prompt-quality contract (RCAF + medium-density pre-planning + agent-config recipe + sequential_thinking 2-layer) and capture command evidence for the parent matrix.",
     "created_at": "2026-05-26T19:43:14.033Z",
-    "last_save_at": "2026-05-27T05:35:21.987Z",
+    "last_save_at": "2026-05-27T13:45:36.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

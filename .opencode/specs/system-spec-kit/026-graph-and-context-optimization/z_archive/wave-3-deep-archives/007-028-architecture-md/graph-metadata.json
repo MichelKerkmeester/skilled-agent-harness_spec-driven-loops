@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The extracted `system-code-graph` skill has runtime and README documentation, but it lacks a dedicated `architecture.md` that mirrors the sibling `system-spec-kit` architecture pattern. Operators need one cited source that explains the standalone `mk-code-index` MCP boundary, the observed ten-tool surface, structural parsing, SQLite storage, readiness guards, CocoIndex bridge tools, and spec-kit integration points.",
     "created_at": "2026-05-14T17:43:18Z",
-    "last_save_at": "2026-05-26T16:51:06.359Z",
+    "last_save_at": "2026-05-27T13:45:36.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

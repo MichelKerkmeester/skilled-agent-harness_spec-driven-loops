@@ -4,51 +4,218 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/001-import-upstream",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "phase-parent-scaffold",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering",
-      "system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients",
-      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "027 phase 001",
       "cocoindex import-upstream",
-      "001-import-upstream"
+      "001-import-upstream",
+      "cocoindex complete fork adr",
+      "027 phase 001 decision",
+      "cocoindex complete fork research",
+      "cocoindex-code v0.2.33 research",
+      "mcp-coco-index upstream delta",
+      "027 phase 001 resource map",
+      "cocoindex complete fork resource map"
     ],
     "key_topics": [
+      "027",
+      "phase",
+      "001",
       "cocoindex",
-      "complete fork",
-      "import-upstream"
+      "import-upstream",
+      "001-import-upstream",
+      "complete",
+      "fork",
+      "adr",
+      "decision",
+      "research",
+      "cocoindex-code"
     ],
     "importance_tier": "important",
-    "status": "draft",
-    "completion_pct": 0,
+    "status": "in_progress",
     "key_files": [
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md",
+      "resource-map.md",
+      "specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/README.md",
+      "specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+      "specs/system-spec-kit/027-xce-research-based-refinement/description.json",
+      "specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json",
+      "specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/spec.md",
+      "specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/pyproject.toml",
+      "research.md"
     ],
-    "entities": [],
-    "causal_summary": "Bootstrap import of the downloaded upstream cocoindex-code v0.2.33 snapshot into the local mcp-coco-index fork root with an import manifest.",
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/system-spec-kit/027-xce-research-based-refinement/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "pyproject.toml",
+        "kind": "file",
+        "path": "specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/pyproject.toml",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Import Upstream Snapshot",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Bootstrap",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Topical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Dependency",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This child establishes the fixed upstream baseline for the complete fork. It owns the mechanical import boundary and manifest so later children can adapt scripts, tests, docs, attribution, and smoke validation without re-deciding what upstream source they are targeting.",
     "created_at": "2026-05-12T07:20:00Z",
-    "last_save_at": "2026-05-12T07:20:00Z",
-    "save_lineage": "phase-parent-scaffold",
+    "last_save_at": "2026-05-27T13:45:36.952Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T07:20:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
-    ],
-    "last_active_child_id": null
+      "decision-record.md",
+      "implementation-summary.md",
+      "research.md",
+      "resource-map.md"
+    ]
   }
 }

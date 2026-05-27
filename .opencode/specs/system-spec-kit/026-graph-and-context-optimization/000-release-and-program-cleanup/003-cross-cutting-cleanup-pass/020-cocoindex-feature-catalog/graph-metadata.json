@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `mcp-coco-index` skill had a broad runtime and documentation surface but no `feature_catalog/` inventory. Operators had to read `SKILL.md`, references, scripts, tests and vendored source separately to understand what currently ships.",
     "created_at": "2026-05-18T08:15:53.138Z",
-    "last_save_at": "2026-05-26T16:51:05.333Z",
+    "last_save_at": "2026-05-27T13:45:35.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

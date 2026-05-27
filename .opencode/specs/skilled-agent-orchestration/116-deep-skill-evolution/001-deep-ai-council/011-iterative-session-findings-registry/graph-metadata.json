@@ -8,9 +8,7 @@
   "migration_source": "legacy",
   "manual": {
     "depends_on": [],
-    "supersedes": [
-      "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry"
-    ],
+    "supersedes": [],
     "related_to": []
   },
   "derived": {
@@ -42,12 +40,6 @@
       ".opencode/commands/deep/ask-ai-council.md",
       ".opencode/skills/deep-ai-council/scripts/tests/orchestrate-session.vitest.ts",
       ".opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/plan.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/tasks.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/checklist.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/decision-record.md",
-      ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/implementation-summary.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -82,7 +74,7 @@
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/decision-record.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -104,33 +96,33 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/checklist.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/011-iterative-session-findings-registry/implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -202,7 +194,7 @@
     ],
     "causal_summary": "This placeholder phase consumes ADR-002 and ADR-005 from 129/001 and will be filled by the Wave 6 implementation agent. The scope is intentionally narrow so the architecture decisions are implemented in order.",
     "created_at": "2026-05-23T09:30:00Z",
-    "last_save_at": "2026-05-24T05:40:25.244Z",
+    "last_save_at": "2026-05-27T13:45:34.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 016 bake-offs (text + code) produced authoritative benchmark records in spec packets (`016/002/004-spec-memory-embedder-bake-off/` and `016/004/004-extended-bake-off/`). Both packets have detailed `benchmark-results.md` headline docs plus full `evidence/` directories with CSVs, JSONLs, runlogs, and ADR trails.",
     "created_at": "2026-05-18T17:04:31.398Z",
-    "last_save_at": "2026-05-26T16:51:05.940Z",
+    "last_save_at": "2026-05-27T13:45:36.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
