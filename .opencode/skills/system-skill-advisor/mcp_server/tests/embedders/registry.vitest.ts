@@ -1,10 +1,10 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Embedder registry tests
 // ───────────────────────────────────────────────────────────────
-// Phase 003/006 of the 016 umbrella aligned skill-advisor to the shared
+// The umbrella aligned skill-advisor to the shared
 // canonical registry. The previous skill-advisor-specific entries
 // `embeddinggemma-300m` and `jina-embeddings-v2-base-code` were removed
-// (phase 007 purge parity + text-only TS registry per content-type split).
+// (purge parity + text-only TS registry per content-type split).
 // The previous `DEFAULT_EMBEDDER_NAME` constant was removed because the
 // active default is now the `'auto'` sentinel that triggers the cascade.
 // ───────────────────────────────────────────────────────────────

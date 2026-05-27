@@ -79,9 +79,9 @@ describe('advisor 197-prompt corpus regression-protection parity', () => {
 
     try {
       const rows = loadCorpus();
-      // Packet 026/040 removed 3 mcp-clickup-related rows from the labeled corpus
+      // Removed 3 mcp-clickup-related rows from the labeled corpus
       // (rr-iter2-056, rr-iter3-181, plus one peer): 200 -> 197.
-      // Packet 067/003 removed 4 mcp-figma-related rows when the mcp-figma skill
+      // Removed 4 mcp-figma-related rows when the mcp-figma skill
       // was retired in favor of the AI_Systems Figma MCP Agent: 197 -> 193.
       expect(rows).toHaveLength(193);
       const pythonTopSkills = directPythonTopSkills(rows);

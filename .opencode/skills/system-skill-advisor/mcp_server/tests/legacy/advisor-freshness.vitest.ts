@@ -123,7 +123,7 @@ afterEach(() => {
 });
 
 describe('getAdvisorFreshness', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AS1 returns live state when all sources are present and fresh', () => {
     const workspaceRoot = createLiveWorkspace();
     workspaces.push(workspaceRoot);
@@ -140,7 +140,7 @@ describe('getAdvisorFreshness', () => {
     });
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AS2 returns stale when SKILL.md is newer than skill-graph.sqlite', () => {
     const workspaceRoot = createLiveWorkspace();
     workspaces.push(workspaceRoot);
@@ -153,7 +153,7 @@ describe('getAdvisorFreshness', () => {
     expect(result.diagnostics?.reason).toBe('SOURCE_NEWER_THAN_SKILL_GRAPH');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AS3 returns absent when skill-graph.sqlite is missing and no JSON fallback exists', () => {
     const workspaceRoot = createWorkspace();
     workspaces.push(workspaceRoot);
@@ -167,7 +167,7 @@ describe('getAdvisorFreshness', () => {
     expect(result.diagnostics?.reason).toBe('SKILL_GRAPH_SQLITE_MISSING');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AS4 returns unavailable when the source probe fails', () => {
     const workspaceRoot = createWorkspace();
     workspaces.push(workspaceRoot);
@@ -182,7 +182,7 @@ describe('getAdvisorFreshness', () => {
     expect(result.diagnostics?.errorMessage).toContain('directory');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AS5 suppresses deleted skills instead of reusing stale fingerprints', () => {
     const workspaceRoot = createLiveWorkspace();
     workspaces.push(workspaceRoot);
@@ -198,7 +198,7 @@ describe('getAdvisorFreshness', () => {
     expect(second.skillFingerprints.has('beta')).toBe(false);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AS6 treats JSON fallback as stale and never live', () => {
     const workspaceRoot = createWorkspace();
     workspaces.push(workspaceRoot);
@@ -213,7 +213,7 @@ describe('getAdvisorFreshness', () => {
     expect(result.diagnostics?.reason).toBe('JSON_FALLBACK_ONLY');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AS7 advances generation after a rebuild signal', () => {
     const workspaceRoot = createLiveWorkspace();
     workspaces.push(workspaceRoot);
@@ -228,7 +228,7 @@ describe('getAdvisorFreshness', () => {
     expect(second.state).toBe('live');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AS8 returns a cache hit within the 15-minute TTL and invalidates on signature change', () => {
     const workspaceRoot = createLiveWorkspace();
     workspaces.push(workspaceRoot);
@@ -246,7 +246,7 @@ describe('getAdvisorFreshness', () => {
     expect(third.state).toBe('stale');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('changes source signature for same-size same-mtime source rewrites', () => {
     const workspaceRoot = createLiveWorkspace();
     workspaces.push(workspaceRoot);

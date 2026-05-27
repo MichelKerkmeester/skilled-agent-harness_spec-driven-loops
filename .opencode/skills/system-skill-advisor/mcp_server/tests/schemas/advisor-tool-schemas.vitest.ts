@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Advisor Tool Schemas Tests
 // ───────────────────────────────────────────────────────────────
-// F-005-A5-01: Bound workspaceRoot validation against the allowlist
+// Bound workspaceRoot validation against the allowlist
 // (repo root + os.tmpdir() + explicit env extras).
 
 import { describe, expect, it } from 'vitest';

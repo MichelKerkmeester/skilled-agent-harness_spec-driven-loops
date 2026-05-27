@@ -1,13 +1,13 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Daemon Watcher Resource-Leak / Silent-Error Tests (049/005)
+// MODULE: Daemon Watcher Resource-Leak / Silent-Error Tests
 // ───────────────────────────────────────────────────────────────
 //
-// Covers findings closed by sub-phase 049/005:
-//   - F-003-A3-01: refreshTargets() unwatches removed paths and prunes caches.
-//   - F-003-A3-02: diagnostics ring buffer caps at 100 entries; aggregate
+// Covers findings closed by:
+//  - RefreshTargets() unwatches removed paths and prunes caches.
+//  - Diagnostics ring buffer caps at 100 entries; aggregate
 //     counters survive rotation and are exposed via the COUNTERS: synthetic
 //     line at the head of status().diagnostics.
-//   - F-004-A4-04: malformed graph-metadata.json records a
+//  - Malformed graph-metadata.json records a
 //     MALFORMED_GRAPH_METADATA diagnostic with the underlying reason instead
 //     of silently dropping derived key-file watch targets.
 
@@ -138,7 +138,7 @@ afterEach(() => {
 });
 
 describe('F-003-A3-01: refreshTargets unwatches removed paths and prunes caches', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('calls watcher.unwatch() for paths that disappear between scans', async () => {
     const root = workspace('skill-graph-unwatch');
     writeSkill(root, 'alpha');
@@ -256,7 +256,7 @@ describe('F-003-A3-02: diagnostics ring buffer caps at 100 entries with aggregat
 });
 
 describe('F-004-A4-04: malformed graph-metadata.json records diagnostic instead of silently dropping targets', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('records MALFORMED_GRAPH_METADATA diagnostic when JSON.parse fails', async () => {
     const root = workspace('skill-graph-malformed-json');
     writeSkill(root, 'alpha', { malformedMetadata: 'invalid-json' });
@@ -280,7 +280,7 @@ describe('F-004-A4-04: malformed graph-metadata.json records diagnostic instead 
     await watcher.close();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('records a diagnostic when derived is the wrong shape', async () => {
     const root = workspace('skill-graph-derived-string');
     writeSkill(root, 'alpha', { malformedMetadata: 'derived-string' });
@@ -301,7 +301,7 @@ describe('F-004-A4-04: malformed graph-metadata.json records diagnostic instead 
     await watcher.close();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('discoverWatchTargets stays backward-compatible without the callback', () => {
     const root = workspace('skill-graph-discover-bc');
     writeSkill(root, 'alpha', { malformedMetadata: 'invalid-json' });

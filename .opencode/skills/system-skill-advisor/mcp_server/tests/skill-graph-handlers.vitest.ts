@@ -85,7 +85,7 @@ describe('skill graph handlers', () => {
     }
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('preserves the live graph when a custom scan root contains no skills', async () => {
     const root = mkdtempSync(join(tmpdir(), 'skill-graph-handlers-'));
     const workspace = join(root, 'workspace');

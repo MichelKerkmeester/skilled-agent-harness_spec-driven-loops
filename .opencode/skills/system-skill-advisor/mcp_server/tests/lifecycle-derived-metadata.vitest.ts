@@ -137,7 +137,7 @@ afterEach(() => {
 });
 
 describe('027/002 derived metadata acceptance', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AC-1 and B1 extract deterministic derived metadata from every approved source category', () => {
     const root = workspace('derived-extract');
     const dir = writeSkillFixture(root);
@@ -157,13 +157,13 @@ describe('027/002 derived metadata acceptance', () => {
     // sourceDocs / keyFiles arrays (preserving stickiness) but NOT into the
     // intermediate buckets — feeding them back into buckets would generate
     // path-derived ngrams in trigger_phrases on every resync (sa-011 fix in
-    // packet 045).
+    //
     expect(first.sourceDocs).toContain('references/guide.md');
     expect(first.keyFiles.join(' ')).toContain('key-file.md');
     expect(first.keyFiles).toContain('.opencode/skills/alpha/docs/key-file.md');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AC-1 refreshes provenance when a B1 input changes and targets only that skill', async () => {
     const root = workspace('derived-watcher');
     const dir = writeSkillFixture(root);
@@ -216,7 +216,7 @@ describe('027/002 derived metadata acceptance', () => {
     expect(betaAfter).toBe(betaBefore);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('drops absolute, escaping, and symlinked-out derived key files from extraction and provenance', () => {
     const root = workspace('derived-key-containment');
     const outsideRoot = workspace('derived-key-outside');
@@ -247,7 +247,7 @@ describe('027/002 derived metadata acceptance', () => {
     expect(first.keyFiles).not.toContain(outsideSecret);
     expect(first.keyFiles).not.toContain(relative(root, outsideSecret));
     expect(first.keyFiles).not.toContain('.opencode/skills/alpha/docs/outside-link.md');
-    // After packet 045, prior key_files no longer flow into buckets — escape
+    // Prior key_files no longer flow into buckets — escape
     // protection is enforced by `workspaceKeyFiles` filtering at the entry
     // point and by `addDep` deduplication in extract.ts. The provenance
     // invariant on the next line is the authoritative escape check.

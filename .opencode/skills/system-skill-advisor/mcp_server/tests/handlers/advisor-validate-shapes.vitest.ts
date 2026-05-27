@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Advisor Validate Shape Schema Tests
 // ───────────────────────────────────────────────────────────────
-// F-005-A5-02 / F-005-A5-03: assert the runtime shapes for corpus rows,
+// Assert the runtime shapes for corpus rows,
 // regression rows, and Python parity stdout reject malformed inputs.
 
 import { describe, expect, it } from 'vitest';

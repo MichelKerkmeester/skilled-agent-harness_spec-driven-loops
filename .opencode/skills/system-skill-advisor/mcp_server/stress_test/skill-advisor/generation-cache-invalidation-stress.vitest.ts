@@ -88,7 +88,7 @@ describe('sa-007 — Generation cache invalidation', () => {
   });
 });
 
-// F-001-A1-03: token-checked generation lock release.
+// Token-checked generation lock release.
 //
 // Pre-fix bug: `acquireGenerationLock()` stored only `pid:timestamp`, the
 // release closure unconditionally removed the lock file, AND the stale path

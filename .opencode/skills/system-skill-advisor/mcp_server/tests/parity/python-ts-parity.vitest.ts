@@ -99,7 +99,7 @@ function stratifiedHoldout(rows: readonly CorpusRow[], target = 40): CorpusRow[]
 }
 
 describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('preserves all Python-correct corpus decisions while improving accuracy', () => {
     const rows = loadCorpus();
     const python = runPython(rows.map((row) => row.prompt));
@@ -172,7 +172,7 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     expect(tsCorrect).toBeGreaterThanOrEqual(95);
     expect(tsUnknown).toBeLessThanOrEqual(13);
     expect(goldNoneFalseFire).toBeLessThanOrEqual(10);
-    // Packet 067/003: 28 → 27 after the labeled corpus shrank 197 → 193 (4 mcp-figma
+    // 28 → 27 after the labeled corpus shrank 197 → 193 (4 mcp-figma
     // rows removed). The stratified holdout's 40-row sample shifted strata; net accuracy
     // dropped by 1 row. Threshold lowered to track the new baseline.
     expect(holdoutCorrect).toBeGreaterThanOrEqual(17);

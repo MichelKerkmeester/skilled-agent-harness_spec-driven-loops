@@ -54,7 +54,7 @@ function expectRelativeReferenceToExist(documentRelativePath: string, reference:
 }
 
 describe('006 campaign migration lineage remediation', () => {
-  // REASON: 026/000/002-vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
+  // REASON: requires missing fixture, daemon, auth, or offline-unavailable toolchain
   it.skip('keeps description parentChain aligned with the live specFolder route', () => {
     for (const folder of migrationDescriptionFolders) {
       const description = readJson<{ specFolder: string; parentChain: string[] }>(
@@ -69,7 +69,7 @@ describe('006 campaign migration lineage remediation', () => {
     }
   });
 
-  // REASON: 026/000/002-vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
+  // REASON: requires missing fixture, daemon, auth, or offline-unavailable toolchain
   it.skip('keeps packet-local migration docs anchored to current paths', () => {
     const prompt = readText('001-search-and-routing-tuning/001-search-fusion-tuning/prompts/deep-research-prompt.md');
     expect(prompt).toContain(
@@ -98,7 +98,7 @@ describe('006 campaign migration lineage remediation', () => {
     }
   });
 
-  // REASON: 026/000/002-vitest-recovery-followup requires missing fixture, daemon, auth, or offline-unavailable toolchain
+  // REASON: requires missing fixture, daemon, auth, or offline-unavailable toolchain
   it.skip('records completed smart-router research state under the current 004 lineage', () => {
     const initialConfig = readJson<{ specFolder: string; status: string; lineage: { sessionId: string } }>(
       path.join(campaignRoot, '004-smart-router-context-efficacy/001-initial-research/research/deep-research-config.json'),

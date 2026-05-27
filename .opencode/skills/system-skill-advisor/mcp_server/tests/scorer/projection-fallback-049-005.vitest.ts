@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Advisor Projection SQLite-Fallback Test (049/005, F-004-A4-01)
+// MODULE: Advisor Projection SQLite-Fallback Test
 // ───────────────────────────────────────────────────────────────
 //
 // Asserts that loadAdvisorProjection() distinguishes three cases:
@@ -69,7 +69,7 @@ describe('F-004-A4-01: loadAdvisorProjection surfaces SQLite failures explicitly
     expect(projection.fallbackReason).toBeUndefined();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('returns source=filesystem-fallback with a reason when the SQLite DB is corrupt', () => {
     const root = workspace('advisor-projection-corrupt-db');
     // Write a corrupt sqlite file at the path that loadSqliteProjection looks

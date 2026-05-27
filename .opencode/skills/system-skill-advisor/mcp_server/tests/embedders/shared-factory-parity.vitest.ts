@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Shared-factory parity tests (REQ-006, phase 003/006)
+// MODULE: Shared-factory parity tests
 // ───────────────────────────────────────────────────────────────
 // Proves the canonical embedder factory surface is identical when
 // resolved through skill-advisor's local re-export shim and through the

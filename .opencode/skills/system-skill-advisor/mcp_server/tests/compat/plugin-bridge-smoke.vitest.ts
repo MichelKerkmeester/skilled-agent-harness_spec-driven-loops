@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Plugin Bridge Smoke Tests
 // ───────────────────────────────────────────────────────────────
-// F-020-D5-04: one subprocess smoke test for the MJS plugin bridge at
+// One subprocess smoke test for the MJS plugin bridge at
 // mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs. Asserts the
 // process contract that the OpenCode plugin relies on:
 //   - File exists on disk at the expected path

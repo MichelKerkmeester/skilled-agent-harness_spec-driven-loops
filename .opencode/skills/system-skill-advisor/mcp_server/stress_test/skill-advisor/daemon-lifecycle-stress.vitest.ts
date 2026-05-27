@@ -114,7 +114,7 @@ describe('sa-003 — Daemon lifecycle restarts', () => {
   });
 });
 
-// F-001-A1-01: watcher flush serialization (mutex / drain).
+// Watcher flush serialization (mutex / drain).
 //
 // Pre-fix bug: enqueue() scheduled flushPending() with no in-flight guard, and
 // flushPending() cleared `pending` BEFORE awaiting processSkill(). A second

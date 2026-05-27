@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: refreshSkillEmbeddings round-trip test (010/004)
+// MODULE: refreshSkillEmbeddings round-trip test
 // ───────────────────────────────────────────────────────────────
 //
 // Verifies that refreshSkillEmbeddings dispatches correctly on
@@ -7,8 +7,7 @@
 //   - pointer SET  → uses EmbedderAdapter layer + writes vec_<dim>
 //   - pointer UNSET → uses legacy createEmbeddingsProvider + writes skill_nodes
 //
-// 010/004 closes the writer cross-wire gap surfaced by 010/002 +
-// E deep-review P1-1.
+// Closes the writer cross-wire gap surfaced by deep-review.
 //
 // SCOPE: refresh + loadSkillEmbeddings round-trip; not a full
 // rebuild integration test.

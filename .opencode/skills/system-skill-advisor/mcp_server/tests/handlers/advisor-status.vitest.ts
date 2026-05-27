@@ -44,7 +44,7 @@ function writeDb(root: string): void {
 }
 
 describe('advisor_status handler', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('reports live freshness', () => {
     const root = workspace('live');
     writeDb(root);
@@ -61,7 +61,7 @@ describe('advisor_status handler', () => {
     expect(status.laneWeights.explicit_author).toBe(0.42);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('keeps signed generations live when source mtimes exceed skipped SQLite writes', () => {
     const root = workspace('signed-live');
     writeDb(root);
@@ -84,7 +84,7 @@ describe('advisor_status handler', () => {
     expect(status.trustState.state).toBe('live');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('marks live generations stale when nested graph metadata is newer than the database', () => {
     const root = workspace('nested-mtime');
     writeDb(root);
@@ -100,7 +100,7 @@ describe('advisor_status handler', () => {
     expect(status.trustState.lastLiveAt).toBe('2026-04-20T00:00:00.000Z');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('reports stale freshness', () => {
     const root = workspace('stale');
     writeDb(root);
@@ -121,7 +121,7 @@ describe('advisor_status handler', () => {
     expect(status.freshness).toBe('absent');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('reports unavailable for corrupt generation metadata', () => {
     const root = workspace('unavailable');
     writeFileSync(join(root, '.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json'), '{', 'utf8');
@@ -143,7 +143,7 @@ describe('advisor_status handler', () => {
     expect(raw).not.toContain('secret@example.com');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('caps metadata scanning when requested to avoid unbounded status walks', () => {
     const root = workspace('scan-cap');
     writeDb(root);

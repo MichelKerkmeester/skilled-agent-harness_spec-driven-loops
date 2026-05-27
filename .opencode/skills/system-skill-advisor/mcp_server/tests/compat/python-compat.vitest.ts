@@ -16,7 +16,7 @@ const pythonCompatPath = resolve(
 );
 
 describe('python compatibility suite', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('runs the Python skill-advisor compatibility tests from vitest', () => {
     const result = spawnSync('python3', [pythonCompatPath], {
       cwd: repoRoot,

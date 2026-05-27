@@ -230,7 +230,7 @@ describe('Codex UserPromptSubmit advisor hook', () => {
     expect(parseCodexUserPromptSubmitInput('{"prompt":"hello"}')).toEqual({ prompt: 'hello' });
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('execs the compiled Codex hook and emits non-empty additionalContext', () => {
     const workspaceRoot = resolve(import.meta.dirname, '../../../../../..');
     const hookPath = join(

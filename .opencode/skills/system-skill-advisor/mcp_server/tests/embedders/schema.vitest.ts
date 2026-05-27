@@ -32,7 +32,7 @@ describe('skill-advisor embedder schema', () => {
   it('round-trips the active embedder pointer', () => {
     const database = memoryDb();
 
-    // Phase 003/006: default is the 'auto' sentinel until the cascade runs.
+    // Default is the 'auto' sentinel until the cascade runs.
     expect(getActiveEmbedder(database)).toEqual({
       name: 'auto',
       dim: 0,

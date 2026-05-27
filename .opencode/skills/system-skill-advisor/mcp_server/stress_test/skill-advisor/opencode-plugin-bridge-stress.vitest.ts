@@ -5,7 +5,7 @@
 import { EventEmitter } from 'node:events';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-// F-015-C5-04: snapshot/restore env mutations so test failures do not leak
+// Snapshot/restore env mutations so test failures do not leak
 // SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED across tests.
 import { snapshotEnv } from '../../lib/test-helpers/env-snapshot.js';
 
@@ -70,11 +70,11 @@ function bridgePayload(index: number): Record<string, unknown> {
 }
 
 describe('sa-034 — OpenCode plugin bridge', () => {
-  // F-015-C5-04: env keys mutated by these tests; snapshot before each, restore after.
+  // Env keys mutated by these tests; snapshot before each, restore after.
   let restoreEnv: (() => void) | null = null;
 
   beforeEach(() => {
-    // F-015-C5-04: snapshot env keys before any test mutation so afterEach restores
+    // Snapshot env keys before any test mutation so afterEach restores
     // the original values (or unsets keys that were undefined) even on test failure.
     restoreEnv = snapshotEnv([
       'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED',
@@ -88,7 +88,7 @@ describe('sa-034 — OpenCode plugin bridge', () => {
   });
 
   afterEach(() => {
-    // F-015-C5-04: restore env keys snapshotted in beforeEach (runs even on failure)
+    // Restore env keys snapshotted in beforeEach (runs even on failure)
     if (restoreEnv) {
       restoreEnv();
       restoreEnv = null;

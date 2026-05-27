@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: ensureActiveEmbedder tests (phase 003/006)
+// MODULE: ensureActiveEmbedder tests
 // ───────────────────────────────────────────────────────────────
 // Covers the cascade integration helper that flips the persisted active
 // pointer from the `'auto'` sentinel to a concrete embedder via the shared

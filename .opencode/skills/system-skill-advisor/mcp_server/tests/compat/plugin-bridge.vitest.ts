@@ -126,7 +126,7 @@ describe('mk-skill-advisor plugin bridge compat path', () => {
     expect(contract.defaults.uncertaintyThreshold).toBe(0.35);
     expect(source).toContain('const DEFAULT_CONFIDENCE_THRESHOLD = COMPAT_CONTRACT.defaults.confidenceThreshold;');
     expect(source).toContain('const DEFAULT_UNCERTAINTY_THRESHOLD = COMPAT_CONTRACT.defaults.uncertaintyThreshold;');
-    // F-006-B1-03: The dead `renderNativeBrief()` was removed; bridge output now
+    // The dead `renderNativeBrief()` was removed; bridge output now
     // flows exclusively through `renderAdvisorBrief()` loaded via
     // `loadNativeAdvisorModules()`. The original literal-zero regression guard
     // (against `${formatScore(top.confidence)}/0.00 pass.`) is preserved here
@@ -136,7 +136,7 @@ describe('mk-skill-advisor plugin bridge compat path', () => {
     expect(parsed.brief).toContain('0.86/0.23 pass.');
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('fails open when the forced-local Python bridge script is unavailable', async () => {
     const bridge = await loadBridge();
     const parsed = await bridge.buildBrief(
@@ -154,7 +154,7 @@ describe('mk-skill-advisor plugin bridge compat path', () => {
   });
 
   it('returns a prompt-safe silent fail-open for the shared disabled flag', async () => {
-    // F-006-B1-02: Disabled mode now silently fails open (brief is null), aligning
+    // Disabled mode now silently fails open (brief is null), aligning
     // OpenCode with every other runtime (Codex, Claude, Copilot, Gemini). Callers
     // still detect the disabled state via metadata.route === 'disabled'. Privacy
     // guard preserved: prompt content must not leak to stdout.

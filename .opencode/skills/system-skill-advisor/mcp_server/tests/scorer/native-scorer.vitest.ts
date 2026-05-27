@@ -56,7 +56,7 @@ describe('027/003 native scorer units', () => {
   });
 
   it('AC-3 marks top-2-within-0.05 recommendations ambiguous', () => {
-    // F-012-C2-04: Ambiguity now compares ranking `score`, not `confidence`.
+    // Ambiguity now compares ranking `score`, not `confidence`.
     // The fixture sets distinct scores within margin (0.50 vs 0.48 = 0.02 diff)
     // to exercise the new comparison surface.
     const base = {
@@ -78,7 +78,7 @@ describe('027/003 native scorer units', () => {
   });
 
   it('does not mark top-two recommendations ambiguous when both score and confidence are outside the margins', () => {
-    // F-012-C2-04 + Packet 084: dual-margin OR. To assert "not ambiguous" the
+    // Dual-margin OR. To assert "not ambiguous" the
     // fixture must place BOTH gaps outside their respective 0.05 margins.
     // Score gap 0.10 (0.50 vs 0.40) and confidence gap 0.10 (0.85 vs 0.75)
     // both exceed margin, so the dual-margin predicate returns false.
@@ -344,7 +344,7 @@ describe('027/003 native scorer units', () => {
     expect(top3.some((recommendation) => ['sk-deep-review', 'deep-agent-improvement'].includes(recommendation.skill))).toBe(false);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('065/004 canonicalizes command ids and skill ids through narrow alias groups', () => {
     expect(SKILL_ALIAS_GROUPS['deep-review']).toEqual(expect.arrayContaining([
       'spec_kit:deep-review',
@@ -389,7 +389,7 @@ describe('027/003 native scorer units', () => {
   });
 
   it('routes natural council deliberation prompts to deep-ai-council despite compare wording', () => {
-    // Skill id was renamed sk-ai-council → deep-ai-council in 115/002 (commit
+    // Skill id was renamed sk-ai-council → deep-ai-council in commit
     // 44d0c170...). fusion.ts:expectsExplicitAuthor checks the canonical name;
     // the test fixture follows.
     const projection = createFixtureProjection([
@@ -412,9 +412,9 @@ describe('027/003 native scorer units', () => {
     expect(result.recommendations[0].confidence).toBeGreaterThanOrEqual(0.8);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('projects derived triggers and keywords from distinct sources via filesystem fallback', () => {
-    // F-012-C2-02: derivedTriggers come from `derived.trigger_phrases` and
+    // DerivedTriggers come from `derived.trigger_phrases` and
     // derivedKeywords come from `derived.key_topics + entities + key_files +
     // source_docs`. Previously both fields aliased the union of all five
     // sources; now they are distinct.
@@ -445,7 +445,7 @@ describe('027/003 native scorer units', () => {
     }
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('falls back to filesystem projection when the SQLite graph is corrupt', () => {
     const root = mkdtempSync(join(tmpdir(), 'advisor-projection-corrupt-'));
     try {
@@ -467,7 +467,7 @@ describe('027/003 native scorer units', () => {
       const projection = loadAdvisorProjection(root);
       const alpha = projection.skills.find((entry) => entry.id === 'alpha');
 
-      // F-004-A4-01 (049/005): a corrupt SQLite DB now degrades to
+      // A corrupt SQLite DB now degrades to
       // 'filesystem-fallback' (not 'filesystem'), and fallbackReason carries
       // the underlying error message so operators can distinguish a clean
       // first-run filesystem read from a degraded one.

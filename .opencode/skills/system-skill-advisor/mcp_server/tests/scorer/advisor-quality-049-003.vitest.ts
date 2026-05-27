@@ -1,11 +1,11 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Advisor Quality 049-003 Remediation Tests
 // ───────────────────────────────────────────────────────────────
-// Covers F-012-C2-01 (graph-causal conflict preservation),
-// F-012-C2-02 (distinct derived trigger/keyword fields),
-// F-012-C2-03 (token-stuffing dispersion guard),
-// F-012-C2-04 (ambiguity tie-cluster from ranking score),
-// F-013-C3-01 (review-plus-write disambiguation rule).
+// Covers graph-causal conflict preservation,
+// distinct derived trigger/keyword fields,
+// token-stuffing dispersion guard,
+// ambiguity tie-cluster from ranking score,
+// and review-plus-write disambiguation.
 
 import { describe, expect, it } from 'vitest';
 import { applyAmbiguity, isAmbiguousTopTwo } from '../../lib/scorer/ambiguity.js';
@@ -60,7 +60,7 @@ function recommendation(
 }
 
 // ───────────────────────────────────────────────────────────────
-// F-012-C2-01: Graph-causal conflict preservation
+// Graph-causal conflict preservation
 // ───────────────────────────────────────────────────────────────
 
 describe('F-012-C2-01 graph-causal conflict preservation', () => {
@@ -105,7 +105,7 @@ describe('F-012-C2-01 graph-causal conflict preservation', () => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// F-012-C2-02: Distinct derived trigger/keyword fields
+// Distinct derived trigger/keyword fields
 // ───────────────────────────────────────────────────────────────
 
 describe('F-012-C2-02 distinct derivedTriggers and derivedKeywords', () => {
@@ -150,7 +150,7 @@ describe('F-012-C2-02 distinct derivedTriggers and derivedKeywords', () => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// F-012-C2-03: Token-stuffing dispersion guard
+// Token-stuffing dispersion guard
 // ───────────────────────────────────────────────────────────────
 
 describe('F-012-C2-03 token-stuffing dispersion guard', () => {
@@ -202,12 +202,12 @@ describe('F-012-C2-03 token-stuffing dispersion guard', () => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// F-012-C2-04: Ambiguity tie-cluster from ranking score
+// Ambiguity tie-cluster from ranking score
 // ───────────────────────────────────────────────────────────────
 
 describe('F-012-C2-04 ambiguity tie-cluster computation', () => {
   it('three-way tie within margin populates ambiguousWith for all members', () => {
-    // Packet 084 (dual-margin): each member must have at least one margin (score
+    // Dual-margin: each member must have at least one margin (score
     // OR confidence) within 0.05 of the top to be in the cluster. The non-member
     // `d` needs BOTH gaps outside margin — score 0.300 (gap 0.200) and confidence
     // 0.70 (gap 0.20).
@@ -232,7 +232,7 @@ describe('F-012-C2-04 ambiguity tie-cluster computation', () => {
   });
 
   it('outside both score and confidence margins is unambiguously ranked', () => {
-    // F-012-C2-04 + Packet 084 (dual-margin): the cluster predicate is OR
+    // Dual-margin: the cluster predicate is OR
     // across score margin and confidence margin. To stay outside the cluster,
     // a fixture must place BOTH gaps outside their 0.05 margins.
     // Score gap 0.4 (0.9 vs 0.5) and confidence gap 0.15 (0.85 vs 0.70)
@@ -246,7 +246,7 @@ describe('F-012-C2-04 ambiguity tie-cluster computation', () => {
   });
 
   it('Packet 084: score outside margin but confidence within margin is ambiguous (SAD-002 case)', () => {
-    // Dual-margin OR predicate. Mirrors the live SAD-002 manual playbook
+    // Dual-margin OR predicate. Mirrors the live manual playbook
     // result before the fix: sk-code (0.798 score / 0.929 conf) vs
     // sk-prompt (0.720 score / 0.889 conf). Score gap 0.078 exceeds the
     // 0.05 score margin, but confidence gap 0.04 is within the 0.05
@@ -285,7 +285,7 @@ describe('F-012-C2-04 ambiguity tie-cluster computation', () => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// F-013-C3-01: Review-plus-write disambiguation rule
+// Review-plus-write disambiguation rule
 // ───────────────────────────────────────────────────────────────
 
 describe('F-013-C3-01 review-plus-write disambiguation', () => {

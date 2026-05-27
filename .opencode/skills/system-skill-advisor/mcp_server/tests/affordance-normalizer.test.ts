@@ -15,7 +15,7 @@ import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
 import { createFixtureProjection } from '../lib/scorer/projection.js';
 import type { SkillProjection } from '../lib/scorer/types.js';
 
-// R-007-P2-8: Shared adversarial fixture consumed by both this TS
+// Shared adversarial fixture consumed by both this TS
 // test and `python/test_skill_advisor.py`. Single source of truth
 // for the prompt-injection denylist coverage.
 interface SharedAffordanceFixture {
@@ -123,7 +123,7 @@ describe('012/004 affordance normalizer', () => {
   });
 });
 
-// R-007-P2-8: Shared adversarial fixture coverage. Each phrase
+// Shared adversarial fixture coverage. Each phrase
 // either MUST be dropped (injection) or MUST survive normalization
 // (benign). The same fixture is loaded by `python/test_skill_advisor.py`
 // so the TS and PY sanitizers must agree row-for-row.

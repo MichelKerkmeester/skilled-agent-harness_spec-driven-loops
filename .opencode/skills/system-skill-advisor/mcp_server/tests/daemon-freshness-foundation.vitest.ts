@@ -124,7 +124,7 @@ afterEach(() => {
 });
 
 describe('skill graph watcher foundation', () => {
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AC-1 reindexes a changed SKILL.md and bumps generation after the reindex commit', async () => {
     const root = workspace('skill-graph-ac1');
     writeSkill(root, 'alpha');
@@ -149,7 +149,7 @@ describe('skill graph watcher foundation', () => {
     await watcher.close();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AC-7 coalesces atomic rename unlink/add into one reindex for the final filename', async () => {
     const root = workspace('skill-graph-rename');
     writeSkill(root, 'alpha');
@@ -172,7 +172,7 @@ describe('skill graph watcher foundation', () => {
     await watcher.close();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AC-7 reindexes deletion events when a watched file disappears before debounce fires', async () => {
     const root = workspace('skill-graph-enoent');
     writeSkill(root, 'alpha');
@@ -196,7 +196,7 @@ describe('skill graph watcher foundation', () => {
     await watcher.close();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('AC-3 retries SQLITE_BUSY with bounded backoff and eventually commits', async () => {
     const root = workspace('skill-graph-busy');
     writeSkill(root, 'alpha');
@@ -225,7 +225,7 @@ describe('skill graph watcher foundation', () => {
     await watcher.close();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('quarantines malformed SKILL.md and recovers when the file becomes valid', async () => {
     const root = workspace('skill-graph-quarantine');
     const quarantineDbPath = join(root, 'quarantine.sqlite');
@@ -254,7 +254,7 @@ describe('skill graph watcher foundation', () => {
     await watcher.close();
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('adds derived.key_files as dynamic narrow watch targets', () => {
     const root = workspace('skill-graph-key-files');
     write(join(root, 'docs', 'alpha.md'), '# alpha\n');
@@ -265,7 +265,7 @@ describe('skill graph watcher foundation', () => {
     expect(targets.map((target) => target.path)).toContain(join(root, 'docs', 'alpha.md'));
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('rejects absolute, escaping, and symlinked-out derived.key_files watch targets', () => {
     const root = workspace('skill-graph-key-files-contained');
     const outsideRoot = workspace('skill-graph-key-files-outside');
@@ -292,7 +292,7 @@ describe('skill graph watcher foundation', () => {
     expect(targetPaths).not.toContain(outsideLink);
   });
 
-  // drift: 026/000/002-vitest-recovery-followup verified against shipped behavior during Unit H
+  // drift: verified against shipped behavior during Unit H
   it('opens the reindex-storm circuit breaker and coalesces the burst', async () => {
     const root = workspace('skill-graph-storm');
     writeSkill(root, 'alpha');
