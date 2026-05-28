@@ -16,8 +16,8 @@
   },
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
-    "prebuild": "npm run clean",
     "build": "tsc --build && node scripts/finalize-dist.mjs",
+    "rebuild": "npm run clean && npm run build",
     "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
     "start": "node dist/context-server.js",
     "check": "npm run lint && npx tsc --noEmit",
