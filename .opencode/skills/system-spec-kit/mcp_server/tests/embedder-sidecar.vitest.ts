@@ -20,20 +20,23 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// These mock-control vars use the SPECKIT_ prefix on purpose: the sidecar env
+// allowlist forwards only base keys + SPECKIT_/HF_/LC_ prefixes to the worker,
+// so an unprefixed name would be dropped and never reach the mock.
 function createWorkerFixture(dir: string): string {
   const workerPath = join(dir, 'mock-sidecar-worker.cjs');
   writeFileSync(workerPath, `
 const fs = require('node:fs');
 const readline = require('node:readline');
 
-const counterPath = process.env.MOCK_SIDECAR_COUNTER_PATH;
+const counterPath = process.env.SPECKIT_MOCK_SIDECAR_COUNTER_PATH;
 if (counterPath) {
   const next = fs.existsSync(counterPath) ? Number(fs.readFileSync(counterPath, 'utf8')) + 1 : 1;
   fs.writeFileSync(counterPath, String(next));
 }
 
 let skipPing = false;
-const failPingOncePath = process.env.MOCK_SIDECAR_FAIL_PING_ONCE_PATH;
+const failPingOncePath = process.env.SPECKIT_MOCK_SIDECAR_FAIL_PING_ONCE_PATH;
 if (failPingOncePath && fs.existsSync(failPingOncePath)) {
   skipPing = true;
   fs.unlinkSync(failPingOncePath);
@@ -53,7 +56,7 @@ rl.on('line', (line) => {
   if (message.type === 'shutdown') {
     process.exit(0);
   }
-  if (process.env.MOCK_SIDECAR_ERROR === '1') {
+  if (process.env.SPECKIT_MOCK_SIDECAR_ERROR === '1') {
     write({ id: message.id, type: 'error', message: 'mock embed failure' });
     return;
   }
@@ -101,7 +104,7 @@ describe('SidecarClient', () => {
       pingTimeoutMs: 500,
       env: {
         ...process.env,
-        MOCK_SIDECAR_COUNTER_PATH: counterPath,
+        SPECKIT_MOCK_SIDECAR_COUNTER_PATH: counterPath,
         ...extraEnv,
       },
     });
@@ -150,7 +153,7 @@ describe('SidecarClient', () => {
   it('respawns when the health ping times out', async () => {
     const failPingOncePath = join(tmpDir, 'fail-ping-once');
     writeFileSync(failPingOncePath, '1', 'utf8');
-    const client = createClient({ MOCK_SIDECAR_FAIL_PING_ONCE_PATH: failPingOncePath });
+    const client = createClient({ SPECKIT_MOCK_SIDECAR_FAIL_PING_ONCE_PATH: failPingOncePath });
 
     await client.embed(['abc']);
 
@@ -169,7 +172,7 @@ describe('SidecarClient', () => {
   });
 
   it('rejects embed promises when the worker returns an error response', async () => {
-    const client = createClient({ MOCK_SIDECAR_ERROR: '1' });
+    const client = createClient({ SPECKIT_MOCK_SIDECAR_ERROR: '1' });
 
     await expect(client.embed(['abc'])).rejects.toThrow('mock embed failure');
     await client.shutdown();
