@@ -40,13 +40,15 @@ describe('local LLM default model selection', () => {
     }
   });
 
-  it('T1 selects the hf-local BGE default', async () => {
+  it('T1 selects the hf-local nomic default', async () => {
     process.env.EMBEDDINGS_PROVIDER = 'hf-local';
 
     const { getStartupEmbeddingProfile } = await loadFactory();
     const profile = getStartupEmbeddingProfile();
 
-    expect(profile.model).toBe('BAAI/bge-base-en-v1.5');
+    // Local-first cascade default per ADR-014: both ollama and hf-local derive
+    // from the nomic manifest; hf-local surfaces it as the HF repo path.
+    expect(profile.model).toBe('nomic-ai/nomic-embed-text-v1.5');
     expect(profile.dim).toBe(768);
     expect(profile.dtype).toBe('q8');
   });
