@@ -1,0 +1,121 @@
+#!/usr/bin/env node
+'use strict';
+
+/**
+ * scripts/loop-host.cjs
+ *
+ * Mode-switching entry point for deep-agent-improvement. Routes between the
+ * existing `agent-improvement` scoring path and the new `model-benchmark`
+ * pipeline. This is the seam host the 002 research identified as missing
+ * (deep-agent-improvement has no loop.cjs — orchestration is journal-based).
+ *
+ * Backward-compat contract (TST-1): with `--mode=agent-improvement` OR no
+ * `--mode` flag, behavior is identical — both route to score-candidate.cjs with
+ * the same arguments, so the produced score/state output is byte-identical.
+ *
+ * Usage:
+ *   agent-improvement (default):
+ *     node loop-host.cjs [--mode=agent-improvement] --candidate=<path> [--baseline=<path>] [--output=<path>]
+ *   model-benchmark:
+ *     node loop-host.cjs --mode=model-benchmark --profile=<path-or-id> --outputs-dir=<path> \
+ *        [--output=<path>] [--state-log=<path>] [--label=<string>] [--profiles-dir=<path>]
+ *
+ * Unknown --mode values warn to stderr and fall back to agent-improvement (EC-2).
+ */
+
+const path = require('path');
+const { spawnSync } = require('child_process');
+
+const SCRIPTS_ROOT = __dirname;
+const VALID_MODES = new Set(['agent-improvement', 'model-benchmark']);
+
+function parseArgs(argv) {
+  const args = {};
+  for (const entry of argv) {
+    const match = /^--([a-z][a-z0-9-]*)(?:=(.*))?$/.exec(entry);
+    if (!match) continue;
+    const key = match[1];
+    args[key] = match[2] === undefined ? true : match[2];
+  }
+  return args;
+}
+
+function resolveMode(rawMode) {
+  if (rawMode === undefined) return 'agent-improvement';
+  if (VALID_MODES.has(rawMode)) return rawMode;
+  process.stderr.write(`loop-host: unknown mode '${rawMode}', defaulting to 'agent-improvement'\n`);
+  return 'agent-improvement';
+}
+
+/**
+ * Pure planner: map (mode, args) -> the ordered script invocations to run.
+ * Planning is separated from execution so the backward-compat identity gate
+ * (TST-1) can assert byte-identical plans for the default and explicit
+ * agent-improvement routes without spawning anything.
+ *
+ * @returns {{ ok: true, steps: Array<{script: string, args: string[]}> } | { ok: false, error: string }}
+ */
+function planInvocation(mode, args) {
+  if (mode === 'model-benchmark') {
+    if (!args.profile || !args['outputs-dir']) {
+      return { ok: false, error: 'model-benchmark: missing required --profile=<path-or-id> and --outputs-dir=<path>' };
+    }
+    // EC-5: materialize MUST run (and succeed) before run-benchmark, else scoring
+    // silently produces all-zero "missing-output" results. These scripts use
+    // space-separated args.
+    const benchArgs = ['--profile', args.profile, '--outputs-dir', args['outputs-dir']];
+    if (args.output) benchArgs.push('--output', args.output);
+    if (args['state-log']) benchArgs.push('--state-log', args['state-log']);
+    if (args.label) benchArgs.push('--label', args.label);
+    if (args['profiles-dir']) benchArgs.push('--profiles-dir', args['profiles-dir']);
+    return {
+      ok: true,
+      steps: [
+        { script: 'materialize-benchmark-fixtures.cjs', args: ['--profile', args.profile, '--outputs-dir', args['outputs-dir']] },
+        { script: 'run-benchmark.cjs', args: benchArgs },
+      ],
+    };
+  }
+  // agent-improvement (default). score-candidate.cjs uses key=value args.
+  if (!args.candidate) {
+    return { ok: false, error: 'agent-improvement: missing required --candidate=<path>' };
+  }
+  const scoreArgs = [`--candidate=${args.candidate}`];
+  if (args.baseline) scoreArgs.push(`--baseline=${args.baseline}`);
+  if (args.output) scoreArgs.push(`--output=${args.output}`);
+  return { ok: true, steps: [{ script: 'score-candidate.cjs', args: scoreArgs }] };
+}
+
+function runNode(scriptName, scriptArgs) {
+  const scriptPath = path.join(SCRIPTS_ROOT, scriptName);
+  const res = spawnSync('node', [scriptPath, ...scriptArgs], {
+    stdio: 'inherit',
+    encoding: 'utf8',
+  });
+  return res.status == null ? 1 : res.status;
+}
+
+function runPlan(plan) {
+  if (!plan.ok) {
+    process.stderr.write(`loop-host: ${plan.error}\n`);
+    return 2;
+  }
+  for (const step of plan.steps) {
+    const exit = runNode(step.script, step.args);
+    if (exit !== 0) {
+      process.stderr.write(`loop-host: ${step.script} failed (exit ${exit}); aborting remaining steps\n`);
+      return exit;
+    }
+  }
+  return 0;
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const mode = resolveMode(args.mode);
+  process.exit(runPlan(planInvocation(mode, args)));
+}
+
+if (require.main === module) main();
+
+module.exports = { parseArgs, resolveMode, planInvocation, VALID_MODES };

@@ -12,16 +12,18 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode"
     last_updated_at: "2026-05-28T16:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored build charter; 002 research verified accurate"
-    next_safe_action: "Implement the additive new dispatcher + loop-host files first"
+    recent_action: "Built dispatch-model + loop-host + TST-1 gate; vitest green 109"
+    next_safe_action: "Add mode field to score-candidate + run-benchmark records"
     blockers: []
     key_files:
       - "../002-implementation-deep-research/research/research.md"
+      - ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs"
+      - ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "build-20260528"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 70
     open_questions: []
     answered_questions: []
 ---
