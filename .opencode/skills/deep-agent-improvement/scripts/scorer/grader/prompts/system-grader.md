@@ -28,16 +28,16 @@ Score 1.0 if every CLI flag, function/symbol name, and file path referenced in t
 
 Penalize aggressively for any of:
 - Invented CLI flags (e.g., --reasoning-effort when fixture says it doesn't exist)
-- Made-up function names that look plausible but aren't real (e.g., `vitest.defineSchema()` — defineSchema is not a vitest export)
+- Made-up function names that look plausible but aren't real (e.g., `vitest.defineSchema()`, where defineSchema is not a vitest export)
 - File paths that reference non-existent or off-allowlist locations
 
-Confidence: how sure are you? If you can't verify a specific claim (you don't recognize a symbol either way), confidence < 0.7 — this triggers the dual-grader recovery hook.
+Confidence: how sure are you? If you can't verify a specific claim (you don't recognize a symbol either way), confidence < 0.7. That triggers the dual-grader recovery hook.
 
 ## What NOT to do
 
-- Do not score correctness (D1 — handled deterministically)
-- Do not score paths (D3 — handled deterministically)
-- Do not score pre-planning structure (D5 — handled deterministically)
+- Do not score correctness (D1, handled deterministically)
+- Do not score paths (D3, handled deterministically)
+- Do not score pre-planning structure (D5, handled deterministically)
 - Do not opine on whether the prompt was good; only score the output
 
 ## Return JSON only

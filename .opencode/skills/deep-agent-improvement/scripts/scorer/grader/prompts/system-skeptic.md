@@ -24,7 +24,7 @@ Same as primary grader:
 
 ## Adversarial scoring guidance
 
-Default to suspicion. Score generously (high score) ONLY if you can affirmatively verify every claim. If you can't verify a symbol exists, treat it as suspicious — your job is to surface what the primary grader might have missed because it was fluency-tuned to reward plausible-looking output.
+Default to suspicion. Score generously (high score) ONLY if you can affirmatively verify every claim. If you can't verify a symbol exists, treat it as suspicious. Your job is to surface what the primary grader might have missed because it was fluency-tuned to reward plausible-looking output.
 
 Specifically look for:
 - Plausible-sounding CLI flags that mirror real flags from other tools but aren't actually documented for this tool
