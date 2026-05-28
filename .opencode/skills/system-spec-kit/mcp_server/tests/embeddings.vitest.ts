@@ -419,3 +419,47 @@ describe('Embeddings Architecture (T513)', () => {
     });
   });
 });
+
+describe('provider-flap recovery (ollama reachability probe)', () => {
+  const NONEXISTENT_DB = path.join(__dirname, '.provider-flap-nonexistent.sqlite');
+
+  beforeEach(() => {
+    resetEnv();
+    restoreFetch();
+    sharedEmbeddings.__embeddingCircuitTestables.resetForTesting();
+    // Force resolveProvider() to the hf-local fallback: auto mode, no active-ollama DB, no keys.
+    process.env.EMBEDDINGS_PROVIDER = 'auto';
+    process.env.MEMORY_DB_PATH = NONEXISTENT_DB;
+    delete process.env.VOYAGE_API_KEY;
+    delete process.env.OPENAI_API_KEY;
+  });
+
+  afterEach(() => {
+    delete process.env.MEMORY_DB_PATH;
+    restoreFetch();
+    resetEnv();
+    sharedEmbeddings.__embeddingCircuitTestables.resetForTesting();
+  });
+
+  it('recovers to ollama when the DB-gate misses but the ollama server is reachable', async () => {
+    expect(resolveProvider().name).toBe('hf-local');
+    // URL-aware mock: /api/version satisfies the reachability probe; /api/tags satisfies
+    // OllamaProvider's model-loaded validation so the recovered provider builds cleanly.
+    globalThis.fetch = vi.fn(async (url: string | URL | Request) => {
+      const target = String(url);
+      const body = target.includes('/api/tags')
+        ? { models: [{ name: 'nomic-embed-text:v1.5' }] }
+        : { version: '0.0.0' };
+      return { ok: true, status: 200, statusText: 'OK', json: async () => body } as Response;
+    }) as typeof fetch;
+    const provider = await createEmbeddingsProvider({ warmup: false });
+    expect(provider.getMetadata().provider).toBe('ollama');
+  });
+
+  it('stays on hf-local when the ollama server is unreachable', async () => {
+    expect(resolveProvider().name).toBe('hf-local');
+    mockFetch(503, { error: 'down' });
+    const provider = await createEmbeddingsProvider({ warmup: false });
+    expect(provider.getMetadata().provider).toBe('hf-local');
+  });
+});

@@ -719,6 +719,27 @@ export function resolveProvider(): ProviderResolution {
   };
 }
 
+/**
+ * Lightweight ollama-server reachability probe. resolveProvider()'s ollama branch is a one-shot
+ * DB read (resolveActiveOllamaEmbedder) with no server probe, so a transient DB-gate miss — e.g.
+ * post-crash WAL contention, or the vec shard mid-write — silently demotes to the hf-local
+ * fallback even when ollama is healthy and reachable. createEmbeddingsProvider and getProvider use
+ * this to prefer/recover ollama in that case. Returns false on any error (treat as unreachable).
+ */
+export async function isOllamaReachable(timeoutMs = 1500): Promise<boolean> {
+  const baseUrl = (process.env.OLLAMA_BASE_URL || 'http://127.0.0.1:11434').replace(/\/+$/, '');
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(`${baseUrl}/api/version`, { signal: controller.signal });
+    return response.ok;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function createProviderInstance(
   providerName: SupportedProviderName,
   options: CreateProviderOptions,
@@ -963,15 +984,25 @@ async function createFallbackProvider(
 /** Create provider instance based on configuration */
 export async function createEmbeddingsProvider(options: CreateProviderOptions = {}): Promise<IEmbeddingProvider> {
   const resolution = resolveProvider();
+  // Auto-mode recovery: resolveProvider()'s ollama branch is a DB-only gate with no server probe,
+  // so a transient miss demotes to the hf-local fallback even when ollama is up. If that happened,
+  // probe ollama directly and prefer it (local-first per ADR-014) rather than the unhealthy fallback.
+  const effectiveResolution =
+    (options.provider === 'auto' || !options.provider)
+    && resolution.name === 'hf-local'
+    && resolution.reason === 'Local fallback provider'
+    && (await isOllamaReachable())
+      ? { name: 'ollama', reason: 'ollama reachable (auto fallback recovery)' }
+      : resolution;
   const providerName: SupportedProviderName = options.provider === 'auto' || !options.provider
-    ? (resolution.name as SupportedProviderName)
+    ? (effectiveResolution.name as SupportedProviderName)
     : toSupportedProviderName(options.provider);
   const requestedDim = resolveProviderDimension(providerName, {
     model: options.model,
     dim: options.dim,
   });
 
-  console.error(`[factory] Using provider: ${providerName} (${resolution.reason})`);
+  console.error(`[factory] Using provider: ${providerName} (${effectiveResolution.reason})`);
 
   try {
     await ensureCloudProviderValidated({

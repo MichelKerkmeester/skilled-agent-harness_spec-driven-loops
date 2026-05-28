@@ -12,6 +12,7 @@ import {
   getProviderInfo,
   getStartupEmbeddingDimension,
   getStartupEmbeddingProfile,
+  isOllamaReachable,
   validateApiKey,
   VALIDATION_TIMEOUT_MS,
 } from './embeddings/factory.js';
@@ -385,8 +386,15 @@ function shouldEagerWarmup(): boolean {
  */
 async function getProvider(): Promise<IEmbeddingProvider> {
   if (providerInstance) {
-    MODEL_NAME = getProviderModelName(providerInstance);
-    return providerInstance;
+    // Self-heal: if the cached provider went unhealthy (e.g. hf-local sidecar down) and ollama is
+    // now reachable, drop the singleton so the next build re-resolves to the healthy local provider.
+    // Gated on reachability so we don't churn-rebuild when no healthy provider is available.
+    if (!providerInstance.getMetadata().healthy && (await isOllamaReachable())) {
+      invalidateProviderSingleton();
+    } else {
+      MODEL_NAME = getProviderModelName(providerInstance);
+      return providerInstance;
+    }
   }
 
   if (providerInitPromise) {
