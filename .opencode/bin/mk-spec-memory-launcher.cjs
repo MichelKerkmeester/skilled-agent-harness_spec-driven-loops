@@ -46,13 +46,6 @@ function isStrictModeDisabled(value) {
   const v = String(value).trim().toLowerCase();
   return v === '0' || v === 'false' || v === 'no' || v === 'off' || v === '';
 }
-for (const fname of ['.env.local', '.env']) {
-  const p = path.join(root, fname);
-  if (fs.existsSync(p)) {
-    const n = loadEnvFile(p);
-    if (n > 0) process.stderr.write(`[mk-spec-memory-launcher] loaded ${n} env(s) from ${fname}\n`);
-  }
-}
 
 let skillsDir = path.join(opencodeDir, 'skills');
 let legacySkillDir = path.join(opencodeDir, 'skill');
@@ -66,10 +59,220 @@ let canonicalCodeGraphDbDir = path.join(skillsDir, 'system-code-graph', 'mcp_ser
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const now = () => new Date().toISOString();
+const SHUTDOWN_DEADLINE_MS = 5000;
+const DEFAULT_WATCHDOG_GRACE_MS = 7000;
+const DEFAULT_WATCHDOG_INTERVAL_MS = 15000;
+const DEFAULT_WATCHDOG_CONSECUTIVE_BREACHES = 3;
+// Tracking-only cadence when the RSS self-exit watchdog is NOT enabled: still sample the process
+// tree periodically so the crash-loop give-up reap (REQ-007) has a before-death descendant snapshot
+// to reap from (a forked-detached sidecar re-parents to pid 1 on hard daemon death, so a fresh walk
+// anchored on the dead childPid would find nothing).
+const DEFAULT_DESCENDANT_SNAPSHOT_INTERVAL_MS = 30000;
+const DEFAULT_CRASH_LOOP_MAX_DEATHS = 3;
+const DEFAULT_CRASH_LOOP_WINDOW_MS = 60000;
+const DEFAULT_CRASH_LOOP_INITIAL_BACKOFF_MS = 250;
+const DEFAULT_CRASH_LOOP_MAX_BACKOFF_MS = 5000;
 let childProcess = null;
+let leaseStartedAt = null;
+let launcherShutdownInProgress = false;
+let rssBreachSelfExitInProgress = false;
+let rssWatchdogTimer = null;
+let crashLoopGuard = null;
+let supervisorRelaunchTimer = null;
+// Last-known descendant pids of the daemon child (excluding the child itself), refreshed by the
+// process-tree monitor while the child is alive; the give-up reap path uses this to find an
+// orphaned sidecar after the child has already exited.
+let lastKnownDescendantPids = [];
 
 function log(message) {
   process.stderr.write(`[mk-spec-memory-launcher] ${message}\n`);
+}
+
+function loadProjectEnvFiles() {
+  for (const fname of ['.env.local', '.env']) {
+    const p = path.join(root, fname);
+    if (fs.existsSync(p)) {
+      const n = loadEnvFile(p);
+      if (n > 0) process.stderr.write(`[mk-spec-memory-launcher] loaded ${n} env(s) from ${fname}\n`);
+    }
+  }
+}
+
+function parsePositiveInteger(value, fallback) {
+  if (value === undefined || value === null || String(value).trim() === '') return fallback;
+  const parsed = Number.parseInt(String(value).trim(), 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function isPermissionError(error) {
+  const code = error && typeof error === 'object' ? error.code : undefined;
+  if (code === 'EPERM' || code === 'EACCES') return true;
+  const message = error instanceof Error ? error.message : String(error ?? '');
+  return /operation not permitted|permission denied/i.test(message);
+}
+
+function parseProcessRows(input) {
+  if (Array.isArray(input)) {
+    return input
+      .map((row) => ({
+        pid: Number(row.pid),
+        ppid: Number(row.ppid),
+        rss: Number(row.rss),
+      }))
+      .filter((row) => Number.isFinite(row.pid) && Number.isFinite(row.ppid) && Number.isFinite(row.rss));
+  }
+
+  return String(input ?? '')
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [pid, ppid, rss] = line.split(/\s+/).map((value) => Number.parseInt(value, 10));
+      return { pid, ppid, rss };
+    })
+    .filter((row) => Number.isFinite(row.pid) && Number.isFinite(row.ppid) && Number.isFinite(row.rss));
+}
+
+function defaultProcessRowsRunner() {
+  const result = spawnSync('ps', ['-eo', 'pid=,ppid=,rss='], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  if (result.error) throw result.error;
+  if (result.status !== 0) {
+    const error = new Error(result.stderr || `ps exited ${result.status}`);
+    error.code = result.status === 1 && /operation not permitted|permission denied/i.test(result.stderr || '') ? 'EPERM' : 'PS_FAILED';
+    throw error;
+  }
+  return result.stdout;
+}
+
+function resolveProcessTreeRows(childPid, runner = defaultProcessRowsRunner) {
+  if (!Number.isInteger(childPid) || childPid <= 0) return null;
+
+  let rows;
+  try {
+    rows = parseProcessRows(runner());
+  } catch (error) {
+    if (isPermissionError(error)) return null;
+    throw error;
+  }
+
+  const byPid = new Map();
+  const childrenByPpid = new Map();
+  for (const row of rows) {
+    byPid.set(row.pid, row);
+    const children = childrenByPpid.get(row.ppid) || [];
+    children.push(row);
+    childrenByPpid.set(row.ppid, children);
+  }
+  if (!byPid.has(childPid)) return null;
+
+  const subtree = [];
+  const stack = [childPid];
+  const seen = new Set();
+  while (stack.length > 0) {
+    const pid = stack.pop();
+    if (seen.has(pid)) continue;
+    seen.add(pid);
+    const row = byPid.get(pid);
+    if (row) subtree.push(row);
+    for (const child of childrenByPpid.get(pid) || []) {
+      stack.push(child.pid);
+    }
+  }
+
+  return subtree;
+}
+
+function sampleProcessTreeRssMb(childPid, runner = defaultProcessRowsRunner) {
+  const rows = resolveProcessTreeRows(childPid, runner);
+  if (!rows) return null;
+  const rssKb = rows.reduce((sum, row) => sum + Math.max(0, row.rss), 0);
+  return rssKb / 1024;
+}
+
+function normalizeWatchdogGraceMs(rawGraceMs, warn = log) {
+  const parsed = parsePositiveInteger(rawGraceMs, DEFAULT_WATCHDOG_GRACE_MS);
+  if (parsed > SHUTDOWN_DEADLINE_MS) return parsed;
+  warn(`SPECKIT_LAUNCHER_RSS_GRACE_MS=${JSON.stringify(rawGraceMs)} is <= ${SHUTDOWN_DEADLINE_MS}; using ${DEFAULT_WATCHDOG_GRACE_MS}ms`);
+  return DEFAULT_WATCHDOG_GRACE_MS;
+}
+
+function getWatchdogConfig(env = process.env, warn = log) {
+  const rawMaxRssMb = env.SPECKIT_CONTEXT_SERVER_MAX_RSS_MB;
+  const maxRssMb = rawMaxRssMb === undefined || rawMaxRssMb === null || String(rawMaxRssMb).trim() === ''
+    ? null
+    : Number.parseFloat(String(rawMaxRssMb).trim());
+  // REQ-008: host relaunch after clean launcher exit is unconfirmed, so RSS-breach self-exit is explicit opt-in only.
+  const enabled = Number.isFinite(maxRssMb) && maxRssMb > 0 && env.SPECKIT_LAUNCHER_RSS_SELF_EXIT === '1';
+  return {
+    enabled,
+    maxRssMb,
+    intervalMs: parsePositiveInteger(env.SPECKIT_LAUNCHER_RSS_WATCHDOG_INTERVAL_MS, DEFAULT_WATCHDOG_INTERVAL_MS),
+    consecutiveBreaches: parsePositiveInteger(env.SPECKIT_LAUNCHER_RSS_CONSECUTIVE_BREACHES, DEFAULT_WATCHDOG_CONSECUTIVE_BREACHES),
+    graceMs: normalizeWatchdogGraceMs(env.SPECKIT_LAUNCHER_RSS_GRACE_MS, warn),
+  };
+}
+
+function computeBackoffMs(deathsInWindow, initialBackoffMs, maxBackoffMs) {
+  const exponent = Math.max(0, deathsInWindow - 1);
+  return Math.min(maxBackoffMs, initialBackoffMs * (2 ** exponent));
+}
+
+function createCrashLoopGuard(options = {}) {
+  const maxDeaths = parsePositiveInteger(options.maxDeaths, DEFAULT_CRASH_LOOP_MAX_DEATHS);
+  const windowMs = parsePositiveInteger(options.windowMs, DEFAULT_CRASH_LOOP_WINDOW_MS);
+  const initialBackoffMs = parsePositiveInteger(options.initialBackoffMs, DEFAULT_CRASH_LOOP_INITIAL_BACKOFF_MS);
+  const maxBackoffMs = parsePositiveInteger(options.maxBackoffMs, DEFAULT_CRASH_LOOP_MAX_BACKOFF_MS);
+  const nowMs = typeof options.now === 'function' ? options.now : () => Date.now();
+  const deaths = [];
+
+  return {
+    recordDeath() {
+      const current = nowMs();
+      deaths.push(current);
+      while (deaths.length > 0 && current - deaths[0] > windowMs) deaths.shift();
+      const deathsInWindow = deaths.length;
+      return {
+        deathsInWindow,
+        giveUp: deathsInWindow >= maxDeaths,
+        backoffMs: computeBackoffMs(deathsInWindow, initialBackoffMs, maxBackoffMs),
+      };
+    },
+  };
+}
+
+function getCrashLoopConfig(env = process.env) {
+  return {
+    maxDeaths: parsePositiveInteger(env.SPECKIT_LAUNCHER_CRASH_LOOP_MAX_DEATHS, DEFAULT_CRASH_LOOP_MAX_DEATHS),
+    windowMs: parsePositiveInteger(env.SPECKIT_LAUNCHER_CRASH_LOOP_WINDOW_MS, DEFAULT_CRASH_LOOP_WINDOW_MS),
+    initialBackoffMs: parsePositiveInteger(env.SPECKIT_LAUNCHER_CRASH_LOOP_INITIAL_BACKOFF_MS, DEFAULT_CRASH_LOOP_INITIAL_BACKOFF_MS),
+    maxBackoffMs: parsePositiveInteger(env.SPECKIT_LAUNCHER_CRASH_LOOP_MAX_BACKOFF_MS, DEFAULT_CRASH_LOOP_MAX_BACKOFF_MS),
+  };
+}
+
+function superviseChildExit(event, actions) {
+  if (event.intentional) {
+    actions.clearLease();
+    actions.exit(event.code ?? 0);
+    return { action: 'intentional-exit' };
+  }
+
+  const decision = actions.crashLoopGuard.recordDeath();
+  if (decision.giveUp) {
+    actions.clearLease();
+    actions.reapProcessGroup(event.childPid);
+    if (event.signal) {
+      actions.mirrorSignal(event.signal);
+    } else {
+      actions.exit(event.code ?? 1);
+    }
+    return { action: 'give-up', deathsInWindow: decision.deathsInWindow };
+  }
+
+  actions.scheduleRelaunch(decision.backoffMs);
+  return { action: 'relaunch', deathsInWindow: decision.deathsInWindow, backoffMs: decision.backoffMs };
 }
 
 function loadBridgeModule() {
@@ -186,10 +389,26 @@ function bridgeOrReportLeaseHeld(leaseResult) {
   });
 }
 
-function writeLeaseFile() {
+// Pure lease-payload builder (exported for tests). `childPid` is an ADDITIVE field present only when
+// a real daemon child has been spawned; existing readers consume only pid/startedAt and ignore it.
+function buildLeaseObject(childPid = null, startedAt = leaseStartedAt) {
+  const payload = {
+    pid: process.pid,
+    startedAt: startedAt || new Date().toISOString(),
+    ownerPid: process.pid,
+  };
+  if (Number.isInteger(childPid) && childPid > 0) {
+    payload.childPid = childPid;
+  }
+  return payload;
+}
+
+function writeLeaseFile(childPid = null) {
   const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(leasePath())), PID_FILE_NAME);
   const tmp = currentLeasePath + '.tmp.' + process.pid;
-  fs.writeFileSync(tmp, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }, null, 2), { mode: 0o600 });
+  if (!leaseStartedAt) leaseStartedAt = new Date().toISOString();
+  const payload = buildLeaseObject(childPid, leaseStartedAt);
+  fs.writeFileSync(tmp, JSON.stringify(payload, null, 2), { mode: 0o600 });
   fs.renameSync(tmp, currentLeasePath);
 }
 
@@ -318,6 +537,139 @@ function getContextServerNodeArgs() {
   return nodeArgs;
 }
 
+function isChildRunning(child) {
+  return child && child.exitCode === null && child.signalCode === null;
+}
+
+function waitForChildExit(child, timeoutMs) {
+  if (!isChildRunning(child)) return Promise.resolve(true);
+  return new Promise((resolve) => {
+    let settled = false;
+    const finish = (exited) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      child.off('exit', onExit);
+      resolve(exited);
+    };
+    const onExit = () => finish(true);
+    const timer = setTimeout(() => finish(false), timeoutMs);
+    timer.unref?.();
+    child.once('exit', onExit);
+  });
+}
+
+function signalProcess(pid, signal) {
+  try {
+    process.kill(pid, signal);
+    return true;
+  } catch (error) {
+    if (error.code === 'ESRCH' || error.code === 'EPERM') return false;
+    throw error;
+  }
+}
+
+// Refresh the before-death descendant snapshot from a live process-tree walk. Called periodically by
+// the monitor while the child is alive. On an unknown/permission-denied read (null), the previous
+// snapshot is KEPT (a transient ps failure must not erase the only handle on an orphan-able sidecar).
+function refreshDescendantSnapshot(childPid, runner = defaultProcessRowsRunner) {
+  const rows = resolveProcessTreeRows(childPid, runner);
+  if (rows === null) return lastKnownDescendantPids;
+  lastKnownDescendantPids = rows.map((row) => row.pid).filter((pid) => pid !== childPid && pid > 1);
+  return lastKnownDescendantPids;
+}
+
+// Reap an orphaned sidecar on crash-loop give-up (REQ-007). The dominant RC-1 RSS lives in a
+// forked-detached sidecar GRANDCHILD; on hard daemon death it re-parents to pid 1, so a fresh walk
+// anchored on the (now-dead, ps-absent) childPid finds nothing. We therefore reap the UNION of any
+// still-live childPid subtree (the not-yet-reparented case) and the before-death snapshot
+// (`lastKnownDescendantPids`), filtered to currently-alive, signalable pids. The signal-0 alive gate
+// bounds (but cannot fully eliminate) pid-reuse risk; the snapshot is at most one monitor tick old.
+function reapProcessTreeGroups(childPid, options = {}) {
+  const runner = options.runner || defaultProcessRowsRunner;
+  const signal = options.signal || signalProcess;
+  const snapshotPids = Array.isArray(options.snapshotPids) ? options.snapshotPids : lastKnownDescendantPids;
+
+  const liveRows = resolveProcessTreeRows(childPid, runner);
+  const liveDescendants = liveRows ? liveRows.map((row) => row.pid).filter((pid) => pid !== childPid) : [];
+
+  const candidates = [...new Set([...liveDescendants, ...snapshotPids])].filter(
+    (pid) => Number.isInteger(pid) && pid > 1 && pid !== childPid && pid !== process.pid && signal(pid, 0),
+  );
+  if (candidates.length === 0) return;
+
+  for (const pid of candidates) {
+    if (process.platform !== 'win32') signal(-pid, 'SIGTERM');
+    signal(pid, 'SIGTERM');
+  }
+  setTimeout(() => {
+    for (const pid of candidates) {
+      if (process.platform !== 'win32') signal(-pid, 'SIGKILL');
+      signal(pid, 'SIGKILL');
+    }
+  }, 1000).unref();
+}
+
+async function recycleViaGracefulSelfExit(graceMs) {
+  if (rssBreachSelfExitInProgress) return;
+  rssBreachSelfExitInProgress = true;
+  launcherShutdownInProgress = true;
+  if (rssWatchdogTimer) clearInterval(rssWatchdogTimer);
+  if (!isChildRunning(childProcess)) {
+    clearLeaseFile();
+    process.exit(0);
+    return;
+  }
+
+  log(`RSS ceiling sustained; sending SIGTERM to context-server pid ${childProcess.pid} before launcher self-exit`);
+  childProcess.kill('SIGTERM');
+  const exitedAfterTerm = await waitForChildExit(childProcess, graceMs);
+  if (!exitedAfterTerm && isChildRunning(childProcess)) {
+    log(`context-server pid ${childProcess.pid} exceeded ${graceMs}ms grace; sending SIGKILL before launcher self-exit`);
+    childProcess.kill('SIGKILL');
+    await waitForChildExit(childProcess, 1000);
+  }
+  clearLeaseFile();
+  process.exit(0);
+}
+
+function startRssWatchdog(childPid) {
+  if (rssWatchdogTimer) {
+    clearInterval(rssWatchdogTimer);
+    rssWatchdogTimer = null;
+  }
+  const config = getWatchdogConfig(process.env, log);
+  if (!config.enabled && config.maxRssMb !== null && Number.isFinite(config.maxRssMb) && config.maxRssMb > 0) {
+    log('RSS watchdog ceiling configured but SPECKIT_LAUNCHER_RSS_SELF_EXIT=1 is not set; breach self-exit remains disabled (descendant tracking still active for crash-loop reap)');
+  }
+
+  // The monitor ALWAYS runs (slower cadence when only tracking) so the crash-loop give-up reap has a
+  // before-death descendant snapshot even when the RSS-breach self-exit is disabled (the default).
+  const tickMs = config.enabled ? config.intervalMs : DEFAULT_DESCENDANT_SNAPSHOT_INTERVAL_MS;
+  let consecutiveBreaches = 0;
+  rssWatchdogTimer = setInterval(() => {
+    const rows = resolveProcessTreeRows(childPid);
+    if (rows === null) {
+      // unknown / permission-denied / dead read: keep the prior snapshot, reset the breach streak
+      consecutiveBreaches = 0;
+      return;
+    }
+    lastKnownDescendantPids = rows.map((row) => row.pid).filter((pid) => pid !== childPid && pid > 1);
+    if (!config.enabled) return;
+    const rssMb = rows.reduce((sum, row) => sum + Math.max(0, row.rss), 0) / 1024;
+    if (rssMb <= config.maxRssMb) {
+      consecutiveBreaches = 0;
+      return;
+    }
+    consecutiveBreaches++;
+    log(`context-server process tree RSS ${rssMb.toFixed(1)} MB exceeds ${config.maxRssMb} MB (${consecutiveBreaches}/${config.consecutiveBreaches})`);
+    if (consecutiveBreaches >= config.consecutiveBreaches) {
+      void recycleViaGracefulSelfExit(config.graceMs);
+    }
+  }, tickMs);
+  rssWatchdogTimer.unref?.();
+}
+
 async function acquireBootstrapLock() {
   fs.mkdirSync(dbDir, { recursive: true });
   const deadline = Date.now() + 120000;
@@ -341,6 +693,11 @@ async function acquireBootstrapLock() {
 }
 
 function launchServer() {
+  if (!crashLoopGuard) crashLoopGuard = createCrashLoopGuard(getCrashLoopConfig());
+  if (supervisorRelaunchTimer) {
+    clearTimeout(supervisorRelaunchTimer);
+    supervisorRelaunchTimer = null;
+  }
   const server = path.join(kitDir, 'mcp_server', 'dist', 'context-server.js');
   const nodeArgs = getContextServerNodeArgs();
   childProcess = spawn(process.execPath, [...nodeArgs, server], {
@@ -348,16 +705,32 @@ function launchServer() {
     env: process.env,
     stdio: 'inherit',
   });
+  const childPid = childProcess.pid;
+  writeLeaseFile(childPid);
+  startRssWatchdog(childPid);
 
   childProcess.on('exit', (code, signal) => {
-    if (signal) {
-      // council P1-Seat2: clear lease before signal mirror; process.on('exit') doesn't fire on SIGKILL.
-      clearLeaseFile();
-      process.kill(process.pid, signal);
+    if (launcherShutdownInProgress) {
       return;
     }
-    clearLeaseFile();
-    process.exit(code ?? 0);
+    const result = superviseChildExit(
+      { code, signal, childPid, intentional: false },
+      {
+        crashLoopGuard,
+        clearLease: clearLeaseFile,
+        reapProcessGroup: reapProcessTreeGroups,
+        mirrorSignal: (exitSignal) => process.kill(process.pid, exitSignal),
+        exit: (exitCode) => process.exit(exitCode),
+        scheduleRelaunch: (backoffMs) => {
+          log(`context-server child exited code=${code ?? 'null'} signal=${signal ?? 'null'}; relaunching in ${backoffMs}ms`);
+          supervisorRelaunchTimer = setTimeout(() => launchServer(), backoffMs);
+          supervisorRelaunchTimer.unref?.();
+        },
+      },
+    );
+    if (result.action === 'give-up') {
+      log(`context-server crash loop detected after ${result.deathsInWindow} deaths; clearing lease and mirroring child exit`);
+    }
   });
 
   childProcess.on('error', (error) => {
@@ -370,6 +743,9 @@ function installSignalHandlers() {
   for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGQUIT']) {
     process.on(signal, () => {
       if (childProcess && !childProcess.killed) {
+        launcherShutdownInProgress = true;
+        if (rssWatchdogTimer) clearInterval(rssWatchdogTimer);
+        if (supervisorRelaunchTimer) clearTimeout(supervisorRelaunchTimer);
         childProcess.once('exit', () => {
           clearLeaseFile();
           process.exit(128);
@@ -398,7 +774,8 @@ function installSignalHandlers() {
   });
 }
 
-(async () => {
+async function main() {
+  loadProjectEnvFiles();
   const started = now();
   const actions = [];
   let lockHeld = false;
@@ -468,4 +845,22 @@ function installSignalHandlers() {
       fs.rmSync(lockDir, { recursive: true, force: true });
     }
   }
-})();
+}
+
+module.exports = {
+  buildLeaseObject,
+  computeBackoffMs,
+  createCrashLoopGuard,
+  getWatchdogConfig,
+  normalizeWatchdogGraceMs,
+  parseProcessRows,
+  reapProcessTreeGroups,
+  refreshDescendantSnapshot,
+  sampleProcessTreeRssMb,
+  signalProcess,
+  superviseChildExit,
+};
+
+if (require.main === module) {
+  void main();
+}

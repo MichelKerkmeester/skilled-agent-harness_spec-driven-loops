@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog"
-    last_updated_at: "2026-05-28T21:10:00Z"
+    last_updated_at: "2026-05-28T23:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored F1′ implementation tasks (all pending — spec ready)"
-    next_safe_action: "Confirm REQ-008 host relaunch; implement T101 onward"
+    recent_action: "Implemented T002-T007 + REQ-007 reap fix; 12/12 tests; T001/T008 deferred"
+    next_safe_action: "Confirm REQ-008 host relaunch to enable self-exit default-on; run T008 live"
     blockers: []
     key_files:
       - ".opencode/bin/mk-spec-memory-launcher.cjs"
@@ -48,8 +48,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [B] Confirm host-runtime relaunch-on-exit-0 contract (REQ-008) — blocks default-on breach-self-exit
-- [ ] T002 Add additive `childPid` field to `writeLeaseFile` JSON after spawn (`mk-spec-memory-launcher.cjs`) [REQ-005]
+- [ ] T001 [B] Confirm host-runtime relaunch-on-exit-0 contract (REQ-008) — DEFERRED: unconfirmed headlessly; breach-self-exit ships default-off behind `SPECKIT_LAUNCHER_RSS_SELF_EXIT=1`
+- [x] T002 Add additive `childPid` field to `writeLeaseFile` JSON after spawn (`mk-spec-memory-launcher.cjs`) [REQ-005]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -57,9 +57,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 `sampleProcessTreeRssMb(runner?)`: roll up daemon child + sidecar grandchild RSS; injectable ps/`/proc` runner; EPERM=unknown (`mk-spec-memory-launcher.cjs`) [REQ-002/006]
-- [ ] T004 Watchdog interval (`.unref()`); N consecutive `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB` breaches → SIGTERM child (grace>5000) → SIGKILL → launcher graceful `process.exit` (`mk-spec-memory-launcher.cjs`) [REQ-001/003]
-- [ ] T005 Refactor child-exit handler into a crash-loop-guarded supervisor (window/threshold/backoff env-overridable); give-up = fail loud + sidecar process-group reap (`mk-spec-memory-launcher.cjs`) [REQ-004/007]
+- [x] T003 `sampleProcessTreeRssMb(runner?)`: roll up daemon child + sidecar grandchild RSS; injectable ps/`/proc` runner; EPERM=unknown (`mk-spec-memory-launcher.cjs`) [REQ-002/006]
+- [x] T004 Watchdog interval (`.unref()`); N consecutive `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB` breaches → SIGTERM child (grace>5000) → SIGKILL → launcher graceful `process.exit` (default-off opt-in) (`mk-spec-memory-launcher.cjs`) [REQ-001/003]
+- [x] T005 Refactor child-exit handler into a crash-loop-guarded supervisor (window/threshold/backoff env-overridable); give-up = fail loud + sidecar process-group reap via before-death descendant snapshot (REQ-007 reap-after-reparent fix) (`mk-spec-memory-launcher.cjs`) [REQ-004/007]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,9 +67,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Synthetic parent→child→grandchild RSS roll-up test (injectable ps) + EPERM-as-unknown test [REQ-002/006]
-- [ ] T007 Crash-loop give-up + single-death-recovery tests; grace>5000 assertion [REQ-003/004]
-- [ ] T008 Live: configured ceiling breach recycles before OS OOM with clean re-initialize (if REQ-008 confirmed) [SC-001]
+- [x] T006 Synthetic parent→child→grandchild RSS roll-up test (injectable ps) + EPERM-as-unknown test + orphan-reap-from-snapshot + dead-pid-guard + kill-path EPERM + lease-shape tests (12/12) [REQ-002/005/006/007]
+- [x] T007 Crash-loop give-up + single-death-recovery tests; grace>5000 assertion [REQ-003/004]
+- [ ] T008 Live: configured ceiling breach recycles before OS OOM with clean re-initialize (if REQ-008 confirmed) [SC-001] — DEFERRED: needs a live daemon
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -77,9 +77,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] REQ-008 resolved; P0 tasks (T002-T005) complete
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Tree-RSS + crash-loop tests green; child-pid lease shipped for phase 007
+- [x] P0 tasks (T002-T005) complete; REQ-008 deferred (breach-self-exit ships default-off behind opt-in as the documented mitigation)
+- [~] T001 `[B]` remains deferred (REQ-008 host-relaunch unconfirmed headlessly) — mitigated by default-off gating
+- [x] Tree-RSS + crash-loop tests green (12/12); child-pid lease shipped for phase 007
 <!-- /ANCHOR:completion -->
 
 ---

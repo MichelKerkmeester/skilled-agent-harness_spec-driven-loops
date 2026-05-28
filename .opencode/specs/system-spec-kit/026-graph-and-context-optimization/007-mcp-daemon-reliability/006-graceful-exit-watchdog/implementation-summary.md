@@ -1,17 +1,17 @@
 ---
 title: "Implementation Summary: Launcher RSS-ceiling watchdog + graceful-exit supervision (F1′)"
-description: "Implementation pending. This packet is the implementation-ready, Opus-verified spec for an RSS-ceiling watchdog with graceful-exit recovery, crash-loop-guarded supervision, and a child-pid lease."
+description: "Implemented. RSS-ceiling watchdog with graceful-exit recovery (default-off), crash-loop-guarded supervision, before-death descendant snapshot for the give-up reap, and an additive childPid lease. Headless-verified (node --check + 12/12 vitest) and twice adversarially reviewed clean."
 trigger_phrases:
-  - "launcher watchdog summary F1 pending"
+  - "launcher watchdog summary F1 implemented"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog"
-    last_updated_at: "2026-05-28T21:10:00Z"
+    last_updated_at: "2026-05-28T23:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Spec/plan/tasks authored + Opus-verified; implementation deferred to live session"
-    next_safe_action: "Confirm REQ-008 then implement T002-T005 + tests"
+    recent_action: "Implemented via cli-opencode + REQ-007 reap fix; 12/12 vitest; 2 reviews clean"
+    next_safe_action: "Confirm REQ-008 host relaunch to enable self-exit default-on; run SC-001 live"
     blockers: []
     key_files:
       - ".opencode/bin/mk-spec-memory-launcher.cjs"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000614"
       session_id: "007-006-impl-summary"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-graceful-exit-watchdog |
-| **Completed** | Pending (spec ready; implementation deferred) |
+| **Completed** | 2026-05-28 (implemented + headless-verified; RSS self-exit default-off pending REQ-008; SC-001 live deferred) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -46,17 +46,22 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This phase is specified and adversarially verified, not yet implemented. When built, it gives the launcher a memory ceiling and a recovery path: instead of growing until the OS OOM-kills it (with no restart), the daemon recycles itself cleanly before the kernel acts.
+The launcher now has a memory ceiling and a recovery path: instead of growing until the OS OOM-kills it (with no restart), the daemon recycles itself cleanly before the kernel acts; and it records the daemon child pid in the lease (the precondition for phase 007).
 
-### RSS watchdog + graceful-exit supervision (planned)
+### RSS watchdog + graceful-exit supervision (implemented)
 
-A periodic sampler will roll up the daemon's process-tree RSS — crucially including the **forked sidecar grandchild**, where the model actually lives under the default `auto` policy. On a sustained `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB` breach the launcher SIGTERMs the child (with a grace longer than the daemon's own 5s shutdown deadline) and then **exits cleanly** so the host runtime relaunches a fresh launcher — a clean MCP re-initialize. It deliberately does NOT respawn the daemon in place: the adversarial pass showed re-piping stdio bytes cannot restore the per-Server MCP `initialize` session, so that would hang the client. Unexpected child exits are handled by a crash-loop-guarded supervisor with backoff, and the daemon child pid is recorded in the lease (the precondition for phase 007).
+A periodic monitor (`startRssWatchdog`) rolls up the daemon's process-tree RSS via an injectable `ps` ppid-subtree walk (`sampleProcessTreeRssMb`/`resolveProcessTreeRows`) — including the **forked sidecar grandchild**, where the model lives under default `auto`. On a sustained `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB` breach the launcher SIGTERMs the child (grace clamped to exceed the daemon's 5s shutdown deadline, floor 7000ms), SIGKILLs on timeout, then **exits cleanly** so the host relaunches a fresh launcher (clean MCP re-initialize) — never a transparent in-place respawn (re-piping stdio cannot restore the MCP `initialize` session). The breach→self-exit ships **default-off**, active only when both the ceiling and `SPECKIT_LAUNCHER_RSS_SELF_EXIT=1` are set (REQ-008 host-relaunch contract unconfirmed). Unexpected child exits route through a crash-loop-guarded supervisor (`superviseChildExit` + `createCrashLoopGuard`) with exponential backoff; on give-up it fails loud and reaps the orphaned sidecar.
+
+### REQ-007 reap-after-reparent fix
+
+Review caught that a give-up reap anchored on the dead daemon childPid is a **no-op** in the bite case: a forked-`detached` sidecar re-parents to pid 1 on hard daemon death, so the dead childPid is absent from `ps`. The fix adds an **always-on monitor** (runs even when the RSS self-exit is off, at a 30s cadence) that records a **before-death descendant snapshot** (`lastKnownDescendantPids`); on give-up `reapProcessTreeGroups` reaps the union of any still-live childPid subtree and the still-alive snapshot pids, gated by `pid>1 && pid!==childPid && pid!==process.pid && signal(pid,0)` (alive-check, bounding pid-reuse).
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| (none yet) | Pending | See spec.md §3 for the planned edit set |
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Modify | `require.main` guard + exported helpers; process-tree RSS sampler (injectable runner, EPERM=unknown); default-off breach→graceful-self-exit; crash-loop supervisor; before-death descendant snapshot + reap-after-reparent; additive `childPid` lease field; pure `buildLeaseObject` |
+| `mcp_server/tests/launcher-watchdog.vitest.ts` | Create | 12 headless tests: RSS roll-up, EPERM-unknown, backoff vs give-up, grace clamp, default-off gating, orphan-reap-from-snapshot, dead-pid guard, snapshot keep-on-unknown, lease shape, kill-path EPERM |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -64,7 +69,7 @@ A periodic sampler will roll up the daemon's process-tree RSS — crucially incl
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Deferred to a live-daemon session: the RSS-breach recovery hinges on an unresolved host contract (does the runtime relaunch the launcher on clean exit 0? — REQ-008), and the guards need tests with an injectable ps runner plus live OOM/recycle observation. The design was produced by an Opus pass and adversarially verified by a second; the verdict corrected the child-pid-lease framing (it is a NET-NEW additive field, not a port of mk-code-index's separate owner-lease) and flagged the host-relaunch dependency, both now encoded (REQ-005, REQ-008).
+Implemented by a `cli-opencode` dispatch (`openai/gpt-5.5 --variant high`, main-tree under an RM-8 L1 fence). The orchestrator ran independent verification (`node --check` + the watchdog vitest) and a 6-lens adversarial review, which surfaced one real P1 (the REQ-007 reap no-op on hard daemon death) plus three test-coverage gaps. The orchestrator applied the before-death-snapshot reap fix and the missing tests directly (full context in hand), then ran a second, focused adversarial re-review of the fix — both reviews ended at 0 confirmed defects. The RSS-breach self-exit ships default-off because REQ-008 (host relaunch on clean exit 0) cannot be confirmed headlessly; the `childPid` lease is a net-new additive field (not a port of mk-code-index's owner-lease). The diff also persists `ownerPid` on-disk (previously a derived field) — harmless and additive; no reader keys off it.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -86,10 +91,13 @@ Deferred to a live-daemon session: the RSS-breach recovery hinges on an unresolv
 
 | Check | Result |
 |-------|--------|
-| Opus design + adversarial verification | PASS (verdict: ready=false until childPid-precedent corrected + host-relaunch confirmed + test seam added — now encoded) |
-| Planned test commands (when implemented) | `vitest` tree-RSS roll-up + crash-loop + EPERM-as-unknown tests; `bash .../validate.sh --strict` on this packet |
-| Implementation + tests | Pending (live-daemon session) |
-| Host relaunch-on-exit-0 contract (REQ-008) | Unconfirmed — gates default-on breach-self-exit |
+| `node --check mk-spec-memory-launcher.cjs` | PASS |
+| `vitest run tests/launcher-watchdog.vitest.ts` | PASS (12/12) — RSS roll-up, EPERM-unknown, backoff vs give-up, grace clamp, default-off, orphan-reap-from-snapshot, dead-pid guard, lease shape, kill-path EPERM |
+| Require-safety (import does not spawn a daemon) | PASS (`require.main` guard; exports load clean) |
+| 6-lens adversarial review (incl. run-as-script regression) | PASS — 1 real P1 (REQ-007 reap no-op) + 3 test gaps found |
+| REQ-007 reap fix + 3 test gaps closed; focused re-review | PASS — 0 confirmed defects; no wrong-pid-kill path |
+| `validate.sh --strict` on this packet | PASS |
+| Host relaunch-on-exit-0 (REQ-008) + SC-001/SC-002 live RSS/crash-loop | DEFERRED — REQ-008 gates self-exit default-on; live observation needs a running daemon |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -97,6 +105,8 @@ Deferred to a live-daemon session: the RSS-breach recovery hinges on an unresolv
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented** — spec/plan/tasks only. Confirm REQ-008, then implement T002-T005 + tests.
-2. **RSS-breach self-exit is unsafe to enable by default** until the host relaunch contract is confirmed (else it reduces availability). Ships default-off.
+1. **RSS-breach self-exit ships default-off** until the host relaunch-on-clean-exit contract (REQ-008) is confirmed (else self-exit reduces availability). Enable with `SPECKIT_LAUNCHER_RSS_SELF_EXIT=1` once confirmed.
+2. **SC-001/SC-002 not observed live** — the headless tests use injectable runners + mocked signals; a live daemon is needed to observe a real ceiling-breach recycle and crash-loop behavior (T008).
+3. **REQ-001 graceful-self-exit *mechanism* (`recycleViaGracefulSelfExit` + `launcherShutdownInProgress` no-respawn guard) has no unit test** — code reviewed correct (P2) but exercised only on the default-off path; testing it needs heavier module-state injection.
+4. **Give-up reap pid-reuse residual** — the before-death snapshot is at most one monitor tick (~30s) old; the `signal(pid,0)` alive-gate bounds but cannot fully eliminate reaping a reused pid. Documented in-code; acceptable in the terminal give-up state.
 <!-- /ANCHOR:limitations -->

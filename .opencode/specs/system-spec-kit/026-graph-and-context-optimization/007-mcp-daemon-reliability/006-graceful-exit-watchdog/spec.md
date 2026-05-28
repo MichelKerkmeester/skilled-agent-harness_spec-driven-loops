@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog"
-    last_updated_at: "2026-05-28T21:10:00Z"
+    last_updated_at: "2026-05-28T23:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored implementation-ready F1′ spec; corrected childPid-lease framing + host-relaunch caveat"
-    next_safe_action: "Confirm host-runtime relaunch-on-exit-0 contract, then implement in a live-daemon session"
+    recent_action: "Implemented + REQ-007 reap fix; 12/12 vitest; 2 reviews clean; self-exit default-off"
+    next_safe_action: "Confirm REQ-008 host relaunch to enable self-exit default-on; run SC-001 live"
     blockers: []
     key_files:
       - ".opencode/bin/mk-spec-memory-launcher.cjs"
@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Implemented (RSS self-exit default-off pending REQ-008; SC-001/SC-002 live deferred) |
 | **Created** | 2026-05-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
