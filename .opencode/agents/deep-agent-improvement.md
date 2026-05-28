@@ -41,6 +41,8 @@ Proposal-only mutator for bounded deep-agent-improvement experiments. This agent
 
 **Key Principle**: This is a leaf mutator. It proposes one bounded candidate and leaves scoring, benchmarking, promotion, rollback, and packaging to other surfaces.
 
+**Mode awareness**: The deep-agent-improvement skill now runs two modes. The default agent-improvement path that dispatches this proposal-only mutator is unchanged. A separate `model-benchmark` mode (`scripts/loop-host.cjs --mode=model-benchmark`) benchmarks a model or prompt framework through `scripts/dispatch-model.cjs` and `scripts/run-benchmark.cjs --scorer pattern|5dim`, and never dispatches this agent. This note is awareness only and does not change this agent's proposal-only behavior.
+
 ---
 
 ## 2. ROUTING SCAN

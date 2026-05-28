@@ -456,7 +456,21 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="converged"
 
 ---
 
-## 8. RELATED COMMANDS
+## 8. MODEL-BENCHMARK MODE (SKILL-LEVEL)
+
+This command drives the **agent-improvement** loop only. The underlying `deep-agent-improvement` skill ALSO supports a separate **model-benchmark** mode that benchmarks a model or prompt framework instead of mutating an agent file. It shares the candidate, dispatcher, and scorer seams with the agent-improvement path and is invoked directly through the skill, not through this command.
+
+- **Entry point**: `scripts/loop-host.cjs` resolves `--mode`. Default or `--mode=agent-improvement` routes to `scripts/score-candidate.cjs` (this command's path, unchanged). `--mode=model-benchmark` runs `scripts/materialize-benchmark-fixtures.cjs` then `scripts/run-benchmark.cjs`. An unknown mode warns to stderr and falls back to agent-improvement.
+- **Dispatcher**: `scripts/dispatch-model.cjs` is the model-agnostic dispatcher (executor routing across cli-opencode, cli-claude-code, cli-codex, cli-gemini, cli-devin). It loads only on the model-benchmark path, never in agent-improvement mode.
+- **Scorer selection**: `run-benchmark.cjs --scorer pattern` (default) uses the byte-identical heading/pattern matcher. `--scorer 5dim` routes materialized outputs through `scripts/scorer/score-model-variant.cjs` (the ported 120/003 five-dimension scorer: deterministic checks plus a pluggable grader). `--grader noop` (default) stays deterministic with no model dispatch; `--grader mock` or `--grader llm` select the stub or real grader.
+- **Records**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`. Benchmark reports and `benchmark_run` records carry `scoringMethod: pattern|5dim` for downstream attribution.
+- **Hardening env gates**: `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` redacts raw grader output from the on-disk cache. Both default permissive for backward compatibility.
+
+Canonical source of truth: `.opencode/skills/deep-agent-improvement/SKILL.md` "Mode 4: Model-Benchmark". Provenance: built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005.
+
+---
+
+## 9. RELATED COMMANDS
 
 | Command | Purpose |
 | --- | --- |
@@ -466,7 +480,7 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="converged"
 
 ---
 
-## 9. VIOLATION SELF-DETECTION (BLOCKING)
+## 10. VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
 

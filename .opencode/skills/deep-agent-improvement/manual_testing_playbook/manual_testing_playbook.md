@@ -20,12 +20,14 @@ Canonical package artifacts:
 - `05--reducer-dimensions/`
 - `06--end-to-end-loop/`
 - `07--runtime-truth/`
+- `08--agent-discipline-stress-tests/`
+- `09--model-benchmark-mode/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 31 deterministic scenarios across 7 categories validating the current `deep-agent-improvement` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
+This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-agent-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08) and the Mode 4 model-benchmark scenarios (09). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
 
 ### REALISTIC TEST MODEL
 
@@ -668,7 +670,80 @@ Desired user-visible outcome: PASS verdict showing benchmark completion has a re
 #### Test Execution
 > **Feature File:** [CP-045](../08--agent-discipline-stress-tests/018-benchmark-completed-boundary.md)
 
-## 15. AUTOMATED TEST CROSS-REFERENCE
+---
+
+## 15. MODEL-BENCHMARK MODE
+
+This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Mode 4 (Model-Benchmark): the `loop-host.cjs` mode switch, the default pattern scorer, the opt-in 5-dimension scorer, the unknown-value fallbacks, and the criteria-exec hardening gate. See `SKILL.md` "Mode 4: Model-Benchmark" for the source-of-truth contract.
+
+### MB-035 | Mode Switch Routing via loop-host
+
+#### Description
+`loop-host.cjs --mode=model-benchmark` runs materialize then run-benchmark while the default and `--mode=agent-improvement` routes stay on `score-candidate.cjs` unchanged.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that loop-host routes model-benchmark mode to materialize plus run-benchmark and keeps the agent-improvement default unchanged. Verify the model-benchmark route materializes fixtures and writes a `benchmark-complete` report while the default route stays on the agent-improvement scorer. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: model-benchmark run completes with exit code 0; `materialize-benchmark-fixtures.cjs` emits `status: "fixtures-materialized"` before scoring; `run-benchmark.cjs` writes `report.json` with `status: "benchmark-complete"`; the appended `benchmark_run` row carries `mode: "model-benchmark"`; the default-route run routes to `score-candidate.cjs` and never loads `dispatch-model.cjs`; unknown mode warns and falls back to agent-improvement
+
+#### Test Execution
+> **Feature File:** [MB-035](09--model-benchmark-mode/035-mode-switch-routing.md)
+
+### MB-036 | Default Pattern Scorer
+
+#### Description
+`run-benchmark.cjs` defaults to the byte-identical heading/pattern matcher and stamps `scoringMethod: "pattern"` when no `--scorer` flag is provided.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the default run-benchmark scorer is the pattern matcher and the report carries `scoringMethod: "pattern"`. Verify the output has heading/pattern fixture fields and no `dimensions` object. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Benchmark completes with exit code 0; `report.json` has `status: "benchmark-complete"`; `report.json` has `scoringMethod: "pattern"`; each `fixtures[]` entry has `missingHeadings`, `missingPatterns`, and `forbiddenMatches` arrays; NO `dimensions` object on any fixture entry; appended `benchmark_run` row carries `scoringMethod: "pattern"` and `mode: "model-benchmark"`
+
+#### Test Execution
+> **Feature File:** [MB-036](09--model-benchmark-mode/036-default-pattern-scorer.md)
+
+### MB-037 | Opt-In 5-Dimension Scorer
+
+#### Description
+`run-benchmark.cjs --scorer 5dim` routes materialized outputs through `score-model-variant.cjs`, stamps `scoringMethod: "5dim"`, and emits per-dimension D1-D5 scores per fixture under the deterministic noop grader.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the opt-in 5dim scorer stamps `scoringMethod: "5dim"` and emits D1-D5 dimension scores per fixture. Verify each fixture carries a `dimensions` object with D1-D5 numeric scores and `D4: 1.0` under noop. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Benchmark completes with exit code 0; `report.json` has `status: "benchmark-complete"`; `report.json` has `scoringMethod: "5dim"`; each `fixtures[]` entry has `scoringMethod: "5dim"` and a `dimensions` object with keys `D1`-`D5`; each dimension value is numeric in `0.0`-`1.0`; `D4` equals `1.0` under noop; appended `benchmark_run` row carries `scoringMethod: "5dim"` and `mode: "model-benchmark"`
+
+#### Test Execution
+> **Feature File:** [MB-037](09--model-benchmark-mode/037-optin-5dim-scorer.md)
+
+### MB-038 | Unknown Scorer and Unknown Mode Fallback
+
+#### Description
+an unknown `--scorer` value warns to stderr and defaults to `pattern`, and an unknown `--mode` value warns to stderr and falls back to `agent-improvement`, both without crashing.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that unknown `--scorer` and unknown `--mode` values warn and fall back instead of crashing. Verify the unknown scorer falls back to `pattern` and the unknown mode falls back to `agent-improvement`, each with a stderr warning. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Unknown-scorer run completes with exit code 0; stderr contains `unknown --scorer 'bogus', defaulting to 'pattern'`; the unknown-scorer `report.json` has `scoringMethod: "pattern"`; unknown-mode run does not crash; stderr contains `unknown mode 'bogus', defaulting to 'agent-improvement'`; the unknown-mode run routes to `score-candidate.cjs` and produces a score JSON, not a benchmark report
+
+#### Test Execution
+> **Feature File:** [MB-038](09--model-benchmark-mode/038-unknown-fallback.md)
+
+### MB-039 | Criteria-Exec Hardening Gate
+
+#### Description
+`DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in the 5-dim scorer: a `deterministic`-type acceptance criterion is skipped with a disabled detail rather than running its command, and the gate defaults permissive when unset.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell exec and the default (unset) stays permissive. Verify the gated run skips the deterministic criterion (`D1: 0.0`, detail names the disabled gate) while the default run executes it (`D1: 1.0`). Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: Default run (gate unset) executes the criterion: `per_criterion` entry `passed: true`, detail like `exit=0 expected=0`, `D1: 1.0`; gated run (`DEEP_AGENT_ALLOW_CRITERIA_EXEC=0`) skips the criterion: `per_criterion` entry `passed: false`, detail contains `criteria exec disabled (DEEP_AGENT_ALLOW_CRITERIA_EXEC=0)`, `D1: 0.0`; the scorer does not throw in either run; the gated run never spawns the criterion command
+
+#### Test Execution
+> **Feature File:** [MB-039](09--model-benchmark-mode/039-criteria-exec-gate.md)
+
+---
+
+## 16. AUTOMATED TEST CROSS-REFERENCE
 
 The manual scenarios exercise the operator-visible behavior. Runtime helper coverage lives under `.opencode/skills/deep-agent-improvement/scripts/tests/` and should be used as regression evidence when a scenario touches the matching helper.
 
@@ -682,7 +757,7 @@ The manual scenarios exercise the operator-visible behavior. Runtime helper cove
 
 ---
 
-## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 The feature catalog root is `.opencode/skills/deep-agent-improvement/feature_catalog/feature_catalog.md`. Use it as the current-state capability index when a scenario needs source-of-truth feature context beyond the command transcript.
 
@@ -695,5 +770,6 @@ The feature catalog root is `.opencode/skills/deep-agent-improvement/feature_cat
 | Reducer Dimensions | `.opencode/skills/deep-agent-improvement/feature_catalog/03--scoring-system/04-dimensional-progress.md` |
 | End-to-End Loop | `.opencode/skills/deep-agent-improvement/feature_catalog/01--evaluation-loop/01-initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md` |
 | Runtime Truth | No single catalog category owns all runtime-truth scenarios; use the per-feature source anchors plus the evaluation-loop and scoring-system catalog files above. |
+| Model-Benchmark Mode | No one-to-one catalog file; validate against the Mode 4 contract in `.opencode/skills/deep-agent-improvement/SKILL.md` and the script anchors in the per-feature files (`loop-host.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`). |
 
 Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/scoring/evaluator_contract.md`, `references/integration/integration_scanning.md`, and `references/workflow/quick_reference.md`.

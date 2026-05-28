@@ -1,11 +1,11 @@
 ---
 title: "deep-agent-improvement: Feature Catalog"
-description: "Unified reference combining the evaluation loop, integration scanning, and scoring surfaces that currently ship in deep-agent-improvement."
+description: "Unified reference combining the evaluation loop, integration scanning, scoring, and model-benchmark mode surfaces that currently ship in deep-agent-improvement."
 ---
 
 # deep-agent-improvement: Feature Catalog
 
-This document combines the current feature inventory for the `deep-agent-improvement` system into a single reference. The root catalog acts as the system-level directory: it summarizes the evaluation loop, the integration scanner, and the deterministic scoring stack, then points to the per-feature files that carry the deeper implementation and validation anchors.
+This document combines the current feature inventory for the `deep-agent-improvement` system into a single reference. The root catalog acts as the system-level directory: it summarizes the evaluation loop, the integration scanner, the deterministic scoring stack, and the model-benchmark mode, then points to the per-feature files that carry the deeper implementation and validation anchors.
 
 ---
 
@@ -18,6 +18,7 @@ Use this catalog as the canonical inventory for the live `deep-agent-improvement
 | Evaluation loop | 6 features | `.opencode/commands/deep/start-agent-improvement-loop.md`, deep-agent-improvement YAML workflows, `scripts/*.cjs` |
 | Integration scanning | 3 features | `scan-integration.cjs`, `/deep:start-agent-improvement-loop`, `.opencode/agents/deep-agent-improvement.md` |
 | Scoring system | 4 features | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs` |
+| Model-benchmark mode | 4 features | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs` |
 
 ---
 
@@ -238,3 +239,71 @@ Reduces raw run records into trends, best-known state, and operator-facing stop 
 #### Source Files
 
 See [`03--scoring-system/04-dimensional-progress.md`](03--scoring-system/04-dimensional-progress.md) for full implementation and validation file listings.
+
+---
+
+## 5. MODEL-BENCHMARK MODE
+
+These entries describe the model-benchmark path that benchmarks a model or prompt framework instead of mutating an agent file. They cover the mode switch in the loop host, the model-agnostic dispatcher, the opt-in five-dimension scorer, and the record-level mode field plus the two hardening env gates. The path was built in spec 121/003, remediated in 121/004 with three P1 fixes, and gained its opt-in scorer plus docs in 121/005.
+
+### Mode switch
+
+#### Description
+
+Routes loop-host between the agent-improvement scorer and the model-benchmark materialize-then-run pipeline.
+
+#### Current Reality
+
+`scripts/loop-host.cjs` resolves `--mode` before any work begins. `--mode=agent-improvement`, or no flag, routes to `scripts/score-candidate.cjs` unchanged, while `--mode=model-benchmark` runs `scripts/materialize-benchmark-fixtures.cjs` then `scripts/run-benchmark.cjs`. `VALID_MODES` is a closed two-value set, and an unknown mode warns to stderr and falls back to `agent-improvement`.
+
+#### Source Files
+
+See [`04--model-benchmark-mode/01-mode-switch.md`](04--model-benchmark-mode/01-mode-switch.md) for full implementation and validation file listings.
+
+---
+
+### Model dispatcher
+
+#### Description
+
+Model-agnostic dispatcher that routes prompts across executor CLIs only on the model-benchmark path.
+
+#### Current Reality
+
+`scripts/dispatch-model.cjs` routes through an executor map across cli-opencode, cli-claude-code, cli-codex, cli-gemini, and cli-devin, and is loaded only on the model-benchmark path, never in agent-improvement mode. It forwards `cwd` to every executor and applies rate-limit backoff using a non-busy `Atomics` sleep.
+
+#### Source Files
+
+See [`04--model-benchmark-mode/02-model-dispatcher.md`](04--model-benchmark-mode/02-model-dispatcher.md) for full implementation and validation file listings.
+
+---
+
+### Opt-in 5-dimension scorer
+
+#### Description
+
+Selects the pattern matcher by default or the opt-in five-dimension scorer for model-benchmark outputs.
+
+#### Current Reality
+
+`run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/scorer/score-model-variant.cjs`, the ported 120/003 five-dimension scorer. `--grader noop` is the default deterministic grader with no model dispatch, with `--grader mock` and `--grader llm` selecting the stub or real grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`.
+
+#### Source Files
+
+See [`04--model-benchmark-mode/03-opt-in-5dim-scorer.md`](04--model-benchmark-mode/03-opt-in-5dim-scorer.md) for full implementation and validation file listings.
+
+---
+
+### Mode records and hardening gates
+
+#### Description
+
+Stamps a mode field on every state record and exposes two env gates that harden the 5-dim scorer.
+
+#### Current Reality
+
+Every state record carries `mode: agent-improvement` or `mode: model-benchmark`, and benchmark reports plus `benchmark_run` records carry `scoringMethod: pattern|5dim`. `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` redacts raw grader output from the on-disk cache. Both default to the permissive value for backward-compat.
+
+#### Source Files
+
+See [`04--model-benchmark-mode/04-mode-records-and-gates.md`](04--model-benchmark-mode/04-mode-records-and-gates.md) for full implementation and validation file listings.
