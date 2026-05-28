@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
     last_updated_at: "2026-05-28T15:15:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "All 4 phases complete (design+research+build+remediation)"
-    next_safe_action: "None — feature shipped + reviewed + remediated"
+    recent_action: "All 5 phases complete (+ opt-in 5dim scorer + skill docs)"
+    next_safe_action: "None — feature shipped, reviewed, remediated, scorer wired, documented"
     blockers: []
     key_files: []
     session_dedup:
@@ -109,6 +109,8 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 3 | 003-build-benchmark-mode/ | Build the mode from the 002 research build-delta (loop-host.cjs + dispatch-model.cjs + scorer port + mode-aware records), TST-1 identity gate | Complete |
 | 4 | 004-benchmark-mode-remediation/ | Remediate the 122 tri-model review findings: 3 unique P1 fixes (cwd propagation, path-guard boundary, criteria-exec gate + grader clamp) + actionable P2s, with regression tests | Complete |
 
+| 5 | 005-optin-5dim-scorer-and-skill-docs/ | Wire the ported 5-dim scorer as an opt-in run-benchmark scorer (closes review deferral F-P2-1/2) + document the model-benchmark mode in SKILL.md (sk-doc DQI 97) | Complete |
+
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -123,6 +125,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 001-mode-selector-design | 002-implementation-deep-research | Design ADRs + build plan authored | strict validate on 001 |
 | 002-implementation-deep-research | 003-build-benchmark-mode | Research converged with a verified, build-ready delta | strict validate on 002 + ground-truth verification |
 | 003-build-benchmark-mode | 004-benchmark-mode-remediation | Build shipped + tri-model review (122) surfaced findings | review-report.md CONDITIONAL verdict |
+| 004-benchmark-mode-remediation | 005-optin-5dim-scorer-and-skill-docs | Remediation closed; the substantive deferral (5-dim scorer not wired) warranted a follow-on | review-report §11 + 004 dispositions |
 <!-- /ANCHOR:phase-map -->
 
 ---

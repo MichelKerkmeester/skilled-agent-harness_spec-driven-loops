@@ -45,6 +45,10 @@ Use this skill when candidate quality must be judged by produced artifacts and r
 
 Use this skill when you need to prove that guarded promotion, validation, rollback, and post-rollback comparison all work end to end without leaving hidden drift behind.
 
+#### Model and Prompt Benchmarking
+
+Use the `model-benchmark` mode when the thing under test is a model or prompt framework rather than an agent definition. It runs the same loop shape against a benchmark profile and scores produced outputs, sharing the candidate, dispatcher, and scorer seams with the agent-improvement path. See Mode 4 below.
+
 ### When NOT to Use
 
 Do not use this skill for:
@@ -241,6 +245,16 @@ Profiles are generated on the fly from any agent file via `scripts/generate-prof
 3. Use `scripts/rollback-candidate.cjs` plus direct comparison evidence when the canonical target must be restored.
 4. Treat mirror drift as downstream packaging work and review it separately with `scripts/check-mirror-drift.cjs`.
 
+### Mode 4: Model-Benchmark (alongside agent-improvement)
+
+The `model-benchmark` mode benchmarks a model or prompt framework instead of mutating an agent file. It reuses the three pluggable seams (candidate-source, dispatcher, scorer) and keeps the default agent-improvement path byte-identical when no mode flag is set.
+
+1. **Entry point**: `scripts/loop-host.cjs` resolves the mode. `--mode=agent-improvement` (or no flag) routes to `scripts/score-candidate.cjs`. `--mode=model-benchmark` runs `scripts/materialize-benchmark-fixtures.cjs` then `scripts/run-benchmark.cjs`. An unknown mode warns and falls back to agent-improvement.
+2. **Dispatcher**: `scripts/dispatch-model.cjs` is the model-agnostic dispatcher (executor-routing map across cli-opencode, cli-claude-code, cli-codex, cli-gemini, cli-devin). It is loaded only on the model-benchmark path, never in agent-improvement mode.
+3. **Scorer selection**: `run-benchmark.cjs --scorer pattern` (default) uses the heading/pattern matcher. `--scorer 5dim` routes materialized outputs through `scripts/scorer/score-model-variant.cjs`, the ported 120/003 five-dimension scorer (deterministic checks plus a pluggable grader). `--grader noop` (default) stays deterministic with no model dispatch. `--grader mock` or `--grader llm` select the stub or real grader.
+4. **Records**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`, and benchmark reports carry `scoringMethod: pattern|5dim`, so the reducer and downstream consumers can attribute results.
+5. **Hardening env gates**: set `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to refuse criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` to redact raw grader output from the on-disk cache. Both default to the permissive value for backward-compat.
+
 ---
 
 ## 4. SUCCESS CRITERIA
@@ -332,7 +346,7 @@ Tracks explored dimensions, tried mutation types per dimension, and exhausted mu
 
 Each mutation entry in `mutation-coverage.json` carries a `signature` field computed as:
 
-```
+```text
 signature = sha256(dimension + "\u001f" + mutationType + "\u001f" + targetSection + "\u001f" + normalizedBody64)
 ```
 

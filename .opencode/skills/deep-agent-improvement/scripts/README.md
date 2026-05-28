@@ -26,7 +26,8 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 14 |
+| Code files (direct) | 16 |
+| Subtrees | `scorer/` (ported 120/003 5-dim scorer, det-checks, grader, cache) |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -76,9 +77,12 @@ Run individual scripts from the repository root with the documented arguments.
 | `promote-candidate.cjs` | CJS source file in this folder. |
 | `reduce-state.cjs` | CJS source file in this folder. |
 | `rollback-candidate.cjs` | CJS source file in this folder. |
-| `run-benchmark.cjs` | CJS source file in this folder. |
+| `run-benchmark.cjs` | Fixture/integration scorer. `--scorer pattern` (default) or `5dim` (121/005 opt-in via `scorer/`). |
 | `scan-integration.cjs` | CJS source file in this folder. |
-| Additional files | 2 more code files in this folder |
+| `loop-host.cjs` | Mode-switching entry point (agent-improvement vs model-benchmark) — 121/003. |
+| `dispatch-model.cjs` | Model-agnostic CLI dispatcher for model-benchmark mode — 121/003. |
+| `scorer/` | Ported 120/003 five-dimension scorer: `score-model-variant.cjs`, `deterministic/`, `grader/`, `lib/cache.cjs` (runtime `cache/` git-ignored). |
+| Additional files | `trade-off-detector.cjs`, `vitest.config.mjs`, `tests/` (vitest suites incl. remediation + opt-in-scorer) |
 
 ---
 

@@ -190,6 +190,65 @@ function aggregateFailureModes(fixtures) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 3b. 5-DIM SCORING (opt-in, --scorer=5dim) — 121/005
+// ─────────────────────────────────────────────────────────────────────────────
+// Routes the materialized fixture output through the ported 120/003 5-dim scorer
+// (deterministic checks + grader factory) instead of the default heading/pattern
+// matcher. Opt-in so the default `pattern` path stays byte-identical; the scorer
+// module is lazily required only on this path. graderKind defaults to 'noop'
+// (deterministic, no LLM dispatch) so a benchmark run stays hermetic unless the
+// operator explicitly asks for the 'llm' grader.
+
+async function scoreFixture5dim(fixture, outputPath, cwdAbs, graderKind, scorerModule) {
+  if (!fs.existsSync(outputPath)) {
+    return {
+      id: fixture.id,
+      outputPath,
+      score: 0,
+      maxScore: 100,
+      passed: false,
+      scoringMethod: '5dim',
+      dimensions: {},
+      hard_gate_failed: false,
+      failureModes: ['missing-output'],
+    };
+  }
+  const outputText = fs.readFileSync(outputPath, 'utf8');
+  const result = await scorerModule.score({
+    candidateId: fixture.id,
+    outputText,
+    criteria: {
+      acceptance: fixture.acceptance || [],
+      requiredHeadings: fixture.requiredHeadings || [],
+      requiredPatterns: fixture.requiredPatterns || [],
+    },
+    cwd: cwdAbs,
+    graderKind,
+  });
+  const score = Math.round((result.weightedScore || 0) * 100);
+  const failureModes = [];
+  if (result.hard_gate_failed) {
+    failureModes.push('hard-gate-failed');
+  }
+  for (const [dim, value] of Object.entries(result.dimensions || {})) {
+    if (typeof value === 'number' && value < 0.5) {
+      failureModes.push(`low-${dim}`);
+    }
+  }
+  return {
+    id: fixture.id,
+    outputPath,
+    score,
+    maxScore: 100,
+    passed: !result.hard_gate_failed && failureModes.length === 0,
+    scoringMethod: '5dim',
+    dimensions: result.dimensions || {},
+    hard_gate_failed: Boolean(result.hard_gate_failed),
+    failureModes,
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // 4. INTEGRATION SCORING
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -250,7 +309,7 @@ function scoreIntegration(integrationReportPath) {
 // 5. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
-function main() {
+async function main() {
   const args = parseArgs(process.argv.slice(2));
   const profileArg = args.profile;
   const outputsDir = args['outputs-dir'];
@@ -258,8 +317,18 @@ function main() {
   const profilesDir = args['profiles-dir'] || '.opencode/skills/deep-agent-improvement/assets/benchmark-profiles';
   const integrationReportPath = args['integration-report'] || null;
 
+  // 121/005: opt-in scorer selection. 'pattern' (default) keeps the byte-identical
+  // heading/pattern matcher; '5dim' routes through the ported 120/003 scorer.
+  const VALID_SCORERS = new Set(['pattern', '5dim']);
+  let scorer = args.scorer || 'pattern';
+  if (!VALID_SCORERS.has(scorer)) {
+    process.stderr.write(`run-benchmark: unknown --scorer '${scorer}', defaulting to 'pattern'\n`);
+    scorer = 'pattern';
+  }
+  const graderKind = args.grader || 'noop';
+
   if (!profileArg || !outputsDir || !outputPath) {
-    process.stderr.write('Usage: node run-benchmark.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--state-log <path>] [--label <string>] [--profiles-dir <path>] [--integration-report <path>]\n');
+    process.stderr.write('Usage: node run-benchmark.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--state-log <path>] [--label <string>] [--profiles-dir <path>] [--integration-report <path>] [--scorer pattern|5dim] [--grader noop|mock|llm]\n');
     process.exit(2);
   }
 
@@ -272,7 +341,17 @@ function main() {
     const profile = loadedProfile.data;
     profileId = profile.profileId || profile.id || profileId;
     const fixtures = loadFixtures(profile, loadedProfile.path);
-    const results = fixtures.map((fixture) => scoreFixture(fixture, path.join(outputsDir, `${fixture.id}.md`)));
+    let results;
+    if (scorer === '5dim') {
+      // Lazy-require so the default path never loads the scorer tree.
+      const scorerModule = require('./scorer/score-model-variant.cjs');
+      const cwdAbs = path.resolve(outputsDir);
+      results = await Promise.all(
+        fixtures.map((fixture) => scoreFixture5dim(fixture, path.join(outputsDir, `${fixture.id}.md`), cwdAbs, graderKind, scorerModule)),
+      );
+    } else {
+      results = fixtures.map((fixture) => scoreFixture(fixture, path.join(outputsDir, `${fixture.id}.md`)));
+    }
     const aggregateScore = results.length === 0
       ? 0
       : Math.round(results.reduce((sum, entry) => sum + entry.score, 0) / results.length);
@@ -291,6 +370,7 @@ function main() {
         : 'benchmark-fail';
     const report = {
       status: 'benchmark-complete',
+      scoringMethod: scorer,
       profileId,
       family: profile.family,
       target: profile.targetPath,
@@ -328,6 +408,7 @@ function main() {
       appendJsonl(stateLogPath, {
         type: 'benchmark_run',
         mode: 'model-benchmark',
+        scoringMethod: scorer,
         profileId,
         family: profile.family,
         target: profile.targetPath,
@@ -369,4 +450,7 @@ function main() {
   }
 }
 
-main();
+main().catch((error) => {
+  process.stderr.write(`${error && error.stack ? error.stack : error}\n`);
+  process.exit(1);
+});
