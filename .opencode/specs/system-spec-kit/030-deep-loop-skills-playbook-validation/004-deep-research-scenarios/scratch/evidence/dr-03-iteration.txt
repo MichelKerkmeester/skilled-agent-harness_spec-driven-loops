@@ -1,0 +1,14 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-research / 03 iteration (DR-007,008,009,010,024,025,028,029)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/dr-03-iteration.log
+Method §6: rg/anchor re-confirmation. 7 PASS / 1 PARTIAL. (DR-007 + DR-008 anchors re-confirmed exact this pass.)
+
+DR-007 PASS  Step 1: Read State @ loop_protocol.md:144 (read before research)
+DR-008 PASS  iteration-NNN.md write-once + JSONL append + reducer refresh @ state_format.md:41
+DR-009 PASS  Next Focus + Exhausted Approaches non-retriable @ deep-research.toml:107
+DR-010 PASS  progressive synthesis; research/research.md workflow-owned @ SKILL.md:384
+DR-024 PARTIAL  Step 4a Generate Dashboard @ loop_protocol.md:271 + template; reducer impl not run (permission) — non-critical
+DR-025 PASS  noveltyJustification field + ALWAYS rule 11 @ state_jsonl.md:58
+DR-028 PASS  focusTrack label @ deep-research.md:267 + dashboard Track column
+DR-029 PASS  flat graphEvents (question/finding/edge) @ state_jsonl.md:146-148 + research graph tests
+
+Verdict: 7 PASS / 1 PARTIAL / 0 FAIL / 0 SKIP. No remediation.

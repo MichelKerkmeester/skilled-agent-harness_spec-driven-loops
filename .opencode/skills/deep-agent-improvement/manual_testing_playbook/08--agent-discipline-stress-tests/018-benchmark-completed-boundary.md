@@ -66,10 +66,10 @@ Acceptance: Call B must create /tmp/cp-045-spec/improvement/benchmark-outputs/re
 Return structured output with status, candidate_path, target, change_summary, notes, and critic_pass.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-045-task.txt)" > /tmp/cp-045-prompt-A.txt
-copilot -p "$(cat /tmp/cp-045-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-045-sandbox 2>&1 | tee /tmp/cp-045-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-045-A-exit.txt
+opencode run "$(cat /tmp/cp-045-prompt-A.txt)" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-045-sandbox </dev/null 2>&1 | tee /tmp/cp-045-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-045-A-exit.txt
 rm -rf /tmp/cp-045-sandbox && cp -a /tmp/cp-045-sandbox-baseline /tmp/cp-045-sandbox
 cd /tmp/cp-045-sandbox
-copilot -p "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-045-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-045-sandbox --add-dir /tmp/cp-045-spec 2>&1 | tee /tmp/cp-045-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-045-B-exit.txt
+opencode run "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-045-spec --iterations=1" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-045-sandbox </dev/null 2>&1 | tee /tmp/cp-045-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-045-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 find /tmp/cp-045-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-045-B-artifacts.txt 2>/dev/null || touch /tmp/cp-045-B-artifacts.txt
 cat /tmp/cp-045-B-command.txt /tmp/cp-045-B-artifacts.txt > /tmp/cp-045-B-combined.txt

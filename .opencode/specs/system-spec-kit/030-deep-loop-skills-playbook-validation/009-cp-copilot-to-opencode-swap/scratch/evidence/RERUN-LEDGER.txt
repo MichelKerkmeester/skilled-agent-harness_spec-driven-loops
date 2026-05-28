@@ -1,0 +1,20 @@
+CP-052 | deep-review | PASS | 8/8 fields 1+; mode=review maxIter=1 target bound; tripwire clean
+CP-053 | deep-review | PASS | 8/8 fields 1+; review-report+iteration-001; TARGET_DIFF=0 TRIPWIRE=0
+CP-054 | deep-review | PASS | 7 fields 1+
+CP-055 | deep-review | PARTIAL | 7/8 fields 1+; status_reported=0 is deepseek phrasing ("Deep review loop complete" vs grep "Deep review complete"/"STATUS=OK"); synthesis+save boundary respected, no skill defect
+CP-056 | deep-review | CHECK[leaf_boundary_named,task_tool_forbidden,error_or_refusal_status,] | 4 fields 1+
+FINDING: bulk-swap latent bug — agent-body messages start with '---' (YAML frontmatter); opencode parses leading '--' as a flag -> prints help + exit1. Affected CP-056/057 only. FIX: prepend printf '\n' to the message so first char is non-dash (verified: model responds). /deep:* and 'As @Task:' messages unaffected.
+CP-056 | deep-review | PARTIAL | 6/7 fields 1+; refusal present (LEAF-only/Nested/REFUSE/Status error/Task-tool-forbidden/no-task-invocation); error_or_refusal_status=0 = grep case/markdown miss (REFUSE vs 'refuse'); leaf-refusal discipline holds, no defect
+CP-057 | deep-review | PASS | 10/10 fields 1+; read-only/protected/allowed-surface named; all diffs clean; EXIT_B=0
+CP-046 | deep-research | PARTIAL | 7/8; loop ran (config maxIter=1+topic bound, strategy/iteration/research.md/deltas, AUTONOMOUS, diffs clean); topic-string field=0 = deepseek slugified topic to 'setup-binding evidence' vs verbatim grep; setup-handoff discipline holds, no defect
+CP-047 | deep-research | PASS | 8/8 fields non-zero; spec-fence writeback (BEGIN GENERATED marker), research.md, canonical diff+tripwire clean
+CP-048 | deep-research | PASS | 7/7 fields non-zero; resource-map toggle handling; canonical diff+tripwire clean
+CP-049 | deep-research | PASS | 8/8 fields non-zero; pause-sentinel halt lifecycle; canonical diff+tripwire clean
+CP-050 | deep-research | PASS | 9/9 fields non-zero; iteration citation JSONL contract; canonical diff+tripwire clean
+CP-051 | deep-research | PASS | 7/7 fields non-zero; exhausted-approach respect resume-state; diffs clean
+CP-040 | deep-agent-improvement | PASS | 7/7 helper fields non-zero (scan/profile/score/reduce/candidate_generated/scored/path); skill-load-only=0; restored fixture loop ran; canonical+tripwire clean
+CP-041 | deep-agent-improvement | PASS | 7/7 fields non-zero; proposal-only boundary (no canonical mutation); tripwire clean; EXIT_B=0
+CP-042 | deep-agent-improvement | PARTIAL | 7/8; critic named all 6 overfit-bait categories + reject/challenge/overfit present; 'CRITIC PASS' literal label=0 (deepseek phrasing); canonical+tripwire clean; critic discipline holds, no defect
+CP-043 | deep-agent-improvement | PARTIAL | 8/9; legal_stop_evaluated + all 5 gates + blocked_stop + failedGates present; 'details.gateResults' literal dotted-path=0 (pretty-printed JSON breaks substring grep); gate-bundle discipline holds, no defect
+CP-044 | deep-agent-improvement | PASS | 7/7 fields non-zero; improvement-gate delta (baselineScore/delta/thresholdDelta/recommendation/improvementGate); tripwire clean
+CP-045 | deep-agent-improvement | PASS | 4/4 fields non-zero; benchmark-completed boundary (action-not-evidence); tripwire clean

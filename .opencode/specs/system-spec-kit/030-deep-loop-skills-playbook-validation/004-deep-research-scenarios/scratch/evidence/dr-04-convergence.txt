@@ -1,0 +1,24 @@
+ORCHESTRATOR VERIFICATION — deep-research / 04 convergence-and-recovery (13 scenarios)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/dr-04-convergence.log
+Executor reported: 6 PASS / 5 PARTIAL / 1 FAIL / 1 SKIP. Orchestrator reconciliation: 6 PASS / 6 PARTIAL / 1 SKIP / 0 FAIL.
+
+DR-011 PASS  max-iterations hard stop @ convergence.md:40 / auto.yaml
+DR-012 PASS  remaining_questions==0 STOP @ auto.yaml:428
+DR-013 PASS  3-signal composite (weights 0.30/0.35/0.35, threshold >0.60) @ auto.yaml:438
+DR-014 PASS  RECOVERY widen scope + reset stuck_count + continue @ auto.yaml:504
+DR-020 PARTIAL  Quality Gate source-diversity defined @ convergence.md:112; full guard-event schema not exhaustively traced — non-critical
+DR-021 PARTIAL  Quality Gate focus-alignment @ convergence.md:112; full impl not exhaustively traced — non-critical
+DR-022 PARTIAL  Quality Gate no-single-weak-source @ convergence.md:112; full impl not exhaustively traced — non-critical
+DR-023 PARTIAL  composite-passes-but-guard-fails -> CONTINUE documented @ convergence.md; guard_violation schema not fully traced — non-critical
+DR-030 PASS  thought iterations excluded from rolling avg/MAD/stuck @ convergence_signals.md:38
+DR-031 PARTIAL  *** THRESHOLD DISCREPANCY — OPERATOR REVIEW ***
+  Gate BEHAVIOR correct: evaluateGraphGates() sourceDiversity gate + threshold const @ system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:133,372;
+  blocked-stop persistence documented. BUT threshold VALUE = 1.5 (code, intentional comment "average 1.5 distinct source quality classes per
+  question"; parallels EVIDENCE_DEPTH_THRESHOLD=1.5) while DR-031 scenario EXPECTS 0.4.
+  If 0.4 is the spec -> code regression (FAIL, remediate 1.5->0.4). If 1.5 is intentional (metric redefined) -> scenario 0.4 is stale (P2 doc fix).
+  NOT auto-remediated (won't change a possibly-correct threshold on a possibly-stale scenario). Verdict PARTIAL pending operator's threshold-intent call.
+  (Executor's FAIL anchor was CORRECT; my first grep searched the wrong dir — real helper is system-spec-kit/scripts/lib/coverage-graph-convergence.cjs.)
+DR-032 SKIP  needs a live spec-folder with blocked_stop events; no canonical fixture (scenario notes the gap)
+DR-033 PARTIAL  graph-aware stop-gate workflow hooks exist @ auto.yaml:431; reducer surfacing not verified without a packet — non-critical
+
+Verdict: 6 PASS / 6 PARTIAL / 1 SKIP / 0 FAIL. No confirmed code FAIL. DR-031 threshold discrepancy FLAGGED for operator (release-readiness matrix P1-review item).

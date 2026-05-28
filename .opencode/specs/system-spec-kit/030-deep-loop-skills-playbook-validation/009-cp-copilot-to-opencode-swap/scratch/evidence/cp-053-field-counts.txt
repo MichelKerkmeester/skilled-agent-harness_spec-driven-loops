@@ -1,0 +1,8 @@
+iteration_markdown: 1+
+state_jsonl_append: 1+
+delta_jsonl: 1+
+new_findings_ratio: 1+
+findings_summary: 1+
+no_iteration_delta_variant: 1+
+target_diff_clean: 1+
+project_tripwire_clean: 1+

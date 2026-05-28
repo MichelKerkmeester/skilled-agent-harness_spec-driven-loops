@@ -1,0 +1,28 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/030-deep-loop-skills-playbook-validation/010-resolve-all-partials-and-skip",
+  "description": "Resolve all 31 030 PARTIALs + DR-032 SKIP via 5 fix-classes (READY push) (Phase 010)",
+  "keywords": [
+    "remediation",
+    "partials",
+    "skip",
+    "ready",
+    "grep-tolerance",
+    "live-rerun",
+    "stale-expectation",
+    "blocked-stop-fixture",
+    "5d-010",
+    "030",
+    "010"
+  ],
+  "lastUpdated": "2026-05-28T00:00:00.000Z",
+  "specId": "010",
+  "folderSlug": "resolve-all-partials-and-skip",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "030-deep-loop-skills-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

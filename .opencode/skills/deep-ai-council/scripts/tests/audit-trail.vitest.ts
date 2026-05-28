@@ -51,7 +51,7 @@ describe('deep-ai-council audit-trail', () => {
   it('computeChecksum returns sha256-prefixed hex digest', () => {
     const checksum = computeChecksum('test content');
     expect(checksum).toMatch(/^sha256:[a-f0-9]{64}$/);
-    expect(checksum).toBe('sha256:ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db27ac70f82498452e0e2a7b5e3f3e7a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1');
+    expect(checksum).toBe('sha256:6ae8a75555209fd6c44157c0aed8016e763ff435a19cf186f76863140143ff72');
   });
 
   it('computeChecksum handles Buffer input', () => {

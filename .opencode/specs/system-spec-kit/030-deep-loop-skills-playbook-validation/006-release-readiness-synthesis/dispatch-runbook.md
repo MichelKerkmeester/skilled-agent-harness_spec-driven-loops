@@ -166,17 +166,22 @@ own `/tmp/cp-*` dir, and rebuilds from repo root — blast radius is confined to
 
 ---
 
-## 8. Evidence capture layout (`/tmp/qa/`)
+## 8. Evidence capture layout (scratch-canonical, in-repo)
 
-| Path | Contents |
+**P1 (2026-05-27): evidence is scratch-canonical.** Durable evidence lives in each phase child's
+in-repo `scratch/` (retained per CHK-051, never cleaned). `/tmp/qa/` is optional staging only —
+nothing authoritative may live solely in `/tmp` (wiped on reboot). Mirrors the `029` predecessor.
+
+| Path (under `<child>/scratch/`) | Contents |
 |------|----------|
-| `/tmp/qa/prompts/<skill>__<cat>.md` | composed dispatch prompt |
-| `/tmp/qa/<skill>__<cat>.log` | full dispatch stdout/stderr |
-| `/tmp/qa/verdicts/<skill>__<cat>.tsv` | parsed verdict table |
-| `/tmp/qa/evidence/<skill>/<id>.txt` | decisive command + excerpt + anchor for spot-checked scenarios |
+| `prompts/<TAG>.md` | composed dispatch prompt (devin `--prompt-file`; codex inline prompt mirrored here for audit) |
+| `logs/<TAG>.log` | full dispatch stdout/stderr |
+| `logs/<TAG>.verdicts.tsv` | parsed verdict table |
+| `evidence/<id>.txt` | orchestrator's decisive command + excerpt + anchor for spot-checked scenarios |
 
 Roll parsed rows into the phase child's `checklist.md` verdict ledger (flip `PENDING` → verdict,
-add evidence path + executor). Durable evidence may also be copied into the child's `scratch/`.
+add the `scratch/...` evidence path + anchor `file:line` + executor). Ledger Evidence cells MUST
+cite in-repo `scratch/` paths, never `/tmp`.
 
 ---
 

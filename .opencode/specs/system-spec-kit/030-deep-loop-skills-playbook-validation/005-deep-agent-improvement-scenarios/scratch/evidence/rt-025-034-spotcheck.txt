@@ -1,0 +1,25 @@
+RT-025..034 (07-runtime-truth) — orchestrator independent spot-verify
+Dispatch: codex gpt-5.5 workspace-write, log dai-07-rt-codex.log, BATCH SUMMARY 10 PASS / 0 PARTIAL / 0 FAIL / 0 SKIP
+Anti-fabrication: orchestrator re-ran 3 decisive commands at repo root. ALL reproduce codex output.
+
+RT-029 benchmark-stability.cjs (self-contained node -e):
+  orchestrator: RT-029 PASS stable=true isStableUnstable=false warnings=1
+  codex:        PASS stability stable=true unstable=false / stabilityWarning structural coeff 0.7682 < 0.95
+  -> MATCH
+
+RT-030 mutation-coverage.cjs convergence eligibility (2pt no-converge / 3pt stable converge / unstable reject):
+  orchestrator: RT-030 PASS reason=Unstable dimensions: structural
+  codex:        final reason=Unstable dimensions: structural
+  -> MATCH
+
+RT-025 improvement-journal.cjs taxonomy enforcement (invalid stopReason must reject):
+  orchestrator: "Validation failed: Invalid stopReason: \"BOGUS_REASON\". Valid reasons: converged, maxIterationsReached, blockedStop, manualStop, error, stuckRecovery"
+  codex:        PASS invalid rejected status=1
+  -> MATCH (validateEvent enforces frozen STOP_REASONS enum)
+
+VERDICT: codex RT batch corroborated, no fabrication. All 10 RT = PASS.
+Evidence basis: helper-direct execution (improvement-journal/benchmark-stability/mutation-coverage/trade-off-detector/reduce-state .cjs) + vitest suites
+  (improvement-journal/benchmark-stability/mutation-coverage/trade-off-detector/candidate-lineage .vitest.ts).
+Honest scope note (FLAG F): the interactive /deep:start-agent-improvement-loop was NOT run non-interactively (needs :confirm);
+  runtime-truth signals proven via the runtime-truth helper scripts they wrap + frozen-enum validator + auto-YAML boundary coverage.
+  This is the playbook's "run-or-prove-via-helper" path, not a trace-only claim — every cited command produces real stdout.

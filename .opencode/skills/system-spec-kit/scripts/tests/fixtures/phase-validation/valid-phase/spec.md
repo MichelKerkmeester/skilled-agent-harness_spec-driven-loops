@@ -54,6 +54,7 @@ Validate that check-phase-links.sh and validate.sh --recursive pass on well-form
 
 ---
 
+<!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
 > This spec uses phased decomposition. Each phase is an independently executable child spec folder.
@@ -73,6 +74,7 @@ Validate that check-phase-links.sh and validate.sh --recursive pass on well-form
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-design | 002-implement | Design approved | Review complete |
+<!-- /ANCHOR:phase-map -->
 
 ---
 

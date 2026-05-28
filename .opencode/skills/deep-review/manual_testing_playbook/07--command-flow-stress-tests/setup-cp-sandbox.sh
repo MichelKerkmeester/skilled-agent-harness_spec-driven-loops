@@ -58,7 +58,7 @@ copy_file() {
   cp "$source" "$target"
 }
 
-require_path "${REPO_ROOT}/.opencode/commands/spec_kit"
+require_path "${REPO_ROOT}/.opencode/commands/speckit"
 require_path "${REPO_ROOT}/.opencode/skills/deep-review"
 require_path "${REPO_ROOT}/.opencode/skills/system-spec-kit"
 require_path "${REPO_ROOT}/.opencode/skills/sk-code-review"
@@ -70,7 +70,7 @@ require_path "${REPO_ROOT}/.codex/agents/deep-review.toml"
 rm -rf "$SANDBOX_DIR"
 mkdir -p "$SANDBOX_DIR"
 
-copy_dir "${REPO_ROOT}/.opencode/commands/spec_kit" "${SANDBOX_DIR}/.opencode/commands/spec_kit"
+copy_dir "${REPO_ROOT}/.opencode/commands/speckit" "${SANDBOX_DIR}/.opencode/commands/speckit"
 copy_dir "${REPO_ROOT}/.opencode/skills/deep-review" "${SANDBOX_DIR}/.opencode/skills/deep-review"
 copy_dir "${REPO_ROOT}/.opencode/skills/system-spec-kit" "${SANDBOX_DIR}/.opencode/skills/system-spec-kit"
 copy_dir "${REPO_ROOT}/.opencode/skills/sk-code-review" "${SANDBOX_DIR}/.opencode/skills/sk-code-review"

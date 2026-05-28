@@ -1,0 +1,28 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-loop-runtime / 01--executor (DLR-001..003)
+Date: 2026-05-27 | Executor: cli-devin SWE-1.6 | Raw dispatch log: scratch/logs/dlr-01-executor.log
+Method: anti-fabrication per dispatch-runbook §6. Executor reached PASS via source inspection
+(could not run vitest under --permission-mode auto). Orchestrator independently re-confirmed every
+cited anchor against CURRENT source (rg/sed), and confirmed matching test files exist with real assertions.
+
+DLR-001 Executor config — PASS
+  anchor CONFIRMED exact: lib/deep-loop/executor-config.ts:23
+    `export const executorConfigSchema = z.object({ kind, model, reasoningEffort, serviceTier, sandboxMode, timeoutSeconds })`
+  test: tests/unit/executor-config.vitest.ts present — 27 it()/test(), 29 expect().
+
+DLR-002 Executor audit — PASS
+  anchor CONFIRMED exact: lib/deep-loop/executor-audit.ts:403
+    `export function validateExecutorDispatchAllowed(config, context): ExecutorDispatchAllowedResult`
+  test: tests/unit/executor-audit.vitest.ts present — 24 it()/test(), 37 expect().
+
+DLR-003 Fallback router — PASS
+  anchor CONFIRMED exact: lib/deep-loop/fallback-router.ts:41
+    `export function resolveFallback(failedModelId: string, registry: ModelRegistry): FallbackRoute`
+  test: tests/unit/fallback-router.vitest.ts present — 9 it()/test(), 11 expect().
+
+OBSERVATION (non-blocking, P2 for phase-006 matrix): deep-loop-runtime has NO wired vitest config.
+Repo-wide search found `.vitest.ts` include patterns only for other skills (system-spec-kit,
+system-code-graph, system-skill-advisor, deep-agent-improvement/scripts, .opencode/bin) — none cover
+.opencode/skills/deep-loop-runtime/tests/. So `npx vitest run <file>` returns "No test files found"
+(see scratch/evidence/dlr-01-executor-vitest.log). Scenario pass-condition allows inspect-OR-run;
+verdicts rest on exact-anchor + real-assertion inspection. Applies to all vitest-backed DLR categories
+(01,03,04,05,06,08). Anchor accuracy + assertion presence remain fully verifiable and were verified.

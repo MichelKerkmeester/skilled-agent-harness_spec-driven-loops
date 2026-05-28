@@ -72,12 +72,12 @@ Acceptance: record userPaused, keep the sentinel path visible, create no iterati
 Return status, stop_reason, sentinel_path, iteration_count, and notes.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-049-task.txt)" > /tmp/cp-049-prompt-A.txt
-copilot -p "$(cat /tmp/cp-049-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-049-sandbox --add-dir /tmp/cp-049-spec 2>&1 | tee /tmp/cp-049-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-049-A-exit.txt
+opencode run "$(cat /tmp/cp-049-prompt-A.txt)" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-049-sandbox </dev/null 2>&1 | tee /tmp/cp-049-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-049-A-exit.txt
 rm -rf /tmp/cp-049-sandbox && cp -a /tmp/cp-049-sandbox-baseline /tmp/cp-049-sandbox
 mkdir -p /tmp/cp-049-spec/research
 touch /tmp/cp-049-spec/research/.deep-research-pause
 cd /tmp/cp-049-sandbox
-copilot -p "/deep:start-research-loop:auto \"CP-049 pause sentinel halt\" --spec-folder=/tmp/cp-049-spec --max-iterations=2 --convergence=0.05" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-049-sandbox --add-dir /tmp/cp-049-spec 2>&1 | tee /tmp/cp-049-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-049-B-exit.txt
+opencode run "/deep:start-research-loop:auto \"CP-049 pause sentinel halt\" --spec-folder=/tmp/cp-049-spec --max-iterations=2 --convergence=0.05" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-049-sandbox </dev/null 2>&1 | tee /tmp/cp-049-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-049-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 diff -u /tmp/cp-049-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-049-sandbox/.opencode/agents/deep-research.md > /tmp/cp-049-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-049-B-canonical-exit.txt
 find /tmp/cp-049-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-049-B-artifacts.txt 2>/dev/null || touch /tmp/cp-049-B-artifacts.txt

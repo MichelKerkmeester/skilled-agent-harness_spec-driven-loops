@@ -1,0 +1,24 @@
+ORCHESTRATOR VERIFICATION — deep-review / 07 command-flow stress (CP-052..057)
+Date 2026-05-27 | Executors: devin auto (blocked, can't write /tmp) -> codex gpt-5.5 workspace-write
+Logs: scratch/logs/drv-07-cp-stress.log (devin), drv-07-cp-stress-codex.log (codex)
+Setup: 007 remediation fixed the stale spec_kit->speckit path; setup-cp-sandbox.sh now builds cleanly (sandbox + speckit present).
+
+Result: 0 PASS / 0 PARTIAL / 0 FAIL / 6 SKIP.
+Concrete blocker: the CP scenarios drive `/deep:start-review-loop:auto` via `copilot -p` (GitHub Copilot CLI v1.0.41), which is
+POLICY-BLOCKED in this environment. Orchestrator-confirmed from shell: `copilot -p "say hi"` ->
+"Access denied by policy settings" + "Third-party MCP servers are disabled by your organization's Copilot policy".
+(codex sandbox surfaced the same as "No authentication information found", EXIT 1.) The deep-review loop never runs, so the
+command-flow signals (handoff / 3-artifact / resource-map gate / save boundary / LEAF refusal / write boundary) cannot be observed.
+
+CP-052 SKIP  copilot policy-blocked; /tmp/cp-052 built + cleaned
+CP-053 SKIP  copilot policy-blocked
+CP-054 SKIP  copilot policy-blocked (fixtures present)
+CP-055 SKIP  copilot policy-blocked
+CP-056 SKIP  copilot policy-blocked
+CP-057 SKIP  copilot policy-blocked (protected fixtures stayed clean)
+
+NOTE: independent of the 007 setup-script fix (which SUCCEEDED — sandbox builds). This is a 2nd, environmental blocker: the
+copilot CLI is unusable (org policy). Per Execution Policy, concrete sandbox blocker -> SKIP. CP-052..057 are command-flow stress
+tests, NOT critical-path (critical = DRV-001/005/008/009/017/027, all PASS). To run them: enable/authorize the copilot CLI and
+re-dispatch. Guardrail held: codex wrote only /tmp/cp-*, no repo writes; sandboxes cleaned.
+Likely also blocks deep-research CP-046..051 (same copilot-driven pattern); deep-agent-improvement CP-040..045 are script-driven (no copilot) and should run.

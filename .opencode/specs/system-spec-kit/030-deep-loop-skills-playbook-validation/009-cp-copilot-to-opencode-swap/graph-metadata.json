@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/030-deep-loop-skills-playbook-validation/009-cp-copilot-to-opencode-swap",
+  "spec_folder": "system-spec-kit/030-deep-loop-skills-playbook-validation/009-cp-copilot-to-opencode-swap",
+  "parent_id": "system-spec-kit/030-deep-loop-skills-playbook-validation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cp copilot to opencode swap",
+      "030 phase 009 copilot swap",
+      "cp stress opencode executor"
+    ],
+    "key_topics": [
+      "copilot",
+      "opencode",
+      "deepseek",
+      "cp-stress",
+      "executor-swap",
+      "fixture-restore",
+      "deep-review",
+      "deep-research",
+      "deep-agent-improvement",
+      "030",
+      "009"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Swap the 18 copilot-driven CP/discipline stress scenarios (deep-review CP-052..057, deep-research CP-046..051, deep-agent-improvement CP-040..045) to cli-opencode with deepseek-v4-pro via the direct DeepSeek API provider, restore the pruned 060-stress-test fixture from git, re-run, orchestrator-verify, and flip the 030 ledger SKIPs + matrix.",
+    "created_at": "2026-05-27T22:30:00.000Z",
+    "last_save_at": "2026-05-27T22:49:10.173Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

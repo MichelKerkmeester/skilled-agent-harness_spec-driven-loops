@@ -1,0 +1,19 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-loop-runtime / 02-05 lib-inspection (DLR-004..010)
+Date: 2026-05-27 | Executor: cli-devin SWE-1.6 | Raw log: scratch/logs/dlr-02-05-lib-inspection.log
+Method: anti-fabrication §6. All 7 cited anchors re-confirmed via rg against CURRENT source;
+two specific behavioral claims read in full and confirmed exact.
+
+DLR-004 Prompt pack          — PASS  renderPromptPack @ lib/deep-loop/prompt-pack.ts:55 (CONFIRMED)
+DLR-005 Post-dispatch validate — PASS  validateIterationOutputs @ post-dispatch-validate.ts:515 (CONFIRMED)
+DLR-006 Atomic state [FOUNDATIONAL] — PASS  writeStateAtomic @ atomic-state.ts:36 (CONFIRMED)
+  Atomic semantics verified in full: writeFileSync(temp) -> fsyncPath(temp) -> renameSync(temp,path)
+  -> fsyncPath(dir), with rmSync(temp,{force}) cleanup on error. tests/unit/atomic-state.vitest.ts: 3 it/test.
+DLR-007 JSONL repair         — PASS  repairJsonlTail @ jsonl-repair.ts:77 (CONFIRMED)
+DLR-008 Loop lock            — PASS  acquireLoopLock @ loop-lock.ts:205 (CONFIRMED)
+DLR-009 Permissions gate     — PASS  evaluateToolCall @ permissions-gate.ts:393 (CONFIRMED)
+DLR-010 Bayesian scorer      — PASS  computeScore @ bayesian-scorer.ts:13 (CONFIRMED)
+  Formula verified exact: `return (success + 1) / (total + 2);`  shouldDemote: score<0.5 && totalCalls>=3.
+
+Verdict: 7/7 PASS, corroborated. Foundational primitive DLR-006 confirmed solid (gate-relevant).
+vitest run N/A (no wired deep-loop-runtime config — see dlr-01-executor.txt); verdicts rest on
+inspection per each scenario's documented inspect-OR-run pass condition.

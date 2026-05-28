@@ -1,0 +1,12 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-ai-council / 06-07 (DAC-013..018)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/dac-06-07.log
+Method §6: rg/anchor re-confirmation. Executor reported 6 PASS; orchestrator confirmed all anchors.
+
+DAC-013 PASS  7 writer fns (writeConfig..writeReport) @ scripts/lib/persist-artifacts.cjs:494-589 (count=7 confirmed)
+DAC-014 PASS  Depth 0/1 detection + sequential_thinking dispatch @ .opencode/agents/ai-council.md:55-56,84
+DAC-015 PASS  5-dim rubric Correctness30/Completeness20/Elegance15/Robustness20/Integration15 (=100%) @ references/scoring/scoring_rubric.md:54-58
+DAC-016 PASS  HUNTER/SKEPTIC/REFEREE roles @ scoring_rubric.md:159,171,190,208
+DAC-017 PASS  OUT_OF_SCOPE_WRITE path guard (parent-traversal refusal) @ persist-artifacts.cjs:231-239
+DAC-018 PASS  RESUME SEMANTICS partial-event recovery rules @ references/structure/state_format.md:170-172
+
+Verdict: 6 PASS / 0 PARTIAL / 0 FAIL / 0 SKIP. No remediation needed.

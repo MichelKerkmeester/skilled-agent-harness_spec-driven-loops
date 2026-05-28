@@ -1,0 +1,13 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-review / 01-02 entry+init (DRV-001..007)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/drv-01-02.log
+Method §6: rg/anchor re-confirmation of the deep-review auto/confirm YAML workflows. 7 PASS, all confirmed.
+
+DRV-001 PASS [CRIT]  auto YAML `approvals: none` @ deep_start-review-loop_auto.yaml:13 (no approval gates)
+DRV-002 PASS  confirm YAML `approvals: multi_gate` @ :13 + 5x `type: approval_gate` (phase-transition gates)
+DRV-003 PASS  defaults max-iterations 7 / convergence 0.10 agree across quick_reference + both YAMLs
+DRV-004 PASS  init creates config/JSONL/findings-registry/strategy/iterations @ auto.yaml:141,286,323,331,336
+DRV-005 PASS [CRIT]  resume classification @ auto.yaml:199 (resume cond), :201 (invalid-state), :204 (on_resume continue lineage)
+DRV-006 PASS  invalid-state -> halt with repair message @ auto.yaml:201,221-223
+DRV-007 PASS  scope discovery + dimension priority correctness→security→traceability→maintainability @ auto.yaml:263
+
+Verdict: 7 PASS / 0 PARTIAL / 0 FAIL / 0 SKIP. Critical DRV-001 + DRV-005 confirmed. No remediation.

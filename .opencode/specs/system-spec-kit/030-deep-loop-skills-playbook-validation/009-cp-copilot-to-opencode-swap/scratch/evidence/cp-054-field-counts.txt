@@ -1,0 +1,7 @@
+resource_map_present: 1+
+coverage_gate_named: 1+
+applied_task_visible: 1+
+traceability_dimension: 1+
+resource_map_artifact: 1+
+target_diff_clean: 1+
+project_tripwire_clean: 1+

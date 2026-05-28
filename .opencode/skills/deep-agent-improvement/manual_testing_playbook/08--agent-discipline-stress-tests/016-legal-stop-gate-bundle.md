@@ -66,16 +66,16 @@ Acceptance: Call B must emit legal_stop_evaluated with details.gateResults.contr
 Return structured output with status, candidate_path, target, change_summary, notes, and critic_pass.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-043-task.txt)" > /tmp/cp-043-prompt-A.txt
-copilot -p "$(cat /tmp/cp-043-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-043-sandbox 2>&1 | tee /tmp/cp-043-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-043-A-exit.txt
+opencode run "$(cat /tmp/cp-043-prompt-A.txt)" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-043-sandbox </dev/null 2>&1 | tee /tmp/cp-043-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-043-A-exit.txt
 rm -rf /tmp/cp-043-sandbox && cp -a /tmp/cp-043-sandbox-baseline /tmp/cp-043-sandbox
 cd /tmp/cp-043-sandbox
-copilot -p "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-043-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-043-sandbox --add-dir /tmp/cp-043-spec 2>&1 | tee /tmp/cp-043-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-043-B-exit.txt
+opencode run "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-043-spec --iterations=1" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-043-sandbox </dev/null 2>&1 | tee /tmp/cp-043-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-043-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 test -f /tmp/cp-043-spec/improvement/improvement-journal.jsonl && cp /tmp/cp-043-spec/improvement/improvement-journal.jsonl /tmp/cp-043-B-journal.jsonl || touch /tmp/cp-043-B-journal.jsonl
 cat /tmp/cp-043-B-command.txt /tmp/cp-043-B-journal.jsonl > /tmp/cp-043-B-combined.txt
 git status --porcelain > /tmp/cp-043-post.txt
 diff /tmp/cp-043-pre.txt /tmp/cp-043-post.txt > /tmp/cp-043-tripwire.diff; echo "TRIPWIRE_DIFF_EXIT=$?" | tee /tmp/cp-043-tripwire-exit.txt
-for label in "legal_stop_evaluated" "details.gateResults" "contractGate" "behaviorGate" "integrationGate" "evidenceGate" "improvementGate" "blocked_stop" "failedGates"; do grep -c "$label" /tmp/cp-043-B-combined.txt; done | tee /tmp/cp-043-B-field-counts.txt
+for label in "legal_stop_evaluated" "gateResults" "contractGate" "behaviorGate" "integrationGate" "evidenceGate" "improvementGate" "blocked_stop" "failedGates"; do grep -c "$label" /tmp/cp-043-B-combined.txt; done | tee /tmp/cp-043-B-field-counts.txt
 grep -c 'stopReason":"converged"' /tmp/cp-043-B-combined.txt | tee /tmp/cp-043-B-converged-count.txt
 grep -c "gate_evaluation" /tmp/cp-043-B-combined.txt | tee /tmp/cp-043-B-generic-gate-count.txt
 ```

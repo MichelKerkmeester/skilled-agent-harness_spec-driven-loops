@@ -1,0 +1,23 @@
+ORCHESTRATOR VERIFICATION — deep-agent-improvement / 01-02 (IS-001..004, PG-005..008)
+Date 2026-05-27 | Executor cli-codex gpt-5.5 workspace-write | Raw log scratch/logs/dai-01-02-codex.log
+Corroboration: deep-agent-improvement vitest 8 files / 99 tests PASSED; orchestrator RE-RAN IS-001, IS-002, generate-profile.cjs.
+
+IS-001 PASS  scan-integration.cjs --agent=debug -> exit 0, status complete, mirrorSyncStatus all-aligned, totalSurfaces 23, cmd 3, skill 7 (orchestrator-RAN)
+IS-002 PASS  scan nonexistent agent -> graceful (status complete, missingCount>0, no crash, exit 0) (orchestrator-RAN)
+IS-003 PASS  scan debug, totalSurfaces 23 >= 20 (codex; corroborated by IS-001 run)
+IS-004 PASS  scan --output=/tmp JSON file created + valid structure (codex)
+PG-006 PASS  OUTPUT VERIFICATION checklist: 12 outputChecks extracted (codex; >=5)
+PG-008 PASS  profile --output=/tmp JSON, agentMeta + keys present (codex)
+
+PG-005 FAIL  generate-profile.cjs --agent=debug.md: derivedChecks.ruleCoherence extracted 0 ALWAYS + 0 NEVER (scenario expects >=3 ALWAYS, >=2 NEVER). Orchestrator-confirmed: ruleCoherence key present but empty for debug.
+PG-007 FAIL  inline-NEVER-fallback: 0 NEVER extracted (scenario expects >=1). Orchestrator-confirmed: debug.md HAS 2 inline NEVER rules (debug.md:37,46) but extractRuleBlock(NEVER) @ generate-profile.cjs:174 extracted 0 — inline fallback does not catch body-level "- NEVER ..." bullets.
+
+*** DISCREPANCY CLUSTER — OPERATOR REVIEW (NOT auto-remediated) ***
+generate-profile.cjs ruleCoherence extraction (extractRuleBlock @ :171 ALWAYS / :174 NEVER, deriveRules @ :266) RUNS but yields
+0/0 for debug.md despite 2 inline NEVER rules present. Ambiguous fix direction:
+ (a) generator bug — inline rule extraction should catch body bullets but doesn't -> FAIL, remediate generator; OR
+ (b) stale fixture — generator extracts only from a dedicated ALWAYS/NEVER section by design; debug lacks one; scenarios assume a format debug doesn't have -> scenarios stale, downgrade to PARTIAL.
+Not auto-remediated (ambiguous design-intent; changing extractor OR scenario blind risks regression). Flagged with DR-031 for the operator's
+batch decision at phase-006 synthesis. Vitest (99 passed) does not assert ruleCoherence-non-empty for debug, so it neither confirms nor denies.
+
+Verdict: 6 PASS / 0 PARTIAL / 2 FAIL / 0 SKIP. PG-005 + PG-007 FAIL flagged (remediation direction TBD by operator).

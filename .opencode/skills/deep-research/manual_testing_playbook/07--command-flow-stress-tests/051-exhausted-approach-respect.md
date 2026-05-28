@@ -88,10 +88,10 @@ Acceptance: append resumed plus one iteration record, mention Exhausted Approach
 Return status, lineage_mode, chosen_focus, blocked_approach_handling, and notes.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-051-task.txt)" > /tmp/cp-051-prompt-A.txt
-copilot -p "$(cat /tmp/cp-051-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-051-sandbox --add-dir /tmp/cp-051-spec 2>&1 | tee /tmp/cp-051-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-051-A-exit.txt
+opencode run "$(cat /tmp/cp-051-prompt-A.txt)" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-051-sandbox </dev/null 2>&1 | tee /tmp/cp-051-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-051-A-exit.txt
 rm -rf /tmp/cp-051-sandbox && cp -a /tmp/cp-051-sandbox-baseline /tmp/cp-051-sandbox
 cd /tmp/cp-051-sandbox
-copilot -p "/deep:start-research-loop:auto \"CP-051 exhausted approach respect\" --spec-folder=/tmp/cp-051-spec --max-iterations=2 --convergence=0.05" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-051-sandbox --add-dir /tmp/cp-051-spec 2>&1 | tee /tmp/cp-051-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-051-B-exit.txt
+opencode run "/deep:start-research-loop:auto \"CP-051 exhausted approach respect\" --spec-folder=/tmp/cp-051-spec --max-iterations=2 --convergence=0.05" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-051-sandbox </dev/null 2>&1 | tee /tmp/cp-051-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-051-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 diff -u /tmp/cp-051-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-051-sandbox/.opencode/agents/deep-research.md > /tmp/cp-051-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-051-B-canonical-exit.txt
 find /tmp/cp-051-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-051-B-artifacts.txt 2>/dev/null || touch /tmp/cp-051-B-artifacts.txt

@@ -1,0 +1,12 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-review / 08 review-depth-v2-rollout (DRV-058..063)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/drv-08-depthv2.log
+Corroboration: review-depth vitest (validator/graph/convergence) PASSED 13/13. Anchors re-confirmed.
+
+DRV-058 PASS  legacy_unversioned_record warn @ post-dispatch-validate.ts:644; warn-mode advisory conversion :679-686
+DRV-059 PASS  5 v2 failure codes present (11 occurrences) @ post-dispatch-validate.ts; review-depth-validator.vitest ✓
+DRV-060 PASS  reducer search-debt registry fields @ reduce-state.cjs:1054; dashboard "Search Debt" :1304; review-depth-reducer.vitest ✓
+DRV-061 PASS  candidateCoverageGate STOP blocker @ auto.yaml:484; review-depth-convergence.vitest ✓
+DRV-062 PASS  graphlessFallbackGate STOP blocker @ auto.yaml:485; review-depth-convergence.vitest ✓
+DRV-063 PASS  review node-kind vocab BUG_CLASS/INVARIANT/PRODUCER/CONSUMER/TEST @ coverage-graph-db.ts:20,138; review-depth-graph.vitest ✓
+
+Verdict: 6 PASS / 0 PARTIAL / 0 FAIL / 0 SKIP. All vitest-corroborated. No remediation.

@@ -1,0 +1,24 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-ai-council / 08 council-graph-integration (DAC-019..026)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/dac-08-graph.log
+Corroboration: ran the council-graph vitest suite (ad-hoc config) — council-graph-script.vitest.ts +
+  council-graph-query.vitest.ts + council-graph-value-scenarios.vitest.ts => 3 files, 21/21 tests PASSED
+  (scratch/evidence/council-graph-tests.log). Anchors re-confirmed via rg.
+
+DAC-019 PASS  self-loop reject `if (sourceId===targetId)` @ deep-loop-runtime/scripts/upsert.cjs:208; idempotency via PK; vitest ✓
+DAC-020 PASS  empty-input noOp:true @ scripts/upsert.cjs:133-153; vitest ✓
+DAC-021 PASS  SAFE_METADATA_KEYS allowlist @ lib/council/council-graph-query.ts:62; vitest ✓
+DAC-022 PASS  5 query modes @ scripts/query.cjs:116-191; vitest ✓
+DAC-023 PASS  STOP_BLOCKED/STOP_ALLOWED/CONTINUE @ lib/council/convergence.cjs:54-55,154; vitest ✓
+DAC-024 PASS  recovery payload (derived_replay) @ scripts/status.cjs:119-129; vitest ✓
+DAC-025 PARTIAL  [executor anchor FABRICATED: cited deep-loop-runtime/scripts/replay-graph-from-artifacts.cjs:239 +
+  derivePayload() — NEITHER EXISTS]. CORRECTED: helper exists at deep-ai-council/scripts/replay-graph-from-artifacts.cjs
+  (443 lines; args --spec-folder/--session-id/--dry-run; reads <spec>/ai-council/ai-council-state.jsonl and replays).
+  Helper present + structurally correct + dry-run write-safety. Full assertion (post-replay counts match + artifact
+  mtimes unchanged) needs a live persisted-artifact fixture — NOT run. -> PARTIAL.
+DAC-026 PARTIAL  council MCP surface retired: 0 council_graph_* MCP entries (rg confirmed) = intent MET. BUT
+  TOOL_DEFINITIONS count = 36, scenario asserts ===35. 36th tool is `memory_embedding_reconcile` (recent commit, unrelated
+  to council). Scenario's "35" is STALE post-addition; not a council regression. -> PARTIAL + P2 doc-nit (count 35->36).
+
+Verdict: 6 PASS / 2 PARTIAL / 0 FAIL / 0 SKIP. No runtime FAIL -> no 007+ remediation.
+NOTE: SWE-1.6 fabricated the DAC-025 anchor — spot-check caught it; reinforces orchestrator-wins discipline.
+P2 doc-nits for phase-006 matrix: (a) DAC-026 scenario count 35->36; (b) executor anchor-fabrication risk observed.

@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/030-deep-loop-skills-playbook-validation/009-cp-copilot-to-opencode-swap",
+  "description": "CP stress scenarios copilot -> opencode (deepseek-direct) executor swap + fixture restore (030 Phase 009)",
+  "keywords": [
+    "remediation",
+    "copilot",
+    "opencode",
+    "deepseek",
+    "cp-stress",
+    "executor-swap",
+    "030",
+    "009"
+  ],
+  "lastUpdated": "2026-05-27T00:00:00.000Z",
+  "specId": "009",
+  "folderSlug": "cp-copilot-to-opencode-swap",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "030-deep-loop-skills-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

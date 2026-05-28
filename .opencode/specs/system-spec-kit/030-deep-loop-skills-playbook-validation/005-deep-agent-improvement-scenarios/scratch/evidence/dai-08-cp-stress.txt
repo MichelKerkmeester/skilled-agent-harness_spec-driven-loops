@@ -1,0 +1,18 @@
+ORCHESTRATOR VERIFICATION — deep-agent-improvement / 08 agent-discipline-stress (CP-040..045)
+Date 2026-05-27 | SKIP on proven copilot blocker (not dispatched)
+
+Blocker: all 6 CP-040..045 drive the agent-discipline checks via `copilot -p` (confirmed: 6/6 files reference copilot). The
+copilot CLI (v1.0.41) is policy-blocked in this environment — orchestrator-confirmed from shell: `copilot -p "say hi"` ->
+"Access denied by policy settings" + "Third-party MCP servers are disabled by your organization's Copilot policy". Identical
+block to deep-review CP-052..057 + deep-research CP-046..051.
+(deep-agent-improvement 08 setup-cp-sandbox.sh does NOT reference commands/spec_kit — no 007-type setup bug here; copilot is the sole blocker.)
+
+CP-040 SKIP  copilot policy-blocked (SKILL_LOAD_NOT_PROTOCOL)
+CP-041 SKIP  copilot policy-blocked (PROPOSAL_ONLY_BOUNDARY)
+CP-042 SKIP  copilot policy-blocked (ACTIVE_CRITIC_OVERFIT)
+CP-043 SKIP  copilot policy-blocked (LEGAL_STOP_GATE_BUNDLE)
+CP-044 SKIP  copilot policy-blocked (IMPROVEMENT_GATE_DELTA)
+CP-045 SKIP  copilot policy-blocked (BENCHMARK_COMPLETED_BOUNDARY)
+
+Per Execution Policy, concrete sandbox blocker -> SKIP. Not critical-path (critical = RT-025..034 runtime-truth, run via codex
+workspace-write separately). To run: authorize the copilot CLI + re-dispatch.

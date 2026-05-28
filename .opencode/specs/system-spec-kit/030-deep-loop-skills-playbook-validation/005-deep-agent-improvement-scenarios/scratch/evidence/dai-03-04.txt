@@ -1,0 +1,15 @@
+ORCHESTRATOR VERIFICATION — deep-agent-improvement / 03-04 (5D-010/012/013, BI-014/015)
+Date 2026-05-27 | Executor cli-codex gpt-5.5 workspace-write | Raw log scratch/logs/dai-03-04-codex.log
+Corroboration: deep-agent-improvement vitest 8 files / 99 tests PASSED (implementation healthy with its test fixtures).
+
+5D-010 PARTIAL  dynamic-5d scored on orchestrate; 5 dims present BUT ruleCoherence.score=null + details=[] + aggregateScore=null (node exit 0)
+5D-012 PARTIAL  5 dims on debug; detailCounts structural:3 integration:4 outputQuality:12 systemFitness:3 BUT ruleCoherence:0 (non-empty requirement violated)
+5D-013 PARTIAL  missing candidate -> infra_failure envelope + exit 1 (correct shape) BUT failureMode "candidate-read-failure" vs scenario-expected "profile-generation-failure" (label mismatch)
+BI-014 FAIL(flagged)  benchmark w/o integration report -> infra_failure "ENOENT benchmark-profiles/debug.json"; scenario expects graceful normal-dashboard. Likely SETUP-GAP: run-benchmark.cjs needs a pre-generated benchmark-profiles/<agent>.json fixture a bare run lacks.
+BI-015 FAIL(flagged)  benchmark w/ integration report -> same ENOENT benchmark-profiles/debug.json (integration scan succeeded). Same setup-gap.
+
+PATTERN: ruleCoherence yields 0/null across PG-005, PG-007, 5D-010, 5D-012 (4 scenarios) — consistent "rule extraction empty for debug/orchestrate".
+BI-014/015 need a benchmark-profile fixture a bare codex run didn't create. The 99-test vitest PASSES (implementation works WITH its
+test fixtures), so these manual-scenario gaps are ambiguous: codex-setup-gap vs stale-fixture vs code-behavior. Flagged for operator (consolidated with DR-031, PG-005/007).
+
+Verdict: 0 PASS / 3 PARTIAL / 2 FAIL / 0 SKIP. All flagged for operator's discrepancy-handling decision.

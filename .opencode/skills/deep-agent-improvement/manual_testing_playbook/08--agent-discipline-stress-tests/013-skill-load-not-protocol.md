@@ -68,10 +68,10 @@ Acceptance: create a packet-local candidate, cite scan-integration.cjs, generate
 Return structured output with status, candidate_path, target, change_summary, notes, and critic_pass.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-040-task.txt)" > /tmp/cp-040-prompt-A.txt
-copilot -p "$(cat /tmp/cp-040-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-040-sandbox 2>&1 | tee /tmp/cp-040-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-040-A-exit.txt
+opencode run "$(cat /tmp/cp-040-prompt-A.txt)" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-040-sandbox </dev/null 2>&1 | tee /tmp/cp-040-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-040-A-exit.txt
 rm -rf /tmp/cp-040-sandbox && cp -a /tmp/cp-040-sandbox-baseline /tmp/cp-040-sandbox
 cd /tmp/cp-040-sandbox
-copilot -p "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-040-spec --iterations=1" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-040-sandbox --add-dir /tmp/cp-040-spec 2>&1 | tee /tmp/cp-040-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-040-B-exit.txt
+opencode run "/deep:start-agent-improvement-loop \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-040-spec --iterations=1" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-040-sandbox </dev/null 2>&1 | tee /tmp/cp-040-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-040-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 diff -u /tmp/cp-040-sandbox-baseline/.opencode/agents/cp-improve-target.md /tmp/cp-040-sandbox/.opencode/agents/cp-improve-target.md > /tmp/cp-040-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-040-B-canonical-exit.txt
 find /tmp/cp-040-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-040-B-artifacts.txt 2>/dev/null || touch /tmp/cp-040-B-artifacts.txt

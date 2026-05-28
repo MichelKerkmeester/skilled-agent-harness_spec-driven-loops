@@ -71,10 +71,10 @@ Acceptance: iteration-001.md contains Focus, Findings, Sources Consulted, Assess
 Return status, iteration_path, jsonl_append_count, citation_count, and notes.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-050-task.txt)" > /tmp/cp-050-prompt-A.txt
-copilot -p "$(cat /tmp/cp-050-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-050-sandbox --add-dir /tmp/cp-050-spec 2>&1 | tee /tmp/cp-050-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-050-A-exit.txt
+opencode run "$(cat /tmp/cp-050-prompt-A.txt)" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-050-sandbox </dev/null 2>&1 | tee /tmp/cp-050-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-050-A-exit.txt
 rm -rf /tmp/cp-050-sandbox && cp -a /tmp/cp-050-sandbox-baseline /tmp/cp-050-sandbox
 cd /tmp/cp-050-sandbox
-copilot -p "/deep:start-research-loop:auto \"CP-050 local source citation discipline\" --spec-folder=/tmp/cp-050-spec --max-iterations=1 --convergence=0.05" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-050-sandbox --add-dir /tmp/cp-050-spec 2>&1 | tee /tmp/cp-050-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-050-B-exit.txt
+opencode run "/deep:start-research-loop:auto \"CP-050 local source citation discipline\" --spec-folder=/tmp/cp-050-spec --max-iterations=1 --convergence=0.05" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-050-sandbox </dev/null 2>&1 | tee /tmp/cp-050-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-050-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 diff -u /tmp/cp-050-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-050-sandbox/.opencode/agents/deep-research.md > /tmp/cp-050-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-050-B-canonical-exit.txt
 find /tmp/cp-050-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-050-B-artifacts.txt 2>/dev/null || touch /tmp/cp-050-B-artifacts.txt

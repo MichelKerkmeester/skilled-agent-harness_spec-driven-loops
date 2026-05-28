@@ -177,6 +177,17 @@ function deriveRules(secs) {
   extractRuleBlock(rc, '(?:⚠️\\s*)?ESCALATE\\s+(?:IF|WHEN)').forEach((rule, i) => {
     checks.push({ id: `escalate-${i}`, rule, type: 'escalate', weight: 3 });
   });
+  // Inline fallback (DAI playbook PG-007): when no dedicated RULES > ###ALWAYS/###NEVER block
+  // yields rules, scan all section bodies for inline "- ALWAYS ..." / "- NEVER ..." bullets.
+  if (!checks.some((c) => c.type === 'always' || c.type === 'never')) {
+    const inlineLines = Object.values(secs).join('\n').split('\n').map((l) => l.trim());
+    const collectInline = (re, type) => inlineLines
+      .filter((l) => re.test(l))
+      .map((l) => l.replace(/^[-*]\s+/, '').replace(/\*\*/g, '').trim())
+      .forEach((rule, i) => checks.push({ id: `${type}-inline-${i}`, rule, type, weight: W_RULE }));
+    collectInline(/^[-*]\s+(?:✅\s*)?(?:ALWAYS|Always)\b/, 'always');
+    collectInline(/^[-*]\s+(?:❌\s*)?(?:NEVER|Never)\b/, 'never');
+  }
   return checks;
 }
 

@@ -50,7 +50,7 @@ cp -a /tmp/cp-055-sandbox /tmp/cp-055-sandbox-baseline
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 git status --porcelain -- /tmp/cp-055-sandbox /tmp/cp-055-spec > /tmp/cp-055-pre.txt
 cd /tmp/cp-055-sandbox
-copilot -p "/deep:start-review-loop:auto \"targets/review-target.js\" --spec-folder=/tmp/cp-055-spec --max-iterations=1 --convergence=0.10 --no-resource-map. Use target type files and dimensions maintainability. Complete synthesis after max iterations and route continuity via generate-context.js." --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-055-sandbox --add-dir /tmp/cp-055-spec 2>&1 | tee /tmp/cp-055-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-055-B-exit.txt
+opencode run "/deep:start-review-loop:auto \"targets/review-target.js\" --spec-folder=/tmp/cp-055-spec --max-iterations=1 --convergence=0.10 --no-resource-map. Use target type files and dimensions maintainability. Complete synthesis after max iterations and route continuity via generate-context.js." --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-055-sandbox </dev/null 2>&1 | tee /tmp/cp-055-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-055-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 find /tmp/cp-055-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-055-B-artifacts.txt 2>/dev/null || touch /tmp/cp-055-B-artifacts.txt
 find /tmp/cp-055-spec -type f > /tmp/cp-055-B-files.txt 2>/dev/null || touch /tmp/cp-055-B-files.txt
@@ -67,7 +67,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
   field "dashboard" "deep-review-dashboard.md|dashboard" /tmp/cp-055-B-combined.txt
   field "findings_registry" "deep-review-findings-registry.json|openFindings" /tmp/cp-055-B-combined.txt
   field "save_script_named" "generate-context.js" /tmp/cp-055-B-combined.txt
-  field "status_reported" "STATUS=OK|STATUS=FAIL|Deep review complete" /tmp/cp-055-B-combined.txt
+  field "status_reported" "STATUS=OK|STATUS=FAIL|Deep review.*complete" /tmp/cp-055-B-combined.txt
   absent_file_field "no_retired_memory_files" /tmp/cp-055-memory-files.txt
   diff_field "target_diff_clean" /tmp/cp-055-target.diff
   diff_field "project_tripwire_clean" /tmp/cp-055-tripwire.diff

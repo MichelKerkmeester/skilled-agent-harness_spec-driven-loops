@@ -1,0 +1,17 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-review / 05-06 pause-resume + synthesis (DRV-021..029)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/drv-05-06.log
+Method §6: rg/anchor re-confirmation. 8 PASS / 1 PARTIAL.
+
+DRV-021 PASS  pause_sentinel .deep-review-pause @ auto.yaml:97 + step_check_pause_sentinel halt:true
+DRV-022 PASS  resume event + continuedFromRun @ auto.yaml:206
+DRV-023 PARTIAL  malformed lines skipped+warned (corruptionWarnings, malformed_delta "skip+warn") @ state_format.md:264;
+  the specific "default newFindingsRatio=1.0 on skip" not found in reduce-state.cjs/state_format — core skip confirmed,
+  default-value sub-claim unverified. Non-critical.
+DRV-024 PASS  iteration-*.md write-once + JSONL reconstruct (status:reconstructed) @ state_format.md:93, loop_protocol.md:616
+DRV-025 PASS  9-section report (Exec Summary..Audit Appendix) @ quick_reference.md:172-180
+DRV-026 PASS  verdict routing FAIL/CONDITIONAL->plan, PASS->changelog @ quick_reference.md:115-117
+DRV-027 PASS [CRIT]  memory-save via generate-context.js @ auto.yaml:1302; LEAF-only + read-only @ deep-review.md:24,26
+DRV-028 PASS  two-tier dedup keep-highest-severity @ auto.yaml:1181-1187
+DRV-029 PASS  step_emit_resource_map + reduce-state.cjs --emit-resource-map @ auto.yaml:1209; reduce-state.cjs:1784
+
+Verdict: 8 PASS / 1 PARTIAL / 0 FAIL / 0 SKIP. Critical DRV-027 confirmed. No remediation.

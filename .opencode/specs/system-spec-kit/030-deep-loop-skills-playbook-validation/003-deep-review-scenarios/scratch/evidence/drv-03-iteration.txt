@@ -1,0 +1,19 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-review / 03 iteration (DRV-008..015)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/drv-03-iteration.log
+Corroboration: review-depth vitest (review-depth-validator/graph/convergence) ran => 3 files, 13/13 PASSED
+  (scratch/evidence/review-depth-tests.log). Anchors re-confirmed via rg.
+
+DRV-008 PASS [CRIT]  step_read_state (read state before review) @ deep_start-review-loop_auto.yaml:373
+DRV-009 PASS [CRIT]  jsonl_appended + strategy_updated outputs @ auto.yaml:977-978
+DRV-010 PASS  dimension rotation next_dimension/dimension_queue @ auto.yaml:269,387
+DRV-011 PASS  crossReference core+overlay protocols @ auto.yaml:304-306
+DRV-012 PASS  adversarial self-check on P0/P1 @ auto.yaml:995,1200
+DRV-013 PASS  step_generate_dashboard @ auto.yaml:1053
+DRV-014 PASS  severity_weights + p0_override newFindingsRatio @ auto.yaml:1382-1388
+DRV-015 PASS  [UPGRADED from executor PARTIAL] graphEvents emission CONFIRMED: prompt_pack_iteration.md.tmpl
+  instructs an optional per-iteration graphEvents array in the JSONL record; review_mode_contract.yaml lists it;
+  README documents the full flow (iteration emits graphEvents -> coverage-graph-db.ts ingests under loop_type='review'
+  -> convergence cross-checks coverage gaps before STOP). review-depth-convergence.vitest PASSED. Capability present + covered.
+  (Display note: rg rendered the field as "ln" — local display artifact; field is graphEvents per scenario + contract.)
+
+Verdict: 8 PASS / 0 PARTIAL / 0 FAIL / 0 SKIP. Critical DRV-008 + DRV-009 confirmed. No remediation.

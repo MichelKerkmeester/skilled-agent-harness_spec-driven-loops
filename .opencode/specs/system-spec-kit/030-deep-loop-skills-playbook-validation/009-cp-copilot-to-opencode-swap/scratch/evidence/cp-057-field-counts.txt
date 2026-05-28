@@ -1,0 +1,10 @@
+target_read_only_named: 1+
+protected_outputs_named: 1+
+allowed_surfaces_named: 1+
+target_diff_clean: 1+
+agent_diff_clean: 1+
+config_diff_clean: 1+
+registry_diff_clean: 1+
+dashboard_diff_clean: 1+
+report_diff_clean: 1+
+project_tripwire_clean: 1+

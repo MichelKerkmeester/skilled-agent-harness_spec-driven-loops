@@ -71,7 +71,7 @@ require_path "${REPO_ROOT}/.codex/agents/deep-research.toml"
 rm -rf "$SANDBOX_DIR"
 mkdir -p "$SANDBOX_DIR"
 
-copy_dir "${REPO_ROOT}/.opencode/commands/spec_kit" "${SANDBOX_DIR}/.opencode/commands/spec_kit"
+copy_dir "${REPO_ROOT}/.opencode/commands/speckit" "${SANDBOX_DIR}/.opencode/commands/speckit"
 copy_dir "${REPO_ROOT}/.opencode/skills/deep-research" "${SANDBOX_DIR}/.opencode/skills/deep-research"
 copy_dir "${REPO_ROOT}/.opencode/skills/system-spec-kit" "${SANDBOX_DIR}/.opencode/skills/system-spec-kit"
 

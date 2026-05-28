@@ -1,0 +1,18 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-review / 04 convergence-and-recovery (9 scenarios)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/drv-04-convergence.log
+Corroboration: review-depth-convergence.vitest PASSED (part of the 13/13 review-depth suite). Anchors re-confirmed.
+
+DRV-031 PASS  composite convergence weights 0.30/0.25/0.45 threshold 0.60 @ convergence.md:210-212,50; vitest ✓
+DRV-017 PASS [CRIT]  P0 override newFindingsRatio=max(calc,0.50) @ convergence.md:394 (blocks convergence)
+DRV-018 PASS  9-gate legal-stop bundle @ convergence.md:131
+DRV-019 PASS  stuckThreshold=2 + recovery widens to least-covered dimension @ convergence.md:48,180-192
+DRV-020 PASS  dimension-coverage signal weight 0.45 + minStabilizationPasses @ convergence.md:212,238-246
+DRV-030 PASS  maxIterations=7 hard stop @ convergence.md:44,156-157
+DRV-032 PASS  graph-backed dimensionCoverage blocks premature STOP @ convergence.md:106-109; vitest ✓
+DRV-033 PARTIAL  blockedStopHistory surfacing contract @ state_format.md:260 + test review-reducer-fail-closed.vitest.ts exists;
+  no live spec-folder fixture, and vitest not installed in system-spec-kit (npx exit 127) to run it here. Non-critical.
+DRV-034 PARTIAL  reducer fail-closed: review-reducer-fail-closed.vitest.ts:125-127 asserts corrupt-line throw; no live fixture +
+  vitest-run unavailable in system-spec-kit dir. Non-critical.
+
+Verdict: 7 PASS / 2 PARTIAL / 0 FAIL / 0 SKIP. Critical DRV-017 confirmed. No remediation.
+P3 note: system-spec-kit reducer vitest not runnable from its dir (npx exit 127); deep-loop-runtime review-depth suite IS runnable + green.

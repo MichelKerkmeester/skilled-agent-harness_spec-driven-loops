@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/030-deep-loop-skills-playbook-validation",
+  "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation",
   "description": "Feature Specification: Deep-Loop Skills Playbook Validation",
   "keywords": [
     "feature",
@@ -9,12 +9,10 @@
     "playbook",
     "validation"
   ],
-  "lastUpdated": "2026-05-27T07:37:09.154Z",
+  "lastUpdated": "2026-05-27T20:15:05.731Z",
   "specId": "030",
   "folderSlug": "deep-loop-skills-playbook-validation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit"
   ],
   "memorySequence": 1,

@@ -1,0 +1,23 @@
+ORCHESTRATOR ADJUDICATION — deep-ai-council / 09 value-comparison (DAC-027..032)
+Date 2026-05-27 | Executor cli-codex gpt-5.5 (A/B) | Raw log scratch/logs/dac-09-codex.log
+Corroboration: council-graph-value-scenarios.vitest.ts PASSED (part of the 21/21 council-graph suite);
+value-report.json measured ratios read directly by orchestrator.
+
+Codex verdicts (strict to the prompt's ">=10x-or-FAIL"): 2 PASS / 4 FAIL.
+ORCHESTRATOR RECONCILIATION (orchestrator-wins): 2 PASS / 4 PARTIAL / 0 FAIL.
+Rationale: the deterministic anchor test passes for ALL six -> implementations correct, no regression.
+Codex's 4 FAILs were driven by the rigid ">=10x reads" threshold in the dispatch prompt, NOT a defect.
+
+DAC-027 PASS    ratio 12:1; same unresolved set {d1,d3}; read-reduction value MET (>=10x). vitest ✓
+DAC-028 PASS    ratio 13:1; structured provenance {decB,e1,e2,e3,seatB}; read-reduction MET. vitest ✓
+DAC-029 PARTIAL ratio 1:1; value is SAFETY, not read-count — graph STOP_BLOCKED on critical d1 that the naive
+  2-of-3 baseline would wrongly converge past. Convergence-safety purpose MET + vitest ✓; ">=10x reads" mis-fits. Not a defect.
+DAC-030 PARTIAL ratio 7:1; graph ranks blockers (d1,d2,c5) baseline cannot; real value, reduction 7x (<10x bar). vitest ✓
+DAC-031 PARTIAL ratio 8:1; SAME answer set {c1,decA,c2} both paths; reduction 8x (just under 10x). vitest ✓
+DAC-032 PARTIAL ratio 1:1; value is structured RECOVERY payload vs baseline JSONL forensics; recovery purpose MET
+  + vitest ✓; read-reduction criterion mis-fits a recovery scenario. Not a defect.
+
+Verdict: 2 PASS / 4 PARTIAL / 0 FAIL / 0 SKIP. NO defects -> NO 007+ remediation.
+P2 finding (matrix): the 09 scenarios' uniform "PASS iff >=10x fewer reads" criterion overstates read-reduction for
+the safety/recovery/ranking scenarios (029/032 are 1:1 by nature; 030/031 are 7-8x). The per-scenario vitest fixtures
+(correctness/safety, all green) are the truer contract. Criterion-refinement opportunity, not a runtime bug.

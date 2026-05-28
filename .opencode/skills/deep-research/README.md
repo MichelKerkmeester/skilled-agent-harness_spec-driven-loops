@@ -286,6 +286,9 @@ A: Yes. Packet files are the authority. Hooks only improve startup ergonomics.
 **Q: What can `/deep:start-research-loop` change in `spec.md`?**
 A: Only the bounded mutations in `references/protocol/spec_check_protocol.md`. seed markers or pre-init context during INIT, plus one machine-owned `BEGIN GENERATED` / `END GENERATED` findings block during SYNTHESIS.
 
+**Q: How is the research charter validated at init?**
+A: Init (Step 5a) verifies the **Non-Goals** and **Stop Conditions** sections in `deep-research-strategy.md`, appends empty placeholders if missing, and presents the charter for review in confirm mode.
+
 **Q: Where should review work go now?**
 A: Use `deep-review` and `/deep:start-review-loop`.
 

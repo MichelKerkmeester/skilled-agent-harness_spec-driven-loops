@@ -1,0 +1,8 @@
+review_report: 1+
+dashboard: 1+
+findings_registry: 1+
+save_script_named: 1+
+status_reported: 0
+no_retired_memory_files: 1+
+target_diff_clean: 1+
+project_tripwire_clean: 1+

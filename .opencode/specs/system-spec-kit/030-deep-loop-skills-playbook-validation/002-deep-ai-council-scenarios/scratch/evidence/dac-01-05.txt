@@ -1,0 +1,21 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-ai-council / 01-05 (DAC-001..012)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/dac-01-05.log
+Method §6: advisor CLI run + grep/anchor re-confirmation. Executor reported 9 PASS/2 PARTIAL/1 SKIP.
+Orchestrator revision: DAC-002 SKIP -> PASS. Final: 11 PASS / 2 PARTIAL / 0 FAIL / 0 SKIP.
+
+DAC-001 PASS  deep-ai-council present in 4 agent mirrors (.opencode/.claude/.codex/.gemini); no active multi-ai-council name (rg confirmed)
+DAC-002 PASS  [UPGRADED from executor SKIP] ran skill_advisor.py on a council prompt ->
+  recommends deep-ai-council conf=0.95 score=0.823 passes_threshold=true ("Candidate-3 deep routing: deep-ai-council HIGH").
+  Executor SKIP'd because it chose a permission-blocked vitest; the advisor CLI is runnable and confirms the routing behavior.
+DAC-003 PASS  DIVERSIFY 2-3 seats from distinct lenses @ .opencode/agents/ai-council.md:83
+DAC-004 PASS  Pass-2 adversarial cross-critique precedes convergence @ ai-council.md:87
+DAC-005 PARTIAL  persist-artifacts.cjs EXISTS, delegates to lib/persist-artifacts.cjs; contract verified by inspection, no live fixture run (non-critical, not critical-path)
+DAC-006 PARTIAL  council_complete event defined @ references/structure/state_format.md:21,55; no live packet for end-to-end validation (non-critical)
+DAC-007 PASS  strict required-sections fail-closed @ references/structure/output_schema.md:34-39
+DAC-008 PASS  two-of-three-agree @ references/convergence/convergence_signals.md:6,21
+DAC-009 PASS  max_rounds -> council_complete convergence:false @ convergence_signals.md:29
+DAC-010 PASS  rollback moveRoundToFailed @ scripts/lib/rollback.cjs:50, markSuperseded @ :93
+DAC-011 PASS  council graph support = derived projection @ SKILL.md:353
+DAC-012 PASS  planning-only: patch: deny @ .opencode/agents/ai-council.md:18; writes scoped to ai-council/**
+
+Verdict: 11 PASS / 2 PARTIAL / 0 FAIL / 0 SKIP. No FAIL -> no remediation child needed for 01-05.

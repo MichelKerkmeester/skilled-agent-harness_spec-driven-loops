@@ -1,0 +1,7 @@
+leaf_boundary_named: 1+
+task_tool_forbidden: 1+
+error_or_refusal_status: 0
+no_task_invocation: 1+
+target_diff_clean: 1+
+agent_diff_clean: 1+
+project_tripwire_clean: 1+

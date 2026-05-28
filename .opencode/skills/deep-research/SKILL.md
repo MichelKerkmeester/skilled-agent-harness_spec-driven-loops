@@ -374,6 +374,7 @@ Research continuity is externalized to files, each iteration starts fresh, conve
 ### ALWAYS
 
 1. **Read state first** -- Agent must read JSONL and strategy.md before any research action
+   - Init validates the research charter (Non-Goals + Stop Conditions in `deep-research-strategy.md`, Step 5a): appends empty placeholders if missing, presents the charter for review in confirm mode.
 2. **One focus per iteration** -- Pick ONE research sub-topic from strategy.md "Next Focus"
 3. **Externalize findings** -- Write to iteration-NNN.md, not held in agent context
 4. **Update strategy** -- Append to "What Worked"/"What Failed", update "Next Focus"

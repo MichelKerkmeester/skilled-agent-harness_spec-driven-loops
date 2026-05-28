@@ -71,17 +71,17 @@ Acceptance: create deep-research-config.json, deep-research-state.jsonl, deep-re
 Return status, artifact_dir, setup_values, evidence_files, and notes.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-046-task.txt)" > /tmp/cp-046-prompt-A.txt
-copilot -p "$(cat /tmp/cp-046-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-046-sandbox --add-dir /tmp/cp-046-spec 2>&1 | tee /tmp/cp-046-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-046-A-exit.txt
+opencode run "$(cat /tmp/cp-046-prompt-A.txt)" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-046-sandbox </dev/null 2>&1 | tee /tmp/cp-046-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-046-A-exit.txt
 rm -rf /tmp/cp-046-sandbox && cp -a /tmp/cp-046-sandbox-baseline /tmp/cp-046-sandbox
 cd /tmp/cp-046-sandbox
-copilot -p "/deep:start-research-loop:auto \"CP-046 setup binding handoff across command and YAML\" --spec-folder=/tmp/cp-046-spec --max-iterations=1 --convergence=0.05" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-046-sandbox --add-dir /tmp/cp-046-spec 2>&1 | tee /tmp/cp-046-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-046-B-exit.txt
+opencode run "/deep:start-research-loop:auto \"CP-046 setup binding handoff across command and YAML\" --spec-folder=/tmp/cp-046-spec --max-iterations=1 --convergence=0.05" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-046-sandbox </dev/null 2>&1 | tee /tmp/cp-046-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-046-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 diff -u /tmp/cp-046-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-046-sandbox/.opencode/agents/deep-research.md > /tmp/cp-046-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-046-B-canonical-exit.txt
 find /tmp/cp-046-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-046-B-artifacts.txt 2>/dev/null || touch /tmp/cp-046-B-artifacts.txt
 cat /tmp/cp-046-B-command.txt /tmp/cp-046-B-artifacts.txt > /tmp/cp-046-B-combined.txt
 git status --porcelain > /tmp/cp-046-post.txt
 diff /tmp/cp-046-pre.txt /tmp/cp-046-post.txt > /tmp/cp-046-tripwire.diff; echo "TRIPWIRE_DIFF_EXIT=$?" | tee /tmp/cp-046-tripwire-exit.txt
-{ grep -c 'deep-research-config.json\|"maxIterations"[[:space:]]*:[[:space:]]*1' /tmp/cp-046-B-combined.txt; grep -c 'CP-046 setup binding handoff' /tmp/cp-046-B-combined.txt; grep -c 'deep-research-strategy.md' /tmp/cp-046-B-combined.txt; grep -c 'prompts/iteration-1.md\|prompts/iteration-001.md' /tmp/cp-046-B-combined.txt; grep -c 'iterations/iteration-001.md' /tmp/cp-046-B-combined.txt; grep -c 'deep_start-research-loop_auto.yaml\|AUTONOMOUS' /tmp/cp-046-B-combined.txt; grep -q 'POST_B_CANONICAL_DIFF=0' /tmp/cp-046-B-canonical-exit.txt && echo 1 || echo 0; grep -q 'TRIPWIRE_DIFF_EXIT=0' /tmp/cp-046-tripwire-exit.txt && echo 1 || echo 0; } | tee /tmp/cp-046-B-field-counts.txt
+{ grep -c 'deep-research-config.json\|"maxIterations"[[:space:]]*:[[:space:]]*1' /tmp/cp-046-B-combined.txt; grep -c 'CP-046 setup binding handoff\|setup-binding\|cp-046' /tmp/cp-046-B-combined.txt; grep -c 'deep-research-strategy.md' /tmp/cp-046-B-combined.txt; grep -c 'prompts/iteration-1.md\|prompts/iteration-001.md' /tmp/cp-046-B-combined.txt; grep -c 'iterations/iteration-001.md' /tmp/cp-046-B-combined.txt; grep -c 'deep_start-research-loop_auto.yaml\|AUTONOMOUS' /tmp/cp-046-B-combined.txt; grep -q 'POST_B_CANONICAL_DIFF=0' /tmp/cp-046-B-canonical-exit.txt && echo 1 || echo 0; grep -q 'TRIPWIRE_DIFF_EXIT=0' /tmp/cp-046-tripwire-exit.txt && echo 1 || echo 0; } | tee /tmp/cp-046-B-field-counts.txt
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

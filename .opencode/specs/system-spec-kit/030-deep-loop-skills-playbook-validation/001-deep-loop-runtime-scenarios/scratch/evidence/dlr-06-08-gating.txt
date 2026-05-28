@@ -1,0 +1,31 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-loop-runtime / 06-08 gating (DLR-011..022)
+Date: 2026-05-27 | Executor: cli-devin SWE-1.6 | Raw log: scratch/logs/dlr-06-08-gating.log
+Method: anti-fabrication §6. All 12 cited anchors re-confirmed via rg; the 4 .cjs scripts RAN directly
+for exit-code corroboration; DLR-018 mechanism scrutinized.
+
+06--coverage-graph:
+  DLR-011 Coverage graph DB      — PASS  SCHEMA_VERSION=2 @ coverage-graph-db.ts:96 (CONFIRMED)
+  DLR-012 Coverage graph query   — PASS  findCoverageGaps @ coverage-graph-query.ts:130 (CONFIRMED)
+  DLR-013 Coverage graph signals — PASS  computeSignals @ coverage-graph-signals.ts:558 (CONFIRMED)
+
+07--script-entry-points (RAN each script; invalid no-arg input → exit 3 + JSON error, CONFIRMED):
+  All 4 returned exit=3 with {"status":"error","error":"specFolder is required","code":"INPUT_VALIDATION"}.
+  DLR-014 convergence.cjs — PASS  finally db close @ convergence.cjs:390; exit-3 RAN-confirmed
+  DLR-015 upsert.cjs      — PASS  finally cleanup @ upsert.cjs:259; exit-3 RAN-confirmed
+  DLR-016 query.cjs [FOUNDATIONAL] — PASS  JSON stdout @:83, finally db.closeDb @:232, exit @:241;
+    invalid-input exit-3 RAN-confirmed. Gate primitive SOLID.
+  DLR-017 status.cjs      — PASS  finally db close @ status.cjs:169; exit-3 RAN-confirmed
+
+08--council:
+  DLR-018 Multi-seat dispatch — PASS (mechanism note)  multi-seat-dispatch.cjs:144.
+    Scenario documents "Promise.allSettled fan-out". Impl uses `await Promise.all(...)` over PRE-SETTLED
+    seat wrappers — line 155 `results.filter(r => r.status === 'fulfilled')` confirms each element carries a
+    settled {status} shape, so per-seat fulfilled/rejected outcomes ARE returned and order IS preserved.
+    Documented BEHAVIOR holds; only API spelling differs (all-over-wrapped == allSettled semantics). Not a false-green.
+  DLR-019 Round-state JSONL    — PASS  acquireRoundStateLock def@:155 call@:224 (CONFIRMED)
+  DLR-020 Adjudicator scoring  — PASS  DEFAULT_WEIGHTS option_changed:0.35 @ adjudicator-verdict-scoring.cjs:16-17 (CONFIRMED)
+  DLR-021 Cost guards          — PASS  DEFAULT_COUNCIL_COST_GUARDS max_rounds_per_topic:3 @ cost-guards.cjs:15-16 (CONFIRMED)
+  DLR-022 Session state hierarchy — PASS  topic_id `topic-${pad3(index)}-${topicSlug}` @ session-state-hierarchy.cjs:69 (CONFIRMED)
+
+Verdict: 12/12 PASS, corroborated. Gate primitives DLR-006 + DLR-016 both confirmed. 06/07/08 all non-FAIL.
+001->002 GATE: SATISFIED.

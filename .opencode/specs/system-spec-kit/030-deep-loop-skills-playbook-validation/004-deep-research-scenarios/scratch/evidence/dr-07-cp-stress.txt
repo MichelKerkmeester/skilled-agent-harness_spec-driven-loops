@@ -1,0 +1,24 @@
+ORCHESTRATOR VERIFICATION — deep-research / 07 command-flow stress (CP-046..051)
+Date 2026-05-27 | Setup build-verified (007 fix); scenarios SKIP on proven copilot blocker (not re-dispatched)
+
+007 fix verified for deep-research: `bash .../07--command-flow-stress-tests/setup-cp-sandbox.sh` -> exit 0,
+/tmp/cp-deep-research-sandbox built, .opencode/commands/speckit copied in (then cleaned). So the stale-path bug is resolved
+for deep-research too; the sandbox builds.
+
+Blocker: all 6 CP-046..051 drive `/deep:start-research-loop` via `copilot -p` (confirmed: 6/6 files reference copilot). The
+copilot CLI (v1.0.41) is POLICY-BLOCKED in this environment — orchestrator-confirmed from shell: `copilot -p "say hi"` ->
+"Access denied by policy settings" + "Third-party MCP servers are disabled by your organization's Copilot policy". This is
+identical to the deep-review CP-052..057 block (see ../003-deep-review-scenarios/scratch/logs/drv-07-cp-stress-codex.log). The
+research loop cannot run, so command-flow signals (handoff / spec-fence / resource-map / pause / citation-jsonl / exhausted-approach)
+are unobservable.
+
+CP-046 SKIP  copilot CLI policy-blocked (SETUP_YAML_HANDOFF)
+CP-047 SKIP  copilot CLI policy-blocked (SPEC_FENCE_WRITEBACK)
+CP-048 SKIP  copilot CLI policy-blocked (RESOURCE_MAP_TOGGLE)
+CP-049 SKIP  copilot CLI policy-blocked (PAUSE_SENTINEL_HALT)
+CP-050 SKIP  copilot CLI policy-blocked (ITERATION_CITATION_JSONL)
+CP-051 SKIP  copilot CLI policy-blocked (EXHAUSTED_APPROACH_RESPECT)
+
+NOTE: SKIP recorded by PROVEN-blocker inference, not a fresh dispatch — the copilot policy-block is deterministic + confirmed
+(shell + the deep-review CP codex run), and the deep-research setup build is verified, so a re-dispatch would only reproduce the
+same SKIP. Per Execution Policy, concrete sandbox blocker -> SKIP. Not critical-path. To run: authorize the copilot CLI + re-dispatch.

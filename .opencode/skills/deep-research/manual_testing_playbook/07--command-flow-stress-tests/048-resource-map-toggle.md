@@ -71,10 +71,10 @@ Acceptance: config and JSONL both show resource_map.emit false, research.md exis
 Return status, emit_flag, research_path, resource_map_path, and notes.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-048-task.txt)" > /tmp/cp-048-prompt-A.txt
-copilot -p "$(cat /tmp/cp-048-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-048-sandbox --add-dir /tmp/cp-048-spec 2>&1 | tee /tmp/cp-048-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-048-A-exit.txt
+opencode run "$(cat /tmp/cp-048-prompt-A.txt)" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-048-sandbox </dev/null 2>&1 | tee /tmp/cp-048-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-048-A-exit.txt
 rm -rf /tmp/cp-048-sandbox && cp -a /tmp/cp-048-sandbox-baseline /tmp/cp-048-sandbox
 cd /tmp/cp-048-sandbox
-copilot -p "/deep:start-research-loop:auto \"CP-048 resource map suppression\" --spec-folder=/tmp/cp-048-spec --max-iterations=1 --convergence=0.05 --no-resource-map" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-048-sandbox --add-dir /tmp/cp-048-spec 2>&1 | tee /tmp/cp-048-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-048-B-exit.txt
+opencode run "/deep:start-research-loop:auto \"CP-048 resource map suppression\" --spec-folder=/tmp/cp-048-spec --max-iterations=1 --convergence=0.05 --no-resource-map" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-048-sandbox </dev/null 2>&1 | tee /tmp/cp-048-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-048-B-exit.txt
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 diff -u /tmp/cp-048-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-048-sandbox/.opencode/agents/deep-research.md > /tmp/cp-048-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-048-B-canonical-exit.txt
 find /tmp/cp-048-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-048-B-artifacts.txt 2>/dev/null || touch /tmp/cp-048-B-artifacts.txt
