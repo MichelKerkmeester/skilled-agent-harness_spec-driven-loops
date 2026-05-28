@@ -1,0 +1,25 @@
+{
+  "specFolder": "030-mcp-daemon-reliability",
+  "description": "MCP daemon reliability: root-cause recurring mk-spec-memory/mk_code_index disconnects and OOM deaths, design durable fixes",
+  "keywords": [
+    "mcp",
+    "daemon",
+    "reliability",
+    "root-cause",
+    "recurring",
+    "mk-spec-memory",
+    "disconnects",
+    "oom",
+    "deaths",
+    "design",
+    "durable",
+    "fixes"
+  ],
+  "lastUpdated": "2026-05-28T17:34:17.273Z",
+  "specId": "030",
+  "folderSlug": "mcp-daemon-reliability",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

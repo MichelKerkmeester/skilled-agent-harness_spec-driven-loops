@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/030-mcp-daemon-reliability",
+  "spec_folder": "system-spec-kit/030-mcp-daemon-reliability",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md","plan.md","tasks.md"],
+    "entities": [],
+    "causal_summary": "MCP daemon reliability: root-cause recurring mk-spec-memory/mk_code_index disconnects and OOM deaths, design durable fixes",
+    "created_at": "2026-05-28T17:34:16Z",
+    "last_save_at": "2026-05-28T17:34:16Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md"]
+  }
+}
