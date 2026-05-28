@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/119-comment-ref-hygiene"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Test-file comment extension done; authored sources sweep zero"
-    next_safe_action: "None; packet complete (prod + test comments)"
+    recent_action: "Comment extension + embedder-sidecar env-key follow-on fix; tests green"
+    next_safe_action: "None; packet complete (prod + test comments + sidecar fix)"
     blockers: []
     key_files:
       - ".opencode/skills/sk-code/references/universal/code_style_guide.md"
@@ -69,6 +69,9 @@ Final sweep: **0 ephemeral-artifact refs in production-code comments across all 
 
 ### Extension — test-file comments (per user decision)
 After production code was clean, the scope was extended (user-approved) to the test suites. Ephemeral-artifact ids were stripped from test **comments / JSDoc / block-comment headers** only — local `// T##:` and `// T-XXX-NN:` sequence labels, spec-folder paths inside `// drift:` / `// followup-actual:` / `// REASON:` annotations, and packet/ADR/finding (`R-007-NN`) refs. **Test-name strings, assertions, and fixtures (including the `## ADR-001` decision-record sample) were left byte-for-byte.** Delivered via `a4f8f98d1b` (skill-advisor), `6e0c75d52f` (code-graph), `cf9703ed59` (spec-kit), then a CLI-CODEX pass + Claude straggler fixes: `9f8412c67b`, `2783476b57`, `8a6c89e733`, `4355437409`. Authored test sources now sweep clean.
+
+### Follow-on fix — embedder-sidecar test env-allowlist (`e4ffe7f5c5`)
+While running the spec-kit suite to confirm the comment edits were inert, `embedder-sidecar.vitest.ts` showed 6/10 failing. Root cause was **pre-existing and unrelated to the comment work**: the sidecar env-allowlist (hardened in earlier finding-closure commits) forwards only base keys + `SPECKIT_`/`HF_`/`LC_` prefixes to the forked worker, so the test's unprefixed `MOCK_SIDECAR_*` control vars were dropped — the mock never wrote `spawns.txt` (ENOENT) and never errored (resolved instead of rejecting). Fix renamed them to `SPECKIT_MOCK_SIDECAR_*` so they pass the existing allowlist; **production allowlist left untouched** (no security widening). 10/10 pass.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -107,6 +110,7 @@ Two course corrections are recorded honestly: (1) a destructive `git checkout` c
 | Extension sweep — ephemeral refs in test-file comments (authored sources, all 4 skills) | PASS — 0 (only the `## ADR-001` fixture + compiled `.vitest.js` build output remain, both intentionally) |
 | Extension fence — every test-file change is a comment line (no test-name/assertion/fixture edits) | PASS (one behavior-neutral whitespace trim noted) |
 | Extension tests — vitest on heaviest-changed files | PASS (394 + 246 passed; 7 pre-existing `describe.skip`) |
+| Follow-on — `embedder-sidecar.vitest.ts` after env-key alignment | PASS (10/10; was 6 failed due to pre-existing allowlist hardening) |
 | Per-chunk comments-only diff (no Bucket-B string/SQL/glob/test edits) | PASS |
 | Typecheck — system-spec-kit / system-code-graph / system-skill-advisor | PASS (green after every chunk) |
 | Test suites — skill-advisor (449), code-graph (564) | PASS (run during CODEX passes) |
