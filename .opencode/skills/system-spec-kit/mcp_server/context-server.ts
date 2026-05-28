@@ -1824,14 +1824,15 @@ async function main(): Promise<void> {
     }
 
     // Background retry job for pending embeddings
-    // Processes memories with failed embeddings in the background
+    // Processes memories with failed embeddings in the background.
+    // No options passed: use BACKGROUND_JOB_CONFIG, which reads SPECKIT_RETRY_INTERVAL_MS /
+    // SPECKIT_RETRY_BATCH_SIZE / SPECKIT_RETRY_ENABLED. Passing hardcoded options here would
+    // spread after the env-derived config and silently clobber the tuned values.
     try {
-      const retryJobResult = retryManager.startBackgroundJob({
-        intervalMs: 5 * 60 * 1000,  // Check every 5 minutes
-        batchSize: 5,               // Process up to 5 pending items per run
-      });
+      const retryJobResult = retryManager.startBackgroundJob();
       if (retryJobResult) {
-        console.error('[context-server] Background retry job started (interval: 5min, batch: 5)');
+        const { intervalMs, batchSize } = retryManager.BACKGROUND_JOB_CONFIG;
+        console.error(`[context-server] Background retry job started (interval: ${intervalMs}ms, batch: ${batchSize})`);
       } else {
         console.error('[context-server] Background retry job already running or disabled');
       }

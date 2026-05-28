@@ -123,7 +123,8 @@ describe('embedder reindex orchestrator', () => {
     const completed = await waitForJob(db, jobId, (status) => status.status === 'completed');
 
     expect(completed.processed).toBe(10);
-    expect(getActiveEmbedder(db)).toEqual({ name: 'mxbai-embed-large-v1', dim: 1024 });
+    // The completed reindex persists the active-embedder provider pointer too (ollama-backed manifest).
+    expect(getActiveEmbedder(db)).toEqual({ name: 'mxbai-embed-large-v1', dim: 1024, provider: 'ollama' });
     const vectorCount = db.prepare('SELECT COUNT(*) AS count FROM vec_1024').get() as { count: number };
     expect(vectorCount.count).toBe(10);
 
@@ -145,7 +146,7 @@ describe('embedder reindex orchestrator', () => {
     const completed = await waitForJob(db, jobId, (status) => status.status === 'completed');
 
     expect(completed.processed).toBe(10);
-    expect(getActiveEmbedder(db)).toEqual({ name: 'mxbai-embed-large-v1', dim: 1024 });
+    expect(getActiveEmbedder(db)).toEqual({ name: 'mxbai-embed-large-v1', dim: 1024, provider: 'ollama' });
   });
 
   it('throws a clear InvalidDatabaseDirError for in-memory databases before queuing work (F110)', () => {

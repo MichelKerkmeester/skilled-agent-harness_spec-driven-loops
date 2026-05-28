@@ -30,6 +30,7 @@ export {
   clearEmbeddingCache,
   getEmbeddingCacheStats,
   isProviderInitialized,
+  invalidateProviderSingleton,
   shouldEagerWarmup,
   getLazyLoadingStats,
   validateApiKey,

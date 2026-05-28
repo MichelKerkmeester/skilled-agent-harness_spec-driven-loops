@@ -427,6 +427,23 @@ function isProviderInitialized(): boolean {
 }
 
 /**
+ * Drop the cached provider singleton so the next getProvider() re-resolves it.
+ * Call after the active-embedder pointer (vec_metadata) changes — e.g. a completed
+ * embedder_set reindex. resolveProvider() reads the active pointer, but only when the
+ * singleton is (re)created; without this the daemon keeps embedding with the previously
+ * resolved model/dim and new vectors land under the wrong profile. In-flight init is not
+ * cancelled (matches resetForTesting semantics), so a concurrent build may repopulate.
+ */
+function invalidateProviderSingleton(): void {
+  providerInstance = null;
+  providerInitPromise = null;
+  providerInitStartTime = null;
+  providerInitCompleteTime = null;
+  firstEmbeddingTime = null;
+  MODEL_NAME = detectConfiguredModelName();
+}
+
+/**
  * Get lazy loading statistics for diagnostics.
  */
 function getLazyLoadingStats(): LazyLoadingStats {
@@ -917,6 +934,7 @@ export {
   getEmbeddingCacheStats,
   // Lazy loading exports
   isProviderInitialized,
+  invalidateProviderSingleton,
   shouldEagerWarmup,
   getLazyLoadingStats,
   // Pre-flight API key validation

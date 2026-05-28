@@ -9,6 +9,7 @@ import Database from 'better-sqlite3';
 import * as sqliteVec from 'sqlite-vec';
 
 import { EmbeddingProfile } from '@spec-kit/shared/embeddings/profile';
+import { invalidateProviderSingleton } from '@spec-kit/shared/embeddings';
 
 import { attachActiveVectorShard, initializeDb } from '../search/vector-index-store.js';
 import { to_embedding_buffer } from '../search/vector-index-types.js';
@@ -438,7 +439,16 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     }
 
     const complete = db.transaction(() => {
-      setActiveEmbedder(db, initialJob.toName, initialJob.toDim);
+      // Persist the active-embedder provider pointer too; omitting it leaves the pointer empty,
+      // which readActiveEmbedderIfValid coerces to undefined and the next boot loses provider
+      // identity. 'api' backends are ambiguous (openai vs voyage) from the manifest alone, so
+      // leave the provider unset for those rather than guess.
+      const activeProvider = manifest.backend === 'ollama'
+        ? 'ollama'
+        : manifest.backend === 'sentence-transformers'
+          ? 'hf-local'
+          : undefined;
+      setActiveEmbedder(db, initialJob.toName, initialJob.toDim, activeProvider);
       // 005-001: Commit embedding_status for rows now backed by an active-profile vector.
       // A vector-only reindex previously wrote vectors but left memory_index.embedding_status
       // stale, so a "completed" bulk re-embed never raised the success count. Reconcile the
@@ -457,6 +467,9 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       setJobStatus(db, jobId, 'completed', initialJob.total);
     });
     complete();
+    // The active-embedder pointer just flipped; drop the cached provider singleton so the
+    // next embedding re-resolves against the new pointer instead of the stale model/dim.
+    invalidateProviderSingleton();
     if (getDatabaseDir(db)) {
       attachActiveVectorShard(db, targetProfile);
     }
