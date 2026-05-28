@@ -58,13 +58,27 @@ function parseMaxClients(rawValue = process.env.SPECKIT_MAX_SECONDARY_CLIENTS): 
   return parsed;
 }
 
-// Canonicalize a path via realpath when it exists; otherwise fall back to an
-// absolute resolve so non-existent (yet-to-be-created) dirs are still comparable.
+// Canonicalize a path via realpath, even when the leaf does not exist yet. realpath the nearest
+// existing ancestor (so symlinked roots like macOS `/tmp` -> `/private/tmp` normalize) and
+// re-append the missing tail. Without ancestor canonicalization, a socket dir that was cleared
+// (e.g. `/tmp/<service>` after a reboot) stays literal `/tmp/...` and fails the allowed-root
+// check below — which canonicalizes `/tmp` to `/private/tmp` — crashing the server with -32000.
 function canonicalizePath(target: string): string {
+  const resolved = path.resolve(target);
+  const tail: string[] = [];
+  let current = resolved;
+  while (!fs.existsSync(current)) {
+    const parent = path.dirname(current);
+    if (parent === current) {
+      return resolved;
+    }
+    tail.unshift(path.basename(current));
+    current = parent;
+  }
   try {
-    return fs.realpathSync.native(target);
+    return path.join(fs.realpathSync.native(current), ...tail);
   } catch {
-    return path.resolve(target);
+    return resolved;
   }
 }
 
@@ -92,9 +106,7 @@ function resolveIpcSocketPath(dbDir: string): string {
   const rawSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR
     ? path.resolve(process.env.SPECKIT_IPC_SOCKET_DIR)
     : path.resolve(dbDir);
-  const socketDir = fs.existsSync(rawSocketDir)
-    ? fs.realpathSync.native(rawSocketDir)
-    : rawSocketDir;
+  const socketDir = canonicalizePath(rawSocketDir);
   if (!isWithinAllowedSocketRoot(socketDir)) {
     throw new Error(
       `IPC socket directory must stay within the workspace root or a system temp dir: ${socketDir}`,

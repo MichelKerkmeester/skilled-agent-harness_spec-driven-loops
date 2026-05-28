@@ -1,0 +1,27 @@
+{
+  "specFolder": "029-mcp-socket-dir-reboot-resilience",
+  "description": "MCP socket-dir reboot resilience: canonicalize missing IPC socket dirs in resolveIpcSocketPath, then populate the empty code graph",
+  "keywords": [
+    "mcp",
+    "socket-dir",
+    "reboot",
+    "resilience",
+    "canonicalize",
+    "missing",
+    "ipc",
+    "socket",
+    "dirs",
+    "resolveipcsocketpath",
+    "populate",
+    "empty",
+    "code",
+    "graph"
+  ],
+  "lastUpdated": "2026-05-28T16:38:36.930Z",
+  "specId": "029",
+  "folderSlug": "mcp-socket-dir-reboot-resilience",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

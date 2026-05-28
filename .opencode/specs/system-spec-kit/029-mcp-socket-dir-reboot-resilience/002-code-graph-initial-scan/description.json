@@ -1,0 +1,17 @@
+{
+  "specFolder": "029-mcp-socket-dir-reboot-resilience/002-code-graph-initial-scan",
+  "description": "Phase 2: code-graph-initial-scan",
+  "keywords": [
+    "phase",
+    "code-graph-initial-scan"
+  ],
+  "lastUpdated": "2026-05-28T16:38:38.559Z",
+  "specId": "002",
+  "folderSlug": "code-graph-initial-scan",
+  "parentChain": [
+    "029-mcp-socket-dir-reboot-resilience"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
