@@ -10,6 +10,8 @@ triggers:
   - 5-dimension scoring
   - integration scanner
   - dynamic profiling
+  - model-benchmark mode
+  - benchmark a model or prompt framework
 ---
 
 <!-- Keywords: deep-agent-improvement, deep-agent-improvement, agent-improvement, benchmark-harness, score-candidate, promote-candidate, rollback-candidate -->

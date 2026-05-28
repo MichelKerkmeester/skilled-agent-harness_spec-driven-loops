@@ -31,12 +31,14 @@
     "evaluation",
     "improvement",
     "scoring",
-    "promotion"
+    "promotion",
+    "benchmarking"
   ],
   "intent_signals": [
     "improve agent",
     "evaluate agent",
-    "agent scoring"
+    "agent scoring",
+    "benchmark model"
   ],
   "derived": {
     "trigger_phrases": [
@@ -51,7 +53,11 @@
       "sk improve agent",
       "deep-agent-improvement",
       "agent-improvement",
-      "benchmark-harness"
+      "benchmark-harness",
+      "model benchmark",
+      "benchmark a model or prompt framework",
+      "prompt framework benchmark",
+      "model-benchmark mode"
     ],
     "key_topics": [
       "agent",
@@ -63,14 +69,19 @@
       "5-d scoring",
       "benchmark harness",
       "promotion rules",
-      "rollback controls"
+      "rollback controls",
+      "model-benchmark",
+      "prompt benchmark",
+      "model scoring",
+      "opt-in 5dim scorer"
     ],
     "intent_signals": [
       "improve agent",
       "score candidate",
       "benchmark agent",
       "guard promotion",
-      "rollback comparison"
+      "rollback comparison",
+      "benchmark model"
     ],
     "key_files": [
       ".opencode/skills/deep-agent-improvement/SKILL.md",
@@ -165,6 +176,6 @@
       "references/workflow/candidate_proposal_format.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
-    "last_updated_at": "2026-05-23T07:00:00Z"
+    "last_updated_at": "2026-05-28T20:58:04Z"
   }
 }
