@@ -12,22 +12,23 @@ _memory:
     packet_pointer: "system-spec-kit/030-mcp-daemon-reliability"
     last_updated_at: "2026-05-28T18:10:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Completed research synthesis + packet docs; root causes RC1-RC5, fixes F1-F6"
-    next_safe_action: "Open a follow-on packet to implement F2 then F1 then F3"
+    recent_action: "Iters 2-3 (Opus, adversarial) corrected RC-1 to the sidecar, refuted RC-5, hardened roadmap (§6)"
+    next_safe_action: "Open a follow-on packet to implement the §6 hardened roadmap (sidecar-scoped first)"
     blockers: []
     key_files:
       - ".opencode/specs/system-spec-kit/030-mcp-daemon-reliability/research/research.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts"
       - ".opencode/bin/mk-spec-memory-launcher.cjs"
-      - ".opencode/skills/system-spec-kit/shared/embeddings.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000304"
       session_id: "030-impl-summary"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 70
     open_questions: []
     answered_questions:
-      - "OOM driver is native ONNX/ORT memory + undisposed provider swaps, not JS caches"
+      - "Dominant RC-1 RSS is in the forked SIDECAR process, not the daemon singleton (corrected iter 2-3)"
       - "Forced reconnects are bridge-to-dead-socket (existsSync, no liveness probe)"
+      - "RC-5 IPC leak is refuted; transparent daemon respawn breaks the MCP session (use graceful-exit)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -58,9 +59,9 @@ This packet explains why the MCP daemons kept dying and disconnecting all sessio
 
 The failures were never one bug. In impact order: (RC-1) **OOM at ~1–2 GB RSS** is driven by native ONNX/ORT model memory — held as a process-lifetime singleton and made worse because `invalidateProviderSingleton()` nulls the old provider without disposing it, orphaning a full model's native memory on every swap; `--max-old-space-size` cannot bound that, and there is no RSS watchdog. (RC-2) **Nothing auto-restarts** a dead daemon — the launcher clears its lease and exits, so recovery is a manual `/mcp` reconnect. (RC-3) **Reconnects bridge to a dead socket**: the IPC bridge connects whenever the socket file exists (`fs.existsSync`) without probing that anything is listening, and a SIGKILL/OOM'd daemon leaves a stale socket, so the reconnect "succeeds" into nothing. (RC-4) **Rebuilding crashes the running daemon** because the build deletes `dist/` in place while lazy-loaded modules and the forked sidecar still read from it. A slow IPC per-connection leak (RC-5) compounds reconnect churn.
 
-### Ranked durable fixes
+### Ranked durable fixes — then hardened by two Opus convergence iterations
 
-Six fixes (F1–F6), sequenced F2 → F1 → F3 → F4 → F5 → F6: dispose the provider on invalidate (F2, cheap, stops the worst leak), add a launcher RSS-ceiling watchdog + supervised auto-respawn (F1, the safety net), liveness-probe before bridging + respawn on a dead socket (F3, kills the forced-reconnect loop), build to a temp dir + atomic rename (F4), close the per-connection server on disconnect (F5), plus defense-in-depth env/sidecar tuning (F6). F1+F3 together would have eliminated nearly all the manual reconnects seen this session.
+The first pass proposed six fixes (F1–F6). Two further Opus iterations (deepen-design, then adversarially refute) then found **every top fix unsafe as first framed** and corrected the analysis — see `research/research.md` §6 and `research/iterations/iteration-00{2,3}.md`. The decisive correction: under the default `auto` policy the ~1–2 GB model RSS lives in a **forked sidecar process**, not the daemon — so the OOM fix must target the sidecar. Other corrections: transparent daemon respawn **breaks the MCP `initialize` session** (use graceful-exit-then-relaunch instead); F2's in-flight gate must track the native run, not the JS timeout, or it segfaults; F1+F3 can **steal each other's socket** (split-brain) unless the lease records the child pid and respawn funnels through one lock; and **RC-5 is refuted — F5 should not be built**. The hardened, re-sequenced roadmap is §6.4.
 
 ### Files Changed
 
@@ -86,9 +87,9 @@ A hybrid investigation: five read-only sub-agents ran in parallel, one per failu
 
 | Decision | Why |
 |----------|-----|
-| Hybrid (parallel fan-out then convergence) over a full 10-iteration sequential loop | The user asked for parallel + max sub-agents; much of the root cause was already known from this session, so breadth-first plus targeted verification was faster and sufficient |
+| Hybrid (parallel fan-out then convergence) over a full 10-iteration sequential loop | The user asked for parallel + max sub-agents; breadth-first plus targeted verification was faster — and the 2 Opus convergence iterations then caught four flaws the single pass missed |
 | Keep this packet research-only | The fixes touch the launcher and the embedding singleton (critical paths); they deserve their own implementation packet with isolated tests, not a rushed end-of-session edit |
-| Name native ORT memory (not JS caches) as the OOM driver | Convergent evidence: caches are bounded, the model singleton plus undisposed swaps are not, and `--max-old-space-size` does not bound native memory |
+| Adversarial convergence (Opus skeptics) before any implementation | It corrected RC-1's process scope (sidecar, not daemon), killed an unsafe transparent-respawn design, and refuted RC-5 — preventing a plausible-but-wrong roadmap from being implemented |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -99,6 +100,7 @@ A hybrid investigation: five read-only sub-agents ran in parallel, one per failu
 | Check | Result |
 |-------|--------|
 | Top-3 root-cause claims verified by direct read | PASS (no dispose in invalidateProviderSingleton; existsSync-only bridge; in-place dist clean) |
+| Iter 2-3 adversarial convergence (4 Opus skeptics) | PASS — all 4 verdicts `designHoldsUp:false`; corrected RC-1 (sidecar), refuted RC-5, hardened F1/F2/F3 |
 | Cross-agent consistency | PASS (no contradictions; JS-cache-leak hypothesis ruled out by all) |
 | Spec validation (`validate.sh --strict`) | PASS |
 | Fixes implemented | N/A — deferred to follow-on packet by design |

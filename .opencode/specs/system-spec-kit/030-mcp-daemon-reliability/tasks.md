@@ -64,6 +64,9 @@ _memory:
 - [x] T006 [P] Investigate health/auto-restart supervision gap
 - [x] T007 [P] Investigate timer/listener/background-job leaks
 - [x] T008 Converge: verify top-3 claims by direct read; synthesize `research/research.md`
+- [x] T015 [P] Iteration 2 (4 Opus agents): deepen + design F2/F1/F3 + verify RC-5 (`research/iterations/iteration-002.md`)
+- [x] T016 [P] Iteration 3 (4 Opus skeptics): adversarially refute each design + interactions (`research/iterations/iteration-003.md`)
+- [x] T017 Synthesize corrections into `research/research.md` §6 (sidecar RC-1, hardened F1/F2/F3, RC-5 refuted)
 <!-- /ANCHOR:phase-2 -->
 
 ---
