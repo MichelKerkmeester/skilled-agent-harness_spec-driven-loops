@@ -251,7 +251,7 @@ function main(): void {
 
   for (const target of DIST_TARGETS) {
     const absoluteDistRoot = path.join(packageRoot, target.distRoot);
-    // Skip optional/empty dist roots silently rather than failing
+    // skip optional/empty dist roots silently rather than failing
     // the build. Some targets (e.g. mcp_server/dist/api) may not exist in all
     // build configurations. Required-target enforcement was load-bearing only
     // when DIST_TARGETS contained the two combined roots; the broadened set
