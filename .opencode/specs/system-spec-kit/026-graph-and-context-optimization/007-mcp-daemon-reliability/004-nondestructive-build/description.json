@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build",
+  "description": "Feature Specification: Non-destructive mcp-server build (stop wiping live dist on rebuild — RC-4)",
+  "keywords": [
+    "feature",
+    "specification",
+    "non-destructive",
+    "mcp-server",
+    "build",
+    "stop",
+    "wiping",
+    "live",
+    "dist",
+    "rebuild",
+    "rc-4"
+  ],
+  "lastUpdated": "2026-05-28T18:48:34.227Z",
+  "specId": "004",
+  "folderSlug": "nondestructive-build",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

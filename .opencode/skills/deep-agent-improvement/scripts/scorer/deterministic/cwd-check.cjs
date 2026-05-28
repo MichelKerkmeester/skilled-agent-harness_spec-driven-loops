@@ -77,19 +77,28 @@ function stripTrailingPunct(token) {
   return token.replace(/[\.,;:!\?\)\]\}'"`>]+$/, '');
 }
 
+// F-P1-2 (122 review): separator-bounded containment. A bare `startsWith`
+// misclassifies a sibling that shares a string prefix — e.g. `/repo/proj-evil`
+// startsWith `/repo/proj` is true, letting an outside/traversal path masquerade
+// as in-cwd and slip past the D3 guard. A path is inside `base` only when it IS
+// `base` or begins with `base + path.sep`.
+function isInside(candidate, base) {
+  return candidate === base || candidate.startsWith(base + path.sep);
+}
+
 function classifyPath(rawPath, fixtureCwdAbs, fixtureCwdRel) {
   if (rawPath.includes('..')) {
     // Treat any .. segment as traversal_attempt unless it stays inside cwd.
     // Cheap check: if the resolved path lies outside the fixture cwd, it
     // counts as traversal_attempt; otherwise classify as bare_relative.
     const resolved = path.resolve(fixtureCwdAbs, rawPath);
-    if (!resolved.startsWith(fixtureCwdAbs)) {
+    if (!isInside(resolved, fixtureCwdAbs)) {
       return 'traversal_attempt';
     }
     return 'bare_relative';
   }
   if (rawPath.startsWith('/')) {
-    if (rawPath.startsWith(fixtureCwdAbs)) return 'absolute_in_fixture_cwd';
+    if (isInside(rawPath, fixtureCwdAbs)) return 'absolute_in_fixture_cwd';
     return 'absolute_outside';
   }
   if (rawPath.startsWith('~')) {

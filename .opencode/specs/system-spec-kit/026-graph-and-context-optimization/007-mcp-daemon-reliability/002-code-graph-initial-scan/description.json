@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/002-code-graph-initial-scan",
+  "description": "Feature Specification: Populate the empty code graph via an initial code_graph_scan",
+  "keywords": [
+    "feature",
+    "specification",
+    "populate",
+    "empty",
+    "code",
+    "graph",
+    "via",
+    "initial"
+  ],
+  "lastUpdated": "2026-05-28T18:48:33.749Z",
+  "specId": "002",
+  "folderSlug": "code-graph-initial-scan",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

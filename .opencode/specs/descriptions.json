@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-28T17:48:17.000Z",
+  "generated": "2026-05-28T18:41:14Z",
   "folders": [
     {
       "specFolder": "anobel.com/001-button-text-link-disabled-state",
@@ -18091,6 +18091,23 @@
       "specId": "122",
       "folderSlug": "session-120-121-deep-review",
       "parentChain": [],
+      "memorySequence": 0,
+      "memoryNameHistory": [],
+      "level": "1"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-benchmark-mode-remediation",
+      "description": "Phase 1: benchmark-mode-remediation",
+      "keywords": [
+        "phase",
+        "benchmark-mode-remediation"
+      ],
+      "lastUpdated": "2026-05-28T18:39:19.884Z",
+      "specId": "004",
+      "folderSlug": "benchmark-mode-remediation",
+      "parentChain": [
+        "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
+      ],
       "memorySequence": 0,
       "memoryNameHistory": [],
       "level": "1"

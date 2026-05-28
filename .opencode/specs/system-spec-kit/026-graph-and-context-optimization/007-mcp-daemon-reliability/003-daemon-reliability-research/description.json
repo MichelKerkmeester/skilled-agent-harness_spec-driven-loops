@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research",
+  "description": "Feature Specification: MCP daemon reliability — root-cause recurring disconnects/OOM and design durable fixes",
+  "keywords": [
+    "feature",
+    "specification",
+    "mcp",
+    "daemon",
+    "reliability",
+    "root-cause",
+    "recurring",
+    "disconnects",
+    "oom",
+    "design",
+    "durable",
+    "fixes"
+  ],
+  "lastUpdated": "2026-05-28T18:48:33.989Z",
+  "specId": "003",
+  "folderSlug": "daemon-reliability-research",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

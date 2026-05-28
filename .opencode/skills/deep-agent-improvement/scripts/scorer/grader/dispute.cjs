@@ -62,28 +62,16 @@ function shouldEscalateToDualGrader(opts) {
 
 async function adversarialSecondCall(opts) {
   // Dispatches the adversarial grader (system-skeptic.md as system prompt).
-  // We reuse harness.gradeD4 with a marker; the system prompt swap happens
-  // here by overriding the path read.
+  // F-P2-7 (122 review): pass the skeptic prompt path via harness DI
+  // (`system_prompt_path`) instead of globally monkey-patching fs.readFileSync —
+  // the old swap was not concurrency-safe and broke testability.
   const skepticPromptPath = path.join(__dirname, 'prompts', 'system-skeptic.md');
-  // Monkey-patch: temporarily swap the system prompt file used by harness
-  // (cleaner alternative: harness should accept systemPromptPath arg; future cleanup)
-  const originalReadFileSync = fs.readFileSync;
-  fs.readFileSync = function patched(filePath, ...rest) {
-    if (filePath.endsWith('system-grader.md')) {
-      return originalReadFileSync.call(fs, skepticPromptPath, ...rest);
-    }
-    return originalReadFileSync.call(fs, filePath, ...rest);
-  };
-  try {
-    const result = await harness.gradeD4({
-      ...opts,
-      // Cache key bump to differentiate adversarial call from primary
-      rubric_version: (opts.rubric_version || 'v1.0.0') + '-adversarial',
-    });
-    return result;
-  } finally {
-    fs.readFileSync = originalReadFileSync;
-  }
+  return harness.gradeD4({
+    ...opts,
+    system_prompt_path: skepticPromptPath,
+    // Cache key bump to differentiate adversarial call from primary
+    rubric_version: (opts.rubric_version || 'v1.0.0') + '-adversarial',
+  });
 }
 
 async function dualGraderInvocation(opts) {

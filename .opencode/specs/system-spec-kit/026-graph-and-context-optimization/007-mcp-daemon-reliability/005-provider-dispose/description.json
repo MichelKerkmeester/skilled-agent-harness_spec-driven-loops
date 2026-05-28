@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
+  "description": "Feature Specification: Phase 1: provider-dispose",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "provider-dispose"
+  ],
+  "lastUpdated": "2026-05-28T18:48:34.463Z",
+  "specId": "005",
+  "folderSlug": "provider-dispose",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

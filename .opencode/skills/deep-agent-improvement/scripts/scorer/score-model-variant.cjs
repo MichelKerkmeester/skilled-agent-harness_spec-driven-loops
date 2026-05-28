@@ -99,6 +99,18 @@ function scoreAcceptanceDeterministic(acceptance, cwdAbs) {
           detail = ok ? 'absent' : 'present';
         }
       } else if (a.type === 'deterministic') {
+        // F-P1-3 (122 review): `a.command` is profile/fixture-supplied data that flows
+        // into a shell via execSync. Benchmark profiles are trusted-author content today,
+        // so this is a latent injection surface rather than an open exploit. The gate lets
+        // a hardened deployment refuse criteria-driven shell execution by setting
+        // DEEP_AGENT_ALLOW_CRITERIA_EXEC=0. Default ('1'/unset) preserves backward-compat.
+        if (process.env.DEEP_AGENT_ALLOW_CRITERIA_EXEC === '0') {
+          ok = false;
+          detail = 'deterministic criterion skipped: criteria exec disabled (DEEP_AGENT_ALLOW_CRITERIA_EXEC=0)';
+          results.push({ id: a.id, type: a.type, passed: ok, detail });
+          if (ok) pass++;
+          continue;
+        }
         try {
           execSync(a.command, { cwd: cwdAbs, timeout: 30000, stdio: ['ignore', 'pipe', 'pipe'] });
           ok = (a.expected_exit === undefined || a.expected_exit === 0);

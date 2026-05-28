@@ -130,7 +130,7 @@ Ship a working `model-benchmark` mode alongside `agent-improvement`, sharing the
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Scorer decoupled from fixture JSON | Scorer reads primitive criteria arrays (not raw fixture files); det-checks accept explicit `--cwd`; `buildGraderFn(mode)` factory in place |
+| REQ-004 | Scorer decoupled from fixture JSON | Scorer reads primitive criteria arrays (not raw fixture files); det-checks are cwd-decoupled — the scorer synthesizes a virtual fixture with an ABSOLUTE `scope.cwd`, and det-checks resolve `path.resolve(PACKET_ROOT, scope.cwd)` (a no-op for an absolute path), so no packet-relative coupling remains (122 review F-P2-3: this supersedes the earlier "det-checks accept explicit `--cwd`" wording — the decoupling is achieved via the absolute virtual-fixture cwd, not a literal flag); `buildGraderFn(mode)` factory in place |
 | REQ-005 | Edge cases handled | EC-1..10 from research §9 covered (unknown-mode default+warn, mode in infra_failure records, per-mode cache key, concurrent state-log safety, materialize-failure propagation) |
 <!-- /ANCHOR:requirements -->
 
@@ -164,6 +164,8 @@ Ship a working `model-benchmark` mode alongside `agent-improvement`, sharing the
 - RESOLVED: Copied/ported the scorer + det-checks + grader + cache into `scripts/scorer/` (no cross-packet runtime coupling). Runtime `scorer/cache/` is git-ignored.
 - RESOLVED: `promote-candidate.cjs` routes by the score file's `status` (`scored` vs `benchmark-complete`) — already mode-aware, so no `--mode` flag was bolted on.
 - Follow-on (P2): `score-model-variant.cjs` is available behind the scorer seam but `run-benchmark.cjs` still uses its pattern matcher by default; adopting the 5-dim scorer as the active model-benchmark scorer is a separate opt-in.
+- ACCEPTED DEFERRAL (122 review F-P2-1/F-P2-2, Opus-4.8-arbitrated): the model-benchmark default path intentionally scores pre-materialized outputs via the pattern matcher and does NOT invoke `dispatch-model.cjs` or `score-model-variant.cjs`. REQ-003/REQ-004 require those seams to be decoupled + available (satisfied), not wired as the default. Phase 004 deliberately did NOT force-wire them — a half-baked opt-in (run-benchmark fixtures carry headings/patterns, not the acceptance/grading criteria the 5-dim scorer needs) would be lower quality than the clean documented deferral. Wire when a benchmark genuinely needs fresh model generation + 5-dim rubric scoring.
+- ACCEPTED DEFERRAL (122 review F-P2-5): `reduce-state.cjs` does not surface the new `mode` field in its dashboard. The field IS persisted in every record (no data loss); this is display-only and `reduce-state.cjs` (1146 LOC) was outside the build scope. Low value; deferred.
 <!-- /ANCHOR:questions -->
 
 ---

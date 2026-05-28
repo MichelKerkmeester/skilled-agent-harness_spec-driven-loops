@@ -77,6 +77,21 @@ function sha256Hex(input) {
   return crypto.createHash('sha256').update(input, 'utf8').digest('hex');
 }
 
+// F-P2-9 (122 review): synchronous sleep WITHOUT a busy-wait. The prior
+// `while (Date.now() < end) {}` spin burned a full core for 60-240s during
+// rate-limit backoff. Atomics.wait blocks the thread on an un-signalled buffer
+// for the timeout, yielding the CPU. Falls back to a bounded spin only if
+// Atomics is unavailable.
+function sleepSync(ms) {
+  if (ms <= 0) return;
+  try {
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+  } catch (_) {
+    const end = Date.now() + ms;
+    while (Date.now() < end) { /* fallback only */ }
+  }
+}
+
 function repoRoot() {
   if (process.env.DEEP_AGENT_REPO_ROOT) return process.env.DEEP_AGENT_REPO_ROOT;
   try {
@@ -156,6 +171,8 @@ function dispatchReal(opts) {
   }
   const timeout = opts.timeout_ms || DEFAULT_TIMEOUT_MS;
   const dir = opts.cwd || repoRoot();
+  // Injectable spawn for tests (F-P1-1 regression asserts cwd reaches the spawn layer).
+  const spawnFn = opts._spawn || spawnSync;
   const promptText = fs.readFileSync(opts.prompt_file, 'utf8');
   const resolved = {
     model: opts.model || TARGET.model || 'minimax/MiniMax-M2.7',
@@ -170,7 +187,11 @@ function dispatchReal(opts) {
 
   for (let attempt = 0; attempt < BACKOFF_MS.length + 1; attempt++) {
     const spec = buildSpawnSpec(executor, promptText, resolved);
-    const res = spawnSync(spec.bin, spec.args, {
+    const res = spawnFn(spec.bin, spec.args, {
+      // F-P1-1 (122 review): set cwd for EVERY executor. Previously only cli-opencode
+      // forwarded `--dir dir` and spawnSync had no cwd opt, so cli-claude-code/codex/
+      // gemini/devin silently ran in the host process cwd. Honor `dir` for all.
+      cwd: dir,
       // stdin: feed prompt text for stdin-based executors (codex); otherwise close it
       // ('ignore' == </dev/null) to avoid opencode's stdin-hang bug.
       input: spec.input == null ? undefined : spec.input,
@@ -189,8 +210,7 @@ function dispatchReal(opts) {
       if (attempt < BACKOFF_MS.length) {
         const wait = BACKOFF_MS[attempt];
         process.stderr.write(`dispatch-model: rate limit on attempt ${attempt + 1}; backing off ${wait}ms\n`);
-        const sleepEnd = Date.now() + wait;
-        while (Date.now() < sleepEnd) { /* dependency-free wait */ }
+        sleepSync(wait);
         continue;
       }
       writePauseSentinel('rate_limit_exhausted_3_strikes');

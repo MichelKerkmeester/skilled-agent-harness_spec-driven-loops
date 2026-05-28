@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
     last_updated_at: "2026-05-28T15:15:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "All 3 phases complete (design + research + build); mode shipped"
-    next_safe_action: "Run the dual-executor deep review on the session work"
+    recent_action: "All 4 phases complete (design+research+build+remediation)"
+    next_safe_action: "None — feature shipped + reviewed + remediated"
     blockers: []
     key_files: []
     session_dedup:
@@ -107,6 +107,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 1 | 001-mode-selector-design/ | Design: mode selector + 3 pluggable seams + ADRs + build plan (Level 3) | Complete |
 | 2 | 002-implementation-deep-research/ | Deep-research (MiniMax M2.7) deepening the implementation design — converged, 5 evidence iters | Complete |
 | 3 | 003-build-benchmark-mode/ | Build the mode from the 002 research build-delta (loop-host.cjs + dispatch-model.cjs + scorer port + mode-aware records), TST-1 identity gate | Complete |
+| 4 | 004-benchmark-mode-remediation/ | Remediate the 122 tri-model review findings: 3 unique P1 fixes (cwd propagation, path-guard boundary, criteria-exec gate + grader clamp) + actionable P2s, with regression tests | Complete |
 
 ### Phase Transition Rules
 
@@ -121,6 +122,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 |------|-----|----------|--------------|
 | 001-mode-selector-design | 002-implementation-deep-research | Design ADRs + build plan authored | strict validate on 001 |
 | 002-implementation-deep-research | 003-build-benchmark-mode | Research converged with a verified, build-ready delta | strict validate on 002 + ground-truth verification |
+| 003-build-benchmark-mode | 004-benchmark-mode-remediation | Build shipped + tri-model review (122) surfaced findings | review-report.md CONDITIONAL verdict |
 <!-- /ANCHOR:phase-map -->
 
 ---

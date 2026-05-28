@@ -1,0 +1,28 @@
+{
+  "level": "phase",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "description": "Feature Specification: MCP daemon reliability: consolidated socket-dir, daemon-lifecycle, build-safety, and embedding-provider memory fixes",
+  "keywords": [
+    "feature",
+    "specification",
+    "mcp",
+    "daemon",
+    "reliability",
+    "consolidated",
+    "socket-dir",
+    "daemon-lifecycle",
+    "build-safety",
+    "embedding-provider",
+    "memory",
+    "fixes"
+  ],
+  "lastUpdated": "2026-05-28T18:48:33.271Z",
+  "specId": "007",
+  "folderSlug": "mcp-daemon-reliability",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

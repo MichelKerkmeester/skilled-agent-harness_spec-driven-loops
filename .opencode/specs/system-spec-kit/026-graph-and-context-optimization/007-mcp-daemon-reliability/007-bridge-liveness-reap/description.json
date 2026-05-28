@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap",
+  "description": "Feature Specification: Phase 3: bridge-liveness-reap",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "bridge-liveness-reap"
+  ],
+  "lastUpdated": "2026-05-28T18:48:34.933Z",
+  "specId": "007",
+  "folderSlug": "bridge-liveness-reap",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

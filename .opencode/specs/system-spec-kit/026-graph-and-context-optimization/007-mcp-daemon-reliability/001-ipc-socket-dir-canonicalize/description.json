@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize",
+  "description": "Feature Specification: Canonicalize missing IPC socket dirs in code-graph resolveIpcSocketPath",
+  "keywords": [
+    "feature",
+    "specification",
+    "canonicalize",
+    "missing",
+    "ipc",
+    "socket",
+    "dirs",
+    "code-graph",
+    "resolveipcsocketpath"
+  ],
+  "lastUpdated": "2026-05-28T18:48:33.512Z",
+  "specId": "001",
+  "folderSlug": "ipc-socket-dir-canonicalize",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -38,12 +38,24 @@ function sha256Hex(input) {
   return crypto.createHash('sha256').update(input, 'utf8').digest('hex');
 }
 
-function readSystemPrompt() {
-  return fs.readFileSync(SYSTEM_PROMPT_PATH, 'utf8');
+// F-P1-4 (122 review): the D4 score is model-provided and feeds the weighted
+// benchmark total. Clamp it to [0,1] (and coerce non-finite/non-numeric to 0)
+// so a malformed or adversarial model response cannot poison benchmark integrity.
+function clampScore01(value) {
+  const n = typeof value === 'number' ? value : Number(value);
+  if (!Number.isFinite(n)) return 0;
+  return Math.max(0, Math.min(1, n));
 }
 
-function composeGraderPrompt(fixture, swe16OutputText) {
-  const systemPrompt = readSystemPrompt();
+// F-P2-7 (122 review): accept an explicit system-prompt path so callers (e.g.
+// dispute.cjs adversarial second call) can select a different prompt WITHOUT a
+// global fs.readFileSync monkey-patch. Defaults to the primary grader prompt.
+function readSystemPrompt(systemPromptPath) {
+  return fs.readFileSync(systemPromptPath || SYSTEM_PROMPT_PATH, 'utf8');
+}
+
+function composeGraderPrompt(fixture, swe16OutputText, systemPromptPath) {
+  const systemPrompt = readSystemPrompt(systemPromptPath);
   const userPrompt = [
     '# Fixture metadata',
     '```json',
@@ -191,7 +203,7 @@ async function gradeD4(opts) {
     return { cache_hit: true, cache_key: cacheKey, ...JSON.parse(cached.body) };
   }
 
-  const prompt = composeGraderPrompt(fixture, swe16_output_text);
+  const prompt = composeGraderPrompt(fixture, swe16_output_text, opts.system_prompt_path);
   let rawResponse;
   if (mode === 'real') {
     rawResponse = dispatchReal(prompt);
@@ -208,6 +220,18 @@ async function gradeD4(opts) {
     ...(parsed || { score: 0.0, confidence: 0.0, rationale: 'parse failed', evidence: [], dim_id: 'D4', version: VERSION }),
   };
 
+  // F-P1-4 (122 review): clamp model-provided score + confidence to [0,1].
+  result.score = clampScore01(result.score);
+  result.confidence = clampScore01(result.confidence);
+
+  // F-P2-6 (122 review): the grader cache persists raw model output for diagnostics.
+  // A hardened deployment can omit it (avoid echoing potentially sensitive prompt
+  // content into the on-disk cache) by setting DEEP_AGENT_GRADER_CACHE_RAW=0.
+  // Default keeps raw output for debuggability.
+  const cacheRawOutput = process.env.DEEP_AGENT_GRADER_CACHE_RAW === '0'
+    ? '[redacted: DEEP_AGENT_GRADER_CACHE_RAW=0]'
+    : result.raw_grader_output;
+
   // Cache the result body (excluding cache_key + cache_hit for cleaner blob)
   const blobBody = JSON.stringify({
     score: result.score,
@@ -216,7 +240,7 @@ async function gradeD4(opts) {
     evidence: result.evidence,
     dim_id: result.dim_id,
     parse_status: result.parse_status,
-    raw_grader_output: result.raw_grader_output,
+    raw_grader_output: cacheRawOutput,
     version: VERSION,
   });
   cache.write_atomic('grader', cacheKey, blobBody, {
@@ -266,6 +290,7 @@ module.exports = {
   gradeD4,
   composeGraderPrompt,
   parseGraderResponse,
+  clampScore01,
   dispatchReal,
   dispatchMock,
   VERSION,

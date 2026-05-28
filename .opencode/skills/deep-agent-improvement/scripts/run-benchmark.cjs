@@ -280,6 +280,10 @@ function main() {
     const aggregateThreshold = profile.benchmark?.requiredAggregateScore ?? 80;
     const passCount = results.filter((entry) => entry.passed).length;
     const passRate = results.length === 0 ? 0 : passCount / results.length;
+    // F-P2-10 (122 review): both operands are in 0..1 space. `aggregateScore` is a
+    // 0..100 percentage, so `/100` normalizes it to a 0..1 ratio; `profile.thresholdDelta`
+    // is authored as a 0..1 ratio. `delta` is therefore the headroom above the profile's
+    // ratio threshold, in 0..1 units.
     const delta = aggregateScore / 100 - Number(profile.thresholdDelta || 0);
     const recommendation =
       aggregateScore >= aggregateThreshold && results.every((entry) => entry.score >= minimumFixtureScore)
