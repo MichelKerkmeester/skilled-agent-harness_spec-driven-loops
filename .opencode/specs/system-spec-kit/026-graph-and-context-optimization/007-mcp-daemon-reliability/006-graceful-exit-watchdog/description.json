@@ -1,14 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog",
-  "description": "Feature Specification: Phase 2: graceful-exit-watchdog",
+  "description": "Feature Specification: Launcher RSS-ceiling watchdog + graceful-exit supervision (F1′ / RC-1/RC-2)",
   "keywords": [
     "feature",
     "specification",
-    "phase",
-    "graceful-exit-watchdog"
+    "launcher",
+    "rss-ceiling",
+    "watchdog",
+    "graceful-exit",
+    "supervision",
+    "rc-1",
+    "rc-2"
   ],
-  "lastUpdated": "2026-05-28T18:48:34.698Z",
+  "lastUpdated": "2026-05-28T19:25:56.510Z",
   "specId": "006",
   "folderSlug": "graceful-exit-watchdog",
   "parentChain": [

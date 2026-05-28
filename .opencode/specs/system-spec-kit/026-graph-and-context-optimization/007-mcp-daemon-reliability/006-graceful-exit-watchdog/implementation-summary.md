@@ -1,27 +1,25 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Launcher RSS-ceiling watchdog + graceful-exit supervision (F1′)"
+description: "Implementation pending. This packet is the implementation-ready, Opus-verified spec for an RSS-ceiling watchdog with graceful-exit recovery, crash-loop-guarded supervision, and a child-pid lease."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "launcher watchdog summary F1 pending"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog"
-    last_updated_at: "2026-05-28T18:43:50Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-05-28T21:10:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Spec/plan/tasks authored + Opus-verified; implementation deferred to live session"
+    next_safe_action: "Confirm REQ-008 then implement T002-T005 + tests"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/bin/mk-spec-memory-launcher.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000614"
+      session_id: "007-006-impl-summary"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---
@@ -38,8 +36,8 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 002-graceful-exit-watchdog |
-| **Completed** | 2026-05-28 |
+| **Spec Folder** | 006-graceful-exit-watchdog |
+| **Completed** | Pending (spec ready; implementation deferred) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,28 +46,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+This phase is specified and adversarially verified, not yet implemented. When built, it gives the launcher a memory ceiling and a recovery path: instead of growing until the OS OOM-kills it (with no restart), the daemon recycles itself cleanly before the kernel acts.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### RSS watchdog + graceful-exit supervision (planned)
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+A periodic sampler will roll up the daemon's process-tree RSS — crucially including the **forked sidecar grandchild**, where the model actually lives under the default `auto` policy. On a sustained `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB` breach the launcher SIGTERMs the child (with a grace longer than the daemon's own 5s shutdown deadline) and then **exits cleanly** so the host runtime relaunches a fresh launcher — a clean MCP re-initialize. It deliberately does NOT respawn the daemon in place: the adversarial pass showed re-piping stdio bytes cannot restore the per-Server MCP `initialize` session, so that would hang the client. Unexpected child exits are handled by a crash-loop-guarded supervisor with backoff, and the daemon child pid is recorded in the lease (the precondition for phase 007).
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| (none yet) | Pending | See spec.md §3 for the planned edit set |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +64,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+Deferred to a live-daemon session: the RSS-breach recovery hinges on an unresolved host contract (does the runtime relaunch the launcher on clean exit 0? — REQ-008), and the guards need tests with an injectable ps runner plus live OOM/recycle observation. The design was produced by an Opus pass and adversarially verified by a second; the verdict corrected the child-pid-lease framing (it is a NET-NEW additive field, not a port of mk-code-index's separate owner-lease) and flagged the host-relaunch dependency, both now encoded (REQ-005, REQ-008).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +72,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Graceful self-exit on breach, not transparent respawn | Re-piping stdio bytes cannot restore the MCP `initialize` session; clean exit + host relaunch re-initializes correctly |
+| Sample the process TREE, not just the daemon child | Under default `auto` the dominant RSS is in the forked sidecar grandchild |
+| `childPid` is a new additive lease field | The cited mk-code-index "precedent" is a separate owner-lease mechanism mk-spec-memory lacks; adding a field to the existing JSON is simpler and reader-safe |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +84,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Opus design + adversarial verification | PASS (verdict: ready=false until childPid-precedent corrected + host-relaunch confirmed + test seam added — now encoded) |
+| Planned test commands (when implemented) | `vitest` tree-RSS roll-up + crash-loop + EPERM-as-unknown tests; `bash .../validate.sh --strict` on this packet |
+| Implementation + tests | Pending (live-daemon session) |
+| Host relaunch-on-exit-0 contract (REQ-008) | Unconfirmed — gates default-on breach-self-exit |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +97,6 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Not implemented** — spec/plan/tasks only. Confirm REQ-008, then implement T002-T005 + tests.
+2. **RSS-breach self-exit is unsafe to enable by default** until the host relaunch contract is confirmed (else it reduces availability). Ships default-off.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
--->
-

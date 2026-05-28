@@ -1,32 +1,30 @@
 ---
-title: "Tasks: Phase 2: graceful-exit-watchdog [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Launcher RSS-ceiling watchdog + graceful-exit supervision (F1′)"
+description: "Implementation task tracker for the process-tree RSS watchdog, graceful-exit recovery, crash-loop guard, and child-pid lease."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
+  - "launcher watchdog tasks F1"
+importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog"
-    last_updated_at: "2026-05-28T18:43:50Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-05-28T21:10:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Authored F1′ implementation tasks (all pending — spec ready)"
+    next_safe_action: "Confirm REQ-008 host relaunch; implement T101 onward"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/bin/mk-spec-memory-launcher.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000613"
+      session_id: "007-006-tasks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 2: graceful-exit-watchdog
+# Tasks: Launcher RSS-ceiling watchdog + graceful-exit supervision (F1′)
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +48,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 [B] Confirm host-runtime relaunch-on-exit-0 contract (REQ-008) — blocks default-on breach-self-exit
+- [ ] T002 Add additive `childPid` field to `writeLeaseFile` JSON after spawn (`mk-spec-memory-launcher.cjs`) [REQ-005]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +57,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T003 `sampleProcessTreeRssMb(runner?)`: roll up daemon child + sidecar grandchild RSS; injectable ps/`/proc` runner; EPERM=unknown (`mk-spec-memory-launcher.cjs`) [REQ-002/006]
+- [ ] T004 Watchdog interval (`.unref()`); N consecutive `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB` breaches → SIGTERM child (grace>5000) → SIGKILL → launcher graceful `process.exit` (`mk-spec-memory-launcher.cjs`) [REQ-001/003]
+- [ ] T005 Refactor child-exit handler into a crash-loop-guarded supervisor (window/threshold/backoff env-overridable); give-up = fail loud + sidecar process-group reap (`mk-spec-memory-launcher.cjs`) [REQ-004/007]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +67,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T006 Synthetic parent→child→grandchild RSS roll-up test (injectable ps) + EPERM-as-unknown test [REQ-002/006]
+- [ ] T007 Crash-loop give-up + single-death-recovery tests; grace>5000 assertion [REQ-003/004]
+- [ ] T008 Live: configured ceiling breach recycles before OS OOM with clean re-initialize (if REQ-008 confirmed) [SC-001]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +77,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [ ] REQ-008 resolved; P0 tasks (T002-T005) complete
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] Tree-RSS + crash-loop tests green; child-pid lease shipped for phase 007
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,14 +89,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Root cause + design**: See `../003-daemon-reliability-research/research/research.md` §6 + `research/iterations/iteration-003.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

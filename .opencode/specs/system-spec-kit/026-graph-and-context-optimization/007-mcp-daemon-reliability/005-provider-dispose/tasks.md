@@ -1,32 +1,30 @@
 ---
-title: "Tasks: Phase 1: provider-dispose [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Dispose the embedding provider's native ONNX session on swap (F2′)"
+description: "Implementation task tracker for the native-run-gated provider dispose across all three provider-holding sites."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
+  - "provider dispose tasks F2"
+importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose"
-    last_updated_at: "2026-05-28T18:43:49Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-05-28T21:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Authored F2′ implementation tasks (all pending — spec ready)"
+    next_safe_action: "Implement T101 onward in a live-daemon session"
     blockers: []
-    key_files: []
+    key_files:
+      - "shared/embeddings/providers/hf-local.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000513"
+      session_id: "007-005-tasks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 1: provider-dispose
+# Tasks: Dispose the embedding provider's native ONNX session on swap (F2′)
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -50,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Verify dispose chain + single-session for the feature-extraction model (done in 003 research)
+- [ ] T002 Add optional `dispose?(): Promise<void>` to `IEmbeddingProvider` (`shared/types.ts`)
+- [ ] T003 [P] Widen the local `FeatureExtractionPipeline` alias to expose `dispose()` + `model.sessions` (`hf-local.ts`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +58,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Add a raw-native-run in-flight gate to `generateEmbedding` (register the un-wrapped `model(...)` promise, decrement in its `.finally`) (`hf-local.ts`) [REQ-001]
+- [ ] T005 Implement `HfLocalProvider.dispose()`: set `disposed`, drain in-flight raw runs (timeout ≥ `MODEL_LOAD_TIMEOUT`), single-owner claim+null `extractor`, assert one session, `await extractor.dispose()` (`hf-local.ts`) [REQ-002/004/005/006]
+- [ ] T005a Ensure the getModel post-load tail defers to `dispose()` (single-owner; no double native free) (`hf-local.ts`) [REQ-004]
+- [ ] T006 `invalidateProviderSingleton()` captures outgoing + `void dispose().catch(log)`; dispose in resetForTesting/setProviderForTesting (`shared/embeddings.ts`) [REQ-007]
+- [ ] T007 `execution-router`: `recycleActiveSidecars(key)` (auto/sidecar) + dispose `directAdapters` provider on clear (direct); branch on `shouldUseSidecar(job.backend)` (`execution-router.ts`) [REQ-001/003/008]
+- [ ] T008 Wire the policy-correct teardown at the reindex swap site keyed on `job.backend:toName` (`reindex.ts:472`) [REQ-003/008]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T009 swap-during-in-flight-inference test (no segfault) + swap-during-cold-load test (no leaked session) [REQ-001/005]
+- [ ] T010 auto-policy recycle (pid re-fork) + direct-policy adapter-dispose tests [REQ-003/008]
+- [ ] T011 RSS-bounded-across-N-swaps observation (live daemon + sidecar) [SC-001]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [ ] All P0 tasks complete (T002-T008)
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] swap-during-inference + swap-during-cold-load + policy tests green; RSS bounded
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,14 +93,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Root cause + design**: See `../003-daemon-reliability-research/research/research.md` §6.2 + `research/iterations/iteration-003.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

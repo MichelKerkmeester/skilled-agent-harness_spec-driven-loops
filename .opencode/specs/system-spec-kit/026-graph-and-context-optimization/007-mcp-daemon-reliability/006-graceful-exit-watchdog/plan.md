@@ -1,33 +1,31 @@
 ---
-title: "Implementation Plan: Phase 2: graceful-exit-watchdog [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Launcher RSS-ceiling watchdog + graceful-exit supervision (F1′)"
+description: "Sample the daemon's process-tree RSS; on a sustained ceiling breach do a graceful self-exit (host relaunches); supervise unexpected child exits with a crash-loop guard; record the daemon child pid in the lease."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
+  - "launcher watchdog plan F1"
+  - "graceful exit supervision plan"
+importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog"
-    last_updated_at: "2026-05-28T18:43:50Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-05-28T21:10:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Authored F1′ plan (process-tree RSS, graceful exit, childPid lease) verified by Opus pass"
+    next_safe_action: "Confirm host relaunch contract; implement in a live-daemon session"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/bin/mk-spec-memory-launcher.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000612"
+      session_id: "007-006-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 2: graceful-exit-watchdog
+# Implementation Plan: Launcher RSS-ceiling watchdog + graceful-exit supervision (F1′)
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -40,13 +38,13 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Node `.cjs` launcher (CommonJS) |
+| **Framework** | mk-spec-memory MCP launcher + child daemon + forked sidecar |
+| **Storage** | Filesystem lease JSON |
+| **Testing** | vitest with an injectable ps/`/proc` runner |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Add a periodic process-tree RSS sampler (daemon child + sidecar grandchildren) to the launcher. On a sustained `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB` breach, SIGTERM the child (grace > 5s) then graceful self-exit so the host relaunches a fresh launcher (clean MCP re-initialize). Refactor the child-exit handler into a crash-loop-guarded supervisor, and add a `childPid` field to the lease. NO transparent in-place respawn (it cannot restore the MCP session).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,14 +53,14 @@ _memory:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified (003 §6, iter-3 F1 verdict)
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Watchdog + supervisor land; child-pid lease shipped
+- [ ] Host relaunch contract confirmed (REQ-008) before enabling breach-self-exit by default
+- [ ] Process-tree-RSS + crash-loop tests pass (injectable ps)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -71,14 +69,16 @@ _memory:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Supervisor loop in the launcher (parent process) over a single daemon child + its sidecar grandchildren; recovery by clean exit + host relaunch (not in-place respawn).
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`sampleProcessTreeRssMb(runner?)`**: rolls up RSS for the daemon child + sidecar pids; `runner` injectable for tests (defaults to `spawnSync('ps', ...)` / `/proc`).
+- **Watchdog interval** (`.unref()`): N consecutive breaches → `recycleViaGracefulExit()`.
+- **Supervisor**: child-exit handler split into intentional-exit vs crash; crash-loop guard + backoff; give-up = today's fail-loud + sidecar group-reap.
+- **Lease**: `writeLeaseFile` JSON gains `childPid` (additive).
 
 ### Data Flow
-[Brief description of how data moves through the system]
+spawn child → record `childPid` in lease → sampler polls tree RSS → breach: SIGTERM child (grace>5s) → SIGKILL if needed → launcher process.exit → host relaunch. Unexpected child exit → crash-loop guard → backoff respawn OR give-up.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -86,18 +86,15 @@ _memory:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `mk-spec-memory-launcher.cjs` child-exit handler (352-361) | Clears lease + exits, no respawn | refactor to crash-loop-guarded supervisor; preserve signal-mirror | crash-loop test fails loud; single-death recovers |
+| `mk-spec-memory-launcher.cjs` `writeLeaseFile` (189-194) | Writes `{pid,startedAt}` | add additive `childPid` field | bridge readers (pid/startedAt/ownerPid) unaffected |
+| `mk-spec-memory-launcher.cjs` (new) RSS sampler | none | add tree sampler with injectable runner | synthetic tree test sums correctly |
+| `execution-router.ts` shouldUseSidecar (80-91) / sidecar-client `getWorkerInfo` (517-529) | Sidecar lifecycle/pids | read sidecar pids for tree sampling | sampler includes sidecar RSS |
+| `context-server.ts` SHUTDOWN_DEADLINE_MS=5000 (1414) / fatalShutdown (1539) | Daemon self-exit deadline | unchanged; escalation grace must exceed it | grace>5000 asserted |
 
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+Invariant: the RSS-breach path is a clean process.exit (no stdio re-pipe); the existing signal-mirror exit (launcher:356) stays untouched.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -106,19 +103,18 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Confirm host relaunch-on-exit-0 contract (REQ-008); decide default-off vs ceiling default
+- [ ] Add `childPid` to `writeLeaseFile`
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] `sampleProcessTreeRssMb(runner?)` with injectable runner (REQ-002/006)
+- [ ] Watchdog interval + breach→graceful-exit (grace>5000) (REQ-001/003)
+- [ ] Crash-loop-guarded supervisor + backoff + give-up sidecar reap (REQ-004/007)
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Synthetic process-tree RSS test (injectable ps); EPERM-as-unknown test
+- [ ] Crash-loop give-up + single-death-recovery tests
+- [ ] Live: ceiling breach recycles before OOM (if host relaunch confirmed)
 <!-- /ANCHOR:phases -->
 
 ---
@@ -128,9 +124,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | tree-RSS roll-up + EPERM handling | vitest + injectable ps runner |
+| Unit | crash-loop guard / backoff / give-up | vitest |
+| Manual | ceiling breach → recycle before OOM | live daemon + sidecar |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -140,7 +136,9 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Host relaunch-on-exit-0 contract | External | Yellow (unconfirmed) | Blocks default-on RSS-breach self-exit (REQ-008) |
+| Phase 005 dispose gate | Internal | Pending | SIGTERM recycle must not race a native run |
+| Phase 007 consumes child-pid lease | Internal | Pending | This phase ships it |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -148,8 +146,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Recycle storms, false OOM recycles, or availability regression.
+- **Procedure**: Set `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB` unset (watchdog default-off → today's behavior) as the instant kill switch; if needed `git revert` the supervisor refactor (the `childPid` lease field is additive and harmless to leave).
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -160,4 +158,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

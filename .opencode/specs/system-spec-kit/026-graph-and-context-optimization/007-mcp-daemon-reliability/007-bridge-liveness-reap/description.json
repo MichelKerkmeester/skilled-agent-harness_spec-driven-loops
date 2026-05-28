@@ -1,14 +1,16 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap",
-  "description": "Feature Specification: Phase 3: bridge-liveness-reap",
+  "description": "Feature Specification: Liveness-probe-before-bridge + reap-aware respawn (F3′ / RC-3)",
   "keywords": [
     "feature",
     "specification",
-    "phase",
-    "bridge-liveness-reap"
+    "liveness-probe-before-bridge",
+    "reap-aware",
+    "respawn",
+    "rc-3"
   ],
-  "lastUpdated": "2026-05-28T18:48:34.933Z",
+  "lastUpdated": "2026-05-28T19:25:56.755Z",
   "specId": "007",
   "folderSlug": "bridge-liveness-reap",
   "parentChain": [
