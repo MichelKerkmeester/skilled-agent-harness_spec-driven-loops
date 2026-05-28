@@ -2,9 +2,11 @@
 
 > Workflow-owned synthesis. Compiled from 10 dual-executor iterations (gpt-5.5 high/fast + MiniMax M2.7) + 1 Opus 4.8 arbiter capstone. Three independent models. Stop reason: converged (convergenceScore 0.94). Synthesized by Opus 4.8.
 
+> **REMEDIATION STATUS (2026-05-28): CLOSED.** All findings were remediated in phase `121/004-benchmark-mode-remediation`. The 3 unique P1 defects are fixed + regression-tested; actionable P2s are fixed; design-intent and non-defect P2s are dispositioned with rationale. See §11 for the per-finding disposition. This report below is preserved as the point-in-time review that drove the remediation.
+
 ## 1. Executive Summary
 
-- **Overall verdict: CONDITIONAL** — no release-blocking P0; genuine but non-blocking P1 correctness/security defects remain that warrant fix-before-promote.
+- **Overall verdict: CONDITIONAL** — no release-blocking P0; genuine but non-blocking P1 correctness/security defects remain that warrant fix-before-promote. *(All since remediated — see §11.)*
 - **hasAdvisories: true** (11 active P2).
 - **Active findings (post-arbitration): P0 = 0 · P1 = 4 (3 unique after dedup) · P2 = 11.**
 - **Scope reviewed:** 29 curated files — the 121/003 model-benchmark build (loop-host.cjs, dispatch-model.cjs, the ported scorer/ tree, mode-field edits, two vitest suites) + the 120 MiniMax skill edits (cli-opencode, sk-prompt, sk-prompt-small-model) + 3 authored design/research/build docs.
@@ -119,3 +121,37 @@
 ### Cross-reference appendix
 - **Core:** spec_code PASS (REQ-001/002/003), PASS-with-WARN (REQ-004 wording); checklist_evidence N/A.
 - **Overlay:** skill_agent reviewed, no P1.
+
+## 11. Remediation Status (phase 121/004)
+
+> Closure of every finding above. Remediation packet: `skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-benchmark-mode-remediation` (Opus 4.8). Verification: vitest 11 files/128 tests green (+12 regression tests in `scripts/tests/remediation.vitest.ts`); alignment-drift 0 findings; model-benchmark smoke `benchmark-pass`; TST-1 intact.
+
+### P1 — FIXED + regression-tested (3 unique)
+
+| ID | Disposition | Fix |
+|----|-------------|-----|
+| F-P1-1 | ✅ FIXED | `dispatch-model.cjs` — `cwd: dir` added to `spawnSync`; cwd now reaches all 5 executors. Test: `_spawn` seam asserts cwd per executor. |
+| F-P1-2 | ✅ FIXED | `cwd-check.cjs` — `isInside()` separator-bounded prefix + exact-equality; sibling-prefix paths classify as outside. Test: `/proj-evil` → `absolute_outside`. |
+| F-P1-3 | ✅ FIXED | `score-model-variant.cjs` — criteria `deterministic` exec gated behind `DEEP_AGENT_ALLOW_CRITERIA_EXEC` (default on, hardened opt-out) + security doc. Test: gate on/off. |
+| F-P1-4 | ✅ FIXED | `harness.cjs` — `clampScore01()` clamps grader score + confidence to `[0,1]`, coerces non-finite to 0. Test: clamp unit. |
+
+### P2 — FIXED (6)
+
+| ID | Disposition | Fix |
+|----|-------------|-----|
+| F-P2-9 | ✅ FIXED | busy-wait → `Atomics.wait` synchronous sleep (no core burn). |
+| F-P2-10 | ✅ FIXED | `delta` units documented (both operands 0..1). |
+| F-P2-6 | ✅ FIXED | grader cache raw output gated behind `DEEP_AGENT_GRADER_CACHE_RAW`. |
+| F-P2-7 | ✅ FIXED | `dispute.cjs` global `fs` monkey-patch removed → harness `system_prompt_path` DI. |
+| F-P2-3 | ✅ FIXED | 003 REQ-004 `--cwd` wording reconciled to the absolute-virtual-fixture-cwd mechanism. |
+| F-P2-8 | ✅ FIXED | deterministic scoring tests added (exact dimension + weighted-score values). |
+
+### P2 — DISPOSITIONED without code change (5)
+
+| ID | Disposition | Rationale |
+|----|-------------|-----------|
+| F-P2-1 | ACCEPTED DEFERRAL | Dispatcher-not-default-wired is intended (arbiter-upheld); REQ-003 = decoupled+available, met. Documented in 003 §7. |
+| F-P2-2 | ACCEPTED DEFERRAL | 5-dim-scorer-not-default is the documented §7 opt-in; force-wiring would be half-baked (run-benchmark fixtures lack the criteria the scorer needs). |
+| F-P2-5 | ACCEPTED DEFERRAL | `mode` not surfaced in reduce-state dashboard — display-only, data persisted, 1146-LOC file out of build scope. Low value. |
+| F-P2-4 | RESOLVED (no defect) | Verified: `promote-candidate.cjs` requires BOTH a `scored` candidate AND a `benchmark-complete` report — two inputs by design, not a mode bug. |
+| F-P2-11 | N/A | Dedup artifact (duplicate of F-P2-1), not a real finding. |
