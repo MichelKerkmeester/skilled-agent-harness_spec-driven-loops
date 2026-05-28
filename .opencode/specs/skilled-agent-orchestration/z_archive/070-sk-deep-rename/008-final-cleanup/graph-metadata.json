@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Packet 070 still has three approved P1 cleanup gaps. Advisor routing can prefer single-pass `sk-code-review` over `deep-review` for iterative review-loop audit prompts, the internal graph family still uses the old `sk-deep` identity, and `sk-code` metadata uses a rejected `reference-category` entity kind.",
     "created_at": "2026-05-05T17:45:00Z",
-    "last_save_at": "2026-05-27T13:45:35.304Z",
+    "last_save_at": "2026-05-28T06:06:28.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T17:45:00Z",
     "source_docs": [

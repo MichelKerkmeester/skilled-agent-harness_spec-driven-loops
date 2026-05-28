@@ -4,12 +4,12 @@ description: "Run the 32 deep-ai-council manual testing playbook scenarios via c
 trigger_phrases:
   - "deep-ai-council scenarios"
   - "deep ai council playbook run"
-  - "030 phase 002 deep-ai-council"
+  - "007 phase 002 deep-ai-council"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/002-deep-ai-council-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffold phase 002 spec + 32-scenario verdict ledger"

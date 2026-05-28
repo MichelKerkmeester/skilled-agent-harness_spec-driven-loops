@@ -215,7 +215,7 @@
     ],
     "causal_summary": "The 005-memory-indexer-invariants deep review surfaced one release-blocker correctness gap (P1-001) and 13 advisory cleanup items (P2-001..P2-013). The P1 specifically: parser/discovery correctly exclude constitutional/README.md, but storage-layer mutation paths (checkpoint restore, SQL update, post-insert metadata, cleanup CLI) only check the broader `isConstitutionalPath()` predicate. A poisoned checkpoint or pre-existing DB row can therefore preserve a constitutional README as `importance_tier='constitutional'` even though normal ingestion would reject it. Hunter→Skeptic→Referee adversarial self-check confirmed P1 severity.",
     "created_at": "2026-04-28T15:15:00.000Z",
-    "last_save_at": "2026-05-27T13:45:35.521Z",
+    "last_save_at": "2026-05-28T06:06:28.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

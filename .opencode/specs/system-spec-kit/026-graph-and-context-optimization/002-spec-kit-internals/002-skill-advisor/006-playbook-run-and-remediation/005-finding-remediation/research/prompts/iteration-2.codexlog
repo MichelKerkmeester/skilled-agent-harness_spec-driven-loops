@@ -538,14 +538,14 @@ exec
  M .opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite/graph-metadata.json
- M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/001-council-design/graph-metadata.json
- M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/002-eval-rig/graph-metadata.json
- M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/003-eval-loop/graph-metadata.json
- M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/004-skill-uplift/graph-metadata.json
- M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/005-extraction-rerun/graph-metadata.json
- M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/006-cross-cli-rcaf-propagation/graph-metadata.json
- M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/graph-metadata.json
- M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/001-council-design/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/002-eval-rig/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/003-eval-loop/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/004-skill-uplift/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/005-extraction-rerun/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/002-sentinel-skill-foundation/graph-metadata.json
  M .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix/graph-metadata.json

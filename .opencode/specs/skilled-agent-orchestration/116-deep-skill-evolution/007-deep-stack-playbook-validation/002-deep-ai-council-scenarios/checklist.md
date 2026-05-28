@@ -4,12 +4,12 @@ description: "Verification + 32-scenario verdict ledger for deep-ai-council play
 trigger_phrases:
   - "deep-ai-council checklist"
   - "deep ai council verdict ledger"
-  - "030 phase 002 checklist"
+  - "007 phase 002 checklist"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/002-deep-ai-council-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "deep-ai-council 32/32 done - 24 PASS 8 PARTIAL 0 FAIL, vitest+advisor corroborated"

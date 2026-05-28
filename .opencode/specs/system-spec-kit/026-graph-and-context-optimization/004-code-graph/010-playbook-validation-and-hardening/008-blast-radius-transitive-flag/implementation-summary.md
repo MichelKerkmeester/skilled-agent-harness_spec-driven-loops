@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-code-graph-playbook-validation/008-blast-radius-transitive-flag"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Shipped blast_radius includeTransitive gating (F-022-1); 85/85 vitest + alignment pass"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 029-code-graph-playbook-validation/008-blast-radius-transitive-flag |
+| **Spec Folder** | 010-playbook-validation-and-hardening/008-blast-radius-transitive-flag |
 | **Completed** | 2026-05-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

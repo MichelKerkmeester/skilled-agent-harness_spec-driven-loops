@@ -8,8 +8,8 @@ Verdict preview: yes with adaptation. The lifecycle invariant transfers, but the
 
 ## Actions Taken
 
-- Read CocoIndex lifecycle writes in `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/rust/core/src/engine/execution.rs`.
-- Read CocoIndex stable-path schema in `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/rust/core/src/state/db_schema.rs`.
+- Read CocoIndex lifecycle writes in `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/rust/core/src/engine/execution.rs`.
+- Read CocoIndex stable-path schema in `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/rust/core/src/state/db_schema.rs`.
 - Searched CocoIndex core for tombstone, sweep, compact, cleanup, and vacuum paths.
 - Read our causal-edge schema in `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`.
 - Read our causal graph handler in `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts`.

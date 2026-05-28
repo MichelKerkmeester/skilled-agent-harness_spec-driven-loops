@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: deep-skill evolution arc (nested phase parent)"
-description: "Nested phase parent for the deep-* skill family evolution arc: seven thematic clusters (release-cleanup + five per-skill clusters + one cross-cutting cluster) each owning their own leaf phases."
+description: "Nested phase parent for the deep-* skill family evolution arc: eight thematic clusters (release-cleanup + five per-skill clusters + one cross-cutting cluster + one playbook-validation cluster) each owning their own leaf phases."
 trigger_phrases:
   - "deep skill evolution arc"
   - "deep stack consolidation"
@@ -35,7 +35,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions:
-      - "Root structure: 7 thematic clusters (000 release-cleanup + 5 per-skill + 006 cross-cutting)"
+      - "Root structure: 8 thematic clusters (000 release-cleanup + 5 per-skill + 006 cross-cutting + 007 playbook-validation)"
       - "Each cluster is a phase parent with its own lean trio and leaf phases"
       - "Reorganization history lives in context-index.md; exhaustive old->new paths in merged-phase-map.md"
 ---
@@ -75,7 +75,7 @@ The deep-* skill family — `deep-ai-council`, `deep-review`, `deep-loop-runtime
 
 ### Purpose
 
-Provide one nested phase parent whose root reads as seven thematic clusters: a release-cleanup meta-cluster, one cluster per deep-* skill, and one cross-cutting cluster for work that spans the whole stack. Each cluster is itself a phase parent with its own `spec.md`/`description.json`/`graph-metadata.json` lean trio and owns the leaf phases relevant to its theme.
+Provide one nested phase parent whose root reads as eight thematic clusters: a release-cleanup meta-cluster, one cluster per deep-* skill, a cross-cutting cluster, and a playbook-validation cluster for work that spans the whole stack. Each cluster is itself a phase parent with its own `spec.md`/`description.json`/`graph-metadata.json` lean trio and owns the leaf phases relevant to its theme.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the root parent level. Cluster-level orientation lives in each cluster's own `spec.md`; detailed planning, tasks, checklists, decisions, and implementation summaries live in the leaf phase folders. Reorganization history (renames, folds, archival moves, and the original source-packet lineage) lives in `context-index.md` and `merged-phase-map.md`, not here.
 <!-- /ANCHOR:problem -->
@@ -87,7 +87,7 @@ Provide one nested phase parent whose root reads as seven thematic clusters: a r
 
 ### In Scope
 
-- Seven thematic cluster parents at the root, each a phase parent itself.
+- Eight thematic cluster parents at the root, each a phase parent itself.
 - Every shipped leaf artifact (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/, ai-council/) preserved intact inside its cluster.
 - Resolvable `description.json` + `graph-metadata.json` across the packet, with old packet IDs preserved as migration aliases.
 
@@ -124,11 +124,12 @@ Provide one nested phase parent whose root reads as seven thematic clusters: a r
 | 004 | `004-deep-research/` | deep-research uplift + iteration ordering + uncovered questions + hygiene | 6 | In Progress |
 | 005 | `005-deep-agent-improvement/` | deep-agent-improvement uplift + correctness + evaluator + cross-runtime + mixed-executor + command relocation | 9 | In Progress |
 | 006 | `006-deep-stack-cross-cutting/` | Cross-stack work: unique-value differentiation audit, command relocation, documentation evolution | 5 | In Progress |
+| 007 | `007-deep-stack-playbook-validation/` | Deep-stack manual-playbook validation run — 177 scenarios across all five deep-* skills → release-readiness matrix (verdict READY); 4 remediation children | 10 | Complete |
 
 ### Phase Transition Rules
 
 - Each cluster is independently executable and validates independently via `validate.sh --recursive`.
-- The root's 7-child count is within `is-phase-parent.js`'s healthy band (<20); each cluster's child count is ≤13.
+- The root's 8-child count is within `is-phase-parent.js`'s healthy band (<20); each cluster's child count is ≤13.
 
 ### Cross-Cluster Dependencies
 
@@ -136,6 +137,7 @@ Provide one nested phase parent whose root reads as seven thematic clusters: a r
 - **004-deep-research** uplift depends on **002-deep-review** (investigates whether deep-review changes propagate).
 - **005-deep-agent-improvement** uplift depends on **002-deep-review** + **004-deep-research**.
 - **006-deep-stack-cross-cutting** differentiation audit depends on 001/002/004 having shipped (audits boundaries between them).
+- **007-deep-stack-playbook-validation** validates the shipped manual-testing playbooks of all five deep-* skills (cross-cutting; consumes the 001-005 skill surfaces). Complete — 177/177 PASS, verdict READY.
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -153,5 +155,5 @@ Provide one nested phase parent whose root reads as seven thematic clusters: a r
 
 - **Reorganization + source lineage bridge**: `context-index.md`
 - **Exhaustive old→new leaf path map**: `merged-phase-map.md`
-- **Cluster children**: 7 thematic phase parents enumerated above (see each cluster's own `spec.md`)
+- **Cluster children**: 8 thematic phase parents enumerated above (see each cluster's own `spec.md`)
 - **Graph Metadata**: `graph-metadata.json` (`derived.last_active_child_id` pointer)

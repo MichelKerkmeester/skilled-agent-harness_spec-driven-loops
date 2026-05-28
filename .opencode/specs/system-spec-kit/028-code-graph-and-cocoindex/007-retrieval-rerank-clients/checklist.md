@@ -1,13 +1,13 @@
 ---
-title: "Checklist — Phase 010 Retrieval Rerank Clients"
-description: "Verification checklist for Phase 010. P0/P1/P2 items mapped to REQ-001..016."
+title: "Checklist — Phase 007 Retrieval Rerank Clients"
+description: "Verification checklist for Phase 007. P0/P1/P2 items mapped to REQ-001..016."
 trigger_phrases:
   - "027 phase 010 checklist"
 importance_tier: "normal"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored checklist.md"
@@ -34,7 +34,7 @@ _memory:
 | 5 | [ ] | CHK-005 | Score-origin + rankingSignals preserved through Coco adapter round-trip | REQ-003, REQ-004 | Round-trip test in adapter test file |
 | 6 | [ ] | CHK-006 | Circuit-breaker fallback path triggers correctly with `provider: 'fallback-score-only'` signal | REQ-010 | `vitest run circuit-breaker-fallback.vitest.ts` |
 | 7 | [ ] | CHK-007 | NO `EmbeddingCacheClient` adapter for Coco shipped in this phase (DEFERRED) | REQ-009 | grep absence of Python `EmbeddingCacheClient` adapter |
-| 8 | [ ] | CHK-008 | Strict spec validation passes for Phase 010 folder | n/a | `validate.sh ... --strict` exits 0 |
+| 8 | [ ] | CHK-008 | Strict spec validation passes for Phase 007 folder | n/a | `validate.sh ... --strict` exits 0 |
 
 ## P1 — SHOULD PASS BEFORE MERGE
 
@@ -65,9 +65,9 @@ _memory:
 ```bash
 # Strict spec validation
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients --strict
+  .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients --strict
 
-# All Phase 010 vitest
+# All Phase 007 vitest
 cd .opencode/skills/system-spec-kit && npx vitest run mcp_server/__tests__/search/
 
 # Memory rerank parity
@@ -107,7 +107,7 @@ Pre-implementation requirements covered in `spec.md` Section 4 REQUIREMENTS + th
 <!-- ANCHOR:testing -->
 ## TESTING
 
-See P0/P1 test items above for verification commands. Coverage spans unit, integration, diff (backward-compat), and Phase-006 paired-comparison eval.
+See P0/P1 test items above for verification commands. Coverage spans unit, integration, diff (backward-compat), and Phase-004 paired-comparison eval.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -155,7 +155,7 @@ Latency budget + cost bounds verified per success metrics in `plan.md`.
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-Default-off flag is the ship-readiness gate. Active rollout requires Phase-006 eval lift evidence (when applicable).
+Default-off flag is the ship-readiness gate. Active rollout requires Phase-004 eval lift evidence (when applicable).
 <!-- /ANCHOR:deploy-ready -->
 
 <!-- ANCHOR:compliance-verify -->
@@ -173,5 +173,5 @@ Privacy, audit-ledger, governance gates per `spec.md` REQ-NNN list. No SaaS depe
 <!-- ANCHOR:sign-off -->
 ## L3+: SIGN-OFF
 
-Sign-off requires: all P0 items above checked, strict validation passing, implementation-summary.md filled with file:line evidence, and Phase-006 eval gate documented when active-mode rollout is in scope.
+Sign-off requires: all P0 items above checked, strict validation passing, implementation-summary.md filled with file:line evidence, and Phase-004 eval gate documented when active-mode rollout is in scope.
 <!-- /ANCHOR:sign-off -->

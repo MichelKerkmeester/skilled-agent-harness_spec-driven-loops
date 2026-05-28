@@ -124,7 +124,7 @@
     ],
     "causal_summary": "Close 24 remaining P1 findings via 4 surface-grouped surgical batches, then 68 P2 findings via 2 cleanup batches. Each batch is its own phase child with finding-IDs in its tasks.md.",
     "created_at": "2026-05-26T16:49:55.586Z",
-    "last_save_at": "2026-05-27T13:45:36.623Z",
+    "last_save_at": "2026-05-28T06:06:29.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

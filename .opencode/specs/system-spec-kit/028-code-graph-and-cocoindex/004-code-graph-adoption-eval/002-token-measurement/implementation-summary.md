@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/002-token-measurement"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/002-token-measurement"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Scaffolded child packet; implementation not started"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 006-code-graph-adoption-eval/002-token-measurement |
+| **Spec Folder** | 004-code-graph-adoption-eval/002-token-measurement |
 | **Updated** | 2026-05-12 |
 | **Level** | 2 |
 | **Implementation State** | Not implemented; scaffold only |
@@ -75,7 +75,7 @@ The child packet was scaffolded from the Level 2 template shape and wired into t
 | Check | Status | Notes |
 |-------|--------|-------|
 | Product-code tests | Not run | No product code in scaffold |
-| Strict validation | Pending | Command: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/002-token-measurement --strict` |
+| Strict validation | Pending | Command: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/002-token-measurement --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Three coordinated drift issues across the system-spec-kit + system-skill-advisor + system-code-graph triad. (1) The three system-spec-kit docs (README, mcp_server/README, ARCHITECTURE) carry pre-extraction cross-skill references that couple them to sibling skills. (2) Section 1 (OVERVIEW) of each README has multiple tables that fragment what should be prose. (3) The three ARCHITECTURE.md files diverge significantly in shape, frontmatter, and depth even though they describe parallel runtimes.",
     "created_at": "2026-05-16T12:33:24Z",
-    "last_save_at": "2026-05-27T13:45:35.975Z",
+    "last_save_at": "2026-05-28T06:06:28.631Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

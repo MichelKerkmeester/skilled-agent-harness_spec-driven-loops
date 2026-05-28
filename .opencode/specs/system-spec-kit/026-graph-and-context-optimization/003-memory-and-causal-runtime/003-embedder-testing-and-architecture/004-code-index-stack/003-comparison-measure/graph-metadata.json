@@ -193,7 +193,7 @@
     ],
     "causal_summary": "After 018/001 (swap mechanism) and 018/002 (fixture), we still don't know which embedder actually wins for OUR repo. Without measurement, the swap is a leap of faith.",
     "created_at": "2026-05-18T08:18:02.785Z",
-    "last_save_at": "2026-05-27T13:45:36.432Z",
+    "last_save_at": "2026-05-28T06:06:28.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

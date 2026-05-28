@@ -1,29 +1,29 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
+  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/001-harness-skeleton",
-    "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/002-token-measurement",
-    "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/003-fixtures",
-    "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/004-report-generator",
-    "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/005-stress-tests-integration"
+    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton",
+    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/002-token-measurement",
+    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/003-fixtures",
+    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/004-report-generator",
+    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/005-stress-tests-integration"
   ],
   "manual": {
     "depends_on": [
       {
-        "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
+        "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
         "reason": "HLD/LLD code_graph tools are part of the after condition evaluated by this harness.",
         "source": "manual"
       },
       {
-        "packet_id": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace",
+        "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace",
         "reason": "Trace tool is part of the after condition evaluated by this harness.",
         "source": "manual"
       },
       {
-        "packet_id": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
+        "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
         "reason": "Impact-analysis tool is part of the after condition evaluated by this harness.",
         "source": "manual"
       }
@@ -71,12 +71,6 @@
         "source": "derived"
       },
       {
-        "name": "Phase Parent",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Code Graph Adoption Evaluation Harness",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -105,11 +99,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Last Active Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase coordinates the lightweight local adoption evaluation harness for the code_graph toolchain. The harness compares baseline advisor behavior against the new code_graph-assisted condition and reports productivity-oriented measures: file reads avoided, token reduction, context accuracy, answer completeness, and diagnostics around first-action adherence.",
     "created_at": "2026-05-08T15:00:00Z",
-    "last_save_at": "2026-05-27T13:45:36.930Z",
+    "last_save_at": "2026-05-28T06:49:57.512Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

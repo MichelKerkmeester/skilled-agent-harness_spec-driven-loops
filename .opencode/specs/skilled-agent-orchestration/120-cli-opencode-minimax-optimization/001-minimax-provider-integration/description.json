@@ -1,0 +1,18 @@
+{
+  "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/001-minimax-provider-integration",
+  "description": "Phase 1: minimax-provider-integration",
+  "keywords": [
+    "phase",
+    "minimax-provider-integration"
+  ],
+  "lastUpdated": "2026-05-28T08:38:27.134Z",
+  "specId": "001",
+  "folderSlug": "minimax-provider-integration",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "120-cli-opencode-minimax-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

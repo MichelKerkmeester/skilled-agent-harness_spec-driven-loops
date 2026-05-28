@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The CLI hook scenarios validate the prompt-time advisor adapters for Claude, Gemini, Codex and Devin runtimes plus the OpenCode plugin bridge. Each must surface a prompt-safe `additionalContext` brief, skip short prompts, fail open on malformed input, and never leak the raw prompt into stderr diagnostics.",
     "created_at": "2026-05-26T20:10:28.064Z",
-    "last_save_at": "2026-05-27T13:45:35.986Z",
+    "last_save_at": "2026-05-28T06:06:28.641Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

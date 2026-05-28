@@ -2,7 +2,7 @@
 
 ## BINDING CONTRACT (pre-answered)
 
-- **Gate 3**: **A) Use existing** = `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/`. Do NOT ask.
+- **Gate 3**: **A) Use existing** = `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/`. Do NOT ask.
 - **Skill routing**: Do NOT invoke other skills. You ARE the synthesis iteration.
 - **Sub-agent dispatch**: FORBIDDEN. LEAF.
 - **Mode**: Execute directly.
@@ -19,7 +19,7 @@ This iteration produces the **canonical synthesis** at `research/research.md`. R
 
 ## INPUTS TO READ
 
-All paths under `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/`:
+All paths under `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/`:
 
 1. `research/iterations/iteration-001.md` — ground truth baseline
 2. `research/iterations/iteration-002.md` — K1.1 memoization + DAG verdict
@@ -34,7 +34,7 @@ All paths under `.opencode/specs/system-spec-kit/027-xce-research-based-refineme
 
 ## OUTPUT — `research/research.md` (canonical)
 
-Write to: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/research.md`
+Write to: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/research.md`
 
 Use the 17-section structure (or equivalent comprehensive structure). Suggested layout:
 

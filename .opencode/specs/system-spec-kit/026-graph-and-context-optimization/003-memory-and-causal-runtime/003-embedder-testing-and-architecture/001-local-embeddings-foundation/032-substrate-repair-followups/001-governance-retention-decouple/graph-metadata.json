@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Passing `retentionPolicy: \"ephemeral\"` to `memory_save` silently triggered governed-ingest validation and required the full audit chain. Callers that only wanted temporary retention were rejected with governance errors.",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-05-27T13:45:36.177Z",
+    "last_save_at": "2026-05-28T06:06:28.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:10:00Z",
     "source_docs": [

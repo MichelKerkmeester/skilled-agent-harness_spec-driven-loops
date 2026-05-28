@@ -1,5 +1,5 @@
 ---
-title: "Frontmatter causal-edge promoter"
+title: "005 — Frontmatter Causal-Edge Promoter"
 description: "Derive causal edges deterministically from spec packet metadata during indexing. This is Phase 1 only: structured frontmatter and graph metadata are promoted without LLM extraction, similarity matching, or quarantine review."
 trigger_phrases:
   - "frontmatter causal edge promoter"
@@ -33,7 +33,7 @@ _memory:
       - "LLM extraction deferred"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Frontmatter causal-edge promoter
+# Feature Specification: 005 — Frontmatter Causal-Edge Promoter
 
 <!-- SPECKIT_LEVEL: 1 -->
 

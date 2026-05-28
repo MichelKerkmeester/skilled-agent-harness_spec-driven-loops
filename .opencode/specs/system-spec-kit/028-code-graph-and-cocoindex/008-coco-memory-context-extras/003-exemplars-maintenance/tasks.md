@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/003-exemplars-maintenance"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/003-exemplars-maintenance"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Authored child tasks"

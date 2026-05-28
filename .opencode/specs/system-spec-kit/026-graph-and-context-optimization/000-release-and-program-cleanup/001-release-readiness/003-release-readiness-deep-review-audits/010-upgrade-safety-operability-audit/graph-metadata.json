@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Recent release-readiness work moved stress tests, added matrix runners, refreshed install docs, and extended database and hook surfaces. The release needs a read-only operability audit to catch install drift, doctor false diagnostics, migration evidence gaps, stale environment defaults, and backwards-compatibility validation regressions.",
     "created_at": "2026-05-18T08:15:52.983Z",
-    "last_save_at": "2026-05-27T13:45:35.488Z",
+    "last_save_at": "2026-05-28T06:06:28.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

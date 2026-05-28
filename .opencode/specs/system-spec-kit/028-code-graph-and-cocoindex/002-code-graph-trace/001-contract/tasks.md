@@ -8,13 +8,13 @@ importance_tier: "important"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded trace contract tasks"
     next_safe_action: "Implement contract tasks after upstream dependency publishes"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
+      - "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
     key_files: ["spec.md", "plan.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm upstream Phase 002 contract export.
+- [ ] T001 Confirm upstream Phase 001 contract export.
 - [ ] T002 Identify local import path for trace contract module.
 <!-- /ANCHOR:phase-1 -->
 

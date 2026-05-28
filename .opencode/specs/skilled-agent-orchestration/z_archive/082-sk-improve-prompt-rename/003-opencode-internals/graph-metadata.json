@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After the skill folder is renamed, active `.opencode/` consumers still load, score, document, or test the old skill ID. These references include high-risk advisor code and fixtures, plus mirrored prompt quality cards that must stay synchronized.",
     "created_at": "2026-05-06T10:22:40Z",
-    "last_save_at": "2026-05-27T13:45:35.365Z",
+    "last_save_at": "2026-05-28T06:06:28.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

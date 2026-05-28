@@ -3,12 +3,12 @@ title: "Plan: deep-agent-improvement ruleCoherence inline fallback (008)"
 description: "Fix plan for the deriveRules inline ALWAYS/NEVER fallback + stale-scenario documentation."
 trigger_phrases:
   - "rulecoherence inline fallback plan"
-  - "030 phase 008 plan"
+  - "007 phase 008 plan"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/008-dai-rulecoherence-inline-fallback"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback"
     last_updated_at: "2026-05-27T21:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Planned the deriveRules inline-fallback fix + stale-scenario findings"

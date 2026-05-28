@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios",
-  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios",
-  "parent_id": "system-spec-kit/029-code-graph-playbook-validation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Run these 15 scenarios inside `cli-opencode` (which loads the full project plugin/skill/MCP runtime) and capture per-scenario evidence so the parent release-readiness matrix can be assembled.",
     "created_at": "2026-05-26T19:43:14.032Z",
-    "last_save_at": "2026-05-28T06:06:29.530Z",
+    "last_save_at": "2026-05-28T06:14:22.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

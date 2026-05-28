@@ -4,7 +4,7 @@ ROLE: You are a validation operator for the `mk-code-index` code-graph MCP runti
 CONTEXT:
 - Repo root (your cwd): /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 - Full project MCP runtime. Stable tool IDs: `code_graph_scan`, `code_graph_context`, `detect_changes`, `code_graph_status`.
-- Spec folder: .opencode/specs/system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
+- Spec folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
 - Scenarios 008 (code_graph_context blocks on broad stale) and 007 (detect_changes blocks on stale, read-only).
 - KNOWN RUNTIME FACT: `code_graph_scan` only accepts a `rootDir` UNDER the repo workspace root; `/tmp` paths are REJECTED. So the disposable workspace MUST be created under the gitignored `tmp/` dir at the repo root. Staleness is keyed on CONTENT HASH, so use real content edits (append a comment line), not `touch`.
 - SAFETY: the workspace is `tmp/cgwork-C.*` under the repo (gitignored, disposable). Do NOT modify any real source file outside that workspace. After setup scan, confirm the indexed root is the workspace.

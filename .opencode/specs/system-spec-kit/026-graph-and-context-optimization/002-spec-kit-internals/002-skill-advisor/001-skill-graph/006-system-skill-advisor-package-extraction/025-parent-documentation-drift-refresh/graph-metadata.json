@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The parent handover still opened with the original seven-child framing even though graph metadata already listed children 001-021. That contradicted the current extraction state and could send future agents back to obsolete Tier 1-4 instructions.",
     "created_at": "2026-05-15T10:50:18Z",
-    "last_save_at": "2026-05-27T13:45:35.875Z",
+    "last_save_at": "2026-05-28T06:06:28.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,11 +1,11 @@
 ---
 name: sk-prompt-small-model
-description: Sentinel for small-model optimization patterns covering SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 across cli-devin and cli-opencode (DeepSeek API + opencode-go provider) dispatch paths. Routing anchor only; real patterns live in cli-devin/references/ and cli-opencode/references/.
+description: Sentinel for small-model optimization patterns covering SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 + MiniMax-2.7 across cli-devin and cli-opencode (DeepSeek API + opencode-go + MiniMax.io direct API providers) dispatch paths. Routing anchor only; real patterns live in cli-devin/references/ and cli-opencode/references/.
 allowed-tools: []
 version: 0.1.0
 ---
 
-<!-- Keywords: small-model, swe-1.6, deepseek-v4, kimi-k2.6, qwen3.6, glm-5.1, haiku, gemini-flash, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
+<!-- Keywords: small-model, swe-1.6, deepseek-v4, kimi-k2.6, qwen3.6, glm-5.1, minimax-2.7, minimax-api, haiku, gemini-flash, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
 
 # Small-Model Optimization Sentinel
 
@@ -22,13 +22,14 @@ A discovery anchor that surfaces alongside `cli-devin` or `cli-opencode` wheneve
 - Dispatching to DeepSeek-v4-pro, Kimi-k2.6, or GLM-5.1 (Cognition Pro plan) via `cli-devin`
 - Dispatching to DeepSeek-v4-pro directly via `cli-opencode` + DeepSeek API provider (`DEEPSEEK_API_KEY`, `--pure` required)
 - Dispatching to DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, or GLM-5.1 via `cli-opencode` + opencode-go provider (workspace credit pool)
+- Dispatching to MiniMax-2.7 via `cli-opencode` + MiniMax.io direct API provider (`MINIMAX_API_KEY`, `--model minimax/minimax-2.7`, separate `minimax-api` quota pool)
 - Optional future targets: Claude Haiku (Anthropic separate quota), Gemini Flash (Google separate quota)
 - Asking "where is the small-model X pattern?" — context budget, output verification, model profiles, structured permissions, quota fallback
 
 **Keyword Triggers**:
 - `small model`, `small-model dispatch`
-- Model names: `swe-1.6`, `kimi-k2.6`, `deepseek-v4`, `qwen3.6`, `glm-5.1`, `haiku`, `gemini flash`
-- Provider names: `opencode-go`, `deepseek-api`, `cognition pro`, `cognition free`
+- Model names: `swe-1.6`, `kimi-k2.6`, `deepseek-v4`, `qwen3.6`, `glm-5.1`, `minimax-2.7`, `haiku`, `gemini flash`
+- Provider names: `opencode-go`, `deepseek-api`, `minimax` / `minimax-api`, `cognition pro`, `cognition free`
 - Pattern names: `context budget`, `output verification`, `model profile`, `structured permissions`, `quota fallback`, `tool scoring`
 
 ### Use Cases

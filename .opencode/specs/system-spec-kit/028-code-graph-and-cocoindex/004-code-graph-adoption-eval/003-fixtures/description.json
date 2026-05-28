@@ -1,6 +1,5 @@
 {
   "title": "003 Fixtures",
-  "description": "Labeled eval task JSONL and fixture scaffolds for the code graph adoption harness.",
   "trigger_phrases": [
     "027 006 003 fixtures",
     "labeled eval tasks"
@@ -11,10 +10,10 @@
   "status": "planned",
   "priority": "P0",
   "createdAt": "2026-05-12T00:00:00Z",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/001-harness-skeleton"
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton"
     ]
   },
   "derived": {
@@ -22,20 +21,22 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/003-fixtures",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/003-fixtures",
+  "description": "Feature Specification: 003 Fixtures",
+  "keywords": [
+    "feature",
+    "specification",
+    "003",
+    "fixtures"
+  ],
+  "lastUpdated": "2026-05-28T06:52:12.061Z",
   "specId": "003",
   "folderSlug": "fixtures",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "006-code-graph-adoption-eval"
+    "028-code-graph-and-cocoindex",
+    "004-code-graph-adoption-eval"
   ],
-  "keywords": [
-    "fixtures",
-    "jsonl",
-    "labeled-tasks"
-  ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
   "memorySequence": 0,
   "memoryNameHistory": []
 }

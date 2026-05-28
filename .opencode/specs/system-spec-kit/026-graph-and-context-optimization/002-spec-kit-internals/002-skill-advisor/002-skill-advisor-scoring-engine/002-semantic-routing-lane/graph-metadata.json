@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The 014 setup-A line shipped local EmbeddingGemma 300m at ~6ms per embed via llama-cpp + Metal. The skill advisor's five-lane scorer (`scorer/lane-registry.ts`) carried a dormant `semantic_shadow` lane at `weight: 0.00, live: false` that was NOT a real semantic lane — it was token-overlap with a 0.8 multiplier (see `scorer/lanes/semantic-shadow.ts`). Prompts that describe intent without naming the skill's keywords got no semantic recall signal.",
     "created_at": "2026-05-13T19:30:00Z",
-    "last_save_at": "2026-05-27T13:45:35.892Z",
+    "last_save_at": "2026-05-28T06:06:28.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T19:30:00Z",
     "source_docs": [

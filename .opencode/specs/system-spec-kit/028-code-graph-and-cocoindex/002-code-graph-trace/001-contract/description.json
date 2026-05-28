@@ -12,10 +12,10 @@
   "priority": "P1",
   "createdAt": "2026-05-12T00:00:00Z",
   "branch": "main",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
     ]
   },
   "derived": {
@@ -23,21 +23,20 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract",
-  "description": "TraceTool and trace-result TypeScript interfaces.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract",
+  "description": "Feature Specification: code_graph_trace Contract",
   "keywords": [
-    "trace",
-    "contract",
-    "typescript",
-    "interface"
+    "feature",
+    "specification",
+    "contract"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-28T06:52:06.100Z",
   "specId": "001",
   "folderSlug": "contract",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "003-code-graph-trace"
+    "028-code-graph-and-cocoindex",
+    "002-code-graph-trace"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Add two new validator rules (graph-metadata + description shape checks) registered in validator-registry.json. Fix ROLLOUT_FLAGS to point at a markdown file (or remove the directory entry). Document mcp-coco-index MCP coverage gap explicitly in mcp-coco-index/SKILL.md. Audit + refresh search telemetry doc to match runtime emitted fields. Closes 6 P1 + 3 P2 findings; final phase of 078 remediation.",
     "created_at": "2026-05-05T17:36:54Z",
-    "last_save_at": "2026-05-27T13:45:35.345Z",
+    "last_save_at": "2026-05-28T06:06:28.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

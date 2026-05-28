@@ -48,7 +48,9 @@ function computeChecksum(content) {
  */
 function normalizeRoundId(roundId) {
   if (typeof roundId === 'string' && /^round-\d{3}$/.test(roundId)) return roundId;
-  const parsed = Number(roundId || 1);
+  // Default only when unspecified (undefined/null/''); an explicit out-of-range
+  // value such as 0 must fail the 1-99 contract rather than coalesce to 1.
+  const parsed = Number(roundId === undefined || roundId === null || roundId === '' ? 1 : roundId);
   if (!Number.isInteger(parsed) || parsed < 1 || parsed > 99) {
     throw new Error('[ai-council] round_id must be round-NNN or an integer from 1 to 99');
   }

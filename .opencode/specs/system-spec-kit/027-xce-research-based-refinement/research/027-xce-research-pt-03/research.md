@@ -29,16 +29,7 @@ Across 10 RQs (5 coco + 5 memory) we produced **56 file:line-cited findings** wi
 
 ## 2. Research Questions
 
-### Group A — Coco-Index XCE Teachings
-
-| RQ | Question | Verdict |
-|---|---|---|
-| **RQ-A1** | Can XCE's intent-steering pattern teach mcp-coco-index when to fire AND how to expand single queries into intent-tagged multi-queries? | **ADAPT** |
-| **RQ-A2** | Can Phase 001's deterministic HLD/LLD narrative be folded into coco-index's path-class rerank to boost hits near known module boundaries / role anchors? | **ADAPT design / DEFER active** |
-| **RQ-A3** | Should `ccc_feedback` JSONL graduate from write-only telemetry to a feedback-driven rerank-weight loop? | **ADAPT** |
-| **RQ-A4** | Few-shot example-bank — can prior validated hits surface as positive exemplars in next query? | **ADAPT design / DEFER default-on** |
-| **RQ-A5** | Cross-cutting: should coco-index and code-graph share a single fused rerank stage? | **ADAPT design / DEFER active** |
-
+> Code-graph + cocoindex content for this section extracted to 028/research/027-xce-research-pt-03/research.md.
 ### Group B — Memory Backend / Causal Graph XCE Teachings
 
 | RQ | Question | Verdict |
@@ -77,54 +68,7 @@ Across 10 RQs (5 coco + 5 memory) we produced **56 file:line-cited findings** wi
 
 > Full per-iter detail in `iterations/iteration-NNN.md`. Summaries below cite the strongest finding per RQ.
 
-### RQ-A1 — Coco-index intent steering + query expansion (ADAPT)
-
-XCE's "use first" steering pattern is an adoptable UX contract; XCE's closed-source intent-routing internals are not. Two viable adaptations:
-
-(a) **Advisor first-action hint** — Phase-004 advisor renderer already gates by confidence threshold (`render.ts:124-133`); CocoIndex already has scorer signals for this intent class (`scorer/lanes/lexical.ts:25-30`, `scorer/lanes/explicit.ts:55-56`,`154-160`). LOC: ~25-45.
-
-(b) **Pre-embedding query expansion** — slot a rule-based intent classifier + sub-query expander before `embedder.embed()` at `query.py:293-295`, with original query + at most 2 sub-queries (3-embedding ceiling), per-sub-query fetch capped at existing `fetch_k`, suppression for exact identifiers / file paths / quoted strings / regex. LOC: ~120-180. Path-class taxonomy (`indexer.py:53-91`) provides intent priors. Total MVP: **~220-320 production LOC**.
-
-Risks: precision loss from over-expansion (mitigated by exact-intent suppression); embedding cost (mitigated by 3-embedding cap).
-
-### RQ-A2 — Coco-index rerank fusion with code-graph HLD/LLD (ADAPT design / DEFER active)
-
-Phase 001 spec (`001-code-graph-hld-lld/spec.md:100-167`) emits `{file_role, layer, summary, primary_symbols[]}` as **open string** (not closed enum). Lowest-coupling design: static sidecar export from Phase 001, keyed by normalized `file_path`, consumed by CocoIndex Python rerank. NOT a live Python→TypeScript graph DB query.
-
-Insertion point: `_ranked_result()` at `query.py:177-223` (already the rerank surface). Bounded boosts capped at +0.03 (file-role match) + +0.02 (primary-symbol proximity) — same magnitude as existing path-class nudge. Disabled by default (`SPECKIT_COCOINDEX_HLD_RERANK=1`). Stale sidecars **fail closed** via `content_hash`/`file_mtime_ms`/graph-fingerprint validation.
-
-LOC: ~150-240 total including tests. **Hard-depends on Phase 001 ship.** Implementation deferred until Phase 001 emits stable HLD export.
-
-### RQ-A3 — `ccc_feedback` graduation to active rerank loop (ADAPT)
-
-Current state: `handleCccFeedback()` (`ccc-feedback.ts:11-60`) appends JSONL only; **no production reader exists** (verified by repo-wide search). Local feedback file currently absent (0 events).
-
-Design: keep JSONL as raw audit input; add periodic Python reducer (`feedback_reducer.py`) that aggregates recent events into a small SQLite reweight table keyed by `(intent_tag, path_class)` with min-support thresholds. Apply clamped **±0.10 max** rerank delta at `_ranked_result()`. Reuses precedent from `lib/feedback/batch-learning.ts:34-48` (`MAX_BOOST_DELTA = 0.10`).
-
-Cold start: missing JSONL/table/below-min-support → `delta=0`, today's behavior. Privacy: aggregate counts/deltas only — no comment text in learned tables. Feature flag: `SPECKIT_COCOINDEX_FEEDBACK_RERANK=0`.
-
-LOC: ~250-370 production + ~90-150 tests. Path-class-only MVP achievable without RQ-A1; intent-tagged learning needs RQ-A1 classifier.
-
-### RQ-A4 — Few-shot example-bank for coco-index (ADAPT design / DEFER default-on)
-
-XCE has no public few-shot bank surface; the transferable analog is local positive-exemplar retrieval. **Critical separation from RQ-A3:** A3 changes weights, A4 surfaces examples as a **separate response group**, never mixed into `QueryResult` ranking.
-
-Storage: new local SQLite/vec0 table `coco_query_examples_vec` keyed by `(query_embedding, query_hash, result_file, content_hash, path_class, line range, validation_source, validated_at, expires_at)`. **Separate** from `code_chunks_vec` so reindexing code chunks cannot corrupt example history.
-
-Mandatory controls before default-on: opt-out flag (`SPECKIT_COCOINDEX_EXEMPLARS=0`), `ccc_examples_clear` maintenance op, capped storage (~1000-2000 rows/project), TTL ~90 days, top-3 exemplar output, similarity threshold ≥0.80, stale-hit reconciliation via `content_hash`/line-range checks.
-
-LOC: ~320-500 production + ~120-180 tests. Default-on deferred until Phase 005 evaluates utility vs. staleness cost.
-
-### RQ-A5 — Cross-cutting: coco+graph fused rerank stage (ADAPT design / DEFER active)
-
-Today's flow preserves CocoIndex score and adds graph anchor as side enrichment (`seed-resolver.ts:91-133`, `:329-350`). Active fusion needs role/layer (Phase 001), trace-distance (Phase 002), and centrality (Phase 003) as inputs — **none of which exist in current runtime**.
-
-Design when shippable: new pure module `lib/search/coco-graph-fusion.ts` (NOT extending `cocoindex-calibration.ts` which owns overfetch only). Deterministic feature-specific normalizers: bounded path-class deltas, `log1p(value)/log1p(cap)` for centrality, open-string role-family match, reciprocal trace distance. Fixed heuristic weights initially (`weightClass: "heuristic"`); learned weights deferred to Phase 005. Output: `fusedScore` + `fusionSignals` (component scores + skip reasons).
-
-Flag family: `SPECKIT_COCO_GRAPH_FUSION=0` / `_MODE=shadow|rerank` / `_REQUIRE_FRESH_GRAPH=1`. CocoIndex standalone behavior must not require code graph.
-
-LOC: ~180-300 production + ~80-140 tests. **Hard-depends on Phases 001+002+003.** Pre-work limited to interface contract + shadow telemetry.
-
+> Code-graph + cocoindex content for this section extracted to 028/research/027-xce-research-pt-03/research.md.
 ### RQ-B1 — Memory backend semantic trigger matching (ADAPT — hybrid, not replacement)
 
 **Critical constraint:** trigger matches activate working memory and co-activation (`memory-triggers.ts:360-380`); a wrong semantic trigger mis-prioritizes cognitive tiers. Therefore: **lexical remains primary precision path**, semantic adds paraphrase recall as gated UNION.
@@ -207,12 +151,7 @@ LOC: ~220-380 production + ~120-220 tests for both clients/adapters; persistent 
 
 > Ordered by leverage / dependency. Phases 006-007 are standalone-shippable; 008-009 enable the deferred phases to mature.
 
-### Phase 006: `006-coco-intent-steering` — L2, ~250-350 LOC, ADAPT
-**Covers:** RQ-A1.
-**Scope:** rule-based intent classifier shim before `query.py:293-295`; bounded query expansion (≤3 embeddings); path-class intent priors via `classify_path()` taxonomy reuse; advisor first-action hint via Phase-004 renderer; flags/caps/telemetry/exact-intent suppression.
-**Dependencies:** none hard. Phase-004 advisor wording is opportunistic.
-**Risk:** precision loss from over-expansion. Mitigated by exact-intent suppression + `rankingSignals` transparency + Phase-005 evaluation before default-on.
-
+> Code-graph + cocoindex content for this section extracted to 028/research/027-xce-research-pt-03/research.md.
 ### Phase 007: `007-memory-semantic-triggers` — L2/L3, ~350-520 LOC, ADAPT
 **Covers:** RQ-B1.
 **Scope:** hybrid lexical+semantic trigger matcher; trigger-embedding backfill via `memory_index_scan` + save-time pipeline; lexical precedence with semantic UNION fallback; flag family `SPECKIT_SEMANTIC_TRIGGERS_*`; activation guards (semantic-only hits at reduced attention `min(0.85, semanticScore)`); shadow-first rollout with `0.84` threshold + `0.04` margin.
@@ -225,24 +164,7 @@ LOC: ~220-380 production + ~120-220 tests for both clients/adapters; persistent 
 **Dependencies:** `feedback-ledger.ts`, `causal-edges.ts`, `memory-retention-sweep.ts`, `consolidation.ts`, `importance-tiers.ts`. Two precondition fixes required: (i) `isAutoEdgeCreator` predicate broadening; (ii) `RetentionExpiredRow` schema extension.
 **Risk:** retention/causal mutation is governance — copy `shadow-scoring.ts` weekly-cycle promotion-gate pattern. Live mutation requires shadow eval window with metrics (prevented-then-cited deletes; extended-then-unused records; stale retained ratio; constitutional delete-prevention count).
 
-### Phase 009: `009-retrieval-rerank-clients` — L2, ~250-420 LOC, ADAPT
-**Covers:** RQ-B5 client extraction.
-**Scope:** extract `RerankClient<T>` from `cross-encoder.ts`; memory consumes via existing pipeline adapter (`stage3-rerank.ts:410-465`); CocoIndex candidate adapter (`QueryResult` ↔ rerank document) with score-origin and `rankingSignals` preservation; flag default-off for CocoIndex; no second Voyage rerank caller. Define `EmbeddingCacheClient` interface (memory adapter only, no Coco adapter yet) for future portability. Shadow telemetry for cross-backend hit-rate overlap.
-**Dependencies:** existing `cross-encoder.ts`. Optional: RQ-A5 fusion consumers when Phases 001/002/003 ship.
-**Risk:** abstraction-boundary leak (the SKIP for shared indexing pipelines in RQ-B5 is the warning sign). Keep client surface minimal; reject any "shared retrieval engine" expansion.
-
-### Phase 010: `010-coco-memory-context-extras` — L3, ~500-800 LOC, ADAPT/DEFER split
-**Covers:** RQ-A4 (coco few-shot exemplars) + RQ-B2 (memory LLM-curated context).
-**Scope:** coco exemplars in separate response group (NEVER mixed into `QueryResult` ranking); memory `data.curatedContext` post-retrieval packaging plan with `{causalChain, tierExemplars, directEvidence, supportingContext, omittedButAvailable}` schema; budget-split (`retrievalCandidateLimit` + `presentationLimit` + `curationTokenBudget`); cache extension for `mode: 'context_curation'` keyed by `candidateSetHash`; strict JSON schema validation; deterministic fallback paths; flag families `SPECKIT_COCOINDEX_EXEMPLARS_*` and `SPECKIT_CONTEXT_CURATOR_*` with shadow-first.
-**Dependencies:** Phase-007 (better trigger candidates improve curator input). RQ-A3 (Phase-008 reducer for example-bank signal quality).
-**Risk:** both features add latency + nondeterminism to hot retrieval paths. Mitigated by default-off + strict timeout + deterministic fallback + Phase-005 lift requirement before active rollout.
-
-### NOT scaffolded as standalone phases (explicit DEFER)
-
-- **RQ-A2 + RQ-A5 active fusion** — hard-depends on Phases 001+002+003 ship. Pre-work limited to interface/type contract + shadow telemetry; can fold into Phase 001/002/003 as follow-on tasks once those phases mature.
-
----
-
+> Code-graph + cocoindex content for this section extracted to 028/research/027-xce-research-pt-03/research.md.
 ## 8. Cross-Cutting Recommendations
 
 1. **RQ-A5 and RQ-B5 are NOT one packet.** They share design philosophy (bounded extraction, default-off, shadow-first) but have completely different implementation shapes. Keep separate.
@@ -314,19 +236,7 @@ Explicitly NOT addressed by pt-03:
 
 ## 13. References (file:line index)
 
-### Pt-03 source corpus
-
-- `external/README.md:22-28, 101-119, 188-199, 240-245` — XCE public surface, steering pattern, semantic-search claims, query/context flow
-- `external/steering/CLAUDE.md:5-10` — XCE "use first" steering example
-- `.opencode/skills/mcp-coco-index/SKILL.md:16-31` — current activation triggers
-- `.opencode/skills/mcp-coco-index/references/search_patterns.md:28-35, 174-188, 344-352` — current query advice + ccc_feedback shape
-- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/query.py:40-59, 92-116, 177-264, 267-323` — query path, intent detection, rerank, dedup
-- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py:53-91, 266-326` — `classify_path()`, vec0 indexing
-- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/server.py:89-110, 141-150` — MCP search tool surface
-- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/protocol.py:21-28` — IPC SearchRequest schema
-- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/schema.py:8-36` — CodeChunk + QueryResult schemas
-- `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/shared.py:46-76` — embedder configuration
-
+> Code-graph + cocoindex content for this section extracted to 028/research/027-xce-research-pt-03/research.md.
 ### System-spec-kit memory backend
 
 - `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:132-160, 201-545, 749-880` — current lexical trigger matching
@@ -358,21 +268,7 @@ Explicitly NOT addressed by pt-03:
 - `.opencode/skills/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:286-304` — Infinity stability for constitutional/critical
 - `.opencode/skills/system-spec-kit/mcp_server/lib/storage/vector-index-schema.ts:610-621, 2375-2393` — causal_edges uniqueness, retention columns
 
-### Coco-index ↔ code-graph bridge
-
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/seed-resolver.ts:1-350` — anchor resolution, telemetry preservation
-- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cocoindex-calibration.ts:5-88` — overfetch + dedup + path-class-count telemetry
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/ccc-status.ts:18-51` — availability reporting
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/ccc-feedback.ts:11-60` — write-only JSONL handler
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts:264-317` — code_graph_context CocoIndex seed intake
-- `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:539-746` — resume payload exposing coco availability
-
-### Skill advisor + scorer
-
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/render.ts:124-158` — advisor brief threshold gates + final wording
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts:25-30` — coco-relevant lexical hints
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts:55-56, 154-160` — coco explicit boosts
-
+> Code-graph + cocoindex content for this section extracted to 028/research/027-xce-research-pt-03/research.md.
 ### Pt-01 + pt-02 continuity
 
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-pt-01/research.md:117-126, 176-181` — XCE non-adoption boundary

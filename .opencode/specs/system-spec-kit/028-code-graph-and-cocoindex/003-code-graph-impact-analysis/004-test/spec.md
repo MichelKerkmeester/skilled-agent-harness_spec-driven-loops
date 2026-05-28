@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/004-test"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/004-test"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Created Level 2 scaffold for 004-test"
@@ -41,7 +41,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | scaffolded |
 | **Created** | 2026-05-12 |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis` |
 | **Depends On** | `001-contract` |
 <!-- /ANCHOR:metadata -->
 
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-Phase 004's correctness hinges on pt-02 fixes: symbol-level file aggregation, incoming TESTED_BY direction, honest coverage evidence, deterministic normalization, and bounded traversal. This child owns `code-graph-impact-analysis.vitest.ts` fixtures that prove those behaviors.
+Phase 003's correctness hinges on pt-02 fixes: symbol-level file aggregation, incoming TESTED_BY direction, honest coverage evidence, deterministic normalization, and bounded traversal. This child owns `code-graph-impact-analysis.vitest.ts` fixtures that prove those behaviors.
 <!-- /ANCHOR:problem -->
 
 ---

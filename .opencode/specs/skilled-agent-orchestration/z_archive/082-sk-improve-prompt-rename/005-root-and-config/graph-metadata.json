@@ -201,7 +201,7 @@
     ],
     "causal_summary": "After code and runtime consumers are renamed, user-facing docs and active config surfaces may still advertise `sk-improve-prompt`. Leaving those refs behind creates broken setup guidance and stale skill catalog entries.",
     "created_at": "2026-05-06T10:22:42Z",
-    "last_save_at": "2026-05-27T13:45:35.369Z",
+    "last_save_at": "2026-05-28T06:06:28.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

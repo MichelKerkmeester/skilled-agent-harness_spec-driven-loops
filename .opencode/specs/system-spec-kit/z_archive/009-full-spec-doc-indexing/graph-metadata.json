@@ -193,7 +193,7 @@
     ],
     "causal_summary": "This archived folder captures work that indexed full spec folder documents. The older archive shape no longer matched the active template contract, which caused strict validation errors.",
     "created_at": "2026-04-12T09:02:53.564Z",
-    "last_save_at": "2026-05-27T13:45:37.205Z",
+    "last_save_at": "2026-05-28T06:06:29.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

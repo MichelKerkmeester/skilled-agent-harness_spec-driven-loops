@@ -2,7 +2,7 @@
 
 ## BINDING CONTRACT (pre-answered — do NOT re-ask)
 
-- **Gate 3 answer**: **A) Use existing spec folder** = `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/`. This packet is already scaffolded, validated, and active. Do NOT ask which spec folder to use; the answer is already provided.
+- **Gate 3 answer**: **A) Use existing spec folder** = `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/`. This packet is already scaffolded, validated, and active. Do NOT ask which spec folder to use; the answer is already provided.
 - **Skill routing**: Do NOT invoke `deep-research`, `sk-code`, or any other skill via slash commands or workflow handoffs. You ARE the deep-research iteration. Directly read files and write outputs to the paths below.
 - **Sub-agent dispatch**: FORBIDDEN. You are a LEAF agent. Do NOT use Agent/SpawnAgent/Task tools.
 - **Mode**: Execute the iteration body below directly. No clarification questions; no setup prompts; no menus.

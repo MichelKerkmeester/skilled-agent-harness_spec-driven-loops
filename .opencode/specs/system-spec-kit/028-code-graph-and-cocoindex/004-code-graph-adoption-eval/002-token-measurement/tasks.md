@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/002-token-measurement"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/002-token-measurement"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Scaffolded Level 2 tasks.md"

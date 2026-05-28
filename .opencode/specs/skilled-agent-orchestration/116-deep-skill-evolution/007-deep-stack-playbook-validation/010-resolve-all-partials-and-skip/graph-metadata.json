@@ -1,9 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/030-deep-loop-skills-playbook-validation/010-resolve-all-partials-and-skip",
-  "spec_folder": "system-spec-kit/030-deep-loop-skills-playbook-validation/010-resolve-all-partials-and-skip",
-  "parent_id": "system-spec-kit/030-deep-loop-skills-playbook-validation",
+  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip",
+  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip",
+  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -12,34 +14,45 @@
   "derived": {
     "trigger_phrases": [
       "resolve all partials and skip",
-      "030 phase 010 ready push",
-      "fix partials skip green"
+      "007 phase 010 ready push",
+      "fix partials skip green",
+      "resolve all partials plan",
+      "007 phase 010 plan",
+      "resolve all partials tasks",
+      "007 phase 010 tasks",
+      "resolve all partials summary",
+      "007 phase 010 implementation summary"
     ],
     "key_topics": [
+      "resolve",
       "partials",
       "skip",
-      "ready",
-      "grep-tolerance",
-      "live-rerun",
-      "stale-expectation",
-      "blocked-stop",
-      "5d-010",
-      "deep-ai-council",
-      "deep-review",
-      "deep-research",
-      "deep-agent-improvement",
       "030",
-      "010"
+      "phase",
+      "010",
+      "ready",
+      "push",
+      "fix",
+      "green",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "scratch/evidence/PARTIAL-RESOLUTION-LEDGER.txt",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "PARTIAL-RESOLUTION-LEDGER.txt",
+        "kind": "file",
+        "path": "scratch/evidence/PARTIAL-RESOLUTION-LEDGER.txt",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -63,12 +76,126 @@
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Resolve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep-tolerance",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "reasons",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Resolve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence OR",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "documented",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Resolve all 31 PARTIAL verdicts + the DR-032 SKIP in the 030 matrix via five fix-classes — grep-tolerance (5 CP), stale-expectation (DAC-026/029..032), live opencode re-run (~15 verification-method PARTIALs), DR-032 blocked_stop fixture, and the 5D-010 scorer decision — then re-tally toward READY, keeping honest residuals.",
+    "causal_summary": "After 009 the 007 matrix stands at 145 PASS / **31 PARTIAL** / 0 FAIL / **1 SKIP**. Per the READY rule, only the 6 deep-ai-council critical PARTIALs strictly gate READY, but the operator wants ALL 31 PARTIALs + the DR-032 SKIP resolved. The PARTIALs fall into five fix-classes: (A) deepseek-phrasing-vs-literal-grep on the 5 009 CP scenarios; (B) stale numeric expectations (DAC-026 count, DAC-029..032 ≥10× value-ratio bar); (C) verification-method PARTIALs that were \"contract/vitest verified but not live-observed\" under the codex/devin executors — now live-runnable via opencode; (D) DR-032's missing blocked_stop fixture; (E) the 5D-010 scorer null-aggregate design choice for rule-less agents.",
     "created_at": "2026-05-28T00:00:00.000Z",
-    "last_save_at": "2026-05-28T05:04:48.039Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-05-28T06:08:17.312Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

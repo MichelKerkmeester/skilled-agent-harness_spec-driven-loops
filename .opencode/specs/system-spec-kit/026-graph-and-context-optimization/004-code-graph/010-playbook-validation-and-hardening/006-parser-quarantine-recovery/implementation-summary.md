@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-code-graph-playbook-validation/006-parser-quarantine-recovery"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/006-parser-quarantine-recovery"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Shipped parser-quarantine recovery; re-verified 002/005/024 PASS, 022 PARTIAL"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 029-code-graph-playbook-validation/006-parser-quarantine-recovery |
+| **Spec Folder** | 010-playbook-validation-and-hardening/006-parser-quarantine-recovery |
 | **Completed** | 2026-05-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

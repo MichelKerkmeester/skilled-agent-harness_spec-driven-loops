@@ -1,5 +1,5 @@
 ---
-title: "Phase Parent 011 — Coco Memory Context Extras"
+title: "008 — Coco Memory Context Extras"
 description: "Phase parent for two independent presentation-layer tracks: Coco exemplars and memory context curation. Child phases own implementation plans, tasks, checklists, and continuity."
 trigger_phrases:
   - "027 phase 011"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded phase parent"
@@ -27,7 +27,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Coco Memory Context Extras
+# Feature Specification: 008 — Coco Memory Context Extras
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -43,10 +43,10 @@ _memory:
 | **Status** | phase-parent |
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement` |
-| **Packet ID** | `system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras` |
-| **Hard Dependency** | `system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork` |
-| **Soft Dependencies** | `006-code-graph-adoption-eval`, `008-memory-semantic-triggers`, `009-feedback-reducers` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex` |
+| **Packet ID** | `system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras` |
+| **Hard Dependency** | `system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork` |
+| **Soft Dependencies** | `004-code-graph-adoption-eval`, `027/007-memory-semantic-triggers`, `027/008-feedback-reducers` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -60,7 +60,7 @@ Pt-03 RQ-A4 identified that Coco queries have no governed way to show prior help
 ### Purpose
 This phase parent coordinates two orthogonal presentation-layer tracks. Track A adds Coco exemplar infrastructure in Python under `.opencode/skills/mcp-coco-index/`; Track B adds memory curator packaging in TypeScript under `.opencode/skills/system-spec-kit/mcp_server/lib/search/`. Neither track changes ranking authority or canonical result ordering.
 
-The audit narrative stays binding: Coco exemplars surface "what helped before" in a separate group, and memory curation returns `data.curatedContext` as a post-retrieval plan. Both tracks stay default-off, shadow-first, and gated by Phase 006 lift evidence before active rollout.
+The audit narrative stays binding: Coco exemplars surface "what helped before" in a separate group, and memory curation returns `data.curatedContext` as a post-retrieval plan. Both tracks stay default-off, shadow-first, and gated by Phase 004 lift evidence before active rollout.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -72,7 +72,7 @@ The audit narrative stays binding: Coco exemplars surface "what helped before" i
 - Track A child phases for Coco exemplar schema, retrieval, and maintenance.
 - Track B child phases for context curator prompt/schema work and memory-search integration.
 - Parent-level dependency metadata and child routing.
-- Default-off rollout requirements, deterministic fallback, and Phase 006 eval gate.
+- Default-off rollout requirements, deterministic fallback, and Phase 004 eval gate.
 
 ### Out of Scope
 - Parent-level implementation plans, task tables, checklists, decision records, or summaries.
@@ -102,9 +102,9 @@ The audit narrative stays binding: Coco exemplars surface "what helped before" i
 
 | Phase | Folder | Scope | Dependencies | Status |
 |-------|--------|-------|--------------|--------|
-| 1 | [001-exemplars-schema/](001-exemplars-schema/) | `examples_schema.py` plus SQLite migration | `001-cocoindex-complete-fork` | Pending |
-| 2 | [002-exemplars-retriever/](002-exemplars-retriever/) | `exemplar_retriever.py` query-time retrieval | `001-exemplars-schema`, `001-cocoindex-complete-fork` | Pending |
-| 3 | [003-exemplars-maintenance/](003-exemplars-maintenance/) | `exemplar_maintenance.py` TTL and reconciliation | `001-exemplars-schema`, `002-exemplars-retriever`, `001-cocoindex-complete-fork` | Pending |
+| 1 | [001-exemplars-schema/](001-exemplars-schema/) | `examples_schema.py` plus SQLite migration | `005-cocoindex-complete-fork` | Pending |
+| 2 | [002-exemplars-retriever/](002-exemplars-retriever/) | `exemplar_retriever.py` query-time retrieval | `001-exemplars-schema`, `005-cocoindex-complete-fork` | Pending |
+| 3 | [003-exemplars-maintenance/](003-exemplars-maintenance/) | `exemplar_maintenance.py` TTL and reconciliation | `001-exemplars-schema`, `002-exemplars-retriever`, `005-cocoindex-complete-fork` | Pending |
 
 ### Track B: Memory Curator
 

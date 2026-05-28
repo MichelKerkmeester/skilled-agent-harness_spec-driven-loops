@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: 011 Coco Memory Context Extras"
-description: "Preserved audit decisions from the original Phase 011 packet, retained with child 001 as packet-local historical context."
+description: "Preserved audit decisions from the original Phase 008 packet, retained with child 001 as packet-local historical context."
 trigger_phrases:
   - "027 phase 011 ADRs"
   - "coco memory context extras decisions"
@@ -19,7 +19,7 @@ contextType: "decision"
 
 **Status:** Accepted
 
-The original packet treated Coco exemplars and memory context curation as a governed pair because both add presentation output to retrieval surfaces, both carry nondeterministic or history-sensitive behavior, and both require Phase 006 lift evidence before active rollout. The phase-parent split keeps that governance but moves execution detail into Level 2 children.
+The original packet treated Coco exemplars and memory context curation as a governed pair because both add presentation output to retrieval surfaces, both carry nondeterministic or history-sensitive behavior, and both require Phase 004 lift evidence before active rollout. The phase-parent split keeps that governance but moves execution detail into Level 2 children.
 <!-- /ANCHOR:adr-001 -->
 
 ---
@@ -75,9 +75,9 @@ Curator output must be strict JSON with selected IDs drawn from the candidate se
 ---
 
 <!-- ANCHOR:adr-007 -->
-## ADR-007: Default-Off And Phase 006 Lift Gate
+## ADR-007: Default-Off And Phase 004 Lift Gate
 
 **Status:** Accepted
 
-Both tracks remain default-off and shadow-first. Active mode requires Phase 006 eval lift over deterministic baseline for task success, cited-source correctness, missed-critical-context rate, latency, and nondeterministic variance.
+Both tracks remain default-off and shadow-first. Active mode requires Phase 004 eval lift over deterministic baseline for task success, cited-source correctness, missed-critical-context rate, latency, and nondeterministic variance.
 <!-- /ANCHOR:adr-007 -->

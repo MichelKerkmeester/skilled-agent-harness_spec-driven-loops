@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/113-cli-devin-prompt-quality/002-eval-rig",
+  "spec_folder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/002-eval-rig",
+  "parent_id": "skilled-agent-orchestration/113-cli-devin-prompt-quality",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "113/002 eval rig",
+      "cli-devin fixtures",
+      "grader harness",
+      "deterministic-check library",
+      "113/002 plan",
+      "113/002 tasks",
+      "113/002 checklist",
+      "113/002 decisions",
+      "113/002 summary"
+    ],
+    "key_topics": [
+      "113",
+      "002",
+      "eval",
+      "rig",
+      "cli-devin",
+      "fixtures",
+      "grader",
+      "harness",
+      "deterministic-check",
+      "library",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "lib/cache.cjs",
+      "cache/.gitignore",
+      "grader/harness.cjs",
+      "grader/dispute.cjs",
+      "scripts/iter1-sanity-gate.cjs",
+      "scripts/dry-run.cjs",
+      "fixtures/fix-001-hallucinated-cli-flag/task.json",
+      "scripts/deterministic/bundle-gate.cjs",
+      "scripts/deterministic/cwd-check.cjs",
+      "scripts/deterministic/preplanning-regex.cjs",
+      "scripts/deterministic/hallucination-flag.cjs",
+      "grader/prompts/system-grader.md",
+      "grader/prompts/system-skeptic.md",
+      "scripts/cache-reconstruct.cjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "cache/det/index.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "cache.cjs",
+        "kind": "file",
+        "path": "lib/cache.cjs",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": "cache/.gitignore",
+        "source": "derived"
+      },
+      {
+        "name": "harness.cjs",
+        "kind": "file",
+        "path": "grader/harness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispute.cjs",
+        "kind": "file",
+        "path": "grader/dispute.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iter1-sanity-gate.cjs",
+        "kind": "file",
+        "path": "scripts/iter1-sanity-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dry-run.cjs",
+        "kind": "file",
+        "path": "scripts/dry-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "task.json",
+        "kind": "config",
+        "path": "fixtures/fix-001-hallucinated-cli-flag/task.json",
+        "source": "derived"
+      },
+      {
+        "name": "bundle-gate.cjs",
+        "kind": "file",
+        "path": "scripts/deterministic/bundle-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cwd-check.cjs",
+        "kind": "file",
+        "path": "scripts/deterministic/cwd-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "preplanning-regex.cjs",
+        "kind": "file",
+        "path": "scripts/deterministic/preplanning-regex.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hallucination-flag.cjs",
+        "kind": "file",
+        "path": "scripts/deterministic/hallucination-flag.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-grader.md",
+        "kind": "doc",
+        "path": "grader/prompts/system-grader.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skeptic.md",
+        "kind": "doc",
+        "path": "grader/prompts/system-skeptic.md",
+        "source": "derived"
+      },
+      {
+        "name": "cache-reconstruct.cjs",
+        "kind": "file",
+        "path": "scripts/cache-reconstruct.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.jsonl",
+        "kind": "file",
+        "path": "cache/det/index.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eval Rig",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Build the load-bearing infrastructure for the bespoke deep-loop: a fixture set (5–10 tasks grounded in documented SWE 1.6 failure modes), a grader harness that dispatches a stronger LLM to score outputs against rubrics, a sha256-keyed cache layer that survives across iterations and operator-paused runs, and a deterministic-check library that handles bundle-gate compliance, path/cwd validation, and pre-planning regex matching. Verifiable in isolation: dry-run on canned outputs proves scoring pipeline produces expected scores before any real SWE 1.6 dispatch is made.",
+    "created_at": "2026-05-16T19:10:00Z",
+    "last_save_at": "2026-05-28T06:06:27.610Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

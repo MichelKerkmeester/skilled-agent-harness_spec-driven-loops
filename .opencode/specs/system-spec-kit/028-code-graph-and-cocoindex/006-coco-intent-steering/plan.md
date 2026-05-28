@@ -1,5 +1,5 @@
 ---
-title: "Plan — Phase 007 Coco-Index Intent Steering + Bounded Query Expansion"
+title: "Plan — Phase 006 Coco-Index Intent Steering + Bounded Query Expansion"
 description: "Technical plan: 4 sub-phases covering intent classifier (Python), query expander integration, advisor first-action hint (TypeScript), telemetry + tests + docs. Risk matrix + dependency graph + success metrics."
 trigger_phrases:
   - "027 phase 007 plan"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored plan.md"
@@ -39,7 +39,7 @@ Implement bounded, transparent, default-off intent classification + query expans
 - Strict spec validation passes (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0).
 - All P0 checklist items green.
 - All ADR commitments upheld with file:line evidence in `implementation-summary.md`.
-- Phase-006 eval gate documented (when applicable for active-mode promotion).
+- Phase-004 eval gate documented (when applicable for active-mode promotion).
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -61,7 +61,7 @@ Implement bounded, transparent, default-off intent classification + query expans
 ### Adjacent precedents
 - Phase-009 (RQ-A3) plans an active feedback rerank loop using `ccc_feedback` JSONL — this phase's `intent` field will become the cache key for Phase-009's reweight table (soft dep).
 - Phase 005 plans a "MUST invoke FIRST" advisor mandate — REQ-009 hint integrates with that renderer surface.
-- Phase 006 plans an eval harness — provides the gate for default-on promotion.
+- Phase 004 plans an eval harness — provides the gate for default-on promotion.
 <!-- /ANCHOR:technical-context -->
 
 ---
@@ -187,7 +187,7 @@ Sub-Phase 3 is decoupled — runs in TypeScript advisor renderer. Connects via P
 - Unit tests per sub-phase (vitest TypeScript / pytest Python).
 - Integration tests for cross-component code paths.
 - Diff tests for backward-compat (flag-off output bit-identical to current).
-- Phase-006 paired comparison harness for active-mode promotion gating.
+- Phase-004 paired comparison harness for active-mode promotion gating.
 - Per-checklist verification commands for repeatable green-field checks.
 <!-- /ANCHOR:testing -->
 
@@ -200,7 +200,7 @@ Sub-Phase 3 is decoupled — runs in TypeScript advisor renderer. Connects via P
 ## DEPENDENCIES
 
 ### Hard preconditions
-- **Phase 001 (complete CocoIndex MCP fork)** — Python `mcp-coco-index` changes must target the owned v0.2.33 wrapper baseline, not the previous partial 0.2.3 soft fork.
+- **Phase 005 (complete CocoIndex MCP fork)** — Python `mcp-coco-index` changes must target the owned v0.2.33 wrapper baseline, not the previous partial 0.2.3 soft fork.
 
 ### Soft preconditions
 - **Phase 005 (skill-advisor first-action mandate)** — REQ-009 advisor hint integrates with Phase 005's mandate brief. Standalone fallback works without Phase 005.
@@ -211,9 +211,9 @@ Sub-Phase 3 is decoupled — runs in TypeScript advisor renderer. Connects via P
 - Sub-Phase 4 (tests+docs+telemetry) depends on 1+2+3 completion.
 
 ### Downstream consumers
-- **Phase 009** (feedback reducers) — reweight table will key on `(intent_tag, path_class)`; intent_tag comes from this phase's classifier.
-- **Phase 011** (coco-memory context extras) — example bank may query intent for similar-prior-query lookup.
-- **A2/A5 active fusion** (deferred) — fusion stage may consume intent for role/layer matching when Phase 002 ships.
+- **027/008-feedback-reducers** (feedback reducers) — reweight table will key on `(intent_tag, path_class)`; intent_tag comes from this phase's classifier.
+- **Phase 008** (coco-memory context extras) — example bank may query intent for similar-prior-query lookup.
+- **A2/A5 active fusion** (deferred) — fusion stage may consume intent for role/layer matching when Phase 001 ships.
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -223,7 +223,7 @@ Sub-Phase 3 is decoupled — runs in TypeScript advisor renderer. Connects via P
 
 | ID | Risk | Severity | Likelihood | Mitigation | Verification |
 |----|------|----------|------------|------------|--------------|
-| R-006-01 | Precision loss from over-expansion | P1 | Med | REQ-004 exact-intent suppression + REQ-002 3-embedding cap + Phase-006 eval before default-on | Phase-006 paired comparison vs. baseline |
+| R-006-01 | Precision loss from over-expansion | P1 | Med | REQ-004 exact-intent suppression + REQ-002 3-embedding cap + Phase-004 eval before default-on | Phase-004 paired comparison vs. baseline |
 | R-006-02 | Embedding cost increase | P1 | High (when active) | 3-embedding ceiling caps fanout to ≤3× baseline | Latency benchmark + cost telemetry |
 | R-006-03 | Advisor hint coupling to Phase 005 | P2 | Med | Standalone fallback flag (REQ-009) | Test: render-coco-hint.vitest.ts standalone path |
 | R-006-04 | Sub-query suppresses correct original-query results | P1 | Low | All sub-query rows merged via existing `_dedup_and_rank_rows()`; semantic-distance dominance preserved | Unit test: original-query rows always present in output when score ≥ threshold |
@@ -244,7 +244,7 @@ Sub-Phase 3 is decoupled — runs in TypeScript advisor renderer. Connects via P
 | Latency overhead p50 | < 100ms | Benchmark on 50-query fixture |
 | Telemetry envelope additions present | All 4 fields populated | Snapshot test on calibration envelope |
 | Advisor hint renders correctly (Phase-005 + standalone) | Both paths green | `render-coco-hint.vitest.ts` |
-| Phase-006 eval lift (post-implementation) | Recall improvement on labeled task set | Phase-006 harness paired comparison |
+| Phase-004 eval lift (post-implementation) | Recall improvement on labeled task set | Phase-004 harness paired comparison |
 <!-- /ANCHOR:success-metrics -->
 
 ---
@@ -252,10 +252,10 @@ Sub-Phase 3 is decoupled — runs in TypeScript advisor renderer. Connects via P
 <!-- ANCHOR:rollback -->
 ## ROLLBACK PLAN
 
-If active expansion produces precision regressions in Phase-006 eval:
+If active expansion produces precision regressions in Phase-004 eval:
 1. Set `SPECKIT_COCOINDEX_INTENT_EXPAND=0` system-wide → reverts to today's behavior.
 2. Capture failing query patterns → tune classifier rules OR exact-intent suppression heuristics.
-3. Re-run Phase-006 eval → re-promote to default-on only after lift confirmed.
+3. Re-run Phase-004 eval → re-promote to default-on only after lift confirmed.
 
 Rollback is per-flag and reversible — no schema migrations, no embedding regeneration, no data loss.
 <!-- /ANCHOR:rollback -->
@@ -293,7 +293,7 @@ See sub-phase task dependency diagrams in `tasks.md` "TASK DEPENDENCIES" section
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-See sub-phase ordering in `tasks.md` task dependency diagrams. Hard-blocking dependencies (e.g. Sub-Phase 1 → Sub-Phase 4 in Phase 009) are explicit in the dep diagram.
+See sub-phase ordering in `tasks.md` task dependency diagrams. Hard-blocking dependencies (e.g. Sub-Phase 1 → Sub-Phase 4 in 027/008-feedback-reducers) are explicit in the dep diagram.
 <!-- /ANCHOR:critical-path -->
 
 <!-- ANCHOR:milestones -->
@@ -301,5 +301,5 @@ See sub-phase ordering in `tasks.md` task dependency diagrams. Hard-blocking dep
 
 - **M1**: Sub-Phase 1 complete (foundational schema/precondition/extraction).
 - **M2..MN**: Each subsequent sub-phase complete per `tasks.md` group.
-- **MFinal**: All checklist items green; implementation-summary filled; Phase-006 eval gate ready (when applicable).
+- **MFinal**: All checklist items green; implementation-summary filled; Phase-004 eval gate ready (when applicable).
 <!-- /ANCHOR:milestones -->

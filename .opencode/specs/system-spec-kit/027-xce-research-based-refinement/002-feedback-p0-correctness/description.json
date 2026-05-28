@@ -25,15 +25,15 @@
     "last_active_child_id": null
   },
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-feedback-p0-correctness",
-  "description": "Feature Specification: Feedback P0 Correctness",
+  "description": "Feature Specification: 002 — Feedback P0 Correctness",
   "keywords": [
+    "feature",
+    "specification",
+    "002",
     "feedback",
-    "correctness",
-    "causal",
-    "retention",
-    "provenance"
+    "correctness"
   ],
-  "lastUpdated": "2026-05-11T00:00:00Z",
+  "lastUpdated": "2026-05-28T08:24:14.565Z",
   "specId": "002",
   "folderSlug": "feedback-p0-correctness",
   "parentChain": [

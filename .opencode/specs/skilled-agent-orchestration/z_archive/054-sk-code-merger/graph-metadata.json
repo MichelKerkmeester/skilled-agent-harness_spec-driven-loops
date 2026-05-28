@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The repo currently runs two parallel \"code skills\" with overlapping responsibilities — `sk-code-web` (Webflow/CDN, the user's daily driver) and `sk-code-full-stack` (multi-stack reference for React/Node/Go/Swift/React-Native, used by other users). Both compete in the skill advisor's scoring tables (advisor returned `sk-code-full-stack 0.87 vs sk-code-web 0.86` at session start — within tie threshold), and ~884 cross-repo references touch one or the other. This packet creates a single new skill `sk-code` that smart-routes by detected stack, with web content carried forward verbatim and non-web stacks scaffolded as placeholder stubs that point back to `sk-code-full-stack` for current authoritative content. Both legacy skills are preserved on disk untouched (frontmatter-only deprecation marker) per the user directive *\"I dont want you to overwrite the 2 skills\"*.",
     "created_at": "2026-04-30T08:30:00Z",
-    "last_save_at": "2026-05-27T13:45:35.171Z",
+    "last_save_at": "2026-05-28T06:06:27.957Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

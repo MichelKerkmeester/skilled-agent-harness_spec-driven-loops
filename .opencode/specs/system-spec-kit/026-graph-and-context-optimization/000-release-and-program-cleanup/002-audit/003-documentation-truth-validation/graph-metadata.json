@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The 013 supplemental research found that several operator-facing docs describe automation more broadly than the implementation supports. The highest-leverage Tier A fixes are documentation-only:",
     "created_at": "2026-04-29T13:42:25Z",
-    "last_save_at": "2026-05-27T13:45:35.503Z",
+    "last_save_at": "2026-05-28T06:06:28.256Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

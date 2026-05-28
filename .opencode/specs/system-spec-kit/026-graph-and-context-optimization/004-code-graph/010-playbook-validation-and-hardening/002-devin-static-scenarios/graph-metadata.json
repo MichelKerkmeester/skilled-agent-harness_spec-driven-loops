@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios",
-  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios",
-  "parent_id": "system-spec-kit/029-code-graph-playbook-validation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Run these 7 scenarios through `cli-devin` SWE-1.6 (coding-specialized, free-tier, fast) with the SWE-1.6 prompt-quality contract (RCAF + medium-density pre-planning + agent-config recipe + sequential_thinking 2-layer) and capture command evidence for the parent matrix.",
     "created_at": "2026-05-26T19:43:14.033Z",
-    "last_save_at": "2026-05-28T06:06:29.532Z",
+    "last_save_at": "2026-05-28T06:14:22.166Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

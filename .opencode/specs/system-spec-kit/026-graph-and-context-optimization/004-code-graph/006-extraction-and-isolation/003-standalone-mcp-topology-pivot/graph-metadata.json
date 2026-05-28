@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Reality diverged from ADR-001 in two ways. First, the user manually flattened the code-graph source tree so runtime code now lives directly at `.opencode/skills/system-code-graph/mcp_server/{lib,handlers,tools,tests}/` rather than under an intermediate `code_graph/` directory. Second, the user reversed ADR-001 Q3 and now requires a standalone MCP topology.",
     "created_at": "2026-05-14T09:13:21Z",
-    "last_save_at": "2026-05-27T13:45:36.743Z",
+    "last_save_at": "2026-05-28T06:06:29.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T09:24:15Z",
     "source_docs": [

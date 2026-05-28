@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Packet 020 removed direct source imports from system-spec-kit to system-code-graph, but `classifyQueryIntent()` had no MCP surface to call. The workaround was a local heuristic shim inside `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`, which kept functional behavior but left one duplicated classifier implementation outside code-graph ownership.",
     "created_at": "2026-05-15T09:15:19Z",
-    "last_save_at": "2026-05-27T13:45:35.868Z",
+    "last_save_at": "2026-05-28T06:06:28.558Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-15T09:20:31Z",
     "source_docs": [

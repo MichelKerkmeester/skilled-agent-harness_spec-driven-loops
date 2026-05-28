@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The `@improve-prompt` agent name is verb-object phrasing — an outlier in the noun-form agent family (`@code`, `@review`, `@debug`, `@context`, `@deep-research`, `@deep-review`). This creates inconsistency in naming and makes the agent harder to reason about as an entity (an agent IS a thing, not an action). Renaming to `@prompt-improver` aligns with convention and matches the doer-of-action pattern (improver = noun for agent-that-improves).",
     "created_at": "2026-05-06T13:19:25Z",
-    "last_save_at": "2026-05-27T13:45:35.376Z",
+    "last_save_at": "2026-05-28T06:06:28.152Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

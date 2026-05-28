@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/002-token-measurement",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/002-token-measurement",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval",
+  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/002-token-measurement",
+  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/002-token-measurement",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
   "children_ids": [],
   "manual": {
     "depends_on": [
       {
-        "packet_id": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/001-harness-skeleton",
+        "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton",
         "reason": "Needs harness session/result contract before token metrics attach.",
         "source": "manual"
       }
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The eval harness needs per-session token counts to test the RQ8 token-reduction claim. Without a small helper over session analytics, report generation would either duplicate DB access logic or omit the metric that makes the evaluation useful.",
     "created_at": "2026-05-12T00:00:00Z",
-    "last_save_at": "2026-05-27T13:45:36.933Z",
+    "last_save_at": "2026-05-28T06:49:57.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

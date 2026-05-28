@@ -89,7 +89,7 @@
     ],
     "causal_summary": "Some deep-* work does not belong to any single skill: auditing where the skills' use cases overlap, relocating the shared `deep:*` command assets, and evolving documentation conventions across all five skills at once. Left as separate one-leaf clusters, these inflate the root manifest without carrying single-skill weight.",
     "created_at": "2026-05-27T13:26:54.912Z",
-    "last_save_at": "2026-05-27T13:45:34.988Z",
+    "last_save_at": "2026-05-28T06:06:27.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

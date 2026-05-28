@@ -101,6 +101,18 @@
         "source": "derived"
       },
       {
+        "name": "Causal Graph Lifecycle Tombstones",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Target Level",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -120,18 +132,6 @@
       },
       {
         "name": "Research Basis",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Kit Memory",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "This phase adapts CocoIndex's lifecycle invariant, not its exact storage shape. CocoIndex stores child existence state and tombstones under stable-path keys, then consumes tombstones through a GC path. Spec Kit Memory has a relational causal graph, so the equivalent is a tombstone audit table plus a single sweep helper that every edge-deleting path uses.",
     "created_at": "2026-05-13T09:00:46Z",
-    "last_save_at": "2026-05-27T13:45:36.907Z",
+    "last_save_at": "2026-05-28T08:24:04.581Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

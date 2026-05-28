@@ -75,7 +75,12 @@
       "model profile",
       "structured permissions",
       "tool scoring",
-      "small-model optimization"
+      "small-model optimization",
+      "minimax",
+      "minimax-2.7",
+      "minimax-api",
+      "minimax.io",
+      "minimax direct api"
     ],
     "key_topics": [
       "sentinel skill",

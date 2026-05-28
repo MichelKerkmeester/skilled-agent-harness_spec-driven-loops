@@ -1,6 +1,6 @@
 ---
-title: "Phase 007 — Coco-Index Intent Steering + Bounded Query Expansion"
-description: "ADAPT XCE's intent-steering pattern into mcp-coco-index via (a) rule-based intent classifier shim before query embedding, (b) bounded query expansion (≤3 embeddings, exact-intent suppression), and (c) Phase-005 advisor first-action hint. This now depends on Phase 001's complete CocoIndex MCP fork before modifying the local wrapper. Cross-language change (Python coco-index + TypeScript advisor renderer); feature-flagged default-off; Phase-006 eval gate before active rollout. ~250-350 LOC across intent classifier, query expander, advisor hint, telemetry."
+title: "006 — Coco-Index Intent Steering + Bounded Query Expansion"
+description: "ADAPT XCE's intent-steering pattern into mcp-coco-index via (a) rule-based intent classifier shim before query embedding, (b) bounded query expansion (≤3 embeddings, exact-intent suppression), and (c) Phase-005 advisor first-action hint. This now depends on Phase 005's complete CocoIndex MCP fork before modifying the local wrapper. Cross-language change (Python coco-index + TypeScript advisor renderer); feature-flagged default-off; Phase-004 eval gate before active rollout. ~250-350 LOC across intent classifier, query expander, advisor hint, telemetry."
 trigger_phrases:
   - "027 phase 007"
   - "coco intent steering"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded 027/007 from pt-03 RQ-A1"
@@ -30,7 +30,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Coco-Index Intent Steering + Bounded Query Expansion
+# Feature Specification: 006 — Coco-Index Intent Steering + Bounded Query Expansion
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -50,8 +50,8 @@ XCE's closed-source PRAT routing internals are NOT adoptable (per pt-01 RQ9 SKIP
 - **3-embedding ceiling** — original query + at most 2 sub-queries; per-sub-query fetch capped at existing `fetch_k = unique_k * 4`.
 - **Exact-intent suppression** — skip expansion when the query contains exact identifiers, file paths, quoted strings, or regex syntax.
 - **Bounded ranking deltas** — path-class intent priors stay at the existing ±0.05 magnitude (semantic distance must remain dominant).
-- **Default-off behind `SPECKIT_COCOINDEX_INTENT_EXPAND=0`**; Phase-006 evaluation required before active rollout.
-- **Hard dep on Phase 001** — query-expansion work modifies `mcp-coco-index`, so it must land on the complete local `cocoindex-code` fork baseline instead of the old partial fork.
+- **Default-off behind `SPECKIT_COCOINDEX_INTENT_EXPAND=0`**; Phase-004 evaluation required before active rollout.
+- **Hard dep on Phase 005** — query-expansion work modifies `mcp-coco-index`, so it must land on the complete local `cocoindex-code` fork baseline instead of the old partial fork.
 - **Soft dep on Phase 005** — advisor first-action hint integrates with the renderer when Phase 005 ships; standalone fallback works without it.
 
 **Critical Constraints:**
@@ -69,9 +69,9 @@ XCE's closed-source PRAT routing internals are NOT adoptable (per pt-01 RQ9 SKIP
 | **Level** | **3** (cross-language Python+TypeScript change with feature flag, telemetry contract, hot retrieval path; see `decision-record.md` ADR-001) |
 | **Priority** | P1 |
 | **Status** | Spec-Scaffolded |
-| **Parent Packet** | `027-xce-research-based-refinement` |
+| **Parent Packet** | `028-code-graph-and-cocoindex` |
 | **Source** | `../research/027-xce-research-pt-03/research.md` §RQ-A1; `../research/027-xce-research-pt-03/iterations/iteration-001.md` |
-| **Depends on** | `027/001-cocoindex-complete-fork` (hard for Python `mcp-coco-index` changes); `027/005-skill-advisor-first-action-mandate` (soft — advisor wording integration) |
+| **Depends on** | `028/005-cocoindex-complete-fork` (hard for Python `mcp-coco-index` changes); `027/005-skill-advisor-first-action-mandate` (soft — advisor wording integration) |
 | **LOC budget** | ~250-350 production + ~120-180 tests |
 <!-- /ANCHOR:metadata -->
 
@@ -122,8 +122,8 @@ Two gaps result:
 - LLM-based intent classifier (deferred to follow-on if rule-based ceilings).
 - MCP API expansion controls — expansion stays internal, visible only through `rankingSignals`.
 - Embedding-model swaps or domain adaptation.
-- Active feedback loop for rerank weights (RQ-A3 territory; Phase 009).
-- Few-shot exemplar surfacing (RQ-A4 territory; Phase 011).
+- Active feedback loop for rerank weights (RQ-A3 territory; 027/008-feedback-reducers).
+- Few-shot exemplar surfacing (RQ-A4 territory; Phase 008).
 - Coco+graph rerank fusion (RQ-A5; deferred until Phases 001/002/003 ship).
 <!-- /ANCHOR:scope -->
 
@@ -180,11 +180,11 @@ Two gaps result:
 <!-- ANCHOR:success -->
 ## 6. SUCCESS CRITERIA
 
-- Phase 007 strict-validates (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ../007-coco-intent-steering --strict` exits 0).
+- Phase 006 strict-validates (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ../006-coco-intent-steering --strict` exits 0).
 - Intent classifier passes 30+ fixture cases (precision ≥ 0.85 on labeled set).
 - Query expansion path enforces 3-embedding ceiling (asserted in tests).
 - All 11 REQ-NNN items have green checklist entries.
-- Phase-006 eval harness (when shipped) measures expansion lift over current single-shot behavior on 12-20 task set.
+- Phase-004 eval harness (when shipped) measures expansion lift over current single-shot behavior on 12-20 task set.
 - Advisor first-action hint integrates with Phase 005 (when 004 ships) OR works standalone behind feature flag.
 <!-- /ANCHOR:success -->
 
@@ -197,7 +197,7 @@ See `decision-record.md` ADR-002..ADR-005 for design rationale; consolidated ris
 
 | Risk | Severity | Mitigation |
 |------|----------|------------|
-| Precision loss from over-expansion | P1 | Exact-intent suppression (REQ-004) + 3-embedding cap (REQ-002) + Phase-006 evaluation before default-on |
+| Precision loss from over-expansion | P1 | Exact-intent suppression (REQ-004) + 3-embedding cap (REQ-002) + Phase-004 evaluation before default-on |
 | Embedding cost from sub-queries | P1 | 3-embedding ceiling caps fanout (REQ-002) |
 | Advisor hint coupling to Phase 005 | P2 | Feature-flag standalone fallback (REQ-009) |
 | Sub-query suppresses correct results from original query | P1 | `_dedup_and_rank_rows()` merges all sub-query candidates; existing semantic-distance dominance preserved |
@@ -233,7 +233,7 @@ See section 5 above ("Edge Cases") for the comprehensive case-by-case list.
 
 ## COMPLEXITY ASSESSMENT
 
-L3 designation rationale is in `decision-record.md` ADR-001. Cross-component change with feature-flag governance, telemetry contract, and Phase-006 eval gate.
+L3 designation rationale is in `decision-record.md` ADR-001. Cross-component change with feature-flag governance, telemetry contract, and Phase-004 eval gate.
 
 ## RISK MATRIX
 
@@ -243,7 +243,7 @@ See section 7 above + `plan.md` Risk Matrix for the full register with severity,
 
 - **US-001**: As an operator, I can enable the feature via the designated env flag (default off).
 - **US-002**: As a developer, I can observe feature decisions via telemetry signals (rankingSignals or eval logger events).
-- **US-003**: As a Phase-006 evaluator, I can compare baseline (flag-off) vs treatment (flag-on) on the labeled task set with paired comparison metrics.
+- **US-003**: As a Phase-004 evaluator, I can compare baseline (flag-off) vs treatment (flag-on) on the labeled task set with paired comparison metrics.
 
 ## OPEN QUESTIONS
 

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/030-deep-loop-skills-playbook-validation/002-deep-ai-council-scenarios",
-  "spec_folder": "system-spec-kit/030-deep-loop-skills-playbook-validation/002-deep-ai-council-scenarios",
-  "parent_id": "system-spec-kit/030-deep-loop-skills-playbook-validation",
+  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
+  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
+  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "deep-ai-council scenarios",
       "deep ai council playbook run",
-      "030 phase 002 deep-ai-council",
+      "007 phase 002 deep-ai-council",
       "deep-ai-council scenarios plan",
       "deep ai council playbook plan",
-      "030 phase 002 plan",
+      "007 phase 002 plan",
       "deep-ai-council scenarios tasks",
       "deep ai council playbook tasks",
-      "030 phase 002 tasks",
+      "007 phase 002 tasks",
       "deep-ai-council checklist",
       "deep ai council verdict ledger",
-      "030 phase 002 checklist"
+      "007 phase 002 checklist"
     ],
     "key_topics": [
       "deep-ai-council",
@@ -45,6 +45,11 @@
       "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "scratch/evidence/dac-01-05.txt",
+      ".opencode/agents/ai-council.md",
+      "scratch/evidence/dac-06-07.txt",
+      "scratch/evidence/dac-08-graph.txt",
+      "scratch/evidence/dac-09-codex.txt",
       "tasks.md"
     ],
     "entities": [
@@ -70,6 +75,36 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "dac-01-05.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dac-01-05.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "dac-06-07.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dac-06-07.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dac-08-graph.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dac-08-graph.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dac-09-codex.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dac-09-codex.txt",
         "source": "derived"
       },
       {
@@ -161,41 +196,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verdict Ledger",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Execute all 32 `deep-ai-council` scenarios — the deterministic majority via `cli-devin` SWE-1.6 (`rg`/`sed` inspection) and the six graph-value A/B reasoning scenarios via `cli-codex` GPT-5.5 medium-fast — record a verdict + evidence per scenario, and hold the council-graph-dependent categories (08/09) behind phase 001's `06--coverage-graph` / `07--script-entry-points` / `08--council` gate so a downstream false-green is not recorded.",
     "created_at": "2026-05-27T07:08:08.393Z",
-    "last_save_at": "2026-05-27T19:50:07.444Z",
+    "last_save_at": "2026-05-28T06:08:17.302Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

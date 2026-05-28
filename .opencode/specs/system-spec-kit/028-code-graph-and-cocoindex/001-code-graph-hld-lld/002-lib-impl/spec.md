@@ -10,7 +10,7 @@ depends_on:
   - "001-contract"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Scaffolded library child spec"

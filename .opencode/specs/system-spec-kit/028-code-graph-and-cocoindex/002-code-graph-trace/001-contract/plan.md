@@ -8,13 +8,13 @@ importance_tier: "important"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded trace contract plan"
     next_safe_action: "Implement contract after upstream dependency publishes"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
+      - "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
     key_files: ["spec.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -50,7 +50,7 @@ Define the shared trace contract before implementation. The contract should be n
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Upstream Phase 002 contract has published role type or export shape.
+- [ ] Upstream Phase 001 contract has published role type or export shape.
 - [ ] Parent phase map confirms this child is first in local sequence.
 
 ### Definition of Done
@@ -84,7 +84,7 @@ The handler receives MCP input, converts it into contract input, calls a `TraceT
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `code-graph-trace-contract.ts` | New contract | Create | Type check and child validation |
-| Phase 002 contract | Role type source | Consume | Import/compatibility check |
+| Phase 001 contract | Role type source | Consume | Import/compatibility check |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -93,7 +93,7 @@ The handler receives MCP input, converts it into contract input, calls a `TraceT
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Contract Draft
-- [ ] Confirm Phase 002 role type export.
+- [ ] Confirm Phase 001 role type export.
 - [ ] Draft trace input, options, chain, and result types.
 
 ### Phase 2: Contract Stabilization
@@ -131,7 +131,7 @@ The handler receives MCP input, converts it into contract input, calls a `TraceT
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: Contract blocks downstream implementation or conflicts with Phase 002.
+- **Trigger**: Contract blocks downstream implementation or conflicts with Phase 001.
 - **Procedure**: Revise or revert the contract file before dependent children start implementation.
 <!-- /ANCHOR:rollback -->
 

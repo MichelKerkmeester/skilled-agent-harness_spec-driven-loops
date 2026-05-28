@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/002-lib-impl"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/002-lib-impl"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded trace library checklist"
@@ -58,7 +58,7 @@ _memory:
 - [ ] CHK-010 [P0] `traceSymbol` implements the contract.
 - [ ] CHK-011 [P0] File rung comes from `CodeNode.filePath`.
 - [ ] CHK-012 [P0] Module rung comes from file-path policy.
-- [ ] CHK-013 [P0] Phase 002 classifier supplies `architectural_role`.
+- [ ] CHK-013 [P0] Phase 001 classifier supplies `architectural_role`.
 - [ ] CHK-014 [P0] Depth cap sets `truncated: true`.
 - [ ] CHK-015 [P1] Optional ancestry display handles nested classes by fqName prefix.
 <!-- /ANCHOR:code-quality -->

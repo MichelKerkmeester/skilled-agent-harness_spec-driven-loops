@@ -1,7 +1,6 @@
 {
   "title": "Phase Parent: 027/002 Code Graph HLD/LLD",
-  "name": "027/002 Code Graph HLD/LLD Phase Parent",
-  "purpose": "Coordinate four contract-first child phases that deliver the deterministic HLD/LLD narrative layer for code_graph.",
+  "type": "phase-parent",
   "trigger_phrases": [
     "027 phase 002",
     "code-graph hld-lld",
@@ -9,15 +8,16 @@
     "code_graph_hld_lld"
   ],
   "level": 2,
+  "name": "027/002 Code Graph HLD/LLD Phase Parent",
+  "purpose": "Coordinate four contract-first child phases that deliver the deterministic HLD/LLD narrative layer for code_graph.",
   "importance_tier": "important",
   "contextType": "implementation",
   "status": "phase-parent",
-  "type": "phase-parent",
   "priority": "P1",
   "createdAt": "2026-05-08T15:00:00Z",
   "branch": "main",
-  "parent_track": "027-xce-research-based-refinement",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "parent_track": "028-code-graph-and-cocoindex",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
   "manual": {
     "depends_on": [],
     "children": [
@@ -32,22 +32,23 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
-  "description": "Phase parent for deterministic HLD/LLD narrative generation over code_graph data.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
+  "description": "Feature Specification: 001 — Code Graph HLD/LLD",
   "keywords": [
-    "phase-parent",
-    "deterministic",
+    "feature",
+    "specification",
+    "001",
+    "code",
+    "graph",
     "hld",
-    "lld",
-    "narrative",
-    "code_graph"
+    "lld"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
-  "specId": "007",
+  "lastUpdated": "2026-05-28T06:52:04.469Z",
+  "specId": "001",
   "folderSlug": "code-graph-hld-lld",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement"
+    "028-code-graph-and-cocoindex"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

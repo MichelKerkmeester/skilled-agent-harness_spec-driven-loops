@@ -306,7 +306,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/105-cli-devin-effectiveness-improvements",
-      "description": "105: cli-devin v1.0.4.0 — SWE-1.6 effectiveness improvements",
+      "description": "105: cli-devin v1.0.4.0 \u2014 SWE-1.6 effectiveness improvements",
       "keywords": [
         "105",
         "cli-devin",
@@ -473,7 +473,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite",
-      "description": "112 — Commit Standards & Retroactive Rewrite",
+      "description": "112 \u2014 Commit Standards & Retroactive Rewrite",
       "keywords": [
         "112",
         "commit",
@@ -529,7 +529,7 @@
       "lastUpdated": "2026-05-16T09:42:36.573Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc",
+      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality",
       "description": "Feature Specification: cli-devin prompt-quality arc",
       "keywords": [
         "feature",
@@ -541,7 +541,7 @@
       "lastUpdated": "2026-05-23T15:24:58.871Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/001-council-design",
+      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/001-council-design",
       "description": "Feature Specification: Council Design for cli-devin SWE 1.6 Optimization",
       "keywords": [
         "feature",
@@ -555,7 +555,7 @@
       "lastUpdated": "2026-05-21T10:22:37.564Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/002-eval-rig",
+      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/002-eval-rig",
       "description": "Feature Specification: Eval Rig for cli-devin SWE 1.6 Optimization",
       "keywords": [
         "feature",
@@ -569,7 +569,7 @@
       "lastUpdated": "2026-05-21T10:22:37.568Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/003-eval-loop",
+      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/003-eval-loop",
       "description": "Feature Specification: Eval Loop for cli-devin SWE 1.6 Optimization",
       "keywords": [
         "feature",
@@ -583,8 +583,8 @@
       "lastUpdated": "2026-05-21T10:22:37.572Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/004-skill-uplift",
-      "description": "Feature Specification: Skill Uplift — Apply winners to cli-devin",
+      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/004-skill-uplift",
+      "description": "Feature Specification: Skill Uplift \u2014 Apply winners to cli-devin",
       "keywords": [
         "feature",
         "specification",
@@ -597,8 +597,8 @@
       "lastUpdated": "2026-05-21T10:22:37.576Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/005-extraction-rerun",
-      "description": "Feature Specification: cli-devin extraction rerun — close 003 file-extraction gap",
+      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/005-extraction-rerun",
+      "description": "Feature Specification: cli-devin extraction rerun \u2014 close 003 file-extraction gap",
       "keywords": [
         "feature",
         "specification",
@@ -613,7 +613,7 @@
       "lastUpdated": "2026-05-21T10:22:37.580Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/006-cross-cli-rcaf-propagation",
+      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
       "description": "Feature Specification: cli-cross-rcaf-propagation",
       "keywords": [
         "feature",
@@ -623,7 +623,7 @@
       "lastUpdated": "2026-05-21T10:22:37.585Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation",
+      "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation",
       "description": "Feature Specification: cross-model-validation",
       "keywords": [
         "feature",
@@ -716,7 +716,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/007-sk-ai-small-model-rename",
-      "description": "Feature Specification: Phase 7 — rename sk-small-model → sk-prompt-small-model",
+      "description": "Feature Specification: Phase 7 \u2014 rename sk-small-model \u2192 sk-prompt-small-model",
       "keywords": [
         "feature",
         "specification",
@@ -729,7 +729,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-small-model-rename",
-      "description": "Feature Specification: Phase 8 — rename sk-ai-small-model → sk-prompt-small-model",
+      "description": "Feature Specification: Phase 8 \u2014 rename sk-ai-small-model \u2192 sk-prompt-small-model",
       "keywords": [
         "feature",
         "specification",
@@ -1007,7 +1007,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/001-rename-preflight-and-plan",
-      "description": "Feature Specification: 115/001 — preflight scope-map",
+      "description": "Feature Specification: 115/001 \u2014 preflight scope-map",
       "keywords": [
         "feature",
         "specification",
@@ -1020,7 +1020,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/002-rename-sk-skill",
-      "description": "Feature Specification: 115/002 — skill dir rename",
+      "description": "Feature Specification: 115/002 \u2014 skill dir rename",
       "keywords": [
         "feature",
         "specification",
@@ -1034,7 +1034,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/003-rename-agent-4-runtime",
-      "description": "Feature Specification: 115/003 — agent runtime rename",
+      "description": "Feature Specification: 115/003 \u2014 agent runtime rename",
       "keywords": [
         "feature",
         "specification",
@@ -1048,7 +1048,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/004-rename-sibling-edges-typescript",
-      "description": "Feature Specification: 115/004 — cross-skill edges + TypeScript",
+      "description": "Feature Specification: 115/004 \u2014 cross-skill edges + TypeScript",
       "keywords": [
         "feature",
         "specification",
@@ -1062,7 +1062,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/005-rename-root-docs-hooks-index",
-      "description": "Feature Specification: 115/005 — root docs + hooks + skills index",
+      "description": "Feature Specification: 115/005 \u2014 root docs + hooks + skills index",
       "keywords": [
         "feature",
         "specification",
@@ -1078,7 +1078,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/006-rename-reindex-validate",
-      "description": "Feature Specification: 115/006 — reindex + validate + reconcile",
+      "description": "Feature Specification: 115/006 \u2014 reindex + validate + reconcile",
       "keywords": [
         "feature",
         "specification",
@@ -1194,7 +1194,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/001-complexity-research-synthesis",
-      "description": "Feature Specification: 116/001 — Deep Review Complexity Research Synthesis",
+      "description": "Feature Specification: 116/001 \u2014 Deep Review Complexity Research Synthesis",
       "keywords": [
         "feature",
         "specification",
@@ -1239,7 +1239,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/004-complexity-validator-v2-enforcement",
-      "description": "Feature Specification: 116/004 — Validator v2 Enforcement",
+      "description": "Feature Specification: 116/004 \u2014 Validator v2 Enforcement",
       "keywords": [
         "feature",
         "specification",
@@ -1252,7 +1252,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/005-complexity-search-ledger-persistence",
-      "description": "Feature Specification: 116/005 — Search Ledger Persistence and Reporting",
+      "description": "Feature Specification: 116/005 \u2014 Search Ledger Persistence and Reporting",
       "keywords": [
         "feature",
         "specification",
@@ -1296,7 +1296,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
-      "description": "Feature Specification: 116/008 — Playbooks and Default Calibration",
+      "description": "Feature Specification: 116/008 \u2014 Playbooks and Default Calibration",
       "keywords": [
         "feature",
         "specification",
@@ -1324,7 +1324,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
-      "description": "Feature Specification: 117 — Deep-Loop Core Script Isolation Deliberation",
+      "description": "Feature Specification: 117 \u2014 Deep-Loop Core Script Isolation Deliberation",
       "keywords": [
         "feature",
         "specification",
@@ -1339,7 +1339,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/002-skill-scaffold",
-      "description": "Feature Specification: 118/001 — Runtime Skill Scaffold",
+      "description": "Feature Specification: 118/001 \u2014 Runtime Skill Scaffold",
       "keywords": [
         "feature",
         "specification",
@@ -1365,7 +1365,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/004-script-shim-db-relocation",
-      "description": "Feature Specification: 003 — Script Shim + DB Relocation",
+      "description": "Feature Specification: 003 \u2014 Script Shim + DB Relocation",
       "keywords": [
         "feature",
         "specification",
@@ -1378,7 +1378,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/005-mcp-tool-surface-removal",
-      "description": "Feature Specification: 004 — MCP Tool Surface Removal",
+      "description": "Feature Specification: 004 \u2014 MCP Tool Surface Removal",
       "keywords": [
         "feature",
         "specification",
@@ -1392,7 +1392,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/006-yaml-workflow-update",
-      "description": "Feature Specification: 118/005 — YAML Workflow Update (MCP → bash script)",
+      "description": "Feature Specification: 118/005 \u2014 YAML Workflow Update (MCP \u2192 bash script)",
       "keywords": [
         "feature",
         "specification",
@@ -1409,7 +1409,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/007-collateral-doctor-playbook",
-      "description": "Feature Specification: 118/006 — Update /doctor + system-code-graph Playbook Collateral",
+      "description": "Feature Specification: 118/006 \u2014 Update /doctor + system-code-graph Playbook Collateral",
       "keywords": [
         "feature",
         "specification",
@@ -1425,7 +1425,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/008-test-migration",
-      "description": "Feature Specification: 118/007 — Test Migration (Split by Responsibility)",
+      "description": "Feature Specification: 118/007 \u2014 Test Migration (Split by Responsibility)",
       "keywords": [
         "feature",
         "specification",
@@ -1452,7 +1452,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration",
-      "description": "Feature Specification: 010 — Council Graph CLI Migration",
+      "description": "Feature Specification: 010 \u2014 Council Graph CLI Migration",
       "keywords": [
         "feature",
         "specification",
@@ -1466,7 +1466,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/011-migration-closeout-cli-verification",
-      "description": "Feature Specification: deep-loop MCP→CLI migration closeout + CLI verification",
+      "description": "Feature Specification: deep-loop MCP\u2192CLI migration closeout + CLI verification",
       "keywords": [
         "feature",
         "specification",
@@ -1497,7 +1497,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/004-iteration-ordering-fix",
-      "description": "Feature Specification: 120 — Deep-Research Iteration Ordering Fix",
+      "description": "Feature Specification: 120 \u2014 Deep-Research Iteration Ordering Fix",
       "keywords": [
         "feature",
         "specification",
@@ -1608,7 +1608,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication",
-      "description": "Feature Specification: 128 — Deep-Agent-Improvement Mixed-Executor + Adjudication Methodology",
+      "description": "Feature Specification: 128 \u2014 Deep-Agent-Improvement Mixed-Executor + Adjudication Methodology",
       "keywords": [
         "feature",
         "specification",
@@ -1662,7 +1662,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/002-commands-relocation",
-      "description": "Feature Specification: 131/007 — Deep-* Commands Relocation",
+      "description": "Feature Specification: 131/007 \u2014 Deep-* Commands Relocation",
       "keywords": [
         "feature",
         "specification",
@@ -2732,7 +2732,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/050-agent-debug-integration",
-      "description": "Feature Specification: Debug Agent Integration — Truth-Up & Discoverability",
+      "description": "Feature Specification: Debug Agent Integration \u2014 Truth-Up & Discoverability",
       "keywords": [
         "feature",
         "specification",
@@ -2859,7 +2859,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment",
-      "description": "Phase Parent Spec: 060 — sk-improve-agent Test-Report Alignment",
+      "description": "Phase Parent Spec: 060 \u2014 sk-improve-agent Test-Report Alignment",
       "keywords": [
         "phase",
         "parent",
@@ -2914,7 +2914,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests",
-      "description": "Feature Specification: 061 — sk-improve-agent Command-Flow Stress Tests",
+      "description": "Feature Specification: 061 \u2014 sk-improve-agent Command-Flow Stress Tests",
       "keywords": [
         "feature",
         "specification",
@@ -2928,7 +2928,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/060-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring",
-      "description": "Feature Specification: 062 — sk-improve-agent Executable Wiring",
+      "description": "Feature Specification: 062 \u2014 sk-improve-agent Executable Wiring",
       "keywords": [
         "feature",
         "specification",
@@ -2941,7 +2941,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization",
-      "description": "Phase Parent Spec: 061 — Agent Fleet Optimization",
+      "description": "Phase Parent Spec: 061 \u2014 Agent Fleet Optimization",
       "keywords": [
         "phase",
         "parent",
@@ -2999,7 +2999,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/061-agent-optimization/006-agent-multi-ai-council",
-      "description": "Spec: @ultra-think → @multi-ai-council Agent Optimization",
+      "description": "Spec: @ultra-think \u2192 @multi-ai-council Agent Optimization",
       "keywords": [
         "spec",
         "ultra-think",
@@ -3044,7 +3044,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/062-deep-loop-command-flow-stress-tests",
-      "description": "Phase Parent Spec: 062 — Deep-Loop Command-Flow Stress Tests",
+      "description": "Phase Parent Spec: 062 \u2014 Deep-Loop Command-Flow Stress Tests",
       "keywords": [
         "phase",
         "parent",
@@ -3107,7 +3107,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/063-sk-doc-agent-template-alignment",
-      "description": "Spec: 063 — sk-doc Agent Template Alignment",
+      "description": "Spec: 063 \u2014 sk-doc Agent Template Alignment",
       "keywords": [
         "spec",
         "063",
@@ -3120,7 +3120,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/064-agent-create",
-      "description": "Spec: 064 — agent-create",
+      "description": "Spec: 064 \u2014 agent-create",
       "keywords": [
         "spec",
         "064",
@@ -3157,7 +3157,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex",
-      "description": "Spec: 065/001 — skill-reindex",
+      "description": "Spec: 065/001 \u2014 skill-reindex",
       "keywords": [
         "spec",
         "065",
@@ -3168,7 +3168,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",
-      "description": "Spec: 065/002 — skill-router-stress-tests",
+      "description": "Spec: 065/002 \u2014 skill-router-stress-tests",
       "keywords": [
         "spec",
         "065",
@@ -3264,7 +3264,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/001-barter-figma-agent",
-      "description": "Feature Specification: Phase 1 — Author Barter Figma MCP Agent",
+      "description": "Feature Specification: Phase 1 \u2014 Author Barter Figma MCP Agent",
       "keywords": [
         "feature",
         "specification",
@@ -3279,7 +3279,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/002-public-figma-agent",
-      "description": "Feature Specification: Phase 2 — Dual-publish Figma agent to AI_Systems/Public",
+      "description": "Feature Specification: Phase 2 \u2014 Dual-publish Figma agent to AI_Systems/Public",
       "keywords": [
         "feature",
         "specification",
@@ -3293,7 +3293,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/003-mcp-figma-skill-removal",
-      "description": "Feature Specification: Phase 3 — Remove mcp-figma skill from Code_Environment/Public",
+      "description": "Feature Specification: Phase 3 \u2014 Remove mcp-figma skill from Code_Environment/Public",
       "keywords": [
         "feature",
         "specification",
@@ -3307,7 +3307,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/004-deep-review-remediation",
-      "description": "Feature Specification: Phase 4 — Deep Review Remediation",
+      "description": "Feature Specification: Phase 4 \u2014 Deep Review Remediation",
       "keywords": [
         "feature",
         "specification",
@@ -3384,7 +3384,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook",
-      "description": "Feature Specification: sk-code Motion.dev Cross-Stack Category and Playbook Refinement — Phase Parent",
+      "description": "Feature Specification: sk-code Motion.dev Cross-Stack Category and Playbook Refinement \u2014 Phase Parent",
       "keywords": [
         "feature",
         "specification",
@@ -3488,7 +3488,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename",
-      "description": "Feature Specification: sk-deep-* → deep-* Skill Rename — Phase Parent",
+      "description": "Feature Specification: sk-deep-* \u2192 deep-* Skill Rename \u2014 Phase Parent",
       "keywords": [
         "feature",
         "specification",
@@ -3896,7 +3896,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/079-sk-deep-agent-improvement",
-      "description": "Feature Specification: Rename `sk-improve-agent` → `deep-agent-improvement`",
+      "description": "Feature Specification: Rename `sk-improve-agent` \u2192 `deep-agent-improvement`",
       "keywords": [
         "feature",
         "specification",
@@ -3933,7 +3933,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/082-sk-improve-prompt-rename",
-      "description": "Feature Specification: sk-improve-prompt → sk-prompt Skill Rename — Phase Parent",
+      "description": "Feature Specification: sk-improve-prompt \u2192 sk-prompt Skill Rename \u2014 Phase Parent",
       "keywords": [
         "feature",
         "specification",
@@ -4054,7 +4054,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename",
-      "description": "Feature Specification: sk-prompt Manual Testing Playbook + @improve-prompt → @prompt-improver Agent Rename — Phase Parent",
+      "description": "Feature Specification: sk-prompt Manual Testing Playbook + @improve-prompt \u2192 @prompt-improver Agent Rename \u2014 Phase Parent",
       "keywords": [
         "feature",
         "specification",
@@ -4073,7 +4073,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
-      "description": "Feature Specification: Phase 001 — Rename @improve-prompt agent to @prompt-improver",
+      "description": "Feature Specification: Phase 001 \u2014 Rename @improve-prompt agent to @prompt-improver",
       "keywords": [
         "feature",
         "specification",
@@ -4088,7 +4088,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
-      "description": "Feature Specification: Phase 002 — Manual Testing Playbook for sk-prompt Skill",
+      "description": "Feature Specification: Phase 002 \u2014 Manual Testing Playbook for sk-prompt Skill",
       "keywords": [
         "feature",
         "specification",
@@ -4166,7 +4166,7 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/092-multi-ai-council-deferrals",
-      "description": "Feature Specification: Multi-AI Council Deferrals — state.jsonl v1.1 forward-compat metadata + memory-save payload routing + advisory-check + command ",
+      "description": "Feature Specification: Multi-AI Council Deferrals \u2014 state.jsonl v1.1 forward-compat metadata + memory-save payload routing + advisory-check + command ",
       "keywords": [
         "feature",
         "specification",
@@ -4849,7 +4849,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/006-fix-stress-test-coverage-gap",
-      "description": "Spec: P1 + P2 Stress-Test Remediation — Close 36 Remaining Coverage Gaps",
+      "description": "Spec: P1 + P2 Stress-Test Remediation \u2014 Close 36 Remaining Coverage Gaps",
       "keywords": [
         "spec",
         "stress-test",
@@ -5401,7 +5401,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/030-test-fixture-singular-to-plural-sweep",
-      "description": "Feature Specification: 056 Test Fixture Singular→Plural Sweep",
+      "description": "Feature Specification: 056 Test Fixture Singular\u2192Plural Sweep",
       "keywords": [
         "feature",
         "specification",
@@ -5785,7 +5785,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun",
-      "description": "Feature Specification: Stress-Test Rerun v1.0.2 — close-the-loop measurement",
+      "description": "Feature Specification: Stress-Test Rerun v1.0.2 \u2014 close-the-loop measurement",
       "keywords": [
         "feature",
         "specification",
@@ -5798,7 +5798,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups",
-      "description": "Feature Specification: Post-Stress Follow-Up Research — refine v1.0.2 P0/P1/P2 fix proposals",
+      "description": "Feature Specification: Post-Stress Follow-Up Research \u2014 refine v1.0.2 P0/P1/P2 fix proposals",
       "keywords": [
         "feature",
         "specification",
@@ -5813,7 +5813,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper",
-      "description": "Feature Specification: Copilot Target-Authority Helper — close P0 cli-copilot Gate 3 bypass",
+      "description": "Feature Specification: Copilot Target-Authority Helper \u2014 close P0 cli-copilot Gate 3 bypass",
       "keywords": [
         "feature",
         "specification",
@@ -5880,7 +5880,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity",
-      "description": "Feature Specification: cli-copilot Dispatch Test Parity — close F-004 P2 from 011 deep-review",
+      "description": "Feature Specification: cli-copilot Dispatch Test Parity \u2014 close F-004 P2 from 011 deep-review",
       "keywords": [
         "feature",
         "specification",
@@ -6096,7 +6096,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/007-fix-stress-test-coverage-gap-followup",
-      "description": "Spec: Stress-Test Gap Remediation — Close 10 P0 Coverage Gaps",
+      "description": "Spec: Stress-Test Gap Remediation \u2014 Close 10 P0 Coverage Gaps",
       "keywords": [
         "spec",
         "stress-test",
@@ -6156,7 +6156,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research",
-      "description": "Research Charter: System Deep Research — Bugs and Improvements",
+      "description": "Research Charter: System Deep Research \u2014 Bugs and Improvements",
       "keywords": [
         "research",
         "charter",
@@ -7007,7 +7007,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/007-cross-skill-enhancement-edge-propagation",
-      "description": "Feature Specification: skill_graph_propagate_enhances — cross-skill auto-propagation MVP",
+      "description": "Feature Specification: skill_graph_propagate_enhances \u2014 cross-skill auto-propagation MVP",
       "keywords": [
         "feature",
         "specification",
@@ -7678,7 +7678,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels",
-      "description": "Feature Specification: Template Levels — Phase Parent",
+      "description": "Feature Specification: Template Levels \u2014 Phase Parent",
       "keywords": [
         "feature",
         "specification",
@@ -7691,7 +7691,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/001-template-level-consolidation-research",
-      "description": "Feature Specification: Template System Consolidation — Levels and Addendum to Generator",
+      "description": "Feature Specification: Template System Consolidation \u2014 Levels and Addendum to Generator",
       "keywords": [
         "feature",
         "specification",
@@ -7719,7 +7719,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/003-manifest-template-implementation-plan",
-      "description": "Feature Specification: Template Greenfield Implementation — C+F Hybrid Manifest-Driven (4 Phases)",
+      "description": "Feature Specification: Template Greenfield Implementation \u2014 C+F Hybrid Manifest-Driven (4 Phases)",
       "keywords": [
         "feature",
         "specification",
@@ -7875,7 +7875,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
-      "description": "Feature Specification: Phase 6 — Continuity Refactor Gates",
+      "description": "Feature Specification: Phase 6 \u2014 Continuity Refactor Gates",
       "keywords": [
         "feature",
         "specification",
@@ -8055,7 +8055,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
-      "description": "Feature Specification: Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory",
+      "description": "Feature Specification: Local embeddings Setup A \u2014 EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory",
       "keywords": [
         "feature",
         "specification",
@@ -8070,7 +8070,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture",
-      "description": "Feature Specification: Phase 1 — Prefix Registry Architecture",
+      "description": "Feature Specification: Phase 1 \u2014 Prefix Registry Architecture",
       "keywords": [
         "feature",
         "specification",
@@ -8083,7 +8083,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/002-model-installation-and-compat",
-      "description": "Feature Specification: Phase 2 — Model Installation & Compatibility",
+      "description": "Feature Specification: Phase 2 \u2014 Model Installation & Compatibility",
       "keywords": [
         "feature",
         "specification",
@@ -8096,7 +8096,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/003-mcp-config-rollout",
-      "description": "Feature Specification: Phase 3 — MCP Config Rollout",
+      "description": "Feature Specification: Phase 3 \u2014 MCP Config Rollout",
       "keywords": [
         "feature",
         "specification",
@@ -8109,7 +8109,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/004-vec-store-rebuild",
-      "description": "Feature Specification: Phase 4 — Vec-Store Rebuild",
+      "description": "Feature Specification: Phase 4 \u2014 Vec-Store Rebuild",
       "keywords": [
         "feature",
         "specification",
@@ -8121,7 +8121,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/005-q4-quantization",
-      "description": "Feature Specification: Phase 5 — Q4 Quantization",
+      "description": "Feature Specification: Phase 5 \u2014 Q4 Quantization",
       "keywords": [
         "feature",
         "specification",
@@ -8132,7 +8132,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/006-bge-m3-hybrid-evaluation",
-      "description": "Feature Specification: Phase 6 — bge-m3 Hybrid Evaluation",
+      "description": "Feature Specification: Phase 6 \u2014 bge-m3 Hybrid Evaluation",
       "keywords": [
         "feature",
         "specification",
@@ -8145,7 +8145,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/007-voyage-cleanup-and-egress-monitoring",
-      "description": "Feature Specification: Phase 7 — Voyage Cleanup + Egress Monitoring",
+      "description": "Feature Specification: Phase 7 \u2014 Voyage Cleanup + Egress Monitoring",
       "keywords": [
         "feature",
         "specification",
@@ -8159,7 +8159,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/008-finalize-and-commit",
-      "description": "Feature Specification: Phase 8 — Finalize + Commit",
+      "description": "Feature Specification: Phase 8 \u2014 Finalize + Commit",
       "keywords": [
         "feature",
         "specification",
@@ -8171,7 +8171,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
-      "description": "Feature Specification: Phase 9 — Cocoindex IPC Fix",
+      "description": "Feature Specification: Phase 9 \u2014 Cocoindex IPC Fix",
       "keywords": [
         "feature",
         "specification",
@@ -8184,7 +8184,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns",
-      "description": "Feature Specification: Phase 10 — Cocoindex Code-Only Patterns",
+      "description": "Feature Specification: Phase 10 \u2014 Cocoindex Code-Only Patterns",
       "keywords": [
         "feature",
         "specification",
@@ -8447,7 +8447,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups",
-      "description": "032 — Substrate-repair Follow-ups (Phase Parent)",
+      "description": "032 \u2014 Substrate-repair Follow-ups (Phase Parent)",
       "keywords": [
         "032",
         "substrate-repair",
@@ -8459,7 +8459,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple",
-      "description": "001 — Governance Retention Decouple",
+      "description": "001 \u2014 Governance Retention Decouple",
       "keywords": [
         "001",
         "governance",
@@ -9062,7 +9062,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix",
-      "description": "Spec: 016/002/020 Embedder Default Drift Fix — getCanonicalFallback() registry-derived helper",
+      "description": "Spec: 016/002/020 Embedder Default Drift Fix \u2014 getCanonicalFallback() registry-derived helper",
       "keywords": [
         "spec",
         "016",
@@ -9503,7 +9503,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration",
-      "description": "Spec: 016/011/001-reranker-integration — Reranker Integration",
+      "description": "Spec: 016/011/001-reranker-integration \u2014 Reranker Integration",
       "keywords": [
         "spec",
         "016",
@@ -9516,7 +9516,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning",
-      "description": "Spec: 016/011/002-chunking-strategy-tuning — Chunking Strategy Tuning",
+      "description": "Spec: 016/011/002-chunking-strategy-tuning \u2014 Chunking Strategy Tuning",
       "keywords": [
         "spec",
         "016",
@@ -9530,7 +9530,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/009-hybrid-search-bm25-fusion",
-      "description": "Spec: 016/011/003-hybrid-search-bm25-fusion — Hybrid Search (BM25 + Semantic Fusion)",
+      "description": "Spec: 016/011/003-hybrid-search-bm25-fusion \u2014 Hybrid Search (BM25 + Semantic Fusion)",
       "keywords": [
         "spec",
         "016",
@@ -9622,7 +9622,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter",
-      "description": "Spec: 016/004/015 Code-Aware (Tree-Sitter) Chunking — Stage B",
+      "description": "Spec: 016/004/015 Code-Aware (Tree-Sitter) Chunking \u2014 Stage B",
       "keywords": [
         "spec",
         "016",
@@ -9637,7 +9637,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/016-query-expansion-identifier-bridging",
-      "description": "Spec: 016/004/016 Query Expansion — Identifier Bridging",
+      "description": "Spec: 016/004/016 Query Expansion \u2014 Identifier Bridging",
       "keywords": [
         "spec",
         "016",
@@ -9651,7 +9651,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/017-hybrid-fusion-empirical-recalibration",
-      "description": "Spec: 016/004/017 Hybrid Fusion — Empirical RRF Recalibration",
+      "description": "Spec: 016/004/017 Hybrid Fusion \u2014 Empirical RRF Recalibration",
       "keywords": [
         "spec",
         "016",
@@ -10454,7 +10454,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/005-opt-in-only-closure",
-      "description": "Spec: spec-memory rerank — opt-in-only closure",
+      "description": "Spec: spec-memory rerank \u2014 opt-in-only closure",
       "keywords": [
         "spec",
         "spec-memory",
@@ -10663,7 +10663,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle",
-      "description": "Arc 010 Findings Remediation — Resource Bounds and Lifecycle",
+      "description": "Arc 010 Findings Remediation \u2014 Resource Bounds and Lifecycle",
       "keywords": [
         "arc",
         "010",
@@ -10733,7 +10733,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
-      "description": "Feature Specification: Fix Sidecar-Investigation Remaining P1s + P2s — Resource Bounds and Dead Code",
+      "description": "Feature Specification: Fix Sidecar-Investigation Remaining P1s + P2s \u2014 Resource Bounds and Dead Code",
       "keywords": [
         "feature",
         "specification",
@@ -11220,7 +11220,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/001-touchpoint-research",
-      "description": "Feature Specification: Touchpoint Research — CocoIndex / Rerank-Sidecar Deprecation Discovery",
+      "description": "Feature Specification: Touchpoint Research \u2014 CocoIndex / Rerank-Sidecar Deprecation Discovery",
       "keywords": [
         "feature",
         "specification",
@@ -12119,7 +12119,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
-      "description": "Feature Specification: 003 RM-8 013 Remediation — Doc Honesty + Security Hardening + Cross-Runtime Mirror",
+      "description": "Feature Specification: 003 RM-8 013 Remediation \u2014 Doc Honesty + Security Hardening + Cross-Runtime Mirror",
       "keywords": [
         "feature",
         "specification",
@@ -12240,7 +12240,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-002-code-graph-self-contained-package",
-      "description": "Feature Specification: 028 — Code-Graph Self-Contained Package Migration",
+      "description": "Feature Specification: 028 \u2014 Code-Graph Self-Contained Package Migration",
       "keywords": [
         "feature",
         "specification",
@@ -12602,7 +12602,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup",
-      "description": "Closes the 5 deferred findings from 018 — architecture.md reconstruction, launcher kitDir-derived path, 3 new playbook scenarios.",
+      "description": "Closes the 5 deferred findings from 018 \u2014 architecture.md reconstruction, launcher kitDir-derived path, 3 new playbook scenarios.",
       "keywords": [
         "deferred-fix",
         "architecture-reconstruction",
@@ -12613,7 +12613,7 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-034-mcp-namespace-operational-sweep",
-      "description": "Operational sweep of 3 files where packet 010's mcp__system_code_graph__ → mcp__mk_code_index__ rename was missed.",
+      "description": "Operational sweep of 3 files where packet 010's mcp__system_code_graph__ \u2192 mcp__mk_code_index__ rename was missed.",
       "keywords": [
         "mcp-namespace",
         "operational-sweep",
@@ -13263,7 +13263,7 @@
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research",
-      "description": "Feature Specification: cocoindex-main → spec_kit_memory port + MCP namespace shortening (research)",
+      "description": "Feature Specification: cocoindex-main \u2192 spec_kit_memory port + MCP namespace shortening (research)",
       "keywords": [
         "feature",
         "specification",
@@ -13289,144 +13289,6 @@
         "base"
       ],
       "lastUpdated": "2026-05-27T20:15:06.221Z"
-    },
-    {
-      "specFolder": "system-spec-kit/029-code-graph-playbook-validation",
-      "description": "Feature Specification: Code Graph Playbook Validation",
-      "keywords": [
-        "feature",
-        "specification",
-        "code",
-        "graph",
-        "playbook",
-        "validation"
-      ],
-      "lastUpdated": "2026-05-27T05:35:17.989Z"
-    },
-    {
-      "specFolder": "system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios",
-      "description": "Feature Specification: OpenCode Runtime Scenarios (Code Graph Playbook 001)",
-      "keywords": [
-        "feature",
-        "specification",
-        "opencode",
-        "runtime",
-        "scenarios",
-        "code",
-        "graph",
-        "playbook",
-        "001"
-      ],
-      "lastUpdated": "2026-05-27T05:35:18.449Z"
-    },
-    {
-      "specFolder": "system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios",
-      "description": "Feature Specification: Devin Static Scenarios (Code Graph Playbook 002)",
-      "keywords": [
-        "feature",
-        "specification",
-        "devin",
-        "static",
-        "scenarios",
-        "code",
-        "graph",
-        "playbook",
-        "002"
-      ],
-      "lastUpdated": "2026-05-27T05:35:18.877Z"
-    },
-    {
-      "specFolder": "system-spec-kit/029-code-graph-playbook-validation/003-release-readiness-synthesis",
-      "description": "Feature Specification: Release-Readiness Synthesis (Code Graph Playbook 003)",
-      "keywords": [
-        "feature",
-        "specification",
-        "release-readiness",
-        "synthesis",
-        "code",
-        "graph",
-        "playbook",
-        "003"
-      ],
-      "lastUpdated": "2026-05-27T05:35:19.300Z"
-    },
-    {
-      "specFolder": "system-spec-kit/029-code-graph-playbook-validation/004-hook-and-doc-fixes",
-      "description": "Feature Specification: Hook Registration + Playbook Doc-Sync Fixes (029 Phase 004)",
-      "keywords": [
-        "feature",
-        "specification",
-        "hook",
-        "registration",
-        "playbook",
-        "doc-sync",
-        "fixes",
-        "029",
-        "phase",
-        "004"
-      ],
-      "lastUpdated": "2026-05-27T05:35:19.753Z"
-    },
-    {
-      "specFolder": "system-spec-kit/029-code-graph-playbook-validation/005-db-binding-cleanup",
-      "description": "Feature Specification: Legacy DB Cleanup (029 Phase 005)",
-      "keywords": [
-        "feature",
-        "specification",
-        "legacy",
-        "cleanup",
-        "029",
-        "phase",
-        "005"
-      ],
-      "lastUpdated": "2026-05-27T05:35:20.198Z"
-    },
-    {
-      "specFolder": "system-spec-kit/029-code-graph-playbook-validation/006-parser-quarantine-recovery",
-      "description": "Feature Specification: Parser Quarantine Recovery (029 Phase 006)",
-      "keywords": [
-        "feature",
-        "specification",
-        "parser",
-        "quarantine",
-        "recovery",
-        "029",
-        "phase",
-        "006"
-      ],
-      "lastUpdated": "2026-05-27T05:35:20.637Z"
-    },
-    {
-      "specFolder": "system-spec-kit/029-code-graph-playbook-validation/007-followup-hook-docs-and-022",
-      "description": "Feature Specification: Hook-Doc Reconciliation + 022 Transitive Re-verify (029 Phase 007)",
-      "keywords": [
-        "feature",
-        "specification",
-        "hook-doc",
-        "reconciliation",
-        "022",
-        "transitive",
-        "re-verify",
-        "029",
-        "phase",
-        "007"
-      ],
-      "lastUpdated": "2026-05-27T05:35:21.063Z"
-    },
-    {
-      "specFolder": "system-spec-kit/029-code-graph-playbook-validation/008-blast-radius-transitive-flag",
-      "description": "Feature Specification: blast_radius includeTransitive Flag Fix (029 Phase 008)",
-      "keywords": [
-        "feature",
-        "specification",
-        "includetransitive",
-        "flag",
-        "fix",
-        "029",
-        "phase",
-        "008"
-      ],
-      "lastUpdated": "2026-05-27T05:35:21.522Z"
     },
     {
       "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation",
@@ -13637,7 +13499,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/007-system-spec-kit-rename",
-      "description": "Skill Rename: workflows-spec-kit → system-spec-kit",
+      "description": "Skill Rename: workflows-spec-kit \u2192 system-spec-kit",
       "keywords": [
         "skill",
         "rename",
@@ -13903,7 +13765,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/025-system-memory-rename",
-      "description": "Spec: Rename workflows-memory → system-memory",
+      "description": "Spec: Rename workflows-memory \u2192 system-memory",
       "keywords": [
         "spec",
         "rename",
@@ -14103,7 +13965,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/040-mcp-server-rename",
-      "description": "MCP Server Rename: semantic_memory → spec_kit_memory",
+      "description": "MCP Server Rename: semantic_memory \u2192 spec_kit_memory",
       "keywords": [
         "mcp",
         "server",
@@ -14869,7 +14731,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/001-readme-alignment",
-      "description": "Task 01 — README Audit & Alignment",
+      "description": "Task 01 \u2014 README Audit & Alignment",
       "keywords": [
         "task",
         "readme",
@@ -14880,7 +14742,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/002-skill-speckit-alignment",
-      "description": "Task 02 — SKILL.md & References Audit",
+      "description": "Task 02 \u2014 SKILL.md & References Audit",
       "keywords": [
         "task",
         "skill",
@@ -14891,7 +14753,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/003-command-alignment",
-      "description": "Task 03 — Command Configs Audit",
+      "description": "Task 03 \u2014 Command Configs Audit",
       "keywords": [
         "task",
         "command",
@@ -14902,7 +14764,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/004-agent-alignment",
-      "description": "Task 04 — Agent Configs Audit",
+      "description": "Task 04 \u2014 Agent Configs Audit",
       "keywords": [
         "task",
         "agent",
@@ -14913,7 +14775,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/005-changelog-updates",
-      "description": "Task 05 — Changelog Creation",
+      "description": "Task 05 \u2014 Changelog Creation",
       "keywords": [
         "task",
         "changelog",
@@ -14923,7 +14785,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/006-global-readme-update",
-      "description": "Task 06 — Root README Update",
+      "description": "Task 06 \u2014 Root README Update",
       "keywords": [
         "task",
         "root",
@@ -14934,7 +14796,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/007-github-release",
-      "description": "Task 07 — Tagged Release",
+      "description": "Task 07 \u2014 Tagged Release",
       "keywords": [
         "task",
         "tagged",
@@ -15151,7 +15013,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/001-sprint-0-measurement-foundation",
-      "description": "Feature Specification: Sprint 0 — Measurement Foundation",
+      "description": "Feature Specification: Sprint 0 \u2014 Measurement Foundation",
       "keywords": [
         "feature",
         "specification",
@@ -15163,7 +15025,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/002-sprint-1-graph-signal-activation",
-      "description": "Feature Specification: Sprint 1 — Graph Signal Activation",
+      "description": "Feature Specification: Sprint 1 \u2014 Graph Signal Activation",
       "keywords": [
         "feature",
         "specification",
@@ -15176,7 +15038,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/003-sprint-2-scoring-calibration",
-      "description": "Feature Specification: Sprint 2 — Scoring Calibration",
+      "description": "Feature Specification: Sprint 2 \u2014 Scoring Calibration",
       "keywords": [
         "feature",
         "specification",
@@ -15188,7 +15050,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence",
-      "description": "Feature Specification: Sprint 3 — Query Intelligence",
+      "description": "Feature Specification: Sprint 3 \u2014 Query Intelligence",
       "keywords": [
         "feature",
         "specification",
@@ -15200,7 +15062,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/005-sprint-4-feedback-and-quality",
-      "description": "Feature Specification: Sprint 4 — Feedback and Quality",
+      "description": "Feature Specification: Sprint 4 \u2014 Feedback and Quality",
       "keywords": [
         "feature",
         "specification",
@@ -15212,7 +15074,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/006-sprint-5-pipeline-refactor",
-      "description": "Feature Specification: Sprint 5 — Pipeline Refactor",
+      "description": "Feature Specification: Sprint 5 \u2014 Pipeline Refactor",
       "keywords": [
         "feature",
         "specification",
@@ -15224,7 +15086,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/007-sprint-6-indexing-and-graph",
-      "description": "Feature Specification: Sprint 6 — Indexing and Graph",
+      "description": "Feature Specification: Sprint 6 \u2014 Indexing and Graph",
       "keywords": [
         "feature",
         "specification",
@@ -15236,7 +15098,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/008-sprint-7-long-horizon",
-      "description": "Feature Specification: Sprint 7 — Long Horizon",
+      "description": "Feature Specification: Sprint 7 \u2014 Long Horizon",
       "keywords": [
         "feature",
         "specification",
@@ -15260,7 +15122,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/010-sprint-9-extra-features",
-      "description": "Feature Specification: Sprint 9 — Extra Features (Productization & Operational Tooling)",
+      "description": "Feature Specification: Sprint 9 \u2014 Extra Features (Productization & Operational Tooling)",
       "keywords": [
         "feature",
         "specification",
@@ -15356,7 +15218,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/003-constitutional-learn-refactor",
-      "description": "Feature Specification: Refactor /memory:learn → Constitutional Memory Manager",
+      "description": "Feature Specification: Refactor /memory:learn \u2192 Constitutional Memory Manager",
       "keywords": [
         "feature",
         "specification",
@@ -15417,7 +15279,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/001-retrieval",
-      "description": "Feature Specification: Code Audit — Retrieval",
+      "description": "Feature Specification: Code Audit \u2014 Retrieval",
       "keywords": [
         "feature",
         "specification",
@@ -15429,7 +15291,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation",
-      "description": "Feature Specification: Code Audit — Mutation",
+      "description": "Feature Specification: Code Audit \u2014 Mutation",
       "keywords": [
         "feature",
         "specification",
@@ -15441,7 +15303,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/003-discovery",
-      "description": "Feature Specification: Code Audit — Discovery",
+      "description": "Feature Specification: Code Audit \u2014 Discovery",
       "keywords": [
         "feature",
         "specification",
@@ -15453,7 +15315,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/004-maintenance",
-      "description": "Feature Specification: Code Audit — Maintenance",
+      "description": "Feature Specification: Code Audit \u2014 Maintenance",
       "keywords": [
         "feature",
         "specification",
@@ -15465,7 +15327,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/005-lifecycle",
-      "description": "Feature Specification: Code Audit — Lifecycle",
+      "description": "Feature Specification: Code Audit \u2014 Lifecycle",
       "keywords": [
         "feature",
         "specification",
@@ -15477,7 +15339,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/006-analysis",
-      "description": "Feature Specification: Code Audit — Analysis",
+      "description": "Feature Specification: Code Audit \u2014 Analysis",
       "keywords": [
         "feature",
         "specification",
@@ -15489,7 +15351,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/007-evaluation",
-      "description": "Feature Specification: Code Audit — Evaluation",
+      "description": "Feature Specification: Code Audit \u2014 Evaluation",
       "keywords": [
         "feature",
         "specification",
@@ -15501,7 +15363,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/008-bug-fixes-and-data-integrity",
-      "description": "Feature Specification: Code Audit — Bug Fixes and Data Integrity",
+      "description": "Feature Specification: Code Audit \u2014 Bug Fixes and Data Integrity",
       "keywords": [
         "feature",
         "specification",
@@ -15516,7 +15378,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/009-evaluation-and-measurement",
-      "description": "Feature Specification: Code Audit — Evaluation and Measurement",
+      "description": "Feature Specification: Code Audit \u2014 Evaluation and Measurement",
       "keywords": [
         "feature",
         "specification",
@@ -15529,7 +15391,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/010-graph-signal-activation",
-      "description": "Feature Specification: Code Audit — Graph Signal Activation",
+      "description": "Feature Specification: Code Audit \u2014 Graph Signal Activation",
       "keywords": [
         "feature",
         "specification",
@@ -15543,7 +15405,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/011-scoring-and-calibration",
-      "description": "Feature Specification: Code Audit — Scoring and Calibration",
+      "description": "Feature Specification: Code Audit \u2014 Scoring and Calibration",
       "keywords": [
         "feature",
         "specification",
@@ -15556,7 +15418,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/012-query-intelligence",
-      "description": "Feature Specification: Code Audit — Query Intelligence",
+      "description": "Feature Specification: Code Audit \u2014 Query Intelligence",
       "keywords": [
         "feature",
         "specification",
@@ -15569,7 +15431,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/013-memory-quality-and-indexing",
-      "description": "Feature Specification: Code Audit — Memory Quality and Indexing",
+      "description": "Feature Specification: Code Audit \u2014 Memory Quality and Indexing",
       "keywords": [
         "feature",
         "specification",
@@ -15583,7 +15445,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/014-pipeline-architecture",
-      "description": "Feature Specification: Code Audit — Pipeline Architecture",
+      "description": "Feature Specification: Code Audit \u2014 Pipeline Architecture",
       "keywords": [
         "feature",
         "specification",
@@ -15596,7 +15458,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/015-retrieval-enhancements",
-      "description": "Feature Specification: Code Audit — Retrieval Enhancements",
+      "description": "Feature Specification: Code Audit \u2014 Retrieval Enhancements",
       "keywords": [
         "feature",
         "specification",
@@ -15609,7 +15471,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
-      "description": "Feature Specification: Code Audit — Tooling and Scripts",
+      "description": "Feature Specification: Code Audit \u2014 Tooling and Scripts",
       "keywords": [
         "feature",
         "specification",
@@ -15622,7 +15484,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/017-governance",
-      "description": "Feature Specification: Code Audit — Governance",
+      "description": "Feature Specification: Code Audit \u2014 Governance",
       "keywords": [
         "feature",
         "specification",
@@ -15634,7 +15496,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/018-ux-hooks",
-      "description": "Feature Specification: Code Audit — UX Hooks",
+      "description": "Feature Specification: Code Audit \u2014 UX Hooks",
       "keywords": [
         "feature",
         "specification",
@@ -15646,7 +15508,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/019-decisions-and-deferrals",
-      "description": "Feature Specification: Code Audit — Decisions and Deferrals",
+      "description": "Feature Specification: Code Audit \u2014 Decisions and Deferrals",
       "keywords": [
         "feature",
         "specification",
@@ -15659,7 +15521,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/020-feature-flag-reference",
-      "description": "Feature Specification: Code Audit — Feature Flag Reference",
+      "description": "Feature Specification: Code Audit \u2014 Feature Flag Reference",
       "keywords": [
         "feature",
         "specification",
@@ -15672,7 +15534,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/021-remediation-revalidation",
-      "description": "Feature Specification: Code Audit — Remediation and Revalidation",
+      "description": "Feature Specification: Code Audit \u2014 Remediation and Revalidation",
       "keywords": [
         "feature",
         "specification",
@@ -16050,7 +15912,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/002-scoring-and-filter",
-      "description": "Feature Specification: Scoring and Filter — Quality Scorer Recalibration and Contamination Filter Expansion",
+      "description": "Feature Specification: Scoring and Filter \u2014 Quality Scorer Recalibration and Contamination Filter Expansion",
       "keywords": [
         "feature",
         "specification",
@@ -16141,7 +16003,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment",
-      "description": "Feature Specification: Skill Alignment — system-spec-kit",
+      "description": "Feature Specification: Skill Alignment \u2014 system-spec-kit",
       "keywords": [
         "feature",
         "specification",
@@ -16185,7 +16047,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/013-agents-alignment",
-      "description": "013 — Agent Alignment: Runtime Lineage Truth Reconciliation",
+      "description": "013 \u2014 Agent Alignment: Runtime Lineage Truth Reconciliation",
       "keywords": [
         "013",
         "agent",
@@ -16302,7 +16164,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/008-bug-fixes-and-data-integrity",
-      "description": "Feature Specification: Manual Testing — Bug Fixes and Data Integrity",
+      "description": "Feature Specification: Manual Testing \u2014 Bug Fixes and Data Integrity",
       "keywords": [
         "feature",
         "specification",
@@ -16317,7 +16179,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/009-evaluation-and-measurement",
-      "description": "Feature Specification: Manual Testing — Evaluation and Measurement",
+      "description": "Feature Specification: Manual Testing \u2014 Evaluation and Measurement",
       "keywords": [
         "feature",
         "specification",
@@ -16378,7 +16240,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/014-pipeline-architecture",
-      "description": "Feature Specification: Manual Testing — Pipeline Architecture (Phase 014)",
+      "description": "Feature Specification: Manual Testing \u2014 Pipeline Architecture (Phase 014)",
       "keywords": [
         "feature",
         "specification",
@@ -16393,7 +16255,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/015-retrieval-enhancements",
-      "description": "Feature Specification: Manual Testing — Retrieval Enhancements (Phase 015)",
+      "description": "Feature Specification: Manual Testing \u2014 Retrieval Enhancements (Phase 015)",
       "keywords": [
         "feature",
         "specification",
@@ -16778,7 +16640,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds",
-      "description": "Feature Specification: Phase 2 — Persist Tuned Thresholds",
+      "description": "Feature Specification: Phase 2 \u2014 Persist Tuned Thresholds",
       "keywords": [
         "feature",
         "specification",
@@ -16817,7 +16679,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/005-e2e-integration-test",
-      "description": "Feature Specification: Phase 5 — End-to-End Integration Test",
+      "description": "Feature Specification: Phase 5 \u2014 End-to-End Integration Test",
       "keywords": [
         "feature",
         "specification",
@@ -16830,7 +16692,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/006-default-on-boost-rollout",
-      "description": "Feature Specification: Default-ON Boost Rollout — Session, Causal & Deep Expansion",
+      "description": "Feature Specification: Default-ON Boost Rollout \u2014 Session, Causal & Deep Expansion",
       "keywords": [
         "feature",
         "specification",
@@ -16925,7 +16787,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/024-compact-code-graph",
-      "description": "Feature Specification: Hybrid Context Injection — Hook + Tool Architecture",
+      "description": "Feature Specification: Hybrid Context Injection \u2014 Hook + Tool Architecture",
       "keywords": [
         "feature",
         "specification",
@@ -16953,7 +16815,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/002-session-start-hook",
-      "description": "Phase 2: SessionStart Hook — Session Priming",
+      "description": "Phase 2: SessionStart Hook \u2014 Session Priming",
       "keywords": [
         "phase",
         "sessionstart",
@@ -17066,7 +16928,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/012-cocoindex-ux-utilization",
-      "description": "Feature Specification: Phase 012 — CocoIndex UX, Utilization & Usefulness",
+      "description": "Feature Specification: Phase 012 \u2014 CocoIndex UX, Utilization & Usefulness",
       "keywords": [
         "feature",
         "specification",
@@ -17080,7 +16942,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/013-correctness-boundary-repair",
-      "description": "Spec: Phase 013 — Correctness & Boundary Repair",
+      "description": "Spec: Phase 013 \u2014 Correctness & Boundary Repair",
       "keywords": [
         "spec",
         "phase",
@@ -17093,7 +16955,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/014-hook-durability-auto-enrichment",
-      "description": "Spec: Phase 014 — Hook Durability & Auto-Enrichment",
+      "description": "Spec: Phase 014 \u2014 Hook Durability & Auto-Enrichment",
       "keywords": [
         "spec",
         "phase",
@@ -17106,7 +16968,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/015-tree-sitter-migration",
-      "description": "Spec: Phase 015 — Tree-Sitter WASM Migration",
+      "description": "Spec: Phase 015 \u2014 Tree-Sitter WASM Migration",
       "keywords": [
         "spec",
         "phase",
@@ -17119,7 +16981,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/016-cross-runtime-ux",
-      "description": "Spec: Phase 016 — Cross-Runtime UX & Documentation",
+      "description": "Spec: Phase 016 \u2014 Cross-Runtime UX & Documentation",
       "keywords": [
         "spec",
         "phase",
@@ -17208,7 +17070,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/023-context-preservation-metrics",
-      "description": "Feature Specification: Phase 023 — Context Preservation Metrics",
+      "description": "Feature Specification: Phase 023 \u2014 Context Preservation Metrics",
       "keywords": [
         "feature",
         "specification",
@@ -17246,7 +17108,7 @@
     },
     {
       "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/026-session-start-injection-debug",
-      "description": "Spec: Startup Context Injection Debug — Hook Runtime Brief + Sibling Handoff",
+      "description": "Spec: Startup Context Injection Debug \u2014 Hook Runtime Brief + Sibling Handoff",
       "keywords": [
         "spec",
         "startup",

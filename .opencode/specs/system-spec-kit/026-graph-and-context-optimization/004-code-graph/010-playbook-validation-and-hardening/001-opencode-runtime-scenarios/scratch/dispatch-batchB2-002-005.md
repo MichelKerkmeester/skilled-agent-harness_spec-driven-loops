@@ -4,7 +4,7 @@ ROLE: You are a validation operator for the `mk-code-index` code-graph MCP runti
 CONTEXT:
 - Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 - Full project MCP runtime. Stable tool IDs: `code_graph_scan`, `code_graph_query`, `code_graph_verify`.
-- Spec folder: .opencode/specs/system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
+- Spec folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
 - Re-run of scenarios 002 (broad-stale block) and 005 (verify blocked-then-ok). Prior run used `touch` (mtime only); the runtime keys staleness on CONTENT HASH, so this run uses REAL content edits.
 - CRITICAL workspace rule: the disposable workspace MUST live under `/tmp` via `mktemp -d`. Do NOT create any directory at the repo root or anywhere inside the repo tree. Do NOT use a relative path that resolves inside the repo.
 - SAFETY: scans target `$WORK` under /tmp, NOT the repo. After the first scan, confirm indexed root is the /tmp `$WORK`; if it indexed the live repo, STOP, mark both SKIP "ROOTDIR_NOT_HONORED", mutate nothing.

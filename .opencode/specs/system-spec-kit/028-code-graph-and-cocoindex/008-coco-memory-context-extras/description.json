@@ -14,18 +14,18 @@
   "priority": "P2",
   "createdAt": "2026-05-09T11:00:00Z",
   "branch": "main",
-  "parent_track": "027-xce-research-based-refinement",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "parent_track": "028-code-graph-and-cocoindex",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
   "manual": {
     "children": [
-      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema",
-      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/002-exemplars-retriever",
-      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/003-exemplars-maintenance",
-      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/004-curator-prompt",
-      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/005-curator-integration"
+      "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema",
+      "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/002-exemplars-retriever",
+      "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/003-exemplars-maintenance",
+      "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/004-curator-prompt",
+      "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/005-curator-integration"
     ],
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"
+      "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork"
     ]
   },
   "soft_depends_on": [
@@ -45,24 +45,23 @@
       "005-curator-integration"
     ]
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras",
-  "description": "Phase parent for two independent presentation-layer tracks: Coco exemplars in Python and memory context curation in TypeScript. Child phases own detailed implementation plans and validation.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras",
+  "description": "Feature Specification: 008 — Coco Memory Context Extras",
   "keywords": [
-    "phase",
-    "parent",
+    "feature",
+    "specification",
+    "008",
     "coco",
-    "exemplars",
     "memory",
-    "curator",
     "context",
-    "presentation"
+    "extras"
   ],
-  "lastUpdated": "2026-05-12T00:00:00Z",
-  "specId": "016",
+  "lastUpdated": "2026-05-28T06:52:05.576Z",
+  "specId": "008",
   "folderSlug": "coco-memory-context-extras",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement"
+    "028-code-graph-and-cocoindex"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

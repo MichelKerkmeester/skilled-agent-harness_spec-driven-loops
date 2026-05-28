@@ -1,6 +1,5 @@
 {
   "title": "Phase 006 — Code Graph Adoption Evaluation Harness",
-  "description": "Phase parent for the code-graph adoption evaluation harness: bootstrap the orchestrator, then deliver token measurement, fixtures, reporting, and stress integration as child packets.",
   "trigger_phrases": [
     "027 phase 006",
     "code-graph adoption eval",
@@ -15,20 +14,20 @@
   "priority": "P2",
   "createdAt": "2026-05-08T15:00:00Z",
   "branch": "main",
-  "parent_track": "027-xce-research-based-refinement",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "parent_track": "028-code-graph-and-cocoindex",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
   "manual": {
     "children": [
-      "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/001-harness-skeleton",
-      "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/002-token-measurement",
-      "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/003-fixtures",
-      "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/004-report-generator",
-      "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/005-stress-tests-integration"
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton",
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/002-token-measurement",
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/003-fixtures",
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/004-report-generator",
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/005-stress-tests-integration"
     ],
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
-      "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace",
-      "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis"
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
+      "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace",
+      "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis"
     ]
   },
   "derived": {
@@ -36,22 +35,25 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval",
-  "specId": "010",
-  "folderSlug": "code-graph-adoption-eval",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement"
-  ],
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
+  "description": "Feature Specification: 004 — Code Graph Adoption Evaluation Harness",
   "keywords": [
+    "feature",
+    "specification",
+    "004",
     "code",
     "graph",
     "adoption",
     "evaluation",
-    "harness",
-    "phase-parent"
+    "harness"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-28T06:52:04.681Z",
+  "specId": "004",
+  "folderSlug": "code-graph-adoption-eval",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

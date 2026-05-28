@@ -1,5 +1,5 @@
 ---
-title: "Plan — Phase 010 Retrieval Rerank Clients"
+title: "Plan — Phase 007 Retrieval Rerank Clients"
 description: "Technical plan: 4 sub-phases covering interface extraction, memory adapter swap, Coco rerank adapter, telemetry + tests + docs."
 trigger_phrases:
   - "027 phase 010 plan"
@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored plan.md"
@@ -38,7 +38,7 @@ Extract memory's mature `cross-encoder.ts` provider-generic layer into shared `R
 - Strict spec validation passes (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0).
 - All P0 checklist items green.
 - All ADR commitments upheld with file:line evidence in `implementation-summary.md`.
-- Phase-006 eval gate documented (when applicable for active-mode promotion).
+- Phase-004 eval gate documented (when applicable for active-mode promotion).
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -62,7 +62,7 @@ Extract memory's mature `cross-encoder.ts` provider-generic layer into shared `R
 
 ### Adjacent precedents
 - Memory's existing rerank cache + circuit breaker is the canonical pattern; we're not inventing semantics, just repackaging.
-- Phase 009 Sub-Phase 3 (Consumer A) is independently using a Python feedback reducer; if Coco rerank adapter goes Python-side, similar patterns apply.
+- 027/008-feedback-reducers Sub-Phase 3 (Consumer A) is independently using a Python feedback reducer; if Coco rerank adapter goes Python-side, similar patterns apply.
 
 ### XCE source
 - `external/README.md:240-245` — Public mention of architecture context + relationships; no rerank-client transfer.
@@ -238,7 +238,7 @@ What's NOT shared (binding boundaries — REQ-008):
 - Unit tests per sub-phase (vitest TypeScript / pytest Python).
 - Integration tests for cross-component code paths.
 - Diff tests for backward-compat (flag-off output bit-identical to current).
-- Phase-006 paired comparison harness for active-mode promotion gating.
+- Phase-004 paired comparison harness for active-mode promotion gating.
 - Per-checklist verification commands for repeatable green-field checks.
 <!-- /ANCHOR:testing -->
 
@@ -252,10 +252,10 @@ What's NOT shared (binding boundaries — REQ-008):
 
 ### Hard preconditions
 - Memory-only extraction: `cross-encoder.ts` exists and is mature.
-- Coco adapter work: Phase 001 complete CocoIndex MCP fork must land first, so adapter changes target the owned v0.2.33 wrapper baseline.
+- Coco adapter work: Phase 005 complete CocoIndex MCP fork must land first, so adapter changes target the owned v0.2.33 wrapper baseline.
 
 ### Soft preconditions
-- Phase 001 is a hard precondition only for Sub-Phase 3; Sub-Phases 1-2 can still proceed as memory-side interface work if deliberately split.
+- Phase 005 is a hard precondition only for Sub-Phase 3; Sub-Phases 1-2 can still proceed as memory-side interface work if deliberately split.
 
 ### Internal sub-phase order
 - Sub-Phase 1 (interfaces) → Sub-Phase 2 (memory adapter) → Sub-Phase 3 (Coco adapter) → Sub-Phase 4 (telemetry + docs).
@@ -344,7 +344,7 @@ See sub-phase task dependency diagrams in `tasks.md` "TASK DEPENDENCIES" section
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-See sub-phase ordering in `tasks.md` task dependency diagrams. Hard-blocking dependencies (e.g. Sub-Phase 1 → Sub-Phase 4 in Phase 009) are explicit in the dep diagram.
+See sub-phase ordering in `tasks.md` task dependency diagrams. Hard-blocking dependencies (e.g. Sub-Phase 1 → Sub-Phase 4 in 027/008-feedback-reducers) are explicit in the dep diagram.
 <!-- /ANCHOR:critical-path -->
 
 <!-- ANCHOR:milestones -->
@@ -352,5 +352,5 @@ See sub-phase ordering in `tasks.md` task dependency diagrams. Hard-blocking dep
 
 - **M1**: Sub-Phase 1 complete (foundational schema/precondition/extraction).
 - **M2..MN**: Each subsequent sub-phase complete per `tasks.md` group.
-- **MFinal**: All checklist items green; implementation-summary filled; Phase-006 eval gate ready (when applicable).
+- **MFinal**: All checklist items green; implementation-summary filled; Phase-004 eval gate ready (when applicable).
 <!-- /ANCHOR:milestones -->

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-code-graph-playbook-validation/007-followup-hook-docs-and-022"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Reconciled 5 hook docs; 022 deep re-run clarified F-022-1 (includeTransitive no-op)"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 029-code-graph-playbook-validation/007-followup-hook-docs-and-022 |
+| **Spec Folder** | 010-playbook-validation-and-hardening/007-followup-hook-docs-and-022 |
 | **Completed** | 2026-05-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

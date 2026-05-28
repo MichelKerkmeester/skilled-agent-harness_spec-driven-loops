@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary — Phase 010 Retrieval Rerank Clients"
+title: "Implementation Summary — Phase 007 Retrieval Rerank Clients"
 description: "Filled post-implementation. Placeholders are EXPECTED at scaffold time."
 trigger_phrases:
   - "027 phase 010 implementation summary"
@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded placeholder"
@@ -17,7 +17,7 @@ _memory:
     completion_pct: 0
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.0 -->
-# Implementation Summary: Phase 010 Retrieval Rerank Clients
+# Implementation Summary: Phase 007 Retrieval Rerank Clients
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -26,7 +26,7 @@ _memory:
 ---
 
 ## OVERVIEW
-[###-feature-name]: Retrieval Rerank Clients (Phase 010).
+[###-feature-name]: Retrieval Rerank Clients (Phase 007).
 
 [Implementation status: not started].
 
@@ -91,7 +91,7 @@ Status: scaffolded; not yet implemented. Filled post-implementation per existing
 <!-- ANCHOR:what-built -->
 ## WHAT WAS BUILT
 
-See files referenced in resource-map.md  section: production code paths spanning 010-retrieval-rerank-clients touch points across mcp_server/ and/or mcp-coco-index/. Pre-implementation: file list is PLANNED; post-implementation: actual file:line evidence will be filled here.
+See files referenced in resource-map.md  section: production code paths spanning 007-retrieval-rerank-clients touch points across mcp_server/ and/or mcp-coco-index/. Pre-implementation: file list is PLANNED; post-implementation: actual file:line evidence will be filled here.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -112,10 +112,10 @@ See files referenced in resource-map.md  section: production code paths spanning
 Verification commands (run after implementation):
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh   .opencode/specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh   .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients --strict
 ```
 
-Plus per-test commands listed in `checklist.md` "VERIFICATION COMMANDS QUICK-RUN" section. Coverage spans unit (vitest / pytest), integration, diff (backward-compat parity), and Phase-006 paired-comparison eval.
+Plus per-test commands listed in `checklist.md` "VERIFICATION COMMANDS QUICK-RUN" section. Coverage spans unit (vitest / pytest), integration, diff (backward-compat parity), and Phase-004 paired-comparison eval.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

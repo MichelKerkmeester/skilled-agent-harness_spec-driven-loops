@@ -1,15 +1,15 @@
 ---
-title: "Feature Specification: CP Stress Scenarios — copilot → opencode Executor Swap (030 Phase 009)"
-description: "Swap the 18 copilot-driven CP/discipline stress scenarios across deep-review/deep-research/deep-agent-improvement to cli-opencode (deepseek-direct), restore the pruned deep-agent-improvement fixture, re-run, and flip the 030 SKIPs."
+title: "Feature Specification: CP Stress Scenarios — copilot → opencode Executor Swap (007 Phase 009)"
+description: "Swap the 18 copilot-driven CP/discipline stress scenarios across deep-review/deep-research/deep-agent-improvement to cli-opencode (deepseek-direct), restore the pruned deep-agent-improvement fixture, re-run, and flip the 007 SKIPs."
 trigger_phrases:
   - "cp copilot to opencode swap"
-  - "030 phase 009 copilot swap"
+  - "007 phase 009 copilot swap"
   - "cp stress opencode executor"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/009-cp-copilot-to-opencode-swap"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "18 CP re-run via opencode/deepseek - 13 PASS 5 PARTIAL 0 FAIL"
@@ -30,7 +30,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
-# Feature Specification: CP Stress Scenarios — copilot → opencode Executor Swap (030 Phase 009)
+# Feature Specification: CP Stress Scenarios — copilot → opencode Executor Swap (007 Phase 009)
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -42,9 +42,9 @@ _memory:
 | **Status** | Complete — 18 re-run via opencode/deepseek (13 PASS / 5 PARTIAL / 0 FAIL); fixture restored |
 | **Created** | 2026-05-27 |
 | **Branch** | `main` |
-| **Parent Spec** | `../spec.md` (030 phase parent) |
+| **Parent Spec** | `../spec.md` (007 phase parent) |
 | **Predecessor** | 008-dai-rulecoherence-inline-fallback |
-| **Trigger** | 030 release-readiness matrix "path to READY": the 19 SKIPs are copilot-driven, and copilot is org-policy-blocked here |
+| **Trigger** | 007 release-readiness matrix "path to READY": the 19 SKIPs are copilot-driven, and copilot is org-policy-blocked here |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,10 +53,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The 030 validation run recorded **19 SKIP** verdicts. 18 of those are copilot-driven CP/discipline stress scenarios — deep-review `07--command-flow-stress-tests` (CP-052..057), deep-research `07--command-flow-stress-tests` (CP-046..051), deep-agent-improvement `08--agent-discipline-stress-tests` (CP-040..045) — that invoke `copilot -p ... --model gpt-5.5`. The `copilot` CLI is org-policy-blocked in this environment ("Third-party MCP servers disabled by org policy"), so they cannot run. CP-040..045 carry a **second** blocker: their setup needs the `060-stress-test` fixture, pruned in checkpoint commit `e917f76347`.
+The 007 validation run recorded **19 SKIP** verdicts. 18 of those are copilot-driven CP/discipline stress scenarios — deep-review `07--command-flow-stress-tests` (CP-052..057), deep-research `07--command-flow-stress-tests` (CP-046..051), deep-agent-improvement `08--agent-discipline-stress-tests` (CP-040..045) — that invoke `copilot -p ... --model gpt-5.5`. The `copilot` CLI is org-policy-blocked in this environment ("Third-party MCP servers disabled by org policy"), so they cannot run. CP-040..045 carry a **second** blocker: their setup needs the `060-stress-test` fixture, pruned in checkpoint commit `e917f76347`.
 
 ### Purpose
-Replace the copilot executor with `cli-opencode` (model `deepseek/deepseek-v4-pro` via the **direct DeepSeek API provider**, not opencode-go) in all 18 scenario files, restore the pruned deep-agent-improvement fixture from git, re-run the scenarios, orchestrator-verify, and flip the 030 ledger SKIPs to their real verdicts. opencode natively owns the `.opencode/` command runtime, so `/deep:*` slash commands execute without the foreign-runtime overhead copilot incurred.
+Replace the copilot executor with `cli-opencode` (model `deepseek/deepseek-v4-pro` via the **direct DeepSeek API provider**, not opencode-go) in all 18 scenario files, restore the pruned deep-agent-improvement fixture from git, re-run the scenarios, orchestrator-verify, and flip the 007 ledger SKIPs to their real verdicts. opencode natively owns the `.opencode/` command runtime, so `/deep:*` slash commands execute without the foreign-runtime overhead copilot incurred.
 
 > The 19th SKIP (`DR-032`) is a deep-research `blocked_stop` fixture gap, NOT copilot-driven — explicitly OUT OF SCOPE here.
 <!-- /ANCHOR:problem -->
@@ -69,7 +69,7 @@ Replace the copilot executor with `cli-opencode` (model `deepseek/deepseek-v4-pr
 ### In Scope
 - Swap `copilot -p ... --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir ...` → `opencode run ... --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir <sandbox> </dev/null` in 18 scenario files (30 invocations).
 - Restore the pruned `060-stress-test` fixture (4 runtime forms) from `e917f76347^` to the deep-agent-improvement skill at the current plural path.
-- Re-run the 18 scenarios via opencode, orchestrator-verify the grep-checkable signals, and flip the 030 child ledger SKIPs (CP-040..045 in 005, CP-046..051 in 004, CP-052..057 in 003).
+- Re-run the 18 scenarios via opencode, orchestrator-verify the grep-checkable signals, and flip the 007 child ledger SKIPs (CP-040..045 in 005, CP-046..051 in 004, CP-052..057 in 003).
 - Update `006-release-readiness-synthesis/release-readiness-matrix.md` tallies + verdict.
 
 ### Out of Scope
@@ -85,8 +85,8 @@ Replace the copilot executor with `cli-opencode` (model `deepseek/deepseek-v4-pr
 | `.opencode/skills/deep-research/manual_testing_playbook/07--command-flow-stress-tests/0{46..51}-*.md` | Modify | copilot→opencode (2 calls each) |
 | `.opencode/skills/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/0{13..18}-*.md` | Modify | copilot→opencode (2 calls each) |
 | `.opencode/skills/deep-agent-improvement/test-fixtures/060-stress-test/**` | Restore | recover pruned fixture (4 runtime forms) from git |
-| `030-.../00{3,4,5}-*/checklist.md` | Modify | flip CP SKIP verdicts post-rerun |
-| `030-.../006-release-readiness-synthesis/release-readiness-matrix.md` | Modify | re-tally + verdict |
+| `007-.../00{3,4,5}-*/checklist.md` | Modify | flip CP SKIP verdicts post-rerun |
+| `007-.../006-release-readiness-synthesis/release-readiness-matrix.md` | Modify | re-tally + verdict |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -112,9 +112,9 @@ Replace the copilot executor with `cli-opencode` (model `deepseek/deepseek-v4-pr
 - [x] All 18 scenario files invoke `opencode run` (deepseek-direct); zero `copilot -p` remain in the 3 CP categories.
 - [x] The `060-stress-test` fixture is restored; the deep-agent-improvement setup script runs clean.
 - [x] All 18 scenarios re-run via opencode with a recorded PASS/PARTIAL/FAIL verdict + orchestrator evidence.
-- [x] The 030 child ledgers (003/004/005) have their CP SKIP rows flipped to real verdicts.
+- [x] The 007 child ledgers (003/004/005) have their CP SKIP rows flipped to real verdicts.
 - [x] `release-readiness-matrix.md` re-tallied; SKIP count drops by 18; verdict recomputed.
-- [x] `validate.sh --strict` passes for 009 + every touched 030 child + parent.
+- [x] `validate.sh --strict` passes for 009 + every touched 007 child + parent.
 <!-- /ANCHOR:success-criteria -->
 
 ---

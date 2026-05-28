@@ -25,12 +25,12 @@ Last 3 Iterations Summary: run 1: ground-truth-baseline (0.86 — high info; K2.
 
 ## STATE FILES
 
-- Config: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/deep-research-config.json`
-- State Log: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/deep-research-state.jsonl`
-- Strategy: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/deep-research-strategy.md`
-- Registry: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/findings-registry.json`
-- Iteration narrative: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/iterations/iteration-002.md`
-- Delta file: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/deltas/iter-002.jsonl`
+- Config: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/deep-research-config.json`
+- State Log: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/deep-research-state.jsonl`
+- Strategy: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/deep-research-strategy.md`
+- Registry: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/findings-registry.json`
+- Iteration narrative: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/iterations/iteration-002.md`
+- Delta file: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/deltas/iter-002.jsonl`
 
 ## PRIOR EVIDENCE (iteration 1)
 
@@ -41,8 +41,8 @@ Last 3 Iterations Summary: run 1: ground-truth-baseline (0.86 — high info; K2.
 ## INVESTIGATION TARGETS (this iteration)
 
 **Cocoindex side — memoization + dependency tracking:**
-1. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/rust/core/src/state/db_schema.rs` — read the full state schema. What are the keys/values stored? Memoization records? Component existence tracking?
-2. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/rust/core/src/engine/execution.rs` — read the execution engine. How are memoized calls cached and looked up? How is dependency invalidation propagated?
+1. `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/rust/core/src/state/db_schema.rs` — read the full state schema. What are the keys/values stored? Memoization records? Component existence tracking?
+2. `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/rust/core/src/engine/execution.rs` — read the execution engine. How are memoized calls cached and looked up? How is dependency invalidation propagated?
 3. Look for `fingerprint_simple_object` or similar Rust-side fingerprint function — Python calls into Rust for the actual hash; find the Rust entry point.
 
 **Our side — incremental indexing details:**

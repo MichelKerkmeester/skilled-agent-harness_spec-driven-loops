@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The native rerun downgraded code graph from useful to overhead after broad scans, read-path drift blocks, parser crashes, and a zero-node persistence regression made the graph unreliable during framework-maintainer work. User clarification on 2026-05-06 corrected one premise: default scope excludes framework backend paths by design because template users primarily index their own production code. The remaining synthesis still needed to identify which findings affect end users and which are maintainer-only polish.",
     "created_at": "2026-05-06T05:27:17Z",
-    "last_save_at": "2026-05-27T13:45:36.765Z",
+    "last_save_at": "2026-05-28T06:06:29.298Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

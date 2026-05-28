@@ -13,10 +13,10 @@
   "priority": "P1",
   "createdAt": "2026-05-12T00:00:00.000Z",
   "branch": "main",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
     ]
   },
   "derived": {
@@ -24,14 +24,26 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract",
-  "description": "Defines TypeScript interfaces for code_graph_impact_analysis, RiskSignal, RiskScore, and enrichment options.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract",
+  "description": "Feature Specification: 027/004/001 Impact Analysis Contract",
   "keywords": [
-    "contract",
+    "feature",
+    "specification",
+    "027",
+    "004",
+    "001",
     "impact",
-    "risk-signal",
-    "risk-score"
+    "analysis",
+    "contract"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
-  "folderSlug": "001-contract"
+  "lastUpdated": "2026-05-28T06:52:09.649Z",
+  "specId": "001",
+  "folderSlug": "contract",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "003-code-graph-impact-analysis"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

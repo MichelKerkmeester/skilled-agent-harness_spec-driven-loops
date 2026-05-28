@@ -144,7 +144,7 @@
     ],
     "causal_summary": "The 5 CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) currently mention specific overlay skills (`sk-code-review`, `sk-code-opencode`) by name when describing how dispatched sessions should load code-quality standards. This is brittle: the moment a different stack is in play (Webflow, React/Next.js, Go) the dispatch prompt instructs the dispatched session to load the wrong overlay.",
     "created_at": "2026-05-18T08:15:53.147Z",
-    "last_save_at": "2026-05-27T13:45:35.583Z",
+    "last_save_at": "2026-05-28T06:06:28.325Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

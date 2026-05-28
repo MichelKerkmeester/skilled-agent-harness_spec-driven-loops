@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/008-blast-radius-transitive-flag",
-  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/008-blast-radius-transitive-flag",
-  "parent_id": "system-spec-kit/029-code-graph-playbook-validation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Finding F-022-1 (phase 007): `code_graph_query` blast_radius ignores the `includeTransitive` flag. The tool schema documents `includeTransitive` (default false) as \"Enable multi-hop BFS traversal\" and `maxDepth` as applying \"when includeTransitive is true\", but the blast_radius branch derives depth solely from `args.maxDepth` (default 3) at `handlers/query.ts:1218-1219` and never reads `includeTransitive`. So blast_radius is always multi-hop (up to depth 3), the flag is a silent no-op, and scenario 022's `transitive > nontransitive` assertion is unachievable.",
     "created_at": "2026-05-27T04:57:41.642Z",
-    "last_save_at": "2026-05-28T06:06:29.542Z",
+    "last_save_at": "2026-05-28T06:14:22.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

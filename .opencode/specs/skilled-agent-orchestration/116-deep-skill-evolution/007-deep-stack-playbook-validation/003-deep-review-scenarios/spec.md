@@ -4,12 +4,12 @@ description: "Run the 45 deep-review manual testing playbook scenarios via cli-d
 trigger_phrases:
   - "deep-review scenarios"
   - "deep review playbook run"
-  - "030 phase 003 deep-review"
+  - "007 phase 003 deep-review"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/003-deep-review-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffold phase 003 spec + 45-scenario verdict ledger"

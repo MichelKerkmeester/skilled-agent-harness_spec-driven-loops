@@ -4,7 +4,7 @@ ROLE: You are a validation operator for the `mk-code-index` code-graph MCP runti
 CONTEXT:
 - Repo root (your cwd): /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 - Full project MCP runtime. Stable tool IDs: `code_graph_query`, `detect_changes`, `code_graph_verify`, `code_graph_apply`, `code_graph_status`.
-- Spec folder: .opencode/specs/system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
+- Spec folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
 - Scenarios 011 (malformed-call schema validation) and 023 (code_graph_apply sub-operation preflights). Both run against the CURRENT graph state with NO mutation — all 023 calls are dry-run / refusal preflights. Do NOT pass `confirm:true`, `lowTierOptIn:true`, `crashRootCauseAddressed:true`, or `dryRun:false` to any apply operation.
 
 ACTION (ordered; each step has acceptance):

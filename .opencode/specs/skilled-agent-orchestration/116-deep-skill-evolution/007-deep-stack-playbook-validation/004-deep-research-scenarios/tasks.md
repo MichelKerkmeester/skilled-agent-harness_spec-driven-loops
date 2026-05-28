@@ -4,12 +4,12 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "deep-research scenarios tasks"
   - "deep research playbook tasks"
-  - "030 phase 004 tasks"
+  - "007 phase 004 tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/004-deep-research-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Author phase 004 task list"

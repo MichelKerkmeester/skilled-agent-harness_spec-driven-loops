@@ -13,7 +13,7 @@
   "priority": "P1",
   "createdAt": "2026-05-12T00:00:00Z",
   "branch": "main",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
   "manual": {
     "depends_on": []
   },
@@ -23,22 +23,21 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract",
-  "description": "TypeScript HldLldClassifier interface and FileRole enum types defining the deterministic HLD/LLD generation contract.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract",
+  "description": "Feature Specification: 001 Contract",
   "keywords": [
-    "hld-lld",
-    "contract",
-    "typescript",
-    "interface",
-    "enum"
+    "feature",
+    "specification",
+    "001",
+    "contract"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-28T06:52:10.622Z",
   "specId": "001",
   "folderSlug": "contract",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "002-code-graph-hld-lld"
+    "028-code-graph-and-cocoindex",
+    "001-code-graph-hld-lld"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -13,7 +13,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "027 phase 012",
+      "027 phase 002",
       "feedback P0 correctness",
       "auto-provenance cap broadening",
       "manual-edge overwrite guard",
@@ -22,7 +22,7 @@
     "key_topics": [
       "027",
       "phase",
-      "012",
+      "002",
       "feedback",
       "correctness",
       "auto-provenance",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 012 is a small correctness-first packet carved out of `../009-feedback-reducers/spec.md` Sub-Phase 1. The pt-04 audit found that 009's learning reducers are still directionally valid, but three safety bugs should not wait for reducer design, eval infrastructure, or code_graph implementation ordering. This packet ships those three P0 fixes first.",
+    "causal_summary": "Phase 002 is a small correctness-first packet carved out of `../009-feedback-reducers/spec.md` Sub-Phase 1. The pt-04 audit found that 009's learning reducers are still directionally valid, but three safety bugs should not wait for reducer design, eval infrastructure, or code_graph implementation ordering. This packet ships those three P0 fixes first.",
     "created_at": "2026-05-11T00:00:00Z",
-    "last_save_at": "2026-05-27T13:45:36.904Z",
+    "last_save_at": "2026-05-28T08:24:04.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-11T00:00:00Z",
     "source_docs": [

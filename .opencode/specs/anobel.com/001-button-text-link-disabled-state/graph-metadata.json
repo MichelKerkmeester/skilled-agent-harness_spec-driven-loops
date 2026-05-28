@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Text-link buttons currently define enabled, hover, focus and active states, but they do not expose a dedicated disabled override. Designers need a simple attribute they can apply to force one of these buttons to look disabled and stop pointer interaction without changing the broader button system.",
     "created_at": "2026-05-23T17:23:24Z",
-    "last_save_at": "2026-05-27T13:45:34.703Z",
+    "last_save_at": "2026-05-28T06:06:27.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

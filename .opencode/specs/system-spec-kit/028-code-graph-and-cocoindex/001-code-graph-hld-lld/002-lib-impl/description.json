@@ -12,10 +12,10 @@
   "priority": "P1",
   "createdAt": "2026-05-12T00:00:00Z",
   "branch": "main",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
     ]
   },
   "soft_depends_on": [],
@@ -24,22 +24,22 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl",
-  "description": "code-graph-hld-lld.ts implementation conforming to the published HldLldClassifier contract.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl",
+  "description": "Feature Specification: 002 Library Implementation",
   "keywords": [
-    "hld-lld",
+    "feature",
+    "specification",
+    "002",
     "library",
-    "typescript",
-    "implementation",
-    "classifier"
+    "implementation"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-28T06:52:10.871Z",
   "specId": "002",
   "folderSlug": "lib-impl",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "002-code-graph-hld-lld"
+    "028-code-graph-and-cocoindex",
+    "001-code-graph-hld-lld"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

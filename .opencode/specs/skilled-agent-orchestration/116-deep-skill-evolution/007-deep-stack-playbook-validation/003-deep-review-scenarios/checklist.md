@@ -4,12 +4,12 @@ description: "Verification + 45-scenario verdict ledger for deep-review playbook
 trigger_phrases:
   - "deep-review checklist"
   - "deep review verdict ledger"
-  - "030 phase 003 checklist"
+  - "007 phase 003 checklist"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/003-deep-review-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "deep-review 45/45 done - 36 PASS 3 PARTIAL 6 SKIP 0 FAIL, corroborated"

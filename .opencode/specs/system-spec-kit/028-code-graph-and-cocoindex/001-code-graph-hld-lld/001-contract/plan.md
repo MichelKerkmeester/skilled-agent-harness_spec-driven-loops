@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Scaffolded contract plan"
@@ -92,7 +92,7 @@ Implementation, handler, and tests import these types first. Behavior lands in c
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `code-graph-hld-lld.ts` | New public surface | Create contract exports | Typecheck and import review |
-| Phase 003 trace consumers | Downstream user of classifier role labels | Preserve open-string role semantics | Contract review |
+| Phase 002 trace consumers | Downstream user of classifier role labels | Preserve open-string role semantics | Contract review |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

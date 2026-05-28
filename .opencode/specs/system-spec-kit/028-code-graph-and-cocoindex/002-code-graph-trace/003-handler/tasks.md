@@ -8,13 +8,13 @@ importance_tier: "important"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/003-handler"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/003-handler"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded trace handler tasks"
     next_safe_action: "Execute handler tasks after local contract publishes"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
+      - "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
     key_files: ["spec.md", "plan.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

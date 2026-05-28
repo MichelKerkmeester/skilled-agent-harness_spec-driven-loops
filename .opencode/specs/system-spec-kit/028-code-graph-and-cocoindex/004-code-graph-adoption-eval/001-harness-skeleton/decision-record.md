@@ -8,10 +8,10 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval"
     last_updated_at: "2026-05-09T00:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Converted Phase 006 decision record to Level 3 ADR structure"
+    recent_action: "Converted Phase 004 decision record to Level 3 ADR structure"
     next_safe_action: "Use ADR-001 as implementation guardrail for dispatcher hardening"
 ---
 # Decision Record: 027/006 Code Graph Adoption Evaluation Harness
@@ -22,7 +22,7 @@ _memory:
 ---
 
 <!-- ANCHOR:adr-001 -->
-## ADR-001: Bump Phase 006 from Level 2 to Level 3
+## ADR-001: Bump Phase 004 from Level 2 to Level 3
 
 ### Metadata
 
@@ -31,14 +31,14 @@ _memory:
 | **Status** | Accepted |
 | **Date** | 2026-05-08 |
 | **Deciders** | Spec-kit research refinement owner |
-| **Driver** | pt-02 cross-validation amendments for Phase 006 |
+| **Driver** | pt-02 cross-validation amendments for Phase 004 |
 
 ---
 
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The pt-02 cross-validation cycle flagged Phase 006 as `NEEDS_AMENDMENT` with five blocking operational findings:
+The pt-02 cross-validation cycle flagged Phase 004 as `NEEDS_AMENDMENT` with five blocking operational findings:
 
 - **B-iter005-001**: Subprocess lifecycle is underspecified.
 - **B-iter005-002**: Provider auth preflight is missing.
@@ -59,9 +59,9 @@ The pt-02 cross-validation cycle flagged Phase 006 as `NEEDS_AMENDMENT` with fiv
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Keep subprocess/auth/result-schema hardening inside Phase 006 and bump the phase from Level 2 to Level 3.
+**We chose**: Keep subprocess/auth/result-schema hardening inside Phase 004 and bump the phase from Level 2 to Level 3.
 
-**How it works**: Phase 006 owns provider preflight, hardened subprocess lifecycle, discriminated JSONL result rows, stale-process retry behavior, incomplete-pair reporting, and a mocked 12 by 2 dispatcher stress test before any live full harness run.
+**How it works**: Phase 004 owns provider preflight, hardened subprocess lifecycle, discriminated JSONL result rows, stale-process retry behavior, incomplete-pair reporting, and a mocked 12 by 2 dispatcher stress test before any live full harness run.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -123,12 +123,12 @@ The pt-02 cross-validation cycle flagged Phase 006 as `NEEDS_AMENDMENT` with fiv
 ### Implementation
 
 **What changes**:
-- Phase 006 remains Level 3.
+- Phase 004 remains Level 3.
 - `spec.md` includes REQ-011 through REQ-017 and Level 3 risk/user-story sections.
 - `tasks.md` sequences mocked dispatcher stress before live full harness execution.
 - `checklist.md` records the mocked stress gate, subprocess hardening, and complete-pair reporting checks.
 
-**How to roll back**: Split REQ-011 through REQ-015 into a new prerequisite phase, downgrade Phase 006 to Level 2, and update parent phase dependencies. Do not downgrade without preserving the pt-02 blocker coverage somewhere else.
+**How to roll back**: Split REQ-011 through REQ-015 into a new prerequisite phase, downgrade Phase 004 to Level 2, and update parent phase dependencies. Do not downgrade without preserving the pt-02 blocker coverage somewhere else.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 

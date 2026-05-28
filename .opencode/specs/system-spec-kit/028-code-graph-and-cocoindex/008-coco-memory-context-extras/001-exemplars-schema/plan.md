@@ -7,12 +7,12 @@ importance_tier: "normal"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Authored child plan"
-    next_safe_action: "Implement schema module after Phase 001 dependency"
-    blockers: ["system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"]
+    next_safe_action: "Implement schema module after Phase 005 dependency"
+    blockers: ["system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork"]
     key_files: ["plan.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -51,7 +51,7 @@ Add the storage foundation for Coco exemplars without touching retrieval behavio
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001 complete fork dependency is available.
+- [ ] Phase 005 complete fork dependency is available.
 - [ ] Existing CocoIndex schema constants are read from the fork.
 - [ ] Privacy rule is reflected in the schema design.
 
@@ -102,7 +102,7 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Read Phase 001 fork schema and indexer code.
+- [ ] Read Phase 005 fork schema and indexer code.
 - [ ] Create `exemplars/` package if missing.
 - [ ] Define schema constants.
 
@@ -136,7 +136,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `001-cocoindex-complete-fork` | Cross-packet | Required | Target package layout may not exist |
+| `005-cocoindex-complete-fork` | Cross-packet | Required | Target package layout may not exist |
 | vec0 extension | Runtime | Confirm during implementation | Exemplar vector table cannot be created |
 <!-- /ANCHOR:dependencies -->
 
@@ -155,12 +155,12 @@ Required inventories:
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 001 fork ──> Schema setup ──> Migration helper ──> Tests
+Phase 005 fork ──> Schema setup ──> Migration helper ──> Tests
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | Phase 001 fork | Core |
+| Setup | Phase 005 fork | Core |
 | Core | Setup | Verification, child 002 |
 | Verification | Core | Child 002 |
 <!-- /ANCHOR:phase-deps -->

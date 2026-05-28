@@ -4,12 +4,12 @@ description: "Run the 41 deep-research manual testing playbook scenarios via cli
 trigger_phrases:
   - "deep-research scenarios"
   - "deep research playbook run"
-  - "030 phase 004 deep-research"
+  - "007 phase 004 deep-research"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/004-deep-research-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffold phase 004 spec + 41-scenario verdict ledger"

@@ -1,6 +1,6 @@
 ---
 title: "Research - Complete CocoIndex MCP Fork"
-description: "Research basis for Phase 001: upstream v0.2.33, current spec-kit 0.2.3 soft fork, implication matrix, import boundary, dependency and verification needs."
+description: "Research basis for Phase 005: upstream v0.2.33, current spec-kit 0.2.3 soft fork, implication matrix, import boundary, dependency and verification needs."
 trigger_phrases:
   - "cocoindex complete fork research"
   - "cocoindex-code v0.2.33 research"
@@ -62,7 +62,7 @@ The local skill is a partial soft fork. `mcp_server/pyproject.toml:1-10` identif
 2. **The local fork is not a full repository fork**: local `mcp_server/pyproject.toml:28-40` pins `cocoindex[litellm]==1.0.0a33` and bundles `sentence-transformers` directly. Upstream `pyproject.toml:24-36` uses `cocoindex[litellm]>=1.0.0,<1.1.0`, adds `questionary`, and moves local embeddings behind extras at `pyproject.toml:38-58`.
 3. **Important upstream modules are missing locally**: upstream adds `_daemon_paths.py`, `chunking.py`, `embedder_defaults.py`, `embedder_params.py`, and `litellm_embedder.py`. `settings.py:119-130` adds custom chunker mappings, while `_daemon_paths.py:16-60` separates runtime socket/PID/log paths from user settings.
 4. **Spec-kit patches are narrow and portable**: local `CHANGELOG.md:9-27` lists the patch set: mirror exclusions, chunk identity, path-class taxonomy, over-fetch dedup, bounded rerank, and result telemetry. These must become patch overlays on v0.2.33, not ad hoc edits on stale 0.2.3 files.
-5. **Full control has a dependency boundary**: forking `cocoindex-code` does not fork the underlying `cocoindex` engine. Upstream still depends on `cocoindex[litellm]>=1.0.0,<1.1.0`; current local still depends on `cocoindex[litellm]==1.0.0a33`. That is acceptable for Phase 001 only if documented and pinned.
+5. **Full control has a dependency boundary**: forking `cocoindex-code` does not fork the underlying `cocoindex` engine. Upstream still depends on `cocoindex[litellm]>=1.0.0,<1.1.0`; current local still depends on `cocoindex[litellm]==1.0.0a33`. That is acceptable for Phase 005 only if documented and pinned.
 
 ### Recommendations
 

@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/029-code-graph-playbook-validation",
-  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation",
-  "parent_id": null,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
   "children_ids": [
-    "system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios",
-    "system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios",
-    "system-spec-kit/029-code-graph-playbook-validation/003-release-readiness-synthesis",
-    "system-spec-kit/029-code-graph-playbook-validation/004-hook-and-doc-fixes",
-    "system-spec-kit/029-code-graph-playbook-validation/005-db-binding-cleanup",
-    "system-spec-kit/029-code-graph-playbook-validation/006-parser-quarantine-recovery",
-    "system-spec-kit/029-code-graph-playbook-validation/007-followup-hook-docs-and-022",
-    "system-spec-kit/029-code-graph-playbook-validation/008-blast-radius-transitive-flag"
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/003-release-readiness-synthesis",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/004-hook-and-doc-fixes",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/005-db-binding-cleanup",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag"
   ],
   "manual": {
     "depends_on": [],
@@ -96,7 +96,7 @@
     ],
     "causal_summary": "The `system-code-graph` skill ships a 22-scenario manual testing playbook (`manual_testing_playbook/`) that validates the `mk-code-index` MCP runtime: read-path freshness, manual scan/verify/status, detect_changes, context retrieval, coverage graph, MCP tool surface, doctor-code-graph policy, post-rename infrastructure, and the Devin SessionStart hook. These scenarios have no captured, dated operator run on record. Release readiness cannot be asserted without one.",
     "created_at": "2026-05-26T19:43:14.031Z",
-    "last_save_at": "2026-05-28T06:06:29.529Z",
+    "last_save_at": "2026-05-28T06:14:22.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

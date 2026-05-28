@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Packet `005-vestigial-embedding-readiness-gate-removal` (commit `e91d2c7c2`) deleted the readiness gate at `memory-search.ts:927-932` but kept the surrounding scaffolding untouched as out-of-scope:",
     "created_at": "2026-04-29T09:30:00.000Z",
-    "last_save_at": "2026-05-27T13:45:35.710Z",
+    "last_save_at": "2026-05-28T06:06:28.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Packet 099 (re-review of 093-098) converged with verdict FAIL on 2026-05-07: 0 P0, 13 P1, 6 P2.",
     "created_at": "2026-05-07T20:55:00Z",
-    "last_save_at": "2026-05-27T13:45:35.440Z",
+    "last_save_at": "2026-05-28T06:06:28.204Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -3,12 +3,12 @@ title: "Implementation Summary: deep-agent-improvement ruleCoherence inline fall
 description: "What changed + verification for the deriveRules inline-fallback fix + stale-scenario findings."
 trigger_phrases:
   - "rulecoherence inline fallback summary"
-  - "030 phase 008 implementation summary"
+  - "007 phase 008 implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/008-dai-rulecoherence-inline-fallback"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback"
     last_updated_at: "2026-05-27T21:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "deriveRules inline fallback shipped + verified; vitest 99/99 green"

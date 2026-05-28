@@ -12,10 +12,10 @@
   "priority": "P1",
   "createdAt": "2026-05-12T00:00:00.000Z",
   "branch": "main",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract"
+      "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract"
     ]
   },
   "derived": {
@@ -23,14 +23,26 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/003-handler",
-  "description": "Implements the MCP handler and optional LLM risk-enrichment adapter for code_graph_impact_analysis.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
+  "description": "Feature Specification: 027/004/003 Impact Analysis Handler",
   "keywords": [
-    "handler",
-    "mcp",
-    "enrichment",
-    "impact"
+    "feature",
+    "specification",
+    "027",
+    "004",
+    "003",
+    "impact",
+    "analysis",
+    "handler"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
-  "folderSlug": "003-handler"
+  "lastUpdated": "2026-05-28T06:52:10.182Z",
+  "specId": "003",
+  "folderSlug": "handler",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "003-code-graph-impact-analysis"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

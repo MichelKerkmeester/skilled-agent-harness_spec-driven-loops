@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Phase 028 promised a comprehensive local-LLM feature suite, but the cleanup decision keeps 028 as historical/rescoped documentation and moves the missing implementation into this action packet. The promised coverage spans 10 functional groups and 4 deterministic performance benchmarks.",
     "created_at": "2026-05-23T11:55:15.369Z",
-    "last_save_at": "2026-05-27T13:45:36.169Z",
+    "last_save_at": "2026-05-28T06:06:28.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

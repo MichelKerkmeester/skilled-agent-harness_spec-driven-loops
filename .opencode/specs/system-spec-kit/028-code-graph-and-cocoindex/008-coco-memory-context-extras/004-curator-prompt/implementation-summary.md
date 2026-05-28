@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/004-curator-prompt"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/004-curator-prompt"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Init impl"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/004-curator-prompt` |
+| **Spec Folder** | `system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/004-curator-prompt` |
 | **Completed** | Pending implementation |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

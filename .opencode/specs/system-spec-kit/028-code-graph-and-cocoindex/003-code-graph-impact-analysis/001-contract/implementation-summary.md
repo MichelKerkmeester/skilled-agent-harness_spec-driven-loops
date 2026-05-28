@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Created Level 2 scaffold for 001-contract"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract` |
+| **Spec Folder** | `system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract` |
 | **Updated** | 2026-05-12 |
 | **Level** | 2 |
 | **Implementation State** | Not implemented; scaffold only |
@@ -77,7 +77,7 @@ Scaffold only: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and this `imple
 | Check | Status | Notes |
 |-------|--------|-------|
 | TypeScript | Pending | Run during implementation. |
-| Spec validation | Pending | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract --strict` |
+| Spec validation | Pending | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

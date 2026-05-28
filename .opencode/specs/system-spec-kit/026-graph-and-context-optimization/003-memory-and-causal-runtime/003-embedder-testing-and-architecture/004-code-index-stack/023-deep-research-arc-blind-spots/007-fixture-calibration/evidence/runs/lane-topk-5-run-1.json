@@ -1604,7 +1604,7 @@
       "stderr": "",
       "top5": [
         "skills/system-spec-kit/mcp_server/startup-checks.ts",
-        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/scripts/cross-model-confirm.cjs",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs",
         "skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts",
         "skills/system-spec-kit/shared/predicates/boolean-expr.ts",
         "skills/sk-code/assets/motion_dev/playbook_entries.md"

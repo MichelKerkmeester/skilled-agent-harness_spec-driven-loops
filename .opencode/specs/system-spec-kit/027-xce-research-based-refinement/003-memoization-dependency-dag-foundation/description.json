@@ -1,17 +1,23 @@
 {
+  "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-memoization-dependency-dag-foundation",
-  "description": "Phase 1: memoization-dependency-dag-foundation",
+  "description": "Feature Specification: 003 — Memoization Dependency DAG Foundation",
   "keywords": [
-    "phase",
-    "memoization-dependency-dag-foundation"
+    "feature",
+    "specification",
+    "003",
+    "memoization",
+    "dependency",
+    "dag",
+    "foundation"
   ],
-  "lastUpdated": "2026-05-13T09:00:46.059Z",
+  "lastUpdated": "2026-05-28T08:24:15.514Z",
   "specId": "003",
   "folderSlug": "memoization-dependency-dag-foundation",
   "parentChain": [
+    "system-spec-kit",
     "027-xce-research-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,13 +1,13 @@
 ---
-title: "Checklist — Phase 007 Coco-Index Intent Steering"
-description: "Verification checklist for Phase 007: P0/P1/P2 items mapped to REQ-NNN with verification commands. Must-pass before merge."
+title: "Checklist — Phase 006 Coco-Index Intent Steering"
+description: "Verification checklist for Phase 006: P0/P1/P2 items mapped to REQ-NNN with verification commands. Must-pass before merge."
 trigger_phrases:
   - "027 phase 007 checklist"
 importance_tier: "normal"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored checklist.md"
@@ -34,7 +34,7 @@ _memory:
 | 5 | [ ] | CHK-005 | `rankingSignals` populated with `intent`, `expanded_to`, `sub_query_idx` | REQ-005 | Snapshot test on result envelope |
 | 6 | [ ] | CHK-006 | Feature flag `SPECKIT_COCOINDEX_INTENT_EXPAND=0` default off; flag-off behavior identical to today | REQ-006 | Diff test: flag-off output equals current behavior on 20-query baseline |
 | 7 | [ ] | CHK-007 | Lexical-only behavior unchanged when flag off (zero regressions) | REQ-006 | Existing coco test suite passes unchanged |
-| 8 | [ ] | CHK-008 | Strict spec validation passes for Phase 007 folder | n/a | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering --strict` exits 0 |
+| 8 | [ ] | CHK-008 | Strict spec validation passes for Phase 006 folder | n/a | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering --strict` exits 0 |
 
 ## P1 — SHOULD PASS BEFORE MERGE
 
@@ -60,8 +60,8 @@ _memory:
 | 21 | [ ] | CHK-021 | Empty-query handling: no embedding call, no expansion, empty result set | edge case | Unit test |
 | 22 | [ ] | CHK-022 | Concurrent multi-tenant queries don't share classifier/expander state | edge case | Concurrency stress test |
 | 23 | [ ] | CHK-023 | implementation-summary.md filled post-implementation (not at scaffold time) | n/a (post-impl) | Manual after Sub-Phase 4 complete |
-| 24 | [ ] | CHK-024 | Description.json children entry added to parent 027 | n/a | grep parent description.json for `007-coco-intent-steering` |
-| 25 | [ ] | CHK-025 | Phase-006 eval (when shipped) measures expansion lift on labeled task set | success metric | Phase-006 paired comparison report |
+| 24 | [ ] | CHK-024 | Description.json children entry added to parent 027 | n/a | grep parent description.json for `006-coco-intent-steering` |
+| 25 | [ ] | CHK-025 | Phase-004 eval (when shipped) measures expansion lift on labeled task set | success metric | Phase-004 paired comparison report |
 
 ---
 
@@ -70,7 +70,7 @@ _memory:
 ```bash
 # Strict spec validation
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering --strict
+  .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering --strict
 
 # Python tests (classifier, expansion, latency)
 cd .opencode/skills/mcp-coco-index && pytest tests/ -v
@@ -112,7 +112,7 @@ Pre-implementation requirements covered in `spec.md` Section 4 REQUIREMENTS + th
 <!-- ANCHOR:testing -->
 ## TESTING
 
-See P0/P1 test items above for verification commands. Coverage spans unit, integration, diff (backward-compat), and Phase-006 paired-comparison eval.
+See P0/P1 test items above for verification commands. Coverage spans unit, integration, diff (backward-compat), and Phase-004 paired-comparison eval.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -160,7 +160,7 @@ Latency budget + cost bounds verified per success metrics in `plan.md`.
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-Default-off flag is the ship-readiness gate. Active rollout requires Phase-006 eval lift evidence (when applicable).
+Default-off flag is the ship-readiness gate. Active rollout requires Phase-004 eval lift evidence (when applicable).
 <!-- /ANCHOR:deploy-ready -->
 
 <!-- ANCHOR:compliance-verify -->
@@ -178,5 +178,5 @@ Privacy, audit-ledger, governance gates per `spec.md` REQ-NNN list. No SaaS depe
 <!-- ANCHOR:sign-off -->
 ## L3+: SIGN-OFF
 
-Sign-off requires: all P0 items above checked, strict validation passing, implementation-summary.md filled with file:line evidence, and Phase-006 eval gate documented when active-mode rollout is in scope.
+Sign-off requires: all P0 items above checked, strict validation passing, implementation-summary.md filled with file:line evidence, and Phase-004 eval gate documented when active-mode rollout is in scope.
 <!-- /ANCHOR:sign-off -->

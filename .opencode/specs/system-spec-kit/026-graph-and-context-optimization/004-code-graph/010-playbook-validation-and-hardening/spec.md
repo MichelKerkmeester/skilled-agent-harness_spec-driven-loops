@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-code-graph-playbook-validation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening"
     last_updated_at: "2026-05-26T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Initialize phase-parent for the code-graph playbook validation run"
@@ -44,8 +44,8 @@ _memory:
 | **Status** | Complete — validation CONDITIONAL PASS (16/2/4); after remediation (phases 004-008) all findings fixed (F-019-1, F-025-1, F-RUNTIME-2, F-011-1, F-020-1, F-021-1, F-022-1) |
 | **Created** | 2026-05-26 |
 | **Branch** | `main` |
-| **Parent Spec** | `../spec.md` (system-spec-kit track) |
-| **Parent Packet** | system-spec-kit |
+| **Parent Spec** | `../spec.md` (004-code-graph phase parent) |
+| **Parent Packet** | system-spec-kit/026-graph-and-context-optimization/004-code-graph |
 | **Predecessor** | 027-xce-research-based-refinement |
 | **Successor** | None |
 | **Handoff Criteria** | All 22 playbook scenarios run with PASS/FAIL/SKIP + evidence; release-readiness matrix assembled in phase 003 |
@@ -127,7 +127,7 @@ This is a validation run; production code is not modified. Authored artifacts ar
 ### Phase Transition Rules
 - Each phase passes `validate.sh --strict` independently before the next begins.
 - Parent tracks aggregate progress via this map.
-- Resume a phase via `/spec_kit:resume 029-code-graph-playbook-validation/[NNN-phase]/`.
+- Resume a phase via `/spec_kit:resume 010-playbook-validation-and-hardening/[NNN-phase]/`.
 
 ### Phase Handoff Criteria
 

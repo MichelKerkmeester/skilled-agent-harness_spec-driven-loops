@@ -1,17 +1,22 @@
 {
+  "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-frontmatter-causal-edge-promoter",
-  "description": "Phase 1: frontmatter-causal-edge-promoter",
+  "description": "Feature Specification: 005 — Frontmatter Causal-Edge Promoter",
   "keywords": [
-    "phase",
-    "frontmatter-causal-edge-promoter"
+    "feature",
+    "specification",
+    "005",
+    "frontmatter",
+    "causal-edge",
+    "promoter"
   ],
-  "lastUpdated": "2026-05-13T09:00:48.530Z",
+  "lastUpdated": "2026-05-28T08:24:15.741Z",
   "specId": "005",
   "folderSlug": "frontmatter-causal-edge-promoter",
   "parentChain": [
+    "system-spec-kit",
     "027-xce-research-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

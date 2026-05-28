@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Phase C found no surviving P0 regression and no current-runtime regression, but it did find that search optimization lacks shared outcome evidence. The two P1s scope cleanly: F-001/F-020 require a search-quality harness and corpus before ranking changes, and F-004 requires an explicit query-plan contract before calibrating query intelligence.",
     "created_at": "2026-04-28T21:02:24Z",
-    "last_save_at": "2026-05-27T13:45:35.523Z",
+    "last_save_at": "2026-05-28T06:06:28.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -53,8 +53,11 @@
       "mcp_server/package.json",
       "shared/dist/embeddings/factory.js",
       "shared/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/factory-auto-resolution.vitest.ts",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix/implementation-summary.md",
+      "implementation-summary.md",
       "tasks.md",
-      "implementation-summary.md"
+      "handover.md"
     ],
     "entities": [
       {
@@ -118,15 +121,21 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix/implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "handover.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -194,17 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 008 proved why `EMBEDDINGS_PROVIDER=auto` silently degrades to the unhealthy `hf-local` fallback even though ollama is up and owns the active vector shard: `factory.ts` reads the active-embedder metadata by **shelling out to a bare `sqlite3` binary** (`querySqliteScalar` → `execFileSync('sqlite3', …)`), and that helper **returns `null` on *any* error, including `ENOENT`**. The mk-spec-memory daemon runs with a restricted GUI/MCP `PATH` that lacks `sqlite3`, so every metadata probe fails silently → `resolveActiveOllamaEmbedder()` returns null → `resolveProvider()` falls past ollama to `hf-local`. The current mitigation is an explicit `EMBEDDINGS_PROVIDER=ollama` config pin, which is non-portable.",
     "created_at": "2026-05-27T13:26:56.638Z",
-    "last_save_at": "2026-05-27T14:05:45.831Z",
+    "last_save_at": "2026-05-28T06:06:29.195Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +216,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ]
   }
 }

@@ -12,11 +12,11 @@
   "priority": "P1",
   "createdAt": "2026-05-12T00:00:00Z",
   "branch": "main",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract",
-      "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl"
+      "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract",
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
     ]
   },
   "derived": {
@@ -24,21 +24,21 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/002-lib-impl",
-  "description": "code-graph-trace.ts resolver implementation conforming to the trace contract.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/002-lib-impl",
+  "description": "Feature Specification: code_graph_trace Library Implementation",
   "keywords": [
-    "trace",
-    "resolver",
-    "code-graph",
-    "filePath"
+    "feature",
+    "specification",
+    "library",
+    "implementation"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-28T06:52:06.386Z",
   "specId": "002",
   "folderSlug": "lib-impl",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "003-code-graph-trace"
+    "028-code-graph-and-cocoindex",
+    "002-code-graph-trace"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

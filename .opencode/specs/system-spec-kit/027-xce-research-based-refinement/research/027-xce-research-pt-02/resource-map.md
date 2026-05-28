@@ -2,28 +2,7 @@
 
 ## Inputs
 
-### 027 phase specs
-
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-code-graph-hld-lld/spec.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-code-graph-hld-lld/plan.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-code-graph-hld-lld/tasks.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-code-graph-hld-lld/description.json`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-code-graph-trace/spec.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-code-graph-trace/plan.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-code-graph-trace/tasks.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-code-graph-trace/checklist.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-code-graph-trace/description.json`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-code-graph-impact-analysis/spec.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-code-graph-impact-analysis/plan.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-code-graph-impact-analysis/description.json`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-skill-advisor-first-action-mandate/spec.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-skill-advisor-first-action-mandate/description.json`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-code-graph-adoption-eval/spec.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-code-graph-adoption-eval/plan.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-code-graph-adoption-eval/checklist.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-code-graph-adoption-eval/description.json`
-
+> Code-graph + cocoindex content for this section extracted to 028/research/027-xce-research-pt-02/resource-map.md.
 ### Pass-1 artifacts
 
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/research.md`
@@ -67,32 +46,7 @@
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-based-refinement-pt-02/deltas/iter-009.jsonl`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-based-refinement-pt-02/deltas/iter-010.jsonl`
 
-### mcp_server source
-
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-db.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/structural-indexer.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/indexer-types.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/code-graph-context.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/cross-file-edge-resolver.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/context.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/handlers/query.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-indexer.vitest.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/code_graph/tests/code-graph-query-handler.vitest.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/render.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/skill-advisor-brief.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/prompt-cache.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/legacy/advisor-renderer.vitest.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/legacy/advisor-brief-producer.vitest.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/legacy/advisor-prompt-cache.vitest.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl`
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/routing-accuracy/labeled-prompts.jsonl`
-- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/api/providers.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/lib/search/graph-lifecycle.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/lib/search/local-reranker.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts`
-
+> Code-graph + cocoindex content for this section extracted to 028/research/027-xce-research-pt-02/resource-map.md.
 ### cli-opencode references
 
 - `.opencode/skills/cli-opencode/SKILL.md`
@@ -144,13 +98,7 @@
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-based-refinement-pt-02/logs/synthesis-stdout.log`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-based-refinement-pt-02/logs/synthesis-stderr.log`
 
-### Deliverables written in this synthesis
-
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-based-refinement-pt-02/research.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-based-refinement-pt-02/findings.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-based-refinement-pt-02/sub-packet-amendments.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-based-refinement-pt-02/resource-map.md`
-
+> Code-graph + cocoindex content for this section extracted to 028/research/027-xce-research-pt-02/resource-map.md.
 ## External References
 
 - None. This pass used internal files only.

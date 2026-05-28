@@ -166,7 +166,7 @@
     ],
     "causal_summary": "Implement the converged pt-01 + pt-02 External Project research recommendations as a 6-sub-phase Level 3 implementation packet. pt-02 cross-checked pt-01 with an independent executor (cli-codex gpt-5.5 high fast) and reached the same core conclusions: External Project is **architectural evidence**, not a source transplant; Code Graph / Memory / Skill Advisor stay **separately owned**; route/tool/shape work is **deferred** until Public has the substrate.",
     "created_at": "2026-04-25T10:47:55.572Z",
-    "last_save_at": "2026-05-27T13:45:36.900Z",
+    "last_save_at": "2026-05-28T06:06:29.456Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

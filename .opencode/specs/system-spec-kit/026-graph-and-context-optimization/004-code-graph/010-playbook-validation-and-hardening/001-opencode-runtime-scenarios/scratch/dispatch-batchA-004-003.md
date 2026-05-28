@@ -4,7 +4,7 @@ ROLE: You are a validation operator for the `mk-code-index` code-graph MCP runti
 CONTEXT:
 - Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 - You run inside OpenCode with the full project MCP runtime. Stable tool IDs: `code_graph_scan`, `code_graph_query`, `code_graph_status`.
-- Spec folder: .opencode/specs/system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
+- Spec folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
 - These are playbook scenarios 004 (full scan + baseline) and 003 (incremental scan) — both run in a DISPOSABLE workspace.
 - SAFETY (critical): All scans target a temp `$WORK` dir, NOT the repo. After the first scan, confirm the payload's indexed root/scope reflects `$WORK`. If the scan instead indexed the live repo (e.g. scope fingerprint references repo paths, or totalFiles reflects the whole repo), STOP immediately, mark BOTH scenarios SKIP with reason "ROOTDIR_NOT_HONORED — aborted to avoid live-repo side effects", and do not mutate anything.
 

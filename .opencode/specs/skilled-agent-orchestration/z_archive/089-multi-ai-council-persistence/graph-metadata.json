@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Packet 080 introduced the `ai-council/` subfolder convention but the agent retains `write: deny` per its planning-only invariant — actual persistence requires an orchestrator. Packet 080's 10-iteration deep-research (research.md §7) produced a concrete P0 scope: ship a persistence helper, document a normative caller protocol (§17), promote §8 OUTPUT FORMAT to a shared schema artifact, add fixture-driven tests, harden the validator regression test, and add 4-runtime mirror parity testing. This packet delivers all six items while preserving ADR-001's lightweight bound (no dedicated skill folder).",
     "created_at": "2026-05-06T17:06:24Z",
-    "last_save_at": "2026-05-27T13:45:35.385Z",
+    "last_save_at": "2026-05-28T06:06:28.160Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

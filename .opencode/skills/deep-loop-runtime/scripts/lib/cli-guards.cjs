@@ -24,13 +24,19 @@ const DEFAULT_WRITER_LOCK_RETRY_INTERVAL_MS = 25;
 
 function findRepoRoot(startDir) {
   let current = path.resolve(startDir);
+  let opencodeMatch = null;
   while (current !== path.dirname(current)) {
-    if (fs.existsSync(path.join(current, '.opencode'))) {
+    // `.git` is the unambiguous repo-root marker; prefer it so nested `.opencode`
+    // sandbox/residue dirs under skills/** cannot short-circuit detection.
+    if (fs.existsSync(path.join(current, '.git'))) {
       return current;
+    }
+    if (opencodeMatch === null && fs.existsSync(path.join(current, '.opencode'))) {
+      opencodeMatch = current;
     }
     current = path.dirname(current);
   }
-  return path.resolve(startDir, '..', '..', '..', '..', '..');
+  return opencodeMatch || path.resolve(startDir, '..', '..', '..', '..', '..');
 }
 
 const REPO_ROOT = findRepoRoot(__dirname);

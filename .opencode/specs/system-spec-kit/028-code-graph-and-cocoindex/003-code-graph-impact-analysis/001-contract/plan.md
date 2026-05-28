@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Created Level 2 scaffold for 001-contract"
@@ -49,7 +49,7 @@ This child publishes the contract that the implementation, handler, and tests wi
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 002 contract availability checked.
+- [ ] Phase 001 contract availability checked.
 - [ ] Risk-signal names aligned with parent phase.
 
 ### Definition of Done
@@ -85,7 +85,7 @@ MCP handler input validates into the contract; library output conforms to the sa
 - [ ] Draft risk-signal and coverage-evidence types.
 
 ### Phase 2: Dependency Alignment
-- [ ] Map optional Phase 002 layer fields to unavailable/null semantics.
+- [ ] Map optional Phase 001 layer fields to unavailable/null semantics.
 - [ ] Confirm no boolean-only enrichment option exists.
 
 ### Phase 3: Verification

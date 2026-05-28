@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Our review/research skills (sk-code-review, deep-review, deep-research) lack a runtime guard against review-of-review recursion. If a malformed iteration ever causes `deep-review` to dispatch another `deep-review` (e.g. via a shell command misconfiguration), or `sk-code-review` to be invoked on its own output, the result is wasted compute and potentially infinite loops. Current defense is contract-only (\"this skill is LEAF\") — no runtime check.",
     "created_at": "2026-05-16T07:00:00Z",
-    "last_save_at": "2026-05-27T13:45:34.757Z",
+    "last_save_at": "2026-05-28T06:06:27.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

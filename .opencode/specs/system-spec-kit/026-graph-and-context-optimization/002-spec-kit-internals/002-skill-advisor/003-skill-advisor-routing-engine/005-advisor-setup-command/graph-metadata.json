@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The skill advisor scoring system (explicit lane TOKEN_BOOSTS, PHRASE_BOOSTS, lexical CATEGORY_HINTS, graph-metadata.json derived triggers/keywords) is manually maintained with no guided setup workflow. Users have no command to analyze their repo's skills, detect coverage gaps, and apply optimized keywords, weights, and triggers. The existing plan for a \"SET-UP - Skill Advisor.md\" install guide exists only as a reference path but has no command backing it.",
     "created_at": "2026-04-25T14:30:00Z",
-    "last_save_at": "2026-05-27T13:45:35.915Z",
+    "last_save_at": "2026-05-28T06:06:28.599Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

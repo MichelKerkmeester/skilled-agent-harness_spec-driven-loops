@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The sk-doc template alignment audit on the last 40 commits scanned 384 documentation files and surfaced **93 MISALIGN-HIGH + 177 MISALIGN-MEDIUM**. Most findings are pre-existing legacy debt: spec folders authored under earlier sk-doc template versions that never got upgraded to current frontmatter / anchor / template-source-marker requirements.",
     "created_at": "2026-04-29T11:05:00.000Z",
-    "last_save_at": "2026-05-27T13:45:35.536Z",
+    "last_save_at": "2026-05-28T06:06:28.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

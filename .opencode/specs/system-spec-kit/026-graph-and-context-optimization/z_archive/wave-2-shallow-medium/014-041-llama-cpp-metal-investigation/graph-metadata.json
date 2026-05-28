@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Every observed llama-cpp embedding call emits Metal-related stderr before falling back to CPU behavior. Correctness still works in the observed provider path, but the warning noise repeats and CPU embeddings are materially slower than the expected Metal path.",
     "created_at": "2026-05-14T15:18:02Z",
-    "last_save_at": "2026-05-27T13:45:36.876Z",
+    "last_save_at": "2026-05-28T06:06:29.430Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

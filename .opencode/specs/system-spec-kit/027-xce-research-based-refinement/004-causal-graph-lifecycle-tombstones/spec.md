@@ -1,5 +1,5 @@
 ---
-title: "Causal graph lifecycle tombstones"
+title: "004 — Causal Graph Lifecycle Tombstones"
 description: "Add lifecycle cleanup for causal edges by routing every delete path through a tombstone-producing sweep helper. Active edges remain hard-deleted for query simplicity, while tombstone audit rows preserve restoration and debugging context."
 trigger_phrases:
   - "causal edge tombstones"
@@ -32,7 +32,7 @@ _memory:
       - "hard-delete active edges"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Causal graph lifecycle tombstones
+# Feature Specification: 004 — Causal Graph Lifecycle Tombstones
 
 <!-- SPECKIT_LEVEL: 1 -->
 

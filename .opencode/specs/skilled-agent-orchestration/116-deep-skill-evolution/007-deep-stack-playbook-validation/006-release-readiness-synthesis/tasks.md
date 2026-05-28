@@ -4,12 +4,12 @@ description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "deep-loop synthesis tasks"
   - "deep loop release readiness tasks"
-  - "030 phase 006 tasks"
+  - "007 phase 006 tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/006-release-readiness-synthesis"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Author phase 006 task list"

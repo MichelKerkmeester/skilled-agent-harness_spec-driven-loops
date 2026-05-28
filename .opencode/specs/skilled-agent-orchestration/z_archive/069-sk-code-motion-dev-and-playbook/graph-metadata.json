@@ -99,7 +99,7 @@
     ],
     "causal_summary": "Motion.dev is currently referenced informally inside `sk-code/references/webflow/` (10 docs mention it) as a Webflow-specific animation library, even though the actual library is stack-agnostic and could be used in any future build (non-Webflow stacks: opencode tooling, future React/Next.js sites, electron apps, etc.). The dedicated `references/motion_dev/` and `assets/motion_dev/` folders exist but are EMPTY. Meanwhile, the existing `sk-code/manual_testing_playbook/` covers sk-code's surface routing (4 categories, 10 scenarios) but lacks motion.dev-specific scenarios, animation regression checks, and cross-browser/performance gates that operators need when validating animation-heavy work — and its alignment with the canonical sk-doc playbook standards (per `sk-doc/references/specific/manual_testing_playbook_creation.md`) needs reaffirmation.",
     "created_at": "2026-05-05T07:30:00Z",
-    "last_save_at": "2026-05-27T13:45:35.274Z",
+    "last_save_at": "2026-05-28T06:06:28.047Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T12:00:00Z",
     "source_docs": [

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`. Phase 001 found Phase 005 references in root-level documentation/config areas, and the user constrained this execution to the listed repo-root files plus this phase folder.",
     "created_at": "2026-05-05T19:30:00Z",
-    "last_save_at": "2026-05-27T13:45:35.298Z",
+    "last_save_at": "2026-05-28T06:06:28.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T19:45:00Z",
     "source_docs": [

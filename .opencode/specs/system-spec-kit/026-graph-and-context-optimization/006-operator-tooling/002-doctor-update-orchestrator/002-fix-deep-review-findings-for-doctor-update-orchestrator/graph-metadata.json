@@ -197,7 +197,7 @@
     ],
     "causal_summary": "This is **Phase 3** of `010-doctor-update-orchestrator`. The 10-iteration deep-review (commit `8d794afad`, 2026-05-11) emitted a **CONDITIONAL** verdict with 0 P0, 30 P1, and 30 P2 findings against the 013 phase parent + 001 + 002. This packet closes those findings out.",
     "created_at": "2026-05-11T08:32:25Z",
-    "last_save_at": "2026-05-27T13:45:36.818Z",
+    "last_save_at": "2026-05-28T06:06:29.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

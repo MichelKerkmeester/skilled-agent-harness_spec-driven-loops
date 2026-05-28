@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Packet `030-opencode-graph-plugin` started as research plus a packet scaffold, then converged into six completed runtime phases: shared payload/provenance contracts, OpenCode transport surfacing, graph-operations hardening, cross-runtime startup parity, bounded code-graph auto-reindex parity, and Copilot startup-hook wiring. The remaining packet responsibility is to keep those shipped surfaces documented truthfully without reopening broader memory-durability work.",
     "created_at": "2026-04-12T09:02:53.435Z",
-    "last_save_at": "2026-05-27T13:45:37.594Z",
+    "last_save_at": "2026-05-28T06:06:30.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

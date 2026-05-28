@@ -4,12 +4,12 @@ description: "Author the cross-AI dispatch runbook and aggregate the five per-sk
 trigger_phrases:
   - "deep-loop release readiness synthesis"
   - "deep loop playbook dispatch runbook"
-  - "030 phase 006 synthesis"
+  - "007 phase 006 synthesis"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/006-release-readiness-synthesis"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Author dispatch runbook + release-readiness matrix skeleton"

@@ -3,7 +3,7 @@ ROLE: You are a SWE-1.6 build-and-hook validation worker. You verify and report 
 
 CONTEXT:
 - Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-- Spec folder: .opencode/specs/system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios (pre-approved, skip Gate 3).
+- Spec folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios (pre-approved, skip Gate 3).
 - Scenario 021: clean code-graph build must not recreate root-level dist. Scenario 025: Devin SessionStart hook emits kind=startup structural-context, fails open, respects disable env var.
 
 ACTION (ordered; each step has acceptance):

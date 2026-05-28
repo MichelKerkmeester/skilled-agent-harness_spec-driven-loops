@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded Level 2 child packet"
@@ -42,9 +42,9 @@ _memory:
 | **Created** | 2026-05-12 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras` |
 | **Track** | A: Coco Exemplars |
-| **Depends On** | `system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork` |
+| **Depends On** | `system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -122,7 +122,7 @@ Define the exemplar schema and migration plan for `cocoindex_code/exemplars/exam
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 001 complete CocoIndex fork | Exemplar schema path may not exist yet | Keep this child blocked until Phase 001 lands |
+| Dependency | Phase 005 complete CocoIndex fork | Exemplar schema path may not exist yet | Keep this child blocked until Phase 005 lands |
 | Risk | vec0 schema mismatch | Migration fails at runtime | Mirror existing vector dimension constants and cover with tests |
 | Risk | Feedback comments leak into exemplar rows | Privacy violation | Schema omits comment fields and test greps row shape |
 <!-- /ANCHOR:risks -->
@@ -186,5 +186,5 @@ Define the exemplar schema and migration plan for `cocoindex_code/exemplars/exam
 
 ## 10. OPEN QUESTIONS
 
-- None for scaffolding. Implementation should confirm the final embedding dimension source from the Phase 001 fork.
+- None for scaffolding. Implementation should confirm the final embedding dimension source from the Phase 005 fork.
 <!-- /ANCHOR:questions -->

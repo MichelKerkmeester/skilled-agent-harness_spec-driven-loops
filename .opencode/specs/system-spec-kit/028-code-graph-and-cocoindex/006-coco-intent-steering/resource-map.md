@@ -1,6 +1,6 @@
 ---
-title: "Resource Map — Phase 007 Coco-Index Intent Steering"
-description: "File inventory for Phase 007: scope is per-child (this phase only). Spans coco-index Python + skill_advisor TypeScript + tests + ENV/SKILL docs. ~15 files total."
+title: "Resource Map — Phase 006 Coco-Index Intent Steering"
+description: "File inventory for Phase 006: scope is per-child (this phase only). Spans coco-index Python + skill_advisor TypeScript + tests + ENV/SKILL docs. ~15 files total."
 trigger_phrases:
   - "027 phase 007 resource map"
   - "coco intent steering files"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored per-child resource map"
@@ -26,7 +26,7 @@ _memory:
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-This is a **per-child resource map** for Phase 007. Pt-03 already produced an aggregate map at `../research/027-xce-research-pt-03/resource-map.md` covering the full scope of the research pass. This file narrows to the files Phase 007 specifically touches during scaffolding + planned implementation.
+This is a **per-child resource map** for Phase 006. Pt-03 already produced an aggregate map at `../research/027-xce-research-pt-03/resource-map.md` covering the full scope of the research pass. This file narrows to the files Phase 006 specifically touches during scaffolding + planned implementation.
 <!-- /ANCHOR:when-to-use -->
 
 ---
@@ -37,7 +37,7 @@ This is a **per-child resource map** for Phase 007. Pt-03 already produced an ag
 - **Total references**: 17
 - **By category**: READMEs=2, Documents=3, Specs=8, Scripts=10, Tests=4, Config=2
 - **Missing on disk**: 0 (all references exist or are PLANNED-create)
-- **Scope**: Per-child — files Phase 007 reads, modifies, creates, or cites during scaffolding + Sub-Phases 1-4 implementation.
+- **Scope**: Per-child — files Phase 006 reads, modifies, creates, or cites during scaffolding + Sub-Phases 1-4 implementation.
 - **Generated**: 2026-05-09T11:00:00Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Cited` · `Validated`.
@@ -76,14 +76,14 @@ This is a **per-child resource map** for Phase 007. Pt-03 already produced an ag
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `007-coco-intent-steering/spec.md` | Created | OK | This packet |
-| `007-coco-intent-steering/plan.md` | Created | OK | This packet |
-| `007-coco-intent-steering/tasks.md` | Created | OK | This packet |
-| `007-coco-intent-steering/checklist.md` | Created | OK | This packet |
-| `007-coco-intent-steering/decision-record.md` | Created | OK | This packet |
-| `007-coco-intent-steering/implementation-summary.md` | Created | OK | Placeholder; filled post-impl |
-| `007-coco-intent-steering/description.json` | Created | OK | Spec-folder metadata |
-| `007-coco-intent-steering/graph-metadata.json` | Created | OK | Graph metadata |
+| `006-coco-intent-steering/spec.md` | Created | OK | This packet |
+| `006-coco-intent-steering/plan.md` | Created | OK | This packet |
+| `006-coco-intent-steering/tasks.md` | Created | OK | This packet |
+| `006-coco-intent-steering/checklist.md` | Created | OK | This packet |
+| `006-coco-intent-steering/decision-record.md` | Created | OK | This packet |
+| `006-coco-intent-steering/implementation-summary.md` | Created | OK | Placeholder; filled post-impl |
+| `006-coco-intent-steering/description.json` | Created | OK | Spec-folder metadata |
+| `006-coco-intent-steering/graph-metadata.json` | Created | OK | Graph metadata |
 <!-- /ANCHOR:specs -->
 
 ---
@@ -139,7 +139,7 @@ This is a **per-child resource map** for Phase 007. Pt-03 already produced an ag
 <!-- ANCHOR:author-notes -->
 ## Author Notes
 
-- **Per-child scope** — pt-03's aggregate resource map (`../research/027-xce-research-pt-03/resource-map.md`) covers the broader context; this file is narrowed to Phase 007's specific touch set.
+- **Per-child scope** — pt-03's aggregate resource map (`../research/027-xce-research-pt-03/resource-map.md`) covers the broader context; this file is narrowed to Phase 006's specific touch set.
 - **Categories omitted (zero entries)**: Commands, Agents, Skills, Meta. Skill itself is in §READMEs (mcp-coco-index/SKILL.md). No agent/command-surface changes for this phase.
 - **PLANNED entries** become OK when the file is created during implementation; Status field gets updated as Sub-Phases 1-4 land.
 - **Soft dep on Phase 005** — `render.ts` is shared with Phase 005 work; coordination via standalone-fallback flag (REQ-009).

@@ -1,14 +1,14 @@
 ---
-title: "Plan: CP copilot → opencode Executor Swap (030 Phase 009)"
+title: "Plan: CP copilot → opencode Executor Swap (007 Phase 009)"
 description: "Fix plan for swapping 18 copilot CP scenarios to opencode deepseek-direct, restoring the pruned fixture, and re-running."
 trigger_phrases:
   - "cp copilot opencode swap plan"
-  - "030 phase 009 plan"
+  - "007 phase 009 plan"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/009-cp-copilot-to-opencode-swap"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "18 CP re-run via opencode/deepseek - 13 PASS 5 PARTIAL 0 FAIL"
@@ -23,7 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Plan: CP copilot → opencode Executor Swap (030 Phase 009)
+# Plan: CP copilot → opencode Executor Swap (007 Phase 009)
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -39,10 +39,10 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown playbook scenarios + shell command blocks |
 | **Surface** | deep-review / deep-research / deep-agent-improvement manual_testing_playbook |
-| **Scope** | 18 scenario files (30 invocations) + 1 fixture restore + 030 ledger/matrix reconcile |
+| **Scope** | 18 scenario files (30 invocations) + 1 fixture restore + 007 ledger/matrix reconcile |
 
 ### Overview
-Swap the copilot executor for `opencode run` (deepseek-v4-pro via direct DeepSeek API) in the 18 copilot-driven CP stress scenarios, restore the pruned `060-stress-test` fixture from git, re-run all 18, orchestrator-verify, and flip the 030 SKIPs + matrix.
+Swap the copilot executor for `opencode run` (deepseek-v4-pro via direct DeepSeek API) in the 18 copilot-driven CP stress scenarios, restore the pruned `060-stress-test` fixture from git, re-run all 18, orchestrator-verify, and flip the 007 SKIPs + matrix.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -57,7 +57,7 @@ Swap the copilot executor for `opencode run` (deepseek-v4-pro via direct DeepSee
 ### Definition of Done
 - [x] Zero `copilot -p` remain in the 3 CP categories
 - [x] All 18 re-run via opencode with orchestrator-verified verdicts
-- [x] 030 ledgers + matrix reconciled; validate --strict green
+- [x] 007 ledgers + matrix reconciled; validate --strict green
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -88,7 +88,7 @@ Executor-host swap only. `copilot -p "<P>" --model gpt-5.5 --allow-all-tools --n
 
 ### Phase 3: Verification
 - [x] Re-run all 18 via opencode; orchestrator-verify artifacts + tripwire
-- [x] Flip 030 child ledger SKIPs; re-tally matrix; validate --strict
+- [x] Flip 007 child ledger SKIPs; re-tally matrix; validate --strict
 <!-- /ANCHOR:phases -->
 
 ---

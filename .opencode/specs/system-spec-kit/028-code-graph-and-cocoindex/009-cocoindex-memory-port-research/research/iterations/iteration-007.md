@@ -10,7 +10,7 @@ K2.1 asks where the visible MCP tool prefix comes from in names like `mcp__mk_sp
 
 ## Actions Taken
 
-- Surveyed `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/python/cocoindex/` for retrieval, query, search, router, rank, and fuse modules.
+- Surveyed `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/python/cocoindex/` for retrieval, query, search, router, rank, and fuse modules.
 - Read `python/cocoindex/query_handler.py`, `connectorkits/statediff.py`, and representative backend connector targets for Postgres and Qdrant.
 - Read our current `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts` and `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`.
 - Read project MCP configs for Claude Code, OpenCode, Codex, and Gemini: `.claude/mcp.json`, `opencode.json`, `.codex/config.toml`, and `.gemini/settings.json`.

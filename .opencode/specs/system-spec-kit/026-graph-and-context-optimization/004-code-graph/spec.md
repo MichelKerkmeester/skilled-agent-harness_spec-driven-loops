@@ -95,6 +95,7 @@ Own navigation, the child-phase map, and aggregate status for this theme. Each c
 | 007 | `007-docs-and-readmes/` | Doctor diagnostic phase-a, READMEs, doc-drift alignment, cross-skill and reference-template polish | complete |
 | 008 | `008-real-world-usefulness-test-planning/` | Real-world usefulness test planning (nested phase parent) | complete |
 | 009 | `009-system-code-graph-uplift-phase-parent/` | system-code-graph uplift (nested phase parent) | complete |
+| 010 | `010-playbook-validation-and-hardening/` | Code-graph manual-testing playbook validation (22 scenarios) + remediation/hardening | complete |
 
 ### Phase Transition Rules
 

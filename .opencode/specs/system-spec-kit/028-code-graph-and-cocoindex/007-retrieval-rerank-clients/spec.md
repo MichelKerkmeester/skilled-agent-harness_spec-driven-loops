@@ -1,6 +1,6 @@
 ---
-title: "Phase 010 — Retrieval Rerank Clients (Shared RerankClient + EmbeddingCacheClient Interfaces)"
-description: "ADAPT pt-03 RQ-B5 client extraction: extract shared `RerankClient<T>` from memory's cross-encoder.ts so memory backend + coco-index share provider/cache/circuit-breaker semantics. The Coco adapter path depends on Phase 001's complete CocoIndex MCP fork; memory-only interface extraction can be reasoned about independently. Define `EmbeddingCacheClient` interface (memory adapter only — Coco adapter deferred). Cross-backend hit-rate overlap telemetry. SKIP shared indexing pipelines (binding boundary). ~250-420 prod LOC + ~120-220 tests."
+title: "007 — Retrieval Rerank Clients (Shared RerankClient + EmbeddingCacheClient Interfaces)"
+description: "ADAPT pt-03 RQ-B5 client extraction: extract shared `RerankClient<T>` from memory's cross-encoder.ts so memory backend + coco-index share provider/cache/circuit-breaker semantics. The Coco adapter path depends on Phase 005's complete CocoIndex MCP fork; memory-only interface extraction can be reasoned about independently. Define `EmbeddingCacheClient` interface (memory adapter only — Coco adapter deferred). Cross-backend hit-rate overlap telemetry. SKIP shared indexing pipelines (binding boundary). ~250-420 prod LOC + ~120-220 tests."
 trigger_phrases:
   - "027 phase 010"
   - "retrieval rerank clients"
@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded 027/010 from pt-03 RQ-B5"
@@ -31,7 +31,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Retrieval Rerank Clients (Shared Interfaces)
+# Feature Specification: 007 — Retrieval Rerank Clients (Shared RerankClient + EmbeddingCacheClient Interfaces)
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -71,9 +71,9 @@ Pt-03 RQ-B5 (verdict ADAPT clients / DEFER shared store / SKIP shared indexers, 
 | **Level** | **3** (architectural extraction with downstream-consumer impact; abstraction-boundary risk; provider abstraction semantics; designed for future fusion consumer; see `decision-record.md` ADR-001) |
 | **Priority** | P1 (foundation for future RQ-A5 fusion + reduces duplicate provider plumbing) |
 | **Status** | Spec-Scaffolded |
-| **Parent Packet** | `027-xce-research-based-refinement` |
+| **Parent Packet** | `028-code-graph-and-cocoindex` |
 | **Source** | `../research/027-xce-research-pt-03/research.md` §RQ-B5; `../research/027-xce-research-pt-03/iterations/iteration-010.md` |
-| **Depends on** | `027/001-cocoindex-complete-fork` for the Coco adapter path; existing `mcp_server/lib/search/cross-encoder.ts` for memory extraction |
+| **Depends on** | `028/005-cocoindex-complete-fork` for the Coco adapter path; existing `mcp_server/lib/search/cross-encoder.ts` for memory extraction |
 | **LOC budget** | ~250-420 production + ~120-220 tests |
 <!-- /ANCHOR:metadata -->
 
@@ -121,7 +121,7 @@ CocoIndex has none of this — it relies on path-class rerank only (`query.py:17
 - Memory provider behavior unchanged — same Voyage/Cohere/local config; same caching; same circuit breaker.
 
 **Sub-Phase 3 — Coco Rerank Adapter (~70-110 LOC + tests)**
-- Requires Phase 001 to be complete before modifying the local `mcp-coco-index` package.
+- Requires Phase 005 to be complete before modifying the local `mcp-coco-index` package.
 - Decision pending (open question): Python adapter vs TS bridge.
   - **Python option:** New `mcp-coco-index/mcp_server/cocoindex_code/rerank_adapter.py` — converts `QueryResult` ↔ rerank document; calls Voyage Rerank API directly via existing CocoIndex provider patterns; reuses provider config from shared interface contract.
   - **TS bridge option:** New TS module that Coco IPC consumes via existing socket protocol.
@@ -203,7 +203,7 @@ CocoIndex has none of this — it relies on path-class rerank only (`query.py:17
 <!-- ANCHOR:success -->
 ## 6. SUCCESS CRITERIA
 
-- Phase 010 strict-validates.
+- Phase 007 strict-validates.
 - Memory rerank behavior bit-identical pre/post extraction (REQ-002 diff test).
 - Coco standalone behavior bit-identical when flag off (REQ-012 diff test).
 - Interface contract tests reject abstraction-boundary violations (REQ-013).
@@ -257,7 +257,7 @@ See section 5 above ("Edge Cases") for the comprehensive case-by-case list.
 
 ## COMPLEXITY ASSESSMENT
 
-L3 designation rationale is in `decision-record.md` ADR-001. Cross-component change with feature-flag governance, telemetry contract, and Phase-006 eval gate.
+L3 designation rationale is in `decision-record.md` ADR-001. Cross-component change with feature-flag governance, telemetry contract, and Phase-004 eval gate.
 
 ## RISK MATRIX
 
@@ -267,7 +267,7 @@ See section 7 above + `plan.md` Risk Matrix for the full register with severity,
 
 - **US-001**: As an operator, I can enable the feature via the designated env flag (default off).
 - **US-002**: As a developer, I can observe feature decisions via telemetry signals (rankingSignals or eval logger events).
-- **US-003**: As a Phase-006 evaluator, I can compare baseline (flag-off) vs treatment (flag-on) on the labeled task set with paired comparison metrics.
+- **US-003**: As a Phase-004 evaluator, I can compare baseline (flag-off) vs treatment (flag-on) on the labeled task set with paired comparison metrics.
 
 ## OPEN QUESTIONS
 

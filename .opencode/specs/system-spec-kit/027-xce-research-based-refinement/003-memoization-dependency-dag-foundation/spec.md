@@ -1,5 +1,5 @@
 ---
-title: "Memoization dependency DAG foundation"
+title: "003 — Memoization Dependency DAG Foundation"
 description: "Introduce canonical-input memoization, dependency edges, and chunk-level fingerprints for incremental Spec Kit Memory indexing. The goal is to skip unchanged derived work and re-embed only changed document chunks instead of whole files."
 trigger_phrases:
   - "memoization dependency dag"
@@ -32,7 +32,7 @@ _memory:
       - "tree-sitter deferred"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Memoization dependency DAG foundation
+# Feature Specification: 003 — Memoization Dependency DAG Foundation
 
 <!-- SPECKIT_LEVEL: 1 -->
 

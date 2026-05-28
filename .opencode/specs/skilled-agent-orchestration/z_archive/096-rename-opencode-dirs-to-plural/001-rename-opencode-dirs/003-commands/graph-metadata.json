@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Rename `.opencode/commands/` → `.opencode/commands/` (69 files across 6 subdirs moved). Update 1,811 reference-bearing files. Patch 3 critical files.",
     "created_at": "2026-05-18T07:49:27.234Z",
-    "last_save_at": "2026-05-27T13:45:35.409Z",
+    "last_save_at": "2026-05-28T06:06:28.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

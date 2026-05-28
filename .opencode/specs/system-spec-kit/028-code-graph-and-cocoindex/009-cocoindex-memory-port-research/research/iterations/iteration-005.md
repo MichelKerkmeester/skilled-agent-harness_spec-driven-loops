@@ -8,7 +8,7 @@ Verdict preview: yes with adaptation. The repo already has a partial chunking pa
 
 ## Actions Taken
 
-- Read CocoIndex's code embedding example at `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/examples/code_embedding/main.py`.
+- Read CocoIndex's code embedding example at `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/examples/code_embedding/main.py`.
 - Read CocoIndex splitter and chunk resource APIs in `python/cocoindex/ops/text.py` and `python/cocoindex/resources/chunk.py`.
 - Read CocoIndex stable ID helpers in `python/cocoindex/resources/id.py`.
 - Read our parser, schema, save embedding pipeline, memory save chunk gate, chunking orchestrator, anchor chunker, and hybrid-search aggregation paths.

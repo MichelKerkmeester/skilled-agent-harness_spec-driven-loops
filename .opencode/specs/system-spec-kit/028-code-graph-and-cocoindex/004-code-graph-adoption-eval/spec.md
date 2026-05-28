@@ -1,5 +1,5 @@
 ---
-title: "Phase Parent: Code Graph Adoption Evaluation Harness"
+title: "004 — Code Graph Adoption Evaluation Harness"
 description: "Phase parent for the code-graph adoption evaluation harness: bootstrap the orchestrator, then deliver token measurement, fixtures, reporting, and stress integration as child packets."
 trigger_phrases:
   - "027 phase 006"
@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Refactored populated packet into a phase parent with five child packets"
@@ -28,7 +28,7 @@ _memory:
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: phase-parent.spec.md | v2.2 -->
 
-# Feature Specification: Code Graph Adoption Evaluation Harness
+# Feature Specification: 004 — Code Graph Adoption Evaluation Harness
 
 <!-- SPECKIT_LEVEL: phase-parent -->
 
@@ -41,16 +41,16 @@ _memory:
 | **Created** | 2026-05-08 |
 | **Reshaped** | 2026-05-12 |
 | **Phase Count** | 5 |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement` |
-| **Depends On** | `027/002-code-graph-hld-lld`, `027/003-code-graph-trace`, `027/004-code-graph-impact-analysis` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex` |
+| **Depends On** | `028/001-code-graph-hld-lld`, `028/002-code-graph-trace`, `028/003-code-graph-impact-analysis` |
 | **Last Active Child** | None |
 
 ## 2. Purpose
 
 > **pt-04 audit note (2026-05-11)**: Two updates per user decision.
 >
-> 1. **Independent variable changed**: Phase 005 was cancelled (folded into 103/003); the "after" condition is now the combined effect of the new code_graph tools (HLD/LLD from 002, trace from 003, impact-analysis from 004) **plus** the 103/003 first-action wording (if shipped before this harness runs). The harness can also run in pure code-graph-tools mode (without 103/003) to isolate tool effect.
-> 2. **Dependency labels fixed**: prior text listed `027/003-code-graph-hld-lld, 027/004-code-graph-trace, 027/005-code-graph-impact-analysis, 027/006-skill-advisor-first-action-mandate` -- all using the pre-renumbering IDs. Real deps are 027/002 (HLD/LLD), 027/003 (trace), 027/004 (impact-analysis), and 103/003 (first-action wording, optional).
+> 1. **Independent variable changed**: the cancelled skill-advisor first-action mandate was folded into 103/003; the "after" condition is now the combined effect of the new code_graph tools (HLD/LLD from 001, trace from 002, impact-analysis from 003) **plus** the 103/003 first-action wording (if shipped before this harness runs). The harness can also run in pure code-graph-tools mode (without 103/003) to isolate tool effect.
+> 2. **Dependencies (current 028 numbering)**: 001-code-graph-hld-lld (HLD/LLD), 002-code-graph-trace (trace), 003-code-graph-impact-analysis (impact-analysis), and 103/003 (first-action wording, optional).
 >
 > The XCE-style productivity-measurement scope is **KEPT** (per pt-04 user decision -- measure file-reads-avoided + token reduction, not just readiness validation). See `../research/027-xce-research-pt-04/research.md` section 5 re-prioritization and section 6 open questions Q4.
 

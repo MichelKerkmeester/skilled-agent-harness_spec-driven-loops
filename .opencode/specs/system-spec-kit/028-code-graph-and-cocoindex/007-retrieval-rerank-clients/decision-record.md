@@ -1,13 +1,13 @@
 ---
-title: "Decision Record — Phase 010 Retrieval Rerank Clients"
-description: "ADRs for Phase 010: L3 designation, extract vs duplicate, why interface but not shared store, abstraction boundary, why Coco adapter deferred, circuit-breaker contract."
+title: "Decision Record — Phase 007 Retrieval Rerank Clients"
+description: "ADRs for Phase 007: L3 designation, extract vs duplicate, why interface but not shared store, abstraction boundary, why Coco adapter deferred, circuit-breaker contract."
 trigger_phrases:
   - "027 phase 010 ADRs"
 importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored decision-record.md"
@@ -17,7 +17,7 @@ _memory:
     completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.0 -->
-# Architectural Decision Records: Phase 010 Retrieval Rerank Clients
+# Architectural Decision Records: Phase 007 Retrieval Rerank Clients
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -28,7 +28,7 @@ _memory:
 **Status:** Accepted
 **Date:** 2026-05-09
 
-**Decision:** Designate Phase 010 as Level 3.
+**Decision:** Designate Phase 007 as Level 3.
 
 **Rationale:**
 - **Architectural extraction with downstream-consumer impact** — `RerankClient<T>` becomes a foundational interface that future packets (RQ-A5 fusion) will compose.
@@ -132,7 +132,7 @@ Shared client surface MUST NOT know:
 **Status:** Accepted
 **Date:** 2026-05-09
 
-**Decision:** Memory adapter for `EmbeddingCacheClient` ships in Phase 010. Coco adapter is DEFERRED.
+**Decision:** Memory adapter for `EmbeddingCacheClient` ships in Phase 007. Coco adapter is DEFERRED.
 
 **Rationale:**
 - **Cross-runtime Python/TS bridge not yet justified** — would require CocoIndex IPC into TS cache or a second Python implementation.
@@ -198,13 +198,13 @@ Shared client surface MUST NOT know:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Pt-03 verdict for this phase recommends Level 3 designation. After the Phase 001 complete-fork insertion, the 5 pt-03 phase children are numbered 007-011. The user's scaffolding directive elevates all 5 to Level 3 regardless of pt-03's per-phase L2/L3 suggestion, citing the cross-component nature of every recommendation and the governance discipline (feature flags, telemetry contracts, Phase-006 eval gates) that L3 enforces.
+Pt-03 verdict for this phase recommends Level 3 designation. After the Phase 005 complete-fork insertion, the 5 pt-03 phase children are numbered 007-011. The user's scaffolding directive elevates all 5 to Level 3 regardless of pt-03's per-phase L2/L3 suggestion, citing the cross-component nature of every recommendation and the governance discipline (feature flags, telemetry contracts, Phase-004 eval gates) that L3 enforces.
 <!-- /ANCHOR:adr-001-context -->
 
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-Designate Phase 010 as **Level 3**. Apply full L3 file contract: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, description.json, graph-metadata.json, plus per-child resource-map.md per user directive.
+Designate Phase 007 as **Level 3**. Apply full L3 file contract: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, description.json, graph-metadata.json, plus per-child resource-map.md per user directive.
 <!-- /ANCHOR:adr-001-decision -->
 
 <!-- ANCHOR:adr-001-alternatives -->
@@ -222,8 +222,8 @@ Designate Phase 010 as **Level 3**. Apply full L3 file contract: spec.md, plan.m
 - resource-map.md mandatory per user directive.
 - Strict spec validation gate applies before merge.
 - Implementation-summary.md must be filled with concrete file:line citations after Sub-Phases land.
-- Phase-006 eval gate required for any active-mode rollout.
-- Test discipline includes unit + integration + diff (backward-compat) + Phase-006 paired comparison.
+- Phase-004 eval gate required for any active-mode rollout.
+- Test discipline includes unit + integration + diff (backward-compat) + Phase-004 paired comparison.
 <!-- /ANCHOR:adr-001-consequences -->
 
 <!-- ANCHOR:adr-001-five-checks -->
@@ -232,7 +232,7 @@ Designate Phase 010 as **Level 3**. Apply full L3 file contract: spec.md, plan.m
 1. **Cross-component change?** Yes — touches multiple subsystems and/or runtimes.
 2. **New feature flag family?** Yes — default-off rollout per pt-03 universal pattern.
 3. **Telemetry contract introduced?** Yes — per-phase eval logger events documented in REQs.
-4. **Promotion gate required?** Yes — Phase-006 eval lift before active mode.
+4. **Promotion gate required?** Yes — Phase-004 eval lift before active mode.
 5. **Hot-path or governance impact?** Yes — affects retrieval / cognitive activation / governance decisions per phase scope.
 
 All five checks affirmative → Level 3 designation justified.

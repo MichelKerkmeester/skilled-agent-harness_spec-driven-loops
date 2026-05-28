@@ -170,7 +170,7 @@
     ],
     "causal_summary": "This is phase 10 of the memory leak remediation arc. It is scoped from source evidence in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research` and `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`.",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-05-27T13:45:36.603Z",
+    "last_save_at": "2026-05-28T06:06:29.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 ---
-title: "Phase Parent - Complete CocoIndex MCP Fork"
+title: "005 — Complete CocoIndex MCP Fork"
 description: "Phase-parent control file for decomposing the complete CocoIndex MCP fork into bootstrap, scripts, tests, docs, attribution, and integration smoke children."
 trigger_phrases:
   - "027 phase 001"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork"
     last_updated_at: "2026-05-12T07:20:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Refactored populated Level 3 packet into a six-child phase parent scaffold"
@@ -31,7 +31,7 @@ _memory:
       - "Baseline decision: use the 2026-05-10 v0.2.33 snapshot at external/cocoindex-code-main/; no upstream refresh in this packet."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Complete CocoIndex MCP Fork
+# Feature Specification: 005 — Complete CocoIndex MCP Fork
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -47,8 +47,8 @@ _memory:
 | **Status** | phase-parent |
 | **Created** | 2026-05-10 |
 | **Updated** | 2026-05-12 |
-| **Branch** | `027-xce-research-based-refinement` |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement` |
+| **Branch** | `main` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex` |
 | **Source Baseline** | `external/cocoindex-code-main/` v0.2.33 snapshot |
 | **Downstream Packets** | 007 intent steering, 010 rerank clients, 011 memory context extras |
 <!-- /ANCHOR:metadata -->

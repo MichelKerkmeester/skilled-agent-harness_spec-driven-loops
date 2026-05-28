@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Authored child checklist"
@@ -46,7 +46,7 @@ _memory:
 
 - [ ] CHK-001 [P0] Requirements documented in spec.md
 - [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Phase 001 dependency verified before code edits
+- [ ] CHK-003 [P1] Phase 005 dependency verified before code edits
 <!-- /ANCHOR:pre-impl -->
 
 ---

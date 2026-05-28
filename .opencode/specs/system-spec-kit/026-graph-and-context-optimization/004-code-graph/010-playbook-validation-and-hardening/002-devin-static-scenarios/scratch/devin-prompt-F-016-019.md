@@ -4,7 +4,7 @@ ROLE: You are a SWE-1.6 infrastructure-validation worker for the `mk-code-index`
 CONTEXT:
 - Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 - Launcher: `.opencode/bin/mk-code-index-launcher.cjs`. Post-rename naming is `mk-code-index` / `mk_code_index` (legacy was `system_code_graph` / `system-code-graph`).
-- Spec folder: .opencode/specs/system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios (pre-approved, skip Gate 3).
+- Spec folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios (pre-approved, skip Gate 3).
 - READ-ONLY. Inspection commands only.
 
 ACTION (ordered; each step has acceptance):

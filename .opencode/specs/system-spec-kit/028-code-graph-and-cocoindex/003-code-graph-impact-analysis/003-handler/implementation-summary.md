@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/003-handler"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Created Level 2 scaffold for 003-handler"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/003-handler` |
+| **Spec Folder** | `system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler` |
 | **Updated** | 2026-05-12 |
 | **Level** | 2 |
 | **Implementation State** | Not implemented; scaffold only |
@@ -78,7 +78,7 @@ Scaffold only: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and this `imple
 |-------|--------|-------|
 | Handler tests | Pending | Run during implementation. |
 | TypeScript | Pending | Run `npm run check`. |
-| Spec validation | Pending | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/003-handler --strict` |
+| Spec validation | Pending | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

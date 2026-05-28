@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Created Level 2 scaffold for 001-contract"
@@ -42,8 +42,8 @@ _memory:
 | **Priority** | P1 |
 | **Status** | scaffolded |
 | **Created** | 2026-05-12 |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis` |
-| **Soft Dependency** | `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis` |
+| **Soft Dependency** | `system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-Phase 004 needs a stable contract before implementation workers touch the library, handler, and tests. Without the contract first, downstream phases can drift on output names, coverage-evidence semantics, or enrichment-provider options.
+Phase 003 needs a stable contract before implementation workers touch the library, handler, and tests. Without the contract first, downstream phases can drift on output names, coverage-evidence semantics, or enrichment-provider options.
 
 The purpose of this child is to publish the TypeScript interfaces for `code_graph_impact_analysis`, including `RiskSignal`, `RiskScore`, deterministic summary fields, and optional enrichment configuration.
 <!-- /ANCHOR:problem -->
@@ -65,7 +65,7 @@ The purpose of this child is to publish the TypeScript interfaces for `code_grap
 - Define request and response interfaces for the MCP tool.
 - Define `RiskSignal`, `RiskScore`, risk-weight labels, and coverage evidence types.
 - Define enrichment options with explicit provider, timeout, budget, input-size, and cache fields.
-- Keep the contract compatible with Phase 002 HLD/LLD outputs when available.
+- Keep the contract compatible with Phase 001 HLD/LLD outputs when available.
 
 ### Out of Scope
 - Implementing risk-signal computation.
@@ -104,7 +104,7 @@ The purpose of this child is to publish the TypeScript interfaces for `code_grap
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Soft dependency | Phase 002 contract | Layer metadata may not exist yet | Keep layer fields optional or unavailable/null. |
+| Soft dependency | Phase 001 contract | Layer metadata may not exist yet | Keep layer fields optional or unavailable/null. |
 | Risk | Contract overfits implementation details | Downstream churn | Model observable API shape, not internal helper names. |
 <!-- /ANCHOR:risks -->
 

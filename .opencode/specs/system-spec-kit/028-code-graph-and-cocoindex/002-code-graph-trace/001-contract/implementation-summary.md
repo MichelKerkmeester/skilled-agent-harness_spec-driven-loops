@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Created implementation-summary scaffold"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract` |
+| **Spec Folder** | `system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract` |
 | **Status** | Not implemented |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -81,7 +81,7 @@ Pending implementation.
 | Check | Result |
 |-------|--------|
 | Product checks | Not run; no product code changed yet |
-| Spec validation | Pending command: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract --strict` |
+| Spec validation | Pending command: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

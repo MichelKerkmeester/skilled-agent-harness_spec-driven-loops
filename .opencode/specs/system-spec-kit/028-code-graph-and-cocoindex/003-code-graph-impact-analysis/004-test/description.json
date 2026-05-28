@@ -12,10 +12,10 @@
   "priority": "P1",
   "createdAt": "2026-05-12T00:00:00.000Z",
   "branch": "main",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract"
+      "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract"
     ]
   },
   "derived": {
@@ -23,14 +23,25 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/004-test",
-  "description": "Defines Vitest correctness fixtures for code_graph_impact_analysis.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/004-test",
+  "description": "Feature Specification: 027/004/004 Impact Analysis Tests",
   "keywords": [
-    "tests",
-    "vitest",
-    "fixtures",
-    "impact"
+    "feature",
+    "specification",
+    "027",
+    "004",
+    "impact",
+    "analysis",
+    "tests"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
-  "folderSlug": "004-test"
+  "lastUpdated": "2026-05-28T06:52:09.411Z",
+  "specId": "004",
+  "folderSlug": "test",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "003-code-graph-impact-analysis"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

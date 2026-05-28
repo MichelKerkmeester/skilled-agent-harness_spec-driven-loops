@@ -3,13 +3,13 @@ title: "Remediation: deep-agent-improvement ruleCoherence inline fallback (Playb
 description: "Add inline ALWAYS/NEVER rule extraction fallback to generate-profile.cjs deriveRules (fixes PG-007 + 5D-012); document stale-scenario determinations for PG-005, BI-014/015, 5D-013, DR-031."
 trigger_phrases:
   - "rulecoherence inline fallback"
-  - "030 phase 008 remediation"
+  - "007 phase 008 remediation"
   - "generate-profile deriveRules fix"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/008-dai-rulecoherence-inline-fallback"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback"
     last_updated_at: "2026-05-27T21:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Added inline ALWAYS/NEVER fallback to deriveRules; vitest 99/99 still green"

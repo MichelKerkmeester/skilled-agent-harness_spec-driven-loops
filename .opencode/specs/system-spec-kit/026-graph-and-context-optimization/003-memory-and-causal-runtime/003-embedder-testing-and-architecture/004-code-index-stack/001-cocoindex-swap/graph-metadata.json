@@ -189,7 +189,7 @@
     ],
     "causal_summary": "CocoIndex's `_DEFAULT_MODEL = \"sbert/google/embeddinggemma-300m\"` is a general-text embedder. Code search benefits from code-tuned embedders; gemma may be leaving recall on the table. CocoIndex's device auto-detection only covers CUDA — Mac users get CPU inference even when Metal is available.",
     "created_at": "2026-05-18T08:18:02.783Z",
-    "last_save_at": "2026-05-27T13:45:36.429Z",
+    "last_save_at": "2026-05-28T06:06:28.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

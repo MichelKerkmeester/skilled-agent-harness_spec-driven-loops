@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation-summary"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/006-integration-smoke"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/006-integration-smoke"
     last_updated_at: "2026-05-12T07:20:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded child packet for Integration Smoke Test"
@@ -61,7 +61,7 @@ No implementation has landed in this child yet. The scaffold defines the scope, 
 |------|--------|---------|
 | `opencode.json` | Modify | Final MCP wiring if required by the fork path |
 | `.opencode/skills/mcp-coco-index/**` | Verify | Integrated fork, scripts, tests, docs, and attribution |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/**` | Update | Final evidence and validation status |
+| `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/**` | Update | Final evidence and validation status |
 <!-- /ANCHOR:what-built -->
 
 ---

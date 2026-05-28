@@ -8,13 +8,13 @@ importance_tier: "important"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/004-test"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/004-test"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded trace test tasks"
     next_safe_action: "Execute test tasks after local contract publishes"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
+      - "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
     key_files: ["spec.md", "plan.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -61,7 +61,7 @@ _memory:
 - [ ] T003 Create `mcp_server/tests/code-graph-trace.vitest.ts`.
 - [ ] T004 Add sparse-containment fixtures.
 - [ ] T005 Add nested-class fqName regression fixture.
-- [ ] T006 Add Phase 002 role-equality test.
+- [ ] T006 Add Phase 001 role-equality test.
 - [ ] T007 Add depth-cap truncation test.
 - [ ] T008 Add missing-symbol error test.
 <!-- /ANCHOR:phase-2 -->

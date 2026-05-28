@@ -1,8 +1,8 @@
 ---
-title: "Verification Checklist: 027/012 Feedback P0 Correctness"
+title: "Verification Checklist: 027/002 Feedback P0 Correctness"
 description: "Verification checklist for the three P0 correctness fixes split from 027/009."
 trigger_phrases:
-  - "027 phase 012"
+  - "027 phase 002"
   - "feedback P0 correctness"
   - "auto-provenance cap broadening"
   - "manual-edge overwrite guard"
@@ -26,7 +26,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Verification Checklist: 027/012 Feedback P0 Correctness
+# Verification Checklist: 027/002 Feedback P0 Correctness
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

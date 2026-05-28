@@ -4,12 +4,12 @@ description: "Pre-execution summary stub; filled with verdicts and evidence afte
 trigger_phrases:
   - "deep-ai-council scenarios summary"
   - "deep ai council playbook summary"
-  - "030 phase 002 implementation summary"
+  - "007 phase 002 implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/002-deep-ai-council-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Create pre-execution implementation-summary stub"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 030-deep-loop-skills-playbook-validation/002-deep-ai-council-scenarios |
+| **Spec Folder** | 007-deep-stack-playbook-validation/002-deep-ai-council-scenarios |
 | **Completed** | PENDING — scaffold only; verdicts filled post-run |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

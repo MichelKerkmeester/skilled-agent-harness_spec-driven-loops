@@ -118,7 +118,7 @@ Synthesis pass runs unconditionally after stop trigger. Must cover all 5 RQs eve
 
 ### Predecessor packet (shipped findings — DO NOT re-propose)
 
-113-cli-devin-prompt-quality-arc shipped (per cli-devin v1.0.6.3):
+113-cli-devin-prompt-quality shipped (per cli-devin v1.0.6.3):
 
 1. RCAF default for SWE-1.6 dispatches
 2. Medium-density pre-planning (3-4 ordered steps with per-step acceptance + verification)

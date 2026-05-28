@@ -10,7 +10,8 @@
     "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime",
     "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research",
     "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement",
-    "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting"
+    "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting",
+    "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -101,7 +102,7 @@
     ],
     "causal_summary": "The deep-* skill family — `deep-ai-council`, `deep-review`, `deep-loop-runtime`, `deep-research`, and `deep-agent-improvement` — evolved through many incremental decisions (rename, isolate, iterate, harden, fix, validate). The skilled-agent-orchestration track lacked a single parent that holds that evolution together and lets a maintainer find any decision's home without scanning dozens of sibling folders.",
     "created_at": "2026-05-23T09:23:18.906998Z",
-    "last_save_at": "2026-05-27T13:45:34.830Z",
+    "last_save_at": "2026-05-28T06:06:27.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

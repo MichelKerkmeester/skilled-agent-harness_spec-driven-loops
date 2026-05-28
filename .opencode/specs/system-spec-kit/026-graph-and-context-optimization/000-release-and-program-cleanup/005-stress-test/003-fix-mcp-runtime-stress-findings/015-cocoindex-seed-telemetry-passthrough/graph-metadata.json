@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The CocoIndex fork (cocoindex_code v0.2.3+spec-kit-fork.0.2.0) emits 5 new telemetry fields per query result — `raw_score`, `path_class`, `rankingSignals`, `dedupedAliases`, `uniqueResultCount` — but `code_graph_context` drops all of them when a CocoIndex result is supplied as a seed. Anchors returned to the model lose provenance information that would help the model explain why the fork ranked one chunk over another. v1.0.2 stress test confirmed `dedupedAliases:26` lives on the fork side and never reaches the consumer.",
     "created_at": "2026-04-27T19:55:00.000Z",
-    "last_save_at": "2026-05-27T13:45:35.684Z",
+    "last_save_at": "2026-05-28T06:06:28.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

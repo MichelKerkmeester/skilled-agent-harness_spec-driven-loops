@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The Phase 012/004 F-002 fix blocks only the literal zero-node full-scan edge case. Live MCP verification showed the original data-loss mode still exists when a scope-mismatched default scan returns a small nonzero graph and promotes over a populated broad-scope graph.",
     "created_at": "2026-05-06T07:44:35Z",
-    "last_save_at": "2026-05-27T13:45:36.770Z",
+    "last_save_at": "2026-05-28T06:06:29.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

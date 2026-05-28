@@ -1,5 +1,5 @@
 ---
-title: "Tasks — Phase 007 Coco-Index Intent Steering"
+title: "Tasks — Phase 006 Coco-Index Intent Steering"
 description: "T### task list mapping spec REQ-NNN to concrete file paths + acceptance criteria. Three implementation phases (classifier, expander, advisor hint) + tests/docs."
 trigger_phrases:
   - "027 phase 007 tasks"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored T001-T015 task list"
@@ -93,7 +93,7 @@ T013-T015 can run in parallel with T001-T012 (independent module).
 
 - ~250-350 production LOC across 3 modules.
 - ~120-180 test LOC across 4 test files.
-- 19 tasks total; ~10-15 hours estimated wall (excluding Phase-006 eval gate).
+- 19 tasks total; ~10-15 hours estimated wall (excluding Phase-004 eval gate).
 
 ---
 
@@ -129,7 +129,7 @@ See final sub-phase tasks above + `checklist.md` verification commands. Includes
 - All T### tasks above marked `[X]` complete.
 - All `checklist.md` P0 items green.
 - Strict spec validation passes.
-- Phase-006 eval gate documented (if applicable for active-mode rollout).
+- Phase-004 eval gate documented (if applicable for active-mode rollout).
 - `implementation-summary.md` filled with file:line evidence.
 <!-- /ANCHOR:completion -->
 

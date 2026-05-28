@@ -160,7 +160,7 @@
     ],
     "causal_summary": "Track the complete opencode plural-directory rename cycle and the cascading post-rename quality work it triggered. What started as a 1-commit bulk rename grew into 8 phases of progressively deeper review and remediation:",
     "created_at": "2026-05-18T07:49:27.230Z",
-    "last_save_at": "2026-05-27T13:45:35.403Z",
+    "last_save_at": "2026-05-28T06:06:28.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

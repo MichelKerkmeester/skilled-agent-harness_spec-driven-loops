@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The remaining 32 scenarios span seven categories: compat/disable (CP), operator-H5 daemon states (OP), auto-update daemon (AU), auto-indexing (AI), lifecycle routing (LC), scorer fusion (SC) and python compat (PC). Per operator direction (maximize CLI delegation), the self-contained waves are dispatched to two CLI executors while operator-H5 stays local; many daemon/indexing scenarios require a disposable-workspace + active-daemon harness.",
     "created_at": "2026-05-26T20:10:30.278Z",
-    "last_save_at": "2026-05-27T13:45:35.990Z",
+    "last_save_at": "2026-05-28T06:06:28.642Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

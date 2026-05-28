@@ -1,0 +1,46 @@
+{
+  "title": "004 Retention Reducer — Feedback Retention Learning",
+  "trigger_phrases": [
+    "009 retention reducer",
+    "004 retention reducer",
+    "feedback-retention-reducer.ts",
+    "edge-tier-basement.ts"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P0",
+  "createdAt": "2026-05-12T07:20:00.000Z",
+  "branch": "main",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/008-feedback-reducers",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/008-feedback-reducers/001-aggregator"
+    ]
+  },
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-feedback-reducers/004-retention-reducer",
+  "description": "Feature Specification: Feedback Retention Reducer",
+  "keywords": [
+    "feature",
+    "specification",
+    "feedback",
+    "retention",
+    "reducer"
+  ],
+  "lastUpdated": "2026-05-28T08:24:16.975Z",
+  "specId": "004",
+  "folderSlug": "retention-reducer",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "008-feedback-reducers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

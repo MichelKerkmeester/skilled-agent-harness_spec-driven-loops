@@ -4,12 +4,12 @@ description: "Verification + 22-scenario verdict ledger for deep-loop-runtime pl
 trigger_phrases:
   - "deep-loop-runtime checklist"
   - "deep loop runtime verdict ledger"
-  - "030 phase 001 checklist"
+  - "007 phase 001 checklist"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/001-deep-loop-runtime-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios"
     last_updated_at: "2026-05-27T19:05:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "22/22 deep-loop-runtime scenarios PASS via devin SWE-1.6, orchestrator-corroborated"

@@ -10,7 +10,7 @@ contextType: "implementation"
 depends_on: []
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Scaffolded contract child spec"
@@ -110,7 +110,7 @@ Publish the minimal contract for deterministic HLD/LLD generation: `HldLldClassi
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-006 | Pin `classifyFileRole(filePath, db)` signature | Type signature is importable by handler, tests, and downstream Phase 003. |
+| REQ-006 | Pin `classifyFileRole(filePath, db)` signature | Type signature is importable by handler, tests, and downstream Phase 002. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -142,7 +142,7 @@ Publish the minimal contract for deterministic HLD/LLD generation: `HldLldClassi
 
 ### Maintainability
 - **NFR-M01**: Contract names should describe wire behavior, not private implementation details.
-- **NFR-M02**: Type exports should be stable enough for Phase 003 trace work to reuse.
+- **NFR-M02**: Type exports should be stable enough for Phase 002 trace work to reuse.
 
 ### Reliability
 - **NFR-R01**: Sorting and role-domain rules are documented in types or adjacent comments.

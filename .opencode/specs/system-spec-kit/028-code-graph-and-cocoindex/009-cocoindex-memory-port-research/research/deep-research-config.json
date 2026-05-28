@@ -7,7 +7,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
-  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research",
+  "specFolder": ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research",
   "createdAt": "2026-05-13T07:30:00Z",
   "status": "complete",
   "executionMode": "auto",

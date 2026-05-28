@@ -90,7 +90,7 @@
     ],
     "causal_summary": "Build and maintain the skill graph infrastructure that powers the skill advisor subsystem. This phase parent unifies metadata quality auditing, structural migration, daemon/advisor unification, and cross-skill propagation into a coherent graph-driven architecture. The 7 child packets collectively establish the foundational graph structures, metadata signals, and advisor extraction patterns needed for robust skill routing and discovery.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-27T13:45:35.812Z",
+    "last_save_at": "2026-05-28T06:06:28.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

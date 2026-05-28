@@ -1,6 +1,5 @@
 {
   "title": "004 Report Generator",
-  "description": "Markdown report generator for token-reduction and file-reads-avoided eval metrics.",
   "trigger_phrases": [
     "027 006 004 report generator",
     "eval report generator"
@@ -11,10 +10,10 @@
   "status": "planned",
   "priority": "P0",
   "createdAt": "2026-05-12T00:00:00Z",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/001-harness-skeleton"
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton"
     ]
   },
   "derived": {
@@ -22,21 +21,23 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/004-report-generator",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/004-report-generator",
+  "description": "Feature Specification: 004 Report Generator",
+  "keywords": [
+    "feature",
+    "specification",
+    "004",
+    "report",
+    "generator"
+  ],
+  "lastUpdated": "2026-05-28T06:52:11.797Z",
   "specId": "004",
   "folderSlug": "report-generator",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "006-code-graph-adoption-eval"
+    "028-code-graph-and-cocoindex",
+    "004-code-graph-adoption-eval"
   ],
-  "keywords": [
-    "report",
-    "generator",
-    "token-reduction",
-    "file-reads-avoided"
-  ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
   "memorySequence": 0,
   "memoryNameHistory": []
 }

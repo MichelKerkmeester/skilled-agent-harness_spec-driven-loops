@@ -1,9 +1,4 @@
-### 1. Executive verdict
-
-001 `REVISE_SCOPE`; 002 `KEEP_AS_IS`; 003 `REVISE_SCOPE`; 004 `REVISE_SCOPE`; 005 `MERGE`; 006 `REVISE_SCOPE`; 007 `DEFER`; 008 `REVISE_SCOPE`; 009 `REVISE_SCOPE`; 010 `DEFER`; 011 `DEFER`.
-
-The packet is still directionally right, but not implementation-ready. The codebase did not already ship the 027 XCE primitives: current `code_graph` exposes only scan/query/status/context/verify/apply/detect/ccc tools, not HLD/trace/risk tools (`.opencode/skills/system-spec-kit/mcp_server/code_graph/tools/code-graph-tools.ts:L21-L33`). But the last 26+ commits did change the surrounding contract: `:auto`, doctor, causal graph routing, eval, and council graph work now overlap with rollout/evaluation phases. Recommended next action: run a spec-refresh pass before implementation, repairing dependencies and narrowing 006/008-011.
-
+> Code-graph + cocoindex content for this section extracted to 028/research/027-xce-research-pt-04/research.md.
 ### 2. Per-phase audit
 
 **Phase 001 — CocoIndex Complete Fork** | `REVISE_SCOPE`  
@@ -39,41 +34,7 @@ Target check: memory already has provider-generic rerank/caching/circuit-breaker
 **Phase 011 — Coco/Memory Context Extras** | `DEFER`  
 Target check: Coco result telemetry already has `raw_score`, `path_class`, `rankingSignals` (`server.py:L45-L56`); memory search allows `includeTrace`/profile params (`tool-input-schemas.ts:L821-L822`). Scope drift: overlaps 009 feedback and 006 eval, not solved. Risk validity: valid; phase itself admits presentation-layer nondeterminism/default-off requirements (`011-coco-memory-context-extras/spec.md:L45-L68`, `L261-L267`). Dependency graph: still rightly depends on 001 and soft-depends 006/008/009/010 (`011.../spec.md:L87-L87`). Recommendation: defer until retrieval quality data shows a real presentation gap.
 
-### 3. Cross-packet overlap matrix
-
-| Phase | 012 | 010 | 028→103 | 013 | 100 | sk-code v3.x | deep-ai-council v1.1 | 060 | 059 |
-|---|---|---|---|---|---|---|---|---|---|
-| 001 | NO_OVERLAP | NO_OVERLAP | OVERLAP_LOW | OVERLAP_HIGH | NO_OVERLAP | OVERLAP_LOW | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP |
-| 002 | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP |
-| 003 | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP |
-| 004 | OVERLAP_LOW | NO_OVERLAP | NO_OVERLAP | OVERLAP_LOW | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP |
-| 005 | NO_OVERLAP | NO_OVERLAP | OVERLAP_HIGH | NO_OVERLAP | NO_OVERLAP | OVERLAP_LOW | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP |
-| 006 | OVERLAP_LOW | NO_OVERLAP | OVERLAP_HIGH | OVERLAP_LOW | OVERLAP_LOW | OVERLAP_LOW | OVERLAP_HIGH | OVERLAP_HIGH | OVERLAP_LOW |
-| 007 | NO_OVERLAP | NO_OVERLAP | OVERLAP_LOW | NO_OVERLAP | NO_OVERLAP | OVERLAP_LOW | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP |
-| 008 | OVERLAP_LOW | NO_OVERLAP | NO_OVERLAP | OVERLAP_LOW | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP |
-| 009 | OVERLAP_HIGH | NO_OVERLAP | NO_OVERLAP | OVERLAP_LOW | NO_OVERLAP | NO_OVERLAP | OVERLAP_LOW | OVERLAP_LOW | NO_OVERLAP |
-| 010 | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | OVERLAP_LOW | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP |
-| 011 | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | OVERLAP_LOW | NO_OVERLAP | NO_OVERLAP | NO_OVERLAP | OVERLAP_LOW | NO_OVERLAP |
-
-OVERLAP_HIGH notes: 001×013 shares CocoIndex doctor/migration surface (`013.../spec.md:L102-L106`). 005×103 shares first-action/noninteractive routing language (`103.../spec.md:L45-L55`). 006×103 overlaps verification protocol (`103.../implementation-summary.md:L144-L163`). 006×deep-ai-council overlaps graph value scenario automation (`101.../spec.md:L127-L140`). 006×060 overlaps stress/eval methodology (`060.../spec.md:L47-L52`). 009×012 overlaps causal graph channel utilization and remediation (`012.../spec.md:L19-L30`).
-
-### 4. CocoIndex v0.2.33 baseline reality check
-
-The partial soft-fork is still under `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/`, with the changelog saying the inception vendored 15 Python files from upstream 0.2.3 (`CHANGELOG.md:L31-L39`). The current skill explicitly says the Rust `cocoindex` engine is not forked (`README.md:L31-L33`).
-
-Best inference from `external/cocoindex-code-main/`: the downloaded upstream snapshot is materially ahead of the current fork because it has hatch/uv packaging and newer wrapper modules such as custom chunking and LiteLLM embedder support (`external/.../pyproject.toml:L24-L35`, `chunking.py:L1-L29`, `litellm_embedder.py:L1-L19`). Whether upstream has moved past v0.2.33 as of 2026-05-11 is UNCERTAIN from local files: `pyproject.toml` uses dynamic VCS versioning, not a literal version string (`external/.../pyproject.toml:L5-L7`, `L70-L75`). Complete fork is still a valid prerequisite for 007/010/011, but incremental sync is now feasible if Phase 001 first produces a clean diff/import manifest.
-
-### 5. Re-prioritization proposal
-
-1. **Spec-refresh first:** repair dependencies, paths, and shipped-overlap assumptions across 001-011. Parent dependency text is already stale around 006 and phase numbering (`027.../spec.md:L52-L66`, `006.../spec.md:L66-L66`).
-2. **001 next, revised:** make the fork baseline explicit before touching Coco behavior.
-3. **002 → 003 → 004:** these are the core XCE-value phases and are not superseded.
-4. **005 merged into advisor/:auto language:** small, useful, but should conform to 103.
-5. **009 P0 fixes before reducers:** correctness before learning.
-6. **006 after core tools:** reuse current eval/stress infrastructure.
-7. **008 after path repair and shadow eval design.**
-8. **007/010/011 deferred until 001 and eval evidence.** No phase needs outright cancellation yet.
-
+> Code-graph + cocoindex content for this section extracted to 028/research/027-xce-research-pt-04/research.md.
 ### 6. Open questions for the user
 
 1. Should Phase 001 still target the downloaded v0.2.33 snapshot, or should we refresh upstream first?

@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
   "description": "Feature Specification: OpenCode Runtime Scenarios (Code Graph Playbook 001)",
   "keywords": [
     "feature",
@@ -12,14 +12,16 @@
     "playbook",
     "001"
   ],
-  "lastUpdated": "2026-05-27T05:35:18.449Z",
+  "lastUpdated": "2026-05-28T06:13:46.657Z",
   "specId": "001",
   "folderSlug": "opencode-runtime-scenarios",
   "parentChain": [
     ".opencode",
     "specs",
     "system-spec-kit",
-    "029-code-graph-playbook-validation"
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "010-playbook-validation-and-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

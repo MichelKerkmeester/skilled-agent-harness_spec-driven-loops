@@ -14,7 +14,7 @@ For namespace shortening, the recommended move is a server-only rename from `spe
 
 ## 2. Research Context
 
-This is Phase 13 of parent packet 027, the XCE research-based refinement stream. The phase intentionally opened a new research lane after earlier 027 phases focused on `code_graph`, `skill_advisor`, and the `cocoindex-code` wrapper. The scope here is the non-code memory subsystem under `.opencode/skills/system-spec-kit/mcp_server/`, using the upstream library at `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/` as the reference source.
+This is Phase 13 of parent packet 027, the XCE research-based refinement stream. The phase intentionally opened a new research lane after earlier 027 phases focused on `code_graph`, `skill_advisor`, and the `cocoindex-code` wrapper. The scope here is the non-code memory subsystem under `.opencode/skills/system-spec-kit/mcp_server/`, using the upstream library at `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/` as the reference source.
 
 The packet spec defines the phase as research-only and names the handoff criterion: produce `research/research.md` with per-axis findings, cross-axis recommendations, and ranked downstream implementation packets. It explicitly excludes implementation of any port or rename, code_graph and skill_advisor improvements, the cocoindex-code wrapper, embedding-provider changes, and network operations (`spec.md:72-87`, `spec.md:129-135`).
 
@@ -295,11 +295,11 @@ Open downstream questions:
 
 References:
 
-- External library: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/`
+- External library: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/`
 - Target MCP: `.opencode/skills/system-spec-kit/mcp_server/`
 - Iteration narratives: `research/iterations/iteration-001.md` through `research/iterations/iteration-009.md`
 - Convergence dashboard: `research/deep-research-dashboard.md`
-- Packet spec: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/spec.md`
+- Packet spec: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/spec.md`
 
 Convergence report: stop reason is max_iterations plus all_questions_answered. Ten iterations executed including this synthesis pass; all 11 K-questions are answered. Prior newInfoRatio trajectory ended at approximately 0.78 -> 0.62 -> 0.22 before this low-novelty synthesis pass. The iteration-10 newInfoRatio is recorded as 0.09 because it consolidates prior findings rather than adding new source discovery. Executor convention was `cli-codex gpt-5.5 high fast`, with roughly 30 minutes total wall-clock across iterations 1-9 according to the iteration state records.
 

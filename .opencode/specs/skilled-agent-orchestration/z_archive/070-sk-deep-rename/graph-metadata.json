@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The two deep-* skills currently use a `sk-` prefix (`sk-deep-review`, `sk-deep-research`) inherited from when all skills carried it. Since then, several skills have been renamed without the prefix (e.g., system-spec-kit, mcp-coco-index, cli-codex). The two `sk-deep-*` names now stand out as inconsistent. The user wants them renamed to `deep-review` and `deep-research` to match the rest of the family.",
     "created_at": "2026-05-05T18:00:00Z",
-    "last_save_at": "2026-05-27T13:45:35.288Z",
+    "last_save_at": "2026-05-28T06:06:28.059Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

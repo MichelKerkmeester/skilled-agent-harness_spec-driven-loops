@@ -1683,7 +1683,7 @@
       "stderr": "",
       "top5": [
         "skills/cli-opencode/references/agent_delegation.md",
-        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/scripts/cross-model-confirm.cjs",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs",
         "skills/cli-opencode/references/integration_patterns.md"
       ]
     },
@@ -1888,7 +1888,7 @@
       "stderr": "",
       "top5": [
         "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/003-system-bug-improvement-research/research/gen_prompts.sh",
-        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/scripts/cross-model-confirm.cjs",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs",
         "skills/system-code-graph/mcp_server/stress_test/code-graph/doctor-apply-mode-stress.vitest.ts"
       ]
     },

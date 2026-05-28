@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-code-graph-playbook-validation/003-release-readiness-synthesis"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/003-release-readiness-synthesis"
     last_updated_at: "2026-05-26T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Assembled 22-row release-readiness matrix; overall CONDITIONAL PASS"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 029-code-graph-playbook-validation/003-release-readiness-synthesis |
+| **Spec Folder** | 010-playbook-validation-and-hardening/003-release-readiness-synthesis |
 | **Completed** | 2026-05-26 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

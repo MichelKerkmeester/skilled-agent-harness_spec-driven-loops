@@ -4,12 +4,12 @@ description: "Batch-dispatch 41 deep-research scenarios to cli-devin SWE-1.6 by 
 trigger_phrases:
   - "deep-research scenarios plan"
   - "deep research playbook plan"
-  - "030 phase 004 plan"
+  - "007 phase 004 plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/004-deep-research-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Author phase 004 plan"

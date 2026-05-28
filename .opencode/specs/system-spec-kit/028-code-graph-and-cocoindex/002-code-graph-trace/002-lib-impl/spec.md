@@ -1,6 +1,6 @@
 ---
-title: "Phase 003.002 — code_graph_trace Library Implementation"
-description: "Level 2 child packet for code-graph-trace.ts conforming to the trace contract and consuming Phase 002 HLD/LLD classification."
+title: "Phase 002.002 — code_graph_trace Library Implementation"
+description: "Level 2 child packet for code-graph-trace.ts conforming to the trace contract and consuming Phase 001 HLD/LLD classification."
 trigger_phrases:
   - "027 phase 003 lib"
   - "code-graph-trace implementation"
@@ -9,14 +9,14 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/002-lib-impl"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/002-lib-impl"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded child packet for trace library implementation"
     next_safe_action: "Implement code-graph-trace.ts after local contract and upstream HLD/LLD implementation merge"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
-      - "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl"
+      - "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
+      - "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -42,8 +42,8 @@ _memory:
 | **Priority** | P1 |
 | **Status** | spec-scaffolded |
 | **Created** | 2026-05-12 |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace` |
-| **Depends on** | `001-contract`; `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace` |
+| **Depends on** | `001-contract`; `system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl` |
 | **Estimated LOC** | ~210 |
 <!-- /ANCHOR:metadata -->
 
@@ -56,7 +56,7 @@ _memory:
 AI consumers currently have to piece together symbol, file, module, and architectural-role context manually. The resolver library should own that trace construction with the file rung sourced from `CodeNode.filePath`, not CONTAINS edges or dotted `fq_name` inference.
 
 ### Purpose
-Implement `code-graph-trace.ts` against the trace contract, using Phase 002 classification for architectural-role output and an explicit file-path policy for module ownership.
+Implement `code-graph-trace.ts` against the trace contract, using Phase 001 classification for architectural-role output and an explicit file-path policy for module ownership.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -96,7 +96,7 @@ Implement `code-graph-trace.ts` against the trace contract, using Phase 002 clas
 | REQ-001 | Implement `traceSymbol` conforming to `TraceTool`. | Contract tests compile against the library. |
 | REQ-002 | Source file rung from `CodeNode.filePath`. | Sparse symbols return valid `file` values without CONTAINS. |
 | REQ-003 | Derive module from explicit file-path policy. | No P0 module ownership uses dotted `fq_name` splitting. |
-| REQ-004 | Use Phase 002 `classifyFileRole` for `architectural_role`. | Trace role equals Phase 002 role for same file. |
+| REQ-004 | Use Phase 001 `classifyFileRole` for `architectural_role`. | Trace role equals Phase 001 role for same file. |
 | REQ-005 | Cap trace depth at default 5. | Over-depth traces return `truncated: true`. |
 
 ### P1 - Required
@@ -114,7 +114,7 @@ Implement `code-graph-trace.ts` against the trace contract, using Phase 002 clas
 
 - **SC-001**: Normal and sparse symbols return `symbol`, `file`, `module`, and `architectural_role`.
 - **SC-002**: No schema migration is needed for the MVP resolver.
-- **SC-003**: Tests can assert role equality with Phase 002.
+- **SC-003**: Tests can assert role equality with Phase 001.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -125,7 +125,7 @@ Implement `code-graph-trace.ts` against the trace contract, using Phase 002 clas
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Local contract | Cannot implement stable interface | Wait for `001-contract`. |
-| Dependency | Phase 002 lib implementation | Cannot call authoritative classifier | Wait for upstream `002-lib-impl`. |
+| Dependency | Phase 001 lib implementation | Cannot call authoritative classifier | Wait for upstream `002-lib-impl`. |
 | Risk | CONTAINS coverage is sparse | Trace may omit file/module | Treat CONTAINS as display-only and use filePath for ownership. |
 | Risk | Nested-class false matches | Wrong class display | Use fully qualified prefix matching. |
 <!-- /ANCHOR:risks -->

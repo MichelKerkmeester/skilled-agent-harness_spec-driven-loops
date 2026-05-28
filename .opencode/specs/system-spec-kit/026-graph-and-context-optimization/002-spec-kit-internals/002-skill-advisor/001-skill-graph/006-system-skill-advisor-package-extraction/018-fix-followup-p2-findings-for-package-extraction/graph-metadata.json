@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The review retained 28 P2 advisories across architecture, correctness, robustness, testing, security, performance, documentation, compatibility, and maintainability. The dispatch contract required every finding to be bucketed before fixing and limited single P2 fixes to surgical scope.",
     "created_at": "2026-05-19T15:11:02.195Z",
-    "last_save_at": "2026-05-27T13:45:35.862Z",
+    "last_save_at": "2026-05-28T06:06:28.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

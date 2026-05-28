@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients",
+  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -174,19 +174,25 @@
         "source": "derived"
       },
       {
-        "name": "Shared Interfaces",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Voyage Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Begin Sub",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Interfaces",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -202,17 +208,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Coco Rerank Adapter",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Pt-03 RQ-B5 (verdict ADAPT clients / DEFER shared store / SKIP shared indexers, see `../research/027-xce-research-pt-03/research.md` §RQ-B5 and `../research/027-xce-research-pt-03/iterations/iteration-010.md`) identifies that memory's `cross-encoder.ts:35-554` is already provider-generic (Voyage, Cohere, local) with caching, caps, circuit breaker, score-origin metadata. CocoIndex has its own embedding usage (Voyage Code 3) but no rerank stage today. Two extractable interfaces:",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-05-27T13:45:36.964Z",
+    "last_save_at": "2026-05-28T06:49:57.528Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [

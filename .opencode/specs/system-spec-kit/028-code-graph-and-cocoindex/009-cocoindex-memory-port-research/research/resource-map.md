@@ -90,10 +90,10 @@ description: "Auto-generated research resource map from convergence evidence."
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | .opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/007-track-rereview/review/iterations/iteration-001.md | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering/description.json | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering/graph-metadata.json | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/description.json | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/graph-metadata.json | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering/description.json | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering/graph-metadata.json | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/description.json | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/graph-metadata.json | Cited | OK | Citations=1; Iterations=1 |
 
 ---
 

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Make CocoIndex code-first by default. Exclude runtime spec mirrors at index time. Add `source_realpath` and `content_hash` canonical identity fields. Over-fetch `limit * 4` candidates, dedup by `(source_realpath, line_range)` or `(content_hash, line_range)`, prefer canonical paths in returned rows. Add `path_class` source-role and bounded reranking that surfaces `implementation` above `spec_research` for implementation-intent queries.",
     "created_at": "2026-04-27T07:48:04.774Z",
-    "last_save_at": "2026-05-27T13:45:35.657Z",
+    "last_save_at": "2026-05-28T06:06:28.380Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Embedder swaps in CocoIndex don't directly affect AI council / deep-research / deep-review unless those systems retrieve from CocoIndex. We need to know **which system retrieves from which indexer** before any default-promotion decision.",
     "created_at": "2026-05-18T16:52:17.344Z",
-    "last_save_at": "2026-05-27T13:45:36.550Z",
+    "last_save_at": "2026-05-28T06:06:29.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

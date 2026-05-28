@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The `system-skill-advisor` reference set was flat, kebab-case, and only partially aligned with the stricter `sk-doc` reference template. This packet makes canonical references snake_case, moves them into focused subfolders, keeps old root paths as compatibility stubs, and refreshes the skill router so future navigation prefers canonical docs.",
     "created_at": "2026-05-24T07:26:59Z",
-    "last_save_at": "2026-05-27T13:45:35.979Z",
+    "last_save_at": "2026-05-28T06:06:28.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

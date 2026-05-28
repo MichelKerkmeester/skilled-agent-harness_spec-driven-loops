@@ -67,7 +67,7 @@ Mine the external `smallcode-master` corpus (MIT, terminal-native AI coding agen
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` (114-small-ai-model-optimization phase parent) |
 | **Parent Packet** | skilled-agent-orchestration/114-small-ai-model-optimization |
-| **Predecessor** | skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation |
+| **Predecessor** | skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation |
 | **Successor** | TBD (post-synthesis 002+ remediation packets driven by RQ5 architecture verdict) |
 <!-- /ANCHOR:metadata -->
 
@@ -323,6 +323,6 @@ Deliverables: architecture verdict with rationale; if new skill — full frontma
 - **Phase parent**: `../spec.md`
 - **Preflight evidence**: `../preflight/context-card.md` (cited per iter)
 - **External corpus**: `../external/smallcode-master/`
-- **Predecessor lineage**: `../../113-cli-devin-prompt-quality-arc/` — composition arc this builds on
+- **Predecessor lineage**: `../../113-cli-devin-prompt-quality/` — composition arc this builds on
 - **Sibling docs**: `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`
 - **Generated docs**: `description.json`, `graph-metadata.json`, `research/**`

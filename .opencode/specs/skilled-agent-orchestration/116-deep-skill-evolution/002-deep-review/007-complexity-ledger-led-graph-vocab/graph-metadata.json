@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The deep-review coverage graph accepted only coarse review node kinds: `DIMENSION`, `FILE`, `FINDING`, `EVIDENCE`, and `REMEDIATION`. Phase B seeded graph fixtures proved that ledger-led search evidence could not be represented as structured graph nodes because `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` events were rejected or filtered out.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-27T13:45:34.938Z",
+    "last_save_at": "2026-05-28T06:06:27.729Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

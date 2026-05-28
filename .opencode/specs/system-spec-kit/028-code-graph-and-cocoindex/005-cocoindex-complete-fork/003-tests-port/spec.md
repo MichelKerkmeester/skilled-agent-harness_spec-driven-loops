@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/003-tests-port"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/003-tests-port"
     last_updated_at: "2026-05-12T07:20:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded child packet for Port Upstream Tests"
@@ -46,9 +46,9 @@ _memory:
 | **Priority** | P0 |
 | **Status** | draft |
 | **Created** | 2026-05-12 |
-| **Branch** | `027-xce-research-based-refinement` |
+| **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork` |
 | **Phase** | 3 of 6 |
 | **Predecessor** | ../002-scripts/spec.md |
 | **Successor** | ../004-docs/spec.md |

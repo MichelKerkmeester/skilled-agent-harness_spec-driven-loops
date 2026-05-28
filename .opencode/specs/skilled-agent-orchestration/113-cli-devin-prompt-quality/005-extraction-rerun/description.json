@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/005-extraction-rerun",
+  "description": "Feature Specification: cli-devin extraction rerun — close 003 file-extraction gap",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli-devin",
+    "extraction",
+    "rerun",
+    "close",
+    "003",
+    "file-extraction",
+    "gap"
+  ],
+  "lastUpdated": "2026-05-21T10:22:37.580Z",
+  "specId": "005",
+  "folderSlug": "extraction-rerun",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "113-cli-devin-prompt-quality"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-cli-devin-extraction-rerun"
+  ]
+}

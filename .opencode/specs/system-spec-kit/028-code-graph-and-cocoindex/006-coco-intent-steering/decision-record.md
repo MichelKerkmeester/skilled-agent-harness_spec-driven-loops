@@ -1,6 +1,6 @@
 ---
-title: "Decision Record — Phase 007 Coco-Index Intent Steering"
-description: "ADRs documenting design decisions for Phase 007: Level-3 designation, rule-based vs LLM classifier, 3-embedding ceiling, MCP API surface decision, path-class intent prior bounds."
+title: "Decision Record — Phase 006 Coco-Index Intent Steering"
+description: "ADRs documenting design decisions for Phase 006: Level-3 designation, rule-based vs LLM classifier, 3-embedding ceiling, MCP API surface decision, path-class intent prior bounds."
 trigger_phrases:
   - "027 phase 007 ADRs"
   - "coco intent steering decisions"
@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored decision-record.md"
@@ -18,7 +18,7 @@ _memory:
     completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.0 -->
-# Architectural Decision Records: Phase 007 Coco-Index Intent Steering
+# Architectural Decision Records: Phase 006 Coco-Index Intent Steering
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -30,14 +30,14 @@ _memory:
 **Date:** 2026-05-09
 **Context:** Pt-03 RQ-A1 verdict was ADAPT with ~250-350 LOC estimate, suggesting Level 2 by LOC threshold alone. User's scaffolding directive elevates all 5 phases to Level 3.
 
-**Decision:** Designate Phase 007 as Level 3.
+**Decision:** Designate Phase 006 as Level 3.
 
 **Rationale:**
 - **Cross-language change** — Python (`mcp-coco-index/mcp_server/cocoindex_code/`) + TypeScript (`mcp_server/skill_advisor/lib/render.ts`) coordination crosses runtime boundaries.
 - **New feature flag family** with independent rollout semantics (`SPECKIT_COCOINDEX_INTENT_EXPAND`, `SPECKIT_COCOINDEX_FIRST_ACTION_HINT`).
 - **Hot retrieval path** — `query.py:267-323` is the search-call hot path; any change here needs L3 governance.
 - **Telemetry contract** — new envelope fields surfaced through `cocoindex-calibration.ts` are an external observability contract.
-- **Phase-006 eval gate** required before active rollout — promotion governance fits L3's decision-record + checklist discipline.
+- **Phase-004 eval gate** required before active rollout — promotion governance fits L3's decision-record + checklist discipline.
 
 **Consequences:**
 - Decision-record.md mandatory (this file).
@@ -63,11 +63,11 @@ _memory:
 **Consequences:**
 - Rule maintenance burden: new intent families require keyword curation.
 - Precision ceiling: at some recall point, rule-based heuristics will plateau.
-- LLM follow-on: if Phase-006 eval shows rule-based ceiling, an LLM-classifier follow-on phase is the natural next step.
+- LLM follow-on: if Phase-004 eval shows rule-based ceiling, an LLM-classifier follow-on phase is the natural next step.
 
 **Alternatives considered:**
 - LLM-based classifier — rejected for v1 (network/cost/non-determinism); valid follow-on if rule-based ceilings.
-- Embedding-similarity classifier (KNN over labeled query exemplars) — rejected for v1 (adds an embedding call to a hot path); could be folded into Phase 011's example bank as a future variant.
+- Embedding-similarity classifier (KNN over labeled query exemplars) — rejected for v1 (adds an embedding call to a hot path); could be folded into Phase 008's example bank as a future variant.
 
 ---
 
@@ -88,7 +88,7 @@ _memory:
 **Consequences:**
 - 3-embedding ceiling enforced via assertion (`assert len(embed_calls) <= 3`).
 - Sub-query template per intent family is small by design (≤2 templates).
-- If Phase-006 eval shows 3 is too tight, raising to 4-5 is a flag-controlled change.
+- If Phase-004 eval shows 3 is too tight, raising to 4-5 is a flag-controlled change.
 
 **Alternatives considered:**
 - Unbounded expansion — rejected (cost + precision risk).
@@ -137,11 +137,11 @@ _memory:
 **Consequences:**
 - Existing implementation-intent boost behavior unchanged for backward compatibility.
 - New intent families get bounded boosts that can never override semantic similarity.
-- If Phase-006 eval shows ±0.05 is too small for some intent families, magnitude becomes a flag-controlled tunable.
+- If Phase-004 eval shows ±0.05 is too small for some intent families, magnitude becomes a flag-controlled tunable.
 
 **Alternatives considered:**
-- Per-intent magnitude tuning (e.g. `error_handling` gets ±0.10) — rejected for v1 (no eval data to justify); revisit after Phase-006 measurements.
-- Learned path-class weights — rejected for v1 (deferred to Phase 009's feedback reducer; would change the magnitude after the user signals "helpful" / "not helpful").
+- Per-intent magnitude tuning (e.g. `error_handling` gets ±0.10) — rejected for v1 (no eval data to justify); revisit after Phase-004 measurements.
+- Learned path-class weights — rejected for v1 (deferred to 027/008-feedback-reducers's feedback reducer; would change the magnitude after the user signals "helpful" / "not helpful").
 
 ---
 
@@ -166,13 +166,13 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Pt-03 verdict for this phase recommends Level 3 designation. After the Phase 001 complete-fork insertion, the 5 pt-03 phase children are numbered 007-011. The user's scaffolding directive elevates all 5 to Level 3 regardless of pt-03's per-phase L2/L3 suggestion, citing the cross-component nature of every recommendation and the governance discipline (feature flags, telemetry contracts, Phase-006 eval gates) that L3 enforces.
+Pt-03 verdict for this phase recommends Level 3 designation. After the Phase 005 complete-fork insertion, the 5 pt-03 phase children are numbered 007-011. The user's scaffolding directive elevates all 5 to Level 3 regardless of pt-03's per-phase L2/L3 suggestion, citing the cross-component nature of every recommendation and the governance discipline (feature flags, telemetry contracts, Phase-004 eval gates) that L3 enforces.
 <!-- /ANCHOR:adr-001-context -->
 
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-Designate Phase 007 as **Level 3**. Apply full L3 file contract: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, description.json, graph-metadata.json, plus per-child resource-map.md per user directive.
+Designate Phase 006 as **Level 3**. Apply full L3 file contract: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, description.json, graph-metadata.json, plus per-child resource-map.md per user directive.
 <!-- /ANCHOR:adr-001-decision -->
 
 <!-- ANCHOR:adr-001-alternatives -->
@@ -190,8 +190,8 @@ Designate Phase 007 as **Level 3**. Apply full L3 file contract: spec.md, plan.m
 - resource-map.md mandatory per user directive.
 - Strict spec validation gate applies before merge.
 - Implementation-summary.md must be filled with concrete file:line citations after Sub-Phases land.
-- Phase-006 eval gate required for any active-mode rollout.
-- Test discipline includes unit + integration + diff (backward-compat) + Phase-006 paired comparison.
+- Phase-004 eval gate required for any active-mode rollout.
+- Test discipline includes unit + integration + diff (backward-compat) + Phase-004 paired comparison.
 <!-- /ANCHOR:adr-001-consequences -->
 
 <!-- ANCHOR:adr-001-five-checks -->
@@ -200,7 +200,7 @@ Designate Phase 007 as **Level 3**. Apply full L3 file contract: spec.md, plan.m
 1. **Cross-component change?** Yes — touches multiple subsystems and/or runtimes.
 2. **New feature flag family?** Yes — default-off rollout per pt-03 universal pattern.
 3. **Telemetry contract introduced?** Yes — per-phase eval logger events documented in REQs.
-4. **Promotion gate required?** Yes — Phase-006 eval lift before active mode.
+4. **Promotion gate required?** Yes — Phase-004 eval lift before active mode.
 5. **Hot-path or governance impact?** Yes — affects retrieval / cognitive activation / governance decisions per phase scope.
 
 All five checks affirmative → Level 3 designation justified.

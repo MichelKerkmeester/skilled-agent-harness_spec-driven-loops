@@ -1,0 +1,67 @@
+{
+  "sessionId": "research-20260528-105928",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-what-are-minimax-2-7-s-api-characteristics-context-window-reasoning-variant-c",
+      "text": "Q1: What are MiniMax 2.7's API characteristics (context window, reasoning/`--variant` controls, tool-calling, pricing, latency) that determine its context-budget defaults and cost/latency profile?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-what-context-budget-tuple-and-output-verification-recipe-should-minimax-2-7-a",
+      "text": "Q2: What context-budget tuple and output-verification recipe should MiniMax 2.7 adopt, reusing 114's budget engine + 4-stage verification?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-what-prompt-quality-rcaf-patterns-and-variant-reasoning-effort-mapping-maximi",
+      "text": "Q3: What prompt-quality / RCAF patterns and `--variant`/reasoning-effort mapping maximize MiniMax 2.7 efficiency through cli-opencode?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-how-should-quota-pool-fallback-wiring-minimax-api-and-the-structured-permissi",
+      "text": "Q4: How should quota-pool + fallback wiring (`minimax-api`) and the structured permissions matrix apply to MiniMax 2.7?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-what-routing-heuristics-should-decide-minimax-2-7-vs-deepseek-qwen-glm-and-wh",
+      "text": "Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-small-model` + `cli-opencode` follow?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Q1: What are MiniMax 2.7's API characteristics (context window, reasoning/`--variant` controls, tool-calling, pricing, latency) that determine its context-budget defaults and cost/latency profile?",
+    "Q2: What context-budget tuple and output-verification recipe should MiniMax 2.7 adopt, reusing 114's budget engine + 4-stage verification?",
+    "Q3: What prompt-quality / RCAF patterns and `--variant`/reasoning-effort mapping maximize MiniMax 2.7 efficiency through cli-opencode?",
+    "Q4: How should quota-pool + fallback wiring (`minimax-api`) and the structured permissions matrix apply to MiniMax 2.7?",
+    "Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-small-model` + `cli-opencode` follow?"
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 1,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0.92,
+    "coverageBySources": {
+      "code": 8,
+      "other": 5
+    }
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}

@@ -1,5 +1,5 @@
 ---
-title: "Phase 003.004 — code_graph_trace Tests"
+title: "Phase 002.004 — code_graph_trace Tests"
 description: "Level 2 child packet for code-graph-trace.vitest.ts tests against the trace contract."
 trigger_phrases:
   - "027 phase 003 test"
@@ -9,13 +9,13 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/004-test"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/004-test"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded child packet for trace tests"
     next_safe_action: "Implement contract-driven trace tests after local contract publishes"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
+      - "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -41,7 +41,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | spec-scaffolded |
 | **Created** | 2026-05-12 |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace` |
 | **Depends on** | `001-contract` |
 | **Estimated LOC** | ~80 |
 <!-- /ANCHOR:metadata -->
@@ -67,7 +67,7 @@ Create `code-graph-trace.vitest.ts` tests that prove the trace contract across s
 - Contract-driven Vitest tests.
 - Sparse-containment fixtures.
 - Nested-class fqName prefix regression.
-- Role equality with Phase 002 classifier.
+- Role equality with Phase 001 classifier.
 - Depth cap and structured error tests.
 
 ### Out of Scope
@@ -93,7 +93,7 @@ Create `code-graph-trace.vitest.ts` tests that prove the trace contract across s
 |----|-------------|---------------------|
 | REQ-001 | Test sparse-containment behavior. | Top-level, Bash/doc, module, and default-export shapes still return file and role. |
 | REQ-002 | Test nested-class matching. | Parent match uses `class.fqName + "."`, not short name. |
-| REQ-003 | Test classifier equality. | Trace `architectural_role` equals Phase 002 role for the same file. |
+| REQ-003 | Test classifier equality. | Trace `architectural_role` equals Phase 001 role for the same file. |
 | REQ-004 | Test depth cap. | Over-depth traces set `truncated: true`. |
 | REQ-005 | Test missing symbol errors. | Missing symbol returns structured error behavior. |
 
@@ -101,7 +101,7 @@ Create `code-graph-trace.vitest.ts` tests that prove the trace contract across s
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-006 | Track coverage for new trace code. | Coverage reaches at least 80 percent for new Phase 003 implementation. |
+| REQ-006 | Track coverage for new trace code. | Coverage reaches at least 80 percent for new Phase 002 implementation. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -110,7 +110,7 @@ Create `code-graph-trace.vitest.ts` tests that prove the trace contract across s
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `npx vitest run code-graph-trace.vitest.ts --coverage` passes when implementation is present.
-- **SC-002**: Tests prove filePath ownership and Phase 002 role equality.
+- **SC-002**: Tests prove filePath ownership and Phase 001 role equality.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -122,7 +122,7 @@ Create `code-graph-trace.vitest.ts` tests that prove the trace contract across s
 |------|------|--------|------------|
 | Dependency | Local contract | Test target can drift | Write tests against `001-contract`. |
 | Risk | Tests overfit implementation details | Refactors become noisy | Assert contract behavior and public helpers only. |
-| Risk | Phase 002 unavailable | Role equality blocked | Use typed doubles only until upstream implementation is merged, then switch to real classifier. |
+| Risk | Phase 001 unavailable | Role equality blocked | Use typed doubles only until upstream implementation is merged, then switch to real classifier. |
 <!-- /ANCHOR:risks -->
 
 ---

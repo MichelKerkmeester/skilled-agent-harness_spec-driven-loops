@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/013-cocoindex-memory-port-research"
+    packet_pointer: "scaffold/009-cocoindex-memory-port-research"
     last_updated_at: "2026-05-13T07:26:20Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"
@@ -20,7 +20,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/013-cocoindex-memory-port-research"
+      session_id: "scaffold-scaffold/009-cocoindex-memory-port-research"
       parent_session_id: null
     completion_pct: 0
     open_questions: []

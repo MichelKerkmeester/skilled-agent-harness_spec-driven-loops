@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/002-lib-impl"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/002-lib-impl"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Created Level 2 scaffold for 002-lib-impl"
@@ -41,8 +41,8 @@ _memory:
 | **Priority** | P1 |
 | **Status** | scaffolded |
 | **Created** | 2026-05-12 |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis` |
-| **Depends On** | `001-contract`; `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis` |
+| **Depends On** | `001-contract`; `system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -105,7 +105,7 @@ The code graph has change detection and an impact traversal mode, but not determ
 |------|------|--------|------------|
 | Dependency | `001-contract` | Implementation cannot stabilize output shape | Start after contract publishes. |
 | Dependency | `027/002/002-lib-impl` | Layer fallback details may be unavailable | Emit unavailable/null when absent. |
-| Risk | Risk weights are unvalidated | Scores can be overinterpreted | Label weights heuristic until Phase 006 calibration. |
+| Risk | Risk weights are unvalidated | Scores can be overinterpreted | Label weights heuristic until Phase 004 calibration. |
 <!-- /ANCHOR:risks -->
 
 ---

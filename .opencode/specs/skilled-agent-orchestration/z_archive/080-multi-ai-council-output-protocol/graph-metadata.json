@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The `@multi-ai-council` agent today returns deliberation results inline to chat with no packet-level persistence, breaking parity with `@deep-research` (writes to `research/`) and `@deep-review` (writes to `review/`). This packet introduces the `ai-council/` subfolder convention so council outputs become first-class, audit-friendly packet artifacts that support iteration and resume. The convention stays lightweight: no skill folder, no slash command, no YAML workflow — just an agent body update plus 4 shared reference files.",
     "created_at": "2026-05-06T12:31:00.902Z",
-    "last_save_at": "2026-05-27T13:45:35.352Z",
+    "last_save_at": "2026-05-28T06:06:28.117Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

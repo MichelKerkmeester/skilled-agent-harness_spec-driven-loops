@@ -3,13 +3,13 @@ title: "Remediation: CP-Sandbox speckit Path Fix (Deep-Loop Playbook 007)"
 description: "Fix stale .opencode/commands/spec_kit references in deep-review + deep-research CP-stress setup-cp-sandbox.sh (dir renamed to speckit), unblocking CP-052..057 + CP-046..051 sandbox setup."
 trigger_phrases:
   - "cp sandbox speckit path fix"
-  - "030 phase 007 remediation"
+  - "007 phase 007 remediation"
   - "setup-cp-sandbox spec_kit speckit"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/007-cp-sandbox-speckit-path-fix"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/007-cp-sandbox-speckit-path-fix"
     last_updated_at: "2026-05-27T20:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Fixed stale spec_kit refs to speckit in 2 CP setup scripts"
@@ -51,7 +51,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`.opencode/commands/spec_kit` was renamed to `.opencode/commands/speckit`, but two CP-stress `setup-cp-sandbox.sh` scripts still reference the old `spec_kit` path: deep-review `07/setup-cp-sandbox.sh` (lines 61 `require_path` + 73 `copy_dir`) and deep-research `07/setup-cp-sandbox.sh` (line 74 `copy_dir`). Each hard-fails at `require_path` before building the sandbox, blocking CP-052..057 (deep-review) and CP-046..051 (deep-research) in the 030 validation run. It is CP-test-tooling staleness from the rename, not a deep-loop runtime defect.
+`.opencode/commands/spec_kit` was renamed to `.opencode/commands/speckit`, but two CP-stress `setup-cp-sandbox.sh` scripts still reference the old `spec_kit` path: deep-review `07/setup-cp-sandbox.sh` (lines 61 `require_path` + 73 `copy_dir`) and deep-research `07/setup-cp-sandbox.sh` (line 74 `copy_dir`). Each hard-fails at `require_path` before building the sandbox, blocking CP-052..057 (deep-review) and CP-046..051 (deep-research) in the 007 validation run. It is CP-test-tooling staleness from the rename, not a deep-loop runtime defect.
 
 ### Purpose
 Update the 3 stale references to `speckit` so both CP-stress sandboxes build, unblocking the 12 CP scenarios. Scope is the path rename only.

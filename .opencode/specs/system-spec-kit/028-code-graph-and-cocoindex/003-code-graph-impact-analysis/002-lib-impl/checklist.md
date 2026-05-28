@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/002-lib-impl"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/002-lib-impl"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Created Level 2 scaffold for 002-lib-impl"
@@ -61,7 +61,7 @@ _memory:
 - [ ] CHK-013 [P0] TESTED_BY evidence uses incoming production-symbol edges.
 - [ ] CHK-014 [P0] Missing coverage is unknown/missing.
 - [ ] CHK-015 [P0] Traversal has an explicit visited set and depth cap.
-- [ ] CHK-016 [P1] Layer fallback emits unavailable/null when Phase 002 data is absent.
+- [ ] CHK-016 [P1] Layer fallback emits unavailable/null when Phase 001 data is absent.
 <!-- /ANCHOR:code-quality -->
 
 ---

@@ -14,8 +14,8 @@
   "priority": "P1",
   "createdAt": "2026-05-08T15:00:00Z",
   "branch": "main",
-  "parent_track": "027-xce-research-based-refinement",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "parent_track": "028-code-graph-and-cocoindex",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
   "manual": {
     "children": [
       "001-contract",
@@ -24,7 +24,7 @@
       "004-test"
     ],
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld"
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld"
     ]
   },
   "derived": {
@@ -32,20 +32,23 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
-  "description": "Phase-parent control spec for contract-first implementation of risk-scored code graph impact analysis.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
+  "description": "Feature Specification: 003 — Code Graph Impact Analysis",
   "keywords": [
-    "phase-parent",
-    "risk-scored",
+    "feature",
+    "specification",
+    "003",
+    "code",
+    "graph",
     "impact",
-    "analysis",
-    "code-graph"
+    "analysis"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-28T06:52:04.251Z",
+  "specId": "003",
   "folderSlug": "code-graph-impact-analysis",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement"
+    "028-code-graph-and-cocoindex"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/005-stress-tests-integration"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/005-stress-tests-integration"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Scaffolded Level 2 child packet"
@@ -39,7 +39,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Planned |
 | **Created** | 2026-05-12 |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval` |
 | **Depends On** | `001-harness-skeleton`, `002-token-measurement`, `003-fixtures`, `004-report-generator` |
 | **Estimated LOC** | ~110 |
 <!-- /ANCHOR:metadata -->

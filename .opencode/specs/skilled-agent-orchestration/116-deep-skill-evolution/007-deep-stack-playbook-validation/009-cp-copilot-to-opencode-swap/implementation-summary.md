@@ -1,14 +1,14 @@
 ---
-title: "Implementation Summary: CP copilot → opencode Executor Swap (030 Phase 009)"
-description: "Swapped 18 copilot CP scenarios to opencode/deepseek-direct, restored the pruned fixture, re-ran all 18 (13 PASS / 5 PARTIAL / 0 FAIL), and flipped the 030 SKIPs + matrix."
+title: "Implementation Summary: CP copilot → opencode Executor Swap (007 Phase 009)"
+description: "Swapped 18 copilot CP scenarios to opencode/deepseek-direct, restored the pruned fixture, re-ran all 18 (13 PASS / 5 PARTIAL / 0 FAIL), and flipped the 007 SKIPs + matrix."
 trigger_phrases:
-  - "030 phase 009 implementation summary"
+  - "007 phase 009 implementation summary"
   - "cp copilot opencode swap summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/009-cp-copilot-to-opencode-swap"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap"
     last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "18 CP re-run via opencode/deepseek - 13 PASS 5 PARTIAL 0 FAIL; ledgers+matrix flipped"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 030-deep-loop-skills-playbook-validation/009-cp-copilot-to-opencode-swap |
+| **Spec Folder** | 007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap |
 | **Completed** | 2026-05-28 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The 18 copilot-driven CP/discipline stress scenarios across three deep-loop skills now run on `cli-opencode` (`deepseek-v4-pro`, direct DeepSeek API) instead of the org-policy-blocked `copilot` CLI, and the pruned deep-agent-improvement `060-stress-test` fixture is restored. All 18 were re-run and orchestrator-verified: **13 PASS / 5 PARTIAL / 0 FAIL**, clearing 18 of the 030 matrix's 19 SKIPs.
+The 18 copilot-driven CP/discipline stress scenarios across three deep-loop skills now run on `cli-opencode` (`deepseek-v4-pro`, direct DeepSeek API) instead of the org-policy-blocked `copilot` CLI, and the pruned deep-agent-improvement `060-stress-test` fixture is restored. All 18 were re-run and orchestrator-verified: **13 PASS / 5 PARTIAL / 0 FAIL**, clearing 18 of the 007 matrix's 19 SKIPs.
 
 ### Files Changed
 
@@ -55,8 +55,8 @@ The 18 copilot-driven CP/discipline stress scenarios across three deep-loop skil
 | 18 CP scenario `.md` (deep-review 052-057, deep-research 046-051, deep-agent-improvement 013-018) | Modified | `copilot -p` → `opencode run` (deepseek-direct); 30 invocations |
 | 2 of those (056, 057) | Modified again | newline-prepend fix for `---`-leading agent-body messages |
 | `.opencode/skills/deep-agent-improvement/test-fixtures/060-stress-test/**` | Restored | 4 runtime fixture forms recovered from git `e917f76347^` |
-| `030-.../00{3,4,5}-*/checklist.md` | Modified | CP SKIP rows flipped to PASS/PARTIAL; summary lines re-tallied |
-| `030-.../006-.../release-readiness-matrix.md` | Modified | rollup + verdict-class + lineage + rationale re-tallied (SKIP 19→1) |
+| `007-.../00{3,4,5}-*/checklist.md` | Modified | CP SKIP rows flipped to PASS/PARTIAL; summary lines re-tallied |
+| `007-.../006-.../release-readiness-matrix.md` | Modified | rollup + verdict-class + lineage + rationale re-tallied (SKIP 19→1) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -95,7 +95,7 @@ The 18 copilot-driven CP/discipline stress scenarios across three deep-loop skil
 | Fixture restored + setup runs | PASS (deep-agent-improvement setup exit 0) |
 | 18 re-run, orchestrator-verified | PASS — 13 PASS / 5 PARTIAL / 0 FAIL |
 | Per-scenario git tripwire | clean (no repo mutation; runs `--dir`-bounded to `/tmp`) |
-| 030 ledgers + matrix reconciled | PASS (003=40/5/0, 004=30/10/1, 005=29/8/0; matrix SKIP 19→1) |
+| 007 ledgers + matrix reconciled | PASS (003=40/5/0, 004=30/10/1, 005=29/8/0; matrix SKIP 19→1) |
 | validate.sh --strict (009 + touched children + parent) | PASS (run at close) |
 <!-- /ANCHOR:verification -->
 

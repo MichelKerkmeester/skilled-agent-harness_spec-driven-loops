@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 005-deep-agent-improvement release-cleanup ran a deep-research loop that surfaced six logic gaps. Three doc gaps were fixed in 005; two code/config gaps were escalated (spec §3 kept `.cjs`/config changes out of that doc-cleanup packet). This packet fixes those two.",
     "created_at": "2026-05-24T04:32:12.188Z",
-    "last_save_at": "2026-05-27T13:45:34.887Z",
+    "last_save_at": "2026-05-28T06:06:27.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

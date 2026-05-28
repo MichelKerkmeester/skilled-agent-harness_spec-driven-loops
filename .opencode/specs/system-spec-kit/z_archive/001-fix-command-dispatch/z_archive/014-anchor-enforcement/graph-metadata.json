@@ -96,7 +96,7 @@
     ],
     "causal_summary": "Enforce correct anchor format throughout memory system to enable section-specific retrieval with 93% token savings.",
     "created_at": "2026-04-12T09:02:53.512Z",
-    "last_save_at": "2026-05-27T13:45:37.014Z",
+    "last_save_at": "2026-05-28T06:06:29.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

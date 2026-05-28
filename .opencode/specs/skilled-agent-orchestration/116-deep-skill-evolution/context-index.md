@@ -1,6 +1,6 @@
 ---
 title: "Context Index: deep-skill evolution arc"
-description: "Migration bridge for the 116 nested phase parent: 2026-05-26 reorganization to 7 thematic clusters, plus the original source-packet lineage relocated out of spec.md."
+description: "Migration bridge for the 116 nested phase parent: 2026-05-26 reorganization to 7 thematic clusters + 2026-05-28 system-spec-kit/030 to 007 cross-track migration (8th cluster), plus the original source-packet lineage relocated out of spec.md."
 trigger_phrases:
   - "116 context index"
   - "deep skill evolution reorganization"
@@ -34,7 +34,7 @@ _memory:
 
 ## WHEN TO USE THIS FILE
 
-This phase parent was reorganized on 2026-05-26 (cluster rename, thin-cluster fold, orphan/scratch cleanup). Use this file to resolve an old cluster path to its new home and to see the original source-packet lineage. For an exhaustive leaf-by-leaf path map use `merged-phase-map.md`. Detailed rationale lives in each leaf's own docs.
+This phase parent was reorganized on 2026-05-26 (cluster rename, thin-cluster fold, orphan/scratch cleanup) and gained an 8th cluster on 2026-05-28 (the `system-spec-kit/030 → 007-deep-stack-playbook-validation` cross-track migration). Use this file to resolve an old cluster path to its new home and to see the original source-packet lineage. For an exhaustive leaf-by-leaf path map use `merged-phase-map.md`. Detailed rationale lives in each leaf's own docs.
 
 ---
 
@@ -54,6 +54,16 @@ This phase parent was reorganized on 2026-05-26 (cluster rename, thin-cluster fo
 
 The empty `006-deep-skills-differentiation/`, `007-deep-commands-relocation/`, and `008-deep-skill-doc-evolution/` cluster wrappers were removed after their leaves moved; old packet IDs are preserved in the new folders' `graph-metadata.json` (`manual.supersedes`) and `description.json` (`memoryNameHistory`).
 <!-- /ANCHOR:migration-bridge -->
+
+---
+
+<!-- ANCHOR:cross-track-migration -->
+## Cross-Track Migration (2026-05-28)
+
+| Original Phase | New Home | Status | Notes |
+|----------------|----------|--------|-------|
+| `system-spec-kit/030-deep-loop-skills-playbook-validation/` (10 leaves) | `007-deep-stack-playbook-validation/` | complete | Relocated out of the `system-spec-kit` track into 116 as a new cross-cutting **playbook-validation** cluster. Self-contained phase parent (children 001–010) moved intact via `git mv`; all `packet_pointer`s, `graph-metadata.json`/`description.json` identity fields, and authored-doc references rewritten to the new path. Original lineage: followed "Code Graph Playbook Validation" (was system-spec-kit/029, now `system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening`). Deliverable: 177/177 PASS → verdict READY. Leaf-by-leaf old→new paths in `merged-phase-map.md`. |
+<!-- /ANCHOR:cross-track-migration -->
 
 ---
 
@@ -80,6 +90,7 @@ The clusters consolidated work that began as independently-created packets in th
 | deep-* commands relocation | `006-deep-stack-cross-cutting/` | 002 |
 | deep-* skill documentation evolution | `006-deep-stack-cross-cutting/` | 003–005 |
 | deep-* per-skill release cleanup | `000-release-cleanup/` | 15 flat specs (flattened 2026-05-26; see `000-release-cleanup/context-index.md`) |
+| 030 deep-loop-skills-playbook-validation (system-spec-kit track; relocated 2026-05-28) | `007-deep-stack-playbook-validation/` | 001–010 |
 
 > Clusters 003 and 005 gained later leaves beyond the original packet count; the `000-release-cleanup` meta-cluster and the cross-cutting documentation/command work were added after the initial arc.
 <!-- /ANCHOR:source-lineage -->

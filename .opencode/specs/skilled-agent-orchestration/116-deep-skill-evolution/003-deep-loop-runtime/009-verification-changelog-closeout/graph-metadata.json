@@ -208,7 +208,7 @@
     ],
     "causal_summary": "After phases 001 through 007 land, the arc's code work is mechanically complete: the runtime skill exists, 13 lib files have moved, 4 .cjs scripts replace the MCP tool surface, YAML workflows + collateral point at scripts, tests are split, and the MCP server no longer ships deep_loop_graph_* tools. What is missing is the closing audit — proof the sweep is green, the version envelope is bumped, the new runtime skill ships an initial release entry, the 116 arc's deferred resource-map is filled in against the new file locations, and the parent packet flips from Active to Complete with refreshed graph metadata. Without this phase the arc has no single commit that demonstrates the migration shipped clean.",
     "created_at": "2026-05-22T19:55:00Z",
-    "last_save_at": "2026-05-27T13:45:34.962Z",
+    "last_save_at": "2026-05-28T06:06:27.751Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

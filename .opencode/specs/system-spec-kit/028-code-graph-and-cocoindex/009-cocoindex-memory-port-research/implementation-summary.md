@@ -16,7 +16,7 @@ importance_tier: "important"
 contextType: "research-synthesis"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research"
     last_updated_at: "2026-05-13T08:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Deep research converged (10 iterations)"
@@ -61,7 +61,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 013-cocoindex-memory-port-research |
+| **Spec Folder** | 009-cocoindex-memory-port-research |
 | **Completed** | 2026-05-13 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

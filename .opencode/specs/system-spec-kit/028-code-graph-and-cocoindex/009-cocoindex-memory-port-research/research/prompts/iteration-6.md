@@ -2,7 +2,7 @@
 
 ## BINDING CONTRACT (pre-answered)
 
-- **Gate 3**: **A) Use existing spec folder** = `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/`. Do NOT ask.
+- **Gate 3**: **A) Use existing spec folder** = `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/`. Do NOT ask.
 - **Skill routing**: Do NOT invoke other skills via slash commands. You ARE the deep-research iteration.
 - **Sub-agent dispatch**: FORBIDDEN. LEAF.
 - **Mode**: Execute directly.

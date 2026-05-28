@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Packets 037, 038, and 039 restored llama-cpp embedding-worker health and error behavior, but the active llama-cpp SQLite profile still contains historical rows that did not embed successfully before the worker was fixed. The repair target is `.opencode/skills/system-spec-kit/mcp_server/database/context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite`.",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-05-27T13:45:36.197Z",
+    "last_save_at": "2026-05-28T06:06:28.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

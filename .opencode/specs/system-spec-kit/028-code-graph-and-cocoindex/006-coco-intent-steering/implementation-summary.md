@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary — Phase 007 Coco-Index Intent Steering"
+title: "Implementation Summary — Phase 006 Coco-Index Intent Steering"
 description: "Filled post-implementation. At scaffold time this file holds template placeholders per memory feedback `feedback_implementation_summary_placeholders.md` (do not flag as a bug)."
 trigger_phrases:
   - "027 phase 007 implementation summary"
@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded placeholder"
@@ -17,7 +17,7 @@ _memory:
     completion_pct: 0
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.0 -->
-# Implementation Summary: Phase 007 Coco-Index Intent Steering + Bounded Query Expansion
+# Implementation Summary: Phase 006 Coco-Index Intent Steering + Bounded Query Expansion
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -27,7 +27,7 @@ _memory:
 
 ## OVERVIEW
 
-[###-feature-name]: Coco-Index Intent Steering + Bounded Query Expansion (Phase 007).
+[###-feature-name]: Coco-Index Intent Steering + Bounded Query Expansion (Phase 006).
 
 [Implementation status post-Sub-Phase 4: not started].
 
@@ -79,7 +79,7 @@ _memory:
 ## OBSERVATIONS / FOLLOW-ONS
 
 [Filled post-implementation. May include:
-- Phase-006 eval gating notes.
+- Phase-004 eval gating notes.
 - Suggested follow-on phases (e.g. LLM-classifier upgrade if rule ceilings).
 - Telemetry observations from initial shadow runs.]
 
@@ -90,7 +90,7 @@ _memory:
 [Filled at end of Sub-Phase 4 to enable next-session resume:
 - Final file states.
 - Open questions answered vs deferred.
-- Recommended next action (e.g. "ship to staging behind flag; await Phase-006 eval").]
+- Recommended next action (e.g. "ship to staging behind flag; await Phase-004 eval").]
 
 ---
 
@@ -105,7 +105,7 @@ Status: scaffolded; not yet implemented. Filled post-implementation per existing
 <!-- ANCHOR:what-built -->
 ## WHAT WAS BUILT
 
-See files referenced in resource-map.md  section: production code paths spanning 007-coco-intent-steering touch points across mcp_server/ and/or mcp-coco-index/. Pre-implementation: file list is PLANNED; post-implementation: actual file:line evidence will be filled here.
+See files referenced in resource-map.md  section: production code paths spanning 006-coco-intent-steering touch points across mcp_server/ and/or mcp-coco-index/. Pre-implementation: file list is PLANNED; post-implementation: actual file:line evidence will be filled here.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -126,10 +126,10 @@ See files referenced in resource-map.md  section: production code paths spanning
 Verification commands (run after implementation):
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh   .opencode/specs/system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh   .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering --strict
 ```
 
-Plus per-test commands listed in `checklist.md` "VERIFICATION COMMANDS QUICK-RUN" section. Coverage spans unit (vitest / pytest), integration, diff (backward-compat parity), and Phase-006 paired-comparison eval.
+Plus per-test commands listed in `checklist.md` "VERIFICATION COMMANDS QUICK-RUN" section. Coverage spans unit (vitest / pytest), integration, diff (backward-compat parity), and Phase-004 paired-comparison eval.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/006-integration-smoke",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/006-integration-smoke",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork",
+  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/006-integration-smoke",
+  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/006-integration-smoke",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Wire the fork into opencode configuration and run final install, CLI, MCP, and recursive validation smoke checks.",
     "created_at": "2026-05-12T07:20:00Z",
-    "last_save_at": "2026-05-27T13:45:36.960Z",
+    "last_save_at": "2026-05-28T06:49:57.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T07:20:00Z",
     "source_docs": [

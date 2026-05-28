@@ -2,7 +2,7 @@
 
 ## BINDING CONTRACT (pre-answered)
 
-- **Gate 3**: **A) Use existing** = `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/`. Do NOT ask.
+- **Gate 3**: **A) Use existing** = `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/`. Do NOT ask.
 - **Skill routing**: Do NOT invoke other skills. You ARE the iteration.
 - **Sub-agent dispatch**: FORBIDDEN. LEAF.
 - **Mode**: Direct execution. No menus, no clarification questions.

@@ -12,10 +12,10 @@
   "priority": "P1",
   "createdAt": "2026-05-12T00:00:00Z",
   "branch": "main",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
+      "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
     ]
   },
   "derived": {
@@ -23,21 +23,20 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/004-test",
-  "description": "code-graph-trace.vitest.ts tests against the trace contract.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/004-test",
+  "description": "Feature Specification: code_graph_trace Tests",
   "keywords": [
-    "trace",
-    "vitest",
-    "coverage",
-    "contract"
+    "feature",
+    "specification",
+    "tests"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-28T06:52:05.829Z",
   "specId": "004",
   "folderSlug": "test",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "003-code-graph-trace"
+    "028-code-graph-and-cocoindex",
+    "002-code-graph-trace"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

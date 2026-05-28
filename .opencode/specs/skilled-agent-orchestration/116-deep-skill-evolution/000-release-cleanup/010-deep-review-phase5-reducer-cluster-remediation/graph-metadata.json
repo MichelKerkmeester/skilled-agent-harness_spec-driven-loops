@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The `003-deep-review` packet deferred all reducer-behavior gaps under ADR-002 (the reducer was bug-scan only in that packet). The `007` parent reopens that decision per operator directive. Each of the 9 deferred reducer gaps was re-verified against the current `scripts/reduce-state.cjs` (1657 LOC):",
     "created_at": "2026-05-23T19:05:00.000Z",
-    "last_save_at": "2026-05-27T13:45:34.872Z",
+    "last_save_at": "2026-05-28T06:06:27.682Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

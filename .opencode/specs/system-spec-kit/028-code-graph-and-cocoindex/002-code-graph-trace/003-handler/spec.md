@@ -1,5 +1,5 @@
 ---
-title: "Phase 003.003 — code_graph_trace Handler"
+title: "Phase 002.003 — code_graph_trace Handler"
 description: "Level 2 child packet for handlers/trace.ts using the trace contract interface."
 trigger_phrases:
   - "027 phase 003 handler"
@@ -9,13 +9,13 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/003-handler"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/003-handler"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded child packet for trace handler work"
     next_safe_action: "Implement handlers/trace.ts after local contract publishes"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
+      - "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -41,7 +41,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | spec-scaffolded |
 | **Created** | 2026-05-12 |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace` |
 | **Depends on** | `001-contract` |
 | **Estimated LOC** | ~60 |
 <!-- /ANCHOR:metadata -->

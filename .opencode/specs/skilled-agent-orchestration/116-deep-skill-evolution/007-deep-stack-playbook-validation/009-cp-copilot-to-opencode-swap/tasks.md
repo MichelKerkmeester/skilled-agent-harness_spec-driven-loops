@@ -1,14 +1,14 @@
 ---
-title: "Tasks: CP copilot → opencode Executor Swap (030 Phase 009)"
-description: "Task list for the copilot→opencode CP swap, fixture restore, re-run, and 030 reconciliation."
+title: "Tasks: CP copilot → opencode Executor Swap (007 Phase 009)"
+description: "Task list for the copilot→opencode CP swap, fixture restore, re-run, and 007 reconciliation."
 trigger_phrases:
   - "cp copilot opencode swap tasks"
-  - "030 phase 009 tasks"
+  - "007 phase 009 tasks"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/009-cp-copilot-to-opencode-swap"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "18 CP re-run via opencode/deepseek - 13 PASS 5 PARTIAL 0 FAIL"
@@ -23,7 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: CP copilot → opencode Executor Swap (030 Phase 009)
+# Tasks: CP copilot → opencode Executor Swap (007 Phase 009)
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -70,9 +70,9 @@ _memory:
 
 - [x] T007 Re-run all 18 via opencode; capture logs + orchestrator-verify artifacts/diffs
 - [x] T008 Confirm per-scenario git tripwire clean (no repo mutation)
-- [x] T009 Flip 030 child ledger CP SKIP rows (003/004/005) with evidence
+- [x] T009 Flip 007 child ledger CP SKIP rows (003/004/005) with evidence
 - [x] T010 Re-tally `release-readiness-matrix.md` + recompute verdict + 009 lineage
-- [x] T011 validate.sh --strict 009 + touched 030 children + parent; reconcile parent cursor
+- [x] T011 validate.sh --strict 009 + touched 007 children + parent; reconcile parent cursor
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -82,7 +82,7 @@ _memory:
 
 - [x] All 18 CP scenarios run via opencode with recorded verdicts
 - [x] Zero `copilot -p` remain; fixture restored
-- [x] 030 ledgers + matrix reconciled; all packets validate --strict
+- [x] 007 ledgers + matrix reconciled; all packets validate --strict
 <!-- /ANCHOR:completion -->
 
 ---
@@ -92,7 +92,7 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Parent**: `../spec.md` (030 phase parent); matrix `../006-release-readiness-synthesis/release-readiness-matrix.md`
+- **Parent**: `../spec.md` (007 phase parent); matrix `../006-release-readiness-synthesis/release-readiness-matrix.md`
 - **Consuming phases**: `../003-deep-review-scenarios/`, `../004-deep-research-scenarios/`, `../005-deep-agent-improvement-scenarios/`
 - **Executor**: `.opencode/skills/cli-opencode/SKILL.md`
 <!-- /ANCHOR:cross-refs -->

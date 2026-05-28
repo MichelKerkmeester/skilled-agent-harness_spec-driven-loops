@@ -7,12 +7,12 @@ importance_tier: "normal"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Authored child tasks"
     next_safe_action: "Start T001 after dependency lands"
-    blockers: ["system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"]
+    blockers: ["system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork"]
     key_files: ["tasks.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -71,7 +71,7 @@ _memory:
 - [ ] T008 Add pytest coverage for empty-database migration [45m]
 - [ ] T009 Add pytest coverage for repeat migration [30m]
 - [ ] T010 Add privacy grep or row-shape test for absent comment fields [30m]
-- [ ] T011 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema --strict` [15m]
+- [ ] T011 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema --strict` [15m]
 <!-- /ANCHOR:phase-3 -->
 
 ---

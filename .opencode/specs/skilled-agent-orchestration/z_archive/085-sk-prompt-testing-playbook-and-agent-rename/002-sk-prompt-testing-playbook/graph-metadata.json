@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The `sk-prompt` skill (renamed in 082) ships 12 distinct testable surfaces but has **no manual_testing_playbook/** directory. Sibling skills with similar surface area ship one (cli-codex 27 scenarios, sk-code 24, deep-research 41). Operators can't run a deterministic pre-release validation battery.",
     "created_at": "2026-05-06T13:19:26Z",
-    "last_save_at": "2026-05-27T13:45:35.378Z",
+    "last_save_at": "2026-05-28T06:06:28.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

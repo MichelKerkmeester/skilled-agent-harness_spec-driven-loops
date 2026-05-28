@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Preserved resource map"
@@ -31,7 +31,7 @@ _memory:
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-Use this file as audit context for the original Phase 011 packet and as a pointer to the five executable child packets.
+Use this file as audit context for the original Phase 008 packet and as a pointer to the five executable child packets.
 <!-- /ANCHOR:when-to-use -->
 
 ---

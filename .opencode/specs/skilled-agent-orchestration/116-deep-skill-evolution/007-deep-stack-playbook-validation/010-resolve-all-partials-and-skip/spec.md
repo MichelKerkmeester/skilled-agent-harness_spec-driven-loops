@@ -1,15 +1,15 @@
 ---
-title: "Remediation: Resolve all 030 PARTIALs + the DR-032 SKIP (Phase 010, READY push)"
-description: "Drive the 030 release-readiness matrix toward READY by resolving all 31 PARTIAL verdicts + the 1 remaining SKIP across deep-ai-council/deep-review/deep-research/deep-agent-improvement via grep-tolerance, live opencode re-runs, stale-expectation fixes, a blocked_stop fixture, and a 5D-010 scorer decision."
+title: "Remediation: Resolve all 007 PARTIALs + the DR-032 SKIP (Phase 010, READY push)"
+description: "Drive the 007 release-readiness matrix toward READY by resolving all 31 PARTIAL verdicts + the 1 remaining SKIP across deep-ai-council/deep-review/deep-research/deep-agent-improvement via grep-tolerance, live opencode re-runs, stale-expectation fixes, a blocked_stop fixture, and a 5D-010 scorer decision."
 trigger_phrases:
   - "resolve all partials and skip"
-  - "030 phase 010 ready push"
+  - "007 phase 010 ready push"
   - "fix partials skip green"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/010-resolve-all-partials-and-skip"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip"
     last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All 31 PARTIAL + 1 SKIP resolved - 177/177 PASS, matrix READY"
@@ -29,7 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
-# Remediation: Resolve all 030 PARTIALs + the DR-032 SKIP (Phase 010, READY push)
+# Remediation: Resolve all 007 PARTIALs + the DR-032 SKIP (Phase 010, READY push)
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -38,11 +38,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Complete — all 31 PARTIAL + 1 SKIP resolved; 030 matrix 177/177 PASS = READY |
+| **Status** | Complete — all 31 PARTIAL + 1 SKIP resolved; 007 matrix 177/177 PASS = READY |
 | **Created** | 2026-05-28 |
 | **Branch** | `main` |
 | **Predecessor** | 009-cp-copilot-to-opencode-swap |
-| **Trigger** | Operator: "fix partials and skip" → everything green (push 030 toward READY) |
+| **Trigger** | Operator: "fix partials and skip" → everything green (push 007 toward READY) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -51,7 +51,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-After 009 the 030 matrix stands at 145 PASS / **31 PARTIAL** / 0 FAIL / **1 SKIP**. Per the READY rule, only the 6 deep-ai-council critical PARTIALs strictly gate READY, but the operator wants ALL 31 PARTIALs + the DR-032 SKIP resolved. The PARTIALs fall into five fix-classes: (A) deepseek-phrasing-vs-literal-grep on the 5 009 CP scenarios; (B) stale numeric expectations (DAC-026 count, DAC-029..032 ≥10× value-ratio bar); (C) verification-method PARTIALs that were "contract/vitest verified but not live-observed" under the codex/devin executors — now live-runnable via opencode; (D) DR-032's missing blocked_stop fixture; (E) the 5D-010 scorer null-aggregate design choice for rule-less agents.
+After 009 the 007 matrix stands at 145 PASS / **31 PARTIAL** / 0 FAIL / **1 SKIP**. Per the READY rule, only the 6 deep-ai-council critical PARTIALs strictly gate READY, but the operator wants ALL 31 PARTIALs + the DR-032 SKIP resolved. The PARTIALs fall into five fix-classes: (A) deepseek-phrasing-vs-literal-grep on the 5 009 CP scenarios; (B) stale numeric expectations (DAC-026 count, DAC-029..032 ≥10× value-ratio bar); (C) verification-method PARTIALs that were "contract/vitest verified but not live-observed" under the codex/devin executors — now live-runnable via opencode; (D) DR-032's missing blocked_stop fixture; (E) the 5D-010 scorer null-aggregate design choice for rule-less agents.
 
 ### Purpose
 Resolve each PARTIAL/SKIP by its appropriate fix-class, re-verify, flip the 002/003/004/005 ledgers, and re-tally the matrix — attempting READY. Residuals that genuinely cannot reach PASS (e.g. print-mode-only observation, design choices the owner must ratify) are reported honestly with reasons rather than force-flipped.

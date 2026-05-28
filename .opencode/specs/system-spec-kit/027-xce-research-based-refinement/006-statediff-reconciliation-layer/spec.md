@@ -1,5 +1,5 @@
 ---
-title: "Statediff reconciliation layer"
+title: "006 — Statediff Reconciliation Layer"
 description: "Replace scattered post-mutation reconciliation with a typed target-state diff model for durable memory projections. The pipeline builds a deterministic action plan before writes, applies actions through target sinks, then notifies cache and hygiene subscribers."
 trigger_phrases:
   - "statediff reconciliation"
@@ -33,7 +33,7 @@ _memory:
       - "hooks become subscribers"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Statediff reconciliation layer
+# Feature Specification: 006 — Statediff Reconciliation Layer
 
 <!-- SPECKIT_LEVEL: 1 -->
 

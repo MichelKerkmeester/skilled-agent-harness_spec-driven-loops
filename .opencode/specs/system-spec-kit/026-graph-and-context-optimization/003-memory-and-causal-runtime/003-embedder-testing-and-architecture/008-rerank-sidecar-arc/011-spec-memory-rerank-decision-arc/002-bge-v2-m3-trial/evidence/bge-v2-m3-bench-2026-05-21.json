@@ -766,7 +766,7 @@
         "memory_index:1096",
         "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/checklist.md",
         "memory_index:98",
-        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/checklist.md",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/checklist.md",
         "memory_index:1091",
         "specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience/checklist.md",
         "memory_index:471",
@@ -879,7 +879,7 @@
       ],
       "returned_doc_ids": [
         "memory_index:4105",
-        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/implementation-summary.md",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/implementation-summary.md",
         "memory_index:688",
         "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/028-documentation-alignment-readme-fill-in/implementation-summary.md",
         "memory_index:9611",
@@ -1097,15 +1097,15 @@
       ],
       "returned_doc_ids": [
         "memory_index:4105",
-        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/implementation-summary.md",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/implementation-summary.md",
         "memory_index:96",
-        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/005-extraction-rerun/implementation-summary.md",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/005-extraction-rerun/implementation-summary.md",
         "memory_index:9234",
         "specs/skilled-agent-orchestration/114-small-ai-model-optimization/004-budget-and-output-verification/implementation-summary.md",
         "memory_index:4872",
-        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/003-eval-loop/implementation-summary.md",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/003-eval-loop/implementation-summary.md",
         "memory_index:4860",
-        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/002-eval-rig/implementation-summary.md"
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/002-eval-rig/implementation-summary.md"
       ],
       "returned_memory_ids": [
         4105,

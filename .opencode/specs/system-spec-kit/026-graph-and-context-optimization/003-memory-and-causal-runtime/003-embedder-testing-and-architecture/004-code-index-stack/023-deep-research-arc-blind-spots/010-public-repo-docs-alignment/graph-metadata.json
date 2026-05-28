@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After the May 2026 retrieval-pipeline arc (013-018 + nomic promotion + 023B Qwen3 reranker promotion + the mcp_server feature-grouped restructure), public-repo documentation drifted from current code defaults. The root README still cited `jina-embeddings-v3` as the auto-cascade default for mk-spec-memory and `jinaai/jina-embeddings-v2-base-code` as the CocoIndex default; no surface mentioned `Qwen3-Reranker-0.6B` or the two-stage pipeline architecture; module paths still pointed at the pre-restructure flat layout; and several runtime docs cited mutable spec/phase packet numbers, violating the evergreen packet-ID rule.",
     "created_at": "2026-05-20T15:20:22.326Z",
-    "last_save_at": "2026-05-27T13:45:36.503Z",
+    "last_save_at": "2026-05-28T06:06:28.983Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

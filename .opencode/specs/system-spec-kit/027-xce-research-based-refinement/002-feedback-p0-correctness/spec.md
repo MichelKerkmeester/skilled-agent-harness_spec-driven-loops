@@ -1,8 +1,8 @@
 ---
-title: "Phase 012 — Feedback P0 Correctness (3 fixes split from 009)"
+title: "002 — Feedback P0 Correctness"
 description: "Carve out the three P0 correctness fixes from 027/009 Sub-Phase 1 so causal-edge provenance, manual-edge protection, and retention sweep tier floors ship before code_graph phases and before learning reducers."
 trigger_phrases:
-  - "027 phase 012"
+  - "027 phase 002"
   - "feedback P0 correctness"
   - "auto-provenance cap broadening"
   - "manual-edge overwrite guard"
@@ -28,7 +28,7 @@ _memory:
       - "pt-04 user decision: split 009 Sub-Phase 1 P0 fixes into 012 and ship them first"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Feedback P0 Correctness
+# Feature Specification: 002 — Feedback P0 Correctness
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -36,7 +36,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase 012 is a small correctness-first packet carved out of `../009-feedback-reducers/spec.md` Sub-Phase 1. The pt-04 audit found that 009's learning reducers are still directionally valid, but three safety bugs should not wait for reducer design, eval infrastructure, or code_graph implementation ordering. This packet ships those three P0 fixes first.
+Phase 002 is a small correctness-first packet carved out of `../009-feedback-reducers/spec.md` Sub-Phase 1. The pt-04 audit found that 009's learning reducers are still directionally valid, but three safety bugs should not wait for reducer design, eval infrastructure, or code_graph implementation ordering. This packet ships those three P0 fixes first.
 
 The three fixes protect existing system behavior before any learned causal or retention mutation is introduced:
 - Auto-derived causal edges from `created_by='auto-session'` must remain capped like existing `created_by='auto'` edges.
@@ -44,7 +44,7 @@ The three fixes protect existing system behavior before any learned causal or re
 - Retention sweep must not delete constitutional or critical records solely because `delete_after` expired.
 
 Source context:
-- pt-04 audit: `../research/027-xce-research-pt-04/research.md` §2 Phase 009 and §5 reprioritization.
+- pt-04 audit: `../research/027-xce-research-pt-04/research.md` §2 Phase 008 and §5 reprioritization.
 - Original scope: `../009-feedback-reducers/spec.md` Sub-Phase 1.
 - Ordering decision: "009 P0 fixes before reducers" and before all code_graph phases in the refreshed 027 sequence.
 
@@ -61,7 +61,7 @@ Source context:
 | **Parent Packet** | `027-xce-research-based-refinement` |
 | **Source** | `../research/027-xce-research-pt-04/research.md`; original scope in `../009-feedback-reducers/spec.md` Sub-Phase 1 |
 | **Depends on** | None |
-| **Ships before** | `027/002-code-graph-hld-lld`, `027/003-code-graph-trace`, `027/004-code-graph-impact-analysis`, and `027/009-feedback-reducers` |
+| **Ships before** | `028/001-code-graph-hld-lld`, `028/002-code-graph-trace`, `028/003-code-graph-impact-analysis`, and `027/009-feedback-reducers` |
 | **LOC budget** | ~50-80 production + ~60-100 tests |
 | **Branch** | `main` |
 | **Created** | 2026-05-11 |

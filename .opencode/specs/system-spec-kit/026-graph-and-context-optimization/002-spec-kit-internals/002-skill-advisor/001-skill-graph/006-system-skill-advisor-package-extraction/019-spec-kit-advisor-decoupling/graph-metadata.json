@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Packet 019 completes the full import isolation slice: advisor-owned source, hooks, tests, and stress coverage live in `system-skill-advisor`; spec-kit retains only process-boundary compatibility stubs and local utilities. Advisor tests pass after the moved fixture path repair, and memory full-suite failures are classified as baseline-red because the failed test count did not increase.",
     "created_at": "2026-05-15T06:55:51.323Z",
-    "last_save_at": "2026-05-27T13:45:35.864Z",
+    "last_save_at": "2026-05-28T06:06:28.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -4,12 +4,12 @@ description: "Post-run summary: 37 deep-agent-improvement scenarios validated wi
 trigger_phrases:
   - "deep-agent-improvement scenarios summary"
   - "deep agent improvement playbook summary"
-  - "030 phase 005 implementation summary"
+  - "007 phase 005 implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/005-deep-agent-improvement-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "37/37 verdicts - 25 PASS 6 PARTIAL 0 FAIL 6 SKIP; cluster fixed via 008"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 030-deep-loop-skills-playbook-validation/005-deep-agent-improvement-scenarios |
+| **Spec Folder** | 007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios |
 | **Completed** | 2026-05-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

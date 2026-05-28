@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/001-import-upstream",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/001-import-upstream",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork",
+  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/001-import-upstream",
+  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/001-import-upstream",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -48,12 +48,12 @@
       "implementation-summary.md",
       "spec.md",
       "resource-map.md",
-      "specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/README.md",
+      "specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-code-main/README.md",
       "specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
       "specs/system-spec-kit/027-xce-research-based-refinement/description.json",
       "specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json",
-      "specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/spec.md",
-      "specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/pyproject.toml",
+      "specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/spec.md",
+      "specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-code-main/pyproject.toml",
       "research.md"
     ],
     "entities": [
@@ -102,7 +102,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": "specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/README.md",
+        "path": "specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-code-main/README.md",
         "source": "derived"
       },
       {
@@ -120,7 +120,7 @@
       {
         "name": "pyproject.toml",
         "kind": "file",
-        "path": "specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/pyproject.toml",
+        "path": "specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-code-main/pyproject.toml",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "This child establishes the fixed upstream baseline for the complete fork. It owns the mechanical import boundary and manifest so later children can adapt scripts, tests, docs, attribution, and smoke validation without re-deciding what upstream source they are targeting.",
     "created_at": "2026-05-12T07:20:00Z",
-    "last_save_at": "2026-05-27T13:45:36.952Z",
+    "last_save_at": "2026-05-28T06:49:57.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T07:20:00Z",
     "source_docs": [

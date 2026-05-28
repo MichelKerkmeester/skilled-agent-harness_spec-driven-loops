@@ -1,8 +1,8 @@
 ---
-title: "Implementation Summary: 027/012 Feedback P0 Correctness"
+title: "Implementation Summary: 027/002 Feedback P0 Correctness"
 description: "Placeholder implementation summary for the three P0 correctness fixes split from 027/009. Populate after code and tests land."
 trigger_phrases:
-  - "027 phase 012"
+  - "027 phase 002"
   - "feedback P0 correctness"
   - "auto-provenance cap broadening"
   - "manual-edge overwrite guard"

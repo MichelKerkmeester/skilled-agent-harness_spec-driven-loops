@@ -1,5 +1,5 @@
 ---
-title: "Tasks — Phase 010 Retrieval Rerank Clients"
+title: "Tasks — Phase 007 Retrieval Rerank Clients"
 description: "T### task list: 4 sub-phases (interface extraction, memory adapter, Coco adapter, telemetry+docs)."
 trigger_phrases:
   - "027 phase 010 tasks"
@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored T001-T018 task list"
@@ -117,7 +117,7 @@ See final sub-phase tasks above + `checklist.md` verification commands. Includes
 - All T### tasks above marked `[X]` complete.
 - All `checklist.md` P0 items green.
 - Strict spec validation passes.
-- Phase-006 eval gate documented (if applicable for active-mode rollout).
+- Phase-004 eval gate documented (if applicable for active-mode rollout).
 - `implementation-summary.md` filled with file:line evidence.
 <!-- /ANCHOR:completion -->
 

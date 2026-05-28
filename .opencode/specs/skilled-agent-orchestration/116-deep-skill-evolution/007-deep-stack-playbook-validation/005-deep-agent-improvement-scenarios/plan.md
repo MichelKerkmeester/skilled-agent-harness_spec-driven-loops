@@ -4,12 +4,12 @@ description: "Batch-dispatch 37 deep-agent-improvement scenarios to cli-devin SW
 trigger_phrases:
   - "deep-agent-improvement scenarios plan"
   - "deep agent improvement playbook plan"
-  - "030 phase 005 plan"
+  - "007 phase 005 plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/005-deep-agent-improvement-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Author phase 005 plan"

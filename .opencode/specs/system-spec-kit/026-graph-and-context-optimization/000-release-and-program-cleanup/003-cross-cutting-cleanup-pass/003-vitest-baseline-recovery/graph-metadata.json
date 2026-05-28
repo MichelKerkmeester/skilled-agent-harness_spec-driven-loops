@@ -201,7 +201,7 @@
     ],
     "causal_summary": "After Unit A (memory search Clusters 4-7 remediation) shipped, a full-repo `pnpm vitest run` reported **198 failed tests across 166 files** out of 11,829 total (11,587 passing). The v3.4.1.0 release note claims \"Core test suites — 11,606 passed, 0 net regressions\"; this is now demonstrably false at the full-repo level. Sampled failures sit in `skill_advisor/tests/scorer/` (e.g., `projection-fallback-049-005.vitest.ts` expects `'filesystem-fallback'` but receives `'filesystem'`), and across `tests/hooks/`, `tests/scaffold/`, `tests/alignment/`, `tests/code-graph/` — entirely outside Unit A's surface. Codex fixed 10 packet-adjacent failures during Unit A's run; the remaining 198 are pre-existing baseline drift that accumulated between v3.4.1.0's release-note measurement and Unit A's full-repo run. The drift was likely never captured because the v3.4.1.0 verification was an isolated-suite measurement (or the CI configuration filters certain suites).",
     "created_at": "2026-05-08T21:35:00Z",
-    "last_save_at": "2026-05-27T13:45:35.525Z",
+    "last_save_at": "2026-05-28T06:06:28.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

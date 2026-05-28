@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/030-deep-loop-skills-playbook-validation/006-release-readiness-synthesis",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
   "description": "Feature Specification: Release-Readiness Synthesis (Deep-Loop Playbook 006)",
   "keywords": [
     "feature",
@@ -10,14 +10,13 @@
     "playbook",
     "006"
   ],
-  "lastUpdated": "2026-05-27T07:07:09.547Z",
+  "lastUpdated": "2026-05-28T06:08:18.721Z",
   "specId": "006",
   "folderSlug": "release-readiness-synthesis",
   "parentChain": [
-    ".opencode",
-    "specs",
-    "system-spec-kit",
-    "030-deep-loop-skills-playbook-validation"
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "007-deep-stack-playbook-validation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -161,7 +161,11 @@ describe('deep-ai-council persist-artifacts', () => {
 
       expect(path).toBe(join(packetSpecFolder, 'ai-council', 'ai-council-state.jsonl'));
       expect(existsSync(path)).toBe(true);
-      expect(readFileSync(path, 'utf8')).toBe(content);
+      // writeStateJsonl persists the caller content, then appends an
+      // artifact_written self-audit envelope to the same state log (audit !== false).
+      const written = readFileSync(path, 'utf8');
+      expect(written).toContain('{"event":"test"}');
+      expect(written).toContain('"event":"artifact_written"');
     });
   });
 

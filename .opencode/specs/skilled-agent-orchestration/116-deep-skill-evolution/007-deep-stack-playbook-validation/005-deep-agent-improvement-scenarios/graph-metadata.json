@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/030-deep-loop-skills-playbook-validation/005-deep-agent-improvement-scenarios",
-  "spec_folder": "system-spec-kit/030-deep-loop-skills-playbook-validation/005-deep-agent-improvement-scenarios",
-  "parent_id": "system-spec-kit/030-deep-loop-skills-playbook-validation",
+  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios",
+  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios",
+  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "deep-agent-improvement scenarios",
       "deep agent improvement playbook run",
-      "030 phase 005 deep-agent-improvement",
+      "007 phase 005 deep-agent-improvement",
       "deep-agent-improvement scenarios plan",
       "deep agent improvement playbook plan",
-      "030 phase 005 plan",
+      "007 phase 005 plan",
       "deep-agent-improvement scenarios tasks",
       "deep agent improvement playbook tasks",
-      "030 phase 005 tasks",
+      "007 phase 005 tasks",
       "deep-agent-improvement checklist",
       "deep agent improvement verdict ledger",
-      "030 phase 005 checklist"
+      "007 phase 005 checklist"
     ],
     "key_topics": [
       "deep-agent-improvement",
@@ -45,6 +45,11 @@
       "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "scratch/evidence/dai-01-02.txt",
+      "scratch/logs/dai-05-06-codex.log",
+      "scratch/evidence/rd-e2e-spotcheck.txt",
+      "scratch/logs/dai-07-rt-codex.log",
+      "scratch/evidence/rt-025-034-spotcheck.txt",
       "tasks.md"
     ],
     "entities": [
@@ -70,6 +75,36 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "dai-01-02.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dai-01-02.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dai-05-06-codex.log",
+        "kind": "file",
+        "path": "scratch/logs/dai-05-06-codex.log",
+        "source": "derived"
+      },
+      {
+        "name": "rd-e2e-spotcheck.txt",
+        "kind": "file",
+        "path": "scratch/evidence/rd-e2e-spotcheck.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dai-07-rt-codex.log",
+        "kind": "file",
+        "path": "scratch/logs/dai-07-rt-codex.log",
+        "source": "derived"
+      },
+      {
+        "name": "rt-025-034-spotcheck.txt",
+        "kind": "file",
+        "path": "scratch/evidence/rt-025-034-spotcheck.txt",
         "source": "derived"
       },
       {
@@ -161,41 +196,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verdict Ledger",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Execute all 37 `deep-agent-improvement` scenarios via `cli-devin` SWE-1.6 (deterministic `node` script invocation piped to `python3` JSON assertions, with exit-code corroboration), record a verdict + evidence per scenario, and surface the runtime-truth category (07) release gate so no downstream false-green is recorded for the packet's release-readiness synthesis.",
     "created_at": "2026-05-27T07:08:08.397Z",
-    "last_save_at": "2026-05-27T19:50:07.444Z",
+    "last_save_at": "2026-05-28T06:08:17.306Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -8,9 +8,9 @@ Verdict preview: yes with adaptation. The action model transfers cleanly for dur
 
 ## Actions Taken
 
-- Read `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/python/cocoindex/connectorkits/statediff.py` in full.
+- Read `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/python/cocoindex/connectorkits/statediff.py` in full.
 - Searched CocoIndex connectors for `TrackingRecord`, `CompositeTrackingRecord`, `prev_may_be_missing`, `diff()`, and `diff_composite()` usage.
-- Read the PostgreSQL target reconciliation implementation in `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/python/cocoindex/connectors/postgres/_target.py`.
+- Read the PostgreSQL target reconciliation implementation in `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/python/cocoindex/connectors/postgres/_target.py`.
 - Listed all `runPostMutationHooks` callers in `.opencode/skills/system-spec-kit/mcp_server`.
 - Read `.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts`.
 - Read `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`.

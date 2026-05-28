@@ -1,6 +1,6 @@
 {
-  "version": "1.1",
-  "description": "Shared small-model profile registry for cli-devin and cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1. Optional unverified separate-pool stubs: Claude Haiku, Gemini Flash.",
+  "version": "1.2",
+  "description": "Shared small-model profile registry for cli-devin and cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-2.7 (direct MiniMax.io API via cli-opencode). Optional unverified separate-pool stubs: Claude Haiku, Gemini Flash.",
   "models": [
     {
       "id": "swe-1.6",
@@ -181,6 +181,36 @@
         "shared opencode-go credit pool when via cli-opencode"
       ],
       "avg_iter_wall_clock_min": 16,
+      "status": "active"
+    },
+    {
+      "id": "minimax-2.7",
+      "context_length": null,
+      "tool_calling": "native",
+      "chat_template": "default",
+      "executors": [
+        {
+          "executor": "cli-opencode",
+          "provider": "minimax",
+          "quota_pool": "minimax-api",
+          "status": "active",
+          "notes": "Direct MiniMax.io API key (`MINIMAX_API_KEY`). Bypasses opencode-go; mirrors the deepseek direct-API path. Context length and --variant/reasoning behavior unverified pending 120/002 deep-research."
+        }
+      ],
+      "primary_quota_pool": "minimax-api",
+      "fallback_target": null,
+      "free_tier": false,
+      "strengths": [
+        "separate quota pool (minimax-api) independent of cognition/opencode-go",
+        "direct MiniMax.io API access",
+        "cost-conscious small-model iteration"
+      ],
+      "weaknesses": [
+        "single executor path (no fallback if minimax-api unavailable)",
+        "context length and reasoning controls unverified (pending 120/002 research)",
+        "newly added — efficiency/prompt patterns not yet established"
+      ],
+      "avg_iter_wall_clock_min": null,
       "status": "active"
     },
     {

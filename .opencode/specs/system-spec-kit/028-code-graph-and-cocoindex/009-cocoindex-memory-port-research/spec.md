@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cocoindex-main → spec_kit_memory port + MCP namespace shortening (research)"
+title: "009 — cocoindex-main → spec_kit_memory port + MCP namespace shortening (research)"
 description: "Investigate which features, principles, patterns, and code from the upstream cocoindex-main library can be ported into our non-code spec_kit_memory MCP subsystems (causal graph, memory database, automatic indexing, query intelligence, embedding pipeline); evaluate shortening the MCP tool namespace from `mcp__mk_spec_memory__*` to a `mk_*`-style scheme."
 trigger_phrases:
   - "cocoindex memory port research"
@@ -16,7 +16,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research"
     last_updated_at: "2026-05-13T07:30:00Z"
     last_updated_by: "claude-opus-4-7-plan-mode"
     recent_action: "Scaffolded packet, restored parent metadata, authored research scope"
@@ -31,7 +31,7 @@ _memory:
       - "../../../skills/system-spec-kit/mcp_server/tool-schemas.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research"
+      session_id: "system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research"
       parent_session_id: null
     completion_pct: 5
     open_questions:
@@ -41,7 +41,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: cocoindex-main → spec_kit_memory port + MCP namespace shortening (research)
+# Feature Specification: 009 — cocoindex-main → spec_kit_memory port + MCP namespace shortening (research)
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -59,7 +59,7 @@ _memory:
 | **Branch** | `main` (no feature branch per project policy) |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 13 of 13 |
-| **Predecessor** | 012-feedback-p0-correctness |
+| **Predecessor** | 027/002-feedback-p0-correctness |
 | **Successor** | None (downstream implementation packets will be created from research findings) |
 | **Handoff Criteria** | `research/research.md` produced with per-axis findings, cross-axis recommendations, and concrete proposed implementation packets ranked by ROI × effort |
 <!-- /ANCHOR:metadata -->
@@ -69,7 +69,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 13** of the 027 XCE Research-Based Refinement packet. Prior phases (001–012) focused on the **code_graph + skill_advisor** subsystems and on the **cocoindex-code** MCP wrapper as a code-search vehicle. Phase 013 opens a NEW research stream targeting the **non-code spec_kit_memory** subsystems and using the **upstream `cocoindex-main`** library (not the wrapper) as the source-of-inspiration.
+This is **Phase 009** of the 027 XCE Research-Based Refinement packet. Prior phases (001–012) focused on the **code_graph + skill_advisor** subsystems and on the **cocoindex-code** MCP wrapper as a code-search vehicle. Phase 009 opens a NEW research stream targeting the **non-code spec_kit_memory** subsystems and using the **upstream `cocoindex-main`** library (not the wrapper) as the source-of-inspiration.
 
 **Scope Boundary**: research-only. No implementation. Downstream implementation packets will be created (e.g., 028, 029, …) after research convergence.
 
@@ -87,7 +87,7 @@ This is **Phase 13** of the 027 XCE Research-Based Refinement packet. Prior phas
 - Continuity refresh in `implementation-summary.md._memory.continuity` and indexed DB entries via `/memory:save`
 
 **Changelog**:
-- When this phase closes, refresh `../changelog/013-cocoindex-memory-port-research.md` and synthesize per-axis findings into the parent 027 root.
+- When this phase closes, refresh `../changelog/009-cocoindex-memory-port-research.md` and synthesize per-axis findings into the parent 027 root.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -130,7 +130,7 @@ Produce a research synthesis that (a) identifies concrete, ranked port opportuni
 
 - **Implementation** of any port or rename — that's downstream packet territory (will be proposed in `research.md` final synthesis, not executed here).
 - **code_graph** + **skill_advisor** improvements — already covered by 027 phases 002, 003, 004, 005, 006.
-- **cocoindex-code MCP wrapper** changes — that's 027/001 (complete fork).
+- **cocoindex-code MCP wrapper** changes — that's 028/005-cocoindex-complete-fork.
 - **Embedding-provider** changes — settled by 014/010–014/013 (EmbeddingGemma + Voyage).
 - **Network operations** — research is fully read-local against `external/cocoindex-main/`; no API calls needed.
 

@@ -1,8 +1,8 @@
 ---
-title: "Tasks: 027/012 Feedback P0 Correctness"
+title: "Tasks: 027/002 Feedback P0 Correctness"
 description: "Task list for the three P0 fixes split from 027/009: auto provenance cap broadening, manual-edge overwrite guard, and retention-sweep tier basement."
 trigger_phrases:
-  - "027 phase 012"
+  - "027 phase 002"
   - "feedback P0 correctness"
   - "auto-provenance cap broadening"
   - "manual-edge overwrite guard"
@@ -26,7 +26,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: 027/012 Feedback P0 Correctness
+# Tasks: 027/002 Feedback P0 Correctness
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

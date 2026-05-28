@@ -1,13 +1,13 @@
 ---
-title: "Resource Map — Phase 010 Retrieval Rerank Clients"
-description: "File inventory for Phase 010: per-child scope. Spans interface modules + memory adapters + Coco adapter + telemetry + tests + docs. ~20 files."
+title: "Resource Map — Phase 007 Retrieval Rerank Clients"
+description: "File inventory for Phase 007: per-child scope. Spans interface modules + memory adapters + Coco adapter + telemetry + tests + docs. ~20 files."
 trigger_phrases:
   - "027 phase 010 resource map"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored per-child resource map"
@@ -25,7 +25,7 @@ _memory:
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-Per-child resource map for Phase 010. Pt-03 aggregate map at `../research/027-xce-research-pt-03/resource-map.md`.
+Per-child resource map for Phase 007. Pt-03 aggregate map at `../research/027-xce-research-pt-03/resource-map.md`.
 <!-- /ANCHOR:when-to-use -->
 
 ---
@@ -36,7 +36,7 @@ Per-child resource map for Phase 010. Pt-03 aggregate map at `../research/027-xc
 - **Total references**: 20
 - **By category**: READMEs=3, Documents=3, Specs=8, Scripts=14, Tests=5, Config=2
 - **Missing on disk**: 0
-- **Scope**: Per-child — files Phase 010 reads, modifies, creates, or cites across 4 sub-phases.
+- **Scope**: Per-child — files Phase 007 reads, modifies, creates, or cites across 4 sub-phases.
 - **Generated**: 2026-05-09T11:00:00Z
 <!-- /ANCHOR:summary -->
 
@@ -71,14 +71,14 @@ Per-child resource map for Phase 010. Pt-03 aggregate map at `../research/027-xc
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `010-retrieval-rerank-clients/spec.md` | Created | OK | This packet |
-| `010-retrieval-rerank-clients/plan.md` | Created | OK | This packet |
-| `010-retrieval-rerank-clients/tasks.md` | Created | OK | This packet |
-| `010-retrieval-rerank-clients/checklist.md` | Created | OK | This packet |
-| `010-retrieval-rerank-clients/decision-record.md` | Created | OK | This packet (6 ADRs) |
-| `010-retrieval-rerank-clients/implementation-summary.md` | Created | OK | Placeholder |
-| `010-retrieval-rerank-clients/description.json` | Created | OK | Spec-folder metadata |
-| `010-retrieval-rerank-clients/graph-metadata.json` | Created | OK | Graph metadata |
+| `007-retrieval-rerank-clients/spec.md` | Created | OK | This packet |
+| `007-retrieval-rerank-clients/plan.md` | Created | OK | This packet |
+| `007-retrieval-rerank-clients/tasks.md` | Created | OK | This packet |
+| `007-retrieval-rerank-clients/checklist.md` | Created | OK | This packet |
+| `007-retrieval-rerank-clients/decision-record.md` | Created | OK | This packet (6 ADRs) |
+| `007-retrieval-rerank-clients/implementation-summary.md` | Created | OK | Placeholder |
+| `007-retrieval-rerank-clients/description.json` | Created | OK | Spec-folder metadata |
+| `007-retrieval-rerank-clients/graph-metadata.json` | Created | OK | Graph metadata |
 <!-- /ANCHOR:specs -->
 
 ---

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Packet 042's audit produced a 54-row coverage matrix and classified 10 features as P0 stress gaps — features with concurrency, lease, capacity, or perf-budget surfaces that have no direct stress coverage today. Without remediation, release readiness for `code_graph` and `skill_advisor` cannot proceed past 005-review-remediation. The all-green stress run from 042 (28/28 files, 69/69 tests) reflects coverage absence, not regression-free behavior.",
     "created_at": "2026-04-30T18:46:30Z",
-    "last_save_at": "2026-05-27T13:45:35.732Z",
+    "last_save_at": "2026-05-28T06:06:28.439Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

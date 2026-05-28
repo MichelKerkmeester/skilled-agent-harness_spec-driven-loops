@@ -8,14 +8,14 @@ importance_tier: "important"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/002-lib-impl"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/002-lib-impl"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded trace library tasks"
     next_safe_action: "Execute resolver tasks after dependencies merge"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
-      - "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl"
+      - "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
+      - "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
     key_files: ["spec.md", "plan.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -51,7 +51,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm local trace contract is published.
-- [ ] T002 Confirm upstream Phase 002 classifier implementation is merged.
+- [ ] T002 Confirm upstream Phase 001 classifier implementation is merged.
 - [ ] T003 Locate existing code graph DB helper APIs.
 <!-- /ANCHOR:phase-1 -->
 
@@ -65,7 +65,7 @@ _memory:
 - [ ] T006 Implement file-path-derived module policy.
 - [ ] T007 Add optional CONTAINS/fqName display ancestry.
 - [ ] T008 Implement nested-class fqName prefix matching.
-- [ ] T009 Delegate architectural-role lookup to Phase 002.
+- [ ] T009 Delegate architectural-role lookup to Phase 001.
 - [ ] T010 Implement depth cap and missing-symbol error shape.
 <!-- /ANCHOR:phase-2 -->
 
@@ -86,7 +86,7 @@ _memory:
 
 - [ ] Resolver conforms to contract.
 - [ ] FilePath is the ownership truth.
-- [ ] Phase 002 role equality is verified.
+- [ ] Phase 001 role equality is verified.
 <!-- /ANCHOR:completion -->
 
 ---

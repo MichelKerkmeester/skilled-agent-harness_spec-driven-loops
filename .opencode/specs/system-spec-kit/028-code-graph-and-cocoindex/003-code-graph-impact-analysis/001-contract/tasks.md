@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Created Level 2 scaffold for 001-contract"
@@ -59,7 +59,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Map optional Phase 002 layer data to unavailable/null fallback. [10m]
+- [ ] T004 Map optional Phase 001 layer data to unavailable/null fallback. [10m]
 - [ ] T005 Define explicit-provider enrichment options. [10m]
 <!-- /ANCHOR:phase-2 -->
 

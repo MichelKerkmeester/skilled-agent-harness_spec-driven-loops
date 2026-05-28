@@ -50,7 +50,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | `../` (skilled-agent-orchestration track root) |
 | **Parent Packet** | skilled-agent-orchestration |
-| **Predecessor** | 113-cli-devin-prompt-quality-arc |
+| **Predecessor** | 113-cli-devin-prompt-quality |
 | **Successor** | TBD (post-synthesis remediation packets) |
 | **Handoff Criteria** | 001-research-smallcode validates Level 3 strict; preflight context-card present; deep-research loop ready for user trigger |
 <!-- /ANCHOR:metadata -->
@@ -171,7 +171,7 @@ This phase decomposition mines smallcode-master systematically (20 deep-research
 ## RELATED DOCUMENTS
 
 - **Phase children**: See `001-research-smallcode/` for per-phase spec.md, plan.md, tasks.md, checklist.md, decision-record.md
-- **Predecessor**: `../113-cli-devin-prompt-quality-arc/` — the prompt-composition arc this packet builds on
+- **Predecessor**: `../113-cli-devin-prompt-quality/` — the prompt-composition arc this packet builds on
 - **Preflight evidence**: `preflight/context-card.md` — SWE-1.6 pattern-extraction map cited by every research iteration
 - **External corpus**: `external/smallcode-master/` (MIT, v0.2.2, May 2026) — research target
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

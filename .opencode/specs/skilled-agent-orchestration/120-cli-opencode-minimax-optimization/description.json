@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization",
+  "description": "MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-small-model",
+  "keywords": [
+    "minimax",
+    "direct-api",
+    "provider",
+    "optimization",
+    "cli-opencode",
+    "sk-prompt-small-model"
+  ],
+  "lastUpdated": "2026-05-28T08:38:26.288Z",
+  "specId": "120",
+  "folderSlug": "cli-opencode-minimax-optimization",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

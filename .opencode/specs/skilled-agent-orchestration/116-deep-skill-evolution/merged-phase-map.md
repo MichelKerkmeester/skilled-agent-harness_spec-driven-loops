@@ -15,7 +15,7 @@ contextType: "general"
 
 Every phase whose repo-relative path changed in the 2026-05-26 reorganization (cluster reorg + `000-release-cleanup` flatten). Paths are relative to `.opencode/specs/`. Old IDs are also preserved in each new folder's `graph-metadata.json` (`manual.supersedes`) and `description.json` (`memoryNameHistory`). Generated 2026-05-26.
 
-Total moved/renamed phases: **34**
+Total moved/renamed phases: **45** — 34 in the 2026-05-26 reorganization (table below) + 11 in the 2026-05-28 `system-spec-kit/030 → 116/007` cross-track migration (dated section at the end).
 
 | Old Path | New Path |
 |----------|----------|
@@ -53,3 +53,21 @@ Total moved/renamed phases: **34**
 | `skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/001-spec-and-resource-map` | `skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/003-doc-evolution-spec-and-resource-map` |
 | `skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/009-deep-research-gap-backstop` | `skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/004-doc-evolution-research-gap-backstop` |
 | `skilled-agent-orchestration/116-deep-skill-evolution/008-deep-skill-doc-evolution/010-post-impl-deep-review` | `skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review` |
+
+## 2026-05-28 cross-track migration: system-spec-kit/030 → 116/007
+
+The `deep-loop-skills-playbook-validation` packet — a self-contained phase parent with 10 leaf children — was relocated from the `system-spec-kit` track into 116 as cluster `007-deep-stack-playbook-validation`. Old packet IDs are preserved in each new folder's `graph-metadata.json` lineage. Moved phases: **11** (parent + 10 children).
+
+| Old Path | New Path |
+|----------|----------|
+| `system-spec-kit/030-deep-loop-skills-playbook-validation` | `skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation` |
+| `system-spec-kit/030-deep-loop-skills-playbook-validation/001-deep-loop-runtime-scenarios` | `skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios` |
+| `system-spec-kit/030-deep-loop-skills-playbook-validation/002-deep-ai-council-scenarios` | `skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios` |
+| `system-spec-kit/030-deep-loop-skills-playbook-validation/003-deep-review-scenarios` | `skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios` |
+| `system-spec-kit/030-deep-loop-skills-playbook-validation/004-deep-research-scenarios` | `skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios` |
+| `system-spec-kit/030-deep-loop-skills-playbook-validation/005-deep-agent-improvement-scenarios` | `skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios` |
+| `system-spec-kit/030-deep-loop-skills-playbook-validation/006-release-readiness-synthesis` | `skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis` |
+| `system-spec-kit/030-deep-loop-skills-playbook-validation/007-cp-sandbox-speckit-path-fix` | `skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/007-cp-sandbox-speckit-path-fix` |
+| `system-spec-kit/030-deep-loop-skills-playbook-validation/008-dai-rulecoherence-inline-fallback` | `skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback` |
+| `system-spec-kit/030-deep-loop-skills-playbook-validation/009-cp-copilot-to-opencode-swap` | `skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap` |
+| `system-spec-kit/030-deep-loop-skills-playbook-validation/010-resolve-all-partials-and-skip` | `skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip` |

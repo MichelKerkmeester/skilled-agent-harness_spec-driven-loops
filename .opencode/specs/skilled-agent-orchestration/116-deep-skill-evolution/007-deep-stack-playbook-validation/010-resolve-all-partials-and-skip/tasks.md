@@ -1,14 +1,14 @@
 ---
-title: "Tasks: Resolve all 030 PARTIALs + DR-032 SKIP (Phase 010)"
+title: "Tasks: Resolve all 007 PARTIALs + DR-032 SKIP (Phase 010)"
 description: "Task list for the five-category PARTIAL/SKIP resolution."
 trigger_phrases:
   - "resolve all partials tasks"
-  - "030 phase 010 tasks"
+  - "007 phase 010 tasks"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/010-resolve-all-partials-and-skip"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip"
     last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All 31 PARTIAL + 1 SKIP resolved - 177/177 PASS, matrix READY"
@@ -23,7 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Tasks: Resolve all 030 PARTIALs + DR-032 SKIP (Phase 010)
+# Tasks: Resolve all 007 PARTIALs + DR-032 SKIP (Phase 010)
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -72,7 +72,7 @@ _memory:
 
 - [x] T010 Flip 002/003/004/005 ledgers + summary lines (PASS where verified; PARTIAL+reason for residuals)
 - [x] T011 Re-tally `release-readiness-matrix.md`; recompute verdict
-- [x] T012 validate.sh --strict 010 + touched 030 children + parent; reconcile parent cursor
+- [x] T012 validate.sh --strict 010 + touched 007 children + parent; reconcile parent cursor
 <!-- /ANCHOR:phase-3 -->
 
 ---

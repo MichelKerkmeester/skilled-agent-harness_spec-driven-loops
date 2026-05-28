@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-code-graph-playbook-validation/004-hook-and-doc-fixes"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/004-hook-and-doc-fixes"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Fixed Devin hook path (verified firing) + reconciled 4 stale playbook docs"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 029-code-graph-playbook-validation/004-hook-and-doc-fixes |
+| **Spec Folder** | 010-playbook-validation-and-hardening/004-hook-and-doc-fixes |
 | **Completed** | 2026-05-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

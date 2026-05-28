@@ -1,5 +1,5 @@
 ---
-title: "Phase Parent: 027/004 Code Graph Impact Analysis"
+title: "003 — Code Graph Impact Analysis"
 description: "Phase-parent control spec for contract-first implementation of risk-scored code graph impact analysis."
 trigger_phrases:
   - "027 phase 004"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Refactored populated packet into phase-parent scaffold"
@@ -29,7 +29,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: phase-parent.spec | v2.2 -->
 <!-- SPECKIT_LEVEL: phase-parent -->
 
-# Feature Specification: 027/004 Code Graph Impact Analysis
+# Feature Specification: 003 — Code Graph Impact Analysis
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -41,9 +41,9 @@ _memory:
 | **Status** | phase-parent |
 | **Created** | 2026-05-08 |
 | **Updated** | 2026-05-12 |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement` |
-| **Packet ID** | `system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis` |
-| **Primary Dependency** | `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex` |
+| **Packet ID** | `system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis` |
+| **Primary Dependency** | `system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,7 +53,7 @@ _memory:
 
 `detect_changes` reports affected symbols and the existing code graph context surface already has an `impact` mode over incoming `CALLS` and `IMPORTS`. This phase adds deterministic file-level risk scoring on top of those existing surfaces so agents can ask what a changed file affects and receive affected files, risk signals, normalized scores, and a structured summary.
 
-> **pt-04 audit note (2026-05-11):** Phase 004 extends existing impact surfaces instead of creating a parallel impact concept. The implementation must add the five risk signals and risk-score formula on top of existing `detect_changes` and `impact` behavior.
+> **pt-04 audit note (2026-05-11):** Phase 003 extends existing impact surfaces instead of creating a parallel impact concept. The implementation must add the five risk signals and risk-score formula on top of existing `detect_changes` and `impact` behavior.
 
 The five deterministic risk signals are:
 
@@ -79,7 +79,7 @@ The five deterministic risk signals are:
 - Product code implementation outside the child phase currently being executed.
 - Remote enrichment by default.
 - New persistence tables for impact scoring.
-- Calibrated risk weights; Phase 006 owns empirical calibration.
+- Calibrated risk weights; Phase 004 owns empirical calibration.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -95,8 +95,8 @@ The five deterministic risk signals are:
 | 004 | `004-test` | `code-graph-impact-analysis.vitest.ts` correctness fixtures. | scaffolded |
 
 ### Phase Transition Rules
-- `001-contract` can start when `027/002-code-graph-hld-lld/001-contract` publishes its contract.
-- `002-lib-impl` starts after `001-contract` and after `027/002-code-graph-hld-lld/002-lib-impl` is merged.
+- `001-contract` can start when `028/001-code-graph-hld-lld/001-contract` publishes its contract.
+- `002-lib-impl` starts after `001-contract` and after `028/001-code-graph-hld-lld/002-lib-impl` is merged.
 - `003-handler` can start after `001-contract`; the optional LLM enrichment adapter may ship later behind an env flag.
 - `004-test` can start after `001-contract` and should validate the pt-02 correctness fixtures.
 

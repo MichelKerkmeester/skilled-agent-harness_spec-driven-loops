@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Packet 124 shipped 5 P0 + 3 P1 correctness fixes for deep-agent-improvement, but the skill's documentation has not been brought to the same canonical companion standard as the post-118 deep-loop-runtime, deep-review, and deep-research peer skills. Specifically, deep-agent-improvement is missing 3 key reference docs that exist in the peer skills: formal scoring dimension documentation, promotion gate contract, and candidate proposal format.",
     "created_at": "2026-05-23T07:00:00Z",
-    "last_save_at": "2026-05-27T13:45:34.978Z",
+    "last_save_at": "2026-05-28T06:06:27.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

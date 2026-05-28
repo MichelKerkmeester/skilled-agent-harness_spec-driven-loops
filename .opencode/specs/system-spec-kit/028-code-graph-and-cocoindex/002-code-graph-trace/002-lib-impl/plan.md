@@ -8,14 +8,14 @@ importance_tier: "important"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/002-lib-impl"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/002-lib-impl"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded trace library plan"
     next_safe_action: "Implement resolver after local and upstream dependencies merge"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
-      - "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl"
+      - "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
+      - "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
     key_files: ["spec.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -42,7 +42,7 @@ _memory:
 | **Storage** | Existing code graph SQLite helpers |
 | **Testing** | Vitest and `npm run check` |
 
-Implement the resolver behind `code_graph_trace`. The implementation should be conservative: filePath ownership first, containment as display metadata, and Phase 002 as the architectural-role source.
+Implement the resolver behind `code_graph_trace`. The implementation should be conservative: filePath ownership first, containment as display metadata, and Phase 001 as the architectural-role source.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -72,10 +72,10 @@ Resolver library with helper functions for file ownership, module policy, option
 - **Subject lookup**: loads the starting code node.
 - **File ownership**: reads `CodeNode.filePath`.
 - **Module policy**: maps file paths to module labels.
-- **Role classifier**: delegates to Phase 002.
+- **Role classifier**: delegates to Phase 001.
 
 ### Data Flow
-Symbol id enters `traceSymbol`, the subject node supplies `filePath`, module policy derives the module rung, optional ancestry lookup decorates class display, and Phase 002 returns the architectural role.
+Symbol id enters `traceSymbol`, the subject node supplies `filePath`, module policy derives the module rung, optional ancestry lookup decorates class display, and Phase 001 returns the architectural role.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -86,7 +86,7 @@ Symbol id enters `traceSymbol`, the subject node supplies `filePath`, module pol
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `code-graph-trace.ts` | New resolver | Create | Unit tests |
-| Phase 002 classifier | Role source | Consume | Equality test |
+| Phase 001 classifier | Role source | Consume | Equality test |
 | code graph DB helpers | Node/edge access | Reuse | No direct SQL check |
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -96,14 +96,14 @@ Symbol id enters `traceSymbol`, the subject node supplies `filePath`, module pol
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Import local contract and Phase 002 classifier.
+- [ ] Import local contract and Phase 001 classifier.
 - [ ] Identify existing DB helper calls.
 
 ### Phase 2: Core Implementation
 - [ ] Implement subject lookup and filePath ownership.
 - [ ] Implement module policy.
 - [ ] Implement optional ancestry display and depth cap.
-- [ ] Delegate architectural-role lookup to Phase 002.
+- [ ] Delegate architectural-role lookup to Phase 001.
 
 ### Phase 3: Verification
 - [ ] Add/coordinate unit tests in `004-test`.
@@ -118,7 +118,7 @@ Symbol id enters `traceSymbol`, the subject node supplies `filePath`, module pol
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | FilePath ownership, module policy, depth cap | Vitest |
-| Contract | Role equality with Phase 002 | Vitest |
+| Contract | Role equality with Phase 001 | Vitest |
 | Validation | Child packet structure | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
 

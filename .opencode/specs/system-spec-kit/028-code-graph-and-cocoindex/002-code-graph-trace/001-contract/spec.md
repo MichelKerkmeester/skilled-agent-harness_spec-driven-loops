@@ -1,5 +1,5 @@
 ---
-title: "Phase 003.001 — code_graph_trace Contract"
+title: "Phase 002.001 — code_graph_trace Contract"
 description: "Level 2 child packet for TraceTool and trace-result TypeScript interfaces used by code_graph_trace."
 trigger_phrases:
   - "027 phase 003 contract"
@@ -9,13 +9,13 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded child packet for trace contract work"
-    next_safe_action: "Define TraceTool and trace-result interfaces after upstream Phase 002 contract publishes"
+    next_safe_action: "Define TraceTool and trace-result interfaces after upstream Phase 001 contract publishes"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
+      - "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -41,8 +41,8 @@ _memory:
 | **Priority** | P1 |
 | **Status** | spec-scaffolded |
 | **Created** | 2026-05-12 |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace` |
-| **Depends on** | `system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace` |
+| **Depends on** | `system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract` |
 | **Estimated LOC** | ~30 |
 <!-- /ANCHOR:metadata -->
 
@@ -67,7 +67,7 @@ Define the TypeScript interfaces for `TraceTool`, trace inputs, trace chain entr
 - `TraceTool` interface.
 - Trace input/options types including `symbolId` and `maxDepth`.
 - Trace result and trace-chain entry types.
-- Contract alignment with the Phase 002 HLD/LLD classifier result.
+- Contract alignment with the Phase 001 HLD/LLD classifier result.
 
 ### Out of Scope
 - Resolver implementation.
@@ -98,7 +98,7 @@ Define the TypeScript interfaces for `TraceTool`, trace inputs, trace chain entr
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Reference Phase 002 classifier output type where available. | Architectural-role field is compatible with Phase 002 contract. |
+| REQ-004 | Reference Phase 001 classifier output type where available. | Architectural-role field is compatible with Phase 001 contract. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -117,7 +117,7 @@ Define the TypeScript interfaces for `TraceTool`, trace inputs, trace chain entr
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 002 contract | Architectural-role type can drift | Wait for upstream contract publication before finalizing role type import. |
+| Dependency | Phase 001 contract | Architectural-role type can drift | Wait for upstream contract publication before finalizing role type import. |
 | Risk | Overfitting to handler shape | Library becomes transport-specific | Keep the contract centered on trace behavior, not MCP response envelope. |
 <!-- /ANCHOR:risks -->
 

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The Tier 2 deep-review program reviewed 5 packets (D-H). Four returned CONDITIONAL with actionable findings; one (H 006/001 clean-room license audit) returned FAIL with a P0 that requires human verification of the actual gitignored `external/LICENSE` file. This sub-phase closes the 15 findings from D/E/F/G; H is tracked separately as a human-action gate.",
     "created_at": "2026-04-28T18:35:00.000Z",
-    "last_save_at": "2026-05-27T13:45:35.466Z",
+    "last_save_at": "2026-05-28T06:06:28.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

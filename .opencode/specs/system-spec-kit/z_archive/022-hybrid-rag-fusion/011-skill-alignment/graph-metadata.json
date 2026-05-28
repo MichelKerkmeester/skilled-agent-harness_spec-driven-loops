@@ -211,7 +211,7 @@
     ],
     "causal_summary": "The `011-skill-alignment` pack preserved an older story that no longer matched the repository. It mixed a finished-state label with draft or pre-implementation language, cited superseded command-surface counts, and had to reconcile the final `system-spec-kit` skill/reference/asset drift after the live memory surface settled at **33 tools**, **4 commands**, with retrieval documented under `/memory:search` and shared-memory lifecycle routed through `/memory:manage shared`.",
     "created_at": "2026-04-12T09:02:50.284Z",
-    "last_save_at": "2026-05-27T13:45:37.418Z",
+    "last_save_at": "2026-05-28T06:06:29.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

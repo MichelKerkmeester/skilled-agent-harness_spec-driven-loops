@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/030-deep-loop-skills-playbook-validation/004-deep-research-scenarios",
+  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios",
   "description": "Feature Specification: Deep-Research Scenarios (Deep-Loop Playbook 004)",
   "keywords": [
     "feature",
@@ -10,14 +10,13 @@
     "playbook",
     "004"
   ],
-  "lastUpdated": "2026-05-27T07:07:08.557Z",
+  "lastUpdated": "2026-05-28T06:08:18.276Z",
   "specId": "004",
   "folderSlug": "deep-research-scenarios",
   "parentChain": [
-    ".opencode",
-    "specs",
-    "system-spec-kit",
-    "030-deep-loop-skills-playbook-validation"
+    "skilled-agent-orchestration",
+    "116-deep-skill-evolution",
+    "007-deep-stack-playbook-validation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

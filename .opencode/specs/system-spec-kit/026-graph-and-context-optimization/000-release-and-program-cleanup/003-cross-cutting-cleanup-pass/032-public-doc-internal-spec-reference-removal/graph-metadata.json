@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Public-facing docs, commands, setup guides, skill references, assets, feature catalogs, and manual testing playbooks contained direct links to this repository's internal spec packet folders. External users will not have those packet paths, so the references create dead links and expose implementation history where the docs should describe stable user-facing contracts.",
     "created_at": "2026-05-18T09:12:49Z",
-    "last_save_at": "2026-05-27T13:45:35.606Z",
+    "last_save_at": "2026-05-28T06:06:28.343Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

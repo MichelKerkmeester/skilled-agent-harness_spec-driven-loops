@@ -5,7 +5,7 @@ CONTEXT:
 - Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 - Skill root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph
 - This is system-code-graph manual-testing-playbook scenario 020 "TypeScript build and entry point".
-- Spec folder: .opencode/specs/system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios (pre-approved, skip Gate 3).
+- Spec folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios (pre-approved, skip Gate 3).
 - READ-ONLY. Do not rebuild, edit, create, move, or delete any file. Inspection commands only.
 
 ACTION (ordered steps; each has an acceptance check):

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A maintenance pass on `system-skill-advisor` surfaced three drift issues that the package's own ARCHITECTURE.md already flags or implies: (1) `npm run build` fails immediately with `TS5103: Invalid value for '--ignoreDeprecations'` because `mcp_server/tsconfig.json` sets `\"6.0\"` while installed TS is 5.9.3 (only `\"5.0\"` is valid); (2) SKILL.md and ARCHITECTURE.md disagree on whether the server exposes 8 or 9 public tools; (3) the root `opencode.json` registration comment still says \"four tools\" — flagged stale in ARCHITECTURE.md §6 but never fixed.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-05-27T13:45:35.936Z",
+    "last_save_at": "2026-05-28T06:06:28.616Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

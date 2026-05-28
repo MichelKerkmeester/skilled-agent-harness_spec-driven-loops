@@ -155,14 +155,17 @@ Before the first dispatch in a session, run a one-shot auth pre-flight against `
 PROVIDERS=$(opencode providers list 2>&1)
 echo "$PROVIDERS" | grep -q "opencode-go" && OPENCODE_GO_OK=1 || OPENCODE_GO_OK=0
 echo "$PROVIDERS" | grep -q "deepseek"     && DEEPSEEK_OK=1   || DEEPSEEK_OK=0
-echo "default=$OPENCODE_GO_OK fallback=$DEEPSEEK_OK"
+echo "$PROVIDERS" | grep -q "minimax"      && MINIMAX_OK=1    || MINIMAX_OK=0
+echo "default=$OPENCODE_GO_OK fallback=$DEEPSEEK_OK minimax=$MINIMAX_OK"
 ```
 
-| State | OPENCODE_GO_OK | DEEPSEEK_OK | Action |
-|-------|----------------|-------------|--------|
-| Default available | 1 | * | Proceed with `--model opencode-go/deepseek-v4-pro --variant high` |
-| Default missing, fallback available | 0 | 1 | **ASK user** before substituting (offer A: deepseek/deepseek-v4-pro, B: login opencode-go and retry, C: name a different model) |
-| Both missing | 0 | 0 | **ASK user** to run `opencode providers login <provider>` — do not dispatch until configured |
+| State | OPENCODE_GO_OK | DEEPSEEK_OK | MINIMAX_OK | Action |
+|-------|----------------|-------------|------------|--------|
+| Default available | 1 | * | * | Proceed with `--model opencode-go/deepseek-v4-pro --variant high` |
+| Default missing, fallback available | 0 | 1 | * | **ASK user** before substituting (offer A: deepseek/deepseek-v4-pro, B: login opencode-go and retry, C: name a different model) |
+| All missing | 0 | 0 | 0 | **ASK user** to run `opencode providers login <provider>` — do not dispatch until configured |
+| MiniMax explicitly requested | * | * | 1 | Proceed with `--model minimax/minimax-2.7` (direct MiniMax.io API) |
+| MiniMax requested, not configured | * | * | 0 | **ASK user** to run `opencode providers login minimax` (needs `MINIMAX_API_KEY`) — do not substitute silently |
 
 **Login command shapes** (the AI surfaces these to the user; the user runs them in their own terminal):
 
@@ -172,13 +175,16 @@ opencode providers login opencode-go
 
 # Direct DeepSeek API (alternative)
 opencode providers login deepseek
+
+# Direct MiniMax.io API (needs MINIMAX_API_KEY)
+opencode providers login minimax
 ```
 
 **On auth-error mid-dispatch** (`401 Unauthorized`, `provider/model not found`): invalidate the cache, rerun the pre-flight, and apply the same decision tree before retrying. Never substitute a model the user didn't approve.
 
 ## 5. MODEL SELECTION
 
-OpenCode resolves models through configured providers. The cli-opencode skill supports two providers — `opencode-go` (default) and `deepseek` — confirmed against `opencode providers list` and `opencode models`. Run `opencode models [provider]` for the full live list on a given install.
+OpenCode resolves models through configured providers. The cli-opencode skill supports three providers — `opencode-go` (default), `deepseek`, and `minimax` — confirmed against `opencode providers list` and `opencode models`. Run `opencode models [provider]` for the full live list on a given install.
 
 | Provider | Example model id | Use case |
 |----------|------------------|----------|
@@ -189,6 +195,7 @@ OpenCode resolves models through configured providers. The cli-opencode skill su
 | `opencode-go` | `opencode-go/qwen3.6-plus` | Qwen 3.6 routed through opencode-go |
 | `deepseek` | `deepseek/deepseek-v4-pro` | Direct DeepSeek API — bypasses opencode-go |
 | `deepseek` | `deepseek/deepseek-v4-flash` | Latency-optimized direct-API sibling |
+| `minimax` | `minimax/minimax-2.7` | Direct MiniMax.io API — bypasses opencode-go; needs `MINIMAX_API_KEY` (separate `minimax-api` quota pool) |
 
 `opencode models <provider>` lists every model id the provider exposes. The model string passed to `--model` is always `provider/model-id`.
 
@@ -201,6 +208,7 @@ The `--variant` flag maps to provider-specific reasoning effort. Underlying-mode
 | `opencode-go` | `--variant` accepted; effect depends on opencode-go routing per underlying model |
 | `deepseek` (`deepseek-v4-pro`) | reasoning effort accepted |
 | `deepseek` (`deepseek-v4-flash`) | non-reasoning — `--variant` ignored |
+| `minimax` (`minimax-2.7`) | `--variant` behavior unverified — confirm against MiniMax.io API before relying on it (pending 120/002 research) |
 
 Default skill behavior: pass `--variant high` for cross-AI dispatches. Operators may override via the prompt template's variant field.
 

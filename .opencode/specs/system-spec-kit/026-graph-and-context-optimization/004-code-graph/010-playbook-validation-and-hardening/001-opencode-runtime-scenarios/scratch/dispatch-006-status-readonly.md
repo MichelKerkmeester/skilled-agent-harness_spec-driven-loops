@@ -5,7 +5,7 @@ CONTEXT:
 - Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 - You are running inside OpenCode with the full project MCP runtime. Code-graph tools are exposed under the `mk_code_index` server with stable tool IDs `code_graph_status`, `code_graph_scan`, `code_graph_query`, `detect_changes`.
 - This is system-code-graph manual-testing-playbook scenario 006 "code_graph_status readonly".
-- Spec folder: .opencode/specs/system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
+- Spec folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
 - This is a READ-ONLY validation. Do NOT run `code_graph_scan`. Do NOT repair. Do NOT mutate any file or the graph database.
 
 ACTION (ordered steps; each has an acceptance check):

@@ -8,13 +8,13 @@ importance_tier: "important"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/004-test"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/004-test"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded trace test plan"
     next_safe_action: "Implement tests after local contract publishes"
     blockers:
-      - "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract"
+      - "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract"
     key_files: ["spec.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -41,7 +41,7 @@ _memory:
 | **Storage** | Test code graph fixtures |
 | **Testing** | `npx vitest run code-graph-trace.vitest.ts --coverage` |
 
-Build contract-driven tests for the trace resolver. The tests should make the pt-02 findings executable: sparse containment cannot break file/role output, nested classes need fqName matching, and role output must match Phase 002.
+Build contract-driven tests for the trace resolver. The tests should make the pt-02 findings executable: sparse containment cannot break file/role output, nested classes need fqName matching, and role output must match Phase 001.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -70,7 +70,7 @@ Contract-level Vitest suite with focused fixtures.
 ### Key Components
 - **Fixture builder**: creates code nodes and containment edges.
 - **Contract assertions**: checks result fields rather than internals.
-- **Classifier equality assertion**: compares trace role to Phase 002.
+- **Classifier equality assertion**: compares trace role to Phase 001.
 
 ### Data Flow
 Fixtures create a minimal graph state, the trace tool runs against that state, and assertions verify public trace output.

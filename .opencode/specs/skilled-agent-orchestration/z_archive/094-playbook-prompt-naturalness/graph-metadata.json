@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Every per-feature file across 16 `manual_testing_playbook/` packages (~498 files total) currently pins an \"Exact Prompt\" that opens with `As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}.` (RCAF). Real humans almost never phrase requests that way in normal conversation. The formulaic wrapper makes the playbook scenarios feel synthetic and reduces their value as regression coverage for how AIs actually handle real-world requests.",
     "created_at": "2026-05-18T07:49:27.228Z",
-    "last_save_at": "2026-05-27T13:45:35.398Z",
+    "last_save_at": "2026-05-28T06:06:28.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

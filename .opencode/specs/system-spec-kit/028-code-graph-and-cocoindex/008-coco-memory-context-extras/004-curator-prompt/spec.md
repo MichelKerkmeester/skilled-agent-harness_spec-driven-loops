@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/004-curator-prompt"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/004-curator-prompt"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded Level 2 child packet"
@@ -42,7 +42,7 @@ _memory:
 | **Created** | 2026-05-12 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras` |
 | **Track** | B: Memory Curator |
 | **Depends On** | None |
 <!-- /ANCHOR:metadata -->
@@ -166,7 +166,7 @@ Create the prompt, parser, strict schema validation, and cache extension for a c
 
 ### State Transitions
 - Shadow mode: validate and log plan without caller-visible authority.
-- Active mode: attach validated plan only after Phase 006 lift gate.
+- Active mode: attach validated plan only after Phase 004 lift gate.
 <!-- /ANCHOR:edge-cases -->
 
 ---

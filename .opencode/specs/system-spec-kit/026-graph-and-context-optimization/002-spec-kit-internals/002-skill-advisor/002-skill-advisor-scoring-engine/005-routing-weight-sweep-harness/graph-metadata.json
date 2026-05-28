@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 015/002 promoted the cosine lane to a live weight of 0.05 by following a single conservative weight vector. The promotion was safe but the choice of 0.05 was a judgement call without empirical comparison against other candidates. The existing `runLaneAblation` at `scorer/ablation.ts` only supports lane on/off ablation; there is no weight-vector sweep infrastructure. Future tuning attempts cannot be evidence-driven without that harness.",
     "created_at": "2026-05-13T20:45:00Z",
-    "last_save_at": "2026-05-27T13:45:35.897Z",
+    "last_save_at": "2026-05-28T06:06:28.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T20:45:00Z",
     "source_docs": [

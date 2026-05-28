@@ -1,8 +1,8 @@
 ---
-title: "Implementation Plan: 027/012 Feedback P0 Correctness"
+title: "Implementation Plan: 027/002 Feedback P0 Correctness"
 description: "Plan for three focused P0 safety fixes: broaden auto provenance caps, preserve manual causal edges on upsert, and make retention sweep tier-aware before deletion."
 trigger_phrases:
-  - "027 phase 012"
+  - "027 phase 002"
   - "feedback P0 correctness"
   - "auto-provenance cap broadening"
   - "manual-edge overwrite guard"
@@ -26,7 +26,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: 027/012 Feedback P0 Correctness
+# Implementation Plan: 027/002 Feedback P0 Correctness
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -47,7 +47,7 @@ _memory:
 
 ### Overview
 
-Phase 012 implements the three P0 precondition fixes split from 027/009. The work is intentionally narrow: update causal provenance handling, add manual-edge overwrite protection, and prevent retention sweep from deleting protected high-tier records on TTL expiry alone.
+Phase 002 implements the three P0 precondition fixes split from 027/009. The work is intentionally narrow: update causal provenance handling, add manual-edge overwrite protection, and prevent retention sweep from deleting protected high-tier records on TTL expiry alone.
 <!-- /ANCHOR:summary -->
 
 ---

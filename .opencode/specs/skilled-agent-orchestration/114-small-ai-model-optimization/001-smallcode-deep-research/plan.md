@@ -317,7 +317,7 @@ Phase 4 (hand-off — out of scope for this packet)
 
 | Source | What we consume |
 |--------|----------------|
-| 113-cli-devin-prompt-quality-arc (predecessor) | RCAF default, medium pre-plan, bundle-gate cross-model finding, sequential_thinking 2-layer pattern, free-tier disclosure |
+| 113-cli-devin-prompt-quality (predecessor) | RCAF default, medium pre-plan, bundle-gate cross-model finding, sequential_thinking 2-layer pattern, free-tier disclosure |
 | cli-devin v1.0.6.3 SKILL.md + assets | Prompt-quality contract, agent-config recipes, prompt-quality-card |
 | sk-prompt v1.3.1.0 | DEPTH framework, CLEAR scoring, cli_prompt_quality_card |
 | deep-research v1.6.2.0 | Loop YAML workflow, convergence math, state writer |

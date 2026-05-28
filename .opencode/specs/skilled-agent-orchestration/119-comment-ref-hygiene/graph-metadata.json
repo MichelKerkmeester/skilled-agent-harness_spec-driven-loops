@@ -39,8 +39,9 @@
       "rule"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "lib/test-helpers/env-snapshot.ts",
       ".opencode/skills/sk-code/references/universal/code_style_guide.md",
       ".opencode/skills/sk-code/references/universal/code_quality_standards.md",
       ".opencode/skills/sk-code/references/opencode/shared/universal_patterns.md",
@@ -55,6 +56,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "env-snapshot.ts",
+        "kind": "code",
+        "path": "lib/test-helpers/env-snapshot.ts",
+        "source": "derived"
+      },
       {
         "name": "code_style_guide.md",
         "kind": "doc",
@@ -134,12 +141,6 @@
         "source": "derived"
       },
       {
-        "name": "Created Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -152,13 +153,19 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Problem Statement Inline",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Inline",
+        "name": "Purpose Comments",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Rule",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "AI assistants routinely embed pointers to ephemeral tracking artifacts — spec folders, packet/phase numbers, feature-catalog entries, ADR ids, and task/checklist ids — directly into inline code comments. Those artifacts get renamed, renumbered, or archived while the code lives on, so the comment rots into a dangling, misleading pointer. This packet adds a durable rule to the `sk-code` skill (covering both the OpenCode and Webflow surfaces) that forbids the practice, reconciles the existing sk-code guidance that currently *teaches* it, and cleans the existing offenders out of the deep and system skills' source-code comments.",
     "created_at": "2026-05-27T00:00:00.000Z",
-    "last_save_at": "2026-05-27T13:45:35.005Z",
+    "last_save_at": "2026-05-28T06:06:27.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

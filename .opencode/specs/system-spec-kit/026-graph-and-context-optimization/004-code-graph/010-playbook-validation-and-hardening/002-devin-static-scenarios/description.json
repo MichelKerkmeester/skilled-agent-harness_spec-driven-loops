@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios",
   "description": "Feature Specification: Devin Static Scenarios (Code Graph Playbook 002)",
   "keywords": [
     "feature",
@@ -12,14 +12,16 @@
     "playbook",
     "002"
   ],
-  "lastUpdated": "2026-05-27T05:35:18.877Z",
+  "lastUpdated": "2026-05-28T06:13:46.936Z",
   "specId": "002",
   "folderSlug": "devin-static-scenarios",
   "parentChain": [
     ".opencode",
     "specs",
     "system-spec-kit",
-    "029-code-graph-playbook-validation"
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "010-playbook-validation-and-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

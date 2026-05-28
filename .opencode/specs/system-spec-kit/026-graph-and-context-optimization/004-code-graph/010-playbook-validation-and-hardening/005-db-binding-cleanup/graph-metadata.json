@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/005-db-binding-cleanup",
-  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/005-db-binding-cleanup",
-  "parent_id": "system-spec-kit/029-code-graph-playbook-validation",
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/005-db-binding-cleanup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/005-db-binding-cleanup",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Remove the stale legacy DB so no legacy path lingers, satisfying scenario 019's \"no legacy paths active\" requirement; confirm the canonical DB remains the active, configured store.",
     "created_at": "2026-05-27T03:34:10.036Z",
-    "last_save_at": "2026-05-28T06:06:29.537Z",
+    "last_save_at": "2026-05-28T06:14:22.169Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

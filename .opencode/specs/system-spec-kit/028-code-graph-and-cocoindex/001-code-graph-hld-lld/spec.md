@@ -1,5 +1,5 @@
 ---
-title: "Phase Parent: 027/002 Code Graph HLD/LLD"
+title: "001 — Code Graph HLD/LLD"
 description: "Phase parent for the deterministic HLD/LLD narrative layer over code_graph data."
 trigger_phrases:
   - "027 phase 002"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Converted populated Level 2 packet into a lean phase parent with four child workstreams"
@@ -29,7 +29,7 @@ _memory:
     answered_questions: []
 ---
 
-# Feature Specification: 027/002 Code Graph HLD/LLD Phase Parent
+# Feature Specification: 001 — Code Graph HLD/LLD
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: phase-parent.spec | v2.2 -->
@@ -46,7 +46,7 @@ _memory:
 | **Status** | phase-parent |
 | **Created** | 2026-05-08 |
 | **Branch** | `main` |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex` |
 | **Source Proposal** | `../research/sub-packet-proposals.md` Proposal 1 |
 | **Source Findings** | `../research/findings.md` items #1, #8 |
 <!-- /ANCHOR:metadata -->

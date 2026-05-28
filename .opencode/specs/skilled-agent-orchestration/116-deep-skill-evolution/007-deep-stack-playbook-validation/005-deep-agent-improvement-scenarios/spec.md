@@ -4,12 +4,12 @@ description: "Run the 37 deep-agent-improvement manual testing playbook scenario
 trigger_phrases:
   - "deep-agent-improvement scenarios"
   - "deep agent improvement playbook run"
-  - "030 phase 005 deep-agent-improvement"
+  - "007 phase 005 deep-agent-improvement"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/005-deep-agent-improvement-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffold phase 005 spec + 37-scenario verdict ledger"

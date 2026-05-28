@@ -1880,7 +1880,7 @@
       "top5": [
         "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/003-system-bug-improvement-research/research/gen_prompts.sh",
         "skills/system-spec-kit/scripts/rules/check-normalizer-lint.sh",
-        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/scripts/cross-model-confirm.cjs",
+        "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs",
         "specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/review/archive/2026-05-11T05-55-00Z-rm8-013-deepseek-original/run-loop.sh"
       ]
     },

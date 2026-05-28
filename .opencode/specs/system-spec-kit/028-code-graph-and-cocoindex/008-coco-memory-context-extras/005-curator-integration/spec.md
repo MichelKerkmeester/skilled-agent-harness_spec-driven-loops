@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/005-curator-integration"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/005-curator-integration"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded Level 2 child packet"
@@ -42,7 +42,7 @@ _memory:
 | **Created** | 2026-05-12 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras` |
+| **Parent Packet** | `system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras` |
 | **Track** | B: Memory Curator |
 | **Depends On** | `004-curator-prompt` |
 <!-- /ANCHOR:metadata -->
@@ -73,7 +73,7 @@ Integrate the curator from child 004 into `memory-search.ts` with separate retri
 ### Out of Scope
 - Prompt/parser implementation from child 004.
 - Any Stage 4 score or ordering mutation.
-- Active rollout without Phase 006 lift evidence.
+- Active rollout without Phase 004 lift evidence.
 
 ### Files to Change
 
@@ -166,7 +166,7 @@ Integrate the curator from child 004 into `memory-search.ts` with separate retri
 
 ### State Transitions
 - Shadow mode: log plan and telemetry without authoritative response behavior.
-- Active mode: attach validated plan after Phase 006 gate.
+- Active mode: attach validated plan after Phase 004 gate.
 <!-- /ANCHOR:edge-cases -->
 
 ---

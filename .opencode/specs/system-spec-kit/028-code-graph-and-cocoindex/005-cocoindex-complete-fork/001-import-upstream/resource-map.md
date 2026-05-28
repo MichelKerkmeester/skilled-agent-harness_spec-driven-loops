@@ -1,5 +1,5 @@
 ---
-title: "Resource Map - Phase 001 Complete CocoIndex MCP Fork"
+title: "Resource Map - Phase 005 Complete CocoIndex MCP Fork"
 description: "Path ledger for planned and analyzed resources in the complete CocoIndex MCP fork phase."
 trigger_phrases:
   - "027 phase 001 resource map"
@@ -8,10 +8,10 @@ importance_tier: "important"
 contextType: "resource-map"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"
+    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork"
     last_updated_at: "2026-05-10T00:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Authored Phase 001 resource map"
+    recent_action: "Authored Phase 005 resource map"
     next_safe_action: "Refresh resource map after import manifest"
     blockers: []
     key_files: ["resource-map.md", "research.md", "plan.md"]
@@ -26,7 +26,7 @@ _memory:
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-Use this file as the blast-radius ledger for Phase 001. It lists analyzed, created, and planned files for the complete CocoIndex MCP fork.
+Use this file as the blast-radius ledger for Phase 005. It lists analyzed, created, and planned files for the complete CocoIndex MCP fork.
 <!-- /ANCHOR:when-to-use -->
 
 ---
@@ -53,7 +53,7 @@ Use this file as the blast-radius ledger for Phase 001. It lists analyzed, creat
 |------|--------|--------|------|
 | `.opencode/skills/mcp-coco-index/README.md` | Planned | OK | Update ownership and runtime docs |
 | `.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md` | Planned | OK | Update local install flow |
-| `specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/README.md` | Analyzed | OK | Upstream usage and MCP surface |
+| `specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-code-main/README.md` | Analyzed | OK | Upstream usage and MCP surface |
 <!-- /ANCHOR:readmes -->
 
 ---
@@ -67,7 +67,7 @@ Use this file as the blast-radius ledger for Phase 001. It lists analyzed, creat
 | `.opencode/skills/mcp-coco-index/NOTICE` | Analyzed/Planned | OK | Attribution and local modifications |
 | `.opencode/skills/mcp-coco-index/references/tool_reference.md` | Planned | OK | Update v0.2.33 + telemetry docs |
 | `.opencode/skills/mcp-coco-index/references/settings_reference.md` | Planned | OK | Embedder params and runtime settings |
-| `specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/research.md` | Created | OK | Research basis |
+| `specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/research.md` | Created | OK | Research basis |
 <!-- /ANCHOR:documents -->
 
 ---
@@ -111,14 +111,14 @@ Use this file as the blast-radius ledger for Phase 001. It lists analyzed, creat
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `specs/system-spec-kit/027-xce-research-based-refinement/spec.md` | Updated | OK | Parent phase map to include new Phase 001 |
+| `specs/system-spec-kit/027-xce-research-based-refinement/spec.md` | Updated | OK | Parent phase map to include new Phase 005 |
 | `specs/system-spec-kit/027-xce-research-based-refinement/description.json` | Updated | OK | Children list and summary |
 | `specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json` | Updated | OK | Children IDs and derived metadata |
-| `specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/spec.md` | Created | OK | Phase spec |
-| `specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/plan.md` | Created | OK | Phase plan |
-| `specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/tasks.md` | Created | OK | Phase tasks |
-| `specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/checklist.md` | Created | OK | Verification checklist |
-| `specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/decision-record.md` | Created | OK | ADR |
+| `specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/spec.md` | Created | OK | Phase spec |
+| `specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/plan.md` | Created | OK | Phase plan |
+| `specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/tasks.md` | Created | OK | Phase tasks |
+| `specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/checklist.md` | Created | OK | Verification checklist |
+| `specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/decision-record.md` | Created | OK | ADR |
 | `specs/system-spec-kit/027-xce-research-based-refinement/002-*` through `011-*` | Renamed/Updated | OK | Existing phases renumbered |
 <!-- /ANCHOR:specs -->
 
@@ -143,7 +143,7 @@ Use this file as the blast-radius ledger for Phase 001. It lists analyzed, creat
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/**` | Planned | OK | Expand from 2 local tests to upstream + patch regression suite |
-| `specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/tests/**` | Analyzed | OK | Upstream test source |
+| `specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-code-main/tests/**` | Analyzed | OK | Upstream test source |
 <!-- /ANCHOR:tests -->
 
 ---
@@ -153,7 +153,7 @@ Use this file as the blast-radius ledger for Phase 001. It lists analyzed, creat
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/pyproject.toml` | Analyzed | OK | Upstream package/dependency model |
+| `specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-code-main/pyproject.toml` | Analyzed | OK | Upstream package/dependency model |
 <!-- /ANCHOR:config -->
 
 ---
@@ -163,7 +163,7 @@ Use this file as the blast-radius ledger for Phase 001. It lists analyzed, creat
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-code-main/LICENSE` | Analyzed | OK | Apache-2.0 upstream license |
+| `specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-code-main/LICENSE` | Analyzed | OK | Apache-2.0 upstream license |
 <!-- /ANCHOR:meta -->
 
 ---

@@ -12,36 +12,35 @@
   "priority": "P1",
   "createdAt": "2026-05-12T00:00:00Z",
   "branch": "main",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/001-contract"
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
     ]
   },
   "soft_depends_on": [
-    "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl"
+    "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
   ],
   "derived": {
     "status": "spec-scaffolded",
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/003-handler",
-  "description": "MCP handler handlers/hld-lld.ts wiring the code_graph_hld_lld tool dispatch using the contract interface.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/003-handler",
+  "description": "Feature Specification: 003 Handler",
   "keywords": [
-    "hld-lld",
-    "handler",
-    "mcp",
-    "tool",
-    "dispatch"
+    "feature",
+    "specification",
+    "003",
+    "handler"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
+  "lastUpdated": "2026-05-28T06:52:11.096Z",
   "specId": "003",
   "folderSlug": "handler",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement",
-    "002-code-graph-hld-lld"
+    "028-code-graph-and-cocoindex",
+    "001-code-graph-hld-lld"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

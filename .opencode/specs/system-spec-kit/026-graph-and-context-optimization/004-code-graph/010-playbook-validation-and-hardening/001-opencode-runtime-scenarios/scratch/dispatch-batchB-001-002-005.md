@@ -4,7 +4,7 @@ ROLE: You are a validation operator for the `mk-code-index` code-graph MCP runti
 CONTEXT:
 - Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 - Full project MCP runtime available. Stable tool IDs: `code_graph_scan`, `code_graph_query`, `code_graph_verify`, `code_graph_status`.
-- Spec folder: .opencode/specs/system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
+- Spec folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
 - Scenarios 001 (single-file selective reindex / self-heal), 002 (broad-stale block), 005 (verify blocked on stale then ok). All in ONE disposable `$WORK`.
 - SAFETY (critical): scans/queries target `$WORK`, NOT the repo. After the first scan, confirm the indexed root reflects `$WORK`. If it indexed the live repo, STOP, mark all three SKIP "ROOTDIR_NOT_HONORED — aborted to avoid live-repo side effects", mutate nothing.
 

@@ -35,20 +35,20 @@ Last 3 Iterations Summary: none yet (this is iteration 1)
 
 All paths are relative to the repo root `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.
 
-- Config: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/deep-research-config.json`
-- State Log: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/deep-research-state.jsonl`
-- Strategy: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/deep-research-strategy.md`
-- Registry: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/findings-registry.json`
-- Write iteration narrative to: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/iterations/iteration-001.md`
-- Write per-iteration delta file to: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/deltas/iter-001.jsonl`
+- Config: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/deep-research-config.json`
+- State Log: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/deep-research-state.jsonl`
+- Strategy: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/deep-research-strategy.md`
+- Registry: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/findings-registry.json`
+- Write iteration narrative to: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/iterations/iteration-001.md`
+- Write per-iteration delta file to: `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/deltas/iter-001.jsonl`
 
 ## TARGET FILES TO READ (iteration 1 baseline)
 
 ### cocoindex-main (upstream library — source of port ideas):
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/README.md`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/python/cocoindex/_internal/memo_fingerprint.py`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/rust/core/src/state/stable_path.rs`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/python/cocoindex/connectorkits/statediff.py`
+- `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/README.md`
+- `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/python/cocoindex/_internal/memo_fingerprint.py`
+- `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/rust/core/src/state/stable_path.rs`
+- `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/python/cocoindex/connectorkits/statediff.py`
 
 ### spec_kit_memory MCP (target system — current state):
 - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` (top 200 lines + grep for `mcp__mk_spec_memory__` prefix)
@@ -56,7 +56,7 @@ All paths are relative to the repo root `/Users/michelkerkmeester/MEGA/Developme
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` (causal_edges section ~lines 600-650)
 
 ### Project context:
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/spec.md` (this packet's spec)
+- `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/spec.md` (this packet's spec)
 - `CLAUDE.md` (project-level instructions, especially §1 routing + §6 MCP routing — relevant to Track 2 namespace question)
 
 ### Track 2 callsite count:
@@ -77,7 +77,7 @@ rg -n 'mcp__mk_spec_memory__' --type-add 'doc:*.md' -t doc -t ts -t json -t sh -
 
 You MUST produce THREE artifacts:
 
-1. **Iteration narrative markdown** at `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/iterations/iteration-001.md`. Structure:
+1. **Iteration narrative markdown** at `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/iterations/iteration-001.md`. Structure:
    - `# Iteration 1 — Ground Truth Baseline`
    - `## Focus`
    - `## Actions Taken` (file reads, grep commands, line-range cites)
@@ -86,7 +86,7 @@ You MUST produce THREE artifacts:
    - `## Questions Remaining` (all 11 if nothing answered)
    - `## Next Focus` (recommended focus for iteration 2)
 
-2. **Canonical JSONL iteration record** appended to `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/deep-research-state.jsonl`. Single-line JSON, newline terminator. Schema:
+2. **Canonical JSONL iteration record** appended to `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/deep-research-state.jsonl`. Single-line JSON, newline terminator. Schema:
    ```json
    {"type":"iteration","iteration":1,"newInfoRatio":0.85,"status":"insight","focus":"ground-truth-baseline","keyQuestions":["K1.1","K1.2","K1.3","K1.4","K1.5","K1.6","K2.1","K2.2","K2.3","K2.4","K2.5"],"answeredQuestions":[],"durationMs":<actual>,"timestamp":"<iso>","sessionId":"027-013-cocoindex-port-2026-05-13","generation":1,"graphEvents":[...]}
    ```
@@ -94,7 +94,7 @@ You MUST produce THREE artifacts:
    - `status`: `insight` if substantive findings, `thought` if just orientation
    - `graphEvents`: include nodes for each canonical reference file you actually read, edges for `READS_FROM` relationships
 
-3. **Per-iteration delta file** at `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research/research/deltas/iter-001.jsonl`. One iteration record + one record per finding/observation/edge.
+3. **Per-iteration delta file** at `.opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research/research/deltas/iter-001.jsonl`. One iteration record + one record per finding/observation/edge.
 
 All three artifacts are REQUIRED. post_dispatch_validate fails the iteration otherwise.
 

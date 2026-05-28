@@ -1,25 +1,43 @@
 {
   "title": "005 Curator Integration",
-  "trigger_phrases": ["027 011 005 curator integration", "memory curator integration", "memory-search budget split"],
+  "trigger_phrases": [
+    "027 011 005 curator integration",
+    "memory curator integration",
+    "memory-search budget split"
+  ],
   "level": 2,
   "importance_tier": "important",
   "contextType": "implementation",
   "status": "draft",
   "priority": "P2",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/004-curator-prompt"
+      "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/004-curator-prompt"
     ]
   },
-  "derived": {"status": "draft", "completion_pct": 0, "last_active_child_id": null},
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/005-curator-integration",
-  "description": "Level 2 child phase for memory-search budget split and curator hook integration.",
-  "keywords": ["memory", "curator", "integration", "budget", "curatedContext"],
-  "lastUpdated": "2026-05-12T00:00:00Z",
+  "derived": {
+    "status": "draft",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/005-curator-integration",
+  "description": "Feature Specification: 005 Curator Integration",
+  "keywords": [
+    "feature",
+    "specification",
+    "005",
+    "curator",
+    "integration"
+  ],
+  "lastUpdated": "2026-05-28T06:52:07.302Z",
   "specId": "005",
   "folderSlug": "curator-integration",
-  "parentChain": ["system-spec-kit", "027-xce-research-based-refinement", "011-coco-memory-context-extras"],
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "008-coco-memory-context-extras"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

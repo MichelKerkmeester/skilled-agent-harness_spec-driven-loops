@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/029-code-graph-playbook-validation/003-release-readiness-synthesis",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/003-release-readiness-synthesis",
   "description": "Feature Specification: Release-Readiness Synthesis (Code Graph Playbook 003)",
   "keywords": [
     "feature",
@@ -11,14 +11,16 @@
     "playbook",
     "003"
   ],
-  "lastUpdated": "2026-05-27T05:35:19.300Z",
+  "lastUpdated": "2026-05-28T06:13:47.188Z",
   "specId": "003",
   "folderSlug": "release-readiness-synthesis",
   "parentChain": [
     ".opencode",
     "specs",
     "system-spec-kit",
-    "029-code-graph-playbook-validation"
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "010-playbook-validation-and-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

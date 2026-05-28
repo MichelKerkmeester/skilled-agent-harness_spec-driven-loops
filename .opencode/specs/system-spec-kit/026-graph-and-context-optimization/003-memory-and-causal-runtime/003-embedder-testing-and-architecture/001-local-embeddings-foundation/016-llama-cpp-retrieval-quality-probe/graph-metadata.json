@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Packet 015 showed `llama-cpp` is much faster than `hf-local`, but vector-to-vector parity failed with mean cosine `0.9677582325103543` against a `0.995` target. That parity test compared corresponding vectors, not retrieval behavior. The open question is whether the cosine miss changes actual search ranking enough to block a future default flip.",
     "created_at": "2026-05-13T10:23:12Z",
-    "last_save_at": "2026-05-27T13:45:36.141Z",
+    "last_save_at": "2026-05-28T06:06:28.751Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T10:23:12Z",
     "source_docs": [

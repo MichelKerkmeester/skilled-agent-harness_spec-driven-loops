@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Phase F adds two named review legal-stop gates to the deep-review command workflows: `candidateCoverageGate` and `graphlessFallbackGate`. The gates consume reducer-owned Phase E state and prevent a standard or complex v2 review from claiming STOP while search debt remains, required bug classes are uncovered, or graphless mode lacks cited fallback ledger proof.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-05-27T13:45:34.936Z",
+    "last_save_at": "2026-05-28T06:06:27.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/029-code-graph-playbook-validation/005-db-binding-cleanup",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/005-db-binding-cleanup",
   "description": "Feature Specification: Legacy DB Cleanup (029 Phase 005)",
   "keywords": [
     "feature",
@@ -10,14 +10,16 @@
     "phase",
     "005"
   ],
-  "lastUpdated": "2026-05-27T05:35:20.198Z",
+  "lastUpdated": "2026-05-28T06:13:47.652Z",
   "specId": "005",
   "folderSlug": "db-binding-cleanup",
   "parentChain": [
     ".opencode",
     "specs",
     "system-spec-kit",
-    "029-code-graph-playbook-validation"
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "010-playbook-validation-and-hardening"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

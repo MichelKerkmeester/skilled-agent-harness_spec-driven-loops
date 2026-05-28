@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync as fsWriteFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 
 const require = createRequire(import.meta.url);
 const {
@@ -26,6 +26,15 @@ async function withTempPacket(run: (packetSpecFolder: string) => void | Promise<
   } finally {
     rmSync(tempDir, { recursive: true, force: true });
   }
+}
+
+/**
+ * writeFileSync wrapper that creates parent directories first, so fixtures can
+ * seed nested `ai-council/**` paths without a manual mkdirSync per call.
+ */
+function writeFileSync(filePath: string, content: string): void {
+  mkdirSync(dirname(filePath), { recursive: true });
+  fsWriteFileSync(filePath, content);
 }
 
 describe('deep-ai-council advise-council-completion', () => {

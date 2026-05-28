@@ -12,11 +12,11 @@
   "priority": "P1",
   "createdAt": "2026-05-12T00:00:00.000Z",
   "branch": "main",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract",
-      "system-spec-kit/027-xce-research-based-refinement/005-code-graph-hld-lld/002-lib-impl"
+      "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract",
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
     ]
   },
   "derived": {
@@ -24,14 +24,26 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/002-lib-impl",
-  "description": "Implements code-graph-impact-analysis.ts with deterministic signals, scoring, and existing impact-mode integration.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/002-lib-impl",
+  "description": "Feature Specification: 027/004/002 Impact Analysis Library",
   "keywords": [
-    "library",
+    "feature",
+    "specification",
+    "027",
+    "004",
+    "002",
     "impact",
-    "risk-signals",
-    "scoring"
+    "analysis",
+    "library"
   ],
-  "lastUpdated": "2026-05-12T00:00:00.000Z",
-  "folderSlug": "002-lib-impl"
+  "lastUpdated": "2026-05-28T06:52:09.916Z",
+  "specId": "002",
+  "folderSlug": "lib-impl",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "003-code-graph-impact-analysis"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

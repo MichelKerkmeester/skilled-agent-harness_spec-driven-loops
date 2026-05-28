@@ -4,16 +4,16 @@ description: "Operator validation run of all five deep-loop skill manual testing
 trigger_phrases:
   - "deep loop skills playbook validation"
   - "deep-loop manual testing run"
-  - "030 deep loop skills playbook validation"
+  - "007 deep stack playbook validation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation"
-    last_updated_at: "2026-05-27T19:30:00Z"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation"
+    last_updated_at: "2026-05-28T02:00:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "All phases + 007/008/009/010 done - 177/177 PASS, verdict READY"
-    next_safe_action: "Packet complete - READY (0 PARTIAL/FAIL/SKIP); operator review"
+    recent_action: "Relocated to 116/007; refs+metadata+memory/causal reindex done"
+    next_safe_action: "CLOSED - 177/177 READY, no follow-on (lives as 116 cluster 007)"
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md"
@@ -49,9 +49,9 @@ _memory:
 | **Status** | Complete — 177/177 verdicts (177 PASS / 0 PARTIAL / 0 FAIL / 0 SKIP); release verdict **READY**; 4 remediation children (007, 008, 009, 010) shipped + re-verified |
 | **Created** | 2026-05-27 |
 | **Branch** | `main` |
-| **Parent Spec** | `../spec.md` (system-spec-kit track) |
-| **Parent Packet** | system-spec-kit |
-| **Predecessor** | 029-code-graph-playbook-validation |
+| **Parent Spec** | `../spec.md` (116-deep-skill-evolution cluster) |
+| **Parent Packet** | skilled-agent-orchestration / 116-deep-skill-evolution |
+| **Predecessor** | 006-deep-stack-cross-cutting (116 sibling) · orig. lineage: "Code Graph Playbook Validation" (was system-spec-kit/029; now system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening) |
 | **Successor** | None |
 | **Handoff Criteria** | All 177 playbook scenarios run with PASS/PARTIAL/FAIL/SKIP + evidence; release-readiness matrix assembled in phase 006; confirmed FAILs remediated via 007+ children |
 <!-- /ANCHOR:metadata -->
@@ -92,12 +92,12 @@ Govern a full validation run of all 177 scenarios via cross-AI dispatch, capturi
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `030-.../001-deep-loop-runtime-scenarios/**` | Create | 001 | Verdict ledger + evidence for 22 runtime scenarios |
-| `030-.../002-deep-ai-council-scenarios/**` | Create | 002 | Verdict ledger + evidence for 32 council scenarios |
-| `030-.../003-deep-review-scenarios/**` | Create | 003 | Verdict ledger + evidence for 45 review scenarios |
-| `030-.../004-deep-research-scenarios/**` | Create | 004 | Verdict ledger + evidence for 41 research scenarios |
-| `030-.../005-deep-agent-improvement-scenarios/**` | Create | 005 | Verdict ledger + evidence for 37 improvement scenarios |
-| `030-.../006-release-readiness-synthesis/**` | Create | 006 | Dispatch runbook + cross-skill release-readiness matrix |
+| `007-.../001-deep-loop-runtime-scenarios/**` | Create | 001 | Verdict ledger + evidence for 22 runtime scenarios |
+| `007-.../002-deep-ai-council-scenarios/**` | Create | 002 | Verdict ledger + evidence for 32 council scenarios |
+| `007-.../003-deep-review-scenarios/**` | Create | 003 | Verdict ledger + evidence for 45 review scenarios |
+| `007-.../004-deep-research-scenarios/**` | Create | 004 | Verdict ledger + evidence for 41 research scenarios |
+| `007-.../005-deep-agent-improvement-scenarios/**` | Create | 005 | Verdict ledger + evidence for 37 improvement scenarios |
+| `007-.../006-release-readiness-synthesis/**` | Create | 006 | Dispatch runbook + cross-skill release-readiness matrix |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -130,7 +130,7 @@ Govern a full validation run of all 177 scenarios via cross-AI dispatch, capturi
 ### Phase Transition Rules
 - Each phase passes `validate.sh --strict` independently before its execution begins.
 - Parent tracks aggregate progress via this map.
-- Resume a phase via `/spec_kit:resume 030-deep-loop-skills-playbook-validation/[NNN-phase]/`.
+- Resume a phase via `/spec_kit:resume 007-deep-stack-playbook-validation/[NNN-phase]/`.
 - Confirmed FAILs spawn remediation children `007+` (record+remediate); created on-demand, not pre-scaffolded.
 
 ### Phase Handoff Criteria

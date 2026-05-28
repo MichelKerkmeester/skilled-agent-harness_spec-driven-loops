@@ -90,13 +90,11 @@
     ],
     "causal_summary": "Harden the memory continuity substrate, deliver causal-graph channel routing, and validate the embedding architecture. The memory store is a distinct surface from the code graph and cross-links to it.",
     "created_at": "2026-05-26T16:35:26.649Z",
-    "last_save_at": "2026-05-27T14:05:47.998Z",
+    "last_save_at": "2026-05-28T06:06:28.685Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix",
-    "last_active_at": "2026-05-27T14:05:47.998Z"
+    ]
   }
 }

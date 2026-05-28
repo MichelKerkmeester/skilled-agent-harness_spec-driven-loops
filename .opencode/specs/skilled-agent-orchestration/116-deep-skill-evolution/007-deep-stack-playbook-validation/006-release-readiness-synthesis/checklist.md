@@ -4,12 +4,12 @@ description: "Verification gates for the dispatch runbook + cross-skill release-
 trigger_phrases:
   - "deep-loop synthesis checklist"
   - "deep loop release readiness checklist"
-  - "030 phase 006 checklist"
+  - "007 phase 006 checklist"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/006-release-readiness-synthesis"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Matrix populated 177/177 - CONDITIONAL, 0 FAIL; tallies match children"

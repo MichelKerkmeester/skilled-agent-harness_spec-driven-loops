@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The May 18 evening instrumented bench (per `pre-confirmation-margin-analysis.md`) found that with `BAAI/bge-reranker-v2-m3` actually firing in the CocoIndex pipeline, four probes consistently fail in a structural pattern:",
     "created_at": "2026-05-18T19:21:19.316Z",
-    "last_save_at": "2026-05-27T13:45:36.450Z",
+    "last_save_at": "2026-05-28T06:06:28.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

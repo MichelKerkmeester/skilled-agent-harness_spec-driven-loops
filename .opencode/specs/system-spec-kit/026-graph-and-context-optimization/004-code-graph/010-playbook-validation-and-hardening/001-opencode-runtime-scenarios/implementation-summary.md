@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios"
     last_updated_at: "2026-05-26T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Create pre-execution implementation-summary stub"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 029-code-graph-playbook-validation/001-opencode-runtime-scenarios |
+| **Spec Folder** | 010-playbook-validation-and-hardening/001-opencode-runtime-scenarios |
 | **Completed** | 2026-05-26 — 11 PASS / 4 SKIP (see evidence.md) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

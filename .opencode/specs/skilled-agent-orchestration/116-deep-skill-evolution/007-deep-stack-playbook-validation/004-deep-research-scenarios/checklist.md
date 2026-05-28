@@ -4,12 +4,12 @@ description: "Verification + 41-scenario verdict ledger for deep-research playbo
 trigger_phrases:
   - "deep-research checklist"
   - "deep research verdict ledger"
-  - "030 phase 004 checklist"
+  - "007 phase 004 checklist"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/004-deep-research-scenarios"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "deep-research 41/41 done - 24 PASS 10 PARTIAL 7 SKIP 0 FAIL, corroborated"

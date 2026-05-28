@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Arc 010/001 recorded 68 P2 cleanup findings across embedder module surfaces. The findings mix safe cleanup with behavior-changing hardening requests, so the packet needs a surgical sweep that closes dead exports, stale comments, helper noise, and type drift while deferring runtime-policy changes.",
     "created_at": "2026-05-23T06:55:12Z",
-    "last_save_at": "2026-05-27T13:45:36.633Z",
+    "last_save_at": "2026-05-28T06:06:29.120Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -4,7 +4,7 @@ ROLE: You are a validation operator for the `mk-code-index` code-graph MCP runti
 CONTEXT:
 - Repo root (your cwd): /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 - Full project MCP runtime. Stable tool IDs: `code_graph_scan`, `detect_changes`, `code_graph_query`, `code_graph_status`.
-- Spec folder: .opencode/specs/system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
+- Spec folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios (pre-approved, skip Gate 3).
 - Scenarios 024 (detect_changes with a multi-file unified diff) and 022 (code_graph_query blast_radius single/union/transitive/confidence). Both need a FRESH graph with real import topology.
 - KNOWN RUNTIME FACT: `code_graph_scan` accepts `rootDir` only UNDER the repo workspace root (`/tmp` rejected). Use the gitignored `tmp/` dir. Use ACTUAL `$WORK` file paths as subjects/diffs (NOT the example repo paths in the playbook).
 - SAFETY: workspace `tmp/cgwork-D.*` under the repo. Keep the graph FRESH (do not mutate files after the scan, except the deliberate out-of-workspace diff entry in 024 which is input-only).

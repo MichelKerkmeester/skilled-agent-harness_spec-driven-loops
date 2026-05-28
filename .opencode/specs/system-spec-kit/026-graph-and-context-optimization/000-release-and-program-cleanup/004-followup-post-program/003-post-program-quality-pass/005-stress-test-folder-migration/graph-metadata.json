@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Stress-test coverage for the MCP server lived inside `mcp_server/tests/`, making it harder to distinguish explicit stress, load, and matrix-cell validation from the default unit and integration suite.",
     "created_at": "2026-04-29T15:55:02.000Z",
-    "last_save_at": "2026-05-27T13:45:35.626Z",
+    "last_save_at": "2026-05-28T06:06:28.358Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

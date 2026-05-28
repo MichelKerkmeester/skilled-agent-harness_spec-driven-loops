@@ -4,7 +4,7 @@ ROLE: You are a validation operator for the `mk-code-index` code-graph MCP runti
 CONTEXT:
 - Repo root (your cwd): /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 - Full project MCP runtime. Stable tool IDs: `code_graph_scan`, `code_graph_query`, `code_graph_status`.
-- Spec folder: .opencode/specs/system-spec-kit/029-code-graph-playbook-validation/007-followup-hook-docs-and-022 (pre-approved, skip Gate 3).
+- Spec folder: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022 (pre-approved, skip Gate 3).
 - This RE-VERIFIES scenario 022 blast_radius TRANSITIVE expansion. The prior run was PARTIAL because the chosen subject had only one importer (no multi-hop dependents), so transitive==nontransitive. This run must pick a DEEP-dependency subject.
 - KNOWN RUNTIME FACT: `code_graph_scan` accepts `rootDir` only UNDER the repo workspace root (`/tmp` rejected). Use the gitignored `tmp/` dir. The parser-quarantine recovery fix is now live, so a full scan indexes normally.
 

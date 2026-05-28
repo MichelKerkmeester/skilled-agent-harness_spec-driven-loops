@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/004-test"
+    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/004-test"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Created Level 2 scaffold for 004-test"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/004-test` |
+| **Spec Folder** | `system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/004-test` |
 | **Updated** | 2026-05-12 |
 | **Level** | 2 |
 | **Implementation State** | Not implemented; scaffold only |
@@ -65,7 +65,7 @@ Scaffold only: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and this `imple
 
 | Decision | Rationale |
 |----------|-----------|
-| Test pt-02 correctness findings directly | These were the blocking risks for Phase 004. |
+| Test pt-02 correctness findings directly | These were the blocking risks for Phase 003. |
 | Avoid external providers in fixtures | Deterministic baseline must be local-first. |
 <!-- /ANCHOR:decisions -->
 
@@ -78,7 +78,7 @@ Scaffold only: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and this `imple
 |-------|--------|-------|
 | Vitest target | Pending | Run during implementation. |
 | Coverage | Pending | Run if required by implementation phase. |
-| Spec validation | Pending | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/004-test --strict` |
+| Spec validation | Pending | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/004-test --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

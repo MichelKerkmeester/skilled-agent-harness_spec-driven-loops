@@ -1,18 +1,18 @@
 ---
-title: "Implementation Summary: Resolve all 030 PARTIALs + DR-032 SKIP (Phase 010)"
-description: "All 31 PARTIAL verdicts + the 1 SKIP resolved via five fix-classes; 030 matrix now 177/177 PASS = READY."
+title: "Implementation Summary: Resolve all 007 PARTIALs + DR-032 SKIP (Phase 010)"
+description: "All 31 PARTIAL verdicts + the 1 SKIP resolved via five fix-classes; 007 matrix now 177/177 PASS = READY."
 trigger_phrases:
   - "resolve all partials summary"
-  - "030 phase 010 implementation summary"
+  - "007 phase 010 implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/010-resolve-all-partials-and-skip"
-    last_updated_at: "2026-05-28T00:00:00Z"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip"
+    last_updated_at: "2026-05-28T02:00:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "All 31 PARTIAL + 1 SKIP resolved - 177/177 PASS, matrix READY"
-    next_safe_action: "validate --strict all touched + parent reconcile + report"
+    recent_action: "Residual resolved; relocated to 116/007 + memory/causal reindexed"
+    next_safe_action: "CLOSED - no follow-on; residual + move + reindex all done"
     blockers: []
     key_files: []
     session_dedup:
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 030-deep-loop-skills-playbook-validation/010-resolve-all-partials-and-skip |
+| **Spec Folder** | 007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip |
 | **Completed** | 2026-05-28 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Resolution of **all 31 PARTIAL verdicts + the 1 DR-032 SKIP** in the 030 matrix. Final state: **177/177 PASS, 0 PARTIAL, 0 FAIL, 0 SKIP → release verdict READY** (all five skills READY). No verdict was force-flipped.
+Resolution of **all 31 PARTIAL verdicts + the 1 DR-032 SKIP** in the 007 matrix. Final state: **177/177 PASS, 0 PARTIAL, 0 FAIL, 0 SKIP → release verdict READY** (all five skills READY). No verdict was force-flipped.
 
 ### Per fix-class outcome
 | Class | Scenarios | Resolution |
@@ -82,7 +82,7 @@ Resolution of **all 31 PARTIAL verdicts + the 1 DR-032 SKIP** in the 030 matrix.
 | No force-flips | Every PASS rests on observed behavior, a passing test, a live run, or a confirmed-stale expectation (R1/R2/R4) |
 | Reverted the council `writeFileScoped` "fix" | It regressed 17 tests → the self-audit-into-state-file is intended; the failing writeStateJsonl test is the stale one |
 | 5D-010 null is correct | A rule-less agent has no ALWAYS/NEVER rules → null ruleCoherence is honest N/A, not a 0 |
-| Council script-suite test-debt left for owner | ~16 pre-existing failures (withTempPacket setup, stale raw-content) are unrelated to the 030 verdicts; speculative fixes regress |
+| Council script-suite test-debt resolved (test-side + 1 verified code fix) | Fixed the wrong side each time: test-harness mkdir + two stale assertions; the `normalizeRoundId` 0-case and `findRepoRoot` `.git` preference were verified safe against all callers + 228 DLR tests — evidence-based, not speculative |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -94,8 +94,9 @@ Resolution of **all 31 PARTIAL verdicts + the 1 DR-032 SKIP** in the 030 matrix.
 |-------|--------|
 | All 31 PARTIAL + 1 SKIP resolved | PASS — 177/177 PASS, 0 PARTIAL / FAIL / SKIP / PENDING |
 | No force-flips (behavior/test/live/confirmed-stale per flip) | PASS — evidence cited per ledger row |
-| 030 matrix re-tallied + verdict | PASS — READY |
+| 007 matrix re-tallied + verdict | PASS — READY |
 | validate.sh --strict (010 + touched children + parent) | PASS (run at close) |
+| Council script-suite residual (2026-05-28 follow-up) | PASS — deep-ai-council 74/74; deep-loop-runtime 228/228; guard still rejects out-of-repo + `..` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -103,6 +104,6 @@ Resolution of **all 31 PARTIAL verdicts + the 1 DR-032 SKIP** in the 030 matrix.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **deep-ai-council script-suite test-debt:** ~16 pre-existing unit-test failures (advise/rollback withTempPacket setup, a stale `writeStateJsonl` raw-content expectation; the `computeChecksum` bad hash was fixed). These are tangential to the 030 scenario verdicts and need the skill owner's design intent — a speculative fix regressed 17 tests (reverted).
+1. **deep-ai-council script-suite test-debt — RESOLVED 2026-05-28:** all 18 failing council unit tests are green (suite 74/74). Fixes applied to the *correct side* each time: a mkdir-first `writeFileSync` wrapper in advise/rollback/audit test setup (13 ENOENT setup gaps) + the missing audit `writeFileSync` import; two stale assertions corrected (rollback empty-state `2→1`; persist `writeStateJsonl` now asserts content **plus** the intended `artifact_written` self-audit envelope); one verified code fix — `normalizeRoundId` defaults only on nullish/empty so an explicit `0` honors the documented 1-99 contract (confirmed no caller passes `0`). The replay integration failure root-caused to untracked `.advisor-state` sandbox residue that made `deep-loop-runtime/scripts/lib/cli-guards.cjs:findRepoRoot` resolve to `deep-loop-runtime` instead of the repo root (rejecting all in-repo `.opencode/specs/**` paths) — hardened `findRepoRoot` to prefer the `.git` marker (with `.opencode` fallback) + removed the residue. No-regression confirmed: deep-loop-runtime 228/228 (council+integration+unit+lifecycle) still green; guard still rejects out-of-repo + `..` paths.
 2. **Driver fidelity:** the 009 CP re-runs used deepseek-v4-pro (operator directive), so several class-A flips rest on grep-tolerance for deepseek phrasing + the components' vitest coverage rather than a frontier-model live run.
 <!-- /ANCHOR:limitations -->

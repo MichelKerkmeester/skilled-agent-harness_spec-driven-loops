@@ -15,11 +15,11 @@
   "priority": "P1",
   "createdAt": "2026-05-09T11:00:00Z",
   "branch": "main",
-  "parent_track": "027-xce-research-based-refinement",
-  "parent_id": "027-xce-research-based-refinement",
+  "parent_track": "028-code-graph-and-cocoindex",
+  "parent_id": "028-code-graph-and-cocoindex",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"
+      "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork"
     ]
   },
   "soft_depends_on": [],
@@ -28,23 +28,26 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients",
-  "description": "Feature Specification: Retrieval Rerank Clients (Shared Interfaces) Dependency added for the Coco adapter path: Phase 001 must land before this phase modifies mcp-coco-index; the memory-only interface extraction can still be reasoned about independently.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients",
+  "description": "Feature Specification: 007 — Retrieval Rerank Clients (Shared RerankClient + EmbeddingCacheClient Interfaces)",
   "keywords": [
     "feature",
     "specification",
+    "007",
     "retrieval",
     "rerank",
     "clients",
     "shared",
+    "rerankclient",
+    "embeddingcacheclient",
     "interfaces"
   ],
-  "lastUpdated": "2026-05-10T10:05:44.449Z",
-  "specId": "009",
+  "lastUpdated": "2026-05-28T06:52:03.786Z",
+  "specId": "007",
   "folderSlug": "retrieval-rerank-clients",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement"
+    "028-code-graph-and-cocoindex"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

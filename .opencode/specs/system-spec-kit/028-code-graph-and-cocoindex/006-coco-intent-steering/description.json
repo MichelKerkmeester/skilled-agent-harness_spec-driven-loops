@@ -15,11 +15,11 @@
   "priority": "P1",
   "createdAt": "2026-05-09T11:00:00Z",
   "branch": "main",
-  "parent_track": "027-xce-research-based-refinement",
-  "parent_id": "027-xce-research-based-refinement",
+  "parent_track": "028-code-graph-and-cocoindex",
+  "parent_id": "028-code-graph-and-cocoindex",
   "manual": {
     "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork"
+      "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork"
     ]
   },
   "soft_depends_on": [
@@ -30,11 +30,12 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering",
-  "description": "Feature Specification: Coco-Index Intent Steering + Bounded Query Expansion Hard dependency added: Phase 001 must land before this phase modifies mcp-coco-index query expansion, because the complete fork establishes the owned wrapper baseline.",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering",
+  "description": "Feature Specification: 006 — Coco-Index Intent Steering + Bounded Query Expansion",
   "keywords": [
     "feature",
     "specification",
+    "006",
     "coco-index",
     "intent",
     "steering",
@@ -42,12 +43,12 @@
     "query",
     "expansion"
   ],
-  "lastUpdated": "2026-05-10T10:05:44.449Z",
+  "lastUpdated": "2026-05-28T06:52:04.896Z",
   "specId": "006",
   "folderSlug": "coco-intent-steering",
   "parentChain": [
     "system-spec-kit",
-    "027-xce-research-based-refinement"
+    "028-code-graph-and-cocoindex"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

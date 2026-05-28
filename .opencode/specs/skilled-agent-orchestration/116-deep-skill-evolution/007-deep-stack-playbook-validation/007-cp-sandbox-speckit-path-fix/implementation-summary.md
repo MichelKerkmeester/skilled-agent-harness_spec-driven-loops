@@ -3,12 +3,12 @@ title: "Implementation Summary: CP-Sandbox speckit Path Fix (007)"
 description: "What changed + verification for the stale spec_kit to speckit CP setup-script remediation."
 trigger_phrases:
   - "cp sandbox speckit path fix summary"
-  - "030 phase 007 implementation summary"
+  - "007 phase 007 implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/030-deep-loop-skills-playbook-validation/007-cp-sandbox-speckit-path-fix"
+    packet_pointer: "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/007-cp-sandbox-speckit-path-fix"
     last_updated_at: "2026-05-27T20:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "CP setup speckit fix shipped and sandbox build verified"
