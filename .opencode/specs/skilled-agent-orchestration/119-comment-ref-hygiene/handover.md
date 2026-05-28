@@ -13,9 +13,9 @@ _memory:
     last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Verified embedding restart + reconcile; aligned 3 MCP env blocks across 7 configs; validated"
-    next_safe_action: "004 lane: fix launcher not forwarding tuned retry env to daemon; then backlog drains fast"
-    blockers: ["daemon-ignores-tuned-retry-env-launcher-lifecycle", "embedding-backlog-partial-until-daemon-honors-env"]
-    completion_pct: 95
+    next_safe_action: "Done — daemon-env gap fixed + backlog drained in 004 lane (2026-05-28, commit 845fe603d1)"
+    blockers: []
+    completion_pct: 100
 ---
 # Session Handover Document
 
@@ -95,8 +95,8 @@ Before/after handover, verify:
 - [x] All 7 configs: 3 spec-kit server env blocks byte-identical to opencode.json canonical (keys+values+order)
 - [x] 6 JSON parse clean; `.codex/config.toml` parses (tomli) with no duplicate keys
 - [x] `validate.sh --strict` on packet 119 PASSED (0 errors, 0 warnings)
-- [ ] OPEN: daemon honors tuned retry env (blocked on launcher/lifecycle fix — 004 lane)
-- [ ] OPEN: embedding backlog drained to 0 (depends on the env fix above)
+- [x] RESOLVED (004 lane, 2026-05-28): daemon honors tuned retry env. Root cause was NOT launcher/lifecycle — it was a `context-server.ts` call-site override of the env-derived config. `ps eww` confirmed the env reaches the daemon.
+- [x] RESOLVED (004 lane, 2026-05-28): embedding backlog drained to 0 retry/pending (28843 success; 22 genuine failures remain). Fix shipped in commit `845fe603d1`.
 <!-- /ANCHOR:validation-checklist -->
 
 ---
