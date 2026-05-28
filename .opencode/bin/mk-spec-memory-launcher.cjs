@@ -61,6 +61,14 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const now = () => new Date().toISOString();
 const SHUTDOWN_DEADLINE_MS = 5000;
 const DEFAULT_WATCHDOG_GRACE_MS = 7000;
+const RESPAWN_REAP_GRACE_MS = 7000;
+// A respawn lock older than this (or held by a dead pid) is reclaimable — so a launcher SIGKILL'd
+// during the reap window cannot permanently wedge all future respawns. Must exceed the max reap
+// window (RESPAWN_REAP_GRACE_MS + SIGKILL wait + bootstrap-lock time) with margin.
+const RESPAWN_LOCK_STALE_MS = 60000;
+// Generously above any realistic cold-cache build (npm ci + 2 tsc workspace builds) so the reclaim
+// only fires for a genuinely abandoned lockdir, never a slow-but-live build holder.
+const BOOTSTRAP_LOCK_STALE_MS = 300000;
 const DEFAULT_WATCHDOG_INTERVAL_MS = 15000;
 const DEFAULT_WATCHDOG_CONSECUTIVE_BREACHES = 3;
 // Tracking-only cadence when the RSS self-exit watchdog is NOT enabled: still sample the process
@@ -281,12 +289,12 @@ function loadBridgeModule() {
   } catch (error) {
     if (error.code !== 'MODULE_NOT_FOUND') throw error;
     return {
-      maybeBridgeLeaseHolder({ leaseResult }) {
+      async maybeBridgeLeaseHolder({ leaseResult }) {
         const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
         const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
         const suffix = process.env.SPECKIT_LAUNCHER_BRIDGE_DISABLED === '1' ? '' : ' (no-bridge-socket)';
         process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}${suffix}\n`);
-        return true;
+        return { action: 'report', reason: 'bridge-module-missing' };
       },
     };
   }
@@ -379,14 +387,193 @@ function isLeaseHeld() {
   return primary;
 }
 
-function bridgeOrReportLeaseHeld(leaseResult) {
+function writeLeaseHeldDiagnostic(leaseResult, suffix = '') {
+  const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
+  const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
+  process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}${suffix}\n`);
+}
+
+function respawnLockPath() {
+  return path.join(resolvedDbDir(), '.mk-spec-memory-respawn.lock');
+}
+
+// A respawn lock is reclaimable if its payload is unparseable, its recorded holder pid is dead, or it
+// is older than the stale threshold. The pid-liveness check is primary; the age check is a backstop
+// against pid-reuse / a hung holder. (mirrors mk-code-index's owner-lease stale-pid reclaim.)
+function isRespawnLockStale(raw, options = {}) {
+  const liveness = options.liveness || processLiveness;
+  const nowMs = typeof options.nowMs === 'number' ? options.nowMs : Date.now();
+  const staleMs = typeof options.staleMs === 'number' ? options.staleMs : RESPAWN_LOCK_STALE_MS;
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return true;
+  }
+  const pid = parsed && parsed.pid;
+  if (Number.isInteger(pid) && pid > 0 && liveness(pid) === 'dead') return true;
+  const startedAtMs = parsed && parsed.startedAt ? Date.parse(parsed.startedAt) : NaN;
+  if (Number.isFinite(startedAtMs) && nowMs - startedAtMs > staleMs) return true;
+  return false;
+}
+
+function acquireRespawnLockFile() {
+  const currentLockPath = path.join(ensureCanonicalDir(path.dirname(respawnLockPath())), path.basename(respawnLockPath()));
+  const tryOpen = () => {
+    const fd = fs.openSync(currentLockPath, 'wx', 0o600);
+    fs.writeFileSync(fd, `${JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }, null, 2)}\n`, 'utf8');
+    fs.fsyncSync(fd);
+    return { acquired: true, fd, path: currentLockPath };
+  };
+  try {
+    return tryOpen();
+  } catch (error) {
+    if (error.code !== 'EEXIST') throw error;
+  }
+  // EEXIST: reclaim if the existing lock is stale (dead holder / unparseable / aged out), then retry
+  // once. The bootstrap lock already serialized us, and wx is atomic, so the reclaim cannot duplicate.
+  let raw = '';
+  try {
+    raw = fs.readFileSync(currentLockPath, 'utf8');
+  } catch (readErr) {
+    if (readErr.code !== 'ENOENT') throw readErr;
+  }
+  if (raw === '' || isRespawnLockStale(raw)) {
+    try {
+      fs.unlinkSync(currentLockPath);
+    } catch (unlinkErr) {
+      if (unlinkErr.code !== 'ENOENT') throw unlinkErr;
+    }
+    try {
+      const reclaimed = tryOpen();
+      log(`reclaimed stale respawn lock ${rel(currentLockPath)}`);
+      return reclaimed;
+    } catch (retryErr) {
+      if (retryErr.code !== 'EEXIST') throw retryErr;
+    }
+  }
+  return { acquired: false, path: currentLockPath };
+}
+
+function releaseRespawnLockFile(lock) {
+  if (!lock || !lock.acquired) return;
+  try {
+    if (typeof lock.fd === 'number') fs.closeSync(lock.fd);
+  } finally {
+    try {
+      fs.unlinkSync(lock.path);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+  }
+}
+
+function processLiveness(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return 'dead';
+  try {
+    process.kill(pid, 0);
+    return 'alive';
+  } catch (error) {
+    if (error.code === 'ESRCH') return 'dead';
+    if (error.code === 'EPERM') return 'unknown-eperm';
+    return 'alive';
+  }
+}
+
+async function waitForPidExit(pid, timeoutMs) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() <= deadline) {
+    if (processLiveness(pid) === 'dead') return true;
+    await sleep(100);
+  }
+  return processLiveness(pid) === 'dead';
+}
+
+async function reapLeaseChildBeforeRespawn(childPid) {
+  const liveness = processLiveness(childPid);
+  if (liveness === 'unknown-eperm') {
+    return { allowed: false, reason: 'child-liveness-unknown-eperm' };
+  }
+  if (liveness === 'dead') {
+    return { allowed: true, reaped: false, reason: 'child-already-dead' };
+  }
+
+  log(`confirmed-dead socket; reaping recorded context-server child pid ${childPid} before respawn`);
+  signalProcess(childPid, 'SIGTERM');
+  reapProcessTreeGroups(childPid, { signal: signalProcess });
+  const exitedAfterTerm = await waitForPidExit(childPid, RESPAWN_REAP_GRACE_MS);
+  if (!exitedAfterTerm) {
+    log(`context-server child pid ${childPid} exceeded ${RESPAWN_REAP_GRACE_MS}ms reap grace; sending SIGKILL`);
+    signalProcess(childPid, 'SIGKILL');
+    await waitForPidExit(childPid, 1000);
+  }
+  return { allowed: true, reaped: true, reason: 'child-reaped' };
+}
+
+async function respawnAfterDeadSocket(leaseResult, decision) {
+  if (process.env.SPECKIT_BRIDGE_RESPAWN_DISABLED === '1') {
+    writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-disabled)');
+    return { action: 'report', reason: 'respawn-disabled', socketPath: decision.socketPath };
+  }
+
+  const lease = readLeaseFile(leaseResult.legacyPath || leasePath());
+  const childPid = lease?.childPid;
+  if (!Number.isInteger(childPid) || childPid <= 0) {
+    log('confirmed-dead socket but lease has no childPid; phase-006 gate keeps respawn inert');
+    writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-no-child-pid)');
+    return { action: 'report', reason: 'missing-child-pid', socketPath: decision.socketPath };
+  }
+
+  let bootstrapLockHeld = false;
+  let respawnLock = null;
+  try {
+    bootstrapLockHeld = await acquireBootstrapLock({ requireLock: true });
+    respawnLock = acquireRespawnLockFile();
+    if (!respawnLock.acquired) {
+      log(`dead-socket respawn skipped; another launcher owns ${rel(respawnLock.path)}`);
+      writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-owned)');
+      return { action: 'report', reason: 'respawn-lock-held', socketPath: decision.socketPath };
+    }
+
+    const currentLease = readLeaseFile(leaseResult.legacyPath || leasePath());
+    if (currentLease?.pid !== leaseResult.ownerPid || currentLease?.childPid !== childPid) {
+      log('dead-socket respawn skipped; lease changed while waiting for respawn lock');
+      writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-superseded)');
+      return { action: 'report', reason: 'respawn-superseded', socketPath: decision.socketPath };
+    }
+
+    const reapResult = await reapLeaseChildBeforeRespawn(childPid);
+    if (!reapResult.allowed) {
+      log(`dead-socket respawn skipped; ${reapResult.reason} for childPid=${childPid}`);
+      writeLeaseHeldDiagnostic(leaseResult, ` (dead-socket-${reapResult.reason})`);
+      return { action: 'report', reason: reapResult.reason, socketPath: decision.socketPath };
+    }
+
+    buildIfNeeded([]);
+    leaseStartedAt = new Date().toISOString();
+    writeLeaseFile();
+    launchServer();
+    return { action: 'respawn', reason: 'spawned', socketPath: decision.socketPath };
+  } finally {
+    releaseRespawnLockFile(respawnLock);
+    if (bootstrapLockHeld) {
+      fs.rmSync(lockDir, { recursive: true, force: true });
+    }
+  }
+}
+
+async function bridgeOrReportLeaseHeld(leaseResult) {
   const { maybeBridgeLeaseHolder } = loadBridgeModule();
-  return maybeBridgeLeaseHolder({
+  const decision = await maybeBridgeLeaseHolder({
     serviceName: 'mk-spec-memory',
     leaseResult,
     loggerPrefix: 'mk-spec-memory-launcher',
     dbDir: resolvedDbDir(),
   });
+  if (decision && decision.action === 'respawn') {
+    return await respawnAfterDeadSocket(leaseResult, decision);
+  }
+  return decision;
 }
 
 // Pure lease-payload builder (exported for tests). `childPid` is an ADDITIVE field present only when
@@ -670,7 +857,8 @@ function startRssWatchdog(childPid) {
   rssWatchdogTimer.unref?.();
 }
 
-async function acquireBootstrapLock() {
+async function acquireBootstrapLock(options = {}) {
+  const requireLock = options.requireLock === true;
   fs.mkdirSync(dbDir, { recursive: true });
   const deadline = Date.now() + 120000;
   while (true) {
@@ -681,7 +869,20 @@ async function acquireBootstrapLock() {
       if (error.code !== 'EEXIST') {
         throw error;
       }
-      if (artifactsReady()) {
+      // Reclaim a stale lockdir left by a SIGKILL'd launcher (mtime-based; the lockdir records no pid),
+      // so a crashed holder cannot block a requireLock respawn for the full 120s deadline.
+      try {
+        const ageMs = Date.now() - fs.statSync(lockDir).mtimeMs;
+        if (ageMs > BOOTSTRAP_LOCK_STALE_MS) {
+          log(`reclaiming stale bootstrap lock ${rel(lockDir)} (age ${Math.round(ageMs / 1000)}s)`);
+          fs.rmSync(lockDir, { recursive: true, force: true });
+          continue;
+        }
+      } catch (statErr) {
+        if (statErr.code === 'ENOENT') continue;
+        throw statErr;
+      }
+      if (artifactsReady() && !requireLock) {
         return false;
       }
       if (Date.now() > deadline) {
@@ -692,7 +893,18 @@ async function acquireBootstrapLock() {
   }
 }
 
+// Duplicate-spawn guard (REQ-004): skip a launch only while a child is CURRENTLY running, so the
+// crash-loop supervisor's legitimate sequential relaunch (after the prior child has EXITED) is still
+// allowed. A one-shot "ever launched" flag would permanently disable F1's relaunch path.
+function shouldSkipLaunch(child) {
+  return Boolean(child && isChildRunning(child));
+}
+
 function launchServer() {
+  if (shouldSkipLaunch(childProcess)) {
+    log('launchServer skipped: a context-server child is already running in this launcher process');
+    return false;
+  }
   if (!crashLoopGuard) crashLoopGuard = createCrashLoopGuard(getCrashLoopConfig());
   if (supervisorRelaunchTimer) {
     clearTimeout(supervisorRelaunchTimer);
@@ -737,6 +949,7 @@ function launchServer() {
     log(error.stack || error.message);
     process.exit(1);
   });
+  return true;
 }
 
 function installSignalHandlers() {
@@ -790,7 +1003,7 @@ async function main() {
     if (strictSingleWriter) {
       const leaseResult = isLeaseHeld();
       if (leaseResult.held && !leaseResult.staleReclaimable) {
-        bridgeOrReportLeaseHeld(leaseResult);
+        await bridgeOrReportLeaseHeld(leaseResult);
         return;
       }
       if (leaseResult.staleReclaimable) {
@@ -852,11 +1065,14 @@ module.exports = {
   computeBackoffMs,
   createCrashLoopGuard,
   getWatchdogConfig,
+  isRespawnLockStale,
   normalizeWatchdogGraceMs,
   parseProcessRows,
+  processLiveness,
   reapProcessTreeGroups,
   refreshDescendantSnapshot,
   sampleProcessTreeRssMb,
+  shouldSkipLaunch,
   signalProcess,
   superviseChildExit,
 };

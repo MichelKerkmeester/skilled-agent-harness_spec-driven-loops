@@ -11,6 +11,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 const DEFAULT_MAX_SECONDARY_CLIENTS = 8;
+const TCP_EADDRINUSE_RETRY_DELAYS_MS = [100, 250, 500, 1000, 1500] as const;
 
 interface IpcBridgeStats {
   socket_path: string | null;
@@ -56,6 +57,10 @@ function parseMaxClients(rawValue = process.env.SPECKIT_MAX_SECONDARY_CLIENTS): 
   return parsed;
 }
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function resolveIpcSocketPath(dbDir: string): string {
   const socketDir = process.env.SPECKIT_IPC_SOCKET_DIR
     ? path.resolve(process.env.SPECKIT_IPC_SOCKET_DIR)
@@ -91,6 +96,27 @@ async function listenOnce(server: net.Server, socketPath: string): Promise<void>
     }
     server.listen(socketPath);
   });
+}
+
+async function retryTcpListenAfterEaddrInUse(
+  server: net.Server,
+  socketPath: string,
+  log: (message: string) => void,
+): Promise<boolean> {
+  for (const delayMs of TCP_EADDRINUSE_RETRY_DELAYS_MS) {
+    log(`[ipc-bridge] tcp socket in use at ${socketPath}; retrying listen in ${delayMs}ms`);
+    await sleep(delayMs);
+    try {
+      await listenOnce(server, socketPath);
+      return true;
+    } catch (error: unknown) {
+      const err = error as NodeJS.ErrnoException;
+      if (err.code !== 'EADDRINUSE') {
+        throw err;
+      }
+    }
+  }
+  return false;
 }
 
 async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<IpcSocketServerHandle> {
@@ -152,18 +178,34 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
     await listenOnce(server, socketPath);
   } catch (error: unknown) {
     const err = error as NodeJS.ErrnoException;
-    if (err.code !== 'EADDRINUSE' || socketPath.startsWith('tcp://')) {
-      throw err;
-    }
-    try {
-      fs.unlinkSync(socketPath);
-    } catch (unlinkError: unknown) {
-      const unlinkErr = unlinkError as NodeJS.ErrnoException;
-      if (unlinkErr.code !== 'ENOENT') {
-        throw unlinkErr;
+    if (err.code === 'EADDRINUSE' && socketPath.startsWith('tcp://')) {
+      const listened = await retryTcpListenAfterEaddrInUse(server, socketPath, log);
+      if (!listened) {
+        log(`[ipc-bridge] tcp socket remained in use at ${socketPath}; secondary bridge disabled`);
+        return {
+          socketPath,
+          close: async () => {
+            for (const socket of activeSockets) {
+              socket.destroy();
+            }
+            activeSockets.clear();
+            activeTransports.clear();
+          },
+        };
       }
+    } else if (err.code !== 'EADDRINUSE') {
+      throw err;
+    } else {
+      try {
+        fs.unlinkSync(socketPath);
+      } catch (unlinkError: unknown) {
+        const unlinkErr = unlinkError as NodeJS.ErrnoException;
+        if (unlinkErr.code !== 'ENOENT') {
+          throw unlinkErr;
+        }
+      }
+      await listenOnce(server, socketPath);
     }
-    await listenOnce(server, socketPath);
   }
 
   const address = server.address();

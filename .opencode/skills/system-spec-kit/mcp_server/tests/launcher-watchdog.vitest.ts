@@ -15,8 +15,10 @@ const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
     childPid: number,
     options?: { runner?: ProcessRowsRunner; signal?: SignalFn; snapshotPids?: number[] },
   ) => void;
+  isRespawnLockStale: (raw: string, options?: { liveness?: (pid: number) => string; nowMs?: number; staleMs?: number }) => boolean;
   refreshDescendantSnapshot: (childPid: number, runner?: ProcessRowsRunner) => number[];
   sampleProcessTreeRssMb: (childPid: number, runner?: ProcessRowsRunner) => number | null;
+  shouldSkipLaunch: (child: { exitCode: number | null; signalCode: string | null } | null) => boolean;
   signalProcess: (pid: number, sig: number | string) => boolean;
   superviseChildExit: (
     event: Record<string, unknown>,
@@ -220,5 +222,35 @@ describe('launcher watchdog helpers', () => {
       throw Object.assign(new Error('boom'), { code: 'EINVAL' });
     });
     expect(() => launcher.signalProcess(4242, 'SIGKILL')).toThrow('boom');
+  });
+
+  // Regression: the F3 duplicate-spawn guard must NOT permanently disable F1's crash-loop relaunch.
+  // A one-shot "ever launched" flag blocked scheduleRelaunch->launchServer after a child exited;
+  // the correct guard blocks only while a child is CURRENTLY running.
+  it('shouldSkipLaunch blocks only a currently-running child, allowing relaunch after exit (REQ-004 / F1 relaunch)', () => {
+    expect(launcher.shouldSkipLaunch(null)).toBe(false); // first launch allowed
+    expect(launcher.shouldSkipLaunch({ exitCode: null, signalCode: null })).toBe(true); // running -> skip duplicate
+    expect(launcher.shouldSkipLaunch({ exitCode: 1, signalCode: null })).toBe(false); // exited -> relaunch ALLOWED (the fix)
+    expect(launcher.shouldSkipLaunch({ exitCode: null, signalCode: 'SIGKILL' })).toBe(false); // killed -> relaunch allowed
+  });
+
+  it('isRespawnLockStale reclaims dead/unparseable/aged locks but keeps a live fresh one (REQ-003 stale-lock reclaim)', () => {
+    const liveness = (pid: number) => (pid === 111 ? 'alive' : 'dead');
+    const now = Date.parse('2026-05-28T00:01:00.000Z');
+    // live holder, fresh (<60s) -> NOT stale
+    expect(
+      launcher.isRespawnLockStale(JSON.stringify({ pid: 111, startedAt: '2026-05-28T00:00:55.000Z' }), { liveness, nowMs: now }),
+    ).toBe(false);
+    // dead holder -> stale (reclaim)
+    expect(
+      launcher.isRespawnLockStale(JSON.stringify({ pid: 222, startedAt: '2026-05-28T00:00:55.000Z' }), { liveness, nowMs: now }),
+    ).toBe(true);
+    // live holder but aged out (>60s) -> stale (hung / pid-reuse backstop)
+    expect(
+      launcher.isRespawnLockStale(JSON.stringify({ pid: 111, startedAt: '2026-05-27T00:00:00.000Z' }), { liveness, nowMs: now }),
+    ).toBe(true);
+    // unparseable / empty -> stale
+    expect(launcher.isRespawnLockStale('not json', { liveness, nowMs: now })).toBe(true);
+    expect(launcher.isRespawnLockStale('', { liveness, nowMs: now })).toBe(true);
   });
 });

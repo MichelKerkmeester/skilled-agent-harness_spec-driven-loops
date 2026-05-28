@@ -5,6 +5,9 @@ const net = require('net');
 const path = require('path');
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
+const DEFAULT_PROBE_TIMEOUT_MS = 2500;
+const JSON_RPC_PROTOCOL_VERSION = '2025-06-18';
+let nextProbeId = 1;
 
 function repoRoot() {
   return path.resolve(__dirname, '..', '..', '..');
@@ -94,13 +97,94 @@ function bridgeStdioToSocket(socketPath, options = {}) {
   return socket;
 }
 
-function maybeBridgeLeaseHolder(options) {
+function probeDaemon(socketPath, options = {}) {
+  const timeoutMs = Number.isFinite(options.timeoutMs) && options.timeoutMs > 0
+    ? options.timeoutMs
+    : DEFAULT_PROBE_TIMEOUT_MS;
+  const connect = options.connect ?? ((connectionOptions) => net.createConnection(connectionOptions));
+  const id = nextProbeId++;
+  const request = `${JSON.stringify({
+    jsonrpc: '2.0',
+    id,
+    method: 'initialize',
+    params: {
+      protocolVersion: JSON_RPC_PROTOCOL_VERSION,
+      capabilities: {},
+      clientInfo: { name: 'liveness-probe', version: '0' },
+    },
+  })}\n`;
+
+  return new Promise((resolve) => {
+    let socket;
+    let settled = false;
+    let buffer = '';
+    let timer;
+
+    const finish = (status, reason) => {
+      if (settled) return;
+      settled = true;
+      if (timer) clearTimeout(timer);
+      if (socket) socket.destroy();
+      resolve({ status, reason });
+    };
+
+    try {
+      socket = connect(toConnectionOptions(socketPath));
+    } catch (error) {
+      finish('dead', error instanceof Error ? error.message : 'connect-threw');
+      return;
+    }
+
+    timer = setTimeout(() => finish('dead', 'timeout'), timeoutMs);
+    timer.unref?.();
+
+    socket.once('connect', () => {
+      socket.write(request);
+    });
+    socket.on('data', (chunk) => {
+      buffer += Buffer.isBuffer(chunk) ? chunk.toString('utf8') : String(chunk ?? '');
+      let newlineIndex = buffer.indexOf('\n');
+      while (newlineIndex !== -1) {
+        const line = buffer.slice(0, newlineIndex).trim();
+        buffer = buffer.slice(newlineIndex + 1);
+        newlineIndex = buffer.indexOf('\n');
+        if (!line) continue;
+        try {
+          const parsed = JSON.parse(line);
+          if (
+            parsed &&
+            parsed.jsonrpc === '2.0' &&
+            parsed.id === id &&
+            (Object.prototype.hasOwnProperty.call(parsed, 'result') ||
+              Object.prototype.hasOwnProperty.call(parsed, 'error'))
+          ) {
+            finish('alive', 'json-rpc-reply');
+            return;
+          }
+        } catch {
+          // Ignore malformed or unrelated frames; the bounded probe decides liveness.
+        }
+      }
+    });
+    socket.once('error', (error) => {
+      finish('dead', error instanceof Error ? error.message : 'socket-error');
+    });
+    socket.once('close', () => {
+      finish('dead', 'closed-before-reply');
+    });
+  });
+}
+
+async function maybeBridgeLeaseHolder(options) {
   const {
     serviceName,
     leaseResult,
     loggerPrefix,
     dbDir,
     legacyReport,
+    probeTimeoutMs,
+    connect,
+    bridge,
   } = options;
   const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
   const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
@@ -112,29 +196,37 @@ function maybeBridgeLeaseHolder(options) {
   if (process.env.SPECKIT_LAUNCHER_BRIDGE_DISABLED === '1') {
     if (legacyReport) {
       legacyReport(leaseResult);
-      return true;
+      return { action: 'report', reason: 'bridge-disabled' };
     }
     writeLeaseHeld();
-    return true;
+    return { action: 'report', reason: 'bridge-disabled' };
   }
 
   const socketPath = getIpcSocketPath(serviceName, { dbDir });
   if (!socketPath.startsWith('tcp://') && !fs.existsSync(socketPath)) {
     writeLeaseHeld(' (no-bridge-socket)');
-    return true;
+    return { action: 'report', reason: 'no-bridge-socket', socketPath };
+  }
+
+  const probe = await probeDaemon(socketPath, { timeoutMs: probeTimeoutMs, connect });
+  if (probe.status !== 'alive') {
+    process.stderr.write(`[${loggerPrefix}] lease holder pid=${ownerPid} socket=${socketPath} failed liveness probe: ${probe.reason}\n`);
+    return { action: 'respawn', reason: probe.reason, socketPath };
   }
 
   process.stderr.write(`[${loggerPrefix}] bridging to lease holder pid=${ownerPid} socket=${socketPath}\n`);
-  bridgeStdioToSocket(socketPath, {
+  const bridgeToSocket = bridge ?? bridgeStdioToSocket;
+  bridgeToSocket(socketPath, {
     onError: () => {
       writeLeaseHeld(' (bridge-refused)');
     },
   });
-  return true;
+  return { action: 'bridge', socketPath };
 }
 
 module.exports = {
   bridgeStdioToSocket,
   getIpcSocketPath,
   maybeBridgeLeaseHolder,
+  probeDaemon,
 };

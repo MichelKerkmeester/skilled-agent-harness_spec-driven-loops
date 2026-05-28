@@ -10,6 +10,8 @@
 // bracketed module prefix for ops grepping. See .opencode/skills/system-code-graph/ for
 // the standalone skill that owns the server source.
 
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
@@ -105,8 +107,10 @@ let stateFile = path.join(dbDir, PID_FILE_NAME);
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const now = () => new Date().toISOString();
+const RESPAWN_REAP_GRACE_MS = 7000;
 let childProcess = null;
 let ownerLeasePid = null;
+let launchStarted = false;
 
 function log(message) {
   process.stderr.write(`[mk-code-index-launcher] ${message}\n`);
@@ -118,12 +122,12 @@ function loadBridgeModule() {
   } catch (error) {
     if (error.code !== 'MODULE_NOT_FOUND') throw error;
     return {
-      maybeBridgeLeaseHolder({ leaseResult }) {
+      async maybeBridgeLeaseHolder({ leaseResult }) {
         const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
         const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
         const suffix = process.env.SPECKIT_LAUNCHER_BRIDGE_DISABLED === '1' ? '' : ' (no-bridge-socket)';
         process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}${suffix}\n`);
-        return true;
+        return { action: 'report', reason: 'bridge-module-missing' };
       },
     };
   }
@@ -274,6 +278,18 @@ function writeOwnerLeaseFileExclusive(lease) {
   }
 }
 
+function buildOwnerLease(ownerPid = process.pid) {
+  return {
+    ownerPid,
+    ppid: process.ppid,
+    executablePath: process.execPath,
+    startedAtIso: new Date().toISOString(),
+    lastHeartbeatIso: new Date().toISOString(),
+    ttlMs: 60000,
+    canonicalDbDir: resolvedDbDir(),
+  };
+}
+
 function processLiveness(pid) {
   if (!Number.isInteger(pid) || pid <= 0) return 'dead';
   try {
@@ -326,7 +342,6 @@ function classifyOwnerLease(lease) {
 }
 
 function acquireOwnerLeaseFile() {
-  const canonicalDbDir = resolvedDbDir();
   const currentOwnerLeasePath = ownerLeasePath();
   const existing = readOwnerLeaseFile(currentOwnerLeasePath);
 
@@ -338,15 +353,7 @@ function acquireOwnerLeaseFile() {
     log(`ownerLeaseReclaimed: ${classification} ownerPid=${existing.ownerPid}`);
   }
 
-  const lease = {
-    ownerPid: process.pid,
-    ppid: process.ppid,
-    executablePath: process.execPath,
-    startedAtIso: new Date().toISOString(),
-    lastHeartbeatIso: new Date().toISOString(),
-    ttlMs: 60000,
-    canonicalDbDir,
-  };
+  const lease = buildOwnerLease(process.pid);
   if (!existing) {
     if (!writeOwnerLeaseFileExclusive(lease)) {
       const holder = readOwnerLeaseFile(currentOwnerLeasePath);
@@ -389,6 +396,15 @@ function clearOwnerLeaseFile() {
   }
 }
 
+function clearOwnerLeaseFileIfOwner(ownerPid) {
+  try {
+    const lease = readOwnerLeaseFile();
+    if (lease && lease.ownerPid === ownerPid) fs.unlinkSync(ownerLeasePath());
+  } catch {
+    // Idempotent cleanup.
+  }
+}
+
 function leaseHeldFromFile(filePath, legacyPath = null) {
   const lease = readLeaseFile(filePath);
   if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
@@ -417,14 +433,112 @@ function isLeaseHeld() {
   return primary;
 }
 
-function bridgeOrReportLeaseHeld(leaseResult) {
+function writeLeaseHeldDiagnostic(leaseResult, suffix = '') {
+  const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
+  const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
+  process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}${suffix}\n`);
+}
+
+async function waitForPidExit(pid, timeoutMs) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() <= deadline) {
+    if (processLiveness(pid) === 'dead') return true;
+    await sleep(100);
+  }
+  return processLiveness(pid) === 'dead';
+}
+
+async function reapOwnerBeforeRespawn(ownerPid) {
+  const liveness = processLiveness(ownerPid);
+  if (liveness === 'unknown-eperm') {
+    return { allowed: false, reason: 'owner-liveness-unknown-eperm' };
+  }
+  if (liveness === 'dead') {
+    return { allowed: true, reason: 'owner-already-dead' };
+  }
+
+  log(`confirmed-dead socket; reaping recorded code-index owner pid ${ownerPid} before respawn`);
+  try {
+    process.kill(ownerPid, 'SIGTERM');
+  } catch (error) {
+    if (error.code !== 'ESRCH') throw error;
+  }
+  const exitedAfterTerm = await waitForPidExit(ownerPid, RESPAWN_REAP_GRACE_MS);
+  if (!exitedAfterTerm) {
+    log(`code-index owner pid ${ownerPid} exceeded ${RESPAWN_REAP_GRACE_MS}ms reap grace; sending SIGKILL`);
+    try {
+      process.kill(ownerPid, 'SIGKILL');
+    } catch (error) {
+      if (error.code !== 'ESRCH') throw error;
+    }
+    await waitForPidExit(ownerPid, 1000);
+  }
+  return { allowed: true, reason: 'owner-reaped' };
+}
+
+async function respawnAfterDeadSocket(leaseResult, decision, options = {}) {
+  if (process.env.SPECKIT_BRIDGE_RESPAWN_DISABLED === '1') {
+    writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-disabled)');
+    return { action: 'report', reason: 'respawn-disabled', socketPath: decision.socketPath };
+  }
+
+  const ownerPid = options.respawnChildPid;
+  if (!Number.isInteger(ownerPid) || ownerPid <= 0) {
+    log('confirmed-dead socket but no recorded code-index child owner pid is available; respawn inert');
+    writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-no-child-pid)');
+    return { action: 'report', reason: 'missing-child-pid', socketPath: decision.socketPath };
+  }
+
+  let bootstrapLockHeld = false;
+  try {
+    bootstrapLockHeld = await acquireBootstrapLock({ requireLock: true });
+    const currentOwner = readOwnerLeaseFile();
+    if (currentOwner?.ownerPid !== ownerPid) {
+      log('dead-socket respawn skipped; code-index owner lease changed while waiting for respawn lock');
+      writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-superseded)');
+      return { action: 'report', reason: 'respawn-superseded', socketPath: decision.socketPath };
+    }
+
+    const reapResult = await reapOwnerBeforeRespawn(ownerPid);
+    if (!reapResult.allowed) {
+      log(`dead-socket respawn skipped; ${reapResult.reason} for ownerPid=${ownerPid}`);
+      writeLeaseHeldDiagnostic(leaseResult, ` (dead-socket-${reapResult.reason})`);
+      return { action: 'report', reason: reapResult.reason, socketPath: decision.socketPath };
+    }
+
+    clearOwnerLeaseFileIfOwner(ownerPid);
+    const lease = buildOwnerLease(process.pid);
+    if (!writeOwnerLeaseFileExclusive(lease)) {
+      const holder = readOwnerLeaseFile();
+      log(`dead-socket respawn skipped; another launcher owns code-index owner lease pid=${holder?.ownerPid ?? 'unknown'}`);
+      writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-owned)');
+      return { action: 'report', reason: 'respawn-lock-held', socketPath: decision.socketPath };
+    }
+    ownerLeasePid = process.pid;
+
+    buildIfNeeded([]);
+    writeLeaseFile();
+    launchServer();
+    return { action: 'respawn', reason: 'spawned', socketPath: decision.socketPath };
+  } finally {
+    if (bootstrapLockHeld) {
+      fs.rmSync(lockDir, { recursive: true, force: true });
+    }
+  }
+}
+
+async function bridgeOrReportLeaseHeld(leaseResult, options = {}) {
   const { maybeBridgeLeaseHolder } = loadBridgeModule();
-  return maybeBridgeLeaseHolder({
+  const decision = await maybeBridgeLeaseHolder({
     serviceName: 'mk-code-index',
     leaseResult,
     loggerPrefix: 'mk-code-index-launcher',
     dbDir: resolvedDbDir(),
   });
+  if (decision && decision.action === 'respawn') {
+    return await respawnAfterDeadSocket(leaseResult, decision, options);
+  }
+  return decision;
 }
 
 function writeLeaseFile() {
@@ -539,7 +653,8 @@ function buildIfNeeded(actions) {
   }
 }
 
-async function acquireBootstrapLock() {
+async function acquireBootstrapLock(options = {}) {
+  const requireLock = options.requireLock === true;
   fs.mkdirSync(dbDir, { recursive: true });
   const deadline = Date.now() + 120000;
   const STALE_LOCK_MS = 5 * 60 * 1000; // 5 minutes — covers SIGKILL'd prior launchers
@@ -551,7 +666,7 @@ async function acquireBootstrapLock() {
       if (error.code !== 'EEXIST') {
         throw error;
       }
-      if (artifactsReady()) {
+      if (artifactsReady() && !requireLock) {
         return false;
       }
       // Detect stale lockdir from SIGKILL'd predecessor.
@@ -578,6 +693,11 @@ async function acquireBootstrapLock() {
 }
 
 function launchServer() {
+  if (launchStarted) {
+    log('launchServer skipped: launch already started in this launcher process');
+    return false;
+  }
+  launchStarted = true;
   // Set DB dir for the child process (operator-set env var wins).
   if (!process.env.SPECKIT_CODE_GRAPH_DB_DIR) {
     process.env.SPECKIT_CODE_GRAPH_DB_DIR = resolvedDbDir();
@@ -616,6 +736,7 @@ function launchServer() {
     log(error.stack || error.message);
     process.exit(1);
   });
+  return true;
 }
 
 function installSignalHandlers() {
@@ -694,9 +815,11 @@ function installSignalHandlers() {
         // maybeBridgeLeaseHolder falls back to a LEASE_HELD_BY diagnostic line
         // only when the socket is missing/refused or bridging is disabled.
         log(`liveOwnerDetected: ownerPid=${ownerLeaseResult.holder.ownerPid} classification=${ownerLeaseResult.classification}`);
-        bridgeOrReportLeaseHeld({
+        await bridgeOrReportLeaseHeld({
           ownerPid: ownerLeaseResult.holder.ownerPid,
           startedAt: ownerLeaseResult.holder.startedAtIso,
+        }, {
+          respawnChildPid: ownerLeaseResult.holder.ownerPid,
         });
         return;
       }
@@ -704,7 +827,7 @@ function installSignalHandlers() {
       const leaseResult = isLeaseHeld();
       if (leaseResult.held && !leaseResult.staleReclaimable) {
         clearOwnerLeaseFile();
-        bridgeOrReportLeaseHeld(leaseResult);
+        await bridgeOrReportLeaseHeld(leaseResult);
         return;
       }
       if (leaseResult.staleReclaimable) {
