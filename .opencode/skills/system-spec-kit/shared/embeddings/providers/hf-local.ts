@@ -158,7 +158,13 @@ interface ErrorWithCode extends Error {
 }
 
 // Type for the HuggingFace pipeline extractor
-type FeatureExtractionPipeline = (text: string, options: { pooling: string; normalize: boolean }) => Promise<{ data: Float32Array | number[] }>;
+type FeatureExtractionSessions = Record<string, unknown> | Map<string, unknown> | readonly unknown[];
+type FeatureExtractionPipeline = ((text: string, options: { pooling: string; normalize: boolean }) => Promise<{ data: Float32Array | number[] }>) & {
+  dispose?: () => void | Promise<void>;
+  model?: {
+    sessions?: FeatureExtractionSessions;
+  };
+};
 
 // Type for the HuggingFace pipeline factory function
 type PipelineFactory = (task: string, model: string, options: Record<string, unknown>) => Promise<FeatureExtractionPipeline>;
@@ -180,6 +186,19 @@ function createTimeoutError(message: string): ErrorWithCode {
   const error = new Error(message) as ErrorWithCode;
   error.code = 'ETIMEDOUT';
   return error;
+}
+
+function getSessionCount(sessions: FeatureExtractionSessions | undefined): number {
+  if (!sessions) {
+    return 0;
+  }
+  if (sessions instanceof Map) {
+    return sessions.size;
+  }
+  if (Array.isArray(sessions)) {
+    return sessions.length;
+  }
+  return Object.keys(sessions).length;
 }
 
 async function withTimeout<T>(operation: Promise<T>, timeoutMs: number, message: string): Promise<T> {
@@ -209,6 +228,9 @@ export class HfLocalProvider implements IEmbeddingProvider {
   modelLoadTime: number | null;
   loadingPromise: Promise<FeatureExtractionPipeline> | null;
   isHealthy: boolean;
+  private disposed: boolean;
+  private disposePromise: Promise<void> | null;
+  private readonly inFlightRawRuns: Set<Promise<unknown>>;
 
   constructor(options: HfLocalOptions = {}) {
     this.modelName = options.model || process.env.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL;
@@ -221,9 +243,16 @@ export class HfLocalProvider implements IEmbeddingProvider {
     this.modelLoadTime = null;
     this.loadingPromise = null;
     this.isHealthy = true;
+    this.disposed = false;
+    this.disposePromise = null;
+    this.inFlightRawRuns = new Set<Promise<unknown>>();
   }
 
   async getModel(): Promise<FeatureExtractionPipeline> {
+    if (this.disposed) {
+      throw new Error(`[hf-local] Provider for ${this.modelName} has been disposed`);
+    }
+
     if (this.extractor) {
       return this.extractor;
     }
@@ -313,6 +342,10 @@ export class HfLocalProvider implements IEmbeddingProvider {
   }
 
   async generateEmbedding(text: string): Promise<Float32Array | null> {
+    if (this.disposed) {
+      throw new Error(`[hf-local] Provider for ${this.modelName} has been disposed`);
+    }
+
     if (!text || typeof text !== 'string') {
       console.warn('[hf-local] Empty or invalid text provided');
       return null;
@@ -335,12 +368,21 @@ export class HfLocalProvider implements IEmbeddingProvider {
 
     try {
       const model = await this.getModel();
+      if (this.disposed) {
+        throw new Error(`[hf-local] Provider for ${this.modelName} has been disposed`);
+      }
+
+      const rawRun = model(inputText, {
+        pooling: 'mean',
+        normalize: true,
+      });
+      this.inFlightRawRuns.add(rawRun);
+      void rawRun.finally(() => {
+        this.inFlightRawRuns.delete(rawRun);
+      }).catch(() => undefined);
 
       const output = await withTimeout(
-        model(inputText, {
-          pooling: 'mean',
-          normalize: true,
-        }),
+        rawRun,
         this.timeout,
         `HF local inference timed out after ${this.timeout}ms`,
       );
@@ -369,6 +411,52 @@ export class HfLocalProvider implements IEmbeddingProvider {
       this.isHealthy = false;
       throw error;
     }
+  }
+
+  async dispose(): Promise<void> {
+    if (this.disposePromise) {
+      return this.disposePromise;
+    }
+
+    this.disposed = true;
+    this.disposePromise = (async (): Promise<void> => {
+      if (this.inFlightRawRuns.size > 0) {
+        await withTimeout(
+          Promise.allSettled(Array.from(this.inFlightRawRuns)),
+          MODEL_LOAD_TIMEOUT,
+          `[hf-local] Timed out waiting for native inference drain after ${MODEL_LOAD_TIMEOUT}ms`,
+        );
+      }
+
+      const loading = this.loadingPromise;
+      if (loading) {
+        await withTimeout(
+          loading.then(() => undefined, () => undefined),
+          MODEL_LOAD_TIMEOUT,
+          `[hf-local] Timed out waiting for model load before dispose after ${MODEL_LOAD_TIMEOUT}ms`,
+        );
+      }
+
+      const extractor = this.extractor;
+      this.extractor = null;
+      this.loadingPromise = null;
+      this.modelLoadTime = null;
+      if (!extractor) {
+        return;
+      }
+
+      const sessionCount = getSessionCount(extractor.model?.sessions);
+      if (sessionCount !== 1) {
+        throw new Error(`[hf-local] Expected exactly one native session before dispose, got ${sessionCount}`);
+      }
+      if (typeof extractor.dispose !== 'function') {
+        throw new Error('[hf-local] Loaded extractor does not expose dispose()');
+      }
+
+      await extractor.dispose();
+    })();
+
+    return this.disposePromise;
   }
 
   async embedDocument(text: string): Promise<Float32Array | null> {

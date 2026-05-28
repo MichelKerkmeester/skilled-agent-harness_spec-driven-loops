@@ -1,17 +1,17 @@
 ---
 title: "Implementation Summary: Dispose the embedding provider's native ONNX session on swap (F2′)"
-description: "Implementation pending. This packet is the implementation-ready spec for freeing the native ORT session on provider swap across all three holding sites behind a native-run-lifetime gate; it was adversarially verified by an Opus pass."
+description: "Implemented. Frees the native ORT session on provider swap across all three holding sites behind a native-run-lifetime gate; headless-verified (builds + vitest) and adversarially reviewed clean. Live-daemon RSS observation (SC-001) deferred."
 trigger_phrases:
-  - "provider dispose summary F2 pending"
+  - "provider dispose summary F2 implemented"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose"
-    last_updated_at: "2026-05-28T21:00:00Z"
+    last_updated_at: "2026-05-28T22:20:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Spec/plan/tasks authored + Opus-verified; implementation deferred to a live-daemon session"
-    next_safe_action: "Implement tasks T002-T008 + the named tests"
+    recent_action: "Implemented via cli-opencode gpt-5.5; builds+vitest green; 6-lens review clean"
+    next_safe_action: "Run SC-001 RSS observation in a live-daemon session"
     blockers: []
     key_files:
       - "shared/embeddings/providers/hf-local.ts"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000514"
       session_id: "007-005-impl-summary"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-provider-dispose |
-| **Completed** | Pending (spec ready; implementation deferred) |
+| **Completed** | 2026-05-28 (implemented + headless-verified; live-daemon RSS deferred) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,17 +47,22 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This phase is specified and adversarially verified, not yet implemented. When built, it will stop the embedding provider from orphaning its native ONNX session on every swap — the primary RC-1 OOM driver — by freeing the session deterministically and safely across all three places a provider lives.
+The embedding provider no longer orphans its native ONNX session on every swap — the primary RC-1 OOM driver. The native session is now freed deterministically and safely across all three places a provider lives.
 
-### Native-run-gated dispose (planned)
+### Native-run-gated dispose (implemented)
 
-`HfLocalProvider.dispose()` will free the native ORT session (`extractor.dispose()` → `model.dispose()` → `session.handler.dispose()` → native), gated on the RAW native-run lifetime so a dispose can never free a session while an inference is still executing (the use-after-free the adversarial pass flagged). The drain timeout is bounded by `MODEL_LOAD_TIMEOUT` so a swap-during-cold-load still frees the freshly-loaded session, and a single-owner claim prevents a double native free. The swap triggers (`invalidateProviderSingleton` self-heal, and the reindex-completion pointer flip) will free the right process per execution policy: the in-process singleton, the forked **sidecar** (process recycle — the dominant footprint under default `auto`), and the `direct`-policy `directAdapters` provider (the third site the verification surfaced).
+`HfLocalProvider.dispose()` frees the native ORT session (`extractor.dispose()` → `model.dispose()` → `session.handler.dispose()` → native), gated on the RAW native-run lifetime so a dispose can never free a session while an inference is still executing (the use-after-free the adversarial pass flagged): `generateEmbedding` registers the un-wrapped `model(...)` promise in an in-flight set and decrements in its `.finally` — NOT on the `withTimeout` wrapper (which rejects without cancelling the native run). The drain timeout uses `MODEL_LOAD_TIMEOUT` (120000ms) so a swap-during-cold-load still frees the freshly-loaded session, and a `disposePromise` funnel + single-owner claim (read+null `extractor`) + synchronous `disposed` flag guarantee exactly one owner reaches the synchronous native free (no double-free). The swap triggers free the right process per execution policy: the in-process singleton (`invalidateProviderSingleton`), the forked **sidecar** (process recycle keyed on the job's `${backend}:${model}` — the dominant footprint under default `auto`), and the `direct`-policy `directAdapters` provider (the third site).
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| (none yet) | Pending | See spec.md §3 Files to Change for the planned edit set |
+| `shared/types.ts` | Modify | Added optional `dispose?(): Promise<void>` to `IEmbeddingProvider` |
+| `shared/embeddings/providers/hf-local.ts` | Modify | `dispose()` + raw-native-run in-flight gate + `disposePromise` single-owner teardown + single-session assert |
+| `shared/embeddings.ts` | Modify | `invalidateProviderSingleton` + `resetForTesting`/`setProviderForTesting` dispose the outgoing provider (fire-and-forget) |
+| `mcp_server/lib/embedders/execution-router.ts` | Modify | `recycleActiveSidecars(key)` (auto/sidecar) + direct-adapter dispose; policy-branch teardown |
+| `mcp_server/lib/embedders/reindex.ts` | Modify | Reindex-completion swap wired to the policy-correct teardown |
+| `mcp_server/tests/embedder-provider-dispose.vitest.ts` | Create | swap-during-inference, swap-during-cold-load, auto-recycle, direct-dispose headless tests |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -65,7 +70,7 @@ This phase is specified and adversarially verified, not yet implemented. When bu
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivery is deferred to a dedicated live-daemon session: the safety-critical guards (native-run gate, single-owner dispose) require tests against the real native model (swap-during-inference, swap-during-cold-load) plus RSS observation across swaps, which need a running daemon + sidecar. The design here was produced by an Opus design pass and then adversarially verified by a second Opus pass (verdict: the three-site coverage + the type-widening + the recycle-key binding were the gaps to close, now encoded as REQ-008 and the affected-surfaces table).
+Implemented by a `cli-opencode` dispatch (`openai/gpt-5.5 --variant high`, main-tree under an RM-8 L1 banned-ops / allowed-write-paths fence against the clean baseline `45e1b47e`), constrained to the spec's 6-file set. The orchestrator then ran independent verification (both workspace builds + the dispose/embedder vitest suites) and a 6-lens adversarial review (one lens per binding guard, each reading the actual diff, with a refutation pass on any P0/P1) — verdict: 6/6 PASS, 0 confirmed defects. The safety-critical guards (RAW-promise gate, `disposePromise` single-owner) are headless-mocked here; full RSS/no-segfault confidence under real native runs (SC-001/SC-002) still requires a live daemon + sidecar.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -87,9 +92,12 @@ Delivery is deferred to a dedicated live-daemon session: the safety-critical gua
 
 | Check | Result |
 |-------|--------|
-| Opus design + adversarial verification | Done (verdict: implementationReady=false until the 3rd-site + type-widening gaps closed — now encoded) |
-| Dispose chain verified end-to-end | PASS (pipelines.js → models.js → onnxruntime-node backend.js) |
-| Implementation + tests | Pending (live-daemon session) |
+| `npm run build --workspace=@spec-kit/shared` (tsc) | PASS (exit 0) |
+| `npm run build --workspace=@spec-kit/mcp-server` (tsc) | PASS (exit 0) |
+| `vitest run` dispose + adjacent embedder suites | PASS (38 passed / 8 skipped across adjacent suites; dispose suite 0 skipped) |
+| 6-lens adversarial review (native-gate, double-free, 3-site, drain-timeout, scope, test-quality) | PASS 6/6 — 0 confirmed defects, 0 P0/P1 |
+| `validate.sh --strict` on this packet | PASS |
+| SC-001/SC-002 live-daemon RSS + no-segfault under real native runs | DEFERRED (needs running daemon; not drivable headlessly) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -97,6 +105,6 @@ Delivery is deferred to a dedicated live-daemon session: the safety-critical gua
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented** — this is the spec/plan/tasks only. Implement T002-T008 + the named tests in a live-daemon session.
-2. **SC-001 (RSS bounded) verification needs a running daemon + sidecar** and cannot be confirmed headlessly.
+1. **SC-001 (RSS bounded across N swaps) + SC-002 (no native segfault under real ONNX runs) are not yet observed live** — the headless tests mock the native run/dispose; full confidence needs a running daemon + sidecar (tracked as T011).
+2. **Sidecar free is by process-recycle, not in-worker dispose** — `sidecar-worker.ts` was intentionally left unchanged (the spec marked the in-worker dispose an optional alternative); recycling the forked worker returns native RSS to the OS on next embed.
 <!-- /ANCHOR:limitations -->

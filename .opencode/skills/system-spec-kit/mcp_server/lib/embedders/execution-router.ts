@@ -16,7 +16,9 @@ import type { BackendKind } from './types.js';
 // ───────────────────────────────────────────────────────────────
 
 type EmbedderExecutionPolicy = 'auto' | 'direct' | 'sidecar';
-export type ExecutionRouterAdapter = Omit<EmbedderAdapter, 'ready'>;
+export type ExecutionRouterAdapter = Omit<EmbedderAdapter, 'ready'> & {
+  dispose?: () => Promise<void>;
+};
 
 export interface CredentialCacheInvalidationEvent {
   readonly reason: 'active-adapter-rotated' | 'router-state-cleared';
@@ -117,12 +119,20 @@ function emitCredentialCacheInvalidation(event: CredentialCacheInvalidationEvent
   }
 }
 
+function warnDisposeFailure(context: string, error: unknown): void {
+  console.warn(`[embedder-execution] ${context} failed: ${error instanceof Error ? error.message : String(error)}`);
+}
+
 function clearDirectAdapterCredentialCache(
   reason: CredentialCacheInvalidationEvent['reason'],
   previousKey: string | null,
   nextKey: string | null,
 ): void {
   const clearedDirectAdapterKeys = Array.from(directAdapters.keys());
+  for (const key of clearedDirectAdapterKeys) {
+    const adapter = directAdapters.get(key);
+    void adapter?.dispose?.().catch((error: unknown) => warnDisposeFailure(`Direct adapter dispose for ${key}`, error));
+  }
   directAdapters.clear();
   emitCredentialCacheInvalidation({
     reason,
@@ -234,6 +244,15 @@ function createFactoryBackedAdapter(provider: string, model: string, dimensions:
       }
       return vectors;
     },
+    async dispose(): Promise<void> {
+      const captured = providerPromise;
+      providerPromise = null;
+      if (!captured) {
+        return;
+      }
+      const embeddingProvider = await captured.catch(() => null);
+      await embeddingProvider?.dispose?.();
+    },
   };
 }
 
@@ -298,6 +317,37 @@ export async function shutdownAllSidecars(): Promise<void> {
   await Promise.all(clients.map((client) => client.shutdown()));
 }
 
+export async function recycleActiveSidecars(key: string): Promise<void> {
+  const client = sidecarClients.get(key);
+  if (!client) {
+    return;
+  }
+
+  sidecarClients.delete(key);
+  await client.shutdown();
+}
+
+export async function disposeDirectAdapter(key: string): Promise<void> {
+  const adapter = directAdapters.get(key);
+  if (!adapter) {
+    return;
+  }
+
+  directAdapters.delete(key);
+  await adapter.dispose?.();
+}
+
+export async function teardownEmbedderAfterSwap(provider: string, model: string): Promise<void> {
+  const normalizedProvider = normalizeProvider(provider);
+  const key = `${normalizedProvider}:${model}`;
+  if (shouldUseSidecar(normalizedProvider)) {
+    await recycleActiveSidecars(key);
+    return;
+  }
+
+  await disposeDirectAdapter(key);
+}
+
 export function clearEmbedderExecutionRouterState(): void {
   const previousKey = activeAdapterKey;
   clearDirectAdapterCredentialCache('router-state-cleared', previousKey, null);
@@ -309,7 +359,6 @@ export function clearEmbedderExecutionRouterState(): void {
     process.off('beforeExit', beforeExitShutdownHandler);
     beforeExitShutdownHandler = null;
   }
-  directAdapters.clear();
   sidecarClients.clear();
   shutdownHooksRegistered = false;
   shutdownSignalInFlight = false;

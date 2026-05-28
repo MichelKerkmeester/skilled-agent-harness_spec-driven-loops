@@ -56,6 +56,7 @@ export interface IEmbeddingProvider {
   embedDocument(text: string): Promise<Float32Array | null>;
   embedQuery(text: string): Promise<Float32Array | null>;
   warmup(): Promise<boolean>;
+  dispose?(): Promise<void>;
   getMetadata(): ProviderMetadata;
   getProfile(): EmbeddingProfileData | { provider: string; model: string; dim: number; dtype?: string | null; baseUrl?: string | null; slug: string };
   healthCheck(): Promise<boolean>;

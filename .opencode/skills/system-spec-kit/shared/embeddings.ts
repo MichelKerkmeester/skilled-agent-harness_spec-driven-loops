@@ -443,12 +443,14 @@ function isProviderInitialized(): boolean {
  * cancelled (matches resetForTesting semantics), so a concurrent build may repopulate.
  */
 function invalidateProviderSingleton(): void {
+  const outgoingProvider = providerInstance;
   providerInstance = null;
   providerInitPromise = null;
   providerInitStartTime = null;
   providerInitCompleteTime = null;
   firstEmbeddingTime = null;
   MODEL_NAME = detectConfiguredModelName();
+  disposeProviderBestEffort(outgoingProvider, 'invalidateProviderSingleton outgoing');
 }
 
 /**
@@ -817,6 +819,16 @@ function getProviderModelName(provider: IEmbeddingProvider): string {
   return detectConfiguredModelName();
 }
 
+function disposeProviderBestEffort(provider: IEmbeddingProvider | null, context: string): void {
+  if (!provider?.dispose) {
+    return;
+  }
+
+  void provider.dispose().catch((error: unknown) => {
+    console.warn(`[embeddings] ${context} provider dispose failed: ${getErrorMessage(error)}`);
+  });
+}
+
 function isModelLoaded(): boolean {
   return providerInstance !== null;
 }
@@ -971,6 +983,7 @@ export const __embeddingCircuitTestables = {
   recordEmbeddingSuccess,
   recordEmbeddingFailure,
   resetForTesting(): void {
+    const outgoingProvider = providerInstance;
     embeddingCircuit.failures = 0;
     embeddingCircuit.openedAt = null;
     providerInstance = null;
@@ -980,11 +993,16 @@ export const __embeddingCircuitTestables = {
     firstEmbeddingTime = null;
     MODEL_NAME = detectConfiguredModelName();
     clearEmbeddingCache();
+    disposeProviderBestEffort(outgoingProvider, 'resetForTesting outgoing');
   },
   setProviderForTesting(provider: IEmbeddingProvider | null): void {
+    const outgoingProvider = providerInstance;
     providerInstance = provider;
     providerInitPromise = null;
     MODEL_NAME = provider ? getProviderModelName(provider) : detectConfiguredModelName();
+    if (outgoingProvider !== provider) {
+      disposeProviderBestEffort(outgoingProvider, 'setProviderForTesting outgoing');
+    }
   },
   EMBEDDING_CB_THRESHOLD,
   EMBEDDING_CB_COOLDOWN_MS,

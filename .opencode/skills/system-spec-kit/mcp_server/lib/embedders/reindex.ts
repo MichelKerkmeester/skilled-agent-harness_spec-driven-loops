@@ -19,7 +19,7 @@ import {
   setActiveEmbedder,
   vecTableNameForDim,
 } from './schema.js';
-import { getEmbedderAdapter } from './execution-router.js';
+import { getEmbedderAdapter, teardownEmbedderAfterSwap } from './execution-router.js';
 import { getManifest } from './registry.js';
 import { parseBoundedEnv } from '../util/env.js';
 import { createLogger } from '../utils/logger.js';
@@ -470,6 +470,9 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     // The active-embedder pointer just flipped; drop the cached provider singleton so the
     // next embedding re-resolves against the new pointer instead of the stale model/dim.
     invalidateProviderSingleton();
+    void teardownEmbedderAfterSwap(manifest.backend, initialJob.toName).catch((error: unknown) => {
+      console.warn(`[embedder-reindex] embedder teardown after swap failed: ${error instanceof Error ? error.message : String(error)}`);
+    });
     if (getDatabaseDir(db)) {
       attachActiveVectorShard(db, targetProfile);
     }
