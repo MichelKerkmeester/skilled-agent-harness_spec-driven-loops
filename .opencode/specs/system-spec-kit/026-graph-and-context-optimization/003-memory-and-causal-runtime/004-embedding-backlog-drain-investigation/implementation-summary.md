@@ -12,20 +12,19 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation"
     last_updated_at: "2026-05-28T12:20:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "root-caused E081 = E_LINEAGE on spec-folder move (predecessor logical_key mismatch)"
-    next_safe_action: "optional: fix recordLineageTransition to handle logical-identity change on move/rename"
+    recent_action: "fixed E_LINEAGE stale-key re-save (re-root on stale lineage key); tests + e2e pass"
+    next_safe_action: "none; embedding lane resolved — store clean, provider flap + E_LINEAGE fixed"
     blockers: []
     key_files:
       - "mcp_server/lib/storage/lineage-state.ts"
+      - "mcp_server/tests/create-record-lineage-regressions.vitest.ts"
       - "shared/embeddings/factory.ts"
-      - "mcp_server/lib/errors/core.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000010"
       session_id: "rsr-2026-05-26T20-43-39Z"
       parent_session_id: null
     completion_pct: 98
-    open_questions:
-      - "Best E_LINEAGE fix: start a new lineage root on move, or skip predecessor across identity change?"
+    open_questions: []
     answered_questions:
       - "Q1-Q6 root-cause and runbook questions answered in iteration 010"
       - "Interval/batch gap root cause = context-server.ts call-site override of env-derived config, not launcher env-forwarding"
@@ -86,7 +85,7 @@ The research iteration's top durable fix (commit reindex `embedding_status='succ
 
 **Resolved to 0 failed (2026-05-28) — and it was NOT a document-embedding bug.** Direct isolation tests (`generateDocumentEmbedding` on the exact failing files) returned `Float32Array(768)` for every one — embeds work. The 24 "failed" rows were: **21 stale exact-content duplicates** (same `content_hash` as an existing `success` row for the same path — flap-era cruft) and **3 genuinely-unembedded files** (`007-cp-sandbox-speckit-path-fix/{implementation-summary,plan,spec}.md`). Cleanup: deleted the 21 duplicates via `memory_delete` (success rows retain the content + vectors), and reset the 3 to `retry` so the background job re-embedded them via the proven `retryEmbedding` path. **Final store: `success` only, 0 failed / 0 retry / 0 pending.**
 
-**Root cause of the opaque `E081` — found (separate bug, not fixed here):** it is an **`E_LINEAGE`** error from the append-only lineage store. `recordLineageTransition` (mcp_server/lib/storage/lineage-state.ts) throws when a save's predecessor row has a `logical_key` (spec-folder + canonical-path + anchor) that differs from the new row's:
+**Root cause of the opaque `E081` — found AND fixed (Fix E):** it is an **`E_LINEAGE`** error from the append-only lineage store. `recordLineageTransition` (mcp_server/lib/storage/lineage-state.ts) throws when a save's predecessor row has a `logical_key` (spec-folder + canonical-path + anchor) that differs from the new row's:
 ```
 E_LINEAGE: predecessor 45114 logical identity
   system-spec-kit/030-deep-loop-skills-playbook-validation/007-cp-sandbox-speckit-path-fix::…/implementation-summary.md
@@ -95,7 +94,7 @@ does not match memory 46851 logical identity
 ```
 The lineage chain assumes logical identity is **immutable**, but a **spec-folder move/rename** changes the path → predecessor `logical_key` ≠ successor → throw. These files were moved across the `026/030 → 116` reorganizations, so every re-save throws. The error matches no `userFriendlyError` pattern (core.ts:198), so it is sanitized to the generic `E081` — which is why it looked opaque. Reproduced deterministically via an isolated `handleMemorySave` run against a `.backup` copy of the production DB (a fresh DB has no predecessor → succeeds, confirming it is state/move-driven, not content- or embed-driven).
 
-**Recommended fix (for a dedicated session, critical-path code):** in `recordLineageTransition`, when `predecessor.logical_key !== rowLogicalKey` (a legitimate move/rename), start a **new lineage root** for the new identity (deprecate/orphan the old chain) instead of throwing; or, in the save handler's predecessor resolution, do not link a predecessor across a logical-identity change. Add a regression test for spec-folder move → re-save.
+**Fix E (shipped):** the lineage rejection is *intentional* for genuinely-different identities (test `T070-3` asserts it). The real defect was narrower — the predecessor's `memory_lineage.logical_key` goes **stale** when a spec-folder reorg updates `memory_index.spec_folder/file_path` in place but leaves the older lineage row's key untouched (verified: row 45114's index path is `116-…` while its lineage key is `030-…`). So in `recordLineageTransition`, when `predecessor.logical_key !== rowLogicalKey`, it now re-checks the predecessor's **current** row identity (`buildLogicalKey(getMemoryRow(predecessorMemoryId))`): if that matches, it's the same file with a stale key → **re-root the chain under the current identity** (the supersede path still deprecates the old predecessor); if it still differs, the cross-identity link is rejected (T070-3 preserved). The change only touches the previously-always-throwing branch, so it cannot regress working saves. Regression test `T070-4` added. **Verified end-to-end:** an isolated `handleMemorySave({force})` against a fresh production-DB copy that previously threw E_LINEAGE now returns "Memory updated successfully" (id 46851); 22 lineage + 106 save/lineage tests pass.
 
 <!-- /ANCHOR:what-built -->
 ---

@@ -122,4 +122,59 @@ describe('Create-record lineage regressions', () => {
       transitionEvent: 'SUPERSEDE',
     })).toThrow(/logical identity/);
   });
+
+  it('T070-4 re-roots lineage when a moved file leaves a stale predecessor logical_key', () => {
+    // Predecessor created at the OLD path; its lineage row keeps the old logical_key.
+    insertMemory(database, {
+      id: 1,
+      specFolder: 'specs/old-loc',
+      filePath: '/tmp/specs/old-loc/impl.md',
+      title: 'Moved doc',
+      createdAt: '2026-03-28T10:00:00.000Z',
+    });
+    recordLineageVersion(database, {
+      memoryId: 1,
+      actor: 'test:t070',
+      effectiveAt: '2026-03-28T10:00:00.000Z',
+      transitionEvent: 'CREATE',
+    });
+
+    // Simulate an in-place spec-folder move: memory_index path is updated, but the existing
+    // lineage row's logical_key is left stale (the exact production state that caused E081).
+    database.prepare(`
+      UPDATE memory_index
+      SET spec_folder = 'specs/new-loc',
+          file_path = '/tmp/specs/new-loc/impl.md',
+          canonical_file_path = '/tmp/specs/new-loc/impl.md'
+      WHERE id = 1
+    `).run();
+
+    // New version saved at the NEW path (same logical file as the moved predecessor row).
+    insertMemory(database, {
+      id: 2,
+      specFolder: 'specs/new-loc',
+      filePath: '/tmp/specs/new-loc/impl.md',
+      title: 'Moved doc v2',
+      createdAt: '2026-03-28T11:00:00.000Z',
+    });
+
+    // Must NOT throw: the predecessor's CURRENT identity matches, so re-root under the new key.
+    const recorded = recordLineageVersion(database, {
+      memoryId: 2,
+      predecessorMemoryId: 1,
+      actor: 'test:t070',
+      effectiveAt: '2026-03-28T11:00:00.000Z',
+      transitionEvent: 'SUPERSEDE',
+    });
+
+    expect(recorded.logicalKey).toContain('specs/new-loc');
+    const predecessorTier = database.prepare(
+      'SELECT importance_tier FROM memory_index WHERE id = ?',
+    ).get(1) as { importance_tier: string };
+    expect(predecessorTier.importance_tier).toBe('deprecated');
+    const newLineage = database.prepare(
+      'SELECT logical_key FROM memory_lineage WHERE memory_id = ?',
+    ).get(2) as { logical_key: string };
+    expect(newLineage.logical_key).toContain('specs/new-loc');
+  });
 });

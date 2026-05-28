@@ -690,14 +690,32 @@ export function recordLineageTransition(
         predecessor = getLineageRow(database, predecessorMemoryId);
         if (predecessor) {
           if (predecessor.logical_key !== rowLogicalKey) {
-            throw new Error(
-              `E_LINEAGE: predecessor ${predecessorMemoryId} logical identity ${predecessor.logical_key} ` +
-              `does not match memory ${memoryId} logical identity ${rowLogicalKey}`,
+            // The predecessor's lineage logical_key can go stale when its file is moved/renamed
+            // (a spec-folder reorg updates memory_index.spec_folder/file_path in place but leaves
+            // the older memory_lineage row's logical_key untouched). Re-check against the
+            // predecessor's CURRENT row identity: if that matches, this is the same logical file
+            // with a stale key — start a fresh chain under the current identity (the supersede
+            // block below still deprecates the old predecessor). If it still differs, the memories
+            // are genuinely distinct and the cross-identity link is rejected (T070-3).
+            const predecessorCurrentKey = buildLogicalKey(getMemoryRow(database, predecessorMemoryId));
+            if (predecessorCurrentKey !== rowLogicalKey) {
+              throw new Error(
+                `E_LINEAGE: predecessor ${predecessorMemoryId} logical identity ${predecessor.logical_key} ` +
+                `does not match memory ${memoryId} logical identity ${rowLogicalKey}`,
+              );
+            }
+            logger.warn(
+              `Lineage logical_key for predecessor ${predecessorMemoryId} is stale ` +
+              `(${predecessor.logical_key} -> ${rowLogicalKey}); re-rooting chain under current identity`,
             );
+            logicalKey = rowLogicalKey;
+            rootMemoryId = memoryId;
+            versionNumber = 1;
+          } else {
+            logicalKey = predecessor.logical_key;
+            rootMemoryId = predecessor.root_memory_id;
+            versionNumber = predecessor.version_number + 1;
           }
-          logicalKey = predecessor.logical_key;
-          rootMemoryId = predecessor.root_memory_id;
-          versionNumber = predecessor.version_number + 1;
         } else {
           const seeded = seedLineageFromCurrentState(database, predecessorMemoryId, {
             actor,
