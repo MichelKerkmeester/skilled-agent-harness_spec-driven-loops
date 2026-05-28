@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/006-parser-quarantine-recovery",
-  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/006-parser-quarantine-recovery",
+  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/008-blast-radius-transitive-flag",
+  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/008-blast-radius-transitive-flag",
   "parent_id": "system-spec-kit/029-code-graph-playbook-validation",
   "children_ids": [],
   "manual": {
@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "parser quarantine recovery",
-      "f-runtime-2 tree-sitter quarantine",
-      "029 phase 006 parser recovery",
-      "parser quarantine recovery plan",
-      "f-runtime-2 plan",
-      "029 phase 006 plan",
-      "parser quarantine recovery tasks",
-      "f-runtime-2 tasks",
-      "029 phase 006 tasks",
-      "parser quarantine recovery checklist",
-      "f-runtime-2 checklist",
-      "029 phase 006 checklist"
+      "blast radius include transitive",
+      "f-022-1 fix",
+      "029 phase 008 blast radius flag",
+      "blast radius transitive plan",
+      "f-022-1 fix plan",
+      "029 phase 008 plan",
+      "blast radius transitive tasks",
+      "f-022-1 fix tasks",
+      "029 phase 008 tasks",
+      "blast radius transitive checklist",
+      "f-022-1 fix checklist",
+      "029 phase 008 checklist"
     ],
     "key_topics": [
-      "parser",
-      "quarantine",
-      "recovery",
-      "f-runtime-2",
-      "tree-sitter",
+      "blast",
+      "radius",
+      "include",
+      "transitive",
+      "f-022-1",
+      "fix",
       "029",
       "phase",
-      "006",
+      "008",
+      "flag",
       "plan",
-      "tasks",
-      "checklist",
-      "add"
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -85,19 +85,19 @@
         "source": "derived"
       },
       {
-        "name": "Parser Quarantine Recovery",
+        "name": "Flag Fix",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Finding",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Add",
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,13 +127,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Add",
+        "name": "Overview Introduce",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Module",
+        "name": "Pattern Localized",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a production recovery path so an explicit full scan (`code_graph_scan({incremental:false})`) clears the quarantine and re-initializes the parser on a fresh WASM heap, without requiring a daemon restart.",
-    "created_at": "2026-05-27T03:49:59.734Z",
-    "last_save_at": "2026-05-27T13:45:36.988Z",
+    "causal_summary": "Finding F-022-1 (phase 007): `code_graph_query` blast_radius ignores the `includeTransitive` flag. The tool schema documents `includeTransitive` (default false) as \"Enable multi-hop BFS traversal\" and `maxDepth` as applying \"when includeTransitive is true\", but the blast_radius branch derives depth solely from `args.maxDepth` (default 3) at `handlers/query.ts:1218-1219` and never reads `includeTransitive`. So blast_radius is always multi-hop (up to depth 3), the flag is a silent no-op, and scenario 022's `transitive > nontransitive` assertion is unachievable.",
+    "created_at": "2026-05-27T04:57:41.642Z",
+    "last_save_at": "2026-05-28T06:06:29.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

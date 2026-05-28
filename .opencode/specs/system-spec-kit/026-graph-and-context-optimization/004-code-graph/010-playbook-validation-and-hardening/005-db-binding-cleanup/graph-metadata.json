@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/003-release-readiness-synthesis",
-  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/003-release-readiness-synthesis",
+  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/005-db-binding-cleanup",
+  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/005-db-binding-cleanup",
   "parent_id": "system-spec-kit/029-code-graph-playbook-validation",
   "children_ids": [],
   "manual": {
@@ -11,54 +11,47 @@
   },
   "derived": {
     "trigger_phrases": [
-      "release readiness synthesis",
-      "code graph playbook matrix",
-      "029 phase 003 synthesis",
-      "release readiness synthesis plan",
-      "code graph playbook matrix plan",
-      "029 phase 003 plan",
-      "release readiness synthesis tasks",
-      "code graph playbook matrix tasks",
-      "029 phase 003 tasks",
-      "release readiness synthesis checklist",
-      "code graph playbook matrix checklist",
-      "029 phase 003 checklist"
+      "legacy code graph db cleanup",
+      "f-019-1 db binding",
+      "029 phase 005 db cleanup",
+      "legacy db cleanup plan",
+      "f-019-1 plan",
+      "029 phase 005 plan",
+      "legacy db cleanup tasks",
+      "f-019-1 tasks",
+      "029 phase 005 tasks",
+      "legacy db cleanup summary",
+      "f-019-1 summary",
+      "029 phase 005 implementation summary"
     ],
     "key_topics": [
-      "release",
-      "readiness",
-      "synthesis",
+      "legacy",
       "code",
       "graph",
-      "playbook",
-      "matrix",
+      "cleanup",
+      "f-019-1",
+      "binding",
       "029",
       "phase",
-      "003",
+      "005",
       "plan",
-      "tasks"
+      "tasks",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      "feature_catalog/feature_catalog.md",
-      "implementation-summary.md",
+      ".opencode/.spec-kit/code-graph/database/code-graph.sqlite",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": "feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "code-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/.spec-kit/code-graph/database/code-graph.sqlite",
         "source": "derived"
       },
       {
@@ -80,9 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -92,31 +85,31 @@
         "source": "derived"
       },
       {
-        "name": "Readiness Synthesis",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Code Graph Playbook",
+        "name": "Purpose Remove",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Phases",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Review Protocol",
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Aggregate",
+        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,13 +127,25 @@
         "source": "derived"
       },
       {
-        "name": "Claude Code",
+        "name": "Overview Delete",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview Read",
+        "name": "Pattern Filesystem",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -164,46 +169,39 @@
         "source": "derived"
       },
       {
-        "name": "classification",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (§5 Review Protocol) requires a single consolidated view of all 22 scenarios with FAIL/SKIP triage.",
-    "created_at": "2026-05-26T19:43:14.033Z",
-    "last_save_at": "2026-05-27T13:45:36.983Z",
+    "causal_summary": "Remove the stale legacy DB so no legacy path lingers, satisfying scenario 019's \"no legacy paths active\" requirement; confirm the canonical DB remains the active, configured store.",
+    "created_at": "2026-05-27T03:34:10.036Z",
+    "last_save_at": "2026-05-28T06:06:29.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ]
   }

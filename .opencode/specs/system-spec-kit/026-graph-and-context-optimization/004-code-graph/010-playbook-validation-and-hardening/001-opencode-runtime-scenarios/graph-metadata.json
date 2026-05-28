@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/007-followup-hook-docs-and-022",
-  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/007-followup-hook-docs-and-022",
+  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios",
+  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/001-opencode-runtime-scenarios",
   "parent_id": "system-spec-kit/029-code-graph-playbook-validation",
   "children_ids": [],
   "manual": {
@@ -11,37 +11,36 @@
   },
   "derived": {
     "trigger_phrases": [
-      "hook doc reconciliation",
-      "022 transitive re-verify",
-      "029 phase 007 followup",
-      "hook doc reconciliation plan",
-      "022 transitive plan",
-      "029 phase 007 plan",
-      "hook doc reconciliation tasks",
-      "022 transitive tasks",
-      "029 phase 007 tasks",
-      "hook doc reconciliation checklist",
-      "022 transitive checklist",
-      "029 phase 007 checklist"
+      "opencode runtime scenarios",
+      "code graph live mcp scenarios",
+      "029 phase 001 opencode runtime",
+      "opencode runtime scenarios plan",
+      "code graph live mcp plan",
+      "029 phase 001 plan",
+      "opencode runtime scenarios tasks",
+      "code graph live mcp tasks",
+      "029 phase 001 tasks",
+      "opencode runtime scenarios checklist",
+      "code graph live mcp checklist",
+      "029 phase 001 checklist"
     ],
     "key_topics": [
-      "hook",
-      "doc",
-      "reconciliation",
-      "022",
-      "transitive",
-      "re-verify",
+      "opencode",
+      "runtime",
+      "scenarios",
+      "code",
+      "graph",
+      "live",
+      "mcp",
       "029",
       "phase",
-      "007",
-      "followup",
+      "001",
       "plan",
       "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".devin/hooks.v1.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -49,12 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -92,31 +85,31 @@
         "source": "derived"
       },
       {
-        "name": "Doc Reconciliation",
+        "name": "Runtime Scenarios",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Transitive Re",
+        "name": "Code Graph Playbook",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Two",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Make",
+        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Purpose Run",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,19 +127,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Correct",
+        "name": "Overview Dispatch",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Doc",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
+        "name": "Pattern Orchestrator",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -170,14 +157,8 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "evidence",
         "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -192,11 +173,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Two non-blocking follow-ups remained after the 029 remediation. (1) Five active-guidance docs cite a SessionStart-hook compiled-artifact path that does not exist (`system-code-graph/dist/system-spec-kit/mcp_server/hooks/<runtime>/`); the real artifact is the flat `system-spec-kit/mcp_server/dist/hooks/<runtime>/session-start.js`. The documented \"migration to system-code-graph\" was never built. (2) Scenario 022 blast_radius was PARTIAL because the chosen subject had a single importer, so `transitive > nontransitive` could not be demonstrated.",
-    "created_at": "2026-05-27T04:03:04.114Z",
-    "last_save_at": "2026-05-27T13:45:36.989Z",
+    "causal_summary": "Run these 15 scenarios inside `cli-opencode` (which loads the full project plugin/skill/MCP runtime) and capture per-scenario evidence so the parent release-readiness matrix can be assembled.",
+    "created_at": "2026-05-26T19:43:14.032Z",
+    "last_save_at": "2026-05-28T06:06:29.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

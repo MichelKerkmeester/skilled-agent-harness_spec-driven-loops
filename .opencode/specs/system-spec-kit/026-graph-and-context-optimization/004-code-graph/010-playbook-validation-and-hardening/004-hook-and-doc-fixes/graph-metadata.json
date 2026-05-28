@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/005-db-binding-cleanup",
-  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/005-db-binding-cleanup",
+  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/004-hook-and-doc-fixes",
+  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/004-hook-and-doc-fixes",
   "parent_id": "system-spec-kit/029-code-graph-playbook-validation",
   "children_ids": [],
   "manual": {
@@ -11,47 +11,55 @@
   },
   "derived": {
     "trigger_phrases": [
-      "legacy code graph db cleanup",
-      "f-019-1 db binding",
-      "029 phase 005 db cleanup",
-      "legacy db cleanup plan",
-      "f-019-1 plan",
-      "029 phase 005 plan",
-      "legacy db cleanup tasks",
-      "f-019-1 tasks",
-      "029 phase 005 tasks",
-      "legacy db cleanup summary",
-      "f-019-1 summary",
-      "029 phase 005 implementation summary"
+      "devin hook registration fix",
+      "code graph playbook doc sync",
+      "029 phase 004 hook and doc fixes",
+      "devin hook fix plan",
+      "playbook doc sync plan",
+      "029 phase 004 plan",
+      "devin hook fix tasks",
+      "playbook doc sync tasks",
+      "029 phase 004 tasks",
+      "devin hook fix checklist",
+      "playbook doc sync checklist",
+      "029 phase 004 checklist"
     ],
     "key_topics": [
-      "legacy",
+      "devin",
+      "hook",
+      "registration",
+      "fix",
       "code",
       "graph",
-      "cleanup",
-      "f-019-1",
-      "binding",
+      "playbook",
+      "doc",
+      "sync",
       "029",
       "phase",
-      "005",
-      "plan",
-      "tasks",
-      "summary"
+      "004"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/.spec-kit/code-graph/database/code-graph.sqlite",
+      ".devin/hooks.v1.json",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/devin/session-start.js",
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "code-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/.spec-kit/code-graph/database/code-graph.sqlite",
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/devin/session-start.js",
         "source": "derived"
       },
       {
@@ -73,6 +81,12 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -85,31 +99,31 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Hook Registration",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Remove",
+        "name": "Playbook Doc",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Sync Fixes",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "File Path",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Change Type",
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,25 +141,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview Delete",
+        "name": "Overview Single",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Filesystem",
+        "name": "Pattern Config",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -181,27 +189,22 @@
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Remove the stale legacy DB so no legacy path lingers, satisfying scenario 019's \"no legacy paths active\" requirement; confirm the canonical DB remains the active, configured store.",
-    "created_at": "2026-05-27T03:34:10.036Z",
-    "last_save_at": "2026-05-27T13:45:36.986Z",
+    "causal_summary": "The 029 validation run surfaced (a) F-025-1: the Devin SessionStart hook in `.devin/hooks.v1.json` registers a non-existent path, so the hook never fires; and (b) several stale playbook scenario docs (F-011-1 verify-`rating`, F-020-1 tool count 11→8, F-021-1 label/content mismatch, 009/010 line drift).",
+    "created_at": "2026-05-27T03:30:26.441Z",
+    "last_save_at": "2026-05-28T06:06:29.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ]
   }

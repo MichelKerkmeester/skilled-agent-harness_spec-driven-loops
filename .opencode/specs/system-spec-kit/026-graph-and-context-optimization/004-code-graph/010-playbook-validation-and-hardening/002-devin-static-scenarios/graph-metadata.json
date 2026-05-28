@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/008-blast-radius-transitive-flag",
-  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/008-blast-radius-transitive-flag",
+  "packet_id": "system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios",
+  "spec_folder": "system-spec-kit/029-code-graph-playbook-validation/002-devin-static-scenarios",
   "parent_id": "system-spec-kit/029-code-graph-playbook-validation",
   "children_ids": [],
   "manual": {
@@ -11,36 +11,37 @@
   },
   "derived": {
     "trigger_phrases": [
-      "blast radius include transitive",
-      "f-022-1 fix",
-      "029 phase 008 blast radius flag",
-      "blast radius transitive plan",
-      "f-022-1 fix plan",
-      "029 phase 008 plan",
-      "blast radius transitive tasks",
-      "f-022-1 fix tasks",
-      "029 phase 008 tasks",
-      "blast radius transitive checklist",
-      "f-022-1 fix checklist",
-      "029 phase 008 checklist"
+      "devin static scenarios",
+      "code graph post-rename infra scenarios",
+      "029 phase 002 devin static",
+      "devin static scenarios plan",
+      "code graph post-rename infra plan",
+      "029 phase 002 plan",
+      "devin static scenarios tasks",
+      "code graph post-rename infra tasks",
+      "029 phase 002 tasks",
+      "devin static scenarios checklist",
+      "code graph post-rename infra checklist",
+      "029 phase 002 checklist"
     ],
     "key_topics": [
-      "blast",
-      "radius",
-      "include",
-      "transitive",
-      "f-022-1",
-      "fix",
+      "devin",
+      "static",
+      "scenarios",
+      "code",
+      "graph",
+      "post-rename",
+      "infra",
       "029",
       "phase",
-      "008",
-      "flag",
+      "002",
       "plan",
       "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      ".devin/hooks.v1.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,6 +49,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,31 +92,31 @@
         "source": "derived"
       },
       {
-        "name": "Flag Fix",
+        "name": "Devin Static Scenarios",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Finding",
+        "name": "Code Graph Playbook",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Make",
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,19 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Introduce",
+        "name": "Overview Dispatch",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Localized",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
+        "name": "Devin Pro",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -163,14 +164,8 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "evidence",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -191,11 +186,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Finding F-022-1 (phase 007): `code_graph_query` blast_radius ignores the `includeTransitive` flag. The tool schema documents `includeTransitive` (default false) as \"Enable multi-hop BFS traversal\" and `maxDepth` as applying \"when includeTransitive is true\", but the blast_radius branch derives depth solely from `args.maxDepth` (default 3) at `handlers/query.ts:1218-1219` and never reads `includeTransitive`. So blast_radius is always multi-hop (up to depth 3), the flag is a silent no-op, and scenario 022's `transitive > nontransitive` assertion is unachievable.",
-    "created_at": "2026-05-27T04:57:41.642Z",
-    "last_save_at": "2026-05-27T13:45:36.991Z",
+    "causal_summary": "Run these 7 scenarios through `cli-devin` SWE-1.6 (coding-specialized, free-tier, fast) with the SWE-1.6 prompt-quality contract (RCAF + medium-density pre-planning + agent-config recipe + sequential_thinking 2-layer) and capture command evidence for the parent matrix.",
+    "created_at": "2026-05-26T19:43:14.033Z",
+    "last_save_at": "2026-05-28T06:06:29.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
