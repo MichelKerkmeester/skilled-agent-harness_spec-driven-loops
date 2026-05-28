@@ -200,7 +200,13 @@ async function gradeD4(opts) {
 
   const cached = cache.read('grader', cacheKey);
   if (cached) {
-    return { cache_hit: true, cache_key: cacheKey, ...JSON.parse(cached.body) };
+    // F-P1-4 (122 review, cache-hit defense): clamp on the cache-hit path too, so a
+    // pre-clamp cache entry (written before the clamp was added) cannot reintroduce
+    // an out-of-range score. Fresh entries are already clamped at write time.
+    const cachedResult = { cache_hit: true, cache_key: cacheKey, ...JSON.parse(cached.body) };
+    cachedResult.score = clampScore01(cachedResult.score);
+    cachedResult.confidence = clampScore01(cachedResult.confidence);
+    return cachedResult;
   }
 
   const prompt = composeGraderPrompt(fixture, swe16_output_text, opts.system_prompt_path);

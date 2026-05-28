@@ -100,8 +100,8 @@ Scenario verdict:
 Release is `READY` only when:
 
 1. No feature verdict is `FAIL`.
-2. Runtime-truth closure scenarios RT-025..RT-034 have all been executed or explicitly skipped with a sandbox blocker.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 31`).
+2. Closure-wave scenarios RT-025..RT-034 (runtime-truth), CP-040..045 (agent-discipline stress), and MB-035..039 (model-benchmark) have all been executed or explicitly skipped with a sandbox blocker.
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 42`).
 4. No unresolved blocking triage item remains.
 5. Drift between root summaries and per-feature files has been resolved, with the per-feature file treated as the temporary source of truth until resynchronized.
 

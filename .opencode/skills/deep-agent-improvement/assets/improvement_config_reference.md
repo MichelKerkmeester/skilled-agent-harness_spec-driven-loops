@@ -61,6 +61,20 @@ Use this reference when:
 | `stopOnDimensionPlateau` | boolean | Stop if all 5 dimensions plateau (identical scores over the plateau window) |
 | `plateauWindow` | number | Number of trailing scores to compare for plateau detection (default: 3) |
 
+### Model-Benchmark Mode
+
+The model-benchmark mode (run via `scripts/loop-host.cjs --mode=model-benchmark`) is selected at the command line, not by a config field. Its operator-facing levers:
+
+| Lever | Where | Description |
+| --- | --- | --- |
+| `--mode` | `loop-host.cjs` | `agent-improvement` (default) or `model-benchmark`. Unknown values warn and fall back to agent-improvement. |
+| `--scorer` | `run-benchmark.cjs` | `pattern` (default, byte-identical heading/pattern matcher) or `5dim` (routes outputs through `scripts/scorer/score-model-variant.cjs`). |
+| `--grader` | `run-benchmark.cjs` | `noop` (default, deterministic), `mock`, or `llm`. Only consulted under `--scorer 5dim`. |
+| `DEEP_AGENT_ALLOW_CRITERIA_EXEC` | env | Set to `0` to refuse criteria-driven shell execution in the 5-dim scorer. Default permissive. |
+| `DEEP_AGENT_GRADER_CACHE_RAW` | env | Set to `0` to redact raw grader output from the on-disk cache. Default permissive. |
+
+The default agent-improvement path is unaffected when no mode flag is set. See SKILL.md "Mode 4" for the full contract.
+
 ---
 
 ## 3. RELATED RESOURCES

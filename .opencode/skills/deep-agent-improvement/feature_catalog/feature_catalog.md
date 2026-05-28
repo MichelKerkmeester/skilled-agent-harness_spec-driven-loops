@@ -244,7 +244,7 @@ See [`03--scoring-system/04-dimensional-progress.md`](03--scoring-system/04-dime
 
 ## 5. MODEL-BENCHMARK MODE
 
-These entries describe the model-benchmark path that benchmarks a model or prompt framework instead of mutating an agent file. They cover the mode switch in the loop host, the model-agnostic dispatcher, the opt-in five-dimension scorer, and the record-level mode field plus the two hardening env gates. The path was built in spec 121/003, remediated in 121/004 with three P1 fixes, and gained its opt-in scorer plus docs in 121/005.
+These entries describe the model-benchmark path that benchmarks a model or prompt framework instead of mutating an agent file. They cover the mode switch in the loop host, the model-agnostic dispatcher, the opt-in five-dimension scorer, and the record-level mode field plus the two hardening env gates.
 
 ### Mode switch
 
@@ -286,7 +286,7 @@ Selects the pattern matcher by default or the opt-in five-dimension scorer for m
 
 #### Current Reality
 
-`run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/scorer/score-model-variant.cjs`, the ported 120/003 five-dimension scorer. `--grader noop` is the default deterministic grader with no model dispatch, with `--grader mock` and `--grader llm` selecting the stub or real grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`.
+`run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/scorer/score-model-variant.cjs`, the ported five-dimension scorer. `--grader noop` is the default deterministic grader with no model dispatch, with `--grader mock` and `--grader llm` selecting the stub or real grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`.
 
 #### Source Files
 

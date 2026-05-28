@@ -42,6 +42,17 @@ node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs
 ```
 
+### Scorer Selection
+
+`run-benchmark.cjs` defaults to `--scorer pattern` (the byte-identical heading and pattern matcher). Add `--scorer 5dim` to route the materialized outputs through the five-dimension scorer (`scripts/scorer/score-model-variant.cjs`), and `--grader noop|mock|llm` to pick the D4 grader (default `noop`, deterministic). The report and `benchmark_run` record carry `scoringMethod: pattern` or `scoringMethod: 5dim`.
+
+```text
+node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs \
+  --profile .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json \
+  --outputs-dir {spec_folder}/improvement/benchmark-outputs \
+  --scorer 5dim --grader noop
+```
+
 ### Integration Benchmark
 
 When running with an integration report, add the `--integration-report` flag:
