@@ -323,6 +323,7 @@ function main() {
     if (stateLogPath) {
       appendJsonl(stateLogPath, {
         type: 'benchmark_run',
+        mode: 'model-benchmark',
         profileId,
         family: profile.family,
         target: profile.targetPath,
@@ -342,6 +343,7 @@ function main() {
       profileId,
       family: null,
       evaluationMode: 'benchmark',
+      mode: 'model-benchmark',
       outputsDir,
       error: error.message,
       failureModes: ['benchmark-runner-failure'],
@@ -350,6 +352,8 @@ function main() {
     if (stateLogPath) {
       appendJsonl(stateLogPath, {
         type: 'infra_failure',
+        mode: 'model-benchmark',
+        evaluationMode: 'benchmark',
         profileId,
         family: null,
         recommendation: 'infra_failure',

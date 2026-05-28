@@ -50,9 +50,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Capture a baseline: run the deep-agent-improvement vitest suite + record a known agent-improvement state-JSONL output (the byte-identity reference for TST-1)
-- [ ] T002 Confirm the `promote-candidate.cjs` routing mechanism (explicit `--mode` vs score-file `status` inspection) before extending it (resolves spec.md OQ-2)
-- [ ] T003 [P] Decide scorer-port placement: copy `eval-rig/` + grader into deep-agent-improvement vs cross-packet reference (resolves spec.md OQ-1)
+- [x] T001 Capture a baseline: run the deep-agent-improvement vitest suite + record a known agent-improvement state-JSONL output (the byte-identity reference for TST-1)
+- [x] T002 Confirm the `promote-candidate.cjs` routing mechanism (explicit `--mode` vs score-file `status` inspection) before extending it (resolves spec.md OQ-2)
+- [x] T003 [P] Decide scorer-port placement: copy `eval-rig/` + grader into deep-agent-improvement vs cross-packet reference (resolves spec.md OQ-1)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,11 +60,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Create `dispatch-model.cjs` (additive) — generalize `dispatch-minimax.cjs` via executor-routing map; `--variant` forwarded only for model-benchmark
-- [ ] T005 Create `loop-host.cjs` (additive) — mode resolve (`args.mode || config.mode || 'agent-improvement'`); agent-improvement → score-candidate path (no-op dispatcher); model-benchmark → materialize → run-benchmark; unknown mode → warn+default
-- [ ] T006 Port + decouple the scorer behind the seam — primitive criteria arrays (not raw fixture JSON), `--cwd`-parameterized det-checks, `buildGraderFn(mode)` factory
-- [ ] T007 Add `mode` to all records (`score-candidate.cjs`, `run-benchmark.cjs`, incl. infra_failure); extend mode-aware `promote-candidate.cjs`; `reduce-state.cjs` metadata pass-through
-- [ ] T008 Handle edge cases EC-1..10 (per-mode cache key, concurrent state-log safety, materialize-failure propagation, etc.)
+- [x] T004 Create `dispatch-model.cjs` (additive) — generalize `dispatch-minimax.cjs` via executor-routing map; `--variant` forwarded only for model-benchmark
+- [x] T005 Create `loop-host.cjs` (additive) — mode resolve (`args.mode || config.mode || 'agent-improvement'`); agent-improvement → score-candidate path (no-op dispatcher); model-benchmark → materialize → run-benchmark; unknown mode → warn+default
+- [x] T006 Port + decouple the scorer behind the seam — primitive criteria arrays (not raw fixture JSON), `--cwd`-parameterized det-checks, `buildGraderFn(mode)` factory
+- [x] T007 Add `mode` to all records (`score-candidate.cjs`, `run-benchmark.cjs`, incl. infra_failure); extend mode-aware `promote-candidate.cjs`; `reduce-state.cjs` metadata pass-through
+- [x] T008 Handle edge cases EC-1..10 (per-mode cache key, concurrent state-log safety, materialize-failure propagation, etc.)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -72,8 +72,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 TST-1 identity gate: `--mode=agent-improvement` vs no flag → byte-identical state JSONL (`diff` empty); wire as a pre-merge check
-- [ ] T010 TST-2..6 regression + a real `--mode=model-benchmark` smoke run; re-run the vitest suite (must stay green)
+- [x] T009 TST-1 identity gate: `--mode=agent-improvement` vs no flag → byte-identical state JSONL (`diff` empty); wire as a pre-merge check
+- [x] T010 TST-2..6 regression + a real `--mode=model-benchmark` smoke run; re-run the vitest suite (must stay green)
 <!-- /ANCHOR:phase-3 -->
 
 ---

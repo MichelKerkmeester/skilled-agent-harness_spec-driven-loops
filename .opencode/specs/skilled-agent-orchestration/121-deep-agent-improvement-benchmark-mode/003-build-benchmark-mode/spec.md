@@ -12,18 +12,18 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode"
     last_updated_at: "2026-05-28T16:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Built dispatch-model + loop-host + TST-1 gate; vitest green 109"
-    next_safe_action: "Add mode field to score-candidate + run-benchmark records"
+    recent_action: "Build complete — switch + scorer port + mode field; smoke verified"
+    next_safe_action: "Run the dual-executor deep review on the session work"
     blockers: []
     key_files:
-      - "../002-implementation-deep-research/research/research.md"
       - ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs"
       - ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs"
+      - ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "build-20260528"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -161,8 +161,9 @@ Ship a working `model-benchmark` mode alongside `agent-improvement`, sharing the
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the ported scorer + `eval-rig/` be copied into deep-agent-improvement, or referenced from 120/003? (Lean: copy/port, to avoid cross-packet runtime coupling.)
-- Does `promote-candidate.cjs` route by an explicit `--mode` flag or by inspecting the score file's `status`? (Verify before extending — it already checks both `scored` and `benchmark-complete`.)
+- RESOLVED: Copied/ported the scorer + det-checks + grader + cache into `scripts/scorer/` (no cross-packet runtime coupling). Runtime `scorer/cache/` is git-ignored.
+- RESOLVED: `promote-candidate.cjs` routes by the score file's `status` (`scored` vs `benchmark-complete`) — already mode-aware, so no `--mode` flag was bolted on.
+- Follow-on (P2): `score-model-variant.cjs` is available behind the scorer seam but `run-benchmark.cjs` still uses its pattern matcher by default; adopting the 5-dim scorer as the active model-benchmark scorer is a separate opt-in.
 <!-- /ANCHOR:questions -->
 
 ---
