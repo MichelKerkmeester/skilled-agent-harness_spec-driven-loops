@@ -1,0 +1,1992 @@
+{
+  "sessionId": "review-20260528-174433",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "DR-001-P1-001",
+      "severity": "P1",
+      "title": "model-benchmark route never invokes the generic model dispatcher",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs",
+      "line": 73,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-001-P1-002",
+      "severity": "P1",
+      "title": "Direct dispatcher runs ignore the requested working directory for most executors",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs",
+      "line": 173,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "DR-002-P1-002"
+      ]
+    },
+    {
+      "findingId": "DR-001-P1-003",
+      "severity": "P1",
+      "title": "D3 cwd checker can miss traversal into sibling paths with the same prefix",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/scorer/deterministic/cwd-check.cjs",
+      "line": 86,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-002-P1-001",
+      "severity": "P1",
+      "title": "model-benchmark route never invokes the generic model dispatcher (MiniMax confirmed)",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs",
+      "line": 73,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-002-P1-003",
+      "severity": "P1",
+      "title": "D3 cwd checker can miss traversal into sibling paths with the same prefix (MiniMax confirmed)",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/scorer/deterministic/cwd-check.cjs",
+      "line": 86,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-003-P1-001",
+      "severity": "P1",
+      "title": "Benchmark criteria can execute arbitrary shell commands and can escape the scorer cwd",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-003-P1-002",
+      "severity": "P1",
+      "title": "D4 grader accepts unbounded model-provided scores and can poison benchmark integrity",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/harness.cjs",
+      "line": 63,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-005-P1-001",
+      "severity": "P1",
+      "title": "model-benchmark runner bypasses the decoupled 5-dim scorer required by REQ-004",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs",
+      "line": 114,
+      "description": "REQ-004 and the 002 build-delta require the model-benchmark scorer seam to use primitive criteria arrays and the ported 5-dim scorer, but the active benchmark runner still scores fixture headings/patterns directly and never imports score-model-variant.cjs.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-005-P1-002",
+      "severity": "P1",
+      "title": "promotion still has only the scored path despite the spec claiming model-benchmark promotion is resolved",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs",
+      "line": 168,
+      "description": "REQ-002 and the 003 open-question note say model-benchmark promotion returns a decision and routes by scored vs benchmark-complete status, but promote-candidate.cjs rejects any score whose status is not scored before it checks the benchmark report.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-005-P1-003",
+      "severity": "P1",
+      "title": "deterministic checks still depend on fixture JSON instead of the explicit --cwd contract",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/scorer/deterministic/cwd-check.cjs",
+      "line": 142,
+      "description": "REQ-004 and research CP2 require deterministic check scripts to accept explicit --cwd, but the shipped det-check CLIs still accept fixturePath/outputPath and recover cwd from fixture.scope.cwd.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-009-P1-001",
+      "severity": "P1",
+      "title": "Reducer/dashboard do not surface the new mode metadata required by the mode-field integration",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs",
+      "line": 608,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-003-P2-001",
+      "severity": "P2",
+      "title": "Grader cache persists raw model output that may echo sensitive candidate content",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/harness.cjs",
+      "line": 219,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-004-P2-001",
+      "severity": "P2",
+      "title": "dispute.cjs uses global fs monkey-patch for adversarial grader call",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/dispute.cjs",
+      "line": 71,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-007-P2-001",
+      "severity": "P2",
+      "title": "scorer tests assert shape, but not the deterministic scorer behavior most likely to regress",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/tests/scorer.vitest.ts",
+      "line": 55,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-007-P2-002",
+      "severity": "P2",
+      "title": "rate-limit backoff is a synchronous busy wait, making dispatch hard to test and expensive to operate",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs",
+      "line": 189,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR-011-P2-001",
+      "severity": "P2",
+      "title": "delta mixes 0..1 ratio with raw thresholdDelta (unitless)",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs",
+      "line": 283,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 11,
+      "lastSeen": 11,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 11,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "DR-001-P1-002",
+      "severity": "P1",
+      "title": "Direct dispatcher runs ignore the requested working directory for most executors",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs",
+      "line": 173,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "DR-002-P1-002"
+      ]
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "DR-001-P1-002",
+      "severity": "P1",
+      "title": "Direct dispatcher runs ignore the requested working directory for most executors",
+      "file": ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs",
+      "line": 173,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "DR-002-P1-002"
+      ]
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 11,
+    "P2": 5
+  },
+  "openFindingsCount": 16,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.94,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "candidateCoverage": {
+    "covered": [
+      "active_scorer_seam",
+      "backward_compat_default_mode",
+      "blocking_backoff_testability",
+      "cache_file_writes",
+      "changelog_release_note_accuracy",
+      "cli-opencode_graph_metadata_consistency",
+      "criteria_command_execution",
+      "cwd_path_escape",
+      "cwd_propagation",
+      "det_check_cwd_contract",
+      "dispatcher_invocation",
+      "dispatcher_wiring",
+      "doc_consistency",
+      "end_to_end_model_benchmark_path",
+      "existing_finding_duplication",
+      "grader_dispatch",
+      "hard_gate_math",
+      "minimax_catalog_trace",
+      "mode_field_persistence",
+      "mode_field_writer_persistence",
+      "mode_metadata_reduction",
+      "mode_routing",
+      "monkey_patch",
+      "no_loop_discovery",
+      "path_containment",
+      "promotion_mode_contract",
+      "secret_persistence",
+      "spawned_cli_arg_injection",
+      "test_behavior_coverage",
+      "test_evidence",
+      "tst1_acceptance_evidence",
+      "unitless_delta",
+      "unsafe_deserialization"
+    ],
+    "ruledOut": [
+      "120_skill_edit_correctness",
+      "backward_compat_default_mode",
+      "cache_file_writes",
+      "changelog_release_note_accuracy",
+      "cli-opencode_graph_metadata_consistency",
+      "doc_consistency",
+      "grader_dispatch",
+      "hard_gate_math",
+      "materialize_before_benchmark_ordering_regression",
+      "materialize_ordering",
+      "minimax_catalog_missing",
+      "minimax_catalog_trace",
+      "minimax_doc_inconsistency",
+      "mode_field_missing",
+      "mode_field_missing_in_record_writers",
+      "mode_field_persistence",
+      "mode_field_writer_persistence",
+      "mode_routing",
+      "no_loop_discovery",
+      "no_loop_discovery_ignored",
+      "spawned_cli_arg_injection",
+      "spawned_cli_shell_injection",
+      "unknown_mode_fallback_regression"
+    ],
+    "deferred": [
+      "120_minimax_skill_correctness",
+      "120_skill_edit_guidance",
+      "active_scorer_seam",
+      "active_scorer_seam_prior_p1",
+      "changelog_release_note_accuracy",
+      "cli-opencode_graph_metadata_consistency",
+      "criteria_command_execution",
+      "cwd_path_escape",
+      "dead_or_duplicate_scorer_tree",
+      "det_check_cwd_contract",
+      "dispatcher_invocation",
+      "dispatcher_invocation_prior_p1",
+      "environment_inheritance",
+      "mode_metadata_reduction",
+      "promotion_mode_contract",
+      "promotion_mode_contract_prior_p1",
+      "tst1_acceptance_evidence",
+      "tst1_byte_identity_gap",
+      "tst1_state_jsonl_identity_gap_prior_evidence",
+      "unsafe_deserialization"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "mode_routing": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "dispatcher_wiring": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          11
+        ]
+      },
+      "cwd_propagation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          11
+        ]
+      },
+      "path_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          11
+        ]
+      },
+      "hard_gate_math": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "test_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "unknown_mode_fallback_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          9
+        ]
+      },
+      "materialize_before_benchmark_ordering_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "120_minimax_skill_correctness": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "materialize_ordering": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "spawned_cli_arg_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "criteria_command_execution": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          4,
+          11
+        ]
+      },
+      "cwd_path_escape": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "unsafe_deserialization": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "secret_persistence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "spawned_cli_shell_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "environment_inheritance": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "grader_dispatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "cache_file_writes": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "120_skill_edit_guidance": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "monkey_patch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "active_scorer_seam": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5,
+          6,
+          9,
+          11
+        ]
+      },
+      "promotion_mode_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5,
+          6,
+          9,
+          11
+        ]
+      },
+      "det_check_cwd_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5,
+          6,
+          11
+        ]
+      },
+      "mode_field_persistence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "no_loop_discovery": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "minimax_catalog_trace": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "tst1_acceptance_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "mode_field_missing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "no_loop_discovery_ignored": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "minimax_catalog_missing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "cli-opencode_graph_metadata_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5,
+          6
+        ]
+      },
+      "changelog_release_note_accuracy": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5,
+          6
+        ]
+      },
+      "120_skill_edit_correctness": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "test_behavior_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "blocking_backoff_testability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "doc_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "existing_finding_duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "minimax_doc_inconsistency": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "dead_or_duplicate_scorer_tree": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "tst1_byte_identity_gap": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "end_to_end_model_benchmark_path": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "dispatcher_invocation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "mode_field_writer_persistence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "mode_metadata_reduction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          9,
+          11
+        ]
+      },
+      "backward_compat_default_mode": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "mode_field_missing_in_record_writers": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "dispatcher_invocation_prior_p1": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "active_scorer_seam_prior_p1": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "promotion_mode_contract_prior_p1": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "tst1_state_jsonl_identity_gap_prior_evidence": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "unitless_delta": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          11
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SL-306",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:173",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/harness.cjs:119"
+      ],
+      "bugClass": "environment_inheritance",
+      "disposition": "deferred",
+      "rationale": "CLIs may require credential environment variables; severity needs an explicit runtime secret-policy target",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:173",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/harness.cjs:119"
+      ],
+      "reason": "needs policy decision on minimal environment allowlist for model executors"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-507",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:125",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:44"
+      ],
+      "bugClass": "tst1_acceptance_evidence",
+      "disposition": "deferred",
+      "rationale": "This reinforces existing checklist_evidence failures from iterations 1-2; not emitted as a new separate finding to avoid duplicate registry noise.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:44",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:56"
+      ],
+      "reason": "covered by prior active checklist_evidence/spec_code findings; should be folded into remediation for DR-001-P1-001/DR-001-P1-002"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-604",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:94",
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:133",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:114"
+      ],
+      "bugClass": "active_scorer_seam",
+      "disposition": "deferred",
+      "rationale": "DR-005-P1-001 is a prior finding with no evidence of resolution; this iteration confirms the gap persists.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:114"
+      ],
+      "reason": "pending remediation; reproduction confirmed by absence of change"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-605",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:126",
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:165",
+        ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:168"
+      ],
+      "bugClass": "promotion_mode_contract",
+      "disposition": "deferred",
+      "rationale": "DR-005-P1-002 is a prior finding with no evidence of resolution; reproduction confirmed.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:168"
+      ],
+      "reason": "pending remediation; no change in shipped code since iter 005"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-606",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:133",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/deterministic/cwd-check.cjs:142"
+      ],
+      "bugClass": "det_check_cwd_contract",
+      "disposition": "deferred",
+      "rationale": "DR-005-P1-003 is a prior finding with no evidence of resolution; reproduction confirmed.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/deterministic/cwd-check.cjs:142"
+      ],
+      "reason": "pending remediation; no change in shipped code since iter 005"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-704",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:114",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:5",
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:166"
+      ],
+      "bugClass": "dead_or_duplicate_scorer_tree",
+      "disposition": "deferred",
+      "rationale": "the maintainability concern is real but is subsumed by existing P1 DR-005-P1-001, so no duplicate finding emitted",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:114",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:5",
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:166",
+        ".opencode/specs/skilled-agent-orchestration/122-session-120-121-deep-review/review/iterations/iteration-005.md:38",
+        ".opencode/specs/skilled-agent-orchestration/122-session-120-121-deep-review/review/iterations/iteration-006.md:24"
+      ],
+      "reason": "covered by active traceability finding DR-005-P1-001"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-705",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:125",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:44"
+      ],
+      "bugClass": "tst1_byte_identity_gap",
+      "disposition": "deferred",
+      "rationale": "this reinforces the existing checklist_evidence failure and should be remediated with prior P1s rather than registered as a duplicate maintainability finding",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:44",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:56"
+      ],
+      "reason": "covered by existing checklist_evidence/spec_code failures"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-901",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:73",
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:118",
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:127"
+      ],
+      "bugClass": "dispatcher_invocation",
+      "disposition": "deferred",
+      "rationale": "Confirmed still active, but already covered by DR-001-P1-001/DR-002-P1-001.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:73",
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:118"
+      ],
+      "reason": "prior active P1 already captures this integration gap"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-902",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:114",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:161",
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:133"
+      ],
+      "bugClass": "active_scorer_seam",
+      "disposition": "deferred",
+      "rationale": "Confirmed still active, but already covered by DR-005-P1-001.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:114",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:274",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/scorer.vitest.ts:50"
+      ],
+      "reason": "prior active P1 already captures this seam mismatch"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-903",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:168",
+        ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:193",
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md:126"
+      ],
+      "bugClass": "promotion_mode_contract",
+      "disposition": "deferred",
+      "rationale": "Confirmed still active, but already covered by DR-005-P1-002.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:168",
+        ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs:193"
+      ],
+      "reason": "prior active P1 already captures this promotion mismatch"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:43",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:32"
+      ],
+      "bugClass": "mode_routing",
+      "disposition": "ruled_out",
+      "rationale": "fallback behavior is implemented and tested",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:43",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:32"
+      ],
+      "reason": "verified by direct read of implementation and test"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:73",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:84"
+      ],
+      "bugClass": "materialize_ordering",
+      "disposition": "ruled_out",
+      "rationale": "ordering requirement is satisfied",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:73",
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:103",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:84"
+      ],
+      "reason": "verified by plan and unit test"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:126",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:220"
+      ],
+      "bugClass": "hard_gate_math",
+      "disposition": "ruled_out",
+      "rationale": "no arithmetic defect found in this pass",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:126",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:220"
+      ],
+      "reason": "verified by direct read of hard-gate and weighted-score logic"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-301",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:118",
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:173"
+      ],
+      "bugClass": "spawned_cli_arg_injection",
+      "disposition": "ruled_out",
+      "rationale": "no shell-string execution in the primary CLI dispatcher path",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:118",
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:133",
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:173"
+      ],
+      "reason": "verified by direct read of buildSpawnSpec and spawnSync call"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/harness.cjs:119"
+      ],
+      "bugClass": "grader_dispatch",
+      "disposition": "ruled_out",
+      "rationale": "execFileSync with argv array is safe",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/harness.cjs:119"
+      ],
+      "reason": "confirmed safe by direct read"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/lib/cache.cjs:162",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/lib/cache.cjs:184"
+      ],
+      "bugClass": "cache_file_writes",
+      "disposition": "ruled_out",
+      "rationale": "atomic write via temp+rename confirmed",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/lib/cache.cjs:184"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:430",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:326"
+      ],
+      "bugClass": "mode_field_persistence",
+      "disposition": "ruled_out",
+      "rationale": "No missing mode-field defect found in the reviewed record writers.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:430",
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:622",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:326",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:355"
+      ],
+      "reason": "verified by direct reads of success and infra_failure record construction"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/002-implementation-deep-research/research/research.md:7",
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:7"
+      ],
+      "bugClass": "no_loop_discovery",
+      "disposition": "ruled_out",
+      "rationale": "The host-file location matches the 002 research discovery.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:7",
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:58"
+      ],
+      "reason": "loop-host.cjs exists and implements the mode selector entry point"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-506",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/assets/prompt_quality_card.md:54",
+        ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:187",
+        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49"
+      ],
+      "bugClass": "minimax_catalog_trace",
+      "disposition": "ruled_out",
+      "rationale": "No traceability gap found in the MiniMax catalog/docs slice reviewed in this iteration.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/assets/prompt_quality_card.md:54",
+        ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:187",
+        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49"
+      ],
+      "reason": "direct/exact search found consistent model/provider/prompt-framework references"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-601",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:200",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:197",
+        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+      ],
+      "bugClass": "120_skill_edit_correctness",
+      "disposition": "ruled_out",
+      "rationale": "120 MiniMax skill edits are internally consistent.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:200",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:197",
+        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+      ],
+      "reason": "direct search found no inconsistencies in slug, context_length, quota pool, prompt framework, or variant guidance"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-602",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/graph-metadata.json:83",
+        ".opencode/skills/cli-opencode/graph-metadata.json:10",
+        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+      ],
+      "bugClass": "cli-opencode_graph_metadata_consistency",
+      "disposition": "ruled_out",
+      "rationale": "graph-metadata.json trigger phrases match the skill content and are mutually consistent with sk-prompt-small-model dispatch matrix.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/graph-metadata.json:83",
+        ".opencode/skills/cli-opencode/graph-metadata.json:84",
+        ".opencode/skills/cli-opencode/graph-metadata.json:85",
+        ".opencode/skills/cli-opencode/graph-metadata.json:86",
+        ".opencode/skills/cli-opencode/graph-metadata.json:87",
+        ".opencode/skills/cli-opencode/graph-metadata.json:10"
+      ],
+      "reason": "trigger phrases present and consistent with documented MiniMax content"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-603",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:23",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:29"
+      ],
+      "bugClass": "changelog_release_note_accuracy",
+      "disposition": "ruled_out",
+      "rationale": "changelog accurately describes the v1.3.4.0 changes.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:23",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:29"
+      ],
+      "reason": "direct read confirmed all described changes are accurate"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-703",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:200",
+        ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
+        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:197"
+      ],
+      "bugClass": "doc_consistency",
+      "disposition": "ruled_out",
+      "rationale": "no maintainability doc-quality issue found in the MiniMax skill edits",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:200",
+        ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
+        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:197"
+      ],
+      "reason": "direct read found consistent names and ownership across the reviewed documentation"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-904",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:430",
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:622",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:326",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:355"
+      ],
+      "bugClass": "mode_field_writer_persistence",
+      "disposition": "ruled_out",
+      "rationale": "No missing mode field found in the direct record writers.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:430",
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:622",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:326",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:355"
+      ],
+      "reason": "verified by direct read of success and infra_failure record construction"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-906",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:43",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:32"
+      ],
+      "bugClass": "backward_compat_default_mode",
+      "disposition": "ruled_out",
+      "rationale": "default and unknown mode routing are implemented at the planner level",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:43",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:32",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:44"
+      ],
+      "reason": "verified by direct read of resolver and tests"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:43",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:32"
+      ],
+      "bugClass": "mode_routing",
+      "disposition": "ruled_out",
+      "rationale": "fallback behavior is implemented and tested",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:43",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:32"
+      ],
+      "proof": "verified by direct read of implementation and test"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:73",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:84"
+      ],
+      "bugClass": "materialize_ordering",
+      "disposition": "ruled_out",
+      "rationale": "ordering requirement is satisfied",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:73",
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:103",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:84"
+      ],
+      "proof": "verified by plan and unit test"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:126",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:220"
+      ],
+      "bugClass": "hard_gate_math",
+      "disposition": "ruled_out",
+      "rationale": "no arithmetic defect found in this pass",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:126",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs:220"
+      ],
+      "proof": "verified by direct read of hard-gate and weighted-score logic"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-301",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:118",
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:173"
+      ],
+      "bugClass": "spawned_cli_arg_injection",
+      "disposition": "ruled_out",
+      "rationale": "no shell-string execution in the primary CLI dispatcher path",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:118",
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:133",
+        ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs:173"
+      ],
+      "proof": "verified by direct read of buildSpawnSpec and spawnSync call"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/harness.cjs:119"
+      ],
+      "bugClass": "grader_dispatch",
+      "disposition": "ruled_out",
+      "rationale": "execFileSync with argv array is safe",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/harness.cjs:119"
+      ],
+      "proof": "confirmed safe by direct read"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/lib/cache.cjs:162",
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/lib/cache.cjs:184"
+      ],
+      "bugClass": "cache_file_writes",
+      "disposition": "ruled_out",
+      "rationale": "atomic write via temp+rename confirmed",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/scorer/lib/cache.cjs:184"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:430",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:326"
+      ],
+      "bugClass": "mode_field_persistence",
+      "disposition": "ruled_out",
+      "rationale": "No missing mode-field defect found in the reviewed record writers.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:430",
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:622",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:326",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:355"
+      ],
+      "proof": "verified by direct reads of success and infra_failure record construction"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/002-implementation-deep-research/research/research.md:7",
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:7"
+      ],
+      "bugClass": "no_loop_discovery",
+      "disposition": "ruled_out",
+      "rationale": "The host-file location matches the 002 research discovery.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:7",
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:58"
+      ],
+      "proof": "loop-host.cjs exists and implements the mode selector entry point"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-506",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/assets/prompt_quality_card.md:54",
+        ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:187",
+        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49"
+      ],
+      "bugClass": "minimax_catalog_trace",
+      "disposition": "ruled_out",
+      "rationale": "No traceability gap found in the MiniMax catalog/docs slice reviewed in this iteration.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/assets/prompt_quality_card.md:54",
+        ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:187",
+        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49"
+      ],
+      "proof": "direct/exact search found consistent model/provider/prompt-framework references"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-601",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:200",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:197",
+        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+      ],
+      "bugClass": "120_skill_edit_correctness",
+      "disposition": "ruled_out",
+      "rationale": "120 MiniMax skill edits are internally consistent.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:200",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:197",
+        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+      ],
+      "proof": "direct search found no inconsistencies in slug, context_length, quota pool, prompt framework, or variant guidance"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-602",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/graph-metadata.json:83",
+        ".opencode/skills/cli-opencode/graph-metadata.json:10",
+        ".opencode/skills/sk-prompt-small-model/SKILL.md:140"
+      ],
+      "bugClass": "cli-opencode_graph_metadata_consistency",
+      "disposition": "ruled_out",
+      "rationale": "graph-metadata.json trigger phrases match the skill content and are mutually consistent with sk-prompt-small-model dispatch matrix.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/graph-metadata.json:83",
+        ".opencode/skills/cli-opencode/graph-metadata.json:84",
+        ".opencode/skills/cli-opencode/graph-metadata.json:85",
+        ".opencode/skills/cli-opencode/graph-metadata.json:86",
+        ".opencode/skills/cli-opencode/graph-metadata.json:87",
+        ".opencode/skills/cli-opencode/graph-metadata.json:10"
+      ],
+      "proof": "trigger phrases present and consistent with documented MiniMax content"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-603",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:23",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:29"
+      ],
+      "bugClass": "changelog_release_note_accuracy",
+      "disposition": "ruled_out",
+      "rationale": "changelog accurately describes the v1.3.4.0 changes.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:1",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:23",
+        ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md:29"
+      ],
+      "proof": "direct read confirmed all described changes are accurate"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-703",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:200",
+        ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
+        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:197"
+      ],
+      "bugClass": "doc_consistency",
+      "disposition": "ruled_out",
+      "rationale": "no maintainability doc-quality issue found in the MiniMax skill edits",
+      "evidenceRefs": [
+        ".opencode/skills/cli-opencode/SKILL.md:200",
+        ".opencode/skills/cli-opencode/assets/prompt_templates.md:451",
+        ".opencode/skills/sk-prompt-small-model/references/pattern-index.md:49",
+        ".opencode/skills/sk-prompt/assets/model-profiles.json:197"
+      ],
+      "proof": "direct read found consistent names and ownership across the reviewed documentation"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-904",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:430",
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:622",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:326",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:355"
+      ],
+      "bugClass": "mode_field_writer_persistence",
+      "disposition": "ruled_out",
+      "rationale": "No missing mode field found in the direct record writers.",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:430",
+        ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs:622",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:326",
+        ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs:355"
+      ],
+      "proof": "verified by direct read of success and infra_failure record construction"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-906",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:43",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:32"
+      ],
+      "bugClass": "backward_compat_default_mode",
+      "disposition": "ruled_out",
+      "rationale": "default and unknown mode routing are implemented at the planner level",
+      "evidenceRefs": [
+        ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs:43",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:32",
+        ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts:44"
+      ],
+      "proof": "verified by direct read of resolver and tests"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "dispatcher_wiring",
+      "active_scorer_seam",
+      "cwd_propagation",
+      "path_containment",
+      "criteria_command_execution",
+      "det_check_cwd_contract",
+      "promotion_mode_contract",
+      "mode_metadata_reduction"
+    ],
+    "covered": [
+      "dispatcher_wiring",
+      "active_scorer_seam",
+      "cwd_propagation",
+      "path_containment",
+      "criteria_command_execution",
+      "det_check_cwd_contract"
+    ],
+    "ruledOut": [],
+    "deferred": [
+      "promotion_mode_contract",
+      "mode_metadata_reduction"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [
+    {
+      "index": 2,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 5,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 7,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 9,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 11,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 13,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 15,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 17,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 19,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 20,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

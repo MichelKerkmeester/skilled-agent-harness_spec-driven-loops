@@ -1,0 +1,138 @@
+{
+  "topic": "Review: session 120+121 work (deep-agent-improvement model-benchmark mode build + MiniMax integration)",
+  "sessionId": "review-20260528-174433",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/122-session-120-121-deep-review",
+  "createdAt": "2026-05-28T17:44:33Z",
+  "status": "complete",
+  "releaseReadinessState": "converged",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "session 120+121 authored code + docs (29-file curated scope)",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "reviewScopeFiles": [
+    ".opencode/skills/cli-opencode/SKILL.md",
+    ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+    ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+    ".opencode/skills/cli-opencode/changelog/v1.3.4.0.md",
+    ".opencode/skills/cli-opencode/graph-metadata.json",
+    ".opencode/skills/cli-opencode/references/cli_reference.md",
+    ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/scorer/deterministic/bundle-gate.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/scorer/deterministic/cwd-check.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/scorer/deterministic/hallucination-flag.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/scorer/deterministic/preplanning-regex.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/dispute.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/harness.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/prompts/system-grader.md",
+    ".opencode/skills/deep-agent-improvement/scripts/scorer/grader/prompts/system-skeptic.md",
+    ".opencode/skills/deep-agent-improvement/scripts/scorer/lib/cache.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs",
+    ".opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts",
+    ".opencode/skills/deep-agent-improvement/scripts/tests/scorer.vitest.ts",
+    ".opencode/skills/sk-prompt-small-model/SKILL.md",
+    ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+    ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
+    ".opencode/skills/sk-prompt/assets/model-profiles.json",
+    ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/001-mode-selector-design/decision-record.md",
+    ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/002-implementation-deep-research/research/research.md",
+    ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode/spec.md"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  }
+}

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-28T16:26:05Z",
+  "generated": "2026-05-28T17:48:17.000Z",
   "folders": [
     {
       "specFolder": "anobel.com/001-button-text-link-disabled-state",
@@ -18064,6 +18064,33 @@
       "parentChain": [
         "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
       ],
+      "memorySequence": 0,
+      "memoryNameHistory": [],
+      "level": "1"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/122-session-120-121-deep-review",
+      "description": "Deep review (dual-executor gpt-5.5 + MiniMax M2.7) of session 120+121 work: deep-agent-improvement model-benchmark mode build + MiniMax integration",
+      "keywords": [
+        "deep",
+        "review",
+        "dual-executor",
+        "gpt-5",
+        "minimax",
+        "session",
+        "120",
+        "121",
+        "work",
+        "deep-agent-improvement",
+        "model-benchmark",
+        "mode",
+        "build",
+        "integration"
+      ],
+      "lastUpdated": "2026-05-28T17:42:53.569Z",
+      "specId": "122",
+      "folderSlug": "session-120-121-deep-review",
+      "parentChain": [],
       "memorySequence": 0,
       "memoryNameHistory": [],
       "level": "1"
