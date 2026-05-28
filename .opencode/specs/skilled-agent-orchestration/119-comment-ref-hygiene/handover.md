@@ -1,25 +1,25 @@
 ---
-title: "Session Handover: mk-spec-memory embedding restart + 119 close-out"
-description: "Post-restart handover — verify the embedding provider repoints hf-local to ollama, plus 119 comment-hygiene + test-fix session state."
+title: "Session Handover: MCP config alignment + embedding restart verification"
+description: "Embedding restart verified (provider flipped to ollama); force re-embed reset applied; discovered daemon ignores tuned retry env; aligned 3 spec-kit MCP env blocks across all 7 configs to opencode.json canonical."
 trigger_phrases:
-  - "post restart handover"
-  - "embedding provider restart"
-  - "119 handover"
+  - "mcp config alignment handover"
+  - "embedding restart verification handover"
+  - "daemon env gap handover"
 importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/119-comment-ref-hygiene"
-    last_updated_at: "2026-05-28T08:10:00Z"
+    last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "embedding-mispoint-root-caused-119-shipped"
-    next_safe_action: "restart-daemon-then-verify-provider-flips-to-ollama"
-    blockers: ["embedding-provider-mispoint-pending-daemon-restart"]
-    completion_pct: 90
+    recent_action: "Verified embedding restart + reconcile; aligned 3 MCP env blocks across 7 configs; validated"
+    next_safe_action: "004 lane: fix launcher not forwarding tuned retry env to daemon; then backlog drains fast"
+    blockers: ["daemon-ignores-tuned-retry-env-launcher-lifecycle", "embedding-backlog-partial-until-daemon-honors-env"]
+    completion_pct: 95
 ---
 # Session Handover Document
 
-Post-restart handover for the mk-spec-memory embedding provider mispoint, plus close-out state for packet 119 (comment-ref hygiene + pre-existing test fixes).
+MCP config alignment (7 configs → one canonical) plus embedding restart verification and the discovery that the running daemon ignores the tuned retry env that the configs already hold.
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
@@ -28,10 +28,10 @@ Post-restart handover for the mk-spec-memory embedding provider mispoint, plus c
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
-- **From Session:** 2026-05-28 (claude-opus, packet 119 + embedding investigation)
-- **To Session:** next session AFTER a full mk-spec-memory daemon restart
-- **Phase Completed:** IMPLEMENTATION (119 shipped) + INVESTIGATION (embedding mispoint root-caused)
-- **Handover Time:** 2026-05-28T08:10:00Z · Git `5431c0de48` on `split/028-code-graph-cocoindex`, in sync with `origin/main`, all work pushed
+- **From Session:** 2026-05-28 (claude-opus) — embedding verification → reconcile → MCP config alignment
+- **To Session:** next session; the open follow-on is owned by the `004` embedding lane
+- **Phase Completed:** VERIFICATION (embedding restart) + IMPLEMENTATION (config alignment, validated) + INVESTIGATION (daemon-env gap root-caused)
+- **Handover Time:** 2026-05-28 · `split/028-code-graph-cocoindex` · config changes staged in working tree, NOT committed
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -42,26 +42,27 @@ Post-restart handover for the mk-spec-memory embedding provider mispoint, plus c
 ### 2.1 Key Decisions Made
 | Decision | Rationale | Impact |
 |----------|-----------|--------|
-| Restart the daemon, not `/mcp` reconnect | Provider singleton does not retarget on reconnect (`shared/embeddings.ts:386`); launcher bridges to the existing lease holder (`mk-spec-memory-launcher.cjs:414`) | Only a full restart repoints hf-local to ollama |
-| Embedding mispoint is SEPARATE from causal coverage | 28,472/28,504 rows embed fine; coverage (9.66%) is a causal-linking/backfill metric, not an embedding-failure one | A restart fixes the engine, NOT the coverage number |
-| `[needs-owner]` code gaps left for the 004/006 lane | They touch the active embedding-investigation packets | Not patched here; documented below |
-| spec-doc-structure validator left untouched | HIGH blast radius (feeds `memory-save` + `validate.sh`); the failure was fixture damage, not logic | Fixed the fixture instead |
+| Force re-embed via `repairSuccessCoverage:true` | Operator chose it over letting the retry loop trickle | Reset 1646 success-missing-active-vector rows to retry; non-destructive |
+| `opencode.json` is the canonical, not `.claude/mcp.json` | opencode.json is richest/most-current; aligning down to .claude would delete useful notes | All 7 configs aligned UP to opencode.json content |
+| Config alignment ≠ behavior fix | Functional retry env was already identical everywhere; drift was `_NOTE_*` docs | Daemon runtime behavior unchanged by this work |
+| Daemon-env gap handed to 004 lane | It touches the active embedding-investigation packets | Not patched here; documented below |
 
 ### 2.2 Blockers Encountered
 | Blocker | Status | Resolution/Workaround |
 |---------|--------|-----------------------|
-| Embedding provider mispoint (registry=ollama-ready, runtime=hf-local-unhealthy, circuit-breaker OPEN) | open | Needs full daemon restart (see §3) |
-| Code graph went stale within seconds (concurrent multi-agent churn + post-commit hook) | open | Run `code_graph_scan` before any structural query; used Grep fallback |
-| `codex auth status` subcommand invalid in installed version | resolved | OAuth confirmed via `~/.codex/auth.json` + codex ran successfully this session |
+| Running daemon ignores tuned `SPECKIT_RETRY_*` env (uses code defaults: cap 1000, batch 5, 5-min) though all configs hold tuned values | open | Launcher/lifecycle issue — env not reaching spawned daemon. 004 lane. |
+| Standard `memory_embedding_reconcile` is a no-op post-restart | resolved | The stuck rows weren't vector-present-stale; used `repairSuccessCoverage:true` |
+| mk-spec-memory MCP server disconnected mid-session (daemon died ~1–2GB RSS) | resolved | `/mcp` reconnect respawned it; provider stayed ollama |
 
 ### 2.3 Files Modified
 | File | Change Summary | Status |
 |------|----------------|--------|
-| `sk-code/references/**` + 12 echo sites | sk-code rule forbidding ephemeral refs in comments | complete (committed) |
-| deep/system skills prod + test comments | ephemeral-ref cleanup (comments only) | complete (committed) |
-| `shared/gate-3-classifier.ts` + test | speckit rename straggler + `:auto` broaden (`40183392bd`) | complete (dist rebuilt) |
-| `scripts/.../valid-phase/spec.md` + `063.../implementation-summary.md` fixtures | restored packet-117-stripped anchors (`c6805196a7`, `4d9ff721c6`) | complete |
-| `119/implementation-summary.md` | follow-on fixes log (8 fixed, 1 flagged) | complete |
+| `opencode.json` | canonical base; added `_NOTE_8_FEATURE_FLAGS`; reordered CONTEXT_BUDGET | staged |
+| `.claude/mcp.json`, `.gemini/settings.json` | aligned 3 server env blocks to canonical | staged |
+| `.vscode/mcp.json`, `.devin/config.json` | replaced stale llama-cpp/Voyage notes + `_NOTE_AUTO_MIGRATION` with ADR-014 canonical | staged |
+| `.codex/config.toml` | fixed duplicate `_NOTE_*_TOOLS` bug; normalized key order | staged |
+| `.devin/config.local.json` (gitignored) | added missing `EMBEDDINGS_PROVIDER` + canonical notes; abs path preserved | edited (won't commit) |
+| `119/implementation-summary.md` | follow-on log + continuity update | staged |
 <!-- /ANCHOR:context-transfer -->
 
 ---
@@ -70,18 +71,18 @@ Post-restart handover for the mk-spec-memory embedding provider mispoint, plus c
 ## 3. For Next Session
 
 ### 3.1 Recommended Starting Point
-- **File:** run `memory_health()` first (no file) — verify embedding provider after restart
-- **Context:** confirm the restart repointed the embedding engine before anything else
+- **File:** `.opencode/bin/mk-spec-memory-launcher.cjs` (env forwarding) + `shared/embeddings.ts:386` / `reindex.ts:441` (004-lane defects)
+- **Context:** the configs are now aligned and correct; the remaining problem is purely that the daemon process doesn't receive/honor that env
 
 ### 3.2 Priority Tasks Remaining
-1. **Verify the restart worked:** `memory_health()` -> `embeddingProvider.provider` must flip `hf-local` to `ollama`, `healthy: true`, circuit-breaker not open. `embedder_list()` -> `ollama / nomic-embed-text-v1.5` stays active+ready. If still hf-local, the real daemon process was not killed (reconnect is not enough).
-2. **Clear the ~32 stuck rows:** `memory_embedding_reconcile({ mode: "dry-run" })` (fail-closed); if correct, `{ mode: "apply" }`. Backlog is small: success 28,472 / retry 21 / failed 11.
-3. **Hand `[needs-owner]` gaps to the 004/006 lane:** patch `reindex.ts:441` to pass `manifest.backend` to `setActiveEmbedder` (pointer saves name+dim, not provider); add provider-singleton invalidation on active-pointer change (`shared/embeddings.ts:386`).
+1. **Root-cause the daemon-env gap:** compare the live daemon's environment (`ps eww <pid>`) against `.claude/mcp.json`'s `env` block. Determine whether the launcher bridges to a pre-existing daemon started without the env, or spawns the child with a sanitized env. Fix so `SPECKIT_RETRY_QUEUE_MAX_PENDING=300000`, `BATCH_SIZE=100`, `INTERVAL_MS=5000` actually reach the daemon.
+2. **Then drain the backlog:** once the daemon honors the tuned env, the 1646 reset `retry` rows re-embed in minutes (no overflow-to-failed). Confirm via `memory_health()` (`embeddingRetry.queueDepth` → 0; breaker closed).
+3. **004-lane code defects (from prior handover, still open):** `reindex.ts:441` pass `manifest.backend` to `setActiveEmbedder`; provider-singleton invalidation on active-pointer change (`shared/embeddings.ts:386`).
 
 ### 3.3 Critical Context to Load
-- [ ] `_memory.continuity` in `implementation-summary.md` (canonical 119 state; resume ladder reads here)
-- [ ] Spec file: `spec.md` (119 comment-hygiene scope)
-- [ ] This handover (embedding root cause + restart verification)
+- [ ] `_memory.continuity` in `implementation-summary.md` (canonical 119 state + config-alignment follow-on)
+- [ ] This handover (config-alignment outcome + daemon-env gap)
+- [ ] `retry-manager.ts` (pacing/retention: cap `MAX_RETRY_QUEUE_PENDING=1000`, batch 5, interval 5min defaults)
 <!-- /ANCHOR:next-session -->
 
 ---
@@ -90,11 +91,12 @@ Post-restart handover for the mk-spec-memory embedding provider mispoint, plus c
 ## 4. Validation Checklist
 
 Before/after handover, verify:
-- [x] All work committed + pushed (`5431c0de48`, in sync with `origin/main`)
-- [x] `validate.sh --strict` on packet 119 PASSED (0 errors)
-- [x] No breaking changes mid-implementation (all 8 fixed test files green in isolation)
-- [ ] POST-RESTART: `memory_health()` shows provider flipped to ollama (the confirmation test)
-- [ ] POST-RESTART: embedding backlog drained to 0 retry/failed via reconcile
+- [x] Embedding provider flipped `hf-local` → `ollama`, healthy, circuit-breaker closed (this session)
+- [x] All 7 configs: 3 spec-kit server env blocks byte-identical to opencode.json canonical (keys+values+order)
+- [x] 6 JSON parse clean; `.codex/config.toml` parses (tomli) with no duplicate keys
+- [x] `validate.sh --strict` on packet 119 PASSED (0 errors, 0 warnings)
+- [ ] OPEN: daemon honors tuned retry env (blocked on launcher/lifecycle fix — 004 lane)
+- [ ] OPEN: embedding backlog drained to 0 (depends on the env fix above)
 <!-- /ANCHOR:validation-checklist -->
 
 ---
@@ -102,11 +104,13 @@ Before/after handover, verify:
 <!-- ANCHOR:session-notes -->
 ## 5. Session Notes
 
-**Embedding root cause (codex gpt-5.5 high AI-council, 85% confidence).** Three reinforcing defects keep the runtime on the broken hf-local engine while `embedder_list` reports ollama: (1) the provider singleton never retargets after init (`shared/embeddings.ts:386`) and `/mcp` reconnect bridges to the existing lease holder (`mk-spec-memory-launcher.cjs:414`) — only a full restart repoints it; (2) reindex sets the active pointer with name+dim but no provider (`reindex.ts:441` -> `schema.ts:162` writes `''`), and `embedder_list` marks active by manifest name only (`embedder-list.ts:92`); (3) the retry loop is pinned to the failing runtime, opens after 5 failures, 120s cooldown -> flapping (`retry-manager.ts:391/422/713`). Empirical refinement (direct DB read): only ~32 rows are stuck (99.9% success), so impact is small and the prior `004` vector-status root cause is now stale.
+**Embedding restart verified.** `memory_health()` confirmed `embeddingProvider.provider` flipped `hf-local` → `ollama` (`nomic-embed-text-v1.5`, 768d, healthy, breaker closed). The prior handover's restart prediction held.
 
-**Do NOT conflate embedding with causal coverage.** Coverage (9.66% vs 60% target) is the causal-linking/backfill rate (1,968 edges / 28k memories), not embedding failure. The autonomous backfill raises it incrementally; a restart will not move it.
+**Reconcile reality.** The standard reconcile was a no-op post-restart (0 vector-present-stale rows). Operator chose `repairSuccessCoverage:true`, which reset 1646 `success`-but-missing-active-vector rows to `retry`. This is non-destructive (no vectors deleted; coverage can only improve). BUT the daemon's retry-manager runs code defaults (cap `MAX_RETRY_QUEUE_PENDING=1000`, batch 5, interval 5min): the retention sweep will mark ~657 overflow rows `failed` and the retained ~1000 drain over ~17h — UNLESS the daemon honors the tuned env.
 
-**Shared-tree discipline.** Repo is under heavy concurrent multi-agent commits to `main`. Never `git checkout`/revert files you did not author; scope every `git add`. Several foreign files (deep-ai-council, sk-git deletions, 030 packet, descriptions.json) were correctly left unstaged this session.
+**The core discovery.** Every config (`opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, etc.) ALREADY holds the tuned env (cap 300000, batch 100, interval 5000, ~100yr max-age) — there was nothing to "tune." Yet the running daemon behaves with defaults. So the real gap is launcher/lifecycle (env not reaching the daemon), not config drift. Config alignment alone will not change runtime behavior.
 
-**119 scope reminder.** Comment-hygiene packet is COMPLETE (rule + prod/test cleanup, validate PASSED). The 8 test fixes were pre-existing failures found while validating; 3 traced to packet 117's anchor-comment strip damaging fixtures, 1 to packet 132's speckit rename. `retry-manager` T49 left flagged (self-deferred, needs DB fixtures, `004` lane).
+**Config alignment shipped.** Aligned the 3 spec-kit MCP env blocks (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) to the `opencode.json` canonical across all 7 configs — now byte-identical (keys+values+order). Fixed: stale pre-ADR-014 llama-cpp/Voyage docs in `.vscode`/`.devin`; the `.codex` duplicate `_NOTE_*_TOOLS` bug; `.devin/config.local.json` missing `EMBEDDINGS_PROVIDER`; opencode.json missing `_NOTE_8`. Operator-confirmed note order: `_NOTE_CONTEXT_BUDGET` → `_NOTE_RETRY_TUNING` → `_NOTE_SOCKET`.
+
+**Shared-tree discipline.** Repo under heavy concurrent multi-agent commits; the mk-spec-memory daemon died once (~1–2GB RSS) and code-graph MCP flapped. Scope every `git add`; nothing committed this session.
 <!-- /ANCHOR:session-notes -->

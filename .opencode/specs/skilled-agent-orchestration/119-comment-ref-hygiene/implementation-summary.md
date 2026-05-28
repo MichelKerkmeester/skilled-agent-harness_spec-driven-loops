@@ -9,10 +9,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/119-comment-ref-hygiene"
-    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Comment extension + embedder-sidecar env-key follow-on fix; tests green"
-    next_safe_action: "None; packet complete (prod + test comments + sidecar fix)"
+    recent_action: "Aligned 3 spec-kit MCP env blocks across 7 configs to opencode canonical; validated JSON+TOML"
+    next_safe_action: "None; config alignment shipped + validated; daemon retry-env runtime gap owned by 004 lane"
     blockers: []
     key_files:
       - ".opencode/skills/sk-code/references/universal/code_style_guide.md"
@@ -83,6 +83,17 @@ Running the spec-kit suite to confirm the comment edits were inert surfaced seve
 - **spec-doc-structure** — `4d9ff721c6`. Packet 117 stripped all 12 anchors from the `063-template-compliant-level3` fixture, so `SPEC_DOC_SUFFICIENCY` parsed zero anchors and passed vacuously. Restored the fixture anchors (anchors-only revert); **the production validator — which feeds `memory-save` + `validate.sh` — was left untouched**. 16/16.
 
 **Flagged, intentionally NOT fixed:** `retry-manager` T49 — self-labeled `[deferred - requires DB test fixtures]`; returns `undefined` vs `0` precisely because the DB fixtures aren't present. Owned by the active `004-embedding-backlog-drain-investigation` lane (deep-research dated 2026-05-27). Not caused by the comment work.
+
+### Follow-on — MCP spec-kit config alignment (2026-05-28)
+Cross-runtime MCP config drift was found and aligned (operator-directed, tracked here). The three spec-kit MCP server env blocks (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) now carry **byte-identical** content (keys + values + order) across all seven configs: `opencode.json`, `.claude/mcp.json`, `.gemini/settings.json`, `.vscode/mcp.json`, `.devin/config.json`, `.devin/config.local.json` (gitignored), and `.codex/config.toml`. `opencode.json` was the chosen canonical (richest/most-current); each file's runtime-specific wrapper (`mcpServers`/`servers`/`mcp`/`mcp_servers`, `env`/`environment`, TOML, `cwd`/`trust`/`transport`, devin.local's absolute path + permissions + 2-server layout) was preserved.
+
+- **Functional env was already aligned** everywhere (`SPECKIT_RETRY_*`, socket dir, `EMBEDDINGS_PROVIDER=auto`) — except `.devin/config.local.json` was missing `EMBEDDINGS_PROVIDER` (added). So this drift was almost entirely `_NOTE_*` documentation, not behavior.
+- **Stale content removed:** `.vscode/mcp.json` + `.devin/config.json` described the pre-ADR-014 llama-cpp / Voyage-first cascade and carried a stale `_NOTE_AUTO_MIGRATION`; replaced with ADR-014 ollama-first text + canonical DB/setup notes.
+- **Bug fixed:** `.codex/config.toml` `mk_skill_advisor` had duplicate `_NOTE_1_TOOLS` + `_NOTE_2_TOOLS` (identical text); de-duplicated.
+- **Gap filled:** `opencode.json` mk-spec-memory was missing `_NOTE_8_FEATURE_FLAGS` (added).
+- **Note order (operator-confirmed):** mk-spec-memory leads with `_NOTE_CONTEXT_BUDGET`, then `_NOTE_RETRY_TUNING`, then `_NOTE_SOCKET`.
+- **Not a behavior fix:** the running daemon ignoring the tuned retry env is a separate launcher/daemon-lifecycle issue (the configs already held the tuned values); config alignment alone does not change daemon runtime behavior.
+- **Verification:** all 6 JSON parse (`node`) and the TOML parses (`tomli`, no duplicate keys); a structural diff confirms all three server env blocks are identical to the `opencode.json` canonical incl. key order.
 <!-- /ANCHOR:what-built -->
 
 ---
