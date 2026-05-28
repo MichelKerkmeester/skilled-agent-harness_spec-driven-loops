@@ -12,20 +12,20 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation"
     last_updated_at: "2026-05-28T12:20:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "hardened provider cascade (ollama probe + unhealthy self-heal); flap fixed + tested"
-    next_safe_action: "investigate document-embedding failure for ~24 large spec-docs (separate issue)"
-    blockers: ["document-embed of ~24 large spec-docs fails despite healthy ollama (provider=unknown)"]
+    recent_action: "cleaned embedding store to 0 failed (deleted 21 dup rows, re-embedded 3 via retry)"
+    next_safe_action: "optional: root-cause the opaque memory_save E081 + duplicate-row accumulation"
+    blockers: []
     key_files:
       - "shared/embeddings/factory.ts"
       - "shared/embeddings.ts"
-      - "mcp_server/context-server.ts"
+      - "mcp_server/handlers/save/response-builder.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000010"
       session_id: "rsr-2026-05-26T20-43-39Z"
       parent_session_id: null
     completion_pct: 98
     open_questions:
-      - "Are the 22 genuine failures (11 null-content, 11 provider-error) worth a further pass?"
+      - "What downstream step makes memory_save throw E081 + accumulate duplicate rows for these spec docs?"
     answered_questions:
       - "Q1-Q6 root-cause and runbook questions answered in iteration 010"
       - "Interval/batch gap root cause = context-server.ts call-site override of env-derived config, not launcher env-forwarding"
@@ -84,7 +84,9 @@ The research iteration's top durable fix (commit reindex `embedding_status='succ
 
 **Provider-flap fix verified (later daemon, pid 68565):** after Fix D + restart, the fresh daemon resolved `embeddingProvider.provider: ollama, healthy: true` (previously a post-crash daemon, pid 55306, had cached unhealthy hf-local). `memory_search` query-embedding works through ollama.
 
-**Open — separate document-embedding failure (NOT the flap):** attempting to re-embed the ~22 failed spec-docs via `memory_save({force:true})` still errors with `EMBEDDING_PROVIDER_ERROR (provider=unknown)` / `Embedding generation returned null`, even though ollama is healthy, its `/api/embed` works via curl, and query-embedding (search) succeeds. The failure is specific to **document embedding of these larger docs (3.8k–13k chars)**; blind retries grew the count to 24 (incl. two of this packet's just-committed docs re-indexed by the earlier crashed scan). Root cause not yet isolated (candidate: chunking/size handling on the document path). Tracked as a distinct follow-up; the 22→24 rows remain BM25/FTS-searchable.
+**Resolved to 0 failed (2026-05-28) — and it was NOT a document-embedding bug.** Direct isolation tests (`generateDocumentEmbedding` on the exact failing files) returned `Float32Array(768)` for every one — embeds work. The 24 "failed" rows were: **21 stale exact-content duplicates** (same `content_hash` as an existing `success` row for the same path — flap-era cruft) and **3 genuinely-unembedded files** (`007-cp-sandbox-speckit-path-fix/{implementation-summary,plan,spec}.md`). Cleanup: deleted the 21 duplicates via `memory_delete` (success rows retain the content + vectors), and reset the 3 to `retry` so the background job re-embedded them via the proven `retryEmbedding` path. **Final store: `success` only, 0 failed / 0 retry / 0 pending.**
+
+**Known remaining bug (separate, not fixed here):** `memory_save({force:true})` on these spec docs throws an **opaque `E081`** ("unexpected error") — the real message is sanitized by `userFriendlyError` (mcp_server/lib/errors/core.ts:198) to stderr only (Claude's MCP logs capture connection lifecycle, not daemon stderr). The throw is **downstream of embedding** (embed succeeds in isolation) and, for some files, leaves duplicate rows behind (the store has multiple rows per path/hash). Root-causing needs the daemon's raw stderr or an isolated repro of the full save handler. Tracked for a dedicated session.
 
 <!-- /ANCHOR:what-built -->
 ---
