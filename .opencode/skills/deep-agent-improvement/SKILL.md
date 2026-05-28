@@ -236,7 +236,7 @@ Dynamic mode is the only scoring path. Scoring evaluates five dimensions:
 | Output Quality | 0.15 | Output verification items present, no placeholder content |
 | System Fitness | 0.15 | Permission alignment, resource references valid, frontmatter complete |
 
-Profiles are generated on the fly from any agent file via `scripts/generate-profile.cjs`. No static profiles are shipped; every target is evaluated against its own derived structure and rules.
+Profiles are generated on the fly from any agent file via `scripts/generate-profile.cjs`. No static profiles are shipped. Every target is evaluated against its own derived structure and rules.
 
 ### Mode 3: Promotion and Recovery
 
@@ -326,7 +326,7 @@ The command workflow first materializes static fixture JSON into packet-local ma
 
 ### Legal-Stop Gate Bundles
 
-A session may NOT claim `converged` unless all five gate bundles pass: `contractGate`, `behaviorGate`, `integrationGate`, `evidenceGate`, and `improvementGate`. The orchestrator emits `legal_stop_evaluated` with nested `details.gateResults` before any `session_end`; failures emit `blocked_stop` with `failedGates[]` and `stopReason:"blockedStop"`.
+A session may NOT claim `converged` unless all five gate bundles pass: `contractGate`, `behaviorGate`, `integrationGate`, `evidenceGate`, and `improvementGate`. The orchestrator emits `legal_stop_evaluated` with nested `details.gateResults` before any `session_end`. Failures emit `blocked_stop` with `failedGates[]` and `stopReason:"blockedStop"`.
 
 ### Resume/Continuation Semantics (current release)
 
@@ -361,15 +361,15 @@ Where `normalizedBody64` = whitespace-collapsed, lowercased, first 64 characters
 ```bash
 export DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1  # Force re-evaluation of previously seen signatures
 ```
-When set, `isSignatureSeen()` always returns `{ seen: false }` — every mutation is considered fresh.
+When set, `isSignatureSeen()` always returns `{ seen: false }`. Every mutation is considered fresh.
 
 **Backward compatibility:** Legacy `mutation-coverage.json` entries without `signature` field fall back to the existing `dimension::mutationType` dedup in the reducer. No migration required.
 
-**Authoritative storage:** `mutation-coverage.json` `mutations[]` array — `signature` is written by `recordMutation()` and read by `isSignatureSeen()` and `reduce-state.cjs`.
+**Authoritative storage:** `mutation-coverage.json` `mutations[]` array. `signature` is written by `recordMutation()` and read by `isSignatureSeen()` and `reduce-state.cjs`.
 
 ### Dimension Trajectory
 
-Trajectory data records per-iteration dimension scores. Two distinct convergence signals run side by side and must not be conflated. `mutation-coverage.cjs` `checkConvergenceEligibility()` marks a profile convergence-eligible when it has at least 3 data points and every dimension delta across the last 3 points is within `DEFAULT_STABILITY_DELTA` (+/-2) — a tolerance band. Separately, `reduce-state.cjs` `stopOnDimensionPlateau` fires the plateau stop only when a dimension's last 3 scores are identical (exact-repeat). The +/-2 trajectory eligibility and the exact-repeat plateau stop are different checks.
+Trajectory data records per-iteration dimension scores. Two distinct convergence signals run side by side and must not be conflated. `mutation-coverage.cjs` `checkConvergenceEligibility()` marks a profile convergence-eligible when it has at least 3 data points and every dimension delta across the last 3 points is within `DEFAULT_STABILITY_DELTA` (+/-2), a tolerance band. Separately, `reduce-state.cjs` `stopOnDimensionPlateau` fires the plateau stop only when a dimension's last 3 scores are identical (exact-repeat). The +/-2 trajectory eligibility and the exact-repeat plateau stop are different checks.
 
 Stop-condition counters (`maxConsecutiveTies`, `maxInfraFailuresPerProfile`, `maxWeakBenchmarkRunsPerProfile`) default to disabled, with no cap, unless the runtime config sets them. Only configured counters can trigger `blockedStop`.
 
@@ -416,7 +416,7 @@ Journal boundaries are `session_start` after baseline setup, per-iteration candi
 - `STOP_REASONS`: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`
 - `SESSION_OUTCOMES`: `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`
 
-Keep session-end emissions aligned to those helper-owned values until the helper contract itself changes. Labels such as `convergedImprovement`, `plateau`, `benchmarkPlateau`, `rejected`, `deferred`, `blocked`, or `errored` are not accepted by the current CLI validator. Plateau detection is a reducer/stop-rule condition; it must reconcile to one of the canonical stop reasons above when emitted as `details.stopReason`.
+Keep session-end emissions aligned to those helper-owned values until the helper contract itself changes. Labels such as `convergedImprovement`, `plateau`, `benchmarkPlateau`, `rejected`, `deferred`, `blocked`, or `errored` are not accepted by the current CLI validator. Plateau detection is a reducer/stop-rule condition. It must reconcile to one of the canonical stop reasons above when emitted as `details.stopReason`.
 
 ### Orchestrator Ownership
 
@@ -432,7 +432,7 @@ The reducer is the consumer for replay artifacts on refresh. Every `scripts/redu
 - `candidate-lineage.json`
 - `mutation-coverage.json`
 
-These inputs remain optional. Missing files do not fail the reducer; the corresponding registry field is set to `null` so dashboard and registry refreshes still complete.
+These inputs remain optional. Missing files do not fail the reducer. The corresponding registry field is set to `null` so dashboard and registry refreshes still complete.
 
 For legal-stop replay, the reducer consumes `details.gateResults` from the latest `legal_stop_evaluated` event and surfaces it as `journalSummary.latestLegalStop.gateResults` in `experiment-registry.json` plus the dashboard's latest legal-stop table.
 

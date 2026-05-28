@@ -23,7 +23,7 @@ Copy this file into the packet-local runtime area and treat it as the stable pol
 
 ## 2. MISSION
 
-Build a trustworthy improvement loop for agent surfaces by proving evaluation discipline before allowing self-editing. Evaluate agents holistically across their full integration surface — not just the prompt file, but the complete system of mirrors, commands, YAML workflows, skills, and gate routing that together define agent behavior.
+Build a trustworthy improvement loop for agent surfaces by proving evaluation discipline before allowing self-editing. Evaluate agents holistically across their full integration surface, not just the prompt file, but the complete system of mirrors, commands, YAML workflows, skills, and gate routing that together define agent behavior.
 
 ---
 
@@ -32,7 +32,7 @@ Build a trustworthy improvement loop for agent surfaces by proving evaluation di
 ### Dynamic Targets
 
 - targets are bounded agent files selected at initialization time (any `.opencode/agents/*.md`)
-- no canonical pre-selected target; every run picks its target explicitly and evaluates it through dynamic mode
+- no canonical pre-selected target. Every run picks its target explicitly and evaluates it through dynamic mode
 
 ---
 
@@ -44,8 +44,8 @@ Build a trustworthy improvement loop for agent surfaces by proving evaluation di
 - all attempts are logged append-only
 - runtime mirrors are downstream packaging surfaces, not benchmark truth
 - human approval is required before any canonical promotion
-- promotion is a per-target decision under dynamic mode; no static profile is automatically promotion-eligible
-- evaluation uses 5 deterministic dimensions (structural integrity, rule coherence, integration consistency, output quality, system fitness) — each scored independently, weighted, and tracked per iteration
+- promotion is a per-target decision under dynamic mode. No static profile is automatically promotion-eligible
+- evaluation uses 5 deterministic dimensions (structural integrity, rule coherence, integration consistency, output quality, system fitness), each scored independently, weighted, and tracked per iteration
 
 ---
 

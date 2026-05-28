@@ -79,8 +79,8 @@ Run individual scripts from the repository root with the documented arguments.
 | `rollback-candidate.cjs` | CJS source file in this folder. |
 | `run-benchmark.cjs` | Fixture/integration scorer. `--scorer pattern` (default) or `5dim` (121/005 opt-in via `scorer/`). |
 | `scan-integration.cjs` | CJS source file in this folder. |
-| `loop-host.cjs` | Mode-switching entry point (agent-improvement vs model-benchmark) — 121/003. |
-| `dispatch-model.cjs` | Model-agnostic CLI dispatcher for model-benchmark mode — 121/003. |
+| `loop-host.cjs` | Mode-switching entry point (agent-improvement vs model-benchmark), 121/003. |
+| `dispatch-model.cjs` | Model-agnostic CLI dispatcher for model-benchmark mode, 121/003. |
 | `scorer/` | Ported 120/003 five-dimension scorer: `score-model-variant.cjs`, `deterministic/`, `grader/`, `lib/cache.cjs` (runtime `cache/` git-ignored). |
 | Additional files | `trade-off-detector.cjs`, `vitest.config.mjs`, `tests/` (vitest suites incl. remediation + opt-in-scorer) |
 
