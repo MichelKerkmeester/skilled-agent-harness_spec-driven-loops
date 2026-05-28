@@ -1,0 +1,8 @@
+{
+  "name": "fix-003-bundle-gate-smoke-run",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "vitest": "^1.0.0"
+  }
+}

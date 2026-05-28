@@ -1,0 +1,7 @@
+{
+  "status": "verified",
+  "valid": [
+    "--model",
+    "--prompt-file"
+  ]
+}

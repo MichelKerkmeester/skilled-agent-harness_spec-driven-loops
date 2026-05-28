@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/120-cli-opencode-minimax-optimization"
     last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Scaffolded phase parent + children 001/002; child 001 ready to implement"
-    next_safe_action: "Implement child 001 (MiniMax provider), then run child 002 deep-research loop"
+    recent_action: "All 3 phases complete (provider, research, benchmark)"
+    next_safe_action: "Close packet, or open a follow-on to apply 002 research deltas"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-28 |
 | **Branch** | `main` |
 | **Parent Spec** | None (top-level packet in `skilled-agent-orchestration`) |
@@ -107,8 +107,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-minimax-provider-integration/ | Wire `minimax` direct-API provider into cli-opencode + small-model registry + sentinel | Pending |
-| 2 | 002-minimax-efficiency-deep-research/ | 10-iter deep-research (cli-codex gpt-5.5 high/fast) on MiniMax 2.7 efficiency via cli-opencode | Pending |
+| 1 | 001-minimax-provider-integration/ | Wire `minimax` direct-API provider into cli-opencode + small-model registry + sentinel | Complete |
+| 2 | 002-minimax-efficiency-deep-research/ | 10-iter deep-research (cli-codex gpt-5.5 high/fast) on MiniMax 2.7 efficiency via cli-opencode | Complete |
+| 3 | 003-minimax-prompt-framework-benchmark/ | Empirical prompt-framework bake-off (real MiniMax M2.7 calls, 113 rig) + integrate winner (TIDD-EC + dense) | Complete |
 
 ### Phase Transition Rules
 
@@ -122,6 +123,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-minimax-provider-integration | 002-minimax-efficiency-deep-research | `minimax-2.7` present in `model-profiles.json` (valid JSON) + cli-opencode docs show the provider | `jq` parse + `rg -n minimax` + strict validate on 001 |
+| 002-minimax-efficiency-deep-research | 003-minimax-prompt-framework-benchmark | research.md delta list available to seed the benchmark's framework variants | research.md present + 002 validated |
 <!-- /ANCHOR:phase-map -->
 
 ---

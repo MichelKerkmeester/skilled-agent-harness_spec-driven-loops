@@ -1,0 +1,1000 @@
+{
+  "sessionId": "research-20260528-144622",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-param-bestcandidate-object-null-noimprovementcount-number-statepath-string-opts",
+      "text": "@param {{ bestCandidate: object|null, noImprovementCount: number, statePath: string }} opts",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-param-candidateid-string-candidatehash-string-fixture-object-outputtext-string-r",
+      "text": "@param {{ candidateId: string, candidateHash: string, fixture: object, outputText: string, rubricVersion: string, mode: 'real'|'mock', mockMode?: string }} opts",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-param-prompt-file-string-executor-cli-opencode-cli-claude-code-cli-devin-cli-cod",
+      "text": "@param {{ prompt_file: string, executor: 'cli-opencode'|'cli-claude-code'|'cli-devin'|'cli-codex', model: string, agent?: string, mock?: boolean, mock_mode?: string, cwd?: string, timeout_ms?: number }} opts",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-returns-proposal-id-string-signature-string-meta-object-filepath-string-source-s",
+      "text": "@returns {{ proposal: { id: string, signature: string, meta?: object, filePath?: string, source: 'seeded'|'mutated'|'imported' }|null }}",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-returns-promise-fixtureid-string-weightedscore-number-dimensions-object-hard-gat",
+      "text": "@returns {Promise<{ fixtureId: string, weightedScore: number, dimensions: object, hard_gate_failed: boolean }>}",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-returns-promise-ok-boolean-exit-code-number-stdout-string-stderr-string-attempts",
+      "text": "@returns {Promise<{ ok: boolean, exit_code: number, stdout: string, stderr: string, attempts: number, paused?: boolean, pause_reason?: string, mock?: boolean }>}",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-d1-acceptance-deterministic-checks-grep-grep-absent-deterministic-git-diff-paths",
+      "text": "D1: `acceptance` — deterministic checks (grep/grep_absent/deterministic/git_diff_paths)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-d2-bundlegate-smoke-run-bundle-gate-check",
+      "text": "D2: `bundleGate` — smoke-run bundle gate check",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-d3-cwdcheck-working-directory-correctness-check",
+      "text": "D3: `cwdCheck` — working-directory correctness check",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-d4-grader-claude-grader-d4-hallucination-dimension-via-harness",
+      "text": "D4: `grader` — claude grader (D4 Hallucination dimension, via harness)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-d5-preplanning-pre-planning-regex-check",
+      "text": "D5: `preplanning` — pre-planning regex check",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-opts",
+      "text": "}} opts",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-23-entry",
+      "text": "}>}",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-param",
+      "text": "@param {{",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-14-returns-promise",
+      "text": "@returns {Promise<{",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-26-a-behavioral-test-loop-cjs-run-with-mode-agent-improvement-produces-identical-st",
+      "text": "A behavioral test: `loop.cjs --run-with-mode=agent-improvement` produces identical state JSONL lines as `loop.cjs` without the mode flag",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-agent-string-resolved-from-config-if-omitted",
+      "text": "agent?: string, // resolved from config if omitted",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-19-attempts-number",
+      "text": "attempts: number,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-cwd-string",
+      "text": "cwd?: string,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-dispatch-model-cjs-model-agnostic-cli-dispatcher",
+      "text": "dispatch-model.cjs — model-agnostic CLI dispatcher",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-executor-cli-opencode-cli-claude-code-cli-devin-cli-codex-cli-gemini",
+      "text": "executor: 'cli-opencode'|'cli-claude-code'|'cli-devin'|'cli-codex'|'cli-gemini',",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-16-exit-code-number",
+      "text": "exit_code: number,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-mock-mode-string",
+      "text": "mock_mode?: string,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-22-mock-boolean",
+      "text": "mock?: boolean",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-mock-boolean",
+      "text": "mock?: boolean,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-model-string-resolved-from-config-if-omitted",
+      "text": "model?: string, // resolved from config if omitted",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-modelbenchmarkconfig-object-injected-by-loop-cjs-for-model-benchmark-undefined-f",
+      "text": "modelBenchmarkConfig?: object // injected by loop.cjs for model-benchmark; undefined for agent-improvement",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-15-ok-boolean",
+      "text": "ok: boolean,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-21-pause-reason-string",
+      "text": "pause_reason?: string,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-20-paused-boolean",
+      "text": "paused?: boolean,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-prompt-file-string",
+      "text": "prompt_file: string,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-18-stderr-string",
+      "text": "stderr: string,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-17-stdout-string",
+      "text": "stdout: string,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-24-the-config-default-mode-agent-improvement-implied-when-absent",
+      "text": "The config default (`mode: \"agent-improvement\"` implied when absent)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-25-the-dynamic-require-factory-pattern-that-gates-dispatch-model-cjs-loading",
+      "text": "The dynamic require / factory pattern that gates `dispatch-model.cjs` loading",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-timeout-ms-number",
+      "text": "timeout_ms?: number,",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-variant-string-model-benchmark-only-held-constant-for-agent-improvement-comparis",
+      "text": "variant?: string, // model-benchmark only; held constant for agent-improvement comparison",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-cleanscore-20-pts-forbiddenpatterns-absence",
+      "text": "`cleanScore` (20 pts): `forbiddenPatterns` absence",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-cleanscore-forbiddenpatterns-penalizes-output-containing-undesirable-patterns",
+      "text": "`cleanScore` / `forbiddenPatterns` — penalizes output containing undesirable patterns",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-17-hard-gate-failed-true-weightedscore-must-be-0",
+      "text": "`hard_gate_failed === true` → `weightedScore` must be 0",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-headingscore-45-pts-requiredheadings-coverage",
+      "text": "`headingScore` (45 pts): `requiredHeadings` coverage",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-patternscore-35-pts-requiredpatterns-coverage",
+      "text": "`patternScore` (35 pts): `requiredPatterns` coverage",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-18-weightedscore-is-always-0-1",
+      "text": "`weightedScore` is always 0..1",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-agent-improvement-returns-a-grader-that-calls-the-llm-with-the-5-dim-rubric",
+      "text": "agent-improvement: returns a grader that calls the LLM with the 5-dim rubric",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-create-a-buildgraderfn-mode-factory-returned-by-the-harness-module",
+      "text": "Create a `buildGraderFn(mode)` factory returned by the harness module",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-d1-acceptance-weight-0-25-scoreacceptancedeterministic-fixture-specific-determin",
+      "text": "D1 Acceptance (weight ~0.25): `scoreAcceptanceDeterministic` — fixture-specific deterministic checks",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-d2-bundle-gate-weight-0-25-bundle-gate-cjs-check",
+      "text": "D2 Bundle gate (weight ~0.25): `bundle-gate.cjs` check",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-d3-cwd-check-weight-0-15-cwd-check-cjs",
+      "text": "D3 CWD check (weight ~0.15): `cwd-check.cjs`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-d4-grader-weight-0-25-harness-graded4-claude-grader-via-harness",
+      "text": "D4 Grader (weight ~0.25): `harness.gradeD4` — claude grader via harness",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-d5-pre-planning-weight-0-10-preplanning-regex-cjs",
+      "text": "D5 Pre-planning (weight ~0.10): `preplanning-regex.cjs`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-model-benchmark-returns-a-noop-or-simple-pattern-match-grader-d4-maps-to-forbidd",
+      "text": "model-benchmark: returns a NOOP or simple pattern-match grader (D4 maps to `forbiddenPatterns` presence in benchmark mode)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-15-only-when-mode-model-benchmark-should-the-ported-120-003-rubric-path-be-activate",
+      "text": "Only when mode=`model-benchmark` should the ported 120/003 rubric path be activated",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-the-harness-itself-stays-in-eval-rig-grader-harness-cjs-only-the-factory-functio",
+      "text": "The harness itself stays in `eval-rig/grader/harness.cjs`; only the factory function is called",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-16-the-mode-detection-should-be-done-in-loop-cjs-or-reduce-state-cjs-not-inside-the",
+      "text": "The mode detection should be DONE in `loop.cjs` (or `reduce-state.cjs`), NOT inside the scorer itself — the scorer receives a pre-processed `scoringMode` argument",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-14-the-new-scorer-seam-must-default-to-the-existing-score-candidate-cjs-behavior-wh",
+      "text": "The new scorer seam MUST default to the existing `score-candidate.cjs` behavior when mode=`agent-improvement`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-19-the-scorer-never-reads-a-fixture-json-file-directly-all-fixture-data-is-extracte",
+      "text": "The scorer NEVER reads a fixture JSON file directly — all fixture data is extracted and passed as primitives by the loop host",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-38-materialize-benchmark-fixtures-cjs-is-not-called-by-run-benchmark-cjs-they-are-s",
+      "text": "**materialize-benchmark-fixtures.cjs is not called by run-benchmark.cjs**: They are separate. The loop host must call materialize BEFORE run-benchmark. Omitting this step produces zero fixture outputs and all fixtures fail with `missing-output`.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-39-mode-default-must-be-agent-improvement-if-mode-is-absent-or-unknown-the-loop-mus",
+      "text": "**mode default must be agent-improvement**: If mode is absent or unknown, the loop must default to agent-improvement. This is critical for backward compat — existing callers that don't pass --mode must get the existing behavior.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-37-no-loop-cjs-exists-yet-must-create-loop-host-cjs-as-the-new-orchestrating-entry-",
+      "text": "**No loop.cjs exists yet**: Must create loop-host.cjs as the new orchestrating entry point. Without this, there is no place to wire the mode switch.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-42-promote-candidate-convergence-for-model-benchmark-the-convergence-criteria-aggre",
+      "text": "**Promote-candidate convergence for model-benchmark**: The convergence criteria (aggregate threshold, per-fixture minimum, pass rate) are per-profile from the benchmark profile JSON. These must be passed to promote-candidate.cjs or embedded in the benchmark_run record for it to read.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-41-reduce-state-computes-per-profile-aggregates-if-model-benchmark-and-agent-improv",
+      "text": "**reduce-state computes per-profile aggregates**: If model-benchmark and agent-improvement records are mixed in the same state log, reduce-state correctly handles them via record.type routing. No special mixed-mode handling needed.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-40-state-record-mode-field-must-be-consistent-if-score-candidate-emits-mode-agent-i",
+      "text": "**State record mode field must be consistent**: If score-candidate emits `mode: 'agent-improvement'` but promote-candidate expects it, the field must be present. Review all record emitters.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-benchmark-run-from-run-benchmark-cjs-model-benchmark",
+      "text": "`benchmark_run` — from run-benchmark.cjs (model-benchmark)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-improvement-journal-cjs-appends-state-events-to-agent-improvement-state-jsonl",
+      "text": "`improvement-journal.cjs` — appends state events to `agent-improvement-state.jsonl`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-infra-failure-from-either-scorer",
+      "text": "`infra_failure` — from either scorer",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-mirror-sync-state-from-scan-integration-cjs",
+      "text": "`mirror_sync_state` — from scan-integration.cjs",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-promote-candidate-cjs-computes-recommendation-from-score-gates",
+      "text": "`promote-candidate.cjs` — computes `recommendation` from score + gates",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-promote-candidate-cjs-decides-based-on-scores-whether-to-accept-reject",
+      "text": "`promote-candidate.cjs` — decides based on scores whether to accept/reject",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-reduce-state-cjs-reads-the-state-log-computes-registry-dashboard",
+      "text": "`reduce-state.cjs` — reads the state log, computes registry/dashboard",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-15-run-benchmark-cjs-outputs-records-with-type-benchmark-run-and-evaluationmode-ben",
+      "text": "`run-benchmark.cjs` outputs records with `type: 'benchmark_run'` and `evaluationMode: 'benchmark'`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-14-score-candidate-cjs-outputs-records-with-type-scored-and-evaluationmode-dynamic-",
+      "text": "`score-candidate.cjs` outputs records with `type: 'scored'` and `evaluationMode: 'dynamic-5d'`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-scored-accepted-rejected-from-score-candidate-cjs-agent-improvement",
+      "text": "`scored` / `accepted` / `rejected` — from score-candidate.cjs (agent-improvement)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-20-accept-mode-argument-default-agent-improvement",
+      "text": "Accept `--mode` argument (default: 'agent-improvement')",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-23-accepts-mode-agent-improvement-model-benchmark-default-agent-improvement",
+      "text": "Accepts --mode=agent-improvement|model-benchmark (default: agent-improvement)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-32-add-mode-argument",
+      "text": "Add --mode argument",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-16-add-mode-agent-improvement-model-benchmark-to-every-state-record-both-scorers",
+      "text": "Add `mode: 'agent-improvement' | 'model-benchmark'` to every state record (both scorers)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-28-add-evaluationmode-agent-improvement-to-all-emitted-records",
+      "text": "Add evaluationMode: 'agent-improvement' to all emitted records",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-30-add-evaluationmode-model-benchmark-to-all-emitted-records-already-sets-this",
+      "text": "Add evaluationMode: 'model-benchmark' to all emitted records (already sets this)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-24-agent-improvement-path-calls-score-candidate-cjs-appends-to-state-log",
+      "text": "agent-improvement path: calls score-candidate.cjs, appends to state log",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-18-agent-improvement-weighted-score-weighted-score-gate-60-plus-stability-benchmark",
+      "text": "agent-improvement: weighted score >= WEIGHTED_SCORE_GATE (60), plus stability + benchmark pass",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-27-all-paths-emit-state-records-with-mode-field",
+      "text": "All paths: emit state records with mode field",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-29-already-outputs-evaluationmode-dynamic-5d-rename-to-evaluationmode-agent-improve",
+      "text": "Already outputs evaluationMode: 'dynamic-5d' — rename to evaluationMode: 'agent-improvement' for clarity",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-26-both-paths-call-promote-candidate-cjs-with-mode",
+      "text": "Both paths: call promote-candidate.cjs with --mode",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-13-calls-promote-candidate-cjs-for-the-convergence-decision",
+      "text": "Calls `promote-candidate.cjs` for the convergence decision",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-12-calls-score-candidate-cjs-agent-improvement-or-run-benchmark-cjs-model-benchmark",
+      "text": "Calls `score-candidate.cjs` (agent-improvement) or `run-benchmark.cjs` (model-benchmark)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-31-confirm-state-record-includes-mode-field",
+      "text": "Confirm state record includes mode field",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-35-display-mode-in-dashboard",
+      "text": "Display mode in dashboard",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-journal-records-carry-the-recommendation-forward",
+      "text": "Journal records carry the `recommendation` forward",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-33-mode-aware-convergence-criteria-per-f8-above",
+      "text": "Mode-aware convergence criteria per F8 above",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-25-model-benchmark-path-calls-materialize-benchmark-fixtures-cjs-then-run-benchmark",
+      "text": "model-benchmark path: calls materialize-benchmark-fixtures.cjs then run-benchmark.cjs",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-19-model-benchmark-aggregatescore-profile-threshold-per-fixture-minimum-met",
+      "text": "model-benchmark: aggregateScore >= profile threshold, per-fixture minimum met",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-36-no-structural-changes-required",
+      "text": "No structural changes required",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-34-pass-mode-through-in-bucket-metadata",
+      "text": "Pass mode through in bucket metadata",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-11-reads-writes-agent-improvement-state-jsonl",
+      "text": "Reads/writes `agent-improvement-state.jsonl`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-reduce-state-aggregates-recommendations-across-the-run",
+      "text": "reduce-state aggregates recommendations across the run",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-17-reduce-state-can-then-compute-per-mode-metrics-correctly",
+      "text": "reduce-state can then compute per-mode metrics correctly",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-22-when-mode-agent-improvement-use-existing-score-candidate-logic",
+      "text": "When mode=`agent-improvement`, use existing score-candidate logic",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-21-when-mode-model-benchmark-use-benchmark-run-record-fields-for-convergence-decisi",
+      "text": "When mode=`model-benchmark`, use `benchmark_run` record fields for convergence decision (aggregateScore, passRate, minimumFixtureScore)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-mode-agent-improvement-calls-score-candidate-cjs-appends-to-state-log-calls-prom",
+      "text": "--mode=agent-improvement: calls score-candidate.cjs → appends to state log → calls promote-candidate.cjs --mode=agent-improvement",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-mode-model-benchmark-calls-materialize-benchmark-fixtures-cjs-calls-run-benchmar",
+      "text": "--mode=model-benchmark: calls materialize-benchmark-fixtures.cjs → calls run-benchmark.cjs → appends to state log → calls promote-candidate.cjs --mode=model-benchmark",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-29-variant-only-forwarded-for-model-benchmark-omitted-for-agent-improvement",
+      "text": "--variant: only forwarded for model-benchmark; omitted for agent-improvement",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-evaluationmode-agent-improvement",
+      "text": "`evaluationMode === 'agent-improvement'`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-mode-agent-improvement",
+      "text": "`mode === 'agent-improvement'`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-20-accept-mode-argument-default-agent-improvement",
+      "text": "Accept --mode argument (default: 'agent-improvement')",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-accepts-mode-agent-improvement-model-benchmark-default-agent-improvement",
+      "text": "Accepts --mode=agent-improvement|model-benchmark (default: agent-improvement)",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-28-accepts-prompt-file-model-executor-agent-mock-mock-mode-cwd-timeout-ms-variant",
+      "text": "Accepts --prompt-file, --model, --executor, --agent, --mock, --mock-mode, --cwd, --timeout-ms, --variant",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-24-add-mode-field-to-profile-bucket-metadata",
+      "text": "Add mode field to profile bucket metadata",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-15-add-mode-agent-improvement-to-all-output-records-including-infra-failure",
+      "text": "Add mode: 'agent-improvement' to all output records (including infra_failure)",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-18-add-mode-model-benchmark-to-all-state-records-already-has-evaluationmode-benchma",
+      "text": "Add mode: 'model-benchmark' to all state records (already has evaluationMode: 'benchmark')",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-13-all-state-records-include-mode-field",
+      "text": "All state records: include mode field",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-17-backward-compat-existing-callers-with-no-mode-argument-continue-to-work",
+      "text": "backward-compat: existing callers with no --mode argument continue to work",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-32-buildgraderfn-mode-factory-function-in-eval-rig-grader-harness-cjs",
+      "text": "buildGraderFn(mode): factory function in eval-rig/grader/harness.cjs",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-default-to-agent-improvement",
+      "text": "Default to `agent-improvement`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-25-display-mode-in-dashboard-per-profile-section",
+      "text": "Display mode in dashboard per-profile section",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-19-ensure-infra-failure-records-also-carry-mode-model-benchmark",
+      "text": "Ensure infra_failure records also carry mode: 'model-benchmark'",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-every-scored-record-has-type-status-evaluationmode-mode-score-recommendation",
+      "text": "Every `scored` record has `type`, `status`, `evaluationMode`, `mode`, `score`, `recommendation`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-every-line-is-valid-json",
+      "text": "Every line is valid JSON",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-log-a-warning-to-stderr",
+      "text": "Log a warning to stderr",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-23-mode-aware-convergence-criteria-per-iteration-4-findings-f8",
+      "text": "Mode-aware convergence criteria per iteration-4 findings (F8)",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-33-mode-agent-improvement-llm-grader-with-5-dim-rubric",
+      "text": "mode=agent-improvement: LLM grader with 5-dim rubric",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-34-mode-model-benchmark-noop-or-forbidden-patterns-simple-match",
+      "text": "mode=model-benchmark: NOOP or forbidden-patterns simple match",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-27-model-agnostic-dispatcher-generalized-from-dispatch-minimax-cjs",
+      "text": "Model-agnostic dispatcher, generalized from dispatch-minimax.cjs",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-30-modelbenchmarkconfig-injected-by-loop-host-for-model-benchmark-undefined-for-age",
+      "text": "modelBenchmarkConfig injected by loop-host for model-benchmark; undefined for agent-improvement",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-16-no-new-required-arguments",
+      "text": "No new required arguments",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-no-new-required-fields-added-that-would-break-jsonl-consumers",
+      "text": "No new required fields added that would break JSONL consumers",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-26-no-structural-changes-to-registry-aggregation-logic",
+      "text": "No structural changes to registry aggregation logic",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-not-crash",
+      "text": "NOT crash",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-14-rename-evaluationmode-dynamic-5d-agent-improvement-in-all-output-records",
+      "text": "Rename evaluationMode: 'dynamic-5d' → 'agent-improvement' in all output records",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-35-seam-contract-score-outputtext-scoringcontext-mode",
+      "text": "Seam contract: score(outputText, scoringContext, mode)",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-12-unknown-mode-warns-to-stderr-falls-back-to-agent-improvement",
+      "text": "Unknown mode: warns to stderr, falls back to agent-improvement",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-31-uses-dynamic-require-factory-pattern-gated-on-mode",
+      "text": "Uses dynamic require / factory pattern gated on mode",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-21-when-mode-agent-improvement-require-score-status-scored-existing",
+      "text": "When mode=agent-improvement: require score.status === 'scored' (existing)",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-22-when-mode-model-benchmark-require-score-status-benchmark-complete",
+      "text": "When mode=model-benchmark: require score.status === 'benchmark-complete'",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-dispatch-model-cjs-model-agnostic-cli-dispatcher-generalized-from-dispatch-minim",
+      "text": "`dispatch-model.cjs` — model-agnostic CLI dispatcher, generalized from dispatch-minimax.cjs",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-loop-host-cjs-orchestrating-entry-point-with-mode-switch-default-agent-improveme",
+      "text": "`loop-host.cjs` — orchestrating entry point with `--mode` switch (default: agent-improvement)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-promote-candidate-cjs-accept-mode-argument-mode-aware-convergence-criteria-routi",
+      "text": "`promote-candidate.cjs` — accept --mode argument, mode-aware convergence criteria routing",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-7-reduce-state-cjs-add-mode-to-profile-bucket-metadata-display-in-dashboard-per-pr",
+      "text": "`reduce-state.cjs` — add mode to profile bucket metadata, display in dashboard per-profile section",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-run-benchmark-cjs-add-mode-model-benchmark-to-all-state-records-ensure-infra-fai",
+      "text": "`run-benchmark.cjs` — add mode: 'model-benchmark' to all state records, ensure infra_failure records carry mode field",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-score-candidate-cjs-rename-evaluationmode-dynamic-5d-agent-improvement-add-mode-",
+      "text": "`score-candidate.cjs` — rename evaluationMode: 'dynamic-5d' → 'agent-improvement', add mode field to all records including infra_failure",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-8-bc-inv-1-loop-host-cjs-with-mode-agent-improvement-or-no-mode-produces-byte-for-",
+      "text": "BC-INV-1: loop-host.cjs with --mode=agent-improvement OR no --mode produces byte-for-byte identical state JSONL",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-9-bc-inv-2-score-candidate-cjs-callers-work-without-modification",
+      "text": "BC-INV-2: score-candidate.cjs callers work without modification",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-10-bc-inv-3-scored-record-schema-remains-backward-compatible-new-fields-are-additiv",
+      "text": "BC-INV-3: scored record schema remains backward-compatible (new fields are additive)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-11-bc-inv-4-reduce-state-cjs-handles-pre-feature-records-without-mode-field",
+      "text": "BC-INV-4: reduce-state.cjs handles pre-feature records without mode field",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-12-bc-inv-5-promote-candidate-cjs-defaults-to-agent-improvement-when-mode-is-absent",
+      "text": "BC-INV-5: promote-candidate.cjs defaults to agent-improvement when mode is absent/unknown",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-benchmark-grader-factory-via-buildgraderfn-mode-in-eval-rig-grader-harness-cjs",
+      "text": "Benchmark grader factory via `buildGraderFn(mode)` in `eval-rig/grader/harness.cjs`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-13-ec-1-state-log-first-run-fs-appendfilesync-creates-parent-dirs",
+      "text": "EC-1: State log first-run (fs.appendFileSync creates parent dirs)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-22-ec-10-rubric-version-not-hardcoded-when-called-from-model-benchmark-mode",
+      "text": "EC-10: Rubric version not hardcoded when called from model-benchmark mode",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-14-ec-2-unknown-mode-warns-stderr-falls-back-to-agent-improvement",
+      "text": "EC-2: Unknown mode → warns stderr, falls back to agent-improvement",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-15-ec-3-mixed-state-log-pre-post-feature-records",
+      "text": "EC-3: Mixed state log (pre/post feature records)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-16-ec-4-concurrent-execution-run-specific-state-log-paths",
+      "text": "EC-4: Concurrent execution (run-specific state log paths)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-17-ec-5-materialize-benchmark-fixtures-cjs-failure-propagation",
+      "text": "EC-5: materialize-benchmark-fixtures.cjs failure propagation",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-18-ec-6-score-cache-collision-mode-differentiation-in-cache-key",
+      "text": "EC-6: Score cache collision (mode-differentiation in cache key)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-19-ec-7-infra-failure-records-carry-correct-mode-field",
+      "text": "EC-7: infra_failure records carry correct mode field",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-20-ec-8-promote-candidate-cjs-mode-routing-for-benchmark-complete-status",
+      "text": "EC-8: promote-candidate.cjs mode routing for benchmark-complete status",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-21-ec-9-variant-argument-forwarded-only-for-model-benchmark",
+      "text": "EC-9: variant argument forwarded only for model-benchmark",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-buildgraderfn-mode-factory-in-eval-rig-grader-harness-cjs-returns-mode-appropria",
+      "text": "`buildGraderFn(mode)` factory in `eval-rig/grader/harness.cjs` — returns mode-appropriate grader",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-dispatch-model-cjs-model-agnostic-cli-dispatcher-generalized-from-dispatch-minim",
+      "text": "`dispatch-model.cjs` — model-agnostic CLI dispatcher, generalized from dispatch-minimax.cjs",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-loop-host-cjs-orchestrating-entry-point-with-mode-switch-default-agent-improveme",
+      "text": "`loop-host.cjs` — orchestrating entry point with `--mode` switch (default: agent-improvement)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-promote-candidate-cjs-accept-mode-argument-mode-aware-convergence-routing",
+      "text": "`promote-candidate.cjs` — accept --mode argument, mode-aware convergence routing",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-reduce-state-cjs-add-mode-to-profile-bucket-metadata-display-in-dashboard",
+      "text": "`reduce-state.cjs` — add mode to profile bucket metadata, display in dashboard",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-run-benchmark-cjs-add-mode-model-benchmark-to-all-state-records",
+      "text": "`run-benchmark.cjs` — add mode: 'model-benchmark' to all state records",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-score-candidate-cjs-rename-evaluationmode-dynamic-5d-agent-improvement-add-mode-",
+      "text": "`score-candidate.cjs` — rename evaluationMode 'dynamic-5d' → 'agent-improvement', add mode field to all records",
+      "addedAtIteration": 8,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 162,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}

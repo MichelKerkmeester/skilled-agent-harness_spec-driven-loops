@@ -11,7 +11,7 @@
     "daemon-config",
     "investigation"
   ],
-  "lastUpdated": "2026-05-26T22:15:44.087Z",
+  "lastUpdated": "2026-05-28T16:22:41.025Z",
   "specId": "004",
   "folderSlug": "embedding-backlog-drain-investigation",
   "parentChain": [
@@ -19,8 +19,9 @@
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "26-05-26_23-15__root-cause-is-the-vector-only-reindex-path-not.md"
+    "26-05-26_23-15__root-cause-is-the-vector-only-reindex-path-not.md",
+    "28-05-26_17-22__resolved-the-mk-spec-memory-embedding-lane-end-to.md"
   ]
 }

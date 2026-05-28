@@ -50,6 +50,8 @@ Select a framework from the task map, run the CLEAR 5-check, and escalate to `@p
 > **Bundle-gate strictness**: Keep bundle-gate / acceptance-verification language at the "standard" level (single-layer check or implicit acceptance verification). Strict bundle-gate wording (multi-layer enforcement clauses, "smoke-run required", aggressive validation insistence) underperforms standard across every measured model — verbose constraints push models toward defensive output (more disclaimers, fewer direct code blocks) rather than the discipline the strict wording is trying to elicit.
 >
 > **Anti-hallucination wording is a secondary lever, not the primary one.** Framework choice (RCAF role anchor) is ~2.4× more impactful than aggressive anti-hallucination wording across measured models. Anti-hallucination wording is useful as a backstop for high-risk fixture clusters (CLI flag invention, library symbol references), but don't expect it to outweigh framework choice or pre-planning density.
+>
+> **Per-model override — `minimax/MiniMax-M2.7` → TIDD-EC + dense pre-planning.** The 120/003 benchmark (real MiniMax M2.7 runs across the 7-fixture rig) found MiniMax diverges from the cross-model defaults above: **TIDD-EC** (guardrail-heavy: Task/Instructions/Do's/Don'ts/Examples/Context) beats RCAF (0.767 vs 0.742), and **dense** pre-planning beats medium (0.775 vs 0.767) — the opposite of the medium-pre-plan default. For `minimax/MiniMax-M2.7` dispatches, default to TIDD-EC with a dense 4-5 step pre-plan; RCAF is the fallback. See `cli-opencode/assets/prompt_templates.md` §MiniMax and `.opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark/eval-loop/synthesis.md`.
 
 ---
 

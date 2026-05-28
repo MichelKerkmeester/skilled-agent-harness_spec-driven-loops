@@ -9,9 +9,11 @@
   "progressiveSynthesis": true,
   "specFolder": ".opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
   "resource_map_present": false,
-  "resource_map": { "emit": true },
+  "resource_map": {
+    "emit": true
+  },
   "createdAt": "2026-05-28T08:59:28Z",
-  "status": "initialized",
+  "status": "complete",
   "executionMode": "auto",
   "executor": {
     "kind": "cli-codex",
@@ -25,8 +27,15 @@
     "sessionId": "research-20260528-105928",
     "parentSessionId": null,
     "lineageMode": "new",
-    "allowedModes": ["new", "resume", "restart"],
-    "deferredModes": ["fork", "completed-continue"],
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
     "generation": 1,
     "continuedFromRun": null
   },
@@ -36,7 +45,15 @@
     "registryFile": "research/deep-research-findings-registry.json",
     "dashboardFile": "research/deep-research-dashboard.md",
     "strategyFile": "research/deep-research-strategy.md",
-    "machineOwnedSections": ["key-questions","answered-questions","what-worked","what-failed","exhausted-approaches","ruled-out-directions","next-focus"]
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
   },
   "pauseSentinelPath": "research/.deep-research-pause",
   "archiveRoot": "research_archive"

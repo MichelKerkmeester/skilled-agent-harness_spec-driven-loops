@@ -1,0 +1,10 @@
+{"type":"iteration","iteration":3,"newInfoRatio":0.55,"status":"insight","focus":"Q3: Port the 120/003 eval-rig scorer and 5-dim rubric — decouple deterministic checks + claude grader harness from fixture-only assumptions"}
+{"type":"finding","id":"f-iter003-001","severity":"P1","label":"Two separate scoring code paths: score-variant.cjs (120/003 D1-D5) and run-benchmark.cjs (benchmark pattern-match). No shared scorer seam.","iteration":3}
+{"type":"finding","id":"f-iter003-002","severity":"P1","label":"Three fixture coupling points in score-variant.cjs: CP1=scoreAcceptanceDeterministic reads fixture.acceptance[]; CP2=det-check scripts receive fixturePath as argv; CP3=harness.gradeD4 receives full fixture object","iteration":3}
+{"type":"finding","id":"f-iter003-003","severity":"P2","label":"forbiddenPatterns dimension unique to benchmark mode (cleanScore 20pts) absent from 120/003 rubric. D1-D5 vs heading/pattern/clean dimension mismatch.","iteration":3}
+{"type":"finding","id":"f-iter003-004","severity":"P1","label":"Det-check scripts (bundle-gate, cwd-check, preplanning, hallucinationFlag) are second-order fixture-coupled — they read fixture JSON internally. Require explicit --cwd parameterization for agent-improvement mode.","iteration":3}
+{"type":"finding","id":"f-iter003-005","severity":"P2","label":"Backward-compat invariant: loop.cjs --run-with-mode=agent-improvement must produce byte-identical state JSONL as mode-absent. Scorer must default to agent-improvement behavior.","iteration":3}
+{"type":"invariant","id":"inv-iter003-001","label":"Scorer seam contract: score(outputText, ctx, mode) — scorer NEVER reads fixture JSON directly; loop host extracts primitives and passes them","iteration":3}
+{"type":"invariant","id":"inv-iter003-002","label":"hard_gate_failed===true implies weightedScore===0 always","iteration":3}
+{"type":"edge","id":"e-iter003-001","relation":"REQUIRES_DECOUPLE","source":"f-iter003-001","target":"f-iter003-002","iteration":3}
+{"type":"edge","id":"e-iter003-002","relation":"REQUIRES_DECOUPLE","source":"score-variant.cjs CP3 harness.gradeD4","target":"Scorer seam","iteration":3}

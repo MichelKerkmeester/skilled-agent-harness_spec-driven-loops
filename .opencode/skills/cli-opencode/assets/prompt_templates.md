@@ -448,7 +448,55 @@ The calling AI extracts this block via regex
 and feeds it to generate-context.js.
 ```
 
-## 15. RELATED RESOURCES
+## 15. TEMPLATE 14 — MINIMAX M2.7 (EMPIRICAL DEFAULT: TIDD-EC + DENSE PRE-PLAN)
+
+**When**: dispatching to `minimax/MiniMax-M2.7` (direct MiniMax.io API). The 120/003 benchmark (real MiniMax runs) found this model diverges from the cross-model defaults: **TIDD-EC** framework + **dense** pre-planning wins (RCAF + medium is the fallback). `--variant` is omitted by default (unverified). Hold this contract for MiniMax dispatches.
+
+**Invocation**:
+
+```bash
+opencode run \
+  --model minimax/MiniMax-M2.7 \
+  --agent general \
+  --dir "$REPO_ROOT" \
+  "$(cat prompt.md)" \
+  </dev/null
+```
+
+**Prompt scaffold (TIDD-EC + dense pre-plan)**:
+
+```markdown
+## Task
+<one-line goal>
+
+## Instructions
+1. Write a `<pre-plan>` block with 4-5 ordered steps (dense). Each step: input, output, acceptance criterion, verification command.
+2. Write the code in fenced markdown blocks with the file path in a comment on the first line.
+3. End with a `## Verification` list of the exact commands that prove acceptance.
+
+## Do's
+- Stay strictly within the allowed-writes scope.
+- Use only documented/real CLI flags, functions, and files.
+- Satisfy every acceptance criterion exactly.
+
+## Don'ts
+- Do not invent CLI flags, functions, or files.
+- Do not touch files outside scope.
+- Do not replace code with prose disclaimers.
+
+## Examples
+Output shape: a `<pre-plan>` block, then fenced code with a path comment, then a `## Verification` command list.
+
+## Context
+- CWD / active surface / existing files in scope
+- Acceptance criteria (what "done" means)
+```
+
+**Why**: TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope/format drift more than RCAF's role anchor (0.767 vs 0.742), and MiniMax uses dense plan structure rather than being slowed by it (0.775 dense vs 0.767 medium) — the opposite of SWE-1.6. Evidence: `.opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark/eval-loop/synthesis.md`.
+
+---
+
+## 16. RELATED RESOURCES
 
 - `../references/cli_reference.md` - Full subcommand and flag reference
 - `../references/integration_patterns.md` - Three use cases and decision tree

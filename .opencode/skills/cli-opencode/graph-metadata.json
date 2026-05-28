@@ -79,7 +79,12 @@
       "ablation suite opencode",
       "worker farm opencode",
       "cli-opencode",
-      "cli opencode"
+      "cli opencode",
+      "minimax",
+      "minimax-2.7",
+      "minimax/MiniMax-M2.7",
+      "minimax dispatch",
+      "tidd-ec framework"
     ],
     "key_topics": [
       "cli",

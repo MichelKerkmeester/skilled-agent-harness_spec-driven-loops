@@ -1,0 +1,16 @@
+{
+  "variantId": "v-mut-49dc891672248d5e",
+  "variantSignature": "49dc891672248d5e",
+  "variantScore": 0.775,
+  "meta": {
+    "id": "v-004-tidd-ec",
+    "framework": "TIDD-EC",
+    "preplanning_density": "dense",
+    "thinking_threshold": "5",
+    "bundle_gate_strictness": "standard",
+    "anti_hallucination_strength": "standard",
+    "source": "seeded",
+    "description": "TIDD-EC (Task/Instructions/Do's/Don'ts/Examples/Context) — guardrail-heavy framing. Tests whether explicit do/don't rails improve MiniMax M2.7 scope + hallucination discipline."
+  },
+  "at_iter": 7
+}

@@ -49,11 +49,13 @@ Load this card before building any CLI dispatch prompt. Select a framework from 
 >
 > **Anti-hallucination wording is a secondary lever, not the primary one.** Framework choice (RCAF role anchor) is ~2.4× more impactful than aggressive anti-hallucination wording across measured models. Anti-hallucination wording is useful as a backstop for high-risk fixture clusters (CLI flag invention, library symbol references, defensive validation of unverifiable claims), but don't expect it to outweigh framework choice or pre-planning density.
 
+> **Per-model framework overrides live in each executor's own card.** Some models beat the cross-model defaults above with a different framework or pre-planning density; that guidance is recorded in the executor card that dispatches the model (e.g. cli-opencode for MiniMax M2.7). Check the executor's prompt-quality card before composing for a specific small model.
+
 For per-model defaults, quota pools, and fallback targets, see `sk-prompt/assets/model-profiles.json`.
 
 ### Budget Awareness
 
-Prompts targeting small models (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`) must respect the per-model context windows and quota metadata in `sk-prompt/assets/model-profiles.json`. Use `cli-devin/references/context-budget.md` as the canonical Phase 004 source for budget composition patterns; if evidence is trimmed, mark the boundary with `[... truncated N tokens]`, where `N` is the estimated token deficit and the model must not infer the omitted content.
+Prompts targeting small models (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`, `glm-5.1`, `minimax-2.7`) must respect the per-model context windows and quota metadata in `sk-prompt/assets/model-profiles.json`. Use `cli-devin/references/context-budget.md` as the canonical Phase 004 source for budget composition patterns; if evidence is trimmed, mark the boundary with `[... truncated N tokens]`, where `N` is the estimated token deficit and the model must not infer the omitted content.
 
 ---
 

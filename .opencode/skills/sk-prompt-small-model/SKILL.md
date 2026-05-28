@@ -22,7 +22,7 @@ A discovery anchor that surfaces alongside `cli-devin` or `cli-opencode` wheneve
 - Dispatching to DeepSeek-v4-pro, Kimi-k2.6, or GLM-5.1 (Cognition Pro plan) via `cli-devin`
 - Dispatching to DeepSeek-v4-pro directly via `cli-opencode` + DeepSeek API provider (`DEEPSEEK_API_KEY`, `--pure` required)
 - Dispatching to DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, or GLM-5.1 via `cli-opencode` + opencode-go provider (workspace credit pool)
-- Dispatching to MiniMax-2.7 via `cli-opencode` + MiniMax.io direct API provider (`MINIMAX_API_KEY`, `--model minimax/minimax-2.7`, separate `minimax-api` quota pool)
+- Dispatching to MiniMax-2.7 via `cli-opencode` + MiniMax.io direct API provider (`MINIMAX_API_KEY`, `--model minimax/MiniMax-M2.7`, separate `minimax-api` quota pool)
 - Optional future targets: Claude Haiku (Anthropic separate quota), Gemini Flash (Google separate quota)
 - Asking "where is the small-model X pattern?" — context budget, output verification, model profiles, structured permissions, quota fallback
 
@@ -137,6 +137,7 @@ Operators do not invoke a router from inside this skill. They follow `references
 | Kimi-k2.6 | `cli-devin` → cognition (cognition-pro) · `cli-opencode` → opencode-go (opencode-go) | active (2 paths) |
 | Qwen3.6 | `cli-opencode` → opencode-go (opencode-go) | active (single path) |
 | GLM-5.1 | `cli-devin` → cognition (cognition-pro) · `cli-opencode` → opencode-go (opencode-go) | active (2 paths) |
+| MiniMax-M2.7 | `cli-opencode` → minimax (minimax-api) | active (single path; direct MiniMax.io API) |
 | Haiku | `cli-claude-code` → anthropic (anthropic) | optional-unverified |
 | Gemini Flash | `cli-gemini` → google (google) | optional-unverified |
 

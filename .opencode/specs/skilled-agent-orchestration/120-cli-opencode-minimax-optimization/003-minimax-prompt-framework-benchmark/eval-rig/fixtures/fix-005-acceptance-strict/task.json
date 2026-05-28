@@ -1,0 +1,19 @@
+{
+  "id": "fix-005-acceptance-strict",
+  "cluster": "Hard correctness / acceptance precision",
+  "task_description": "Write deepEqual(a: unknown, b: unknown): boolean returning true for structural equality. MUST handle: nested objects, arrays, NaN === NaN (returns true per protocol), Date object equality, circular references (no stack overflow), and {a:1} vs {a:1, b:undefined} treated as equal. Provide implementation in src/deep-equal.ts.",
+  "scope": {
+    "cwd": "fixtures/fix-005-acceptance-strict/seed",
+    "allowed_writes": ["src/deep-equal.ts", "src/deep-equal.test.ts"]
+  },
+  "acceptance": [
+    {"id": "ac-001", "type": "deterministic", "command": "npx vitest run src/deep-equal.test.ts", "expected_exit": 0, "rationale": "12 deterministic test cases pass"},
+    {"id": "ac-002", "type": "grep", "file": "src/deep-equal.ts", "pattern": "export\\s+function\\s+deepEqual|export\\s+const\\s+deepEqual", "expected_count": 1, "rationale": "function exported"}
+  ],
+  "grounded_in": "Skeptic seat S-6 (canonical 'synthetic-fixture trap inverse: real, hard, deterministic') + Optimizer's partial-credit pattern (12-test granularity)",
+  "allowlist": {
+    "cli_flags": [],
+    "symbols": ["deepEqual", "isNaN", "Number", "Array", "Object", "Date", "Map", "Set", "WeakMap", "Symbol", "Reflect", "describe", "test", "it", "expect"],
+    "comment": "12 test cases include: primitives, nested objects, arrays, NaN protocol, Date equality, circular refs, undefined keys."
+  }
+}

@@ -45,18 +45,649 @@
     "Q4: How should quota-pool + fallback wiring (`minimax-api`) and the structured permissions matrix apply to MiniMax 2.7?",
     "Q5: What routing heuristics should decide MiniMax 2.7 vs deepseek/qwen/glm, and what concrete file-level deltas to `sk-prompt-small-model` + `cli-opencode` follow?"
   ],
-  "keyFindings": [],
+  "keyFindings": [
+    {
+      "id": "finding-2-4-opencode-skills-cli-devin-assets-per-model-budgets-json-append-the-minimax-2-7-e",
+      "text": "`.opencode/skills/cli-devin/assets/per-model-budgets.json`: append the `minimax-2.7` entry above, preserving schema version 1 and the existing defaults. This gives both cli-devin-owned budget docs and cli-opencode mirrors one canonical data row. [SOURCE: .opencode/skills/cli-devin/assets/per-model-budgets.json:1]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-opencode-skills-cli-devin-references-output-verification-md-or-the-cli-opencode-",
+      "text": "`.opencode/skills/cli-devin/references/output-verification.md` or the cli-opencode MiniMax provider reference: add a short MiniMax-specific continuity note that reuses the existing verification pipeline and treats message-boundary preservation as an integration assertion. The better ownership choice is cli-opencode provider docs unless future automation needs this in the shared verifier. [SOURCE: .opencode/skills/cli-devin/references/output-verification.md:201]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-opencode-skills-cli-opencode-references-context-budget-md-add-minimax-2-7-204-80",
+      "text": "`.opencode/skills/cli-opencode/references/context-budget.md`: add `minimax-2.7 | 204,800 | Direct MiniMax.io API; apply canonical 70% budget; preserve active interleaved tool/thinking message boundaries.` [SOURCE: .opencode/skills/cli-opencode/references/context-budget.md:36]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-opencode-skills-sk-prompt-small-model-references-pattern-index-md-no-new-pattern",
+      "text": "`.opencode/skills/sk-prompt-small-model/references/pattern-index.md`: no new pattern row is needed. At most update ownership text to mention MiniMax under cli-opencode's executor surface; the pattern bodies already cover new-provider adoption. [SOURCE: .opencode/skills/sk-prompt-small-model/references/pattern-index.md:66]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-opencode-skills-sk-prompt-assets-model-profiles-json-set-context-length-for-mini",
+      "text": "`.opencode/skills/sk-prompt/assets/model-profiles.json`: set `context_length` for `minimax-2.7` to `204800`, and replace the unverified context wording with verified context plus remaining `--variant` uncertainty. [SOURCE: .opencode/skills/sk-prompt/assets/model-profiles.json:187]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-for-minimax-agent-tool-use-tests-add-one-output-specific-assertion-outside-the-c",
+      "text": "For MiniMax agent/tool-use tests, add one output-specific assertion outside the core verifier: the transcript or event parser must preserve complete assistant messages, tool calls, tool results, and thinking/reasoning continuity for the active round. This is an integration invariant, not a fifth compile-like stage.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-for-pure-research-iterations-keep-verification-disabled-or-n-a-when-no-supported",
+      "text": "For pure research iterations, keep verification disabled or N/A when no supported fenced code is produced, matching the current rule. [SOURCE: .opencode/skills/cli-devin/references/output-verification.md:84]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-for-reusable-code-output-use-the-existing-supported-language-scorer-and-default-",
+      "text": "For reusable code output, use the existing supported-language scorer and default 0.50 threshold; below-threshold output emits `verification_degraded`. [SOURCE: .opencode/skills/cli-devin/references/output-verification.md:116] [SOURCE: .opencode/skills/cli-devin/references/output-verification.md:161]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-19-opencode-skills-cli-opencode-assets-prompt-quality-card-md-add-minimax-direct-ap",
+      "text": "`.opencode/skills/cli-opencode/assets/prompt_quality_card.md`: add MiniMax direct-API prompt guidance: RCAF default, CRISPE for research, medium-density pre-plan, concise constraint rationale, exact file/model anchors, and active tool-round continuity.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-18-opencode-skills-cli-opencode-references-cli-reference-md-update-the-minimax-vari",
+      "text": "`.opencode/skills/cli-opencode/references/cli_reference.md`: update the MiniMax variant row from \"unverified\" to \"unverified; omit by default; highspeed is a separate model id if exposed\"; add the ablation recipe above.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-21-opencode-skills-sk-prompt-small-model-references-pattern-index-md-add-a-link-onl",
+      "text": "`.opencode/skills/sk-prompt-small-model/references/pattern-index.md`: add a link-only row for \"MiniMax prompt-quality / variant-ablation policy\" owned by `cli-opencode`, pointing at `cli-opencode/assets/prompt_quality_card.md` and `cli-opencode/references/cli_reference.md`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-22-opencode-skills-sk-prompt-small-model-skill-md-no-body-change-required-unless-th",
+      "text": "`.opencode/skills/sk-prompt-small-model/SKILL.md`: no body change required unless the implementation wants the dispatch matrix status text to mention \"variant mapping pending ablation.\" The sentinel already names MiniMax and should stay thin.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-20-opencode-skills-sk-prompt-assets-cli-prompt-quality-card-md-update-budget-awaren",
+      "text": "`.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md`: update Budget Awareness to include `minimax-2.7`; keep shared guidance generic and point to `cli-opencode` for provider-specific MiniMax policy.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-16-accept-a-minimax-variant-mapping-only-if-opencode-event-metadata-or-provider-pay",
+      "text": "Accept a MiniMax variant mapping only if OpenCode event metadata or provider payload options show a real MiniMax option change, or official OpenCode/MiniMax docs explicitly document the mapping.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-do-not-treat-variant-high-as-minimax-m2-7-highspeed",
+      "text": "Do not treat `--variant high` as `MiniMax-M2.7-highspeed`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-explain-why-non-obvious-constraints-matter-this-improves-trade-off-selection-wit",
+      "text": "Explain why non-obvious constraints matter. This improves trade-off selection without inflating the prompt with generic warnings.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-for-model-minimax-omit-variant-by-default-until-a-live-ablation-or-official-docs",
+      "text": "For `--model minimax/...`, omit `--variant` by default until a live ablation or official docs prove a mapping.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-17-if-no-difference-is-proven-keep-variant-unset-for-minimax-and-treat-highspeed-as",
+      "text": "If no difference is proven, keep `--variant` unset for MiniMax and treat highspeed as a separate model selection.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-if-the-user-wants-highspeed-route-to-the-exact-highspeed-model-id-exposed-by-ope",
+      "text": "If the user wants highspeed, route to the exact highspeed model ID exposed by `opencode models minimax`, after confirming the live slug. That is model selection, not variant selection.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-keep-bundle-gate-strictness-at-the-standard-level-do-not-add-aggressive-multi-la",
+      "text": "Keep bundle-gate strictness at the standard level. Do not add aggressive multi-layer enforcement language unless the task itself is compliance-critical.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-keep-current-plan-status-open-questions-in-the-retained-working-set",
+      "text": "Keep current plan/status/open questions in the retained working set.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-keep-the-existing-global-variant-high-default-for-non-minimax-routes-where-the-d",
+      "text": "Keep the existing global `--variant high` default for non-MiniMax routes where the docs already support it.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-keep-the-existing-medium-density-pre-plan-guidance-3-4-ordered-steps-each-with-a",
+      "text": "Keep the existing medium-density pre-plan guidance: 3-4 ordered steps, each with acceptance criteria and a verification command when applicable.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-preserve-complete-tool-call-tool-result-reasoning-continuity-for-active-minimax-",
+      "text": "Preserve complete tool-call / tool-result / reasoning continuity for active MiniMax tool rounds; do not summarize the active round into text-only prose.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-preserve-exact-file-paths-command-names-model-slug-and-acceptance-criteria",
+      "text": "Preserve exact file paths, command names, model slug, and acceptance criteria.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-run-opencode-models-minimax-after-login-and-record-exact-exposed-model-ids-espec",
+      "text": "Run `opencode models minimax` after login and record exact exposed model IDs, especially whether `MiniMax-M2.7` and `MiniMax-M2.7-highspeed` appear.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-14-run-the-same-bounded-coding-prompt-three-times-with-model-exact-minimax-m2-7-slu",
+      "text": "Run the same bounded coding prompt three times with `--model <exact-minimax-M2.7-slug>` and variants unset, `high`, and `max` if accepted. Use `--format json`; add `--thinking` only if local policy permits exposing thinking blocks.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-use-crispe-for-deep-research-option-discovery-prompts-and-tidd-ec-only-when-corr",
+      "text": "Use `CRISPE` for deep-research / option-discovery prompts and `TIDD-EC` only when correctness, policy, security, or review constraints dominate.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-use-rcaf-for-normal-minimax-coding-edit-doc-dispatches-role-local-context-concre",
+      "text": "Use `RCAF` for normal MiniMax coding/edit/doc dispatches: role, local context, concrete action, and expected output format.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-15-use-the-same-prompt-same-repo-state-same-agent-and-same-verification-command-cap",
+      "text": "Use the same prompt, same repo state, same agent, and same verification command. Capture wall-clock time, output token estimate if available, tool-call success, event metadata, final patch quality, and verification result.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-approved-packet-implementation-use-a-packet-local-matrix-with-explicit-write-edi",
+      "text": "Approved packet implementation: use a packet-local matrix with explicit write/edit globs for the packet docs and target source files.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-research-review-only-minimax-dispatches-use-the-read-only-matrix",
+      "text": "Research/review-only MiniMax dispatches: use the read-only matrix.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-trusted-opencode-refactors-use-the-repo-wide-opencode-matrix-still-denying-delet",
+      "text": "Trusted `.opencode` refactors: use the repo-wide `.opencode` matrix, still denying delete and external config writes.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-17-add-minimax-minimax-2-7-highspeed-only-if-opencode-models-minimax-exposes-that-e",
+      "text": "Add `minimax/minimax-2.7-highspeed` only if `opencode models minimax` exposes that exact slug; document it as model selection, not a variant.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-add-a-minimax-2-7-model-entry-even-though-dispatch-is-owned-by-cli-opencode-beca",
+      "text": "Add a `minimax-2.7` model entry even though dispatch is owned by `cli-opencode`, because this asset is the canonical Phase 004 budget table mirrored by cli-opencode.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-15-add-a-minimax-specific-routing-note-use-minimax-when-the-evidence-bundle-would-p",
+      "text": "Add a MiniMax-specific routing note: use MiniMax when the evidence bundle would pressure DeepSeek/GLM/Qwen windows or when quota isolation from `opencode-go` is desired.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-11-add-a-per-model-table-row-minimax-2-7-minimax-204-800-143-360-active-via-cli-ope",
+      "text": "Add a per-model table row: `minimax-2.7 | MiniMax | 204,800 | 143,360 | active via cli-opencode direct MiniMax.io API`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-30-add-a-provider-neutral-note-direct-minimax-tool-calls-inherit-the-active-structu",
+      "text": "Add a provider-neutral note: direct MiniMax tool calls inherit the active structured permissions matrix unchanged; provider/model selection does not create a separate permission policy.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-20-add-a-routing-heuristics-table-minimax-for-204-800-context-and-minimax-api-isola",
+      "text": "Add a routing heuristics table: MiniMax for 204,800 context and `minimax-api` isolation; DeepSeek for hardest reasoning/root-cause tasks; Qwen for narrow bounded edits; Kimi for established long-context opencode-go runs; GLM for structured broad synthesis.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-24-add-a-row-for-minimax-context-budget-adoption-owned-by-cli-opencode-plus-cli-dev",
+      "text": "Add a row for \"MiniMax context-budget adoption\" owned by `cli-opencode` plus `cli-devin`, pointing to `../../cli-opencode/references/context-budget.md` and `../../cli-devin/assets/per-model-budgets.json`, shipped in `120/002`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-23-add-a-row-for-minimax-direct-provider-routing-heuristics-owned-by-cli-opencode-p",
+      "text": "Add a row for \"MiniMax direct-provider routing heuristics\" owned by `cli-opencode`, pointing to `../../cli-opencode/references/cli_reference.md`, shipped in packet `120/002`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-25-add-a-row-for-minimax-prompt-quality-and-variant-ablation-policy-owned-by-cli-op",
+      "text": "Add a row for \"MiniMax prompt-quality and variant-ablation policy\" owned by `cli-opencode`, pointing to `../../cli-opencode/assets/prompt_quality_card.md` and `../../cli-opencode/references/cli_reference.md`, shipped in `120/002`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-13-add-minimax-to-the-cli-opencode-model-window-table-minimax-2-7-204-800-direct-mi",
+      "text": "Add MiniMax to the cli-opencode model-window table: `minimax-2.7 | 204,800 | Direct MiniMax.io API; separate minimax-api quota pool; 143,360-token active budget; preserve active tool-round continuity.`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-12-add-one-caveat-below-the-table-minimax-follows-the-same-budget-rule-but-prompt-c",
+      "text": "Add one caveat below the table: MiniMax follows the same budget rule, but prompt composers must preserve complete active tool-call/tool-result rounds when trimming.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-28-add-one-sentence-minimax-direct-provider-prompts-can-carry-larger-retained-evide",
+      "text": "Add one sentence: MiniMax direct-provider prompts can carry larger retained evidence sets, but still use the same budget markers and must not infer trimmed content.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-21-add-the-iteration-3-ablation-recipe-near-the-variant-section",
+      "text": "Add the iteration 3 ablation recipe near the variant section.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-29-add-the-minimax-direct-api-prompt-note-from-iteration-3-rcaf-default-crispe-for-",
+      "text": "Add the MiniMax direct-API prompt note from iteration 3: RCAF default, CRISPE for research, medium-density pre-plan, exact repo/file/model anchors, concise rationale for non-obvious constraints, and active tool-round continuity.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-change-minimax-2-7-context-length-from-null-to-204800",
+      "text": "Change `minimax-2.7.context_length` from `null` to `204800`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-32-do-not-add-resolveminimaxfallback-minimax-only-permission-schema-fields-or-same-",
+      "text": "Do not add `resolveMiniMaxFallback`, MiniMax-only permission schema fields, or same-pool retry behavior.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-26-do-not-copy-the-full-policy-into-the-sentinel-keep-this-file-link-only",
+      "text": "Do not copy the full policy into the sentinel; keep this file link-only.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-entry-values-provider-minimax-context-length-204800-max-budget-pct-70-working-me",
+      "text": "Entry values: `provider: \"MiniMax\"`, `context_length: 204800`, `max_budget_pct: 70`, `working_memory_tokens: 500`, `summary_threshold_lines: 200`, `truncation_marker_template: \"[... truncated %d tokens]\"`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-31-extend-the-fallback-router-unit-tests-with-a-minimax-2-7-null-target-fail-fast-c",
+      "text": "Extend the fallback-router unit tests with a `minimax-2.7` null-target fail-fast case and, if a separate-pool fallback is ever adopted, one positive separate-pool case.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-18-in-cli-opencode-default-invocation-shape-add-a-minimax-exception-omit-variant-hi",
+      "text": "In \"cli-opencode default invocation shape\", add a MiniMax exception: omit `--variant high` for `--model minimax/...` until ablation proves a provider mapping.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-keep-executors-0-executor-cli-opencode-provider-minimax-quota-pool-minimax-api-p",
+      "text": "Keep `executors[0].executor: \"cli-opencode\"`, `provider: \"minimax\"`, `quota_pool: \"minimax-api\"`, `primary_quota_pool: \"minimax-api\"`, and `fallback_target: null`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-22-keep-the-auth-preflight-rule-if-minimax-was-requested-but-not-configured-ask-for",
+      "text": "Keep the auth-preflight rule: if MiniMax was requested but not configured, ask for `opencode providers login minimax`; do not substitute silently.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-leave-avg-iter-wall-clock-min-as-null-until-measured-do-not-invent-a-benchmark",
+      "text": "Leave `avg_iter_wall_clock_min` as `null` until measured; do not invent a benchmark.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-9-notes-direct-minimax-io-path-via-cli-opencode-70-budget-yields-143360-tokens-res",
+      "text": "Notes: `Direct MiniMax.io path via cli-opencode. 70% budget yields 143360 tokens; reserve is 61440 tokens. Omit --variant by default pending ablation.`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-14-replace-kimi-k2-6-above-swe-1-6-wording-with-a-comparison-that-includes-minimax-",
+      "text": "Replace \"Kimi-k2.6 above SWE-1.6\" wording with a comparison that includes MiniMax: MiniMax and Kimi are the largest cli-opencode windows, while DeepSeek, GLM, and Qwen require tighter prompt packs.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-replace-the-executor-note-with-direct-minimax-io-api-key-bypasses-opencode-go-20",
+      "text": "Replace the executor note with: direct MiniMax.io API key, bypasses opencode-go, 204,800-token context verified, omit `--variant` by default, highspeed is a distinct model id if exposed.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-19-replace-the-minimax-variant-row-with-omit-by-default-public-docs-do-not-prove-a-",
+      "text": "Replace the MiniMax variant row with: `omit by default; public docs do not prove a built-in MiniMax --variant mapping; highspeed is a distinct model id if exposed`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-27-update-budget-awareness-to-include-minimax-2-7-in-the-small-model-list",
+      "text": "Update Budget Awareness to include `minimax-2.7` in the small-model list.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-update-strengths-to-include-204-800-token-context-window-143-360-token-active-bu",
+      "text": "Update strengths to include `204,800-token context window`, `143,360-token active budget under the 70 percent 114 rule`, `separate minimax-api quota pool`, and `direct MiniMax.io API access`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-10-update-the-active-small-model-set-sentence-to-include-minimax-2-7-as-a-cli-openc",
+      "text": "Update the active small-model set sentence to include MiniMax-2.7 as a cli-opencode-owned direct-provider budget participant.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-16-update-the-model-table-row-for-minimax-minimax-2-7-to-mention-204-800-token-cont",
+      "text": "Update the model table row for `minimax/minimax-2.7` to mention 204,800-token context and separate `minimax-api` quota pool.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-update-weaknesses-to-remove-context-length-unverified-and-retain-real-caveats-si",
+      "text": "Update weaknesses to remove \"context length unverified\" and retain real caveats: single executor path, no automatic fallback, MiniMax `--variant` mapping unverified, live latency/quality benchmarks still pending.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-cli-devin-assets-per-model-budgets-json-append-the-minimax-array-row-described-i",
+      "text": "`cli-devin/assets/per-model-budgets.json`: append the MiniMax array row described in F2.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-12-cli-opencode-references-cli-reference-md-revise-the-existing-minimax-variant-pol",
+      "text": "`cli-opencode/references/cli_reference.md`: revise the existing MiniMax `--variant` policy and add a compact ablation note.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-cli-opencode-references-context-budget-md-add-the-minimax-context-window-row-and",
+      "text": "`cli-opencode/references/context-budget.md`: add the MiniMax context-window row and continuity caveat.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-13-cli-opencode-skill-md-mirror-the-minimax-variant-exception-in-the-quick-guidance",
+      "text": "`cli-opencode/SKILL.md`: mirror the MiniMax `--variant` exception in the quick guidance, without adding duplicate provider rows.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-15-sk-prompt-small-model-references-pattern-index-md-only-add-a-link-only-minimax-p",
+      "text": "`sk-prompt-small-model/references/pattern-index.md`: only add a link-only MiniMax policy pointer if the cli-opencode prompt-quality note is implemented.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-14-sk-prompt-small-model-skill-md-add-minimax-to-the-dispatch-matrix-and-ownership-",
+      "text": "`sk-prompt-small-model/SKILL.md`: add MiniMax to the dispatch matrix and ownership text.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-sk-prompt-assets-model-profiles-json-update-the-existing-minimax-object-as-descr",
+      "text": "`sk-prompt/assets/model-profiles.json`: update the existing MiniMax object as described in F1.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-add-minimax-2-7-204-800-direct-minimax-io-api-apply-canonical-70-budget-preserve",
+      "text": "Add `minimax-2.7 | 204,800 | Direct MiniMax.io API; apply canonical 70% budget; preserve active tool-call/tool-result message boundaries` to `cli-opencode/references/context-budget.md`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-add-a-dispatch-matrix-row-minimax-2-7-cli-opencode-minimax-minimax-api-active-di",
+      "text": "Add a dispatch-matrix row: `MiniMax-2.7 | cli-opencode -> minimax (minimax-api) | active direct API; variant mapping pending ablation`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-add-a-short-minimax-variant-ablation-note-only-once-near-the-existing-variant-ta",
+      "text": "Add a short \"MiniMax variant ablation\" note only once, near the existing `--variant` table.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-leave-runtime-logic-out-of-sk-prompt-small-model-the-skill-remains-a-sentinel-in",
+      "text": "Leave runtime logic out of `sk-prompt-small-model`; the skill remains a sentinel/index.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-optionally-add-one-link-only-pattern-index-row-for-minimax-prompt-quality-varian",
+      "text": "Optionally add one link-only pattern-index row for \"MiniMax prompt-quality / variant-ablation policy\" pointing to `cli-opencode/assets/prompt_quality_card.md` and `cli-opencode/references/cli_reference.md`, if the follow-on creates that provider-specific note.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-update-the-cli-opencode-ownership-row-to-include-minimax-direct-api-in-addition-",
+      "text": "Update the `cli-opencode` ownership row to include MiniMax direct API in addition to DeepSeek direct API and opencode-go.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-update-the-default-variant-high-sentence-with-a-minimax-exception",
+      "text": "Update the default `--variant high` sentence with a MiniMax exception.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-update-the-minimax-variant-row-from-unverified-to-omit-by-default-for-direct-min",
+      "text": "Update the MiniMax `--variant` row from \"unverified\" to \"omit by default for direct MiniMax; highspeed is a separate model id if exposed; promote only after docs or live ablation prove a mapping.\"",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-tool-call-count",
+      "text": "`tool.call` count;",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-8-code-generating-dispatch-with-supported-fenced-code-apply-compile-syntax-validat",
+      "text": "Code-generating dispatch with supported fenced code: apply compile/syntax validation and static lint scoring.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-9-execute-and-smoke-test-apply-only-when-the-prompt-requests-runnable-behavior-and",
+      "text": "Execute and smoke-test apply only when the prompt requests runnable behavior and the dispatcher has a sandboxed command, timeout, and artifact path constraints.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-exit-status-for-both-runs",
+      "text": "exit status for both runs;",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-11-if-verification-enabled-is-true-and-a-supported-code-block-is-present-compile-fa",
+      "text": "If `verification_enabled` is true and a supported code block is present, compile failure is a hard fail for reusable code.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-13-if-behavior-was-specified-and-a-smoke-test-is-available-smoke-test-failure-is-a-",
+      "text": "If behavior was specified and a smoke test is available, smoke-test failure is a hard fail.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-12-if-execution-was-in-scope-execute-failure-is-a-hard-fail",
+      "text": "If execution was in scope, execute failure is a hard fail.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-10-lint-remains-quality-signal-not-a-hard-fail-by-itself",
+      "text": "Lint remains quality signal, not a hard-fail by itself.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-14-lint-only-failure-degrades-confidence-but-does-not-hard-fail",
+      "text": "Lint-only failure degrades confidence but does not hard-fail.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-output-quality-on-a-10-point-rubric-all-five-requested-trade-off-dimensions-cove",
+      "text": "output quality on a 10-point rubric: all five requested trade-off dimensions covered, explicit recommendation present, confidence calibrated, no fabricated model/provider claim, and verification step actionable.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-7-pure-research-or-planning-dispatch-do-not-run-code-verification-apply-the-resear",
+      "text": "Pure research or planning dispatch: do not run code verification. Apply the research-output rubric manually or in the post-dispatch validator when available.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-response-byte-count-from-message-delta-plus-session-completed-payloads",
+      "text": "response byte count from `message.delta` plus `session.completed` payloads;",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-15-score-below-0-50-emits-degrades-score-below-0-30-is-the-hard-fail-candidate-thre",
+      "text": "Score below 0.50 emits/degrades; score below 0.30 is the hard-fail candidate threshold for retry/escalation. [SOURCE: file:.opencode/skills/cli-devin/references/output-verification.md:116] [SOURCE: file:.opencode/skills/cli-devin/references/output-verification.md:120] [SOURCE: file:.opencode/skills/cli-devin/references/output-verification.md:122]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-visible-reasoning-or-thinking-trace-bytes-if-the-event-stream-exposes-reasoning-",
+      "text": "visible reasoning or thinking trace bytes if the event stream exposes `reasoning.delta` or `thinking.delta`;",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-wall-clock-latency-from-usr-bin-time-p",
+      "text": "wall-clock latency from `/usr/bin/time -p`;",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-cli-devin-assets-per-model-budgets-json-append-a-minimax-2-7-row-using-the-curre",
+      "text": "`cli-devin/assets/per-model-budgets.json`: append a `minimax-2.7` row using the current `models[]` schema: `context_length: 204800`, `max_budget_pct: 70`, `working_memory_tokens: 500`, `summary_threshold_lines: 200`, and the existing truncation marker.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-cli-opencode-references-cli-reference-md-and-cli-opencode-skill-md-keep-minimax-",
+      "text": "`cli-opencode/references/cli_reference.md` and `cli-opencode/SKILL.md`: keep MiniMax explicit-request routing, but add the `--variant` exception and the routing heuristic table.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-cli-opencode-references-context-budget-md-add-minimax-to-the-cli-opencode-model-",
+      "text": "`cli-opencode/references/context-budget.md`: add MiniMax to the cli-opencode model-window table and add the tool-round continuity caveat.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-output-verification-pipeline-remains-output-shape-driven-minimax-should-reuse-it",
+      "text": "`Output verification pipeline` remains output-shape-driven. MiniMax should reuse it, with any MiniMax dispatch note living in `cli-opencode` docs or the quality card, not as a new sentinel row.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-quota-pool-aware-fallback-remains-registry-driven-minimax-only-contributes-quota",
+      "text": "`Quota-pool-aware fallback` remains registry-driven; MiniMax only contributes `quota_pool: \"minimax-api\"` and `fallback_target: null`.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-10-sk-prompt-small-model-references-pattern-index-md-add-only-the-three-link-only-m",
+      "text": "`sk-prompt-small-model/references/pattern-index.md`: add only the three link-only MiniMax rows listed in Finding 1.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-9-sk-prompt-small-model-skill-md-add-minimax-to-the-dispatch-matrix-and-cli-openco",
+      "text": "`sk-prompt-small-model/SKILL.md`: add MiniMax to the dispatch matrix and `cli-opencode` ownership row.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-8-sk-prompt-assets-cli-prompt-quality-card-md-add-glm-5-1-and-minimax-2-7-to-budge",
+      "text": "`sk-prompt/assets/cli_prompt_quality_card.md`: add `glm-5.1` and `minimax-2.7` to Budget Awareness and include the compact routing decision table above.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-sk-prompt-assets-model-profiles-json-update-the-existing-minimax-2-7-object-not-",
+      "text": "`sk-prompt/assets/model-profiles.json`: update the existing `minimax-2.7` object, not a duplicate. Set `context_length: 204800`, keep `primary_quota_pool: \"minimax-api\"` and `fallback_target: null`, and replace stale unverified-context language with the conservative `--variant` caveat.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-structured-permissions-schema-structured-permissions-reference-and-permissions-g",
+      "text": "`Structured permissions schema`, `Structured permissions reference`, and `Permissions gate runtime` remain provider-neutral.",
+      "addedAtIteration": 8,
+      "sources": []
+    }
+  ],
   "ruledOutDirections": [],
   "blockedStopHistory": [],
   "graphConvergenceScore": 0,
   "graphDecision": null,
   "graphBlockers": [],
   "metrics": {
-    "iterationsCompleted": 1,
+    "iterationsCompleted": 10,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "keyFindings": 0,
-    "convergenceScore": 0.92,
+    "keyFindings": 105,
+    "convergenceScore": 0.12,
     "coverageBySources": {
       "code": 8,
       "other": 5

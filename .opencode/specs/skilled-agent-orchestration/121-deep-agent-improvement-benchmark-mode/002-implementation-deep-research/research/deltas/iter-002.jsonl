@@ -1,0 +1,10 @@
+{"type":"iteration","iteration":2,"newInfoRatio":0.45,"status":"insight","focus":"Q2: Design dispatch-model.cjs generalization — config schema and wiring path from loop.cjs mode to resolved dispatcher"}
+{"type":"finding","id":"f-iter002-001","severity":"P1","label":"modelBenchmarkConfig schema: mode+target_model+benchmark+rubric+budget","iteration":2}
+{"type":"finding","id":"f-iter002-002","severity":"P1","label":"dispatch-model.cjs executor map: cli-opencode/cli-claude-code/cli-devin/cli-codex/cli-gemini","iteration":2}
+{"type":"finding","id":"f-iter002-003","severity":"P1","label":"Wiring path: loop.cjs reads improvement_config.json.mode, dynamic-require dispatch-model.cjs only when mode=model-benchmark; otherwise no-op dispatcher","iteration":2}
+{"type":"finding","id":"f-iter002-004","severity":"P2","label":"Backward-compat guarantee: mode absent/unset/agent-improvement means dispatch-model.cjs never loaded, loop.cjs unchanged for agent-improvement","iteration":2}
+{"type":"invariant","id":"inv-iter002-001","label":"loop.cjs must never load dispatch-model.cjs when mode=agent-improvement","iteration":2}
+{"type":"edge","id":"e-q2-001","relation":"READS","source":"loop.cjs","target":"improvement_config.json","iteration":2}
+{"type":"edge","id":"e-q2-002","relation":"LOADS","source":"loop.cjs","target":"dispatch-model.cjs","iteration":2}
+{"type":"edge","id":"e-q2-003","relation":"CONNECTS","source":"modelBenchmarkConfig","target":"dispatch-model.cjs","iteration":2}
+{"type":"edge","id":"e-q2-004","relation":"ENFORCES","source":"noop-dispatcher","target":"agent-improvement-backward-compat","iteration":2}

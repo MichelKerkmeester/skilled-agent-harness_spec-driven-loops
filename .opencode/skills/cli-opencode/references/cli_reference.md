@@ -164,7 +164,7 @@ echo "default=$OPENCODE_GO_OK fallback=$DEEPSEEK_OK minimax=$MINIMAX_OK"
 | Default available | 1 | * | * | Proceed with `--model opencode-go/deepseek-v4-pro --variant high` |
 | Default missing, fallback available | 0 | 1 | * | **ASK user** before substituting (offer A: deepseek/deepseek-v4-pro, B: login opencode-go and retry, C: name a different model) |
 | All missing | 0 | 0 | 0 | **ASK user** to run `opencode providers login <provider>` — do not dispatch until configured |
-| MiniMax explicitly requested | * | * | 1 | Proceed with `--model minimax/minimax-2.7` (direct MiniMax.io API) |
+| MiniMax explicitly requested | * | * | 1 | Proceed with `--model minimax/MiniMax-M2.7` (direct MiniMax.io API) |
 | MiniMax requested, not configured | * | * | 0 | **ASK user** to run `opencode providers login minimax` (needs `MINIMAX_API_KEY`) — do not substitute silently |
 
 **Login command shapes** (the AI surfaces these to the user; the user runs them in their own terminal):
@@ -195,7 +195,7 @@ OpenCode resolves models through configured providers. The cli-opencode skill su
 | `opencode-go` | `opencode-go/qwen3.6-plus` | Qwen 3.6 routed through opencode-go |
 | `deepseek` | `deepseek/deepseek-v4-pro` | Direct DeepSeek API — bypasses opencode-go |
 | `deepseek` | `deepseek/deepseek-v4-flash` | Latency-optimized direct-API sibling |
-| `minimax` | `minimax/minimax-2.7` | Direct MiniMax.io API — bypasses opencode-go; needs `MINIMAX_API_KEY` (separate `minimax-api` quota pool) |
+| `minimax` | `minimax/MiniMax-M2.7` | Direct MiniMax.io API — bypasses opencode-go; needs `MINIMAX_API_KEY` (separate `minimax-api` quota pool) |
 
 `opencode models <provider>` lists every model id the provider exposes. The model string passed to `--model` is always `provider/model-id`.
 

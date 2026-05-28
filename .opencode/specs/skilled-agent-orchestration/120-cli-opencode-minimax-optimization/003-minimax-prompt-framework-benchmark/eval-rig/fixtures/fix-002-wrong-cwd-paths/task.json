@@ -1,0 +1,20 @@
+{
+  "id": "fix-002-wrong-cwd-paths",
+  "cluster": "Path/CWD discipline",
+  "task_description": "Generate a Node script (transform.js) that reads ./config/settings.json (relative to fixture CWD) and writes ./output/result.json. The prompt deliberately includes misleading process.cwd() references that could lead to wrong-cwd inheritance. The output must use either fixture-CWD-absolute paths or bare-relative paths.",
+  "scope": {
+    "cwd": "fixtures/fix-002-wrong-cwd-paths/seed",
+    "allowed_writes": ["transform.js", "output/result.json"]
+  },
+  "acceptance": [
+    {"id": "ac-001", "type": "grep_absent", "file": "transform.js", "pattern": "/Users/", "rationale": "no absolute paths outside fixture CWD"},
+    {"id": "ac-002", "type": "grep_absent", "file": "transform.js", "pattern": "~/", "rationale": "no home-relative paths"},
+    {"id": "ac-003", "type": "deterministic", "command": "node transform.js", "expected_exit": 0, "rationale": "script runs under fixture CWD without ENOENT"}
+  ],
+  "grounded_in": "feedback_bundle_gate_smoke_run (memory: 'wrong-cwd path defects inherited from Pass 1 prompt templates')",
+  "allowlist": {
+    "cli_flags": [],
+    "symbols": ["readFileSync", "writeFileSync", "JSON", "fs", "path", "process", "console"],
+    "comment": "Standard Node fs/path/json. process.cwd() in OUTPUT is suspicious but not blocked deterministically here; D4 grader flags it."
+  }
+}

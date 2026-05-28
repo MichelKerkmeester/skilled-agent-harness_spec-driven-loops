@@ -1,0 +1,9 @@
+{
+  "status": "ok",
+  "data": {
+    "name": "test-config",
+    "value": 42,
+    "enabled": true
+  },
+  "timestamp": "2026-05-28T12:31:46.108Z"
+}

@@ -1,0 +1,28 @@
+{"type":"iteration","iteration":6,"newInfoRatio":0.70,"status":"insight","focus":"Q5: Backward-compat test strategy + implementation edge cases — the last remaining question"}
+{"type":"finding","id":"f-iter006-001","severity":"P1","label":"BC-INV-1: loop-host with --mode=agent-improvement OR no mode must produce byte-identical state JSONL as current path","iteration":6}
+{"type":"finding","id":"f-iter006-002","severity":"P1","label":"BC-INV-2: score-candidate.cjs existing callers must continue to work without modification; no new required args","iteration":6}
+{"type":"finding","id":"f-iter006-003","severity":"P2","label":"BC-INV-3: evaluationMode rename dynamic-5d → agent-improvement breaks exact-match consumers; reduce-state immune since it only checks record.type","iteration":6}
+{"type":"finding","id":"f-iter006-004","severity":"P2","label":"BC-INV-4: reduce-state already handles records without mode field via inferProfileId/inferFamily fallbacks","iteration":6}
+{"type":"finding","id":"f-iter006-005","severity":"P1","label":"BC-INV-5: promote-candidate must default to agent-improvement when mode absent or unknown","iteration":6}
+{"type":"finding","id":"f-iter006-006","severity":"P1","label":"TST-1 Identity Test: CI gate — loop-host with and without --mode=agent-improvement must produce identical score outputs","iteration":6}
+{"type":"finding","id":"f-iter006-007","severity":"P2","label":"TST-2 State-Log Shape Regression: every scored record must have type/status/evaluationMode/mode/score/recommendation/dimensions/failureModes","iteration":6}
+{"type":"finding","id":"f-iter006-008","severity":"P2","label":"TST-3 Score Determinism: score-candidate run twice with same inputs must produce identical score and recommendation","iteration":6}
+{"type":"finding","id":"f-iter006-009","severity":"P1","label":"TST-4 Benchmark Path Smoke Test: materialize + run-benchmark must produce report.json with aggregateScore and benchmark_run state record","iteration":6}
+{"type":"finding","id":"f-iter006-010","severity":"P1","label":"TST-5 Default Mode: loop-host with no --mode must call score-candidate not run-benchmark (validated by TST-1)","iteration":6}
+{"type":"finding","id":"f-iter006-011","severity":"P2","label":"TST-6 Mode Field Persistence: every state record in agent-improvement path carries mode='agent-improvement', model-benchmark carries mode='model-benchmark'","iteration":6}
+{"type":"finding","id":"f-iter006-012","severity":"P2","label":"EC-1: reduce-state state log read throws on missing file; loop-host must ensure directory exists before first append","iteration":6}
+{"type":"finding","id":"f-iter006-013","severity":"P1","label":"EC-2: Unknown --mode value must not crash; loop must warn to stderr and default to agent-improvement","iteration":6}
+{"type":"finding","id":"f-iter006-014","severity":"P3","label":"EC-3: Mixed pre/post-feature state log — reduce-state handles missing mode field via existing inferProfileId/inferFamily fallbacks","iteration":6}
+{"type":"finding","id":"f-iter006-015","severity":"P3","label":"EC-4: Concurrent loop-host execution — state log appends are uncoordinated; use run-specific state log paths","iteration":6}
+{"type":"finding","id":"f-iter006-016","severity":"P1","label":"EC-5: materialize-benchmark-fixtures failure produces all-zero scores silently; caller must detect non-zero exit and propagate","iteration":6}
+{"type":"finding","id":"f-iter006-017","severity":"P2","label":"EC-6: Score cache SHA256 key includes baselineContent; not applicable for model-benchmark; cache key must differ by mode to prevent cross-mode hits","iteration":6}
+{"type":"finding","id":"f-iter006-018","severity":"P1","label":"EC-7: score-candidate infra_failure records currently lack evaluationMode/mode fields; build must add them","iteration":6}
+{"type":"finding","id":"f-iter006-019","severity":"P1","label":"EC-8: promote-candidate expects score.status === 'scored'; for model-benchmark must check score.status === 'benchmark-complete' instead","iteration":6}
+{"type":"finding","id":"f-iter006-020","severity":"P1","label":"EC-9: dispatch-model must forward --variant for model-benchmark but omit it for agent-improvement comparison","iteration":6}
+{"type":"finding","id":"f-iter006-021","severity":"P2","label":"EC-10: score-candidate hardcodes RUBRIC_VERSION dynamic-5d; model-benchmark must pass benchmark rubric version through scoring context","iteration":6}
+{"type":"invariant","id":"inv-iter006-001","label":"All 5 key questions must be answered before convergence can be declared","iteration":6}
+{"type":"invariant","id":"inv-iter006-002","label":"BC-INV-1 (identity test) is the most critical regression gate and must be automated in CI","iteration":6}
+{"type":"invariant","id":"inv-iter006-003","label":"Unknown mode must always fall through to agent-improvement — never throw or crash","iteration":6}
+{"type":"invariant","id":"inv-iter006-004","label":"Every state record emitted by the loop host must carry a mode field","iteration":6}
+{"type":"invariant","id":"inv-iter006-005","label":"reduce-state must remain mode-agnostic — it must not break on records from pre-feature state logs","iteration":6}
+{"type":"ruled_out","direction":"mode-aware reduce-state routing","reason":"reduce-state already handles mixed-mode records via record.type routing; adding explicit mode routing is over-engineering","iteration":6}

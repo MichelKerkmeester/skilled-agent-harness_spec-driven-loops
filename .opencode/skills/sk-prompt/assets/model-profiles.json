@@ -185,7 +185,7 @@
     },
     {
       "id": "minimax-2.7",
-      "context_length": null,
+      "context_length": 204800,
       "tool_calling": "native",
       "chat_template": "default",
       "executors": [
@@ -194,7 +194,7 @@
           "provider": "minimax",
           "quota_pool": "minimax-api",
           "status": "active",
-          "notes": "Direct MiniMax.io API key (`MINIMAX_API_KEY`). Bypasses opencode-go; mirrors the deepseek direct-API path. Context length and --variant/reasoning behavior unverified pending 120/002 deep-research."
+          "notes": "Direct MiniMax.io API key (`MINIMAX_API_KEY`). Live slug `minimax/MiniMax-M2.7` (also `-highspeed`). Bypasses opencode-go; mirrors the deepseek direct-API path. Best prompt framework (120/003 benchmark): TIDD-EC + dense pre-planning. --variant omitted by default."
         }
       ],
       "primary_quota_pool": "minimax-api",
@@ -202,13 +202,13 @@
       "free_tier": false,
       "strengths": [
         "separate quota pool (minimax-api) independent of cognition/opencode-go",
-        "direct MiniMax.io API access",
-        "cost-conscious small-model iteration"
+        "direct MiniMax.io API access; 204,800-token context",
+        "responds well to guardrail-heavy framing (TIDD-EC) + dense pre-planning (120/003 benchmark)"
       ],
       "weaknesses": [
         "single executor path (no fallback if minimax-api unavailable)",
-        "context length and reasoning controls unverified (pending 120/002 research)",
-        "newly added — efficiency/prompt patterns not yet established"
+        "pay-as-you-go cost on large contexts",
+        "--variant behavior unverified (omitted by default)"
       ],
       "avg_iter_wall_clock_min": null,
       "status": "active"

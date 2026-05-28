@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: How can we improve/update sk-prompt-small-model and cli-opencode to make best use and maximize the efficiency of MiniMax 2.7 dispatched through cli-opencode via the direct MiniMax.io API provider? Cover: MiniMax-2.7 context-budget defaults, output-verification recipe, prompt-quality/RCAF patterns, --variant/reasoning-effort mapping for the minimax provider, quota-pool + fallback wiring (minimax-api), permissions-matrix applicability, cost/latency profile, and routing heuristics vs deepseek/qwen/glm. Extend the 114 small-model infrastructure rather than rebuilding it. Output concrete file-level deltas for sk-prompt-small-model and cli-opencode.
 - Started: 2026-05-28T08:59:28Z
 - Status: INITIALIZED
-- Iteration: 1 of 10
+- Iteration: 10 of 10
 - Session ID: research-20260528-105928
 - Parent Session: none
 - Lifecycle Mode: new
@@ -32,9 +32,18 @@ Reducer-generated observability surface for the active research packet.
 | # | Focus | Track | Ratio | Findings | Status |
 |---|-------|-------|-------|----------|--------|
 | undefined | Q1 - Establish MiniMax 2.7 API characteristics (context window, reasoning/--variant controls, tool-calling, pricing, latency) | - | 0.92 | 0 | insight |
+| undefined | Q2 - Derive MiniMax 2.7 context-budget tuple and output-verification recipe from 204800-token window | - | 0.78 | 0 | insight |
+| undefined | Q3 - Define MiniMax 2.7 prompt-quality/RCAF guidance and safe --variant mapping policy | - | 0.64 | 0 | insight |
+| undefined | Q4 - Define minimax-api quota-pool fallback semantics and map structured permissions matrix to MiniMax direct-provider tool use | - | 0.56 | 0 | insight |
+| undefined | Q5 - Define routing heuristics for MiniMax 2.7 versus DeepSeek/Qwen/Kimi/GLM and consolidate patch-ready file-level deltas | - | 0.50 | 0 | insight |
+| undefined | Validation pass: reconcile MiniMax deltas against current post-phase-001 files and finalize schema-compatible budget/model-profile changes | - | 0.42 | 0 | insight |
+| undefined | HARDENING: concrete MiniMax --variant ablation rig, output-verification stage selection, and provider-neutral permissions/fallback validation | - | 0.36 | 0 | insight |
+| undefined | HARDENING: stress-test MiniMax routing heuristics against concrete scenarios and finalize pattern-index rows plus cross-CLI routing table | - | 0.29 | 0 | insight |
+| undefined | HARDENING: risks/failure-modes, negative knowledge, and exact patch text for MiniMax-2.7 via cli-opencode | - | 0.21 | 0 | insight |
+| undefined | FINAL CONSOLIDATION: per-delta confidence scoring, runtime-deferred residuals, and prioritized P0/P1/P2 follow-on delta list | - | 0.12 | 0 | final_consolidation |
 
-- iterationsCompleted: 1
-- keyFindings: 0
+- iterationsCompleted: 10
+- keyFindings: 105
 - openQuestions: 5
 - resolvedQuestions: 0
 
@@ -61,10 +70,10 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- Last 3 ratios: 0.92
+- Last 3 ratios: 0.29 -> 0.21 -> 0.12
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.92
+- convergenceScore: 0.12
 - coverageBySources: {"code":8,"other":5}
 
 <!-- /ANCHOR:trend -->

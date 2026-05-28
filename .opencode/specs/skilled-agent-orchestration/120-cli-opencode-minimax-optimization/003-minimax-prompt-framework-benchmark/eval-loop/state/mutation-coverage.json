@@ -1,0 +1,15 @@
+{
+  "proposed_signatures": [
+    "f25ab8ef667e8c5b",
+    "8d00d21e01f2b438",
+    "b05a157ee138dcd0",
+    "08fdac2afd8bd6fd",
+    "88a854e3105d7b8c",
+    "f30510bd5b57d861",
+    "49dc891672248d5e"
+  ],
+  "exhausted_signatures": [],
+  "active_axis": "preplanning_density",
+  "axis_switches": 1,
+  "no_improvement_count": 0
+}

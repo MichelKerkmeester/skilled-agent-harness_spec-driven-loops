@@ -1,0 +1,19 @@
+{
+  "specFolder": "121-deep-agent-improvement-benchmark-mode",
+  "description": "Build the deep-agent-improvement model-benchmark mode from the 002 research build-delta",
+  "keywords": [
+    "build",
+    "deep-agent-improvement",
+    "model-benchmark",
+    "mode",
+    "002",
+    "research",
+    "build-delta"
+  ],
+  "lastUpdated": "2026-05-28T16:24:06.350Z",
+  "specId": "121",
+  "folderSlug": "deep-agent-improvement-benchmark-mode",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

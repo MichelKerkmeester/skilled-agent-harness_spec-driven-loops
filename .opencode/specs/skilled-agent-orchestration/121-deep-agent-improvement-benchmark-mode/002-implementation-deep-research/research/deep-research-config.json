@@ -1,0 +1,60 @@
+{
+  "topic": "How should we implement the deep-agent-improvement model-benchmark mode designed in 001? Define exact interface contracts for the three pluggable seams (candidate-source, dispatcher, scorer); how to generalize the 120/003 dispatch-minimax.cjs into a model-agnostic dispatch-model.cjs; how to port the 120/003 eval-rig scorer + 5-dim rubric cleanly into deep-agent-improvement; how to wire a mode switch (agent-improvement | model-benchmark) into loop.cjs without regressing the agent-improvement path; the backward-compat test strategy; and implementation edge cases/pitfalls. Output build-ready guidance: per-seam interface contracts plus a wiring + backward-compat plan as a build-delta list.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/002-implementation-deep-research",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-05-28T14:46:22Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "minimax/MiniMax-M2.7",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "research-20260528-144622",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/deep-research-findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive"
+}

@@ -12,15 +12,17 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research"
     last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored phase-002 deep-research charter"
-    next_safe_action: "Run /deep:start-research-loop:auto (cli-codex gpt-5.5 high/fast, 10 iters)"
+    recent_action: "Completed 10-iteration deep-research loop"
+    next_safe_action: "Open a follow-on packet to apply research.md P0/P1 deltas"
     blockers: []
-    key_files: []
+    key_files:
+      - "research/research.md"
+      - "research/resource-map.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-minimax-efficiency-deep-research"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -151,6 +153,23 @@ A converged research output (`research.md`) plus a concrete delta list that tell
 - How much reliable public data exists on MiniMax 2.7's API (context window, pricing, reasoning controls)? (Determines finding confidence.)
 - Should MiniMax 2.7 become a default for any task class, or remain opt-in until usage data accumulates? (Routing-heuristic output.)
 <!-- /ANCHOR:questions -->
+
+---
+
+## 8. DEEP-RESEARCH FINDINGS
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Deep-research loop complete: 10 iterations (cli-codex gpt-5.5 high/fast), stop reason maxIterationsReached, newInfoRatio 0.92 → 0.12. All 5 questions answered at patch-planning level. Canonical synthesis: `research/research.md`.
+
+**Outcome:** MiniMax 2.7 = 204,800-token, native-tool, separate-pool (`minimax-api`, fail-fast) direct provider. Best-use work is docs/metadata/routing extending 114 infra — no MiniMax-specific runtime logic. 143,360 active budget under the 70% rule; omit `--variant` until a live ablation proves it.
+
+**Prioritized deltas for the follow-on packet** (full detail in research.md §10):
+- P0: `model-profiles.json` (context_length 204800); `per-model-budgets.json` (minimax row); `cli-opencode/references/context-budget.md` (window/active-budget table); `cli_reference.md` (`--variant` omit-by-default + direct-provider subsection).
+- P1: `cli-opencode/SKILL.md` routing table; `cli_prompt_quality_card.md` budget-awareness table; `sk-prompt-small-model/SKILL.md` dispatch matrix; `pattern-index.md` three link-only MiniMax rows.
+- P2 (optional, needs live key): `--variant` ablation playbook.
+
+**Runtime-deferred (needs `MINIMAX_API_KEY`):** exact slug casing, real `--variant` behavior, latency envelope, RPM/TPM error shapes, live pricing.
+<!-- END GENERATED: deep-research/spec-findings -->
 
 ---
 

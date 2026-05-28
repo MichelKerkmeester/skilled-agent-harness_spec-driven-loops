@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/001-mode-selector-design",
+  "description": "Design: add a model/prompt-framework benchmark mode to deep-agent-improvement via a mode selector, porting the 120/003 rig.",
+  "keywords": [
+    "deep-agent-improvement",
+    "benchmark-mode",
+    "model-benchmark",
+    "prompt-framework",
+    "mode-selector",
+    "design"
+  ],
+  "lastUpdated": "2026-05-28T13:38:38.273Z",
+  "specId": "121",
+  "folderSlug": "deep-agent-improvement-benchmark-mode",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

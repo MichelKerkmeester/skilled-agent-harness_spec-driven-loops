@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/001-mode-selector-design",
+  "spec_folder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/001-mode-selector-design",
+  "parent_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [],
+    "causal_summary": "Design: add a model/prompt-framework benchmark mode to deep-agent-improvement (port the 120/003 rig behind a mode selector)",
+    "created_at": "2026-05-28T13:38:37Z",
+    "last_save_at": "2026-05-28T13:38:37Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ]
+  }
+}

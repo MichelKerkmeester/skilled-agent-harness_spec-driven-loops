@@ -49,8 +49,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase 001 merged (MiniMax provider present)
-- [ ] T002 Read cli-codex SKILL.md; confirm `gpt-5.5` + `high` + `fast` dispatch shape
+- [x] T001 Confirm phase 001 merged (MiniMax provider present)
+- [x] T002 Read cli-codex SKILL.md; confirm `gpt-5.5` + `high` + `fast` dispatch shape
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,10 +58,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Launch `/deep:start-research-loop:auto` (`--spec-folder` this folder, `--executor=cli-codex --model=gpt-5.5 --reasoning-effort=high --service-tier=fast --max-iterations=10`)
-- [ ] T004 Monitor iterations to convergence or 10
-- [ ] T005 Synthesize `research.md` (17 sections) + `resource-map.md`
-- [ ] T006 Extract follow-on delta list (sk-prompt-small-model + cli-opencode edits)
+- [x] T003 Launch `/deep:start-research-loop:auto` (`--spec-folder` this folder, `--executor=cli-codex --model=gpt-5.5 --reasoning-effort=high --service-tier=fast --max-iterations=10`)
+- [x] T004 Monitor iterations to convergence or 10 (ran all 10; ratio 0.92 → 0.12)
+- [x] T005 Synthesize `research.md` (17 sections) + `resource-map.md`
+- [x] T006 Extract follow-on delta list (sk-prompt-small-model + cli-opencode edits)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,9 +69,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Verify `deep-research-state.jsonl` records + stop reason
-- [ ] T008 Verify `research.md` + `resource-map.md` exist and answer the in-scope questions
-- [ ] T009 Run `validate.sh --strict` on this folder
+- [x] T007 Verify `deep-research-state.jsonl` records + stop reason (10 iteration records + synthesis_complete, maxIterationsReached)
+- [x] T008 Verify `research.md` + `resource-map.md` exist and answer the in-scope questions
+- [x] T009 Run `validate.sh --strict` on this folder
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (10 iterations + synthesis + strict validate)
 <!-- /ANCHOR:completion -->
 
 ---

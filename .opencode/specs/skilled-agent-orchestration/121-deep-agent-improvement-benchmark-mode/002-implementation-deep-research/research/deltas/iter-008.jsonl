@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":8,"newInfoRatio":0.00,"status":"converge","focus":"Terminal research iteration. Convergence declared in iter 7. Formalize build-delta handoff to implementation agent. 133 findings, 5/5 Qs answered, BC invariants + edge cases complete.","graphEvents":[],"executor":{"kind":"cli-opencode","model":"minimax/MiniMax-M2.7","reasoningEffort":null,"serviceTier":null}}
+{"type":"finding","id":"finding-8-001","severity":"P0","label":"Terminal iteration — research convergence complete, build-delta ready for implementation handoff","iteration":8}
+{"type":"observation","id":"obs-iter008-001","packet":"008","classification":"terminal","iteration":8}

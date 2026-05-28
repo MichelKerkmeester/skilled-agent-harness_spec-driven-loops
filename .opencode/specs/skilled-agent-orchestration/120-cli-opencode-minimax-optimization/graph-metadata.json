@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/001-minimax-provider-integration",
-    "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research"
+    "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
+    "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark"
   ],
   "manual": {
     "depends_on": [],
@@ -29,6 +30,6 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/001-minimax-provider-integration"
+    "last_active_child_id": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark"
   }
 }

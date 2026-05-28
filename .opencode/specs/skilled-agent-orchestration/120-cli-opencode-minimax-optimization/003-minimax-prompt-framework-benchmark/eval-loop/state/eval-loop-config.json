@@ -1,0 +1,79 @@
+{
+  "council_report_path": "../../../113-cli-devin-prompt-quality/001-council-design/ai-council/council-report.md",
+  "rig_root": "../eval-rig",
+  "provenance": "Reuses the 113 SWE-1.6 eval rig + rubric. Only the dispatch layer (dispatch-minimax.cjs) and the framework variant seeds differ. Target model: MiniMax M2.7 via cli-opencode direct API.",
+  "rubric": {
+    "version": "v1.0.0",
+    "dims": [
+      {"id": "D1", "name": "Acceptance", "weight": 0.25, "method": "deterministic", "soft_gate": true, "short_circuit_on_d2_hard_gate": true},
+      {"id": "D2", "name": "Bundle-gate", "weight": 0.30, "method": "deterministic", "hard_gate": true},
+      {"id": "D3", "name": "Path/CWD", "weight": 0.20, "method": "deterministic"},
+      {"id": "D4", "name": "Hallucination", "weight": 0.15, "method": "grader"},
+      {"id": "D5", "name": "Pre-plan", "weight": 0.10, "method": "deterministic", "never_gate": true}
+    ]
+  },
+  "budget": {
+    "min_iterations": 5,
+    "max_iterations": 9,
+    "max_total_dispatches": 63,
+    "rate_limit_backoff_ms": [60000, 120000, 240000],
+    "rate_limit_strikes_before_pause": 3
+  },
+  "fixtures": [
+    "fix-001-hallucinated-cli-flag",
+    "fix-002-wrong-cwd-paths",
+    "fix-003-bundle-gate-smoke-run",
+    "fix-004-multi-file-scope-boundary",
+    "fix-005-acceptance-strict",
+    "fix-006-adversarial-path-traversal",
+    "fix-007-baseline-pure-function"
+  ],
+  "variants_seed": [
+    "v-001-rcaf",
+    "v-002-race",
+    "v-003-cidi",
+    "v-004-tidd-ec",
+    "v-005-costar"
+  ],
+  "target_model": {
+    "executor": "cli-opencode",
+    "model": "minimax/MiniMax-M2.7",
+    "agent": "general",
+    "timeout_ms": 600000,
+    "max_concurrent": 1,
+    "note": "--variant intentionally omitted; framework bake-off holds it constant per 120/002 omit-by-default finding."
+  },
+  "grader": {
+    "model": "claude-sonnet-4-5",
+    "confidence_threshold": 0.7,
+    "dispute_rate_threshold": 0.15,
+    "dispute_delta_threshold": 0.15,
+    "recent_iters_window": 3
+  },
+  "convergence": {
+    "plateau_weight": 0.40,
+    "plateau_min_iters": 4,
+    "plateau_delta_threshold": 0.02,
+    "plateau_window": 3,
+    "exhaustion_weight": 0.35,
+    "exhaustion_min_iters": 3,
+    "exhaustion_ratio_threshold": 0.75,
+    "mad_weight": 0.25,
+    "mad_min_iters": 4,
+    "mad_threshold": 0.01,
+    "stop_score_threshold": 0.60,
+    "legal_stop": {
+      "min_variants_per_fixture": 3,
+      "min_best_variant_score": 0.55
+    }
+  },
+  "mutation": {
+    "axes": ["framework", "preplanning_density"],
+    "max_axis_switches": 1,
+    "no_improvement_iters_before_switch": 3
+  },
+  "iter1_sanity_review": {
+    "enabled": false,
+    "skip_env_var": "EVAL_LOOP_SKIP_ITER1_REVIEW"
+  }
+}
