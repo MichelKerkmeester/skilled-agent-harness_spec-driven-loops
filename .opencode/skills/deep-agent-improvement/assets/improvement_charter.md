@@ -106,6 +106,6 @@ Failed gates persist `blockedStop` with full gate results.
 ## 8. RELATED RESOURCES
 
 - `../references/promotion-gates/promotion_rules.md`
-- `../references/promotion-gates/promotion_rules.md`
+- `../references/promotion-gates/promotion_gate_contract.md`
 - `target_manifest.jsonc`
 

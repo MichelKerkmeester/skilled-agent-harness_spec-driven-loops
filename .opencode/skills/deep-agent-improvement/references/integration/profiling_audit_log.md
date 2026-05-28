@@ -85,7 +85,7 @@ Each log entry is a single-line JSON object with the following fields:
 
 ---
 
-## Implementation Details
+## 5. Implementation Details
 
 ### Script: generate-profile.cjs
 
@@ -128,7 +128,7 @@ try {
 
 ---
 
-## Usage for Operators
+## 6. Usage for Operators
 
 ### Debugging Profile Selection
 
@@ -157,7 +157,7 @@ grep '"chosen_profile":"strict"' improvement/profile-selection.log
 
 ---
 
-## Related References
+## 7. Related References
 
 - `generate-profile.cjs`: `.opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs`
 - `typed-errors.cjs`: `.opencode/skills/deep-agent-improvement/scripts/lib/typed-errors.cjs`

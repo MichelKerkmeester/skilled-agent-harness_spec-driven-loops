@@ -11,6 +11,10 @@ trigger_phrases:
 
 # Mixed-Executor Methodology for Multi-Iter Evaluation Sweeps
 
+How to combine mixed-executor dispatch with an adjudication-iter false-positive filter for DAI multi-iter evaluation sweeps.
+
+---
+
 ## 1. OVERVIEW
 
 This reference documents the mixed-executor dispatch pattern and the adjudication-iter false-positive filter. Both are proven, recommended practices for DAI operators running multi-iter evaluation sweeps.
@@ -52,7 +56,7 @@ The mixed-executor pattern uses an 8+2 split for a 10-iter sweep:
 
 ### Example: 10-Iter Sweep
 
-```
+```text
 Iter 1:  cli-devin SWE-1.6  (breadth)
 Iter 2:  cli-devin SWE-1.6  (breadth)
 Iter 3:  cli-devin SWE-1.6  (breadth)
@@ -79,7 +83,7 @@ The adjudication-iter pattern is a false-positive filter pass that significantly
 
 ### Example: 10-Iter Sweep with Adjudication
 
-```
+```text
 Iter 1-6:  cli-devin SWE-1.6  (breadth)
 Iter 7:    cli-devin SWE-1.6  (adjudication pass)
 Iter 8:    cli-devin SWE-1.6  (breadth)
