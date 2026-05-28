@@ -5,7 +5,7 @@
 // Addresses classifier edge cases from the foundational-runtime deep review.
 //
 // Runtime root docs (AGENTS.md, CLAUDE.md, GEMINI.md, CODEX.md) and the
-// spec_kit command entry docs cite this module as the machine contract.
+// speckit command entry docs cite this module as the machine contract.
 // The prose trigger lists in those docs remain as human-readable references
 // but the authoritative list of tokens lives here.
 // ---------------------------------------------------------------
@@ -101,20 +101,20 @@ export const MEMORY_SAVE_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
 /**
  * Resume / continue triggers.
  *
- * `/spec_kit:resume` and deep-research `resume` produce writes (iteration-NNN.md
+ * `/speckit:resume` and deep-research `resume` produce writes (iteration-NNN.md
  * and JSONL appends), so they require Gate 3 even though the surface name sounds
  * read-only.
  */
 export const RESUME_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
-  { pattern: '/spec_kit:resume',    kind: 'phrase', category: 'resume' },
+  { pattern: '/speckit:resume',     kind: 'phrase', category: 'resume' },
   { pattern: '/deep:start-research-loop', kind: 'phrase', category: 'resume' },
-  { pattern: 'spec_kit:deep-research',  kind: 'phrase', category: 'resume' },
+  { pattern: 'speckit:deep-research',   kind: 'phrase', category: 'resume' },
   { pattern: '/deep:start-review-loop',   kind: 'phrase', category: 'resume' },
-  { pattern: 'spec_kit:deep-review',    kind: 'phrase', category: 'resume' },
+  { pattern: 'speckit:deep-review',     kind: 'phrase', category: 'resume' },
   { pattern: 'resume the packet',        kind: 'phrase', category: 'resume' },
   { pattern: 'resume the phase folder',  kind: 'phrase', category: 'resume' },
   { pattern: 'reconstruct continuity',   kind: 'phrase', category: 'resume' },
-  { pattern: ':auto',               kind: 'phrase', category: 'resume', note: 'Only matches with spec_kit prefix.' },
+  { pattern: ':auto',               kind: 'phrase', category: 'resume', note: 'Matches alongside a speckit or /deep: loop command.' },
   { pattern: 'deep-research',       kind: 'phrase', category: 'resume' },
   { pattern: 'deep research',       kind: 'phrase', category: 'resume' },
   { pattern: 'deep-review',         kind: 'phrase', category: 'resume' },
@@ -172,7 +172,7 @@ export const GATE_3_VOCABULARY = Object.freeze({
 
 /**
  * Normalize a prompt for matching: lowercase and collapse whitespace, but
- * preserve `/` and `:` so command forms like `/spec_kit:resume` survive.
+ * preserve `/` and `:` so command forms like `/speckit:resume` survive.
  */
 export function normalizePrompt(prompt: string): string {
   return canonicalFold(prompt)
@@ -194,7 +194,7 @@ export function tokenizePrompt(normalized: string): string[] {
 export function matchesEntry(entry: TriggerEntry, normalized: string, tokens: string[]): boolean {
   if (entry.kind === 'phrase') {
     if (entry.pattern === ':auto' && entry.category === 'resume') {
-      return normalized.includes(':auto') && normalized.includes('spec_kit');
+      return normalized.includes(':auto') && (normalized.includes('speckit') || normalized.includes('/deep:'));
     }
     return normalized.includes(entry.pattern);
   }

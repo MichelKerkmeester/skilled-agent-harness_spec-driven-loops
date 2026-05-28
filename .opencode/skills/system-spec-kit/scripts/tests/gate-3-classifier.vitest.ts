@@ -110,8 +110,8 @@ describe('Gate 3 classifier — normalization', () => {
   });
 
   it('tokenizes while preserving /, :, - and _', () => {
-    const tokens = tokenizePrompt(normalizePrompt('/spec_kit:resume the deep-research'));
-    expect(tokens).toEqual(expect.arrayContaining(['/spec_kit:resume', 'the', 'deep-research']));
+    const tokens = tokenizePrompt(normalizePrompt('/speckit:resume the deep-research'));
+    expect(tokens).toEqual(expect.arrayContaining(['/speckit:resume', 'the', 'deep-research']));
   });
 });
 
@@ -233,8 +233,8 @@ describe('Gate 3 classifier — save/resume/continue (T-DOC-03)', () => {
     expect(r.reason).toBe('memory_save_match');
   });
 
-  it('triggers Gate 3 for "/spec_kit:resume"', () => {
-    const r = classifyPrompt('/spec_kit:resume the 016 packet');
+  it('triggers Gate 3 for "/speckit:resume"', () => {
+    const r = classifyPrompt('/speckit:resume the 016 packet');
     expect(r.triggersGate3).toBe(true);
     expect(r.reason).toBe('resume_match');
   });
@@ -258,7 +258,7 @@ describe('Gate 3 classifier — save/resume/continue (T-DOC-03)', () => {
     }
   });
 
-  it('triggers Gate 3 for direct spec_kit deep-research command prompts', () => {
+  it('triggers Gate 3 for direct speckit deep-research command prompts', () => {
     const r = classifyPrompt('run /deep:start-research-loop :auto for the routing packet');
     expect(r.triggersGate3).toBe(true);
     expect(r.reason).toBe('resume_match');
@@ -268,7 +268,7 @@ describe('Gate 3 classifier — save/resume/continue (T-DOC-03)', () => {
     ]));
   });
 
-  it('triggers Gate 3 for direct spec_kit deep-review command prompts', () => {
+  it('triggers Gate 3 for direct speckit deep-review command prompts', () => {
     const r = classifyPrompt('/deep:start-review-loop :auto the current packet for 10 iterations');
     expect(r.triggersGate3).toBe(true);
     expect(r.reason).toBe('resume_match');
@@ -290,9 +290,9 @@ describe('Gate 3 classifier — save/resume/continue (T-DOC-03)', () => {
     }
   });
 
-  it('only treats :auto as deep-loop write marker when paired with spec_kit', () => {
+  it('only treats :auto as deep-loop write marker when paired with speckit', () => {
     expect(classifyPrompt('explain the :auto suffix in isolation').triggersGate3).toBe(false);
-    expect(classifyPrompt('run spec_kit:deep-review :auto on the packet').triggersGate3).toBe(true);
+    expect(classifyPrompt('run speckit:deep-review :auto on the packet').triggersGate3).toBe(true);
   });
 });
 
