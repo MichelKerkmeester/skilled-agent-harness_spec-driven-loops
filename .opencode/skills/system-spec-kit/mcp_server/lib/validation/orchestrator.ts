@@ -177,16 +177,34 @@ function validateFileExists(folder: string, level: SpecKitLevel): ValidationEntr
     : entry('FILE_EXISTS', 'error', `Missing ${missing.length} required file(s) for Level ${level}`, missing);
 }
 
+// Canonical spec-doc placeholder markers. Mirrors check-placeholders.sh
+// (YOUR_VALUE_HERE + NEEDS_CLARIFICATION underscore/space). Mustache `{{...}}`
+// is intentionally NOT included: it is not the canonical spec-doc placeholder
+// syntax and legit spec-doc content uses it, so flagging it false-positives.
+const PLACEHOLDER_MARKER_RE = /<YOUR_VALUE_HERE:|\[YOUR_VALUE_HERE:|\[NEEDS_CLARIFICATION:|\[NEEDS CLARIFICATION:/u;
+
 function validatePlaceholders(folder: string, level: SpecKitLevel): ValidationEntry {
   const findings: string[] = [];
   for (const docName of docsForLevel(level)) {
     const content = readIfExists(path.join(folder, docName));
     if (!content) continue;
     const lines = content.split(/\r?\n/u);
+    // Track fenced code blocks: a line starting with ``` toggles in_code and is
+    // itself skipped, matching check-placeholders.sh awk behavior.
+    let inCode = false;
     lines.forEach((line, index) => {
-      if (/<YOUR_VALUE_HERE:|\[YOUR_VALUE_HERE:|\[NEEDS_CLARIFICATION:/u.test(line)) {
-        findings.push(`${docName}:${index + 1}: ${line.trim().slice(0, 120)}`);
+      if (/^\s*```/u.test(line)) {
+        inCode = !inCode;
+        return;
       }
+      if (inCode) return;
+      const match = PLACEHOLDER_MARKER_RE.exec(line);
+      if (!match) return;
+      // Skip inline-backtick-wrapped markers: if the matched marker is
+      // immediately preceded by a backtick on this line, it is escaped content
+      // (parity with the shell rule's grep -v of backtick-wrapped cases).
+      if (match.index > 0 && line.charAt(match.index - 1) === '`') return;
+      findings.push(`${docName}:${index + 1}: ${line.trim().slice(0, 120)}`);
     });
   }
   return findings.length === 0

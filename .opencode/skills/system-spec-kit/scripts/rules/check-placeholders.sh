@@ -8,7 +8,9 @@ set -euo pipefail
 
 # Rule: PLACEHOLDER_FILLED
 # Severity: error
-# Description: Detects unfilled placeholders: [YOUR_VALUE_HERE:], [NEEDS CLARIFICATION:], {{mustache}}
+# Description: Detects unfilled spec-doc placeholders: [YOUR_VALUE_HERE:], [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:]
+# Parity: mirrors mcp_server orchestrator validatePlaceholders. Mustache {{...}} is NOT flagged
+# (not canonical spec-doc placeholder syntax; legit spec-doc content uses it).
 
 # ───────────────────────────────────────────────────────────────
 # 1. INITIALIZATION
@@ -69,25 +71,16 @@ run_check() {
                  grep -v '`\[YOUR_VALUE_HERE:' | \
                  grep -v '\[YOUR_VALUE_HERE:[^]]*\]`' || true)
         
-        # Pattern 2: [NEEDS CLARIFICATION:]
+        # Pattern 2: [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:] (underscore + space)
+        # Strict superset-parity with the canonical orchestrator: both variants flagged.
         while IFS= read -r match; do
             if [[ -n "$match" ]]; then
                 local linenum="${match%%:*}"
                 found_placeholders+=("$file:$linenum")
             fi
-        done < <(echo "$filtered" | grep -E '\[NEEDS CLARIFICATION:' 2>/dev/null | \
-                 grep -v '`\[NEEDS CLARIFICATION:' | \
-                 grep -v '\[NEEDS CLARIFICATION:[^]]*\]`' || true)
-        
-        # Pattern 3: {{mustache}}
-        while IFS= read -r match; do
-            if [[ -n "$match" ]]; then
-                local linenum="${match%%:*}"
-                found_placeholders+=("$file:$linenum")
-            fi
-        done < <(echo "$filtered" | grep -E '\{\{[^}]+\}\}' 2>/dev/null | \
-                 grep -v '`{{' | \
-                 grep -v '}}`' || true)
+        done < <(echo "$filtered" | grep -E '\[NEEDS[_ ]CLARIFICATION:' 2>/dev/null | \
+                 grep -v '`\[NEEDS[_ ]CLARIFICATION:' | \
+                 grep -v '\[NEEDS[_ ]CLARIFICATION:[^]]*\]`' || true)
     done
     
     # Deduplicate (bash 3.2 compatible)
@@ -115,7 +108,7 @@ run_check() {
         RULE_STATUS="fail"
         RULE_MESSAGE="Found $count unfilled placeholder(s)"
         RULE_DETAILS=("${unique_placeholders[@]}")
-        RULE_REMEDIATION="Replace [YOUR_VALUE_HERE:], [NEEDS CLARIFICATION:], and {{placeholder}} with actual values"
+        RULE_REMEDIATION="Replace [YOUR_VALUE_HERE:] and [NEEDS_CLARIFICATION:] / [NEEDS CLARIFICATION:] with actual values"
     fi
 }
 
