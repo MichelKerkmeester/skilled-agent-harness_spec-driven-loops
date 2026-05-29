@@ -151,6 +151,27 @@ describe('code_graph_status readiness snapshot routing (Packet 014)', () => {
     vi.clearAllMocks();
   });
 
+  // ── DR-001-01. Degraded envelope when the guarded readiness/scope read throws ──
+  it('DR-001-01: returns a readiness_unavailable degraded envelope when the scope read throws', async () => {
+    installMocks({ freshness: 'fresh', action: 'none', reason: 'fresh' });
+    // The scope read is inside the guarded region with the snapshot read; a throw
+    // here must surface the degraded envelope, not crash the status handler.
+    mocks.getStoredCodeGraphScope.mockImplementation(() => {
+      throw new Error('db read failed');
+    });
+
+    const { handleCodeGraphStatus } = await import('../handlers/status.js');
+    const payload = JSON.parse((await handleCodeGraphStatus()).content[0].text) as {
+      status: string;
+      data?: Record<string, unknown>;
+    };
+
+    expect(payload.status).toBe('error');
+    expect(payload.data?.degraded).toBe(true);
+    expect(payload.data?.graphAnswersOmitted).toBe(true);
+    expect(payload.data?.blockReason).toBe('readiness_unavailable');
+  });
+
   // ── A. Fresh state → readiness.action = "none" ────────────────
   // drift: verified against shipped behavior during Unit H
   it('surfaces readiness.action="none" for a fresh graph (criterion A)', async () => {

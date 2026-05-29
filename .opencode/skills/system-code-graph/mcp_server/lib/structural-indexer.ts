@@ -2135,6 +2135,13 @@ function buildIndexPhases(
       let preParseSkippedCount = 0;
 
       for (const file of candidateFiles) {
+        // DR-010-01: cooperative cancellation INSIDE the parse phase. runPhases (BUG-06) only
+        // checks the deadline signal BETWEEN phases, so a large parse-candidates loop would
+        // otherwise run to completion after the caller's deadline aborts and discard the result.
+        // Check per file so a timeout stops the parse promptly (one-file granularity).
+        if (options.signal?.aborted) {
+          throw new Error(`parse-candidates aborted (deadline signal) after ${results.length} parsed`);
+        }
         const language = detectLanguage(file);
         if (!language || !config.languages.includes(language)) continue;
 

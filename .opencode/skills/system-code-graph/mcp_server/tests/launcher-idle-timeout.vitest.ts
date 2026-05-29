@@ -39,6 +39,27 @@ describe('launcher idle timeout monitor', () => {
     monitor.stop();
   });
 
+  it('DR-008-04: re-arms the watchdog when idle shutdown throws', async () => {
+    vi.useFakeTimers();
+    const onIdle = vi.fn<[], Promise<void>>()
+      .mockRejectedValueOnce(new Error('shutdown boom'))
+      .mockResolvedValue(undefined);
+    const monitor = createLauncherIdleMonitor({
+      serviceName: 'test-service',
+      timeoutMinutesRaw: '0.001',
+      stdin: null,
+      getActiveClientCount: () => 0,
+      onIdle,
+      log: () => undefined,
+    });
+
+    await vi.advanceTimersByTimeAsync(1_000); // first idle → onIdle throws → re-arm
+    expect(onIdle).toHaveBeenCalledTimes(1);
+    await vi.advanceTimersByTimeAsync(1_000); // re-armed watchdog retries (pre-fix: stuck at 1)
+    expect(onIdle).toHaveBeenCalledTimes(2);
+    monitor.stop();
+  });
+
   it('keeps an active IPC client alive past the idle timeout', async () => {
     vi.useFakeTimers();
     const onIdle = vi.fn();

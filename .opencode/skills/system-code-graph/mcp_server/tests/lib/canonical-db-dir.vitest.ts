@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, rmSync, symlinkSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -59,6 +59,22 @@ describe('resolveCanonicalDbDir', () => {
 
     expect(() => resolveCanonicalDbDir(alias, root)).toThrow(CanonicalDbDirError);
     expect(resolve(alias).startsWith(root)).toBe(true);
+  });
+
+  it('DR-003-02: rejects a symlink escape BEFORE creating any directory outside the workspace', () => {
+    const root = tempRoot();
+    const outside = mkdtempSync(join(tmpdir(), 'cg-outside-db-'));
+    tempDirs.push(outside);
+    // A symlink inside the workspace points outside; the requested DB leaf does not exist yet.
+    const alias = join(root, 'escape-link');
+    symlinkSync(outside, alias, 'dir');
+    const requested = join(alias, 'code-graph', 'database');
+
+    expect(() => resolveCanonicalDbDir(requested, root)).toThrow(CanonicalDbDirError);
+    // The fix rejects on the deepest existing ancestor BEFORE mkdir, so the leaf dirs must NOT
+    // have been created under the real outside target (the pre-fix code mkdir'd then rejected).
+    expect(existsSync(join(outside, 'code-graph', 'database'))).toBe(false);
+    expect(existsSync(join(outside, 'code-graph'))).toBe(false);
   });
 
   it('surfaces EPERM canonicalization failures instead of guessing identity', async () => {

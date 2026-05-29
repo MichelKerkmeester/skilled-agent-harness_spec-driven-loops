@@ -83,7 +83,7 @@ contextType: "implementation"
 | DR-008-01 | ✅ | P2 single-user / P1 multi-user | pre-session | Validate existing `/tmp` dir owner+mode |
 | DR-008-04 | ✅ | P2 | pre-session | Re-arm watchdog on onIdle failure |
 | DR-001-01 | ✅ | P1 (degraded-mode UX) | pre-session | Wrap scope/snapshot reads in degraded envelope |
-| DR-010-01 | ✅ | P1 | **operator BUG-06 WIP** | Operator's call (intra-phase signal checks) |
+| DR-010-01 | ✅ | P1 | **operator BUG-06 WIP** | ✅ FIXED 2026-05-29 — per-file abort check landed in the parse-candidates phase |
 
 **None block shipped work**; none were introduced this session. The highest-leverage action is the single race-class hardening packet (covers 3 findings + matches the DR-002-03 fix already landed). The two security items are real but gated (override-only / multi-user). DR-010-01 belongs to the operator's active feature.
 
@@ -108,4 +108,23 @@ The remaining fixable pre-existing items are now FIXED + verified (typecheck cle
 - **DR-008-04** — the idle-timeout watchdog now **re-arms** (resets `stopped`, re-adds the stdin listener, restarts the timer) when `onIdle()` throws, instead of being permanently disabled.
 - **DR-001-01** — `code_graph_status` now wraps the readiness-snapshot / stored-scope reads in a try and returns a `readiness_unavailable` degraded envelope (with `rg` fallback) instead of throwing a generic error on a corrupt/locked DB.
 
-**Only DR-010-01 remains open** — it belongs to the operator's active BUG-06 cooperative-cancellation WIP (intra-phase signal checks). Note: these four fixes are not yet covered by dedicated regression tests (same coverage gap the review highlighted); follow-up tests recommended.
+**Only DR-010-01 remains open** — it belongs to the operator's active BUG-06 cooperative-cancellation WIP (intra-phase signal checks).
+
+---
+
+## DR-010-01 landed + regression coverage added 2026-05-29
+
+**All 8 pre-existing findings are now resolved.** Final batch (typecheck clean; full suite **587 passed / 1 skipped / 0 failed**):
+
+- **DR-010-01** — `structural-indexer.ts` `parse-candidates` phase now checks `options.signal?.aborted` at the **top of the per-file loop** and throws `parse-candidates aborted (deadline signal) after N parsed`. `runPhases` (BUG-06) only checks the deadline between phases; this gives one-file-granularity cancellation inside the monolithic parse phase so a post-deadline parse stops promptly instead of running to completion and discarding the result. This is the operator's BUG-06 WIP, landed as agreed.
+
+**Regression tests added** (closing the coverage gap the review flagged — 4 new tests, all confirmed passing by name, none skipped):
+
+| Finding | Test file | Test |
+|---------|-----------|------|
+| DR-003-02 | `tests/lib/canonical-db-dir.vitest.ts` | rejects a symlink escape **before** creating any dir outside the workspace (asserts the leaf dirs do **not** exist under the real outside target — fails on pre-fix mkdir-then-reject) |
+| DR-008-01 | `tests/lib/security-hardening.vitest.ts` | refuses to bind under a group/world-writable socket dir (`chmod 0o777`; `skipIf` no `getuid`) |
+| DR-008-04 | `tests/launcher-idle-timeout.vitest.ts` | re-arms the watchdog when `onIdle()` throws (asserts `onIdle` called **twice** — pre-fix stays stuck at 1) |
+| DR-001-01 | `tests/code-graph-status-readiness-snapshot.vitest.ts` | returns a `readiness_unavailable` degraded envelope when the guarded scope read throws |
+
+**Coverage honesty:** DR-010-01's per-file abort and the concurrency CAS / lease-removal fixes (DR-001-03 / DR-008-02 / DR-008-03) remain hard to cover **deterministically** — a per-file abort needs an abort fired mid-parse-phase (a pre-aborted signal trips `runPhases`' between-phase check first), and the lease races need interleaved-process scheduling. These four are verified by typecheck + manual reasoning + the live launcher smoke, not by a dedicated unit test. The four tests above cover the cleanly-testable fixes.
