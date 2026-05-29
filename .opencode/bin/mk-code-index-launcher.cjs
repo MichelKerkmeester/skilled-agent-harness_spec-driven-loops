@@ -370,7 +370,18 @@ function acquireOwnerLeaseFile() {
     return { acquired: true, lease, reclaimed: existing };
   }
 
+  // DR-002-01: the reclaim path is last-writer-wins (writeOwnerLeaseFile is an atomic
+  // tmp+rename). Re-read after the rename and confirm we are the surviving owner; if a
+  // concurrent launcher reclaimed the same stale lease, exactly one will see its own pid.
   writeOwnerLeaseFile(lease);
+  const reread = readOwnerLeaseFile(currentOwnerLeasePath);
+  if (!reread || reread.ownerPid !== process.pid) {
+    return {
+      acquired: false,
+      holder: reread || lease,
+      classification: reread ? classifyOwnerLease(reread) : 'live-owner',
+    };
+  }
   ownerLeasePid = process.pid;
   return { acquired: true, lease, reclaimed: existing };
 }
@@ -378,12 +389,17 @@ function acquireOwnerLeaseFile() {
 function refreshOwnerLeaseFile(ownerPid, patch = {}) {
   const lease = readOwnerLeaseFile();
   if (!lease || lease.ownerPid !== ownerPid) return false;
+  const nextOwnerPid = patch.ownerPid ?? ownerPid;
   writeOwnerLeaseFile({
     ...lease,
     ...patch,
     lastHeartbeatIso: new Date().toISOString(),
   });
-  ownerLeasePid = patch.ownerPid ?? ownerPid;
+  // DR-002-01: re-read after the atomic write; if a concurrent reclaim superseded us between
+  // the ownership check and the write, do not claim the refresh succeeded.
+  const reread = readOwnerLeaseFile();
+  if (!reread || reread.ownerPid !== nextOwnerPid) return false;
+  ownerLeasePid = nextOwnerPid;
   return true;
 }
 
@@ -408,9 +424,38 @@ function clearOwnerLeaseFileIfOwner(ownerPid) {
   }
 }
 
+function pidLiveAt(filePath, pidField) {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const pid = parsed[pidField];
+    if (!Number.isInteger(pid)) return false;
+    try { process.kill(pid, 0); return true; } // live
+    catch (error) { return error.code === 'EPERM'; } // EPERM = exists but no perm → treat live; ESRCH = dead
+  } catch { return false; } // missing/unreadable → not live
+}
+
+// DR-002-02 / DR-001-02: a former-location DB is still "owned" if EITHER the launcher PID lease
+// (.mk-code-index-launcher.json) or the owner lease (.code-graph-owner.json) names a live process.
+function formerLocationOwnerLive(dir) {
+  return pidLiveAt(path.join(dir, '.mk-code-index-launcher.json'), 'pid')
+      || pidLiveAt(path.join(dir, '.code-graph-owner.json'), 'ownerPid');
+}
+
 function leaseHeldFromFile(filePath, legacyPath = null) {
   const lease = readLeaseFile(filePath);
   if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
+  // DR-003-01: do not bridge to a LEGACY-location lease unless its lease file is owned by the
+  // current user. A foreign-owned lease in a shared/former path could otherwise point this
+  // client at a spoofed IPC socket.
+  if (legacyPath && typeof process.getuid === 'function') {
+    try {
+      if (fs.statSync(filePath).uid !== process.getuid()) {
+        return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
+      }
+    } catch {
+      return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
+    }
+  }
   const startedAt = lease.startedAt ?? new Date(0).toISOString();
   try {
     process.kill(lease.pid, 0);
@@ -786,9 +831,18 @@ function installSignalHandlers() {
 
     // Auto-migrate DB from the former shared standalone location back to skill-local.
     // The former DB is preserved as a backup (copy, not move).
+    // DR-006-02: never auto-seed/migrate into an explicit SPECKIT_CODE_GRAPH_DB_DIR override
+    //   (the operator chose that target); migrate only into the resolved default.
+    // DR-001-02 / DR-002-02: never copy a former DB that a live legacy owner could still be
+    //   writing — probe BOTH the former PID lease and the former owner lease for liveness first.
+    //   The former owner lease (.code-graph-owner.json) is intentionally NOT copied forward.
     const formerSharedDbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');
-    if (!exists(path.join(dbDir, 'code-graph.sqlite')) && exists(path.join(formerSharedDbDir, 'code-graph.sqlite'))) {
-      fs.mkdirSync(dbDir, { recursive: true, mode: 0o700 });
+    const migrationTarget = resolvedDbDir();
+    if (!process.env.SPECKIT_CODE_GRAPH_DB_DIR
+        && !exists(path.join(migrationTarget, 'code-graph.sqlite'))
+        && exists(path.join(formerSharedDbDir, 'code-graph.sqlite'))
+        && !formerLocationOwnerLive(formerSharedDbDir)) {
+      fs.mkdirSync(migrationTarget, { recursive: true, mode: 0o700 });
       const dbFiles = [
         'code-graph.sqlite',
         'code-graph.sqlite-shm',
@@ -798,13 +852,13 @@ function installSignalHandlers() {
       ];
       for (const file of dbFiles) {
         const src = path.join(formerSharedDbDir, file);
-        const dst = path.join(dbDir, file);
+        const dst = path.join(migrationTarget, file);
         if (exists(src)) {
           fs.copyFileSync(src, dst);
         }
       }
       process.stderr.write(
-        `[mk-code-index-launcher] migrated DB from ${rel(formerSharedDbDir)} to ${rel(dbDir)} (former location preserved)\n`
+        `[mk-code-index-launcher] migrated DB from ${rel(formerSharedDbDir)} to ${rel(migrationTarget)} (former location preserved)\n`
       );
     }
 

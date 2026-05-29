@@ -122,7 +122,13 @@ function tryAcquireOwnerLeaseMutationLock(canonicalDbDir: string): OwnerLeaseMut
       const lockPid = readOwnerLeaseMutationLockPid(lockPath);
       if (attempt === 0 && lockPid !== null && getProcessLiveness(lockPid) === 'dead') {
         try {
-          unlinkSync(lockPath);
+          // DR-002-03: identity-checked stale-lock removal. Re-read immediately before unlink; a
+          // successor may have replaced the dead lock between classification and removal, and
+          // unlink-by-path would otherwise delete the successor's live lock. Only remove it if it
+          // still holds the same dead PID we classified.
+          if (readOwnerLeaseMutationLockPid(lockPath) === lockPid) {
+            unlinkSync(lockPath);
+          }
           continue;
         } catch (unlinkError: unknown) {
           const unlinkCode = unlinkError && typeof unlinkError === 'object' && 'code' in unlinkError

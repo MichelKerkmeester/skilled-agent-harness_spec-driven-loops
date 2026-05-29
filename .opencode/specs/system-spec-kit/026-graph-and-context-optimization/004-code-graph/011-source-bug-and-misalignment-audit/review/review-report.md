@@ -111,3 +111,14 @@ Ran to **maxIterations=10** (operator-requested). New-findings ratio fell across
 ## 9. Status
 
 `STATUS=OK` — review complete, no P0, verdict CONDITIONAL. Packet: `review/iterations/iteration-001..010.md`, `review/deep-review-state.jsonl`, this report.
+
+### Remediation landed 2026-05-29 (commit pending)
+
+The 5 CONFIRMED-REAL session-owned findings from §3 are now FIXED + verified (typecheck clean; full suite 583 passed / 0 failed):
+- **DR-001-02 / DR-006-02** — launcher migration-back now skips when `SPECKIT_CODE_GRAPH_DB_DIR` is set, targets `resolvedDbDir()`, and refuses to copy while a live legacy PID **or** owner lease exists (`formerLocationOwnerLive`).
+- **DR-002-01** — `acquireOwnerLeaseFile` reclaim + `refreshOwnerLeaseFile` now re-read after the atomic write (single-winner CAS), matching the `owner-lease.ts` CG-016/017 fix.
+- **DR-002-02** — the migration guard now probes the legacy `.code-graph-owner.json` owner lease (not just the PID lease).
+- **DR-003-01** — `leaseHeldFromFile` rejects a legacy-location lease whose file is not owned by the current uid (no bridging to a foreign/spoofed socket).
+- **DR-002-03** — `owner-lease.ts` stale mutation-lock removal is now identity-checked (re-read pid immediately before unlink). Residual: a nonce/lock-dir would close the final narrow window fully (noted for a future hardening packet).
+
+PRE-EXISTING findings (§4) and the deferred audit findings remain out of scope (operator WIP / separate packets).
