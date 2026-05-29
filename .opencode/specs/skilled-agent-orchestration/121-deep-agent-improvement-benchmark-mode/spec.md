@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
     last_updated_at: "2026-05-28T15:15:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "All 5 phases complete (+ opt-in 5dim scorer + skill docs)"
+    recent_action: "All 6 phases complete (latest: 006 deep-loop empty-archive-dir fix)"
     next_safe_action: "None — feature shipped, reviewed, remediated, scorer wired, documented"
     blockers: []
     key_files: []
@@ -110,6 +110,8 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 4 | 004-benchmark-mode-remediation/ | Remediate the 122 tri-model review findings: 3 unique P1 fixes (cwd propagation, path-guard boundary, criteria-exec gate + grader clamp) + actionable P2s, with regression tests | Complete |
 
 | 5 | 005-optin-5dim-scorer-and-skill-docs/ | Wire the ported 5-dim scorer as an opt-in run-benchmark scorer (closes review deferral F-P2-1/2) + document the model-benchmark mode in SKILL.md (sk-doc DQI 97) | Complete |
+
+| 6 | 006-deep-loop-empty-archive-dir-fix/ | Maintenance: deep-research init eagerly created `{mode}_archive` (empty dirs); make all 4 deep-loop restart branches archive lazily+guarded + regression tests; sweep existing empties | Complete |
 
 ### Phase Transition Rules
 

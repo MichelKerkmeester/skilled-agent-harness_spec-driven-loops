@@ -8,7 +8,8 @@
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/002-implementation-deep-research",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-benchmark-mode-remediation",
-    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/005-optin-5dim-scorer-and-skill-docs"
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/005-optin-5dim-scorer-and-skill-docs",
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir-fix"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -94,6 +95,6 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/005-optin-5dim-scorer-and-skill-docs"
+    "last_active_child_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir-fix"
   }
 }
