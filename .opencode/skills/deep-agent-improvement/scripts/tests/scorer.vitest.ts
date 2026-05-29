@@ -22,6 +22,13 @@ const scorer = require(path.join(
     grader: { score: number; parse_status: string };
   }>;
   buildGraderFn: (kind: string) => (f: unknown, o: string, opts: unknown) => Promise<{ score: number; parse_status: string }>;
+  scoreAcceptanceDeterministic: (
+    acceptance: Array<Record<string, unknown>>,
+    cwdAbs: string,
+  ) => {
+    score: number;
+    details: { total: number; passed: number; per_criterion: Array<{ id: string; passed: boolean; detail: string }> };
+  };
   DEFAULT_RUBRIC: { dims: Array<{ id: string; weight: number }> };
 };
 
@@ -97,6 +104,43 @@ describe('score-model-variant (decoupled 5-dim scorer)', () => {
       rubric: { dims: [{ id: 'D4', weight: 1.0 }] },
     });
     expect(r.weightedScore).toBe(1); // D4 noop = 1.0, weight 1.0
+  });
+});
+
+describe('criteria file-read containment (F017-P2-03)', () => {
+  it('rejects a traversal grep that escapes the fixture cwd instead of reading it', () => {
+    // Plant a sensitive file in the PARENT of the cwd; a `../` grep must not reach it.
+    const parentSecret = path.join(cwd, '..', `secret-${path.basename(cwd)}.txt`);
+    fs.writeFileSync(parentSecret, 'TOPSECRET formatBytes\n');
+    try {
+      const r = scorer.scoreAcceptanceDeterministic(
+        [{ id: 'oob', type: 'grep', file: `../${path.basename(parentSecret)}`, pattern: 'TOPSECRET' }],
+        cwd,
+      );
+      const crit = r.details.per_criterion[0];
+      expect(crit.passed).toBe(false);
+      expect(crit.detail).toMatch(/outside fixture cwd/);
+    } finally {
+      fs.rmSync(parentSecret, { force: true });
+    }
+  });
+
+  it('does not grant grep_absent a pass for an out-of-bounds path', () => {
+    const r = scorer.scoreAcceptanceDeterministic(
+      [{ id: 'oob-abs', type: 'grep_absent', file: '../../../../etc/hosts', pattern: 'anything' }],
+      cwd,
+    );
+    const crit = r.details.per_criterion[0];
+    expect(crit.passed).toBe(false);
+    expect(crit.detail).toMatch(/outside fixture cwd/);
+  });
+
+  it('still reads an in-cwd grep file normally', () => {
+    const r = scorer.scoreAcceptanceDeterministic(
+      [{ id: 'in', type: 'grep', file: 'format.ts', pattern: 'formatBytes' }],
+      cwd,
+    );
+    expect(r.details.per_criterion[0].passed).toBe(true);
   });
 });
 

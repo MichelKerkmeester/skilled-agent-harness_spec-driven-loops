@@ -135,6 +135,27 @@ function scoreLayer3(fixture) {
       details: { note: 'no smoke-run acceptance in fixture; layer skipped (counts as pass)' },
     };
   }
+  // F017-P1-02 (017 review): acceptance.command is profile/fixture-supplied data
+  // that flows into a shell via execSync. bundle-gate Layer-3 is the D2 hard gate,
+  // so the same DEEP_AGENT_ALLOW_CRITERIA_EXEC=0 control that gates
+  // score-model-variant's deterministic execSync must gate this path too, or the
+  // documented "refuse criteria-driven shell execution" guarantee is false here.
+  // Default ('1'/unset) preserves backward-compat (runs). When disabled, refuse
+  // the smoke-run without executing: the layer does not pass (mirrors
+  // score-model-variant's ok=false gate), but hard_gate_failed stays false so the
+  // score does not short-circuit D1 to 0.0.
+  if (process.env.DEEP_AGENT_ALLOW_CRITERIA_EXEC === '0') {
+    return {
+      layer: 3,
+      passed: false,
+      hard_gate_failed: false,
+      details: {
+        command: acceptance.command,
+        skipped: true,
+        note: 'smoke-run skipped: criteria exec disabled (DEEP_AGENT_ALLOW_CRITERIA_EXEC=0)',
+      },
+    };
+  }
   const cwdRel = (fixture.scope && fixture.scope.cwd) || '';
   const cwdAbs = path.resolve(PACKET_ROOT, cwdRel);
   if (!fs.existsSync(cwdAbs)) {

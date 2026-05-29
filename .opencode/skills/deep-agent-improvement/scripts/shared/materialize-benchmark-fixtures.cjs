@@ -5,6 +5,11 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+// F017-P2-09 (017 review): the profiles-dir default and fixturePathFor are shared
+// with run-benchmark.cjs via ../lib/profile-resolve.cjs so the F-P1-4b "resolves
+// identically in both steps" invariant is one source of truth, not a byte-aligned
+// hand-maintained copy.
+const { DEFAULT_PROFILES_DIR, fixturePathFor } = require('../lib/profile-resolve.cjs');
 
 function parseArgs(argv) {
   const args = {};
@@ -29,8 +34,20 @@ function resolveInput(value, baseDir) {
   return fs.existsSync(fromCwd) ? fromCwd : path.resolve(baseDir, value);
 }
 
-function fixturePathFor(fixtureRef, fixtureDir) {
-  return path.join(fixtureDir, fixtureRef.endsWith('.json') ? fixtureRef : `${fixtureRef}.json`);
+// F017-P1-01 (017 review): the materializer is the FIRST writer in the wired
+// plan (loop-host runs materialize before run-benchmark) and writes
+// path.join(outputsDir, `${fixture.id}.md`) below. An unsanitized id like
+// '../escaped' or 'a/b' escapes outputsDir at materialization time. Apply the
+// SAME guard run-benchmark.cjs uses (SAFE_FIXTURE_ID + assertSafeFixtureId):
+// restrict ids to a basename charset and reject path separators / parent-dir
+// traversal before any path.join.
+const SAFE_FIXTURE_ID = /^[A-Za-z0-9._-]+$/;
+
+function assertSafeFixtureId(id) {
+  if (typeof id !== 'string' || id.length === 0 || !SAFE_FIXTURE_ID.test(id) || id === '.' || id === '..') {
+    throw new Error(`materialize: unsafe fixture id '${id}' (must match ${SAFE_FIXTURE_ID} and not be '.'/'..' or contain path separators)`);
+  }
+  return id;
 }
 
 function renderFixture(fixture) {
@@ -66,7 +83,6 @@ function main() {
 
   // F-P1-4b: resolve --profile as a direct path OR a profile id under --profiles-dir,
   // matching run-benchmark.cjs loadProfile so a profile-by-id does not fail here before run-benchmark.
-  const DEFAULT_PROFILES_DIR = '.opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles';
   const profilesDir = args['profiles-dir'] || DEFAULT_PROFILES_DIR;
   const directPath = path.resolve(process.cwd(), args.profile);
   const profilePath = fs.existsSync(directPath) ? directPath : path.join(profilesDir, `${args.profile}.json`);
@@ -79,8 +95,11 @@ function main() {
   const fixtureDir = resolveInput(profile.fixtureDir || profile.benchmark?.fixtureDir, path.dirname(profilePath));
   const fixtureRefs = profile.fixtures || profile.benchmark?.fixtures || [];
   const outputsDir = path.resolve(process.cwd(), args['outputs-dir']);
-  fs.mkdirSync(outputsDir, { recursive: true });
 
+  // F017-P1-01: load + validate every fixture (existence AND id safety) BEFORE
+  // creating outputsDir or writing any file, so a single hostile id aborts with
+  // a non-zero exit and writes nothing inside OR outside outputsDir.
+  const materialized = [];
   for (const fixtureRef of fixtureRefs) {
     const filePath = fixturePathFor(fixtureRef, fixtureDir);
     if (!fs.existsSync(filePath)) {
@@ -88,6 +107,17 @@ function main() {
       process.exit(1);
     }
     const fixture = readJson(filePath);
+    try {
+      assertSafeFixtureId(fixture.id);
+    } catch (error) {
+      process.stderr.write(`${error.message}\n`);
+      process.exit(1);
+    }
+    materialized.push(fixture);
+  }
+
+  fs.mkdirSync(outputsDir, { recursive: true });
+  for (const fixture of materialized) {
     fs.writeFileSync(path.join(outputsDir, `${fixture.id}.md`), renderFixture(fixture), 'utf8');
   }
 

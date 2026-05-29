@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
     last_updated_at: "2026-05-29T12:50:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Second deep review (Opus, 017): CONDITIONAL, 015 held, 4 new P1s"
+    recent_action: "Remediated all 017 opus findings in phase 018 (17 fixed, 2 accept)"
     next_safe_action: "Remediate the 014 findings in 015 child"
     blockers: []
     key_files: []
@@ -128,6 +128,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 
 | 16 | 016-script-subfolder-readmes/ | Add code-folder READMEs to every source script subfolder (sk-doc code template) + audit existing | Complete |
 | 17 | 017-two-lane-opus-deep-review/ | Second deep review with Opus 4.8 agents (workflow format) cross-checking the post-015 two-lane code | Complete |
+| 18 | 018-opus-review-remediation/ | Remediate the 017 Opus deep-review findings (4 P1 + 13 P2): materializer fixture-id guard, bundle-gate criteria-exec gate, dead Mode-4 anchors, executable Lane B benchmark-mode promotion + doc truth, with regression tests and per-finding dispositions (Level 3) | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -153,6 +154,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 014-two-lane-deep-review | 015-two-lane-review-remediation | Deep review returned CONDITIONAL with a confirmed P0 plus a P1/P2 cluster; remediation must close them before Lane B ships | review-report.md CONDITIONAL verdict + all-findings.jsonl |
 | 015-two-lane-review-remediation | 016-script-subfolder-readmes | Lane reorg shipped and stable; lane subfolders still lack local code-folder READMEs | strict validate on 016 + README in every source script subfolder |
 | 016-script-subfolder-readmes | 017-two-lane-opus-deep-review | 014 (gpt-5.5) review + 015 remediation shipped; an independent Opus 4.8 second opinion must confirm the fixes hold and hunt new issues | review-report.md verdict + all-findings.jsonl |
+| 017-two-lane-opus-deep-review | 018-opus-review-remediation | Opus deep review returned CONDITIONAL with 4 active P1 plus 13 P2; remediation must close them with one disposition each | review-report.md CONDITIONAL verdict + strict validate on 018 |
 <!-- /ANCHOR:phase-map -->
 
 ---

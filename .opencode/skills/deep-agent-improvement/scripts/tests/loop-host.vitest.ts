@@ -197,7 +197,7 @@ describe('loop-host', () => {
     });
   });
 
-  describe('resolveScriptPath spawn-path mapping (P2 traceability-3-6)', () => {
+  describe('resolveScriptPath spawn-path mapping (P2 013-lane-sep traceability-3-6)', () => {
     it('maps a Lane A script name to the agent-improvement lane dir', () => {
       const resolved = loopHost.resolveScriptPath('score-candidate.cjs');
       expect(resolved.endsWith(path.join('agent-improvement', 'score-candidate.cjs'))).toBe(true);

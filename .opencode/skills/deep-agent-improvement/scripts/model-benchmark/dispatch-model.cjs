@@ -142,7 +142,7 @@ function detectRateLimit(combinedOutput) {
   return RATE_LIMIT_PATTERNS.some((re) => re.test(combinedOutput));
 }
 
-// P2 (traceability-3-5): emit a resume command that actually works — it removes
+// P2 (014-review traceability-3-5): emit a resume command that actually works — it removes
 // the REAL sentinel path (which is now run-scoped, not always state/) and invokes
 // the loop-host at its shipped lane path scripts/shared/loop-host.cjs.
 function buildResumeHint(sentinelPath) {
@@ -378,7 +378,7 @@ function main() {
     process.exit(2);
   }
   const r = dispatch(args);
-  // P2 (maintainability-8-4): surface failure diagnostics. Previously a failed
+  // P2 (014-review maintainability-8-4): surface failure diagnostics. Previously a failed
   // executor run printed only {ok,exit_code,attempts,paused} + STDOUT, so the
   // error/pause_reason/sentinel_path fields and stderr were swallowed and the
   // failure was undiagnosable without instrumenting the module.

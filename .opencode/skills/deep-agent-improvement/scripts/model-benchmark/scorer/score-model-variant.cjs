@@ -51,6 +51,24 @@ function sha256Hex(input) {
   return crypto.createHash('sha256').update(input, 'utf8').digest('hex');
 }
 
+// (F017-P2-03 / packet-018): separator-bounded containment, mirroring the
+// proven cwd-check.cjs isInside. A path is inside `base` only when it IS `base`
+// or begins with `base + path.sep`, so a sibling sharing a string prefix
+// (`/repo/proj-evil` vs `/repo/proj`) does NOT read as inside. Used to keep
+// grep / grep_absent criteria file reads anchored inside the fixture cwd.
+function isInsideCwd(candidate, base) {
+  return candidate === base || candidate.startsWith(base + path.sep);
+}
+
+// Resolve a criteria-supplied `a.file` against the absolute fixture cwd and
+// reject any result that escapes the cwd (traversal or absolute outside).
+// Returns the resolved absolute path, or null when the read is out of bounds.
+function resolveCriteriaFile(cwdAbs, file) {
+  if (typeof file !== 'string' || file.length === 0) return null;
+  const resolved = path.resolve(cwdAbs, file);
+  return isInsideCwd(resolved, cwdAbs) ? resolved : null;
+}
+
 function runDetCheck(scriptName, fixturePath, outputFile) {
   const script = path.join(DET_DIR, `${scriptName}.cjs`);
   const res = spawnSync('node', [script, fixturePath, outputFile], {
@@ -79,8 +97,9 @@ function scoreAcceptanceDeterministic(acceptance, cwdAbs) {
     let detail = '';
     try {
       if (a.type === 'grep') {
-        const file = path.join(cwdAbs, a.file);
-        if (!fs.existsSync(file)) { detail = 'file missing'; }
+        const file = resolveCriteriaFile(cwdAbs, a.file);
+        if (file === null) { detail = 'file outside fixture cwd (rejected)'; }
+        else if (!fs.existsSync(file)) { detail = 'file missing'; }
         else {
           const text = fs.readFileSync(file, 'utf8');
           const matches = text.match(new RegExp(new RegExp(a.pattern).source, 'g'));
@@ -92,8 +111,9 @@ function scoreAcceptanceDeterministic(acceptance, cwdAbs) {
           detail = `count=${count}`;
         }
       } else if (a.type === 'grep_absent') {
-        const file = path.join(cwdAbs, a.file);
-        if (!fs.existsSync(file)) { ok = true; detail = 'file missing (treated as absent)'; }
+        const file = resolveCriteriaFile(cwdAbs, a.file);
+        if (file === null) { ok = false; detail = 'file outside fixture cwd (rejected)'; }
+        else if (!fs.existsSync(file)) { ok = true; detail = 'file missing (treated as absent)'; }
         else {
           ok = !new RegExp(a.pattern).test(fs.readFileSync(file, 'utf8'));
           detail = ok ? 'absent' : 'present';

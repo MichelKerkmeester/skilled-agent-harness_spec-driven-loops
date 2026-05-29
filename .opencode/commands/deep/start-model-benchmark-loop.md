@@ -44,11 +44,11 @@ SELF-CHECK: Are you operating as the @general agent?
     │   ┌────────────────────────────────────────────────────────────┐
     │   │ ⛔ GENERAL AGENT REQUIRED                                  │
     │   │                                                            │
-    │   │ This command orchestrates deep-agent-improvement skill          │
+    │   │ This command orchestrates deep-agent-improvement skill     │
     │   │ invocation in model-benchmark mode and runs general-agent based. │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /deep:start-model-benchmark-loop [arguments]                               │
+    │   │   /deep:start-model-benchmark-loop [arguments]             │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"
@@ -157,8 +157,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
    │                                                                │
-   │ **Q0. Benchmark Profile** (if not provided in command):        │
-   │    Which benchmark profile should drive the fixtures?          │
+   │ **Q0. Benchmark Profile** (if not provided in command):         │
+   │    Which benchmark profile should drive the fixtures?            │
    │    A) Default - assets/model-benchmark/benchmark-profiles/default.json │
    │    B) Other - paste a profile path                              │
    │                                                                │
@@ -172,21 +172,21 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    B) Interactive - confirm at each iteration                   │
    │                                                                │
    │ **Q3. Scoring Method**:                                        │
-   │    A) Pattern - heading/pattern matcher (default, fastest)      │
-   │    B) 5dim - ported 5-dimension scorer (deterministic + grader) │
+   │    A) Pattern - heading/pattern matcher (default, fastest)     │
+   │    B) 5dim - ported 5-dimension scorer (deterministic + grader)│
    │                                                                │
    │ **Q4. Grader**:                                                │
-   │    A) noop - deterministic, no model dispatch (default)         │
-   │    B) mock - stub grader                                        │
-   │    C) llm - real model dispatch (requires Q5)                   │
+   │    A) noop - deterministic, no model dispatch (default)        │
+   │    B) mock - stub grader                                       │
+   │    C) llm - real model dispatch (requires Q5)                  │
    │                                                                │
-   │ **Q5. Executor + Model** (ONLY if Q4 = llm):                    │
-   │    Which executor and model? e.g. "cli-codex, gpt-5.5"          │
-   │    Executors: cli-opencode | cli-claude-code | cli-codex |      │
-   │               cli-gemini | cli-devin                            │
+   │ **Q5. Executor + Model** (ONLY if Q4 = llm):                   │
+   │    Which executor and model? e.g. "cli-codex, gpt-5.5"         │
+   │    Executors: cli-opencode | cli-claude-code | cli-codex |     │
+   │               cli-gemini | cli-devin                           │
    │                                                                │
    │ Reply format: "A, A, A, A, A" or                               │
-   │ "default, B, B, B, C, cli-codex gpt-5.5"                        │
+   │ "default, B, B, B, C, cli-codex gpt-5.5"                       │
    └────────────────────────────────────────────────────────────────┘
 
 9. WAIT for user response (DO NOT PROCEED)
@@ -367,7 +367,7 @@ $ARGUMENTS
 Read(".opencode/skills/deep-agent-improvement/SKILL.md")
 ```
 
-Focus on Mode 4: Model-Benchmark for the canonical contract.
+Focus on §4 LANE B: MODEL-BENCHMARK for the canonical contract.
 
 ### Step 2: Resolve Profile
 
@@ -406,13 +406,13 @@ After the loop exits, present:
 - Per-fixture pass/fail against the profile thresholds (`requiredAggregateScore`, `minimumFixtureScore`)
 - Recommendation: continue, promote (if eligible), or stop
 
-### Step 6: Promotion (mode-aware, optional)
+### Step 6: Promotion (benchmark-report based, optional)
 
-Promotion is guarded and mode-aware. When evidence and approval allow it:
+Lane B promotes from the benchmark report, not from an agent-scored candidate file. When evidence and approval allow it:
 ```bash
 node .opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs --benchmark-report {spec_folder}/improvement/benchmark-outputs/report.json ...
 ```
-Promotion stays guarded by evidence, repeatability, and operator approval. It refuses to act while the runtime config is still proposal-only.
+When `--benchmark-report` is supplied, `promote-candidate.cjs` runs its benchmark-mode promotion path. It promotes on the report basis when the report carries `status: benchmark-complete` with a `benchmark-pass` recommendation, bypassing the agent-scored-file requirement that the agent-improvement path uses. Promotion stays guarded by the benchmark aggregate gate, repeatability, and operator approval, and it refuses to act while the runtime config is still proposal-only.
 
 ### Step 7: Return Status
 
@@ -493,8 +493,8 @@ STATUS=OK SCORING=pattern GRADER=noop AGGREGATE=82 REASON="converged"
 - **Scorer default**: `--scorer pattern` keeps the byte-identical heading/pattern matcher. `--scorer 5dim` is opt-in and lazily loads `scripts/model-benchmark/scorer/score-model-variant.cjs`.
 - **Grader default**: `--grader noop` stays deterministic with no model dispatch. `--grader llm` is the only grader that loads `dispatch-model.cjs`.
 - **Mode-aware records**: every state record carries `mode: model-benchmark` and benchmark reports carry `scoringMethod: pattern|5dim` for downstream attribution.
-- **Promotion**: `promote-candidate.cjs` is mode-aware and stays guarded by evidence, repeatability, and operator approval.
-- **Provenance**: model-benchmark mode built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005, command entry in 121/008. Canonical source of truth: `.opencode/skills/deep-agent-improvement/SKILL.md` "Mode 4: Model-Benchmark".
+- **Promotion**: Lane B promotes via `promote-candidate.cjs --benchmark-report`, which runs a benchmark-mode promotion path that gates on a `benchmark-complete` report with a `benchmark-pass` recommendation instead of an agent-scored candidate file. It stays guarded by the benchmark aggregate gate, repeatability, and operator approval.
+- **Provenance**: model-benchmark mode built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005, command entry in 121/008. Canonical source of truth: `.opencode/skills/deep-agent-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK.
 
 ---
 

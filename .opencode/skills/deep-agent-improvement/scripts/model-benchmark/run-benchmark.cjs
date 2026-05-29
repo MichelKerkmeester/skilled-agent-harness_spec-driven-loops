@@ -9,6 +9,10 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+// F017-P2-09 (017 review): the profiles-dir default and fixturePathFor are shared
+// with materialize-benchmark-fixtures.cjs via ../lib/profile-resolve.cjs so the
+// F-P1-4b "resolves identically in both steps" invariant is one source of truth.
+const { DEFAULT_PROFILES_DIR, fixturePathFor } = require('../lib/profile-resolve.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -75,11 +79,6 @@ function loadProfile(profileArg, profilesDir) {
     data: readJson(profilePath),
     path: profilePath,
   };
-}
-
-function fixturePathFor(fixtureRef, fixtureDir) {
-  const fileName = fixtureRef.endsWith('.json') ? fixtureRef : `${fixtureRef}.json`;
-  return path.join(fixtureDir, fileName);
 }
 
 // F-P1-13: the immutable history snapshot lives at a basename derived from the
@@ -384,7 +383,7 @@ async function main() {
   const profileArg = args.profile;
   const outputsDir = args['outputs-dir'];
   const outputPath = args.output || (outputsDir ? path.join(outputsDir, 'report.json') : null);
-  const profilesDir = args['profiles-dir'] || '.opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles';
+  const profilesDir = args['profiles-dir'] || DEFAULT_PROFILES_DIR;
   const integrationReportPath = args['integration-report'] || null;
 
   // 121/005: opt-in scorer selection. 'pattern' (default) keeps the byte-identical
@@ -406,7 +405,7 @@ async function main() {
   const stateLogPath = args['state-log'] || inferStateLogPath(outputsDir);
   const label = args.label || `${path.basename(profileArg, '.json')}-benchmark`;
 
-  // F-P1-7 + traceability-4-2 (014 review): provenance that must survive on BOTH
+  // F-P1-7 + 014-review traceability-4-2: provenance that must survive on BOTH
   // success and failure paths. profilePath/profileVersion/fixtureDir start null
   // and are filled once the profile loads, so a failure before/after load still
   // records whatever provenance was resolved.
@@ -452,7 +451,7 @@ async function main() {
       aggregateScore >= aggregateThreshold && results.every((entry) => entry.score >= minimumFixtureScore)
         ? 'benchmark-pass'
         : 'benchmark-fail';
-    // traceability-7-5 (014 review): persist profile + fixture provenance so a
+    // 014-review traceability-7-5: persist profile + fixture provenance so a
     // report can be traced back to the exact profile file, version, and fixtures.
     const provenance = {
       profilePath,
@@ -463,7 +462,7 @@ async function main() {
     const report = {
       status: 'benchmark-complete',
       scoringMethod: scorer,
-      // traceability-4-2 (014 review): grader is part of the run identity for the
+      // 014-review traceability-4-2: grader is part of the run identity for the
       // 5dim path; persist it on every report so 5dim+mock/llm runs are attributable.
       grader: graderKind,
       profileId,
@@ -500,7 +499,7 @@ async function main() {
 
     writeJson(outputPath, report);
 
-    // F-P1-13 / traceability-7-2 (014 review): outputPath is a mutable canonical
+    // F-P1-13 / 014-review traceability-7-2: outputPath is a mutable canonical
     // location overwritten every iteration, so historical state-log rows would all
     // point at the latest report. Also write an immutable, label-stamped snapshot
     // and persist that snapshot path in the ledger so each iteration's report is

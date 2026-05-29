@@ -53,7 +53,7 @@ function writeJson(filePath, value) {
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
-// P2: dedupe the repeated infra-failure emission. Each early-exit failure site built the
+// 015 P2 (dedup): dedupe the repeated infra-failure emission. Each early-exit failure site built the
 // same infra_failure object and ran the identical outputPath/writeJson/stdout/exit branch.
 // emitInfraFailure centralizes the standard fields plus the write-or-stdout + exit code,
 // taking only the per-site variable fields.
@@ -191,12 +191,29 @@ function cachePathFor(cacheDir, inputHash) {
   return path.join(cacheDir, `${inputHash}.json`);
 }
 
+// F017-P2-10 (017 review): the filename is the only thing binding a cache entry to its
+// inputHash. Treat the embedded blob as untrusted on read: require cached.inputHash to
+// equal the recomputed inputHash AND a scored status. Any mismatch (tampered or stale
+// blob, wrong-key file dropped into the cache dir, parse failure) is a cache MISS so the
+// caller recomputes rather than trusting an unverified payload.
 function readCachedScore(cacheDir, inputHash) {
   const cachePath = cachePathFor(cacheDir, inputHash);
   if (!fs.existsSync(cachePath)) {
     return null;
   }
-  return JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+  let cached;
+  try {
+    cached = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+  } catch (_err) {
+    return null;
+  }
+  if (!cached || typeof cached !== 'object') {
+    return null;
+  }
+  if (cached.inputHash !== inputHash || cached.status !== 'scored') {
+    return null;
+  }
+  return cached;
 }
 
 function writeCachedScore(cacheDir, inputHash, result) {
@@ -290,8 +307,14 @@ function scoreDimIntegration(agentName, integrationReport) {
   const summary = report.summary;
   let mirrorScore = 100;
   for (const m of report.surfaces?.mirrors || []) {
-    if (m.syncStatus === 'diverged') { mirrorScore -= 20; }
-    else if (m.syncStatus === 'missing') { mirrorScore -= 30; }
+    // F017-P2-06 (017 review): read mirror.status || mirror.syncStatus so this
+    // lane normalizes the same field run-benchmark.cjs scoreIntegration does. The
+    // scan-integration scanner emits syncStatus, so for every real input m.status
+    // is undefined and this is byte-identical to reading m.syncStatus directly; the
+    // fallback only removes the cross-lane field asymmetry the review flagged.
+    const mStatus = m.status || m.syncStatus;
+    if (mStatus === 'diverged') { mirrorScore -= 20; }
+    else if (mStatus === 'missing') { mirrorScore -= 30; }
   }
   mirrorScore = Math.max(0, mirrorScore);
   const commandScore = summary.commandCount > 0 ? 100 : 0;
@@ -331,6 +354,34 @@ function scoreDimOutputQuality(profile, content) {
   return { score: Math.max(0, raw - placeholderPenalty), details, maxPossible, placeholders };
 }
 
+// F017-P2-13b (017 review): command/skill refs come from candidate-derived profile
+// content, then get interpolated into fs.existsSync paths below. Without a charset guard
+// a hostile ref (e.g. a skill "../../etc" or a command "/../../secret") turns
+// resource-refs-valid into a traversal-based existence oracle and perturbs the score.
+// Restrict each ref segment to a basename charset (mirrors run-benchmark SAFE_FIXTURE_ID)
+// and reject '.'/'..' / separators before the ref ever reaches the filesystem. A command
+// ref maps ':' to a path separator, so it is validated per segment after that split.
+const SAFE_REF_SEGMENT = /^[A-Za-z0-9._-]+$/;
+
+function isSafeRefSegment(segment) {
+  return (
+    typeof segment === 'string'
+    && segment.length > 0
+    && segment !== '.'
+    && segment !== '..'
+    && SAFE_REF_SEGMENT.test(segment)
+  );
+}
+
+function isSafeCommandRef(cmd) {
+  if (typeof cmd !== 'string' || cmd.length === 0) {
+    return false;
+  }
+  const stripped = cmd.replace(/^\//, '');
+  const segments = stripped.split(':');
+  return segments.length > 0 && segments.every(isSafeRefSegment);
+}
+
 function scoreDimSystemFitness(profile, content) {
   const details = [];
   let earned = 0;
@@ -355,11 +406,13 @@ function scoreDimSystemFitness(profile, content) {
   let refsTotal = 0;
   for (const cmd of commands) {
     refsTotal++;
+    if (!isSafeCommandRef(cmd)) { continue; }
     const cmdPath = cmd.replace(/^\//, '').replace(/:/g, '/');
     if (fs.existsSync(`.opencode/commands/${cmdPath}.md`)) { refsValid++; }
   }
   for (const sk of skills) {
     refsTotal++;
+    if (!isSafeRefSegment(sk)) { continue; }
     if (fs.existsSync(`.opencode/skills/${sk}/SKILL.md`)) { refsValid++; }
   }
   const refScore = refsTotal > 0 ? Math.round(30 * refsValid / refsTotal) : 30;

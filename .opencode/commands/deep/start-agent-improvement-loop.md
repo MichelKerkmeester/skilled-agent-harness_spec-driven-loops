@@ -43,11 +43,11 @@ SELF-CHECK: Are you operating as the @general agent?
     │   ┌────────────────────────────────────────────────────────────┐
     │   │ ⛔ GENERAL AGENT REQUIRED                                  │
     │   │                                                            │
-    │   │ This command orchestrates deep-agent-improvement skill          │
-    │   │ invocation and runs general-agent based.            │
+    │   │ This command orchestrates deep-agent-improvement skill     │
+    │   │ invocation and runs general-agent based.                   │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /deep:start-agent-improvement-loop [arguments]                               │
+    │   │   /deep:start-agent-improvement-loop [arguments]           │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"
@@ -171,13 +171,13 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
    │                                                                │
-   │ **Q(lane). Use Case** (only when lane is ambiguous: no agent    │
+   │ **Q(lane). Use Case** (only when lane is ambiguous: no agent   │
    │    path and no --lane flag):                                    │
-   │    A) Improve an agent file (Lane A)                           │
+   │    A) Improve an agent file (Lane A)                            │
    │    B) Benchmark a model / prompt framework (Lane B)            │
-   │    (If A or an agent path was given, continue with Q0-Q3 below. │
+   │    (If A or an agent path was given, continue with Q0-Q3 below.│
    │     If B, this command auto-routes to                          │
-   │     /deep:start-model-benchmark-loop and asks the Lane B set.)  │
+   │     /deep:start-model-benchmark-loop and asks the Lane B set.) │
    │                                                                │
    │ **Q0. Target Agent** (if not provided in command):             │
    │    Which agent would you like to evaluate and improve?         │
@@ -193,10 +193,10 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    B) Interactive — confirm at each iteration                   │
    │                                                                │
    │ **Q3. Scoring Mode**:                                          │
-   │    A) Dynamic — 5-dimension integration-aware (current release) │
+   │    A) Dynamic — 5-dimension integration-aware (current release)│
    │                                                                │
    │ Reply format: "handover, A, A, A" or                           │
-   │ ".opencode/agents/debug.md, B, B, A"                            │
+   │ ".opencode/agents/debug.md, B, B, A"                           │
    └────────────────────────────────────────────────────────────────┘
 
 8. WAIT for user response (DO NOT PROCEED)
@@ -511,7 +511,7 @@ This command is the **Lane A** (agent-improvement) entry point. The underlying `
 - **Records**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`. Benchmark reports and `benchmark_run` records carry `scoringMethod: pattern|5dim` for downstream attribution.
 - **Hardening env gates**: `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` redacts raw grader output from the on-disk cache. Both default permissive for backward compatibility.
 
-Canonical source of truth: `.opencode/skills/deep-agent-improvement/SKILL.md` "Mode 4: Model-Benchmark". Provenance: built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005.
+Canonical source of truth: `.opencode/skills/deep-agent-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK. Provenance: built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005.
 
 ---
 

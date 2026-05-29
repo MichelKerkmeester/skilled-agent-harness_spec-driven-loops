@@ -201,8 +201,8 @@ workflow:
       step_promote_candidate:
         description: "Promote the accepted benchmark variant to canonical target (guarded, requires Lane B benchmark evidence)"
         condition: "gate_after_score == 'B' AND benchmark report recommendation == 'benchmark-pass' AND benchmark report status == 'benchmark-complete'"
-        promotion_evidence: "The Lane B gate is the benchmark report ({spec_folder}/improvement/benchmark-outputs/report.json) passed via --benchmark-report. promote-candidate.cjs reads recommendation, status, target, profileId, and aggregateScore from that report and refuses promotion unless the benchmark gate passes."
-        command: "node .opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --score={score_output_path} --benchmark-report={spec_folder}/improvement/benchmark-outputs/report.json --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
+        promotion_evidence: "The Lane B gate is the benchmark report ({spec_folder}/improvement/benchmark-outputs/report.json) passed via --benchmark-report. promote-candidate.cjs runs its benchmark-mode path when --score is omitted, reads recommendation, status, target, profileId, and aggregateScore from that report, and refuses promotion unless the benchmark gate passes. Lane B has no scored agent file, so --score is not passed."
+        command: "node .opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --benchmark-report={spec_folder}/improvement/benchmark-outputs/report.json --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
 
   phase_synthesis:
     description: "After loop exits, summarize findings and recommend next action"

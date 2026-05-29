@@ -21,6 +21,14 @@
  * Grader model build hash: hardcoded placeholder "claude-sonnet-4.6@2026-04-01" today.
  * TODO: replace with the real API model-version header captured at dispatch time
  *       (read from response headers when the grader call lands).
+ *
+ * F017-P2-13a (017 review): the cache root is run-scoped. write_atomic / read /
+ * cache_hit / read_index / rebuild_index accept an optional final cacheRoot
+ * argument. When omitted they fall back to the legacy in-repo CACHE_ROOT so
+ * existing callers keep working, but run-scoped callers (the grader harness)
+ * pass a per-run outputs directory instead of writing into a shared in-repo
+ * location that is trusted on the cache-hit path. This is the un-applied
+ * analogue of the 015 score-candidate cache relocation (F-P1-11).
  */
 
 const fs = require('fs');
@@ -92,11 +100,17 @@ function deriveGraderKey({
   return sha256Hex(concat).slice(0, 32);
 }
 
-function ensureKindDir(kind) {
+// F017-P2-13a: resolve the active cache root. Callers may pass a run-scoped dir;
+// undefined falls back to the legacy in-repo CACHE_ROOT for backward compatibility.
+function resolveCacheRoot(cacheRoot) {
+  return cacheRoot ? path.resolve(cacheRoot) : CACHE_ROOT;
+}
+
+function ensureKindDir(kind, cacheRoot) {
   if (!VALID_KINDS.has(kind)) {
     throw new Error(`unknown cache kind: ${kind}`);
   }
-  const dir = path.join(CACHE_ROOT, kind);
+  const dir = path.join(resolveCacheRoot(cacheRoot), kind);
   fs.mkdirSync(dir, { recursive: true });
   const indexFile = path.join(dir, 'index.jsonl');
   if (!fs.existsSync(indexFile)) {
@@ -105,21 +119,21 @@ function ensureKindDir(kind) {
   return dir;
 }
 
-function lockDir(kind, key) {
-  return path.join(CACHE_ROOT, kind, `.lock-${key}`);
+function lockDir(kind, key, cacheRoot) {
+  return path.join(resolveCacheRoot(cacheRoot), kind, `.lock-${key}`);
 }
 
-function blobPath(kind, key) {
-  return path.join(CACHE_ROOT, kind, `${key}.out.md`);
+function blobPath(kind, key, cacheRoot) {
+  return path.join(resolveCacheRoot(cacheRoot), kind, `${key}.out.md`);
 }
 
-function indexPath(kind) {
-  return path.join(CACHE_ROOT, kind, 'index.jsonl');
+function indexPath(kind, cacheRoot) {
+  return path.join(resolveCacheRoot(cacheRoot), kind, 'index.jsonl');
 }
 
-function acquireLock(kind, key) {
-  ensureKindDir(kind);
-  const lockPath = lockDir(kind, key);
+function acquireLock(kind, key, cacheRoot) {
+  ensureKindDir(kind, cacheRoot);
+  const lockPath = lockDir(kind, key, cacheRoot);
   const start = Date.now();
   while (Date.now() - start < LOCK_WAIT_MAX_MS) {
     try {
@@ -159,7 +173,7 @@ function releaseLock(lockPath) {
   }
 }
 
-function writeAtomic(kind, key, outputText, metadata) {
+function writeAtomic(kind, key, outputText, metadata, cacheRoot) {
   if (!VALID_KINDS.has(kind)) {
     throw new Error(`unknown cache kind: ${kind}`);
   }
@@ -170,9 +184,9 @@ function writeAtomic(kind, key, outputText, metadata) {
     throw new Error('outputText must be a string');
   }
   const meta = metadata || {};
-  const lockPath = acquireLock(kind, key);
+  const lockPath = acquireLock(kind, key, cacheRoot);
   try {
-    const target = blobPath(kind, key);
+    const target = blobPath(kind, key, cacheRoot);
     // Compose a JSON-comment header so the blob is self-describing.
     const header = '<!-- cache-meta ' + JSON.stringify({
       kind,
@@ -191,18 +205,18 @@ function writeAtomic(kind, key, outputText, metadata) {
       created_at: new Date().toISOString(),
       ...meta,
     }) + '\n';
-    fs.appendFileSync(indexPath(kind), row, 'utf8');
+    fs.appendFileSync(indexPath(kind, cacheRoot), row, 'utf8');
     return { key, target, kind };
   } finally {
     releaseLock(lockPath);
   }
 }
 
-function read(kind, key) {
+function read(kind, key, cacheRoot) {
   if (!VALID_KINDS.has(kind)) {
     throw new Error(`unknown cache kind: ${kind}`);
   }
-  const target = blobPath(kind, key);
+  const target = blobPath(kind, key, cacheRoot);
   if (!fs.existsSync(target)) {
     return null;
   }
@@ -221,13 +235,13 @@ function read(kind, key) {
   return { key, kind, metadata, body };
 }
 
-function cacheHit(kind, key) {
-  return fs.existsSync(blobPath(kind, key));
+function cacheHit(kind, key, cacheRoot) {
+  return fs.existsSync(blobPath(kind, key, cacheRoot));
 }
 
-function readIndex(kind) {
-  ensureKindDir(kind);
-  const raw = fs.readFileSync(indexPath(kind), 'utf8');
+function readIndex(kind, cacheRoot) {
+  ensureKindDir(kind, cacheRoot);
+  const raw = fs.readFileSync(indexPath(kind, cacheRoot), 'utf8');
   if (!raw.trim()) {
     return [];
   }
@@ -243,12 +257,12 @@ function readIndex(kind) {
   return rows;
 }
 
-function rebuildIndex(kind) {
+function rebuildIndex(kind, cacheRoot) {
   if (!VALID_KINDS.has(kind)) {
     throw new Error(`unknown cache kind: ${kind}`);
   }
-  ensureKindDir(kind);
-  const dir = path.join(CACHE_ROOT, kind);
+  ensureKindDir(kind, cacheRoot);
+  const dir = path.join(resolveCacheRoot(cacheRoot), kind);
   const entries = fs.readdirSync(dir).filter((f) => f.endsWith('.out.md'));
   const rows = [];
   for (const f of entries) {
@@ -270,9 +284,9 @@ function rebuildIndex(kind) {
       ...metadata,
     });
   }
-  const tmp = `${indexPath(kind)}.tmp.${process.pid}.${Date.now()}`;
+  const tmp = `${indexPath(kind, cacheRoot)}.tmp.${process.pid}.${Date.now()}`;
   fs.writeFileSync(tmp, rows.map((r) => JSON.stringify(r)).join('\n') + (rows.length ? '\n' : ''), 'utf8');
-  fs.renameSync(tmp, indexPath(kind));
+  fs.renameSync(tmp, indexPath(kind, cacheRoot));
   return { kind, rebuilt_count: rows.length };
 }
 

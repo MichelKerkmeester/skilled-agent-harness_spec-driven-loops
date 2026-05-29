@@ -1,0 +1,25 @@
+{
+  "specFolder": "121-deep-agent-improvement-benchmark-mode/018-opus-review-remediation",
+  "description": "Remediate the 017 Opus deep-review findings (4 P1 + 13 P2): materializer fixture-id guard, bundle-gate criteria-exec gate, dead Mode-4 anchors, executable Lane B benchmark-mode promotion + doc truth",
+  "keywords": [
+    "opus",
+    "review",
+    "remediation",
+    "017",
+    "findings",
+    "materializer",
+    "fixture-id",
+    "bundle-gate",
+    "benchmark-mode",
+    "promotion"
+  ],
+  "lastUpdated": "2026-05-29T17:10:00.000Z",
+  "specId": "018",
+  "folderSlug": "opus-review-remediation",
+  "parentChain": [
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

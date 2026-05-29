@@ -861,7 +861,7 @@ run_node_orchestrator() {
 
     # Validate the parent folder. Non-recursive runs keep byte-identical
     # behavior: validate parent, exit its code.
-    "${base[@]}" --folder "$FOLDER_PATH" "${flags[@]}"
+    "${base[@]}" --folder "$FOLDER_PATH" ${flags[@]+"${flags[@]}"}
     local rc=$?
 
     # Recursive runs also validate each phase child, mirroring the discovery
@@ -874,7 +874,7 @@ run_node_orchestrator() {
             [[ -d "$phase_dir" ]] || continue
             phase_dir="${phase_dir%/}"
             [[ -f "$phase_dir/spec.md" || -f "$phase_dir/description.json" ]] || continue
-            "${base[@]}" --folder "$phase_dir" "${flags[@]}"
+            "${base[@]}" --folder "$phase_dir" ${flags[@]+"${flags[@]}"}
             local child_rc=$?
             (( child_rc > rc )) && rc=$child_rc
         done

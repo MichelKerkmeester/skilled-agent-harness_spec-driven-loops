@@ -125,3 +125,9 @@ W1 and W2 carry the active P1s and should land first. W3 is doc-only but include
 - P0 adversarial self-check: zero P0 candidates survived. The two strongest candidates (model-blind Lane B, criteria-exec coverage) were re-tested against the 015 disposition register, the 122/007 deferral origin, and the literal wording of the documented gate. Both resolved below P0, one to P1 (bundle-gate, a genuine fail-open against a documented control) and the rest to P2.
 - Replay validation: the empirical repros (constant self-score aggregateScore 100, materializer parent-dir escape, run-benchmark guard rejection) and the passing 29-test suite were re-run during synthesis and agree with the iteration records. No replay disagreement.
 - Evidence, scope, and coverage gates: PASS. Every active finding carries a file:line citation and a concrete fix, scope stayed inside the curated review file list, and coverage spans all four dimensions and both lanes.
+
+---
+
+## Remediation Status (phase 121/018)
+
+All 017 findings closed in packet 018: 17 FIXED (with tests) + 2 DOCUMENT-ACCEPT. P1s: materializer fixture-id sanitize (F017-P1-01), bundle-gate execSync gated + SKILL guarantee made true (F017-P1-02), Mode 4 doc citations repointed to LANE B (F017-P1-03), Lane B benchmark-mode promotion executable (F017-P1-04). P2s: cache read-integrity, existence-oracle sanitize, grader prompt-injection delimiting, run-scoped grader cache, integration-score drift, literal dedup, comment-tag namespacing. DOCUMENT-ACCEPT: parseArgs unification (no behavior-preserving superset) and one comment-tag instance. Verification: vitest 187 passing (+24), TST-1 byte-identity intact, materializer traversal rejected, bundle-gate refused when gated, both-lane smokes benchmark-complete, alignment-drift 0, validate --strict + --recursive PASS. A 032 validate.sh regression (recursive-alone empty-array under bash 3.2) was also fixed.

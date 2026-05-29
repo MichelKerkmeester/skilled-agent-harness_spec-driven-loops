@@ -150,12 +150,25 @@ function main() {
   const archiveDir = args['archive-dir'];
   const approve = args.approve === true || args.approve === 'true';
 
-  if (!candidate || !target || !scorePath || !benchmarkReportPath || !configPath || !manifestPath || !archiveDir || !approve) {
-    process.stderr.write('Usage: node promote-candidate.cjs --candidate=... --target=... --score=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve\n');
+  // F017-P1-04 (017 review): Lane B (model-benchmark) produces report.json with
+  // status=benchmark-complete and never a scored agent file. Promotion mode is
+  // therefore selected by the presence of --score: when --score is supplied this
+  // is the Lane A agent path (scored candidate + agent dimension gates, byte-
+  // behavior unchanged); when --score is omitted and --benchmark-report points at
+  // a benchmark-complete + benchmark-pass report this is the Lane B benchmark path,
+  // which promotes on benchmark evidence alone and bypasses the agent scored-file
+  // requirement and agent dimension gates. The shared guards (config promotion
+  // flags, benchmark/repeatability gates, single canonical target, and agent-
+  // definition mirror sync) apply to both modes.
+  const benchmarkMode = !scorePath;
+
+  if (!candidate || !target || !benchmarkReportPath || !configPath || !manifestPath || !archiveDir || !approve) {
+    process.stderr.write('Usage (Lane A / agent): node promote-candidate.cjs --candidate=... --target=... --score=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve\n');
+    process.stderr.write('Usage (Lane B / benchmark): node promote-candidate.cjs --candidate=... --target=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve\n');
     process.exit(2);
   }
 
-  const score = readJson(scorePath);
+  const score = benchmarkMode ? null : readJson(scorePath);
   const benchmarkReport = readJson(benchmarkReportPath);
   const resolvedRepeatabilityReportPath = repeatabilityReportPath || path.join(path.dirname(benchmarkReportPath), 'repeatability.json');
   const repeatabilityReport = readOptionalJson(resolvedRepeatabilityReportPath);
@@ -165,7 +178,7 @@ function main() {
   const threshold = Number(config?.scoring?.thresholdDelta || 1);
   const proposalOnly = config?.proposalOnly;
   const promotionEnabled = config?.promotionEnabled;
-  if (score.status !== 'scored') {
+  if (!benchmarkMode && score.status !== 'scored') {
     process.stderr.write('Cannot promote: score file is not in scored state\n');
     process.exit(1);
   }
@@ -230,26 +243,34 @@ function main() {
     process.exit(1);
   }
 
-  if (score.recommendation !== 'candidate-better') {
-    process.stderr.write(`Cannot promote: recommendation is ${score.recommendation}\n`);
-    process.exit(1);
-  }
+  // F017-P1-04 (017 review): the agent scored-file gates (candidate-better
+  // recommendation, weighted score gate, 5-dimension gates, score delta) only
+  // apply to Lane A. Lane B has no scored agent file, so it promotes on the
+  // benchmark report gates verified above (benchmark-complete + benchmark-pass +
+  // aggregate gate + repeatability) and skips these agent-only checks.
+  let scoreDelta = null;
+  if (!benchmarkMode) {
+    if (score.recommendation !== 'candidate-better') {
+      process.stderr.write(`Cannot promote: recommendation is ${score.recommendation}\n`);
+      process.exit(1);
+    }
 
-  if (Number(score.score || 0) < WEIGHTED_SCORE_GATE) {
-    process.stderr.write(`Cannot promote: score ${score.score} below weighted gate ${WEIGHTED_SCORE_GATE}\n`);
-    process.exit(1);
-  }
+    if (Number(score.score || 0) < WEIGHTED_SCORE_GATE) {
+      process.stderr.write(`Cannot promote: score ${score.score} below weighted gate ${WEIGHTED_SCORE_GATE}\n`);
+      process.exit(1);
+    }
 
-  const dimensionGate = evaluatePromotionGates(score.dimensions);
-  if (!dimensionGate.passed) {
-    process.stderr.write(`Cannot promote: dimension gates failed ${dimensionGate.failed.concat(dimensionGate.unscored).join(', ')}; thresholds ${JSON.stringify(PROMOTION_GATES)}\n`);
-    process.exit(1);
-  }
+    const dimensionGate = evaluatePromotionGates(score.dimensions);
+    if (!dimensionGate.passed) {
+      process.stderr.write(`Cannot promote: dimension gates failed ${dimensionGate.failed.concat(dimensionGate.unscored).join(', ')}; thresholds ${JSON.stringify(PROMOTION_GATES)}\n`);
+      process.exit(1);
+    }
 
-  const scoreDelta = readScoreDelta(score);
-  if (Number(scoreDelta || 0) < threshold) {
-    process.stderr.write(`Cannot promote: delta ${scoreDelta} below threshold ${threshold}\n`);
-    process.exit(1);
+    scoreDelta = readScoreDelta(score);
+    if (Number(scoreDelta || 0) < threshold) {
+      process.stderr.write(`Cannot promote: delta ${scoreDelta} below threshold ${threshold}\n`);
+      process.exit(1);
+    }
   }
 
   let runtimeMirrorSync = null;
@@ -301,19 +322,38 @@ function main() {
   fs.copyFileSync(target, backupPath);
   fs.copyFileSync(candidate, target);
 
-  const result = {
-    status: 'promoted',
-    target,
-    candidate,
-    backupPath,
-    benchmarkReport: benchmarkReportPath,
-    repeatabilityReport: resolvedRepeatabilityReportPath,
-    runtimeMirrors: runtimeMirrorSync,
-    mirror_sync_state: runtimeMirrorSync ? 'all_landed' : null,
-    delta: scoreDelta,
-    threshold,
-    timestamp: new Date().toISOString(),
-  };
+  // F017-P1-04 (017 review): Lane A output shape is unchanged (byte-behavior
+  // contract). Lane B emits mode=benchmark plus the benchmark aggregate/delta so
+  // the promotion result is self-describing for the model-benchmark loop.
+  const result = benchmarkMode
+    ? {
+        status: 'promoted',
+        mode: 'benchmark',
+        target,
+        candidate,
+        backupPath,
+        benchmarkReport: benchmarkReportPath,
+        repeatabilityReport: resolvedRepeatabilityReportPath,
+        runtimeMirrors: runtimeMirrorSync,
+        mirror_sync_state: runtimeMirrorSync ? 'all_landed' : null,
+        aggregateScore: benchmarkReport.aggregateScore,
+        benchmarkDelta: benchmarkReport.totals?.delta ?? null,
+        recommendation: benchmarkReport.recommendation,
+        timestamp: new Date().toISOString(),
+      }
+    : {
+        status: 'promoted',
+        target,
+        candidate,
+        backupPath,
+        benchmarkReport: benchmarkReportPath,
+        repeatabilityReport: resolvedRepeatabilityReportPath,
+        runtimeMirrors: runtimeMirrorSync,
+        mirror_sync_state: runtimeMirrorSync ? 'all_landed' : null,
+        delta: scoreDelta,
+        threshold,
+        timestamp: new Date().toISOString(),
+      };
 
   process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
 }
