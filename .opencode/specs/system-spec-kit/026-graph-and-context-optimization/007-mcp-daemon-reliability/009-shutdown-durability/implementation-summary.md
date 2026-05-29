@@ -37,7 +37,7 @@ _memory:
 | **Spec Folder** | `009-shutdown-durability` |
 | **Completed** | 2026-05-29 |
 | **Level** | 2 |
-| **Status** | implemented |
+| **Status** | implemented (code shipped); verification 2026-05-29: node --check + build + strict-validate PASS, targeted vitest (CHK-022/023) not re-run this session |
 <!-- /ANCHOR:metadata -->
 
 ---

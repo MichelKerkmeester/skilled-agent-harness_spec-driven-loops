@@ -112,8 +112,8 @@ Validate the two-launcher residency live and flip the advisor flag on, benchmark
 |-----------|-------------|-------------|
 | `mcp_server/tests/embedders/*live-two-launcher*.vitest.ts` | Add | Live integration test (CI lane): spawn→bind, EADDRINUSE/wx, SIGKILL reclaim, 404 contract |
 | `.opencode/bin/mk-skill-advisor-launcher.cjs` | Modify | Flip `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` to default ON once the live test is green |
-| `.opencode/bin/hf-model-server.cjs` | Modify | Device-aware `DEFAULT_DTYPE` via `HF_EMBEDDINGS_DTYPE` (only if fp16/MPS wins); idle eviction on `lastSuccessfulEmbedAt` |
-| `.opencode/bin/lib/model-server-supervision.cjs` | Modify | Socket-dir ownership (fstat uid-owned, reject symlinks, assert before reclaim `882-896`); `sun_path > 104` fail-fast |
+| `.opencode/bin/hf-model-server.cjs` | Modify | Device-aware `DEFAULT_DTYPE` via `HF_EMBEDDINGS_DTYPE` (only if fp16/MPS wins) |
+| `.opencode/bin/lib/model-server-supervision.cjs` | Modify | Socket-dir ownership (fstat uid-owned, reject symlinks, assert before reclaim); `sun_path > 104` fail-fast; idle eviction on `lastSuccessfulEmbedAt` |
 | `shared/embeddings/registry.ts` | Modify | Drop dead `RERANKER_CANONICAL` (`181-194`) |
 | `ENV_REFERENCE.md` | Modify | Add `sun_path` + idle-eviction rows; stage `SPECKIT_EMBEDDER_SIDECAR_*` / `_EXECUTION` removal |
 | bench scripts | Add | q8-vs-fp16 + MPS/CPU bench harness |

@@ -73,7 +73,7 @@ _memory:
 - [x] CHK-022 [P0] New vitest asserts active shard checkpoint before `DETACH DATABASE active_vec`.
 - [x] CHK-023 [P1] New vitest asserts `checkpointAllWal()` calls shard and main checkpoint pragmas.
 - [x] CHK-024 [P1] Copy-based benchmark passed and wrote JSON results under packet `scratch/`.
-- [ ] CHK-025 [P1] Strict spec validation exits 0.
+- [x] CHK-025 [P1] Strict spec validation exits 0. (PASS 2026-05-29 — validate.sh --strict exit 0.)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -127,8 +127,8 @@ _memory:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 15 | 15/15 |
-| P1 Items | 15 | 14/15 |
+| P1 Items | 15 | 15/15 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-05-29 (strict packet validation pending)
+**Verification Date**: 2026-05-29 (build + vitest + benchmark + strict-validate all PASS)
 <!-- /ANCHOR:summary -->

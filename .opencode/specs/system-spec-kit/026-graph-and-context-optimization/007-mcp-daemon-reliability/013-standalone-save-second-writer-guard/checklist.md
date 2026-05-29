@@ -69,8 +69,8 @@ _memory:
 - [x] CHK-021 [P0] Detector vitest covers live PID, dead PID, and missing lease.
 - [x] CHK-022 [P0] Step 11.5 vitest proves daemon-up skip does not call the indexing runtime.
 - [x] CHK-023 [P1] Step 11.5 vitest covers contention diagnostic fallback.
-- [ ] CHK-024 [P1] Shared-config scripts vitest behavior recorded.
-- [ ] CHK-025 [P1] Strict spec validation exits 0.
+- [x] CHK-024 [P1] Shared-config scripts vitest behavior recorded. (per implementation-summary: daemon-detect + workflow-step115-daemon-guard, 6 tests PASS.)
+- [x] CHK-025 [P1] Strict spec validation exits 0. (PASS 2026-05-29 — validate.sh --strict exit 0.)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -124,9 +124,9 @@ _memory:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 16 | 16/16 |
-| P1 Items | 13 | 11/13 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-05-29 (implementation complete; final strict validation pending)
+**Verification Date**: 2026-05-29 (scripts vitest recorded + strict validation PASS)
 <!-- /ANCHOR:summary -->
 

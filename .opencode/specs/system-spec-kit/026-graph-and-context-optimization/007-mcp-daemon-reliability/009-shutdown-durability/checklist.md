@@ -64,11 +64,11 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] `node --check ../../../../bin/mk-spec-memory-launcher.cjs` passes from `mcp_server`.
-- [ ] CHK-021 [P0] `npm run build --workspace=@spec-kit/mcp-server` passes.
-- [ ] CHK-022 [P0] Targeted vitest suites pass.
-- [ ] CHK-023 [P1] `context-server.vitest.ts` fatalShutdown/vectorIndex regex still passes.
-- [ ] CHK-024 [P1] Strict spec validation exits 0.
+- [x] CHK-020 [P0] `node --check ../../../../bin/mk-spec-memory-launcher.cjs` passes from `mcp_server`. (PASS 2026-05-29 — node --check OK.)
+- [x] CHK-021 [P0] `npm run build --workspace=@spec-kit/mcp-server` passes. (PASS 2026-05-29 — workspace build exit 0.)
+- [ ] CHK-022 [P0] Targeted vitest suites pass. (Not re-run this session.)
+- [ ] CHK-023 [P1] `context-server.vitest.ts` fatalShutdown/vectorIndex regex still passes. (Not re-run this session.)
+- [x] CHK-024 [P1] Strict spec validation exits 0. (PASS 2026-05-29 — validate.sh --strict exit 0.)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -120,9 +120,9 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 14 | 9/14 |
+| P0 Items | 14 | 11/14 |
 | P1 Items | 10 | 9/10 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-05-29 (implementation complete; staged verification pending)
+**Verification Date**: 2026-05-29 (node --check + build + strict-validate PASS; targeted vitest CHK-022/023 not re-run this session)
 <!-- /ANCHOR:summary -->

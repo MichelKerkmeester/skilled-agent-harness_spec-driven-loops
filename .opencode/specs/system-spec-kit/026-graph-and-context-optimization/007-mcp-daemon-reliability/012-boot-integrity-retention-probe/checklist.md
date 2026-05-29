@@ -72,7 +72,7 @@ _memory:
 - [x] CHK-021 [P0] Targeted vitest suites pass (385+ green).
 - [x] CHK-022 [P0] Bridge reap decision requires a deepProbe JSON-RPC initialize reply.
 - [x] CHK-023 [P1] `DEFAULT_PROBE_TIMEOUT_MS` is 5000 and clamped strictly below the 7000ms launcher grace.
-- [ ] CHK-024 [P1] Strict spec validation exits 0.
+- [x] CHK-024 [P1] Strict spec validation exits 0. (PASS 2026-05-29 — validate.sh --strict exit 0.)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -125,8 +125,8 @@ _memory:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 14 | 14/14 |
-| P1 Items | 10 | 9/10 |
+| P1 Items | 10 | 10/10 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-05-29 (implementation complete; strict validation pending)
+**Verification Date**: 2026-05-29 (tsc + vitest + probe/marker + strict-validate all PASS)
 <!-- /ANCHOR:summary -->
