@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -56,6 +56,7 @@ describe('cg-008 — Context handler', () => {
   afterEach(() => {
     closeDb();
     rmSync(tmpDir, { recursive: true, force: true });
+    vi.unstubAllEnvs();
   });
 
   function parseResponse(response: { content: Array<{ type: string; text: string }> }): HandlerResponsePayload {
@@ -130,6 +131,11 @@ describe('cg-008 — Context handler', () => {
   });
 
   it('returns the blocked-output contract when readiness is saturated by an empty graph', async () => {
+    // Opt .opencode in so the 012 first-time auto-establish is gated OFF: under a
+    // large (non-default) scope an empty graph keeps the manual code_graph_scan
+    // gate, which is exactly the blocked-output contract this test verifies.
+    // (Under the default end-user scope an empty graph now auto-establishes.)
+    vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_SKILLS', 'true');
     const response = parseResponse(await handleCodeGraphContext({
       queryMode: 'neighborhood',
       subject: 'MissingSymbol',

@@ -16,6 +16,7 @@ import {
   resolveIndexScopePolicy,
   parseIndexScopePolicyFromFingerprint,
   scopeFingerprintsMatchOrLegacy,
+  isDefaultEndUserScope,
 } from './index-scope-policy.js';
 import { isRecord } from './query-result-adapter.js';
 import * as graphDb from './code-graph-db.js';
@@ -656,9 +657,23 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
     };
   }
 
-  const guardedFullScan = state.action === 'full_scan' && allowGuardedInlineFullScan
-    ? evaluateGuardedFullScan(diagnostics, parseErrorBacklogThreshold)
-    : { autoRescanSafety: 'blocked' as const, autoRescanBlockReason: 'guard_disabled' };
+  // First-time auto-establish: an EMPTY graph has nothing to overwrite, so a
+  // first full scan is safe to auto-run on a read path WITHOUT an explicit
+  // code_graph_scan — but only under the DEFAULT end-user-code scope. A fresh
+  // clone (default scope) gets "it just works"; a maintainer who opted .opencode
+  // in (a large scope) keeps the explicit gate so a quick query never silently
+  // triggers a big all-of-.opencode scan. The normal scope-fingerprint guard
+  // (evaluateGuardedFullScan) still protects POPULATED/stale graphs from unsafe
+  // scope-mismatched auto-rescans.
+  const firstTimeAutoEstablish = state.freshness === 'empty'
+    && allowGuardedInlineFullScan
+    && isDefaultEndUserScope(resolveIndexScopePolicy());
+
+  const guardedFullScan = firstTimeAutoEstablish
+    ? { autoRescanSafety: 'allowed' as const }
+    : state.action === 'full_scan' && allowGuardedInlineFullScan
+      ? evaluateGuardedFullScan(diagnostics, parseErrorBacklogThreshold)
+      : { autoRescanSafety: 'blocked' as const, autoRescanBlockReason: 'guard_disabled' };
   const canRunFullScan = allowInlineFullScan || guardedFullScan.autoRescanSafety === 'allowed';
   if (state.action === 'full_scan' && !canRunFullScan) {
     return {

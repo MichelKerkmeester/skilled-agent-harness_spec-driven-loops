@@ -43,6 +43,25 @@ export interface IndexScopePolicy {
   excludedPluginGlobs: readonly string[];
 }
 
+/**
+ * True when the resolved scope is the DEFAULT end-user-code scope: no `.opencode`
+ * opt-ins at all (skills/agents/commands/specs/plugins off, and no per-skill
+ * allow-list). This is the scope a fresh repo clone gets.
+ *
+ * Used to decide whether a first-time empty-graph full scan is cheap + safe
+ * enough to auto-run on a read path: a default-scope clone "just works", while a
+ * maintainer who has opted `.opencode` in (a large scope) keeps the explicit
+ * `code_graph_scan` gate so a quick query never silently triggers a big scan.
+ */
+export function isDefaultEndUserScope(policy: IndexScopePolicy): boolean {
+  return policy.includeSkills === false
+    && policy.includedSkillsList === 'none'
+    && policy.includeAgents === false
+    && policy.includeCommands === false
+    && policy.includeSpecs === false
+    && policy.includePlugins === false;
+}
+
 export interface ResolveIndexScopePolicyInput {
   includeSkills?: boolean | string[];
   includeAgents?: boolean;

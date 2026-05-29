@@ -81,6 +81,7 @@ describe('ensure-ready', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.resetModules();
+    vi.unstubAllEnvs();
 
     mocks.getDbMock.mockReturnValue(createDbWithNodeCount(0));
     mocks.getStatsMock.mockReturnValue({
@@ -370,6 +371,53 @@ describe('ensure-ready', () => {
       expect(result.autoRescanSafety).toBe('blocked');
       expect(result.autoRescanBlockReason).toBe('parse_error_backlog');
       expect(mocks.indexFilesMock).not.toHaveBeenCalled();
+    });
+
+    it('auto-establishes an empty graph on the default end-user scope (guarded read path, no explicit scan)', async () => {
+      // Default end-user scope: no .opencode opt-ins.
+      vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_SKILLS', '');
+      vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_AGENTS', '');
+      vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_COMMANDS', '');
+      vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_SPECS', '');
+      vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_PLUGINS', '');
+      // Empty graph on first detect, populated after the establishing scan.
+      mocks.getDbMock
+        .mockReturnValueOnce(createDbWithNodeCount(0))
+        .mockReturnValue(createDbWithNodeCount(1));
+      mocks.getTrackedFilesMock.mockReturnValue(['/tmp/test-root/stale.ts']);
+      mocks.ensureFreshFilesMock.mockReturnValue({ fresh: ['/tmp/test-root/stale.ts'], stale: [] });
+
+      const { ensureCodeGraphReady } = await import('../lib/ensure-ready.js');
+      const result = await ensureCodeGraphReady('/tmp/test-root', {
+        allowInlineIndex: true,
+        allowInlineFullScan: false,
+        allowGuardedInlineFullScan: true,
+      });
+
+      // Empty + default scope => auto-establish: the full scan ran without an
+      // explicit code_graph_scan, despite allowInlineFullScan being false.
+      expect(mocks.indexFilesMock).toHaveBeenCalledTimes(1);
+      expect(result.inlineIndexPerformed).toBe(true);
+      expect(result.autoRescanSafety).toBe('allowed');
+    });
+
+    it('does NOT auto-establish an empty graph when .opencode is opted in (keeps the manual gate)', async () => {
+      // Opted-in (large) scope: a quick read must not silently trigger a big scan.
+      vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_SKILLS', 'true');
+      mocks.getDbMock.mockReturnValue(createDbWithNodeCount(0));
+      mocks.getTrackedFilesMock.mockReturnValue([]);
+
+      const { ensureCodeGraphReady } = await import('../lib/ensure-ready.js');
+      const result = await ensureCodeGraphReady('/tmp/test-root', {
+        allowInlineIndex: true,
+        allowInlineFullScan: false,
+        allowGuardedInlineFullScan: true,
+      });
+
+      expect(mocks.indexFilesMock).not.toHaveBeenCalled();
+      expect(result.action).toBe('full_scan');
+      expect(result.inlineIndexPerformed).toBe(false);
+      expect(result.autoRescanSafety).toBe('blocked');
     });
   });
 

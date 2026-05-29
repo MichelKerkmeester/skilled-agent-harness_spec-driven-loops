@@ -1,0 +1,23 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan",
+  "description": "Feature Specification: Empty-Graph First-Time Auto-Establish",
+  "keywords": [
+    "feature",
+    "specification",
+    "empty-graph",
+    "first-time",
+    "auto-establish"
+  ],
+  "lastUpdated": "2026-05-29T10:44:31.957Z",
+  "specId": "012",
+  "folderSlug": "empty-graph-first-time-auto-scan",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
