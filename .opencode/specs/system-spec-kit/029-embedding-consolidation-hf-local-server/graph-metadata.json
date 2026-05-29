@@ -41,6 +41,7 @@
     "key_files": [
       "shared/embeddings/registry.ts",
       "shared/embeddings/factory.ts",
+      ".opencode/bin/hf-model-server.cjs",
       "shared/embeddings/providers/hf-local.ts",
       "mcp_server/lib/embedders/execution-router.ts",
       "spec.md"
@@ -56,6 +57,12 @@
         "name": "factory.ts",
         "kind": "code",
         "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
         "source": "derived"
       },
       {
@@ -115,7 +122,7 @@
     ],
     "causal_summary": "The embedding stack exposes too many local model choices across separate registries, dimension maps, provider defaults, type strings, and docs. In parallel, `hf-local` still loads transformers inside daemon/sidecar execution paths instead of using the launcher-owned, health-probed local-service shape already used for long-lived daemon processes.",
     "created_at": "2026-05-29T05:06:24.626Z",
-    "last_save_at": "2026-05-29T05:06:53.471Z",
+    "last_save_at": "2026-05-29T09:26:06.001Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

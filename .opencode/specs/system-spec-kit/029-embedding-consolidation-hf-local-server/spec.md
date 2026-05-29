@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server"
-    last_updated_at: "2026-05-29T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Authored phase-parent spec for nomic-only consolidation and hf-local server phases"
-    next_safe_action: "Implement phase 001, then resume deferred model-server phases in order"
+    last_updated_at: "2026-05-29T13:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "All 6 phases shipped; nomic-only + hf-local model server + shared cross-launcher supervision"
+    next_safe_action: "Option B complete; optional live two-launcher validation when daemons run"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000029"
       session_id: "029-embedding-consolidation-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Execution order: nomic-only consolidation first, then hf-model-server through skill-advisor wiring"
@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Implemented (all 6 phases shipped + committed; live two-launcher residency deferred) |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -109,12 +109,12 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-nomic-only-consolidation/ | Reduce local embedding model menus, dimensions, defaults, and docs to `nomic-ai/nomic-embed-text-v1.5` while allowing unlisted user overrides via runtime dim derivation | Spec ready (implementation pending) |
-| 2 | 002-hf-model-server/ | Add a pure-Node hf model server exposing `/api/embed` and `/api/health` over UDS/tcp while relocating existing transformers load logic | Spec ready (implementation pending) |
-| 3 | 003-hf-local-http-client/ | Rewrite `hf-local.ts` as an ollama-shaped HTTP client with client-side prefixes, readiness retry, and runtime dim adoption | Spec ready (implementation pending) |
-| 4 | 004-launcher-supervision/ | Lazy-spawn and supervise the model server from the launcher with a second crash-loop guard, RSS watchdog, lease pid, and health probe | Spec ready (implementation pending) |
-| 5 | 005-retire-sidecar/ | Remove sidecar execution for embeddings and collapse hf-local routing to the direct factory-backed adapter path | Spec ready (implementation pending) |
-| 6 | 006-skill-advisor-shared-wiring/ | Point skill-advisor at the shared model-server socket and document the new env and troubleshooting surface | Spec ready (implementation pending) |
+| 1 | 001-nomic-only-consolidation/ | Reduce local embedding model menus, dimensions, defaults, and docs to `nomic-ai/nomic-embed-text-v1.5` while allowing unlisted user overrides via runtime dim derivation | Implemented |
+| 2 | 002-hf-model-server/ | Add a pure-Node hf model server exposing `/api/embed` and `/api/health` over UDS/tcp while relocating existing transformers load logic | Implemented |
+| 3 | 003-hf-local-http-client/ | Rewrite `hf-local.ts` as an ollama-shaped HTTP client with client-side prefixes, readiness retry, and runtime dim adoption | Implemented |
+| 4 | 004-launcher-supervision/ | Lazy-spawn and supervise the model server from the launcher with a second crash-loop guard, RSS watchdog, lease pid, and health probe | Implemented |
+| 5 | 005-retire-sidecar/ | Remove sidecar execution for embeddings and collapse hf-local routing to the direct factory-backed adapter path | Implemented |
+| 6 | 006-skill-advisor-shared-wiring/ | Point skill-advisor at the shared model-server socket and document the new env and troubleshooting surface | Implemented |
 
 ### Phase Transition Rules
 
