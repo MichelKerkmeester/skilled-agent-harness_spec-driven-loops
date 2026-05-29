@@ -1,0 +1,24 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/002-server-liveness-supervision",
+  "description": "Feature Specification: Server liveness + supervision hardening",
+  "keywords": [
+    "feature",
+    "specification",
+    "server",
+    "liveness",
+    "supervision",
+    "hardening"
+  ],
+  "lastUpdated": "2026-05-29T11:22:33.015Z",
+  "specId": "002",
+  "folderSlug": "server-liveness-supervision",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "031-embedding-stack-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

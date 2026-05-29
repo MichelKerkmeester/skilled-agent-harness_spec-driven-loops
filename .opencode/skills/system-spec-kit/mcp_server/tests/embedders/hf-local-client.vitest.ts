@@ -97,6 +97,89 @@ describe('HfLocalProvider HTTP client', () => {
     expect(postBodies).toHaveLength(1);
   });
 
+  it('treats a mid-readiness ECONNRESET/EPIPE as retryable instead of fatal', async () => {
+    for (const code of ['ECONNRESET', 'EPIPE'] as const) {
+      let healthCalls = 0;
+      const provider = new HfLocalProvider({
+        dim: 3,
+        readyTimeout: 1000,
+        request: async (request) => {
+          if (request.path === '/api/health') {
+            healthCalls += 1;
+            if (healthCalls === 1) {
+              const error = new Error(`socket ${code}`) as Error & { code: string };
+              error.code = code;
+              throw error;
+            }
+            return jsonResponse(200, { state: 'ready', model: MODEL, dim: 3 });
+          }
+          return jsonResponse(200, { embeddings: [vector(3)], dim: 3 });
+        },
+      });
+      await expect(provider.embedQuery(`reset ${code}`)).resolves.toHaveLength(3);
+      expect(healthCalls).toBe(2); // first reset retried, second ready
+    }
+  });
+
+  it('retries the embed POST once when the in-flight request is reaped (ECONNRESET), not just the readiness probe', async () => {
+    let postAttempts = 0;
+    let healthCalls = 0;
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 1000,
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          healthCalls += 1;
+          return jsonResponse(200, { state: 'ready', model: MODEL, dim: 3 });
+        }
+        postAttempts += 1;
+        if (postAttempts === 1) {
+          // The server was reaped mid-request: the in-flight POST connection drops.
+          const error = new Error('socket hang up') as Error & { code: string };
+          error.code = 'ECONNRESET';
+          throw error;
+        }
+        return jsonResponse(200, { embeddings: [vector(3)], dim: 3 });
+      },
+    });
+
+    await expect(provider.embedDocument('reaped mid-embed')).resolves.toHaveLength(3);
+    expect(postAttempts).toBe(2); // first POST reaped, retried against the respawned server
+    expect(healthCalls).toBe(2);  // waitForReady re-probed before the retry
+  });
+
+  it('throws an actionable "still loading" readiness-timeout message pointing at the tunable env', async () => {
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 30,
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          return jsonResponse(503, { state: 'loading', model: MODEL, dim: null });
+        }
+        return jsonResponse(200, { embeddings: [vector(3)], dim: 3 });
+      },
+    });
+    await expect(provider.embedQuery('still loading')).rejects.toThrow(
+      /still loading the model after \d+ms.*HF_EMBED_SERVER_READY_TIMEOUT_MS/s,
+    );
+  });
+
+  it('throws an "unreachable" readiness-timeout message when the server never answers', async () => {
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 30,
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          const error = new Error('connect ECONNREFUSED') as Error & { code: string };
+          error.code = 'ECONNREFUSED';
+          throw error;
+        }
+        return jsonResponse(200, { embeddings: [vector(3)], dim: 3 });
+      },
+    });
+    await expect(provider.embedQuery('never answers')).rejects.toThrow(/was unreachable after \d+ms/);
+  });
+
   it('adopts the server-reported embedding dimension', async () => {
     const provider = new HfLocalProvider({
       dim: 768,

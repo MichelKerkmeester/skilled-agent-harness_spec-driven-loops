@@ -58,7 +58,7 @@ describe('embedder bootstrap auto-selection', () => {
     const selected = await autoSelectActiveEmbedder({
       env: { VOYAGE_API_KEY: VALID_VOYAGE_KEY },
       fetchImpl: fetchImpl as typeof fetch,
-      runPythonImportProbe: async () => false,
+      probeHfLocalServer: async () => ({ available: false, reason: 'test: hf-local server unreachable' }),
     });
 
     expect(selected).toMatchObject({
@@ -81,7 +81,7 @@ describe('embedder bootstrap auto-selection', () => {
     const selected = await autoSelectActiveEmbedder({
       env: { OPENAI_API_KEY: VALID_OPENAI_KEY },
       fetchImpl: fetchImpl as typeof fetch,
-      runPythonImportProbe: async () => false,
+      probeHfLocalServer: async () => ({ available: false, reason: 'test: hf-local server unreachable' }),
     });
 
     expect(selected).toMatchObject({
@@ -103,7 +103,7 @@ describe('embedder bootstrap auto-selection', () => {
     const selected = await autoSelectActiveEmbedder({
       env: {},
       fetchImpl: fetchImpl as typeof fetch,
-      runPythonImportProbe: async () => false,
+      probeHfLocalServer: async () => ({ available: false, reason: 'test: hf-local server unreachable' }),
     });
 
     expect(selected).toMatchObject({
@@ -121,7 +121,7 @@ describe('embedder bootstrap auto-selection', () => {
     const selected = await autoSelectActiveEmbedder({
       env: {},
       fetchImpl: fetchImpl as typeof fetch,
-      runPythonImportProbe: async () => false,
+      probeHfLocalServer: async () => ({ available: false, reason: 'test: hf-local server unreachable' }),
     });
 
     expect(selected).toMatchObject({
@@ -131,13 +131,13 @@ describe('embedder bootstrap auto-selection', () => {
     });
   });
 
-  it('selects hf-local Nomic when Ollama is unavailable but sentence-transformers is importable', async () => {
+  it('selects hf-local Nomic when Ollama is unavailable but the hf-local model server is reachable', async () => {
     const selected = await autoSelectActiveEmbedder({
       env: {},
       fetchImpl: vi.fn(async () => {
         throw new Error('connection refused');
       }) as typeof fetch,
-      runPythonImportProbe: async () => true,
+      probeHfLocalServer: async () => ({ available: true }),
     });
 
     expect(selected).toMatchObject({
@@ -153,7 +153,7 @@ describe('embedder bootstrap auto-selection', () => {
       fetchImpl: vi.fn(async () => {
         throw new Error('offline');
       }) as typeof fetch,
-      runPythonImportProbe: async () => false,
+      probeHfLocalServer: async () => ({ available: false, reason: 'test: hf-local server unreachable' }),
     })).rejects.toThrow(AutoSelectEmbedderError);
 
     await expect(autoSelectActiveEmbedder({
@@ -161,7 +161,7 @@ describe('embedder bootstrap auto-selection', () => {
       fetchImpl: vi.fn(async () => {
         throw new Error('offline');
       }) as typeof fetch,
-      runPythonImportProbe: async () => false,
+      probeHfLocalServer: async () => ({ available: false, reason: 'test: hf-local server unreachable' }),
     })).rejects.toThrow(/ollama:.*hf-local:.*openai:.*voyage:/i);
   });
 
@@ -176,7 +176,7 @@ describe('embedder bootstrap auto-selection', () => {
           }
           return jsonResponse({ data: [{ embedding: embedding(1024) }] });
         }) as typeof fetch,
-        runPythonImportProbe: async () => false,
+        probeHfLocalServer: async () => ({ available: false, reason: 'test: hf-local server unreachable' }),
       });
 
       const row = db.prepare(`
@@ -215,7 +215,7 @@ describe('embedder bootstrap auto-selection', () => {
         metadataStore: store,
         lockPath: path.join(tempDir, 'active.lock'),
         sleepMs: 1,
-        runPythonImportProbe: async () => false,
+        probeHfLocalServer: async () => ({ available: false, reason: 'test: hf-local server unreachable' }),
       }),
       autoSelectActiveEmbedder({
         env: { VOYAGE_API_KEY: VALID_VOYAGE_KEY },
@@ -223,7 +223,7 @@ describe('embedder bootstrap auto-selection', () => {
         metadataStore: store,
         lockPath: path.join(tempDir, 'active.lock'),
         sleepMs: 1,
-        runPythonImportProbe: async () => false,
+        probeHfLocalServer: async () => ({ available: false, reason: 'test: hf-local server unreachable' }),
       }),
     ]);
 

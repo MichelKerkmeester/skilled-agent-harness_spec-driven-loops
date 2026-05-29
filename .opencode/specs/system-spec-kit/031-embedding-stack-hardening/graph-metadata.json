@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/031-embedding-stack-hardening",
+  "spec_folder": "system-spec-kit/031-embedding-stack-hardening",
+  "parent_id": null,
+  "children_ids": [
+    "system-spec-kit/031-embedding-stack-hardening/001-selector-and-shared-socket",
+    "system-spec-kit/031-embedding-stack-hardening/002-server-liveness-supervision",
+    "system-spec-kit/031-embedding-stack-hardening/003-observability-model-switch",
+    "system-spec-kit/031-embedding-stack-hardening/004-perf-instrumentation-batching",
+    "system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedding stack hardening",
+      "031-embedding-stack-hardening phase parent",
+      "hf-local selector shared socket supervision observability perf"
+    ],
+    "key_topics": [
+      "embedding",
+      "stack",
+      "hardening",
+      "031-embedding-stack-hardening",
+      "phase",
+      "parent",
+      "hf-local",
+      "selector",
+      "shared",
+      "socket",
+      "supervision",
+      "observability"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "shared/embeddings/auto-select.ts",
+      "shared/embeddings/providers/hf-local.ts",
+      ".opencode/bin/hf-model-server.cjs",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      "mcp_server/lib/cache/embedding-cache.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": "shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-cache.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/cache/embedding-cache.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Harden",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The local embedding stack does not yet deliver its zero-install promise end to end. The hf-local selector probe gates selection on a Python import that the pure-Node server never satisfies, so fresh Node-only machines reject hf-local and fall through to an error or cloud egress. The two launchers resolve different sockets under shipped config, so the single-owner cross-launcher machinery never fires. Beyond those two gaps, the server can wedge while loading without being reaped, a hung native run keeps reporting healthy, crash loops can spawn-storm, disk-full breaks launcher writes, operators have no read-only view of embedder state, model switches are unsafe, cold-start timeouts are mismatched, the embed path is uninstrumented, reindex issues one POST per row, and the cross-launcher residency has never been validated live.",
+    "created_at": "2026-05-29T11:22:57.361Z",
+    "last_save_at": "2026-05-29T11:22:57.361Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}

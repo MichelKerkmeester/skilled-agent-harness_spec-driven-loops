@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/003-observability-model-switch",
+  "description": "Feature Specification: Observability + safe model-switch + cold-start timeout",
+  "keywords": [
+    "feature",
+    "specification",
+    "observability",
+    "safe",
+    "model-switch",
+    "cold-start",
+    "timeout"
+  ],
+  "lastUpdated": "2026-05-29T11:22:33.561Z",
+  "specId": "003",
+  "folderSlug": "observability-model-switch",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "031-embedding-stack-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

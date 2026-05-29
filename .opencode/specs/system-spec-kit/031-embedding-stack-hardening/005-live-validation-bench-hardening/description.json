@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening",
+  "description": "Feature Specification: Live validation + bench + perimeter hardening",
+  "keywords": [
+    "feature",
+    "specification",
+    "live",
+    "validation",
+    "bench",
+    "perimeter",
+    "hardening"
+  ],
+  "lastUpdated": "2026-05-29T11:22:34.608Z",
+  "specId": "005",
+  "folderSlug": "live-validation-bench-hardening",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "031-embedding-stack-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

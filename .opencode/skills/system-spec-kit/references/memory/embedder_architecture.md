@@ -49,7 +49,7 @@ On first memory-runtime use, `context-server.ts` opens the vector database and c
 | Tier | Probe | Persisted active embedder |
 |------|-------|---------------------------|
 | 1 | Ollama `/api/tags` reachable and an ADR-013 priority model is pulled | first pulled of `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1` |
-| 2 | `sentence-transformers` importable in the spec-memory Python runtime | `{ name: "nomic-ai/nomic-embed-text-v1.5", dim: 768, provider: "hf-local" }` |
+| 2 | hf-local model server answers `/api/health` (launcher-supervised pure-Node `@huggingface/transformers`; ready or loading both count) | `{ name: "nomic-ai/nomic-embed-text-v1.5", dim: 768, provider: "hf-local" }` |
 | 3 | `OPENAI_API_KEY` set and OpenAI embeddings endpoint is reachable | `{ name: "text-embedding-3-small", dim: 1536, provider: "openai" }` |
 | 4 | `VOYAGE_API_KEY` set and `https://api.voyageai.com/v1/embeddings` accepts `voyage-code-3` | `{ name: "voyage-code-3", dim: 1024, provider: "voyage" }` |
 
@@ -142,7 +142,7 @@ The re-index job writes the target dim table and flips the active pointer only a
 | Provider | Expected memory shape |
 |----------|-----------------------|
 | Ollama | Model memory lives mostly in the Ollama process |
-| hf-local | spec-memory loads local Python or Transformers.js model state in-process |
+| hf-local | model state lives in a separate launcher-supervised Node model-server process (`@huggingface/transformers`), not in-process; spec-memory holds only the HTTP client |
 | Voyage/OpenAI | spec-memory keeps only client/request state; model memory is remote |
 
 For active `jina-embeddings-v3`, the expected operator result after daemon restart is that `context-server.js` uses Ollama for query encoding and does not load an extra in-process embedding model.

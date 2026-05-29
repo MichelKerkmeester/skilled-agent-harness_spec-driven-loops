@@ -451,7 +451,15 @@ function isLoadingResponse(response: HfLocalJsonResponse): boolean {
 
 function isRetryableReadinessError(error: unknown): boolean {
   const code = getErrorCode(error);
-  return code === 'ECONNREFUSED' || code === 'ENOENT' || code === 'ETIMEDOUT';
+  // ECONNREFUSED/ENOENT: server not yet listening (launcher still spawning).
+  // ETIMEDOUT: slow cold load. ECONNRESET/EPIPE: the in-flight connection was
+  // dropped by a mid-request reap (RSS watchdog SIGTERM, OOM, crash-loop) — the
+  // supervisor respawns in ~250ms, so retry instead of tripping the circuit breaker.
+  return code === 'ECONNREFUSED'
+    || code === 'ENOENT'
+    || code === 'ETIMEDOUT'
+    || code === 'ECONNRESET'
+    || code === 'EPIPE';
 }
 
 function nextDelay(currentDelay: number): number {
@@ -602,6 +610,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
     const deadline = Date.now() + this.readyTimeout;
     let delay = READY_RETRY_INITIAL_DELAY;
     let lastError: unknown = null;
+    let sawLoading = false;
 
     while (Date.now() <= deadline) {
       const remaining = Math.max(1, deadline - Date.now());
@@ -617,6 +626,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
           return;
         }
         if (isLoadingResponse(response)) {
+          sawLoading = true;
           lastError = createError(`HF local model server is still loading at ${formatServerTarget(this.target)}`);
         } else if (state === 'error') {
           const message = isRecord(response.body) && typeof response.body.error === 'string'
@@ -645,8 +655,18 @@ export class HfLocalProvider implements IEmbeddingProvider {
     }
 
     this.isHealthy = false;
+    const target = formatServerTarget(this.target);
+    if (sawLoading) {
+      // The server answered but was still loading/downloading the model when the
+      // client gave up — actionable: this is a slow cold start, not an outage.
+      throw new Error(
+        `HF local model server at ${target} was still loading the model after ${this.readyTimeout}ms `
+        + `(first-run model download can exceed this). Raise HF_EMBED_SERVER_READY_TIMEOUT_MS or retry once warm.`,
+      );
+    }
     throw new Error(
-      `HF local model server was not ready after ${this.readyTimeout}ms: ${lastError === null ? 'unknown readiness state' : getErrorMessage(lastError)}`,
+      `HF local model server at ${target} was unreachable after ${this.readyTimeout}ms: `
+      + `${lastError === null ? 'no response' : getErrorMessage(lastError)}`,
     );
   }
 
@@ -667,25 +687,46 @@ export class HfLocalProvider implements IEmbeddingProvider {
   }
 
   private async embedPrepared(input: string): Promise<Float32Array> {
-    await this.waitForReady();
+    // A mid-request reap (RSS watchdog SIGTERM, OOM, crash-loop) drops the in-flight
+    // /api/embed connection with ECONNRESET/EPIPE — the dominant reap window is DURING
+    // the embed POST (inference load drives the pressure), not the cheap readiness GET.
+    // Retry ONCE against the launcher-respawned server (~250ms) before surfacing, so a
+    // single transient reap does not count toward the embedding circuit breaker. Bounded
+    // at 2 attempts to cap worst-case latency for a permanently-resetting server.
+    const MAX_EMBED_ATTEMPTS = 2;
+    let lastError: unknown = null;
+    for (let attempt = 1; attempt <= MAX_EMBED_ATTEMPTS; attempt += 1) {
+      await this.waitForReady();
+      try {
+        const response = await this.requestJson('POST', '/api/embed', {
+          model: this.modelName,
+          input: [input],
+        }, this.timeout);
 
-    const response = await this.requestJson('POST', '/api/embed', {
-      model: this.modelName,
-      input: [input],
-    }, this.timeout);
+        if (!response.status || response.status < 200 || response.status >= 300) {
+          this.throwForEmbeddingResponse(response, response.body);
+        }
 
-    if (!response.status || response.status < 200 || response.status >= 300) {
-      this.throwForEmbeddingResponse(response, response.body);
+        const [row] = parseEmbeddingRows(response.body);
+        if (!row) {
+          throw new Error('HF local model server returned no embedding rows');
+        }
+
+        this.adoptEmbeddingDimension(row, response.body);
+        this.requestCount += 1;
+        return l2Normalize(new Float32Array(row));
+      } catch (error: unknown) {
+        if (attempt < MAX_EMBED_ATTEMPTS && isRetryableReadinessError(error)) {
+          // Transient connection drop: force the next waitForReady() to re-probe the
+          // respawned server, then re-issue the POST.
+          lastError = error;
+          this.serverState = null;
+          continue;
+        }
+        throw error;
+      }
     }
-
-    const [row] = parseEmbeddingRows(response.body);
-    if (!row) {
-      throw new Error('HF local model server returned no embedding rows');
-    }
-
-    this.adoptEmbeddingDimension(row, response.body);
-    this.requestCount += 1;
-    return l2Normalize(new Float32Array(row));
+    throw lastError ?? new Error('HF local embedding failed after retries');
   }
 
   private throwForEmbeddingResponse(response: HfLocalJsonResponse, body: unknown): never {

@@ -103,12 +103,12 @@ The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/dat
 
 On first daemon startup, when `vec_metadata` has no active embedder, the server probes this **local-first** precedence chain (ADR-014, 2026-05-19) and persists the first working choice:
 
-1. **Ollama** (local, tier 1): `/api/tags` reachable, selecting the first pulled model in ADR-013 order: `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`.
-2. **hf-local** (local Python, tier 2): `sentence-transformers` importable, selecting `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default — ADR-014).
+1. **Ollama** (local, tier 1): `/api/tags` reachable, selecting `nomic-embed-text-v1.5`.
+2. **hf-local** (local, tier 2): the launcher-supervised pure-Node `@huggingface/transformers` model server answers `/api/health` (zero-install, no Python), selecting `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default — ADR-014). The server is lazily spawned on first embed; the first run downloads the model to `~/.cache/huggingface/hub` (hundreds of MB; expect a 15–120 s cold start).
 3. **OpenAI API** (cloud, tier 3): `OPENAI_API_KEY` set and `text-embedding-3-small` embeddings reachable.
 4. **Voyage API** (cloud, tier 4): `VOYAGE_API_KEY` set and `voyage-code-3` embeddings reachable.
 
-If no tier is reachable, startup fails with a clear probe report. Fix the relevant Ollama install, Python environment, or API key, then restart the MCP server.
+If no tier is reachable, startup fails with a clear probe report. Fix the relevant Ollama install, hf-local model-server socket, or API key, then restart the MCP server.
 
 To force a specific tier regardless of probe order, set `EMBEDDINGS_PROVIDER` explicitly (`ollama` / `hf-local` / `openai` / `voyage`).
 
@@ -123,7 +123,7 @@ For the simplest first-run experience that matches our reference production prof
    ```
 3. **Start the MCP server.** On first startup the cascade will detect Ollama and persist `ollama` + `nomic-embed-text-v1.5` (768-dim) as the active embedder — no API keys required, all embeddings stay local.
 
-If you skip Ollama, the cascade falls through to `hf-local` (Python + `sentence-transformers` + `nomic-ai/nomic-embed-text-v1.5`) for an all-local Python-side fallback. Cloud tiers (OpenAI, Voyage) are now reserved for explicit opt-in only.
+If you skip Ollama, the cascade falls through to `hf-local` (a pure-Node `@huggingface/transformers` model server running `nomic-ai/nomic-embed-text-v1.5`) for a **zero-install** all-local fallback — no Python, no manual setup; the model downloads on first embed. Cloud tiers (OpenAI, Voyage) are now reserved for explicit opt-in only.
 
 > **Behavior change for existing operators (ADR-014):** Daemons with `VOYAGE_API_KEY` or `OPENAI_API_KEY` set will, on a fresh `vec_metadata` boot, prefer Ollama / hf-local first. To pin a cloud tier on rebuild, set `EMBEDDINGS_PROVIDER=voyage` (or `openai`). Existing persisted embedders in `vec_metadata` are NOT changed by this update; the new order applies only when the daemon re-probes.
 
@@ -1030,7 +1030,7 @@ Use this procedure when an update leaves the server broken and you need to resto
 **Step 1: Back up the current database (if it has data you want to keep)**
 
 ```bash
-ACTIVE_DB=.opencode/skills/system-spec-kit/mcp_server/database/context-index__ollama__jina-embeddings-v3__1024.sqlite
+ACTIVE_DB=.opencode/skills/system-spec-kit/mcp_server/database/context-index__ollama__nomic-embed-text-v1.5__768.sqlite
 cp "$ACTIVE_DB" \
    .opencode/skills/system-spec-kit/mcp_server/database/rollback-$(date +%Y%m%d-%H%M%S).sqlite
 ```

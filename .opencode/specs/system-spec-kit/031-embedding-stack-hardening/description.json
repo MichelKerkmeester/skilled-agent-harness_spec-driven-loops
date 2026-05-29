@@ -1,0 +1,21 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening",
+  "description": "Feature Specification: Embedding-stack hardening",
+  "keywords": [
+    "feature",
+    "specification",
+    "embedding-stack",
+    "hardening"
+  ],
+  "lastUpdated": "2026-05-29T11:22:31.917Z",
+  "specId": "031",
+  "folderSlug": "embedding-stack-hardening",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

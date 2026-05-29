@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/001-selector-and-shared-socket",
+  "description": "Feature Specification: Selector fix + shared socket + client resilience",
+  "keywords": [
+    "feature",
+    "specification",
+    "selector",
+    "fix",
+    "shared",
+    "socket",
+    "client",
+    "resilience"
+  ],
+  "lastUpdated": "2026-05-29T11:32:54.151Z",
+  "specId": "001",
+  "folderSlug": "selector-and-shared-socket",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "031-embedding-stack-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

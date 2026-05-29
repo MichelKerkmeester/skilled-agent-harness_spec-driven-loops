@@ -2,13 +2,12 @@
 // MODULE: Bootstrap Embedder Auto-Selection
 // ───────────────────────────────────────────────────────────────────
 
-import { execFile } from 'node:child_process';
 import { mkdir, rm, stat, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { promisify } from 'node:util';
 
 import { getCanonicalFallback, MANIFESTS } from './registry.js';
+import { HfLocalProvider } from './providers/hf-local.js';
 import type { ProviderResolution } from '../types.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -61,7 +60,14 @@ export interface AutoSelectOptions {
   readonly lockPath?: string;
   readonly lockStaleMs?: number;
   readonly sleepMs?: number;
-  readonly runPythonImportProbe?: () => Promise<boolean>;
+  /**
+   * Injectable hf-local availability probe (test seam). Defaults to
+   * `HfLocalProvider.canLoad`, which hits the model server's `/api/health`
+   * over the configured socket/tcp target. Post-029 hf-local is a pure-Node
+   * HTTP client with zero Python, so the cascade must NOT probe a Python
+   * `sentence_transformers` import.
+   */
+  readonly probeHfLocalServer?: (timeoutMs: number) => Promise<HfLocalServerAvailability>;
   /**
    * Content type the consumer is optimising for. Defaults to `'text'`.
    * This parameter preserves the conceptual content-type split on the TS side
@@ -70,11 +76,17 @@ export interface AutoSelectOptions {
   readonly contentType?: EmbedderContentType;
 }
 
+/** Result of an hf-local model-server availability probe. */
+export interface HfLocalServerAvailability {
+  readonly available: boolean;
+  readonly reason?: string;
+}
+
 interface ProbeContext {
   readonly env: NodeJS.ProcessEnv;
   readonly fetchImpl: typeof fetch;
   readonly timeoutMs: number;
-  readonly runPythonImportProbe: () => Promise<boolean>;
+  readonly probeHfLocalServer: (timeoutMs: number) => Promise<HfLocalServerAvailability>;
 }
 
 interface ProbeOutcome {
@@ -127,8 +139,6 @@ const OLLAMA_PRIORITY: readonly OllamaManifest[] = Object.freeze(
     ollamaName: m.ollamaName!,
   })),
 );
-
-const execFileAsync = promisify(execFile);
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -233,19 +243,11 @@ function tagsContain(tags: Set<string>, tag: string): boolean {
   return tagAliases(tag).some((alias) => tags.has(alias));
 }
 
-async function defaultPythonImportProbe(): Promise<boolean> {
-  const python = process.env.SPECKIT_SENTENCE_TRANSFORMERS_PYTHON
-    || process.env.PYTHON
-    || 'python3';
-  try {
-    await execFileAsync(python, ['-c', 'import sentence_transformers'], {
-      timeout: DEFAULT_TIMEOUT_MS,
-      windowsHide: true,
-    });
-    return true;
-  } catch {
-    return false;
-  }
+async function defaultHfLocalServerProbe(timeoutMs: number): Promise<HfLocalServerAvailability> {
+  // hf-local is a pure-Node HTTP client (packet 029); availability = the model
+  // server endpoint answering /api/health (ready OR loading both count, since the
+  // launcher lazily spawns + warms the server on first demand). No Python.
+  return HfLocalProvider.canLoad({ timeout: timeoutMs });
 }
 
 async function delay(ms: number): Promise<void> {
@@ -434,9 +436,9 @@ async function probeOllama(context: ProbeContext): Promise<ProbeOutcome> {
 
 async function probeHfLocal(context: ProbeContext): Promise<ProbeOutcome> {
   const model = context.env.HF_LOCAL_MODEL || context.env.HF_EMBEDDINGS_MODEL || HF_LOCAL_MODEL;
-  const importable = await context.runPythonImportProbe();
-  if (!importable) {
-    return { reason: 'sentence-transformers is not importable by the configured Python runtime' };
+  const availability = await context.probeHfLocalServer(context.timeoutMs);
+  if (!availability.available) {
+    return { reason: availability.reason ?? 'hf-local model server is unreachable' };
   }
   return {
     embedder: {
@@ -444,7 +446,7 @@ async function probeHfLocal(context: ProbeContext): Promise<ProbeOutcome> {
       dim: HF_LOCAL_DIM,
       provider: 'hf-local',
     },
-    reason: `sentence-transformers import succeeded; selected ${model}`,
+    reason: `hf-local model server reachable via /api/health; selected ${model}`,
   };
 }
 
@@ -470,13 +472,13 @@ async function selectWithoutPersistence(options: AutoSelectOptions): Promise<Aut
     env: options.env ?? process.env,
     fetchImpl: options.fetchImpl ?? fetch,
     timeoutMs: options.timeoutMs ?? DEFAULT_TIMEOUT_MS,
-    runPythonImportProbe: options.runPythonImportProbe ?? defaultPythonImportProbe,
+    probeHfLocalServer: options.probeHfLocalServer ?? defaultHfLocalServerProbe,
   };
 
   const probes: AutoSelectProbeResult[] = [];
   // Local-first cascade. Try Ollama first, fall through to hf-local
-  // (Python/sentence-transformers), then escalate to cloud APIs (OpenAI, Voyage)
-  // only when nothing local works. Supersedes the cloud-first ordering.
+  // (pure-Node @huggingface/transformers HTTP model server), then escalate to
+  // cloud APIs (OpenAI, Voyage) only when nothing local works.
   const sequence: Array<readonly [AutoSelectedEmbedderProvider, (ctx: ProbeContext) => Promise<ProbeOutcome>]> = [
     ['ollama', probeOllama],
     ['hf-local', probeHfLocal],
