@@ -1,0 +1,132 @@
+{
+  "sessionId": "2026-05-29T16:42:01Z",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "DR-001-P1-001",
+      "severity": "P1",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:1641",
+      "title": "Fresh daemon bootstrap can ignore an explicit embedding provider override",
+      "status": "open",
+      "firstSeenIteration": 1
+    },
+    {
+      "id": "DR-001-P1-002",
+      "severity": "P1",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:421",
+      "title": "Cancelling a running embedder reindex does not stop the worker before completion",
+      "status": "open",
+      "firstSeenIteration": 1
+    },
+    {
+      "id": "DR-001-P2-001",
+      "severity": "P2",
+      "dimension": "correctness",
+      "file": ".opencode/bin/hf-model-server.cjs:155",
+      "title": "Direct hf-model-server startup can unlink a live Unix socket without the launcher guard",
+      "status": "open",
+      "firstSeenIteration": 1
+    },
+    {
+      "id": "DR-002-P1-001",
+      "severity": "P1",
+      "dimension": "security",
+      "file": ".opencode/bin/hf-model-server.cjs:146",
+      "title": "TCP model-server targets can expose unauthenticated embed traffic outside loopback",
+      "status": "open",
+      "firstSeenIteration": 2
+    },
+    {
+      "id": "DR-002-P1-002",
+      "severity": "P1",
+      "dimension": "security",
+      "file": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts:436",
+      "title": "Workflow locks fail open after timeout, re-admitting concurrent standalone writers",
+      "status": "open",
+      "firstSeenIteration": 2
+    },
+    {
+      "id": "DR-003-P1-001",
+      "severity": "P1",
+      "dimension": "traceability",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard/tasks.md:75",
+      "title": "Daemon child packets leave required verification gates open while claiming implementation status",
+      "status": "open",
+      "firstSeenIteration": 3
+    },
+    {
+      "id": "DR-003-P2-001",
+      "severity": "P2",
+      "dimension": "traceability",
+      "file": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening/spec.md:115",
+      "title": "Phase 005 file-change matrix still points idle eviction at the wrong implementation file",
+      "status": "open",
+      "firstSeenIteration": 3
+    },
+    {
+      "id": "DR-004-P2-001",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:415",
+      "title": "Embedding env knobs are code/test-visible but absent from ENV_REFERENCE",
+      "status": "open",
+      "firstSeenIteration": 4
+    },
+    {
+      "id": "DR-005-P1-001",
+      "severity": "P1",
+      "dimension": "correctness",
+      "file": ".opencode/bin/lib/model-server-supervision.cjs:591",
+      "title": "Lazy model-server respawn locks expire while the live listener still owns them",
+      "status": "open",
+      "firstSeenIteration": 5
+    },
+    {
+      "id": "DR-006-P1-001",
+      "severity": "P1",
+      "dimension": "correctness",
+      "file": ".opencode/bin/lib/model-server-supervision.cjs:1198",
+      "title": "Demand-triggered model-server spawn failures strand the lazy listener",
+      "status": "open",
+      "firstSeenIteration": 6
+    },
+    {
+      "id": "DR-008-P1-001",
+      "severity": "P1",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1329",
+      "title": "Non-active tracked SQLite connections skip the TRUNCATE checkpoint on shutdown",
+      "status": "open",
+      "firstSeenIteration": 8
+    },
+    {
+      "id": "DR-009-P1-001",
+      "severity": "P1",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:348",
+      "title": "Reindex shard writer bypasses the WAL TRUNCATE durability path",
+      "status": "open",
+      "firstSeenIteration": 9
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 9,
+    "P2": 3
+  },
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.1,
+  "lastUpdated": "2026-05-29T17:44:26Z"
+}

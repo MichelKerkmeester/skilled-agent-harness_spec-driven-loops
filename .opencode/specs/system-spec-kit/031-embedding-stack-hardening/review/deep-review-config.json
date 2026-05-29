@@ -1,0 +1,78 @@
+{
+  "topic": "Review: embedding-stack hardening program (031 phases 001-005 + 026/007 daemon children 009/010/012/013)",
+  "mode": "review",
+  "sessionId": "2026-05-29T16:42:01Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "reviewTarget": "embedding-stack hardening program: 031 phases 001-005 + 026/007 daemon-durability children 009/010/012/013 (committed code)",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+    ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+    ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+    ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+    ".opencode/skills/system-spec-kit/shared/types.ts",
+    ".opencode/bin/hf-model-server.cjs",
+    ".opencode/bin/lib/model-server-supervision.cjs",
+    ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+    ".opencode/bin/mk-skill-advisor-launcher.cjs",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+    ".opencode/skills/system-spec-kit/scripts/core/daemon-detect.ts",
+    ".opencode/skills/system-spec-kit/scripts/core/workflow.ts"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "maxIterations": 20,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening",
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-05-29T16:42:01Z",
+  "status": "complete",
+  "releaseReadinessState": "conditional",
+  "executionMode": "auto",
+  "config": {
+    "executor": {
+      "type": "cli-codex",
+      "kind": "cli-codex",
+      "model": "gpt-5.5",
+      "reasoningEffort": "high",
+      "serviceTier": "fast",
+      "sandboxMode": null,
+      "timeoutSeconds": 900
+    },
+    "resource_map": {
+      "emit": true
+    }
+  },
+  "verdict": "CONDITIONAL"
+}
