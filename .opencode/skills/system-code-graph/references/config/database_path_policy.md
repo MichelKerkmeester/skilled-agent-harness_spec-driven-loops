@@ -27,29 +27,31 @@ This policy fixes the current runtime location for the code graph's package-loca
 
 ### Core Principle
 
-All runtimes coordinate through one workspace-contained SQLite triplet owned by `system-code-graph`.
+All runtimes coordinate through one SQLite triplet owned by and co-located with `system-code-graph`, reached by every runtime through the `.opencode/skills` symlink.
 
 ### Key Sources
 
 - `INSTALL_GUIDE.md` §7 for operator-facing database configuration.
-- `.opencode/bin/mk-code-index-launcher.cjs` for the standalone-storage guard.
-- `mcp_server/lib/database-paths.ts` for runtime path resolution.
+- `.opencode/bin/mk-code-index-launcher.cjs` for the standalone-storage guard + skill-local path resolution + migration-back.
+- `mcp_server/core/config.ts` (`DATABASE_DIR`) and `mcp_server/lib/canonical-db-dir.ts` for runtime path resolution.
 
 ---
 
 ## 2. POLICY
 
-The code graph database lives in the shared spec-kit data directory:
+The code graph database lives SKILL-LOCAL, owned by and co-located with its skill:
 
 ```text
-.opencode/.spec-kit/code-graph/database/code-graph.sqlite
+.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite
 ```
 
-It must not live under either of the following legacy locations:
+Every runtime (`.claude` / `.codex` / `.gemini` / `.opencode`) reaches this path through the
+`.opencode/skills` symlink, so the skill-local database is a single shared instance with no
+per-runtime fragmentation. It must not live under either of the following:
 
 ```text
-.opencode/skills/system-spec-kit/mcp_server/database/       (pre-extraction)
-.opencode/skills/system-code-graph/mcp_server/database/     (post-extraction, pre-consolidation)
+.opencode/skills/system-spec-kit/mcp_server/database/    (pre-extraction; wrong skill)
+.opencode/.spec-kit/code-graph/database/                 (former shared location; superseded 2026-05-29)
 ```
 
 SQLite sidecars stay beside the database file:
@@ -72,16 +74,25 @@ The override path `SPECKIT_CODE_GRAPH_DB_DIR` is allowed for tests and disposabl
 
 ## 3. RATIONALE
 
-ADR-002 extraction constraint required DB-local ownership for the extracted code graph skill, but cross-runtime sharing surfaced a second constraint: every runtime (OpenCode, Claude Code, Codex, Gemini, Devin, VSCode) must read and write a single graph instead of fragmenting state per-runtime. The shared `.opencode/.spec-kit/code-graph/` location satisfies both: the standalone `mk-code-index` MCP server owns the runtime state, and all runtimes coordinate through one SQLite triplet.
+**Reversal note (2026-05-29):** the database was previously placed at the shared
+`.opencode/.spec-kit/code-graph/database/` location under the assumption that a skill-local
+DB would fragment state per-runtime. That assumption was wrong: every runtime symlinks
+`.opencode/skills` to one physical directory, so a skill-local DB at
+`system-code-graph/mcp_server/database/` is already a single shared instance. Cross-runtime
+sharing therefore does not distinguish skill-local from `.spec-kit` — both are equally shared.
 
-This produces cleaner mutation scope:
+Given that, the database is kept SKILL-LOCAL because that is the simpler ownership model:
 
-- `/doctor:update` and future repair flows reason per shared data directory, not per skill folder.
-- The scan loop in `system-code-graph` is the single writer for `code-graph.sqlite`.
-- `system-spec-kit` keeps memory and spec packet state in its own DB; ownership boundary is preserved.
-- Backups, cleanup, and integrity checks target one well-known shared path.
+- The `system-code-graph` skill owns both its server source AND its runtime DB in one tree — no split between code and the state it produces.
+- `system-spec-kit` keeps memory and spec packet state in its own DB; the ownership boundary is preserved.
+- The scan loop in `system-code-graph` remains the single writer for `code-graph.sqlite`.
+- Backups, cleanup, and integrity checks target one well-known skill-local path.
 
-The shared SQLite file remains the coordination boundary between in-process imports (from `system-spec-kit` handlers) and MCP tool callers (via `mk_code_index`).
+This reverses ADR-002/004/005's consolidation-to-`.spec-kit` decision. **Trade-off:** because the
+DB now lives inside the (committed, symlinked) skill folder, skill re-sync / reinstall flows must
+treat `mcp_server/database/` runtime artifacts as gitignored, regenerable state and never overwrite
+a live DB; the `.gitignore` rules and the launcher migration-back handle this. The SQLite file
+remains the coordination boundary between in-process imports and MCP tool callers (via `mk_code_index`).
 
 ---
 
@@ -89,7 +100,7 @@ The shared SQLite file remains the coordination boundary between in-process impo
 
 `SPECKIT_CODE_GRAPH_DB_DIR` is allowed for tests and disposable CI runs only. Tests typically use temporary directories via `mkdtempSync` and pass `dbDir` as a function parameter rather than relying on the environment variable.
 
-The launcher enforces a standalone-storage guard so the override path must resolve inside the workspace root. External absolute paths are rejected. Production and operator docs should treat `.opencode/.spec-kit/code-graph/database/` as the default. A runtime override must not silently re-collocate the database with `system-spec-kit/mcp_server/database/`.
+The launcher enforces a standalone-storage guard so the override path must resolve inside the workspace root. External absolute paths are rejected. Production and operator docs should treat `.opencode/skills/system-code-graph/mcp_server/database/` as the default. A runtime override must not silently re-collocate the database with `system-spec-kit/mcp_server/database/`.
 
 ---
 

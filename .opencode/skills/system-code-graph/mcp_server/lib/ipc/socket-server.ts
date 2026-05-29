@@ -84,8 +84,8 @@ function canonicalizePath(target: string): string {
 
 // Allowed roots for the IPC socket directory: the workspace itself plus the
 // system temp dirs. The macOS `sun_path` limit (104 chars) forces deep
-// in-workspace socket paths (e.g. `.opencode/.spec-kit/code-graph/database`,
-// ~121 chars) into a short `/tmp` path, so a workspace-only constraint is
+// in-workspace socket paths (e.g. `.opencode/skills/system-code-graph/mcp_server/database`,
+// ~130 chars) into a short `/tmp` path, so a workspace-only constraint is
 // incompatible with the documented config. `os.tmpdir()` is portable
 // (Linux/CI; macOS resolves to `/var/folders/...`), and `/tmp` covers the
 // project convention (`SPECKIT_IPC_SOCKET_DIR=/tmp/<service>`). The owner check

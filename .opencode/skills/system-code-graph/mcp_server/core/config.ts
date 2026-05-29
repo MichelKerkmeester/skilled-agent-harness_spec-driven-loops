@@ -11,12 +11,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const envDir = process.env.SPECKIT_CODE_GRAPH_DB_DIR;
-// Default DB dir = the documented canonical location `.opencode/.spec-kit/code-graph/database`
-// (opencode.json `_NOTE_1_DB`, readiness-marker.ts, mcp_server/README.md), resolved against the
-// workspace root so it is stable regardless of CWD. `SPECKIT_CODE_GRAPH_DB_DIR` overrides it; the
-// launcher normally sets that var and auto-migrates the legacy `mcp_server/database/` location on
-// first start. (resolveWorkspaceRoot is a hoisted function declaration, safe to call here.)
-const defaultDir = resolve(resolveWorkspaceRoot(), '.opencode/.spec-kit/code-graph/database');
+// Default DB dir = the SKILL-LOCAL location `.opencode/skills/system-code-graph/mcp_server/database`
+// (operator directive 2026-05-29: keep code-graph state inside the skill folder, which every runtime
+// already shares via the `.opencode/skills` symlink, so a skill-local DB is a single shared instance).
+// Resolved against the workspace root so it is stable regardless of CWD. `SPECKIT_CODE_GRAPH_DB_DIR`
+// overrides it. This supersedes the former shared `.opencode/.spec-kit/code-graph/database` location
+// (reverses ADR-002/004/005). (resolveWorkspaceRoot is a hoisted function declaration, safe here.)
+const defaultDir = resolve(resolveWorkspaceRoot(), '.opencode/skills/system-code-graph/mcp_server/database');
 
 function resolveWorkspaceRoot(): string {
   // The server module always lives under `<workspace-root>/.opencode/...`, so
@@ -28,8 +29,8 @@ function resolveWorkspaceRoot(): string {
   // `.opencode/` child. That falsely matched stray nested `.opencode/` dirs
   // sitting as siblings of an ancestor (e.g. an accidental
   // `skills/system-code-graph/.opencode/` advisor-state artifact), resolving the
-  // root to the skill dir and throwing OUTSIDE_WORKSPACE because the canonical DB
-  // dir (`.opencode/.spec-kit/code-graph/database`) sits outside that skill dir.
+  // root to a stray nested skill dir instead of the true workspace root. (The DB dir is
+  // now skill-local, but resolving the real workspace root still matters for env overrides.)
   // Anchoring on the on-path `.opencode` segment is immune to those strays.
   let current = __dirname;
   for (let i = 0; i < 12; i++) {

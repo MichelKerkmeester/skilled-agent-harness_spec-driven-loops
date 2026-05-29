@@ -23,7 +23,7 @@ Current state:
 - `index.ts` bootstraps the MCP server with stdio transport and writes a readiness marker before serving requests.
 - `index.ts` registers two handlers: a `ListTools` handler backed by `tool-schemas.ts`, and a `CallTool` handler backed by `tools/index.js` (the dispatcher).
 - `tool-schemas.ts` defines all code graph tool schemas and re-exports validation utilities from system-spec-kit.
-- Tool calls go through `tools/index.js` which forwards to handler modules in `handlers/` after the code graph database is confirmed ready.
+- Tool calls go through `tools/index.js` (the dispatcher) which validates arguments against the published input schemas and routes to handler modules in `handlers/`. Graph readiness is enforced per-handler via `ensureCodeGraphReady` (read-path handlers return `blocked` on a non-fresh graph), not at the dispatch boundary.
 - Compiled output lives in `dist/` and is used by MCP client configurations.
 
 This package communicates via stdio transport. MCP clients register the compiled server executable and call code graph tools through the standard MCP lifecycle.
@@ -139,7 +139,7 @@ Build outputs (`index.js`, `index.d.ts`, `tool-schemas.js`, `tool-schemas.d.ts`)
 | Public API | `CODE_GRAPH_TOOL_SCHEMAS` and `TOOL_DEFINITIONS` from `tool-schemas.ts` are the public schema surface. |
 | Server entrypoint | `index.ts` initializes the MCP server, registers schemas and dispatches to `tools/`. |
 | Handler logic | Tool handlers live in `handlers/` and are reachable only through the dispatch path. |
-| Storage | Code graph database files live in `.opencode/.spec-kit/code-graph/database/` and are accessed through library modules. |
+| Storage | Code graph database files live in `.opencode/skills/system-code-graph/mcp_server/database/` and are accessed through library modules. |
 | Build output | `dist/` contains compiled output. Source code does not import from `dist/`. |
 | External SDK | Only `@modelcontextprotocol/sdk` imports are allowed at the transport boundary. |
 

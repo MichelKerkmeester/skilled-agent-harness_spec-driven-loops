@@ -62,7 +62,7 @@ tests/lib does not depend on the live developer database
 
 | Boundary | Rule |
 |---|---|
-| State | Tests must use temp dirs, not `.opencode/.spec-kit/code-graph/database`. |
+| State | Tests must use temp dirs, not `.opencode/skills/system-code-graph/mcp_server/database`. |
 | Imports | Tests may import focused internals under `../../lib` when validating safety contracts. |
 | Cleanup | Temp directories and mocks must be reset after each case. |
 | Runtime | Keep pressure and degraded-mode tests in `../stress_test/code-graph/`. |

@@ -48,7 +48,7 @@ Names are stable per layer; do not normalize them across layers unless a packet 
 | MCP server config key | `mk_code_index` | All runtime configs | MCP convention: hyphens in server names become underscores in config keys. |
 | MCP tool namespace prefix | `mcp__mk_code_index__` | Tool call sites | MCP convention: hyphens → underscores in tool prefix. |
 | Launcher file | `mk-code-index-launcher.cjs` | `.opencode/bin/mk-code-index-launcher.cjs` | Filesystem path uses the hyphenated server identity. |
-| Database directory | `.opencode/.spec-kit/code-graph/database/` | `INSTALL_GUIDE.md §7` | Shared spec-kit data dir; folder name uses `code-graph` (skill-domain) to keep the path readable across runtimes. |
+| Database directory | `.opencode/skills/system-code-graph/mcp_server/database/` | `INSTALL_GUIDE.md §7` | Shared spec-kit data dir; folder name uses `code-graph` (skill-domain) to keep the path readable across runtimes. |
 | Plugin bridge file | `mk-code-graph-bridge.mjs` | `.opencode/plugins/` (if present) | Matches the `code-graph` domain word and the symmetry pattern used by `system-skill-advisor` (whose plugin bridge is `mk-skill-advisor-bridge.mjs`). |
 | Hook source location | `.opencode/skills/system-spec-kit/mcp_server/hooks/` | Hook source tree | Asymmetric vs the skill-owned hook pattern. See §4 below. |
 
@@ -89,7 +89,7 @@ When editing SessionStart-related code that needs to read or write code-graph st
 The code-graph SQLite triplet (`code-graph.sqlite`, `.sqlite-wal`, `.sqlite-shm`), readiness marker (`.code-graph-readiness.json`), and launcher state (`.mk-code-index-launcher.json`) all live in the shared spec-kit data directory:
 
 ```text
-.opencode/.spec-kit/code-graph/database/
+.opencode/skills/system-code-graph/mcp_server/database/
 ```
 
 This shared location replaced an earlier skill-local location (`.opencode/skills/system-code-graph/mcp_server/database/`) to support cross-runtime coordination — all six runtimes read and write the same database instead of fragmenting state per-runtime. See [`../config/database_path_policy.md`](../config/database_path_policy.md) for the full migration record and override rules.

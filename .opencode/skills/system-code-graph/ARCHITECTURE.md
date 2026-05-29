@@ -91,11 +91,11 @@ system-code-graph/
 │   ├── tests/              # Vitest + integration coverage
 │   ├── stress_test/        # Pressure and degraded-mode coverage
 │   ├── plugin_bridges/     # CLI bridge entrypoints
-│   └── core/               # Shared runtime helpers
+│   ├── core/               # Shared runtime helpers
+│   └── dist/               # Generated build output (tsc → mcp_server/dist)
 ├── references/             # Operator primers
 ├── feature_catalog/        # Current feature inventory
-├── manual_testing_playbook # Operator validation scenarios
-└── dist/                   # Generated build output
+└── manual_testing_playbook # Operator validation scenarios
 ```
 
 Allowed dependency direction:
@@ -131,7 +131,7 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Parser.** Tree-sitter via `web-tree-sitter` and `tree-sitter-wasms` multi-language WASM grammars. Extracts files, symbols, and edges. Maintains a parser-skip list for files that fail parsing, surfaced through status metadata.
 
-**Storage.** Primary store is SQLite via `better-sqlite3` at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`. The launcher's standalone-storage guard refuses to point the database outside the workspace.
+**Storage.** Primary store is SQLite via `better-sqlite3` at `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite`. The launcher's standalone-storage guard refuses to point the database outside the workspace.
 
 **Readiness contract.** A hard refuse, not a soft degrade. States are `fresh`, `stale`, `empty`, `error`, `absent`. Read paths gate on the state machine and return blocked payloads with required actions; the contract avoids serving incorrect structural answers. Detail per state lives in `references/readiness/code_graph_readiness_check.md`.
 
@@ -163,7 +163,7 @@ Verification runs at two layers.
 |---|---|---|
 | ADR-001 | Hook ownership stays with the spec-kit sibling package; code-graph data accessed through a stable boundary import | Accepted |
 | ADR-002 | Plugin and bridge names use `mk-code-graph` while the MCP server identity stays as `mk-code-index` for caller stability | Accepted |
-| ADR-003 | Single-writer invariant: only `code_graph_scan` writes; every other tool is read-only | Accepted |
+| ADR-003 | Single-writer invariant on the SQLite graph: the scan loop (`code_graph_scan`) is the only writer of graph rows. Other tools are graph-read-only with two bounded, non-graph side effects: `code_graph_status` refreshes the file-based readiness marker, and the read-path handlers may run an inline self-heal reindex (`ensureCodeGraphReady`) which itself goes through the scan path. `code_graph_apply` mutates only under its verification-gated recovery contract. | Accepted |
 | ADR-004 | Standalone-storage guard refuses to point the database outside the workspace | Accepted |
 | ADR-005 | Three-way isolation finalize: code-graph runs as a standalone MCP server with no required runtime dependency on adjacent skills | Accepted |
 

@@ -16,8 +16,8 @@ interface LauncherRun {
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const launcherRelativePath = '.opencode/bin/mk-code-index-launcher.cjs';
-const pidFileRelativePath = '.opencode/.spec-kit/code-graph/database/.mk-code-index-launcher.json';
-const ownerLeaseRelativePath = '.opencode/.spec-kit/code-graph/database/.code-graph-owner.json';
+const pidFileRelativePath = '.opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.json';
+const ownerLeaseRelativePath = '.opencode/skills/system-code-graph/mcp_server/database/.code-graph-owner.json';
 const tempDirs: string[] = [];
 const launcherRuns: LauncherRun[] = [];
 
@@ -372,9 +372,8 @@ describe('mk-code-index launcher lease', () => {
     const legacyPath = join(
       workspace.root,
       '.opencode',
-      'skills',
-      'system-code-graph',
-      'mcp_server',
+      '.spec-kit',
+      'code-graph',
       'database',
       '.mk-code-index-launcher.json',
     );

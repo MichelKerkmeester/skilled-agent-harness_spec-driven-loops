@@ -2,8 +2,8 @@
 // [mk-code-index-launcher] MCP child-process launcher for the mk-code-index server
 // (system-code-graph). Loads project-local env overrides, applies the maintainer-mode
 // INDEX_* override when SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true, auto-migrates the
-// code-graph database from the legacy skill-local location (mcp_server/database/) to the
-// standalone shared location (.opencode/.spec-kit/code-graph/database/), ensures dist
+// code-graph database from the former shared location (.opencode/.spec-kit/code-graph/database/)
+// back to the skill-local location (mcp_server/database/), ensures dist
 // artifacts are built and current, serializes concurrent starts via a filesystem bootstrap
 // lock, sets SPECKIT_CODE_GRAPH_DB_DIR for the child process (operator override wins),
 // then spawns the code-graph MCP server child. All stderr lines are tagged with the
@@ -96,9 +96,9 @@ if (process.env.SPECKIT_CODE_GRAPH_MAINTAINER_MODE === 'true') {
 let skillsDir = path.join(opencodeDir, 'skills');
 let legacySkillDir = path.join(opencodeDir, 'skill');
 let kitDir = path.join(skillsDir, 'system-code-graph');
-// DB lives at the standalone shared location; SPECKIT_CODE_GRAPH_DB_DIR overrides.
-// Legacy location (mcp_server/database/) is auto-migrated on first startup.
-let dbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');
+// DB lives SKILL-LOCAL at mcp_server/database/; SPECKIT_CODE_GRAPH_DB_DIR overrides.
+// Former shared location (.opencode/.spec-kit/code-graph/database/) is migrated back on first startup.
+let dbDir = path.join(kitDir, 'mcp_server', 'database');
 let lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
 const PID_FILE_NAME = '.mk-code-index-launcher.json';
 const OWNER_LEASE_FILE_NAME = '.code-graph-owner.json';
@@ -137,7 +137,7 @@ function refreshPaths() {
   skillsDir = path.join(opencodeDir, 'skills');
   legacySkillDir = path.join(opencodeDir, 'skill');
   kitDir = path.join(skillsDir, 'system-code-graph');
-  dbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');
+  dbDir = path.join(kitDir, 'mcp_server', 'database');
   lockDir = path.join(dbDir, '.mk-code-index-launcher.lockdir');
   stateFile = path.join(dbDir, PID_FILE_NAME);
 }
@@ -218,8 +218,11 @@ function ownerLeasePath() {
 }
 
 function legacyLeasePaths() {
+  // After the 2026-05-29 relocation, skill-local (mcp_server/database/) is the PRIMARY path.
+  // The legacy probe now covers the former shared `.spec-kit` location plus the pre-rename
+  // `skill/` (singular) typo dir, so a launcher still holding an old-location lease is detected.
   return [
-    path.join(opencodeDir, 'skills', 'system-code-graph', 'mcp_server', 'database', PID_FILE_NAME),
+    path.join(opencodeDir, '.spec-kit', 'code-graph', 'database', PID_FILE_NAME),
     path.join(opencodeDir, 'skill', 'system-code-graph', 'mcp_server', 'database', PID_FILE_NAME),
   ].map(canonicalizePath);
 }
@@ -781,10 +784,10 @@ function installSignalHandlers() {
     ensureLayout(actions);
     refreshPaths();
 
-    // Auto-migrate DB from legacy skill-local location to standalone shared location.
-    // The legacy DB is preserved as a backup (copy, not move).
-    const legacyDbDir = path.join(kitDir, 'mcp_server', 'database');
-    if (!exists(dbDir) && exists(path.join(legacyDbDir, 'code-graph.sqlite'))) {
+    // Auto-migrate DB from the former shared standalone location back to skill-local.
+    // The former DB is preserved as a backup (copy, not move).
+    const formerSharedDbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');
+    if (!exists(path.join(dbDir, 'code-graph.sqlite')) && exists(path.join(formerSharedDbDir, 'code-graph.sqlite'))) {
       fs.mkdirSync(dbDir, { recursive: true, mode: 0o700 });
       const dbFiles = [
         'code-graph.sqlite',
@@ -794,14 +797,14 @@ function installSignalHandlers() {
         '.mk-code-index-launcher.json',
       ];
       for (const file of dbFiles) {
-        const src = path.join(legacyDbDir, file);
+        const src = path.join(formerSharedDbDir, file);
         const dst = path.join(dbDir, file);
         if (exists(src)) {
           fs.copyFileSync(src, dst);
         }
       }
       process.stderr.write(
-        `[mk-code-index-launcher] migrated DB from ${rel(legacyDbDir)} to ${rel(dbDir)} (legacy preserved)\n`
+        `[mk-code-index-launcher] migrated DB from ${rel(formerSharedDbDir)} to ${rel(dbDir)} (former location preserved)\n`
       );
     }
 

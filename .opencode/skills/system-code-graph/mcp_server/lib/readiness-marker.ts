@@ -15,9 +15,13 @@ import type {
   StartupGraphQualitySummary,
 } from './shared/code-graph-contracts.js';
 
+// fix#1: skill-local DB location (matches core/config.ts DATABASE_DIR when CWD == workspace root).
+// CG-013 (cwd-divergence: share the canonical resolver) is intentionally deferred — see audit
+// 011/002-deferred — because importing core/config here runs resolveCanonicalDbDir at module load
+// and breaks tests that mock node:fs without realpathSync.native.
 export const CODE_GRAPH_READINESS_MARKER_BASE_DIR = resolve(
   process.cwd(),
-  process.env.SPECKIT_CODE_GRAPH_DB_DIR || '.opencode/.spec-kit/code-graph/database',
+  process.env.SPECKIT_CODE_GRAPH_DB_DIR || '.opencode/skills/system-code-graph/mcp_server/database',
 );
 export const CODE_GRAPH_READINESS_MARKER_PATH = resolve(CODE_GRAPH_READINESS_MARKER_BASE_DIR, '.code-graph-readiness.json');
 

@@ -13,7 +13,7 @@ description: PID-file single-writer lease for the mk-code-index launcher.
 
 ### Purpose
 
-The launcher lease is a process-boundary guard. Before bootstrap work begins, the launcher reads `.opencode/.spec-kit/code-graph/database/.mk-code-index-launcher.json` and probes the recorded PID with `process.kill(pid, 0)`.
+The launcher lease is a process-boundary guard. Before bootstrap work begins, the launcher reads `.opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.json` and probes the recorded PID with `process.kill(pid, 0)`.
 
 ### When to Use
 
@@ -36,7 +36,7 @@ If the recorded process is alive, the new launcher prints `LEASE_HELD_BY:<pid>` 
 The PID file lives beside the code-graph SQLite database:
 
 ```text
-.opencode/.spec-kit/code-graph/database/.mk-code-index-launcher.json
+.opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.json
 ```
 
 The active lease payload is intentionally small:

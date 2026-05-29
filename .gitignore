@@ -108,6 +108,10 @@ node_modules/
 .spec-kit
 *.local
 _sandbox
+# Skill-local code-graph DB runtime state (DB relocated here 2026-05-29; keep tracked docs like vectors/README.md)
+.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite*
+.opencode/skills/system-code-graph/mcp_server/database/.code-graph-*
+.opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.*
 
 # ───────────────────────────────────────────
 # Log files

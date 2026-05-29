@@ -14,7 +14,7 @@ trigger_phrases:
 
 <!-- sk-doc-template: skill_reference_install_guide -->
 
-This is the canonical bootstrap guide for the standalone System Code Graph MCP server. The server runs as `mk_code_index` (filesystem key `mk-code-index`), separate from `mk-spec-memory` and `mk_skill_advisor`, while exposing the public tool ids `code_graph_scan`, `code_graph_query`, `code_graph_classify_query_intent`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, `detect_changes`, `code_graph_status`, `code_graph_scan`, and `code_graph_verify`.
+This is the canonical bootstrap guide for the standalone System Code Graph MCP server. The server runs as `mk_code_index` (filesystem key `mk-code-index`), separate from `mk-spec-memory` and `mk_skill_advisor`, while exposing the 8 public tool ids `code_graph_scan`, `code_graph_query`, `code_graph_classify_query_intent`, `code_graph_status`, `code_graph_context`, `code_graph_verify`, `code_graph_apply`, and `detect_changes`.
 
 ---
 
@@ -50,7 +50,7 @@ Your AI assistant will:
 
 System Code Graph is a TypeScript MCP server under `.opencode/skills/system-code-graph/mcp_server/` that registers the `mk-code-index` server identity. The runtime package is published privately as `@spec-kit/system-code-graph` and ships a Node launcher at `.opencode/bin/mk-code-index-launcher.cjs`. The launcher boots the compiled entrypoint at `mcp_server/dist/index.js` after loading `.env.local` overrides, applying the optional maintainer-mode flag, and guarding the database path against external locations.
 
-The server is runtime-standalone: it does not depend on `mk-spec-memory` being installed or running first. Its database lives at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`, shared across runtimes and auto-migrated from the legacy skill-local location on first launch.
+The server is runtime-standalone: it does not depend on `mk-spec-memory` being installed or running first. Its database lives at `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite`, shared across runtimes and auto-migrated from the legacy skill-local location on first launch.
 
 Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become underscores in the namespace prefix per MCP convention.
 
@@ -62,7 +62,7 @@ Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become
 | Config key | `mk_code_index` |
 | Launcher | `.opencode/bin/mk-code-index-launcher.cjs` |
 | Entry point | `.opencode/skills/system-code-graph/mcp_server/dist/index.js` |
-| Database (default) | `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` |
+| Database (default) | `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` |
 | MCP tools | 8 (see [README.md](./README.md) §3.2) |
 
 ---
@@ -108,7 +108,7 @@ Each runtime expects an MCP server entry with the same launcher invocation. The 
       "type": "local",
       "command": ["node", ".opencode/bin/mk-code-index-launcher.cjs"],
       "environment": {
-        "_NOTE_1_DB": "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
+        "_NOTE_1_DB": "Database lives at .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
         "_NOTE_2_TOOLS": "Registers 8 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes. MCP namespace: mcp__mk_code_index__*",
         "_NOTE_3_INDEX_DEFAULTS": "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup.",
         "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
@@ -130,7 +130,7 @@ command = "node"
 args = [".opencode/bin/mk-code-index-launcher.cjs"]
 
 [mcp_servers.mk_code_index.env]
-_NOTE_1_DB = "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides."
+_NOTE_1_DB = "Database lives at .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides."
 _NOTE_2_TOOLS = "Registers 8 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply, detect_changes. MCP namespace: mcp__mk_code_index__*"
 SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
 SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
@@ -202,7 +202,7 @@ Current code-graph baseline:
 
 ### Database location
 
-Default: `.opencode/.spec-kit/code-graph/database/code-graph.sqlite`.
+Default: `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite`.
 
 Override with `SPECKIT_CODE_GRAPH_DB_DIR` (env var or `.env.local`). The launcher enforces a standalone-storage guard: the override must resolve inside the workspace root. External absolute paths are rejected at startup.
 

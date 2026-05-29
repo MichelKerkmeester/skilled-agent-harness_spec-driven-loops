@@ -22,7 +22,7 @@ This skill ships the structural half: a tree-sitter parser, a SQLite graph, a re
 - **Structural indexing.** AST-derived graph of files, symbols, calls, imports, and definitions. Distinct from text matching and from embedding-based semantic search.
 - **Semantic search.** Vector-embedding lookup over code. Surfaces conceptually related code without requiring known names.
 - **Blast radius.** Reverse impact set of a symbol or file. Answers "what depends on this if I change it."
-- **Readiness.** Whether the graph reflects current workspace state. States are `fresh`, `stale`, `empty`, `error`, `absent`. Read paths refuse to answer on non-fresh states.
+- **Readiness.** Whether the graph reflects current workspace state. Freshness states are `fresh`, `stale`, `empty`, `error` (`absent` is not a freshness state — it is the companion trust-state projection of an `empty` graph). Read paths refuse to answer on non-fresh states.
 - **Trust state.** Companion signal to readiness. Marks whether the graph passed its gold-query battery recently.
 - **Scope fingerprint.** Hash of the scan inputs (include globs, env flags). When the requested scope diverges from the stored fingerprint, status returns `blocked` and recommends a full rescan.
 - **False-safe.** A guarantee that the read path returns an explicit `blocked` payload rather than a silently-empty answer when the graph is not trustworthy. Prevents agents from acting on partial structural state.
@@ -365,7 +365,7 @@ Cross-subsystem consumers use two intentional paths:
 | `system-spec-kit` handlers / hooks / session surfaces | Direct in-process imports from `system-code-graph/mcp_server/lib/*` for shared readiness, startup, and context helpers via `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`. |
 | MCP callers (agents, commands, runtimes) | Standalone `mk-code-index` MCP namespace: `mcp__mk_code_index__code_graph_*` and `mcp__mk_code_index__detect_changes`. |
 
-The shared SQLite file at `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` remains the coordination boundary. The scan loop is the single writer.
+The shared SQLite file at `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` remains the coordination boundary. The scan loop is the single writer.
 
 **Naming asymmetries.** Five identifiers refer to this skill across runtime layers — skill folder slug (`system-code-graph`), MCP server name (`mk-code-index`), MCP config key (`mk_code_index`), launcher / plugin file names, and the shared data directory. Each is correct in its own scope. See [`references/runtime/naming_conventions.md`](references/runtime/naming_conventions.md) for the full map plus the rationale for the hook-location asymmetry (hooks remain under `system-spec-kit/mcp_server/hooks/`).
 

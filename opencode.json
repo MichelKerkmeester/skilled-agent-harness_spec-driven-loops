@@ -67,7 +67,7 @@
       ],
       "environment": {
         "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-code-index",
-        "_NOTE_1_DB": "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides. Legacy location (.opencode/skills/system-code-graph/mcp_server/database/) is auto-migrated on first launcher startup.",
+        "_NOTE_1_DB": "Database lives SKILL-LOCAL at .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite by default (shared across runtimes via the .opencode/skills symlink); SPECKIT_CODE_GRAPH_DB_DIR overrides. Former shared location (.opencode/.spec-kit/code-graph/database/) is migrated back on first launcher startup.",
         "_NOTE_2_TOOLS": "Registers 8 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply and detect_changes. MCP namespace: mcp__mk_code_index__*",
         "_NOTE_CONTEXT_BUDGET": "Tool-schema wire payload: ~2,200 tokens (8 tools).",
         "_NOTE_3_INDEX_DEFAULTS": "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control.",
