@@ -17,6 +17,15 @@
 .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/*/fixtures/states/*.tar.gz
 
 # ───────────────────────────────────────────
+# Eval-rig runtime materialization (repo-root only)
+# ───────────────────────────────────────────
+# The 113/120 eval-rig fixtures use a relative `scope.cwd: fixtures/fix-NNN/seed`.
+# Running the rig with the repo root as cwd (instead of RIG_ROOT) materializes a
+# stray /fixtures/ tree here. The canonical fixtures + seeds live under each
+# packet's eval-rig/fixtures/. Root-anchored so .opencode/**/fixtures/ is unaffected.
+/fixtures/
+
+# ───────────────────────────────────────────
 # Build output
 # ───────────────────────────────────────────
 build/
