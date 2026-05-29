@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/003-hf-local-http-client"
-    last_updated_at: "2026-05-29T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Authored deferred spec for rewriting hf-local as an HTTP client"
-    next_safe_action: "Implement after hf-model-server endpoint contract is available"
+    last_updated_at: "2026-05-29T08:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Rewrote hf-local as HTTP client; surface stable; 86 vitest green; review clean"
+    next_safe_action: "Phase 004: launcher supervision wires + supervises the 002 server"
     blockers: []
     key_files:
       - "shared/embeddings/providers/hf-local.ts"
@@ -22,10 +22,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000293"
       session_id: "029-003-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "dependsOn: 002-hf-model-server."
+      - "Public IEmbeddingProvider surface preserved; dispose is a client no-op"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Rewrite hf-local as an HTTP model-server client
@@ -41,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Implemented (tsc + 86 embedding vitest green; review clean; wired live in 004) |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

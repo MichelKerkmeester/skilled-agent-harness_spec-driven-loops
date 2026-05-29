@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm predecessor handoff criteria from 002-hf-model-server
-- [ ] T002 Inventory affected files and symbols before implementation
-- [ ] T003 [P] Identify focused tests to add or migrate
+- [x] T001 Confirm predecessor handoff criteria from 002-hf-model-server
+- [x] T002 Inventory affected files and symbols before implementation
+- [x] T003 [P] Identify focused tests to add or migrate
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,10 +58,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Copy the relevant ollama client helpers into the hf-local shape [REQ-001]
-- [ ] T005 Resolve socket/tcp base URL from HF_EMBED_SERVER_URL and defaults [REQ-002]
-- [ ] T006 Keep client-side prefix and dtype/profile metadata behavior [REQ-003]
-- [ ] T007 Implement readiness retry for connect errors and loading states [REQ-004]
+- [x] T004 Copy the relevant ollama client helpers into the hf-local shape [REQ-001]
+- [x] T005 Resolve socket/tcp base URL from HF_EMBED_SERVER_URL and defaults [REQ-002]
+- [x] T006 Keep client-side prefix and dtype/profile metadata behavior [REQ-003]
+- [x] T007 Implement readiness retry for connect errors and loading states [REQ-004]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,9 +69,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T08 Adopt server-reported dim and preserve length assertions [REQ-005]
-- [ ] T09 Add tests for prefixes, readiness, dim adoption, 404, and factory stability [REQ-006]
-- [ ] T099 Run strict spec validation for this phase folder
+- [x] T08 Adopt server-reported dim and preserve length assertions [REQ-005]
+- [x] T09 Add tests for prefixes, readiness, dim adoption, 404, and factory stability [REQ-006]
+- [x] T099 Run strict spec validation for this phase folder
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All P0 tasks complete
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Focused phase tests/static checks are green and predecessor/successor handoff is documented
+- [x] All P0 tasks complete
+- [x] No `[B]` blocked tasks remaining
+- [x] Focused phase tests/static checks are green and predecessor/successor handoff is documented
 <!-- /ANCHOR:completion -->
 
 ---

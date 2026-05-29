@@ -2,6 +2,12 @@
 // MODULE: HF Local
 // ───────────────────────────────────────────────────────────────────
 
+import { existsSync } from 'node:fs';
+import { request as httpRequest } from 'node:http';
+import type { IncomingMessage, RequestOptions } from 'node:http';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import { ALLOWED_HF_LOCAL_DTYPES, EmbeddingProfile, normalizeProfileDtype } from '../profile.js';
 import { getCanonicalFallback } from '../registry.js';
 import { semanticChunk, MAX_TEXT_LENGTH } from '../../chunking.js';
@@ -13,10 +19,16 @@ import type { IEmbeddingProvider, ProviderMetadata, TaskPrefixMap } from '../../
 
 // Derived from registry MANIFESTS[0] (single source of truth).
 const DEFAULT_MODEL: string = getCanonicalFallback('hf-local');
-const EMBEDDING_DIM: number = 768;
-// MAX_TEXT_LENGTH imported from chunking.ts (single source of truth)
+// Provisional dimension for the canonical default model (nomic = 768), so getMetadata().dim is
+// meaningful before the server is reached. The server-reported dim (adoptEmbeddingDimension)
+// overrides it at runtime; unlisted user models start at 0 and adopt their dim from the server.
+const CANONICAL_DEFAULT_DIM = 768;
 const EMBEDDING_TIMEOUT: number = 30000;
-const MODEL_LOAD_TIMEOUT: number = 120000; // 2 minutes (model is ~274MB)
+const DEFAULT_READY_TIMEOUT: number = 45000;
+const DEFAULT_HEALTH_TIMEOUT: number = 5000;
+const READY_RETRY_INITIAL_DELAY: number = 100;
+const READY_RETRY_MAX_DELAY: number = 1000;
+const SOCKET_FILE_NAME = 'hf-embed.sock';
 
 // Task prefixes required by nomic-embed-text-v1.5
 // See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
@@ -86,22 +98,13 @@ export function getPrefixFor(modelId: string, kind: 'document' | 'query'): strin
 }
 
 // ---------------------------------------------------------------
-// 2. DEVICE DETECTION
+// 2. TYPE DEFINITIONS
 // ---------------------------------------------------------------
 
-let currentDevice: string | null = null;
+export type HfLocalDtype = 'fp32' | 'fp16' | 'q4' | 'q4f16' | 'q8' | 'int8' | 'uint8' | 'bnb4';
 
-function getOptimalDevice(): string {
-  // macOS with Apple Silicon uses MPS (Metal Performance Shaders)
-  if (process.platform === 'darwin') {
-    return 'mps';
-  }
-  return 'cpu';
-}
-
-// ---------------------------------------------------------------
-// 3. PROVIDER CLASS
-// ---------------------------------------------------------------
+type HfLocalServerState = 'loading' | 'ready' | 'error';
+type HfLocalInputType = 'document' | 'query' | 'raw';
 
 interface HfLocalOptions {
   model?: string;
@@ -109,15 +112,71 @@ interface HfLocalOptions {
   maxTextLength?: number;
   timeout?: number;
   dtype?: HfLocalDtype;
+  readyTimeout?: number;
+  request?: HfLocalTransport;
 }
 
-// 014-local-embeddings-setup-a / 005-q4-quantization:
-// Allowed dtypes for ONNX model variants exposed by @huggingface/transformers.
-// Local transformer models expose several dtype variants through
-// @huggingface/transformers. q8 remains the default because it keeps local
-// bootstrap memory bounded while preserving enough retrieval quality for the
-// fallback path. Users can opt back to fp32 by setting HF_EMBEDDINGS_DTYPE=fp32.
-export type HfLocalDtype = 'fp32' | 'fp16' | 'q4' | 'q4f16' | 'q8' | 'int8' | 'uint8' | 'bnb4';
+interface HfLocalAvailability {
+  available: boolean;
+  reason?: string;
+}
+
+interface HfLocalTcpTarget {
+  readonly kind: 'tcp';
+  readonly host: string;
+  readonly port: number;
+}
+
+interface HfLocalSocketTarget {
+  readonly kind: 'socket';
+  readonly socketPath: string;
+}
+
+type HfLocalServerTarget = HfLocalTcpTarget | HfLocalSocketTarget;
+
+interface HfLocalTransportRequest {
+  readonly target: HfLocalServerTarget;
+  readonly method: 'GET' | 'POST';
+  readonly path: string;
+  readonly body?: unknown;
+  readonly timeoutMs: number;
+}
+
+interface HfLocalJsonResponse {
+  readonly status: number;
+  readonly statusText: string;
+  readonly body: unknown;
+}
+
+type HfLocalTransport = (request: HfLocalTransportRequest) => Promise<HfLocalJsonResponse>;
+type SleepFn = (ms: number) => Promise<void>;
+
+interface HfLocalHealthResponse {
+  readonly state?: unknown;
+  readonly model?: unknown;
+  readonly dim?: unknown;
+  readonly device?: unknown;
+  readonly loadTimeMs?: unknown;
+  readonly error?: unknown;
+}
+
+interface HfLocalEmbedResponse {
+  readonly embeddings?: unknown;
+  readonly dim?: unknown;
+  readonly error?: unknown;
+}
+
+interface ErrorWithCode extends Error {
+  code?: string;
+}
+
+// ---------------------------------------------------------------
+// 3. HELPERS
+// ---------------------------------------------------------------
+
+let currentDevice: string | null = null;
+let activeTransport: HfLocalTransport = nodeHttpTransport;
+let sleep: SleepFn = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export function resolveDtype(explicit?: string): HfLocalDtype {
   const raw = explicit ?? process.env.HF_EMBEDDINGS_DTYPE ?? 'q8';
@@ -130,29 +189,6 @@ export function resolveDtype(explicit?: string): HfLocalDtype {
   }
   return normalized as HfLocalDtype;
 }
-
-interface ErrorWithCode extends Error {
-  code?: string;
-}
-
-function resolveInitialDimension(modelName: string, explicitDim?: number): number {
-  if (typeof explicitDim === 'number' && Number.isFinite(explicitDim) && explicitDim > 0) {
-    return Math.trunc(explicitDim);
-  }
-  return modelName === DEFAULT_MODEL ? EMBEDDING_DIM : 0;
-}
-
-// Type for the HuggingFace pipeline extractor
-type FeatureExtractionSessions = Record<string, unknown> | Map<string, unknown> | readonly unknown[];
-type FeatureExtractionPipeline = ((text: string, options: { pooling: string; normalize: boolean }) => Promise<{ data: Float32Array | number[] }>) & {
-  dispose?: () => void | Promise<void>;
-  model?: {
-    sessions?: FeatureExtractionSessions;
-  };
-};
-
-// Type for the HuggingFace pipeline factory function
-type PipelineFactory = (task: string, model: string, options: Record<string, unknown>) => Promise<FeatureExtractionPipeline>;
 
 function getErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
@@ -167,40 +203,264 @@ function getErrorCode(error: unknown): string | undefined {
   return typeof code === 'string' ? code : undefined;
 }
 
-function createTimeoutError(message: string): ErrorWithCode {
+function createError(message: string, code?: string): ErrorWithCode {
   const error = new Error(message) as ErrorWithCode;
-  error.code = 'ETIMEDOUT';
+  if (code) {
+    error.code = code;
+  }
   return error;
 }
 
-function getSessionCount(sessions: FeatureExtractionSessions | undefined): number {
-  if (!sessions) {
-    return 0;
+function parsePositiveInteger(value: string | undefined, fallback: number): number {
+  if (value === undefined) {
+    return fallback;
   }
-  if (sessions instanceof Map) {
-    return sessions.size;
-  }
-  if (Array.isArray(sessions)) {
-    return sessions.length;
-  }
-  return Object.keys(sessions).length;
+
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
-async function withTimeout<T>(operation: Promise<T>, timeoutMs: number, message: string): Promise<T> {
-  return new Promise<T>((resolve, reject) => {
-    const timeoutId = setTimeout(() => reject(createTimeoutError(message)), timeoutMs);
+function systemSpecKitRoot(): string {
+  let currentDir = path.dirname(fileURLToPath(import.meta.url));
+  while (currentDir !== path.dirname(currentDir)) {
+    if (existsSync(path.join(currentDir, 'mcp_server')) && existsSync(path.join(currentDir, 'shared'))) {
+      return currentDir;
+    }
+    currentDir = path.dirname(currentDir);
+  }
 
-    operation
-      .then((value: T) => {
-        clearTimeout(timeoutId);
-        resolve(value);
-      })
-      .catch((error: unknown) => {
-        clearTimeout(timeoutId);
-        reject(error);
-      });
+  const cwdCandidates = [
+    process.cwd(),
+    path.resolve(process.cwd(), '..'),
+    path.resolve(process.cwd(), '.opencode', 'skills', 'system-spec-kit'),
+  ];
+  for (const candidate of cwdCandidates) {
+    if (existsSync(path.join(candidate, 'mcp_server')) && existsSync(path.join(candidate, 'shared'))) {
+      return candidate;
+    }
+  }
+
+  return path.resolve(process.cwd());
+}
+
+function defaultDbDir(): string {
+  return path.join(systemSpecKitRoot(), 'mcp_server', 'database');
+}
+
+function normalizeListenTarget(value: string | undefined): string | null {
+  if (typeof value !== 'string' || value.trim() === '') {
+    return null;
+  }
+
+  const raw = value.trim();
+  if (raw.startsWith('tcp://')) {
+    return raw;
+  }
+  if (raw.startsWith('http://') || raw.startsWith('https://')) {
+    const url = new URL(raw);
+    return `tcp://${url.hostname}:${url.port || (url.protocol === 'https:' ? '443' : '80')}`;
+  }
+  if (raw.startsWith('unix://')) {
+    return path.resolve(raw.slice('unix://'.length));
+  }
+  return path.resolve(raw);
+}
+
+function parseServerTarget(target: string): HfLocalServerTarget {
+  if (!target.startsWith('tcp://')) {
+    return {
+      kind: 'socket',
+      socketPath: target,
+    };
+  }
+
+  const url = new URL(target);
+  const port = Number.parseInt(url.port, 10);
+  if (!Number.isFinite(port) || port <= 0) {
+    throw new Error(`[hf-local] Invalid HF embed tcp target: ${target}`);
+  }
+
+  return {
+    kind: 'tcp',
+    host: url.hostname || '127.0.0.1',
+    port,
+  };
+}
+
+function resolveHfLocalServerTarget(env: NodeJS.ProcessEnv = process.env): HfLocalServerTarget {
+  const explicitTarget = normalizeListenTarget(env.HF_EMBED_SERVER_URL);
+  if (explicitTarget) {
+    return parseServerTarget(explicitTarget);
+  }
+
+  if (env.SPECKIT_IPC_SOCKET_DIR?.startsWith('tcp://')) {
+    return parseServerTarget(env.SPECKIT_IPC_SOCKET_DIR);
+  }
+
+  const socketDir = env.SPECKIT_IPC_SOCKET_DIR
+    ? path.resolve(env.SPECKIT_IPC_SOCKET_DIR)
+    : path.resolve(env.SPEC_KIT_DB_DIR ?? env.SPECKIT_DB_DIR ?? defaultDbDir());
+
+  return parseServerTarget(path.join(socketDir, SOCKET_FILE_NAME));
+}
+
+function formatServerTarget(target: HfLocalServerTarget): string {
+  if (target.kind === 'tcp') {
+    return `tcp://${target.host}:${target.port}`;
+  }
+  return target.socketPath;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
+function isNumberArray(value: unknown): value is number[] {
+  return Array.isArray(value) && value.every((item) => typeof item === 'number' && Number.isFinite(item));
+}
+
+function parseEmbeddingRows(body: unknown): number[][] {
+  if (!isRecord(body)) {
+    return [];
+  }
+
+  const payload = body as HfLocalEmbedResponse;
+  if (Array.isArray(payload.embeddings) && payload.embeddings.every(isNumberArray)) {
+    return payload.embeddings;
+  }
+
+  return [];
+}
+
+function parseResponseDim(body: unknown): number | null {
+  if (!isRecord(body) || typeof body.dim !== 'number' || !Number.isFinite(body.dim) || body.dim <= 0) {
+    return null;
+  }
+  return Math.trunc(body.dim);
+}
+
+function parseHealthState(body: unknown): HfLocalServerState | null {
+  if (!isRecord(body)) {
+    return null;
+  }
+
+  const { state } = body as HfLocalHealthResponse;
+  return state === 'loading' || state === 'ready' || state === 'error' ? state : null;
+}
+
+function parseHealthModel(body: unknown): string | null {
+  if (!isRecord(body) || typeof body.model !== 'string') {
+    return null;
+  }
+  return body.model;
+}
+
+async function readIncomingMessage(response: IncomingMessage): Promise<unknown> {
+  const chunks: Buffer[] = [];
+  for await (const chunk of response) {
+    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+  }
+
+  const raw = Buffer.concat(chunks).toString('utf8');
+  if (raw.trim().length === 0) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+async function nodeHttpTransport(request: HfLocalTransportRequest): Promise<HfLocalJsonResponse> {
+  const requestBody = request.body === undefined ? undefined : JSON.stringify(request.body);
+  const options: RequestOptions = {
+    method: request.method,
+    path: request.path,
+    headers: requestBody === undefined
+      ? undefined
+      : {
+          'content-type': 'application/json',
+          'content-length': Buffer.byteLength(requestBody),
+        },
+  };
+
+  if (request.target.kind === 'tcp') {
+    options.hostname = request.target.host;
+    options.port = request.target.port;
+  } else {
+    options.socketPath = request.target.socketPath;
+  }
+
+  return await new Promise((resolve, reject) => {
+    const clientRequest = httpRequest(options, (response) => {
+      readIncomingMessage(response)
+        .then((body) => resolve({
+          status: response.statusCode ?? 0,
+          statusText: response.statusMessage ?? '',
+          body,
+        }))
+        .catch(reject);
+    });
+
+    clientRequest.setTimeout(request.timeoutMs, () => {
+      clientRequest.destroy(createError(`HF local request timed out after ${request.timeoutMs}ms`, 'ETIMEDOUT'));
+    });
+    clientRequest.on('error', reject);
+
+    if (requestBody !== undefined) {
+      clientRequest.write(requestBody);
+    }
+    clientRequest.end();
   });
 }
+
+function l2Normalize(vector: Float32Array): Float32Array {
+  let norm = 0;
+  for (const value of vector) {
+    norm += value * value;
+  }
+  norm = Math.sqrt(norm);
+  if (!Number.isFinite(norm) || norm === 0) {
+    return vector;
+  }
+
+  const normalized = new Float32Array(vector.length);
+  for (let index = 0; index < vector.length; index += 1) {
+    normalized[index] = vector[index] / norm;
+  }
+  return normalized;
+}
+
+function isModelMissingResponse(response: HfLocalJsonResponse, body: unknown): boolean {
+  if (response.status === 404) {
+    return true;
+  }
+
+  const message = isRecord(body) && 'error' in body
+    ? String((body as { error?: unknown }).error)
+    : '';
+
+  return /model.*(not found|not loaded|pull)|pull.*model/i.test(message);
+}
+
+function isLoadingResponse(response: HfLocalJsonResponse): boolean {
+  return (response.status === 503 || response.status === 200) && parseHealthState(response.body) === 'loading';
+}
+
+function isRetryableReadinessError(error: unknown): boolean {
+  const code = getErrorCode(error);
+  return code === 'ECONNREFUSED' || code === 'ENOENT' || code === 'ETIMEDOUT';
+}
+
+function nextDelay(currentDelay: number): number {
+  return Math.min(currentDelay * 2, READY_RETRY_MAX_DELAY);
+}
+
+// ---------------------------------------------------------------
+// 4. PROVIDER CLASS
+// ---------------------------------------------------------------
 
 /** Provides hf local provider. */
 export class HfLocalProvider implements IEmbeddingProvider {
@@ -209,191 +469,243 @@ export class HfLocalProvider implements IEmbeddingProvider {
   dtype: HfLocalDtype;
   maxTextLength: number;
   timeout: number;
-  extractor: FeatureExtractionPipeline | null;
-  modelLoadTime: number | null;
-  loadingPromise: Promise<FeatureExtractionPipeline> | null;
+  readyTimeout: number;
   isHealthy: boolean;
-  private disposed: boolean;
-  private disposePromise: Promise<void> | null;
-  private readonly inFlightRawRuns: Set<Promise<unknown>>;
+  modelLoadTime: number | null;
+  requestCount: number;
+
+  private readonly target: HfLocalServerTarget;
+  private readonly request: HfLocalTransport;
+  private serverState: HfLocalServerState | null;
 
   constructor(options: HfLocalOptions = {}) {
     this.modelName = options.model || process.env.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL;
-    this.dim = resolveInitialDimension(this.modelName, options.dim);
+    this.dim = typeof options.dim === 'number' && Number.isFinite(options.dim) && options.dim > 0
+      ? Math.trunc(options.dim)
+      : (this.modelName === DEFAULT_MODEL ? CANONICAL_DEFAULT_DIM : 0);
     this.dtype = resolveDtype(options.dtype);
     this.maxTextLength = options.maxTextLength || MAX_TEXT_LENGTH;
     this.timeout = options.timeout || EMBEDDING_TIMEOUT;
-
-    this.extractor = null;
-    this.modelLoadTime = null;
-    this.loadingPromise = null;
+    this.readyTimeout = options.readyTimeout || parsePositiveInteger(
+      process.env.HF_EMBED_SERVER_READY_TIMEOUT_MS,
+      DEFAULT_READY_TIMEOUT,
+    );
     this.isHealthy = true;
-    this.disposed = false;
-    this.disposePromise = null;
-    this.inFlightRawRuns = new Set<Promise<unknown>>();
+    this.modelLoadTime = null;
+    this.requestCount = 0;
+    this.target = resolveHfLocalServerTarget();
+    this.request = options.request || activeTransport;
+    this.serverState = null;
   }
 
-  async getModel(): Promise<FeatureExtractionPipeline> {
-    if (this.disposed) {
-      throw new Error(`[hf-local] Provider for ${this.modelName} has been disposed`);
-    }
+  static async canLoad(options: Pick<HfLocalOptions, 'model' | 'timeout' | 'request'> = {}): Promise<HfLocalAvailability> {
+    const target = resolveHfLocalServerTarget();
+    const request = options.request || activeTransport;
+    const timeoutMs = options.timeout || DEFAULT_HEALTH_TIMEOUT;
 
-    if (this.extractor) {
-      return this.extractor;
-    }
-
-    // Race condition protection: wait for in-progress load
-    if (this.loadingPromise) {
-      return this.loadingPromise;
-    }
-
-    this.loadingPromise = (async (): Promise<FeatureExtractionPipeline> => {
-      const start = Date.now();
-      try {
-        console.warn(`[hf-local] Loading ${this.modelName} (dtype=${this.dtype}, first load may take 15-30s)...`);
-
-        const { pipeline } = await import('@huggingface/transformers');
-
-        let targetDevice = getOptimalDevice();
-        console.error(`[hf-local] Attempting device: ${targetDevice}`);
-
-        const loadWithTimeout = async (device: string): Promise<FeatureExtractionPipeline> => {
-          return new Promise<FeatureExtractionPipeline>((resolve, reject) => {
-            const timeoutId = setTimeout(() => {
-              reject(new Error(`Model loading timed out after ${MODEL_LOAD_TIMEOUT}ms. ` +
-                'This may indicate a corrupted cache or network issue. ' +
-                'Try clearing: ~/.cache/huggingface/hub/'));
-            }, MODEL_LOAD_TIMEOUT);
-
-            (pipeline as PipelineFactory)('feature-extraction', this.modelName, {
-              dtype: this.dtype,
-              device: device,
-            }).then((extractor: FeatureExtractionPipeline) => {
-              clearTimeout(timeoutId);
-              resolve(extractor);
-            }).catch((err: Error) => {
-              clearTimeout(timeoutId);
-              reject(err);
-            });
-          });
-        };
-
-        try {
-          this.extractor = await loadWithTimeout(targetDevice);
-          currentDevice = targetDevice;
-        } catch (deviceError: unknown) {
-          if (deviceError instanceof Error) {
-            void deviceError.message;
-          }
-          // MPS unavailable, fallback to CPU
-          if (targetDevice !== 'cpu' && !getErrorMessage(deviceError).includes('timed out')) {
-            console.warn(`[hf-local] ${targetDevice.toUpperCase()} unavailable (${getErrorMessage(deviceError)}), using CPU`);
-            this.extractor = await loadWithTimeout('cpu');
-            currentDevice = 'cpu';
-          } else {
-            throw deviceError;
-          }
-        }
-
-        this.modelLoadTime = Date.now() - start;
-        console.warn(`[hf-local] Model loaded in ${this.modelLoadTime}ms (device: ${currentDevice})`);
-
-        return this.extractor!;
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          void error.message;
-        }
-        this.loadingPromise = null;
-        this.isHealthy = false;
-
-        // Detect native module version mismatch (e.g., sharp built against a different Node ABI)
-        const errMsg = getErrorMessage(error);
-        const errCode = getErrorCode(error);
-        if (errCode === 'ERR_DLOPEN_FAILED' || errMsg.includes('NODE_MODULE_VERSION') || errMsg.includes('was compiled against a different Node.js version')) {
-          console.error('[hf-local] \u2550\u2550\u2550 NATIVE MODULE ERROR \u2550\u2550\u2550');
-          console.error(`[hf-local] ${errMsg}`);
-          console.error(`[hf-local] Running: Node ${process.version} (MODULE_VERSION ${process.versions.modules})`);
-          console.error('[hf-local] Recovery options:');
-          console.error('[hf-local]   1. Clear cache: rm -rf ~/.cache/huggingface/hub/');
-          console.error('[hf-local]   2. Switch provider: EMBEDDINGS_PROVIDER=voyage');
-          console.error('[hf-local] \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550');
-        }
-
-        throw error;
+    try {
+      const response = await request({
+        target,
+        method: 'GET',
+        path: '/api/health',
+        timeoutMs,
+      });
+      const state = parseHealthState(response.body);
+      if (state === 'ready' || state === 'loading') {
+        return { available: true };
       }
-    })();
+      if (state === 'error') {
+        const reason = isRecord(response.body) && typeof response.body.error === 'string'
+          ? response.body.error
+          : `HF local model server reports error state at ${formatServerTarget(target)}`;
+        return { available: false, reason };
+      }
 
-    return this.loadingPromise;
+      return {
+        available: false,
+        reason: `HF local /api/health returned ${response.status} ${response.statusText}`,
+      };
+    } catch (error: unknown) {
+      return {
+        available: false,
+        reason: `HF local backend unreachable at ${formatServerTarget(target)}: ${getErrorMessage(error)}`,
+      };
+    }
   }
 
-  async generateEmbedding(text: string): Promise<Float32Array | null> {
-    if (this.disposed) {
-      throw new Error(`[hf-local] Provider for ${this.modelName} has been disposed`);
-    }
-
+  private prepareInput(text: string, inputType: HfLocalInputType): string | null {
     if (!text || typeof text !== 'string') {
-      console.warn('[hf-local] Empty or invalid text provided');
       return null;
     }
 
     const trimmedText = text.trim();
     if (trimmedText.length === 0) {
-      console.warn('[hf-local] Empty text after trim');
       return null;
     }
 
-    let inputText = trimmedText;
-    if (inputText.length > this.maxTextLength) {
-      // Use semantic chunking instead of simple truncation to preserve important content
-      console.warn(`[hf-local] Text ${inputText.length} chars exceeds max ${this.maxTextLength}, applying semantic chunking`);
-      inputText = semanticChunk(inputText, this.maxTextLength);
+    const prefix = inputType === 'raw' ? '' : getPrefixFor(this.modelName, inputType);
+    const prefixed = `${prefix}${trimmedText}`;
+    if (prefixed.length <= this.maxTextLength) {
+      return prefixed;
     }
 
-    const start = Date.now();
+    return semanticChunk(prefixed, this.maxTextLength);
+  }
+
+  private async requestJson(
+    method: 'GET' | 'POST',
+    requestPath: string,
+    body: unknown,
+    timeoutMs: number,
+  ): Promise<HfLocalJsonResponse> {
+    return await this.request({
+      target: this.target,
+      method,
+      path: requestPath,
+      body,
+      timeoutMs,
+    });
+  }
+
+  private applyHealthMetadata(body: unknown): void {
+    if (!isRecord(body)) {
+      return;
+    }
+
+    const dim = parseResponseDim(body);
+    if (dim !== null) {
+      this.dim = dim;
+    }
+
+    const payload = body as HfLocalHealthResponse;
+    if (typeof payload.device === 'string') {
+      currentDevice = payload.device;
+    } else if (payload.device === null) {
+      currentDevice = null;
+    }
+
+    if (typeof payload.loadTimeMs === 'number' && Number.isFinite(payload.loadTimeMs)) {
+      this.modelLoadTime = payload.loadTimeMs;
+    } else if (payload.loadTimeMs === null) {
+      this.modelLoadTime = null;
+    }
+  }
+
+  private async healthOnce(timeoutMs: number): Promise<HfLocalJsonResponse> {
+    const response = await this.requestJson('GET', '/api/health', undefined, timeoutMs);
+    this.serverState = parseHealthState(response.body);
+    this.applyHealthMetadata(response.body);
+    return response;
+  }
+
+  private async waitForReady(): Promise<void> {
+    const deadline = Date.now() + this.readyTimeout;
+    let delay = READY_RETRY_INITIAL_DELAY;
+    let lastError: unknown = null;
+
+    while (Date.now() <= deadline) {
+      const remaining = Math.max(1, deadline - Date.now());
+      const healthTimeout = Math.min(DEFAULT_HEALTH_TIMEOUT, remaining);
+
+      try {
+        const response = await this.healthOnce(healthTimeout);
+        const state = parseHealthState(response.body);
+        const healthModel = parseHealthModel(response.body);
+        if (state === 'ready') {
+          this.serverState = 'ready';
+          this.isHealthy = healthModel === null || healthModel === this.modelName;
+          return;
+        }
+        if (isLoadingResponse(response)) {
+          lastError = createError(`HF local model server is still loading at ${formatServerTarget(this.target)}`);
+        } else if (state === 'error') {
+          const message = isRecord(response.body) && typeof response.body.error === 'string'
+            ? response.body.error
+            : 'unknown server error';
+          throw new Error(`HF local model server is in error state: ${message}`);
+        } else if (!response.status || response.status < 200 || response.status >= 300) {
+          throw new Error(`HF local health request failed (${response.status} ${response.statusText}): ${JSON.stringify(response.body)}`);
+        } else {
+          throw new Error(`HF local health response did not report ready/loading/error: ${JSON.stringify(response.body)}`);
+        }
+      } catch (error: unknown) {
+        if (!isRetryableReadinessError(error)) {
+          this.isHealthy = false;
+          throw error;
+        }
+        lastError = error;
+      }
+
+      if (Date.now() >= deadline) {
+        break;
+      }
+
+      await sleep(Math.min(delay, Math.max(1, deadline - Date.now())));
+      delay = nextDelay(delay);
+    }
+
+    this.isHealthy = false;
+    throw new Error(
+      `HF local model server was not ready after ${this.readyTimeout}ms: ${lastError === null ? 'unknown readiness state' : getErrorMessage(lastError)}`,
+    );
+  }
+
+  private adoptEmbeddingDimension(row: number[], body: unknown): void {
+    const serverDim = parseResponseDim(body);
+    const expectedDim = serverDim ?? this.dim;
+    if (serverDim !== null) {
+      this.dim = serverDim;
+    }
+
+    if (expectedDim > 0 && row.length !== expectedDim) {
+      throw new Error(`HF local embedding dimension mismatch for ${this.modelName}: expected ${expectedDim}, got ${row.length}`);
+    }
+
+    if (this.dim <= 0) {
+      this.dim = row.length;
+    }
+  }
+
+  private async embedPrepared(input: string): Promise<Float32Array> {
+    await this.waitForReady();
+
+    const response = await this.requestJson('POST', '/api/embed', {
+      model: this.modelName,
+      input: [input],
+    }, this.timeout);
+
+    if (!response.status || response.status < 200 || response.status >= 300) {
+      this.throwForEmbeddingResponse(response, response.body);
+    }
+
+    const [row] = parseEmbeddingRows(response.body);
+    if (!row) {
+      throw new Error('HF local model server returned no embedding rows');
+    }
+
+    this.adoptEmbeddingDimension(row, response.body);
+    this.requestCount += 1;
+    return l2Normalize(new Float32Array(row));
+  }
+
+  private throwForEmbeddingResponse(response: HfLocalJsonResponse, body: unknown): never {
+    if (isModelMissingResponse(response, body)) {
+      throw new Error(`HF local model is not loaded: ${this.modelName}`);
+    }
+
+    throw new Error(`HF local embedding request failed (${response.status} ${response.statusText}): ${JSON.stringify(body)}`);
+  }
+
+  async generateEmbedding(text: string): Promise<Float32Array | null> {
+    const input = this.prepareInput(text, 'raw');
+    if (!input) {
+      console.warn('[hf-local] Empty or invalid text provided');
+      return null;
+    }
 
     try {
-      const model = await this.getModel();
-      if (this.disposed) {
-        throw new Error(`[hf-local] Provider for ${this.modelName} has been disposed`);
-      }
-
-      const rawRun = model(inputText, {
-        pooling: 'mean',
-        normalize: true,
-      });
-      this.inFlightRawRuns.add(rawRun);
-      void rawRun.finally(() => {
-        this.inFlightRawRuns.delete(rawRun);
-      }).catch(() => undefined);
-
-      const output = await withTimeout(
-        rawRun,
-        this.timeout,
-        `HF local inference timed out after ${this.timeout}ms`,
-      );
-
-      const embedding = output.data instanceof Float32Array
-        ? output.data
-        : new Float32Array(output.data);
-
-      if (this.dim <= 0) {
-        this.dim = embedding.length;
-      } else if (embedding.length !== this.dim) {
-        throw new Error(`Embedding dimension mismatch: expected ${this.dim}, got ${embedding.length}`);
-      }
-
-      const inferenceTime = Date.now() - start;
-
-      if (inferenceTime > 800) {
-        console.warn(`[hf-local] Slow inference: ${inferenceTime}ms (target <800ms)`);
-      }
-
-      return embedding;
-
+      return await this.embedPrepared(input);
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        void error.message;
-      }
       console.warn(`[hf-local] Generation failed: ${getErrorMessage(error)}`);
       this.isHealthy = false;
       throw error;
@@ -401,77 +713,31 @@ export class HfLocalProvider implements IEmbeddingProvider {
   }
 
   async dispose(): Promise<void> {
-    if (this.disposePromise) {
-      return this.disposePromise;
-    }
-
-    this.disposed = true;
-    this.disposePromise = (async (): Promise<void> => {
-      if (this.inFlightRawRuns.size > 0) {
-        await withTimeout(
-          Promise.allSettled(Array.from(this.inFlightRawRuns)),
-          MODEL_LOAD_TIMEOUT,
-          `[hf-local] Timed out waiting for native inference drain after ${MODEL_LOAD_TIMEOUT}ms`,
-        );
-      }
-
-      const loading = this.loadingPromise;
-      if (loading) {
-        await withTimeout(
-          loading.then(() => undefined, () => undefined),
-          MODEL_LOAD_TIMEOUT,
-          `[hf-local] Timed out waiting for model load before dispose after ${MODEL_LOAD_TIMEOUT}ms`,
-        );
-      }
-
-      const extractor = this.extractor;
-      this.extractor = null;
-      this.loadingPromise = null;
-      this.modelLoadTime = null;
-      if (!extractor) {
-        return;
-      }
-
-      const sessionCount = getSessionCount(extractor.model?.sessions);
-      if (sessionCount !== 1) {
-        throw new Error(`[hf-local] Expected exactly one native session before dispose, got ${sessionCount}`);
-      }
-      if (typeof extractor.dispose !== 'function') {
-        throw new Error('[hf-local] Loaded extractor does not expose dispose()');
-      }
-
-      await extractor.dispose();
-    })();
-
-    return this.disposePromise;
+    // Client provider owns no native model state; the model server handles disposal.
   }
 
   async embedDocument(text: string): Promise<Float32Array | null> {
-    if (!text || typeof text !== 'string' || text.trim().length === 0) {
+    const input = this.prepareInput(text, 'document');
+    if (!input) {
       return null;
     }
-    const prefixedText = getPrefixFor(this.modelName, 'document') + text;
-    return await this.generateEmbedding(prefixedText);
+    return await this.embedPrepared(input);
   }
 
   async embedQuery(text: string): Promise<Float32Array | null> {
-    if (!text || typeof text !== 'string' || text.trim().length === 0) {
+    const input = this.prepareInput(text, 'query');
+    if (!input) {
       return null;
     }
-    const prefixedQuery = getPrefixFor(this.modelName, 'query') + text;
-    return await this.generateEmbedding(prefixedQuery);
+    return await this.embedPrepared(input);
   }
 
   async warmup(): Promise<boolean> {
     try {
-      console.error('[hf-local] Pre-warming model...');
       await this.embedQuery('test warmup query');
-      console.error('[hf-local] Model successfully pre-warmed');
+      this.isHealthy = true;
       return true;
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        void error.message;
-      }
       console.warn(`[hf-local] Warmup failed: ${getErrorMessage(error)}`);
       this.isHealthy = false;
       return false;
@@ -486,8 +752,10 @@ export class HfLocalProvider implements IEmbeddingProvider {
       dtype: this.dtype,
       device: currentDevice,
       healthy: this.isHealthy,
-      loaded: this.extractor !== null,
+      loaded: this.serverState === 'ready',
       loadTimeMs: this.modelLoadTime,
+      baseUrl: formatServerTarget(this.target),
+      requestCount: this.requestCount,
     };
   }
 
@@ -497,17 +765,19 @@ export class HfLocalProvider implements IEmbeddingProvider {
       model: this.modelName,
       dim: this.dim,
       dtype: this.dtype,
+      baseUrl: formatServerTarget(this.target),
     });
   }
 
   async healthCheck(): Promise<boolean> {
     try {
-      const result = await this.embedQuery('health check');
-      this.isHealthy = result !== null;
+      const response = await this.healthOnce(Math.min(this.timeout, DEFAULT_HEALTH_TIMEOUT));
+      const state = parseHealthState(response.body);
+      this.isHealthy = state === 'ready' || state === 'loading';
       return this.isHealthy;
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        void error.message;
+      if (!isRetryableReadinessError(error)) {
+        console.warn(`[hf-local] Health check failed: ${getErrorMessage(error)}`);
       }
       this.isHealthy = false;
       return false;
@@ -518,3 +788,18 @@ export class HfLocalProvider implements IEmbeddingProvider {
     return 'HuggingFace Local Embeddings';
   }
 }
+
+export const __hfLocalProviderTestables = {
+  reset(): void {
+    activeTransport = nodeHttpTransport;
+    sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+    currentDevice = null;
+  },
+  setTransport(transport: HfLocalTransport): void {
+    activeTransport = transport;
+  },
+  setSleep(sleepFn: SleepFn): void {
+    sleep = sleepFn;
+  },
+  resolveHfLocalServerTarget,
+};

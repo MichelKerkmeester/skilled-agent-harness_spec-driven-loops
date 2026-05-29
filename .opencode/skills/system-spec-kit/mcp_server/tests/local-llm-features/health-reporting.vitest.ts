@@ -48,9 +48,18 @@ describe('local LLM health reporting', () => {
     });
   });
 
-  it('T2 provider.healthCheck returns truthy when a loadable extractor is already present', async () => {
-    const provider = new HfLocalProvider();
-    provider.extractor = vi.fn(async () => ({ data: new Float32Array(768).fill(0.01) }));
+  it('T2 healthCheck returns truthy when the model server reports ready', async () => {
+    // 029/003: hf-local is an HTTP client; health is the server's /api/health, not an in-process extractor.
+    const provider = new HfLocalProvider({
+      request: async (request) => {
+        expect(request.path).toBe('/api/health');
+        return {
+          status: 200,
+          statusText: 'OK',
+          body: { state: 'ready', model: 'nomic-ai/nomic-embed-text-v1.5', dim: 768, device: 'cpu', loadTimeMs: 10 },
+        };
+      },
+    });
 
     await expect(provider.healthCheck()).resolves.toBe(true);
   });

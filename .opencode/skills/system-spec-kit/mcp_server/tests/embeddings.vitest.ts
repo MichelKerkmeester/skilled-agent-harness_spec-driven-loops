@@ -10,7 +10,7 @@ import {
   resolveStartupEmbeddingConfig,
   validateApiKey,
 } from '@spec-kit/shared/embeddings/factory';
-import { HfLocalProvider } from '@spec-kit/shared/embeddings/providers/hf-local';
+import { __hfLocalProviderTestables } from '@spec-kit/shared/embeddings/providers/hf-local';
 import { VoyageProvider } from '@spec-kit/shared/embeddings/providers/voyage';
 import { getStartupEmbeddingProfile } from '../../shared/embeddings/factory.js';
 import * as sharedEmbeddings from '../../shared/embeddings.js';
@@ -94,6 +94,7 @@ describe('Embeddings Architecture (T513)', () => {
   beforeEach(() => {
     resetEnv();
     restoreFetch();
+    __hfLocalProviderTestables.reset();
     sharedEmbeddings.__embeddingCircuitTestables.resetForTesting();
     vi.restoreAllMocks();
   });
@@ -101,6 +102,7 @@ describe('Embeddings Architecture (T513)', () => {
   afterEach(() => {
     resetEnv();
     restoreFetch();
+    __hfLocalProviderTestables.reset();
     vi.useRealTimers();
     sharedEmbeddings.__embeddingCircuitTestables.resetForTesting();
     vi.restoreAllMocks();
@@ -229,10 +231,31 @@ describe('Embeddings Architecture (T513)', () => {
     it('T513-02f: unlisted hf-local model derives dimension from first embedding', async () => {
       process.env.EMBEDDINGS_PROVIDER = 'hf-local';
       process.env.HF_EMBEDDINGS_MODEL = 'local/unlisted-runtime-dim';
-      const runtimeVector = new Float32Array(321);
-      runtimeVector[0] = 1;
-      const extractor = vi.fn(async () => ({ data: runtimeVector })) as unknown as Awaited<ReturnType<HfLocalProvider['getModel']>>;
-      vi.spyOn(HfLocalProvider.prototype, 'getModel').mockResolvedValue(extractor);
+      __hfLocalProviderTestables.setTransport(async (request) => {
+        if (request.path === '/api/health') {
+          return {
+            status: 200,
+            statusText: 'OK',
+            body: {
+              state: 'ready',
+              model: 'local/unlisted-runtime-dim',
+              dim: null,
+            },
+          };
+        }
+
+        const payload = request.body as { model: string; input: string[] };
+        expect(payload.model).toBe('local/unlisted-runtime-dim');
+        expect(payload.input).toEqual(['runtime dimension probe']);
+        return {
+          status: 200,
+          statusText: 'OK',
+          body: {
+            embeddings: [Array.from({ length: 321 }, (_value, index) => index + 1)],
+            dim: 321,
+          },
+        };
+      });
 
       const provider = await createEmbeddingsProvider({
         provider: 'hf-local',
@@ -323,11 +346,13 @@ describe('Embeddings Architecture (T513)', () => {
       expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8.sqlite');
     });
 
-    it('T513-03g: hf-local inference respects provider timeout', async () => {
+    it('T513-03g: hf-local separates readiness timeout from request timeout', async () => {
       const source = fs.readFileSync(HF_LOCAL_PROVIDER_FILE, 'utf8');
-      expect(source).toContain('async function withTimeout<T>(');
-      expect(source).toContain('HF local inference timed out after ${this.timeout}ms');
-      expect(source).toContain('const output = await withTimeout(');
+      expect(source).toContain('const DEFAULT_READY_TIMEOUT: number = 45000');
+      expect(source).toContain('process.env.HF_EMBED_SERVER_READY_TIMEOUT_MS');
+      expect(source).toContain('await this.waitForReady();');
+      expect(source).toContain("this.requestJson('POST', '/api/embed'");
+      expect(source).toContain('}, this.timeout);');
     });
 
     it('T513-03h: openai warmup uses a bounded Promise.race deadline', () => {

@@ -67,70 +67,11 @@ afterEach(() => {
   }
 });
 
-describe('HfLocalProvider.dispose', () => {
-  it('waits for the raw native run before synchronously disposing the session', async () => {
-    const runStarted = deferred<void>();
-    let runSettled = false;
-    const dispose = vi.fn(() => {
-      if (!runSettled) {
-        throw new Error('native abort: disposed during raw run');
-      }
-    });
-    const extractor = Object.assign(
-      vi.fn(() => {
-        runStarted.resolve();
-        return new Promise<{ data: Float32Array }>((resolve) => {
-          setImmediate(() => {
-            runSettled = true;
-            resolve({ data: vector(3) });
-          });
-        });
-      }),
-      { dispose, model: { sessions: { only: {} } } },
-    );
-    const provider = new HfLocalProvider({ model: 'mock-model', dim: 3, maxTextLength: 100 });
-    provider.extractor = extractor as NonNullable<typeof provider.extractor>;
-
-    const embedding = provider.generateEmbedding('raw-run');
-    await runStarted.promise;
-    const disposed = provider.dispose();
-    await Promise.resolve();
-
-    expect(dispose).not.toHaveBeenCalled();
-    await expect(embedding).resolves.toEqual(vector(3));
-    await expect(disposed).resolves.toBeUndefined();
-    expect(dispose).toHaveBeenCalledTimes(1);
-  });
-
-  it('disposes a model that finishes loading after dispose starts without running inference', async () => {
-    const loadStarted = deferred<void>();
-    const loadedExtractor = deferred<NonNullable<HfLocalProvider['extractor']>>();
-    const dispose = vi.fn();
-    const extractor = Object.assign(
-      vi.fn(async () => ({ data: vector(3) })),
-      { dispose, model: { sessions: { only: {} } } },
-    ) as NonNullable<HfLocalProvider['extractor']>;
-
-    hfMocks.pipeline.mockImplementationOnce(() => {
-      loadStarted.resolve();
-      return loadedExtractor.promise;
-    });
-
-    const provider = new HfLocalProvider({ model: 'mock-model', dim: 3, maxTextLength: 100 });
-    const embedding = provider.generateEmbedding('cold-load');
-    await loadStarted.promise;
-    const disposed = provider.dispose();
-    await Promise.resolve();
-
-    expect(dispose).not.toHaveBeenCalled();
-    loadedExtractor.resolve(extractor);
-
-    await expect(embedding).rejects.toThrow('has been disposed');
-    await expect(disposed).resolves.toBeUndefined();
-    expect(extractor).not.toHaveBeenCalled();
-    expect(dispose).toHaveBeenCalledTimes(1);
-  });
-});
+// (Removed in 029/003) The HfLocalProvider.dispose in-process native-drain tests are obsolete:
+// hf-local is now an HTTP client (no in-process extractor/session), dispose() is a client no-op, and
+// the native model lifetime is owned by hf-model-server.cjs (covered by hf-model-server.vitest.ts's
+// single-session dispose assertion). The execution-router/sidecar teardown tests below remain valid
+// until phase 005 retires the sidecar.
 
 describe('execution-router provider teardown', () => {
   async function importRouterWithMocks(provider: IEmbeddingProvider = mockProvider()) {
