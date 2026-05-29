@@ -1,0 +1,17 @@
+{
+  "specFolder": "121-deep-agent-improvement-benchmark-mode/009-skill-md-two-lane",
+  "description": "Phase 1: skill-md-two-lane",
+  "keywords": [
+    "phase",
+    "skill-md-two-lane"
+  ],
+  "lastUpdated": "2026-05-29T07:21:46.854Z",
+  "specId": "009",
+  "folderSlug": "skill-md-two-lane",
+  "parentChain": [
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

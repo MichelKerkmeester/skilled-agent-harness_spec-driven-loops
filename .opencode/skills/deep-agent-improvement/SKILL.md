@@ -24,10 +24,22 @@ Evaluator-first workflow for testing whether a bounded agent surface can be impr
 
 ## 1. WHEN TO USE
 
+### Two Co-Equal Lanes
+
+This skill supports two co-equal use-case lanes that share the same candidate, dispatcher, and scorer seams:
+
+| Lane | Pick when | Command |
+| --- | --- | --- |
+| **Lane A: Agent-Improvement** | You want to improve a bounded agent `.md` file | `/deep:start-agent-improvement-loop` |
+| **Lane B: Model-Benchmark** | You want to benchmark a model or prompt framework | `/deep:start-model-benchmark-loop` |
+
+Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Both lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
+
 ### Activation Triggers
 
 Use this skill when:
-- You want to test whether an agent prompt or instruction surface can be improved
+- You want to test whether an agent prompt or instruction surface can be improved (Lane A)
+- You want to benchmark a model or prompt framework against repeatable fixtures (Lane B)
 - The mutation boundary is explicit and narrow
 - You need packet-local evidence instead of ad hoc prompt tweaking
 - You need target-specific benchmark or scoring rules before any canonical mutation
@@ -49,7 +61,7 @@ Use this skill when you need to prove that guarded promotion, validation, rollba
 
 #### Model and Prompt Benchmarking
 
-Use the `model-benchmark` mode when the thing under test is a model or prompt framework rather than an agent definition. It runs the same loop shape against a benchmark profile and scores produced outputs, sharing the candidate, dispatcher, and scorer seams with the agent-improvement path. See Mode 4 below.
+Use Lane B (model-benchmark) when the thing under test is a model or prompt framework rather than an agent definition. It runs the same loop shape against a benchmark profile and scores produced outputs, sharing the candidate, dispatcher, and scorer seams with the agent-improvement path. See §4 below.
 
 ### When NOT to Use
 
@@ -103,6 +115,7 @@ INTENT_SIGNALS = {
     "PROMOTION_OPERATIONS": {"weight": 4, "keywords": ["promote", "rollback", "mirror drift", "approval gate"]},
     "TARGET_ONBOARDING": {"weight": 4, "keywords": ["new target", "target profile", "onboarding", "second target"]},
     "INTEGRATION_SCAN": {"weight": 4, "keywords": ["integration", "scan surfaces", "mirror sync", "dynamic profile", "5-dimension"]},
+    "MODEL_BENCHMARK": {"weight": 5, "keywords": ["benchmark a model", "benchmark a prompt framework", "optimize a model", "model-benchmark", "model benchmark"]},
     "FULL_SETUP": {"weight": 3, "keywords": ["full setup", "initialize runtime", "charter", "strategy"]},
 }
 
@@ -113,6 +126,7 @@ RESOURCE_MAP = {
     "PROMOTION_OPERATIONS": ["references/promotion-gates/rollback_runbook.md", "references/integration/mirror_drift_policy.md", "references/promotion-gates/promotion_rules.md"],
     "TARGET_ONBOARDING": ["references/workflow/target_onboarding.md"],
     "INTEGRATION_SCAN": ["references/integration/integration_scanning.md", "references/scoring/evaluator_contract.md"],
+    "MODEL_BENCHMARK": ["references/workflow/benchmark_operator_guide.md", "references/scoring/evaluator_contract.md"],
     "FULL_SETUP": ["assets/improvement_charter.md", "assets/improvement_strategy.md"],
 }
 
@@ -196,7 +210,9 @@ def route_recursive_agent_resources(task):
 
 ---
 
-## 3. HOW IT WORKS
+## 3. LANE A: AGENT-IMPROVEMENT
+
+Lane A improves a bounded agent `.md` file. Command: `/deep:start-agent-improvement-loop`. It runs the proposal-first loop in three modes (initialization, proposal and evaluation, promotion and recovery) and scores candidates with dynamic-mode 5-dimension scoring.
 
 ### Mode 1: Runtime Initialization
 
@@ -247,19 +263,21 @@ Profiles are generated on the fly from any agent file via `scripts/generate-prof
 3. Use `scripts/rollback-candidate.cjs` plus direct comparison evidence when the canonical target must be restored.
 4. Treat mirror drift as downstream packaging work and review it separately with `scripts/check-mirror-drift.cjs`.
 
-### Mode 4: Model-Benchmark (alongside agent-improvement)
+---
 
-The `model-benchmark` mode benchmarks a model or prompt framework instead of mutating an agent file. It reuses the three pluggable seams (candidate-source, dispatcher, scorer) and keeps the default agent-improvement path byte-identical when no mode flag is set.
+## 4. LANE B: MODEL-BENCHMARK
+
+Lane B benchmarks a model or prompt framework instead of mutating an agent file. Command: `/deep:start-model-benchmark-loop`. Runtime entry is `scripts/loop-host.cjs --mode=model-benchmark`. It reuses the three pluggable seams (candidate-source, dispatcher, scorer) and keeps the default agent-improvement path byte-identical when no mode flag is set.
 
 1. **Entry point**: `scripts/loop-host.cjs` resolves the mode. `--mode=agent-improvement` (or no flag) routes to `scripts/score-candidate.cjs`. `--mode=model-benchmark` runs `scripts/materialize-benchmark-fixtures.cjs` then `scripts/run-benchmark.cjs`. An unknown mode warns and falls back to agent-improvement.
 2. **Dispatcher**: `scripts/dispatch-model.cjs` is the model-agnostic dispatcher (executor-routing map across cli-opencode, cli-claude-code, cli-codex, cli-gemini, cli-devin). It is loaded only on the model-benchmark path, never in agent-improvement mode.
 3. **Scorer selection**: `run-benchmark.cjs --scorer pattern` (default) uses the heading/pattern matcher. `--scorer 5dim` routes materialized outputs through `scripts/scorer/score-model-variant.cjs`, the ported 120/003 five-dimension scorer (deterministic checks plus a pluggable grader). `--grader noop` (default) stays deterministic with no model dispatch. `--grader mock` or `--grader llm` select the stub or real grader.
-4. **Records**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`, and benchmark reports carry `scoringMethod: pattern|5dim`, so the reducer and downstream consumers can attribute results.
+4. **Mode-aware records and promotion**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`, and benchmark reports carry `scoringMethod: pattern|5dim`, so the reducer and downstream consumers can attribute results and apply mode-aware promotion.
 5. **Hardening env gates**: set `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to refuse criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` to redact raw grader output from the on-disk cache. Both default to the permissive value for backward-compat.
 
 ---
 
-## 4. SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 - The loop stays proposal-first unless an explicit guarded promotion path is requested
 - Benchmark evidence, prompt scoring, and mirror-sync evidence remain separate
@@ -268,7 +286,7 @@ The `model-benchmark` mode benchmarks a model or prompt framework instead of mut
 
 ---
 
-## 5. MULTI-ITER METHODOLOGY
+## 6. MULTI-ITER METHODOLOGY
 
 For multi-iter evaluation sweeps, a mixed-executor split plus an adjudication pass gives better breadth, better synthesis, and less noise than a single-executor run.
 
@@ -279,7 +297,7 @@ See `references/scoring/mixed_executor_methodology.md` for the split mechanics, 
 
 ---
 
-## 6. RUNTIME TRUTH CONTRACTS
+## 7. RUNTIME TRUTH CONTRACTS
 
 ### Stop-Reason Taxonomy
 
@@ -456,7 +474,7 @@ Graceful degradation is required: if any artifact is missing, unreadable, or not
 
 The dashboard now also includes a dedicated **Sample Quality** section. This separates replay/stability sample sufficiency from benchmark failures so operators can tell the difference between a true regression and an iteration that simply lacked enough data for trade-off or replay-stability trust.
 
-## 7. RULES
+## 8. RULES
 
 ### ✅ ALWAYS
 
@@ -486,22 +504,23 @@ The dashboard now also includes a dedicated **Sample Quality** section. This sep
 
 ---
 
-## 8. REFERENCES
+## 9. REFERENCES
 
 Core references: `README.md`, `references/workflow/quick_reference.md`, `references/workflow/loop_protocol.md`, evaluator/promotion/rollback/no-go/onboarding docs, runtime assets under `assets/`, benchmark assets, and helper scripts for scoring, reduction, promotion, rollback, scanning, drift, journal, mutation coverage, trade-offs, candidate lineage, and benchmark stability.
 
 ---
 
-## 9. INTEGRATION POINTS
+## 10. INTEGRATION POINTS
 
-- `/deep:start-agent-improvement-loop` initializes and runs the bounded workflow
+- `/deep:start-agent-improvement-loop` initializes and runs the Lane A bounded workflow
+- `/deep:start-model-benchmark-loop` initializes and runs the Lane B model-benchmark workflow
 - `.opencode/agents/deep-agent-improvement.md` provides the mutator surface for deep-agent-improvement runs
 - `sk-doc` validators enforce package-shape, README, and markdown document consistency
 - `system-spec-kit` packet validation proves phase records remain truthful
 
 ---
 
-## 10. REFERENCES AND RELATED RESOURCES
+## 11. REFERENCES AND RELATED RESOURCES
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/workflow/loop_protocol.md`, `references/workflow/quick_reference.md`, `references/workflow/benchmark_operator_guide.md`, `references/scoring/evaluator_contract.md`, `references/integration/integration_scanning.md`, `references/integration/mirror_drift_policy.md`, `references/promotion-gates/promotion_rules.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 

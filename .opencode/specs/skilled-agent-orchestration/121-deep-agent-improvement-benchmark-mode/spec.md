@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
     last_updated_at: "2026-05-28T15:15:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Reopened for the two-lane UX program (phases 008-013); folded the deep review in as phase 007"
-    next_safe_action: "Build phase 008 (command lane-asking)"
+    recent_action: "Shipped phases 008 and 009; command and SKILL.md are now two-lane"
+    next_safe_action: "Build phase 010 references and assets lane reorg"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 78
     open_questions: []
     answered_questions: []
 ---
@@ -115,8 +115,8 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 
 | 7 | 007-benchmark-mode-hardening-review/ | Tri-model deep review (gpt-5.5 + MiniMax M2.7 + Opus 4.8 arbiter) of the 120 MiniMax integration + the 121 benchmark-mode build (correctness/security/traceability/maintainability); CONDITIONAL verdict, findings fed phase 004 | Complete |
 
-| 8 | 008-command-lane-asking/ | Extend `/deep:start-agent-improvement-loop` to ask the use-case lane (improve an agent file vs benchmark a model/prompt) and branch; add model-benchmark workflow YAMLs + a dedicated `/deep:start-model-benchmark-loop` command + gemini mirror + README/advisor registration | In Progress |
-| 9 | 009-skill-md-two-lane/ | SKILL.md restructure into two co-equal lanes + smart-router MODEL_BENCHMARK intent | Planned |
+| 8 | 008-command-lane-asking/ | Extend `/deep:start-agent-improvement-loop` to ask the use-case lane (improve an agent file vs benchmark a model/prompt) and branch; add model-benchmark workflow YAMLs + a dedicated `/deep:start-model-benchmark-loop` command + gemini mirror + README/advisor registration | Complete |
+| 9 | 009-skill-md-two-lane/ | SKILL.md restructure into two co-equal lanes + smart-router MODEL_BENCHMARK intent | Complete |
 | 10 | 010-references-assets-lane-reorg/ | Physically separate references/ + assets/ into agent-improvement / model-benchmark / shared lanes + update SKILL literals + graph-metadata | Planned |
 | 11 | 011-agent-lane-note/ | Upgrade the agent "Mode awareness" note to "Lane awareness" across all 4 runtime mirrors | Planned |
 | 12 | 012-catalog-playbook-advisor-fp25/ | feature_catalog lane legend + playbook note + advisor recompile + F-P2-5 reduce-state mode display + test | Planned |
@@ -138,6 +138,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 003-build-benchmark-mode | 004-benchmark-mode-remediation | Build shipped + tri-model review (phase 007) surfaced findings | review-report.md CONDITIONAL verdict |
 | 004-benchmark-mode-remediation | 005-optin-5dim-scorer-and-skill-docs | Remediation closed; the substantive deferral (5-dim scorer not wired) warranted a follow-on | review-report §11 + 004 dispositions |
 | 007-benchmark-mode-hardening-review | 008-command-lane-asking | Two-lane UX gap identified: no command asks the use-case lane and the mode is a bolt-on | strict validate on 008 + CMD-1 behavioral identity |
+| 008-command-lane-asking | 009-skill-md-two-lane | Command layer shipped; SKILL.md must catch up to two co-equal lanes | DQI excellent + validate strict on 009 |
 <!-- /ANCHOR:phase-map -->
 
 ---
