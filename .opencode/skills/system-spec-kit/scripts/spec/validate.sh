@@ -838,24 +838,49 @@ run_node_orchestrator() {
 
     local orchestrator_js="$SCRIPT_DIR/../../mcp_server/dist/lib/validation/orchestrator.js"
     local orchestrator_ts="$SCRIPT_DIR/../../mcp_server/lib/validation/orchestrator.ts"
-    local cmd=()
+    # Resolve the orchestrator invocation base once (compiled JS preferred, tsx
+    # fallback for source-only checkouts). Return 1 when neither is available so
+    # main() falls through to the shell validators (which recurse on their own).
+    local base=()
     if [[ -f "$orchestrator_js" ]]; then
-        cmd=(node "$orchestrator_js")
+        base=(node "$orchestrator_js")
     elif [[ -f "$orchestrator_ts" ]]; then
         local tsx_loader="$SCRIPT_DIR/../node_modules/tsx/dist/loader.mjs"
         [[ -f "$tsx_loader" ]] || return 1
-        cmd=(node --import "$tsx_loader" "$orchestrator_ts")
+        base=(node --import "$tsx_loader" "$orchestrator_ts")
     else
         return 1
     fi
 
-    cmd+=(--folder "$FOLDER_PATH")
-    $STRICT_MODE && cmd+=(--strict)
-    $JSON_MODE && cmd+=(--json)
-    $QUIET_MODE && cmd+=(--quiet)
-    $VERBOSE && cmd+=(--verbose)
-    "${cmd[@]}"
-    exit $?
+    # Build the shared flag set once; applied to parent and every phase child.
+    local flags=()
+    $STRICT_MODE && flags+=(--strict)
+    $JSON_MODE && flags+=(--json)
+    $QUIET_MODE && flags+=(--quiet)
+    $VERBOSE && flags+=(--verbose)
+
+    # Validate the parent folder. Non-recursive runs keep byte-identical
+    # behavior: validate parent, exit its code.
+    "${base[@]}" --folder "$FOLDER_PATH" "${flags[@]}"
+    local rc=$?
+
+    # Recursive runs also validate each phase child, mirroring the discovery
+    # pattern used by run_recursive_validation. Skip non-directories and any
+    # child lacking both spec.md and description.json, then aggregate the worst
+    # exit code so a failing child surfaces in the orchestrator exit status.
+    if $RECURSIVE; then
+        local phase_dir
+        for phase_dir in "$FOLDER_PATH"/[0-9][0-9][0-9]-*/; do
+            [[ -d "$phase_dir" ]] || continue
+            phase_dir="${phase_dir%/}"
+            [[ -f "$phase_dir/spec.md" || -f "$phase_dir/description.json" ]] || continue
+            "${base[@]}" --folder "$phase_dir" "${flags[@]}"
+            local child_rc=$?
+            (( child_rc > rc )) && rc=$child_rc
+        done
+    fi
+
+    exit $rc
 }
 
 # ───────────────────────────────────────────────────────────────

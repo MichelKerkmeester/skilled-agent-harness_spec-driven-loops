@@ -1,0 +1,22 @@
+{
+  "specFolder": "032-validate-recursive-orchestrator-fix",
+  "description": "Fix validate.sh --recursive orchestrator-path silent no-op so phase children are validated",
+  "keywords": [
+    "fix",
+    "validate",
+    "recursive",
+    "orchestrator-path",
+    "silent",
+    "no-op",
+    "phase",
+    "children",
+    "validated"
+  ],
+  "lastUpdated": "2026-05-29T11:47:41.171Z",
+  "specId": "032",
+  "folderSlug": "validate-recursive-orchestrator-fix",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

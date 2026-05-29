@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/032-validate-recursive-orchestrator-fix",
+  "spec_folder": "system-spec-kit/032-validate-recursive-orchestrator-fix",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md",".opencode/skills/system-spec-kit/scripts/spec/validate.sh"],
+    "entities": [],
+    "causal_summary": "Fix validate.sh --recursive orchestrator-path silent no-op so phase children are validated",
+    "created_at": "2026-05-29T11:47:40Z",
+    "last_save_at": "2026-05-29T11:47:40Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md"]
+  }
+}
