@@ -1,7 +1,7 @@
 // TESTS: Protocol Abstractions ()
 import { describe, it, expect } from 'vitest';
 import { IVectorStore } from '../lib/interfaces/vector-store';
-// Note: SQLiteVectorStore import deferred to Phase 2 (DB-dependent tests)
+// Note: SQLiteVectorStore import deferred (DB-dependent tests)
 // Because vector-index-impl.js has deep dependency chain (format-helpers, etc.)
 
 // Mock implementations (these classes were planned but never
@@ -472,7 +472,7 @@ describe('Protocol Abstractions', () => {
   });
 
   // Test Suite: SQLiteVectorStore
-  // Deferred to Phase 2 — requires DB dependencies (better-sqlite3,
+  // Deferred — requires DB dependencies (better-sqlite3,
   // Sqlite-vec, format-helpers) that aren't available in pure-logic context.
   describe('SQLiteVectorStore (T086) [deferred to Phase 2]', () => {
 

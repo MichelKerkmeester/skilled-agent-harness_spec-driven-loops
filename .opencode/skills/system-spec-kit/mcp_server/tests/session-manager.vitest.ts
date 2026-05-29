@@ -123,7 +123,7 @@ describe('Session Manager Tests (T001-T008)', () => {
       const memory1: MemoryObject = createMemory({ content_hash: 'abc123def456' });
       const hash1: string = sessionManager.generateMemoryHash(memory1);
       expect(typeof hash1).toBe('string');
-      // Fix #37 — hash now 128-bit (32 hex chars) instead of 64-bit (16)
+      // Hash now 128-bit (32 hex chars) instead of 64-bit (16)
       expect(hash1).toHaveLength(32);
     });
 

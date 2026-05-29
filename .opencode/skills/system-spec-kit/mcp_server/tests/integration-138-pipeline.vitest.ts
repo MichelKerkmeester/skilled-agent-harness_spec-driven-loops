@@ -7,7 +7,7 @@ import { detectEvidenceGap } from '../lib/search/evidence-gap-detector';
 
 /* ───────────────────────────────────────────────────────────────
    MOCK PIPELINE STAGES
-   Simulates the full hybridSearchEnhanced() flow from spec 138.
+   Simulates the full hybridSearchEnhanced() flow.
    In production these import from actual modules.
    ──────────────────────────────────────────────────────────────── */
 

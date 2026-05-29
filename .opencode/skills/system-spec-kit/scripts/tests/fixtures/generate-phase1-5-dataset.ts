@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// 1. PHASE 1.5 DATASET GENERATOR
+// DATASET GENERATOR
 // ───────────────────────────────────────────────────────────────
 import fs from 'fs';
 import path from 'path';

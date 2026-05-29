@@ -42,7 +42,7 @@ import { logSearchQuery, logFinalResult } from '../lib/eval/eval-logger.js';
 import type { MCPResponse } from './types.js';
 // C2 FIX: Import DB access for scope filtering
 import { initialize_db } from '../lib/search/vector-index-store.js';
-// T73: Import session manager for trusted session validation (IDOR prevention)
+// Import session manager for trusted session validation (IDOR prevention)
 import * as sessionManager from '../lib/session/session-manager.js';
 
 /* ───────────────────────────────────────────────────────────────
@@ -206,7 +206,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     });
   }
 
-  // T73 SECURITY: Validate caller-supplied sessionId through server-side session
+  // SECURITY: Validate caller-supplied sessionId through server-side session
   // manager to prevent IDOR. Callers cannot read/write working memory for
   // arbitrary sessions — only server-minted or previously tracked sessions.
   let sessionId: string | undefined = rawSessionId;

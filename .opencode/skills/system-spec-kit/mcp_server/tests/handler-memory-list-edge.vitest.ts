@@ -126,7 +126,7 @@ describe('handleMemoryList Edge Cases (T006)', () => {
 
 /* ───────────────────────────────────────────────────────────────
    Filter interaction coverage for handleMemoryList
-   Finding #31: handler-memory-list-edge.vitest.ts only exercises
+   This file previously only exercised
    sort/limit/offset/specFolder behavior, missing filter interactions
    like combined specFolder + sortBy, specFolder + limit, and
    specFolder filtering actually reducing the result set.

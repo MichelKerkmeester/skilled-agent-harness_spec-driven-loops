@@ -217,7 +217,7 @@ function clearActivationTimestampFromDb(): void {
  * Set when the feature flag is first enabled.
  * Exported for testing purposes.
  *
- * P1-015: Also persisted to SQLite config table. On access, lazy-loads
+ * Also persisted to SQLite config table. On access, lazy-loads
  * from DB if in-memory value is null.
  */
 let qualityGateActivatedAt: number | null = null;
@@ -237,13 +237,13 @@ export function isQualityGateEnabled(): boolean {
  * For the first 14 days after activation, the gate logs scores but
  * does not block saves, preventing disruption during rollout.
  *
- * P1-015: Lazy-loads from SQLite if in-memory value is null, so the
+ * Lazy-loads from SQLite if in-memory value is null, so the
  * 14-day countdown survives server restarts.
  *
  * @returns true if in warn-only period
  */
 export function isWarnOnlyMode(): boolean {
-  // P1-015: Lazy-load from DB on first access after restart
+  // Lazy-load from DB on first access after restart
   if (qualityGateActivatedAt === null) {
     const persisted = loadActivationTimestampFromDb();
     if (persisted !== null) {
@@ -262,7 +262,7 @@ export function isWarnOnlyMode(): boolean {
  * Record the activation timestamp for warn-only mode tracking.
  * Called when the quality gate is first enabled.
  *
- * P1-015: Persists to SQLite config table for restart survival.
+ * Persists to SQLite config table for restart survival.
  *
  * @param timestamp - Unix timestamp in milliseconds. If not provided, uses Date.now()
  */
@@ -273,7 +273,7 @@ export function setActivationTimestamp(timestamp?: number): void {
 
 /**
  * Reset the activation timestamp. Used in testing.
- * P1-015: Also clears the persisted value from SQLite.
+ * Also clears the persisted value from SQLite.
  */
 export function resetActivationTimestamp(): void {
   qualityGateActivatedAt = null;
@@ -351,7 +351,7 @@ export function isShortCriticalException(params: {
   anchor?: string | null;
 }): boolean {
   if (!isSaveQualityGateExceptionsEnabled()) return false;
-  // P1-3: Use shared resolver instead of hardcoded check
+  // Use shared resolver instead of hardcoded check
   if (!params.contextType || resolveCanonicalContextType(params.contextType) !== 'planning') return false;
 
   const signals = countStructuralSignals({

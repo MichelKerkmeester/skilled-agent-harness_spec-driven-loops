@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// 1. FEATURE FLAG CEILING TEST (A10-P2-2)
+// FEATURE FLAG CEILING TEST
 // ───────────────────────────────────────────────────────────────
 // TEST: Validates system stability when 6+ SPECKIT_* flags are
 // Activated simultaneously. Tests for flag interaction issues,
@@ -192,7 +192,7 @@ describe('Feature Flag Ceiling Test (A10-P2-2)', () => {
 
 // SELF-GOVERNANCE FOOTER (TCB 9+)
 // Agent: Opus-J | TCB: 9+
-// Scope: Feature flag ceiling test (A10-P2-2)
+// Scope: Feature flag ceiling test
 // Mutation surface: tests/flag-ceiling.vitest.ts (new file)
 // Verified: All active SPECKIT_* flags from search-flags.ts covered
 // No production code modified by this test file

@@ -1469,7 +1469,7 @@ async function testExtractorsCollectSessionData() {
 async function testCoreWorkflowAdditional() {
   log('\n🔬 CORE: workflow.js (Additional Functions)');
 
-  // NOTE (v3.4.1.0 + r2 cleanup): T-024 tests for file-writer + indexMemory +
+  // NOTE (v3.4.1.0 + r2 cleanup): tests for file-writer + indexMemory +
   // Related helpers were removed because those modules were deleted in the
   // [spec]/memory/*.md retirement cutover. The negative-assertion regression
   // Test below (T-024a-neg) replaces them: it asserts the deleted symbols
@@ -3014,7 +3014,7 @@ async function testMemoryRankMemories() {
 
 /* ─────────────────────────────────────────────────────────────
    WRAP-ALL-TEMPLATES SHIPPED PATH COVERAGE
-   Finding #14: Test coverage is skewed toward helper smoke tests
+   Test coverage is skewed toward helper smoke tests
    (generateAnchorId, categorizeSection, etc.), not the shipped
    wrapping path (wrap-all-templates.ts → wrapSectionsWithAnchors).
 ────────────────────────────────────────────────────────────────

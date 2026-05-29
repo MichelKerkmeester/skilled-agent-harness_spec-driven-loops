@@ -22,7 +22,7 @@ export const CANONICAL_CONTEXT_TYPES: ReadonlySet<CanonicalContextType> = new Se
 
 /**
  * Legacy context type aliases that map to canonical types.
- * These values existed before spec 009 and may still appear in
+ * These values predate the canonical context-type set and may still appear in
  * older database rows or frontmatter.
  */
 export const LEGACY_CONTEXT_TYPE_ALIASES: Readonly<Record<string, CanonicalContextType>> = {

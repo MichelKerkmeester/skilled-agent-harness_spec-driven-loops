@@ -6,7 +6,7 @@
 // Re-export from shared/ (canonical source)
 // Includes multi-provider support, task-specific functions, dynamic dimensions
 // MAINTENANCE: Keep exports in sync with @spec-kit/shared/embeddings.
-// Explicit named exports required for auditability (see T-06).
+// Explicit named exports required for auditability.
 export {
   generateEmbedding,
   generateEmbeddingWithTimeout,

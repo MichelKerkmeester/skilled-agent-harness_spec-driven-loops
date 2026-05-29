@@ -276,7 +276,7 @@ function insertEdge(
     return null;
   }
 
-  // Fix #26 (FK check) deferred — test environments use synthetic IDs not in memory_index.
+  // FK check deferred — test environments use synthetic IDs not in memory_index.
   // Implementing FK validation would require seeding memory_index in 20+ causal edge tests.
 
   // NFR-R01: Edge bounds — reject if node already has MAX_EDGES_PER_NODE auto edges
@@ -846,7 +846,7 @@ function cleanupOrphanedEdges(): { deleted: number } {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   9. SPEC DOCUMENT CHAINS (Spec 126)
+   SPEC DOCUMENT CHAINS
 ----------------------------------------------------------------*/
 
 /**

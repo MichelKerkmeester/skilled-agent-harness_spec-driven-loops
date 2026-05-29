@@ -332,11 +332,11 @@ export function isDegreeBoostEnabled(): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   4. SPRINT 9 FLAGS
+   FLAGS
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * P1-4: Contextual tree headers for Stage 4 result enrichment.
+ * Contextual tree headers for Stage 4 result enrichment.
  * Default: TRUE. Set SPECKIT_CONTEXT_HEADERS=false to disable.
  */
 export function isContextHeadersEnabled(): boolean {
@@ -344,7 +344,7 @@ export function isContextHeadersEnabled(): boolean {
 }
 
 /**
- * P1-7: Real-time file watcher for markdown reindexing.
+ * Real-time file watcher for markdown reindexing.
  * Default: FALSE. Set SPECKIT_FILE_WATCHER=true to enable.
  * Honors SPECKIT_ROLLOUT_PERCENT global rollout policy.
  */

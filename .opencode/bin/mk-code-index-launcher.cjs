@@ -879,7 +879,7 @@ function installSignalHandlers() {
 
     lockHeld = await acquireBootstrapLock();
     if (lockHeld) {
-      // OR-1-01: auto-migrate DB from the former shared standalone location back to skill-local.
+      // Auto-migrate DB from the former shared standalone location back to skill-local.
       // The former DB is preserved as a backup (copy, not move).
       // This block now runs ONLY for the single bootstrap-lock winner (lockHeld), AFTER the lock
       // is held and BEFORE the DB is opened by the spawned child (launchServer, below). Previously
@@ -907,7 +907,7 @@ function installSignalHandlers() {
           '.code-graph-readiness.json',
           '.mk-code-index-launcher.json',
         ];
-        // OR-1-01: re-check the sqlite target immediately before copying so a launcher that
+        // Re-check the sqlite target immediately before copying so a launcher that
         // raced past the outer guard (e.g. a concurrent migrator that just finished) does not
         // clobber the freshly-migrated DB. EEXIST from COPYFILE_EXCL means another launcher
         // already migrated that file -> treat the target as authoritative and stop migrating.
@@ -918,7 +918,7 @@ function installSignalHandlers() {
               const src = path.join(formerSharedDbDir, file);
               const dst = path.join(migrationTarget, file);
               if (exists(src)) {
-                // OR-1-01: COPYFILE_EXCL makes the copy fail with EEXIST rather than truncate-
+                // COPYFILE_EXCL makes the copy fail with EEXIST rather than truncate-
                 // overwrite an existing (possibly live) target file.
                 fs.copyFileSync(src, dst, fs.constants.COPYFILE_EXCL);
               }
@@ -926,7 +926,7 @@ function installSignalHandlers() {
             migrated = true;
           } catch (copyError) {
             if (copyError.code === 'EEXIST') {
-              // OR-1-01: another launcher already migrated into this target; the existing target
+              // Another launcher already migrated into this target; the existing target
               // is authoritative. Do NOT overwrite it.
               log('migration skipped: target already present (EEXIST); treating existing target as authoritative');
             } else {

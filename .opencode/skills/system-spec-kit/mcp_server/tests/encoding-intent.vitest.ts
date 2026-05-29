@@ -3,13 +3,13 @@
 // Covers: classifyEncodingIntent from lib/search/encoding-intent.ts
 //
 // Coverage areas:
-// T01-T03 : Empty / null / undefined edge cases
-// T04-T06 : Pure prose → 'document'
-// T07-T09 : TypeScript / JavaScript code → 'code'
-// T10-T12 : Structured data (tables, YAML, JSON) → 'structured_data'
-// T13-T15 : Mixed content → correct dominant type
-// T16-T17 : Code block inside prose — ratio determines result
-// T18      : Type export validation
+// Empty / null / undefined edge cases
+// Pure prose → 'document'
+// TypeScript / JavaScript code → 'code'
+// Structured data (tables, YAML, JSON) → 'structured_data'
+// Mixed content → correct dominant type
+// Code block inside prose — ratio determines result
+// Type export validation
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';

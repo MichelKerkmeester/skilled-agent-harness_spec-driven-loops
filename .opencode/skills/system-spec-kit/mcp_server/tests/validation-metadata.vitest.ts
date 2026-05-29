@@ -5,13 +5,13 @@
 // - enrichResultsWithValidationMetadata: batch enrichment of results
 //
 // Coverage areas:
-// T1-T5   : extractValidationMetadata — quality score signals
-// T6-T9   : extractValidationMetadata — SPECKIT_LEVEL extraction
-// T10-T12 : extractValidationMetadata — completion status markers
-// T13-T14 : extractValidationMetadata — checklist heuristic
-// T15-T16 : extractValidationMetadata — edge cases (null / missing)
-// T17-T20 : enrichResultsWithValidationMetadata — batch enrichment
-// T21-T22 : score immutability invariant
+// - extractValidationMetadata — quality score signals
+// - extractValidationMetadata — SPECKIT_LEVEL extraction
+// - extractValidationMetadata — completion status markers
+// - extractValidationMetadata — checklist heuristic
+// - extractValidationMetadata — edge cases (null / missing)
+// - enrichResultsWithValidationMetadata — batch enrichment
+// - score immutability invariant
 import { describe, it, expect } from 'vitest';
 import {
   extractValidationMetadata,
@@ -141,7 +141,7 @@ describe('extractValidationMetadata — SPECKIT_LEVEL from content', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T10-T12: Completion status from content markers
+   Completion status from content markers
    ──────────────────────────────────────────────────────────────── */
 
 describe('extractValidationMetadata — completion status', () => {
@@ -204,7 +204,7 @@ describe('extractValidationMetadata — completion status', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T13-T14: Checklist heuristic from file_path
+   Checklist heuristic from file_path
    ──────────────────────────────────────────────────────────────── */
 
 describe('extractValidationMetadata — checklist file path heuristic', () => {
@@ -226,7 +226,7 @@ describe('extractValidationMetadata — checklist file path heuristic', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T15-T16: Edge cases — null and missing metadata
+   Edge cases — null and missing metadata
    ──────────────────────────────────────────────────────────────── */
 
 describe('extractValidationMetadata — edge cases', () => {
@@ -269,7 +269,7 @@ describe('extractValidationMetadata — edge cases', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T17-T20: enrichResultsWithValidationMetadata — batch enrichment
+   enrichResultsWithValidationMetadata — batch enrichment
    ──────────────────────────────────────────────────────────────── */
 
 describe('enrichResultsWithValidationMetadata — batch enrichment', () => {
@@ -328,7 +328,7 @@ describe('enrichResultsWithValidationMetadata — batch enrichment', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   T21-T22: Score immutability invariant
+   Score immutability invariant
    ──────────────────────────────────────────────────────────────── */
 
 describe('enrichResultsWithValidationMetadata — score immutability', () => {

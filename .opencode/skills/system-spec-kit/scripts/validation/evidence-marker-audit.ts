@@ -468,7 +468,7 @@ async function main(): Promise<number> {
   const rewrap = args.includes('--rewrap');
   const emitJson = args.includes('--json');
 
-  // Default audit tree: every direct child of 026-graph-and-context-optimization.
+  // Default audit tree: every direct child of the default spec root below.
   const DEFAULT_ROOT = path.resolve(
     process.cwd(),
     '.opencode/specs/system-spec-kit/026-graph-and-context-optimization',

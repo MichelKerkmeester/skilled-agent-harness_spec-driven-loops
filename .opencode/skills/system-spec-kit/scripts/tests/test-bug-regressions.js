@@ -3,7 +3,6 @@
 
 /**
  * Test: Bug Regression Tests
- * Spec: 091-naming-convention-test-suite
  *
  * Covers:
  *   T5 - 3 specific runtime bugs discovered during naming convention audit

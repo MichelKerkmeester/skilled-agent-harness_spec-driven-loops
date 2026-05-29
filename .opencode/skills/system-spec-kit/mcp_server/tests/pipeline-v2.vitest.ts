@@ -289,7 +289,7 @@ describe('R6: Feature Flags', () => {
     process.env = originalEnv;
   });
 
-  // C8: R6-T18/T19/T20 removed — isPipelineV2Enabled() was always true and has been deleted.
+  // isPipelineV2Enabled() was always true and has been deleted, along with its tests.
 
   it('R6-T21: SPECKIT_EMBEDDING_EXPANSION defaults to true (graduated)', () => {
     delete process.env.SPECKIT_EMBEDDING_EXPANSION;
@@ -359,7 +359,7 @@ describe('R6: Stage Interface Contracts', () => {
       final: [{ id: 1, similarity: 85 }],
       metadata: {
         stateFiltered: 2,
-        // SessionDeduped removed (Fix #14) — dedup is post-cache in main handler
+        // SessionDeduped removed — dedup is post-cache in main handler
         constitutionalInjected: 0,
         evidenceGapDetected: false,
         durationMs: 5,

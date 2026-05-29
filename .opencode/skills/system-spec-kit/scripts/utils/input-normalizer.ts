@@ -1018,7 +1018,7 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
     normalized.completionPercent = slowPathCompletionPercent;
   }
 
-  // T06: Propagate preflight/postflight epistemic data through slow-path
+  // Propagate preflight/postflight epistemic data through slow-path
   const slowPreflight = (data as Record<string, unknown>).preflight;
   if (slowPreflight && typeof slowPreflight === 'object') {
     (normalized as Record<string, unknown>).preflight = slowPreflight;
@@ -1177,7 +1177,7 @@ function validateInputData(data: RawInputData, specFolderArg: string | null = nu
     errors.push('files_changed must be an array');
   }
 
-  // P2-004: Array-length caps to prevent memory pressure from oversized inputs
+  // Array-length caps to prevent memory pressure from oversized inputs
   const ARRAY_LENGTH_CAP = 500;
   if (Array.isArray(data.keyDecisions) && data.keyDecisions.length > ARRAY_LENGTH_CAP) {
     errors.push(`keyDecisions exceeds maximum length of ${ARRAY_LENGTH_CAP} (got ${data.keyDecisions.length})`);
@@ -1317,7 +1317,7 @@ function buildSpecRelevanceKeywords(specFolderHint?: string | null): string[] {
     }
 
     for (const token of normalizedSegment.split(' ')) {
-      // P1-07: Skip generic single tokens that cause false-positive relevance matches
+      // Skip generic single tokens that cause false-positive relevance matches
       if (token.length > 2 && !RELEVANCE_PATH_STOPWORDS.has(token)) {
         keywords.add(token);
       }

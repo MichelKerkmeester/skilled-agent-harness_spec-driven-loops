@@ -633,7 +633,7 @@ async function runStep115AutoIndex(
     if (scanIsError) {
       const reason = typeof scanData?.error === 'string' ? scanData.error : (scanEnvelope?.summary ?? 'unknown error');
       const code = typeof scanData?.code === 'string' ? scanData.code : null;
-      // P1-2 fix: trust the backend error-code contract; drop the over-eager regex fallback
+      // Trust the backend error-code contract; drop the over-eager regex fallback
       // That could accidentally swallow unrelated errors whose message happens to contain
       // "rate limit" or "cooldown" substrings.
       if (code === 'E429') {
@@ -650,7 +650,7 @@ async function runStep115AutoIndex(
       const failed = Number(scanData.failed) || 0;
       const scanned = Number(scanData.scanned) || 0;
       log(`   Step 11.5: ${indexed + updated} indexed/updated, ${unchanged} unchanged, ${failed} failed (${scanned} files scanned)`);
-      // P1-3 fix: when failures occur, surface per-file detail (capped at 3) so prod
+      // When failures occur, surface per-file detail (capped at 3) so prod
       // Investigations don't need a second manual memory_index_scan to diagnose.
       // Backend increments `failed` for ANY non-successful status; per-file entries
       // Use the actual status string ('rejected', 'failed', etc.) — match the inverse
@@ -873,7 +873,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       // Rec 1: Normalize JSON-derived preloaded data so sessionSummary → userPrompts,
       // keyDecisions → _manualDecisions, filesChanged → FILES, etc.
       const normalized = normalizeInputData(preloadedData as unknown as RawInputData);
-      // P1-001 fix: Explicit field projection instead of unsafe spread merge.
+      // Explicit field projection instead of unsafe spread merge.
       // Only overlay normalized fields that the normalizer actually produces,
       // preserving preloadedData's non-normalized fields (e.g., _source, _sessionId).
       const n = normalized as Record<string, unknown>;
@@ -1266,7 +1266,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       userPrompts: filteredUserPrompts,
       SUMMARY: filteredSummary,
       observations: filteredObservations,
-      // P0-1: Force CLI-resolved spec folder into collectedData so all parallel
+      // Force CLI-resolved spec folder into collectedData so all parallel
       // extractors (decisions, diagrams, conversations) see the authoritative value
       SPEC_FOLDER: specFolderName || collectedData.SPEC_FOLDER,
     };
@@ -1640,8 +1640,8 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
           // Bump lastUpdated on every
           // canonical save so metadata-freshness consumers (graph readiness,
           // staleness detectors, /memory:search ranking) see a live timestamp.
-          // Pre-017: this field was never written by the canonical-save path —
-          // R4-P1-002 grep over scripts/dist/memory/*.js returned zero matches.
+          // Previously this field was never written by the canonical-save path —
+          // a grep over scripts/dist/memory/*.js returned zero matches.
           sequenceSnapshot.lastUpdated = metadataSaveTimestamp;
           savePFD(sequenceSnapshot, specFolderAbsolute);
 

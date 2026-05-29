@@ -46,7 +46,7 @@ import type { UpdateArgs } from './memory-crud-types.js';
 /** Handle memory_update tool -- updates metadata fields and optionally regenerates embeddings. */
 async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_update');
-  // A7-P2-1: Generate requestId for incident correlation in error responses
+  // Generate requestId for incident correlation in error responses
   const requestId = randomUUID();
   await checkDatabaseUpdated();
 
@@ -285,7 +285,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
       }
     });
   } else {
-    // P1-021 — No database handle means we cannot guarantee transactional
+    // No database handle means we cannot guarantee transactional
     // Consistency. Abort early rather than risk partial state.
     console.warn('[memory-crud-update] No database handle, aborting update to prevent partial state');
     return createMCPErrorResponse({

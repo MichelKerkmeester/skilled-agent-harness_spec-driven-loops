@@ -183,7 +183,7 @@ function testTemplateCompliancePromptContracts() {
 
 /* ─────────────────────────────────────────────────────────────
    Semantic assertions — beyond string-presence
-   Finding #26: test-phase-command-workflows.js is a string-presence
+   test-phase-command-workflows.js is a string-presence
    check only; it never asserts implementation scope semantics or
    PREFLIGHT/POSTFLIGHT score contracts.
 ────────────────────────────────────────────────────────────── */

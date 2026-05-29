@@ -275,7 +275,7 @@ const CONTEXT_TYPE_STABILITY_MULTIPLIER: Record<string, number> = {
   research: 2.0,         // 2x stability — research context decays slower
   implementation: 1.0,   // standard decay
   general: 1.0,          // standard decay
-  // P1-3: Legacy aliases inherit their canonical type's multiplier
+  // Legacy aliases inherit their canonical type's multiplier
   ...Object.fromEntries(
     Object.entries(LEGACY_CONTEXT_TYPE_ALIASES).map(
       ([legacy, canonical]) => [legacy, canonical === 'planning' ? Infinity : canonical === 'research' ? 2.0 : 1.0]

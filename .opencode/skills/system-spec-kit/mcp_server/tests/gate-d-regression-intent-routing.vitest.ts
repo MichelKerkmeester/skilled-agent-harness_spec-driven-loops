@@ -273,7 +273,7 @@ describe.sequential('Gate D intent routing regression', () => {
   //
   // A complementary integration suite that calls the real handleMemorySearch
   // against an in-memory DB (or at least against the real filtering code path)
-  // is required to close this coverage gap.  See review finding S3.5 #13.
+  // is required to close this coverage gap.
 
   // drift: verified against shipped behavior during Unit H
   it('routes canonical queries across auto, quick, deep, focused, and resume without archived or legacy-memory fallback', async () => {
@@ -472,7 +472,7 @@ describe.sequential('Gate D intent routing regression', () => {
 });
 
 describe.sequential('Gate D canonical-filtering contract assertions', () => {
-  // TODO(S3.5 #13): Add integration tests that exercise the live canonical-
+  // TODO: Add integration tests that exercise the live canonical-
   // filtering code path (the real handleMemorySearch with an in-memory DB
   // fixture) to verify that:
   //

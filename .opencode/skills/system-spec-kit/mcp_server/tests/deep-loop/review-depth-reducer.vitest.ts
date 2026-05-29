@@ -83,7 +83,7 @@ function buildIterationRecord(iteration: number): Record<string, unknown> {
 
 describe('review-depth reducer v2 fixtures', () => {
   it('exposes searchDebt registry fields after reducing deferred ledger rows', () => {
-    // EXPECT: passes after phase E (005-search-ledger-persistence-and-reporting).
+    // EXPECT: passes once search-ledger persistence and reporting land.
     // Today this assertion is intentionally red because the reducer drops search-ledger state.
     const specFolder = mkdtempSync(join(tmpdir(), 'review-depth-reducer-'));
 

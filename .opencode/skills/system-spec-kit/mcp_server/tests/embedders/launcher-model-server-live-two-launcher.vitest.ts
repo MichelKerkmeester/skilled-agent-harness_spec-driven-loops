@@ -2,7 +2,7 @@
 // TEST: live hf-model-server integration (real spawned process)
 // ───────────────────────────────────────────────────────────────
 // Spawns the REAL .opencode/bin/hf-model-server.cjs over a unix socket and exercises the
-// transport/route/reclaim machinery 001/002/005 hardened. The transport subset (bind, route-404,
+// hardened transport/route/reclaim machinery. The transport subset (bind, route-404,
 // SIGKILL stale-socket lingering) runs everywhere — it needs no model. The embed-success and
 // model-mismatch-404 cases need a working extractor + loaded model; they are gated behind
 // SPECKIT_LIVE_MODEL_TEST=1 (and a model-ready precheck) so default CI stays green. In this

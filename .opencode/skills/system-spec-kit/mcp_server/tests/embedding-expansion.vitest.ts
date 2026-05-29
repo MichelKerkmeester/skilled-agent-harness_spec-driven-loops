@@ -11,9 +11,9 @@
 // T7  isExpansionActive() returns true for complex query when flag is ON
 // T8  Empty embedding → identity result
 // T9  ExpandedQuery shape is correct
-// T10 No latency degradation for simple queries (< 5 ms)
-// T11 combinedQuery equals original when no expansion terms found
-// T12 combinedQuery appends expanded terms with space separator
+// No latency degradation for simple queries (< 5 ms)
+// combinedQuery equals original when no expansion terms found
+// combinedQuery appends expanded terms with space separator
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   expandQueryWithEmbeddings,

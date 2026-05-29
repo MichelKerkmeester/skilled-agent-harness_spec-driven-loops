@@ -784,5 +784,3 @@ export type {
   SampledTracePayload,
   LatencyStage,
 };
-
-// Self-governance: Opus-F agent, TCB=9, 3 findings addressed (A6-P2-2, A6-P2-3, A10-P2-3)

@@ -5,7 +5,7 @@
 // MODULE: Coverage Graph Convergence
 // ---------------------------------------------------------------
 // Graph-aware convergence helpers that combine graph-structural
-// signals with Phase 1 stop-trace convergence scoring. Provides
+// signals with stop-trace convergence scoring. Provides
 // STOP-BLOCKING guards (sourceDiversity, evidenceDepth) that must
 // pass before a deep-research or deep-review loop can terminate.
 // ---------------------------------------------------------------
@@ -279,17 +279,17 @@ function computeContradictionDensity(graph) {
 
 /**
  * Compute a combined graph convergence score that blends graph-structural
- * signals with Phase 1 stop-trace signals.
+ * signals with stop-trace signals.
  *
  * The graph convergence score supplements (does not replace) the existing
- * compositeStop score from Phase 1. It adds structural awareness:
+ * compositeStop score. It adds structural awareness:
  * - Cluster fragmentation penalty (many small disconnected components = low convergence)
  * - Evidence depth bonus (deep chains = high convergence)
  * - Question coverage (covered questions = progress toward convergence)
  *
  * @param {{ nodes: Map, edges: Map }} graph - In-memory coverage graph
  * @param {{ compositeStop?: number, rollingAvg?: number, madScore?: number }} [signals={}]
- *   Phase 1 stop-trace signals to blend with graph signals
+ *   stop-trace signals to blend with graph signals
  * @returns {{ graphScore: number, blendedScore: number, components: object }}
  */
 function computeGraphConvergence(graph, signals) {

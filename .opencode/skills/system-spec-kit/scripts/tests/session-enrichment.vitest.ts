@@ -150,7 +150,7 @@ describe('stateless enrichment guardrails', () => {
     ]));
   });
 
-  // TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper template fixtures
+  // TODO: re-enable after the compact wrapper template fixtures land
   it.skip('drops generic same-workspace infrastructure tool evidence when no target-spec anchor exists', () => {
     const transformed = transformOpencodeCapture({
       exchanges: [

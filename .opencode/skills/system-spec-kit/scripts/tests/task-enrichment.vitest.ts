@@ -926,7 +926,7 @@ describe('workflow seam guardrail', () => {
     expect(sessionData.SOURCE_SESSION_ID).toBe('session-123');
   });
 
-  // TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper template fixtures
+  // TODO: re-enable after the compact wrapper template fixtures land
   it.skip('does not expose a legacy context filename for file-backed workflow saves', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
     const specFolderPath = path.join(tempRoot, '022-hybrid-rag-fusion');
@@ -973,7 +973,7 @@ describe('workflow seam guardrail', () => {
     }
   });
 
-  // TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper template fixtures
+  // TODO: re-enable after the compact wrapper template fixtures land
   it.skip('records the three-stage contamination audit trail in metadata.json', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
     const specFolderPath = path.join(tempRoot, '009-perfect-session-capturing');
@@ -1023,7 +1023,7 @@ describe('workflow seam guardrail', () => {
     }
   });
 
-  // TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper template fixtures
+  // TODO: re-enable after the compact wrapper template fixtures land
   it.skip('preserves source provenance inputs without reviving a legacy rendered memory file', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
     const specFolderPath = path.join(tempRoot, '011-session-source-validation');
@@ -1085,7 +1085,7 @@ describe('workflow seam guardrail', () => {
     }
   });
 
-  // TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper template fixtures
+  // TODO: re-enable after the compact wrapper template fixtures land
   it.skip('allows stateless saves when captured files match code paths declared in the target spec without returning a legacy filename', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
     const specFolderPath = path.join(tempRoot, '009-perfect-session-capturing');
@@ -1392,7 +1392,7 @@ describe('workflow seam guardrail', () => {
     }
   });
 
-  // TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper template fixtures
+  // TODO: re-enable after the compact wrapper template fixtures land
   it.skip('does not let file-backed state leak into a later stateless workflow run or expose legacy filenames', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
     const specFolderPath = path.join(tempRoot, '013-memory-search-bug-fixes');
@@ -1454,7 +1454,7 @@ describe('workflow seam guardrail', () => {
     fs.rmSync(tempRoot, { recursive: true, force: true });
   });
 
-  // TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper template fixtures
+  // TODO: re-enable after the compact wrapper template fixtures land
   it.skip('serializes overlapping workflow runs so per-run config state stays isolated', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
     const specFolderPath = path.join(tempRoot, '013-memory-search-bug-fixes');
@@ -1534,7 +1534,7 @@ describe('workflow seam guardrail', () => {
     fs.rmSync(tempRoot, { recursive: true, force: true });
   });
 
-  // TODO(003-006): re-enable after 003-memory-quality-issues/006-memory-duplication-reduction lands the compact wrapper template fixtures
+  // TODO: re-enable after the compact wrapper template fixtures land
   it.skip('keeps direct preloaded workflow saves off the retired contextFilename contract', async () => {
     const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-workflow-'));
     const specFolderPath = path.join(tempRoot, '022-hybrid-rag-fusion');

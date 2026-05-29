@@ -420,7 +420,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
     beforeEach(() => {
       // Two sprints to produce trend comparison
       seedSnapshots(testDb, [
-        // Iteration 1: ndcg@5 = 0.70
+        // First snapshot: ndcg@5 = 0.70
         {
           eval_run_id: 1,
           metric_name: 'ndcg@5',
@@ -428,7 +428,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
           metadata: JSON.stringify({ sprint: 'sprint-1' }),
           created_at: '2026-01-10T10:00:00.000Z',
         },
-        // Iteration 2: ndcg@5 = 0.85 (improved)
+        // Second snapshot: ndcg@5 = 0.85 (improved)
         {
           eval_run_id: 2,
           metric_name: 'ndcg@5',
@@ -436,7 +436,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
           metadata: JSON.stringify({ sprint: 'sprint-2' }),
           created_at: '2026-01-20T10:00:00.000Z',
         },
-        // Iteration 1: mrr@5 = 0.80
+        // First snapshot: mrr@5 = 0.80
         {
           eval_run_id: 1,
           metric_name: 'mrr@5',
@@ -444,7 +444,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
           metadata: JSON.stringify({ sprint: 'sprint-1' }),
           created_at: '2026-01-10T10:00:00.000Z',
         },
-        // Iteration 2: mrr@5 = 0.60 (regressed)
+        // Second snapshot: mrr@5 = 0.60 (regressed)
         {
           eval_run_id: 2,
           metric_name: 'mrr@5',
@@ -452,7 +452,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
           metadata: JSON.stringify({ sprint: 'sprint-2' }),
           created_at: '2026-01-20T10:00:00.000Z',
         },
-        // Iteration 1: precision@5 = 0.50
+        // First snapshot: precision@5 = 0.50
         {
           eval_run_id: 1,
           metric_name: 'precision@5',
@@ -460,7 +460,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
           metadata: JSON.stringify({ sprint: 'sprint-1' }),
           created_at: '2026-01-10T10:00:00.000Z',
         },
-        // Iteration 2: precision@5 = 0.50 (unchanged)
+        // Second snapshot: precision@5 = 0.50 (unchanged)
         {
           eval_run_id: 2,
           metric_name: 'precision@5',

@@ -11,7 +11,7 @@
 // ───────────────────────────────────────────────────────────────
 const MAX_VARIANTS = 3;
 
-/** Escape special regex characters in user input to prevent ReDoS (P1-6). */
+/** Escape special regex characters in user input to prevent ReDoS. */
 function escapeRegExp(str: string): string {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

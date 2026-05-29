@@ -10,7 +10,7 @@
 // ---------------------------------------------------------------
 // Evaluates candidates against baseline and produces advisory-only
 // promotion reports. NEVER auto-promotes. Production promotion is
-// blocked until Phase 1 replay fixtures AND Phase 3 behavioral
+// blocked until replay fixtures AND behavioral
 // suites exist.
 // ---------------------------------------------------------------
 

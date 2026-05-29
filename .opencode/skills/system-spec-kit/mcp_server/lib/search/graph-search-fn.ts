@@ -332,7 +332,7 @@ function queryCausalEdgesLikeFallback(
  * Stores both per-node boosted scores and cached global max typed degree.
  * Invalidated via clearDegreeCache() on causal edge mutations.
  *
- * A4-P2-1: Edge materialization optimization — investigated and found adequate.
+ * Edge materialization optimization — investigated and found adequate.
  * Degree scores are cached per-session via this Map and invalidated on edge
  * mutations (insert/update/delete) through clearDegreeCache() called from
  * causal-edges.ts.  Community detection in community-detection.ts uses a

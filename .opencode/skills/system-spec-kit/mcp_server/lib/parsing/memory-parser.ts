@@ -96,7 +96,7 @@ export interface ParsedMemoryValidation {
 }
 
 /** Context type string value */
-// P1-3: Import canonical context type definitions from shared source of truth.
+// Import canonical context type definitions from shared source of truth.
 // Re-export ContextType for consumers that import it from this module.
 export type { ContextType } from '@spec-kit/shared/context-types';
 import type { ContextType } from '@spec-kit/shared/context-types';

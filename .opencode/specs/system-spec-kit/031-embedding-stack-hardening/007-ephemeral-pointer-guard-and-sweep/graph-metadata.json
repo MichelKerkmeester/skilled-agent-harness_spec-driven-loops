@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/031-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep",
+  "spec_folder": "system-spec-kit/031-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep",
+  "parent_id": "system-spec-kit/031-embedding-stack-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ephemeral pointer guard and sweep",
+      "ephemeral-pointer-audit.mjs lint guard",
+      "comprehensive comment ephemeral pointer cleanup",
+      "ephemeral pointer guard sweep plan",
+      "comment lint guard implementation plan",
+      "ephemeral pointer guard sweep tasks",
+      "ephemeral pointer guard sweep summary"
+    ],
+    "key_topics": [
+      "ephemeral",
+      "pointer",
+      "guard",
+      "sweep",
+      "ephemeral-pointer-audit",
+      "mjs",
+      "lint",
+      "comprehensive",
+      "comment",
+      "cleanup",
+      "plan",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/validation/ephemeral-pointer-audit.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "ephemeral-pointer-audit.mjs",
+        "kind": "file",
+        "path": "scripts/validation/ephemeral-pointer-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Comment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 006 cleaned ephemeral-artifact pointers from code comments using hand-rolled grep patterns. Those patterns were incomplete: they matched `DR-`, `WS-`, `NNN/NNN`, and `Spec NNN`, but were blind to `P0-/P1-/P2-` review-finding ids, 2-digit/hyphenated task ids (`T73`, `T-02`), no-hyphen checklist ids (`CHK069`), `#NN` issue refs, `NNN-NNN` spec pairs, and `SPRINT N`. A purpose-built detector revealed the true debt: **274 violations across 116 files** — 006 had covered roughly 10%.",
+    "created_at": "2026-05-29T20:35:49.807Z",
+    "last_save_at": "2026-05-29T20:35:49.807Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

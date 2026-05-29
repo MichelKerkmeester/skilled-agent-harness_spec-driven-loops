@@ -127,7 +127,7 @@ function ensureAuditTable(db: Database): void {
 }
 
 /**
- * SQL for partial covering index on learned_triggers (A2-P2-4).
+ * SQL for partial covering index on learned_triggers.
  * Avoids full-table scan in queryLearnedTriggers / expireLearnedTerms / clearAll.
  * Only indexes rows that actually have learned trigger data.
  */
@@ -471,7 +471,7 @@ export function queryLearnedTriggers(
 
     if (queryTerms.length === 0) return [];
 
-    // Ensure partial index exists to avoid full-table scan (A2-P2-4)
+    // Ensure partial index exists to avoid full-table scan
     ensureLearnedTriggersIndex(db);
 
     // Fetch memories that have learned triggers (uses idx_memory_learned_triggers partial index)

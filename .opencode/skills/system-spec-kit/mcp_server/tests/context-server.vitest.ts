@@ -2500,7 +2500,7 @@ describe('Context Server', () => {
       // The fileWatcher drain awaits in-flight reindex tasks that write through getDb(), which
       // REOPENS the connection if closed. closeDb() must therefore run after the drain so the
       // TRUNCATE checkpoint captures those writes and nothing reopens a fresh WAL post-close
-      // (026/007/009 review finding — closeDb-first defeated the durability guarantee).
+      // (closeDb-first defeated the durability guarantee).
       const fatalShutdownStart = sourceCode.indexOf('async function fatalShutdown')
       const vectorCloseStep = sourceCode.indexOf("runCleanupStep('vectorIndex'", fatalShutdownStart)
       const fileWatcherStep = sourceCode.indexOf("await runAsyncCleanupStep('fileWatcher'", fatalShutdownStart)
@@ -2526,7 +2526,7 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/toolCache\.shutdown\(\)/)
     })
 
-    // Shutdown closes transport (P1-09)
+    // Shutdown closes transport
     it('T47: Shutdown closes transport (P1-09)', () => {
       expect(sourceCode).toMatch(/transport\.close\(\)/)
     })

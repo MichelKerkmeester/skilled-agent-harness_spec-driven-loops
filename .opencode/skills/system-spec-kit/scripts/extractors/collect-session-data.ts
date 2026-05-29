@@ -1435,7 +1435,7 @@ async function collectSessionData(
   const createdAtEpoch: number = Math.floor(Date.now() / 1000);
 
   let SPEC_FILES: SpecFileEntry[] = [];
-  // Reuse the specs root that phase 1 matched instead of re-calling
+  // Reuse the specs root the first pass matched instead of re-calling
   // findActiveSpecsDir(), which always prefers PROJECT_ROOT/specs and can point
   // at the wrong tree when specs exist in both locations.
   const activeSpecsDir = resolvedSpecsRoot

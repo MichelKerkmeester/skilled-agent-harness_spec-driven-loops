@@ -386,7 +386,7 @@ describe('Attention Decay Module', () => {
   ──────────────────────────────────────────────────────────────── */
 
   describe('Backward Compatibility', () => {
-    // Legacy functions still exported (calculateDecayedScore and applyDecay removed in REC-017 Phase 4)
+    // Legacy functions still exported (calculateDecayedScore and applyDecay removed)
     const legacyExports = ['activateMemory', 'getDecayRate', 'DECAY_CONFIG', 'clearSession'];
 
     it.each(legacyExports)('Legacy export: %s', (name) => {

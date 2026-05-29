@@ -437,5 +437,5 @@ describe('T002: Chunk Collapse Dedup (G3)', () => {
 });
 
 // Sprint-0 intent weighting guard tests removed — shouldApplyPostSearchIntentWeighting
-// Was part of legacy V1 pipeline, removed in 017-refinement-phase-6 Sprint 1.
+// Was part of legacy V1 pipeline, since removed.
 // V2 pipeline handles intent weighting in Stage 2.

@@ -37,7 +37,7 @@ function restoreEnv() {
 
 describe('simpleStem', () => {
   it('SS01: running → run (-ing removed + double-consonant dedup)', () => {
-    // Fix #18 — doubled consonant "nn" after -ing removal now collapses to "n"
+    // Doubled consonant "nn" after -ing removal now collapses to "n"
     expect(simpleStem('running')).toBe('run');
   });
 

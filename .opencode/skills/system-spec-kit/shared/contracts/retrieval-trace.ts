@@ -60,7 +60,7 @@ export interface EnvelopeMetadata {
 // TODO: ContextEnvelope<T> is the planned migration target for handler responses.
 // Currently all handlers use MCPEnvelope<T> from lib/response/envelope.ts instead.
 // Migration path: handlers should wrap results in ContextEnvelope for typed trace,
-// degradedMode, and metadata support. See architectural decision in spec 005.
+// degradedMode, and metadata support.
 
 /** Generic typed context envelope wrapping pipeline results with trace */
 export interface ContextEnvelope<T> {

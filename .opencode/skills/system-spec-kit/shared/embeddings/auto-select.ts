@@ -244,7 +244,7 @@ function tagsContain(tags: Set<string>, tag: string): boolean {
 }
 
 async function defaultHfLocalServerProbe(timeoutMs: number): Promise<HfLocalServerAvailability> {
-  // hf-local is a pure-Node HTTP client (packet 029); availability = the model
+  // hf-local is a pure-Node HTTP client; availability = the model
   // server endpoint answering /api/health (ready OR loading both count, since the
   // launcher lazily spawns + warms the server on first demand). No Python.
   return HfLocalProvider.canLoad({ timeout: timeoutMs });

@@ -1,19 +1,19 @@
-// TEST: Regression Suite (013-refinement-phase-2)
-// Guards against regressions for the P0/P1 fixes applied in
-// 013-refinement-phase-2. Each describe block maps to a
+// TEST: Regression Suite
+// Guards against regressions for the schema/ReDoS/NDCG/fetch-limit fixes.
+// Each describe block maps to a
 // Specific finding from the 25-agent comprehensive review.
 //
 // Covers:
-// P0-1  Schema safety — missing columns handled gracefully
-// P1-6  ReDoS protection — regex completes in bounded time
-// P1-7  NDCG cap — scores never exceed 1.0
-// P1-9  Fetch limit — search results respect the limit parameter
+// Schema safety — missing columns handled gracefully
+// ReDoS protection — regex completes in bounded time
+// NDCG cap — scores never exceed 1.0
+// Fetch limit — search results respect the limit parameter
 import { describe, it, expect } from 'vitest';
 
 describe('Regression Suite (013 fixes)', () => {
 
   /* ═══════════════════════════════════════════════════════════
-     P0-1: Schema Safety — missing columns handled gracefully
+     Schema Safety — missing columns handled gracefully
   ════════════════════════════════════════════════════════════ */
 
   describe('P0-1: Schema safety — missing columns', () => {
@@ -33,7 +33,7 @@ describe('Regression Suite (013 fixes)', () => {
     });
 
     it('CREATE TABLE schema includes interference_score column', async () => {
-      // P1-10 found interference_score only in migration, not base schema.
+      // A prior review found interference_score only in migration, not base schema.
       // Verify the base CREATE TABLE now includes it.
       const fs = await import('node:fs');
       const path = await import('node:path');
@@ -63,7 +63,7 @@ describe('Regression Suite (013 fixes)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     P1-6: ReDoS Protection — bounded regex execution
+     ReDoS Protection — bounded regex execution
   ════════════════════════════════════════════════════════════ */
 
   describe('P1-6: ReDoS protection', () => {
@@ -127,7 +127,7 @@ describe('Regression Suite (013 fixes)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     P1-7: NDCG Cap — scores never exceed 1.0
+     NDCG Cap — scores never exceed 1.0
   ════════════════════════════════════════════════════════════ */
 
   describe('P1-7: NDCG cap at 1.0', () => {
@@ -154,7 +154,7 @@ describe('Regression Suite (013 fixes)', () => {
       const { computeIntentWeightedNDCG } = await import('../lib/eval/eval-metrics');
 
       // Security_audit intent has the highest multiplier (5x for grade 3)
-      // This is exactly the scenario that caused the P1-7 bug:
+      // This is exactly the scenario that previously inflated NDCG above 1.0:
       // Grade 3 * 5.0 = 15, which inflated NDCG above 1.0
       const results = [
         { memoryId: 1, score: 0.95, rank: 1 },
@@ -207,12 +207,12 @@ describe('Regression Suite (013 fixes)', () => {
   });
 
   /* ═══════════════════════════════════════════════════════════
-     P1-9: Fetch Limit — search results respect limit parameter
+     Fetch Limit — search results respect limit parameter
   ════════════════════════════════════════════════════════════ */
 
   describe('P1-9: Fetch limit respected', () => {
     it('co-activation config fetches 2*maxRelated (not maxRelated+1)', async () => {
-      // P1-9 found that populateRelatedMemories fetched maxRelated+1 instead
+      // A prior review found that populateRelatedMemories fetched maxRelated+1 instead
       // Of 2*maxRelated per spec. Verify the fix by reading the source.
       const fs = await import('node:fs');
       const path = await import('node:path');
@@ -271,7 +271,6 @@ describe('Regression Suite (013 fixes)', () => {
 // This regression suite was authored by Opus-I (TCB 10+).
 //
 // Audit trail:
-// - Spec reference: 013-refinement-phase-2 (P0-1, P1-6, P1-7, P1-9)
 // - Each test maps 1:1 to a specific finding from the 25-agent review
 // - Tests are intentionally lightweight (invariant checks, not full integration)
 // - No mocks of production dependencies — tests use real modules or source analysis

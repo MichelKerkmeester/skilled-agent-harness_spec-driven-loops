@@ -2,7 +2,7 @@
 // MODULE: Learned Combiner
 // ───────────────────────────────────────────────────────────────────
 
-// REQ-D1-006: Learned Stage 2 Weights (Research Item #28)
+// Learned Stage 2 Weights
 //
 // Regularized linear ranker that learns combination weights from
 // accumulated Stage 2 signals. Runs in shadow-only mode behind the

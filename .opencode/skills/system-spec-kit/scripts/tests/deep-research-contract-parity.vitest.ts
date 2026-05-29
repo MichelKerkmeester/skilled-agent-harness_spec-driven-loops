@@ -86,7 +86,7 @@ function readWorkspaceFile(relativePath: string): string {
   it('never eagerly creates the archive root at init and archives lazily on restart (121/006)', () => {
     for (const docPath of commandAssets) {
       const content = readWorkspaceFile(docPath);
-      // Regression (121/006): step_create_directories must NOT pre-create
+      // Regression: step_create_directories must NOT pre-create
       // {state_paths.archive_root}. Doing so left empty research_archive/ dirs
       // on every fresh run, since restart (the only legitimate archiver) is rare.
       expect(content, `${docPath} init mkdir must not pre-create the archive root`).not.toMatch(

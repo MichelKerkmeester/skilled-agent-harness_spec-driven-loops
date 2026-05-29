@@ -153,7 +153,7 @@ describe('BM25 Index Tests (T031-T039)', () => {
 
   describe('T033: Porter stemmer subset reduces words to stems', () => {
     it('T033.1: -ing suffix removal + double-consonant dedup', () => {
-      // Fix #18 — "running" → "runn" → "run" (doubled consonant collapsed)
+      // "running" → "runn" → "run" (doubled consonant collapsed)
       expect(simpleStem('running')).toBe('run');
     });
 

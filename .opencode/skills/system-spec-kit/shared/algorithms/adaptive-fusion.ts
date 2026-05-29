@@ -263,7 +263,7 @@ export function adaptiveFuse(
   const fused = fuseResultsMulti(lists);
 
   // Apply recency boost if recencyWeight > 0, then re-normalize to [0,1]
-  // P1-007: Boost MUST be followed by normalization to keep scores in [0,1]
+  // Boost MUST be followed by normalization to keep scores in [0,1]
   if (weights.recencyWeight > 0) {
     applyRecencyBoost(fused, weights.recencyWeight);
 

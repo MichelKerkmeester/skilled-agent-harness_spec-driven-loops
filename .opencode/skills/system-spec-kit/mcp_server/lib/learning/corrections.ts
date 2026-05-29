@@ -609,7 +609,7 @@ export function undo_correction(correction_id: number): UndoResult {
     `).run(correction_id);
 
     // Try to remove the causal edge if it exists
-    // T-02: Scope deletion by relation type to avoid removing unrelated edges
+    // Scope deletion by relation type to avoid removing unrelated edges
     // Between the same pair of memories (e.g., 'supersedes' vs 'derived_from').
     try {
       if (correction.correction_memory_id) {
@@ -654,7 +654,7 @@ export function undo_correction(correction_id: number): UndoResult {
         }
       }
     } catch (edgeErr: unknown) {
-      // T-02: Surface edge-deletion errors instead of empty catch
+      // Surface edge-deletion errors instead of empty catch
       console.warn(`[corrections] undo: causal edge deletion failed: ${get_error_message(edgeErr)}`);
     }
 

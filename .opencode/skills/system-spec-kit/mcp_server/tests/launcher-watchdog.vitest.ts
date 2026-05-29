@@ -110,7 +110,7 @@ describe('launcher watchdog helpers', () => {
     });
   });
 
-  // REQ-007: the give-up reap must still kill an orphaned sidecar after a HARD daemon death, when the
+  // The give-up reap must still kill an orphaned sidecar after a HARD daemon death, when the
   // detached sidecar has re-parented to pid 1 and the dead childPid is gone from `ps`. This is the case
   // a fresh-walk-anchored-on-childPid reap silently no-ops on; the before-death snapshot closes it.
   it('reaps a re-parented orphan sidecar from the before-death snapshot when the dead child is gone from ps (REQ-007)', () => {

@@ -198,7 +198,7 @@ function findExistingPacket(rootDir, specFolder, mode) {
  * }} Resolved packet root plus canonical packet/archive directories
  */
 function resolveArtifactRoot(specFolder, mode = 'review') {
-  // P1-019 (workflow write-authority): reject specFolder values that contain
+  // Workflow write-authority: reject specFolder values that contain
   // shell metacharacters or quote characters. The YAML workflow interpolates
   // {spec_folder} into a `node -e` shell command; without this guard, a
   // malicious specFolder containing single-quotes / semicolons / backticks /

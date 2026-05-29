@@ -966,7 +966,7 @@ async function testProcessRetryQueue() {
         `loaderCalledWith: ${JSON.stringify(loaderCalledWith)}`);
     }
 
-    // T-108c: Counts content load failure as retry attempt (P2-08 fix)
+    // T-108c: Counts content load failure as retry attempt
     resetDb();
     const id3 = insertMemory(mockDb, {
       embedding_status: 'pending',
@@ -985,7 +985,7 @@ async function testProcessRetryQueue() {
         `Got: ${JSON.stringify(result3)}`);
     }
 
-    // Verify retry count was incremented (P2-08 fix)
+    // Verify retry count was incremented
     if (row3 && row3.retry_count > 0) {
       pass('T-108d: Content failure increments retry_count (P2-08)',
         `retry_count=${row3.retry_count}`);

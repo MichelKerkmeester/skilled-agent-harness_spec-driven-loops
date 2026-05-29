@@ -1,6 +1,6 @@
 // Converted from: unit-path-security.test.ts (custom runner)
 // TEST: PATH SECURITY
-// Phase 1: path-security.ts — realpathSync symlink traversal fix
+// path-security.ts — realpathSync symlink traversal fix
 import { describe, it, expect, afterEach } from 'vitest';
 import * as path from 'path';
 import * as fs from 'fs';

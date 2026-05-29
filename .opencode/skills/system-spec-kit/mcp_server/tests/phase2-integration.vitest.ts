@@ -1,4 +1,4 @@
-// TEST: PHASE 2 INTEGRATION
+// TEST: Cognitive features integration (working memory, causal boost, extraction adapter)
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import Database from 'better-sqlite3';
 import * as workingMemory from '../lib/cognitive/working-memory';

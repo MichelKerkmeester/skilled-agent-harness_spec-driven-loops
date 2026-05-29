@@ -401,7 +401,7 @@ function buildCorpus(packetFamily, options = {}) {
 
   const { records, skippedLines, totalLines } = parsed;
 
-  // P1-4: Reject traces where >20% of non-blank lines are malformed
+  // Reject traces where >20% of non-blank lines are malformed
   if (totalLines > 0 && skippedLines.length / totalLines > 0.20) {
     errors.push(
       `Too many malformed JSONL lines: ${skippedLines.length}/${totalLines} (${(skippedLines.length / totalLines * 100).toFixed(1)}%) exceeds 20% threshold`,

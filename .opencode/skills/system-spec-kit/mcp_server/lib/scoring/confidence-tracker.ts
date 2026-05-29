@@ -171,7 +171,7 @@ export function recordValidation(db: Database, memoryId: number, wasUseful: bool
       };
     })();
   } catch (error: unknown) {
-    // T-07: Replace success-shaped fallback with explicit failure signaling.
+    // Replace success-shaped fallback with explicit failure signaling.
     // Previously returned default values that looked like success, hiding DB errors
     // From callers and allowing downstream side-effects to proceed on stale data.
     console.error(`[confidence-tracker] recordValidation failed for memory ${memoryId}:`, error);
@@ -310,7 +310,7 @@ export function getConfidenceInfo(db: Database, memoryId: number): ConfidenceInf
       },
     };
   } catch (error: unknown) {
-    // T-07 alignment: Re-throw on DB error instead of returning success-shaped defaults.
+    // Re-throw on DB error instead of returning success-shaped defaults.
     // Callers can distinguish "no data" from "query failed" and handle accordingly.
     console.error(`[confidence-tracker] getConfidenceInfo failed for memory ${memoryId}:`, error);
     throw error;

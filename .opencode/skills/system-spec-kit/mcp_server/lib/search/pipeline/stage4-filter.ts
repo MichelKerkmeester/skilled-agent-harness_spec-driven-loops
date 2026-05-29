@@ -340,8 +340,8 @@ export async function executeStage4(input: Stage4Input): Promise<Stage4Output> {
     final: workingResults,
     metadata: {
       stateFiltered,
-      // Fix #14 — sessionDeduped removed; dedup is post-cache in main handler
-      // Fix #15 — constitutionalInjected passed from Stage 1 metadata
+      // sessionDeduped removed; dedup is post-cache in main handler
+      // constitutionalInjected passed from Stage 1 metadata
       constitutionalInjected: input.stage1Metadata?.constitutionalInjected ?? 0,
       evidenceGapDetected,
       durationMs,

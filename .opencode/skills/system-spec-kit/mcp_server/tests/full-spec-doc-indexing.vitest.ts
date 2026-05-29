@@ -2,13 +2,13 @@
 /**
  * Full Spec Folder Document Indexing
  *
- * Comprehensive test suite covering all 8 implementation phases:
- * - Phase 2: Type configuration (DocumentType, SPEC_DOCUMENT_CONFIGS, inferDocumentTypeFromPath)
- * - Phase 4: Parser enhancements (extractDocumentType, isMemoryFile, extractSpecFolder)
- * - Phase 5: Indexing pipeline (calculateDocumentWeight)
- * - Phase 6: Scoring & priority (DOCUMENT_TYPE_MULTIPLIERS, pattern alignment)
- * - Phase 7: Relationship chains (createSpecDocumentChain)
- * - Phase 8: Intent classifier (find_spec, find_decision)
+ * Comprehensive test suite covering all implementation areas:
+ * - Type configuration (DocumentType, SPEC_DOCUMENT_CONFIGS, inferDocumentTypeFromPath)
+ * - Parser enhancements (extractDocumentType, isMemoryFile, extractSpecFolder)
+ * - Indexing pipeline (calculateDocumentWeight)
+ * - Scoring & priority (DOCUMENT_TYPE_MULTIPLIERS, pattern alignment)
+ * - Relationship chains (createSpecDocumentChain)
+ * - Intent classifier (find_spec, find_decision)
  * - Peripheral: importance-tiers (getDefaultTierForDocumentType)
  * - Backward compatibility
  *
@@ -18,7 +18,7 @@
 
 import { describe, it, expect } from 'vitest';
 
-// Phase 2: Type configuration
+// Type configuration
 import {
   SPEC_DOCUMENT_CONFIGS,
   SPEC_DOCUMENT_FILENAMES,
@@ -27,19 +27,19 @@ import {
 } from '../lib/config/memory-types';
 import type { DocumentType } from '../lib/config/memory-types';
 
-// Phase 4: Parser enhancements
+// Parser enhancements
 import {
   extractDocumentType,
   extractSpecFolder,
   isMemoryFile,
 } from '../lib/parsing/memory-parser';
 
-// Phase 5: Indexing pipeline
+// Indexing pipeline
 import {
   calculateDocumentWeight,
 } from '../handlers/pe-gating';
 
-// Phase 6: Scoring & priority
+// Scoring & priority
 import {
   DOCUMENT_TYPE_MULTIPLIERS,
   calculateFiveFactorScore,
@@ -48,10 +48,10 @@ import {
 } from '../lib/scoring/composite-scoring';
 import type { ScoringInput } from '../lib/scoring/composite-scoring';
 
-// Phase 8: Intent classifier
+// Intent classifier
 import * as intentClassifier from '../lib/search/intent-classifier';
 
-// Phase 7: Relationship chains
+// Relationship chains
 import { createSpecDocumentChain, RELATION_TYPES } from '../lib/storage/causal-edges';
 
 // Peripheral: Importance tiers
@@ -67,7 +67,7 @@ function legacySpecMemoryPath(prefix: string, fileName: string): string {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   PHASE 2: TYPE CONFIGURATION
+   TYPE CONFIGURATION
    ═══════════════════════════════════════════════════════════════ */
 
 describe('Spec 126 Phase 2: Type Configuration', () => {
@@ -202,7 +202,7 @@ describe('Spec 126 Phase 2: Type Configuration', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   PHASE 4: PARSER ENHANCEMENTS
+   PARSER ENHANCEMENTS
    ═══════════════════════════════════════════════════════════════ */
 
 describe('Spec 126 Phase 4: Parser Enhancements', () => {
@@ -347,7 +347,7 @@ describe('Spec 126 Phase 4: Parser Enhancements', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   PHASE 5: INDEXING PIPELINE
+   INDEXING PIPELINE
    ═══════════════════════════════════════════════════════════════ */
 
 describe('Spec 126 Phase 5: Indexing Pipeline', () => {
@@ -411,7 +411,7 @@ describe('Spec 126 Phase 5: Indexing Pipeline', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   PHASE 6: SCORING & PRIORITY
+   SCORING & PRIORITY
    ═══════════════════════════════════════════════════════════════ */
 
 describe('Spec 126 Phase 6: Scoring & Priority', () => {
@@ -592,7 +592,7 @@ describe('Spec 126 Phase 6: Scoring & Priority', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   PHASE 8: INTENT CLASSIFIER
+   INTENT CLASSIFIER
    ═══════════════════════════════════════════════════════════════ */
 
 describe('Spec 126 Phase 8: Intent Classifier', () => {
@@ -823,7 +823,7 @@ describe('Spec 126: Backward Compatibility', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   PHASE 7: RELATIONSHIP CHAINS
+   RELATIONSHIP CHAINS
    ═══════════════════════════════════════════════════════════════ */
 
 describe('Spec 126 Phase 7: Relationship Chains', () => {
@@ -1015,7 +1015,7 @@ describe('Spec 126 Normalization: document_type / spec_level', () => {
 /* ═══════════════════════════════════════════════════════════════
    NOTE: detectSpecLevelFromParsed() is a private function in
    memory-save.ts and is tested indirectly through indexMemoryFile().
-   Phase 1 schema migration and Phase 3 discovery (findSpecDocuments,
+   Schema migration and discovery (findSpecDocuments,
    detectSpecLevel) require a live DB/filesystem and are covered
    by integration tests.
    ═══════════════════════════════════════════════════════════════ */

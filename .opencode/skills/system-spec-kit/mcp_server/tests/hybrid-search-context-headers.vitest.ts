@@ -1,4 +1,4 @@
-// TEST: Contextual Tree Headers (Sprint 9 P1-4)
+// TEST: Contextual Tree Headers
 import { describe, expect, it } from 'vitest';
 import { __testables, truncateToBudget, estimateResultTokens } from '../lib/search/hybrid-search';
 

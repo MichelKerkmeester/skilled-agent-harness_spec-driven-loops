@@ -37,7 +37,7 @@ describe('local LLM prefix system', () => {
   });
 
   it('T1 registers only the nomic prefix entry after consolidation', () => {
-    // 029/001 consolidation: PREFIX_REGISTRY is nomic-only; removed models are gone.
+    // After consolidation, PREFIX_REGISTRY is nomic-only; removed models are gone.
     expect(Object.keys(PREFIX_REGISTRY)).toEqual(['nomic-ai/nomic-embed-text-v1.5']);
     for (const removed of [
       'BAAI/bge-base-en-v1.5',
@@ -55,7 +55,7 @@ describe('local LLM prefix system', () => {
   });
 
   it('T3 returns the safe empty fallback for a removed local model', () => {
-    // bge was removed in 029/001 → treated as an unknown model → empty prefix.
+    // bge was removed → treated as an unknown model → empty prefix.
     expect(getPrefixFor('BAAI/bge-base-en-v1.5', 'query')).toBe('');
     expect(getPrefixFor('BAAI/bge-base-en-v1.5', 'document')).toBe('');
   });

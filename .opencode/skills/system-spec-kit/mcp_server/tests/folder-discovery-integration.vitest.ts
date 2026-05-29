@@ -986,7 +986,7 @@ describe('CHK-029: generateFolderDescriptions scan performance', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   P1-2: repairStaleDescriptions — zero coverage
+   repairStaleDescriptions — zero coverage
    ═══════════════════════════════════════════════════════════════ */
 
 describe('P1-2: repairStaleDescriptions', () => {
@@ -1078,7 +1078,7 @@ describe('P1-2: repairStaleDescriptions', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   P1-3: ensureDescriptionCache write-failure catch
+   ensureDescriptionCache write-failure catch
    ═══════════════════════════════════════════════════════════════ */
 
 describe('P1-3: ensureDescriptionCache write-failure resilience', () => {

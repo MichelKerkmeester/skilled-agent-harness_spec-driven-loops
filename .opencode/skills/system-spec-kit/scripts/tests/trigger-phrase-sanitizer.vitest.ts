@@ -79,7 +79,7 @@ describe('trigger-phrase sanitizer', () => {
   // ───:Whitespace-only trigger phrases ──────────────────
 
   it('T237: whitespace-only strings should not count as valid trigger phrases', () => {
-    // Finding #18: scoreTriggerQuality() uses raw array length with no
+    // scoreTriggerQuality() uses raw array length with no
     // trim/filter step, so whitespace-only phrases inflate the count.
     // The sanitizer wrapper should reject or strip these.
     const result = sanitizeTriggerPhrases(['   ', '\t', '\n', '  \t  ']);

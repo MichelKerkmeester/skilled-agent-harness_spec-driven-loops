@@ -129,7 +129,7 @@ function readWorkspaceFile(relativePath: string): string {
   it('never eagerly creates the archive root at init and archives lazily on restart (121/006)', () => {
     for (const docPath of commandAssets) {
       const content = readWorkspaceFile(docPath);
-      // Regression (121/006): step_create_directories must NOT pre-create
+      // Regression: step_create_directories must NOT pre-create
       // {state_paths.archive_root}. Review init has never done so; this locks the
       // invariant alongside deep-research (which previously did) and asserts the
       // lazy, guarded restart move shared by both loops.

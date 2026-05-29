@@ -558,7 +558,7 @@ export async function executeStage1(input: Stage1Input): Promise<Stage1Output> {
 
 async function executeStage1Core(input: Stage1Input, startTime: number): Promise<Stage1Output> {
   const { config } = input;
-  // Fix #16: Cache embedding at function scope for reuse in constitutional injection
+  // Cache embedding at function scope for reuse in constitutional injection
   let cachedEmbedding: Float32Array | number[] | null = null;
   let constitutionalInjectedCount = 0;
 
@@ -696,7 +696,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   //
   else if (searchType === 'hybrid') {
     // Resolve the query embedding — either pre-computed in config or generate now
-    // Fix #16 — Cache this embedding for reuse in constitutional injection path
+    // Cache this embedding for reuse in constitutional injection path
     // To avoid a duplicate generateQueryEmbedding() call.
     const effectiveEmbedding: Float32Array | number[] | null =
       queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
@@ -1109,7 +1109,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     );
 
     if (existingConstitutional.length === 0) {
-      // Fix #16 — Reuse cached embedding instead of generating a new one
+      // Reuse cached embedding instead of generating a new one
       const constitutionalEmbedding: Float32Array | number[] | null =
         cachedEmbedding ?? queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
 

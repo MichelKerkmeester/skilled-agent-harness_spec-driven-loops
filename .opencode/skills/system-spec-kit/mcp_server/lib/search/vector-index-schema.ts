@@ -1099,7 +1099,7 @@ export function run_migrations(database: Database.Database, from_version: number
       WHERE file_path IS NOT NULL AND file_path != ''
     `).all() as Array<{ id: number; file_path: string; spec_folder: string }>;
 
-    // P1-2 fix: Filter in JS with normalized separators (not SQL LIKE)
+    // Filter in JS with normalized separators (not SQL LIKE)
     const specRows = rows.filter(row => {
       const normalized = row.file_path.replace(/\\/g, '/');
       return normalized.includes('/specs/') || normalized.startsWith('specs/');
@@ -1127,7 +1127,7 @@ export function run_migrations(database: Database.Database, from_version: number
       logger.info(`Migration v23: Re-canonicalized spec_folder for ${updates.length} memory rows`);
     }
 
-    // P1-3 fix: Migrate session_state.spec_folder using old→new mapping
+    // Migrate session_state.spec_folder using old→new mapping
     migrateSessionStateSpecFolders(database, updates);
     migrateHistorySpecFolders(database, updates);
   };
@@ -1154,7 +1154,7 @@ export function run_migrations(database: Database.Database, from_version: number
   };
 
   migrations[25] = () => {
-    // P1-5: Normalize legacy context_type values and rebuild CHECK constraint.
+    // Normalize legacy context_type values and rebuild CHECK constraint.
     // Step 1: UPDATE legacy values to canonical forms
     const updated = database.prepare(`
       UPDATE memory_index SET context_type = 'planning' WHERE context_type = 'decision'

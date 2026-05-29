@@ -454,7 +454,7 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
           ? 'hf-local'
           : undefined;
       setActiveEmbedder(db, initialJob.toName, initialJob.toDim, activeProvider);
-      // 005-001: Commit embedding_status for rows now backed by an active-profile vector.
+      // Commit embedding_status for rows now backed by an active-profile vector.
       // A vector-only reindex previously wrote vectors but left memory_index.embedding_status
       // stale, so a "completed" bulk re-embed never raised the success count. Reconcile the
       // status for every row present in the just-written vec_<dim> table, inside the same

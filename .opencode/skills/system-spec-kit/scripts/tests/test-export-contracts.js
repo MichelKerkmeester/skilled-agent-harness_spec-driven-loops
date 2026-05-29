@@ -3,7 +3,6 @@
 
 /**
  * Test: Export Contract Verification
- * Spec: 091-naming-convention-test-suite
  *
  * Covers:
  *   T3 - Export contract verification (handlers, lib, barrels)

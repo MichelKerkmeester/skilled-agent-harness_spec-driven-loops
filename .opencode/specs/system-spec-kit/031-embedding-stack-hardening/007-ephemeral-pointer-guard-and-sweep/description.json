@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep",
+  "description": "Feature Specification: Ephemeral-pointer guard + comprehensive comment sweep",
+  "keywords": [
+    "feature",
+    "specification",
+    "ephemeral-pointer",
+    "guard",
+    "comprehensive",
+    "comment",
+    "sweep"
+  ],
+  "lastUpdated": "2026-05-29T20:35:49.537Z",
+  "specId": "007",
+  "folderSlug": "ephemeral-pointer-guard-and-sweep",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "031-embedding-stack-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

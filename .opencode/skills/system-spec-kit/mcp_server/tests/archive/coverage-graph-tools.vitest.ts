@@ -11,8 +11,8 @@ import { describe, it, expect } from 'vitest';
  * Coverage Graph MCP Tool contract tests.
  *
  * These tests validate the tool interface contract between the
- * reducer and MCP server. The actual MCP tool handlers will be
- * implemented in Phase 3; these tests verify schema expectations
+ * reducer and MCP server. The actual MCP tool handlers are
+ * implemented separately; these tests verify schema expectations
  * and error handling contracts.
  */
 

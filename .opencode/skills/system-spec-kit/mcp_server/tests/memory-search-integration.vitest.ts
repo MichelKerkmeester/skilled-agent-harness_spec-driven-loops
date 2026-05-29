@@ -1,6 +1,6 @@
 // TEST: MEMORY SEARCH INTEGRATION
 //
-// NOTE (S3.5 #14): This file was originally built as a source-text snapshot
+// NOTE: This file was originally built as a source-text snapshot
 // suite -- most assertions read .ts files with fs.readFileSync and regex-match
 // against source code strings.  Such tests pass as long as the source text
 // contains the expected substring, even if the runtime code is broken.
@@ -187,13 +187,13 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     });
 
     it('T622: Concepts array validation exists', () => {
-      // FIXME(S3.5 #14): Source-text assertion -- replace with behavioral test
+      // FIXME: Source-text assertion -- replace with behavioral test
       // that calls handleMemorySearch({ concepts: 'not-array' }) and checks error.
       expect(MEMORY_SEARCH_SOURCE).toContain('Array.isArray(concepts)');
     });
 
     it('T623: Maximum 5 concepts enforced', () => {
-      // FIXME(S3.5 #14): Source-text assertion -- replace with behavioral test
+      // FIXME: Source-text assertion -- replace with behavioral test
       // that calls handleMemorySearch({ concepts: ['a','b','c','d','e','f'] })
       // and checks the 2-5 validation error response.
       expect(VECTOR_INDEX_QUERIES_SOURCE).toContain('concepts.length > 5');
@@ -201,7 +201,7 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     });
 
     it('T624: Each concept generates embedding', () => {
-      // FIXME(S3.5 #14): Source-text assertion -- needs DB-backed test to verify
+      // FIXME: Source-text assertion -- needs DB-backed test to verify
       // that each concept actually generates a separate embedding query.
       expect(STAGE1_SOURCE).toContain('generateQueryEmbedding(concept)');
     });
@@ -211,7 +211,7 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     });
 
     it('T626: Multi-concept requests are labeled as multi_concept search type', () => {
-      // FIXME(S3.5 #14): Source-text assertion -- replace with behavioral test
+      // FIXME: Source-text assertion -- replace with behavioral test
       // that calls handleMemorySearch({ concepts: ['a','b'] }) against a DB
       // fixture and checks the response metadata contains searchType = 'multi-concept'.
       expect(MEMORY_SEARCH_SOURCE).toContain("searchType: (hasValidConcepts && concepts!.length >= 2)");
@@ -261,13 +261,13 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     });
 
     it('T635: Hybrid search uses fusion-based ranking', () => {
-      // FIXME(S3.5 #14): Source-text assertion -- replace with behavioral test
+      // FIXME: Source-text assertion -- replace with behavioral test
       // that verifies hybridSearch output uses fuseResultsMulti ranking.
       expect(HYBRID_SEARCH_SOURCE).toContain('fuseResultsMulti');
     });
 
     it('T636: Hybrid combines vector + FTS', () => {
-      // FIXME(S3.5 #14): Source-text assertion -- replace with behavioral test.
+      // FIXME: Source-text assertion -- replace with behavioral test.
       expect(HYBRID_SEARCH_SOURCE).toContain('combinedLexicalSearch');
       expect(HYBRID_SEARCH_SOURCE).toContain('hybridSearchEnhanced');
     });
@@ -288,21 +288,21 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     });
 
     it('T639: searchWithFallback falls back to FTS after empty hybrid results', () => {
-      // FIXME(S3.5 #14): Source-text assertion -- replace with behavioral test
+      // FIXME: Source-text assertion -- replace with behavioral test
       // that verifies the actual fallback chain with a DB fixture.
       expect(HYBRID_SEARCH_SOURCE).toContain('const ftsResults = ftsSearch(query, options);');
       expect(HYBRID_SEARCH_SOURCE).toContain('if (ftsResults.length > 0) return ftsResults;');
     });
 
     it('T640: searchWithFallback falls back to BM25 after empty FTS results', () => {
-      // FIXME(S3.5 #14): Source-text assertion -- replace with behavioral test.
+      // FIXME: Source-text assertion -- replace with behavioral test.
       expect(HYBRID_SEARCH_SOURCE).toContain('const bm25Results = bm25Search(query, options);');
       expect(HYBRID_SEARCH_SOURCE).toContain('if (bm25Results.length > 0) return bm25Results;');
     });
   });
 
   describe('T641-T650 - Review Count & Timestamp', () => {
-    // FIXME(S3.5 #14): are all source-text assertions that check
+    // FIXME: The tests below are all source-text assertions that check
     // schema DDL strings and SQL statement text.  They verify that the source
     // code *mentions* the right column names but do not prove the runtime DB
     // actually creates and increments those columns.  Replace with DB-fixture
@@ -346,14 +346,14 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
     });
 
     it('T650: last_accessed stores epoch timestamp', () => {
-      // FIXME(S3.5 #14): Source-text assertion.
+      // FIXME: Source-text assertion.
       expect(ACCESS_TRACKER_SOURCE).toContain('const now = Date.now();');
       expect(ACCESS_TRACKER_SOURCE).toContain('last_accessed = ?');
     });
   });
 
   describe('Review and access update pipeline', () => {
-    // FIXME(S3.5 #14): All three tests below are source-text assertions.
+    // FIXME: All three tests below are source-text assertions.
     // Replace with DB-fixture integration tests that exercise the actual
     // pipeline through a real in-memory SQLite DB.
 
@@ -378,7 +378,7 @@ describe('Memory Search Integration (T601-T650) [deferred - requires DB test fix
   });
 
   describe('Pipeline support', () => {
-    // FIXME(S3.5 #14): Source-text assertions -- replace with behavioral tests.
+    // FIXME: Source-text assertions -- replace with behavioral tests.
 
     it('generates one embedding per concept in stage 1 candidate generation', () => {
       expect(STAGE1_SOURCE).toContain('for (const concept of concepts)');

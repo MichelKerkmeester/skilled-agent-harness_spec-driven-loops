@@ -335,7 +335,7 @@ describe('DB Error Safe Defaults (T103)', () => {
           captured.push(args.map(String).join(' '));
         });
 
-        // T-07: recordValidation now throws on DB errors (explicit failure signaling).
+        // recordValidation now throws on DB errors (explicit failure signaling).
         // Other functions still return safe defaults.
         try {
           fn.call(brokenDb);

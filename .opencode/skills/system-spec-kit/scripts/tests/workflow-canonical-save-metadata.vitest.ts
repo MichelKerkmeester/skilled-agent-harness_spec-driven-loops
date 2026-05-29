@@ -18,7 +18,7 @@
 //      skip mirrors the pattern in workflow-session-id.vitest.ts —
 //      runWorkflow requires collect-session-data + template-contract
 //      scaffolding that the unit harness already covers. Kept as
-//      a TODO fixture for when 003-memory-quality-issues/006 lands.
+//      a TODO fixture for when the compact wrapper fixtures land.
 //
 // See tasks.md and for the acceptance matrix
 
@@ -250,10 +250,10 @@ describe('T-W1-CNS-04 refreshGraphMetadata runs on every canonical save', () => 
   });
 });
 
-// TODO(017-wave-a): full runWorkflow integration harness.
+// TODO: full runWorkflow integration harness.
 // Blocked by the same compact-wrapper fixture gap documented in
-// workflow-session-id.vitest.ts. Re-enable after 003-memory-quality-issues/
-// 006-memory-duplication-reduction lands the compact wrapper fixtures.
+// workflow-session-id.vitest.ts. Re-enable after the compact wrapper
+// fixtures land.
 //
 // When re-enabled, this suite should:
 //   * Seed a synthetic spec folder (spec.md + description.json)

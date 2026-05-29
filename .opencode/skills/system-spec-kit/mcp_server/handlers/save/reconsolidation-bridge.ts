@@ -567,7 +567,7 @@ export async function runReconsolidationIfEnabled(
                 ? classifyEncodingIntent(memory.content)
                 : undefined;
 
-              // P1-01 fix — wrap all DB writes (index, metadata, BM25, history) in a
+              // Wrap all DB writes (index, metadata, BM25, history) in a
               // Single transaction for atomicity. better-sqlite3 supports nested transactions
               // Via savepoints, so this is safe even if indexMemory uses its own transaction.
               const fileMetadata = incrementalIndex.getFileMetadata(memory.filePath);

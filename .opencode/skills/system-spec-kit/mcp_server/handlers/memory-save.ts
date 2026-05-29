@@ -82,7 +82,7 @@ import {
   determineValidationDisposition,
 } from './v-rule-bridge.js';
 
-// Save pipeline modules (CR-P2-4 decomposition)
+// Save pipeline modules
 import type {
   IndexResult,
   RouteCategory,
@@ -2751,7 +2751,7 @@ async function indexMemoryFileFromScan(
 /** Handle memory_save tool - validates, indexes, and persists a memory file to the database */
 async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_save');
-  // A7-P2-1: Generate requestId for incident correlation in error responses
+  // Generate requestId for incident correlation in error responses
   const requestId = randomUUID();
   const restoreBarrier = checkpoints.getRestoreBarrierStatus();
 

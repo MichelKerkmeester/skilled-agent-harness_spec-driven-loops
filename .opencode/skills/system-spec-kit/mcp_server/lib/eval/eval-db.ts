@@ -16,7 +16,7 @@ import Database from 'better-sqlite3';
 ──────────────────────────────────────────────────────────────── */
 
 // Follow same env-var precedence as main DB (vector-index-impl.ts)
-// P1-05: SPEC_KIT_DB_DIR (canonical) > MEMORY_DB_DIR (legacy) > default
+// SPEC_KIT_DB_DIR (canonical) > MEMORY_DB_DIR (legacy) > default
 const DEFAULT_DB_DIR: string =
   process.env.SPEC_KIT_DB_DIR ||
   process.env.MEMORY_DB_DIR ||

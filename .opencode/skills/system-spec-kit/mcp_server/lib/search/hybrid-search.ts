@@ -152,7 +152,7 @@ function toHybridResult(result: FusionResult): HybridSearchResult {
   };
 }
 
-// 3. SPRINT 3 PIPELINE METADATA
+// PIPELINE METADATA
 
 /**
  * Optional metadata about pipeline stages attached to enhanced search results.
@@ -366,8 +366,8 @@ function bm25Search(
     // Numeric memory IDs (e.g., "42"), not spec folder paths. The old filter compared
     // R.id against specFolder which never matched. Use DB lookup to resolve spec_folder.
 
-    // B7 FIX: Batch-resolve spec folders for all result IDs (was N+1 individual queries)
-    // T72 SECURITY: Spec-folder scope MUST fail closed — any error in scope
+    // Batch-resolve spec folders for all result IDs (was N+1 individual queries)
+    // SECURITY: Spec-folder scope MUST fail closed — any error in scope
     // resolution returns [] rather than leaking unscoped BM25 candidates.
     let specFolderMap: Map<number, string | null> | null = null;
     if (specFolder) {
@@ -395,7 +395,7 @@ function bm25Search(
         return [];
       }
 
-      // T72 DEFENSE-IN-DEPTH: If specFolder was requested but specFolderMap
+      // DEFENSE-IN-DEPTH: If specFolder was requested but specFolderMap
       // is still null after the resolution block, something unexpected happened.
       // Fail closed rather than falling through to unscoped results.
       if (!specFolderMap) {
@@ -1118,7 +1118,7 @@ async function hybridSearch(
   }
 
   // Deduplicate by ID (keep highest normalized score)
-  // LIMITATION (P1-1): When a result appears in multiple sources (e.g., vector + fts),
+  // LIMITATION: When a result appears in multiple sources (e.g., vector + fts),
   // Only the highest-scoring entry's `source` is preserved. Multi-source provenance
   // Is lost here. To fix properly, HybridSearchResult would need a `sources: string[]`
   // Field and downstream consumers would need to be updated accordingly.
@@ -1735,7 +1735,7 @@ async function enrichFusedResults(
           }
         }
       }
-      // P1-2 FIX: Re-sort after co-activation boost to ensure boosted results
+      // Re-sort after co-activation boost to ensure boosted results
       // Are promoted to their correct position in the ranking
       reranked.sort((a, b) => ((b.score as number) ?? 0) - ((a.score as number) ?? 0));
     } catch (err: unknown) {

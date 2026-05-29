@@ -14,7 +14,7 @@ import type {
 } from '../lib/learning/corrections';
 
 // TESTS: CORRECTIONS MODULE
-// Phase 3 of SpecKit Reimagined - Learning from Corrections
+// SpecKit Reimagined - Learning from Corrections
 // Tasks
 /* ───────────────────────────────────────────────────────────────
    TEST SETUP

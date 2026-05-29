@@ -436,7 +436,7 @@ async function extractDecisions(
     decisionObservations = [];
   }
 
-  // P0-3: Also suppress lexical extraction when manual decisions exist,
+  // Also suppress lexical extraction when manual decisions exist,
   // since those observations were already built from the same manual decisions
   const lexicalDecisionObservations =
     decisionObservations.length === 0

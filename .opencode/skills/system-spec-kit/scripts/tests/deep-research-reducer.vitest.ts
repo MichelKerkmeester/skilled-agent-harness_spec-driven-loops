@@ -393,7 +393,7 @@ Question C
   // ─── : Parseable schema corruption ──────────────────────
 
   it('T241: handles JSONL with parseable but schema-corrupt iteration entries', () => {
-    // Finding #24: The existing tests only cover completely invalid JSON
+    // The existing tests only cover completely invalid JSON
     // (unparseable lines). They never exercise entries that are valid JSON
     // but violate the expected iteration schema (missing required fields,
     // wrong types, null where numbers expected).

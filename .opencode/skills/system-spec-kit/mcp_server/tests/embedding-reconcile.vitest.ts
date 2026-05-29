@@ -1,8 +1,8 @@
 // -------------------------------------------------------------------
 // TEST: memory_embedding_reconcile core logic
 // -------------------------------------------------------------------
-// Acceptance contract: 004-embedding-backlog-drain-investigation
-//   research/iterations/iteration-008.md §F4 (seven scenarios).
+// Acceptance contract: embedding-backlog-drain reconcile
+//   §F4 (seven scenarios).
 
 import fs from 'node:fs';
 import os from 'node:os';
@@ -225,7 +225,7 @@ describe('memory_embedding_reconcile', () => {
     expect(second.buckets.missing_active_vector_provider_failure.count).toBe(0);
   });
 
-  // P1-001 — partial coverage: a row missing only ONE surface is "missing" (OR),
+  // partial coverage: a row missing only ONE surface is "missing" (OR),
   // and apply resets it (the old AND predicate would count but not reset it).
   it('counts + resets a failed-retention row missing only one vector surface', () => {
     ({ db, dir } = createFixture());
@@ -241,7 +241,7 @@ describe('memory_embedding_reconcile', () => {
     expect(statusOf(db, 1).embedding_status).toBe('retry');
   });
 
-  // P1-002 — already-queued pending/retry missing-vector rows are left alone
+  // already-queued pending/retry missing-vector rows are left alone
   // (failed-only scope); a second apply must not clobber their retry_count.
   it('leaves already-queued pending/retry missing-vector rows untouched', () => {
     ({ db, dir } = createFixture());
@@ -256,7 +256,7 @@ describe('memory_embedding_reconcile', () => {
     expect(statusOf(db, 1)).toMatchObject({ embedding_status: 'pending', retry_count: 2 });
   });
 
-  // P1-002 — missing-vector reset is idempotent: failed-retention -> retry once,
+  // missing-vector reset is idempotent: failed-retention -> retry once,
   // a second apply is a no-op (no matching 'failed' rows remain).
   it('missing-vector reset is idempotent across repeated applies', () => {
     ({ db, dir } = createFixture());

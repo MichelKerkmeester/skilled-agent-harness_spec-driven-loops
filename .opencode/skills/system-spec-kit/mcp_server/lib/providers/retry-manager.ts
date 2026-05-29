@@ -492,7 +492,7 @@ function enforceRetryRetentionLimits(
 
   const nowIso = now.toISOString();
   const oldestAllowedIso = new Date(now.getTime() - maxAgeMs).toISOString();
-  // 005-002: Retention is non-destructive for never-attempted clean `pending` rows.
+  // Retention is non-destructive for never-attempted clean `pending` rows.
   // Only rows that have actually been attempted (status='retry' OR retry_count>0) are
   // subject to max-age expiry and pending-cap overflow; clean `pending` work waits to be
   // embedded instead of being parked as `failed` before the drain can claim it.
@@ -925,7 +925,7 @@ async function processRetryQueue(limit = 3, contentLoader: ContentLoader | null 
     }
 
     if (!content) {
-      // P2-08 FIX: Count content load failure as a retry attempt to prevent infinite retry loops
+      // Count content load failure as a retry attempt to prevent infinite retry loops
       incrementRetryCount(memory.id, 'Content load failed: file unreadable or missing');
       details.push({ id: memory.id, success: false, error: 'Could not load content (counted as retry)' });
       results.failed++;

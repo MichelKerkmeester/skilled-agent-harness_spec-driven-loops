@@ -300,7 +300,7 @@ export interface Stage4Input {
   /** Results with read-only score fields — Stage 4 cannot modify scores */
   results: Stage4ReadonlyRow[];
   config: PipelineConfig;
-  /** Fix #15: Stage 1 metadata passed through for constitutional count */
+  /** Stage 1 metadata passed through for constitutional count */
   stage1Metadata?: { constitutionalInjected?: number };
 }
 

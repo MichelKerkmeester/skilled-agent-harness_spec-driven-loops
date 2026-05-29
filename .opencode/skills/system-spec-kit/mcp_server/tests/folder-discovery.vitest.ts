@@ -1107,7 +1107,7 @@ describe('T009 extractDescription CRLF frontmatter (C7)', () => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   P1-4: loadPerFolderDescription with specId=""
+   loadPerFolderDescription with specId=""
 ----------------------------------------------------------------*/
 
 describe('P1-4: loadPerFolderDescription with empty specId', () => {

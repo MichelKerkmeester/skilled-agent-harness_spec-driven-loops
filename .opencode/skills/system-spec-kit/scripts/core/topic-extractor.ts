@@ -30,7 +30,7 @@ export function extractKeyTopics(
 ): string[] {
   const weightedSegments: string[] = [];
 
-  // T09: Do NOT push spec folder name into weightedSegments — folder path fragments
+  // Do NOT push spec folder name into weightedSegments — folder path fragments
   // contaminate topics with generic infrastructure words. Topics should come from
   // actual session content (summary, decisions).
 

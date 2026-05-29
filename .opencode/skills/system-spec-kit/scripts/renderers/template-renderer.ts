@@ -63,7 +63,7 @@ function cleanupExcessiveNewlines(text: string): string {
   return text.replace(/\n{3,}/g, '\n\n');
 }
 
-// P1-11: Escape mustache delimiters in variable values to prevent template injection.
+// Escape mustache delimiters in variable values to prevent template injection.
 // Values containing {{...}} patterns could be re-expanded during recursive section rendering.
 function escapeMustacheValue(value: string): string {
   if (!value.includes('{{')) return value;
@@ -130,7 +130,7 @@ function renderTemplate(template: string, data: TemplateContext, parentData: Tem
     return '';
   });
 
-  // P1-10: Mustache comment syntax — strip {{! ... }} blocks
+  // Mustache comment syntax — strip {{! ... }} blocks
   result = result.replace(/\{\{![^}]*\}\}/g, '');
 
   // Simple variable replacement: {{VAR}} or {{.}}

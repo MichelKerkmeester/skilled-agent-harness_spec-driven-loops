@@ -1307,7 +1307,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       resultsData = responseToReturn as unknown as Record<string, unknown>;
     }
 
-    // P1-018 — Validate response shape before dedup. If the cached response
+    // Validate response shape before dedup. If the cached response
     // Doesn't have the expected data.results array, log a warning and skip dedup
     // Rather than silently falling through to the un-deduped response.
     const data = (resultsData && typeof resultsData.data === 'object' && resultsData.data !== null)

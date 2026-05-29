@@ -268,7 +268,7 @@ async function testBug005() {
   log('\n🔬 BUG-005: Rate Limiting Not Persistent');
   
   try {
-    // After modularization (Spec 058), rate limiting moved to core/db-state.js
+    // After modularization, rate limiting moved to core/db-state.js
     const dbState = fs.readFileSync(DB_STATE_PATH, 'utf8');
     
     // Test 1: Config table creation (in db-state.js now)

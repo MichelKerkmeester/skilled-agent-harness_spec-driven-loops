@@ -3,14 +3,13 @@
 
 /**
  * Test: Naming Convention Migration Verification
- * Spec: 091-naming-convention-test-suite
  *
  * Covers:
- *   T1  - Syntax validation (node --check, bash -n)
- *   T2  - MCP module import chain (require 144 files)
- *   T9  - Scripts module imports (require 53 files)
- *   T10 - Naming compliance sweep (zero snake_case function defs)
- *   T7  - Cross-reference integrity (orphaned snake_case calls)
+ *   - Syntax validation (node --check, bash -n)
+ *   - MCP module import chain (require 144 files)
+ *   - Scripts module imports (require 53 files)
+ *   - Naming compliance sweep (zero snake_case function defs)
+ *   - Cross-reference integrity (orphaned snake_case calls)
  */
 
 const fs = require('fs');

@@ -100,7 +100,7 @@ const VALID_IMPORTANCE_TIERS = new Set([
   'deprecated',
 ]);
 
-// P1-3: Derive VALID_CONTEXT_TYPES from shared source of truth.
+// Derive VALID_CONTEXT_TYPES from shared source of truth.
 // Accepts both canonical types and legacy aliases for backward compatibility.
 const VALID_CONTEXT_TYPES = new Set([
   ...CANONICAL_CONTEXT_TYPES,
@@ -854,7 +854,7 @@ function normalizeContextType(rawValue: string | null | undefined): string | nul
 
   const normalized = rawValue.toLowerCase().trim();
 
-  // P1-3: Use shared legacy aliases + local convenience aliases
+  // Use shared legacy aliases + local convenience aliases
   const aliasMap: Record<string, string> = {
     ...LEGACY_CONTEXT_TYPE_ALIASES,
     debug: 'implementation',

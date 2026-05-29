@@ -556,7 +556,7 @@ export function computeIntentWeightedNDCG(
 
   const multipliers = intentMultipliers[intentType] ?? [0, 1.0, 2.0, 3.0];
 
-  // P1-7 fix: Multiplier values ARE the weighted grades (not factors to multiply
+  // Multiplier values ARE the weighted grades (not factors to multiply
   // Against the original grade). Using them directly prevents extreme scaling
   // (e.g., grade 3 * 5.0 = 15). Safety cap at MAX_WEIGHTED_GRADE = 5.
   const MAX_WEIGHTED_GRADE = 5;

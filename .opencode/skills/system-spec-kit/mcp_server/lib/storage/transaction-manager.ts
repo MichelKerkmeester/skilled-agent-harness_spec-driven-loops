@@ -33,7 +33,7 @@ interface AtomicSaveResult {
   success: boolean;
   filePath: string;
   error?: string;
-  /** Fix #22: Set when DB committed but rename failed, indicating partial state */
+  /** Set when DB committed but rename failed, indicating partial state */
   dbCommitted?: boolean;
 }
 
@@ -275,7 +275,7 @@ function executeAtomicSave(
     }
 
     // Step 3: Rename pending to final (atomic)
-    // P1-020 KNOWN LIMITATION: If renameSync fails after dbOperation() committed,
+    // KNOWN LIMITATION: If renameSync fails after dbOperation() committed,
     // The DB contains the new state but the file is not at its final path. This is
     // A window of vulnerability that cannot be eliminated without two-phase commit.
     // The `dbCommitted` flag on the returned error result enables callers to detect

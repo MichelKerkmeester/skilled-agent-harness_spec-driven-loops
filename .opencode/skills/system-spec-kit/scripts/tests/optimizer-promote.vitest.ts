@@ -257,7 +257,7 @@ describe('Advisory Promotion Gate (T007)', () => {
         },
       });
 
-      // This is the core P1-2 assertion: advisoryOnly must NEVER flip to false
+      // This is the core assertion: advisoryOnly must NEVER flip to false
       expect(result.advisoryOnly).toBe(true);
     });
   });

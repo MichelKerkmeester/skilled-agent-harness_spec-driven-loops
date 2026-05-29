@@ -61,7 +61,7 @@ describe('isSpecMemoryDaemonAlive', () => {
     expect(isSpecMemoryDaemonAlive(leasePath)).toEqual({ alive: false });
   });
 
-  // Regression guard (026/007/013 review): the default lease path MUST resolve to the launcher's real
+  // Regression guard: the default lease path MUST resolve to the launcher's real
   // location <system-spec-kit>/mcp_server/database/, NOT scripts/mcp_server/. A fixed up-count from
   // dist/core previously landed at the nonexistent scripts/mcp_server/database -> the guard was dead code.
   it('resolves the default lease path to the launcher-canonical system-spec-kit/mcp_server/database dir', () => {

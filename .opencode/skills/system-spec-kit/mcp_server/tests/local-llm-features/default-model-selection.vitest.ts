@@ -46,7 +46,7 @@ describe('local LLM default model selection', () => {
     const { getStartupEmbeddingProfile } = await loadFactory();
     const profile = getStartupEmbeddingProfile();
 
-    // Local-first cascade default per ADR-014: both ollama and hf-local derive
+    // Local-first cascade default: both ollama and hf-local derive
     // from the nomic manifest; hf-local surfaces it as the HF repo path.
     expect(profile.model).toBe('nomic-ai/nomic-embed-text-v1.5');
     expect(profile.dim).toBe(768);

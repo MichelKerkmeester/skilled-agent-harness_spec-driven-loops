@@ -1,5 +1,4 @@
-// Coverage for the 5 reducer behavioral changes shipped by
-// 007-deep-review-phase5-backlog/002-reducer-cluster-remediation:
+// Coverage for the 5 reducer behavioral changes:
 //   LG-0001 dashboard pause/stuck surfacing
 //   LG-0005 carry scopeProof + affectedSurfaceHints
 //   LG-0006 traceabilityChecks rollup

@@ -301,7 +301,7 @@ async function collapseAndReassembleChunkResults(
     const mpabScore = computeMPAB(chunkScores);
     const parentScore = Math.max(mpabScore, bestChunkScore);
     // Sort chunks by chunk_index (document order) for correct reassembly,
-    // Not by score order which is the default from upstream stages (A8-P2-1)
+    // Not by score order which is the default from upstream stages
     chunks.sort((a, b) => {
       const aIdx = ((a.chunk_index ?? a.chunkIndex) as number | undefined) ?? 0;
       const bIdx = ((b.chunk_index ?? b.chunkIndex) as number | undefined) ?? 0;

@@ -854,7 +854,7 @@ export function matchTriggerPhrases(userPrompt: string, limit: number = CONFIG.D
     })
     .slice(0, limit);
 
-  // Performance logging (CHK069)
+  // Performance logging
   const elapsed = Date.now() - startTime;
   logExecutionTime('match_trigger_phrases', elapsed, {
     promptLength: prompt.length,

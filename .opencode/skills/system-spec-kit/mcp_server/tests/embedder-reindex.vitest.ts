@@ -128,7 +128,7 @@ describe('embedder reindex orchestrator', () => {
     const vectorCount = db.prepare('SELECT COUNT(*) AS count FROM vec_1024').get() as { count: number };
     expect(vectorCount.count).toBe(10);
 
-    // 005-001: a completed reindex commits embedding_status='success' for the rows it embedded,
+    // A completed reindex commits embedding_status='success' for the rows it embedded,
     // so a bulk re-embed actually drives the success count (the backlog-drain root-cause fix).
     const statusCounts = db
       .prepare("SELECT embedding_status AS s, COUNT(*) AS c FROM memory_index GROUP BY embedding_status")

@@ -216,7 +216,7 @@ describe('P0: Inner symlink changes extracted spec_folder', () => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// P2-1: Error handling specificity
+// Error handling specificity
 // ───────────────────────────────────────────────────────────────
 describe('P2-1: Error handling specificity', () => {
   let eloopTmpDir: string;
@@ -252,7 +252,7 @@ describe('P2-1: Error handling specificity', () => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// P2-2: Fallback uses normalized path
+// Fallback uses normalized path
 // ───────────────────────────────────────────────────────────────
 describe('P2-2: Fallback uses normalized path', () => {
   it('backslash path in fallback returns forward-slash result', () => {

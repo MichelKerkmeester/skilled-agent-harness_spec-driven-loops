@@ -1208,7 +1208,7 @@ function registerContextServerHandlers(targetServer: Server): void {
               // Remove from end (lowest-scored) until within budget
               while (innerResults.length > 1) {
                 innerResults.pop();
-                // P1-06 FIX: Recalculate token count from the full envelope
+                // Recalculate token count from the full envelope
                 // (not just results) so trace metadata is included in the budget.
                 syncEnvelopeTokenCount(envelope);
                 if (typeof meta.tokenCount === 'number' && meta.tokenCount <= budget) break;
@@ -1309,7 +1309,7 @@ async function recoverPendingFiles(basePath: string): Promise<PendingRecoveryRes
 
   try {
     // BUG-028 FIX: Restrict scan to known memory file locations to prevent OOM when scanning large workspaces.
-    // P1-002-SCAN: share the same allowed-root expansion that startup indexing uses.
+    // Share the same allowed-root expansion that startup indexing uses.
     const existingScanLocations = getPendingRecoveryLocations(basePath);
 
     // P1 FIX: Wire isCommittedInDb callback so stale pending files are detected at startup.
@@ -1451,7 +1451,7 @@ async function startupScan(basePath: string): Promise<void> {
 ──────────────────────────────────────────────────────────────── */
 
 let shuttingDown = false;
-// P1-09 FIX: Hoist transport to module scope so shutdown handlers can close it
+// Hoist transport to module scope so shutdown handlers can close it
 let transport: StdioServerTransport | null = null;
 let transportConnectedAt: string | null = null;
 let fileWatcher: FSWatcher | null = null;
@@ -1505,7 +1505,7 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
       }
     });
     runCleanupStep('vectorIndex', () => vectorIndex.closeDb());
-    // P1-09 FIX: Close MCP transport on shutdown
+    // Close MCP transport on shutdown
     runCleanupStep('transport', () => {
       if (transport) {
         transport.close();
@@ -1958,7 +1958,7 @@ async function main(): Promise<void> {
       console.warn('[context-server] Session manager failed:', message);
     }
 
-    // P0-3: Async ingestion job queue initialization + crash recovery reset.
+    // Async ingestion job queue initialization + crash recovery reset.
     try {
       const ingestInit = initIngestJobQueue({
         processFile: async (filePath: string) => {
@@ -1973,7 +1973,7 @@ async function main(): Promise<void> {
       console.warn('[context-server] Ingest queue init failed:', message);
     }
 
-    // P1-7: Optional real-time markdown watcher for automatic re-indexing.
+    // Optional real-time markdown watcher for automatic re-indexing.
     if (isFileWatcherEnabled()) {
       try {
         const watchPaths = getSpecsBasePaths(DEFAULT_BASE_PATH);
@@ -2024,7 +2024,7 @@ async function main(): Promise<void> {
     });
   });
 
-  // P1-09: Assign to module-level transport (not const) so shutdown handlers can close it
+  // Assign to module-level transport (not const) so shutdown handlers can close it
   if (isDynamicInitEnabled()) {
     try {
       const dynamicInstructions = await buildServerInstructions();

@@ -12,7 +12,7 @@ import { describe, it, expect } from 'vitest';
  *
  * These tests validate the contract defined in state_format.md
  * Section 12 (Coverage Graph Integration Contract). The actual
- * MCP implementation will be wired in Phase 3; these tests
+ * MCP implementation is wired separately; these tests
  * verify the contract shape and expected behaviors.
  */
 
