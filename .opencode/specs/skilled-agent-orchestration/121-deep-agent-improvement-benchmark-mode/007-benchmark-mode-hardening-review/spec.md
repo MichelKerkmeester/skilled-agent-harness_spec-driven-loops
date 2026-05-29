@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/122-session-120-121-deep-review"
+    packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/007-benchmark-mode-hardening-review"
     last_updated_at: "2026-05-28T17:45:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Review closed; all findings remediated in 121/004 (see report §11)"

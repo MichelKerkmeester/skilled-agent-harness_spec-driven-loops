@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "None — remediation complete; re-review optional"
     blockers: []
     key_files:
-      - "../../122-session-120-121-deep-review/review/review-report.md"
+      - "../007-benchmark-mode-hardening-review/review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "remediation-20260528"
@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 4** of packet 121 — remediation of the findings from the 122 tri-model deep review (gpt-5.5 + MiniMax M2.7 + Opus 4.8 arbiter; verdict CONDITIONAL). Source of truth for findings: `../../122-session-120-121-deep-review/review/review-report.md`.
+This is **Phase 4** of packet 121 — remediation of the findings from the tri-model deep review (`007-benchmark-mode-hardening-review`, gpt-5.5 + MiniMax M2.7 + Opus 4.8 arbiter; verdict CONDITIONAL). Source of truth for findings: `../007-benchmark-mode-hardening-review/review/review-report.md`.
 
 **Scope Boundary**: Fix the 3 unique confirmed P1 defects + the actionable P2 advisories inside `.opencode/skills/deep-agent-improvement/scripts/`. Reconcile one spec-wording P2 in 003. Document the two non-defects (intended deferral / dedup artifact).
 

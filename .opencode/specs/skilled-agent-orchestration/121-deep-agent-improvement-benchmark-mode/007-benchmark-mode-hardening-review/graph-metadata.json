@@ -1,19 +1,22 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-benchmark-mode-remediation",
-  "spec_folder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-benchmark-mode-remediation",
+  "packet_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/007-benchmark-mode-hardening-review",
+  "spec_folder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/007-benchmark-mode-hardening-review",
   "parent_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": []
+    "related_to": [
+      "skilled-agent-orchestration/120-cli-opencode-minimax-optimization",
+      "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
+    ]
   },
   "derived": {
     "trigger_phrases": [
-      "benchmark mode remediation",
-      "122 review findings fix",
-      "deep-agent-improvement P1 fixes",
+      "session 120 121 deep review",
+      "dual-executor deep review",
+      "model-benchmark mode review",
       "implementation",
       "plan",
       "name",
@@ -25,28 +28,35 @@
       "impl summary core"
     ],
     "key_topics": [
-      "benchmark",
-      "mode",
-      "remediation",
-      "122",
+      "session",
+      "120",
+      "121",
+      "deep",
       "review",
-      "findings",
-      "fix",
-      "deep-agent-improvement",
-      "fixes",
+      "dual-executor",
+      "model-benchmark",
+      "mode",
       "implementation",
       "plan",
-      "name"
+      "name",
+      "template"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "review/review-report.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,31 +88,31 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Problem Statement This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Handoff Criteria",
+        "name": "Purpose Produce",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -184,17 +194,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of packet 121 — remediation of the findings from the tri-model deep review (`007-benchmark-mode-hardening-review`, gpt-5.5 + MiniMax M2.7 + Opus 4.8 arbiter; verdict CONDITIONAL). Source of truth for findings: `../007-benchmark-mode-hardening-review/review/review-report.md`.",
-    "created_at": "2026-05-28T18:39:19Z",
-    "last_save_at": "2026-05-29T06:00:53.069Z",
+    "causal_summary": "This session shipped real, committed code \u2014 the deep-agent-improvement `model-benchmark` mode (121/003: `loop-host.cjs`, `dispatch-model.cjs`, a ported 5-dim scorer, mode-aware records) plus the MiniMax provider integration (120: cli-opencode + sk-prompt skill edits). It passed unit tests and alignment checks during the build, but has not had an independent, adversarial, multi-model review for correctness, security, traceability, and maintainability.",
+    "created_at": "2026-05-28T17:42:53Z",
+    "last_save_at": "2026-05-29T06:00:53.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
