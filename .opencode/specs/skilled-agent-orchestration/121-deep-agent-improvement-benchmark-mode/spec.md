@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
     last_updated_at: "2026-05-29T12:50:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "014 deep review CONDITIONAL; opened 015 remediation (1 P0 + 16 P1 + 16 P2)"
+    recent_action: "Second deep review (Opus, 017): CONDITIONAL, 015 held, 4 new P1s"
     next_safe_action: "Remediate the 014 findings in 015 child"
     blockers: []
     key_files: []
@@ -127,6 +127,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 15 | 015-two-lane-review-remediation/ | Remediate the 014 deep-review findings (1 P0 + 16 P1 + 16 P2) | Complete |
 
 | 16 | 016-script-subfolder-readmes/ | Add code-folder READMEs to every source script subfolder (sk-doc code template) + audit existing | Complete |
+| 17 | 017-two-lane-opus-deep-review/ | Second deep review with Opus 4.8 agents (workflow format) cross-checking the post-015 two-lane code | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -151,6 +152,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 013-scripts-physical-reorg | 014-two-lane-deep-review | Scripts lane reorg shipped; the full two-lane program (008-013) is reviewable as one unit | strict validate on 013 + vitest 133/133 + both-lane smokes |
 | 014-two-lane-deep-review | 015-two-lane-review-remediation | Deep review returned CONDITIONAL with a confirmed P0 plus a P1/P2 cluster; remediation must close them before Lane B ships | review-report.md CONDITIONAL verdict + all-findings.jsonl |
 | 015-two-lane-review-remediation | 016-script-subfolder-readmes | Lane reorg shipped and stable; lane subfolders still lack local code-folder READMEs | strict validate on 016 + README in every source script subfolder |
+| 016-script-subfolder-readmes | 017-two-lane-opus-deep-review | 014 (gpt-5.5) review + 015 remediation shipped; an independent Opus 4.8 second opinion must confirm the fixes hold and hunt new issues | review-report.md verdict + all-findings.jsonl |
 <!-- /ANCHOR:phase-map -->
 
 ---

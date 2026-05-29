@@ -1,0 +1,18 @@
+{
+  "executor": {
+    "kind": "native",
+    "model": "opus-4.8"
+  },
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewTarget": "two-lane program 008-013 post-remediation",
+  "reviewTargetType": "files",
+  "mode": "review",
+  "note": "Opus 4.8 agents in workflow format, second cross-check after 014 (gpt-5.5) + 015 remediation"
+}

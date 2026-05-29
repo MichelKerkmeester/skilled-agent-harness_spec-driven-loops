@@ -19,7 +19,8 @@
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/013-scripts-physical-reorg",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/014-two-lane-deep-review",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/015-two-lane-review-remediation",
-    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/016-script-subfolder-readmes"
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/016-script-subfolder-readmes",
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/017-two-lane-opus-deep-review"
   ],
   "migrated": true,
   "migration_source": "legacy",

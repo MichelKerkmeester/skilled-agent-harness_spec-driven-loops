@@ -1,0 +1,17 @@
+{
+  "specFolder": "121-deep-agent-improvement-benchmark-mode/017-two-lane-opus-deep-review",
+  "description": "Phase 1: two-lane-opus-deep-review",
+  "keywords": [
+    "phase",
+    "two-lane-opus-deep-review"
+  ],
+  "lastUpdated": "2026-05-29T13:38:56.766Z",
+  "specId": "017",
+  "folderSlug": "two-lane-opus-deep-review",
+  "parentChain": [
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
