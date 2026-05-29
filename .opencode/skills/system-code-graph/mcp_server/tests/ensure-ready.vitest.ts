@@ -374,12 +374,25 @@ describe('ensure-ready', () => {
     });
 
     it('auto-establishes an empty graph on the default end-user scope (guarded read path, no explicit scan)', async () => {
-      // Default end-user scope: no .opencode opt-ins.
+      // OR-5-01: isolate isDefaultEndUserScope as the SOLE cause of the allow.
+      // Active scope = default (all .opencode opt-ins off) so isDefaultEndUserScope=true.
       vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_SKILLS', '');
       vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_AGENTS', '');
       vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_COMMANDS', '');
       vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_SPECS', '');
       vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_PLUGINS', '');
+      // OR-5-01: stored scope DELIBERATELY mismatches the active default scope
+      // (skills=all vs skills=none) so the evaluateGuardedFullScan -> shouldAutoRescan
+      // fallback would BLOCK with scope_mismatch. With the fallback blocking, the
+      // ONLY path that can yield autoRescanSafety:'allowed' / inlineIndexPerformed:true
+      // is the firstTimeAutoEstablish empty-graph branch (isDefaultEndUserScope).
+      // Neutralizing that branch (firstTimeAutoEstablish=false) therefore FLIPS the
+      // result to blocked/no-scan and fails this test against un-fixed code.
+      mocks.getStoredCodeGraphScopeMock.mockReturnValue({
+        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none',
+        label: 'skills included',
+        source: 'scan-argument',
+      });
       // Empty graph on first detect, populated after the establishing scan.
       mocks.getDbMock
         .mockReturnValueOnce(createDbWithNodeCount(0))
@@ -395,15 +408,25 @@ describe('ensure-ready', () => {
       });
 
       // Empty + default scope => auto-establish: the full scan ran without an
-      // explicit code_graph_scan, despite allowInlineFullScan being false.
+      // explicit code_graph_scan, despite allowInlineFullScan being false AND the
+      // scope-mismatch fallback that would otherwise block.
       expect(mocks.indexFilesMock).toHaveBeenCalledTimes(1);
       expect(result.inlineIndexPerformed).toBe(true);
       expect(result.autoRescanSafety).toBe('allowed');
     });
 
     it('does NOT auto-establish an empty graph when .opencode is opted in (keeps the manual gate)', async () => {
-      // Opted-in (large) scope: a quick read must not silently trigger a big scan.
+      // OR-5-01: isolate isDefaultEndUserScope=false as the gate that keeps the
+      // manual code_graph_scan requirement. Opted-in (large) scope: active scope is
+      // non-default (skills=all), so isDefaultEndUserScope(active)=false and
+      // firstTimeAutoEstablish=false in the fixed code.
       vi.stubEnv('SPECKIT_CODE_GRAPH_INDEX_SKILLS', 'true');
+      // OR-5-01: stored scope stays the default (skills=none) from beforeEach so it
+      // MISMATCHES the opted-in active scope (skills=all). Parse backlog is clean (0),
+      // so the ONLY reason the guarded fallback blocks is scope_mismatch — NOT a
+      // dirty backlog (guard_disabled / parse_error_backlog). Asserting the block
+      // reason ties this test to the scope path rather than an incidental block.
+      mocks.getParseDiagnosticsSummaryMock.mockReturnValue({ affectedFiles: 0, recentErrors: [] });
       mocks.getDbMock.mockReturnValue(createDbWithNodeCount(0));
       mocks.getTrackedFilesMock.mockReturnValue([]);
 
@@ -414,10 +437,15 @@ describe('ensure-ready', () => {
         allowGuardedInlineFullScan: true,
       });
 
+      // Opted-in scope keeps the manual gate: neutralizing the isDefaultEndUserScope
+      // clause in firstTimeAutoEstablish would make the empty graph short-circuit to
+      // autoRescanSafety:'allowed' and run the scan, FLIPPING these expectations and
+      // failing this test against un-fixed code.
       expect(mocks.indexFilesMock).not.toHaveBeenCalled();
       expect(result.action).toBe('full_scan');
       expect(result.inlineIndexPerformed).toBe(false);
       expect(result.autoRescanSafety).toBe('blocked');
+      expect(result.autoRescanBlockReason).toBe('scope_mismatch');
     });
   });
 

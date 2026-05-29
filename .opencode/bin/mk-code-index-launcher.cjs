@@ -845,39 +845,6 @@ function installSignalHandlers() {
     ensureLayout(actions);
     refreshPaths();
 
-    // Auto-migrate DB from the former shared standalone location back to skill-local.
-    // The former DB is preserved as a backup (copy, not move).
-    // DR-006-02: never auto-seed/migrate into an explicit SPECKIT_CODE_GRAPH_DB_DIR override
-    //   (the operator chose that target); migrate only into the resolved default.
-    // DR-001-02 / DR-002-02: never copy a former DB that a live legacy owner could still be
-    //   writing — probe BOTH the former PID lease and the former owner lease for liveness first.
-    //   The former owner lease (.code-graph-owner.json) is intentionally NOT copied forward.
-    const formerSharedDbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');
-    const migrationTarget = resolvedDbDir();
-    if (!process.env.SPECKIT_CODE_GRAPH_DB_DIR
-        && !exists(path.join(migrationTarget, 'code-graph.sqlite'))
-        && exists(path.join(formerSharedDbDir, 'code-graph.sqlite'))
-        && !formerLocationOwnerLive(formerSharedDbDir)) {
-      fs.mkdirSync(migrationTarget, { recursive: true, mode: 0o700 });
-      const dbFiles = [
-        'code-graph.sqlite',
-        'code-graph.sqlite-shm',
-        'code-graph.sqlite-wal',
-        '.code-graph-readiness.json',
-        '.mk-code-index-launcher.json',
-      ];
-      for (const file of dbFiles) {
-        const src = path.join(formerSharedDbDir, file);
-        const dst = path.join(migrationTarget, file);
-        if (exists(src)) {
-          fs.copyFileSync(src, dst);
-        }
-      }
-      process.stderr.write(
-        `[mk-code-index-launcher] migrated DB from ${rel(formerSharedDbDir)} to ${rel(migrationTarget)} (former location preserved)\n`
-      );
-    }
-
     const strictSingleWriter = !isStrictModeDisabled(process.env.MK_CODE_INDEX_STRICT_SINGLE_WRITER);
     if (strictSingleWriter) {
       const ownerLeaseResult = acquireOwnerLeaseFile();
@@ -912,6 +879,68 @@ function installSignalHandlers() {
 
     lockHeld = await acquireBootstrapLock();
     if (lockHeld) {
+      // OR-1-01: auto-migrate DB from the former shared standalone location back to skill-local.
+      // The former DB is preserved as a backup (copy, not move).
+      // This block now runs ONLY for the single bootstrap-lock winner (lockHeld), AFTER the lock
+      // is held and BEFORE the DB is opened by the spawned child (launchServer, below). Previously
+      // it ran in the main IIFE before any lock, so two concurrent launchers could both pass the
+      // !exists(target) guard and both copy — a lagging copier truncate-overwriting the now-LIVE
+      // target DB out from under the winner's daemon (SQLite corruption). Gating on lockHeld makes
+      // only one launcher migrate; the COPYFILE_EXCL + pre-copy re-check below is the belt-and-
+      // suspenders guarantee that NO launcher ever overwrites an existing (possibly live) target DB.
+      // DR-006-02: never auto-seed/migrate into an explicit SPECKIT_CODE_GRAPH_DB_DIR override
+      //   (the operator chose that target); migrate only into the resolved default.
+      // DR-001-02 / DR-002-02: never copy a former DB that a live legacy owner could still be
+      //   writing — probe BOTH the former PID lease and the former owner lease for liveness first.
+      //   The former owner lease (.code-graph-owner.json) is intentionally NOT copied forward.
+      const formerSharedDbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');
+      const migrationTarget = resolvedDbDir();
+      if (!process.env.SPECKIT_CODE_GRAPH_DB_DIR
+          && !exists(path.join(migrationTarget, 'code-graph.sqlite'))
+          && exists(path.join(formerSharedDbDir, 'code-graph.sqlite'))
+          && !formerLocationOwnerLive(formerSharedDbDir)) {
+        fs.mkdirSync(migrationTarget, { recursive: true, mode: 0o700 });
+        const dbFiles = [
+          'code-graph.sqlite',
+          'code-graph.sqlite-shm',
+          'code-graph.sqlite-wal',
+          '.code-graph-readiness.json',
+          '.mk-code-index-launcher.json',
+        ];
+        // OR-1-01: re-check the sqlite target immediately before copying so a launcher that
+        // raced past the outer guard (e.g. a concurrent migrator that just finished) does not
+        // clobber the freshly-migrated DB. EEXIST from COPYFILE_EXCL means another launcher
+        // already migrated that file -> treat the target as authoritative and stop migrating.
+        let migrated = false;
+        if (!exists(path.join(migrationTarget, 'code-graph.sqlite'))) {
+          try {
+            for (const file of dbFiles) {
+              const src = path.join(formerSharedDbDir, file);
+              const dst = path.join(migrationTarget, file);
+              if (exists(src)) {
+                // OR-1-01: COPYFILE_EXCL makes the copy fail with EEXIST rather than truncate-
+                // overwrite an existing (possibly live) target file.
+                fs.copyFileSync(src, dst, fs.constants.COPYFILE_EXCL);
+              }
+            }
+            migrated = true;
+          } catch (copyError) {
+            if (copyError.code === 'EEXIST') {
+              // OR-1-01: another launcher already migrated into this target; the existing target
+              // is authoritative. Do NOT overwrite it.
+              log('migration skipped: target already present (EEXIST); treating existing target as authoritative');
+            } else {
+              throw copyError;
+            }
+          }
+        }
+        if (migrated) {
+          process.stderr.write(
+            `[mk-code-index-launcher] migrated DB from ${rel(formerSharedDbDir)} to ${rel(migrationTarget)} (former location preserved)\n`
+          );
+        }
+      }
+
       buildIfNeeded(actions);
       log(`ready: ${JSON.stringify({ start: started, end: now(), actions, server: rel(path.join(kitDir, 'mcp_server', 'dist', 'index.js')) })}`);
     }

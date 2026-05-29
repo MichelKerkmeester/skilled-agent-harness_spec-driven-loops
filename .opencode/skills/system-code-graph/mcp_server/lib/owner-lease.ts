@@ -10,6 +10,7 @@ import {
   readFileSync,
   renameSync,
   rmSync,
+  statSync,
   unlinkSync,
   writeFileSync,
 } from 'node:fs';
@@ -61,6 +62,10 @@ export interface OwnerClassificationOptions {
 const OWNER_LEASE_FILE_NAME = '.code-graph-owner.json';
 const OWNER_LEASE_LOCK_FILE_NAME = `${OWNER_LEASE_FILE_NAME}.lock`;
 const DEFAULT_TTL_MS = CODE_GRAPH_DEFAULTS.ttlMs;
+// OR-3-01: a mutation lock is only ever held for a few synchronous fs ops, so any lock with an
+// UNPARSEABLE pid (empty/partial) older than this is treated as a wedged orphan from a pre-fix
+// binary or a hard crash between openSync and writeFileSync, and is self-healed once.
+const WEDGED_MUTATION_LOCK_MAX_AGE_MS = 30_000;
 
 interface OwnerLeaseMutationLock {
   readonly fd: number;
@@ -101,6 +106,16 @@ function readOwnerLeaseMutationLockPid(lockPath: string): number | null {
   }
 }
 
+// OR-3-01: age (ms) of the lock file, or null if it cannot be stat'd. Used to gate self-healing of
+// a wedged empty/partial lock whose pid is unparseable (so the live-pid stale check cannot apply).
+function ownerLeaseMutationLockAgeMs(lockPath: string, now: number): number | null {
+  try {
+    return now - statSync(lockPath).mtimeMs;
+  } catch {
+    return null;
+  }
+}
+
 function tryAcquireOwnerLeaseMutationLock(canonicalDbDir: string): OwnerLeaseMutationLock | null {
   const lockPath = ownerLeaseLockPath(canonicalDbDir);
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -112,7 +127,23 @@ function tryAcquireOwnerLeaseMutationLock(canonicalDbDir: string): OwnerLeaseMut
       return { fd, lockPath };
     } catch (error: unknown) {
       if (typeof fd === 'number') {
+        // OR-3-01: the openSync('wx') succeeded (we own the just-created lock), but the
+        // subsequent writeFileSync/fsyncSync threw (e.g. ENOSPC/EIO). Close the fd AND unlink the
+        // orphan lock before re-throwing — otherwise it lingers empty/partial with no parseable
+        // pid, every later EEXIST acquirer reads a null pid, the stale-reclaim guard (which
+        // requires lockPid !== null) never removes it, and tryAcquire returns null forever ->
+        // refreshOwnerLease() returns false forever -> the heartbeat self-shuts-down the server.
         closeSync(fd);
+        try {
+          unlinkSync(lockPath);
+        } catch (cleanupError: unknown) {
+          const cleanupCode = cleanupError && typeof cleanupError === 'object' && 'code' in cleanupError
+            ? (cleanupError as NodeJS.ErrnoException).code
+            : undefined;
+          if (cleanupCode !== 'ENOENT') {
+            throw cleanupError;
+          }
+        }
       }
       const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
       if (code !== 'EEXIST') {
@@ -136,6 +167,35 @@ function tryAcquireOwnerLeaseMutationLock(canonicalDbDir: string): OwnerLeaseMut
             : undefined;
           if (unlinkCode !== 'ENOENT') {
             throw unlinkError;
+          }
+        }
+      }
+
+      // OR-3-01: self-heal a wedged lock whose pid is UNPARSEABLE (empty/partial) — the live-pid
+      // check above can never clear it, so without this a pre-fix orphan (or one from a hard crash
+      // between openSync and writeFileSync) would wedge tryAcquire -> refresh forever. Gate it on a
+      // conservative mtime age (locks are held only for a few synchronous ops) and re-confirm the
+      // pid is still unparseable AND the mtime is unchanged immediately before unlink, so we never
+      // delete a successor's freshly-written live lock.
+      if (attempt === 0 && lockPid === null) {
+        const now = Date.now();
+        const ageMs = ownerLeaseMutationLockAgeMs(lockPath, now);
+        if (ageMs !== null && ageMs > WEDGED_MUTATION_LOCK_MAX_AGE_MS) {
+          try {
+            if (
+              readOwnerLeaseMutationLockPid(lockPath) === null &&
+              ownerLeaseMutationLockAgeMs(lockPath, now) === ageMs
+            ) {
+              unlinkSync(lockPath);
+            }
+            continue;
+          } catch (unlinkError: unknown) {
+            const unlinkCode = unlinkError && typeof unlinkError === 'object' && 'code' in unlinkError
+              ? (unlinkError as NodeJS.ErrnoException).code
+              : undefined;
+            if (unlinkCode !== 'ENOENT') {
+              throw unlinkError;
+            }
           }
         }
       }

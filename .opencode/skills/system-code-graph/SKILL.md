@@ -290,7 +290,7 @@ The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code
 - **Known intent with no resources:** return a "no knowledge base found" notice naming the missing intent.
 - **Unclassifiable intent:** call `code_graph_classify_query_intent` first. If the classifier returns low confidence, ask for one concrete file path, symbol or error message before proceeding.
 - **`mk_code_index` MCP unavailable:** report the state and stop. Structural queries do not fall back to text search because ambiguous text-search results mislead more than they help.
-- **Graph not ready (`status` returns `blocked`, `empty` or `absent`):** call `code_graph_scan` first, then retry. Never return a stale or empty graph result as if it were authoritative.
+- **Graph not ready (`status` returns `blocked`, `empty`, or `trustState: absent`):** call `code_graph_scan` first, then retry. Never return a stale or empty graph result as if it were authoritative.
 
 ### Anti-Patterns
 
@@ -376,7 +376,7 @@ The shared SQLite file at `.opencode/skills/system-code-graph/mcp_server/databas
 ### Core references (this skill)
 
 - [`references/runtime/tool_surface.md`](references/runtime/tool_surface.md) — 8 MCP tools mapped to handler files, primary purpose, and preconditions.
-- [`references/readiness/readiness_and_scope_fingerprint.md`](references/readiness/readiness_and_scope_fingerprint.md) — readiness state machine (`fresh`/`stale`/`blocked`/`empty`/`absent`) and the scan-scope fingerprint contract.
+- [`references/readiness/readiness_and_scope_fingerprint.md`](references/readiness/readiness_and_scope_fingerprint.md) — readiness state machine (`fresh`/`stale`/`empty`/`error` freshness, plus the `blocked` read decision and `absent` trust projection) and the scan-scope fingerprint contract.
 - [`references/readiness/code_graph_readiness_check.md`](references/readiness/code_graph_readiness_check.md) — `ensureCodeGraphReady()` gates, preconditions, recovery procedures.
 - [`references/config/database_path_policy.md`](references/config/database_path_policy.md) — canonical database path policy and override rules.
 - [`references/runtime/naming_conventions.md`](references/runtime/naming_conventions.md) — name map across skill folder, MCP server, launcher, plugin bridge, and hook location.

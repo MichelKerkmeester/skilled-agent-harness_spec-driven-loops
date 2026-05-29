@@ -133,7 +133,7 @@ The MCP server is composed of focused subsystems that share the transport layer 
 
 **Storage.** Primary store is SQLite via `better-sqlite3` at `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite`. The launcher's standalone-storage guard refuses to point the database outside the workspace.
 
-**Readiness contract.** A hard refuse, not a soft degrade. States are `fresh`, `stale`, `empty`, `error`, `absent`. Read paths gate on the state machine and return blocked payloads with required actions; the contract avoids serving incorrect structural answers. Detail per state lives in `references/readiness/code_graph_readiness_check.md`.
+**Readiness contract.** A hard refuse, not a soft degrade. <!-- OR-8-01: GraphFreshness is the four-value enum below; `absent` is the empty-graph trust-state projection, not a freshness state. --> Freshness states are `fresh`, `stale`, `empty`, `error` (`absent` is the empty-graph trust-state projection, not a freshness state). Read paths gate on the state machine and return blocked payloads with required actions; the contract avoids serving incorrect structural answers. Detail per state lives in `references/readiness/code_graph_readiness_check.md`.
 
 **Apply-mode recovery.** Gated recovery operations (rescan, prune-excludes, repair-nodes, recover-sqlite-corruption, rollback-bad-apply) run the gold-query verification battery before AND after each operation. Audit log writes to JSONL. Rollback restores the last known-good baseline.
 

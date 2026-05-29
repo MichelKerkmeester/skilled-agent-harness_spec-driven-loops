@@ -48,13 +48,15 @@ Both must be acceptable before verification-gated decisions proceed. A graph can
 
 ## 2. READINESS STATES
 
+This table mixes the top-level freshness enum with derived projections for read convenience. The canonical top-level `GraphFreshness` enum (`mcp_server/lib/readiness-contract.ts`) is exactly four values: `fresh`, `stale`, `empty`, `error`. `blocked` is a read-tool refusal payload, not a freshness value; `absent` is a trust-state projection of an `empty` graph, not a freshness value.
+
 | State | Meaning | Read-path Behavior |
 |---|---|---|
 | `fresh` | Graph reflects current workspace. Recent scan, content hashes match, scope fingerprint unchanged. | Tools answer normally. |
 | `stale` | Workspace changed since last scan. Soft-stale: incremental rescan can self-heal. Hard-stale: too many changes, full rescan needed. | Read tools return `blocked` with `requiredAction: "code_graph_scan"`. |
 | `blocked` | Explicit refusal payload from a tool. Returned when readiness is not `fresh`, scope fingerprint mismatches, or `goldVerificationTrust` requires re-verification. | Tools return the blocked payload with `readiness`, `requiredAction`, `lastPersistedAt`. |
 | `empty` | Graph has zero indexed nodes. Either uninitialized or after a destructive operation. | Tools return `blocked` with `requiredAction: "code_graph_scan"`. |
-| `absent` | No graph database exists yet. | `code_graph_status` returns `absent`; read tools return `blocked` with `requiredAction: "code_graph_scan"`. |
+| `absent` | Trust-state projection of an `empty` graph (e.g. no graph database exists yet) — NOT a top-level freshness/readiness value. | OR-8-01: a missing DB surfaces as top-level `freshness: empty` / `canonicalReadiness: missing` / `trustState: absent`; `code_graph_status` never returns a top-level readiness of `absent`. Read tools return `blocked` with `requiredAction: "code_graph_scan"`. |
 | `error` | Database corrupt, schema mismatch, or unrecoverable parse failure. | Tools return `blocked` with `requiredAction` pointing to `code_graph_apply` recovery operation. |
 
 ---

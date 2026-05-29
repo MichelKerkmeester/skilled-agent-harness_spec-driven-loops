@@ -306,6 +306,72 @@ describe('mk-code-index launcher lease', () => {
     expect(readLeasePid(workspace.pidFilePath)).toBe(run.child.pid);
   });
 
+  // OR-1-01: two concurrent launchers migrating a former-location DB into the same target must
+  // never clobber/truncate the live target. Exactly one launcher (the bootstrap-lock winner)
+  // migrates, and the target byte-content stays stable. Fails against the un-fixed code, which
+  // ran the migration before any lock with a plain copyFileSync (no COPYFILE_EXCL) — letting both
+  // launchers copy and a lagging copier overwrite the now-live target.
+  it('migrates a former-location DB exactly once under two concurrent launchers', async () => {
+    const workspace = createWorkspace();
+
+    // Seed the former shared standalone DB location with a code-graph.sqlite ONLY (no live PID
+    // lease there, so formerLocationOwnerLive() is false and migration is allowed). The content
+    // is a fixed, recognizable payload so we can assert byte-stability of the migrated target.
+    const formerDbDir = join(
+      workspace.root,
+      '.opencode',
+      '.spec-kit',
+      'code-graph',
+      'database',
+    );
+    mkdirSync(formerDbDir, { recursive: true });
+    const formerSqlite = join(formerDbDir, 'code-graph.sqlite');
+    // Deterministic, non-trivial payload (8 KiB of a fixed byte) so a partial/truncating
+    // overwrite would change either the length or the content.
+    const seededContent = Buffer.alloc(8 * 1024, 0x5a);
+    writeFileSync(formerSqlite, seededContent);
+
+    const targetSqlite = join(dirname(workspace.pidFilePath), 'code-graph.sqlite');
+
+    // Spawn two launchers simultaneously; both will attempt migration in the un-fixed code.
+    const first = spawnLauncher(workspace.launcherPath, workspace.root);
+    const second = spawnLauncher(workspace.launcherPath, workspace.root);
+
+    // Wait for an owner to be recorded and for one launcher to report lease-held (the loser).
+    await waitFor(() => readOwnerLeasePid(workspace.root) !== null, 4000, 'owner lease');
+    await waitFor(() => existsSync(targetSqlite), 4000, 'migrated target DB');
+    await waitFor(
+      () =>
+        first.child.exitCode !== null ||
+        second.child.exitCode !== null ||
+        first.stdout.includes('LEASE_HELD_BY') ||
+        second.stdout.includes('LEASE_HELD_BY'),
+      8000,
+      'one launcher to settle (lease held)',
+    );
+
+    // Snapshot the migrated target, then let everything settle and re-read: a lagging copier in
+    // the un-fixed code could overwrite/truncate the live target between these two reads.
+    const afterFirst = readFileSync(targetSqlite);
+    await new Promise((r) => setTimeout(r, 400));
+    const afterSettle = readFileSync(targetSqlite);
+
+    // The migrated DB must equal the seeded source and never change (byte-stability).
+    expect(afterFirst.equals(seededContent)).toBe(true);
+    expect(afterSettle.equals(seededContent)).toBe(true);
+    expect(afterSettle.length).toBe(seededContent.length);
+
+    // Exactly one migration occurred across both launchers. The un-fixed code (no lock gate,
+    // no COPYFILE_EXCL) can log this line twice; the fix gates migration on the single
+    // bootstrap-lock winner, so it appears exactly once.
+    const migrationLines = (first.stderr + second.stderr).match(/migrated DB from/g) ?? [];
+    expect(migrationLines).toHaveLength(1);
+
+    // Exactly one launcher owns the lease; the other bridges/reports.
+    const ownerPid = readOwnerLeasePid(workspace.root);
+    expect(ownerPid).not.toBeNull();
+  });
+
   it('reclaims a stale-heartbeat owner lease with a live PID', async () => {
     const workspace = createWorkspace();
     const holder = await createLivePid();
@@ -336,6 +402,111 @@ describe('mk-code-index launcher lease', () => {
         await waitForExit(holder, 1000);
       } catch {
         holder.kill('SIGKILL');
+      }
+    }
+  });
+
+  // OR-2-01: two launchers reclaiming the SAME pre-existing stale-heartbeat owner lease at once.
+  // Both read the identical stale lease and BOTH enter acquireOwnerLeaseFile's reclaim branch
+  // (the DR-002-01 re-read CAS, lines ~373-386) — the path the existing concurrent-launcher test
+  // never reaches, because it spawns from a FRESH workspace where both take the O_EXCL 'wx'
+  // fresh-create path. This test seeds a stale-heartbeat owner lease owned by a LIVE helper pid
+  // (so classifyOwnerLease returns 'stale-heartbeat-reclaim') and spawns two launchers at once so
+  // both observe the same existing stale lease and both run the reclaim branch concurrently —
+  // genuinely new coverage of the concurrent reclaim path.
+  //
+  // SCOPE / DETERMINISM NOTE (honest): at the launcher-spawn boundary the acquire-time re-read CAS
+  // is NOT isolable from naive last-writer-wins, so this test does NOT claim to fail iff the
+  // re-read is deleted. Measured against both the patched launcher and a launcher with ONLY the
+  // acquire-time re-read removed, the spawned-process outcomes are statistically indistinguishable:
+  // single-writer is independently enforced by the bootstrap lock (acquireBootstrapLock), the PID
+  // lease, and the DR-008-03 re-read-before-unlink guard in clearOwnerLeaseFile. The acquire-time
+  // re-read only narrows a sub-syscall window already covered by those guards.
+  //
+  // Two further measured facts make stronger end-state assertions UNSOUND at this layer, so this
+  // test deliberately does NOT assert them: (1) the concurrent reclaim does not reach a clean
+  // LEASE_HELD_BY/exit terminal state within seconds — both launchers can stay alive (one
+  // daemon-parent, one bridged-and-waiting); and (2) when both launchers pass the owner-lease gate,
+  // the downstream PID-lease write is last-writer-wins, so the recorded PID lease can legitimately
+  // flip between the two launchers' pids (observed clobber on the patched launcher too). These are
+  // launcher-runtime characteristics outside the scope of OR-2-01 (a test-only finding) and the
+  // OR-1-01 migration-block edit.
+  //
+  // What this test asserts is what IS deterministically true and valuable as regression coverage:
+  // both concurrent launchers exercise the stale-heartbeat reclaim branch (new coverage — the
+  // existing concurrent test uses a FRESH workspace and only hits the O_EXCL fresh-create path),
+  // neither launcher errors/crashes in that path, and the seeded stale holder is reclaimed away —
+  // it never remains the recorded owner once both launchers have reclaimed.
+  it('exercises the concurrent stale-heartbeat reclaim branch in both launchers without errors', async () => {
+    const ROUNDS = 5;
+    for (let round = 0; round < ROUNDS; round += 1) {
+      const workspace = createWorkspace();
+      const holder = await createLivePid();
+      const ownerLeasePath = join(workspace.root, ownerLeaseRelativePath);
+      const dbDir = dirname(ownerLeasePath);
+
+      try {
+        // Seed a stale-heartbeat owner lease owned by a LIVE helper pid so classifyOwnerLease
+        // returns 'stale-heartbeat-reclaim' (live pid + heartbeat older than 2*ttlMs), forcing
+        // both launchers down the reclaim branch rather than the fresh-create branch.
+        mkdirSync(dbDir, { recursive: true });
+        writeFileSync(ownerLeasePath, JSON.stringify({
+          ownerPid: holder.pid,
+          ppid: process.pid,
+          executablePath: process.execPath,
+          startedAtIso: '2026-05-22T00:00:00.000Z',
+          lastHeartbeatIso: '2026-05-22T00:00:00.000Z',
+          ttlMs: 10,
+          canonicalDbDir: resolve(dbDir),
+        }, null, 2));
+
+        // Spawn both simultaneously so both observe the SAME existing stale lease and both enter
+        // the reclaim re-read CAS.
+        const first = spawnLauncher(workspace.launcherPath, workspace.root);
+        const second = spawnLauncher(workspace.launcherPath, workspace.root);
+
+        // BOTH must observe the stale lease and run the reclaim branch — the precondition that
+        // gives this test its coverage value (the existing concurrent test never reaches it).
+        await waitFor(
+          () => /ownerLeaseReclaimed: stale-heartbeat-reclaim/.test(first.stderr),
+          4000,
+          `first launcher stale-heartbeat reclaim (round ${round})`,
+        );
+        await waitFor(
+          () => /ownerLeaseReclaimed: stale-heartbeat-reclaim/.test(second.stderr),
+          4000,
+          `second launcher stale-heartbeat reclaim (round ${round})`,
+        );
+
+        // The reclaim must actually take effect: the seeded stale holder is gone from the recorded
+        // owner lease (a launcher reclaimed it). Once a launcher has reclaimed, the holder must
+        // never remain the owner. This is deterministically true (the holder lease is stale).
+        await waitFor(
+          () => readOwnerLeasePid(workspace.root) !== holder.pid,
+          4000,
+          `seeded stale holder to be reclaimed out of the owner lease (round ${round})`,
+        );
+
+        // Neither launcher crashed in the reclaim path (no failure log / non-1 exit). The reclaim
+        // either elects an owner or bridges; it must never raise an error.
+        const reclaimErrored = (run: LauncherRun): boolean =>
+          /^\[mk-code-index-launcher\] failed:/m.test(run.stderr) || run.child.exitCode === 1;
+        expect(reclaimErrored(first), `first launcher must not error in reclaim (round ${round})`).toBe(false);
+        expect(reclaimErrored(second), `second launcher must not error in reclaim (round ${round})`).toBe(false);
+
+        // And the stale holder never re-asserts ownership after the reclaim.
+        expect(readOwnerLeasePid(workspace.root), `seeded stale holder must not own the lease (round ${round})`).not.toBe(holder.pid);
+      } finally {
+        while (launcherRuns.length > 0) {
+          const run = launcherRuns.pop();
+          if (run) await terminate(run);
+        }
+        holder.kill('SIGTERM');
+        try {
+          await waitForExit(holder, 1000);
+        } catch {
+          holder.kill('SIGKILL');
+        }
       }
     }
   });
