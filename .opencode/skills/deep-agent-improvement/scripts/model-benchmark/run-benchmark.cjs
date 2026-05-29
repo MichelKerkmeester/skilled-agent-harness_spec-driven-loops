@@ -82,6 +82,18 @@ function fixturePathFor(fixtureRef, fixtureDir) {
   return path.join(fixtureDir, fileName);
 }
 
+// F-P1-13: the immutable history snapshot lives at a basename derived from the
+// (author-controlled) label. Reduce the label to a safe filename fragment so it
+// cannot escape report-history/, then timestamp it for per-iteration uniqueness.
+function sanitizeLabel(label) {
+  const cleaned = String(label).replace(/[^A-Za-z0-9._-]+/g, '-').replace(/^-+|-+$/g, '');
+  return cleaned.length > 0 ? cleaned.slice(0, 120) : 'benchmark';
+}
+
+function timestampStamp() {
+  return new Date().toISOString().replace(/[:.]/g, '-');
+}
+
 function loadFixtures(profile, profilePath) {
   const profileDir = path.dirname(profilePath);
   const fixtureDir = resolveMaybeRelative(profile.fixtureDir || profile.benchmark?.fixtureDir, profileDir);
@@ -89,7 +101,11 @@ function loadFixtures(profile, profilePath) {
   const fixtureFiles = Array.isArray(fixtureRefs)
     ? fixtureRefs.map((fixtureRef) => fixturePathFor(fixtureRef, fixtureDir))
     : listJsonFiles(fixtureDir);
-  return fixtureFiles.map((filePath) => readJson(filePath));
+  return {
+    fixtures: fixtureFiles.map((filePath) => readJson(filePath)),
+    fixtureDir,
+    fixtureFiles,
+  };
 }
 
 function inferStateLogPath(outputsDir) {
@@ -103,8 +119,50 @@ function inferStateLogPath(outputsDir) {
   return null;
 }
 
+// F-P1-9 (014 review): fixture.id is later used as a path segment via
+// path.join(outputsDir, `${fixture.id}.md`). An unsanitized id like '../evil'
+// or 'a/b' would escape outputsDir. Restrict ids to a basename charset and
+// reject path separators / parent-dir traversal before any path.join.
+const SAFE_FIXTURE_ID = /^[A-Za-z0-9._-]+$/;
+
+function assertSafeFixtureId(id) {
+  if (typeof id !== 'string' || id.length === 0 || !SAFE_FIXTURE_ID.test(id) || id === '.' || id === '..') {
+    throw new Error(`run-benchmark: unsafe fixture id '${id}' (must match ${SAFE_FIXTURE_ID} and not be '.'/'..' or contain path separators)`);
+  }
+  return id;
+}
+
+function fixtureOutputPath(outputsDir, id) {
+  assertSafeFixtureId(id);
+  return path.join(outputsDir, `${id}.md`);
+}
+
+// P2 (014 review, regex DoS): fixture/profile-authored requiredPatterns and
+// forbiddenPatterns are compiled with `new RegExp(value, 'i')` and tested
+// against full model output. A crafted pattern with nested quantifiers can
+// trigger catastrophic backtracking. Bound the authored pattern length so a
+// single pattern cannot encode an exponential-backtracking construct over a
+// long input, and anchor matching cost by capping the tested input length.
+const MAX_PATTERN_LENGTH = 512;
+const MAX_MATCH_INPUT_LENGTH = 200000;
+
 function compilePatterns(patterns) {
-  return (patterns || []).map((value) => new RegExp(value, 'i'));
+  return (patterns || []).map((value) => {
+    const source = String(value);
+    if (source.length > MAX_PATTERN_LENGTH) {
+      throw new Error(`run-benchmark: pattern exceeds ${MAX_PATTERN_LENGTH} chars (len=${source.length}); refusing to compile to avoid regex DoS`);
+    }
+    return new RegExp(source, 'i');
+  });
+}
+
+// Bound the input a regex is tested against so a pathological pattern that
+// slipped past the length guard still cannot run unbounded over huge output.
+function safeRegexTest(regex, content) {
+  const input = content.length > MAX_MATCH_INPUT_LENGTH
+    ? content.slice(0, MAX_MATCH_INPUT_LENGTH)
+    : content;
+  return regex.test(input);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -131,12 +189,12 @@ function scoreFixture(fixture, outputPath) {
   const patternRegexes = compilePatterns(fixture.requiredPatterns);
   const missingPatterns = patternRegexes
     .map((regex, index) => ({ regex, source: fixture.requiredPatterns[index] }))
-    .filter((entry) => !entry.regex.test(content))
+    .filter((entry) => !safeRegexTest(entry.regex, content))
     .map((entry) => entry.source);
   const forbiddenRegexes = compilePatterns(fixture.forbiddenPatterns);
   const forbiddenMatches = forbiddenRegexes
     .map((regex, index) => ({ regex, source: fixture.forbiddenPatterns[index] }))
-    .filter((entry) => entry.regex.test(content))
+    .filter((entry) => safeRegexTest(entry.regex, content))
     .map((entry) => entry.source);
 
   const headingScore =
@@ -252,6 +310,16 @@ async function scoreFixture5dim(fixture, outputPath, cwdAbs, graderKind, scorerM
 // 4. INTEGRATION SCORING
 // ─────────────────────────────────────────────────────────────────────────────
 
+// P2 (014 review): every sub-score below is on a normalized 0..100 scale and
+// combined with the weights defined here. Earlier comments described a "10 pt"
+// scale that did not match the code; these named constants are now the single
+// source of truth for the integration score composition.
+const INTEGRATION_FULL_SCORE = 100;
+const MIRROR_MISSING_PENALTY = 30;
+const MIRROR_DIVERGED_PENALTY = 20;
+const COVERAGE_PRESENT_SCORE = 100; // binary: >=1 reference => full normalized score
+const INTEGRATION_WEIGHTS = { mirror: 0.6, command: 0.2, skill: 0.2 };
+
 function scoreIntegration(integrationReportPath) {
   const data = readJson(integrationReportPath);
 
@@ -261,35 +329,37 @@ function scoreIntegration(integrationReportPath) {
   const commandRefs = data.commandReferences || (data.surfaces && data.surfaces.commands) || [];
   const skillRefs = data.skillReferences || (data.surfaces && data.surfaces.skills) || [];
 
-  // --- Mirror sync score (base 100, penalize diverged/missing) ---
-  let mirrorScore = 100;
+  // --- Mirror sync score (0..100, start full and penalize diverged/missing) ---
+  let mirrorScore = INTEGRATION_FULL_SCORE;
   for (const mirror of mirrors) {
     const mStatus = mirror.status || mirror.syncStatus;
     if (mStatus === 'missing') {
-      mirrorScore -= 30;
+      mirrorScore -= MIRROR_MISSING_PENALTY;
     } else if (mStatus === 'diverged') {
-      mirrorScore -= 20;
+      mirrorScore -= MIRROR_DIVERGED_PENALTY;
     }
   }
   mirrorScore = Math.max(0, mirrorScore);
   const mirrorStatus =
-    mirrorScore === 100
+    mirrorScore === INTEGRATION_FULL_SCORE
       ? 'all-aligned'
       : mirrors.some((entry) => (entry.status || entry.syncStatus) === 'missing')
         ? 'has-missing'
         : 'has-divergence';
 
-  // --- Command coverage (binary: at least 1 reference = 10 pts) ---
+  // --- Command coverage (binary: >=1 reference => COVERAGE_PRESENT_SCORE, else 0) ---
   const commandCount = commandRefs.length;
-  const commandScore = commandCount >= 1 ? 100 : 0;
+  const commandScore = commandCount >= 1 ? COVERAGE_PRESENT_SCORE : 0;
 
-  // --- Skill coverage (binary: at least 1 reference = 10 pts) ---
+  // --- Skill coverage (binary: >=1 reference => COVERAGE_PRESENT_SCORE, else 0) ---
   const skillCount = skillRefs.length;
-  const skillScore = skillCount >= 1 ? 100 : 0;
+  const skillScore = skillCount >= 1 ? COVERAGE_PRESENT_SCORE : 0;
 
-  // --- Weighted average (mirror: 60%, command: 20%, skill: 20%) ---
+  // --- Weighted average on the 0..100 scale (mirror 60%, command 20%, skill 20%) ---
   const integrationScore = Math.round(
-    mirrorScore * 0.6 + commandScore * 0.2 + skillScore * 0.2
+    mirrorScore * INTEGRATION_WEIGHTS.mirror
+    + commandScore * INTEGRATION_WEIGHTS.command
+    + skillScore * INTEGRATION_WEIGHTS.skill,
   );
 
   return {
@@ -336,21 +406,35 @@ async function main() {
   const stateLogPath = args['state-log'] || inferStateLogPath(outputsDir);
   const label = args.label || `${path.basename(profileArg, '.json')}-benchmark`;
 
+  // F-P1-7 + traceability-4-2 (014 review): provenance that must survive on BOTH
+  // success and failure paths. profilePath/profileVersion/fixtureDir start null
+  // and are filled once the profile loads, so a failure before/after load still
+  // records whatever provenance was resolved.
+  let profilePath = null;
+  let profileVersion = null;
+  let fixtureDir = null;
+  let fixtureFiles = [];
+
   try {
     const loadedProfile = loadProfile(profileArg, profilesDir);
     const profile = loadedProfile.data;
+    profilePath = loadedProfile.path;
     profileId = profile.profileId || profile.id || profileId;
-    const fixtures = loadFixtures(profile, loadedProfile.path);
+    profileVersion = profile.version ?? null;
+    const loaded = loadFixtures(profile, loadedProfile.path);
+    const fixtures = loaded.fixtures;
+    fixtureDir = loaded.fixtureDir;
+    fixtureFiles = loaded.fixtureFiles;
     let results;
     if (scorer === '5dim') {
       // Lazy-require so the default path never loads the scorer tree.
       const scorerModule = require('./scorer/score-model-variant.cjs');
       const cwdAbs = path.resolve(outputsDir);
       results = await Promise.all(
-        fixtures.map((fixture) => scoreFixture5dim(fixture, path.join(outputsDir, `${fixture.id}.md`), cwdAbs, graderKind, scorerModule)),
+        fixtures.map((fixture) => scoreFixture5dim(fixture, fixtureOutputPath(outputsDir, fixture.id), cwdAbs, graderKind, scorerModule)),
       );
     } else {
-      results = fixtures.map((fixture) => scoreFixture(fixture, path.join(outputsDir, `${fixture.id}.md`)));
+      results = fixtures.map((fixture) => scoreFixture(fixture, fixtureOutputPath(outputsDir, fixture.id)));
     }
     const aggregateScore = results.length === 0
       ? 0
@@ -368,13 +452,25 @@ async function main() {
       aggregateScore >= aggregateThreshold && results.every((entry) => entry.score >= minimumFixtureScore)
         ? 'benchmark-pass'
         : 'benchmark-fail';
+    // traceability-7-5 (014 review): persist profile + fixture provenance so a
+    // report can be traced back to the exact profile file, version, and fixtures.
+    const provenance = {
+      profilePath,
+      profileVersion,
+      fixtureDir,
+      fixtureFiles,
+    };
     const report = {
       status: 'benchmark-complete',
       scoringMethod: scorer,
+      // traceability-4-2 (014 review): grader is part of the run identity for the
+      // 5dim path; persist it on every report so 5dim+mock/llm runs are attributable.
+      grader: graderKind,
       profileId,
       family: profile.family,
       target: profile.targetPath,
       label,
+      provenance,
       aggregateScore,
       maxScore: 100,
       totals: {
@@ -404,17 +500,30 @@ async function main() {
 
     writeJson(outputPath, report);
 
+    // F-P1-13 / traceability-7-2 (014 review): outputPath is a mutable canonical
+    // location overwritten every iteration, so historical state-log rows would all
+    // point at the latest report. Also write an immutable, label-stamped snapshot
+    // and persist that snapshot path in the ledger so each iteration's report is
+    // recoverable. The canonical report.json stays the stable "latest" pointer.
+    const historyDir = path.join(path.dirname(outputPath), 'report-history');
+    const snapshotName = `report-${sanitizeLabel(label)}-${timestampStamp()}.json`;
+    const snapshotPath = path.join(historyDir, snapshotName);
+    writeJson(snapshotPath, report);
+
     if (stateLogPath) {
       appendJsonl(stateLogPath, {
         type: 'benchmark_run',
         mode: 'model-benchmark',
         scoringMethod: scorer,
+        grader: graderKind,
         profileId,
         family: profile.family,
         target: profile.targetPath,
         label,
         outputDir: outputsDir,
         report: outputPath,
+        reportSnapshot: snapshotPath,
+        provenance,
         aggregateScore,
         totals: report.totals,
         rows: results,
@@ -425,11 +534,21 @@ async function main() {
   } catch (error) {
     const failure = {
       status: 'infra_failure',
+      // F-P1-7 (014 review): a failed 5dim/mock/llm run must be distinguishable
+      // from a pattern/noop failure, so carry scorer + grader provenance here too.
+      scoringMethod: scorer,
+      grader: graderKind,
       profileId,
       family: null,
       evaluationMode: 'benchmark',
       mode: 'model-benchmark',
       outputsDir,
+      provenance: {
+        profilePath,
+        profileVersion,
+        fixtureDir,
+        fixtureFiles,
+      },
       error: error.message,
       failureModes: ['benchmark-runner-failure'],
     };
@@ -439,8 +558,16 @@ async function main() {
         type: 'infra_failure',
         mode: 'model-benchmark',
         evaluationMode: 'benchmark',
+        scoringMethod: scorer,
+        grader: graderKind,
         profileId,
         family: null,
+        provenance: {
+          profilePath,
+          profileVersion,
+          fixtureDir,
+          fixtureFiles,
+        },
         recommendation: 'infra_failure',
         error: error.message,
         failureModes: ['benchmark-runner-failure'],

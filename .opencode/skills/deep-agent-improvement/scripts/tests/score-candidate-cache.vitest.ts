@@ -14,9 +14,9 @@ const SCORE_SCRIPT = path.join(
 
 let tmpDir: string;
 
-function writeCandidate(filePath: string): void {
+function writeCandidate(filePath: string, agentName = 'cache-smoke-agent'): void {
   fs.writeFileSync(filePath, `---
-name: cache-smoke-agent
+name: ${agentName}
 mode: subagent
 permission:
   edit: allow
@@ -94,5 +94,31 @@ describe('score-candidate cache reproducibility', () => {
     expect(second.inputHash).toBe(first.inputHash);
     expect(second.score).toBe(first.score);
     expect(second.dimensions).toEqual(first.dimensions);
+  });
+
+  // F-P1-12: the cache key must bind candidate identity (path), so two different
+  // candidates can never collide on a single cache entry even with a shared cache dir.
+  it('never shares a cache hit between two different candidates', () => {
+    const cacheDir = path.join(tmpDir, 'shared-cache');
+    const candidateA = path.join(tmpDir, 'candidate-a.md');
+    const candidateB = path.join(tmpDir, 'candidate-b.md');
+    writeCandidate(candidateA, 'cache-agent-a');
+    writeCandidate(candidateB, 'cache-agent-b');
+
+    const resultA = runScore(candidateA, cacheDir);
+    const resultB = runScore(candidateB, cacheDir);
+
+    // Distinct candidate identity must produce distinct cache keys.
+    expect(resultB.inputHash).not.toBe(resultA.inputHash);
+    // Each result reports its own candidate path, never the other's.
+    expect(resultA.candidate).toBe(candidateA);
+    expect(resultB.candidate).toBe(candidateB);
+
+    // Re-running B must reuse B's own cache entry (same hash, same candidate path),
+    // never silently return A's cached payload.
+    const resultBAgain = runScore(candidateB, cacheDir);
+    expect(resultBAgain.inputHash).toBe(resultB.inputHash);
+    expect(resultBAgain.candidate).toBe(candidateB);
+    expect(resultBAgain.inputHash).not.toBe(resultA.inputHash);
   });
 });

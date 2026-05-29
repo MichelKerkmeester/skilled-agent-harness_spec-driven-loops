@@ -104,7 +104,7 @@ skill_reference:
 # ─────────────────────────────────────────────────────────────────
 state_paths:
   runtime_root: "{spec_folder}/improvement"
-  config: "{spec_folder}/improvement/agent-improvement-config.json"
+  config: "{spec_folder}/improvement/model-benchmark-config.json"
   state_log: "{spec_folder}/improvement/agent-improvement-state.jsonl"
   dashboard: "{spec_folder}/improvement/agent-improvement-dashboard.md"
   registry: "{spec_folder}/improvement/experiment-registry.json"
@@ -175,13 +175,14 @@ workflow:
           B) Stop loop
       step_run_benchmark:
         description: "Run the model-benchmark loop host: materialize fixtures then run-benchmark (EC-5 ordering, internal to loop-host)"
-        command: "node .opencode/skills/deep-agent-improvement/scripts/shared/loop-host.cjs --mode=model-benchmark --profile {profile} --outputs-dir {spec_folder}/improvement/benchmark-outputs --scorer {scoring_method} --grader {grader}"
+        command: "node .opencode/skills/deep-agent-improvement/scripts/shared/loop-host.cjs --mode=model-benchmark --profile \"{profile}\" --outputs-dir \"{spec_folder}/improvement/benchmark-outputs\" --scorer \"{scoring_method}\" --grader \"{grader}\""
       step_emit_journal_event_benchmark_completed:
         description: "Emit benchmark_completed journal event after report.json exists"
         command: "test -f {spec_folder}/improvement/benchmark-outputs/report.json && node .opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"profile\":\"{profile}\",\"benchmarkOutputPath\":\"{spec_folder}/improvement/benchmark-outputs/report.json\",\"scoringMethod\":\"{scoring_method}\"}'"
       step_append_ledger:
-        description: "Record benchmark results in append-only JSONL ledger"
-        action: "Append benchmark records (with scoringMethod and aggregate score) into agent-improvement-state.jsonl"
+        description: "Verify the benchmark_run ledger row written by run-benchmark.cjs"
+        ledger_ownership: "run-benchmark.cjs is the sole ledger writer. It appends the benchmark_run row (with mode, scoringMethod, and aggregate score) when it can infer the state-log path. This step VERIFIES that row exists. The orchestrator does NOT append a duplicate."
+        action: "Confirm a benchmark_run row for this iteration was appended to agent-improvement-state.jsonl by run-benchmark.cjs; if the runner could not infer the state-log path, re-run with an explicit --state-log so the runner writes it."
       step_reduce:
         description: "Refresh dashboard, registry, and benchmark progress"
         command: "node .opencode/skills/deep-agent-improvement/scripts/shared/reduce-state.cjs {spec_folder}/improvement"
@@ -198,9 +199,10 @@ workflow:
         description: "Emit legal_stop_evaluated journal event after the operator gate is evaluated"
         command: "node .opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs --emit legal_stop_evaluated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"scoringMethod\":\"{scoring_method}\",\"stopReason\":\"{stop_reason}\"}'"
       step_promote_candidate:
-        description: "Promote the accepted benchmark variant to canonical target (guarded, requires benchmark evidence)"
-        condition: "gate_after_score == 'B' AND benchmark_recommendation == 'candidate-better'"
-        command: "node .opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --score={score_output_path} --benchmark-report={spec_folder}/improvement/benchmark-outputs/report.json --config={spec_folder}/improvement/agent-improvement-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
+        description: "Promote the accepted benchmark variant to canonical target (guarded, requires Lane B benchmark evidence)"
+        condition: "gate_after_score == 'B' AND benchmark report recommendation == 'benchmark-pass' AND benchmark report status == 'benchmark-complete'"
+        promotion_evidence: "The Lane B gate is the benchmark report ({spec_folder}/improvement/benchmark-outputs/report.json) passed via --benchmark-report. promote-candidate.cjs reads recommendation, status, target, profileId, and aggregateScore from that report and refuses promotion unless the benchmark gate passes."
+        command: "node .opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --score={score_output_path} --benchmark-report={spec_folder}/improvement/benchmark-outputs/report.json --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
 
   phase_synthesis:
     description: "After loop exits, summarize findings and recommend next action"
@@ -216,4 +218,5 @@ workflow:
         action: "Report STATUS=benchmark-complete with scoringMethod={scoring_method}, grader={grader}, and the final aggregate score"
       step_emit_journal_event:
         description: "Emit session_end journal event after synthesis completes"
-        command: "node .opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"benchmark-complete\",\"scoringMethod\":\"{scoring_method}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"
+        outcome_binding: "Bind {session_outcome} to a canonical sessionOutcome enum value (keptBaseline | promoted | rolledBack | advisoryOnly). A benchmark run that did not promote a variant binds advisoryOnly. A promoted variant binds promoted."
+        command: "node .opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"stopReason\":\"{stop_reason}\",\"sessionOutcome\":\"{session_outcome}\",\"scoringMethod\":\"{scoring_method}\",\"endedAt\":\"{ended_at}\",\"totalIterations\":\"{total_iterations}\"}'"

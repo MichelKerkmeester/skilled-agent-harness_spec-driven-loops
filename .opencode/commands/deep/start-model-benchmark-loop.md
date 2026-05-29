@@ -1,6 +1,6 @@
 ---
 description: "Benchmark a model or prompt framework: fixtures, pattern or 5dim scoring, deterministic or graded runs. :auto/:confirm."
-argument-hint: "<profile_path> [:auto|:confirm] [--spec-folder=PATH] [--scorer=pattern|5dim] [--grader=noop|mock|llm] [--executor=NAME --model=NAME] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<profile_path> [:auto|:confirm] [--spec-folder=PATH] [--scorer=pattern|5dim] [--grader=noop|mock|llm] [--iterations=N] [--executor=NAME --model=NAME] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
@@ -73,7 +73,7 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 - Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist a config record under `{spec_folder}/improvement/model-benchmark-config.json` (shape: `lane: "model-benchmark"`, `profilePath`, `specFolder`, `outputsDir`, `executionMode: "auto"`, `scoringMethod`, `grader`, optional `executor`, optional `model`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml`. End §0.
+1. **Tier 1 - Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist a config record under `{spec_folder}/improvement/model-benchmark-config.json` (shape: `lane: "model-benchmark"`, `profilePath`, `specFolder`, `outputsDir`, `executionMode: "auto"`, `scoringMethod`, `grader`, optional `executor`, optional `model`, and when `grader = llm` also thread `executor`/`model` into `modelBenchmarkConfig.target_model` so `dispatch-model.cjs` reads them), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml`. End §0.
 
 2. **Tier 2 - Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. `profile_path` absence is not ambiguity because it has a default, and `executor`/`model` are only required when `grader = llm`.
 
@@ -92,6 +92,7 @@ PRE-BOUND SETUP ANSWERS:
   execution_mode: AUTONOMOUS  # from :auto suffix
   scoring_method: pattern  # pattern (default) or 5dim
   grader: noop  # noop (default) | mock | llm
+  max_iterations: 5  # positive integer; default 5
   executor: cli-codex  # required only when grader = llm; one of cli-opencode | cli-claude-code | cli-codex | cli-gemini | cli-devin
   model: gpt-5.5  # required only when grader = llm; model id for the chosen executor
 ```
@@ -109,6 +110,7 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default,
 | `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
 | `scoring_method` | Y | flag `--scorer`, marker `scoring_method`, Q3 equivalent, or default | `pattern` | N |
 | `grader` | Y | flag `--grader`, marker `grader`, Q4 equivalent, or default | `noop` | N |
+| `max_iterations` | Y | flag `--iterations`, marker `max_iterations`, or default | `5` | N |
 | `executor` | Conditional | flag `--executor`, marker `executor`, required only when `grader = llm` | none | N |
 | `model` | Conditional | flag `--model`, marker `model`, required only when `grader = llm` | none | N |
 
@@ -138,10 +140,11 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ├─ IF present → spec_folder = value, omit Q1
    └─ IF missing → include Q1 in prompt
 
-5. CHECK for --scorer / --grader flags:
+5. CHECK for --scorer / --grader / --iterations flags:
    ├─ IF --scorer present → scoring_method = value, omit Q3
    ├─ IF --grader present → grader = value, omit Q4
-   └─ IF missing → scoring_method = pattern (default), grader = noop (default)
+   ├─ IF --iterations present → max_iterations = value
+   └─ IF missing → scoring_method = pattern (default), grader = noop (default), max_iterations = 5 (default)
 
 6. List available benchmark profiles for Q0:
    $ ls .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/*.json
@@ -196,6 +199,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - scoring_method = [pattern or 5dim from Q3 or --scorer]
    - grader = [noop/mock/llm from Q4 or --grader]
+   - max_iterations = [from --iterations or default 5]
    - executor = [from Q5, only when grader = llm]
    - model = [from Q5, only when grader = llm]
 
@@ -221,6 +225,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `execution_mode = ________________`
 - `scoring_method = ________________`
 - `grader = ________________`
+- `max_iterations = ________________`
 - `executor = ________________` (only when grader = llm)
 - `model = ________________` (only when grader = llm)
 
@@ -240,6 +245,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 | execution_mode         | ✅ Yes         | ______     | Suffix or Q2            |
 | scoring_method         | ✅ Yes         | ______     | Q3 or --scorer          |
 | grader                 | ✅ Yes         | ______     | Q4 or --grader          |
+| max_iterations         | ✅ Yes         | ______     | --iterations or 5       |
 | executor               | Conditional   | ______     | Q5 (only when grader=llm) |
 | model                  | Conditional   | ______     | Q5 (only when grader=llm) |
 
@@ -308,6 +314,7 @@ node .opencode/skills/deep-agent-improvement/scripts/shared/loop-host.cjs \
 - `--profile` and `--outputs-dir` are required for the model-benchmark path. `loop-host.cjs` forwards `--output`, `--state-log`, `--label`, and `--profiles-dir` through to `run-benchmark.cjs`.
 - `--scorer pattern` (default, heading/pattern matcher) or `--scorer 5dim` (ported 5-dimension scorer via `scripts/model-benchmark/scorer/score-model-variant.cjs`). `--scorer` and `--grader` are consumed at the `run-benchmark.cjs` layer.
 - `--grader noop` (default, deterministic, no model dispatch) or `--grader mock` (stub) or `--grader llm` (real model dispatch).
+- **Threading executor/model when `grader = llm`:** the gathered `executor` and `model` values are NOT loop-host flags. Setup MUST persist them into `modelBenchmarkConfig.target_model` (executor + model) inside the runtime config that `dispatch-model.cjs` reads, so the dispatcher resolves the requested executor and model. Setup persists `executor` and `model` into the Lane B config record (see Step 3) and the config record threads `modelBenchmarkConfig.target_model`. Without that thread, `dispatch-model.cjs` falls back to its built-in defaults and the gathered values are silently dropped.
 - An unknown `--mode` warns to stderr and falls back to agent-improvement. An unknown `--scorer` warns and falls back to `pattern`.
 
 ### Default Profile and Fixtures
@@ -375,7 +382,7 @@ Create the benchmark output directory:
 ```bash
 mkdir -p {spec_folder}/improvement/benchmark-outputs
 ```
-Persist the config record to `{spec_folder}/improvement/model-benchmark-config.json` (`lane`, `profilePath`, `specFolder`, `outputsDir`, `executionMode`, `scoringMethod`, `grader`, optional `executor`, optional `model`).
+Persist the config record to `{spec_folder}/improvement/model-benchmark-config.json` (`lane`, `profilePath`, `specFolder`, `outputsDir`, `executionMode`, `scoringMethod`, `grader`, optional `executor`, optional `model`). When `grader = llm`, also thread the gathered `executor` and `model` into `modelBenchmarkConfig.target_model` (shape: `{ "modelBenchmarkConfig": { "target_model": { "executor": "<executor>", "model": "<model>" } } }`) so `dispatch-model.cjs` resolves the requested executor and model instead of its built-in defaults.
 
 ### Step 4: Execute Loop
 

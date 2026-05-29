@@ -99,7 +99,7 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default;
 
 | Field | Required | Resolves Via | Default | Tier-2 Candidate |
 |-------|----------|--------------|---------|------------------|
-| `lane` | Y | flag `--lane`, marker `lane`, agent-path presence -> `agent-improvement`, benchmark-profile or `--profile` arg -> `model-benchmark` | `agent-improvement` when an agent path is present | N |
+| `lane` | Y | explicit flag `--lane` or marker `lane` resolved FIRST (an explicit `--lane=model-benchmark` that conflicts with a supplied agent path fails fast or asks one disambiguation, never silently picks Lane A). Then agent-path presence -> `agent-improvement`. Then benchmark-profile or `--profile` arg -> `model-benchmark` | `agent-improvement` when an agent path is present and no explicit lane | N |
 | `target_path` | Y | `$ARGUMENTS` agent path, or marker `target_path` | none | N |
 | `target_profile` | Y | marker `target_profile`, or auto-detect from `target_path` (`handover` -> `handover`, `context-prime` -> `context-prime`, otherwise `dynamic`) | inferred from `target_path` | N |
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or requires-ask | none | Y |
@@ -123,17 +123,30 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
    └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-1B. RESOLVE lane BEFORE the agent-path check (additive; default is Lane A):
-   ├─ IF $ARGUMENTS contains an agent path (.opencode/agents/*.md) OR --lane=agent-improvement OR marker lane=agent-improvement
-   │     → lane = "agent-improvement", omit Q(lane), proceed exactly as today (Lane A)
-   ├─ IF --lane=model-benchmark OR marker lane=model-benchmark OR a --profile arg / benchmark-profile is present
-   │     → lane = "model-benchmark" → AUTO-ROUTE to the dedicated model-benchmark workflow:
-   │         load .opencode/commands/deep/assets/deep_start-model-benchmark-loop_{auto,confirm}.yaml
-   │         (see /deep:start-model-benchmark-loop). Subsequent questions become the Lane B set
-   │         (profile, outputs/spec_folder, exec, scoring_method, grader, executor+model).
-   │         DO NOT ask Q0/Q1/Q3 (the agent-improvement questions).
-   └─ IF neither lane signal present AND interactive (no :auto)
+1B. RESOLVE lane BEFORE the agent-path check (additive; default is Lane A).
+   Evaluate EXPLICIT lane signals (--lane flag or marker lane) FIRST, before any
+   agent-path inference, so an explicit lane is never shadowed (F-P1-8):
+   ├─ IF explicit --lane=model-benchmark OR marker lane=model-benchmark
+   │     ├─ AND an agent path (.opencode/agents/*.md) is ALSO present → CONFLICT:
+   │     │     do NOT silently pick a lane. Fail fast with a one-line conflict error,
+   │     │     or ask ONE disambiguation question ("Explicit --lane=model-benchmark
+   │     │     conflicts with the supplied agent path. Which lane?"). Resolve before proceeding.
+   │     └─ ELSE → lane = "model-benchmark" → AUTO-ROUTE (see Lane B routing below).
+   ├─ IF explicit --lane=agent-improvement OR marker lane=agent-improvement
+   │     → lane = "agent-improvement", omit Q(lane), proceed exactly as today (Lane A).
+   ├─ IF NO explicit lane AND $ARGUMENTS contains an agent path (.opencode/agents/*.md)
+   │     → lane = "agent-improvement" (CMD-1: agent path with no explicit lane still
+   │       auto-resolves to Lane A unchanged), omit Q(lane), proceed as today.
+   ├─ IF NO explicit lane AND a --profile arg / benchmark-profile is present (no agent path)
+   │     → lane = "model-benchmark" → AUTO-ROUTE (see Lane B routing below).
+   └─ IF neither lane signal nor an agent path present AND interactive (no :auto)
          → include Q(lane) as the FIRST question in the consolidated prompt and resolve it before Q0.
+
+   Lane B routing: AUTO-ROUTE to the dedicated model-benchmark workflow:
+   load .opencode/commands/deep/assets/deep_start-model-benchmark-loop_{auto,confirm}.yaml
+   (see /deep:start-model-benchmark-loop). Subsequent questions become the Lane B set
+   (profile, outputs/spec_folder, exec, scoring_method, grader, executor+model).
+   DO NOT ask Q0/Q1/Q3 (the agent-improvement questions).
 
 2. CHECK if $ARGUMENTS contains an agent path (Lane A only; skipped when lane=model-benchmark):
    ├─ IF present (.opencode/agents/*.md) → target_path = detected value, omit Q0

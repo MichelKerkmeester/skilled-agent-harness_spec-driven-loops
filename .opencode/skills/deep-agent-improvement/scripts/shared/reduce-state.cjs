@@ -611,6 +611,12 @@ function buildRegistry(records) {
     const bucket = profiles[profileId];
     bucket.latestRecord = record;
     bucket.metrics.totalRecords += 1;
+    // P2 (DOCUMENT-ACCEPT, from F-P2-5): a missing or unknown record.mode is
+    // deliberately attributed to agent-improvement. Lane A is the legacy default
+    // because pre-mode-switch records predate the model-benchmark lane and carry no
+    // mode field; treating them as agent-improvement keeps historical ledgers stable.
+    // Only the exact 'model-benchmark' string routes to Lane B; everything else,
+    // including typos, falls through to the Lane A bucket by design.
     const mode = record.mode === 'model-benchmark' ? 'model-benchmark' : 'agent-improvement';
     bucket.modes[mode] += 1;
     globalModes[mode] += 1;
@@ -770,8 +776,9 @@ function evaluateStopStatus(registry, config, mirrorDriftReport) {
     reasons.push('mirror drift ambiguity detected');
   }
 
+  const plateauWindow = Number(stopRules.plateauWindow || 3);
+
   if (stopRules.stopOnDimensionPlateau) {
-    const plateauWindow = Number(stopRules.plateauWindow || 3);
     for (const [profileId, bucket] of Object.entries(registry.profiles)) {
       const dims = bucket.dimensionScores;
       const dimsWithEnoughData = Object.entries(dims).filter(([, scores]) => scores.length >= plateauWindow);
@@ -786,6 +793,35 @@ function evaluateStopStatus(registry, config, mirrorDriftReport) {
           if (profileStates[profileId]) {
             profileStates[profileId].shouldStop = true;
             profileStates[profileId].reasons.push('all dimensions plateaued');
+          }
+        }
+      }
+    }
+  }
+
+  // F-P1-5: Lane B benchmark aggregate plateau. The model-benchmark YAML promises a
+  // stop on "benchmark scores plateau (3+ identical aggregate scores)", but the
+  // dimension-plateau block above only inspects bucket.dimensionScores (Lane A). Lane B
+  // aggregate scores live in bucket.benchmarkRuns and were never checked. This block
+  // stops when the trailing plateauWindow benchmark aggregateScore values are identical.
+  // Enabled by stopOnBenchmarkPlateau; falls back to stopOnDimensionPlateau so existing
+  // configs that only set the Lane A flag still honor the documented Lane B promise.
+  const stopOnBenchmarkPlateau = stopRules.stopOnBenchmarkPlateau !== undefined
+    ? Boolean(stopRules.stopOnBenchmarkPlateau)
+    : Boolean(stopRules.stopOnDimensionPlateau);
+  if (stopOnBenchmarkPlateau) {
+    for (const [profileId, bucket] of Object.entries(registry.profiles)) {
+      const aggregateScores = (bucket.benchmarkRuns || [])
+        .map((run) => Number(run.aggregateScore))
+        .filter((value) => Number.isFinite(value));
+      if (aggregateScores.length >= plateauWindow) {
+        const lastN = aggregateScores.slice(-plateauWindow);
+        if (lastN.every((value) => value === lastN[0])) {
+          shouldStop = true;
+          reasons.push(`${profileId}: benchmark aggregate plateaued at ${lastN[0]} over last ${plateauWindow} runs`);
+          if (profileStates[profileId]) {
+            profileStates[profileId].shouldStop = true;
+            profileStates[profileId].reasons.push(`benchmark aggregate plateaued at ${lastN[0]}`);
           }
         }
       }

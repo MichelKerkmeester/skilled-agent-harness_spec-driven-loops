@@ -118,6 +118,21 @@ const COMMAND_BRIDGES: readonly SkillProjection[] = [
     sourcePath: null,
     lifecycleStatus: 'active',
   },
+  {
+    id: 'deep-model-benchmark',
+    kind: 'command',
+    family: 'system',
+    category: 'command',
+    name: 'deep-model-benchmark',
+    description: 'Deep command bridge for /deep:start-model-benchmark-loop model and prompt-framework benchmarking.',
+    keywords: ['/deep:start-model-benchmark-loop', 'benchmark a model', 'benchmark a prompt framework', 'optimize a model', 'model benchmark loop'],
+    domains: ['deep', 'benchmark', 'model', 'command'],
+    intentSignals: ['/deep:start-model-benchmark-loop', 'benchmark a model', 'benchmark a prompt framework', 'optimize a model', 'model benchmark loop'],
+    derivedTriggers: [],
+    derivedKeywords: [],
+    sourcePath: null,
+    lifecycleStatus: 'active',
+  },
 ];
 
 function jsonArray(value: string | null | undefined): string[] {

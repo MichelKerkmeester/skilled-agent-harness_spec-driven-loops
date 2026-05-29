@@ -10,8 +10,6 @@
   "metrics": ["score", "delta", "pass_rate"],
   "thresholdDelta": 0.05,
   "benchmark": {
-    "fixtureDir": ".opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-fixtures",
-    "fixtures": ["fixture-baseline", "fixture-improved", "fixture-edge"],
     "requiredAggregateScore": 80,
     "minimumFixtureScore": 70,
     "repeatabilityTolerance": 0

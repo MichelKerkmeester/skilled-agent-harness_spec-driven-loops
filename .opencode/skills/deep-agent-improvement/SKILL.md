@@ -132,6 +132,7 @@ RESOURCE_MAP = {
 
 RUNTIME_ASSETS = {
     "ALWAYS": ["assets/agent-improvement/improvement_config.json", "assets/agent-improvement/target_manifest.jsonc"],
+    "MODEL_BENCHMARK": ["assets/model-benchmark/benchmark-profiles/default.json"],
 }
 
 ON_DEMAND_KEYWORDS = ["target profile", "score candidate", "proposal loop", "benchmark", "promotion gate", "mirror drift"]
@@ -202,6 +203,8 @@ def route_recursive_agent_resources(task):
                 load_if_available(relative_path)
 
     runtime_assets = list(RUNTIME_ASSETS["ALWAYS"])
+    if "MODEL_BENCHMARK" in intents:
+        runtime_assets.extend(RUNTIME_ASSETS.get("MODEL_BENCHMARK", []))
 
     if not loaded:
         load_if_available(DEFAULT_RESOURCE)
@@ -273,7 +276,7 @@ Lane B benchmarks a model or prompt framework instead of mutating an agent file.
 2. **Dispatcher**: `scripts/model-benchmark/dispatch-model.cjs` is the model-agnostic dispatcher (executor-routing map across cli-opencode, cli-claude-code, cli-codex, cli-gemini, cli-devin). It is loaded only on the model-benchmark path, never in agent-improvement mode.
 3. **Scorer selection**: `run-benchmark.cjs --scorer pattern` (default) uses the heading/pattern matcher. `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported 120/003 five-dimension scorer (deterministic checks plus a pluggable grader). `--grader noop` (default) stays deterministic with no model dispatch. `--grader mock` or `--grader llm` select the stub or real grader.
 4. **Mode-aware records and promotion**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`, and benchmark reports carry `scoringMethod: pattern|5dim`, so the reducer and downstream consumers can attribute results and apply mode-aware promotion.
-5. **Hardening env gates**: set `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to refuse criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` to redact raw grader output from the on-disk cache. Both default to the permissive value for backward-compat.
+5. **Hardening env gates**: set `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to refuse criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` to redact raw grader output from the on-disk cache. Both default to the permissive value for backward-compat. **Trusted-author default rationale (DOCUMENT-ACCEPT)**: criteria commands originate only from benchmark profiles authored by the operator running the loop, and the deterministic criterion runs in the same trust domain as the loop itself, so the default-on behavior is an intended trusted-author boundary rather than an untrusted-input risk. A shipped backward-compat test asserts the criterion runs by default, so flipping the default would be a behavior change with test impact, not a silent hardening. Hardened or shared-runner deployments set `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to fail closed, and `DEEP_AGENT_GRADER_CACHE_RAW=0` to redact cached grader output.
 
 ---
 

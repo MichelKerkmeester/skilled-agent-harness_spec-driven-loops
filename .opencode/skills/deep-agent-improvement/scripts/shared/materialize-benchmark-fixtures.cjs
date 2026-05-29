@@ -64,9 +64,14 @@ function main() {
     process.exit(2);
   }
 
-  const profilePath = path.resolve(process.cwd(), args.profile);
+  // F-P1-4b: resolve --profile as a direct path OR a profile id under --profiles-dir,
+  // matching run-benchmark.cjs loadProfile so a profile-by-id does not fail here before run-benchmark.
+  const DEFAULT_PROFILES_DIR = '.opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles';
+  const profilesDir = args['profiles-dir'] || DEFAULT_PROFILES_DIR;
+  const directPath = path.resolve(process.cwd(), args.profile);
+  const profilePath = fs.existsSync(directPath) ? directPath : path.join(profilesDir, `${args.profile}.json`);
   if (!fs.existsSync(profilePath)) {
-    process.stderr.write(`Benchmark profile not found: ${profilePath}\n`);
+    process.stderr.write(`Benchmark profile not found (tried direct path and id under ${profilesDir}): ${args.profile}\n`);
     process.exit(1);
   }
 

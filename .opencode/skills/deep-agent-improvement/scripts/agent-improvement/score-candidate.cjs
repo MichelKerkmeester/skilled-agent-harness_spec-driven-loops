@@ -53,6 +53,25 @@ function writeJson(filePath, value) {
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
+// P2: dedupe the repeated infra-failure emission. Each early-exit failure site built the
+// same infra_failure object and ran the identical outputPath/writeJson/stdout/exit branch.
+// emitInfraFailure centralizes the standard fields plus the write-or-stdout + exit code,
+// taking only the per-site variable fields.
+function emitInfraFailure(outputPath, fields) {
+  const failure = {
+    status: 'infra_failure',
+    evaluationMode: 'dynamic-5d',
+    mode: 'agent-improvement',
+    ...fields,
+  };
+  if (outputPath) {
+    writeJson(outputPath, failure);
+  } else {
+    process.stdout.write(`${JSON.stringify(failure, null, 2)}\n`);
+  }
+  process.exit(1);
+}
+
 function stableJson(value) {
   if (Array.isArray(value)) {
     return `[${value.map((entry) => stableJson(entry)).join(',')}]`;
@@ -145,7 +164,19 @@ const DIMENSION_WEIGHTS = {
 
 const RUBRIC_VERSION = 'dynamic-5d/p126-reproducibility-v1';
 
-function defaultCacheDir() {
+// F-P1-11: scope the score cache under a packet-local directory rather than a shared,
+// world-writable os.tmpdir() location whose contents are trusted before rescoring.
+// Prefer the --output directory (the canonical packet-local outputs dir), then the
+// candidate's own directory; only fall back to os.tmpdir() when neither is available.
+function defaultCacheDir({ outputPath, candidatePath } = {}) {
+  const anchorDir = outputPath
+    ? path.dirname(path.resolve(outputPath))
+    : candidatePath
+      ? path.dirname(path.resolve(candidatePath))
+      : null;
+  if (anchorDir) {
+    return path.join(anchorDir, '.score-cache');
+  }
   return path.join(os.tmpdir(), 'deep-agent-improvement-score-cache');
 }
 
@@ -413,7 +444,9 @@ function main() {
   const targetPath = args.target || candidatePath;
   const outputPath = args.output;
   const cacheDisabled = args['no-cache'] === true || args['no-cache'] === 'true';
-  const cacheDir = path.resolve(args['cache-dir'] || defaultCacheDir());
+  const cacheDir = path.resolve(
+    args['cache-dir'] || defaultCacheDir({ outputPath, candidatePath }),
+  );
 
   if (!candidatePath) {
     process.stderr.write('Missing required --candidate argument\n');
@@ -422,65 +455,38 @@ function main() {
 
   const candidateContent = safeRead(candidatePath);
   if (typeof candidateContent !== 'string') {
-    const failure = {
-      status: 'infra_failure',
+    emitInfraFailure(outputPath, {
       profileId: args.profile || null,
       family: null,
-      evaluationMode: 'dynamic-5d',
-      mode: 'agent-improvement',
       target: targetPath,
       candidate: candidatePath,
       error: candidateContent.error,
       failureModes: ['candidate-read-failure'],
-    };
-    if (outputPath) {
-      writeJson(outputPath, failure);
-    } else {
-      process.stdout.write(`${JSON.stringify(failure, null, 2)}\n`);
-    }
-    process.exit(1);
+    });
   }
 
   // Dynamic mode is the only evaluation path. generate-profile.cjs + 5-dimension scoring.
   const manifest = loadManifest(manifestPath);
   if (manifest && manifest.error) {
-    const failure = {
-      status: 'infra_failure',
+    emitInfraFailure(outputPath, {
       profileId: args.profile || null,
       family: null,
-      evaluationMode: 'dynamic-5d',
-      mode: 'agent-improvement',
       target: targetPath,
       candidate: candidatePath,
       error: manifest.error,
       failureModes: ['manifest-parse-failure'],
-    };
-    if (outputPath) {
-      writeJson(outputPath, failure);
-    } else {
-      process.stdout.write(`${JSON.stringify(failure, null, 2)}\n`);
-    }
-    process.exit(1);
+    });
   }
 
   const profile = runScript('generate-profile.cjs', [`--agent=${candidatePath}`]);
   if (!profile || !profile.id) {
-    const failure = {
-      status: 'infra_failure',
-      evaluationMode: 'dynamic-5d',
-      mode: 'agent-improvement',
+    emitInfraFailure(outputPath, {
       target: targetPath,
       candidate: candidatePath,
       error: profile?.message || 'Failed to generate dynamic profile',
       errorType: profile?.errorType || 'UNKNOWN',
       failureModes: [`profile-generation-${(profile?.errorType || 'failure').toLowerCase()}`],
-    };
-    if (outputPath) {
-      writeJson(outputPath, failure);
-    } else {
-      process.stdout.write(`${JSON.stringify(failure, null, 2)}\n`);
-    }
-    process.exit(1);
+    });
   }
 
   const manifestProfileId = inferProfileId(targetPath, args.profile, manifest);
@@ -510,45 +516,27 @@ function main() {
   if (baselinePath) {
     baselineContent = safeRead(baselinePath);
     if (typeof baselineContent !== 'string') {
-      const failure = {
-        status: 'infra_failure',
+      emitInfraFailure(outputPath, {
         profileId: args.profile || null,
         family: null,
-        evaluationMode: 'dynamic-5d',
-        mode: 'agent-improvement',
         target: targetPath,
         candidate: candidatePath,
         baseline: baselinePath,
         error: baselineContent.error,
         failureModes: ['baseline-read-failure'],
-      };
-      if (outputPath) {
-        writeJson(outputPath, failure);
-      } else {
-        process.stdout.write(`${JSON.stringify(failure, null, 2)}\n`);
-      }
-      process.exit(1);
+      });
     }
 
     baselineProfile = runScript('generate-profile.cjs', [`--agent=${baselinePath}`]);
     if (!baselineProfile || !baselineProfile.id) {
-      const failure = {
-        status: 'infra_failure',
-        evaluationMode: 'dynamic-5d',
-        mode: 'agent-improvement',
+      emitInfraFailure(outputPath, {
         target: targetPath,
         candidate: candidatePath,
         baseline: baselinePath,
         error: baselineProfile?.message || 'Failed to generate dynamic profile for baseline',
         errorType: baselineProfile?.errorType || 'UNKNOWN',
         failureModes: [`baseline-profile-generation-${(baselineProfile?.errorType || 'failure').toLowerCase()}`],
-      };
-      if (outputPath) {
-        writeJson(outputPath, failure);
-      } else {
-        process.stdout.write(`${JSON.stringify(failure, null, 2)}\n`);
-      }
-      process.exit(1);
+      });
     }
 
     baselineIntegrationReport = runScript('scan-integration.cjs', [`--agent=${baselineProfile.id}`]);
@@ -557,6 +545,14 @@ function main() {
   const effectiveWeights = weightsOverride || DIMENSION_WEIGHTS;
   const inputHash = computeInputHash({
     rubricVersion: RUBRIC_VERSION,
+    // F-P1-12: bind candidate identity into the cache key. Previously the hash covered
+    // candidateContent + targetPath but not the candidate/baseline paths, so a stale
+    // cache entry for one candidate could be served for a different candidate whose
+    // content/profile happened to hash the same. Keying on the paths makes a mismatch
+    // miss the cache and rescore. Score/dimension outputs for a given candidate path are
+    // unchanged (paths are part of the key, not the scoring math).
+    candidatePath,
+    baselinePath: baselinePath || null,
     candidateContent,
     baselineContent: typeof baselineContent === 'string' ? baselineContent : null,
     targetPath,

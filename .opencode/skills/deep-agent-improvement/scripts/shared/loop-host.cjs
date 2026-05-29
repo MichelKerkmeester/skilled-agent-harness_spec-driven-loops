@@ -50,6 +50,28 @@ const LANE_MODEL_BENCHMARK = new Set([
   'dispatch-model.cjs',
 ]);
 
+// Single source of truth for the optional model-benchmark flags loop-host
+// forwards to run-benchmark.cjs (P2 "Benchmark option schema split"). Order is
+// the forwarding order. --profile and --outputs-dir are required and handled
+// separately. Keep this aligned with run-benchmark.cjs's accepted options.
+const BENCHMARK_RUN_OPTIONS = [
+  'output',
+  'state-log',
+  'label',
+  'profiles-dir',
+  'integration-report',
+  'scorer',
+  'grader',
+];
+
+// The fixture materializer also needs --profiles-dir so a profile passed by ID
+// (not a path) resolves identically in BOTH steps (F-P1-4b). --profile and
+// --outputs-dir are forwarded explicitly; this lists the remaining
+// materialize-relevant pass-through flags.
+const BENCHMARK_MATERIALIZE_OPTIONS = [
+  'profiles-dir',
+];
+
 function resolveScriptPath(scriptName) {
   if (LANE_A.has(scriptName)) {
     return path.join(SCRIPTS_ROOT, '..', 'agent-improvement', scriptName);
@@ -64,11 +86,28 @@ function resolveScriptPath(scriptName) {
 
 function parseArgs(argv) {
   const args = {};
-  for (const entry of argv) {
+  for (let index = 0; index < argv.length; index += 1) {
+    const entry = argv[index];
     const match = /^--([a-z][a-z0-9-]*)(?:=(.*))?$/.exec(entry);
     if (!match) continue;
     const key = match[1];
-    args[key] = match[2] === undefined ? true : match[2];
+    if (match[2] !== undefined) {
+      // =-form: byte-identical to the original behavior (TST-1 identity).
+      args[key] = match[2];
+      continue;
+    }
+    // Bare --key: if the next token is a value (does not start with '--'),
+    // consume it as the space-form value; otherwise it stays a boolean flag.
+    // The Lane B command surface invokes loop-host with space-form
+    // (--profile {p} --scorer 5dim --grader noop), so these must bind to the
+    // following token rather than parse as booleans (F-P0-1).
+    const next = argv[index + 1];
+    if (next !== undefined && !next.startsWith('--')) {
+      args[key] = next;
+      index += 1;
+    } else {
+      args[key] = true;
+    }
   }
   return args;
 }
@@ -96,20 +135,25 @@ function planInvocation(mode, args) {
     // EC-5: materialize MUST run (and succeed) before run-benchmark, else scoring
     // silently produces all-zero "missing-output" results. These scripts use
     // space-separated args.
+    //
+    // Both steps share one option schema (BENCHMARK_* lists) so forwarding stays
+    // in sync with run-benchmark.cjs and the materializer, instead of a hand-rolled
+    // per-flag chain that silently drifts (P2 "Benchmark option schema split").
+    // run-benchmark.cjs forwards scorer/grader/integration-report so the journal
+    // and report.json agree on the requested method; the materializer forwards
+    // --profiles-dir so a profile-by-ID resolves identically in both steps (F-P1-4b).
+    const materializeArgs = ['--profile', args.profile, '--outputs-dir', args['outputs-dir']];
+    for (const opt of BENCHMARK_MATERIALIZE_OPTIONS) {
+      if (args[opt] !== undefined) materializeArgs.push(`--${opt}`, String(args[opt]));
+    }
     const benchArgs = ['--profile', args.profile, '--outputs-dir', args['outputs-dir']];
-    if (args.output) benchArgs.push('--output', args.output);
-    if (args['state-log']) benchArgs.push('--state-log', args['state-log']);
-    if (args.label) benchArgs.push('--label', args.label);
-    if (args['profiles-dir']) benchArgs.push('--profiles-dir', args['profiles-dir']);
-    // Forward scorer/grader selection to run-benchmark. Without this the command
-    // path silently falls back to pattern/noop while the journal/dashboard claim
-    // the requested method, so report.json and the ledger would disagree.
-    if (args.scorer) benchArgs.push('--scorer', args.scorer);
-    if (args.grader) benchArgs.push('--grader', args.grader);
+    for (const opt of BENCHMARK_RUN_OPTIONS) {
+      if (args[opt] !== undefined) benchArgs.push(`--${opt}`, String(args[opt]));
+    }
     return {
       ok: true,
       steps: [
-        { script: 'materialize-benchmark-fixtures.cjs', args: ['--profile', args.profile, '--outputs-dir', args['outputs-dir']] },
+        { script: 'materialize-benchmark-fixtures.cjs', args: materializeArgs },
         { script: 'run-benchmark.cjs', args: benchArgs },
       ],
     };

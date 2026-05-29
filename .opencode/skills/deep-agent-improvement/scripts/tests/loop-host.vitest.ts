@@ -17,6 +17,7 @@ const loopHost = require(path.join(
     mode: string,
     args: Record<string, string | boolean>,
   ) => { ok: true; steps: Array<{ script: string; args: string[] }> } | { ok: false; error: string };
+  resolveScriptPath: (scriptName: string) => string;
   VALID_MODES: Set<string>;
 };
 
@@ -38,6 +39,30 @@ describe('loop-host', () => {
     it('parses key=value and bare flags', () => {
       const args = loopHost.parseArgs(['--mode=model-benchmark', '--profile=p', '--outputs-dir=d', '--approve']);
       expect(args).toEqual({ mode: 'model-benchmark', profile: 'p', 'outputs-dir': 'd', approve: true });
+    });
+
+    it('parses space-form flags from the Lane B command surface (F-P0-1)', () => {
+      // The Lane B YAML invokes loop-host with space-separated flags. Before the
+      // fix these parsed to boolean true; now each --key followed by a non-flag
+      // token consumes that token as the value.
+      const args = loopHost.parseArgs(['--profile', 'p.json', '--scorer', '5dim', '--grader', 'noop']);
+      expect(args).toEqual({ profile: 'p.json', scorer: '5dim', grader: 'noop' });
+    });
+
+    it('keeps a bare flag boolean when followed by another flag', () => {
+      const args = loopHost.parseArgs(['--approve', '--scorer', '5dim']);
+      expect(args).toEqual({ approve: true, scorer: '5dim' });
+    });
+
+    it('keeps a bare flag boolean when it is the final token', () => {
+      const args = loopHost.parseArgs(['--scorer', '5dim', '--approve']);
+      expect(args).toEqual({ scorer: '5dim', approve: true });
+    });
+
+    it('does not alter =-form parsing (TST-1 identity surface)', () => {
+      // =-form must stay byte-identical so the TST-1 identity gate holds.
+      const args = loopHost.parseArgs(['--candidate=/tmp/cand.md', '--baseline=/tmp/base.md']);
+      expect(args).toEqual({ candidate: '/tmp/cand.md', baseline: '/tmp/base.md' });
     });
   });
 
@@ -114,6 +139,83 @@ describe('loop-host', () => {
         // materialize never carries scorer/grader
         expect(plan.steps[0].args).not.toContain('--scorer');
       }
+    });
+
+    it('forwards space-form scorer/grader from parseArgs through to run-benchmark (F-P0-1 end to end)', () => {
+      // The full Lane B command shape: space-form flags must parse AND then
+      // forward to run-benchmark, not collapse to booleans.
+      const args = loopHost.parseArgs([
+        '--profile', 'p.json',
+        '--outputs-dir', '/tmp/o',
+        '--scorer', '5dim',
+        '--grader', 'noop',
+      ]);
+      const plan = loopHost.planInvocation('model-benchmark', args);
+      expect(plan.ok).toBe(true);
+      if (plan.ok) {
+        expect(plan.steps[1].script).toBe('run-benchmark.cjs');
+        expect(plan.steps[1].args).toEqual(
+          expect.arrayContaining(['--scorer', '5dim', '--grader', 'noop']),
+        );
+      }
+    });
+
+    it('forwards --profiles-dir to BOTH materialize and run-benchmark (F-P1-4b)', () => {
+      // A profile-by-ID must resolve consistently in both steps, so --profiles-dir
+      // has to reach the materializer, not only run-benchmark.
+      const plan = loopHost.planInvocation(
+        'model-benchmark',
+        loopHost.parseArgs(['--profile', 'my-profile-id', '--outputs-dir', '/tmp/o', '--profiles-dir', '/tmp/profiles']),
+      );
+      expect(plan.ok).toBe(true);
+      if (plan.ok) {
+        expect(plan.steps[0].script).toBe('materialize-benchmark-fixtures.cjs');
+        expect(plan.steps[0].args).toEqual(
+          expect.arrayContaining(['--profiles-dir', '/tmp/profiles']),
+        );
+        expect(plan.steps[1].args).toEqual(
+          expect.arrayContaining(['--profiles-dir', '/tmp/profiles']),
+        );
+      }
+    });
+
+    it('forwards --integration-report to run-benchmark (P2 option-schema consolidation)', () => {
+      // run-benchmark supports --integration-report; loop-host must forward it
+      // rather than silently dropping the runner option.
+      const plan = loopHost.planInvocation(
+        'model-benchmark',
+        loopHost.parseArgs(['--profile=p.json', '--outputs-dir=/tmp/o', '--integration-report=/tmp/integ.json']),
+      );
+      expect(plan.ok).toBe(true);
+      if (plan.ok) {
+        expect(plan.steps[1].args).toEqual(
+          expect.arrayContaining(['--integration-report', '/tmp/integ.json']),
+        );
+        // materialize never carries the runner-only integration-report flag
+        expect(plan.steps[0].args).not.toContain('--integration-report');
+      }
+    });
+  });
+
+  describe('resolveScriptPath spawn-path mapping (P2 traceability-3-6)', () => {
+    it('maps a Lane A script name to the agent-improvement lane dir', () => {
+      const resolved = loopHost.resolveScriptPath('score-candidate.cjs');
+      expect(resolved.endsWith(path.join('agent-improvement', 'score-candidate.cjs'))).toBe(true);
+      expect(resolved).not.toContain(path.join('model-benchmark', 'score-candidate.cjs'));
+    });
+
+    it('maps a Lane B script name to the model-benchmark lane dir', () => {
+      const resolved = loopHost.resolveScriptPath('run-benchmark.cjs');
+      expect(resolved.endsWith(path.join('model-benchmark', 'run-benchmark.cjs'))).toBe(true);
+    });
+
+    it('maps a shared script name to the scripts root (./)', () => {
+      const resolved = loopHost.resolveScriptPath('materialize-benchmark-fixtures.cjs');
+      // Shared scripts resolve alongside loop-host under scripts/shared/, with no
+      // lane segment between the scripts root and the file name.
+      expect(resolved.endsWith(path.join('shared', 'materialize-benchmark-fixtures.cjs'))).toBe(true);
+      expect(resolved).not.toContain(path.join('agent-improvement', 'materialize-benchmark-fixtures.cjs'));
+      expect(resolved).not.toContain(path.join('model-benchmark', 'materialize-benchmark-fixtures.cjs'));
     });
   });
 });

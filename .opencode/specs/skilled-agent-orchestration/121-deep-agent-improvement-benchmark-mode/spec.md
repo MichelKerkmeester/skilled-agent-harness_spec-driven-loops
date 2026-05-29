@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
-    last_updated_at: "2026-05-28T15:15:00Z"
+    last_updated_at: "2026-05-29T12:50:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Two-lane program complete (008-013); scripts now lane-separated"
-    next_safe_action: "None; two-lane experience shipped"
+    recent_action: "014 deep review CONDITIONAL; opened 015 remediation (1 P0 + 16 P1 + 16 P2)"
+    next_safe_action: "Remediate the 014 findings in 015 child"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -122,6 +122,10 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 12 | 012-catalog-playbook-advisor-fp25/ | feature_catalog lane legend + playbook note + advisor recompile + F-P2-5 reduce-state mode display + test | Complete |
 | 13 | 013-scripts-physical-reorg/ | Move 16 scripts into agent-improvement / model-benchmark / shared subdirs + rewrite all refs + fix __dirname (high-risk, last) | Complete |
 
+| 14 | 014-two-lane-deep-review/ | 10-iteration deep review (cli-codex gpt-5.5 + Opus 4.8 adjudication) of the two-lane program; CONDITIONAL verdict; active registry 1 P0 + 16 P1 + 16 P2 | Complete |
+
+| 15 | 015-two-lane-review-remediation/ | Remediate the 014 deep-review findings (1 P0 + 16 P1 + 16 P2) | Complete |
+
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -143,6 +147,8 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 011-agent-lane-note | 012-catalog-playbook-advisor-fp25 | Agent Lane note shipped across 4 mirrors; remaining catalog/playbook/advisor surfaces follow | strict validate on 012 + advisor recompile + F-P2-5 test |
 | 010-references-assets-lane-reorg | 013-scripts-physical-reorg | references and assets lane split shipped, so the scripts physical reorg can follow on the same lane layout | strict validate on 010 + SKILL literal sweep returns zero stale paths |
 | 012-catalog-playbook-advisor-fp25 | 013-scripts-physical-reorg | Doc/catalog/advisor lane surfaces shipped; the scripts tree is the last on-disk surface still flat | strict validate on 012 + script lane subdirs hold all 16 movers + test suite green |
+| 013-scripts-physical-reorg | 014-two-lane-deep-review | Scripts lane reorg shipped; the full two-lane program (008-013) is reviewable as one unit | strict validate on 013 + vitest 133/133 + both-lane smokes |
+| 014-two-lane-deep-review | 015-two-lane-review-remediation | Deep review returned CONDITIONAL with a confirmed P0 plus a P1/P2 cluster; remediation must close them before Lane B ships | review-report.md CONDITIONAL verdict + all-findings.jsonl |
 <!-- /ANCHOR:phase-map -->
 
 ---

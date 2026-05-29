@@ -11,8 +11,23 @@ const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
 const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/deep-agent-improvement/scripts');
 const require = createRequire(import.meta.url);
 
-const dispatchModel = require(path.join(SCRIPTS, 'model-benchmark/dispatch-model.cjs')) as {
-  dispatchReal: (opts: Record<string, unknown>) => { ok: boolean };
+const DISPATCH_MODEL_PATH = path.join(SCRIPTS, 'model-benchmark/dispatch-model.cjs');
+const dispatchModel = require(DISPATCH_MODEL_PATH) as {
+  dispatchReal: (opts: Record<string, unknown>) => {
+    ok: boolean;
+    paused?: boolean;
+    pause_reason?: string;
+    sentinel_path?: string;
+    error?: string;
+  };
+  buildSpawnSpec: (
+    executor: string,
+    promptText: string,
+    resolved: Record<string, unknown>,
+  ) => { bin: string; args: string[]; input: string | null };
+  pauseSentinelPath: (opts?: Record<string, unknown>) => string;
+  writePauseSentinel: (reason: string, opts?: Record<string, unknown>) => string;
+  buildResumeHint: (sentinelPath: string) => string;
   KNOWN_EXECUTORS: Set<string>;
 };
 const scorer = require(path.join(SCRIPTS, 'model-benchmark/scorer/score-model-variant.cjs')) as {
@@ -161,5 +176,157 @@ describe('F-P2-8: deterministic scoring values', () => {
     });
     expect(r.dimensions.D1).toBe(0);
     expect(r.weightedScore).toBe(0);
+  });
+});
+
+// ───── F-P1-1 (014): grader dispatch is READ-ONLY by default ─────
+describe('F-P1-1: read-only-by-default executor dispatch', () => {
+  const resolved = { model: 'm', agent: 'general', variant: null as string | null, dir: '/work', promptFile: '/tmp/p.md' };
+
+  afterEach(() => { delete process.env.DEEP_AGENT_DISPATCH_WRITE; });
+
+  it('cli-codex defaults to --sandbox read-only (not workspace-write)', () => {
+    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
+    const spec = dispatchModel.buildSpawnSpec('cli-codex', 'prompt', resolved);
+    const idx = spec.args.indexOf('--sandbox');
+    expect(idx).toBeGreaterThanOrEqual(0);
+    expect(spec.args[idx + 1]).toBe('read-only');
+    expect(spec.args).not.toContain('workspace-write');
+  });
+
+  it('cli-claude-code defaults to --permission-mode plan (not acceptEdits)', () => {
+    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
+    const spec = dispatchModel.buildSpawnSpec('cli-claude-code', 'prompt', resolved);
+    const idx = spec.args.indexOf('--permission-mode');
+    expect(idx).toBeGreaterThanOrEqual(0);
+    expect(spec.args[idx + 1]).toBe('plan');
+    expect(spec.args).not.toContain('acceptEdits');
+  });
+
+  it('cli-gemini omits the -y/--yolo auto-approve flag by default', () => {
+    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
+    const spec = dispatchModel.buildSpawnSpec('cli-gemini', 'prompt', resolved);
+    expect(spec.args).not.toContain('-y');
+    expect(spec.args).not.toContain('--yolo');
+  });
+
+  it('cli-devin defaults to --permission-mode auto (not dangerous)', () => {
+    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
+    const spec = dispatchModel.buildSpawnSpec('cli-devin', 'prompt', resolved);
+    const idx = spec.args.indexOf('--permission-mode');
+    expect(spec.args[idx + 1]).toBe('auto');
+    expect(spec.args).not.toContain('dangerous');
+  });
+
+  it('DEEP_AGENT_DISPATCH_WRITE=1 escalates each executor to its write-capable mode', () => {
+    process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
+    const codex = dispatchModel.buildSpawnSpec('cli-codex', 'prompt', resolved);
+    expect(codex.args[codex.args.indexOf('--sandbox') + 1]).toBe('workspace-write');
+    const claude = dispatchModel.buildSpawnSpec('cli-claude-code', 'prompt', resolved);
+    expect(claude.args[claude.args.indexOf('--permission-mode') + 1]).toBe('acceptEdits');
+    const gemini = dispatchModel.buildSpawnSpec('cli-gemini', 'prompt', resolved);
+    expect(gemini.args).toContain('-y');
+    const devin = dispatchModel.buildSpawnSpec('cli-devin', 'prompt', resolved);
+    expect(devin.args[devin.args.indexOf('--permission-mode') + 1]).toBe('dangerous');
+  });
+
+  it('routing is preserved for all 5 executors (bin resolves)', () => {
+    for (const ex of ['cli-opencode', 'cli-claude-code', 'cli-codex', 'cli-gemini', 'cli-devin']) {
+      const spec = dispatchModel.buildSpawnSpec(ex, 'prompt', resolved);
+      expect(typeof spec.bin).toBe('string');
+      expect(spec.bin.length).toBeGreaterThan(0);
+    }
+  });
+});
+
+// ───── F-P1-14 (014): pause sentinel is packet-local ─────
+describe('F-P1-14: packet-local pause sentinel', () => {
+  let runDir: string;
+  beforeEach(() => { runDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dm-state-')); });
+  afterEach(() => { fs.rmSync(runDir, { recursive: true, force: true }); });
+
+  it('writes the sentinel under opts.state_dir, not the shared skill state dir', () => {
+    const written = dispatchModel.writePauseSentinel('rate_limit_exhausted_3_strikes', { state_dir: runDir });
+    expect(written.startsWith(runDir)).toBe(true);
+    expect(fs.existsSync(written)).toBe(true);
+    const body = JSON.parse(fs.readFileSync(written, 'utf8'));
+    expect(body.sentinel_path).toBe(written);
+  });
+
+  it('two distinct run dirs do not collide on one global sentinel', () => {
+    const dirA = fs.mkdtempSync(path.join(os.tmpdir(), 'dm-A-'));
+    const dirB = fs.mkdtempSync(path.join(os.tmpdir(), 'dm-B-'));
+    try {
+      const a = dispatchModel.pauseSentinelPath({ state_dir: dirA });
+      const b = dispatchModel.pauseSentinelPath({ state_dir: dirB });
+      expect(a).not.toBe(b);
+      expect(a.startsWith(dirA)).toBe(true);
+      expect(b.startsWith(dirB)).toBe(true);
+    } finally {
+      fs.rmSync(dirA, { recursive: true, force: true });
+      fs.rmSync(dirB, { recursive: true, force: true });
+    }
+  });
+
+  it('dispatchReal writes the pause sentinel into the run-scoped dir on rate-limit exhaustion', () => {
+    const d = fs.mkdtempSync(path.join(os.tmpdir(), 'dm-rl-'));
+    const promptFile = path.join(d, 'p.md');
+    fs.writeFileSync(promptFile, 'prompt');
+    const rateLimited = () => ({ status: 1, stdout: '', stderr: 'rate limit exceeded (429)' });
+    const r = dispatchModel.dispatchReal({
+      executor: 'cli-codex',
+      prompt_file: promptFile,
+      cwd: d,
+      model: 'm',
+      agent: 'general',
+      state_dir: runDir,
+      _spawn: rateLimited,
+      _backoff: [], // exhaust immediately — no real 60-240s rate-limit sleeps
+    });
+    expect(r.paused).toBe(true);
+    expect(r.pause_reason).toBe('rate_limit');
+    expect(r.sentinel_path && r.sentinel_path.startsWith(runDir)).toBe(true);
+    fs.rmSync(d, { recursive: true, force: true });
+  });
+});
+
+// ───── P2 (014): resume hint points at the real resume path ─────
+describe('P2: pause resume hint targets the shipped loop-host', () => {
+  it('resume hint removes the actual sentinel and runs scripts/shared/loop-host.cjs', () => {
+    const sentinel = path.join(os.tmpdir(), 'whatever', '.benchmark-pause');
+    const hint = dispatchModel.buildResumeHint(sentinel);
+    expect(hint).toContain('.opencode/skills/deep-agent-improvement/scripts/shared/loop-host.cjs');
+    expect(hint).toContain('--mode=model-benchmark');
+    // Must NOT reference the stale `state/.benchmark-pause && re-run loop-host.cjs` form.
+    expect(hint).not.toMatch(/re-run loop-host\.cjs/);
+  });
+});
+
+// ───── P2 (014): CLI surfaces failure diagnostics ─────
+describe('P2: dispatcher CLI surfaces stderr + error diagnostics', () => {
+  let promptFile: string;
+  beforeEach(() => {
+    const d = fs.mkdtempSync(path.join(os.tmpdir(), 'dm-cli-'));
+    promptFile = path.join(d, 'p.md');
+    fs.writeFileSync(promptFile, 'prompt');
+  });
+
+  it('emits a STDERR section and a non-null error on dispatch failure', () => {
+    const env = { ...process.env };
+    delete env.DEEP_AGENT_DISPATCH_WRITE;
+    // Fresh --state-dir => no stray legacy sentinel can short-circuit the run.
+    const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dm-clistate-'));
+    // Unknown executor => dispatchReal returns ok:false with an error, exit 1.
+    const res = spawnSync('node', [DISPATCH_MODEL_PATH, '--executor=cli-bogus', `--state-dir=${stateDir}`, promptFile], {
+      encoding: 'utf8',
+      env,
+    });
+    expect(res.status).toBe(1);
+    expect(res.stdout).toContain('--- STDERR ---');
+    const jsonBlock = res.stdout.slice(0, res.stdout.indexOf('--- STDOUT ---'));
+    const parsed = JSON.parse(jsonBlock);
+    expect(parsed.ok).toBe(false);
+    expect(parsed.error).toBeTruthy();
+    expect(parsed.error).toContain('unknown executor');
   });
 });

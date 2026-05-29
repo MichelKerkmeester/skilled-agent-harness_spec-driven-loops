@@ -62,3 +62,36 @@ Agent-note stale paths overlap F-P1-16; remaining: spawn-path map untested, max-
 - Single-model review (gpt-5.5) + Opus 4.8 adjudication. No second executor this run.
 - Build gates that still hold post-review: TST-1 byte-identity, vitest 133/133, both-lane smokes, alignment-drift 0, validate --recursive. The P0 is a command-surface parse mismatch, not a script-logic regression, which is why those gates passed.
 - Raw findings: `all-findings.jsonl`. Per-iteration outputs: `iterations/iteration-NNN.md`. Prompts: `prompts/iteration-N.md`.
+
+
+---
+
+## 6. Remediation Status (phase 121/015)
+
+> Closure of every active finding. Remediation packet: `skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/015-two-lane-review-remediation`. Verification: vitest 14 files/163 tests green (+30 regression tests); TST-1 byte-identity intact; space-form Lane B smoke reaches benchmark-complete with scoringMethod=5dim; grader dispatch read-only by default; fixture-id traversal rejected; mirror-drift 0; alignment-drift 0; validate --strict on 015 PASS.
+
+### Disposition: 31 FIXED + 2 DOCUMENT-ACCEPT (all 33 active findings)
+
+| Finding | Disposition | Closure |
+|---------|-------------|---------|
+| F-P0-1 command flag misparse | FIXED | `loop-host.parseArgs` accepts space-form; `=`-form byte-identical so TST-1 holds; space-form test + e2e test added |
+| F-P1-1 grader write perms | FIXED | dispatch defaults read-only (codex `--sandbox read-only`, claude `--permission-mode plan`); write behind `DEEP_AGENT_DISPATCH_WRITE=1` |
+| F-P1-2 unquoted {profile} | FIXED | command interpolations quoted |
+| F-P1-3 invalid session outcome | FIXED | canonical enum value |
+| F-P1-4a llm executor fields dropped | FIXED | target_model threaded to dispatch-model |
+| F-P1-4b profile-by-id fails pre-run | FIXED | loop-host forwards `--profiles-dir` to both steps + materialize now resolves path-or-id (orchestrator closed the cross-file residual) |
+| F-P1-5 plateau stop | FIXED | reduce-state plateau path made honest |
+| F-P1-6 config path split | FIXED | single config path |
+| F-P1-7 scorer provenance on failure | FIXED | report carries scoringMethod/grader/profileId on success and failure |
+| F-P1-8 explicit Lane B shadowed | FIXED | explicit `--lane`/`--profile` honored before agent-path auto-resolve (CMD-1 preserved) |
+| F-P1-9 fixture-id traversal | FIXED | `^[A-Za-z0-9._-]+$` sanitizer + adversarial test |
+| F-P1-10 criteria-exec default open | DOCUMENT-ACCEPT | trusted-author boundary upheld by the 122 arbiter, rationale recorded |
+| F-P1-11 cache shared temp | FIXED | packet-local cache dir |
+| F-P1-12 cache wrong candidate | FIXED | cache keyed by candidate path + content hash + test |
+| F-P1-13 report overwrite | FIXED | history-preserving report snapshot |
+| F-P1-14 pause state not packet-local | FIXED | run-scoped sentinel path |
+| F-P1-15 Lane B promotion gate -> Lane A | FIXED | gate points at the benchmark report + promote-candidate --benchmark-report |
+| F-P1-16 agent note stale paths | FIXED | 4 mirrors repointed to lane paths, mirror-drift 0 |
+| P2 x16 | 15 FIXED + 1 DOCUMENT-ACCEPT | spawn-map test, option-schema, diagnostics, regex-DoS bound, provenance, ledger owner, max-iter binding, router lane assets, advisor penalty id, profile schema, infra-emit dedup, comment reconcile, resume hint; unknown-mode legacy default documented |
+
+### Verdict update: CONDITIONAL -> remediated. The Lane B command now runs correctly via its command path; the security and traceability cluster is closed; the two trusted-author boundaries are documented.

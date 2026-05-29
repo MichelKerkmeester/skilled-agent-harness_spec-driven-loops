@@ -90,3 +90,71 @@ describe('reduce-state lane (mode) mix display', () => {
     );
   });
 });
+
+describe('reduce-state benchmark aggregate plateau stop (F-P1-5)', () => {
+  it('stops when the trailing benchmark aggregate scores are identical across the plateau window', () => {
+    const runtimeRoot = path.join(tmpDir, 'improvement');
+    fs.mkdirSync(runtimeRoot, { recursive: true });
+
+    const records = [
+      { type: 'benchmark_run', profileId: 'dynamic', mode: 'model-benchmark', aggregateScore: 88, recommendation: 'benchmark-pass' },
+      { type: 'benchmark_run', profileId: 'dynamic', mode: 'model-benchmark', aggregateScore: 88, recommendation: 'benchmark-pass' },
+      { type: 'benchmark_run', profileId: 'dynamic', mode: 'model-benchmark', aggregateScore: 88, recommendation: 'benchmark-pass' },
+    ];
+
+    fs.writeFileSync(
+      path.join(runtimeRoot, 'agent-improvement-state.jsonl'),
+      `${records.map((record) => JSON.stringify(record)).join('\n')}\n`,
+      'utf8',
+    );
+    fs.writeFileSync(
+      path.join(runtimeRoot, 'agent-improvement-config.json'),
+      JSON.stringify({ stopRules: { stopOnBenchmarkPlateau: true, plateauWindow: 3 } }),
+      'utf8',
+    );
+
+    execFileSync('node', [REDUCE_SCRIPT, runtimeRoot], {
+      cwd: WORKSPACE_ROOT,
+      encoding: 'utf8',
+    });
+
+    const registry = JSON.parse(
+      fs.readFileSync(path.join(runtimeRoot, 'experiment-registry.json'), 'utf8'),
+    );
+    expect(registry.stopStatus.shouldStop).toBe(true);
+    expect(registry.stopStatus.reasons.join('; ')).toContain('benchmark aggregate plateaued at 88');
+    expect(registry.stopStatus.profileStates.dynamic.shouldStop).toBe(true);
+  });
+
+  it('does not stop on benchmark plateau when aggregate scores still differ', () => {
+    const runtimeRoot = path.join(tmpDir, 'improvement');
+    fs.mkdirSync(runtimeRoot, { recursive: true });
+
+    const records = [
+      { type: 'benchmark_run', profileId: 'dynamic', mode: 'model-benchmark', aggregateScore: 80, recommendation: 'benchmark-pass' },
+      { type: 'benchmark_run', profileId: 'dynamic', mode: 'model-benchmark', aggregateScore: 85, recommendation: 'benchmark-pass' },
+      { type: 'benchmark_run', profileId: 'dynamic', mode: 'model-benchmark', aggregateScore: 88, recommendation: 'benchmark-pass' },
+    ];
+
+    fs.writeFileSync(
+      path.join(runtimeRoot, 'agent-improvement-state.jsonl'),
+      `${records.map((record) => JSON.stringify(record)).join('\n')}\n`,
+      'utf8',
+    );
+    fs.writeFileSync(
+      path.join(runtimeRoot, 'agent-improvement-config.json'),
+      JSON.stringify({ stopRules: { stopOnBenchmarkPlateau: true, plateauWindow: 3 } }),
+      'utf8',
+    );
+
+    execFileSync('node', [REDUCE_SCRIPT, runtimeRoot], {
+      cwd: WORKSPACE_ROOT,
+      encoding: 'utf8',
+    });
+
+    const registry = JSON.parse(
+      fs.readFileSync(path.join(runtimeRoot, 'experiment-registry.json'), 'utf8'),
+    );
+    expect(registry.stopStatus.reasons.join('; ')).not.toContain('benchmark aggregate plateaued');
+  });
+});
