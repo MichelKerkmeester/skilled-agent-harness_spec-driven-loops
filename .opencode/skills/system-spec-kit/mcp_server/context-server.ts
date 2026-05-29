@@ -212,11 +212,15 @@ interface DynamicMemoryStats {
 }
 
 type AfterToolCallback = (tool: string, callId: string, result: unknown) => Promise<void>;
+type BootFtsIntegrityHealth = 'unknown' | 'skipped' | 'ok' | 'corrupt';
 
 const afterToolCallbacks: Array<AfterToolCallback> = [];
 
 /** Timeout (ms) for API key validation during startup. */
 const API_KEY_VALIDATION_TIMEOUT_MS = 5_000;
+const UNCLEAN_SHUTDOWN_MARKER = '.unclean-shutdown';
+const FTS_CORRUPTION_RUNBOOK =
+  '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md';
 
 const GRAPH_ENRICHMENT_TIMEOUT_MS = 250;
 const GRAPH_ENRICHMENT_OUTLINE_LIMIT = 6;
@@ -337,6 +341,50 @@ const FALLBACK_SESSION_TRACKING_ID = `stdio-session-${process.pid}`;
 // the dead export keeps the public surface honest and unblocks future
 // refactors that touch the runtime detection path.
 let detectedRuntime: RuntimeInfo | null = null;
+let bootFtsIntegrityHealth: BootFtsIntegrityHealth = 'unknown';
+
+function getUncleanShutdownMarkerPath(): string {
+  // Derive the marker dir from the ACTUAL opened DB path (vectorIndex.getDbPath()) — the same path the
+  // marker writer in vector-index-store uses — not the independently-derived DATABASE_PATH. Under a
+  // MEMORY_DB_PATH whose dirname differs from the resolved DB dir, DATABASE_PATH would point the boot check
+  // at the wrong dir and silently disable corruption detection (026/007/011 review finding). Falls back to
+  // DATABASE_PATH if the DB is not open yet (the boot check only runs post-connect, so getDbPath is set).
+  const dbPath = vectorIndex.getDbPath() || DATABASE_PATH;
+  return path.join(path.dirname(dbPath), UNCLEAN_SHUTDOWN_MARKER);
+}
+
+function getBootFtsIntegrityHealth(): BootFtsIntegrityHealth {
+  return bootFtsIntegrityHealth;
+}
+
+function runBootFtsIntegrityCheck(): void {
+  try {
+    vectorIndex.getDb()
+      .prepare("INSERT INTO memory_fts(memory_fts) VALUES('integrity-check')")
+      .run();
+    bootFtsIntegrityHealth = 'ok';
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    bootFtsIntegrityHealth = 'corrupt';
+    console.error([
+      '[context-server] ===== FTS5 SHADOW INDEX CORRUPTION DETECTED =====',
+      '[context-server] Boot marker indicates the previous mk-spec-memory shutdown was unclean.',
+      `[context-server] FTS5 integrity-check failed: ${message}`,
+      '[context-server] DETECT-ONLY: no DB recovery, index reconstruction, swap, or deletion was attempted.',
+      `[context-server] Runbook: ${FTS_CORRUPTION_RUNBOOK}`,
+      '[context-server] =================================================',
+    ].join('\n'));
+  }
+}
+
+function scheduleBootFtsIntegrityCheck(): void {
+  if (!fs.existsSync(getUncleanShutdownMarkerPath())) {
+    bootFtsIntegrityHealth = 'skipped';
+    return;
+  }
+
+  registerTimeout(() => runBootFtsIntegrityCheck(), 0, { unref: true });
+}
 
 export function maybeStructuralNudge(
   task: string,
@@ -1417,6 +1465,7 @@ export const __testables = {
   runCleanupStep,
   runAsyncCleanupStep,
   main: () => main(),
+  getBootFtsIntegrityHealth,
   normalizeGraphFilePath,
   extractFilePathsFromToolArgs,
 };
@@ -1991,6 +2040,7 @@ async function main(): Promise<void> {
   transportConnectedAt = new Date().toISOString();
   transport = new StdioServerTransport();
   await server.connect(transport);
+  scheduleBootFtsIntegrityCheck();
   registerInterval(() => vectorIndex.checkpointAllWal(), 300_000, { unref: true });
   launcherIdleMonitor = createLauncherIdleMonitor({
     serviceName: 'context-server',

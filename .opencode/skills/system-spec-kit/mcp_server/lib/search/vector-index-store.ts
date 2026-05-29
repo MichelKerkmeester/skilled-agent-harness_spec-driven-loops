@@ -680,6 +680,7 @@ let sqlite_vec_available_flag = true;
 let active_vector_source: ActiveVectorSourceTelemetry | null = null;
 // C1 FIX: Key connections by resolved DB path to prevent cross-store data corruption
 const db_connections = new Map<string, Database.Database>();
+const UNCLEAN_SHUTDOWN_MARKER = '.unclean-shutdown';
 type DatabaseConnectionListener = (
   database: Database.Database,
   change: {
@@ -725,6 +726,43 @@ function set_active_database_connection(
     fs.chmodSync(target_path, DB_PERMISSIONS);
   } catch (err: unknown) {
     console.warn(`[vector-index] Could not set permissions on ${target_path}: ${get_error_message(err)}`);
+  }
+}
+
+function get_unclean_shutdown_marker_path(target_path: string): string | null {
+  if (target_path === ':memory:') {
+    return null;
+  }
+  return path.join(path.dirname(target_path), UNCLEAN_SHUTDOWN_MARKER);
+}
+
+function write_unclean_shutdown_marker(target_path: string): void {
+  const marker_path = get_unclean_shutdown_marker_path(target_path);
+  if (!marker_path) {
+    return;
+  }
+
+  try {
+    fs.writeFileSync(marker_path, `${JSON.stringify({
+      pid: process.pid,
+      databasePath: target_path,
+      startedAt: new Date().toISOString(),
+    })}\n`, { mode: 0o600 });
+  } catch (_error: unknown) {
+    // Best-effort: marker failure must not block DB startup.
+  }
+}
+
+function remove_unclean_shutdown_marker(target_path: string): void {
+  const marker_path = get_unclean_shutdown_marker_path(target_path);
+  if (!marker_path) {
+    return;
+  }
+
+  try {
+    fs.rmSync(marker_path, { force: true });
+  } catch (_error: unknown) {
+    // Best-effort: marker cleanup must not block DB close.
   }
 }
 
@@ -1229,6 +1267,7 @@ export function initialize_db(custom_path: string | null = null): Database.Datab
   new_db.pragma('synchronous = NORMAL');
   new_db.pragma('wal_autocheckpoint = 256');
   new_db.pragma('temp_store = MEMORY');
+  write_unclean_shutdown_marker(target_path);
 
   if (target_path !== ':memory:') {
     const startupShardPath = get_vector_shard_path(startupProfile, path.dirname(target_path));
@@ -1296,6 +1335,7 @@ export function close_db(): void {
   }
   db_connections.clear();
   if (db) {
+    const closing_db_path = db_path;
     // FTS-corruption prevention (see bug report 026/004/012): flush + TRUNCATE the
     // WAL before close so context-index.sqlite is consistent at rest with an empty
     // WAL. better-sqlite3 `.close()` only does a passive checkpoint and can leave
@@ -1303,7 +1343,14 @@ export function close_db(): void {
     // abrupt later kill (e.g. SIGKILL on MCP reconnect) could corrupt — notably
     // FTS5 segment writes. Best-effort: a checkpoint failure must never block close.
     try { db.pragma(`${ACTIVE_VECTOR_SCHEMA}.wal_checkpoint(TRUNCATE)`); } catch (_: unknown) { /* best-effort */ }
-    try { db.pragma('wal_checkpoint(TRUNCATE)'); } catch (_: unknown) { /* best-effort */ }
+    let main_checkpoint_succeeded = false;
+    try {
+      db.pragma('wal_checkpoint(TRUNCATE)');
+      main_checkpoint_succeeded = true;
+    } catch (_: unknown) { /* best-effort */ }
+    if (main_checkpoint_succeeded) {
+      remove_unclean_shutdown_marker(closing_db_path);
+    }
     detachActiveVectorShard(db);
     db.close();
     db = null;

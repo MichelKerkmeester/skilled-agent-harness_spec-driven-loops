@@ -5,7 +5,8 @@ const net = require('net');
 const path = require('path');
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
-const DEFAULT_PROBE_TIMEOUT_MS = 2500;
+const DEFAULT_PROBE_TIMEOUT_MS = 5000;
+const MAX_PROBE_TIMEOUT_MS = 6999;
 const DEFAULT_MODEL_SERVER_LOADING_MAX_MS = 150000;
 const JSON_RPC_PROTOCOL_VERSION = '2025-06-18';
 const MODEL_SERVER_HEALTH_PATH = '/api/health';
@@ -15,6 +16,20 @@ function parsePositiveInteger(value, fallback) {
   if (value === undefined || value === null || String(value).trim() === '') return fallback;
   const parsed = Number.parseInt(String(value).trim(), 10);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function clampProbeTimeoutMs(value) {
+  return Math.min(value, MAX_PROBE_TIMEOUT_MS);
+}
+
+function resolveProbeTimeoutMs(options = {}) {
+  if (Number.isFinite(options.timeoutMs) && options.timeoutMs > 0) {
+    return clampProbeTimeoutMs(options.timeoutMs);
+  }
+  return clampProbeTimeoutMs(parsePositiveInteger(
+    (options.env ?? process.env).SPECKIT_PROBE_TIMEOUT_MS,
+    DEFAULT_PROBE_TIMEOUT_MS,
+  ));
 }
 
 function repoRoot() {
@@ -106,10 +121,13 @@ function bridgeStdioToSocket(socketPath, options = {}) {
 }
 
 function probeDaemon(socketPath, options = {}) {
-  const timeoutMs = Number.isFinite(options.timeoutMs) && options.timeoutMs > 0
-    ? options.timeoutMs
-    : DEFAULT_PROBE_TIMEOUT_MS;
+  const timeoutMs = resolveProbeTimeoutMs(options);
   const connect = options.connect ?? ((connectionOptions) => net.createConnection(connectionOptions));
+  // deepProbe=true REQUIRES a JSON-RPC initialize reply to call the daemon alive (detects a hung daemon
+  // that accepts the connection but never responds). Without it, a bare socket 'connect' counts as alive
+  // (connect-ok) — only safe for callers that genuinely need connection-liveness, NOT for the reap/bridge
+  // decision (which always passes deepProbe:true). See maybeBridgeLeaseHolder.
+  const deepProbe = options.deepProbe === true;
   const id = nextProbeId++;
   const request = `${JSON.stringify({
     jsonrpc: '2.0',
@@ -147,6 +165,10 @@ function probeDaemon(socketPath, options = {}) {
     timer.unref?.();
 
     socket.once('connect', () => {
+      if (!deepProbe) {
+        finish('alive', 'connect-ok');
+        return;
+      }
       socket.write(request);
     });
     socket.on('data', (chunk) => {
@@ -202,9 +224,7 @@ function parseHttpJsonResponse(buffer) {
 }
 
 function probeModelServer(socketPath, options = {}) {
-  const timeoutMs = Number.isFinite(options.timeoutMs) && options.timeoutMs > 0
-    ? options.timeoutMs
-    : DEFAULT_PROBE_TIMEOUT_MS;
+  const timeoutMs = resolveProbeTimeoutMs(options);
   const loadingMaxMs = Number.isFinite(options.loadingMaxMs) && options.loadingMaxMs > 0
     ? options.loadingMaxMs
     : parsePositiveInteger(
@@ -312,7 +332,13 @@ async function maybeBridgeLeaseHolder(options) {
     return { action: 'report', reason: 'no-bridge-socket', socketPath };
   }
 
-  const probe = await probeDaemon(socketPath, { timeoutMs: probeTimeoutMs, connect });
+  // deepProbe: REQUIRE a JSON-RPC reply, not just a socket accept. The reap/bridge decision must
+  // detect a HUNG daemon (event loop wedged / deadlocked — it still accepts the UDS connection but
+  // never services requests). A connect-ok-only probe would bridge a client to the wedged daemon and
+  // hang it forever, never respawning. The raised probe timeout (default 5000ms, < the 7000ms launcher
+  // grace) already prevents false-reaping a busy-but-responsive daemon mid-FTS-merge, so deep probing
+  // does not regress that. (026/007/011 review finding.)
+  const probe = await probeDaemon(socketPath, { timeoutMs: probeTimeoutMs, connect, deepProbe: true });
   if (probe.status !== 'alive') {
     process.stderr.write(`[${loggerPrefix}] lease holder pid=${ownerPid} socket=${socketPath} failed liveness probe: ${probe.reason}\n`);
     return { action: 'respawn', reason: probe.reason, socketPath };

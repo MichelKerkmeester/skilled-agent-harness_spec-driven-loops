@@ -56,6 +56,19 @@ function createWedgedConnect(): () => FakeSocket {
   };
 }
 
+function createNeverConnect(): () => FakeSocket {
+  return () => new FakeSocket();
+}
+
+function createTrackedConnectOnly(sockets: FakeSocket[]): () => FakeSocket {
+  return () => {
+    const socket = new FakeSocket();
+    sockets.push(socket);
+    queueMicrotask(() => socket.emit('connect'));
+    return socket;
+  };
+}
+
 function createErrorConnect(): () => FakeSocket {
   return () => {
     const socket = new FakeSocket();
@@ -91,8 +104,9 @@ describe('launcher IPC bridge liveness probe', () => {
 
   it('classifies a matching JSON-RPC initialize response as alive and bridges', async () => {
     const connect = createAliveConnect();
-    await expect(probeDaemon('tcp://127.0.0.1:65535', { connect, timeoutMs: 100 })).resolves.toMatchObject({
+    await expect(probeDaemon('tcp://127.0.0.1:65535', { connect, timeoutMs: 100, deepProbe: true })).resolves.toMatchObject({
       status: 'alive',
+      reason: 'json-rpc-reply',
     });
 
     process.env.SPECKIT_IPC_SOCKET_DIR = 'tcp://127.0.0.1:65535';
@@ -110,12 +124,36 @@ describe('launcher IPC bridge liveness probe', () => {
     expect(bridge).toHaveBeenCalledTimes(1);
   });
 
-  it('classifies an accepted but non-responsive daemon as dead within the timeout', async () => {
+  it('classifies connect success as alive without deepProbe', async () => {
+    const sockets: FakeSocket[] = [];
+
+    await expect(probeDaemon('tcp://127.0.0.1:65535', {
+      connect: createTrackedConnectOnly(sockets),
+      timeoutMs: 25,
+    })).resolves.toMatchObject({ status: 'alive', reason: 'connect-ok' });
+
+    expect(sockets[0]?.writes).toEqual([]);
+  });
+
+  it('honors SPECKIT_PROBE_TIMEOUT_MS when no explicit timeout is supplied', async () => {
+    vi.useFakeTimers();
+
+    const result = probeDaemon('tcp://127.0.0.1:65535', {
+      connect: createNeverConnect(),
+      env: { SPECKIT_PROBE_TIMEOUT_MS: '25' },
+    });
+
+    await vi.advanceTimersByTimeAsync(25);
+    await expect(result).resolves.toMatchObject({ status: 'dead', reason: 'timeout' });
+  });
+
+  it('classifies an accepted but non-responsive daemon as dead within the timeout when deepProbe is enabled', async () => {
     vi.useFakeTimers();
 
     const result = probeDaemon('tcp://127.0.0.1:65535', {
       connect: createWedgedConnect(),
       timeoutMs: 25,
+      deepProbe: true,
     });
 
     await vi.advanceTimersByTimeAsync(25);
@@ -168,7 +206,7 @@ describe('launcher IPC bridge liveness probe', () => {
       serviceName: 'mk-spec-memory',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
-      connect: createWedgedConnect(),
+      connect: createNeverConnect(),
       bridge,
       probeTimeoutMs: 25,
     });

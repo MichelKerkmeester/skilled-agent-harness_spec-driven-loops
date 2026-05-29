@@ -447,6 +447,7 @@ describe('Context Server', () => {
       testables?: {
         runCleanupStep: (label: string, cleanupFn: () => void) => void
         runAsyncCleanupStep: (label: string, cleanupFn: () => Promise<void>) => Promise<void>
+        getBootFtsIntegrityHealth: () => 'unknown' | 'skipped' | 'ok' | 'corrupt'
       }
       dispatchToolMock: ReturnType<typeof vi.fn>
       autoSurfaceMemoriesMock: ReturnType<typeof vi.fn>
@@ -465,6 +466,11 @@ describe('Context Server', () => {
       logFollowOnToolUseMock: ReturnType<typeof vi.fn>
       transportCloseMock: ReturnType<typeof vi.fn>
       fileWatcherCloseMock: ReturnType<typeof vi.fn>
+      databaseMock: {
+        exec: ReturnType<typeof vi.fn>
+        prepare: ReturnType<typeof vi.fn>
+        pragma: ReturnType<typeof vi.fn>
+      }
       callToolHandler: (request: unknown, extra: unknown) => Promise<unknown>
     }
 
@@ -491,6 +497,8 @@ describe('Context Server', () => {
       startupEmbeddingDimension?: number
       startupValidation?: ApiKeyValidation
       configuredEmbeddingsProvider?: string | null
+      databasePath?: string
+      ftsIntegrityCheckError?: string
       buildErrorResponseImpl?: (toolName: string, error: Error, args?: Record<string, unknown>) => ErrorResponse
       getRecoveryHintImpl?: (toolName: string, errorCode: string) => unknown
       errorCodes?: Record<string, string>
@@ -503,6 +511,7 @@ describe('Context Server', () => {
         process.env.SPECKIT_DYNAMIC_INIT = options.dynamicInit
       }
       delete process.env.EMBEDDING_DIM
+      const databasePath = options?.databasePath ?? '/tmp/context-index.sqlite'
 
       const handlers = new Map<unknown, (request: unknown, extra: unknown) => Promise<unknown>>()
       const dispatchToolMock = vi.fn()
@@ -569,10 +578,18 @@ describe('Context Server', () => {
       const callToolSchema = { name: 'CallToolRequestSchema' }
       const databaseMock = {
         exec: vi.fn(),
-        prepare: vi.fn(() => ({
+        prepare: vi.fn((source: string) => ({
           get: vi.fn(() => ({ journal_mode: 'wal' })),
           all: vi.fn(() => []),
-          run: vi.fn(() => ({ changes: 1 })),
+          run: vi.fn(() => {
+            if (
+              source.includes("INSERT INTO memory_fts(memory_fts) VALUES('integrity-check')") &&
+              options?.ftsIntegrityCheckError
+            ) {
+              throw new Error(options.ftsIntegrityCheckError)
+            }
+            return { changes: 1 }
+          }),
         })),
         pragma: vi.fn(),
       }
@@ -643,7 +660,8 @@ describe('Context Server', () => {
       }))
 
       vi.doMock('../core', () => ({
-        DATABASE_PATH: '/tmp/context-index.sqlite',
+        DATABASE_PATH: databasePath,
+        DATABASE_DIR: path.dirname(databasePath),
         LIB_DIR: '/tmp',
         DEFAULT_BASE_PATH: '/tmp',
         checkDatabaseUpdated: checkDatabaseUpdatedMock,
@@ -651,7 +669,8 @@ describe('Context Server', () => {
         init: vi.fn(),
       }))
       vi.doMock('../core/index.js', () => ({
-        DATABASE_PATH: '/tmp/context-index.sqlite',
+        DATABASE_PATH: databasePath,
+        DATABASE_DIR: path.dirname(databasePath),
         LIB_DIR: '/tmp',
         DEFAULT_BASE_PATH: '/tmp',
         ALLOWED_BASE_PATHS: ['/tmp'],
@@ -1201,6 +1220,7 @@ describe('Context Server', () => {
         logFollowOnToolUseMock,
         transportCloseMock,
         fileWatcherCloseMock,
+        databaseMock,
         callToolHandler: callToolHandler as (request: unknown, extra: unknown) => Promise<unknown>,
       }
     }
@@ -2575,6 +2595,24 @@ describe('Context Server', () => {
     // Startup scan runs in background
     it('T56: Startup scan runs via setImmediate', () => {
       expect(sourceCode).toMatch(/setImmediate\(\(\)\s*=>\s*\{[\s\S]*?void startupScan\(DEFAULT_BASE_PATH\)/)
+    })
+
+    it('T56b: boot FTS integrity check is gated on the unclean-shutdown crash marker (skipped when absent, async-after-ready when present)', () => {
+      // scheduleBootFtsIntegrityCheck() runs the FTS verb only when the crash marker is present; a clean
+      // prior shutdown skips it (zero added boot latency), and when present it runs async-after-ready
+      // (registerTimeout 0) so it never starves the synchronous boot path or liveness probes.
+      expect(sourceCode).toMatch(/function scheduleBootFtsIntegrityCheck[\s\S]*?if \(!fs\.existsSync\(getUncleanShutdownMarkerPath\(\)\)\)[\s\S]*?bootFtsIntegrityHealth = 'skipped'[\s\S]*?return/)
+      expect(sourceCode).toMatch(/scheduleBootFtsIntegrityCheck[\s\S]*?registerTimeout\(\(\) => runBootFtsIntegrityCheck\(\), 0/)
+    })
+
+    it('T56c: boot FTS integrity check is DETECT-ONLY — marks corrupt + logs the runbook on FTS failure, never auto-recovers', () => {
+      // Uses the cheap FTS5 integrity-check verb; on failure marks 'corrupt' and logs the corruption banner
+      // + the committed recovery runbook pointer. It must NOT auto-run an FTS rebuild / .recover / swap.
+      expect(sourceCode).toMatch(/runBootFtsIntegrityCheck[\s\S]*?INSERT INTO memory_fts\(memory_fts\) VALUES\('integrity-check'\)/)
+      expect(sourceCode).toMatch(/bootFtsIntegrityHealth = 'corrupt'[\s\S]*?FTS5 SHADOW INDEX CORRUPTION DETECTED/)
+      expect(sourceCode).toMatch(/DETECT-ONLY: no DB recovery/)
+      expect(sourceCode).toContain('bug-report-memory-db-corruption.md')
+      expect(sourceCode).not.toContain("VALUES('rebuild')")
     })
 
     // startupScanInProgress guard

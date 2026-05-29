@@ -2,7 +2,7 @@
 // MODULE: Memory Retention Sweep Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -170,6 +170,37 @@ describe('memory retention sweep', () => {
     expect((db.prepare("SELECT COUNT(*) AS count FROM causal_edges WHERE source_id = '1' OR target_id = '1'").get() as { count: number }).count).toBe(0);
   });
 
+  it('runs post-delete FTS and WAL maintenance outside the sweep transaction', () => {
+    const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
+    installSearchTables(db);
+    insertMemory(db, 1, isoOffset(-3_600_000), 'expired');
+    const events: Array<{ op: string; inTransaction: boolean }> = [];
+    const originalPrepare = db.prepare.bind(db);
+    const originalPragma = db.pragma.bind(db);
+
+    vi.spyOn(db, 'prepare').mockImplementation(((source: string) => {
+      if (source.includes("INSERT INTO memory_fts(memory_fts) VALUES('optimize')")) {
+        events.push({ op: 'optimize', inTransaction: db.inTransaction });
+      }
+      return originalPrepare(source);
+    }) as typeof db.prepare);
+    vi.spyOn(db, 'pragma').mockImplementation(((source: string, options?: { simple?: boolean }) => {
+      if (source === 'auto_vacuum' || source === 'incremental_vacuum' || source === 'wal_checkpoint(TRUNCATE)') {
+        events.push({ op: source, inTransaction: db.inTransaction });
+      }
+      return originalPragma(source, options);
+    }) as typeof db.pragma);
+
+    runMemoryRetentionSweep(db);
+
+    expect(events).toEqual(expect.arrayContaining([
+      { op: 'optimize', inTransaction: false },
+      { op: 'auto_vacuum', inTransaction: false },
+      { op: 'wal_checkpoint(TRUNCATE)', inTransaction: false },
+    ]));
+    expect(events.some((event) => event.op === 'incremental_vacuum')).toBe(false);
+  });
+
   it('handles an empty expired set gracefully', () => {
     const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
     insertMemory(db, 1, isoOffset(3_600_000), 'future');
@@ -185,6 +216,32 @@ describe('memory retention sweep', () => {
       ledgerRecorded: null,
     });
     expect(memoryIds(db)).toEqual([1]);
+  });
+
+  it('skips post-delete maintenance when no rows were deleted', () => {
+    const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
+    installSearchTables(db);
+    insertMemory(db, 1, isoOffset(3_600_000), 'future');
+    const maintenanceOps: string[] = [];
+    const originalPrepare = db.prepare.bind(db);
+    const originalPragma = db.pragma.bind(db);
+
+    vi.spyOn(db, 'prepare').mockImplementation(((source: string) => {
+      if (source.includes("INSERT INTO memory_fts(memory_fts) VALUES('optimize')")) {
+        maintenanceOps.push('optimize');
+      }
+      return originalPrepare(source);
+    }) as typeof db.prepare);
+    vi.spyOn(db, 'pragma').mockImplementation(((source: string, options?: { simple?: boolean }) => {
+      if (source === 'auto_vacuum' || source === 'incremental_vacuum' || source === 'wal_checkpoint(TRUNCATE)') {
+        maintenanceOps.push(source);
+      }
+      return originalPragma(source, options);
+    }) as typeof db.pragma);
+
+    runMemoryRetentionSweep(db);
+
+    expect(maintenanceOps).toEqual([]);
   });
 
   it('does not corrupt indexes when a sweep and insert interleave', async () => {

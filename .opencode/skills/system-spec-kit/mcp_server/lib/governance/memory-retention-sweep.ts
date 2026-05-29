@@ -104,6 +104,40 @@ function appendRetentionLedger(
   }
 }
 
+function runPostDeleteMaintenance(database: Database.Database): void {
+  try {
+    database.prepare("INSERT INTO memory_fts(memory_fts) VALUES('optimize')").run();
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[memory-retention-sweep] FTS optimize skipped: ${message}`);
+  }
+
+  let shouldRunIncrementalVacuum = false;
+  try {
+    const autoVacuumMode = database.pragma('auto_vacuum', { simple: true });
+    shouldRunIncrementalVacuum = Number(autoVacuumMode) === 2;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[memory-retention-sweep] auto_vacuum check skipped: ${message}`);
+  }
+
+  if (shouldRunIncrementalVacuum) {
+    try {
+      database.pragma('incremental_vacuum');
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[memory-retention-sweep] incremental vacuum skipped: ${message}`);
+    }
+  }
+
+  try {
+    database.pragma('wal_checkpoint(TRUNCATE)');
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[memory-retention-sweep] WAL checkpoint skipped: ${message}`);
+  }
+}
+
 /**
  * Sweep expired governed memory rows.
  *
@@ -196,6 +230,9 @@ export function runMemoryRetentionSweep(
   });
 
   sweepTx();
+  if (deletedIds.length > 0) {
+    runPostDeleteMaintenance(database);
+  }
 
   return {
     swept: deletedIds.length,
