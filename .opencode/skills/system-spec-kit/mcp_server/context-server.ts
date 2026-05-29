@@ -1441,6 +1441,14 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
 
   let deadlineTimer: NodeJS.Timeout | undefined;
   const cleanup = (async () => {
+    // Drain the file watcher FIRST: fileWatcher.close() awaits in-flight reindex/remove tasks,
+    // which write through requireDb()/getDb() — and getDb() REOPENS the connection if it was
+    // already closed. So closeDb() must run AFTER the drain, otherwise a draining task reopens
+    // the DB and writes fresh WAL frames after the TRUNCATE checkpoint, leaving a non-empty WAL
+    // at rest and defeating the durability guarantee (026/007/009 review finding). closeDb() is
+    // synchronous, so it still runs to completion uninterrupted once reached; the SHUTDOWN_DEADLINE
+    // race only bounds the awaited drains before it, and 010's autocheckpoint keeps the at-rest WAL
+    // small even if a pathologically slow drain starves this step.
     await runAsyncCleanupStep('fileWatcher', async () => {
       if (fileWatcher) {
         await fileWatcher.close();
@@ -1541,6 +1549,12 @@ process.on('SIGTERM', () => {
 });
 process.on('SIGINT', () => {
   void fatalShutdown('Received SIGINT, shutting down...', 0);
+});
+process.on('SIGHUP', () => {
+  void fatalShutdown('Received SIGHUP, shutting down...', 0);
+});
+process.on('SIGQUIT', () => {
+  void fatalShutdown('Received SIGQUIT, shutting down...', 0);
 });
 
 process.on('uncaughtException', (err: Error) => {

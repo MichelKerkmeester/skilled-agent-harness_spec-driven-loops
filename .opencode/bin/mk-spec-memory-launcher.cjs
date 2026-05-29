@@ -832,8 +832,8 @@ async function shutdownLauncherForSignal(signal) {
   }
 
   const exited = await Promise.race([
-    Promise.all(children.map(({ child }) => waitForChildExit(child, 5000))).then((results) => results.every(Boolean)),
-    sleep(5000).then(() => false),
+    Promise.all(children.map(({ child }) => waitForChildExit(child, RESPAWN_REAP_GRACE_MS))).then((results) => results.every(Boolean)),
+    sleep(RESPAWN_REAP_GRACE_MS).then(() => false),
   ]);
   if (!exited) {
     for (const { child } of children) {

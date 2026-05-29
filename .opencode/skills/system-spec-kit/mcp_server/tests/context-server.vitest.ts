@@ -2455,6 +2455,11 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/process\.on\('SIGINT'/)
     })
 
+    it('T40a: SIGHUP and SIGQUIT handlers route to clean fatal shutdown', () => {
+      expect(sourceCode).toMatch(/process\.on\('SIGHUP'[\s\S]*?fatalShutdown\('Received SIGHUP, shutting down\.\.\.', 0\)/)
+      expect(sourceCode).toMatch(/process\.on\('SIGQUIT'[\s\S]*?fatalShutdown\('Received SIGQUIT, shutting down\.\.\.', 0\)/)
+    })
+
     // uncaughtException handler
     it('T41: uncaughtException handler registered', () => {
       expect(sourceCode).toMatch(/process\.on\('uncaughtException'/)
@@ -2469,6 +2474,21 @@ describe('Context Server', () => {
     it('T43: SIGTERM closes database', () => {
       expect(sourceCode).toMatch(/process\.on\('SIGTERM'[\s\S]*?fatalShutdown/);
       expect(sourceCode).toMatch(/fatalShutdown[\s\S]*?vectorIndex\.closeDb\(\)/)
+    })
+
+    it('T43a: vectorIndex close runs AFTER the fileWatcher drain (drained writes are checkpointed, no reopen-after-close)', () => {
+      // The fileWatcher drain awaits in-flight reindex tasks that write through getDb(), which
+      // REOPENS the connection if closed. closeDb() must therefore run after the drain so the
+      // TRUNCATE checkpoint captures those writes and nothing reopens a fresh WAL post-close
+      // (026/007/009 review finding — closeDb-first defeated the durability guarantee).
+      const fatalShutdownStart = sourceCode.indexOf('async function fatalShutdown')
+      const vectorCloseStep = sourceCode.indexOf("runCleanupStep('vectorIndex'", fatalShutdownStart)
+      const fileWatcherStep = sourceCode.indexOf("await runAsyncCleanupStep('fileWatcher'", fatalShutdownStart)
+
+      expect(fatalShutdownStart).toBeGreaterThanOrEqual(0)
+      expect(vectorCloseStep).toBeGreaterThan(fatalShutdownStart)
+      expect(fileWatcherStep).toBeGreaterThan(fatalShutdownStart)
+      expect(fileWatcherStep).toBeLessThan(vectorCloseStep)
     })
 
     // Shutdown no longer references the removed archival manager
