@@ -207,7 +207,7 @@ workflow:
           skip_to: phase_loop
         on_restart:
           action: "Archive the current review packet under the root-level review_archive/ tree and start a new lineage segment with a fresh sessionId and generation+1."
-          archive: "{state_paths.packet_dir} -> {state_paths.archive_root}/{timestamp_slug}"
+          command: "if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi"
           set:
             lineage_mode: "restart"
             parent_session_id: "{prior_session_id}"

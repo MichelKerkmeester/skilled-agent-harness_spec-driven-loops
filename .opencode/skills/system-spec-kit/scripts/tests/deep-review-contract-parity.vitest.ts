@@ -126,6 +126,24 @@ function readWorkspaceFile(relativePath: string): string {
     expect(confirmContent).toContain('fork and completed-continue branches are deferred');
   });
 
+  it('never eagerly creates the archive root at init and archives lazily on restart (121/006)', () => {
+    for (const docPath of commandAssets) {
+      const content = readWorkspaceFile(docPath);
+      // Regression (121/006): step_create_directories must NOT pre-create
+      // {state_paths.archive_root}. Review init has never done so; this locks the
+      // invariant alongside deep-research (which previously did) and asserts the
+      // lazy, guarded restart move shared by both loops.
+      expect(content, `${docPath} init mkdir must not pre-create the archive root`).not.toMatch(
+        /step_create_directories:[\s\S]*?command: "mkdir -p [^"]*\{state_paths\.archive_root\}/,
+      );
+      // The archive root is created lazily, guarded on an existing packet,
+      // immediately before the restart move.
+      expect(content, `${docPath} restart must archive lazily + guarded`).toContain(
+        'if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi',
+      );
+    }
+  });
+
   it('keeps the generated review contract aligned on artifact_dir semantics', () => {
     const content = readWorkspaceFile('.opencode/skills/deep-review/assets/review_mode_contract.yaml');
 

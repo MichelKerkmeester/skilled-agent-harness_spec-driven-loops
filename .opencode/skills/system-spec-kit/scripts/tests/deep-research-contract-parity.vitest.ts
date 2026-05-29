@@ -83,6 +83,23 @@ function readWorkspaceFile(relativePath: string): string {
     }
   });
 
+  it('never eagerly creates the archive root at init and archives lazily on restart (121/006)', () => {
+    for (const docPath of commandAssets) {
+      const content = readWorkspaceFile(docPath);
+      // Regression (121/006): step_create_directories must NOT pre-create
+      // {state_paths.archive_root}. Doing so left empty research_archive/ dirs
+      // on every fresh run, since restart (the only legitimate archiver) is rare.
+      expect(content, `${docPath} init mkdir must not pre-create the archive root`).not.toMatch(
+        /step_create_directories:[\s\S]*?command: "mkdir -p [^"]*\{state_paths\.archive_root\}/,
+      );
+      // The archive root is created lazily, guarded on an existing packet,
+      // immediately before the restart move.
+      expect(content, `${docPath} restart must archive lazily + guarded`).toContain(
+        'if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi',
+      );
+    }
+  });
+
   it('uses the same canonical agent_file path in both auto and confirm YAMLs', () => {
     const canonicalAgentPath = '.opencode/agents/deep-research.md';
 

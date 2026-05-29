@@ -135,7 +135,7 @@ workflow:
 
       step_create_directories:
         action: "Create spec folder and research packet directories if they don't exist"
-        command: "mkdir -p {state_paths.prompt_dir} {state_paths.iteration_dir} {state_paths.delta_dir} {state_paths.archive_root}"
+        command: "mkdir -p {state_paths.prompt_dir} {state_paths.iteration_dir} {state_paths.delta_dir}"
 
       step_resolve_canonical_names:
         action: "Resolve canonical research packet artifact names before classification"
@@ -178,7 +178,7 @@ workflow:
             append_jsonl: '{"type":"event","event":"resumed","mode":"research","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","continuedFromRun":{iteration_count},"archivedPath":null,"timestamp":"{ISO_8601_NOW}","generation":{generation}}'
             skip_to: gate_init_approval
           on_restart_choice:
-            archive: "{state_paths.packet_dir} -> {state_paths.archive_root}/{timestamp_slug}"
+            command: "if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi"
             set:
               lineage_mode: "restart"
               parent_session_id: "{prior_session_id}"
