@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes",
+  "description": "Applied Source & Doc Fixes",
+  "keywords": [
+    "code",
+    "graph",
+    "remediation",
+    "001",
+    "applied",
+    "source",
+    "and",
+    "doc",
+    "fixes"
+  ],
+  "lastUpdated": "2026-05-29T08:30:00.000Z",
+  "specId": "001",
+  "folderSlug": "applied-source-and-doc-fixes",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "011-source-bug-and-misalignment-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

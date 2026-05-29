@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent",
+      "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph source audit",
+      "system-code-graph bug audit",
+      "mk-code-index misalignments"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "source",
+      "audit",
+      "bug",
+      "misalignment",
+      "mk-code-index",
+      "tree-sitter",
+      "owner-lease",
+      "readiness",
+      "sqlite",
+      "schema-validation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "review-report.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/status.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/tree-sitter-parser.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index",
+        "kind": "proper_noun",
+        "path": ".opencode/skills/system-code-graph/mcp_server/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code_graph_status",
+        "kind": "function",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tree-sitter-parser",
+        "kind": "module",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/tree-sitter-parser.ts",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Read-only bug + misalignment audit of the system-code-graph mk-code-index MCP server (~17.5k LOC). The operator dispatched the primary pass via cli-opencode using openai/gpt-5.5-fast at xhigh reasoning, which surfaced 3 contract findings (status read-only violation, unenforced tool schemas, trust-state enum drift). Claude verified each against source, added 3 database-path findings from the .opencode/.spec-kit directory-origin investigation, and ran a 43-agent completeness workflow that adversarially verified 32 of 36 additional candidates. The result is 37 confirmed findings (10 P1, 27 P2) recorded in review-report.md, including a WASM heap leak (tree-sitter Tree never deleted), a non-transactional removeFile, failed scans reporting fresh, and recovery operations that bypass the confirm gate. No source files were modified; remediation is deferred to scoped follow-on packets.",
+    "created_at": "2026-05-29T08:05:00.000Z",
+    "last_save_at": "2026-05-29T08:05:00.000Z",
+    "save_lineage": "manual",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "review-report.md"
+    ]
+  }
+}

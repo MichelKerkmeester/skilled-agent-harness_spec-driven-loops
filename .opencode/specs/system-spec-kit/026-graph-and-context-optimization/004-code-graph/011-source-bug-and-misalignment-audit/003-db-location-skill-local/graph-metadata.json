@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code graph db location skill-local",
+      "fix 1 spec-kit relocation"
+    ],
+    "key_topics": [
+      "code",
+      "graph",
+      "db",
+      "location",
+      "skill-local",
+      "spec-kit"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "database_path_policy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/references/config/database_path_policy.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Relocated the code-graph DB from workspace-root .opencode/.spec-kit/code-graph/database back to skill-local mcp_server/database (operator fix #1), reversing ADR-002/004/005. Committed 69e7bf12; verified green.",
+    "created_at": "2026-05-29T09:55:00.000Z",
+    "last_save_at": "2026-05-29T09:55:00.000Z",
+    "save_lineage": "manual",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ]
+  }
+}

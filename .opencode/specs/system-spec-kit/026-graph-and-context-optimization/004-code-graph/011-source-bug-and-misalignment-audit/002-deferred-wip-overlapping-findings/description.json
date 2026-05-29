@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings",
+  "description": "Deferred WIP-Overlapping Findings",
+  "keywords": [
+    "code",
+    "graph",
+    "remediation",
+    "002",
+    "deferred",
+    "wip",
+    "overlapping",
+    "findings"
+  ],
+  "lastUpdated": "2026-05-29T08:30:00.000Z",
+  "specId": "002",
+  "folderSlug": "deferred-wip-overlapping-findings",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph",
+    "011-source-bug-and-misalignment-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
