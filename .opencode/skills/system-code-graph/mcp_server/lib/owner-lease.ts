@@ -457,11 +457,19 @@ export function refreshOwnerLease(
 export function releaseOwnerLease(dbDir: string, ownerPid: number): boolean {
   const canonicalDbDir = resolveCanonicalDbDir(dbDir);
   const leasePath = ownerLeasePath(canonicalDbDir);
-  const holder = existsSync(leasePath) ? readOwnerLease(canonicalDbDir) : null;
-  if (!holder || holder.ownerPid !== ownerPid) return false;
-
-  unlinkSync(leasePath);
-  return true;
+  // DR-001-03: release under the same mutation lock as acquire/refresh, and re-read the lease
+  // while holding it. Without the lock, a concurrent reclaim that writes a successor lease
+  // between the read and the unlink would have its lease deleted by path (split-brain).
+  const lock = tryAcquireOwnerLeaseMutationLock(canonicalDbDir);
+  if (!lock) return false;
+  try {
+    const holder = existsSync(leasePath) ? readOwnerLease(canonicalDbDir) : null;
+    if (!holder || holder.ownerPid !== ownerPid) return false;
+    unlinkSync(leasePath);
+    return true;
+  } finally {
+    releaseOwnerLeaseMutationLock(lock);
+  }
 }
 
 export { OWNER_LEASE_FILE_NAME };

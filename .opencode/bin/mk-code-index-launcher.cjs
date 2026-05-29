@@ -406,8 +406,14 @@ function refreshOwnerLeaseFile(ownerPid, patch = {}) {
 function clearOwnerLeaseFile() {
   if (!Number.isInteger(ownerLeasePid)) return;
   try {
+    // DR-008-03: re-confirm ownership immediately before unlink so a successor lease written
+    // after the first read is not deleted by path. A residual sub-syscall window remains; fully
+    // closing it would require the launcher to share owner-lease.ts's mutation lock.
     const lease = readOwnerLeaseFile();
-    if (lease && lease.ownerPid === ownerLeasePid) fs.unlinkSync(ownerLeasePath());
+    if (lease && lease.ownerPid === ownerLeasePid
+        && readOwnerLeaseFile()?.ownerPid === ownerLeasePid) {
+      fs.unlinkSync(ownerLeasePath());
+    }
   } catch {
     // Idempotent cleanup.
   } finally {
@@ -417,8 +423,12 @@ function clearOwnerLeaseFile() {
 
 function clearOwnerLeaseFileIfOwner(ownerPid) {
   try {
+    // DR-008-03: re-confirm ownership immediately before unlink (see clearOwnerLeaseFile).
     const lease = readOwnerLeaseFile();
-    if (lease && lease.ownerPid === ownerPid) fs.unlinkSync(ownerLeasePath());
+    if (lease && lease.ownerPid === ownerPid
+        && readOwnerLeaseFile()?.ownerPid === ownerPid) {
+      fs.unlinkSync(ownerLeasePath());
+    }
   } catch {
     // Idempotent cleanup.
   }
@@ -726,11 +736,17 @@ async function acquireBootstrapLock(options = {}) {
           process.stderr.write(
             `[mk-code-index-launcher] stale bootstrap lock (mtime ${Math.round((Date.now() - lockStat.mtimeMs) / 1000)}s old); reclaiming ${rel(lockDir)}\n`
           );
-          fs.rmSync(lockDir, { recursive: true, force: true });
+          // DR-008-02: atomically CLAIM the stale lockdir via rename before deleting it. Only one
+          // racer wins the rename; a successor that mkdir's a fresh lockDir after our stat creates
+          // a NEW inode that our rename/rmSync cannot touch, so we never delete a live successor
+          // lock. A losing racer's rename throws ENOENT and falls through to the outer retry.
+          const staleClaim = `${lockDir}.stale.${process.pid}.${Date.now()}`;
+          fs.renameSync(lockDir, staleClaim);
+          fs.rmSync(staleClaim, { recursive: true, force: true });
           continue;
         }
       } catch {
-        // stat race — lock disappeared; loop and retry mkdirSync
+        // stat/rename race — lock disappeared or was reclaimed by another launcher; retry mkdirSync
       }
       if (Date.now() > deadline) {
         throw new Error(`bootstrap lock timed out at ${rel(lockDir)}`);

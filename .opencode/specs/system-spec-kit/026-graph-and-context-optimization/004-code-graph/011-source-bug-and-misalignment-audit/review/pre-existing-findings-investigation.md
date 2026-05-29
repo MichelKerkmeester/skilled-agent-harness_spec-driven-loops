@@ -86,3 +86,14 @@ contextType: "implementation"
 | DR-010-01 | ✅ | P1 | **operator BUG-06 WIP** | Operator's call (intra-phase signal checks) |
 
 **None block shipped work**; none were introduced this session. The highest-leverage action is the single race-class hardening packet (covers 3 findings + matches the DR-002-03 fix already landed). The two security items are real but gated (override-only / multi-user). DR-010-01 belongs to the operator's active feature.
+
+---
+
+## Race-class hardening landed 2026-05-29
+
+The systemic race-class cluster is now FIXED + verified (launcher parses; typecheck clean; full suite 583 passed / 0 failed):
+- **DR-001-03** — `releaseOwnerLease` now runs under the owner-lease mutation lock and re-reads the lease while holding it (fully race-free, mirrors acquire/refresh).
+- **DR-008-02** — bootstrap-lock stale reclaim now **atomically claims the stale lockdir via rename** before deleting it; a successor's fresh `mkdir` creates a new inode the rename/rmSync cannot touch, so a live successor lock is never deleted (race-free).
+- **DR-008-03** — `clearOwnerLeaseFile` / `clearOwnerLeaseFileIfOwner` now re-confirm ownership immediately before unlink (window narrowed to the re-read→unlink span; residual sub-syscall window noted — full closure needs the launcher to adopt the mutation lock).
+
+Remaining pre-existing items (DR-003-02 symlink-escape mkdir, DR-008-01 /tmp dir trust, DR-008-04 watchdog re-arm, DR-001-01 status degraded-envelope, DR-010-01 operator BUG-06) are unchanged — see the disposition table above.
