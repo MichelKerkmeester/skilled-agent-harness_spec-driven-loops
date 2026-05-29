@@ -12,18 +12,14 @@
     "second_consolidation_pass": "topical wrappers: 005-code-graph, 006-skill-advisor, 007-hook-parity (010-hook-parity renamed; 009-memory-causal-graph removed by user)"
   },
   "childTopology": [
-    "000-release-cleanup-playbooks",
+    "000-release-and-program-cleanup",
     "001-research-and-baseline",
-    "002-resource-map-deep-loop-fix",
-    "003-continuity-memory-runtime",
-    "004-runtime-executor-hardening",
-    "005-memory-indexer-invariants",
-    "005-code-graph",
-    "006-skill-advisor",
-    "007-hook-parity",
-    "010-graph-impact-and-affordance-uplift",
-    "003-fix-mcp-runtime-stress-findings",
-    "014-local-embeddings-setup-a"
+    "002-spec-kit-internals",
+    "003-memory-and-causal-runtime",
+    "004-code-graph",
+    "005-graph-impact-and-affordance",
+    "006-operator-tooling",
+    "007-mcp-daemon-reliability"
   ],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization",
   "description": "Feature Specification: Graph and Context Optimization",
@@ -34,7 +30,7 @@
     "context",
     "optimization"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.156Z",
+  "lastUpdated": "2026-05-29T20:13:35Z",
   "specId": "026",
   "folderSlug": "graph-and-context-optimization",
   "parentChain": [

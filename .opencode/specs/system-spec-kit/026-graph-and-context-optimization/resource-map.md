@@ -1,6 +1,6 @@
 ---
 title: "Resource Map: 026-graph-and-context-optimization"
-description: "Path catalog for 026-graph-and-context-optimization phased decomposition: 12 children, 52 artifact references"
+description: "Path catalog for 026-graph-and-context-optimization (HISTORICAL 2026-04-27 snapshot; current top-level state is 8 tracks — see timeline.md / spec.md)"
 trigger_phrases:
   - "resource map"
   - "026-graph-and-context-optimization resource map"
@@ -21,6 +21,19 @@ _memory:
 
 <!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v2.2 -->
 
+> ⚠️ **STALE — pre-wave-4 path catalog (generated 2026-04-27).** The rows below reference top-level
+> child names that were renamed/nested in the 2026-05-26 (wave-4) and 2026-05-29 (wave-5) reorganizations
+> (e.g. `005-code-graph` → `004-code-graph/`; `006-skill-advisor` → `002-spec-kit-internals/002-skill-advisor/`;
+> `007-hook-parity` → `006-operator-tooling/001-hook-parity/`). **Do not navigate from this file.**
+> Live navigation surfaces:
+> - `timeline.md` — every spec folder newest→oldest (chronological recency)
+> - `spec.md` — the live 8-track Phase Documentation Map (`000`–`007`)
+> - `context-index.md` — old-path → current-home migration bridge (all waves)
+>
+> Current top-level children are **eight**: `000-release-and-program-cleanup`, `001-research-and-baseline`,
+> `002-spec-kit-internals`, `003-memory-and-causal-runtime`, `004-code-graph`, `005-graph-impact-and-affordance`,
+> `006-operator-tooling`, `007-mcp-daemon-reliability`. A full regeneration of this catalog is deferred.
+
 ---
 
 <!-- ANCHOR:summary -->
@@ -29,7 +42,7 @@ _memory:
 - **Total references**: 52
 - **By category**: READMEs=0, Documents=21, Commands=0, Agents=0, Skills=0, Specs=26, Scripts=0, Tests=0, Config=5, Meta=0
 - **Missing on disk**: 0
-- **Scope**: parent-aggregate map for `.opencode/specs/system-spec-kit/026-graph-and-context-optimization` covering the phase parent root plus 12 direct phase children
+- **Scope**: parent-aggregate map for `.opencode/specs/system-spec-kit/026-graph-and-context-optimization` covering the phase parent root plus its then-current direct phase children (HISTORICAL 2026-04-27 snapshot; current top-level = 8 tracks — see `timeline.md`)
 - **Generated**: 2026-04-27T15:14:08Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.

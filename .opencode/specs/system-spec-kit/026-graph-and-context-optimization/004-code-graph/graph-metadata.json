@@ -15,7 +15,8 @@
     "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent",
     "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
     "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
-    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan"
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan",
+    "system-spec-kit/026-graph-and-context-optimization/004-code-graph/013-owner-lease-election-race"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -48,7 +49,7 @@
       "catalog"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "resource-map.md"
@@ -141,13 +142,14 @@
     ],
     "causal_summary": "Build and harden the code-graph structural-indexing surface: the standalone package, CocoIndex decoupling, startup fixes, and the code-graph runtime, resilience, extraction, and documentation sub-themes. Code graph is a structural surface distinct from the memory store and cross-links to it.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-05-29T10:44:34.532Z",
+    "last_save_at": "2026-05-29T19:34:18.353Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
+    "last_active_at": "2026-05-29T18:21:38+02:00"
   }
 }

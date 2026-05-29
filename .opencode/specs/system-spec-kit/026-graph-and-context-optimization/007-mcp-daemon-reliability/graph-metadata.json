@@ -14,7 +14,9 @@
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close",
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability",
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
-    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph"
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph",
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe",
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard"
   ],
   "manual": {
     "depends_on": [],
@@ -42,7 +44,7 @@
       "daemons"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "mcp_server/package.json",
       "spec.md"
@@ -99,12 +101,13 @@
     ],
     "causal_summary": "The mk-spec-memory and mk_code_index MCP daemons fail repeatedly during sessions: a missing `/tmp` socket dir crashes startup, the embedding model RSS grows until the OS OOM-kills the process, nothing auto-restarts a dead daemon, reconnects bridge to a dead socket, and rebuilding the server wipes the live `dist/` out from under it. Each forces a manual `/mcp` reconnect.",
     "created_at": "2026-05-28T18:43:48Z",
-    "last_save_at": "2026-05-29T13:33:41.015Z",
+    "last_save_at": "2026-05-29T19:34:18.497Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard",
+    "last_active_at": "2026-05-29T16:07:19+02:00"
   }
 }

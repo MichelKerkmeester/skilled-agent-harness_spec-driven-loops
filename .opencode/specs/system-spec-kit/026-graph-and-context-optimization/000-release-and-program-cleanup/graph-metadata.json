@@ -44,7 +44,7 @@
       "coordinate"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "resource-map.md"
@@ -137,12 +137,14 @@
     ],
     "causal_summary": "Coordinate release readiness, system audits, cross-cutting cleanup, stress testing, and program-level adoption follow-ups for the graph-and-context program. Acts as the final release gate.",
     "created_at": "2026-04-27T13:33:11Z",
-    "last_save_at": "2026-05-28T06:06:28.220Z",
+    "last_save_at": "2026-05-29T19:34:17.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness",
+    "last_active_at": "2026-05-28T11:14:39+02:00"
   }
 }

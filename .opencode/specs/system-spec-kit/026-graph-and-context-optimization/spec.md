@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Graph and Context Optimization [system-spec-kit/026-graph-and-context-optimization/spec]"
-description: "Root coordination packet for the graph, context, memory, and operator-tooling improvement program, decomposed into seven themed phase tracks."
+description: "Root coordination packet for the graph, context, memory, and operator-tooling improvement program, decomposed into eight themed phase tracks."
 trigger_phrases:
   - "026 graph and context optimization"
   - "026 root packet"
@@ -11,14 +11,15 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization"
-    last_updated_at: "2026-05-26T17:00:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Finalized seven-track phase map"
-    next_safe_action: "Resume an in-progress track via its child folder"
+    last_updated_at: "2026-05-29T20:13:35Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Added timeline.md; adopted track 007 into phase map"
+    next_safe_action: "Resume an in-progress track; see timeline.md for recency"
     blockers: []
     key_files:
       - "spec.md"
       - "context-index.md"
+      - "timeline.md"
       - "graph-metadata.json"
     completion_pct: 90
     open_questions: []
@@ -51,12 +52,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off fixes. This packet is the root coordination surface that decomposes that program into seven independently executable themed phase tracks.
+The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off fixes. This packet is the root coordination surface that decomposes that program into eight independently executable themed phase tracks.
 
 ### Purpose
-Deliver graph indexing, context/memory continuity, embedding architecture, skill-advisor, spec-kit internals, and operator-tooling improvements as themed phase tracks, each owning its own planning, execution, and verification. The root packet owns navigation, the seven-track map, and aggregate status only.
+Deliver graph indexing, context/memory continuity, embedding architecture, skill-advisor, spec-kit internals, and operator-tooling improvements as themed phase tracks, each owning its own planning, execution, and verification. The root packet owns navigation, the eight-track map, and aggregate status only.
 
-> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. Phase history and old-path resolution live in `context-index.md`.
+> **Phase-parent note:** This spec.md is the ONLY authored planning document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. Phase history and old-path resolution live in `context-index.md`; chronological recency (newest→oldest spec folders) lives in `timeline.md`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -65,7 +66,7 @@ Deliver graph indexing, context/memory continuity, embedding architecture, skill
 ## 3. SCOPE
 
 ### In Scope
-- Coordinate the seven themed phase tracks (`000`–`006`) and their aggregate status.
+- Coordinate the eight themed phase tracks (`000`–`007`) and their aggregate status.
 - Provide the navigation map from theme to child phase folder.
 - Track which tracks are shipped, in progress, or deferred in place.
 
@@ -87,8 +88,9 @@ Deliver graph indexing, context/memory continuity, embedding architecture, skill
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> Seven themed phase tracks. Each is an independently executable child spec folder owning its own
+> Eight themed phase tracks. Each is an independently executable child spec folder owning its own
 > plan, tasks, checklist, decisions, and continuity. The Status column reports aggregate track state.
+> Tracks are ordered by their topical number, NOT by recency — see `timeline.md` for newest→oldest.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
@@ -99,6 +101,7 @@ Deliver graph indexing, context/memory continuity, embedding architecture, skill
 | 004 | `004-code-graph/` | Code-graph structural-indexing package, CocoIndex decoupling, startup fixes, code-graph sub-themes | in progress |
 | 005 | `005-graph-impact-and-affordance/` | External-project adoption uplift: phase runner, edge/impact explanation, affordance + causal-trust display | deferred |
 | 006 | `006-operator-tooling/` | Runtime hook parity, doctor command surface, install-script/doctor realignment | in progress |
+| 007 | `007-mcp-daemon-reliability/` | MCP daemon lifecycle reliability: IPC socket canonicalization, WAL checkpoint-on-close, graceful shutdown + watchdog, provider dispose, at-rest durability | in progress |
 
 ### Phase Transition Rules
 
@@ -130,6 +133,7 @@ Deliver graph indexing, context/memory continuity, embedding architecture, skill
 
 ## RELATED DOCUMENTS
 
+- **Chronological timeline (newest→oldest spec folders)**: See `timeline.md` — the recency view, separate from folder numbers
 - **Phase migration bridge / old-path resolution**: See `context-index.md`
-- **Phase children**: See sub-folders `000-*` … `006-*` for per-phase spec.md, plan.md, tasks.md
-- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
+- **Phase children**: See sub-folders `000-*` … `007-*` for per-phase spec.md, plan.md, tasks.md
+- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer (now points to the most recently active track)

@@ -40,10 +40,28 @@ history — all of it lives here.
 
 ---
 
+## Latest — Wave 5 (2026-05-29): 8th track adopted + chronology surfaced
+
+No phase folders moved in this wave. Two changes only:
+
+1. **`007-mcp-daemon-reliability/` adopted as the 8th top-level track.** It was created 2026-05-28
+   (MCP daemon lifecycle reliability: IPC socket canonicalization, WAL checkpoint-on-close, graceful
+   shutdown + watchdog, provider dispose, at-rest durability) but had been absent from the parent
+   `spec.md` Phase Documentation Map. The map and `graph-metadata.json` now list eight tracks (`000`–`007`).
+2. **Chronological recency surfaced.** Added `timeline.md` (every spec folder, newest→oldest by git
+   activity) and reconciled `graph-metadata.json` `derived.status` + `derived.last_active_child_id`
+   pointers (root → `004-code-graph`, the most recently active track). The daemon had previously left
+   these as `status: "planned"` / `last_active_child_id: null` across all tracks.
+
+Folder numbers remain topical identity; `timeline.md` is the separate recency view.
+
+---
+
 <!-- ANCHOR:migration-bridge -->
 ## Migration Bridge — Wave 4 (2026-05-26): 17 top-level phases → 7 themed parents
 
-The current active surface is exactly seven themed phase parents (`000`–`006`). The table maps
+Wave 4's active surface was seven themed phase parents (`000`–`006`); an eighth track
+(`007-mcp-daemon-reliability`) was added later — see "Latest — Wave 5" above. The table below maps
 each pre-wave-4 top-level phase to its current home.
 
 | Original Phase | New Home | Status | Notes |
