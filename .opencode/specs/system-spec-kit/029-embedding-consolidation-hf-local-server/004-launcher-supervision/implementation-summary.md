@@ -1,25 +1,26 @@
 ---
 title: "Implementation Summary: Add launcher supervision for the hf model server"
-description: "Spec authored only. Captures implementation scope, plan, tasks, risks, and verification commands for launcher-owned model-server supervision spec; application code remains unchanged."
+description: "Implemented. The launcher lazily spawns + supervises hf-model-server as a launcher-owned sibling child: 2nd crash-loop guard, generalized RSS watchdog, modelServerPid lease, probeModelServer, and an hf-embed-respawn wx lock — reusing F1/F3 algorithms with separate state. F1 (14) + F3 (4) suites stay green; adversarially reviewed (0 confirmed defects)."
 trigger_phrases:
-  - "launcher-owned model-server supervision spec implementation summary"
+  - "launcher-owned model-server supervision implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/004-launcher-supervision"
-    last_updated_at: "2026-05-29T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Authored spec packet docs only; implementation remains pending"
-    next_safe_action: "Begin implementation from tasks.md when this phase is selected"
+    last_updated_at: "2026-05-29T09:10:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Launcher supervises hf-model-server; F1 14 + F3 4 stay green; 24 total; review clean"
+    next_safe_action: "Phase 005: retire the sidecar apparatus + collapse the execution router"
     blockers: []
     key_files:
       - ".opencode/bin/mk-spec-memory-launcher.cjs"
+      - ".opencode/bin/lib/launcher-ipc-bridge.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000594"
       session_id: "029-004-impl-summary"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-launcher-supervision |
-| **Completed** | Not completed - spec authored 2026-05-29 |
+| **Completed** | 2026-05-29 (implemented + headless-verified; F1/F3 non-regressed) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -46,20 +47,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No application code was built in this pass. This packet authored the phase markdown needed to implement launcher-owned model-server supervision spec: `004-launcher-supervision/spec.md`, `004-launcher-supervision/plan.md`, `004-launcher-supervision/tasks.md`, and this `004-launcher-supervision/implementation-summary.md`.
-
-### Spec packet authored
-
-The phase now has a Level-1 specification, implementation plan, task list, and continuity summary. The implementation remains pending; the files named in the phase plan are target surfaces for a future implementation session, not changes made by this authoring pass.
+The mk-spec-memory launcher now lazily spawns and supervises `hf-model-server.cjs` as a **launcher-owned sibling child** (not detached), reusing the F1/F3 algorithms with separate model-server state. Lazy-spawn mechanism: the launcher binds a tiny demand listener on the embed UDS; the daemon-side hf-local client's first `/api/health` hits it, which spawns the model server (via `launchModelServer`) and replies 503-loading (the client retries through the cold-load). A read-only session never spawns it. Supervision: a **second** `createCrashLoopGuard` + relaunch timer drives the same `superviseChildExit` (independent of the daemon's guard); `startRssWatchdog` was generalized to take a target pid + the model-server ceiling env (`SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB`/`_RSS_SELF_EXIT`) while the daemon's watchdog is unchanged; an additive `modelServerPid` lease field; the signal cascade reaps both trees; reap-before-respawn + an `hf-embed-respawn.lock` (wx + stale reclaim) single-winner; `probeModelServer` (GET /api/health, ready||loading = alive) added to the bridge as a separate function from `probeDaemon`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md` | Create | Defines problem, scope, requirements, success criteria, risks, and open questions |
-| `plan.md` | Create | Defines implementation approach, affected surfaces, phases, testing, dependencies, and rollback |
-| `tasks.md` | Create | Defines setup, implementation, verification, and completion tasks |
-| `implementation-summary.md` | Create | Records that this is spec-authoring only and implementation is pending |
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Modify | Lazy demand listener + `launchModelServer` + 2nd crash-loop guard/timer + generalized RSS watchdog + `modelServerPid` lease + reap/teardown + `hf-embed-respawn.lock` (+ F-001 fix: demand-listener EADDRINUSE unlink-retry) |
+| `.opencode/bin/lib/launcher-ipc-bridge.cjs` | Modify | `probeModelServer(socketPath)` GET /api/health probe (separate from `probeDaemon`) |
+| `mcp_server/tests/embedders/launcher-model-server.vitest.ts` | Create | 6 tests: lazy/no-spawn, demand→spawn, 2nd-guard relaunch/give-up, generalized watchdog targets model pid, modelServerPid additive+reaped, probeModelServer ready/loading=alive |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +63,7 @@ The phase now has a Level-1 specification, implementation plan, task list, and c
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Authored by mirroring the known-good Level-1 child packet structure from `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose/` and filling only the human content for this phase. The authoring pass stayed inside the approved packet folder and did not edit application code, tests, benchmarks, generated metadata, or git state.
+Implemented by a `cli-codex` dispatch (`gpt-5.5`, xhigh, fast, `--sandbox workspace-write`) fenced to the launcher + bridge + a new test. Independent verification (node --check + the F1/F3 + new suites) and a 5-lens opus adversarial review focused on F1/F3 non-regression — verdict: **0 confirmed defects**, F1 (daemon watchdog/relaunch/childPid/graceful-exit) and F3 (probeDaemon/maybeBridgeLeaseHolder/respawn) confirmed byte-equivalent/untouched, the lazy-spawn demand path race-safe and launcher-owned. The orchestrator fixed one P2 the review raised: the demand listener's `listen()` now does an EADDRINUSE unlink-retry (mirroring the model server) so a stale socket from a prior crash can't silently disable lazy embeds. F1 14/14 + F3 4/4 + 6 new = 24 green.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -89,9 +85,13 @@ Authored by mirroring the known-good Level-1 child packet structure from `.openc
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/029-embedding-consolidation-hf-local-server/004-launcher-supervision --strict` | Expected verification command for this phase |
-| `tsc` / focused vitest commands named in `plan.md` | Pending implementation |
-| Application-code tests | Not run; out of scope for spec-authoring only |
+| `node --check` launcher + bridge | PASS |
+| `vitest run` F1 launcher-watchdog (non-regression) | PASS (14/14) |
+| `vitest run` F3 launcher-ipc-bridge-probe (non-regression) | PASS (4/4) |
+| `vitest run` new launcher-model-server | PASS (6/6) |
+| 5-lens opus adversarial review (F1 / F3 non-regression, lazy-spawn, supervision, wx-lock/scope) | PASS — 0 confirmed defects; 1 P2 (demand-listener EADDRINUSE) fixed |
+| `validate.sh --strict` on this packet | PASS |
+| SC: live first-embed spawn / RSS recycle | DEFERRED — needs a running daemon + model server |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,7 +99,8 @@ Authored by mirroring the known-good Level-1 child packet structure from `.openc
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. Implementation is pending; this summary records authored markdown, not shipped runtime behavior.
-2. `description.json` and `graph-metadata.json` are intentionally absent because generated metadata is handled separately.
+1. **Live first-embed spawn not exercised** — the lazy demand→spawn, RSS recycle, and reap-before-respawn are covered by injected-spawn/ps tests; a live daemon + model server is the natural follow-up.
+2. **Remaining P2 review notes (non-blocking):** the async signal-teardown end-to-end path and the give-up→re-arm demand-listener path have thin behavioral coverage (validated by code review, not a dedicated test).
+3. **Sidecar still present** — both the old sidecar path and the new model-server path coexist until phase 005 retires the sidecar; `SPECKIT_EMBEDDER_EXECUTION` is still honored until then.
 <!-- /ANCHOR:limitations -->
 

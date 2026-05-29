@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm predecessor handoff criteria from 003-hf-local-http-client
-- [ ] T002 Inventory affected files and symbols before implementation
-- [ ] T003 [P] Identify focused tests to add or migrate
+- [x] T001 Confirm predecessor handoff criteria from 003-hf-local-http-client
+- [x] T002 Inventory affected files and symbols before implementation
+- [x] T003 [P] Identify focused tests to add or migrate
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,10 +58,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Add launchModelServer() with lazy sibling-child spawn [REQ-001]
-- [ ] T005 Instantiate second crash-loop guard and relaunch timer [REQ-002]
-- [ ] T006 Generalize RSS watchdog to accept pid and model-server env ceilings [REQ-003]
-- [ ] T007 Add modelServerPid to lease and teardown/reap paths [REQ-004]
+- [x] T004 Add launchModelServer() with lazy sibling-child spawn [REQ-001]
+- [x] T005 Instantiate second crash-loop guard and relaunch timer [REQ-002]
+- [x] T006 Generalize RSS watchdog to accept pid and model-server env ceilings [REQ-003]
+- [x] T007 Add modelServerPid to lease and teardown/reap paths [REQ-004]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,9 +69,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T08 Add probeModelServer and socket-keyed respawn lock [REQ-005]
-- [ ] T09 Test lazy spawn, relaunch/give-up, RSS breach, signal reap, loading-alive probe [REQ-006]
-- [ ] T099 Run strict spec validation for this phase folder
+- [x] T08 Add probeModelServer and socket-keyed respawn lock [REQ-005]
+- [x] T09 Test lazy spawn, relaunch/give-up, RSS breach, signal reap, loading-alive probe [REQ-006]
+- [x] T099 Run strict spec validation for this phase folder
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All P0 tasks complete
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Focused phase tests/static checks are green and predecessor/successor handoff is documented
+- [x] All P0 tasks complete
+- [x] No `[B]` blocked tasks remaining
+- [x] Focused phase tests/static checks are green and predecessor/successor handoff is documented
 <!-- /ANCHOR:completion -->
 
 ---

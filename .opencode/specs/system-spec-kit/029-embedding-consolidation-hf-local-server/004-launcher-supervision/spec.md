@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/004-launcher-supervision"
-    last_updated_at: "2026-05-29T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Authored deferred spec for launcher-owned lazy model-server supervision"
-    next_safe_action: "Implement after hf-local can call the model server"
+    last_updated_at: "2026-05-29T09:10:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Launcher supervises hf-model-server; F1 14 + F3 4 stay green; 24 total; review clean"
+    next_safe_action: "Phase 005: retire the sidecar apparatus + collapse the execution router"
     blockers: []
     key_files:
       - ".opencode/bin/mk-spec-memory-launcher.cjs"
@@ -22,10 +22,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000294"
       session_id: "029-004-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "dependsOn: 003-hf-local-http-client."
+      - "Lazy demand listener on the embed UDS triggers a launcher-owned (not detached) spawn"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Add launcher supervision for the hf model server
@@ -41,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Implemented (F1 14 + F3 4 + 6 new = 24 green; review clean; live spawn deferred) |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
