@@ -1,0 +1,26 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/013-owner-lease-election-race",
+  "description": "Feature Specification: Owner-Lease Single-Writer Election Race (OR-R-01)",
+  "keywords": [
+    "feature",
+    "specification",
+    "owner-lease",
+    "single-writer",
+    "election",
+    "race",
+    "or-r-01"
+  ],
+  "lastUpdated": "2026-05-29T16:11:06.935Z",
+  "specId": "013",
+  "folderSlug": "owner-lease-election-race",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "004-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
