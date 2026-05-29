@@ -10,19 +10,20 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring"
-    last_updated_at: "2026-05-29T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Authored deferred spec for skill-advisor shared model-server wiring"
-    next_safe_action: "Implement after sidecar retirement and shared server routing are stable"
+    last_updated_at: "2026-05-29T13:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Shared model-server supervisor extracted; both launchers wired; 5 review fixes; tests green"
+    next_safe_action: "Reconcile parent 029 packet; Option B 6/6 complete"
     blockers: []
     key_files:
-      - "system-skill-advisor/mcp_server/lib/embedders/index.ts"
+      - ".opencode/bin/lib/model-server-supervision.cjs"
+      - ".opencode/bin/mk-skill-advisor-launcher.cjs"
       - ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000296"
       session_id: "029-006-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "dependsOn: 005-retire-sidecar."
@@ -41,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Implemented (shared supervisor lib; both launchers wired; 5 review fixes; cross-launcher tests green) |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

@@ -12,8 +12,19 @@ const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
 
+const mss = loadModelServerSupervisionModule();
+
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
+
+function loadModelServerSupervisionModule() {
+  try {
+    return require('./lib/model-server-supervision.cjs');
+  } catch (error) {
+    if (error.code !== 'MODULE_NOT_FOUND') throw error;
+    return null;
+  }
+}
 
 // Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).
@@ -60,6 +71,7 @@ let mcpDir = path.join(kitDir, 'mcp_server');
 let dbDir = path.join(mcpDir, 'database');
 let lockDir = path.join(dbDir, '.mk-skill-advisor-launcher.lockdir');
 let stateFile = path.join(dbDir, '.mk-skill-advisor-launcher.json');
+let systemSpecKitDbDir = path.join(skillsDir, 'system-spec-kit', 'mcp_server', 'database');
 
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -92,11 +104,14 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_METRICS_ENABLED',
   'SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS',
   'SPECKIT_IPC_SOCKET_DIR',
+  'SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED',
+  'HF_EMBED_SERVER_URL',
   'SPECKIT_LAUNCHER_BRIDGE_DISABLED',
   'SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN',
   'SPECKIT_MAX_SECONDARY_CLIENTS',
 ]);
 let childProcess = null;
+let launcherShutdownInProgress = false;
 
 function log(message) {
   process.stderr.write(`[mk-skill-advisor-launcher] ${message}\n`);
@@ -143,6 +158,7 @@ function refreshPaths() {
   dbDir = path.join(mcpDir, 'database');
   lockDir = path.join(dbDir, '.mk-skill-advisor-launcher.lockdir');
   stateFile = path.join(dbDir, '.mk-skill-advisor-launcher.json');
+  systemSpecKitDbDir = path.join(skillsDir, 'system-spec-kit', 'mcp_server', 'database');
 }
 
 function exists(p) {
@@ -272,6 +288,114 @@ function clearLeaseFile() {
   } catch {
     // Idempotent cleanup.
   }
+}
+
+function isModelServerEnabled() {
+  return process.env.SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED === '1';
+}
+
+function requireModelServerSupervision() {
+  if (!mss) {
+    throw new Error('model-server-supervision.cjs is unavailable');
+  }
+  return mss;
+}
+
+function resolveModelServerSocketPath(env = process.env, options = {}) {
+  return requireModelServerSupervision().resolveModelServerSocketPath(env, {
+    ...options,
+    dbDir: options.dbDir || (() => systemSpecKitDbDir),
+  });
+}
+
+function sharedModelServerPidPath(socketPath = resolveModelServerSocketPath()) {
+  const pidDir = socketPath.startsWith('tcp://') ? systemSpecKitDbDir : path.dirname(socketPath);
+  return path.join(pidDir, requireModelServerSupervision().HF_MODEL_SERVER_PID_FILE_NAME);
+}
+
+function writeSharedModelServerPid(pid) {
+  const socketPath = resolveModelServerSocketPath();
+  const pidPath = sharedModelServerPidPath(socketPath);
+  if (!Number.isInteger(pid) || pid <= 0) {
+    try {
+      fs.unlinkSync(pidPath);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+    return;
+  }
+
+  const currentPidPath = path.join(ensureCanonicalDir(path.dirname(pidPath)), path.basename(pidPath));
+  const tmp = `${currentPidPath}.tmp.${process.pid}`;
+  fs.writeFileSync(tmp, JSON.stringify({
+    pid,
+    startedAt: new Date().toISOString(),
+    ownerLauncher: 'mk-skill-advisor',
+    socketPath,
+  }, null, 2), { mode: 0o600 });
+  fs.renameSync(tmp, currentPidPath);
+}
+
+function readSharedModelServerPid() {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(sharedModelServerPidPath(), 'utf8'));
+    if (Number.isInteger(parsed.pid) && parsed.pid > 0) return parsed.pid;
+  } catch {
+    // Advisor never falls back to its own launcher lease for model-server ownership.
+  }
+  return null;
+}
+
+const hfControl = mss ? mss.createModelServerControl({
+  log,
+  env: process.env,
+  rootDir: root,
+  opencodeDir,
+  dbDir: () => systemSpecKitDbDir,
+  getLauncherShutdownInProgress: () => launcherShutdownInProgress,
+  onRssBreach: () => {
+    hfControl.clearTimers();
+    const pid = hfControl.getPid();
+    if (pid) hfControl.reapProcessTree(pid);
+    void hfControl.stopDemandListener();
+    writeSharedModelServerPid(null);
+  },
+  bridge: loadBridgeModule(),
+  writeModelServerPid: writeSharedModelServerPid,
+  readModelServerPid: readSharedModelServerPid,
+}) : null;
+
+function isChildRunning(child) {
+  return child && child.exitCode === null && child.signalCode === null;
+}
+
+function waitForChildExit(child, timeoutMs) {
+  if (!isChildRunning(child)) return Promise.resolve(true);
+  return new Promise((resolve) => {
+    let settled = false;
+    const finish = (exited) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      child.off('exit', onExit);
+      resolve(exited);
+    };
+    const onExit = () => finish(true);
+    const timer = setTimeout(() => finish(false), timeoutMs);
+    timer.unref?.();
+    child.once('exit', onExit);
+  });
+}
+
+async function shutdownModelServerForLauncherExit() {
+  if (!isModelServerEnabled()) return;
+  if (!hfControl) throw new Error('SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1 but model-server supervision lib is unavailable');
+  launcherShutdownInProgress = true;
+  hfControl.clearTimers();
+  await hfControl.stopDemandListener();
+  const pid = hfControl.getPid();
+  if (pid) hfControl.reapProcessTree(pid);
+  writeSharedModelServerPid(null);
 }
 
 function run(command, args, options = {}) {
@@ -415,14 +539,22 @@ function launchServer() {
   });
 
   childProcess.on('exit', (code, signal) => {
-    if (signal) {
-      // council P1-Seat2: clear lease before signal mirror; process.on('exit') doesn't fire on SIGKILL.
+    void (async () => {
+      await shutdownModelServerForLauncherExit();
+      if (signal) {
+        // council P1-Seat2: clear lease before signal mirror; process.on('exit') doesn't fire on SIGKILL.
+        clearLeaseFile();
+        process.kill(process.pid, signal);
+        return;
+      }
       clearLeaseFile();
-      process.kill(process.pid, signal);
-      return;
-    }
-    clearLeaseFile();
-    process.exit(code ?? 0);
+      process.exit(code ?? 0);
+    })().catch((error) => {
+      log(`shutdown cleanup failed: ${error.message}`);
+      debug(error.stack || error.message);
+      clearLeaseFile();
+      process.exit(code ?? 1);
+    });
   });
 
   childProcess.on('error', (error) => {
@@ -435,23 +567,25 @@ function launchServer() {
 function installSignalHandlers() {
   for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGQUIT']) {
     process.on(signal, () => {
-      if (childProcess && !childProcess.killed) {
-        childProcess.once('exit', () => {
-          clearLeaseFile();
-          process.exit(128);
-        });
-        childProcess.kill(signal);
-        setTimeout(() => {
-          if (childProcess && childProcess.exitCode === null && childProcess.signalCode === null) {
+      void (async () => {
+        if (launcherShutdownInProgress) return;
+        launcherShutdownInProgress = true;
+        await shutdownModelServerForLauncherExit();
+        if (childProcess && !childProcess.killed) {
+          childProcess.kill(signal);
+          const exited = await waitForChildExit(childProcess, 5000);
+          if (!exited && isChildRunning(childProcess)) {
             childProcess.kill('SIGKILL');
           }
-          clearLeaseFile();
-          process.exit(128);
-        }, 5000).unref();
-        return;
-      }
-      clearLeaseFile();
-      process.exit(128);
+        }
+        clearLeaseFile();
+        process.exit(128);
+      })().catch((error) => {
+        log(`signal shutdown failed: ${error.message}`);
+        debug(error.stack || error.message);
+        clearLeaseFile();
+        process.exit(128);
+      });
     });
   }
   process.on('uncaughtException', (err) => {
@@ -511,6 +645,12 @@ async function main() {
     }
 
     launchServer();
+    if (isModelServerEnabled()) {
+      if (!hfControl) throw new Error('SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1 but model-server supervision lib is unavailable');
+      void hfControl.startDemandListener().catch((error) => {
+        log(error.stack || error.message);
+      });
+    }
   } catch (error) {
     try {
       writeState({
@@ -541,6 +681,7 @@ function configureLauncherPathsForTesting(nextPaths) {
   if (nextPaths.dbDir) dbDir = nextPaths.dbDir;
   if (nextPaths.lockDir) lockDir = nextPaths.lockDir;
   if (nextPaths.stateFile) stateFile = nextPaths.stateFile;
+  systemSpecKitDbDir = nextPaths.systemSpecKitDbDir || path.join(skillsDir, 'system-spec-kit', 'mcp_server', 'database');
 }
 
 if (require.main === module) {

@@ -12,6 +12,34 @@ const fs = require('fs');
 const http = require('http');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
+const mss = require('./lib/model-server-supervision.cjs');
+
+const {
+  RESPAWN_REAP_GRACE_MS,
+  HF_MODEL_SERVER_PID_FILE_NAME,
+  acquireRespawnLockFileAt: acquireSharedRespawnLockFileAt,
+  buildLeaseObject: buildSharedLeaseObject,
+  canonicalizePath,
+  computeBackoffMs,
+  createCrashLoopGuard,
+  createModelServerSupervisor: baseCreateModelServerSupervisor,
+  defaultProcessRowsRunner,
+  getCrashLoopConfig,
+  getModelServerWatchdogConfig,
+  getWatchdogConfig,
+  isChildRunning,
+  isRespawnLockStale,
+  ensureCanonicalDir,
+  normalizeWatchdogGraceMs,
+  parseProcessRows,
+  processLiveness,
+  releaseRespawnLockFile,
+  sampleProcessTreeRssMb,
+  shouldSkipLaunch,
+  signalProcess,
+  superviseChildExit,
+  waitForPidExit,
+} = mss;
 
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
@@ -60,30 +88,9 @@ let canonicalCodeGraphDbDir = path.join(skillsDir, 'system-code-graph', 'mcp_ser
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const now = () => new Date().toISOString();
-const SHUTDOWN_DEADLINE_MS = 5000;
-const DEFAULT_WATCHDOG_GRACE_MS = 7000;
-const RESPAWN_REAP_GRACE_MS = 7000;
-// A respawn lock older than this (or held by a dead pid) is reclaimable — so a launcher SIGKILL'd
-// during the reap window cannot permanently wedge all future respawns. Must exceed the max reap
-// window (RESPAWN_REAP_GRACE_MS + SIGKILL wait + bootstrap-lock time) with margin.
-const RESPAWN_LOCK_STALE_MS = 60000;
 // Generously above any realistic cold-cache build (npm ci + 2 tsc workspace builds) so the reclaim
 // only fires for a genuinely abandoned lockdir, never a slow-but-live build holder.
 const BOOTSTRAP_LOCK_STALE_MS = 300000;
-const DEFAULT_WATCHDOG_INTERVAL_MS = 15000;
-const DEFAULT_WATCHDOG_CONSECUTIVE_BREACHES = 3;
-// Tracking-only cadence when the RSS self-exit watchdog is NOT enabled: still sample the process
-// tree periodically so the crash-loop give-up reap (REQ-007) has a before-death descendant snapshot
-// to reap from (a forked-detached sidecar re-parents to pid 1 on hard daemon death, so a fresh walk
-// anchored on the dead childPid would find nothing).
-const DEFAULT_DESCENDANT_SNAPSHOT_INTERVAL_MS = 30000;
-const DEFAULT_CRASH_LOOP_MAX_DEATHS = 3;
-const DEFAULT_CRASH_LOOP_WINDOW_MS = 60000;
-const DEFAULT_CRASH_LOOP_INITIAL_BACKOFF_MS = 250;
-const DEFAULT_CRASH_LOOP_MAX_BACKOFF_MS = 5000;
-const HF_MODEL_SERVER_SOCKET_FILE_NAME = 'hf-embed.sock';
-const HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME = 'hf-embed-respawn.lock';
-const MODEL_SERVER_DEMAND_STATUS = 503;
 let childProcess = null;
 let leaseStartedAt = null;
 let launcherShutdownInProgress = false;
@@ -91,9 +98,6 @@ let rssBreachSelfExitInProgress = false;
 let rssWatchdogTimer = null;
 let crashLoopGuard = null;
 let supervisorRelaunchTimer = null;
-let modelServerSupervisor = null;
-let modelServerDemandServer = null;
-let modelServerDemandTarget = null;
 // Last-known descendant pids of the daemon child (excluding the child itself), refreshed by the
 // process-tree monitor while the child is alive; the give-up reap path uses this to find an
 // orphaned sidecar after the child has already exited.
@@ -117,193 +121,6 @@ function parsePositiveInteger(value, fallback) {
   if (value === undefined || value === null || String(value).trim() === '') return fallback;
   const parsed = Number.parseInt(String(value).trim(), 10);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
-}
-
-function isPermissionError(error) {
-  const code = error && typeof error === 'object' ? error.code : undefined;
-  if (code === 'EPERM' || code === 'EACCES') return true;
-  const message = error instanceof Error ? error.message : String(error ?? '');
-  return /operation not permitted|permission denied/i.test(message);
-}
-
-function parseProcessRows(input) {
-  if (Array.isArray(input)) {
-    return input
-      .map((row) => ({
-        pid: Number(row.pid),
-        ppid: Number(row.ppid),
-        rss: Number(row.rss),
-      }))
-      .filter((row) => Number.isFinite(row.pid) && Number.isFinite(row.ppid) && Number.isFinite(row.rss));
-  }
-
-  return String(input ?? '')
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line) => {
-      const [pid, ppid, rss] = line.split(/\s+/).map((value) => Number.parseInt(value, 10));
-      return { pid, ppid, rss };
-    })
-    .filter((row) => Number.isFinite(row.pid) && Number.isFinite(row.ppid) && Number.isFinite(row.rss));
-}
-
-function defaultProcessRowsRunner() {
-  const result = spawnSync('ps', ['-eo', 'pid=,ppid=,rss='], {
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'pipe'],
-  });
-  if (result.error) throw result.error;
-  if (result.status !== 0) {
-    const error = new Error(result.stderr || `ps exited ${result.status}`);
-    error.code = result.status === 1 && /operation not permitted|permission denied/i.test(result.stderr || '') ? 'EPERM' : 'PS_FAILED';
-    throw error;
-  }
-  return result.stdout;
-}
-
-function resolveProcessTreeRows(childPid, runner = defaultProcessRowsRunner) {
-  if (!Number.isInteger(childPid) || childPid <= 0) return null;
-
-  let rows;
-  try {
-    rows = parseProcessRows(runner());
-  } catch (error) {
-    if (isPermissionError(error)) return null;
-    throw error;
-  }
-
-  const byPid = new Map();
-  const childrenByPpid = new Map();
-  for (const row of rows) {
-    byPid.set(row.pid, row);
-    const children = childrenByPpid.get(row.ppid) || [];
-    children.push(row);
-    childrenByPpid.set(row.ppid, children);
-  }
-  if (!byPid.has(childPid)) return null;
-
-  const subtree = [];
-  const stack = [childPid];
-  const seen = new Set();
-  while (stack.length > 0) {
-    const pid = stack.pop();
-    if (seen.has(pid)) continue;
-    seen.add(pid);
-    const row = byPid.get(pid);
-    if (row) subtree.push(row);
-    for (const child of childrenByPpid.get(pid) || []) {
-      stack.push(child.pid);
-    }
-  }
-
-  return subtree;
-}
-
-function sampleProcessTreeRssMb(childPid, runner = defaultProcessRowsRunner) {
-  const rows = resolveProcessTreeRows(childPid, runner);
-  if (!rows) return null;
-  const rssKb = rows.reduce((sum, row) => sum + Math.max(0, row.rss), 0);
-  return rssKb / 1024;
-}
-
-function normalizeWatchdogGraceMs(rawGraceMs, warn = log, envName = 'SPECKIT_LAUNCHER_RSS_GRACE_MS') {
-  const parsed = parsePositiveInteger(rawGraceMs, DEFAULT_WATCHDOG_GRACE_MS);
-  if (parsed > SHUTDOWN_DEADLINE_MS) return parsed;
-  warn(`${envName}=${JSON.stringify(rawGraceMs)} is <= ${SHUTDOWN_DEADLINE_MS}; using ${DEFAULT_WATCHDOG_GRACE_MS}ms`);
-  return DEFAULT_WATCHDOG_GRACE_MS;
-}
-
-function getWatchdogConfig(env = process.env, warn = log, options = {}) {
-  const envNames = {
-    maxRssMb: options.maxRssMbEnv || 'SPECKIT_CONTEXT_SERVER_MAX_RSS_MB',
-    selfExit: options.selfExitEnv || 'SPECKIT_LAUNCHER_RSS_SELF_EXIT',
-    intervalMs: options.intervalMsEnv || 'SPECKIT_LAUNCHER_RSS_WATCHDOG_INTERVAL_MS',
-    consecutiveBreaches: options.consecutiveBreachesEnv || 'SPECKIT_LAUNCHER_RSS_CONSECUTIVE_BREACHES',
-    graceMs: options.graceMsEnv || 'SPECKIT_LAUNCHER_RSS_GRACE_MS',
-  };
-  const rawMaxRssMb = env[envNames.maxRssMb];
-  const maxRssMb = rawMaxRssMb === undefined || rawMaxRssMb === null || String(rawMaxRssMb).trim() === ''
-    ? null
-    : Number.parseFloat(String(rawMaxRssMb).trim());
-  // REQ-008: host relaunch after clean launcher exit is unconfirmed, so RSS-breach self-exit is explicit opt-in only.
-  const enabled = Number.isFinite(maxRssMb) && maxRssMb > 0 && env[envNames.selfExit] === '1';
-  return {
-    enabled,
-    maxRssMb,
-    intervalMs: parsePositiveInteger(env[envNames.intervalMs], DEFAULT_WATCHDOG_INTERVAL_MS),
-    consecutiveBreaches: parsePositiveInteger(env[envNames.consecutiveBreaches], DEFAULT_WATCHDOG_CONSECUTIVE_BREACHES),
-    graceMs: normalizeWatchdogGraceMs(env[envNames.graceMs], warn, envNames.graceMs),
-    maxRssMbEnv: envNames.maxRssMb,
-    selfExitEnv: envNames.selfExit,
-  };
-}
-
-function getModelServerWatchdogConfig(env = process.env, warn = log) {
-  return getWatchdogConfig(env, warn, {
-    maxRssMbEnv: 'SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB',
-    selfExitEnv: 'SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT',
-  });
-}
-
-function computeBackoffMs(deathsInWindow, initialBackoffMs, maxBackoffMs) {
-  const exponent = Math.max(0, deathsInWindow - 1);
-  return Math.min(maxBackoffMs, initialBackoffMs * (2 ** exponent));
-}
-
-function createCrashLoopGuard(options = {}) {
-  const maxDeaths = parsePositiveInteger(options.maxDeaths, DEFAULT_CRASH_LOOP_MAX_DEATHS);
-  const windowMs = parsePositiveInteger(options.windowMs, DEFAULT_CRASH_LOOP_WINDOW_MS);
-  const initialBackoffMs = parsePositiveInteger(options.initialBackoffMs, DEFAULT_CRASH_LOOP_INITIAL_BACKOFF_MS);
-  const maxBackoffMs = parsePositiveInteger(options.maxBackoffMs, DEFAULT_CRASH_LOOP_MAX_BACKOFF_MS);
-  const nowMs = typeof options.now === 'function' ? options.now : () => Date.now();
-  const deaths = [];
-
-  return {
-    recordDeath() {
-      const current = nowMs();
-      deaths.push(current);
-      while (deaths.length > 0 && current - deaths[0] > windowMs) deaths.shift();
-      const deathsInWindow = deaths.length;
-      return {
-        deathsInWindow,
-        giveUp: deathsInWindow >= maxDeaths,
-        backoffMs: computeBackoffMs(deathsInWindow, initialBackoffMs, maxBackoffMs),
-      };
-    },
-  };
-}
-
-function getCrashLoopConfig(env = process.env) {
-  return {
-    maxDeaths: parsePositiveInteger(env.SPECKIT_LAUNCHER_CRASH_LOOP_MAX_DEATHS, DEFAULT_CRASH_LOOP_MAX_DEATHS),
-    windowMs: parsePositiveInteger(env.SPECKIT_LAUNCHER_CRASH_LOOP_WINDOW_MS, DEFAULT_CRASH_LOOP_WINDOW_MS),
-    initialBackoffMs: parsePositiveInteger(env.SPECKIT_LAUNCHER_CRASH_LOOP_INITIAL_BACKOFF_MS, DEFAULT_CRASH_LOOP_INITIAL_BACKOFF_MS),
-    maxBackoffMs: parsePositiveInteger(env.SPECKIT_LAUNCHER_CRASH_LOOP_MAX_BACKOFF_MS, DEFAULT_CRASH_LOOP_MAX_BACKOFF_MS),
-  };
-}
-
-function superviseChildExit(event, actions) {
-  if (event.intentional) {
-    actions.clearLease();
-    actions.exit(event.code ?? 0);
-    return { action: 'intentional-exit' };
-  }
-
-  const decision = actions.crashLoopGuard.recordDeath();
-  if (decision.giveUp) {
-    actions.clearLease();
-    actions.reapProcessGroup(event.childPid);
-    if (event.signal) {
-      actions.mirrorSignal(event.signal);
-    } else {
-      actions.exit(event.code ?? 1);
-    }
-    return { action: 'give-up', deathsInWindow: decision.deathsInWindow };
-  }
-
-  actions.scheduleRelaunch(decision.backoffMs);
-  return { action: 'relaunch', deathsInWindow: decision.deathsInWindow, backoffMs: decision.backoffMs };
 }
 
 function loadBridgeModule() {
@@ -335,21 +152,6 @@ function refreshPaths() {
 
 function exists(p) {
   return fs.existsSync(p);
-}
-
-function canonicalizePath(pathValue) {
-  const resolvedPath = path.resolve(pathValue);
-  try {
-    return fs.realpathSync.native(resolvedPath);
-  } catch (error) {
-    if (error.code === 'ENOENT') return resolvedPath;
-    throw error;
-  }
-}
-
-function ensureCanonicalDir(dirPath) {
-  fs.mkdirSync(canonicalizePath(dirPath), { recursive: true, mode: 0o700 });
-  return canonicalizePath(dirPath);
 }
 
 function writeState(payload) {
@@ -421,66 +223,11 @@ function respawnLockPath() {
 }
 
 function modelServerRespawnLockPath(socketPath = resolveModelServerSocketPath()) {
-  const lockDirPath = socketPath.startsWith('tcp://') ? resolvedDbDir() : path.dirname(socketPath);
-  return path.join(lockDirPath, HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME);
-}
-
-// A respawn lock is reclaimable if its payload is unparseable, its recorded holder pid is dead, or it
-// is older than the stale threshold. The pid-liveness check is primary; the age check is a backstop
-// against pid-reuse / a hung holder. (mirrors mk-code-index's owner-lease stale-pid reclaim.)
-function isRespawnLockStale(raw, options = {}) {
-  const liveness = options.liveness || processLiveness;
-  const nowMs = typeof options.nowMs === 'number' ? options.nowMs : Date.now();
-  const staleMs = typeof options.staleMs === 'number' ? options.staleMs : RESPAWN_LOCK_STALE_MS;
-  let parsed;
-  try {
-    parsed = JSON.parse(raw);
-  } catch {
-    return true;
-  }
-  const pid = parsed && parsed.pid;
-  if (Number.isInteger(pid) && pid > 0 && liveness(pid) === 'dead') return true;
-  const startedAtMs = parsed && parsed.startedAt ? Date.parse(parsed.startedAt) : NaN;
-  if (Number.isFinite(startedAtMs) && nowMs - startedAtMs > staleMs) return true;
-  return false;
+  return mss.modelServerRespawnLockPath(socketPath, { dbDir: resolvedDbDir });
 }
 
 function acquireRespawnLockFileAt(lockPath, label = 'respawn') {
-  const currentLockPath = path.join(ensureCanonicalDir(path.dirname(lockPath)), path.basename(lockPath));
-  const tryOpen = () => {
-    const fd = fs.openSync(currentLockPath, 'wx', 0o600);
-    fs.writeFileSync(fd, `${JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }, null, 2)}\n`, 'utf8');
-    fs.fsyncSync(fd);
-    return { acquired: true, fd, path: currentLockPath };
-  };
-  try {
-    return tryOpen();
-  } catch (error) {
-    if (error.code !== 'EEXIST') throw error;
-  }
-  // EEXIST: reclaim if the existing lock is stale (dead holder / unparseable / aged out), then retry
-  // once. The bootstrap lock already serialized us, and wx is atomic, so the reclaim cannot duplicate.
-  let raw = '';
-  try {
-    raw = fs.readFileSync(currentLockPath, 'utf8');
-  } catch (readErr) {
-    if (readErr.code !== 'ENOENT') throw readErr;
-  }
-  if (raw === '' || isRespawnLockStale(raw)) {
-    try {
-      fs.unlinkSync(currentLockPath);
-    } catch (unlinkErr) {
-      if (unlinkErr.code !== 'ENOENT') throw unlinkErr;
-    }
-    try {
-      const reclaimed = tryOpen();
-      log(`reclaimed stale ${label} lock ${rel(currentLockPath)}`);
-      return reclaimed;
-    } catch (retryErr) {
-      if (retryErr.code !== 'EEXIST') throw retryErr;
-    }
-  }
-  return { acquired: false, path: currentLockPath };
+  return acquireSharedRespawnLockFileAt(lockPath, label, { log, rel });
 }
 
 function acquireRespawnLockFile() {
@@ -488,41 +235,7 @@ function acquireRespawnLockFile() {
 }
 
 function acquireModelServerRespawnLockFile(socketPath = resolveModelServerSocketPath()) {
-  return acquireRespawnLockFileAt(modelServerRespawnLockPath(socketPath), 'hf-model-server respawn');
-}
-
-function releaseRespawnLockFile(lock) {
-  if (!lock || !lock.acquired) return;
-  try {
-    if (typeof lock.fd === 'number') fs.closeSync(lock.fd);
-  } finally {
-    try {
-      fs.unlinkSync(lock.path);
-    } catch (error) {
-      if (error.code !== 'ENOENT') throw error;
-    }
-  }
-}
-
-function processLiveness(pid) {
-  if (!Number.isInteger(pid) || pid <= 0) return 'dead';
-  try {
-    process.kill(pid, 0);
-    return 'alive';
-  } catch (error) {
-    if (error.code === 'ESRCH') return 'dead';
-    if (error.code === 'EPERM') return 'unknown-eperm';
-    return 'alive';
-  }
-}
-
-async function waitForPidExit(pid, timeoutMs) {
-  const deadline = Date.now() + timeoutMs;
-  while (Date.now() <= deadline) {
-    if (processLiveness(pid) === 'dead') return true;
-    await sleep(100);
-  }
-  return processLiveness(pid) === 'dead';
+  return mss.acquireModelServerRespawnLockFile(socketPath, { dbDir: resolvedDbDir, log, rel });
 }
 
 async function reapLeaseChildBeforeRespawn(childPid) {
@@ -612,56 +325,25 @@ async function bridgeOrReportLeaseHeld(leaseResult) {
   return decision;
 }
 
-function normalizeModelServerTarget(value) {
-  if (typeof value !== 'string' || value.trim() === '') return null;
-  const raw = value.trim();
-  if (raw.startsWith('tcp://')) return raw;
-  if (raw.startsWith('http://') || raw.startsWith('https://')) {
-    const url = new URL(raw);
-    return `tcp://${url.hostname}:${url.port || (url.protocol === 'https:' ? '443' : '80')}`;
-  }
-  if (raw.startsWith('unix://')) return path.resolve(raw.slice('unix://'.length));
-  return path.resolve(raw);
-}
-
 function resolveModelServerSocketPath(env = process.env, options = {}) {
-  const explicitTarget = normalizeModelServerTarget(options.listenTarget || env.HF_EMBED_SERVER_URL);
-  if (explicitTarget) return explicitTarget;
-  if (env.SPECKIT_IPC_SOCKET_DIR?.startsWith('tcp://')) return env.SPECKIT_IPC_SOCKET_DIR;
-
-  const socketDir = env.SPECKIT_IPC_SOCKET_DIR
-    ? path.resolve(env.SPECKIT_IPC_SOCKET_DIR)
-    : path.resolve(options.dbDir || resolvedDbDir());
-  return path.join(socketDir, HF_MODEL_SERVER_SOCKET_FILE_NAME);
+  return mss.resolveModelServerSocketPath(env, {
+    ...options,
+    dbDir: options.dbDir || resolvedDbDir,
+  });
 }
 
 function getContextServerPid() {
   return isChildRunning(childProcess) ? childProcess.pid : null;
 }
 
-function getModelServerPid() {
-  return modelServerSupervisor ? modelServerSupervisor.getPid() : null;
-}
-
 // Pure lease-payload builder (exported for tests). `childPid` and `modelServerPid` are ADDITIVE
 // fields present only when the corresponding launcher-owned child exists; existing readers consume
 // only pid/startedAt/ownerPid and ignore the extra fields.
 function buildLeaseObject(childPid = null, startedAt = leaseStartedAt, modelServerPid = null) {
-  const payload = {
-    pid: process.pid,
-    startedAt: startedAt || new Date().toISOString(),
-    ownerPid: process.pid,
-  };
-  if (Number.isInteger(childPid) && childPid > 0) {
-    payload.childPid = childPid;
-  }
-  if (Number.isInteger(modelServerPid) && modelServerPid > 0) {
-    payload.modelServerPid = modelServerPid;
-  }
-  return payload;
+  return buildSharedLeaseObject(childPid, startedAt || new Date().toISOString(), modelServerPid);
 }
 
-function writeLeaseFile(childPid = getContextServerPid(), modelServerPid = getModelServerPid()) {
+function writeLeaseFile(childPid = getContextServerPid(), modelServerPid = hfControl.getPid()) {
   const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(leasePath())), PID_FILE_NAME);
   const tmp = currentLeasePath + '.tmp.' + process.pid;
   if (!leaseStartedAt) leaseStartedAt = new Date().toISOString();
@@ -670,12 +352,69 @@ function writeLeaseFile(childPid = getContextServerPid(), modelServerPid = getMo
   fs.renameSync(tmp, currentLeasePath);
 }
 
+function sharedModelServerPidPath(socketPath = resolveModelServerSocketPath()) {
+  const pidDir = socketPath.startsWith('tcp://') ? resolvedDbDir() : path.dirname(socketPath);
+  return path.join(pidDir, HF_MODEL_SERVER_PID_FILE_NAME);
+}
+
+function writeSharedModelServerPid(pid) {
+  const socketPath = resolveModelServerSocketPath();
+  const pidPath = sharedModelServerPidPath(socketPath);
+  if (!Number.isInteger(pid) || pid <= 0) {
+    try {
+      fs.unlinkSync(pidPath);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+    return;
+  }
+
+  const currentPidPath = path.join(ensureCanonicalDir(path.dirname(pidPath)), path.basename(pidPath));
+  const tmp = `${currentPidPath}.tmp.${process.pid}`;
+  fs.writeFileSync(tmp, JSON.stringify({
+    pid,
+    startedAt: new Date().toISOString(),
+    ownerLauncher: 'mk-spec-memory',
+    socketPath,
+  }, null, 2), { mode: 0o600 });
+  fs.renameSync(tmp, currentPidPath);
+}
+
+function readSharedModelServerPid() {
+  const pidPath = sharedModelServerPidPath();
+  try {
+    const parsed = JSON.parse(fs.readFileSync(pidPath, 'utf8'));
+    if (Number.isInteger(parsed.pid) && parsed.pid > 0) return parsed.pid;
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      // Corrupt pid files are treated like absent pid files; the respawn lock still serializes recovery.
+    }
+  }
+
+  const lease = readLeaseFile();
+  return Number.isInteger(lease?.modelServerPid) && lease.modelServerPid > 0 ? lease.modelServerPid : null;
+}
+
+const hfControl = mss.createModelServerControl({
+  log,
+  env: process.env,
+  rootDir: root,
+  opencodeDir,
+  dbDir: resolvedDbDir,
+  getLauncherShutdownInProgress: () => launcherShutdownInProgress,
+  onRssBreach: (cfg) => recycleViaGracefulSelfExit(cfg.graceMs),
+  bridge: loadBridgeModule(),
+  writeModelServerPid: (pid) => writeSharedModelServerPid(pid),
+  readModelServerPid: () => readSharedModelServerPid(),
+  writeLease: () => writeLeaseFile(),
+});
+
 function clearLeaseFile() {
   try {
     const lease = readLeaseFile();
     if (launcherShutdownInProgress && Number.isInteger(lease?.modelServerPid) && lease.modelServerPid > 0) {
       try {
-        modelServerSupervisor?.reapProcessTree(lease.modelServerPid);
+        hfControl.reapProcessTree(lease.modelServerPid);
       } catch {
         // Lease cleanup must remain best-effort even if a final process-tree read fails.
       }
@@ -802,10 +541,6 @@ function getContextServerNodeArgs() {
   return nodeArgs;
 }
 
-function isChildRunning(child) {
-  return child && child.exitCode === null && child.signalCode === null;
-}
-
 function waitForChildExit(child, timeoutMs) {
   if (!isChildRunning(child)) return Promise.resolve(true);
   return new Promise((resolve) => {
@@ -824,24 +559,18 @@ function waitForChildExit(child, timeoutMs) {
   });
 }
 
-function signalProcess(pid, signal) {
-  try {
-    process.kill(pid, signal);
-    return true;
-  } catch (error) {
-    if (error.code === 'ESRCH' || error.code === 'EPERM') return false;
-    throw error;
-  }
-}
-
 // Refresh the before-death descendant snapshot from a live process-tree walk. Called periodically by
 // the monitor while the child is alive. On an unknown/permission-denied read (null), the previous
 // snapshot is KEPT (a transient ps failure must not erase the only handle on an orphan-able sidecar).
 function refreshDescendantSnapshot(childPid, runner = defaultProcessRowsRunner) {
-  const rows = resolveProcessTreeRows(childPid, runner);
-  if (rows === null) return lastKnownDescendantPids;
-  lastKnownDescendantPids = rows.map((row) => row.pid).filter((pid) => pid !== childPid && pid > 1);
-  return lastKnownDescendantPids;
+  return mss.refreshDescendantSnapshot(childPid, runner, {
+    snapshotPids: lastKnownDescendantPids,
+    snapshot: {
+      set: (pids) => {
+        lastKnownDescendantPids = pids;
+      },
+    },
+  });
 }
 
 // Reap an orphaned sidecar on crash-loop give-up (REQ-007). The dominant RC-1 RSS lives in a
@@ -851,28 +580,11 @@ function refreshDescendantSnapshot(childPid, runner = defaultProcessRowsRunner) 
 // (`lastKnownDescendantPids`), filtered to currently-alive, signalable pids. The signal-0 alive gate
 // bounds (but cannot fully eliminate) pid-reuse risk; the snapshot is at most one monitor tick old.
 function reapProcessTreeGroups(childPid, options = {}) {
-  const runner = options.runner || defaultProcessRowsRunner;
-  const signal = options.signal || signalProcess;
-  const snapshotPids = Array.isArray(options.snapshotPids) ? options.snapshotPids : lastKnownDescendantPids;
-
-  const liveRows = resolveProcessTreeRows(childPid, runner);
-  const liveDescendants = liveRows ? liveRows.map((row) => row.pid).filter((pid) => pid !== childPid) : [];
-
-  const candidates = [...new Set([...liveDescendants, ...snapshotPids])].filter(
-    (pid) => Number.isInteger(pid) && pid > 1 && pid !== childPid && pid !== process.pid && signal(pid, 0),
-  );
-  if (candidates.length === 0) return;
-
-  for (const pid of candidates) {
-    if (process.platform !== 'win32') signal(-pid, 'SIGTERM');
-    signal(pid, 'SIGTERM');
-  }
-  setTimeout(() => {
-    for (const pid of candidates) {
-      if (process.platform !== 'win32') signal(-pid, 'SIGKILL');
-      signal(pid, 'SIGKILL');
-    }
-  }, 1000).unref();
+  return mss.reapProcessTreeGroups(childPid, {
+    ...options,
+    snapshotPids: options.snapshotPids ?? lastKnownDescendantPids,
+    signal: options.signal || signalProcess,
+  });
 }
 
 async function recycleViaGracefulSelfExit(graceMs) {
@@ -880,15 +592,13 @@ async function recycleViaGracefulSelfExit(graceMs) {
   rssBreachSelfExitInProgress = true;
   launcherShutdownInProgress = true;
   if (rssWatchdogTimer) clearInterval(rssWatchdogTimer);
-  modelServerSupervisor?.clearTimers();
-  if (modelServerDemandServer) {
-    await stopModelServerDemandListener();
-  }
-  const modelServerChild = modelServerSupervisor?.getChild();
+  hfControl.clearTimers();
+  await hfControl.stopDemandListener();
+  const modelServerChild = hfControl.getChild();
   if (isChildRunning(modelServerChild)) {
     log(`RSS ceiling sustained; sending SIGTERM to hf-model-server pid ${modelServerChild.pid} before launcher self-exit`);
     modelServerChild.kill('SIGTERM');
-    modelServerSupervisor.reapProcessTree(modelServerChild.pid);
+    hfControl.reapProcessTree(modelServerChild.pid);
     const modelExitedAfterTerm = await waitForChildExit(modelServerChild, graceMs);
     if (!modelExitedAfterTerm && isChildRunning(modelServerChild)) {
       log(`hf-model-server pid ${modelServerChild.pid} exceeded ${graceMs}ms grace; sending SIGKILL before launcher self-exit`);
@@ -915,384 +625,50 @@ async function recycleViaGracefulSelfExit(graceMs) {
 }
 
 function startRssWatchdog(childPid, options = {}) {
-  const timerState = options.timerState || {
-    get: () => rssWatchdogTimer,
-    set: (timer) => {
-      rssWatchdogTimer = timer;
+  return mss.startRssWatchdog(childPid, {
+    ...options,
+    timerState: options.timerState || {
+      get: () => rssWatchdogTimer,
+      set: (timer) => {
+        rssWatchdogTimer = timer;
+      },
     },
-  };
-  const existingTimer = timerState.get();
-  if (existingTimer) {
-    clearInterval(existingTimer);
-    timerState.set(null);
-  }
-  const logger = options.log || log;
-  const label = options.label || 'context-server';
-  const runner = options.runner || defaultProcessRowsRunner;
-  const snapshot = options.snapshot || {
-    set: (pids) => {
-      lastKnownDescendantPids = pids;
+    snapshot: options.snapshot || {
+      set: (pids) => {
+        lastKnownDescendantPids = pids;
+      },
     },
-  };
-  const config = options.config || getWatchdogConfig(process.env, logger);
-  if (!config.enabled && config.maxRssMb !== null && Number.isFinite(config.maxRssMb) && config.maxRssMb > 0) {
-    logger(`RSS watchdog ceiling configured but ${config.selfExitEnv}=1 is not set; breach self-exit remains disabled (descendant tracking still active for crash-loop reap)`);
-  }
-
-  // The monitor ALWAYS runs (slower cadence when only tracking) so the crash-loop give-up reap has a
-  // before-death descendant snapshot even when the RSS-breach self-exit is disabled (the default).
-  const tickMs = config.enabled ? config.intervalMs : DEFAULT_DESCENDANT_SNAPSHOT_INTERVAL_MS;
-  let consecutiveBreaches = 0;
-  const timer = setInterval(() => {
-    const rows = resolveProcessTreeRows(childPid, runner);
-    if (rows === null) {
-      // unknown / permission-denied / dead read: keep the prior snapshot, reset the breach streak
-      consecutiveBreaches = 0;
-      return;
-    }
-    snapshot.set(rows.map((row) => row.pid).filter((pid) => pid !== childPid && pid > 1));
-    if (!config.enabled) return;
-    const rssMb = rows.reduce((sum, row) => sum + Math.max(0, row.rss), 0) / 1024;
-    if (rssMb <= config.maxRssMb) {
-      consecutiveBreaches = 0;
-      return;
-    }
-    consecutiveBreaches++;
-    logger(`${label} process tree RSS ${rssMb.toFixed(1)} MB exceeds ${config.maxRssMb} MB (${consecutiveBreaches}/${config.consecutiveBreaches})`);
-    if (consecutiveBreaches >= config.consecutiveBreaches) {
-      const onBreach = options.onBreach || ((breachConfig) => recycleViaGracefulSelfExit(breachConfig.graceMs));
-      void onBreach(config);
-    }
-  }, tickMs);
-  timer.unref?.();
-  timerState.set(timer);
-  return timer;
+    log: options.log || log,
+    onBreach: options.onBreach || ((breachConfig) => recycleViaGracefulSelfExit(breachConfig.graceMs)),
+  });
 }
 
+// Launcher-local factory that pre-seeds the launcher-aware defaults (writeLease/shouldExitLauncher/
+// onRssBreach) the shared lib intentionally leaves as generic no-ops. Keeps the launcher's exported
+// createModelServerSupervisor + launchModelServer(options) seam byte-equivalent to pre-extraction HEAD.
+// Explicit caller options still win via the trailing spread (the 004 test injects its own writeLease).
 function createModelServerSupervisor(options = {}) {
-  const state = {
-    child: options.child || null,
-    crashLoopGuard: options.crashLoopGuard || null,
-    relaunchTimer: null,
-    rssWatchdogTimer: null,
-    lastKnownDescendantPids: [],
-  };
-  const spawnFn = options.spawnFn || spawn;
-  const logger = options.log || log;
-  const env = options.env || process.env;
-  const rootDir = options.rootDir || root;
-  const modelServerPath = options.modelServerPath || path.join(opencodeDir, 'bin', 'hf-model-server.cjs');
-  const writeLease = options.writeLease || (() => writeLeaseFile());
-  const crashLoopConfig = options.crashLoopConfig || (() => getCrashLoopConfig(env));
-  const watchdogConfig = options.watchdogConfig || (() => getModelServerWatchdogConfig(env, logger));
-  const processRowsRunner = options.processRowsRunner || defaultProcessRowsRunner;
-  const signal = options.signal || signalProcess;
-  const liveness = options.liveness || processLiveness;
-  const waitForExit = options.waitForExit || waitForPidExit;
-  const setTimer = options.setTimeout || setTimeout;
-  const clearTimer = options.clearTimeout || clearTimeout;
-  const shouldExitLauncher = options.shouldExitLauncher || (() => launcherShutdownInProgress);
-  const onRssBreach = options.onRssBreach || ((config) => recycleViaGracefulSelfExit(config.graceMs));
-
-  function getPid() {
-    return isChildRunning(state.child) ? state.child.pid : null;
-  }
-
-  function clearTimers() {
-    if (state.relaunchTimer) {
-      clearTimer(state.relaunchTimer);
-      state.relaunchTimer = null;
-    }
-    if (state.rssWatchdogTimer) {
-      clearInterval(state.rssWatchdogTimer);
-      state.rssWatchdogTimer = null;
-    }
-  }
-
-  function reapProcessTree(childPid) {
-    reapProcessTreeGroups(childPid, {
-      runner: processRowsRunner,
-      signal,
-      snapshotPids: state.lastKnownDescendantPids,
-    });
-  }
-
-  async function reapBeforeRespawn(childPid) {
-    const pidState = liveness(childPid);
-    if (pidState === 'unknown-eperm') {
-      return { allowed: false, reason: 'model-server-liveness-unknown-eperm' };
-    }
-    if (pidState === 'dead') {
-      return { allowed: true, reaped: false, reason: 'model-server-already-dead' };
-    }
-
-    logger(`confirmed-dead hf-embed socket; reaping recorded hf-model-server pid ${childPid} before respawn`);
-    signal(childPid, 'SIGTERM');
-    reapProcessTree(childPid);
-    const exitedAfterTerm = await waitForExit(childPid, RESPAWN_REAP_GRACE_MS);
-    if (!exitedAfterTerm) {
-      logger(`hf-model-server pid ${childPid} exceeded ${RESPAWN_REAP_GRACE_MS}ms reap grace; sending SIGKILL`);
-      signal(childPid, 'SIGKILL');
-      await waitForExit(childPid, 1000);
-    }
-    return { allowed: true, reaped: true, reason: 'model-server-reaped' };
-  }
-
-  function scheduleDemandListener() {
-    if (options.startDemandListener === false) return;
-    void startModelServerDemandListener().catch((error) => {
-      logger(`hf-model-server demand listener restart failed: ${error.stack || error.message}`);
-    });
-  }
-
-  function launch() {
-    if (shouldSkipLaunch(state.child)) {
-      logger('launchModelServer skipped: an hf-model-server child is already running in this launcher process');
-      return false;
-    }
-    if (!state.crashLoopGuard) state.crashLoopGuard = createCrashLoopGuard(crashLoopConfig());
-    if (state.relaunchTimer) {
-      clearTimer(state.relaunchTimer);
-      state.relaunchTimer = null;
-    }
-
-    state.child = spawnFn(process.execPath, [modelServerPath], {
-      cwd: rootDir,
-      env,
-      stdio: 'inherit',
-    });
-    const childPid = state.child.pid;
-    if (!Number.isInteger(childPid) || childPid <= 0) {
-      logger('launchModelServer failed: spawned hf-model-server child has no pid');
-      return false;
-    }
-    writeLease();
-    startRssWatchdog(childPid, {
-      config: watchdogConfig(),
-      label: 'hf-model-server',
-      runner: processRowsRunner,
-      log: logger,
-      timerState: {
-        get: () => state.rssWatchdogTimer,
-        set: (timer) => {
-          state.rssWatchdogTimer = timer;
-        },
-      },
-      snapshot: {
-        set: (pids) => {
-          state.lastKnownDescendantPids = pids;
-        },
-      },
-      onBreach: onRssBreach,
-    });
-
-    state.child.on('exit', (code, signalCode) => {
-      if (shouldExitLauncher()) {
-        return;
-      }
-      const result = superviseChildExit(
-        { code, signal: signalCode, childPid, intentional: false },
-        {
-          crashLoopGuard: state.crashLoopGuard,
-          clearLease: () => {
-            state.child = null;
-            writeLease();
-          },
-          reapProcessGroup: reapProcessTree,
-          mirrorSignal: (exitSignal) => logger(`hf-model-server crash loop exhausted after signal ${exitSignal}; daemon remains running`),
-          exit: (exitCode) => logger(`hf-model-server crash loop exhausted with exit ${exitCode}; daemon remains running`),
-          scheduleRelaunch: (backoffMs) => {
-            logger(`hf-model-server child exited code=${code ?? 'null'} signal=${signalCode ?? 'null'}; relaunching in ${backoffMs}ms`);
-            state.relaunchTimer = setTimer(() => launch(), backoffMs);
-            state.relaunchTimer.unref?.();
-          },
-        },
-      );
-      if (result.action === 'give-up') {
-        logger(`hf-model-server crash loop detected after ${result.deathsInWindow} deaths; modelServerPid removed from lease`);
-        scheduleDemandListener();
-      }
-    });
-
-    state.child.on('error', (error) => {
-      logger(error.stack || error.message);
-    });
-    return true;
-  }
-
-  return {
-    clearTimers,
-    getChild: () => state.child,
-    getPid,
-    getSnapshotPids: () => [...state.lastKnownDescendantPids],
-    launch,
-    reapBeforeRespawn,
-    reapProcessTree,
-  };
-}
-
-function getModelServerSupervisor() {
-  if (!modelServerSupervisor) {
-    modelServerSupervisor = createModelServerSupervisor();
-  }
-  return modelServerSupervisor;
+  return baseCreateModelServerSupervisor({
+    writeLease: () => writeLeaseFile(),
+    shouldExitLauncher: () => launcherShutdownInProgress,
+    onRssBreach: (cfg) => recycleViaGracefulSelfExit(cfg.graceMs),
+    ...options,
+  });
 }
 
 function launchModelServer(options = null) {
   if (options && typeof options === 'object') {
     return createModelServerSupervisor(options).launch();
   }
-  return getModelServerSupervisor().launch();
+  return hfControl.launch();
 }
 
-function writeDemandResponse(response, statusCode, payload) {
-  const body = JSON.stringify(payload);
-  response.writeHead(statusCode, {
-    'content-type': 'application/json',
-    'content-length': Buffer.byteLength(body),
-  });
-  response.end(body);
+function startModelServerDemandListener(options = {}) {
+  return hfControl.startDemandListener(options);
 }
 
-function unlinkModelServerSocket(socketPath) {
-  if (socketPath.startsWith('tcp://')) return;
-  try {
-    fs.unlinkSync(socketPath);
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error;
-  }
-}
-
-function releaseModelServerDemandListenerForSpawn() {
-  const server = modelServerDemandServer;
-  const target = modelServerDemandTarget;
-  modelServerDemandServer = null;
-  modelServerDemandTarget = null;
-  if (target) unlinkModelServerSocket(target);
-  if (server) {
-    server.close(() => undefined);
-  }
-}
-
-async function stopModelServerDemandListener() {
-  const server = modelServerDemandServer;
-  const target = modelServerDemandTarget;
-  modelServerDemandServer = null;
-  modelServerDemandTarget = null;
-  if (!server) {
-    if (target) unlinkModelServerSocket(target);
-    return;
-  }
-  await new Promise((resolve) => {
-    server.close(() => resolve());
-  });
-  if (target) unlinkModelServerSocket(target);
-}
-
-async function reapRecordedModelServerBeforeRespawn(socketPath) {
-  const lease = readLeaseFile();
-  const modelServerPid = lease?.modelServerPid;
-  if (!Number.isInteger(modelServerPid) || modelServerPid <= 0) {
-    return { allowed: true, reaped: false, reason: 'missing-model-server-pid' };
-  }
-
-  const respawnLock = acquireModelServerRespawnLockFile(socketPath);
-  if (!respawnLock.acquired) {
-    return { allowed: false, reason: 'model-server-respawn-lock-held', lockPath: respawnLock.path };
-  }
-  try {
-    return await getModelServerSupervisor().reapBeforeRespawn(modelServerPid);
-  } finally {
-    releaseRespawnLockFile(respawnLock);
-  }
-}
-
-async function prepareModelServerDemandTarget(socketPath) {
-  if (socketPath.startsWith('tcp://')) {
-    return { shouldListen: true };
-  }
-  fs.mkdirSync(path.dirname(socketPath), { recursive: true, mode: 0o700 });
-  if (!fs.existsSync(socketPath)) {
-    return { shouldListen: true };
-  }
-
-  const { probeModelServer } = loadBridgeModule();
-  if (typeof probeModelServer === 'function') {
-    const probe = await probeModelServer(socketPath, { timeoutMs: 1000 });
-    if (probe.status === 'alive') {
-      return { shouldListen: false, reason: 'model-server-alive' };
-    }
-  }
-
-  const reapResult = await reapRecordedModelServerBeforeRespawn(socketPath);
-  if (!reapResult.allowed) {
-    return { shouldListen: false, reason: reapResult.reason };
-  }
-  unlinkModelServerSocket(socketPath);
-  return { shouldListen: true, reason: reapResult.reason };
-}
-
-function handleModelServerDemand(request, response) {
-  const routePath = new URL(request.url || '/', 'http://127.0.0.1').pathname;
-  log(`hf-model-server demand received ${request.method || 'GET'} ${routePath}; spawning launcher-owned sibling`);
-  releaseModelServerDemandListenerForSpawn();
-  const launched = launchModelServer();
-  writeDemandResponse(response, MODEL_SERVER_DEMAND_STATUS, {
-    state: 'loading',
-    modelServerLaunchRequested: true,
-    launched,
-  });
-}
-
-async function startModelServerDemandListener(options = {}) {
-  if (modelServerDemandServer || getModelServerPid()) {
-    return { started: false, reason: 'already-owned' };
-  }
-
-  const socketPath = options.socketPath || resolveModelServerSocketPath();
-  const prepared = options.skipPrepare ? { shouldListen: true } : await prepareModelServerDemandTarget(socketPath);
-  if (!prepared.shouldListen) {
-    log(`hf-model-server demand listener skipped: ${prepared.reason}`);
-    return { started: false, reason: prepared.reason, socketPath };
-  }
-
-  const server = http.createServer(handleModelServerDemand);
-  await new Promise((resolve, reject) => {
-    let reclaimedStaleSocket = false;
-    const onError = (error) => {
-      // Mirror the model server's listen path: a stale hf-embed.sock left by a crashed listener
-      // surfaces as EADDRINUSE. Unlink it once and retry so a prior crash cannot silently disable
-      // lazy embeds until a manual restart.
-      if (error && error.code === 'EADDRINUSE' && !socketPath.startsWith('tcp://') && !reclaimedStaleSocket) {
-        reclaimedStaleSocket = true;
-        unlinkModelServerSocket(socketPath);
-        server.listen(socketPath);
-        return;
-      }
-      server.off('listening', onListening);
-      reject(error);
-    };
-    const onListening = () => {
-      server.off('error', onError);
-      resolve();
-    };
-    server.on('error', onError);
-    server.once('listening', onListening);
-    if (socketPath.startsWith('tcp://')) {
-      const url = new URL(socketPath);
-      server.listen(Number.parseInt(url.port, 10), url.hostname || '127.0.0.1');
-    } else {
-      server.listen(socketPath);
-    }
-  });
-
-  if (!socketPath.startsWith('tcp://')) {
-    fs.chmodSync(socketPath, 0o600);
-  }
-  modelServerDemandServer = server;
-  modelServerDemandTarget = socketPath;
-  log(`hf-model-server lazy demand listener ready at ${socketPath}`);
-  return { started: true, socketPath };
+function stopModelServerDemandListener() {
+  return hfControl.stopDemandListener();
 }
 
 async function acquireBootstrapLock(options = {}) {
@@ -1329,13 +705,6 @@ async function acquireBootstrapLock(options = {}) {
       await sleep(1000);
     }
   }
-}
-
-// Duplicate-spawn guard (REQ-004): skip a launch only while a child is CURRENTLY running, so the
-// crash-loop supervisor's legitimate sequential relaunch (after the prior child has EXITED) is still
-// allowed. A one-shot "ever launched" flag would permanently disable F1's relaunch path.
-function shouldSkipLaunch(child) {
-  return Boolean(child && isChildRunning(child));
 }
 
 function launchServer() {
@@ -1395,14 +764,14 @@ async function shutdownLauncherForSignal(signal) {
   launcherShutdownInProgress = true;
   if (rssWatchdogTimer) clearInterval(rssWatchdogTimer);
   if (supervisorRelaunchTimer) clearTimeout(supervisorRelaunchTimer);
-  modelServerSupervisor?.clearTimers();
-  await stopModelServerDemandListener();
+  hfControl.clearTimers();
+  await hfControl.stopDemandListener();
 
   const children = [];
   if (isChildRunning(childProcess)) {
     children.push({ child: childProcess, label: 'context-server' });
   }
-  const modelServerChild = modelServerSupervisor?.getChild();
+  const modelServerChild = hfControl.getChild();
   if (isChildRunning(modelServerChild)) {
     children.push({ child: modelServerChild, label: 'hf-model-server' });
   }
@@ -1415,7 +784,7 @@ async function shutdownLauncherForSignal(signal) {
 
   for (const { child, label } of children) {
     if (label === 'hf-model-server') {
-      modelServerSupervisor.reapProcessTree(child.pid);
+      hfControl.reapProcessTree(child.pid);
     }
     child.kill(signal);
   }

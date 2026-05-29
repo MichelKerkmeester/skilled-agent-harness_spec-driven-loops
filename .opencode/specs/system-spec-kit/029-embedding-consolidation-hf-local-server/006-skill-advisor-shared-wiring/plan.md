@@ -9,19 +9,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring"
-    last_updated_at: "2026-05-29T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Authored deferred plan for skill-advisor shared model-server wiring"
-    next_safe_action: "Implement after sidecar retirement and shared server routing are stable"
+    last_updated_at: "2026-05-29T13:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Extraction + wiring delivered per plan; shared lib + both launchers; review fixes applied"
+    next_safe_action: "Reconcile parent 029 packet; Option B 6/6 complete"
     blockers: []
     key_files:
-      - "system-skill-advisor/mcp_server/lib/embedders/index.ts"
+      - ".opencode/bin/lib/model-server-supervision.cjs"
       - ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000396"
       session_id: "029-006-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,9 +59,9 @@ Shared consumer wiring: default both services to one canonical socket, preserve 
 - [x] Dependencies identified (dependsOn: 005-retire-sidecar.)
 
 ### Definition of Done
-- [ ] All P0 acceptance criteria met
-- [ ] Focused tests and static checks for this phase pass
-- [ ] Docs/spec/plan/tasks stay aligned
+- [x] All P0 acceptance criteria met
+- [x] Focused tests and static checks for this phase pass
+- [x] Docs/spec/plan/tasks stay aligned
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -104,18 +104,18 @@ Inventory: use targeted `rg` for the symbols named in this plan before editing. 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm phase predecessor handoff is satisfied (005-retire-sidecar)
-- [ ] Inventory affected symbols and tests before editing
+- [x] Confirm phase predecessor handoff is satisfied (005-retire-sidecar)
+- [x] Inventory affected symbols and tests before editing
 
 ### Phase 2: Core Implementation
-- [ ] Wire skill-advisor semantic embeddings to the shared model-server URL/socket [REQ-001]
-- [ ] Add absent-mk-spec-memory cross-launcher respawn-lock coverage [REQ-002]
-- [ ] Update ENV_REFERENCE.md with new server envs and deprecated sidecar envs [REQ-003]
-- [ ] Document single-resident-model and 404 fallback behavior [REQ-004]
+- [x] Wire skill-advisor semantic embeddings to the shared model-server URL/socket [REQ-001]
+- [x] Add absent-mk-spec-memory cross-launcher respawn-lock coverage [REQ-002]
+- [x] Update ENV_REFERENCE.md with new server envs and deprecated sidecar envs [REQ-003]
+- [x] Document single-resident-model and 404 fallback behavior [REQ-004]
 
 ### Phase 3: Verification
-- [ ] Add troubleshooting notes for health states [REQ-005]
-- [ ] Verify multi-consumer load-once behavior [REQ-006]
+- [x] Add troubleshooting notes for health states [REQ-005]
+- [x] Verify multi-consumer load-once behavior [REQ-006]
 <!-- /ANCHOR:phases -->
 
 ---

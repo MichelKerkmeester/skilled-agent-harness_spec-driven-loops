@@ -412,13 +412,31 @@ For the simplest local-first new-user setup, install [Ollama](https://ollama.com
 | `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` | `true` | boolean | Circuit breaker for embedding model failures. Graduated ON. | `shared/embeddings.ts` |
 | `SPECKIT_EMBEDDING_CB_THRESHOLD` | `3` | number | Consecutive failure count before circuit breaker opens. | `shared/embeddings.ts` |
 | `SPECKIT_EMBEDDING_CB_COOLDOWN_MS` | `60000` | number | Cooldown period in ms before circuit breaker resets (min 1000). | `shared/embeddings.ts` |
-| `SPECKIT_EMBEDDER_EXECUTION` | `auto` | string | Embedder runtime execution policy: `auto` sidecars local in-process providers (`hf-local`, future `sentence-transformers`) while keeping Ollama/OpenAI/Voyage direct; `direct` forces in-process; `sidecar` forces worker execution. | `lib/embedders/execution-router.ts` |
-| `SPECKIT_EMBEDDER_SIDECAR_IDLE_MS` | `300000` | number | Idle timeout in milliseconds before an embedder sidecar worker is terminated. | `lib/embedders/sidecar-client.ts` |
-| `SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS` | `2000` | number | Health ping timeout in milliseconds before the sidecar client respawns a worker. | `lib/embedders/sidecar-client.ts` |
+| `HF_EMBED_SERVER_URL` | (unset → `<dbDir>/hf-embed.sock`) | string | Overrides the local HF model-server endpoint. Accepts a Unix socket path, `unix://<path>`, or `tcp://<host>:<port>`. Both launchers and the `hf-local` client resolve this first, then `SPECKIT_IPC_SOCKET_DIR`, then `<dbDir>/hf-embed.sock`. Leave unset so mk-spec-memory and skill-advisor share one resident server. | `bin/hf-model-server.cjs`, `shared/embeddings/providers/hf-local.ts` |
+| `HF_EMBED_SERVER_READY_TIMEOUT_MS` | `45000` | number | Max time the `hf-local` client waits for the model server to finish a cold model load (it retries through `503 loading`). | `shared/embeddings/providers/hf-local.ts` |
+| `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` | (unset → disabled) | number | RSS ceiling (MB) for the launcher-supervised model-server process tree. Unset disables the watchdog. | `bin/lib/model-server-supervision.cjs` |
+| `SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT` | (unset → off) | string | Set `1` (with `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB`) to recycle the model server via graceful self-exit on an RSS breach. | `bin/lib/model-server-supervision.cjs` |
+| `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` | (unset → off) | string | Set `1` to let the **skill-advisor** launcher win the shared model-server spawn when mk-spec-memory is absent (single-winner via the socket-keyed lock). Default off — the memory daemon owns the spawn in the steady state. | `bin/mk-skill-advisor-launcher.cjs` |
 | `SPECKIT_EMBED_CACHE_MAX_BYTES` | `104857600` | number | Global hard cap for persistent embedding cache rows across all profiles and document/query kinds. Defaults to 100 MB. | `lib/cache/embedding-cache.ts` |
 | `SPECKIT_EMBED_CACHE_PROFILE_MAX_BYTES` | `52428800` | number | Per-profile cap for persistent embedding cache rows. Defaults to 50 MB per active embedder profile. | `lib/cache/embedding-cache.ts` |
 | `SPECKIT_QUERY_EMBED_CACHE_MAX_BYTES` | `26214400` | number | Separate cap for cached query embeddings (`input_kind='query'`). Defaults to 25 MB. | `lib/cache/embedding-cache.ts` |
 | `SPECKIT_EMBED_CACHE_MAX_ENTRIES_PER_PROFILE` | `50000` | number | Secondary safety cap on embedding cache row count per profile after byte limits are applied. | `lib/cache/embedding-cache.ts` |
+
+### Local HF model server (single resident model)
+
+When the cascade selects `hf-local`, embeddings are served by a **launcher-supervised local HTTP model server** (`bin/hf-model-server.cjs`) over a Unix socket at `<dbDir>/hf-embed.sock` — no in-process model load, no sidecar. The mk-spec-memory launcher lazily spawns and supervises it on first embed demand; `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1` lets skill-advisor win that spawn when the memory daemon is absent. Both services resolve the **same** socket, so one resident model serves all consumers.
+
+**Single-resident-model contract.** The server loads exactly **one** model (`HF_EMBEDDINGS_MODEL`, default `nomic-ai/nomic-embed-text-v1.5`). A request for any other model returns **HTTP 404** (`{error, model, loadedModel}`); the `hf-local` provider treats that as "model not loaded" and the auto-select cascade falls through to the next provider (OpenAI → Voyage) or surfaces the error. To run a different local HF model, change `HF_EMBEDDINGS_MODEL` for **all** consumers — do not expect per-request model switching.
+
+**Troubleshooting — model-server health states:**
+
+| State | Symptom | Operator action |
+|-------|---------|-----------------|
+| Not started | `hf-local` health probe connect-refused; no `hf-embed.sock` | Normal before first demand. If it persists under load, check the launcher log for `demand listener` errors; ensure the daemon (or `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1`) is up. |
+| Loading | Health returns `503 loading`; first embed slow | Expected cold model load (up to `HF_EMBED_SERVER_READY_TIMEOUT_MS`, default 45 s; model-load cap 120 s). The client retries automatically — wait it out. |
+| Crash-looped | Repeated `hf-model-server child exited … relaunching`; eventually `crash loop detected … daemon remains running` | Inspect the model-server stderr (bad `HF_EMBEDDINGS_DTYPE`/`HF_EMBEDDINGS_MODEL`, OOM). After give-up, the launcher re-arms a demand listener; fix the cause and trigger a new embed. |
+| RSS recycle | `process tree RSS … exceeds …` then graceful self-exit | Only with `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` + `_RSS_SELF_EXIT=1`. Raise the ceiling or disable if the model legitimately needs more RAM. |
+| Model mismatch | Embeds fail with `Model … is not loaded by this hf-local server` (404) | A consumer requested a model the resident server isn't running. Align `HF_EMBEDDINGS_MODEL` across services, or let the cascade fall back. |
 
 ---
 
@@ -442,6 +460,9 @@ These variables are no longer active but may still appear in compatibility code.
 | Variable | Status | Replacement | Notes |
 |----------|--------|-------------|-------|
 | `SPECKIT_EAGER_WARMUP` | **Deprecated** | (removed) | Embedding model now uses lazy loading only. Compatibility flag. |
+| `SPECKIT_EMBEDDER_EXECUTION` | **Deprecated (no-op)** | (none) | The embedder sidecar was retired; `hf-local` is now a launcher-supervised HTTP model server. Accepted-but-ignored for one release (logged once), then removed. |
+| `SPECKIT_EMBEDDER_SIDECAR_IDLE_MS` | **Deprecated (no-op)** | `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` (lifecycle now launcher-owned) | Referenced the deleted `sidecar-client.ts`. No effect. |
+| `SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS` | **Deprecated (no-op)** | `HF_EMBED_SERVER_READY_TIMEOUT_MS` | Referenced the deleted `sidecar-client.ts`. No effect. |
 | `SPECKIT_LAZY_LOADING` | **Deprecated** | (removed) | Lazy loading is always enabled. Compatibility flag. |
 | `SPECKIT_SHADOW_SCORING` | **Deprecated** | `SPECKIT_SHADOW_FEEDBACK` | Shadow scoring flag removed. Shadow evaluation uses SHADOW_FEEDBACK. |
 | `SPECKIT_RSF_FUSION` | **Deprecated** | `SPECKIT_RRF` | Referenced in tests only. Legacy alias. |
