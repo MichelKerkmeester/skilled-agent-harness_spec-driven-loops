@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/031-embedding-stack-hardening"
-    last_updated_at: "2026-05-29T14:00:00Z"
+    last_updated_at: "2026-05-29T18:40:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored phase-parent spec for embedding-stack hardening"
-    next_safe_action: "Implement phase 001"
+    recent_action: "All 5 phases (001-005) shipped + committed; flag-flip + live perf numbers gated"
+    next_safe_action: "20-iteration spec-kit deep review of the shipped embedding-stack program"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000031"
       session_id: "031-embedding-stack-hardening-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Execution order: strict 001 → 005 (supervision + perf + live test all depend on the shared socket and the instrumentation that precedes them)"
@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Complete — all 5 phases shipped + committed (2026-05-29); flag-flip + live perf/dtype numbers gated on a working onnxruntime tree |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -108,11 +108,11 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-selector-and-shared-socket/ | Swap the selector probe to `/api/health`, delete stale Python probe/docs, pin a shared `HF_EMBED_SERVER_URL` in `.mcp.json` + `opencode.json`, add `ECONNRESET`/`EPIPE` retry, and make the readiness-timeout message actionable | Spec ready (implementation pending) |
-| 2 | 002-server-liveness-supervision/ | Wedged-but-loading detection, inference-liveness health fields with a bounded dispose-drain, and a crash-loop give-up cooldown plus ENOSPC-resilient pid/lease/lock writes | Spec ready (implementation pending) |
-| 3 | 003-observability-model-switch/ | Read-only `/doctor embeddings` + embedder_status surface, a safe model-switch path (allowlist + 404 loadedModel + dim-drift warn), and cold-start timeout alignment with first-embed download docs | Spec ready (implementation pending) |
-| 4 | 004-perf-instrumentation-batching/ | Instrument the embed path first, then real `/api/embed` batching, a ready-once latch, and cache-into-reindex — every win measure-gated | Spec ready (implementation pending) |
-| 5 | 005-live-validation-bench-hardening/ | Live two-launcher integration test that gates the advisor flag flip to default ON, q8-vs-fp16 bench, idle-eviction (default off), perimeter hardening, and staged deprecated-env removal | Spec ready (implementation pending) |
+| 1 | 001-selector-and-shared-socket/ | Swap the selector probe to `/api/health`, delete stale Python probe/docs, pin a shared `HF_EMBED_SERVER_URL` in `.mcp.json` + `opencode.json`, add `ECONNRESET`/`EPIPE` retry, and make the readiness-timeout message actionable | Complete (`910e87c429`) |
+| 2 | 002-server-liveness-supervision/ | Wedged-but-loading detection, inference-liveness health fields with a bounded dispose-drain, and a crash-loop give-up cooldown plus ENOSPC-resilient pid/lease/lock writes | Complete (`73ae557901`) |
+| 3 | 003-observability-model-switch/ | Read-only `/doctor embeddings` + embedder_status surface, a safe model-switch path (allowlist + 404 loadedModel + dim-drift warn), and cold-start timeout alignment with first-embed download docs | Complete (`6781109b97`) |
+| 4 | 004-perf-instrumentation-batching/ | Instrument the embed path first, then real `/api/embed` batching, a ready-once latch, and cache-into-reindex — every win measure-gated | Complete (`47a01c7170`) — instrument + batching + latch shipped; cache-into-reindex + live perf numbers deferred (measure-gated) |
+| 5 | 005-live-validation-bench-hardening/ | Live two-launcher integration test that gates the advisor flag flip to default ON, q8-vs-fp16 bench, idle-eviction (default off), perimeter hardening, and staged deprecated-env removal | Complete (`40806392cb`) — perimeter + idle + live-test + cleanup shipped; flag-flip + dtype gated on a working onnxruntime tree |
 
 ### Phase Transition Rules
 
